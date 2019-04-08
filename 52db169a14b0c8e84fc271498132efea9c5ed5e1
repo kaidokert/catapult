@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8142d14c_55aa14d1",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-04-08T18:47:40Z",
+      "side": 1,
+      "message": "There\u0027s also `pm dump`. Would that provide the same info as dumpsys?",
+      "range": {
+        "startLine": 92,
+        "startChar": 37,
+        "endLine": 92,
+        "endChar": 44
+      },
+      "revId": "52db169a14b0c8e84fc271498132efea9c5ed5e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89555b7c_e148151b",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-04-08T18:47:40Z",
+      "side": 1,
+      "message": "What if the package isn\u0027t installed on the device? What will dumpsys output in that case?",
+      "revId": "52db169a14b0c8e84fc271498132efea9c5ed5e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
