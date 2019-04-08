@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e5c6144_0ca4efcb",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-08T20:40:55Z",
+      "side": 1,
+      "message": "That one will dump out a lot more info, including those about other packages.",
+      "parentUuid": "8142d14c_55aa14d1",
+      "range": {
+        "startLine": 92,
+        "startChar": 37,
+        "endLine": 92,
+        "endChar": 44
+      },
+      "revId": "52db169a14b0c8e84fc271498132efea9c5ed5e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89555b7c_e148151b",
         "filename": "devil/devil/android/tools/system_app.py",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2019-04-08T18:47:40Z",
       "side": 1,
       "message": "What if the package isn\u0027t installed on the device? What will dumpsys output in that case?",
+      "revId": "52db169a14b0c8e84fc271498132efea9c5ed5e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e9a3dde_bef688b4",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-08T20:40:55Z",
+      "side": 1,
+      "message": "Thanks for mentioning this, found an issue with this cl:\n\nI had tested this, and it works when the bad package name contains a dot:\n\nadb shell dumpsys package bad.package\n\nPackage Changes:\n  Sequence number\u003d0\n\n\nDexopt state:\n  Unable to find package: bad.package\n\n\nCompiler stats:\n  Unable to find package: bad.package\n\nBut I just realized that if the package doesn\u0027t contain a \u0027.\u0027 character, then it dumps out all the packages.  Need to add a check for this case.\n\nBut I just found out an even better way to do this via the pm list packages -f -u options (see: https://android.googlesource.com/platform/frameworks/base/+/b8678d76c3e09d0d65255f3971b6112a48e19099/cmds/pm/src/com/android/commands/pm/Pm.java#1166).\n\nWill update the CL to use this method.\n\nBen and John, I will still contain this logic in system_app.py, with a TODO mention to move it to DeviceUtils.GetApplicationPaths eventually if you\u0027re ok with that.",
+      "parentUuid": "89555b7c_e148151b",
       "revId": "52db169a14b0c8e84fc271498132efea9c5ed5e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
