@@ -888,6 +888,8 @@ tr.exportTo('cp', () => {
       }
       if (sessionState.chartSections) {
         for (const options of sessionState.chartSections) {
+          // Sessions may contain copies of charts. Bypass deduplication.
+          options.clone = true;
           state = ChromeperfApp.reducers.newChart(state, {options});
         }
       }
