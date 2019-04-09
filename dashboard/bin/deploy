@@ -65,13 +65,6 @@ def PackSPA(catapult_path, temp_dir, deployment_paths):
   from node_runner import node_util
   node_modules = node_util.GetNodeModulesPath()
 
-  # TODO(crbug.com/918193): Remove this after migrating to lit-element.
-  js_parse_filename = os.path.join(
-      node_modules, 'hydrolysis', 'lib', 'ast-utils', 'js-parse.js')
-  subprocess.check_output([
-      'sed', '-i', 's/ecmaVersion: 6/ecmaVersion: 9/g',
-      js_parse_filename])
-
   spa_path = os.path.join(dashboard_path, 'dashboard', 'spa')
   webpack_dir = os.path.join(temp_dir, 'webpack')
   config_filename = os.path.join(spa_path, 'webpack.config.js')
