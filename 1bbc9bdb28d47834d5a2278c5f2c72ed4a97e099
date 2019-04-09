@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77cd482e_6c1a1e6e",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-09T00:05:19Z",
+      "side": 1,
+      "message": "This should set an explicit value for check_return depending on how pm list packages exits. If it exits with a 0 regardless of whether the package is present in some capacity, this should pass check_return\u003dTrue; otherwise, it should explicitly pass pass check_return\u003dFalse.",
+      "revId": "1bbc9bdb28d47834d5a2278c5f2c72ed4a97e099",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
