@@ -7,8 +7,6 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/dashboard/spa/alerts-section.html">
 
 <test-fixture id="test">
   <template>
@@ -16,8 +14,16 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
+import AlertsSection from './alerts-section.js';
+import DescribeRequest from './describe-request.js';
+import NewBugRequest from './new-bug-request.js';
+import ExistingBugRequest from './existing-bug-request.js';
+import SheriffsRequest from './sheriffs-request.js';
+import AlertsRequest from './alerts-request.js';
+import {afterRender} from './utils.js';
+
 window.AUTH_CLIENT_ID = '';
 
 suite('alerts-section', function() {
@@ -30,24 +36,24 @@ suite('alerts-section', function() {
     window.fetch = async(url, options) => {
       return {
         async json() {
-          if (url === cp.DescribeRequest.URL) {
+          if (url === DescribeRequest.URL) {
             return {};
           }
-          if (url === cp.NewBugRequest.URL) {
+          if (url === NewBugRequest.URL) {
             newBugBody = options.body;
             return {bug_id: 57};
           }
-          if (url === cp.ReportNamesRequest.URL) {
+          if (url === ReportNamesRequest.URL) {
             return [{name: 'aaa', id: 42, modified: new Date()}];
           }
-          if (url === cp.ExistingBugRequest.URL) {
+          if (url === ExistingBugRequest.URL) {
             existingBugBody = options.body;
             return {};
           }
-          if (url === cp.SheriffsRequest.URL) {
+          if (url === SheriffsRequest.URL) {
             return [];
           }
-          if (url === cp.AlertsRequest.URL) {
+          if (url === AlertsRequest.URL) {
             const improvements = Boolean(options.body.get('improvements'));
             const alerts = [];
             const measurements = ['mmm0', 'mmm1', 'mmm2'];
@@ -113,7 +119,7 @@ suite('alerts-section', function() {
           ],
         }),
         Redux.ENSURE('test'),
-        Redux.UPDATE('test', cp.AlertsSection.buildState({}))));
+        Redux.UPDATE('test', AlertsSection.buildState({}))));
   });
   teardown(() => {
     window.fetch = originalFetch;
@@ -122,29 +128,29 @@ suite('alerts-section', function() {
 
   test('summary', function() {
     assert.strictEqual('0 alerts',
-        cp.AlertsSection.summary(undefined, undefined));
+        AlertsSection.summary(undefined, undefined));
     assert.strictEqual('0 alerts',
-        cp.AlertsSection.summary(true, undefined));
+        AlertsSection.summary(true, undefined));
 
     assert.strictEqual('1 displayed in 1 group of 1 alert',
-        cp.AlertsSection.summary(true, [{alerts: [{}]}], 0));
+        AlertsSection.summary(true, [{alerts: [{}]}], 0));
     assert.strictEqual('1 displayed in 1 group of 10 alerts',
-        cp.AlertsSection.summary(true, [{alerts: [{}]}], 10));
+        AlertsSection.summary(true, [{alerts: [{}]}], 10));
     assert.strictEqual('2 displayed in 1 group of 2 alerts',
-        cp.AlertsSection.summary(true, [{alerts: [{}, {}]}], 0));
+        AlertsSection.summary(true, [{alerts: [{}, {}]}], 0));
     assert.strictEqual('2 displayed in 2 groups of 2 alerts',
-        cp.AlertsSection.summary(true, [{alerts: [{}]}, {alerts: [{}]}], 0));
+        AlertsSection.summary(true, [{alerts: [{}]}, {alerts: [{}]}], 0));
 
     assert.strictEqual('0 displayed in 0 groups of 0 alerts',
-        cp.AlertsSection.summary(false, [
+        AlertsSection.summary(false, [
           {triaged: {count: 1}, alerts: [{}]},
         ], 0));
     assert.strictEqual('1 displayed in 1 group of 1 alert',
-        cp.AlertsSection.summary(false, [
+        AlertsSection.summary(false, [
           {triaged: {count: 1}, alerts: [{}, {}]},
         ], 0));
     assert.strictEqual('1 displayed in 1 group of 1 alert',
-        cp.AlertsSection.summary(false, [
+        AlertsSection.summary(false, [
           {triaged: {count: 0}, alerts: [{}]},
           {triaged: {count: 1}, alerts: [{}]},
         ], 0));
@@ -152,13 +158,13 @@ suite('alerts-section', function() {
 
   test('triageNew', async function() {
     const section = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
         {bug: 42},
       ]},
     }));
-    await cp.afterRender();
+    await afterRender();
 
     const selectAll = tr.ui.b.findDeepElementMatching(
         section, 'th cp-checkbox');
@@ -171,7 +177,7 @@ suite('alerts-section', function() {
 
     const submit = tr.ui.b.findDeepElementWithTextContent(section, /SUBMIT/i);
     submit.click();
-    await cp.afterRender();
+    await afterRender();
 
     assert.deepEqual(['Pri-2', 'Type-Bug-Regression'],
         newBugBody.getAll('label'));
@@ -190,13 +196,13 @@ suite('alerts-section', function() {
 
   test('triageExisting', async function() {
     const section = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
         {bug: 42},
       ]},
     }));
-    await cp.afterRender();
+    await afterRender();
 
     const selectAll = tr.ui.b.findDeepElementMatching(
         section, 'th cp-checkbox');
@@ -209,12 +215,12 @@ suite('alerts-section', function() {
     button.click();
 
     section.dispatch(Redux.UPDATE('test.existingBug', {bugId: '123456'}));
-    await cp.afterRender();
+    await afterRender();
 
     const menu = tr.ui.b.findDeepElementMatching(section, 'triage-existing');
     const submit = tr.ui.b.findDeepElementWithTextContent(menu, /SUBMIT/i);
     submit.click();
-    await cp.afterRender();
+    await afterRender();
 
     assert.strictEqual('123456', existingBugBody.get('bug'));
     assert.lengthOf(existingBugBody.getAll('key'), 10);
@@ -228,13 +234,13 @@ suite('alerts-section', function() {
 
   test('ignore', async function() {
     const section = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
         {bug: 42},
       ]},
     }));
-    await cp.afterRender();
+    await afterRender();
 
     const selectAll = tr.ui.b.findDeepElementMatching(
         section, 'th cp-checkbox');
@@ -245,7 +251,7 @@ suite('alerts-section', function() {
     const ignore = tr.ui.b.findDeepElementWithTextContent(section,
         /^\W*Ignore\W*$/i);
     ignore.click();
-    await cp.afterRender();
+    await afterRender();
 
     assert.strictEqual('-2', existingBugBody.get('bug'));
     assert.lengthOf(existingBugBody.getAll('key'), 10);
@@ -259,13 +265,13 @@ suite('alerts-section', function() {
 
   test('unassign', async function() {
     const section = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
         {bug: 42},
       ]},
     }));
-    await cp.afterRender();
+    await afterRender();
 
     const selectAll = tr.ui.b.findDeepElementMatching(
         section, 'th cp-checkbox');
@@ -276,7 +282,7 @@ suite('alerts-section', function() {
     const ignore = tr.ui.b.findDeepElementWithTextContent(section,
         /^\W*Unassign\W*$/i);
     ignore.click();
-    await cp.afterRender();
+    await afterRender();
 
     assert.strictEqual('0', existingBugBody.get('bug'));
     assert.lengthOf(existingBugBody.getAll('key'), 10);
