@@ -16,6 +16,24 @@
       "revId": "1bbc9bdb28d47834d5a2278c5f2c72ed4a97e099",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72216ae2_b8de2aa5",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1266306
+      },
+      "writtenOn": "2019-04-09T03:22:07Z",
+      "side": 1,
+      "message": "It returns 0 regardless of package presence, so passing check_return\u003dTrue, updated cl.",
+      "parentUuid": "77cd482e_6c1a1e6e",
+      "revId": "1bbc9bdb28d47834d5a2278c5f2c72ed4a97e099",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
