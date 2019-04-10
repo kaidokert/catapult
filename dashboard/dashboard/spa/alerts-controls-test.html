@@ -7,7 +7,6 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/alerts-controls.html">
 
 <test-fixture id="test">
   <template>
@@ -15,8 +14,17 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
+import AlertsControls from './alerts-controls.js';
+import ReportNamesRequest from './report-names-request.js';
+import SheriffsRequest from './sheriffs-request.js';
+
+import {
+  afterRender,
+  timeout,
+} from './utils.js';
+
 window.AUTH_CLIENT_ID = '';
 
 suite('alerts-controls', function() {
@@ -26,10 +34,10 @@ suite('alerts-controls', function() {
     window.fetch = async(url, options) => {
       return {
         async json() {
-          if (url === cp.ReportNamesRequest.URL) {
+          if (url === ReportNamesRequest.URL) {
             return [{name: 'aaa', id: 42, modified: new Date()}];
           }
-          if (url === cp.SheriffsRequest.URL) {
+          if (url === SheriffsRequest.URL) {
             return ['ccc', 'ddd'];
           }
         },
@@ -40,7 +48,7 @@ suite('alerts-controls', function() {
     ]));
     fixture('test').dispatch(Redux.CHAIN(
         Redux.ENSURE('test'),
-        Redux.UPDATE('test', cp.AlertsControls.buildState({}))));
+        Redux.UPDATE('test', AlertsControls.buildState({}))));
   });
   teardown(() => {
     window.fetch = originalFetch;
@@ -49,7 +57,7 @@ suite('alerts-controls', function() {
 
   test('connected', async function() {
     const controls = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     assert.isDefined(tr.ui.b.findDeepElementWithTextContent(controls, /aaa/));
     assert.isDefined(tr.ui.b.findDeepElementsMatchingPredicate(controls, e =>
       e.tagName === 'A' && e.href === 'http://crbug.com/42' &&
@@ -65,17 +73,17 @@ suite('alerts-controls', function() {
     controls.addEventListener('sources', e => {
       sources = e.detail.sources;
     });
-    await cp.afterRender();
+    await afterRender();
 
     tr.ui.b.findDeepElementWithTextContent(controls, /ccc/).click();
-    await cp.afterRender();
+    await afterRender();
     assert.lengthOf(sources, 1);
     assert.strictEqual('ccc', sources[0].sheriff);
     sources = [];
 
     controls.$['min-revision'].value = '10';
     controls.$['min-revision'].dispatchEvent(new CustomEvent('keyup'));
-    await cp.timeout(cp.AlertsControls.TYPING_DEBOUNCE_MS + 10);
+    await timeout(AlertsControls.TYPING_DEBOUNCE_MS + 10);
     assert.lengthOf(sources, 1);
     assert.strictEqual('ccc', sources[0].sheriff);
     assert.strictEqual(10, sources[0].min_end_revision);
@@ -83,7 +91,7 @@ suite('alerts-controls', function() {
 
     controls.$['max-revision'].value = '20';
     controls.$['max-revision'].dispatchEvent(new CustomEvent('keyup'));
-    await cp.timeout(cp.AlertsControls.TYPING_DEBOUNCE_MS + 10);
+    await timeout(AlertsControls.TYPING_DEBOUNCE_MS + 10);
     assert.lengthOf(sources, 1);
     assert.strictEqual('ccc', sources[0].sheriff);
     assert.strictEqual(10, sources[0].min_end_revision);
@@ -92,14 +100,14 @@ suite('alerts-controls', function() {
     sources = [];
 
     controls.$.improvements.click();
-    await cp.timeout(cp.AlertsControls.TYPING_DEBOUNCE_MS + 10);
+    await timeout(AlertsControls.TYPING_DEBOUNCE_MS + 10);
     assert.strictEqual('ccc', sources[0].sheriff);
     assert.isTrue(sources[0].is_improvement);
     assert.strictEqual(10, sources[0].min_end_revision);
     assert.strictEqual(20, sources[0].max_start_revision);
 
     tr.ui.b.findDeepElementWithTextContent(controls, /ddd/).click();
-    await cp.afterRender();
+    await afterRender();
     assert.lengthOf(sources, 2);
     assert.strictEqual('ccc', sources[0].sheriff);
     assert.strictEqual(10, sources[0].min_end_revision);
@@ -111,7 +119,7 @@ suite('alerts-controls', function() {
     tr.ui.b.findDeepElementWithTextContent(controls, /ccc/).click();
     tr.ui.b.findDeepElementWithTextContent(controls, /ddd/).click();
     tr.ui.b.findDeepElementWithTextContent(controls, /aaa/).click();
-    await cp.afterRender();
+    await afterRender();
     assert.lengthOf(sources, 1);
     assert.strictEqual(42, sources[0].report);
     assert.strictEqual(10, sources[0].min_end_revision);
@@ -121,9 +129,9 @@ suite('alerts-controls', function() {
     controls.$.bug.dispatchEvent(new CustomEvent('input-keyup', {
       detail: {value: '123'},
     }));
-    await cp.afterRender();
+    await afterRender();
     tr.ui.b.findDeepElementWithTextContent(controls, /123/).click();
-    await cp.afterRender();
+    await afterRender();
     assert.lengthOf(sources, 1);
     assert.strictEqual('123', sources[0].bug_id);
     assert.strictEqual(10, sources[0].min_end_revision);
