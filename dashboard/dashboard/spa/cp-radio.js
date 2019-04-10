@@ -8,7 +8,7 @@
     static get is() { return 'cp-radio'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           input {
             display: none;

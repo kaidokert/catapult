@@ -8,7 +8,7 @@ tr.exportTo('cp', () => {
     static get is() { return 'cp-dialog'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             background: rgba(0, 0, 0, 0.8);
