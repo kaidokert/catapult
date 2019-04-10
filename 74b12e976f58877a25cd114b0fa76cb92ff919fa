@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9a57816_73eb9537",
+        "filename": "dashboard/dashboard/spa/details-table.js",
+        "patchSetId": 47
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-10T13:59:45Z",
+      "side": 1,
+      "message": "What\u0027s this change for?",
+      "revId": "74b12e976f58877a25cd114b0fa76cb92ff919fa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
