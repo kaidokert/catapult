@@ -7,7 +7,6 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/alerts-table.html">
 
 <test-fixture id="test">
   <template>
@@ -15,27 +14,31 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
+import AlertsTable from './alerts-table.js';
+import {UPDATE, ENSURE} from './simple-redux.js';
+import {afterRender} from './utils.js';
+
 suite('alerts-table', function() {
   setup(() => {
-    fixture('test').dispatch(Redux.ENSURE('test'));
+    fixture('test').dispatch(ENSURE('test'));
   });
 
   test('placeholder', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({})));
-    await cp.afterRender();
+    table.dispatch(UPDATE('test', AlertsTable.buildState({})));
+    await afterRender();
     assert.strictEqual('rgb(128, 128, 128)', getComputedStyle(
         tr.ui.b.findDeepElementMatching(table, 'table')).color);
     const dashes = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
-      e.innerText && e.innerText.trim() === cp.AlertsTable.DASHES);
+      e.innerText && e.innerText.trim() === AlertsTable.DASHES);
     assert.lengthOf(dashes, 35);
   });
 
   test('allTriaged newAlerts', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       alertGroups: [
         {
           isSelected: false,
@@ -76,25 +79,25 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     assert.isDefined(tr.ui.b.findDeepElementMatching(table,
         'iron-icon[icon="cp-big:cat"]'));
   });
 
   test('allTriaged showingTriaged', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       showingTriaged: true,
       alertGroups: [],
     })));
-    await cp.afterRender();
+    await afterRender();
     assert.isDefined(tr.ui.b.findDeepElementMatching(table,
         'iron-icon[icon="cp-big:cat"]'));
   });
 
   test('sort', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       alertGroups: [
         {
           isSelected: false,
@@ -167,19 +170,19 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
 
     const measurementColumn = tr.ui.b.findDeepElementMatching(
         table, 'column-head[name="measurement"]');
     measurementColumn.click();
-    await cp.afterRender();
+    await afterRender();
     let state = table.getState().test;
     assert.strictEqual('aaa', state.alertGroups[0].alerts[0].measurement);
     assert.strictEqual('bbb', state.alertGroups[1].alerts[0].measurement);
     assert.strictEqual('ccc', state.alertGroups[2].alerts[0].measurement);
 
     measurementColumn.click();
-    await cp.afterRender();
+    await afterRender();
     state = table.getState().test;
     assert.strictEqual('ccc', state.alertGroups[0].alerts[0].measurement);
     assert.strictEqual('bbb', state.alertGroups[1].alerts[0].measurement);
@@ -187,41 +190,41 @@ suite('alerts-table', function() {
   });
 
   test('shouldDisplayAlert', async function() {
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(
+    assert.isTrue(AlertsTable.shouldDisplayAlert(
         true, false, {}, -1, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(
+    assert.isTrue(AlertsTable.shouldDisplayAlert(
         false, true, {isExpanded: true}, -1, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(
+    assert.isTrue(AlertsTable.shouldDisplayAlert(
         false, true, {isExpanded: false}, 0, false));
-    assert.isFalse(cp.AlertsTable.shouldDisplayAlert(
+    assert.isFalse(AlertsTable.shouldDisplayAlert(
         false, false, {alerts: []}, 0, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(
+    assert.isTrue(AlertsTable.shouldDisplayAlert(
         false, false, {isExpanded: true, alerts: [{}]}, 0, false));
-    assert.isFalse(cp.AlertsTable.shouldDisplayAlert(false, false, {
+    assert.isFalse(AlertsTable.shouldDisplayAlert(false, false, {
       isExpanded: true,
       alerts: [
         {bugId: 42},
         {},
       ],
     }, 0, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(false, false, {
+    assert.isTrue(AlertsTable.shouldDisplayAlert(false, false, {
       isExpanded: true,
       alerts: [
         {bugId: 42},
         {},
       ],
     }, 1, false));
-    assert.isFalse(cp.AlertsTable.shouldDisplayAlert(
+    assert.isFalse(AlertsTable.shouldDisplayAlert(
         false, false, {alerts: [{bugId: 42}]}, 0, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(
+    assert.isTrue(AlertsTable.shouldDisplayAlert(
         false, false, {alerts: [{bugId: 42}]}, 0, true));
-    assert.isFalse(cp.AlertsTable.shouldDisplayAlert(false, false, {
+    assert.isFalse(AlertsTable.shouldDisplayAlert(false, false, {
       alerts: [
         {bugId: 42},
         {},
       ],
     }, 0, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayAlert(false, false, {
+    assert.isTrue(AlertsTable.shouldDisplayAlert(false, false, {
       alerts: [
         {bugId: 42},
         {},
@@ -230,32 +233,32 @@ suite('alerts-table', function() {
   });
 
   test('shouldDisplayExpandGroupButton', async function() {
-    assert.isTrue(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isTrue(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{}, {}]}, 0, true));
-    assert.isFalse(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isFalse(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{}, {}]}, 1, true));
-    assert.isFalse(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isFalse(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{}]}, 0, true));
-    assert.isTrue(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isTrue(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{}, {}], triaged: {count: 0}}, 0, false));
-    assert.isFalse(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isFalse(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{bugId: 42}, {}], triaged: {count: 1}}, 1, false));
-    assert.isTrue(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isTrue(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{bugId: 42}, {}, {}], triaged: {count: 1}}, 1, false));
-    assert.isFalse(cp.AlertsTable.shouldDisplayExpandGroupButton(
+    assert.isFalse(AlertsTable.shouldDisplayExpandGroupButton(
         {alerts: [{bugId: 42}, {}, {}], triaged: {count: 1}}, 0, false));
   });
 
   test('shouldDisplayExpandTriagedButton', async function() {
-    assert.isFalse(cp.AlertsTable.shouldDisplayExpandTriagedButton(
+    assert.isFalse(AlertsTable.shouldDisplayExpandTriagedButton(
         true, {triaged: {count: 1}}, 0));
-    assert.isFalse(cp.AlertsTable.shouldDisplayExpandTriagedButton(
+    assert.isFalse(AlertsTable.shouldDisplayExpandTriagedButton(
         false, {triaged: {count: 0}}, 0));
-    assert.isTrue(cp.AlertsTable.shouldDisplayExpandTriagedButton(
+    assert.isTrue(AlertsTable.shouldDisplayExpandTriagedButton(
         false, {triaged: {count: 1}, alerts: [
           {}, {bugId: 42},
         ]}, 0));
-    assert.isTrue(cp.AlertsTable.shouldDisplayExpandTriagedButton(
+    assert.isTrue(AlertsTable.shouldDisplayExpandTriagedButton(
         false, {triaged: {count: 1}, alerts: [
           {bugId: 42}, {},
         ]}, 1));
@@ -263,7 +266,7 @@ suite('alerts-table', function() {
 
   test('shouldDisplaySelectedCount newAlerts', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       alertGroups: [
         {
           isSelected: false,
@@ -305,7 +308,7 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     const selectedCounts = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
       e.tagName === 'CP-CHECKBOX' && e.textContent.trim() === '1/2');
     assert.lengthOf(selectedCounts, 1);
@@ -316,7 +319,7 @@ suite('alerts-table', function() {
 
   test('shouldDisplaySelectedCount showingTriaged', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       showingTriaged: true,
       alertGroups: [
         {
@@ -359,7 +362,7 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     const selectedCounts = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
       e.tagName === 'CP-CHECKBOX' && e.textContent.trim() === '1/2');
     assert.lengthOf(selectedCounts, 1);
@@ -370,7 +373,7 @@ suite('alerts-table', function() {
 
   test('isAlertIgnored', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       showingTriaged: true,
       alertGroups: [
         {
@@ -398,14 +401,14 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     assert.isDefined(tr.ui.b.findDeepElementMatchingPredicate(table, e =>
       e.tagName === 'TD' && e.textContent.trim() === 'ignored'));
   });
 
   test('selectAlert single', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       alertGroups: [
         {
           triaged: {count: 0, isExpanded: false},
@@ -428,17 +431,17 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     const checkbox = tr.ui.b.findDeepElementMatching(
         tr.ui.b.findDeepElementMatching(table, 'tbody'), 'cp-checkbox');
     checkbox.click();
-    await cp.afterRender();
+    await afterRender();
     assert.isTrue(table.getState().test.alertGroups[0].alerts[0].isSelected);
   });
 
   test('selectAlert toggleAll', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       alertGroups: [
         {
           triaged: {count: 0, isExpanded: false},
@@ -475,18 +478,18 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     const checkbox = tr.ui.b.findDeepElementMatching(
         tr.ui.b.findDeepElementMatching(table, 'tbody'), 'cp-checkbox');
     checkbox.click();
-    await cp.afterRender();
+    await afterRender();
     assert.isTrue(table.getState().test.alertGroups[0].alerts[0].isSelected);
     assert.isTrue(table.getState().test.alertGroups[0].alerts[1].isSelected);
   });
 
   test('selectAlert shiftKey', async function() {
     const table = fixture('test');
-    table.dispatch(Redux.UPDATE('test', cp.AlertsTable.buildState({
+    table.dispatch(UPDATE('test', AlertsTable.buildState({
       alertGroups: [
         {
           isExpanded: true,
@@ -576,14 +579,14 @@ suite('alerts-table', function() {
         },
       ],
     })));
-    await cp.afterRender();
+    await afterRender();
     const checkboxes = tr.ui.b.findDeepElementsMatching(
         tr.ui.b.findDeepElementMatching(table, 'tbody'), 'cp-checkbox');
     checkboxes[1].click();
     checkboxes[3].$.native.dispatchEvent(new CustomEvent('change', {
       detail: {shiftKey: true},
     }));
-    await cp.afterRender();
+    await afterRender();
     assert.isFalse(table.getState().test.alertGroups[0].alerts[0].isSelected);
     assert.isTrue(table.getState().test.alertGroups[0].alerts[1].isSelected);
     assert.isTrue(table.getState().test.alertGroups[0].alerts[2].isSelected);
