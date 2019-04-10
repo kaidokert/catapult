@@ -93,10 +93,14 @@ class ImplementsExpectationsFilesFunction(
   @classmethod
   def GenerateTestCases__RunsFailingTest(cls, options):
     del options
-    yield 'FailingTest', ()
+    yield 'a/b/fail-test.html', ()
 
   def _RunsFailingTest(self):
     assert False
+
+  @classmethod
+  def GetJSONResultsDelimiter(cls):
+    return '/'
 
   @classmethod
   def ExpectationsFiles(cls):
