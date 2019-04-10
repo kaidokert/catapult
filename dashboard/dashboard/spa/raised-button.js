@@ -8,7 +8,7 @@
     static get is() { return 'raised-button'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             align-items: center;

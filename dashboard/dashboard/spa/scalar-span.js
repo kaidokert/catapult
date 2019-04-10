@@ -8,7 +8,7 @@ tr.exportTo('cp', () => {
     static get is() { return 'scalar-span'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             display: flex;

@@ -8,7 +8,7 @@
     static get is() { return 'cp-loading'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             display: block;

@@ -8,7 +8,7 @@
     static get is() { return 'cp-radio-group'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             display: flex;

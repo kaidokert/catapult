@@ -8,7 +8,7 @@
     static get is() { return 'cp-switch'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             padding: 8px;

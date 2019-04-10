@@ -6,7 +6,7 @@
 tr.exportTo('cp', () => {
   class ReportTable extends cp.ElementBase {
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             position: relative;
