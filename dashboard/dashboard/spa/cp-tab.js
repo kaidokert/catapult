@@ -8,7 +8,7 @@
     static get is() { return 'cp-tab'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             background-color: var(--primary-color-light, lightblue);

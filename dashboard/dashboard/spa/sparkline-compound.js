@@ -6,11 +6,11 @@
 tr.exportTo('cp', () => {
   class SparklineCompound extends cp.ElementBase {
     static get template() {
-      const chartPath = Polymer.html([
+      const chartPath = html([
         '[[statePath]].relatedTabs.[[tabIndex]].renderedSparklines.' +
         '[[sparklineIndex]].layout',
       ]);
-      return Polymer.html`
+      return html`
         <style>
           .related_tab {
             background-color: var(--primary-color-light, lightblue);

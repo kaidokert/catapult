@@ -7,7 +7,6 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/chart-section.html">
 
 <test-fixture id="test">
   <template>
@@ -15,8 +14,16 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
+
+import DescribeRequest from './describe-request.js';
+import SparklineCompound from './sparkline-compound.js';
+import TimeseriesDescriptor from './timeseries-descriptor.js';
+import TimeseriesRequest from './timeseries-request.js';
+import {denormalize, afterRender} from './utils.js';
+import {MODE} from './layout-timeseries.js';
+
 window.AUTH_CLIENT_ID = '';
 
 suite('sparkline-compound', function() {
@@ -31,7 +38,7 @@ suite('sparkline-compound', function() {
     window.fetch = async(url, options) => {
       return {
         async json() {
-          if (url === cp.DescribeRequest.URL) {
+          if (url === DescribeRequest.URL) {
             return {
               measurements: ['measure'],
               bots: ['master:aaa', 'master:bbb', 'master:ccc'],
@@ -42,7 +49,7 @@ suite('sparkline-compound', function() {
               },
             };
           }
-          if (url === cp.TimeseriesRequest.URL) {
+          if (url === TimeseriesRequest.URL) {
             const data = [];
             const sequenceLength = 100;
             for (let i = 0; i < sequenceLength; ++i) {
@@ -58,7 +65,7 @@ suite('sparkline-compound', function() {
             }
             return {
               units: options.body.get('measurement'),
-              data: cp.denormalize(
+              data: denormalize(
                   data, options.body.get('columns').split(',')),
             };
           }
@@ -69,7 +76,7 @@ suite('sparkline-compound', function() {
     fixture('test').dispatch(Redux.CHAIN(
         Redux.ENSURE('test'),
         Redux.UPDATE('test', {
-          ...cp.SparklineCompound.buildState({}),
+          ...SparklineCompound.buildState({}),
           chartLayout: {},
         })));
   });
@@ -79,10 +86,10 @@ suite('sparkline-compound', function() {
 
   test('build', async function() {
     const sc = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     await sc.dispatch(Redux.CHAIN(
         Redux.UPDATE('test', {
-          descriptor: cp.TimeseriesDescriptor.buildState({
+          descriptor: TimeseriesDescriptor.buildState({
             suite: {selectedOptions: ['suite:xxx', 'suite:yyy', 'suite:zzz']},
             measurement: {selectedOptions: ['ms']},
             bot: {selectedOptions: [
@@ -96,19 +103,19 @@ suite('sparkline-compound', function() {
           statistic: {selectedOptions: ['avg']},
         }),
         {
-          type: cp.SparklineCompound.reducers.buildRelatedTabs.name,
+          type: SparklineCompound.reducers.buildRelatedTabs.name,
           statePath: 'test',
         }));
-    await cp.afterRender();
+    await afterRender();
 
     assert.lengthOf(sc.relatedTabs, 3);
     assert.lengthOf(sc.relatedTabs[0].sparklines, 3);
     assert.lengthOf(sc.relatedTabs[1].sparklines, 3);
     assert.lengthOf(sc.relatedTabs[2].sparklines, 5);
 
-    await sc.dispatch(cp.SparklineCompound.actions.selectRelatedTab(
+    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
         sc.statePath, 'Suites'));
-    await cp.afterRender();
+    await afterRender();
 
     assert.lengthOf(sc.relatedTabs[0].renderedSparklines, 3);
     assert.lengthOf(sc.relatedTabs[0].renderedSparklines[0].layout.lines, 2);
@@ -118,11 +125,11 @@ suite('sparkline-compound', function() {
 
   test('observeCursor', async function() {
     const sc = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     await sc.dispatch(Redux.CHAIN(
         Redux.UPDATE('test', {
-          mode: cp.MODE.NORMALIZE_UNIT,
-          descriptor: cp.TimeseriesDescriptor.buildState({
+          mode: MODE.NORMALIZE_UNIT,
+          descriptor: TimeseriesDescriptor.buildState({
             suite: {selectedOptions: ['suite:xxx', 'suite:yyy', 'suite:zzz']},
             measurement: {selectedOptions: ['ms']},
             bot: {selectedOptions: [
@@ -136,18 +143,18 @@ suite('sparkline-compound', function() {
           statistic: {selectedOptions: ['avg']},
         }),
         {
-          type: cp.SparklineCompound.reducers.buildRelatedTabs.name,
+          type: SparklineCompound.reducers.buildRelatedTabs.name,
           statePath: 'test',
         }));
-    await cp.afterRender();
-    await sc.dispatch(cp.SparklineCompound.actions.selectRelatedTab(
+    await afterRender();
+    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
         sc.statePath, 'Suites'));
-    await cp.afterRender();
+    await afterRender();
     await sc.dispatch(Redux.UPDATE(sc.statePath, {
       cursorRevision: NOW_MS - (MS_PER_YEAR / 20),
       cursorScalar: new tr.b.Scalar(tr.b.Unit.byJSONName.ms, 1.5),
     }));
-    await cp.afterRender();
+    await afterRender();
 
     const sparks = sc.relatedTabs[0].renderedSparklines;
     assert.strictEqual('94.9%', sparks[0].layout.xAxis.cursor.pct);
@@ -160,10 +167,10 @@ suite('sparkline-compound', function() {
 
   test('observeRevisions', async function() {
     const sc = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     await sc.dispatch(Redux.CHAIN(
         Redux.UPDATE('test', {
-          descriptor: cp.TimeseriesDescriptor.buildState({
+          descriptor: TimeseriesDescriptor.buildState({
             suite: {selectedOptions: ['suite:xxx', 'suite:yyy', 'suite:zzz']},
             measurement: {selectedOptions: ['ms']},
             bot: {selectedOptions: [
@@ -177,13 +184,13 @@ suite('sparkline-compound', function() {
           statistic: {selectedOptions: ['avg']},
         }),
         {
-          type: cp.SparklineCompound.reducers.buildRelatedTabs.name,
+          type: SparklineCompound.reducers.buildRelatedTabs.name,
           statePath: 'test',
         }));
-    await cp.afterRender();
-    await sc.dispatch(cp.SparklineCompound.actions.selectRelatedTab(
+    await afterRender();
+    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
         sc.statePath, 'Suites'));
-    await cp.afterRender();
+    await afterRender();
 
     let sparks = sc.relatedTabs[0].renderedSparklines;
     assert.isUndefined(sparks[0].layout.minRevision);
@@ -197,7 +204,7 @@ suite('sparkline-compound', function() {
       minRevision: NOW_MS - (MS_PER_YEAR / 2),
       maxRevision: NOW_MS - (MS_PER_YEAR / 20),
     }));
-    await cp.afterRender();
+    await afterRender();
 
     sparks = sc.relatedTabs[0].renderedSparklines;
     assert.strictEqual(sc.minRevision, sparks[0].layout.minRevision);
@@ -210,10 +217,10 @@ suite('sparkline-compound', function() {
 
   test('click', async function() {
     const sc = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     await sc.dispatch(Redux.CHAIN(
         Redux.UPDATE('test', {
-          descriptor: cp.TimeseriesDescriptor.buildState({
+          descriptor: TimeseriesDescriptor.buildState({
             suite: {selectedOptions: ['suite:xxx', 'suite:yyy', 'suite:zzz']},
             measurement: {selectedOptions: ['ms']},
             bot: {selectedOptions: [
@@ -227,13 +234,13 @@ suite('sparkline-compound', function() {
           statistic: {selectedOptions: ['avg']},
         }),
         {
-          type: cp.SparklineCompound.reducers.buildRelatedTabs.name,
+          type: SparklineCompound.reducers.buildRelatedTabs.name,
           statePath: 'test',
         }));
-    await cp.afterRender();
-    await sc.dispatch(cp.SparklineCompound.actions.selectRelatedTab(
+    await afterRender();
+    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
         sc.statePath, 'Suites'));
-    await cp.afterRender();
+    await afterRender();
 
     let newChartEvents = 0;
     sc.addEventListener('new-chart', e => {

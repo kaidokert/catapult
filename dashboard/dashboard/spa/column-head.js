@@ -8,7 +8,7 @@ tr.exportTo('cp', () => {
     static get is() { return 'column-head'; }
 
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           :host {
             align-items: center;

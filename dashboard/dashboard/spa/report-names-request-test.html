@@ -7,10 +7,12 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/report-names-request.html">
 
 <script>
 'use strict';
+
+import ReportNamesRequest from './report-names-request.js';
+
 suite('ReportNamesRequest', function() {
   let originalFetch;
   setup(() => {
@@ -38,7 +40,7 @@ suite('ReportNamesRequest', function() {
       };
     };
 
-    const request = new cp.ReportNamesRequest({});
+    const request = new ReportNamesRequest({});
     assert.deepEqual(expected, await request.response);
   });
 });

@@ -6,7 +6,7 @@
 tr.exportTo('cp', () => {
   class ReportSection extends cp.ElementBase {
     static get template() {
-      return Polymer.html`
+      return html`
         <style>
           #tables {
             align-items: center;
