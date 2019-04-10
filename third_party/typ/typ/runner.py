@@ -139,6 +139,7 @@ class Runner(object):
         self.final_responses = []
         self.has_expectations = False
         self.expectations = None
+        self.path_delimiter = json_results.DEFAULT_TEST_SEPARATOR
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -574,7 +575,8 @@ class Runner(object):
 
         full_results = json_results.make_full_results(self.args.metadata,
                                                       int(h.time()),
-                                                      all_tests, result_set)
+                                                      all_tests, result_set,
+                                                      self.path_delimiter)
 
         return (json_results.exit_code_from_full_results(full_results),
                 full_results)
