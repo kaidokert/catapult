@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "319d9945_a43a9eaf",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-10T21:16:07Z",
+      "side": 1,
+      "message": "I would call this DEFAULT_TEST_SEPARATOR now.",
+      "revId": "51f7d955328592641e1cf38187146968278856dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325cf7b0_d177f567",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-10T21:16:07Z",
+      "side": 1,
+      "message": "I would call this test_separator, and just use test_separator\u003dDEFAULT_TEST_SEPARATOR.",
+      "revId": "51f7d955328592641e1cf38187146968278856dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08f6d909_268516a2",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-10T21:16:07Z",
+      "side": 1,
+      "message": "this is an internal function, it doesn\u0027t need the parameter to be optional.",
+      "revId": "51f7d955328592641e1cf38187146968278856dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
