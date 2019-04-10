@@ -234,6 +234,13 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
         platform.GetOSVersionName(), platform.GetOSName(), browser.browser_type]
     return [tag.lower() for tag in tags if tag]
 
+  @classmethod
+  def GetJSONResultsDelimiter(cls):
+    """This method returns the path delimiter that will be used to seperate
+    a test name into parts.
+    """
+    return '.'
+
 
 def LoadAllTestsInModule(module):
   """ Load all tests & generated browser tests in a given module.
@@ -293,7 +300,7 @@ def _GenerateTestMethod(based_method, args):
 
 
 _TEST_GENERATOR_PREFIX = 'GenerateTestCases_'
-_INVALID_TEST_NAME_RE = re.compile(r'[^a-zA-Z0-9_]')
+_INVALID_TEST_NAME_RE = re.compile(r'[^a-zA-Z0-9_\.\\\/-]')
 
 def _ValidateTestMethodname(test_name):
   assert not bool(_INVALID_TEST_NAME_RE.search(test_name))
