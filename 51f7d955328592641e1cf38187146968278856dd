@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6e3f8cca_44e9b2d3",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-10T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "319d9945_a43a9eaf",
+      "revId": "51f7d955328592641e1cf38187146968278856dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "325cf7b0_d177f567",
         "filename": "third_party/typ/typ/json_results.py",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2ce7cf1d_c96dff12",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-10T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "325cf7b0_d177f567",
+      "revId": "51f7d955328592641e1cf38187146968278856dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08f6d909_268516a2",
         "filename": "third_party/typ/typ/json_results.py",
         "patchSetId": 5
@@ -50,6 +86,24 @@
       "revId": "51f7d955328592641e1cf38187146968278856dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24175965_bf89e2ba",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-10T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08f6d909_268516a2",
+      "revId": "51f7d955328592641e1cf38187146968278856dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
