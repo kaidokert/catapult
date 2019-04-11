@@ -267,6 +267,9 @@ def RunStorySet(test, story_set, possible_browser, expectations,
         try:
           if state.platform:
             state.platform.WaitForBatteryTemperature(35)
+            # _WaitForThermalThrottlingIfNeeded isn't supported on all devices -
+            # hence why the CPU temperature is explicity monitored aswell.
+            state.platform.WaitForCpuTemperature(42)
             _WaitForThermalThrottlingIfNeeded(state.platform)
           _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
 
