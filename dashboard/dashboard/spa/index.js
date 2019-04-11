@@ -37,3 +37,4 @@ tr.exportTo('window', () => {
 });
 
 import './cp-input.js';
+import './cp-checkbox.js';
