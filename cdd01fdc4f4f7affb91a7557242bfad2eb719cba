@@ -16,6 +16,24 @@
       "revId": "cdd01fdc4f4f7affb91a7557242bfad2eb719cba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c69c4a6_20dc2ed9",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-11T17:16:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f354aa70_04f6c292",
+      "revId": "cdd01fdc4f4f7affb91a7557242bfad2eb719cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
