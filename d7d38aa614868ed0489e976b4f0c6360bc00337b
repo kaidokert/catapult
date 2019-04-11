@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78c4a92c_d797fef9",
+        "filename": "devil/devil/android/cpu_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-11T16:31:01Z",
+      "side": 1,
+      "message": "nit: update class name",
+      "revId": "d7d38aa614868ed0489e976b4f0c6360bc00337b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3aadef4_1e49043c",
+        "filename": "devil/devil/android/cpu_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-11T16:31:01Z",
+      "side": 1,
+      "message": "\"blueline\" looks like the build_product or maybe the ro.product.device (which doesn\u0027t have a property in DeviceUtils), while \"msm8996\" looks like the ro.board.platform (same). In neither case do they appear to be the product_model.\n\nCould you instead use either build_product or ro.product.device \u0026 use \"sailfish\" for the Pixel? I don\u0027t think either would include AOSP, so you could drop the two lines below.",
+      "revId": "d7d38aa614868ed0489e976b4f0c6360bc00337b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d59f474f_298e12bf",
+        "filename": "devil/devil/android/cpu_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-11T16:31:01Z",
+      "side": 1,
+      "message": "nit: 80 chars",
+      "revId": "d7d38aa614868ed0489e976b4f0c6360bc00337b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dd76b93_bfe1397e",
+        "filename": "devil/devil/android/cpu_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-11T16:31:01Z",
+      "side": 1,
+      "message": "nit: +1 blank line after the first line in a docstring.",
+      "revId": "d7d38aa614868ed0489e976b4f0c6360bc00337b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c5373e_2fd58646",
+        "filename": "devil/devil/android/cpu_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-11T16:31:01Z",
+      "side": 1,
+      "message": "If you\u0027re going to short-circuit the check here, I\u0027d just return True \u0026 remove the else, moving the logger.info call into the top level of cool_cpu.",
+      "revId": "d7d38aa614868ed0489e976b4f0c6360bc00337b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
