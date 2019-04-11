@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2fdb2b2_0bb4df09",
+        "filename": "dashboard/dashboard/spa/chart-base.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-11T04:51:45Z",
+      "side": 1,
+      "message": "Without this, PolymerSvgTemplate complains that the current document doesn\u0027t have a body.",
+      "revId": "1e67c546d06d7f64df6cac893cc6d51f09198c5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
