@@ -11,6 +11,7 @@ automatic_scaling:
   max_pending_latency: automatic
   min_instances: 3
   target_cpu_utilization: 0.8
+default_expiration: 20h
 
 libraries:
 - name: jinja2

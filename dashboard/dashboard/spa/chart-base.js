@@ -306,6 +306,11 @@ tr.exportTo('cp', () => {
       this.dispatchEvent(new CustomEvent('chart-click', {
         bubbles: true,
         composed: true,
+        detail: {
+          ctrlKey: cp.hasCtrlKey(event),
+          nearestLine: this.previousNearestLine,
+          nearestPoint: this.previousNearestPoint,
+        },
       }));
     }
 
@@ -325,6 +330,7 @@ tr.exportTo('cp', () => {
       await this.mouseLeaveMainPoller_;
       this.mouseLeaveMainPoller_ = undefined;
       this.previousNearestPoint = undefined;
+      this.previousNearestLine = undefined;
       this.dispatchEvent(new CustomEvent('mouse-leave-main', {
         bubbles: true,
         composed: true,
@@ -371,6 +377,7 @@ tr.exportTo('cp', () => {
         // dispatch get-tooltip when the nearestPoint changes.
         if (nearestPoint === this.previousNearestPoint) return;
         this.previousNearestPoint = nearestPoint;
+        this.previousNearestLine = nearestLine;
 
         this.dispatchEvent(new CustomEvent('get-tooltip', {
           bubbles: true,
