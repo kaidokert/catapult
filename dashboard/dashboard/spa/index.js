@@ -36,5 +36,6 @@ tr.exportTo('window', () => {
   };
 });
 
+import './cp-dialog.js';
 import './cp-input.js';
 import './chromeperf-app.js';
