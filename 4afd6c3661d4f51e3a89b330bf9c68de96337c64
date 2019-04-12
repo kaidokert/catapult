@@ -57,6 +57,30 @@
       "revId": "4afd6c3661d4f51e3a89b330bf9c68de96337c64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47dc59de_37dbac9f",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-04-12T23:46:25Z",
+      "side": 1,
+      "message": "I\u0027m hoping this is correct as-written, but I\u0027ll send a follow-up if we change the build system to specify Q as minSdkVersion.",
+      "parentUuid": "5f0f35d5_8ff04821",
+      "range": {
+        "startLine": 308,
+        "startChar": 6,
+        "endLine": 308,
+        "endChar": 37
+      },
+      "revId": "4afd6c3661d4f51e3a89b330bf9c68de96337c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
