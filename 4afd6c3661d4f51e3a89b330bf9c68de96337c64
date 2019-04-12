@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ddad2ce_19c44d9a",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-04-12T23:35:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "961ed3c4_3e0dfc7e",
+      "revId": "4afd6c3661d4f51e3a89b330bf9c68de96337c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f0f35d5_8ff04821",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
