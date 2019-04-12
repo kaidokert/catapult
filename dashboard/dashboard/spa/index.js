@@ -37,4 +37,6 @@ tr.exportTo('window', () => {
 });
 
 import './cp-input.js';
+import './cp-tab-bar.js';
+import './cp-tab.js';
 import './chromeperf-app.js';
