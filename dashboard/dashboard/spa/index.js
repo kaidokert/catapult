@@ -38,4 +38,5 @@ tr.exportTo('window', () => {
 
 import './chromeperf-app.js';
 import './cp-input.js';
+import './cp-toast.js';
 import './cp-checkbox.js';
