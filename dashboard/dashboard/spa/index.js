@@ -37,4 +37,5 @@ tr.exportTo('window', () => {
 });
 
 import './cp-input.js';
+import './cp-toast.js';
 import './chromeperf-app.js';
