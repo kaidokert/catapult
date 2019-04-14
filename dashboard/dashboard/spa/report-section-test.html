@@ -7,7 +7,16 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/report-section.html">
+
+<link rel="import" href="/dashboard/spa/cp-dialog.html">
+<link rel="import" href="/dashboard/spa/cp-loading.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/report-controls.html">
+<link rel="import" href="/dashboard/spa/report-names-request.html">
+<link rel="import" href="/dashboard/spa/report-request.html">
+<link rel="import" href="/dashboard/spa/report-table.html">
+<link rel="import" href="/dashboard/spa/report-template.html">
+<link rel="import" href="/dashboard/spa/utils.html">
 
 <test-fixture id="test">
   <template>
@@ -15,8 +24,9 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
+import ReportSection from './report-section.js';
 suite('report-section', function() {
   let originalFetch;
   setup(() => {
@@ -84,7 +94,7 @@ suite('report-section', function() {
     };
     fixture('test').dispatch(Redux.CHAIN(
         Redux.ENSURE('test'),
-        Redux.UPDATE('test', cp.ReportSection.buildState({}))));
+        Redux.UPDATE('test', ReportSection.buildState({}))));
   });
   teardown(() => {
     window.fetch = originalFetch;
