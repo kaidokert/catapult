@@ -7,7 +7,15 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/report-section.html">
+
+<link rel="import" href="/dashboard/spa/cp-loading.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/report-controls.html">
+<link rel="import" href="/dashboard/spa/report-names-request.html">
+<link rel="import" href="/dashboard/spa/report-request.html">
+<link rel="import" href="/dashboard/spa/report-table.html">
+<link rel="import" href="/dashboard/spa/report-template.html">
+<link rel="import" href="/dashboard/spa/utils.html">
 
 <test-fixture id="test">
   <template>
@@ -15,11 +23,47 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
 suite('report-section', function() {
+  function toAbsoluteURL(url) {
+    const a = document.createElement('a');
+    a.setAttribute('href', url);
+    return a.cloneNode(false).href;
+  }
+
+  function importModule(url) {
+    // https://github.com/uupaa/dynamic-import-polyfill/blob/master/importModule.js
+    return new Promise((resolve, reject) => {
+      const vector = '$importModule$' + Math.random().toString(32).slice(2);
+      const script = document.createElement('script');
+      const destructor = () => {
+        delete window[vector];
+        script.onerror = null;
+        script.onload = null;
+        script.remove();
+        URL.revokeObjectURL(script.src);
+        script.src = '';
+      };
+      script.type = 'module';
+      script.onerror = () => {
+        reject(new Error(`Failed to import: ${url}`));
+        destructor();
+      };
+      script.onload = () => {
+        resolve(window[vector]);
+        destructor();
+      };
+      const absURL = toAbsoluteURL(url);
+      const loader = `import * as m from "${absURL}"; window.${vector} = m;`;
+      const blob = new Blob([loader], {type: 'text/javascript'});
+      script.src = URL.createObjectURL(blob);
+      document.head.appendChild(script);
+    });
+  }
+
   let originalFetch;
-  setup(() => {
+  setup(async() => {
     originalFetch = window.fetch;
     window.fetch = async(url, options) => {
       return {
@@ -82,16 +126,18 @@ suite('report-section', function() {
         },
       };
     };
-    fixture('test').dispatch(Redux.CHAIN(
-        Redux.ENSURE('test'),
-        Redux.UPDATE('test', cp.ReportSection.buildState({}))));
   });
   teardown(() => {
     window.fetch = originalFetch;
   });
 
   test('loadReports', async function() {
+    const {default: ReportSection} = await importModule('./report-section.js');
     const section = fixture('test');
+    section.dispatch(Redux.CHAIN(
+        Redux.ENSURE('test'),
+        Redux.ENSURE('test.source')));
+    section.dispatch(Redux.UPDATE('test', ReportSection.buildState({})));
     assert.isTrue(section.tables[0].isPlaceholder);
     while (section.tables[0].isPlaceholder) {
       await cp.afterRender();
