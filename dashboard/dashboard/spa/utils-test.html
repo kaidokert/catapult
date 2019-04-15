@@ -338,7 +338,7 @@ suite('utils', function() {
       iterations.push({results, errors: errors.map(e => e.message)});
       await cp.timeout(10);
     }
-    assert.lengthOf(iterations, 3);
+    assert.lengthOf(iterations, 3, JSON.stringify(iterations));
     assert.deepEqual([], iterations[0].errors);
     assert.deepEqual(['a0', 'b0'], iterations[0].results);
     assert.deepEqual(['c0', 'a1', 'b1'], iterations[1].results);
