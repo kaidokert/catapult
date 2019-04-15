@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa02d37c_514207a4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-04-15T19:49:27Z",
+      "side": 1,
+      "message": "Without this, this matches the line \"Valid package com.google.android.webview (versionName: 69.0.3497.100, versionCode: 349710065, targetSdkVersion: 28) is NOT installed/enabled for all users\". The effect of that is that \"28)\" matches the first capture group, so it (erroneously) shows up as a possible WebView provider package name. Added a test case below for this.",
+      "range": {
+        "startLine": 248,
+        "startChar": 31,
+        "endLine": 248,
+        "endChar": 33
+      },
+      "revId": "b79ac7e8638ee4e5f97ff7f76b1196c9c8e596a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "807b6b38_d14257ca",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2674,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-04-15T19:49:27Z",
+      "side": 1,
+      "message": "Changed this test case so that Chrome is the current provider, since it\u0027s a bit more realistic (and this lets me use SystemWebViewGoogle as the fallback provider, which I need to catch the bug)",
+      "range": {
+        "startLine": 2674,
+        "startChar": 11,
+        "endLine": 2674,
+        "endChar": 29
+      },
+      "revId": "b79ac7e8638ee4e5f97ff7f76b1196c9c8e596a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
