@@ -16,10 +16,13 @@ tr.exportTo('cp', () => {
 
           #sheriff-container,
           #bug-container,
-          #report-container,
-          #report,
-          #min-revision {
+          #report-container {
             margin-right: 8px;
+          }
+
+          cp-input {
+            margin-right: 8px;
+            margin-top: 12px;
           }
 
           #report-container {
@@ -130,7 +133,6 @@ tr.exportTo('cp', () => {
 
         <iron-collapse
             horizontal
-            id="sheriff-container"
             opened="[[showInput_(showEmptyInputs, minRevision, maxRevision,
                                  sheriff, bug, report)]]">
           <cp-input
@@ -143,7 +145,6 @@ tr.exportTo('cp', () => {
 
         <iron-collapse
             horizontal
-            id="sheriff-container"
             opened="[[showInput_(showEmptyInputs, minRevision, maxRevision,
                                  sheriff, bug, report)]]">
           <cp-input
