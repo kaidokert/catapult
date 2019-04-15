@@ -13,6 +13,8 @@ tr.exportTo('cp', () => {
 
   class DetailsTable extends cp.ElementBase {
     static get template() {
+      const alertDetailPath = '[[statePath]].bodies.[[bodyIndex]].alertCells.' +
+        '[[cellIndex]].alerts.[[alertIndex]]';
       return Polymer.html`
         <style>
           :host {
@@ -101,6 +103,22 @@ tr.exportTo('cp', () => {
                           value="[[cell.value]]"
                           unit="[[cell.unit]]">
                       </scalar-span>
+                    </td>
+                  </template>
+                </tr>
+              </template>
+
+              <template is="dom-if" if="[[!isEmpty_(body.alertCells)]]">
+                <tr>
+                  <td>Alerts</td>
+                  <template is="dom-repeat" items="[[body.alertCells]]"
+                                            as="cell" index-as="cellIndex">
+                    <td>
+                      <template is="dom-repeat" items="[[cell.alerts]]"
+                                                index-as="alertIndex">
+                        <alert-detail state-path="${alertDetailPath}">
+                        </alert-detail>
+                      </template>
                     </td>
                   </template>
                 </tr>
@@ -257,6 +275,8 @@ tr.exportTo('cp', () => {
             cell.timestampRange.addValue(cell.timestamp.getTime());
           }
           if (!cell.revisions) cell.revisions = {};
+          cell.alerts = [];
+          if (cell.alert) cell.alerts.push(cell.alert);
           continue;
         }
 
@@ -264,6 +284,8 @@ tr.exportTo('cp', () => {
         if (datum.timestamp) {
           cell.timestampRange.addValue(datum.timestamp.getTime());
         }
+
+        if (datum.alert) cell.alerts.push(datum.alert);
 
         // TODO Uncomment when Histograms are displayed.
         // mergeHistograms(cell, datum);
@@ -280,10 +302,12 @@ tr.exportTo('cp', () => {
   }
 
   // Merge timeserieses and format the detailed data as links and scalars.
-  DetailsTable.buildCell = (setLink, setScalar, timeserieses, range,
+  DetailsTable.buildCell = (setLink, setScalar, setAlerts, timeserieses, range,
       revisionInfo) => {
     const {reference, cell} = mergeData(timeserieses, range);
     if (!cell) return;
+
+    setAlerts(cell.alerts);
 
     for (const stat of ['avg', 'std', 'min', 'max', 'sum']) {
       if (cell[stat] === undefined || isNaN(cell[stat])) continue;
@@ -388,20 +412,24 @@ tr.exportTo('cp', () => {
     const scalarRowsByLabel = new Map();
     const linkRowsByLabel = new Map();
     const columnCount = timeseriesesByRange.length;
+    const alertCells = new Array(columnCount);
     for (const [columnIndex, {range, timeserieses}] of cp.enumerate(
         timeseriesesByRange)) {
       const setScalar = (rowLabel, value, unit) => setCell(
           scalarRowsByLabel, rowLabel, columnCount, columnIndex, {value, unit});
       const setLink = (rowLabel, href, label) => setCell(
           linkRowsByLabel, rowLabel, columnCount, columnIndex, {href, label});
+      const setAlerts = alerts => {
+        alertCells[columnIndex] = alerts;
+      };
 
-      DetailsTable.buildCell(setLink, setScalar, timeserieses, range,
+      DetailsTable.buildCell(setLink, setScalar, setAlerts, timeserieses, range,
           revisionInfo);
     }
 
     const scalarRows = collectRowsByLabel(scalarRowsByLabel);
     const linkRows = collectRowsByLabel(linkRowsByLabel);
-    return {descriptor, descriptorParts, scalarRows, linkRows};
+    return {descriptor, descriptorParts, scalarRows, linkRows, alertCells};
   }
 
   // Return an object containing flags indicating whether to show parts of
