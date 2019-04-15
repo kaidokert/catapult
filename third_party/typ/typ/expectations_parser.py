@@ -108,10 +108,11 @@ class TaggedTestListParser(object):
     _MATCH_STRING += r'(\s+#.*)?$'  # End comment (optional).
     MATCHER = re.compile(_MATCH_STRING)
 
-    def __init__(self, raw_data):
+    def __init__(self, raw_data, tag_validator=lambda _: None):
         self.tag_sets = []
         self.expectations = []
         self._tag_to_tag_set = {}
+        self.tag_validator = tag_validator
         self._parse_raw_expectation_data(raw_data)
 
     def _parse_raw_expectation_data(self, raw_data):
@@ -161,6 +162,8 @@ class TaggedTestListParser(object):
                         line[len(self.TAG_TOKEN):right_bracket].split())
                 tag_sets_intersection.update(
                     (t for t in tag_set if t in self._tag_to_tag_set))
+                for tag in tag_set:
+                    self.tag_validator(tag)
                 self.tag_sets.append(tag_set)
                 self._tag_to_tag_set.update({tg: id(tag_set) for tg in tag_set})
             elif line.startswith('#') or not line:
@@ -240,9 +243,9 @@ class TestExpectations(object):
         self.individual_exps = {}
         self.glob_exps = OrderedDict()
 
-    def parse_tagged_list(self, raw_data):
+    def parse_tagged_list(self, raw_data, tag_validator=lambda _: None):
         try:
-            parser = TaggedTestListParser(raw_data)
+            parser = TaggedTestListParser(raw_data, tag_validator)
         except ParseError as e:
             return 1, e.message
 

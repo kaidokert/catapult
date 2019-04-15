@@ -70,6 +70,21 @@ class RunnerTests(TestCase):
             'The test prefix passed at the command line does not match the prefix '
             'of all the tests generated', str(context.exception))
 
+    def testTagValidatorForLowerCaseTags(self):
+        runner = Runner()
+        raw_data = (
+            '# tags: [ Linux win ]\n'
+            'crbug.com/23456 [ Linux ] b1/* [ RetryOnFailure ]\n')
+        expectations_file = tempfile.NamedTemporaryFile(delete=False)
+        expectations_file.write(raw_data)
+        expectations_file.close()
+        def validate_lowercase_tags(tag):
+            assert tag == tag.lower()
+        runner.tag_validator = validate_lowercase_tags
+        runner.args.expectations_files = [expectations_file.name]
+        with self.assertRaises(AssertionError):
+            runner.parse_expectations()
+
     def test_test_filter_arg(self):
         runner = Runner()
         runner.args = MockArgs(test_filter='test_pass')
