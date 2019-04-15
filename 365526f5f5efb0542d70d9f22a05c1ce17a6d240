@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c6e1d55_33cc73a4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-15T19:20:11Z",
+      "side": 1,
+      "message": "Looks like you\u0027re only using groups 2 and 3 below -- consider making 1 \u0026 4 noncapturing w/ ?:, e..g\n\n  (?:Valid|Invalid)",
+      "revId": "365526f5f5efb0542d70d9f22a05c1ce17a6d240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
