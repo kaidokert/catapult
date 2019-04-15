@@ -607,7 +607,7 @@ tr.exportTo('cp', () => {
       measurement: alert.measurement,
       bots: [alert.master + ':' + alert.bot],
       cases: [alert.case],
-      statistic: 'avg',
+      statistic: alert.statistic,
       buildType: 'test',
     };
   };
