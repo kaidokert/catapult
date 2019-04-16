@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42bf99e5_419f7f42",
+        "filename": "common/py_utils/py_utils/discover.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-16T00:40:40Z",
+      "side": 1,
+      "message": "What if there\u0027s a __init__.pyc?",
+      "range": {
+        "startLine": 36,
+        "startChar": 50,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "9a6f19a8944e053a0c7e3386f91371444a6df312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0464a4b_e3c0b34e",
+        "filename": "common/py_utils/py_utils/test_data/discoverable_classes/non_module_dir/not_a_module.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-16T00:40:40Z",
+      "side": 1,
+      "message": "You should explain that this is a test case for the py_utils/discover.py code.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 79
+      },
+      "revId": "9a6f19a8944e053a0c7e3386f91371444a6df312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
