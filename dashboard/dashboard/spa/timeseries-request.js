@@ -17,8 +17,8 @@ tr.exportTo('cp', () => {
     'avg', 'std', 'count',  // TODO other statistics
     'revisions',
     'annotations',
+    'alert',
     // TODO Uncomment when ready to display these:
-    // 'alert',
     // 'diagnostics',
     // 'histogram',
   ]);
