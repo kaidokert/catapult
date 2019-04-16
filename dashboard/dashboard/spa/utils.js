@@ -501,6 +501,10 @@ tr.exportTo('cp', () => {
     return IS_MAC ? event.metaKey : event.ctrlKey;
   }
 
+  function crbug(bugId) {
+    return `http://crbug.com/${bugId}`;
+  }
+
   return {
     BatchIterator,
     CTRL_KEY_NAME,
@@ -511,6 +515,7 @@ tr.exportTo('cp', () => {
     breakWords,
     buildProperties,
     buildState,
+    crbug,
     deepFreeze,
     denormalize,
     enumerate,
