@@ -36,7 +36,7 @@ class ParseError(Exception):
 
 
 class Expectation(object):
-    def __init__(self, reason, test, tags, results,
+    def __init__(self, reason, test, tags, results, lineno,
                  retry_on_failure=False):
         """Constructor for expectations.
 
@@ -57,10 +57,12 @@ class Expectation(object):
         self._tags = frozenset(tags)
         self._results = frozenset(results)
         self.should_retry_on_failure = retry_on_failure
+        self.lineno = lineno
 
     def __eq__(self, other):
         return (self.reason == other.reason and self.test == other.test
-                and self.tags == other.tags and self.results == other.results)
+                and self.tags == other.tags and self.results == other.results
+                and self.lineno == other.lineno)
 
     @property
     def reason(self):
@@ -224,7 +226,7 @@ class TaggedTestListParser(object):
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
-        return Expectation(reason, test, tags, results, retry_on_failure)
+        return Expectation(reason, test, tags, results, lineno, retry_on_failure)
 
 
 class TestExpectations(object):
