@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2d52d996_55547c55",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-16T00:09:54Z",
+      "side": 1,
+      "message": "should be globs, sorry.",
+      "parentUuid": "b419d723_fc978500",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "aaefc0f3d28aea02a434fe586428ca1b750f1e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79951ffb_902aad31",
         "filename": "telemetry/telemetry/testing/run_browser_tests.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "aaefc0f3d28aea02a434fe586428ca1b750f1e9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dca4221_a3b5694d",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-16T00:09:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79951ffb_902aad31",
+      "range": {
+        "startLine": 226,
+        "startChar": 19,
+        "endLine": 226,
+        "endChar": 25
+      },
+      "revId": "aaefc0f3d28aea02a434fe586428ca1b750f1e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "913c6bc1_4da1a932",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-16T00:09:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0617686_df66d7f8",
+      "range": {
+        "startLine": 294,
+        "startChar": 2,
+        "endLine": 294,
+        "endChar": 62
+      },
+      "revId": "aaefc0f3d28aea02a434fe586428ca1b750f1e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "497bf6d7_842e73d2",
         "filename": "telemetry/telemetry/testing/run_browser_tests.py",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "aaefc0f3d28aea02a434fe586428ca1b750f1e9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2712d336_d9ec4215",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-16T00:09:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "497bf6d7_842e73d2",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 0
+      },
+      "revId": "aaefc0f3d28aea02a434fe586428ca1b750f1e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
