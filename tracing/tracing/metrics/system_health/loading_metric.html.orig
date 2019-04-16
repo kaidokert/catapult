@@ -392,13 +392,17 @@ tr.exportTo('tr.metrics.sh', function() {
     const aboveTheFoldLoadedToVisibleSamples =
         getAboveTheFoldLoadedToVisibleSamples(rendererHelper);
     const firstViewportReadySamples = getFirstViewportReadySamples(
+<<<<<<< HEAD
         rendererHelper, navIdToNavStartEvents);
+=======
+        rendererHelper);
     const largestImagePaintSamples = findFCPPlusPlusSamples(rendererHelper,
         'LargestImagePaint::Candidate', frameToNavStartEvents,
         navIdToNavStartEvents);
     const largestTextPaintSamples = findFCPPlusPlusSamples(rendererHelper,
         'LargestTextPaint::Candidate', frameToNavStartEvents,
         navIdToNavStartEvents);
+>>>>>>> add FCP++
 
     return {
       frameToNavStartEvents,
@@ -561,13 +565,13 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
     const largestImagePaintHistogram = histograms.createHistogram(
-        'largestImagePaint', timeDurationInMs_smallerIsBetter, [], {
+        'largestImagePaintHistogram', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
           description: 'Time to Largest Image Paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
     const largestTextPaintHistogram = histograms.createHistogram(
-        'largestTextPaint', timeDurationInMs_smallerIsBetter, [], {
+        'largestTextPaintHistogram', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
           description: 'Time to Largest Text Paint',
           summaryOptions: SUMMARY_OPTIONS,
