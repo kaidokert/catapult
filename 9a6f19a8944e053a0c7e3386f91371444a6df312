@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f8a0d7d7_01d4eb3d",
+        "filename": "common/py_utils/py_utils/discover.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-16T09:41:14Z",
+      "side": 1,
+      "message": "If there\u0027s __init__.pyc, but no __init__.py, it usually means that the module has been deleted from git, and *.pyc files are just leftovers from previous imports. I think the expected behavior in this case is not to import such a module, because the source files are no longer there.",
+      "parentUuid": "42bf99e5_419f7f42",
+      "range": {
+        "startLine": 36,
+        "startChar": 50,
+        "endLine": 36,
+        "endChar": 61
+      },
+      "revId": "9a6f19a8944e053a0c7e3386f91371444a6df312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0464a4b_e3c0b34e",
         "filename": "common/py_utils/py_utils/test_data/discoverable_classes/non_module_dir/not_a_module.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "9a6f19a8944e053a0c7e3386f91371444a6df312",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "779c4f18_eadc3d87",
+        "filename": "common/py_utils/py_utils/test_data/discoverable_classes/non_module_dir/not_a_module.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-16T09:41:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0464a4b_e3c0b34e",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 79
+      },
+      "revId": "9a6f19a8944e053a0c7e3386f91371444a6df312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
