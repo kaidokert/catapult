@@ -22,6 +22,30 @@
       "revId": "b614c567e8b363220b00ce5557a3ddfd8d18357c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c75d99_16a3159d",
+        "filename": "telemetry/telemetry/internal/binary_dependencies.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1153089
+      },
+      "writtenOn": "2019-04-16T09:01:03Z",
+      "side": 0,
+      "message": "This is odd. I just moved this whole block, no idea how hashes got changed. Reuploaded the CL.",
+      "parentUuid": "f61bfcfe_4174c332",
+      "range": {
+        "startLine": 315,
+        "startChar": 28,
+        "endLine": 315,
+        "endChar": 68
+      },
+      "revId": "b614c567e8b363220b00ce5557a3ddfd8d18357c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
