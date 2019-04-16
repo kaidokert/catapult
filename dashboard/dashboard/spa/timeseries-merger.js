@@ -4,10 +4,6 @@
 */
 'use strict';
 tr.exportTo('cp', () => {
-  // Maximum number of data points to take from source timeseries.
-  // http://crbug.com/936305
-  const MAX_POINTS = 1000;
-
   // Get the x-coordinate for a datum. http://crbug.com/936307
   function getX(datum) {
     return datum.revision;
@@ -32,7 +28,7 @@ tr.exportTo('cp', () => {
       // timeseries will be skipped. When 3, two points are skipped.
       // When 1.5, every third data point is skipped.
       this.indexDelta_ = Math.max(
-          1, (this.endIndex_ - this.index_) / MAX_POINTS);
+          1, (this.endIndex_ - this.index_) / TimeseriesMerger.MAX_POINTS);
     }
 
     findStartIndex_(range) {
@@ -179,6 +175,10 @@ tr.exportTo('cp', () => {
       target.diagnostics.addDiagnostics(source.diagnostics);
     }
   };
+
+  // Maximum number of data points to take from source timeseries.
+  // http://crbug.com/936305
+  TimeseriesMerger.MAX_POINTS = 1000;
 
   return {TimeseriesMerger};
 });
