@@ -26,7 +26,7 @@ tr.exportTo('cp', () => {
   function getColumnsByLevelOfDetail(levelOfDetail, statistic) {
     switch (levelOfDetail) {
       case LEVEL_OF_DETAIL.XY:
-        return new Set(['revision', 'timestamp', statistic, 'count']);
+        return new Set(['revision', statistic]);
       case LEVEL_OF_DETAIL.ALERTS:
         return new Set(['revision', 'alert']);
       case LEVEL_OF_DETAIL.ANNOTATIONS:
