@@ -302,7 +302,8 @@ tr.exportTo('cp', () => {
                                 </template>
                                 <template is="dom-if"
       if="[[!isAlertIgnored_(alert.bugId)]]">
-                                  <a href="https://crbug.com/[[alert.bugId]]" target="_blank">
+                                  <a href="[[crbug_(alert.bugId)]]"
+      target="_blank">
                                     [[alert.bugId]]
                                   </a>
                                 </template>
@@ -453,6 +454,10 @@ tr.exportTo('cp', () => {
 
     isAlertIgnored_(bugId) {
       return bugId < 0;
+    }
+
+    crbug_(bugId) {
+      return cp.crbug(bugId);
     }
 
     arePlaceholders_(alertGroups) {
