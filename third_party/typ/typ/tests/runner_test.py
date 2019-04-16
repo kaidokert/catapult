@@ -70,6 +70,21 @@ class RunnerTests(TestCase):
             'The test prefix passed at the command line does not match the prefix '
             'of all the tests generated', str(context.exception))
 
+    def testIsValidateTestExpectationPatterns(self):
+        raw_data = (
+            '# tags: [ Linux ]\n'
+            'crbug.com/23456 [ Linux ] B1/s1 [ RetryOnFailure ]\n')
+        expectations_file = tempfile.NamedTemporaryFile(delete=False)
+        expectations_file.write(raw_data)
+        expectations_file.close()
+        def validate_expectation_pattern(pattern):
+            assert pattern.lower() == pattern
+        runner = Runner()
+        runner.expectations_pattern_validator = validate_expectation_pattern
+        runner.args.expectations_files = [expectations_file.name]
+        with self.assertRaises(AssertionError):
+            runner.parse_expectations()
+
     def test_test_filter_arg(self):
         runner = Runner()
         runner.args = MockArgs(test_filter='test_pass')

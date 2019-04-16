@@ -108,10 +108,11 @@ class TaggedTestListParser(object):
     _MATCH_STRING += r'(\s+#.*)?$'  # End comment (optional).
     MATCHER = re.compile(_MATCH_STRING)
 
-    def __init__(self, raw_data):
+    def __init__(self, raw_data, pattern_validator=lambda _: None):
         self.tag_sets = []
         self.expectations = []
         self._tag_to_tag_set = {}
+        self.pattern_validator = pattern_validator
         self._parse_raw_expectation_data(raw_data)
 
     def _parse_raw_expectation_data(self, raw_data):
@@ -191,6 +192,7 @@ class TaggedTestListParser(object):
         reason, raw_tags, test, raw_results, _ = match.groups()
         tags = raw_tags.split() if raw_tags else []
         tag_set_ids = set()
+        self.pattern_validator(test)
 
         for t in tags:
             if not t in self._tag_to_tag_set:
@@ -240,9 +242,9 @@ class TestExpectations(object):
         self.individual_exps = {}
         self.glob_exps = OrderedDict()
 
-    def parse_tagged_list(self, raw_data):
+    def parse_tagged_list(self, raw_data, pattern_validator=lambda _ : None):
         try:
-            parser = TaggedTestListParser(raw_data)
+            parser = TaggedTestListParser(raw_data, pattern_validator)
         except ParseError as e:
             return 1, e.message
 

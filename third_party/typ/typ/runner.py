@@ -141,7 +141,7 @@ class Runner(object):
         self.expectations = None
         self.metadata = {}
         self.path_delimiter = json_results.DEFAULT_TEST_SEPARATOR
-
+        self.expectations_pattern_validator = lambda _ : None
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
         self.parse_args(parser, [])
@@ -413,7 +413,7 @@ class Runner(object):
         contents = self.host.read_text_file(args.expectations_files[0])
 
         expectations = TestExpectations(set(args.tags))
-        err, msg = expectations.parse_tagged_list(contents)
+        err, msg = expectations.parse_tagged_list(contents, self.expectations_pattern_validator)
         if err:
             self.print_(msg, stream=self.host.stderr)
             return err
