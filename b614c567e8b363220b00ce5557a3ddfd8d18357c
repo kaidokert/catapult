@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f61bfcfe_4174c332",
+        "filename": "telemetry/telemetry/internal/binary_dependencies.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-16T00:19:29Z",
+      "side": 0,
+      "message": "based on these hashes, it looks like you updated the wpr binaries as well during this change. Could we separate this into two changes?",
+      "range": {
+        "startLine": 315,
+        "startChar": 28,
+        "endLine": 315,
+        "endChar": 68
+      },
+      "revId": "b614c567e8b363220b00ce5557a3ddfd8d18357c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
