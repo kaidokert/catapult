@@ -607,7 +607,7 @@ tr.exportTo('cp', () => {
       measurement: alert.measurement,
       bots: [alert.master + ':' + alert.bot],
       cases: [alert.case],
-      statistic: 'avg',
+      statistic: alert.statistic,
       buildType: 'test',
     };
   };
@@ -955,6 +955,7 @@ tr.exportTo('cp', () => {
       case: alert.descriptor.testCase,
       suite: alert.descriptor.testSuite,
       v1ReportLink: alert.dashboard_link,
+      pinpointJobs: alert.pinpoint_bisects,
     };
   };
 
