@@ -358,6 +358,17 @@ tr.exportTo('tr.metrics.sh', function() {
     };
   }
 
+  function findFCPPlusPlusSamples(rendererHelper, title, frameToNavStartEvents,
+      navIdToNavStartEvents) {
+    const entries = findTimeToXEntries('loading', title, rendererHelper,
+        frameToNavStartEvents, navIdToNavStartEvents);
+    const sortedEntries = entries.sort((a, b)=>{
+      // in descending order
+      return b.args.data.candidateIndex - a.args.data.candidateIndex;
+    });
+    return collectTimeToEvent(rendererHelper, [sortedEntries[0]]);
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -382,6 +393,12 @@ tr.exportTo('tr.metrics.sh', function() {
         getAboveTheFoldLoadedToVisibleSamples(rendererHelper);
     const firstViewportReadySamples = getFirstViewportReadySamples(
         rendererHelper, navIdToNavStartEvents);
+    const largestImagePaintSamples = findFCPPlusPlusSamples(rendererHelper,
+        'LargestImagePaint::Candidate', frameToNavStartEvents,
+        navIdToNavStartEvents);
+    const largestTextPaintSamples = findFCPPlusPlusSamples(rendererHelper,
+        'LargestTextPaint::Candidate', frameToNavStartEvents,
+        navIdToNavStartEvents);
 
     return {
       frameToNavStartEvents,
@@ -391,6 +408,8 @@ tr.exportTo('tr.metrics.sh', function() {
       onLoadSamples,
       aboveTheFoldLoadedToVisibleSamples,
       firstViewportReadySamples,
+      largestImagePaintSamples,
+      largestTextPaintSamples,
     };
   }
 
@@ -541,6 +560,18 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time from navigation to load for AMP pages only. ',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const largestImagePaintHistogram = histograms.createHistogram(
+        'largestImagePaint', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Time to Largest Image Paint',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+    const largestTextPaintHistogram = histograms.createHistogram(
+        'largestTextPaint', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Time to Largest Text Paint',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -570,6 +601,14 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.firstViewportReadySamples,
           firstViewportReadyHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.largestImagePaintSamples,
+          largestImagePaintHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.largestTextPaintSamples,
+          largestTextPaintHistogram,
           histograms);
     }
 
