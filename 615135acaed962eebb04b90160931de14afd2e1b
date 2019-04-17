@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ef5375c_d2f5c3ab",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-17T20:10:32Z",
+      "side": 1,
+      "message": "It seems like to be consistent you should either add a self._lineno and a @property, or you should convert the other things to regular fields. Personally, I\u0027d vote for the latter, it\u0027s simpler and more pythonic.",
+      "revId": "615135acaed962eebb04b90160931de14afd2e1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
