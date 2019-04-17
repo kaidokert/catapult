@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba5e8697_80530668",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-04-17T15:53:02Z",
+      "side": 1,
+      "message": "We have to find the last candidate per navigation, right? This seems to be finding the global lastCandidate.",
+      "revId": "ad385c8e341e90073982bb54635d30f3bba494e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
