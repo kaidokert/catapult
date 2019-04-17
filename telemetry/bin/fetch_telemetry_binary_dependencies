@@ -16,7 +16,7 @@ def main():
     return
 
   # telemetry/internal/binary_dependencies.json will be loaded by default
-  client_configs = []
+  client_configs = [binary_manager.CHROME_BINARY_CONFIG]
   platform = platform_module.GetHostPlatform()
 
   binary_manager.InitDependencyManager(client_configs)
