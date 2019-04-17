@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "110450a7_2642e7e2",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "A Pattern identifies a set of patterns? Is it singular or plural?\n\nA Pattern describes a set of *test paths*. A test path identifies a timeseries. Test paths contain information describing the origin of a timeseries such as master, bot, test suite (benchmark), measurement, test case (story), statistic.",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "704e959a_edd92e42",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "Descriptors would be more user-friendly than test path patterns.\nIn proto, Descriptors might look something like this.\n\nmessage Descriptor {\n  // Empty fields match all. For example, {suites:[\u0027speedometer\u0027]} matches all statistics for all measurements for all bots and all cases for the speedometer suite.\n  // {suites:[\u0027A\u0027,\u0027B\u0027], bots: [\u0027C\u0027, \u0027D\u0027]} matches all statistics for all measurements for all cases for those two suites on those two bots.\n  // Fields may contain glob patterns. For example, {suites:[\u0027system_health*\u0027]} matches all system_health suites.\n  // If cases are specified, then caseTags are ignored.\n\n  repeated string suites \u003d 1;\n  repeated string measurements \u003d 2;\n  repeated string bots \u003d 3;\n  repeated string cases \u003d 4;\n  repeated string caseTags \u003d 5;\n  repeated string statistics \u003d 6;\n}\nrepeated Descriptor descriptors \u003d 7;",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c8871cc_e887f3c8",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "Why is this an enum instead of a string?\nThere are 1000 possible \u0027pct_*\u0027, 1,000,000 possible \u0027ipr_*_*\u0027, 3000 possible \u0027ci_*\u0027 statistics.\nI don\u0027t expect Tim\u0027s team to need more new statistics often, but I do expect it occasionally.\nIt seems unnecessarily burdensome to need to list statistics here.",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82cfa007_f0ab69f4",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "Yes! +100 to splitting immutable identifiers from human-friendly names more!\n\nSo then.... shouldn\u0027t there be an immutable identifier in either this message or SheriffConfig? I\u0027m not sure how luci config works. How will the chromeperf dashboard know that this SheriffConfig replaces an old one with a new name instead of adding a brand new SheriffConfig?",
+      "range": {
+        "startLine": 60,
+        "startChar": 64,
+        "endLine": 61,
+        "endChar": 26
+      },
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0b3e16b_afaf7045",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "Please remove either \u0027other\u0027.",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb2430c6_4954d0f4",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "Wait, shouldn\u0027t this field go in SheriffConfig instead? I thought Subscriptions were implementation details?",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64ce2a17_d68dd559",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "I\u0027m actually confused: alerts don\u0027t have CC. Bugs and email have CC.\n\nDid you mean this?\nDaily reports are emailed to this address. This email address is also CC\u0027d on bugs filed for matching alerts.\n\nThen I\u0027d expect users to ask \u0027What if I want to use separate addresses for those two different purposes? Or do one but not the other?\u0027\n\nIIRC, currently the dashboard only CCs the current user to regression bugs. Changing that is ok by me as long it\u0027s deliberate and communicated to sheriffs.",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cf4990f_3e4f94b5",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-17T20:50:11Z",
+      "side": 1,
+      "message": "Does this belong here?\nThis bit is currently controlled at the bot level.\nhttps://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/change_internal_only.py",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
