@@ -87,6 +87,13 @@ def AddCommandLineArgs(parser):
                     help='Ignore expectations.config disabling.')
   parser.add_option('-p', '--print-only', dest='print_only',
                     choices=['stories', 'tags', 'both'], default=None)
+  parser.add_option('-w', '--wait-for-cpu-temp',
+                    dest='wait_for_cpu_temp', default=None, type='int',
+                    help='Specify the CPU temperature (degrees C) to '
+                    'wait for between each story. If not specified, '
+                    'this wait is disabled. Device needs to be '
+                    'supported. ')
+
 
 def ProcessCommandLineArgs(parser, args):
   story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
@@ -267,6 +274,9 @@ def RunStorySet(test, story_set, possible_browser, expectations,
         try:
           if state.platform:
             state.platform.WaitForBatteryTemperature(35)
+            if finder_options.wait_for_cpu_temp is not None:
+              state.platform.WaitForCpuTemperature(
+                  finder_options.wait_for_cpu_temp)
             _WaitForThermalThrottlingIfNeeded(state.platform)
           _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
 
