@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9d426f76_338cdf1b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-18T15:12:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "46249163_36052167",
+      "revId": "8f5b954d40c3557426c841980abc9aa9d10dc71d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a88fa97d_6452de96",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "8f5b954d40c3557426c841980abc9aa9d10dc71d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c3eee13_612f80b9",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-04-18T15:12:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a88fa97d_6452de96",
+      "revId": "8f5b954d40c3557426c841980abc9aa9d10dc71d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
