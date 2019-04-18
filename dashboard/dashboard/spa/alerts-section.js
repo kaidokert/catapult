@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import AlertsControls from './alerts-controls.js';
+
 const NOTIFICATION_MS = 5000;
 
 // loadMore() below chases cursors when loading untriaged alerts until it's
@@ -223,7 +225,7 @@ export default class AlertsSection extends cp.ElementBase {
 
 AlertsSection.State = {
   ...cp.AlertsTable.State,
-  ...cp.AlertsControls.State,
+  ...AlertsControls.State,
   existingBug: options => cp.TriageExisting.buildState({}),
   isLoading: options => false,
   newBug: options => cp.TriageNew.buildState({}),
