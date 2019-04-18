@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import ReportTemplate from './report-template.js';
+
 export default class ReportSection extends cp.ElementBase {
   static get template() {
     return Polymer.html`
@@ -269,7 +271,7 @@ ReportSection.newTemplate = userEmail => {
     owners: userEmail,
     url: '',
     statistics: [],
-    rows: [cp.ReportTemplate.newTemplateRow({})],
+    rows: [ReportTemplate.newTemplateRow({})],
     statistic: {
       label: 'Statistics',
       query: '',
