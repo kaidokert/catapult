@@ -61,6 +61,10 @@ POLY_MEASUREMENT_TEST_SUITES_KEY = 'poly_measurement_test_suites'
 TWO_TWO_TEST_SUITES_KEY = 'two_two_test_suites'
 
 # This stored object contains a list of test suites whose test cases are
+# composed of two test path components.
+ONE_TWO_TEST_SUITES_KEY = 'one_two_test_suites'
+
+# This stored object contains a list of test suites whose test cases are
 # partially duplicated to two test path components like 'prefix/prefix_suffix'.
 COMPLEX_CASES_TEST_SUITES_KEY = 'complex_cases_test_suites'
 
@@ -141,7 +145,15 @@ class Descriptor(object):
       raise ndb.Return((measurement, path.pop(0).replace('_', ':').replace(
           'long:running:tools', 'long_running_tools')))
 
-    if test_suite in (yield cls._GetConfiguration(TWO_TWO_TEST_SUITES_KEY, [])):
+    one_two_test_suites = yield cls._GetConfiguration(
+        ONE_TWO_TEST_SUITES_KEY, [])
+    if test_suite in one_two_test_suites:
+      parts, path[:] = path[:], []
+      raise ndb.Return(parts[0], ':'.join(parts[1:]))
+
+    two_two_test_suites = yield cls._GetConfiguration(
+        TWO_TWO_TEST_SUITES_KEY, [])
+    if test_suite in two_two_test_suites:
       parts, path[:] = path[:], []
       raise ndb.Return(':'.join(parts[:2]), ':'.join(parts[2:]))
 
@@ -327,6 +339,8 @@ class Descriptor(object):
         'memory.top_10_mobile',
         'v8:runtime_stats.top_25',
     ]
+    poly_case_test_suites += yield self._GetConfiguration(
+        ONE_TWO_TEST_SUITES_KEY, [])
     poly_case_test_suites += yield self._GetConfiguration(
         TWO_TWO_TEST_SUITES_KEY, [])
     if self.test_suite in poly_case_test_suites:
