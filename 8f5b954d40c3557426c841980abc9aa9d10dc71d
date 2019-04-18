@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46249163_36052167",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-18T01:15:35Z",
+      "side": 1,
+      "message": "We should pull all of this into a separate function at this point, if we can, but I wouldn\u0027t do that in this CL.",
+      "revId": "8f5b954d40c3557426c841980abc9aa9d10dc71d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a88fa97d_6452de96",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-04-18T01:15:35Z",
+      "side": 1,
+      "message": "would it be easier to just change this to\n\n    tags \u003d [raw_tag.lower() for raw_tag in raw_tags.split()] if raw_tags else []?\n\nSo that you don\u0027t have to worry about missing things below?",
+      "revId": "8f5b954d40c3557426c841980abc9aa9d10dc71d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
