@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd845081_54c74391",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-18T16:17:29Z",
+      "side": 1,
+      "message": "Please use for..of instead.\n\nfor (const e of timeToXEntries) {\n  ...\n}",
+      "revId": "470fac892cb2acbdbbdb15d0217084e21d67225b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34d6e9ec_9520614d",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-18T16:17:29Z",
+      "side": 1,
+      "message": "Please use a different variable name instead of re-using the name of the function parameter.",
+      "range": {
+        "startLine": 372,
+        "startChar": 15,
+        "endLine": 372,
+        "endChar": 29
+      },
+      "revId": "470fac892cb2acbdbbdb15d0217084e21d67225b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51ea274d_1319af0b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-18T16:17:29Z",
+      "side": 1,
+      "message": "Could this really happen? I don\u0027t see how.",
+      "revId": "470fac892cb2acbdbbdb15d0217084e21d67225b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "effbad1a_66073000",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-18T16:17:29Z",
+      "side": 1,
+      "message": "We try to limit use of higher-order functions to times when they improve readability more than they impact it. Please use for..of instead here, and wrap the mapper. The wrapper can go outside findLastCandidateForEachNavigation since it doesn\u0027t depend on any local variables.\n\nfunction getCandidateIndex(entry) {\n  return entry.targetEvent.args.data.candidateIndex;\n}\n\nlet lastCandidate \u003d timeToXEntries.shift();\nfor (const entry of timeToXEntries) {\n  if (getCandidateIndex(entry) \u003e getCandidateIndex(lastCandidate)) {\n    lastCandidate \u003d entry;\n  }\n}",
+      "range": {
+        "startLine": 376,
+        "startChar": 1,
+        "endLine": 382,
+        "endChar": 28
+      },
+      "revId": "470fac892cb2acbdbbdb15d0217084e21d67225b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
