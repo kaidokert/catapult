@@ -552,7 +552,12 @@ tr.exportTo('cp', () => {
       case: alert.descriptor.testCase,
       suite: alert.descriptor.testSuite,
       v1ReportLink: alert.dashboard_link,
+      pinpointJobs: alert.pinpoint_bisects,
     };
+  }
+
+  function crbug(bugId) {
+    return `http://crbug.com/${bugId}`;
   }
 
   return {
@@ -565,6 +570,7 @@ tr.exportTo('cp', () => {
     breakWords,
     buildProperties,
     buildState,
+    crbug,
     deepFreeze,
     denormalize,
     enumerate,
