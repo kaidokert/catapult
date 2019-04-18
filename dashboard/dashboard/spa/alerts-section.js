@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import ChartCompound from './chart-compound.js';
+
 const NOTIFICATION_MS = 5000;
 
 // loadMore() below chases cursors when loading untriaged alerts until it's
@@ -227,7 +229,7 @@ AlertsSection.State = {
   existingBug: options => cp.TriageExisting.buildState({}),
   isLoading: options => false,
   newBug: options => cp.TriageNew.buildState({}),
-  preview: options => cp.ChartCompound.buildState(options),
+  preview: options => ChartCompound.buildState(options),
   sectionId: options => options.sectionId || cp.simpleGUID(),
   selectedAlertPath: options => undefined,
   totalCount: options => 0,
