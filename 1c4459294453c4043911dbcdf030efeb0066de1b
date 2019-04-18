@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93b1cc13_ed74346b",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-18T22:49:08Z",
+      "side": 1,
+      "message": "looks like the __init__ for CpuTemperature() calls _GetThermalDeviceInformation, which does work This means that even if we don\u0027t end up using CpuTemperature, we still pay for it. I prefer our simply initializing this inside of WaitForCpuTemperature() so that we don\u0027t have to pay the cost unless we use the method.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "1c4459294453c4043911dbcdf030efeb0066de1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d92651e4_399f7f77",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-18T22:49:08Z",
+      "side": 1,
+      "message": "If the module is named \"cpu_temperature\", then let\u0027s just also call this variable the same thing.",
+      "range": {
+        "startLine": 87,
+        "startChar": 14,
+        "endLine": 87,
+        "endChar": 18
+      },
+      "revId": "1c4459294453c4043911dbcdf030efeb0066de1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbcee168_40591477",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-18T22:49:08Z",
+      "side": 1,
+      "message": "two options:\n\n1. name this \"--wait-for-cpu-temp\" and have it have a boolean value. Then we will have a hardcoded temperature that we are waiting for.\n\n2. name this \"--cpu-temp-minimum\" and have it have a float value or integer value (and default to None). (Note that I\u0027m thinking it\u0027s better to allow a float value since a full degree celsius is a lot and doesn\u0027t give us much room to optimize.)\n\nI think that a flag named \"--wait-for-cpu-temp\" needs to have a boolean value.\n\nI\u0027m leaning towards #1 unless you have some reason to prefer #2.",
+      "range": {
+        "startLine": 92,
+        "startChar": 26,
+        "endLine": 95,
+        "endChar": 32
+      },
+      "revId": "1c4459294453c4043911dbcdf030efeb0066de1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
