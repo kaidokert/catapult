@@ -46,8 +46,8 @@ class FilterTest(unittest.TestCase):
         parser, Options(**kwargs))
 
   def assertPagesSelected(self, expected):
-    result = story_filter_module.StoryFilter.FilterStorySet(self.story_set)
-    selected_stories = list(result)
+    story_filter_module.StoryFilter.FilterStorySet(self.story_set)
+    selected_stories = list(self.story_set)
     self.assertEqual(expected, selected_stories)
 
   def testNoFilterMatchesAll(self):

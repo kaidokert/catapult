@@ -417,24 +417,6 @@ def _IsBenchmarkEnabled(benchmark_to_run, target_platform, finder_options):
   return True
 
 
-def _SortedStorySet(story_set):
-  """ Returns a story set with stories sorted by the archive name.
-  """
-  wpr_archive_info = story_set.wpr_archive_info
-  if wpr_archive_info:
-    stories = sorted(story_set.stories,
-                     key=wpr_archive_info.WprFilePathForStory)
-    story_set = story_module.story_set.StorySet(
-        archive_data_file=story_set.archive_data_file,
-        cloud_storage_bucket=story_set.bucket,
-        base_dir=story_set.base_dir,
-        serving_dirs=story_set.serving_dirs,
-    )
-    for story in stories:
-      story_set.AddStory(story)
-  return story_set
-
-
 def _SetUpBenchmark(benchmark_to_run, finder_options):
   benchmark_to_run.CustomizeOptions(finder_options)
 
@@ -457,11 +439,13 @@ def _SetUpBenchmark(benchmark_to_run, finder_options):
   benchmark_to_run.GetBrokenExpectations(story_set)
 
   # Filter page set based on options.
-  story_set = story_module.StoryFilter.FilterStorySet(story_set)
+  story_module.StoryFilter.FilterStorySet(story_set)
 
   # Sort stories to minimize how often the network replay-server
   # needs to be restarted.
-  story_set = _SortedStorySet(story_set)
+  wpr_archive_info = story_set.wpr_archive_info
+  if wpr_archive_info:
+    story_set.stories.sort(key=wpr_archive_info.WprFilePathForStory)
 
   return (story_set, possible_browser, benchmark_enabled)
 

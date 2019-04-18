@@ -5,7 +5,6 @@
 import optparse
 import re
 
-from telemetry.story import story_set as story_set_module
 from telemetry.internal.util import command_line
 
 
@@ -101,7 +100,7 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
   def FilterStorySet(cls, story_set):
     """Filters the given story set, using filters provided in the command line.
 
-    Returns a new StorySet object with only filtered stories.
+    Modifies the given StorySet object leaving only filtered stories.
     Story sharding is done before exclusion and inclusion is done.
     """
     if cls._begin_index < 0:
@@ -109,12 +108,7 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
     if cls._end_index is None:
       cls._end_index = len(story_set)
 
-    final_story_set = story_set_module.StorySet(
-        archive_data_file=story_set.archive_data_file,
-        cloud_storage_bucket=story_set.bucket,
-        base_dir=story_set.base_dir,
-        serving_dirs=story_set.serving_dirs,
-    )
+    included_stories = []
 
     for story in story_set[cls._begin_index:cls._end_index]:
       # Exclude filters take priority.
@@ -128,7 +122,7 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
       if cls._include_regex and not cls._include_regex.HasMatch(story):
         continue
 
-      final_story_set.AddStory(story)
+      included_stories.append(story)
 
-    return final_story_set
+    story_set.stories[:] = included_stories
 
