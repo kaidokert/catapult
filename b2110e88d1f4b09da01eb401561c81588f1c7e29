@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63065ce8_fc76570d",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-04-18T00:03:49Z",
+      "side": 1,
+      "message": "nit: use ES6 Map instead of object.",
+      "revId": "b2110e88d1f4b09da01eb401561c81588f1c7e29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "630d6c12_7cdb6506",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-04-18T00:03:49Z",
+      "side": 1,
+      "message": "nit: Sorting the list feels unnecessary work when you could just find the event with max timestamp in one pass.",
+      "revId": "b2110e88d1f4b09da01eb401561c81588f1c7e29",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
