@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import ReportControls from './report-controls.js';
+
 export default class ReportSection extends cp.ElementBase {
   static get template() {
     return Polymer.html`
@@ -62,10 +64,10 @@ export default class ReportSection extends cp.ElementBase {
 }
 
 ReportSection.State = {
-  ...cp.ReportControls.State,
+  ...ReportControls.State,
   isLoading: options => false,
   tables: options => [cp.ReportTable.placeholderTable(
-      cp.ReportControls.DEFAULT_NAME)],
+      ReportControls.DEFAULT_NAME)],
 };
 
 ReportSection.buildState = options => cp.buildState(
@@ -89,7 +91,7 @@ ReportSection.actions = {
     const state = Polymer.Path.get(getState(), statePath);
     if (state.minRevision === undefined ||
         state.maxRevision === undefined) {
-      cp.ReportControls.actions.selectMilestone(
+      ReportControls.actions.selectMilestone(
           statePath, state.milestone)(dispatch, getState);
     }
   },
@@ -104,7 +106,7 @@ ReportSection.actions = {
     });
 
     const names = state.source.selectedOptions.filter(name =>
-      name !== cp.ReportControls.CREATE);
+      name !== ReportControls.CREATE);
     const requestedReports = new Set(state.source.selectedOptions);
     const revisions = [state.minRevision, state.maxRevision];
     const reportTemplateInfos = await new cp.ReportNamesRequest().response;
@@ -149,7 +151,7 @@ ReportSection.reducers = {
       ...state,
       source,
       milestone: parseInt(action.options.milestone ||
-        cp.ReportControls.CURRENT_MILESTONE),
+        ReportControls.CURRENT_MILESTONE),
       minRevision: action.options.minRevision,
       maxRevision: action.options.maxRevision,
       minRevisionInput: action.options.minRevision,
@@ -171,7 +173,7 @@ ReportSection.reducers = {
     for (const name of selectedNames) {
       // Add placeholderTables for missing names.
       if (!tableNames.has(name)) {
-        if (name === cp.ReportControls.CREATE) {
+        if (name === ReportControls.CREATE) {
           tables.push(ReportSection.newTemplate(rootState.userEmail));
         } else {
           tables.push(cp.ReportTable.placeholderTable(name));
@@ -311,7 +313,7 @@ ReportSection.newStateOptionsFromQueryParams = queryParams => {
       options.minRevision !== undefined &&
       options.maxRevision !== undefined) {
     for (const [milestone, milestoneRevision] of Object.entries(
-        cp.ReportControls.CHROMIUM_MILESTONES)) {
+        ReportControls.CHROMIUM_MILESTONES)) {
       if ((milestoneRevision >= options.minRevision) &&
           ((options.maxRevision === 'latest') ||
             (options.maxRevision >= milestoneRevision))) {
@@ -335,11 +337,11 @@ ReportSection.getRouteParams = state => {
   const selectedOptions = state.source.selectedOptions;
   if (state.containsDefaultSection &&
       selectedOptions.length === 1 &&
-      selectedOptions[0] === cp.ReportControls.DEFAULT_NAME) {
+      selectedOptions[0] === ReportControls.DEFAULT_NAME) {
     return routeParams;
   }
   for (const option of selectedOptions) {
-    if (option === cp.ReportControls.CREATE) continue;
+    if (option === ReportControls.CREATE) continue;
     routeParams.append('report', option);
   }
   routeParams.set('minRev', state.minRevision);
