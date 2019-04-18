@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "728b7bfe_9bb1aa69",
+        "filename": "devil/devil/android/cpu_temperature.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-18T22:42:59Z",
+      "side": 1,
+      "message": "Can you specify in here what the type of this value is? Is it an integer or could it instead be a float?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 56
+      },
+      "revId": "4eb7acc4423899cc65ee2c715703353ec4d45087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
