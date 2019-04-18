@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import AlertsRequest from './alerts-request.js';
+
 const NOTIFICATION_MS = 5000;
 
 // loadMore() below chases cursors when loading untriaged alerts until it's
@@ -245,7 +247,7 @@ AlertsSection.properties = {
 };
 
 async function wrapRequest(body) {
-  const request = new cp.AlertsRequest({body});
+  const request = new AlertsRequest({body});
   const response = await request.response;
   return {body, response};
 }

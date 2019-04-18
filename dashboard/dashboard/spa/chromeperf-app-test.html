@@ -15,7 +15,6 @@ found in the LICENSE file.
 <link rel="import" href="/bower_components/chopsui/chops-signin.html">
 <link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="/dashboard/spa/alerts-controls.html">
-<link rel="import" href="/dashboard/spa/alerts-request.html">
 <link rel="import" href="/dashboard/spa/alerts-section.html">
 <link rel="import" href="/dashboard/spa/alerts-table.html">
 <link rel="import" href="/dashboard/spa/chart-compound.html">
@@ -87,7 +86,9 @@ suite('chromeperf-app', function() {
               bots: ['master:bot'],
             };
           }
-          if (url === cp.AlertsRequest.URL) {
+          const {default: AlertsRequest} = await importModule(
+              './alerts-request.js');
+          if (url === AlertsRequest.URL) {
             return {anomalies: []};
           }
           if (url === cp.SheriffsRequest.URL) {

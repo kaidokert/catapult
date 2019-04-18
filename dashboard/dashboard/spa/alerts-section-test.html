@@ -9,7 +9,6 @@ found in the LICENSE file.
 <script src="/bower_components/web-component-tester/browser.js"></script>
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <link rel="import" href="/dashboard/spa/alerts-controls.html">
-<link rel="import" href="/dashboard/spa/alerts-request.html">
 <link rel="import" href="/dashboard/spa/alerts-table.html">
 <link rel="import" href="/dashboard/spa/chart-compound.html">
 <link rel="import" href="/dashboard/spa/cp-loading.html">
@@ -59,7 +58,9 @@ suite('alerts-section', function() {
           if (url === cp.SheriffsRequest.URL) {
             return [];
           }
-          if (url === cp.AlertsRequest.URL) {
+          const {default: AlertsRequest} = await importModule(
+              './alerts-request.js');
+          if (url === AlertsRequest.URL) {
             const improvements = Boolean(options.body.get('improvements'));
             const alerts = [];
             const measurements = ['mmm0', 'mmm1', 'mmm2'];
