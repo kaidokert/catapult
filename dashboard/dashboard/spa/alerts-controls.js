@@ -7,6 +7,7 @@
 import './cp-checkbox.js';
 import './cp-input.js';
 import './cp-switch.js';
+import ReportNamesRequest from './report-names-request.js';
 
 export default class AlertsControls extends cp.ElementBase {
   static get template() {
@@ -477,7 +478,7 @@ AlertsControls.actions = {
   },
 
   loadReportNames: statePath => async(dispatch, getState) => {
-    const reportTemplateInfos = await new cp.ReportNamesRequest().response;
+    const reportTemplateInfos = await new ReportNamesRequest().response;
     const reportNames = reportTemplateInfos.map(t => t.name);
     dispatch(Redux.UPDATE(statePath + '.report', {
       options: cp.OptionGroup.groupValues(reportNames),
@@ -598,7 +599,7 @@ AlertsControls.compileSources = async(
     sources.push({bug_id: bug, ...revisions});
   }
   if (reports.length) {
-    const reportTemplateInfos = await new cp.ReportNamesRequest().response;
+    const reportTemplateInfos = await new ReportNamesRequest().response;
     for (const name of reports) {
       for (const reportId of reportTemplateInfos) {
         if (reportId.name === name) {

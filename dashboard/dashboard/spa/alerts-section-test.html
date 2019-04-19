@@ -19,7 +19,6 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/group-alerts.html">
 <link rel="import" href="/dashboard/spa/menu-input.html">
 <link rel="import" href="/dashboard/spa/raised-button.html">
-<link rel="import" href="/dashboard/spa/report-names-request.html">
 <link rel="import" href="/dashboard/spa/sheriffs-request.html">
 <link rel="import" href="/dashboard/spa/test-suites-request.html">
 <link rel="import" href="/dashboard/spa/timeseries-request.html">
@@ -42,6 +41,7 @@ suite('alerts-section', function() {
   let AlertsRequest;
   let ExistingBugRequest;
   let NewBugRequest;
+  let ReportNamesRequest;
 
   let originalFetch;
   let existingBugBody;
@@ -59,7 +59,7 @@ suite('alerts-section', function() {
             newBugBody = options.body;
             return {bug_id: 57};
           }
-          if (url === cp.ReportNamesRequest.URL) {
+          if (url === ReportNamesRequest.URL) {
             return [{name: 'aaa', id: 42, modified: new Date()}];
           }
           if (url === ExistingBugRequest.URL) {
@@ -154,6 +154,8 @@ suite('alerts-section', function() {
   test('triageNew', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
     NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ReportNamesRequest = (await importModule(
+        './report-names-request.js')).default;
     ExistingBugRequest = (await importModule(
         './existing-bug-request.js')).default;
 
@@ -221,6 +223,8 @@ suite('alerts-section', function() {
   test('triageExisting', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
     NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ReportNamesRequest = (await importModule(
+        './report-names-request.js')).default;
     ExistingBugRequest = (await importModule(
         './existing-bug-request.js')).default;
     await importModule('./cp-checkbox.js');
@@ -287,6 +291,8 @@ suite('alerts-section', function() {
   test('ignore', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
     NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ReportNamesRequest = (await importModule(
+        './report-names-request.js')).default;
     ExistingBugRequest = (await importModule(
         './existing-bug-request.js')).default;
     await importModule('./cp-checkbox.js');
@@ -346,6 +352,8 @@ suite('alerts-section', function() {
   test('unassign', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
     NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ReportNamesRequest = (await importModule(
+        './report-names-request.js')).default;
     ExistingBugRequest = (await importModule(
         './existing-bug-request.js')).default;
 

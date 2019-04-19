@@ -25,7 +25,6 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/menu-input.html">
 <link rel="import" href="/dashboard/spa/raised-button.html">
 <link rel="import" href="/dashboard/spa/recent-bugs-request.html">
-<link rel="import" href="/dashboard/spa/report-names-request.html">
 <link rel="import" href="/dashboard/spa/session-id-request.html">
 <link rel="import" href="/dashboard/spa/session-state-request.html">
 <link rel="import" href="/dashboard/spa/test-suites-request.html">
@@ -81,7 +80,9 @@ suite('chromeperf-app', function() {
           if (url === cp.SheriffsRequest.URL) {
             return ['ccc', 'ddd'];
           }
-          if (url === cp.ReportNamesRequest.URL) {
+          const {default: ReportNamesRequest} = await importModule(
+              './report-names-request.js');
+          if (url === ReportNamesRequest.URL) {
             return [{
               name: cp.ReportControls.DEFAULT_NAME,
               id: 42,
