@@ -181,7 +181,8 @@ suite('chart-timeseries', function() {
       build_type: 'test',
       columns: 'revision,timestamp,avg,count',
     });
-    new ResultChannelSender(url + aBytesParams).send((async function* () {
+    const sender = new ResultChannelSender(url + aBytesParams);
+    await sender.send((async function* () {
       yield {
         units: 'sizeInBytes',
         data: [
