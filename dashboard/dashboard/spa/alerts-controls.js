@@ -7,6 +7,7 @@
 import './cp-checkbox.js';
 import './cp-input.js';
 import './cp-switch.js';
+import './raised-button.js';
 
 export default class AlertsControls extends cp.ElementBase {
   static get template() {
