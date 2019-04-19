@@ -4,8 +4,9 @@
 */
 'use strict';
 
-import TriageNew from './triage-new.js';
+import AlertsControls from './alerts-controls.js';
 import TriageExisting from './triage-existing.js';
+import TriageNew from './triage-new.js';
 
 const NOTIFICATION_MS = 5000;
 
@@ -226,7 +227,7 @@ export default class AlertsSection extends cp.ElementBase {
 
 AlertsSection.State = {
   ...cp.AlertsTable.State,
-  ...cp.AlertsControls.State,
+  ...AlertsControls.State,
   existingBug: options => TriageExisting.buildState({}),
   isLoading: options => false,
   newBug: options => TriageNew.buildState({}),
