@@ -5,6 +5,7 @@
 'use strict';
 
 import AlertsSection from './alerts-section.js';
+import ChartCompound from './chart-compound.js';
 import ChartSection from './chart-section.js';
 import ReportSection from './report-section.js';
 
@@ -416,7 +417,7 @@ ChromeperfApp.State = {
   closedAlertsIds: options => [],
 
   linkedChartState: options => cp.buildState(
-      cp.ChartCompound.LinkedState, {}),
+      ChartCompound.LinkedState, {}),
 
   chartSectionIds: options => [],
   chartSectionsById: options => {return {};},
@@ -826,7 +827,7 @@ ChromeperfApp.reducers = {
 
     if (chartSectionIds.length === 1 && options) {
       const linkedChartState = cp.buildState(
-          cp.ChartCompound.LinkedState, options);
+          ChartCompound.LinkedState, options);
       state = {...state, linkedChartState};
     }
     return {...state, chartSectionIds};
