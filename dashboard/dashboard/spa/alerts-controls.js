@@ -7,6 +7,7 @@
 import './cp-checkbox.js';
 import './cp-input.js';
 import './cp-switch.js';
+import AlertsTable from './alerts-table.js';
 import SheriffsRequest from './sheriffs-request.js';
 
 export default class AlertsControls extends cp.ElementBase {
@@ -302,7 +303,7 @@ export default class AlertsControls extends cp.ElementBase {
   }
 
   arePlaceholders_(alertGroups) {
-    return alertGroups === cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS;
+    return alertGroups === AlertsTable.PLACEHOLDER_ALERT_GROUPS;
   }
 
   crbug_(bugId) {
@@ -444,7 +445,7 @@ AlertsControls.State = {
   showingRecentlyModifiedBugs: options => false,
   triagedBugId: options => 0,
   alertGroups: options => options.alertGroups ||
-    cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS,
+    AlertsTable.PLACEHOLDER_ALERT_GROUPS,
 };
 
 AlertsControls.observers = [

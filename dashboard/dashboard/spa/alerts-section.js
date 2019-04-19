@@ -6,6 +6,7 @@
 
 import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';
+import AlertsTable from './alerts-table.js';
 import ChartCompound from './chart-compound.js';
 import ExistingBugRequest from './existing-bug-request.js';
 import NewBugRequest from './new-bug-request.js';
@@ -155,7 +156,7 @@ export default class AlertsSection extends cp.ElementBase {
 
   canTriage_(alertGroups) {
     if (!window.IS_PRODUCTION) return false;
-    const selectedAlerts = cp.AlertsTable.getSelectedAlerts(alertGroups);
+    const selectedAlerts = AlertsTable.getSelectedAlerts(alertGroups);
     if (selectedAlerts.length === 0) return false;
     for (const alert of selectedAlerts) {
       if (alert.bugId) return false;
@@ -164,7 +165,7 @@ export default class AlertsSection extends cp.ElementBase {
   }
 
   canUnassignAlerts_(alertGroups) {
-    const selectedAlerts = cp.AlertsTable.getSelectedAlerts(alertGroups);
+    const selectedAlerts = AlertsTable.getSelectedAlerts(alertGroups);
     for (const alert of selectedAlerts) {
       if (alert.bugId) return true;
     }
@@ -230,7 +231,7 @@ export default class AlertsSection extends cp.ElementBase {
 }
 
 AlertsSection.State = {
-  ...cp.AlertsTable.State,
+  ...AlertsTable.State,
   ...AlertsControls.State,
   existingBug: options => TriageExisting.buildState({}),
   isLoading: options => false,
@@ -386,7 +387,7 @@ AlertsSection.actions = {
     dispatch(Redux.UPDATE(statePath, {isLoading: true}));
     const rootState = getState();
     let state = Polymer.Path.get(rootState, statePath);
-    const selectedAlerts = cp.AlertsTable.getSelectedAlerts(
+    const selectedAlerts = AlertsTable.getSelectedAlerts(
         state.alertGroups);
     const alertKeys = new Set(selectedAlerts.map(a => a.key));
     try {
@@ -412,7 +413,7 @@ AlertsSection.actions = {
 
   ignore: statePath => async(dispatch, getState) => {
     let state = Polymer.Path.get(getState(), statePath);
-    const alerts = cp.AlertsTable.getSelectedAlerts(state.alertGroups);
+    const alerts = AlertsTable.getSelectedAlerts(state.alertGroups);
     const ignoredCount = alerts.length;
     await dispatch(AlertsSection.actions.changeBugId(statePath, -2));
 
@@ -466,7 +467,7 @@ AlertsSection.actions = {
     dispatch(Redux.UPDATE(statePath, {isLoading: true}));
     const rootState = getState();
     let state = Polymer.Path.get(rootState, statePath);
-    const selectedAlerts = cp.AlertsTable.getSelectedAlerts(
+    const selectedAlerts = AlertsTable.getSelectedAlerts(
         state.alertGroups);
     const alertKeys = new Set(selectedAlerts.map(a => a.key));
     dispatch({
@@ -585,7 +586,7 @@ AlertsSection.actions = {
 
   layoutPreview: statePath => async(dispatch, getState) => {
     const state = Polymer.Path.get(getState(), statePath);
-    const alerts = cp.AlertsTable.getSelectedAlerts(state.alertGroups);
+    const alerts = AlertsTable.getSelectedAlerts(state.alertGroups);
     const lineDescriptors = alerts.map(AlertsSection.computeLineDescriptor);
     if (lineDescriptors.length === 1) {
       lineDescriptors.push({
@@ -622,7 +623,7 @@ AlertsSection.computeLineDescriptor = alert => {
 
 AlertsSection.reducers = {
   selectAlert: (state, action, rootState) => {
-    if (state.alertGroups === cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
+    if (state.alertGroups === AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
       return state;
     }
     const alertPath =
@@ -638,7 +639,7 @@ AlertsSection.reducers = {
         selectedAlertPath: undefined,
         preview: {
           ...state.preview,
-          lineDescriptors: cp.AlertsTable.getSelectedAlerts(
+          lineDescriptors: AlertsTable.getSelectedAlerts(
               state.alertGroups).map(AlertsSection.computeLineDescriptor),
         },
       };
@@ -716,7 +717,7 @@ AlertsSection.reducers = {
   },
 
   updateSelectedAlertsCount: state => {
-    const selectedAlertsCount = cp.AlertsTable.getSelectedAlerts(
+    const selectedAlertsCount = AlertsTable.getSelectedAlerts(
         state.alertGroups).length;
     return {...state, selectedAlertsCount};
   },
@@ -752,7 +753,7 @@ AlertsSection.reducers = {
   },
 
   openNewBugDialog: (state, action, rootState) => {
-    const alerts = cp.AlertsTable.getSelectedAlerts(state.alertGroups);
+    const alerts = AlertsTable.getSelectedAlerts(state.alertGroups);
     if (alerts.length === 0) return state;
     const newBug = TriageNew.buildState({
       isOpen: true, alerts, cc: action.userEmail,
@@ -761,7 +762,7 @@ AlertsSection.reducers = {
   },
 
   openExistingBugDialog: (state, action, rootState) => {
-    const alerts = cp.AlertsTable.getSelectedAlerts(state.alertGroups);
+    const alerts = AlertsTable.getSelectedAlerts(state.alertGroups);
     if (alerts.length === 0) return state;
     return {
       ...state,
@@ -777,7 +778,7 @@ AlertsSection.reducers = {
     // Group them together with previously-received alerts from
     // state.alertGroups[].alerts.
     alerts = alerts.map(cp.transformAlert);
-    if (state.alertGroups !== cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
+    if (state.alertGroups !== AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
       for (const alertGroup of state.alertGroups) {
         alerts.push(...alertGroup.alerts);
       }
@@ -832,7 +833,7 @@ AlertsSection.reducers = {
       }
     }
 
-    alertGroups = cp.AlertsTable.sortGroups(
+    alertGroups = AlertsTable.sortGroups(
         alertGroups, state.sortColumn, state.sortDescending,
         state.showingTriaged);
 
@@ -848,7 +849,7 @@ AlertsSection.reducers = {
 
   finalizeAlerts: (state, action, rootState) => {
     state = {...state, isLoading: false};
-    if (state.alertGroups === cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS &&
+    if (state.alertGroups === AlertsTable.PLACEHOLDER_ALERT_GROUPS &&
         (state.sheriff.selectedOptions.length ||
           state.bug.selectedOptions.length ||
           state.report.selectedOptions.length)) {
@@ -889,7 +890,7 @@ AlertsSection.reducers = {
   startLoadingAlerts: (state, {started}, rootState) => {
     return {
       ...state,
-      alertGroups: cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS,
+      alertGroups: AlertsTable.PLACEHOLDER_ALERT_GROUPS,
       isLoading: true,
       started,
       totalCount: 0,
@@ -1007,7 +1008,7 @@ AlertsSection.matchesOptions = (state, options) => {
 
 AlertsSection.summary = (showingTriaged, alertGroups, totalCount) => {
   if (!alertGroups ||
-      (alertGroups === cp.AlertsTable.PLACEHOLDER_ALERT_GROUPS)) {
+      (alertGroups === AlertsTable.PLACEHOLDER_ALERT_GROUPS)) {
     return '0 alerts';
   }
   let groupCount = 0;
