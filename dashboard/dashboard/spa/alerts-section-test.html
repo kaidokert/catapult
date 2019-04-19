@@ -17,9 +17,7 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/describe-request.html">
 <link rel="import" href="/dashboard/spa/details-table.html">
 <link rel="import" href="/dashboard/spa/element-base.html">
-<link rel="import" href="/dashboard/spa/existing-bug-request.html">
 <link rel="import" href="/dashboard/spa/group-alerts.html">
-<link rel="import" href="/dashboard/spa/new-bug-request.html">
 <link rel="import" href="/dashboard/spa/test-suites-request.html">
 <link rel="import" href="/dashboard/spa/timeseries-request.html">
 <link rel="import" href="/dashboard/static/memory_related_names.html">
@@ -38,6 +36,9 @@ window.AUTH_CLIENT_ID = '';
 
 suite('alerts-section', function() {
   let AlertsRequest;
+  let ExistingBugRequest;
+  let NewBugRequest;
+
   let originalFetch;
   let existingBugBody;
   let newBugBody;
@@ -50,14 +51,14 @@ suite('alerts-section', function() {
           if (url === cp.DescribeRequest.URL) {
             return {};
           }
-          if (url === cp.NewBugRequest.URL) {
+          if (url === NewBugRequest.URL) {
             newBugBody = options.body;
             return {bug_id: 57};
           }
           if (url === cp.ReportNamesRequest.URL) {
             return [{name: 'aaa', id: 42, modified: new Date()}];
           }
-          if (url === cp.ExistingBugRequest.URL) {
+          if (url === ExistingBugRequest.URL) {
             existingBugBody = options.body;
             return {};
           }
@@ -148,6 +149,10 @@ suite('alerts-section', function() {
 
   test('triageNew', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
+    NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ExistingBugRequest = (await importModule(
+        './existing-bug-request.js')).default;
+
     await importModule('./cp-checkbox.js');
     const {default: AlertsSection} = await importModule('./alerts-section.js');
     const section = fixture('test');
@@ -211,6 +216,9 @@ suite('alerts-section', function() {
 
   test('triageExisting', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
+    NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ExistingBugRequest = (await importModule(
+        './existing-bug-request.js')).default;
     await importModule('./cp-checkbox.js');
     const {default: AlertsSection} = await importModule('./alerts-section.js');
     const section = fixture('test');
@@ -274,6 +282,9 @@ suite('alerts-section', function() {
 
   test('ignore', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
+    NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ExistingBugRequest = (await importModule(
+        './existing-bug-request.js')).default;
     await importModule('./cp-checkbox.js');
     const {default: AlertsSection} = await importModule('./alerts-section.js');
     const section = fixture('test');
@@ -330,6 +341,10 @@ suite('alerts-section', function() {
 
   test('unassign', async function() {
     AlertsRequest = (await importModule('./alerts-request.js')).default;
+    NewBugRequest = (await importModule('./new-bug-request.js')).default;
+    ExistingBugRequest = (await importModule(
+        './existing-bug-request.js')).default;
+
     await importModule('./cp-checkbox.js');
     const {default: AlertsSection} = await importModule('./alerts-section.js');
     const section = fixture('test');
