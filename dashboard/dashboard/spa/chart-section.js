@@ -4,6 +4,7 @@
 */
 'use strict';
 
+import './chart-legend.js';
 import ChartCompound from './chart-compound.js';
 
 export default class ChartSection extends cp.ElementBase {
