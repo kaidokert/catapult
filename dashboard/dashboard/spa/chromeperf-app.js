@@ -9,6 +9,8 @@ import ChartCompound from './chart-compound.js';
 import ChartSection from './chart-section.js';
 import ReportSection from './report-section.js';
 import ReportControls from './report-controls.js';
+import SessionIdRequest from './session-id-request.js';
+import SessionStateRequest from './session-state-request.js';
 
 const NOTIFICATION_MS = 5000;
 
@@ -522,7 +524,7 @@ ChromeperfApp.actions = {
 
   restoreSessionState: (statePath, sessionId) =>
     async(dispatch, getState) => {
-      const request = new cp.SessionStateRequest({sessionId});
+      const request = new SessionStateRequest({sessionId});
       const sessionState = await request.response;
 
       await dispatch(Redux.CHAIN(
@@ -595,7 +597,7 @@ ChromeperfApp.actions = {
   saveSession: statePath => async(dispatch, getState) => {
     const state = Polymer.Path.get(getState(), statePath);
     const sessionState = ChromeperfApp.getSessionState(state);
-    const request = new cp.SessionIdRequest({sessionState});
+    const request = new SessionIdRequest({sessionState});
     const session = await request.response;
     const reduxRoutePath = new URLSearchParams({session});
     dispatch(Redux.UPDATE(statePath, {reduxRoutePath}));
