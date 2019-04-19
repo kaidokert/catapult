@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import './chart-legend.js';
+
 export default class ChartSection extends cp.ElementBase {
   static get template() {
     return Polymer.html`
