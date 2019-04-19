@@ -4,8 +4,9 @@
 */
 'use strict';
 
-import TriageNew from './triage-new.js';
+import AlertsRequest from './alerts-request.js';
 import TriageExisting from './triage-existing.js';
+import TriageNew from './triage-new.js';
 
 const NOTIFICATION_MS = 5000;
 
@@ -248,7 +249,7 @@ AlertsSection.properties = {
 };
 
 async function wrapRequest(body) {
-  const request = new cp.AlertsRequest({body});
+  const request = new AlertsRequest({body});
   const response = await request.response;
   return {body, response};
 }
