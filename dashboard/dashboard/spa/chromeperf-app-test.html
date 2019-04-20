@@ -21,11 +21,12 @@ found in the LICENSE file.
 <link rel="import" href="/dashboard/spa/element-base.html">
 <link rel="import" href="/dashboard/spa/expand-button.html">
 <link rel="import" href="/dashboard/spa/group-alerts.html">
+<link rel="import" href="/dashboard/spa/memory-components.html">
 <link rel="import" href="/dashboard/spa/menu-input.html">
 <link rel="import" href="/dashboard/spa/recent-bugs-request.html">
 <link rel="import" href="/dashboard/spa/report-names-request.html">
+<link rel="import" href="/dashboard/spa/tag-filter.html">
 <link rel="import" href="/dashboard/spa/test-suites-request.html">
-<link rel="import" href="/dashboard/spa/timeseries-descriptor.html">
 <link rel="import" href="/dashboard/spa/timeseries-request.html">
 <link rel="import" href="/dashboard/spa/utils.html">
 <link rel="import" href="/dashboard/static/memory_related_names.html">
@@ -81,6 +82,8 @@ suite('chromeperf-app', function() {
           if (url === SheriffsRequest.URL) {
             return ['ccc', 'ddd'];
           }
+          const {default: ReportControls} = await importModule(
+              './report-controls.js');
           if (url === cp.ReportNamesRequest.URL) {
             const {default: ReportControls} = await importModule(
                 './report-controls.js');

@@ -10,6 +10,7 @@ import ReportControls from './report-controls.js';
 import ReportRequest from './report-request.js';
 import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
+import TimeseriesDescriptor from './timeseries-descriptor.js';
 
 export default class ReportSection extends cp.ElementBase {
   static get template() {
@@ -478,7 +479,7 @@ ReportSection.transformReportRow = (
     scalars,
     label: row.label,
     actualDescriptors,
-    ...cp.buildState(cp.TimeseriesDescriptor.State, {
+    ...cp.buildState(TimeseriesDescriptor.State, {
       suite: {
         selectedOptions: row.suites,
         isAggregated: true,
