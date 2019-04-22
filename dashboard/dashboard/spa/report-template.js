@@ -6,9 +6,10 @@
 
 import './cp-input.js';
 import './raised-button.js';
+import ElementBase from './element-base.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 
-export default class ReportTemplate extends cp.ElementBase {
+export default class ReportTemplate extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -351,4 +352,4 @@ ReportTemplate.canSave = (name, owners, statistic, rows) => {
   return true;
 };
 
-cp.ElementBase.register(ReportTemplate);
+ElementBase.register(ReportTemplate);

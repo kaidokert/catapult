@@ -5,8 +5,12 @@
 'use strict';
 
 import './cp-checkbox.js';
+import ElementBase from './element-base.js';
+import MenuInput from './menu-input.js';
+import OptionGroup from './option-group.js';
+import TagFilter from './tag-filter.js';
 
-export default class TimeseriesDescriptor extends cp.ElementBase {
+export default class TimeseriesDescriptor extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -186,7 +190,7 @@ TimeseriesDescriptor.State = {
     return {
       isAggregated: suite.isAggregated !== false,
       canAggregate: suite.canAggregate !== false,
-      ...cp.MenuInput.buildState(suite),
+      ...MenuInput.buildState(suite),
     };
   },
   measurement: options => {
@@ -196,7 +200,7 @@ TimeseriesDescriptor.State = {
     if (!measurement.options) measurement.options = [];
     return {
       ...cp.MemoryComponents.buildState(measurement),
-      ...cp.MenuInput.buildState(measurement),
+      ...MenuInput.buildState(measurement),
     };
   },
   bot: options => {
@@ -207,7 +211,7 @@ TimeseriesDescriptor.State = {
     return {
       isAggregated: bot.isAggregated !== false,
       canAggregate: bot.canAggregate !== false,
-      ...cp.MenuInput.buildState(bot),
+      ...MenuInput.buildState(bot),
     };
   },
   case: options => {
@@ -219,8 +223,8 @@ TimeseriesDescriptor.State = {
     return {
       isAggregated: cas.isAggregated !== false,
       canAggregate: cas.canAggregate !== false,
-      ...cp.MenuInput.buildState(cas),
-      ...cp.TagFilter.buildState(cas.tags),
+      ...MenuInput.buildState(cas),
+      ...TagFilter.buildState(cas.tags),
     };
   },
 };
@@ -247,7 +251,7 @@ TimeseriesDescriptor.actions = {
       ]);
     } else {
       await suitesLoaded,
-      cp.MenuInput.actions.focus(`${statePath}.suite`)(
+      MenuInput.actions.focus(`${statePath}.suite`)(
           dispatch, getState);
     }
   },
@@ -314,7 +318,7 @@ TimeseriesDescriptor.actions = {
     state = Polymer.Path.get(getState(), statePath);
 
     if (state.measurement.selectedOptions.length === 0) {
-      cp.MenuInput.actions.focus(`${statePath}.measurement`)(
+      MenuInput.actions.focus(`${statePath}.measurement`)(
           dispatch, getState);
     }
   },
@@ -336,11 +340,11 @@ TimeseriesDescriptor.reducers = {
     state.measurement = {
       ...state.measurement,
       optionValues: descriptor.measurements,
-      options: cp.OptionGroup.groupValues(descriptor.measurements),
+      options: OptionGroup.groupValues(descriptor.measurements),
       label: `Measurements (${descriptor.measurements.size})`,
     };
 
-    const botOptions = cp.OptionGroup.groupValues(descriptor.bots);
+    const botOptions = OptionGroup.groupValues(descriptor.bots);
     state.bot = {
       ...state.bot,
       optionValues: descriptor.bots,
@@ -355,7 +359,7 @@ TimeseriesDescriptor.reducers = {
       caseOptions.push({
         label: `All test cases`,
         isExpanded: true,
-        options: cp.OptionGroup.groupValues(descriptor.cases),
+        options: OptionGroup.groupValues(descriptor.cases),
       });
     }
 
@@ -368,7 +372,7 @@ TimeseriesDescriptor.reducers = {
         ...state.case.tags,
         map: descriptor.caseTags,
         optionValues: new Set(descriptor.caseTags.keys()),
-        options: cp.OptionGroup.groupValues(descriptor.caseTags.keys()),
+        options: OptionGroup.groupValues(descriptor.caseTags.keys()),
       },
     };
 
@@ -403,7 +407,7 @@ TimeseriesDescriptor.reducers = {
     };
     if (state.case.tags && state.case.tags.selectedOptions &&
         state.case.tags.selectedOptions.length) {
-      state.case = cp.TagFilter.reducers.filter(state.case);
+      state.case = TagFilter.reducers.filter(state.case);
     }
 
     return state;
@@ -481,4 +485,4 @@ TimeseriesDescriptor.createLineDescriptors = ({
   return lineDescriptors;
 };
 
-cp.ElementBase.register(TimeseriesDescriptor);
+ElementBase.register(TimeseriesDescriptor);
