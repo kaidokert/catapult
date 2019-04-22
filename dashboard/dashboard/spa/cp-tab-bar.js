@@ -23,7 +23,7 @@ export default class CpTabBar extends Polymer.Element {
 
   async ready() {
     super.ready();
-    await cp.afterRender();
+    await afterRender();
     this.observeSelected_();
   }
 
