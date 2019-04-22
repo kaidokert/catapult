@@ -4,7 +4,7 @@
 */
 'use strict';
 
-export default class ExistingBugRequest extends cp.RequestBase {
+export default class ExistingBugRequest extends RequestBase {
   constructor(options) {
     super(options);
     this.method_ = 'POST';

@@ -8,8 +8,15 @@ import './cp-checkbox.js';
 import './cp-input.js';
 import './cp-textarea.js';
 import './raised-button.js';
+import ElementBase from './element-base.js';
+import {
+  buildProperties,
+  buildState,
+  isElementChildOf,
+  setImmutable,
+} from './utils.js';
 
-export default class TriageNew extends cp.ElementBase {
+export default class TriageNew extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -101,7 +108,7 @@ export default class TriageNew extends cp.ElementBase {
 
   async onBlur_(event) {
     if (event.relatedTarget === this ||
-        cp.isElementChildOf(event.relatedTarget, this)) {
+        isElementChildOf(event.relatedTarget, this)) {
       return;
     }
     await this.dispatch('close', this.statePath);
@@ -166,8 +173,8 @@ TriageNew.State = {
   summary: options => TriageNew.summarize(options.alerts),
 };
 
-TriageNew.buildState = options => cp.buildState(TriageNew.State, options);
-TriageNew.properties = cp.buildProperties('state', TriageNew.State);
+TriageNew.buildState = options => buildState(TriageNew.State, options);
+TriageNew.properties = buildProperties('state', TriageNew.State);
 TriageNew.observers = [
   'observeIsOpen_(isOpen)',
 ];
@@ -214,7 +221,7 @@ TriageNew.reducers = {
   toggleLabel: (state, action, rootState) => {
     for (let i = 0; i < state.labels.length; ++i) {
       if (state.labels[i].name === action.name) {
-        return cp.setImmutable(
+        return setImmutable(
             state, `labels.${i}.isEnabled`, e => !e);
       }
     }
@@ -224,7 +231,7 @@ TriageNew.reducers = {
   toggleComponent: (state, action, rootState) => {
     for (let i = 0; i < state.components.length; ++i) {
       if (state.components[i].name === action.name) {
-        return cp.setImmutable(
+        return setImmutable(
             state, `components.${i}.isEnabled`, e => !e);
       }
     }
@@ -288,4 +295,4 @@ TriageNew.collectAlertProperties = (alerts, property) => {
   });
 };
 
-cp.ElementBase.register(TriageNew);
+ElementBase.register(TriageNew);

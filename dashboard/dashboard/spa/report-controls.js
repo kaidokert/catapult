@@ -7,8 +7,9 @@
 import './cp-input.js';
 import './raised-button.js';
 import ReportNamesRequest from './report-names-request.js';
+import ElementBase from './element-base.js';
 
-export default class ReportControls extends cp.ElementBase {
+export default class ReportControls extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -197,8 +198,8 @@ ReportControls.State = {
   maxRevision: options => options.maxRevision,
   minRevisionInput: options => options.minRevision,
   maxRevisionInput: options => options.maxRevision,
-  sectionId: options => options.sectionId || cp.simpleGUID(),
-  source: options => cp.MenuInput.buildState({
+  sectionId: options => options.sectionId || simpleGUID(),
+  source: options => MenuInput.buildState({
     label: 'Reports (loading)',
     options: [
       ReportControls.DEFAULT_NAME,
@@ -210,11 +211,11 @@ ReportControls.State = {
   }),
 };
 
-ReportControls.buildState = options => cp.buildState(
+ReportControls.buildState = options => buildState(
     ReportControls.State, options);
 
 ReportControls.properties = {
-  ...cp.buildProperties('state', ReportControls.State),
+  ...buildProperties('state', ReportControls.State),
   userEmail: {statePath: 'userEmail'},
 };
 ReportControls.observers = [
@@ -236,7 +237,7 @@ ReportControls.actions = {
     }
 
     if (state.source.selectedOptions.length === 0) {
-      cp.MenuInput.actions.focus(
+      MenuInput.actions.focus(
           statePath + '.source')(dispatch, getState);
     }
   },
@@ -290,7 +291,7 @@ ReportControls.reducers = {
   },
 
   receiveSourceOptions: (state, {reportNames}, rootState) => {
-    const options = cp.OptionGroup.groupValues(reportNames);
+    const options = OptionGroup.groupValues(reportNames);
     if (window.IS_DEBUG || rootState.userEmail) {
       options.push(ReportControls.CREATE);
     }
@@ -299,4 +300,4 @@ ReportControls.reducers = {
   },
 };
 
-cp.ElementBase.register(ReportControls);
+ElementBase.register(ReportControls);

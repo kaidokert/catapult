@@ -4,7 +4,7 @@
 */
 'use strict';
 
-export default class SessionStateRequest extends cp.RequestBase {
+export default class SessionStateRequest extends RequestBase {
   constructor(options) {
     super(options);
     this.sessionId_ = options.sessionId;
