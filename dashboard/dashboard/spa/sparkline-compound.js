@@ -7,9 +7,10 @@
 import './cp-loading.js';
 import './cp-tab-bar.js';
 import './cp-tab.js';
+import ElementBase from './element-base.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 
-export default class SparklineCompound extends cp.ElementBase {
+export default class SparklineCompound extends ElementBase {
   static get template() {
     const chartPath = Polymer.html([
       '[[statePath]].relatedTabs.[[tabIndex]].renderedSparklines.' +
@@ -132,9 +133,9 @@ SparklineCompound.State = {
   maxRevision: options => options.maxRevision,
 };
 
-SparklineCompound.buildState = options => cp.buildState(
+SparklineCompound.buildState = options => buildState(
     SparklineCompound.State, options);
-SparklineCompound.properties = cp.buildProperties(
+SparklineCompound.properties = buildProperties(
     'state', SparklineCompound.State);
 SparklineCompound.observers = [
   'observeRevisions_(minRevision, maxRevision)',
@@ -176,7 +177,7 @@ function createSparkline(name, sparkLayout, revisions, matrix) {
   }
 
   return {
-    name: cp.breakWords(name),
+    name: breakWords(name),
     chartOptions: {
       parameters: parametersFromMatrix(matrix),
       ...revisions,
@@ -242,7 +243,7 @@ function maybeAddParameterTab(
     // sparklines for all available cases.
     options = []; // Do not append to [propertyName].selectedOptions!
     for (const option of descriptor[propertyName].options) {
-      options.push(...cp.OptionGroup.getValuesFromOption(option));
+      options.push(...OptionGroup.getValuesFromOption(option));
     }
     if (options.length === 0) return;
   } else if (options.length === 1 || !descriptor[propertyName].isAggregated) {
@@ -402,7 +403,7 @@ SparklineCompound.reducers = {
       mode: state.mode,
     };
     const descriptor = state.descriptor;
-    const sparkLayout = cp.ChartTimeseries.buildState({});
+    const sparkLayout = ChartTimeseries.buildState({});
     sparkLayout.yAxis.generateTicks = false;
     sparkLayout.xAxis.generateTicks = false;
     sparkLayout.graphHeight = 100;
@@ -491,7 +492,7 @@ SparklineCompound.reducers = {
 
         let yPct;
         let yRange;
-        if (state.mode === cp.MODE.NORMALIZE_UNIT) {
+        if (state.mode === MODE.NORMALIZE_UNIT) {
           if (sparkline.layout.yAxis.rangeForUnitName) {
             yRange = sparkline.layout.yAxis.rangeForUnitName.get(
                 state.cursorScalar.unit.baseUnit.unitName);
@@ -525,4 +526,4 @@ SparklineCompound.reducers = {
   },
 };
 
-cp.ElementBase.register(SparklineCompound);
+ElementBase.register(SparklineCompound);

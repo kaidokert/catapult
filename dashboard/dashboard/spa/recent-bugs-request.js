@@ -4,7 +4,7 @@
 */
 'use strict';
 
-export default class RecentBugsRequest extends cp.RequestBase {
+export default class RecentBugsRequest extends RequestBase {
   constructor() {
     super({});
     this.method_ = 'POST';

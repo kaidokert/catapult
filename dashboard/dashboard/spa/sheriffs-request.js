@@ -4,7 +4,7 @@
 */
 'use strict';
 
-export default class SheriffsRequest extends cp.RequestBase {
+export default class SheriffsRequest extends RequestBase {
   constructor(options = {}) {
     super(options);
     this.method_ = 'POST';

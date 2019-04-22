@@ -11,6 +11,7 @@ import AlertsSection from './alerts-section.js';
 import ChartCompound from './chart-compound.js';
 import ChartSection from './chart-section.js';
 import ConfigRequest from './config-request.js';
+import ElementBase from './element-base.js';
 import RecentBugsRequest from './recent-bugs-request.js';
 import ReportControls from './report-controls.js';
 import ReportSection from './report-section.js';
@@ -19,7 +20,7 @@ import SessionStateRequest from './session-state-request.js';
 
 const NOTIFICATION_MS = 5000;
 
-export default class ChromeperfApp extends cp.ElementBase {
+export default class ChromeperfApp extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -424,7 +425,7 @@ ChromeperfApp.State = {
   alertsSectionsById: options => {return {};},
   closedAlertsIds: options => [],
 
-  linkedChartState: options => cp.buildState(
+  linkedChartState: options => buildState(
       ChartCompound.LinkedState, {}),
 
   chartSectionIds: options => [],
@@ -433,7 +434,7 @@ ChromeperfApp.State = {
 };
 
 ChromeperfApp.properties = {
-  ...cp.buildProperties('state', ChromeperfApp.State),
+  ...buildProperties('state', ChromeperfApp.State),
   route: {type: Object},
   userEmail: {statePath: 'userEmail'},
 };
@@ -457,7 +458,7 @@ ChromeperfApp.actions = {
       ));
 
       // Wait for ChromeperfApp and its reducers to be registered.
-      await cp.afterRender();
+      await afterRender();
 
       dispatch({
         type: ChromeperfApp.reducers.ready.name,
@@ -489,7 +490,7 @@ ChromeperfApp.actions = {
     });
     ChromeperfApp.actions.updateLocation(statePath)(dispatch, getState);
 
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     const state = Polymer.Path.get(getState(), statePath);
     if (!state.closedAlertsIds.includes(sectionId)) {
       // This alerts section was reopened.
@@ -704,7 +705,7 @@ ChromeperfApp.actions = {
     });
     ChromeperfApp.actions.updateLocation(statePath)(dispatch, getState);
 
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     const state = Polymer.Path.get(getState(), statePath);
     if (!state.closedChartIds.includes(sectionId)) {
       // This chart was reopened.
@@ -740,7 +741,7 @@ ChromeperfApp.reducers = {
       vulcanizedDate = tr.b.formatDate(new Date(
           VULCANIZED_TIMESTAMP.getTime() - (1000 * 60 * 60 * 7))) + ' PT';
     }
-    return cp.buildState(ChromeperfApp.State, {vulcanizedDate});
+    return buildState(ChromeperfApp.State, {vulcanizedDate});
   },
 
   newAlerts: (state, {options}, rootState) => {
@@ -759,7 +760,7 @@ ChromeperfApp.reducers = {
       };
     }
 
-    const sectionId = cp.simpleGUID();
+    const sectionId = simpleGUID();
     const newSection = AlertsSection.buildState({sectionId, ...options});
     const alertsSectionsById = {...state.alertsSectionsById};
     alertsSectionsById[sectionId] = newSection;
@@ -820,7 +821,7 @@ ChromeperfApp.reducers = {
       };
     }
 
-    const sectionId = cp.simpleGUID();
+    const sectionId = simpleGUID();
     const newSection = {
       type: ChartSection.is,
       sectionId,
@@ -834,7 +835,7 @@ ChromeperfApp.reducers = {
     chartSectionIds.push(sectionId);
 
     if (chartSectionIds.length === 1 && options) {
-      const linkedChartState = cp.buildState(
+      const linkedChartState = buildState(
           ChartCompound.LinkedState, options);
       state = {...state, linkedChartState};
     }
@@ -929,7 +930,7 @@ ChromeperfApp.reducers = {
         id: '' + bug.id,
         status: bug.status,
         owner: bug.owner ? bug.owner.name : '',
-        summary: cp.breakWords(bug.summary),
+        summary: breakWords(bug.summary),
         revisionRange,
       };
     });
@@ -961,4 +962,4 @@ ChromeperfApp.getSessionState = state => {
   };
 };
 
-cp.ElementBase.register(ChromeperfApp);
+ElementBase.register(ChromeperfApp);

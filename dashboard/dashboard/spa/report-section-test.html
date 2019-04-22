@@ -7,13 +7,7 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-
-<link rel="import" href="/dashboard/spa/element-base.html">
-<link rel="import" href="/dashboard/spa/memory-components.html">
-<link rel="import" href="/dashboard/spa/menu-input.html">
-<link rel="import" href="/dashboard/spa/request-base.html">
-<link rel="import" href="/dashboard/spa/tag-filter.html">
-<link rel="import" href="/dashboard/spa/utils.html">
+<link rel="import" href="/dashboard/spa/dependencies.html">
 <script src="/dashboard/spa/import-module.js"></script>
 
 <test-fixture id="test">
@@ -109,7 +103,7 @@ suite('report-section', function() {
     const section = fixture('test');
     assert.isTrue(section.tables[0].isPlaceholder);
     while (section.tables[0].isPlaceholder) {
-      await cp.afterRender();
+      await afterRender();
     }
     assert.lengthOf(section.tables[0].rows, 1);
     assert.strictEqual('group', section.tables[0].rows[0].labelParts[0].label);

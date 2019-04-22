@@ -7,8 +7,14 @@
 import './cp-input.js';
 import './cp-switch.js';
 import './raised-button.js';
+import ElementBase from './element-base.js';
+import {
+  buildProperties,
+  buildState,
+  isElementChildOf,
+} from './utils.js';
 
-export default class TriageExisting extends cp.ElementBase {
+export default class TriageExisting extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -170,7 +176,7 @@ export default class TriageExisting extends cp.ElementBase {
 
   async onBlur_(event) {
     if (event.relatedTarget === this ||
-        cp.isElementChildOf(event.relatedTarget, this)) {
+        isElementChildOf(event.relatedTarget, this)) {
       this.$.bug_input.focus();
       return;
     }
@@ -222,10 +228,10 @@ TriageExisting.State = {
 };
 
 TriageExisting.buildState = options =>
-  cp.buildState(TriageExisting.State, options);
+  buildState(TriageExisting.State, options);
 
 TriageExisting.properties = {
-  ...cp.buildProperties('state', TriageExisting.State),
+  ...buildProperties('state', TriageExisting.State),
   recentPerformanceBugs: {statePath: 'recentPerformanceBugs'},
 };
 
@@ -253,4 +259,4 @@ TriageExisting.filterBugs =
       bug.revisionRange.intersectsRangeInclusive(selectedRange));
   };
 
-cp.ElementBase.register(TriageExisting);
+ElementBase.register(TriageExisting);

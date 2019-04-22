@@ -9,10 +9,11 @@ import './cp-input.js';
 import './cp-switch.js';
 import './raised-button.js';
 import AlertsTable from './alerts-table.js';
+import ElementBase from './element-base.js';
 import ReportNamesRequest from './report-names-request.js';
 import SheriffsRequest from './sheriffs-request.js';
 
-export default class AlertsControls extends cp.ElementBase {
+export default class AlertsControls extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -328,7 +329,7 @@ export default class AlertsControls extends cp.ElementBase {
   }
 
   async onSheriffClear_(event) {
-    this.dispatch(cp.MenuInput.actions.focus(this.statePath + '.sheriff'));
+    this.dispatch(MenuInput.actions.focus(this.statePath + '.sheriff'));
     this.dispatchSources_();
   }
 
@@ -337,7 +338,7 @@ export default class AlertsControls extends cp.ElementBase {
   }
 
   async onBugClear_(event) {
-    this.dispatch(cp.MenuInput.actions.focus(this.statePath + '.bug'));
+    this.dispatch(MenuInput.actions.focus(this.statePath + '.bug'));
     this.dispatchSources_();
   }
 
@@ -354,7 +355,7 @@ export default class AlertsControls extends cp.ElementBase {
   }
 
   async onReportClear_(event) {
-    this.dispatch(cp.MenuInput.actions.focus(this.statePath + '.report'));
+    this.dispatch(MenuInput.actions.focus(this.statePath + '.report'));
     this.dispatchSources_();
   }
 
@@ -419,7 +420,7 @@ export default class AlertsControls extends cp.ElementBase {
 AlertsControls.TYPING_DEBOUNCE_MS = 300;
 
 AlertsControls.State = {
-  bug: options => cp.MenuInput.buildState({
+  bug: options => MenuInput.buildState({
     label: 'Bug',
     options: [],
     selectedOptions: options.bugs,
@@ -431,12 +432,12 @@ AlertsControls.State = {
   maxRevision: options => options.maxRevision || '',
   minRevision: options => options.minRevision || '',
   recentlyModifiedBugs: options => [],
-  report: options => cp.MenuInput.buildState({
+  report: options => MenuInput.buildState({
     label: 'Report',
     options: [],
     selectedOptions: options.reports || [],
   }),
-  sheriff: options => cp.MenuInput.buildState({
+  sheriff: options => MenuInput.buildState({
     label: 'Sheriff',
     options: [],
     selectedOptions: options.sheriffs || [],
@@ -456,10 +457,10 @@ AlertsControls.observers = [
 ];
 
 AlertsControls.buildState = options =>
-  cp.buildState(AlertsControls.State, options);
+  buildState(AlertsControls.State, options);
 
 AlertsControls.properties = {
-  ...cp.buildProperties('state', AlertsControls.State),
+  ...buildProperties('state', AlertsControls.State),
   recentPerformanceBugs: {statePath: 'recentPerformanceBugs'},
 };
 
@@ -484,7 +485,7 @@ AlertsControls.actions = {
     const reportTemplateInfos = await new ReportNamesRequest().response;
     const reportNames = reportTemplateInfos.map(t => t.name);
     dispatch(Redux.UPDATE(statePath + '.report', {
-      options: cp.OptionGroup.groupValues(reportNames),
+      options: OptionGroup.groupValues(reportNames),
       label: `Reports (${reportNames.length})`,
     }));
   },
@@ -499,7 +500,7 @@ AlertsControls.actions = {
 
     const state = Polymer.Path.get(getState(), statePath);
     if (state.sheriff.selectedOptions.length === 0) {
-      dispatch(cp.MenuInput.actions.focus(statePath + '.sheriff'));
+      dispatch(MenuInput.actions.focus(statePath + '.sheriff'));
     }
   },
 
@@ -523,7 +524,7 @@ AlertsControls.actions = {
 
 AlertsControls.reducers = {
   receiveSheriffs: (state, {sheriffs}, rootState) => {
-    const sheriff = cp.MenuInput.buildState({
+    const sheriff = MenuInput.buildState({
       label: `Sheriffs (${sheriffs.length})`,
       options: sheriffs,
       selectedOptions: state.sheriff ? state.sheriff.selectedOptions : [],
@@ -618,4 +619,4 @@ AlertsControls.compileSources = async(
   return sources;
 };
 
-cp.ElementBase.register(AlertsControls);
+ElementBase.register(AlertsControls);
