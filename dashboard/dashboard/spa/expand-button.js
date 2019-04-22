@@ -4,7 +4,9 @@
 */
 'use strict';
 
-export default class ExpandButton extends cp.ElementBase {
+import ElementBase from './element-base.js';
+
+export default class ExpandButton extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -51,7 +53,7 @@ const ExpandState = {
 };
 
 ExpandButton.properties = {
-  ...cp.buildProperties('state', ExpandState),
+  ...buildProperties('state', ExpandState),
   horizontal: {
     type: Boolean,
     value: false,
@@ -62,7 +64,7 @@ ExpandButton.properties = {
   },
 };
 
-ExpandButton.buildState = options => cp.buildState(ExpandState, options);
+ExpandButton.buildState = options => buildState(ExpandState, options);
 
 ExpandButton.actions = {
   toggle: statePath => async(dispatch, getState) => {
@@ -70,4 +72,4 @@ ExpandButton.actions = {
   },
 };
 
-cp.ElementBase.register(ExpandButton);
+ElementBase.register(ExpandButton);

@@ -7,7 +7,7 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/memory-components.html">
+<link rel="import" href="/dashboard/spa/dependencies.html">
 <script src="/dashboard/spa/import-module.js"></script>
 
 <test-fixture id="test">
@@ -20,7 +20,7 @@ found in the LICENSE file.
 'use strict';
 setup(() => {
   fixture('test').dispatch(Redux.UPDATE('', {
-    test: cp.MemoryComponents.buildState({
+    test: MemoryComponents.buildState({
       options: [
         // See getNumericName in memoryMetric:
         // /tracing/tracing/metrics/system_health/memory_metric.html
@@ -68,7 +68,7 @@ suite('memory-components', function() {
   test('select', async function() {
     await importModule('./cp-checkbox.js');
     const memoryComponents = fixture('test');
-    await cp.afterRender();
+    await afterRender();
     let state = memoryComponents.getState().test;
     assert.lengthOf(state.columns, 5);
     assert.strictEqual('chrome', state.columns[0].options[0].value);
@@ -89,7 +89,7 @@ suite('memory-components', function() {
 
     const ggg = tr.ui.b.findDeepElementWithTextContent(memoryComponents, /ggg/);
     ggg.click();
-    await cp.afterRender();
+    await afterRender();
     state = memoryComponents.getState().test;
     assert.include(state.selectedOptions,
         'memory:chrome:aaa_process:reported_bbb:ccc:ddd_size');
@@ -102,7 +102,7 @@ suite('memory-components', function() {
 
     const eee = tr.ui.b.findDeepElementWithTextContent(memoryComponents, /eee/);
     eee.click();
-    await cp.afterRender();
+    await afterRender();
     state = memoryComponents.getState().test;
     assert.include(state.selectedOptions,
         'memory:chrome:aaa_process:reported_bbb:ccc:ddd_size');
@@ -115,7 +115,7 @@ suite('memory-components', function() {
 
     const ddd = tr.ui.b.findDeepElementWithTextContent(memoryComponents, /ddd/);
     ddd.click();
-    await cp.afterRender();
+    await afterRender();
     state = memoryComponents.getState().test;
     assert.notInclude(state.selectedOptions,
         'memory:chrome:aaa_process:reported_bbb:ccc:ddd_size');
@@ -128,7 +128,7 @@ suite('memory-components', function() {
 
     const bbb = tr.ui.b.findDeepElementWithTextContent(memoryComponents, /bbb/);
     bbb.click();
-    await cp.afterRender();
+    await afterRender();
     state = memoryComponents.getState().test;
     assert.notInclude(state.selectedOptions,
         'memory:chrome:aaa_process:reported_bbb:ccc:ddd_size');

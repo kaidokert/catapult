@@ -6,9 +6,10 @@
 
 import './cp-input.js';
 import './raised-button.js';
+import ElementBase from './element-base.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 
-export default class ReportTemplate extends cp.ElementBase {
+export default class ReportTemplate extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -233,11 +234,11 @@ ReportTemplate.State = {
   url: options => options.url || '',
 };
 
-ReportTemplate.buildState = options => cp.buildState(
+ReportTemplate.buildState = options => buildState(
     ReportTemplate.State, options);
 
 ReportTemplate.properties = {
-  ...cp.buildProperties('state', ReportTemplate.State),
+  ...buildProperties('state', ReportTemplate.State),
 };
 
 ReportTemplate.actions = {
@@ -262,7 +263,7 @@ ReportTemplate.actions = {
   save: statePath => async(dispatch, getState) => {
     dispatch(Redux.UPDATE(statePath, {isLoading: true, isEditing: false}));
     const table = Polymer.Path.get(getState(), statePath);
-    const request = new cp.ReportTemplateRequest({
+    const request = new ReportTemplateRequest({
       id: table.id,
       name: table.name,
       owners: table.owners.split(',').map(o => o.replace(/ /g, '')),
@@ -351,4 +352,4 @@ ReportTemplate.canSave = (name, owners, statistic, rows) => {
   return true;
 };
 
-cp.ElementBase.register(ReportTemplate);
+ElementBase.register(ReportTemplate);

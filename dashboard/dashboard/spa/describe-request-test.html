@@ -7,7 +7,8 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/describe-request.html">
+<link rel="import" href="/dashboard/spa/dependencies.html">
+<script src="/dashboard/spa/import-module.js"></script>
 
 <script>
 'use strict';
@@ -21,7 +22,7 @@ suite('DescribeRequest', function() {
         ['tagA', new Set(['caseA', 'caseB'])],
       ]),
     };
-    cp.DescribeRequest.mergeDescriptor(merged, {
+    DescribeRequest.mergeDescriptor(merged, {
       bots: ['botB', 'botC'],
       measurements: ['measurementB', 'measurementC'],
       cases: ['caseB', 'caseC'],

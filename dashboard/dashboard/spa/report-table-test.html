@@ -7,8 +7,7 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/element-base.html">
-<link rel="import" href="/dashboard/spa/utils.html">
+<link rel="import" href="/dashboard/spa/dependencies.html">
 <script src="/dashboard/spa/import-module.js"></script>
 
 <test-fixture id="test">
@@ -64,12 +63,12 @@ suite('report-table', function() {
     report.dispatch(Redux.CHAIN(
         Redux.ENSURE('test'),
         Redux.UPDATE('test', ReportTable.buildState(options()))));
-    await cp.afterRender();
+    await afterRender();
 
     const tr = report.$.table.querySelector('tbody').children[0];
     tr.dispatchEvent(new CustomEvent('mouseenter', {}));
-    await cp.afterRender();
-    await cp.afterRender();
+    await afterRender();
+    await afterRender();
     assert.deepEqual(report.tooltip.rows, [['suite', 'bot', 'case']]);
     const reportRect = report.getBoundingClientRect();
     assert.strictEqual(report.tooltip.top,
@@ -101,7 +100,7 @@ suite('report-table', function() {
     report.dispatch(Redux.CHAIN(
         Redux.ENSURE('test'),
         Redux.UPDATE('test', ReportTable.buildState(options()))));
-    await cp.afterRender();
+    await afterRender();
     report.$.copy.click();
     assert.isTrue(report.$.copied.opened);
   });

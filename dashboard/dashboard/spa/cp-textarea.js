@@ -76,7 +76,7 @@ export default class CpTextarea extends Polymer.Element {
   async focus() {
     this.nativeInput.focus();
     while (cp.getActiveElement() !== this.nativeInput) {
-      await cp.timeout(50);
+      await timeout(50);
       this.nativeInput.focus();
     }
   }
@@ -84,7 +84,7 @@ export default class CpTextarea extends Polymer.Element {
   async blur() {
     this.nativeInput.blur();
     while (cp.getActiveElement() === this.nativeInput) {
-      await cp.timeout(50);
+      await timeout(50);
       this.nativeInput.blur();
     }
   }

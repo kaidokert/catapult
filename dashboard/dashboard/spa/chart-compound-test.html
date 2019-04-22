@@ -7,15 +7,7 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-
-<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="/dashboard/spa/chart-timeseries.html">
-<link rel="import" href="/dashboard/spa/describe-request.html">
-<link rel="import" href="/dashboard/spa/details-table.html">
-<link rel="import" href="/dashboard/spa/element-base.html">
-<link rel="import" href="/dashboard/spa/test-suites-request.html">
-<link rel="import" href="/dashboard/spa/timeseries-request.html">
-<link rel="import" href="/dashboard/static/memory_related_names.html">
+<link rel="import" href="/dashboard/spa/dependencies.html">
 <script src="/dashboard/spa/import-module.js"></script>
 
 <test-fixture id="test">
@@ -47,7 +39,7 @@ suite('chart-compound', function() {
     window.fetch = async(url, options) => {
       return {
         async json() {
-          if (url === cp.TimeseriesRequest.URL) {
+          if (url === TimeseriesRequest.URL) {
             const data = [];
             const sequenceLength = 100;
             for (let i = 0; i < sequenceLength; i += 1) {
@@ -63,7 +55,7 @@ suite('chart-compound', function() {
             }
             return {
               units: options.body.get('measurement'),
-              data: cp.denormalize(
+              data: denormalize(
                   data, options.body.get('columns').split(',')),
             };
           }
@@ -84,9 +76,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -94,8 +86,8 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
-    await cp.afterRender();
+    await afterRender();
+    await afterRender();
 
     assert.lengthOf(cc.minimapLayout.lineDescriptors, 1);
     assert.isUndefined(cc.minimapLayout.lineDescriptors[0].buildType);
@@ -118,9 +110,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -128,7 +120,7 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
+    await afterRender();
 
     cc.dispatch(Redux.UPDATE('test.minimapLayout.xAxis', {brushes: [
       {xPct: '10%'}, {xPct: '90%'},
@@ -136,7 +128,7 @@ suite('chart-compound', function() {
     cc.$.minimap.dispatchEvent(new CustomEvent('brush', {
       detail: {sourceEvent: {detail: {state: 'end'}}},
     }));
-    await cp.afterRender();
+    await afterRender();
 
     assert.closeTo(cc.chartLayout.minRevision,
         cc.minimapLayout.xAxis.range.lerp(0.1), MS_PER_YEAR / 100);
@@ -152,9 +144,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -162,13 +154,13 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('linked', {
       linkedCursorRevision: NOW_MS - (MS_PER_YEAR / 20),
       linkedCursorScalar: new tr.b.Scalar(
           tr.b.Unit.byName.timeDurationInMs, 2.5),
     }));
-    await cp.afterRender();
+    await afterRender();
 
     assert.strictEqual('94.9%', cc.minimapLayout.xAxis.cursor.pct);
     assert.isUndefined(cc.minimapLayout.yAxis.cursor);
@@ -184,9 +176,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -194,12 +186,12 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('linked', {
       linkedMinRevision: NOW_MS - (MS_PER_YEAR / 2),
       linkedMaxRevision: NOW_MS - (MS_PER_YEAR / 20),
     }));
-    await cp.afterRender();
+    await afterRender();
 
     assert.strictEqual('49%', cc.minimapLayout.xAxis.brushes[0].xPct);
     assert.strictEqual('94.4%', cc.minimapLayout.xAxis.brushes[1].xPct);
@@ -217,9 +209,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -227,14 +219,14 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('linked', {
-      linkedMode: cp.MODE.DELTA,
+      linkedMode: MODE.DELTA,
     }));
-    await cp.afterRender();
+    await afterRender();
 
-    assert.strictEqual(cc.mode, cp.MODE.DELTA);
-    assert.strictEqual(cc.chartLayout.mode, cp.MODE.DELTA);
+    assert.strictEqual(cc.mode, MODE.DELTA);
+    assert.strictEqual(cc.chartLayout.mode, MODE.DELTA);
     assert.strictEqual(cc.chartLayout.lines[0].data[0].y, 0);
     assert.strictEqual(cc.chartLayout.lines[1].data[0].y, 0);
   });
@@ -247,9 +239,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -257,7 +249,7 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
+    await afterRender();
     let yRange = cc.chartLayout.yAxis.rangeForUnitName.get(
         'timeDurationInMs');
     assert.isBelow(0, yRange.min);
@@ -265,7 +257,7 @@ suite('chart-compound', function() {
     await cc.dispatch(Redux.UPDATE('linked', {
       linkedZeroYAxis: true,
     }));
-    await cp.afterRender();
+    await afterRender();
 
     assert.isTrue(cc.zeroYAxis);
     yRange = cc.chartLayout.yAxis.rangeForUnitName.get(
@@ -282,9 +274,9 @@ suite('chart-compound', function() {
         Redux.UPDATE('test', ChartCompound.buildState({
         })),
         Redux.ENSURE('linked'),
-        Redux.UPDATE('linked', cp.buildState(ChartCompound.LinkedState, {
+        Redux.UPDATE('linked', buildState(ChartCompound.LinkedState, {
         }))));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('test', {lineDescriptors: [{
       suites: ['suite'],
       bots: ['master:bot'],
@@ -292,11 +284,11 @@ suite('chart-compound', function() {
       statistic: 'avg',
       cases: [],
     }]}));
-    await cp.afterRender();
+    await afterRender();
     await cc.dispatch(Redux.UPDATE('linked', {
       linkedFixedXAxis: false,
     }));
-    await cp.afterRender();
+    await afterRender();
 
     assert.isFalse(cc.fixedXAxis);
     assert.isFalse(cc.chartLayout.fixedXAxis);
