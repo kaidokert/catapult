@@ -7,6 +7,7 @@
 import './cp-radio-group.js';
 import './cp-radio.js';
 import './cp-switch.js';
+import ElementBase from './element-base.js';
 
 const MS_PER_DAY = tr.b.convertUnit(
     1, tr.b.UnitScale.TIME.DAY, tr.b.UnitScale.TIME.MILLI_SEC);
@@ -17,7 +18,7 @@ const MS_PER_MONTH = tr.b.convertUnit(
   * ChartCompound synchronizes revision ranges and axis properties between a
   * minimap and a main chart, and among any number of other linked charts.
   */
-export default class ChartCompound extends cp.ElementBase {
+export default class ChartCompound extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -934,4 +935,4 @@ ChartCompound.computeMaxRevision = (
   return maxRevision;
 };
 
-cp.ElementBase.register(ChartCompound);
+ElementBase.register(ChartCompound);
