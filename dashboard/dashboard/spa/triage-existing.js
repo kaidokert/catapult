@@ -7,8 +7,9 @@
 import './cp-input.js';
 import './cp-switch.js';
 import './raised-button.js';
+import ElementBase from './element-base.js';
 
-export default class TriageExisting extends cp.ElementBase {
+export default class TriageExisting extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -253,4 +254,4 @@ TriageExisting.filterBugs =
       bug.revisionRange.intersectsRangeInclusive(selectedRange));
   };
 
-cp.ElementBase.register(TriageExisting);
+ElementBase.register(TriageExisting);

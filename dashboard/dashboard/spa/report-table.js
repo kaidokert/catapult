@@ -5,8 +5,9 @@
 'use strict';
 
 import './cp-toast.js';
+import ElementBase from './element-base.js';
 
-export default class ReportTable extends cp.ElementBase {
+export default class ReportTable extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -412,4 +413,4 @@ ReportTable.placeholderTable = name => {
   };
 };
 
-cp.ElementBase.register(ReportTable);
+ElementBase.register(ReportTable);

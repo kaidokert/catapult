@@ -8,11 +8,13 @@ import './chart-legend.js';
 import './cp-input.js';
 import './cp-loading.js';
 import './expand-button.js';
+import ChartBase from './chart-base.js';
 import ChartCompound from './chart-compound.js';
+import ElementBase from './element-base.js';
 import SparklineCompound from './sparkline-compound.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 
-export default class ChartSection extends cp.ElementBase {
+export default class ChartSection extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -355,7 +357,7 @@ ChartSection.actions = {
                 line,
               },
               {
-                type: cp.ChartBase.reducers.boldLine.name,
+                type: ChartBase.reducers.boldLine.name,
                 statePath: chartPath,
                 lineIndex,
               },
@@ -373,7 +375,7 @@ ChartSection.actions = {
           statePath: chartPath,
         },
         {
-          type: cp.ChartBase.reducers.boldLine.name,
+          type: ChartBase.reducers.boldLine.name,
           statePath: chartPath,
         },
     ));
@@ -809,4 +811,4 @@ ChartSection.matchesOptions = (state, options) => {
   return true;
 };
 
-cp.ElementBase.register(ChartSection);
+ElementBase.register(ChartSection);

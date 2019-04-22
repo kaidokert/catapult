@@ -7,12 +7,13 @@ found in the LICENSE file.
 
 <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 <script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/timeseries-request.html">
-<script type="module" src="/dashboard/spa/result-channel-sender.js"></script>
+<link rel="import" href="/dashboard/spa/dependencies.html">
+<script src="/dashboard/spa/import-module.js"></script>
 
 <script type="module">
 'use strict';
 import ResultChannelSender from './result-channel-sender.js';
+import {TimeseriesRequest} from './timeseries-request.js';
 
 suite('TimeseriesRequest', function() {
   let originalFetch;
