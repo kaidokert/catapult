@@ -9,10 +9,19 @@ import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';
 import AlertsTable from './alerts-table.js';
 import ChartCompound from './chart-compound.js';
+import ChartTimeseries from './chart-timeseries.js';
+import ElementBase from './element-base.js';
 import ExistingBugRequest from './existing-bug-request.js';
 import NewBugRequest from './new-bug-request.js';
 import TriageExisting from './triage-existing.js';
 import TriageNew from './triage-new.js';
+import {UPDATE} from './simple-redux.js';
+
+import {
+  buildProperties,
+  buildState,
+  plural,
+} from './utils.js';
 
 const NOTIFICATION_MS = 5000;
 
@@ -21,7 +30,7 @@ const NOTIFICATION_MS = 5000;
 const ENOUGH_GROUPS = 100;
 const ENOUGH_LOADING_MS = 60000;
 
-export default class AlertsSection extends cp.ElementBase {
+export default class AlertsSection extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -238,17 +247,17 @@ AlertsSection.State = {
   isLoading: options => false,
   newBug: options => TriageNew.buildState({}),
   preview: options => ChartCompound.buildState(options),
-  sectionId: options => options.sectionId || cp.simpleGUID(),
+  sectionId: options => options.sectionId || simpleGUID(),
   selectedAlertPath: options => undefined,
   totalCount: options => 0,
 };
 
 AlertsSection.buildState = options =>
-  cp.buildState(AlertsSection.State, options);
+  buildState(AlertsSection.State, options);
 
 AlertsSection.properties = {
-  ...cp.buildProperties('state', AlertsSection.State),
-  ...cp.buildProperties('linkedState', {
+  ...buildProperties('state', AlertsSection.State),
+  ...buildProperties('linkedState', {
     // AlertsSection only needs the linkedStatePath property to forward to
     // ChartCompound.
   }),
@@ -340,7 +349,7 @@ AlertsSection.actions = {
     },
 
   cancelTriagedExisting: statePath => async(dispatch, getState) => {
-    dispatch(Redux.UPDATE(statePath, {
+    dispatch(UPDATE(statePath, {
       hasTriagedExisting: false,
       triagedBugId: 0,
     }));
@@ -362,7 +371,7 @@ AlertsSection.actions = {
   submitExistingBug: statePath => async(dispatch, getState) => {
     let state = Polymer.Path.get(getState(), statePath);
     const triagedBugId = state.existingBug.bugId;
-    dispatch(Redux.UPDATE(`${statePath}.existingBug`, {isOpen: false}));
+    dispatch(UPDATE(`${statePath}.existingBug`, {isOpen: false}));
     await dispatch(AlertsSection.actions.changeBugId(
         statePath, triagedBugId));
     dispatch({
@@ -378,14 +387,14 @@ AlertsSection.actions = {
     // user to notice the notification, then automatically hide it. The user
     // will still be able to access the bug by clicking Recent Bugs in
     // alerts-controls.
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     state = Polymer.Path.get(getState(), statePath);
     if (state.triagedBugId !== triagedBugId) return;
     dispatch(AlertsSection.actions.cancelTriagedExisting(statePath));
   },
 
   changeBugId: (statePath, bugId) => async(dispatch, getState) => {
-    dispatch(Redux.UPDATE(statePath, {isLoading: true}));
+    dispatch(UPDATE(statePath, {isLoading: true}));
     const rootState = getState();
     let state = Polymer.Path.get(rootState, statePath);
     const selectedAlerts = AlertsTable.getSelectedAlerts(
@@ -403,13 +412,13 @@ AlertsSection.actions = {
 
       state = Polymer.Path.get(getState(), statePath);
       if (bugId !== 0) {
-        dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
+        dispatch(UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
       }
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
     }
-    dispatch(Redux.UPDATE(statePath, {isLoading: false}));
+    dispatch(UPDATE(statePath, {isLoading: false}));
   },
 
   ignore: statePath => async(dispatch, getState) => {
@@ -418,7 +427,7 @@ AlertsSection.actions = {
     const ignoredCount = alerts.length;
     await dispatch(AlertsSection.actions.changeBugId(statePath, -2));
 
-    dispatch(Redux.UPDATE(statePath, {
+    dispatch(UPDATE(statePath, {
       hasTriagedExisting: false,
       hasTriagedNew: false,
       hasIgnored: true,
@@ -430,10 +439,10 @@ AlertsSection.actions = {
     // notification, then automatically hide it. The user can still access
     // ignored alerts by toggling New Only to New and Triaged in
     // alerts-controls.
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     state = Polymer.Path.get(getState(), statePath);
     if (state.ignoredCount !== ignoredCount) return;
-    dispatch(Redux.UPDATE(statePath, {
+    dispatch(UPDATE(statePath, {
       hasIgnored: false,
       ignoredCount: 0,
     }));
@@ -465,7 +474,7 @@ AlertsSection.actions = {
   },
 
   submitNewBug: statePath => async(dispatch, getState) => {
-    dispatch(Redux.UPDATE(statePath, {isLoading: true}));
+    dispatch(UPDATE(statePath, {isLoading: true}));
     const rootState = getState();
     let state = Polymer.Path.get(rootState, statePath);
     const selectedAlerts = AlertsTable.getSelectedAlerts(
@@ -506,12 +515,12 @@ AlertsSection.actions = {
         bugId,
       });
       state = Polymer.Path.get(getState(), statePath);
-      dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
+      dispatch(UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
     }
-    dispatch(Redux.UPDATE(statePath, {isLoading: false}));
+    dispatch(UPDATE(statePath, {isLoading: false}));
 
     if (bugId === undefined) return;
 
@@ -520,10 +529,10 @@ AlertsSection.actions = {
     // user to notice the notification, then automatically hide it. The user
     // will still be able to access the new bug by clicking Recent Bugs in
     // alerts-controls.
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     state = Polymer.Path.get(getState(), statePath);
     if (state.triagedBugId !== bugId) return;
-    dispatch(Redux.UPDATE(statePath, {
+    dispatch(UPDATE(statePath, {
       hasTriagedNew: false,
       triagedBugId: 0,
     }));
@@ -537,7 +546,7 @@ AlertsSection.actions = {
       started,
     });
     if (sources.length) {
-      dispatch(cp.MenuInput.actions.blurAll());
+      dispatch(MenuInput.actions.blurAll());
     }
 
     // When a request for untriaged alerts finishes, a request is started for
@@ -550,7 +559,7 @@ AlertsSection.actions = {
     // dispatching reducers.receiveAlerts.
     // loadMore() may add more AlertsRequests to the BatchIterator to chase
     // datastore query cursors.
-    const batches = new cp.BatchIterator(sources.map(wrapRequest));
+    const batches = new BatchIterator(sources.map(wrapRequest));
     for await (const {results, errors} of batches) {
       let state = Polymer.Path.get(getState(), statePath);
       if (!state || state.started !== started) {
@@ -576,7 +585,7 @@ AlertsSection.actions = {
       triagedMaxStartRevision = loadMore(
           batches, state.alertGroups, nextRequests, triagedRequests,
           triagedMaxStartRevision, started);
-      await cp.animationFrame();
+      await animationFrame();
     }
 
     dispatch({
@@ -596,13 +605,13 @@ AlertsSection.actions = {
       });
     }
     const previewPath = `${statePath}.preview`;
-    dispatch(Redux.UPDATE(previewPath, {lineDescriptors}));
+    dispatch(UPDATE(previewPath, {lineDescriptors}));
   },
 
   maybeLayoutPreview: statePath => async(dispatch, getState) => {
     const state = Polymer.Path.get(getState(), statePath);
     if (!state.selectedAlertsCount) {
-      dispatch(Redux.UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
+      dispatch(UPDATE(`${statePath}.preview`, {lineDescriptors: []}));
       return;
     }
 
@@ -631,7 +640,7 @@ AlertsSection.reducers = {
       `alertGroups.${action.alertGroupIndex}.alerts.${action.alertIndex}`;
     const alert = Polymer.Path.get(state, alertPath);
     if (!alert.isSelected) {
-      state = cp.setImmutable(
+      state = setImmutable(
           state, `${alertPath}.isSelected`, true);
     }
     if (state.selectedAlertPath === alertPath) {
@@ -699,12 +708,12 @@ AlertsSection.reducers = {
   updateAlertColors: (state, action, rootState) => {
     const colorByDescriptor = new Map();
     for (const line of state.preview.chartLayout.lines) {
-      colorByDescriptor.set(cp.ChartTimeseries.stringifyDescriptor(
+      colorByDescriptor.set(ChartTimeseries.stringifyDescriptor(
           line.descriptor), line.color);
     }
 
     function updateAlert(alert) {
-      const descriptor = cp.ChartTimeseries.stringifyDescriptor(
+      const descriptor = ChartTimeseries.stringifyDescriptor(
           AlertsSection.computeLineDescriptor(alert));
       const color = colorByDescriptor.get(descriptor);
       return {...alert, color};
@@ -778,7 +787,7 @@ AlertsSection.reducers = {
     // |alerts| are all new.
     // Group them together with previously-received alerts from
     // state.alertGroups[].alerts.
-    alerts = alerts.map(cp.transformAlert);
+    alerts = alerts.map(transformAlert);
     if (state.alertGroups !== AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
       for (const alertGroup of state.alertGroups) {
         alerts.push(...alertGroup.alerts);
@@ -805,7 +814,7 @@ AlertsSection.reducers = {
 
     const groupBugs = state.showingTriaged && (
       state.bug.selectedOptions.length === 1);
-    let alertGroups = cp.groupAlerts(alerts, groupBugs);
+    let alertGroups = groupAlerts(alerts, groupBugs);
     alertGroups = alertGroups.map((alerts, groupIndex) => {
       let isExpanded = false;
       let isTriagedExpanded = false;
@@ -1026,8 +1035,8 @@ AlertsSection.summary = (showingTriaged, alertGroups, totalCount) => {
   totalCount = Math.max(totalCount, displayedCount);
   return (
     `${displayedCount} displayed in ` +
-    `${groupCount} group${cp.plural(groupCount)} of ` +
-    `${totalCount} alert${cp.plural(totalCount)}`);
+    `${groupCount} group${plural(groupCount)} of ` +
+    `${totalCount} alert${plural(totalCount)}`);
 };
 
-cp.ElementBase.register(AlertsSection);
+ElementBase.register(AlertsSection);
