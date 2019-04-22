@@ -6,6 +6,7 @@
 
 import './cp-dialog.js';
 import './cp-loading.js';
+import ElementBase from './element-base.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
 import ReportRequest from './report-request.js';
@@ -13,7 +14,7 @@ import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 
-export default class ReportSection extends cp.ElementBase {
+export default class ReportSection extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -504,4 +505,4 @@ ReportSection.transformReportRow = (
   };
 };
 
-cp.ElementBase.register(ReportSection);
+ElementBase.register(ReportSection);

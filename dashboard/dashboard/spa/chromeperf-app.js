@@ -11,6 +11,7 @@ import AlertsSection from './alerts-section.js';
 import ChartCompound from './chart-compound.js';
 import ChartSection from './chart-section.js';
 import ConfigRequest from './config-request.js';
+import ElementBase from './element-base.js';
 import RecentBugsRequest from './recent-bugs-request.js';
 import ReportControls from './report-controls.js';
 import ReportSection from './report-section.js';
@@ -19,7 +20,7 @@ import SessionStateRequest from './session-state-request.js';
 
 const NOTIFICATION_MS = 5000;
 
-export default class ChromeperfApp extends cp.ElementBase {
+export default class ChromeperfApp extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -961,4 +962,4 @@ ChromeperfApp.getSessionState = state => {
   };
 };
 
-cp.ElementBase.register(ChromeperfApp);
+ElementBase.register(ChromeperfApp);

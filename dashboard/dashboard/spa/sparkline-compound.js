@@ -7,9 +7,10 @@
 import './cp-loading.js';
 import './cp-tab-bar.js';
 import './cp-tab.js';
+import ElementBase from './element-base.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 
-export default class SparklineCompound extends cp.ElementBase {
+export default class SparklineCompound extends ElementBase {
   static get template() {
     const chartPath = Polymer.html([
       '[[statePath]].relatedTabs.[[tabIndex]].renderedSparklines.' +
@@ -402,7 +403,7 @@ SparklineCompound.reducers = {
       mode: state.mode,
     };
     const descriptor = state.descriptor;
-    const sparkLayout = cp.ChartTimeseries.buildState({});
+    const sparkLayout = ChartTimeseries.buildState({});
     sparkLayout.yAxis.generateTicks = false;
     sparkLayout.xAxis.generateTicks = false;
     sparkLayout.graphHeight = 100;
@@ -525,4 +526,4 @@ SparklineCompound.reducers = {
   },
 };
 
-cp.ElementBase.register(SparklineCompound);
+ElementBase.register(SparklineCompound);

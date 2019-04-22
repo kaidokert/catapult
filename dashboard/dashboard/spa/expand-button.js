@@ -4,7 +4,9 @@
 */
 'use strict';
 
-export default class ExpandButton extends cp.ElementBase {
+import ElementBase from './element-base.js';
+
+export default class ExpandButton extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -70,4 +72,4 @@ ExpandButton.actions = {
   },
 };
 
-cp.ElementBase.register(ExpandButton);
+ElementBase.register(ExpandButton);

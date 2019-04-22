@@ -5,8 +5,9 @@
 'use strict';
 
 import './cp-checkbox.js';
+import ElementBase from './element-base.js';
 
-export default class TimeseriesDescriptor extends cp.ElementBase {
+export default class TimeseriesDescriptor extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -481,4 +482,4 @@ TimeseriesDescriptor.createLineDescriptors = ({
   return lineDescriptors;
 };
 
-cp.ElementBase.register(TimeseriesDescriptor);
+ElementBase.register(TimeseriesDescriptor);
