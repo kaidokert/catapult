@@ -9,6 +9,7 @@ import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';
 import AlertsTable from './alerts-table.js';
 import ChartCompound from './chart-compound.js';
+import ElementBase from './element-base.js';
 import ExistingBugRequest from './existing-bug-request.js';
 import NewBugRequest from './new-bug-request.js';
 import TriageExisting from './triage-existing.js';
@@ -21,7 +22,7 @@ const NOTIFICATION_MS = 5000;
 const ENOUGH_GROUPS = 100;
 const ENOUGH_LOADING_MS = 60000;
 
-export default class AlertsSection extends cp.ElementBase {
+export default class AlertsSection extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -238,17 +239,17 @@ AlertsSection.State = {
   isLoading: options => false,
   newBug: options => TriageNew.buildState({}),
   preview: options => ChartCompound.buildState(options),
-  sectionId: options => options.sectionId || cp.simpleGUID(),
+  sectionId: options => options.sectionId || simpleGUID(),
   selectedAlertPath: options => undefined,
   totalCount: options => 0,
 };
 
 AlertsSection.buildState = options =>
-  cp.buildState(AlertsSection.State, options);
+  buildState(AlertsSection.State, options);
 
 AlertsSection.properties = {
-  ...cp.buildProperties('state', AlertsSection.State),
-  ...cp.buildProperties('linkedState', {
+  ...buildProperties('state', AlertsSection.State),
+  ...buildProperties('linkedState', {
     // AlertsSection only needs the linkedStatePath property to forward to
     // ChartCompound.
   }),
@@ -378,7 +379,7 @@ AlertsSection.actions = {
     // user to notice the notification, then automatically hide it. The user
     // will still be able to access the bug by clicking Recent Bugs in
     // alerts-controls.
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     state = Polymer.Path.get(getState(), statePath);
     if (state.triagedBugId !== triagedBugId) return;
     dispatch(AlertsSection.actions.cancelTriagedExisting(statePath));
@@ -430,7 +431,7 @@ AlertsSection.actions = {
     // notification, then automatically hide it. The user can still access
     // ignored alerts by toggling New Only to New and Triaged in
     // alerts-controls.
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     state = Polymer.Path.get(getState(), statePath);
     if (state.ignoredCount !== ignoredCount) return;
     dispatch(Redux.UPDATE(statePath, {
@@ -520,7 +521,7 @@ AlertsSection.actions = {
     // user to notice the notification, then automatically hide it. The user
     // will still be able to access the new bug by clicking Recent Bugs in
     // alerts-controls.
-    await cp.timeout(NOTIFICATION_MS);
+    await timeout(NOTIFICATION_MS);
     state = Polymer.Path.get(getState(), statePath);
     if (state.triagedBugId !== bugId) return;
     dispatch(Redux.UPDATE(statePath, {
@@ -537,7 +538,7 @@ AlertsSection.actions = {
       started,
     });
     if (sources.length) {
-      dispatch(cp.MenuInput.actions.blurAll());
+      dispatch(MenuInput.actions.blurAll());
     }
 
     // When a request for untriaged alerts finishes, a request is started for
@@ -550,7 +551,7 @@ AlertsSection.actions = {
     // dispatching reducers.receiveAlerts.
     // loadMore() may add more AlertsRequests to the BatchIterator to chase
     // datastore query cursors.
-    const batches = new cp.BatchIterator(sources.map(wrapRequest));
+    const batches = new BatchIterator(sources.map(wrapRequest));
     for await (const {results, errors} of batches) {
       let state = Polymer.Path.get(getState(), statePath);
       if (!state || state.started !== started) {
@@ -576,7 +577,7 @@ AlertsSection.actions = {
       triagedMaxStartRevision = loadMore(
           batches, state.alertGroups, nextRequests, triagedRequests,
           triagedMaxStartRevision, started);
-      await cp.animationFrame();
+      await animationFrame();
     }
 
     dispatch({
@@ -631,7 +632,7 @@ AlertsSection.reducers = {
       `alertGroups.${action.alertGroupIndex}.alerts.${action.alertIndex}`;
     const alert = Polymer.Path.get(state, alertPath);
     if (!alert.isSelected) {
-      state = cp.setImmutable(
+      state = setImmutable(
           state, `${alertPath}.isSelected`, true);
     }
     if (state.selectedAlertPath === alertPath) {
@@ -699,12 +700,12 @@ AlertsSection.reducers = {
   updateAlertColors: (state, action, rootState) => {
     const colorByDescriptor = new Map();
     for (const line of state.preview.chartLayout.lines) {
-      colorByDescriptor.set(cp.ChartTimeseries.stringifyDescriptor(
+      colorByDescriptor.set(ChartTimeseries.stringifyDescriptor(
           line.descriptor), line.color);
     }
 
     function updateAlert(alert) {
-      const descriptor = cp.ChartTimeseries.stringifyDescriptor(
+      const descriptor = ChartTimeseries.stringifyDescriptor(
           AlertsSection.computeLineDescriptor(alert));
       const color = colorByDescriptor.get(descriptor);
       return {...alert, color};
@@ -778,7 +779,7 @@ AlertsSection.reducers = {
     // |alerts| are all new.
     // Group them together with previously-received alerts from
     // state.alertGroups[].alerts.
-    alerts = alerts.map(cp.transformAlert);
+    alerts = alerts.map(transformAlert);
     if (state.alertGroups !== AlertsTable.PLACEHOLDER_ALERT_GROUPS) {
       for (const alertGroup of state.alertGroups) {
         alerts.push(...alertGroup.alerts);
@@ -805,7 +806,7 @@ AlertsSection.reducers = {
 
     const groupBugs = state.showingTriaged && (
       state.bug.selectedOptions.length === 1);
-    let alertGroups = cp.groupAlerts(alerts, groupBugs);
+    let alertGroups = groupAlerts(alerts, groupBugs);
     alertGroups = alertGroups.map((alerts, groupIndex) => {
       let isExpanded = false;
       let isTriagedExpanded = false;
@@ -1026,8 +1027,8 @@ AlertsSection.summary = (showingTriaged, alertGroups, totalCount) => {
   totalCount = Math.max(totalCount, displayedCount);
   return (
     `${displayedCount} displayed in ` +
-    `${groupCount} group${cp.plural(groupCount)} of ` +
-    `${totalCount} alert${cp.plural(totalCount)}`);
+    `${groupCount} group${plural(groupCount)} of ` +
+    `${totalCount} alert${plural(totalCount)}`);
 };
 
-cp.ElementBase.register(AlertsSection);
+ElementBase.register(AlertsSection);

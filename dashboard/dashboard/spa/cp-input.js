@@ -100,7 +100,7 @@ export default class CpInput extends Polymer.Element {
     // connectedCallback and other state updates that the first focus()
     // doesn't take. Try, try again.
     while (cp.getActiveElement() !== this.nativeInput) {
-      await cp.timeout(50);
+      await timeout(50);
       this.nativeInput.focus();
     }
 
@@ -114,7 +114,7 @@ export default class CpInput extends Polymer.Element {
   async blur() {
     this.nativeInput.blur();
     while (cp.getActiveElement() === this.nativeInput) {
-      await cp.timeout(50);
+      await timeout(50);
       this.nativeInput.blur();
     }
   }

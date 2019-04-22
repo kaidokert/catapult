@@ -4,7 +4,7 @@
 */
 'use strict';
 
-export default class ReportNamesRequest extends cp.RequestBase {
+export default class ReportNamesRequest extends RequestBase {
   constructor(options = {}) {
     super(options);
     this.method_ = 'POST';

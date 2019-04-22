@@ -5,8 +5,9 @@
 'use strict';
 
 import './cp-toast.js';
+import ElementBase from './element-base.js';
 
-export default class ReportTable extends cp.ElementBase {
+export default class ReportTable extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -339,8 +340,8 @@ export default class ReportTable extends cp.ElementBase {
     }
     if (!tr) return;
     const td = tr.querySelector('scalar-span').parentNode;
-    const tdRect = await cp.measureElement(td);
-    const thisRect = await cp.measureElement(this);
+    const tdRect = await measureElement(td);
+    const thisRect = await measureElement(this);
     await this.dispatch(Redux.UPDATE(this.statePath, {
       tooltip: {
         rows: event.model.row.actualDescriptors.map(descriptor => [
@@ -370,11 +371,11 @@ ReportTable.State = {
   tooltip: options => {return {};},
 };
 
-ReportTable.buildState = options => cp.buildState(
+ReportTable.buildState = options => buildState(
     ReportTable.State, options);
 
 ReportTable.properties = {
-  ...cp.buildProperties('state', ReportTable.State),
+  ...buildProperties('state', ReportTable.State),
   userEmail: {statePath: 'userEmail'},
 };
 
@@ -412,4 +413,4 @@ ReportTable.placeholderTable = name => {
   };
 };
 
-cp.ElementBase.register(ReportTable);
+ElementBase.register(ReportTable);
