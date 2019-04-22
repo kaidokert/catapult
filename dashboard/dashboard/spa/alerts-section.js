@@ -9,6 +9,7 @@ import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';
 import AlertsTable from './alerts-table.js';
 import ChartCompound from './chart-compound.js';
+import ElementBase from './element-base.js';
 import ExistingBugRequest from './existing-bug-request.js';
 import NewBugRequest from './new-bug-request.js';
 import TriageExisting from './triage-existing.js';
@@ -21,7 +22,7 @@ const NOTIFICATION_MS = 5000;
 const ENOUGH_GROUPS = 100;
 const ENOUGH_LOADING_MS = 60000;
 
-export default class AlertsSection extends cp.ElementBase {
+export default class AlertsSection extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -1030,4 +1031,4 @@ AlertsSection.summary = (showingTriaged, alertGroups, totalCount) => {
     `${totalCount} alert${cp.plural(totalCount)}`);
 };
 
-cp.ElementBase.register(AlertsSection);
+ElementBase.register(AlertsSection);

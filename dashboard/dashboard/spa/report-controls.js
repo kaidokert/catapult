@@ -7,8 +7,9 @@
 import './cp-input.js';
 import './raised-button.js';
 import ReportNamesRequest from './report-names-request.js';
+import ElementBase from './element-base.js';
 
-export default class ReportControls extends cp.ElementBase {
+export default class ReportControls extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -299,4 +300,4 @@ ReportControls.reducers = {
   },
 };
 
-cp.ElementBase.register(ReportControls);
+ElementBase.register(ReportControls);

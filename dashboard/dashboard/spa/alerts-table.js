@@ -6,8 +6,9 @@
 
 import './cp-checkbox.js';
 import './expand-button.js';
+import ElementBase from './element-base.js';
 
-export default class AlertsTable extends cp.ElementBase {
+export default class AlertsTable extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -788,4 +789,4 @@ AlertsTable.reducers = {
   },
 };
 
-cp.ElementBase.register(AlertsTable);
+ElementBase.register(AlertsTable);

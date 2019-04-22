@@ -9,10 +9,11 @@ import './cp-input.js';
 import './cp-switch.js';
 import './raised-button.js';
 import AlertsTable from './alerts-table.js';
+import ElementBase from './element-base.js';
 import ReportNamesRequest from './report-names-request.js';
 import SheriffsRequest from './sheriffs-request.js';
 
-export default class AlertsControls extends cp.ElementBase {
+export default class AlertsControls extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -618,4 +619,4 @@ AlertsControls.compileSources = async(
   return sources;
 };
 
-cp.ElementBase.register(AlertsControls);
+ElementBase.register(AlertsControls);
