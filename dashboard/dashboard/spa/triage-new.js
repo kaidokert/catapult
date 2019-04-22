@@ -8,8 +8,9 @@ import './cp-checkbox.js';
 import './cp-input.js';
 import './cp-textarea.js';
 import './raised-button.js';
+import ElementBase from './element-base.js';
 
-export default class TriageNew extends cp.ElementBase {
+export default class TriageNew extends ElementBase {
   static get template() {
     return Polymer.html`
       <style>
@@ -288,4 +289,4 @@ TriageNew.collectAlertProperties = (alerts, property) => {
   });
 };
 
-cp.ElementBase.register(TriageNew);
+ElementBase.register(TriageNew);
