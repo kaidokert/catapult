@@ -5,8 +5,24 @@
 'use strict';
 
 import './cp-checkbox.js';
+import DescribeRequest from './describe-request.js';
+import ElementBase from './element-base.js';
+import MemoryComponents from './memory-components.js';
+import MenuInput from './menu-input.js';
+import OptionGroup from './option-group.js';
+import TagFilter from './tag-filter.js';
+import TestSuitesRequest from './test-suites-request.js';
+import {TOGGLE} from './simple-redux.js';
 
-export default class TimeseriesDescriptor extends cp.ElementBase {
+import {
+  BatchIterator,
+  buildProperties,
+  buildState,
+} from './utils.js';
+
+export default class TimeseriesDescriptor extends ElementBase {
+  static get is() { return 'timeseries-descriptor'; }
+
   static get template() {
     return Polymer.html`
       <style>
@@ -162,17 +178,17 @@ export default class TimeseriesDescriptor extends cp.ElementBase {
   }
 
   async onSuiteAggregateChange_(event) {
-    this.dispatch(Redux.TOGGLE(`${this.statePath}.suite.isAggregated`));
+    this.dispatch(TOGGLE(`${this.statePath}.suite.isAggregated`));
     this.dispatchMatrixChange_();
   }
 
   async onBotAggregateChange_(event) {
-    this.dispatch(Redux.TOGGLE(`${this.statePath}.bot.isAggregated`));
+    this.dispatch(TOGGLE(`${this.statePath}.bot.isAggregated`));
     this.dispatchMatrixChange_();
   }
 
   async onCaseAggregateChange_(event) {
-    this.dispatch(Redux.TOGGLE(`${this.statePath}.case.isAggregated`));
+    this.dispatch(TOGGLE(`${this.statePath}.case.isAggregated`));
     this.dispatchMatrixChange_();
   }
 }
@@ -186,7 +202,7 @@ TimeseriesDescriptor.State = {
     return {
       isAggregated: suite.isAggregated !== false,
       canAggregate: suite.canAggregate !== false,
-      ...cp.MenuInput.buildState(suite),
+      ...MenuInput.buildState(suite),
     };
   },
   measurement: options => {
@@ -195,8 +211,8 @@ TimeseriesDescriptor.State = {
     measurement.required = true;
     if (!measurement.options) measurement.options = [];
     return {
-      ...cp.MemoryComponents.buildState(measurement),
-      ...cp.MenuInput.buildState(measurement),
+      ...MemoryComponents.buildState(measurement),
+      ...MenuInput.buildState(measurement),
     };
   },
   bot: options => {
@@ -207,7 +223,7 @@ TimeseriesDescriptor.State = {
     return {
       isAggregated: bot.isAggregated !== false,
       canAggregate: bot.canAggregate !== false,
-      ...cp.MenuInput.buildState(bot),
+      ...MenuInput.buildState(bot),
     };
   },
   case: options => {
@@ -219,17 +235,17 @@ TimeseriesDescriptor.State = {
     return {
       isAggregated: cas.isAggregated !== false,
       canAggregate: cas.canAggregate !== false,
-      ...cp.MenuInput.buildState(cas),
-      ...cp.TagFilter.buildState(cas.tags),
+      ...MenuInput.buildState(cas),
+      ...TagFilter.buildState(cas.tags),
     };
   },
 };
 
-TimeseriesDescriptor.buildState = options => cp.buildState(
+TimeseriesDescriptor.buildState = options => buildState(
     TimeseriesDescriptor.State, options);
 
 TimeseriesDescriptor.properties = {
-  ...cp.buildProperties('state', TimeseriesDescriptor.State),
+  ...buildProperties('state', TimeseriesDescriptor.State),
 };
 
 TimeseriesDescriptor.actions = {
@@ -247,13 +263,13 @@ TimeseriesDescriptor.actions = {
       ]);
     } else {
       await suitesLoaded,
-      cp.MenuInput.actions.focus(`${statePath}.suite`)(
+      MenuInput.actions.focus(`${statePath}.suite`)(
           dispatch, getState);
     }
   },
 
   loadSuites: statePath => async(dispatch, getState) => {
-    const request = new cp.TestSuitesRequest({});
+    const request = new TestSuitesRequest({});
     const suites = await request.response;
     dispatch({
       type: TimeseriesDescriptor.reducers.receiveTestSuites.name,
@@ -285,8 +301,8 @@ TimeseriesDescriptor.actions = {
 
     const suites = new Set(state.suite.selectedOptions);
     const descriptors = state.suite.selectedOptions.map(suite =>
-      new cp.DescribeRequest({suite}).response);
-    for await (const {results, errors} of new cp.BatchIterator(descriptors)) {
+      new DescribeRequest({suite}).response);
+    for await (const {results, errors} of new BatchIterator(descriptors)) {
       state = Polymer.Path.get(getState(), statePath);
       if (!state.suite || !tr.b.setsEqual(
           suites, new Set(state.suite.selectedOptions))) {
@@ -298,7 +314,7 @@ TimeseriesDescriptor.actions = {
       // TODO display errors
       for (const descriptor of results) {
         if (!descriptor) continue;
-        cp.DescribeRequest.mergeDescriptor(mergedDescriptor, descriptor);
+        DescribeRequest.mergeDescriptor(mergedDescriptor, descriptor);
       }
       dispatch({
         type: TimeseriesDescriptor.reducers.receiveDescriptor.name,
@@ -314,7 +330,7 @@ TimeseriesDescriptor.actions = {
     state = Polymer.Path.get(getState(), statePath);
 
     if (state.measurement.selectedOptions.length === 0) {
-      cp.MenuInput.actions.focus(`${statePath}.measurement`)(
+      MenuInput.actions.focus(`${statePath}.measurement`)(
           dispatch, getState);
     }
   },
@@ -336,11 +352,11 @@ TimeseriesDescriptor.reducers = {
     state.measurement = {
       ...state.measurement,
       optionValues: descriptor.measurements,
-      options: cp.OptionGroup.groupValues(descriptor.measurements),
+      options: OptionGroup.groupValues(descriptor.measurements),
       label: `Measurements (${descriptor.measurements.size})`,
     };
 
-    const botOptions = cp.OptionGroup.groupValues(descriptor.bots);
+    const botOptions = OptionGroup.groupValues(descriptor.bots);
     state.bot = {
       ...state.bot,
       optionValues: descriptor.bots,
@@ -355,7 +371,7 @@ TimeseriesDescriptor.reducers = {
       caseOptions.push({
         label: `All test cases`,
         isExpanded: true,
-        options: cp.OptionGroup.groupValues(descriptor.cases),
+        options: OptionGroup.groupValues(descriptor.cases),
       });
     }
 
@@ -368,7 +384,7 @@ TimeseriesDescriptor.reducers = {
         ...state.case.tags,
         map: descriptor.caseTags,
         optionValues: new Set(descriptor.caseTags.keys()),
-        options: cp.OptionGroup.groupValues(descriptor.caseTags.keys()),
+        options: OptionGroup.groupValues(descriptor.caseTags.keys()),
       },
     };
 
@@ -403,7 +419,7 @@ TimeseriesDescriptor.reducers = {
     };
     if (state.case.tags && state.case.tags.selectedOptions &&
         state.case.tags.selectedOptions.length) {
-      state.case = cp.TagFilter.reducers.filter(state.case);
+      state.case = TagFilter.reducers.filter(state.case);
     }
 
     return state;
@@ -481,4 +497,4 @@ TimeseriesDescriptor.createLineDescriptors = ({
   return lineDescriptors;
 };
 
-cp.ElementBase.register(TimeseriesDescriptor);
+ElementBase.register(TimeseriesDescriptor);
