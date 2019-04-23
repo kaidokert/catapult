@@ -46,6 +46,53 @@
       "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34988d94_ed281e83",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-23T18:08:52Z",
+      "side": 1,
+      "message": "I agree that making changes to the API is a reasonable thing to do. I was reacting to this changelist being used to fix crbug.com/953784. When possible, it is best to fix by reverting the change that broke things rather than by adding more API changes on top.\n\nI wonder if it would be better to have a FilteredStorySet class that is a wrapper of a StorySet. It would implement the same API, but it would save a list of stories to return from the stories property. It could provide both filtering and sorting functionality. That would allow us to remove the \"RemoveStory\" function from StorySet and then we would not be modifying a StorySet. In general, it is risky to pass around objects and modify them in a large codebase like Telemetry. I think this might be safer.",
+      "parentUuid": "96b7dd21_977c4427",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 68
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd2de45a_68967e0e",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-23T18:08:52Z",
+      "side": 1,
+      "message": "Why not \n\nstory_set.stories \u003d included_stories\n\n?",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
