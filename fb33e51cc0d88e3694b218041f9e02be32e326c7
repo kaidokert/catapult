@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c426fce_a9076dc9",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-23T16:33:35Z",
+      "side": 0,
+      "message": "How does wasting horizontal space suggest that there could be bugs that would be grouped with untriaged alerts?\nV2spa displays triaged alerts directly alongside untriaged alerts.",
+      "revId": "fb33e51cc0d88e3694b218041f9e02be32e326c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
