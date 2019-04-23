@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "eab8b4cb_b2c7200e",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-23T17:07:21Z",
+      "side": 1,
+      "message": "Can you tell me more about the burden on the anomaly detection algorithm?\n\nI\u0027ve already written the function to generate an arbitrary statistic from a Histogram.\nhttps://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/value/histogram.html?q\u003dhistogram.html\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d814\n\nCurrently, metrics configure which statistics are generated and stored as timeseries. I\u0027d like \nfor that requirement to be removed and allow the dashboard or frontend to call getStatisticScalar as needed. For example, at upload time the dashboard could match Histograms up with Subscriptions and see which statistics are monitored and just generate those in addition to a small set of common statistics.",
+      "parentUuid": "b75cd781_7b3d0ba2",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82cfa007_f0ab69f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
