@@ -16,6 +16,24 @@
       "revId": "fb33e51cc0d88e3694b218041f9e02be32e326c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "178542c6_8f444bac",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T17:40:00Z",
+      "side": 0,
+      "message": "Because with the column there, you can always sort it through that column? That\u0027s how I got all the alerts that are triaged to show up at least when sorted.",
+      "parentUuid": "7c426fce_a9076dc9",
+      "revId": "fb33e51cc0d88e3694b218041f9e02be32e326c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
