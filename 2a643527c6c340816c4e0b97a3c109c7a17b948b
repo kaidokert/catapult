@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "4365734c_b7193abd",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T18:20:10Z",
+      "side": 1,
+      "message": "Here\u0027s the situation:\n\n- Today, when we attempt to generate Anomaly instances, we only see one AnomalyConfig for a given TestMetadata.\n- In this new world where each Subscription can have individual AnomalyConfig instances which specify how to deal with which percentiles, having each subscription define an arbitrarily unbounded set of potential percentiles to track, we can have an explosion of multiple percentiles we can be alerting for.\n\nThis means if we support arbitrary percentiles, we will have to generate each of those metrics and have anomaly detection run on those. It makes it unsustainable to even attempt to debug and/or test that combinatorial explosion, which is not necessary to support -- 90th, 99th, and 99.9th percentiles are plenty to determine the shape of the tail. In fact, min, median, 90pct, 99pct, 99.9pct, and max can give you a good representation of the tail of the distribution and for things measuring latency (where the variance matters a lot), knowing the tail of the distribution is why you\u0027d even care about tracking these stats in the first place. :)\n\nIn this world of N:M (subscription to metrics) matching, we\u0027d have to do a projection of all the subscriptions applied to all the metrics that match, then apply the anomaly configs as a refinement per subscription to determine the amount of work we\u0027ll do when performing anomaly detection. Giving users arbitrary percentiles just gives us another axis of unbounded growth for very little gain.\n\nDoes that help?",
+      "parentUuid": "eab8b4cb_b2c7200e",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82cfa007_f0ab69f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
