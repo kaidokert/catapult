@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5566d20_6c2a7cae",
+        "filename": "dashboard/dashboard/sheriff_config/sheriff-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-23T16:38:59Z",
+      "side": 1,
+      "message": "Chromeperf and pinpoint both use webapp2, just curious why you chose to go with flask? This isn\u0027t blocking the review, more for my own curiosity.",
+      "range": {
+        "startLine": 8,
+        "startChar": 12,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "810af83a4c6df8b1263fe7718d640e8aee7fd20a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882396c0_cea9d2e4",
+        "filename": "dashboard/dashboard/sheriff_config/validator_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-23T16:38:59Z",
+      "side": 1,
+      "message": "test to cover if json is valid",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "810af83a4c6df8b1263fe7718d640e8aee7fd20a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
