@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f23d3a4a_b86c6f8e",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "Changed, but I\u0027m not sure exposing the concept of the timeseries and constituent parts at this point makes much sense.",
+      "parentUuid": "110450a7_2642e7e2",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "704e959a_edd92e42",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "73544001_274e839b",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "As I mentioned elsewhere, we can make this change later, when the Dashboard doesn\u0027t use the path-based configuration that it currently supports. This also assumes we\u0027re not going to change the way we\u0027re describing benchmarks, bots, etc. -- these could just be amorphous dimensions that we could be matching on, without having to be hard-encoded in a protocol buffer.",
+      "parentUuid": "704e959a_edd92e42",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c8871cc_e887f3c8",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b75cd781_7b3d0ba2",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "This is a set of suggested, fairly common stats. Limiting the statistics to a specified set allows us to handle those appropriately. For teams that do care about the tail, it\u0027s fairly standard to look at the spread between the median and the 90th percentile when doing performance analysis (and even to the 99th percentile, and 99.9th).\n\nFor those that care about the tail, giving them the freedom to pick an arbitrary percentile imposes a burden on the code performing the anomaly detection. If instead we have a list of these percentiles we know about and support, we can keep it simple.",
+      "parentUuid": "9c8871cc_e887f3c8",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +153,54 @@
     },
     {
       "key": {
+        "uuid": "b31b334b_f95dd8c8",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "The proto will be saved associated with a unique revision (provided by luci-config). Every set of configurations will be unique and we\u0027ll be storing the objects that we decode appropriately. That should be sufficient for us to refer to a specific version of the configuration from the dashboard.",
+      "parentUuid": "82cfa007_f0ab69f4",
+      "range": {
+        "startLine": 60,
+        "startChar": 64,
+        "endLine": 61,
+        "endChar": 26
+      },
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b1fa621_f4769256",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0b3e16b_afaf7045",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb2430c6_4954d0f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
@@ -113,6 +215,24 @@
       "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8945b75f_13d14cc7",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "Each subscription is really a conglomeration of a `Sheriff` and the `AnomalyConfig`s. If you do a cross-product of Sheriff x AnomalyConfig then you\u0027ll end up with the subscriptions as defined. This way we\u0027re giving each subscription a name, similar to how each Sheriff entity has a name -- this allows us to display (for humans) which subscriptions were associated with an alert (can show up in the issues, in the emails we generate, etc.).\n\nA file will define all the Subscriptions for a given project. Because most projects will only have one SheriffConfig file that luci-config will watch for, the way we disambiguate each of the subscriptions for humans is with a name.",
+      "parentUuid": "bb2430c6_4954d0f4",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +253,24 @@
     },
     {
       "key": {
+        "uuid": "0114d88d_85dffd06",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "I meant having the issues also CC\u0027ing the sheriffs that have a defined subscription. This means an alert email will be sent to the email address, and also CC\u0027ed to the issues filed by the dashboard. I suspect we can have a separate configuration for the issues filed, where we can specify the component, the labels, and the CC\u0027ed email addresses independently of the sheriff email target, but we don\u0027t do that today.\n\nUnfortunately in the N:M world we\u0027ll need to start somewhere. I suspect it\u0027s fairly trivial to add the bug CC\u0027s as a field too, so I\u0027ll do that now. :)",
+      "parentUuid": "64ce2a17_d68dd559",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3cf4990f_3e4f94b5",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
@@ -147,6 +285,24 @@
       "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae42dbac_1951a8e4",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-23T11:34:31Z",
+      "side": 1,
+      "message": "Yes, because we need to know when we\u0027re filing issues for a subscription that has multiple matching alerts, whether we will need to file two separate issues or whether we\u0027ll even surface the subscription to non-internal users.\n\nConsider two subscriptions, a public one, and an internal-only one. If there are alerts that come up for internal-only bots but match a public subscription, we shouldn\u0027t match that subscription. Consequently if there is an alert for a public bot which matches both subscriptions, we should file two different issues (e.g. we should not let the publicly raised issues know that there are internal-only subscribers to those).\n\nDoes that make sense? I\u0027ve updated the comment in the proto with that description.",
+      "parentUuid": "3cf4990f_3e4f94b5",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
