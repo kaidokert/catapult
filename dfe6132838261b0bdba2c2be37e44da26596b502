@@ -22,6 +22,30 @@
       "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96b7dd21_977c4427",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-23T11:47:13Z",
+      "side": 1,
+      "message": "Two things change here with respect to API:\n1) Explicit behavior of FilterStorySet method.\n2) Implicit assumption that story_runner.Run method does not alter story_set.\n\nAs for the first, I did a code search before uploading the CL, and made sure that this function is only used in story_runner.py.\n\nAs for the second, story_runner.Run was marked deprecated in the previous CL, and our next step would be to completely remove it. For now it is only being used in several tests, so as long as these tests pass, I see no problem in changing its behavior.\n\nI agree that making API changes is dangerous, and should not be done without a proper reason. But on the other hand, in Python pretty much everything is public interface, either explicitly or implicitly, so we can\u0027t hope to make any refactoring without changes to it.\n\nThis particular change is necessary because the main idea of my refactoring is to do all the preparation (including story filtering) before actually running the stories. We can\u0027t make a copy of a StorySet object because it can actually be an instance of some subclass, with additional fields. So we have to make changes to it in place.",
+      "parentUuid": "954438db_24533896",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 68
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
