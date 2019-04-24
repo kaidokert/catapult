@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fafcd3d_96db5177",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2019-04-24T23:25:50Z",
+      "side": 1,
+      "message": "byteIndex?",
+      "range": {
+        "startLine": 168,
+        "startChar": 30,
+        "endLine": 168,
+        "endChar": 44
+      },
+      "revId": "689386da0705143b444fb4932f296720c879cd61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
