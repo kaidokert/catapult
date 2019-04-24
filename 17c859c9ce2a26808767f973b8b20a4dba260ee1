@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a1dc9dd_a6730201",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-24T17:46:16Z",
+      "side": 1,
+      "message": "Oh nice, I didn\u0027t notice that. Ripped out all the conditional code + simplified the exclusion checking.",
+      "parentUuid": "8d83c24f_79174e24",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 19
+      },
+      "revId": "17c859c9ce2a26808767f973b8b20a4dba260ee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb017c09_46b0fa37",
         "filename": "tracing/BUILD.gn",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "17c859c9ce2a26808767f973b8b20a4dba260ee1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ce6469b_cfffaa45",
+        "filename": "tracing/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-24T17:46:16Z",
+      "side": 1,
+      "message": "Yes; this wasn\u0027t intended to be a comment specifically for convert_chart_json, just a separator.",
+      "parentUuid": "bb017c09_46b0fa37",
+      "revId": "17c859c9ce2a26808767f973b8b20a4dba260ee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
