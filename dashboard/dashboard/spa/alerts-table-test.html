@@ -18,6 +18,8 @@ found in the LICENSE file.
 
 <script type="module">
 'use strict';
+
+import findElements from './find-elements.js';
 import {ENSURE, UPDATE} from './simple-redux.js';
 import {afterRender} from './utils.js';
 
@@ -31,7 +33,7 @@ suite('alerts-table', function() {
     await afterRender();
     assert.strictEqual('rgb(128, 128, 128)', getComputedStyle(
         tr.ui.b.findDeepElementMatching(table, 'table')).color);
-    const dashes = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
+    const dashes = findElements(table, e =>
       e.innerText && e.innerText.trim() === AlertsTable.DASHES);
     assert.lengthOf(dashes, 35);
   });
@@ -327,7 +329,7 @@ suite('alerts-table', function() {
       ],
     })));
     await afterRender();
-    const selectedCounts = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
+    const selectedCounts = findElements(table, e =>
       e.tagName === 'CP-CHECKBOX' && e.textContent.trim() === '1/2');
     assert.lengthOf(selectedCounts, 1);
     const row = selectedCounts[0].parentElement.parentElement;
@@ -384,7 +386,7 @@ suite('alerts-table', function() {
       ],
     })));
     await afterRender();
-    const selectedCounts = tr.ui.b.findDeepElementsMatchingPredicate(table, e =>
+    const selectedCounts = findElements(table, e =>
       e.tagName === 'CP-CHECKBOX' && e.textContent.trim() === '1/2');
     assert.lengthOf(selectedCounts, 1);
     const row = selectedCounts[0].parentElement.parentElement;
@@ -613,8 +615,9 @@ suite('alerts-table', function() {
       ],
     })));
     await afterRender();
-    const checkboxes = tr.ui.b.findDeepElementsMatching(
-        tr.ui.b.findDeepElementMatching(table, 'tbody'), 'cp-checkbox');
+    const checkboxes = findElements(
+        findElements(table, e => e.matches('tbody'))[0],
+        e => e.matches('cp-checkbox'));
     checkboxes[1].click();
     checkboxes[3].$.native.dispatchEvent(new CustomEvent('change', {
       detail: {shiftKey: true},

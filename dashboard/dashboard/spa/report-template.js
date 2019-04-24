@@ -10,6 +10,8 @@ import ElementBase from './element-base.js';
 import ReportTemplateRequest from './report-template-request.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {get} from '/@polymer/polymer/lib/utils/path.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   buildProperties,
@@ -20,7 +22,7 @@ export default class ReportTemplate extends ElementBase {
   static get is() { return 'report-template'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           padding: 16px;
@@ -271,7 +273,7 @@ ReportTemplate.actions = {
 
   save: statePath => async(dispatch, getState) => {
     dispatch(UPDATE(statePath, {isLoading: true, isEditing: false}));
-    const table = Polymer.Path.get(getState(), statePath);
+    const table = get(getState(), statePath);
     const request = new ReportTemplateRequest({
       id: table.id,
       name: table.name,
