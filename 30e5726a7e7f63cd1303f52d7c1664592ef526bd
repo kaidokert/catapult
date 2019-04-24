@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f987b5a_f5cea68e",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-24T16:00:18Z",
+      "side": 1,
+      "message": "nit: Are count/sum common enough to include in this list?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
