@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "b35adb85_91f43b67",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-24T12:34:20Z",
+      "side": 1,
+      "message": "I see your point about modifying objects. I\u0027ve run into issues with some telemetry methods modifying the FinderOptions object passed to them, and I totally agree this can be a problem.\n\nI can\u0027t see how introducing a new class will help though. FilteredStorySet will still be an object to pass around and modify. But having two different classes for the same thing will add unnecessary complexity, because some methods will expect StorySet and some others only FilteredStorySet etc.\n\nI believe the proper way to fix this is to add a clone() method to the StorySet and override it in its subclasses. Then we can implement a filter method that returns a new object. I can file a bug about this and fix it later, after telemetry moves to chromium (because it will be much easier then, without multi-sided patches).",
+      "parentUuid": "34988d94_ed281e83",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 68
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd2de45a_68967e0e",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "writtenOn": "2019-04-23T18:08:52Z",
       "side": 1,
       "message": "Why not \n\nstory_set.stories \u003d included_stories\n\n?",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d59bd48_0ac5b4b9",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-24T12:34:20Z",
+      "side": 1,
+      "message": "You are right, ordinary assignment is enough here. Thanks!",
+      "parentUuid": "fd2de45a_68967e0e",
       "range": {
         "startLine": 127,
         "startChar": 4,
