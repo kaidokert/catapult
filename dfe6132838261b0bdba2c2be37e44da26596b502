@@ -141,6 +141,30 @@
       "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba0748e7_9e82732e",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-04-24T12:48:58Z",
+      "side": 1,
+      "message": "No, actually, it\u0027s not enough, because stories is a property method.",
+      "parentUuid": "9d59bd48_0ac5b4b9",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
