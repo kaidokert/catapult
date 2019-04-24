@@ -100,6 +100,7 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
   def FilterStorySet(cls, story_set):
     """Filters the given story set, using filters provided in the command line.
 
+    Modifies the given StorySet object leaving only filtered stories.
     Story sharding is done before exclusion and inclusion is done.
     """
     if cls._begin_index < 0:
@@ -107,10 +108,9 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
     if cls._end_index is None:
       cls._end_index = len(story_set)
 
-    story_set = story_set[cls._begin_index:cls._end_index]
+    included_stories = []
 
-    final_story_set = []
-    for story in story_set:
+    for story in story_set[cls._begin_index:cls._end_index]:
       # Exclude filters take priority.
       if cls._exclude_tags.HasLabelIn(story):
         continue
@@ -122,6 +122,7 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
       if cls._include_regex and not cls._include_regex.HasMatch(story):
         continue
 
-      final_story_set.append(story)
+      included_stories.append(story)
 
-    return final_story_set
+    story_set.stories[:] = included_stories
+
