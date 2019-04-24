@@ -9,6 +9,7 @@ import './cp-switch.js';
 import './raised-button.js';
 import ElementBase from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   buildProperties,
@@ -20,7 +21,7 @@ export default class TriageExisting extends ElementBase {
   static get is() { return 'triage-existing'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           background: var(--background-color);

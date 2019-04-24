@@ -4,11 +4,13 @@
 */
 'use strict';
 
-export default class ChartLegend extends Polymer.Element {
+import {PolymerElement, html} from '/@polymer/polymer/polymer-element.js';
+
+export default class ChartLegend extends PolymerElement {
   static get is() { return 'chart-legend'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;
