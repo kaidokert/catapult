@@ -52,6 +52,24 @@
       "revId": "429d9b410d9caa64ee9c1e69c1e0a0ee089f5a5b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbb77f7a_46af995e",
+        "filename": "dashboard/dashboard/spa/chromeperf-app-test.html",
+        "patchSetId": 27
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-24T22:45:32Z",
+      "side": 1,
+      "message": "Discussed briefly offline. Reverting.",
+      "parentUuid": "f22fa053_2ea9ff92",
+      "revId": "429d9b410d9caa64ee9c1e69c1e0a0ee089f5a5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
