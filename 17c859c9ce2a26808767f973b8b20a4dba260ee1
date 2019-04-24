@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d83c24f_79174e24",
+        "filename": "generate_telemetry_build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-24T17:03:13Z",
+      "side": 1,
+      "message": "Can we delete all the code having to do with \"condition\" in here now that EXCLUDED_PATHS does not contain any anymore? (Feel free to respond with a TODO).",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 19
+      },
+      "revId": "17c859c9ce2a26808767f973b8b20a4dba260ee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb017c09_46b0fa37",
+        "filename": "tracing/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-24T17:03:13Z",
+      "side": 1,
+      "message": "nit: Is this newline here on purpose?",
+      "revId": "17c859c9ce2a26808767f973b8b20a4dba260ee1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
