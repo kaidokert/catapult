@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4d852b6f_1518b785",
+        "filename": "dashboard/dashboard/sheriff_config/sheriff-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-24T02:05:49Z",
+      "side": 1,
+      "message": "AFAICT, webapp2 is no longer required and not recommended by the python37 documentation. Here\u0027s a link to the suggested list of web frameworks:\n\nhttps://cloud.google.com/appengine/docs/standard/python3/specifying-dependencies?hl\u003dhi#installing_a_web_framework\n\nThe web server is also just another dependency now, and there\u0027s a set of choices provided by the documentation too, gunicorn being one of them:\n\nhttps://cloud.google.com/appengine/docs/standard/python3/specifying-dependencies?hl\u003dhi#installing_a_wsgi_server",
+      "parentUuid": "e5566d20_6c2a7cae",
+      "range": {
+        "startLine": 8,
+        "startChar": 12,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "810af83a4c6df8b1263fe7718d640e8aee7fd20a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "882396c0_cea9d2e4",
         "filename": "dashboard/dashboard/sheriff_config/validator_test.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "810af83a4c6df8b1263fe7718d640e8aee7fd20a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d566bd3_f647b1ee",
+        "filename": "dashboard/dashboard/sheriff_config/validator_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-24T02:05:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "882396c0_cea9d2e4",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "810af83a4c6df8b1263fe7718d640e8aee7fd20a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
