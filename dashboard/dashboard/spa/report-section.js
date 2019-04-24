@@ -14,6 +14,7 @@ import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   BatchIterator,
@@ -25,7 +26,7 @@ export default class ReportSection extends ElementBase {
   static get is() { return 'report-section'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #tables {
           align-items: center;

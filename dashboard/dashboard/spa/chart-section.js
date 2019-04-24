@@ -19,6 +19,7 @@ import TimeseriesDescriptor from './timeseries-descriptor.js';
 import sha from './sha.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {MODE} from './layout-timeseries.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -30,7 +31,7 @@ export default class ChartSection extends ElementBase {
   static get is() { return 'chart-section'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #controls {
           align-items: center;

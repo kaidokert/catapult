@@ -16,12 +16,16 @@
   "private": true,
   "dependencies": {
     "@chopsui/wct-runner": "^0.0.3",
+    "@polymer/app-route": "^3.0.0",
+    "@polymer/iron-collapse": "^3.0.0",
+    "@polymer/polymer": "^3.0.0",
     "dom5": "^1.0.0",
     "escodegen": "^1.11.0",
     "eslint": "^4.0.0",
     "eslint-config-google": "^0.6.0",
     "eslint-plugin-html": "^4.0.0",
     "espree": "^3.0.0",
+    "redux": "^4.0.0",
     "vulcanize": "^1.16.0",
     "webpack": "^4.16.1",
     "webpack-command": "^0.4.1"

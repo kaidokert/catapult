@@ -4,11 +4,13 @@
 */
 'use strict';
 
-export default class ScalarSpan extends Polymer.Element {
+import {PolymerElement, html} from '@polymer/polymer';
+
+export default class ScalarSpan extends PolymerElement {
   static get is() { return 'scalar-span'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;

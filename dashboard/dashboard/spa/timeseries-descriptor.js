@@ -14,6 +14,7 @@ import OptionGroup from './option-group.js';
 import TagFilter from './tag-filter.js';
 import TestSuitesRequest from './test-suites-request.js';
 import {TOGGLE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   BatchIterator,
@@ -25,7 +26,7 @@ export default class TimeseriesDescriptor extends ElementBase {
   static get is() { return 'timeseries-descriptor'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;

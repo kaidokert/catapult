@@ -4,11 +4,13 @@
 */
 'use strict';
 
-class PlaceHolder extends Polymer.Element {
+import {PolymerElement, html} from '@polymer/polymer';
+
+class PlaceHolder extends PolymerElement {
   static get is() { return 'place-holder'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           position: relative;

@@ -16,6 +16,7 @@ import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
 import SheriffsRequest from './sheriffs-request.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildState,
@@ -26,7 +27,7 @@ export default class AlertsControls extends ElementBase {
   static get is() { return 'alerts-controls'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           align-items: center;

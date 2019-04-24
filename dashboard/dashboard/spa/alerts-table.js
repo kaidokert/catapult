@@ -4,11 +4,12 @@
 */
 'use strict';
 
+import './column-head.js';
 import './cp-checkbox.js';
 import './expand-button.js';
-import './column-head.js';
 import './scalar-span.js';
 import ElementBase from './element-base.js';
+import {html} from '@polymer/polymer';
 
 import {
   breakWords,
@@ -21,7 +22,7 @@ export default class AlertsTable extends ElementBase {
   static get is() { return 'alerts-table'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #cat {
           display: block;

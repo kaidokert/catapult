@@ -13,6 +13,7 @@ import ElementBase from './element-base.js';
 import {CHAIN, TOGGLE, UPDATE} from './simple-redux.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE} from './layout-timeseries.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -33,7 +34,7 @@ export default class ChartCompound extends ElementBase {
   static get is() { return 'chart-compound'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #minimap,
         #chart {

@@ -9,6 +9,7 @@ import ChartTimeseries from './chart-timeseries.js';
 import ElementBase from './element-base.js';
 import TimeseriesMerger from './timeseries-merger.js';
 import {DetailsFetcher} from './details-fetcher.js';
+import {html} from '@polymer/polymer';
 
 import {
   breakWords,
@@ -28,7 +29,7 @@ export default class DetailsTable extends ElementBase {
   static get is() { return 'details-table'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           align-items: center;

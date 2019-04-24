@@ -4,6 +4,7 @@
 */
 'use strict';
 
+import {PolymerElement} from '@polymer/polymer';
 import {
   DEFAULT_REDUCER_WRAPPERS,
   createSimpleStore,
@@ -28,11 +29,11 @@ const ReduxMixin = PolymerRedux(createSimpleStore({
 }));
 
 /*
-  * This base class mixes Polymer.Element with Polymer-Redux and provides
+  * This base class mixes PolymerElement with Polymer-Redux and provides
   * utility functions to help data-bindings in elements perform minimal
   * computation without computed properties.
   */
-export default class ElementBase extends ReduxMixin(Polymer.Element) {
+export default class ElementBase extends ReduxMixin(PolymerElement) {
   constructor() {
     super();
     this.debounceJobs_ = new Map();

@@ -7,6 +7,7 @@
 import './cp-checkbox.js';
 import './expand-button.js';
 import ElementBase from './element-base.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -18,7 +19,7 @@ export default class OptionGroup extends ElementBase {
   static get is() { return 'option-group'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;

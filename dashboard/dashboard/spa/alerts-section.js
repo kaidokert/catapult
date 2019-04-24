@@ -18,6 +18,7 @@ import TriageExisting from './triage-existing.js';
 import TriageNew from './triage-new.js';
 import groupAlerts from './group-alerts.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   BatchIterator,
@@ -42,7 +43,7 @@ export default class AlertsSection extends ElementBase {
   static get is() { return 'alerts-section'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #triage_controls {
           align-items: center;

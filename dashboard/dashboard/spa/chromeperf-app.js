@@ -7,6 +7,8 @@
 import './cp-loading.js';
 import './cp-toast.js';
 import './raised-button.js';
+import '@polymer/app-route/app-location.js';
+import '@polymer/app-route/app-route.js';
 import AlertsSection from './alerts-section.js';
 import ChartCompound from './chart-compound.js';
 import ChartSection from './chart-section.js';
@@ -18,6 +20,7 @@ import ReportSection from './report-section.js';
 import SessionIdRequest from './session-id-request.js';
 import SessionStateRequest from './session-state-request.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   afterRender,
@@ -34,7 +37,7 @@ export default class ChromeperfApp extends ElementBase {
   static get is() { return 'chromeperf-app'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         chops-header {
           background: var(--background-color, white);

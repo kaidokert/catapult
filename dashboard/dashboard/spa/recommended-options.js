@@ -6,6 +6,7 @@
 
 import ElementBase from './element-base.js';
 import OptionGroup from './option-group.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -21,7 +22,7 @@ export default class RecommendedOptions extends ElementBase {
   static get is() { return 'recommended-options'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         option-group {
           border-bottom: 1px solid var(--primary-color-dark, blue);

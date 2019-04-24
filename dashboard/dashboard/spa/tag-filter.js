@@ -6,6 +6,7 @@
 
 import ElementBase from './element-base.js';
 import OptionGroup from './option-group.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -16,7 +17,7 @@ export default class TagFilter extends ElementBase {
   static get is() { return 'tag-filter'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #container {
           align-items: center;

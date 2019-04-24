@@ -10,6 +10,7 @@ import ElementBase from './element-base.js';
 import ReportTemplateRequest from './report-template-request.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -20,7 +21,7 @@ export default class ReportTemplate extends ElementBase {
   static get is() { return 'report-template'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           padding: 16px;

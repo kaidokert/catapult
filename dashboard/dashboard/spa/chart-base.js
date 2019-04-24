@@ -6,6 +6,7 @@
 
 import ElementBase from './element-base.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   animationFrame,
@@ -17,7 +18,7 @@ import {
 
 // This must be defined outside ChartBase.template in order to allow
 // PolymerSvgTemplate to access the currentScript's document.
-const TEMPLATE = Polymer.html`
+const TEMPLATE = html`
   <style>
     :host {
       display: flex;

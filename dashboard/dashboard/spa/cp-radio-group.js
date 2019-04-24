@@ -4,13 +4,14 @@
 */
 'use strict';
 
+import {PolymerElement, html} from '@polymer/polymer';
 import './cp-radio.js';
 
-export default class CpRadioGroup extends Polymer.Element {
+export default class CpRadioGroup extends PolymerElement {
   static get is() { return 'cp-radio-group'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;

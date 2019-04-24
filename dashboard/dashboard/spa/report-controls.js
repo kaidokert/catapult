@@ -11,6 +11,7 @@ import MenuInput from './menu-input.js';
 import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   buildProperties,
@@ -22,7 +23,7 @@ export default class ReportControls extends ElementBase {
   static get is() { return 'report-controls'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;

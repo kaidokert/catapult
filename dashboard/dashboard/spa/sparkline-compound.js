@@ -13,6 +13,7 @@ import OptionGroup from './option-group.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {MODE} from './layout-timeseries.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '@polymer/polymer';
 
 import {
   breakWords,
@@ -24,11 +25,11 @@ export default class SparklineCompound extends ElementBase {
   static get is() { return 'sparkline-compound'; }
 
   static get template() {
-    const chartPath = Polymer.html([
+    const chartPath = html([
       '[[statePath]].relatedTabs.[[tabIndex]].renderedSparklines.' +
       '[[sparklineIndex]].layout',
     ]);
-    return Polymer.html`
+    return html`
       <style>
         .related_tab {
           background-color: var(--primary-color-light, lightblue);

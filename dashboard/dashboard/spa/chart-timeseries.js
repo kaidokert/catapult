@@ -7,10 +7,11 @@
 import './place-holder.js';
 import ChartBase from './chart-base.js';
 import ElementBase from './element-base.js';
+import TimeseriesMerger from './timeseries-merger.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE, layoutTimeseries} from './layout-timeseries.js';
-import TimeseriesMerger from './timeseries-merger.js';
+import {html} from '@polymer/polymer';
 
 import {
   BatchIterator,
@@ -25,7 +26,7 @@ export default class ChartTimeseries extends ElementBase {
   static get is() { return 'chart-timeseries'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: block;
