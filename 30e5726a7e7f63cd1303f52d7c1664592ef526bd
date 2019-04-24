@@ -70,6 +70,30 @@
       "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5b1fa4_9a8f0100",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-24T17:05:36Z",
+      "side": 1,
+      "message": "I\u0027m sold -- added `COUNT` and `SUM` to the list, thanks!",
+      "parentUuid": "9a747a3e_1c3b864e",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
