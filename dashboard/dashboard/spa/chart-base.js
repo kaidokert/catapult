@@ -4,8 +4,12 @@
 */
 'use strict';
 
+import * as PolymerAsync from '/@polymer/polymer/lib/utils/async.js';
 import ElementBase from './element-base.js';
+import {GestureEventListeners} from
+  '/@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   animationFrame,
@@ -17,7 +21,7 @@ import {
 
 // This must be defined outside ChartBase.template in order to allow
 // PolymerSvgTemplate to access the currentScript's document.
-const TEMPLATE = Polymer.html`
+const TEMPLATE = html`
   <style>
     :host {
       display: flex;
@@ -282,7 +286,7 @@ const TEMPLATE = Polymer.html`
 `;
 PolymerSvgTemplate(TEMPLATE.content, document);
 
-export default class ChartBase extends Polymer.GestureEventListeners(
+export default class ChartBase extends GestureEventListeners(
     ElementBase) {
   static get is() { return 'chart-base'; }
 
@@ -401,7 +405,7 @@ export default class ChartBase extends Polymer.GestureEventListeners(
         detail: {mainRect, nearestPoint, nearestLine},
       }));
       this.maybePollMouseLeaveMain_();
-    }, Polymer.Async.animationFrame);
+    }, PolymerAsync.animationFrame);
   }
 }
 

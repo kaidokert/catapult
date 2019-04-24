@@ -8,6 +8,7 @@ import './cp-toast.js';
 import './scalar-span.js';
 import ElementBase from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   buildProperties,
@@ -19,7 +20,7 @@ export default class ReportTable extends ElementBase {
   static get is() { return 'report-table'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           position: relative;

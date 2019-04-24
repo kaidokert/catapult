@@ -10,6 +10,7 @@ import './cp-textarea.js';
 import './raised-button.js';
 import ElementBase from './element-base.js';
 import {UPDATE} from './simple-redux.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   buildProperties,
@@ -22,7 +23,7 @@ export default class TriageNew extends ElementBase {
   static get is() { return 'triage-new'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           background: var(--background-color);

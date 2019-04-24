@@ -4,9 +4,12 @@
 */
 'use strict';
 
+import '/@polymer/polymer/lib/elements/dom-if.js';
+import '/@polymer/polymer/lib/elements/dom-repeat.js';
 import './cp-checkbox.js';
 import './expand-button.js';
 import ElementBase from './element-base.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   buildProperties,
@@ -18,7 +21,7 @@ export default class OptionGroup extends ElementBase {
   static get is() { return 'option-group'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         :host {
           display: flex;

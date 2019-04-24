@@ -25,4 +25,7 @@ if ('serviceWorker' in navigator && !IS_DEBUG) {
   });
 }
 
+import '/@polymer/iron-collapse/iron-collapse.js';
+import '/@polymer/iron-icon/iron-icon.js';
+import '/@polymer/iron-iconset-svg/iron-iconset-svg.js';
 import './chromeperf-app.js';

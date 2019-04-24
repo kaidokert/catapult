@@ -4,6 +4,7 @@
 */
 'use strict';
 
+import {get} from '/@polymer/polymer/lib/utils/path.js';
 import './cp-radio-group.js';
 import './cp-radio.js';
 import './cp-switch.js';
@@ -13,6 +14,7 @@ import ElementBase from './element-base.js';
 import {CHAIN, TOGGLE, UPDATE} from './simple-redux.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE} from './layout-timeseries.js';
+import {html} from '/@polymer/polymer/polymer-element.js';
 
 import {
   buildProperties,
@@ -33,7 +35,7 @@ export default class ChartCompound extends ElementBase {
   static get is() { return 'chart-compound'; }
 
   static get template() {
-    return Polymer.html`
+    return html`
       <style>
         #minimap,
         #chart {
@@ -484,7 +486,7 @@ ChartCompound.actions = {
   updateLinkedRevisions: (
       linkedStatePath, linkedMinRevision, linkedMaxRevision) =>
     async(dispatch, getState) => {
-      const state = Polymer.Path.get(getState(), linkedStatePath);
+      const state = get(getState(), linkedStatePath);
       if (linkedMinRevision === state.linkedMinRevision &&
           linkedMaxRevision === state.linkedMaxRevision) {
         return;
@@ -521,7 +523,7 @@ ChartCompound.actions = {
   //  * A lineDescriptor for the ref build is added to chartLayout if there's
   //    only one lineDescriptor.
   load: statePath => async(dispatch, getState) => {
-    const state = Polymer.Path.get(getState(), statePath);
+    const state = get(getState(), statePath);
     if (!state || !state.lineDescriptors ||
         state.lineDescriptors.length === 0) {
       dispatch(CHAIN(
@@ -773,7 +775,7 @@ ChartCompound.reducers = {
   toggleLinked: (state, {linkedStatePath}, rootState) => {
     state = {...state, isLinked: !state.isLinked};
     if (state.isLinked) {
-      const linkedState = Polymer.Path.get(rootState, linkedStatePath);
+      const linkedState = get(rootState, linkedStatePath);
       state = {
         ...state,
         cursorRevision: linkedState.linkedCursorRevision,
