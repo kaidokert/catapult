@@ -22,6 +22,30 @@
       "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad24a24_8f58f04a",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-24T16:27:46Z",
+      "side": 1,
+      "message": "That\u0027s a good question. Are there any alerts generated on the count and/or sum of the measures in a HistogramSet today? If there are, then I\u0027d be happy to add those to the list. It seems those aren\u0027t stats we could be matching for when alerting, as we mostly seem to be looking at mean and standard deviation in the anomaly detection algorithm. I find it a little hard to think about whether we will do anomaly detection on just the count or just sum of the measures.\n\nLooking at https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/find_anomalies.py I can\u0027t tell easily whether alerting on count or sum of measures in the histogram would yield useful alerts/anomalies for sheriffs. Did you have specific use-cases for it?",
+      "parentUuid": "0f987b5a_f5cea68e",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
