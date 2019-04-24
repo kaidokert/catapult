@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2708c56_291a1627",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-24T16:50:22Z",
+      "side": 1,
+      "message": "As discussed in https://chromium-review.googlesource.com/c/catapult/+/1571659 I don\u0027t think this is a good idea. I\u0027m welcome to being convinced otherwise, but that would require an analysis of all the times that StorySet is being used.\n\nI also don\u0027t think it\u0027s a good idea to have all of these changes in one CL. Can we have a series of small, safe CLs instead of jumping to the desired end goal?",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 66
+      },
+      "revId": "716814d2a14e8c51aa5e73a7c13de3a2c0b33db6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
