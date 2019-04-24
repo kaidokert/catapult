@@ -46,6 +46,30 @@
       "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a747a3e_1c3b864e",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-24T16:38:06Z",
+      "side": 1,
+      "message": "Looking at the alerts page and sheriff configs, there don\u0027t seem to be any defined on _count that I saw, although I really only looked at the Chromium Perf Sheriff. There was a single alert on _sum, and a few alert definitions that specifically looked for sum.\n\nI don\u0027t have specific use cases for it myself, more noticed that the list didn\u0027t match the list I\u0027m used to seeing in code in other places.\n\nStill LGTM whether you decide to include either of them or punt.",
+      "parentUuid": "bad24a24_8f58f04a",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 10
+      },
+      "revId": "30e5726a7e7f63cd1303f52d7c1664592ef526bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
