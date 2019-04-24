@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b17b6a2_f9eb15f0",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-24T17:12:59Z",
+      "side": 1,
+      "message": "Since you only use this member inside the WaitForCpuTemperature method, I still don\u0027t see why it needs to be a member variable. I see that CpuTemperature is doing less work now, but it is still doing stuff. Ideally, if we don\u0027t use CpuTemperature, then it should not get initialized.",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "1308ad8f417a9ca72b48e8a9e313cfb1c623cdfe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
