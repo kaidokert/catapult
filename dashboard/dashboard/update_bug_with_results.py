@@ -23,14 +23,6 @@ culprits in destination issue.
 """
 
 
-class BisectJobFailure(Exception):
-  pass
-
-
-class BugUpdateFailure(Exception):
-  pass
-
-
 def GetMergeIssueDetails(issue_tracker, commit_cache_key):
   """Get's the issue this one might be merged into.
 
