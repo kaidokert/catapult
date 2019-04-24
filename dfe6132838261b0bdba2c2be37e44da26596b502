@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "60e89bb1_d4705eb9",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-24T16:45:32Z",
+      "side": 1,
+      "message": "It won\u0027t matter if a method expects StorySet or FilteredStorySet since both will implement the same interface... But we don\u0027t need to design that here.\n\n| I believe the proper way to fix this is to add a clone() method to the StorySet and \n| override it in its subclasses. Then we can implement a filter method that returns a new \n| object. I can file a bug about this and fix it later, after telemetry moves to chromium \n| (because it will be much easier then, without multi-sided patches).\n\nThat\u0027s not how we are getting this done. We can\u0027t do this an improper way and submit it and then got back and do it the right way later. The problem is that every time we change things, we risk breaking our benchmarks. The reason that in-place is a bad idea is that it may break something that you don\u0027t expect.\n\nIt is a lot of pain when you break someone else\u0027s code. They need to spend a lot of time tracking down your changelist and alerting you. I think you can find a way to do this correctly by making the changes in a series of small, safe patches.",
+      "parentUuid": "b35adb85_91f43b67",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 68
+      },
+      "revId": "dfe6132838261b0bdba2c2be37e44da26596b502",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd2de45a_68967e0e",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 1
