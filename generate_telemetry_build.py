@@ -24,18 +24,23 @@ import os
 import optparse
 import sys
 import subprocess
+import textwrap
 
-LICENSE = """# Copyright 2018 The Chromium Authors. All rights reserved.
-# Use of this source code is governed by a BSD-style license that can be
-# found in the LICENSE file.
+LICENSE = textwrap.dedent(
+    """\
+    # Copyright 2018 The Chromium Authors. All rights reserved.
+    # Use of this source code is governed by a BSD-style license that can be
+    # found in the LICENSE file.
 
-"""
+    """)
 
-DO_NOT_EDIT_WARNING = """# This file is auto-generated from
-#    //third_party/catapult/generated_telemetry_build.py
-# DO NOT EDIT!
+DO_NOT_EDIT_WARNING = textwrap.dedent(
+    """\
+    # This file is auto-generated from
+    #    //third_party/catapult/generated_telemetry_build.py
+    # DO NOT EDIT!
 
-"""
+    """)
 
 TELEMETRY_SUPPORT_GROUP_NAME = 'telemetry_chrome_test_support'
 
@@ -80,33 +85,14 @@ EXCLUDED_PATHS = [
     "path": "third_party/polymer2",
   },
   {
-    "path": "third_party/vinn/third_party/v8/linux/arm",
-    "condition": "is_chromeos",
-  },
-  {
-    "path": "third_party/vinn/third_party/v8/linux/mips",
-    "condition": "is_chromeos",
-  },
-  {
-    "path": "third_party/vinn/third_party/v8/linux/mips64",
-    "condition": "is_chromeos",
-  },
-  {
-    "path": "third_party/vinn/third_party/v8/linux/x86_64",
-    "condition": "is_linux || is_android",
-  },
-  {
-    "path": "third_party/vinn/third_party/v8/mac",
-    "condition": "is_mac",
-  },
-  {
-    "path": "third_party/vinn/third_party/v8/win",
-    "condition": "is_win",
-  },
-  {
     "path": "tracing/test_data",
   },
 ]
+
+
+SEPARATE_TARGETS = {
+  'third_party/vinn': 'third_party/vinn',
+}
 
 
 def GetUntrackedPaths():
@@ -122,10 +108,9 @@ def GetFileCondition(rel_path):
   # Return 'true' if the file should be included; return 'false' if it should
   # be excluded; return a condition string if it should only be included if
   # the condition is true.
-  processed_rel_path = rel_path.replace('\\', '/')
   for exclusion in EXCLUDED_PATHS:
     assert 'path' in exclusion
-    if exclusion['path'] == processed_rel_path:
+    if exclusion['path'] == rel_path:
       if 'condition' in exclusion:
         return exclusion['condition']
       else:
@@ -139,96 +124,102 @@ def GetDirCondition(rel_path):
   # the condition is true; return 'expand' if some files or sub-dirs under it
   # are excluded or conditionally included, so the parser needs to go inside
   # the dir and process further.
-  processed_rel_path = rel_path.replace('\\', '/')
   for exclusion in EXCLUDED_PATHS:
     assert 'path' in exclusion
-    if exclusion['path'] == processed_rel_path:
+    if exclusion['path'] == rel_path:
       if 'condition' in exclusion:
         return exclusion['condition']
       else:
         return 'false'
-    elif exclusion['path'].startswith(processed_rel_path + '/'):
+    elif exclusion['path'].startswith(rel_path + '/'):
       return 'expand'
   return 'true'
 
 
-def WriteLists(lists, conditional_lists, build_file, path_prefix):
-  first_entry = True
-  for path_list in lists:
-    for path in path_list:
-      path = path.replace('\\', '/')
+def WriteLists(data, conditional_data, data_deps, build_file, path_prefix):
+  if data:
+    build_file.write('  data += [\n')
+    for path in data:
       if path_prefix:
         path = path_prefix + path
-      if first_entry:
-        build_file.write('  data += [\n')
-        first_entry = False
       build_file.write('    "%s",\n' % path)
-  if not first_entry:
     build_file.write('  ]\n\n')
-  for conditional_list in conditional_lists:
-    for entry in conditional_list:
-      assert 'path' in entry
-      assert 'condition' in entry
-      path = entry['path'].replace('\\', '/')
-      if path_prefix:
-        path = path_prefix + path
-      build_file.write("""  if (%s) {
-    data += [ "%s" ]
-  }
 
-""" % (entry['condition'], path))
+  for entry in conditional_data:
+    assert 'path' in entry
+    assert 'condition' in entry
+    if path_prefix:
+      path = path_prefix + path
+    build_file.write(textwrap.dedent(
+        """\
+          if (%s) {
+            data += [ "%s" ]
+          }
+        """ % (entry['condition'], path)))
+
+  if data_deps:
+    build_file.write('  data_deps += [\n')
+    for data_dep in data_deps:
+      build_file.write('    "%s",\n' % data_dep)
+    build_file.write('  ]\n\n')
+
 
 def ProcessDir(root_path, path, build_file, path_prefix):
   # Write all dirs and files directly under |path| unless they are excluded
-  # or need to be processed further because some of their children are excldued
+  # or need to be processed further because some of their children are excluded
   # or conditionally included.
   # Return a list of dirs that needs to processed further.
   logging.debug('GenerateList for ' + path)
-  entry_list = os.listdir(path)
-  entry_list.sort()
-  file_list = []
-  dir_list = []
-  conditional_list = []
-  expand_list = []
+  entries = os.listdir(path)
+  entries.sort()
+  files = []
+  dirs = []
+  conditionals = []
+  data_deps = []
+  dirs_to_expand = []
   untracked_paths = GetUntrackedPaths()
-  for entry in entry_list:
+  for entry in entries:
     full_path = os.path.join(path, entry)
-    rel_path = os.path.relpath(full_path, root_path)
+    rel_path = os.path.relpath(full_path, root_path).replace('\\', '/')
     if (any(full_path.startswith(p) for p in untracked_paths) or
         entry.startswith('.') or entry.endswith('~') or
         entry.endswith('.pyc') or entry.endswith('#')):
       logging.debug('ignored %s', rel_path)
       continue
-    if os.path.isfile(full_path):
+    if rel_path in SEPARATE_TARGETS:
+      data_deps.append(SEPARATE_TARGETS[rel_path])
+    elif os.path.isfile(full_path):
       condition = GetFileCondition(rel_path)
       if condition == 'true':
-        file_list.append(rel_path)
+        files.append(rel_path)
       elif condition == 'false':
         logging.debug('excluded %s', rel_path)
         continue
       else:
-        conditional_list.append({
+        conditionals.append({
           "condition": condition,
           "path": rel_path,
-        });
+        })
     elif os.path.isdir(full_path):
       condition = GetDirCondition(rel_path)
       if condition == 'true':
-        dir_list.append(rel_path + '/')
+        dirs.append(rel_path + '/')
       elif condition == 'false':
         logging.debug('excluded %s', rel_path)
       elif condition == 'expand':
-        expand_list.append(full_path)
+        dirs_to_expand.append(full_path)
       else:
-        conditional_list.append({
+        conditionals.append({
           "condition": condition,
           "path": rel_path + '/',
-        });
+        })
     else:
       assert False
-  WriteLists([file_list, dir_list], [conditional_list],
+  WriteLists(files + dirs,
+             conditionals,
+             data_deps,
              build_file, path_prefix)
-  return expand_list
+  return dirs_to_expand
 
 def WriteBuildFileHeader(build_file):
   build_file.write(LICENSE)
@@ -236,11 +227,14 @@ def WriteBuildFileHeader(build_file):
   build_file.write('import("//build/config/compiler/compiler.gni")\n\n')
 
 def WriteBuildFileBody(build_file, root_path, path_prefix):
-  build_file.write("""group("%s") {
-  testonly = true
-  data = []
+  build_file.write(textwrap.dedent(
+      """\
+      group("%s") {
+        testonly = true
+        data = []
+        data_deps = []
 
-""" % TELEMETRY_SUPPORT_GROUP_NAME)
+      """ % TELEMETRY_SUPPORT_GROUP_NAME))
 
   candidates = [root_path]
   while len(candidates) > 0:
