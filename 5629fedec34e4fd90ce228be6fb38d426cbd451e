@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "6d86cd79_a92ffdf0",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1929,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-24T21:31:06Z",
+      "side": 1,
+      "message": "Nice. Maybe add a docstring that mentions what this yields?",
+      "revId": "5629fedec34e4fd90ce228be6fb38d426cbd451e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a300900_ffa07b8e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1947,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-24T21:31:06Z",
+      "side": 1,
+      "message": "nit: s/use/used/",
+      "revId": "5629fedec34e4fd90ce228be6fb38d426cbd451e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4dfeecc5_a4520c58",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -13,6 +47,30 @@
       "writtenOn": "2019-04-24T01:46:03Z",
       "side": 1,
       "message": "Reading the unittests, it seems like the method is supposed to throw CommandFailedError upon failure, so I added this for the needs-root codepath (although, I think the non-root code path actually throws AdbCommandFailedError [1], so perhaps that\u0027s a bug).\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py?l\u003d493\u0026rcl\u003d429d9b410d9caa64ee9c1e69c1e0a0ee089f5a5b",
+      "range": {
+        "startLine": 1961,
+        "startChar": 8,
+        "endLine": 1961,
+        "endChar": 47
+      },
+      "revId": "5629fedec34e4fd90ce228be6fb38d426cbd451e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e475a9cb_b3f3b8db",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1961,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-04-24T21:31:06Z",
+      "side": 1,
+      "message": "AdbCommandFailedError is a subclass of CommandFailedError, so I think that\u0027s ok.",
+      "parentUuid": "4dfeecc5_a4520c58",
       "range": {
         "startLine": 1961,
         "startChar": 8,
