@@ -22,7 +22,6 @@ _TESTS = [
     {'path': os.path.join(
         _CATAPULT_PATH, 'common', 'py_trace_event', 'bin', 'run_tests')},
     {'path': os.path.join(_CATAPULT_PATH, 'dependency_manager', 'bin', 'run_tests')},
-    {'path': os.path.join(_CATAPULT_PATH, 'telemetry', 'bin', 'run_tests')},
     {'path': os.path.join(
         _CATAPULT_PATH, 'third_party', 'vinn', 'bin', 'run_tests')},
     # TODO(anniesullie): Add dashboard tests when SDK issues are sorted out.
