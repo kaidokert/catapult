@@ -94,11 +94,11 @@
   };
 
   /*
-   * Wrap a case function with tr.b.Timing.mark().
+   * Wrap a case function with Mark().
    */
   Redux.timeReducer = (category = 'reducer') => reducer => {
     const replacement = (...args) => {
-      const mark = tr.b.Timing.mark(category, reducer.name);
+      const mark = new cp.Mark(category, reducer.name);
       try {
         return reducer.apply(this, args);
       } finally {

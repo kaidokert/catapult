@@ -4,6 +4,8 @@
 */
 'use strict';
 
+import analytics from './google-analytics.js';
+
 const PAUSED = 'paused';
 const RUNNING = 'running';
 const PAUSING = 'pausing';
@@ -40,6 +42,7 @@ async function flush() {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.warn(err);
+      analytics.sendException(err);
     }
   }
 
