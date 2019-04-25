@@ -52,7 +52,7 @@ tr.exportTo('cp', () => {
 
     async fetch_() {
       await this.addAuthorizationHeaders_();
-      const mark = tr.b.Timing.mark('fetch', this.constructor.name);
+      const mark = new cp.Mark('fetch', this.constructor.name);
       const response = await fetch(this.url_, {
         body: this.body_,
         headers: this.headers_,

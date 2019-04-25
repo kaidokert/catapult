@@ -17,8 +17,11 @@ found in the LICENSE file.
   </template>
 </test-fixture>
 
-<script>
+<script type="module">
 'use strict';
+
+import {Mark} from './metrics.js';
+
 suite('utils', function() {
   test('setImmutable', function() {
     assert.deepEqual({b: 'c'}, cp.setImmutable(
@@ -122,18 +125,18 @@ suite('utils', function() {
   });
 
   test('measureTrace', function() {
-    tr.b.Timing.mark('spa/utils-test', 'measureTrace').end();
-    tr.b.Timing.mark('spa/utils-test', 'measureTrace').end();
-    tr.b.Timing.mark('spa/utils-test', 'measureTrace').end();
+    new Mark('spa/utils-test', 'measureTrace').end();
+    new Mark('spa/utils-test', 'measureTrace').end();
+    new Mark('spa/utils-test', 'measureTrace').end();
     const trace = cp.measureTrace();
     assert.lengthOf(trace.filter(e =>
       e.name === 'spa/utils-test:measureTrace'), 3);
   });
 
   test('measureHistograms', function() {
-    tr.b.Timing.mark('spa/utils-test', 'measureHistograms').end();
-    tr.b.Timing.mark('spa/utils-test', 'measureHistograms').end();
-    tr.b.Timing.mark('spa/utils-test', 'measureHistograms').end();
+    new Mark('spa/utils-test', 'measureHistograms').end();
+    new Mark('spa/utils-test', 'measureHistograms').end();
+    new Mark('spa/utils-test', 'measureHistograms').end();
     const histograms = cp.measureHistograms();
     const hist = histograms.getHistogramNamed(
         'spa/utils-test:measureHistograms');
@@ -141,9 +144,9 @@ suite('utils', function() {
   });
 
   test('measureTable', function() {
-    tr.b.Timing.mark('spa/utils-test', 'measureTable').end();
-    tr.b.Timing.mark('spa/utils-test', 'measureTable').end();
-    tr.b.Timing.mark('spa/utils-test', 'measureTable').end();
+    new Mark('spa/utils-test', 'measureTable').end();
+    new Mark('spa/utils-test', 'measureTable').end();
+    new Mark('spa/utils-test', 'measureTable').end();
     const rows = cp.measureTable().split('\n');
     assert.include(rows, '0     spa/utils-test:measureTable');
   });
