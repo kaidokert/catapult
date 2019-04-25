@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97429c83_aea096da",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-25T20:19:07Z",
+      "side": 1,
+      "message": "please specify that this can be a float.",
+      "range": {
+        "startLine": 429,
+        "startChar": 6,
+        "endLine": 429,
+        "endChar": 44
+      },
+      "revId": "4a0126952e330c355c0edfea4d0de53b82e08208",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e13cda6_d2921a64",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-25T20:19:07Z",
+      "side": 1,
+      "message": "THis is missing context, so I worry that someone will thing that Telemetry does not in general support their device. I think you can fix this comment to say that the current device does not support reading cpu temperature specifically.",
+      "range": {
+        "startLine": 769,
+        "startChar": 20,
+        "endLine": 769,
+        "endChar": 70
+      },
+      "revId": "4a0126952e330c355c0edfea4d0de53b82e08208",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
