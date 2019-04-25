@@ -51,6 +51,41 @@
       "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f2bd59d_1ecbf1e4",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-25T14:54:32Z",
+      "side": 1,
+      "message": "I think this change is fine. But some of this explanation should make it into comments in the code.",
+      "parentUuid": "a9b1e35f_68fdeabb",
+      "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d4aff2b_323d6ad7",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-25T14:54:32Z",
+      "side": 1,
+      "message": "Will all have the same refresh_period? Should a check be added for that?",
+      "revId": "daaa579cc895d848b15a7ee1a53f43bbbf81ce08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
