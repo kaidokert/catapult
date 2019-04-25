@@ -27,6 +27,11 @@ module.exports = {
   resolve: {
     modules: [thirdParty],
     alias: {
+      'symbol-observable': path.resolve(nodeModules, 'symbol-observable'),
+      '@webcomponents': path.resolve(nodeModules, '@webcomponents'),
+      '/@polymer': path.resolve(nodeModules, '@polymer'),
+      '@polymer': path.resolve(nodeModules, '@polymer'),
+      '/redux': path.resolve(nodeModules, 'redux'),
       '/idb/idb.js': path.resolve(thirdParty, 'idb', 'idb.js'),
       '/tsmon_client/tsmon-client.js': path.resolve(
           thirdParty, 'tsmon_client', 'tsmon-client.js'),
