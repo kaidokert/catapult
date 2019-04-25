@@ -27,6 +27,7 @@ module.exports = {
   resolve: {
     modules: [thirdParty],
     alias: {
+      '/@chopsui': path.resolve(nodeModules, '@chopsui'),
       '/idb/idb.js': path.resolve(thirdParty, 'idb', 'idb.js'),
       '/tsmon_client/tsmon-client.js': path.resolve(
           thirdParty, 'tsmon_client', 'tsmon-client.js'),
