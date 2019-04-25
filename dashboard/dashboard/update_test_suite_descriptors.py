@@ -53,6 +53,38 @@ def ScheduleUpdateDescriptor(test_suite, namespace):
   deferred.defer(_UpdateDescriptor, test_suite, namespace)
 
 
+def _ScheduleDebug(test_suite):
+  deferred.defer(_Debug, test_suite)
+
+
+def _Debug(test_suite, start_cursor=None):
+  datastore_hooks.SetPrivilegedRequest()
+  start = time.time()
+  deadline = start + DEADLINE_SECONDS
+  query_iter = _QueryTestSuite(test_suite).iter(
+      keys_only=True, produce_cursors=True, start_cursor=start_cursor,
+      use_cache=False, use_memcache=False)
+  for key in query_iter:
+    test_path = utils.TestPath(key)
+    try:
+      desc = descriptor.Descriptor.FromTestPathSync(test_path)
+    except ValueError:
+      logging.error('DescriptorValueError %s', test_path)
+      return
+    if desc.test_suite != 'graphics:GLBench':
+      if test_path not in desc.ToTestPathsSync():
+        logging.error('DescriptorUnreversible %s', test_path)
+        return
+    if time.time() > deadline:
+      break
+  if query_iter.probably_has_next():
+    next_cursor = query_iter.cursor_before()
+    logging.info('_Debug continuing %s %r', test_suite, next_cursor)
+    deferred.defer(_Debug, test_suite, next_cursor)
+  else:
+    logging.info('_Debug done %s', test_suite)
+
+
 def _QueryTestSuite(test_suite):
   desc = descriptor.Descriptor(test_suite=test_suite, bot='place:holder')
   test_path = list(desc.ToTestPathsSync())[0].split('/')
@@ -116,7 +148,13 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
     for key in query_iter:
       test_path = utils.TestPath(key)
       key_count += 1
-      desc = descriptor.Descriptor.FromTestPathSync(test_path)
+
+      try:
+        desc = descriptor.Descriptor.FromTestPathSync(test_path)
+      except ValueError:
+        logging.error('DescriptorValueError %s', test_path)
+        break
+
       bots.add(desc.bot)
       if desc.measurement:
         measurements.add(desc.measurement)
