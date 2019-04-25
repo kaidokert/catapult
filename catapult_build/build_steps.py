@@ -101,46 +101,6 @@ _CATAPULT_TESTS = [
         'path': 'systrace/bin/run_tests',
     },
     {
-        'name': 'Snap-it Tests',
-        'path': 'telemetry/bin/run_snap_it_unittest',
-        'additional_args': [
-            '--browser=reference',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Telemetry Tests with Stable Browser (Desktop)',
-        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
-        'additional_args': [
-            '--browser=reference',
-            '--start-xvfb'
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Telemetry Tests with Stable Browser (Android)',
-        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
-        'additional_args': [
-            '--browser=reference',
-            '--device=android',
-            '--jobs=1'
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['win', 'mac', 'linux']
-    },
-    {
-        'name': 'Telemetry Integration Tests with Stable Browser',
-        'path': 'telemetry/bin/run_browser_tests',
-        'additional_args': [
-            'BrowserTest',
-            '--browser=reference',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['android', 'linux'],  # TODO(nedn): enable this on linux
-    },
-    {
         'name': 'Tracing Dev Server Tests Canary',
         'path': 'tracing/bin/run_dev_server_tests',
         'additional_args': [
