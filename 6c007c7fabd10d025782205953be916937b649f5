@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa27da34_df312b79",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-25T16:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "654dc0c1_58dd805d",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb710657_ef38e8fb",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
         "patchSetId": 5
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "747db21c_b2ed3239",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-25T16:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb710657_ef38e8fb",
+      "range": {
+        "startLine": 84,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 48
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a29029a8_a60da5d2",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-25T16:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6cb69e5_4f34adb3",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 16
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ec7a689_d5f7b402",
         "filename": "tracing/tracing/trace_data/trace_data.py",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2019-04-02T17:03:13Z",
       "side": 1,
       "message": "Would it be simpler to use shutil.move here? Or do you prefer this for some reason?",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 38
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bae98e9d_3066f34c",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-25T16:34:14Z",
+      "side": 1,
+      "message": "If both src and dst file names are on the same file system, then shutil.move is just the same as os.rename [1]; and it would have the same problem on windows.\n\nI could replace os.rename with shutil.move just to support the two temp files being on different file systems; but I thought that wouldn\u0027t be a common usage.\n\n[1]: https://docs.python.org/2/library/shutil.html#shutil.move",
+      "parentUuid": "2ec7a689_d5f7b402",
       "range": {
         "startLine": 243,
         "startChar": 0,
