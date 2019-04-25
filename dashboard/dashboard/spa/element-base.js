@@ -97,9 +97,75 @@ tr.exportTo('cp', () => {
         ...Redux.DEFAULT_REDUCER_WRAPPERS,
       ]);
     }
+    timeActions(subclass);
+    timeEventListeners(subclass);
   };
 
-  return {
-    ElementBase,
-  };
+  function timeActions(cls) {
+    if (!cls.actions) return;
+    for (const [name, action] of Object.entries(cls.actions)) {
+      const debugName = `${cls.name}.actions.${name}`;
+      const actionReplacement = (...args) => {
+        const thunk = action(...args);
+        Object.defineProperty(thunk, 'name', {value: debugName});
+        const thunkReplacement = async(dispatch, getState) => {
+          const mark = Timing.mark('action', debugName);
+          try {
+            return await thunk(dispatch, getState);
+          } finally {
+            mark.end();
+          }
+        };
+        Object.defineProperty(thunkReplacement, 'name', {
+          value: 'timeActions:wrapper',
+        });
+        return thunkReplacement;
+      };
+      actionReplacement.implementation = action;
+      Object.defineProperty(actionReplacement, 'name', {value: debugName});
+      cls.actions[name] = actionReplacement;
+    }
+  }
+
+  function timeEventListeners(cls) {
+    // Polymer handles the addEventListener() calls, this method just wraps
+    // 'on*_' methods with Timing marks.
+    for (const name of Object.getOwnPropertyNames(cls.prototype)) {
+      if (!name.startsWith('on')) continue;
+      if (!name.endsWith('_')) continue;
+      (() => {
+        const wrapped = cls.prototype[name];
+        const debugName = cls.name + '.' + name;
+
+        cls.prototype[name] = async function eventListenerWrapper(event) {
+          // Measure the time from when the browser receives the event to when
+          // we receive the event.
+          if (event && event.timeStamp) {
+            Timing.mark('listener', debugName, event.timeStamp).end();
+          }
+
+          // Measure the first paint latency by starting the event listener
+          // without awaiting it.
+          const firstPaintMark = Timing.mark('firstPaint', debugName);
+          const resultPromise = wrapped.call(this, event);
+          (async() => {
+            await cp.afterRender();
+            firstPaintMark.end();
+          })();
+
+          const result = await resultPromise;
+
+          const lastPaintMark = Timing.mark('lastPaint', debugName);
+          (async() => {
+            await cp.afterRender();
+            lastPaintMark.end();
+          })();
+
+          return result;
+        };
+      })();
+    }
+  }
+
+  return {ElementBase};
 });

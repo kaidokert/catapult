@@ -13,12 +13,39 @@ tr.exportTo('window', () => {
     '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com';
   if (!IS_PRODUCTION) AUTH_CLIENT_ID = '';
 
+  // Google Analytics
+  const trackingId = IS_PRODUCTION ? 'UA-98760012-3' : 'UA-98760012-4';
+
+  window.ga = window.ga || function() {
+    ga.q = ga.q || [];
+    ga.q.push(arguments);
+  };
+  ga.l = new Date();
+  ga('create', trackingId, 'auto');
+  ga('send', 'pageview');
+  (function() {
+    // Write this script tag at runtime instead of in HTML in order to prevent
+    // vulcanizer from inlining a remote script.
+    const script = document.createElement('script');
+    script.src = 'https://www.google-analytics.com/analytics.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.head.appendChild(script);
+  })();
+
   // Register the Service Worker when in production. Service Workers are not
   // helpful in development mode because all backend responses are being mocked.
   if ('serviceWorker' in navigator && !IS_DEBUG) {
+    const swChannel = new BroadcastChannel('service-worker');
+    const analyticsClientIdPromise = new Promise(resolve => ga(tracker =>
+      resolve(tracker.get('clientId'))));
+
     document.addEventListener('DOMContentLoaded', async() => {
-      await navigator.serviceWorker.register(
-          'service-worker.js?' + VULCANIZED_TIMESTAMP.getTime());
+      const [clientId] = await Promise.all([
+        analyticsClientIdPromise,
+        navigator.serviceWorker.register(
+            'service-worker.js?' + VULCANIZED_TIMESTAMP.getTime()),
+      ]);
 
       if (navigator.serviceWorker.controller === null) {
         // Technically, everything would work without the service worker, but it
@@ -26,8 +53,29 @@ tr.exportTo('window', () => {
         // finish installing.
         location.reload();
       }
+
+      swChannel.postMessage({
+        type: 'GOOGLE_ANALYTICS',
+        payload: {
+          trackingId,
+          clientId,
+        },
+      });
     });
   }
+
+  window.addEventListener('load', () => {
+    tr.b.Timing.ANALYTICS_FILTERS.push(mark =>
+      ['firstPaint', 'fetch', 'load'].includes(mark.groupName) ||
+      (mark.durationMs > 100));
+    const loadTimes = Object.entries(performance.timing.toJSON()).filter(p =>
+      p[1] > 0);
+    loadTimes.sort((a, b) => a[1] - b[1]);
+    const start = loadTimes.shift()[1];
+    for (const [name, timeStamp] of loadTimes) {
+      tr.b.Timing.mark('load', name, start).end(timeStamp);
+    }
+  });
 
   return {
     AUTH_CLIENT_ID,
@@ -37,3 +85,6 @@ tr.exportTo('window', () => {
 });
 
 import './chromeperf-app.js';
+
+import * as metrics from './metrics.js';
+tr.exportTo('cp', () => metrics);
