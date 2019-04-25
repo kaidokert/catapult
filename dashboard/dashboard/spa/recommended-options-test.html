@@ -48,6 +48,7 @@ suite('recommended-options', function() {
         options: ['aaa', 'bbb', 'ccc'],
       }),
     }));
+    await afterRender();
     const state = rec.getState().test;
     assert.deepEqual(['ccc', 'bbb'], state.recommended.optionValues);
   });
