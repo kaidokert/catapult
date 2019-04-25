@@ -4,6 +4,7 @@
 */
 'use strict';
 
+import * as Redux from '/redux/es/redux.mjs';
 import {deepFreeze, setImmutable} from './utils.js';
 
 // See architecture.md for background and explanations.
