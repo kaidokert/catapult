@@ -19,6 +19,7 @@ found in the LICENSE file.
 <script type="module">
 'use strict';
 
+import findElements from './find-elements.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
 import {afterRender} from './utils.js';
 
@@ -60,9 +61,10 @@ suite('report-controls', function() {
         ENSURE('test'),
         UPDATE('test', ReportControls.buildState({}))));
     await afterRender();
-    assert.isDefined(tr.ui.b.findDeepElementWithTextContent(
-        controls, new RegExp(ReportControls.DEFAULT_NAME)));
-    assert.isDefined(tr.ui.b.findDeepElementWithTextContent(controls, /aaa/));
+    assert.isDefined(findElements(controls, e =>
+      new RegExp(ReportControls.DEFAULT_NAME).test(e.textContent))[0]);
+    assert.isDefined(findElements(controls, e =>
+      /aaa/.test(e.textContent))[0]);
   });
 
   test('milestones', async function() {
