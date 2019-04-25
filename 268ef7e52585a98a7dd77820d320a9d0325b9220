@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0de286d_638ad32b",
+        "filename": "common/node_runner/node_runner/minifyjs",
+        "patchSetId": 12
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-04-25T21:23:16Z",
+      "side": 1,
+      "message": "2019?",
+      "range": {
+        "startLine": 4,
+        "startChar": 10,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "268ef7e52585a98a7dd77820d320a9d0325b9220",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
