@@ -24,44 +24,11 @@
 
 python_version: "2.7"
 
-
-# Used by:
-#   telemetry/
-#
-# This version must be compatible with the version range specified by
-# //telemetry/telemetry/internal/util/external_modules.py
-wheel: <
-  name: "infra/python/wheels/numpy/${vpython_platform}"
-  version: "version:1.11.3"
->
-
-# Used by:
-#   telemetry/
-wheel: <
-  name: "infra/python/wheels/pypiwin32/${vpython_platform}"
-  version: "version:219"
-  match_tag: <
-    platform: "win32"
-  >
-  match_tag: <
-    platform: "win_amd64"
-  >
->
-
 # Used by:
 #   third_party/typ/
 wheel: <
   name: "infra/python/wheels/coverage/${vpython_platform}"
   version: "version:4.3.4"
->
-
-# Used by:
-#   telemetry/
-# This version must be compatible with the version range specified by
-# //telemetry/telemetry/internal/util/external_modules.py
-wheel: <
-  name: "infra/python/wheels/psutil/${vpython_platform}"
-  version: "version:5.2.2"
 >
 
 # Used by:
@@ -77,6 +44,10 @@ wheel: <
 
 # Used by:
 #   experimental/soundwave
+wheel: <
+  name: "infra/python/wheels/numpy/${vpython_platform}"
+  version: "version:1.11.3"
+>
 wheel: <
   name: "infra/python/wheels/pandas/${vpython_platform}"
   version: "version:0.23.4"
