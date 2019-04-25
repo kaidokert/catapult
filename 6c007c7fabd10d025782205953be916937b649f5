@@ -187,6 +187,30 @@
       "revId": "6c007c7fabd10d025782205953be916937b649f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "813a5f13_eb11193e",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-25T18:20:17Z",
+      "side": 1,
+      "message": "Sounds good.",
+      "parentUuid": "bae98e9d_3066f34c",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 38
+      },
+      "revId": "6c007c7fabd10d025782205953be916937b649f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
