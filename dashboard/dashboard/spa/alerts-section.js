@@ -487,6 +487,7 @@ AlertsSection.actions = {
   },
 
   submitNewBug: statePath => async(dispatch, getState) => {
+    METRICS.startTriage();
     dispatch(UPDATE(statePath, {isLoading: true}));
     const rootState = getState();
     let state = get(rootState, statePath);
@@ -499,6 +500,7 @@ AlertsSection.actions = {
       alertKeys,
       bugId: '[creating]',
     });
+    METRICS.endTriage();
 
     let bugId;
     try {
@@ -567,6 +569,8 @@ AlertsSection.actions = {
     // triaged alerts multiple times.
     let triagedMaxStartRevision;
 
+    MERICS.startLoadAlerts();
+
     // Use a BatchIterator to batch AlertsRequest.response.
     // Each batch of results is handled in handleBatch(), then displayed by
     // dispatching reducers.receiveAlerts.
@@ -591,6 +595,7 @@ AlertsSection.actions = {
           errors,
           totalCount,
         });
+        METRICS.endLoadAlerts();
       }
       state = get(getState(), statePath);
       if (!state) return;

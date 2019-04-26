@@ -839,6 +839,8 @@ ChromeperfApp.reducers = {
       };
     }
 
+    if (!options) METRICS.startChartAction();
+
     const sectionId = simpleGUID();
     const newSection = {
       type: ChartSection.is,

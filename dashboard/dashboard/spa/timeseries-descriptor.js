@@ -165,19 +165,30 @@ export default class TimeseriesDescriptor extends ElementBase {
   }
 
   async onSuiteSelect_(event) {
+    METRICS.startLoadMenu();
     await this.dispatch('describeSuites', this.statePath);
+    METRICS.endLoadMenu();
     this.dispatchMatrixChange_();
   }
 
   async onMeasurementSelect_(event) {
+    METRICS.startLoadMenu();
+    // The next menu is already loaded.
+    METRICS.endLoadMenu();
     this.dispatchMatrixChange_();
   }
 
   async onBotSelect_(event) {
+    METRICS.startLoadMenu();
+    // The next menu is already loaded.
+    METRICS.endLoadMenu();
     this.dispatchMatrixChange_();
   }
 
   async onCaseSelect_(event) {
+    METRICS.startLoadMenu();
+    // The next menu is already loaded.
+    METRICS.endLoadMenu();
     this.dispatchMatrixChange_();
   }
 
