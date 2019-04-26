@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "233bf5ae_c27122a7",
+        "filename": "dashboard/dashboard/elements/triage-dialog.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-04-26T17:34:18Z",
+      "side": 1,
+      "message": "METRICS.endTriage()?",
+      "range": {
+        "startLine": 448,
+        "startChar": 4,
+        "endLine": 448,
+        "endChar": 11
+      },
+      "revId": "d1babc5dedd382b0feebe47bb9298ba54841241a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de9faef3_9a067edb",
+        "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-04-26T17:34:18Z",
+      "side": 1,
+      "message": "what are these end-immediately-following-start METRICS calls supposed to measure?",
+      "revId": "d1babc5dedd382b0feebe47bb9298ba54841241a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
