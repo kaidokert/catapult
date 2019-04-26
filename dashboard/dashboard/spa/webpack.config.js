@@ -27,13 +27,13 @@ module.exports = {
   resolve: {
     modules: [thirdParty],
     alias: {
+      'tsmon-client': path.resolve(nodeModules, '@chopsui', 'tsmon-client',
+          'tsmon-client.js'),
       'symbol-observable': path.resolve(nodeModules, 'symbol-observable'),
       '@webcomponents': path.resolve(nodeModules, '@webcomponents'),
       '/@polymer': path.resolve(nodeModules, '@polymer'),
       '@polymer': path.resolve(nodeModules, '@polymer'),
       '/idb/idb.js': path.resolve(thirdParty, 'idb', 'idb.js'),
-      '/tsmon_client/tsmon-client.js': path.resolve(
-          thirdParty, 'tsmon_client', 'tsmon-client.js'),
     },
   },
   resolveLoader: {

@@ -33,4 +33,7 @@ import '/@polymer/iron-collapse/iron-collapse.js';
 import '/@polymer/iron-icon/iron-icon.js';
 import '/@polymer/iron-iconset-svg/iron-iconset-svg.js';
 
+import 'tsmon-client';  // TODO move to metrics.js when V1 is deleted.
+import './metrics.js';
+
 import './chromeperf-app.js';
