@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "e0c0bdd3_d86b533a",
+        "filename": "tracing/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-26T16:39:53Z",
+      "side": 1,
+      "message": "Good idea. I instead just deleted the section since I feel it will just get out of date. I think a better place for that type of information is in a README.md file.",
+      "parentUuid": "a7860179_9ad1aa5f",
+      "revId": "3a4943a82f9fafafd3cbc72eecdfe4272bac1ce1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e48eaef0_33d4286e",
         "filename": "tracing/OWNERS",
         "patchSetId": 1
