@@ -70,6 +70,9 @@ def PathsForDeployment():
     paths.append(os.path.join(_CATAPULT_PATH, 'dashboard', name))
   paths.append(os.path.join(_CATAPULT_PATH, 'tracing', 'tracing_project.py'))
   paths.append(os.path.join(_CATAPULT_PATH, 'common', 'py_utils', 'py_utils'))
+  paths.append(os.path.join(
+      _CATAPULT_PATH, 'common', 'node_runner', 'node_runner', 'node_modules',
+      '@chopsui', 'tsmon-client', 'tsmon-client.js'))
   # Required by py_utils
   paths.append(os.path.join(_CATAPULT_PATH, 'devil', 'devil'))
   paths.extend(_TracingPaths())
