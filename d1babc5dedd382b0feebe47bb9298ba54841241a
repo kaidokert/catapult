@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c98a0b9b_4f1e9d3d",
+        "filename": "dashboard/dashboard/elements/triage-dialog.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-26T18:04:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "233bf5ae_c27122a7",
+      "range": {
+        "startLine": 448,
+        "startChar": 4,
+        "endLine": 448,
+        "endChar": 11
+      },
+      "revId": "d1babc5dedd382b0feebe47bb9298ba54841241a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de9faef3_9a067edb",
         "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
         "patchSetId": 12
@@ -36,6 +60,24 @@
       "writtenOn": "2019-04-26T17:34:18Z",
       "side": 1,
       "message": "what are these end-immediately-following-start METRICS calls supposed to measure?",
+      "revId": "d1babc5dedd382b0feebe47bb9298ba54841241a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fe7b904_473ed6ba",
+        "filename": "dashboard/dashboard/spa/timeseries-descriptor.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-26T18:04:47Z",
+      "side": 1,
+      "message": "They add zero samples to represent the times that the user would have spent waiting for the V1 UI to fetch /list_tests, but V2 responds immediately.",
+      "parentUuid": "de9faef3_9a067edb",
       "revId": "d1babc5dedd382b0feebe47bb9298ba54841241a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
