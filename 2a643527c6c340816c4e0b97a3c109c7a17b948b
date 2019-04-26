@@ -143,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "13789c42_997cccf5",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-26T15:30:30Z",
+      "side": 1,
+      "message": "It looks like there might be a misunderstanding of how find_anomalies works. I\u0027d like to VC to try to clear that up. Unfortunately, I have an appointment this afternoon, so maybe either Simon can chat with you this afternoon or we can meet on Monday?\n\nI confirmed with Tim that he expects to experiment with statistics more, so the ability to add statistics might be a user requirement.",
+      "parentUuid": "4365734c_b7193abd",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82cfa007_f0ab69f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
