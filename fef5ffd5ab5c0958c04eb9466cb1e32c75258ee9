@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99a95984_79d42fd5",
+        "filename": "tracing/tracing/ui/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-26T16:44:25Z",
+      "side": 1,
+      "message": "I added Dean and Ben to this UI section so that JavaScript/HTML changes will go to them instead of to python-focused people like Oystein and Juan, who both mentioned they preferred not to review such code. Is this okay with everyone?",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "fef5ffd5ab5c0958c04eb9466cb1e32c75258ee9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
