@@ -16,6 +16,24 @@
       "revId": "fc9cc24a6b43697d52c394965d70e5d9242da172",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "777dd574_11d84416",
+        "filename": "tracing/tracing/ui/extras/about_tracing/record_selection_dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1001794
+      },
+      "writtenOn": "2019-04-26T21:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b922df52_56962953",
+      "revId": "fc9cc24a6b43697d52c394965d70e5d9242da172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
