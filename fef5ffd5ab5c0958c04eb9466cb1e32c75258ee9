@@ -22,6 +22,30 @@
       "revId": "fef5ffd5ab5c0958c04eb9466cb1e32c75258ee9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd9e9b99_9d1672c0",
+        "filename": "tracing/tracing/ui/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-26T18:13:10Z",
+      "side": 1,
+      "message": "sgtm, thanks!",
+      "parentUuid": "99a95984_79d42fd5",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "fef5ffd5ab5c0958c04eb9466cb1e32c75258ee9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
