@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "903ac9c6_84e12fa3",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-26T03:19:34Z",
+      "side": 1,
+      "message": "Looks like this assertion might be blocking roll?\nhttps://ci.chromium.org/p/chromium/builders/try/win7-rel/77016\nhttps://chromium-swarm.appspot.com/task?id\u003d446f764fbeefd110\nhttps://ci.chromium.org/p/chromium/builders/try/mac-rel/75695\nhttps://chromium-swarm.appspot.com/task?id\u003d446f6eff89545d10",
+      "revId": "b00da16c3ff7f512ba4a929bc9b02421c8ce7710",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
