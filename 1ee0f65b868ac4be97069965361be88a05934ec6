@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c709b34_f073c2bd",
+        "filename": "tracing/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-26T01:38:41Z",
+      "side": 0,
+      "message": "Please move fmeawad and lpy to the emeritus section, cc them on this change, and give them a day or two to object.",
+      "revId": "1ee0f65b868ac4be97069965361be88a05934ec6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
