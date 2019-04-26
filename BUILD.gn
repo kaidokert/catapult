@@ -99,7 +99,6 @@ group("telemetry_chrome_test_support") {
     "third_party/redux/",
     "third_party/six/",
     "third_party/snap-it/",
-    "third_party/tsmon_client/",
     "third_party/typ/",
     "third_party/uritemplate/",
     "third_party/webapp2/",
