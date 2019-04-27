@@ -9,7 +9,7 @@ import '/@polymer/polymer/lib/elements/dom-if.js';
 import * as PolymerAsync from '/@polymer/polymer/lib/utils/async.js';
 import ChartBase from './chart-base.js';
 import ElementBase from './element-base.js';
-import TimeseriesMerger from './timeseries-merger.js';
+import {TimeseriesMerger} from './timeseries-merger.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE, layoutTimeseries} from './layout-timeseries.js';

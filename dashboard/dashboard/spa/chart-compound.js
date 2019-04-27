@@ -13,6 +13,7 @@ import DetailsTable from './details-table.js';
 import ElementBase from './element-base.js';
 import {CHAIN, TOGGLE, UPDATE} from './simple-redux.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
+import {MAX_POINTS} from './timeseries-merger.js';
 import {MODE} from './layout-timeseries.js';
 import {get} from '/@polymer/polymer/lib/utils/path.js';
 import {html} from '/@polymer/polymer/polymer-element.js';
@@ -536,10 +537,11 @@ ChartCompound.actions = {
 
     const firstRevision = ChartCompound.findFirstRevision(timeserieses);
     const lastRevision = ChartCompound.findLastRevision(timeserieses);
-    const minRevision = ChartCompound.computeMinRevision(
-        state.minRevision, timeserieses, firstRevision, lastRevision);
     const maxRevision = ChartCompound.computeMaxRevision(
         state.maxRevision, firstRevision, lastRevision);
+    const minRevision = ChartCompound.computeMinRevision(
+        firstNonEmptyLineDescriptor, state.minRevision, timeserieses,
+        firstRevision, maxRevision);
 
     const minimapLineDescriptors = [];
     if (firstNonEmptyLineDescriptor) {
@@ -916,31 +918,50 @@ ChartCompound.findLastRevision = timeserieses => {
 };
 
 ChartCompound.computeMinRevision = (
-    minRevision, timeserieses, firstRevision, lastRevision) => {
+    lineDescriptor, minRevision, timeserieses,
+    firstRevision, lastRevision) => {
   if (minRevision &&
       minRevision >= firstRevision &&
       minRevision < lastRevision) {
     return minRevision;
   }
 
-  const MS_PER_MONTH = tr.b.convertUnit(
-      1, tr.b.UnitScale.TIME.MONTH, tr.b.UnitScale.TIME.MILLI_SEC);
+  timeserieses = timeserieses.filter(ts => ts && ts.length);
+  if (timeserieses.length === 0) return minRevision;
 
-  let closestTimestamp = Infinity;
-  const minTimestampMs = new Date() - MS_PER_MONTH;
-  for (const timeseries of timeserieses) {
-    if (!timeseries || !timeseries.length) continue;
-    const datum = tr.b.findClosestElementInSortedArray(
-        timeseries, d => d.timestamp, minTimestampMs);
-    if (!datum) continue;
-    const timestamp = datum.timestamp;
-    if (Math.abs(timestamp - minTimestampMs) <
-        Math.abs(closestTimestamp - minTimestampMs)) {
-      minRevision = datum.revision;
-      closestTimestamp = timestamp;
+  if (lineDescriptor.bots.length === 1) {
+    // Display the last MAX_POINTS points in the main chart.
+    const timeseries = timeserieses[0];
+    const lastIndex = tr.b.findLowIndexInSortedArray(
+        timeseries, d => d.revision, lastRevision);
+    const i = Math.max(0, lastIndex - MAX_POINTS);
+    return timeseries[i].revision;
+  }
+
+  // There are timeseries from multiple bots, so their revisions don't line
+  // up. Find minRevision such that TimeseriesMerger will produce
+  // MAX_POINTS points in the main chart.
+
+  const iters = timeserieses.map(timeseries => {
+    return {
+      timeseries,
+      index: tr.b.findLowIndexInSortedArray(
+          timeseries, d => d.revision, lastRevision),
+      get currentRevision() {
+        return this.timeseries[this.index];
+      }
+    };
+  });
+  for (let p = 0; p < MAX_POINTS; ++p) {
+    // Decrement all of the indexes whose revisions are equal to the max
+    // currentRevision. See TimeseriesMerger for more about this algorithm.
+    const maxCurrent = tr.b.math.Statistics.max(
+        iters, iter => iter.currentRevision);
+    for (const iter of iters) {
+      if (iter.currentRevision === maxCurrent && iter.index > 0) --iter.index;
     }
   }
-  return minRevision;
+  return tr.b.math.Statistics.max(iters, iter => iter.currentRevision);
 };
 
 ChartCompound.computeMaxRevision = (

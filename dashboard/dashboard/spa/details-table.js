@@ -10,7 +10,7 @@ import '/@polymer/polymer/lib/elements/dom-repeat.js';
 import * as PolymerAsync from '/@polymer/polymer/lib/utils/async.js';
 import ChartTimeseries from './chart-timeseries.js';
 import ElementBase from './element-base.js';
-import TimeseriesMerger from './timeseries-merger.js';
+import {TimeseriesMerger} from './timeseries-merger.js';
 import {DetailsFetcher} from './details-fetcher.js';
 import {get} from '/@polymer/polymer/lib/utils/path.js';
 import {html} from '/@polymer/polymer/polymer-element.js';
