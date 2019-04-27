@@ -161,6 +161,24 @@
     },
     {
       "key": {
+        "uuid": "70ef2ac6_7d38a615",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-27T11:09:49Z",
+      "side": 1,
+      "message": "What find_anomalies is doing today, isn\u0027t really the point -- the point is the future, when I make changes to how the anomalies are computed. Let me try again:\n\n- Today, we only generate anomalies for things that have sheriff configurations.\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/find_anomalies.py?l\u003d64-67\u0026rcl\u003de6d08137f66ceb950acf8b1bd42866107c2e7cf5\n\n- And then we use the anomaly config that applies for a given TestMetadata, and generate a single Anomaly.\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/find_anomalies.py?l\u003d69-81\u0026rcl\u003de6d08137f66ceb950acf8b1bd42866107c2e7cf5\n\n- This code will find/generate the datapoints through which anomalies will be computed against:\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/find_anomalies.py?l\u003d93\u0026rcl\u003de6d08137f66ceb950acf8b1bd42866107c2e7cf5\n\nThat\u0027s today. In the future, this won\u0027t actually work properly with the way we\u0027re defining the subscriptions with individual anomaly configurations. We\u0027ll have to:\n\n- For every histogram, determine which subscriptions (plural) apply to the TestMetadata to which a histogram is associated, as they are uploaded.\n\n- We then compute the anomalies for the metric+stats given the Subscription and AnomalyConfig for each of those subscriptions which might apply to the individual subscription. So this means, if a Histogram comes in and we see 3 subscriptions apply for the same set of stats, 1 of which has a default AnomalyConfig and 2 with the same AnomalyConfig that refines the subscription, then we have to compute 2 different kinds of Anomaly instances. Each AnomalyConfig will then determine whether it will only modify the settings for a set of statistics.\n\nSo now consider this state:\n\nTest: Waterfall/bot/benchmark/metric\nSubscription 1: Waterfall/bot/benchmark/*/* [MEDIAN, MEAN], AnomalyConfig: [min_points \u003d 50]\nSubscriptoin 2: Waterfall/bot/benchmark/*/* [PCT_90], AnomalyConfig: [min_relative_change: 0.1]\nSubscription 3: Waterfall/bot/benchmark/*/* [MEDIAN, MEAN, PCT_90], AnomalyConfig: [min_points \u003d 50]\n\nThis means we need to compute MEDIAN, MEAN, PCT_90 for 50 minimum points and if those generate an Anomaly, that\u0027s different from the computation of PCT_90 with default number of points but 10% minimum relative change.\n\nThis is *very* different from the way we\u0027re computing the anomalies today, which is why what the current state does doesn\u0027t matter much in the way we\u0027re thinking about how to generate anomalies in the future once we have these in place.\n\nThis is a long way to say, we\u0027re going to change find_anomalies and if we\u0027re letting folks determine arbitrary percentiles, then the combinatorial explosion in the amount of computation we need to perform is real and something we need to think about. The reason we\u0027re defining these tail percentiles first, is because it\u0027s a start, and if we find more important percentiles in the future then we can add those to limit the amount of combinatorial explosion required here.\n\nNow, if we\u0027re saying we\u0027d like folks to be able to analyse individual metrics based on the histograms we\u0027re getting over time, then I agree. We\u0027ll have a different plan to make sure that\u0027s possible, but it doesn\u0027t have to be through the dashboard\u0027s sheriff anomaly configuration for alerting.\n\nIs there something else we need to chat about here?",
+      "parentUuid": "13789c42_997cccf5",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82cfa007_f0ab69f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
