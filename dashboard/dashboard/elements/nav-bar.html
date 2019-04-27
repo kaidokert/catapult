@@ -200,6 +200,7 @@ Polymer({
           this.loginUrl = response.login_url;
           this.displayUsername = response.display_username;
           this.isAdmin = response.is_admin;
+          METRICS.signedIn = this.displayUsername.includes('@');
         }.bind(this));
 
     if (window.location.hostname !== 'chromeperf.appspot.com') {
