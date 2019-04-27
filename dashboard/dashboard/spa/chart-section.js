@@ -8,6 +8,7 @@ import './chart-legend.js';
 import './cp-input.js';
 import './cp-loading.js';
 import './expand-button.js';
+import '/@polymer/polymer/lib/elements/dom-repeat.js';
 import ChartBase from './chart-base.js';
 import ChartCompound from './chart-compound.js';
 import ChartTimeseries from './chart-timeseries.js';
@@ -61,6 +62,10 @@ export default class ChartSection extends ElementBase {
           flex-shrink: 0;
           height: var(--icon-size, 1em);
           width: var(--icon-size, 1em);
+        }
+
+        .error {
+          color: var(--error-color, red);
         }
 
         #chart_container {
@@ -128,6 +133,14 @@ export default class ChartSection extends ElementBase {
             on-click="onClose_">
         </iron-icon>
       </div>
+
+      <dom-repeat items="[[errors]]" as="error">
+        <template>
+          <div class="error">
+            [[error]]
+          </div>
+        </template>
+      </dom-repeat>
 
       <cp-loading loading$="[[isLoading_(
           isLoading, minimapLayout, chartLayout)]]">

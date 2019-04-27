@@ -73,6 +73,10 @@ export default class AlertsSection extends ElementBase {
           font-weight: normal;
         }
 
+        .error {
+          color: var(--error-color, red);
+        }
+
         #count {
           flex-grow: 1;
         }
@@ -83,6 +87,14 @@ export default class AlertsSection extends ElementBase {
           state-path="[[statePath]]"
           on-sources="onSources_">
       </alerts-controls>
+
+      <dom-repeat items="[[errors]]" as="error">
+        <template>
+          <div class="error">
+            [[error]]
+          </div>
+        </template>
+      </dom-repeat>
 
       <cp-loading loading$="[[isLoading_(isLoading, preview.isLoading)]]">
       </cp-loading>
@@ -263,6 +275,7 @@ AlertsSection.State = {
   sectionId: options => options.sectionId || simpleGUID(),
   selectedAlertPath: options => undefined,
   totalCount: options => 0,
+  errors: options => [],
 };
 
 AlertsSection.buildState = options =>
@@ -797,6 +810,9 @@ AlertsSection.reducers = {
   },
 
   receiveAlerts: (state, {alerts, errors, totalCount}, rootState) => {
+    errors = [...new Set([...state.errors, ...errors])];
+    state = {...state, errors};
+
     // |alerts| are all new.
     // Group them together with previously-received alerts from
     // state.alertGroups[].alerts.
@@ -913,6 +929,7 @@ AlertsSection.reducers = {
   startLoadingAlerts: (state, {started}, rootState) => {
     return {
       ...state,
+      errors: [],
       alertGroups: AlertsTable.placeholderAlertGroups(),
       isLoading: true,
       started,
