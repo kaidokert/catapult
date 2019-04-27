@@ -179,6 +179,24 @@
     },
     {
       "key": {
+        "uuid": "5ad0b016_0ab8e871",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-27T18:44:46Z",
+      "side": 1,
+      "message": "Thanks, that\u0027s a bit clearer, though I still don\u0027t see why allowing arbitrary statistics necessarily leads to combinatorial explosion.\n\nThe combinatorial explosion does not happen when the anomaly config structure permits many statistics. The combinatorial explosion happens when users configure many statistics. I can imagine many ways to allow users to configure *arbitrary* statistics without allowing them to configure *too many* statistics. You could warn or raise an error if more than 5 stats are configured. Or monitor find_anomalies latency. Or use a watchdog timer to put a hard cap on the latency.\n\nIt\u0027s also possible for users to configure too many statistics even if you keep this whitelist. There are already 9 options, and it\u0027s still missing the confidence interval statistics entirely. It\u0027s easier for users to say \"let\u0027s just monitor everything\" when there are only a dozen statistics than when the stats are free-form. Good actors won\u0027t configure all 100 percentiles. Good actors do the kind of analysis that can justify picking a single percentile to maximize regression coverage while minimizing false positives or w/e, even if it\u0027s not in the 1-2-5 series. Good actors do the kind of analysis that might show that that optimal percentile is different for different measurements or stories, or has changed since last year. Good actors research new algorithms like confidence intervals.\n\nIf you\u0027re worried about cost, then manage the cost directly. The config structure is too far removed from the runtime to be the right place to manage cost. The config structure is a user interface, so user concerns need to be considered even if they don\u0027t trump other concerns.",
+      "parentUuid": "70ef2ac6_7d38a615",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82cfa007_f0ab69f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
