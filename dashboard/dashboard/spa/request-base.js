@@ -53,6 +53,7 @@ export default class RequestBase {
   }
 
   async fetch_() {
+    if (window.REQUEST_HOOK) REQUEST_HOOK(this);
     await this.addAuthorizationHeaders_();
     const mark = tr.b.Timing.mark('fetch', this.constructor.name);
     const response = await fetch(this.url_, {
@@ -61,7 +62,18 @@ export default class RequestBase {
       method: this.method_,
     });
     mark.end();
+    if (!response.ok) this.onError_(response);
     return this.postProcess_(await response.json());
+  }
+
+  onError_(response) {
+    const message = `
+      Error fetching ${this.url_}: ${response.status} ${response.statusText}
+    `;
+    const err = new Error(message.trim());
+    err.request = this;
+    err.response = response;
+    throw err;
   }
 
   postProcess_(response, isFromChannel = false) {
