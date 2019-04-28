@@ -18,6 +18,11 @@ export default class AlertsRequest extends RequestBase {
     }
   }
 
+  fetchErrorMessage_(response) {
+    return `Error loading alerts:` +
+      `${response.status} ${response.statusText}`;
+  }
+
   get url_() {
     return AlertsRequest.URL;
   }
