@@ -9,12 +9,6 @@ found in the LICENSE file.
 <script src="/bower_components/web-component-tester/browser.js"></script>
 <link rel="import" href="/dashboard/spa/dependencies.html">
 
-<test-fixture id="test">
-  <template>
-    <alerts-section state-path="test"></alerts-section>
-  </template>
-</test-fixture>
-
 <script type="module">
 'use strict';
 
@@ -140,8 +134,9 @@ suite('alerts-section', function() {
   });
 
   test('triageNew', async function() {
-    const section = fixture('test');
-    section.dispatch(CHAIN(
+    const section = document.createElement('alerts-section');
+    section.statePath = 'test';
+    await section.dispatch(CHAIN(
         UPDATE('', {
           recentPerformanceBugs: [
             {
@@ -163,6 +158,7 @@ suite('alerts-section', function() {
         }),
         ENSURE('test'),
         UPDATE('test', AlertsSection.buildState({}))));
+    document.body.appendChild(section);
     await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
@@ -202,8 +198,9 @@ suite('alerts-section', function() {
   });
 
   test('triageExisting', async function() {
-    const section = fixture('test');
-    section.dispatch(CHAIN(
+    const section = document.createElement('alerts-section');
+    section.statePath = 'test';
+    await section.dispatch(CHAIN(
         UPDATE('', {
           recentPerformanceBugs: [
             {
@@ -225,6 +222,7 @@ suite('alerts-section', function() {
         }),
         ENSURE('test'),
         UPDATE('test', AlertsSection.buildState({}))));
+    document.body.appendChild(section);
     await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
@@ -263,8 +261,9 @@ suite('alerts-section', function() {
   });
 
   test('ignore', async function() {
-    const section = fixture('test');
-    section.dispatch(CHAIN(
+    const section = document.createElement('alerts-section');
+    section.statePath = 'test';
+    await section.dispatch(CHAIN(
         UPDATE('', {
           recentPerformanceBugs: [
             {
@@ -286,6 +285,7 @@ suite('alerts-section', function() {
         }),
         ENSURE('test'),
         UPDATE('test', AlertsSection.buildState({}))));
+    document.body.appendChild(section);
     await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
@@ -316,8 +316,9 @@ suite('alerts-section', function() {
   });
 
   test('unassign', async function() {
-    const section = fixture('test');
-    section.dispatch(CHAIN(
+    const section = document.createElement('alerts-section');
+    section.statePath = 'test';
+    await section.dispatch(CHAIN(
         UPDATE('', {
           recentPerformanceBugs: [
             {
@@ -339,6 +340,7 @@ suite('alerts-section', function() {
         }),
         ENSURE('test'),
         UPDATE('test', AlertsSection.buildState({}))));
+    document.body.appendChild(section);
     await afterRender();
     section.$.controls.dispatchEvent(new CustomEvent('sources', {
       detail: {sources: [
