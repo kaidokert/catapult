@@ -18,6 +18,28 @@ export default class DescribeRequest extends RequestBase {
     return DescribeRequest.URL;
   }
 
+  fetchErrorMessage_(response) {
+    const suite = this.body_.get('test_suite');
+    return `Error describing suite "${suite}": ` +
+      `${response.status} ${response.statusText}`;
+  }
+
+  postProcess_(response, isFromChannel = false) {
+    if (!response) throw new Error('null descriptor');
+    if (response.error) throw new Error(response.error);
+    if (!descriptor.bots) throw new Error('missing bots');
+    if (!descriptor.bots.length) throw new Error('empty bots');
+    if (!descriptor.measurements) throw new Error('missing measurements');
+    if (!descriptor.measurements.length) throw new Error('empty measurements');
+    return response;
+  }
+
+  jsonErrorMessage_(err) {
+    const suite = this.body_.get('test_suite');
+    return `Error describing suite "${suite}": ` +
+      `${err.message}`;
+  }
+
   static mergeDescriptor(merged, descriptor) {
     for (const bot of (descriptor.bots || [])) merged.bots.add(bot);
     for (const measurement of (descriptor.measurements || [])) {

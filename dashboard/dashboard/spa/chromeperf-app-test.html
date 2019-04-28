@@ -248,5 +248,14 @@ suite('chromeperf-app', function() {
     assert.strictEqual('master:bot', app.chartSectionsById[
         app.chartSectionIds].descriptor.bot.selectedOptions[0]);
   });
+
+  test('Error saving session', async function() {
+    const app = fixture('test');
+    await afterRender();
+
+    const divs = findElements(section, e =>
+      e.matches('div.error') && /Error loading alerts/.test(e.textContent));
+    assert.lengthOf(divs, 1);
+  });
 });
 </script>

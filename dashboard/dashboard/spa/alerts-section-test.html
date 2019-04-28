@@ -367,5 +367,42 @@ suite('alerts-section', function() {
     state = section.getState().test;
     assert.isBelow(0, state.alertGroups.length);
   });
+
+  test('Error loading sheriffs', async function() {
+    const section = fixture('test');
+    section.dispatch(CHAIN(
+        ENSURE('test'),
+        UPDATE('test', AlertsSection.buildState({}))));
+    await afterRender();
+
+    const divs = findElements(section, e =>
+      e.matches('div.error') && /Error loading sheriffs/.test(e.textContent));
+    assert.lengthOf(divs, 1);
+  });
+
+  test('Error loading report names', async function() {
+    const section = fixture('test');
+    section.dispatch(CHAIN(
+        ENSURE('test'),
+        UPDATE('test', AlertsSection.buildState({}))));
+    await afterRender();
+
+    const divs = findElements(section, e =>
+      e.matches('div.error') &&
+      /Error loading report names/.test(e.textContent));
+    assert.lengthOf(divs, 1);
+  });
+
+  test('Error loading alerts', async function() {
+    const section = fixture('test');
+    section.dispatch(CHAIN(
+        ENSURE('test'),
+        UPDATE('test', AlertsSection.buildState({}))));
+    await afterRender();
+
+    const divs = findElements(section, e =>
+      e.matches('div.error') && /Error loading alerts/.test(e.textContent));
+    assert.lengthOf(divs, 1);
+  });
 });
 </script>
