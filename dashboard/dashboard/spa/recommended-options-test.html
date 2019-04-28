@@ -9,12 +9,6 @@ found in the LICENSE file.
 <script src="/bower_components/web-component-tester/browser.js"></script>
 <link rel="import" href="/dashboard/spa/dependencies.html">
 
-<test-fixture id="test">
-  <template>
-    <recommended-options state-path="test"></recommended-options>
-  </template>
-</test-fixture>
-
 <script type="module">
 'use strict';
 
@@ -23,6 +17,14 @@ import {UPDATE} from './simple-redux.js';
 import {afterRender} from './utils.js';
 
 suite('recommended-options', function() {
+  async function fixture() {
+    const rec = document.createElement('recommended-options');
+    rec.statePath = 'test';
+    document.body.appendChild(rec);
+    await afterRender();
+    return rec;
+  }
+
   test('getRecommendations', async function() {
     localStorage.removeItem(RecommendedOptions.STORAGE_KEY);
     const now = new Date().getTime();
@@ -39,7 +41,7 @@ suite('recommended-options', function() {
         new Date(now - 1),
       ],
     }));
-    const rec = fixture('test');
+    const rec = await fixture();
     rec.ready();
     rec.dispatch(UPDATE('', {
       test: RecommendedOptions.buildState({
@@ -54,7 +56,7 @@ suite('recommended-options', function() {
   test('select', async function() {
     localStorage.removeItem(RecommendedOptions.STORAGE_KEY);
     // localStorage is updated when the user selects an option.
-    const rec = fixture('test');
+    const rec = await fixture();
     rec.dispatch(UPDATE('', {
       test: RecommendedOptions.buildState({
         options: ['aaa', 'bbb', 'ccc'],
@@ -94,7 +96,7 @@ suite('recommended-options', function() {
         new Date(now - 1),
       ],
     }));
-    const rec = fixture('test');
+    const rec = await fixture();
     rec.dispatch(UPDATE('', {
       optionRecommendations: undefined,
     }));
