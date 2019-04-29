@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c932921_eb6d815f",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-29T21:24:33Z",
+      "side": 1,
+      "message": "Looks like this is following the same pattern that caused issues for us in vinn that I ended up fixing here: https://chromium-review.googlesource.com/c/catapult/+/1574764\n\nI\u0027m wondering if you agree that we should find some way to resurface the original exception in the case of an exception in self.Close?",
+      "range": {
+        "startLine": 154,
+        "startChar": 6,
+        "endLine": 155,
+        "endChar": 11
+      },
+      "revId": "cec0a2537d517fc77b527891c54980858a89f434",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
