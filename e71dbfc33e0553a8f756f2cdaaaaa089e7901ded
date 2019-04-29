@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c597bfd_e62c4349",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-29T23:49:34Z",
+      "side": 1,
+      "message": "This could conflict with an argument like\n\n--add-description\u003d\"THis is a description that happens to include the --window-size inside it\"\n\nInstead, do \n\narg.startswith(\u0027--window-size\u003d\u0027)",
+      "range": {
+        "startLine": 171,
+        "startChar": 25,
+        "endLine": 171,
+        "endChar": 47
+      },
+      "revId": "e71dbfc33e0553a8f756f2cdaaaaa089e7901ded",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67958089_2c8d4674",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-29T23:49:34Z",
+      "side": 1,
+      "message": "This is going to create duplicate args since this is already added somewhere else in the code. You can tell this by running a benchmark and passing the -v argument. Then find the extremely long line where we start chrome, copy/paste it into a text editor, and then search for window-size in it.",
+      "range": {
+        "startLine": 174,
+        "startChar": 6,
+        "endLine": 174,
+        "endChar": 39
+      },
+      "revId": "e71dbfc33e0553a8f756f2cdaaaaa089e7901ded",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
