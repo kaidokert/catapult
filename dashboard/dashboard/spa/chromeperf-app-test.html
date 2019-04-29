@@ -19,6 +19,7 @@ import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
 import SessionStateRequest from './session-state-request.js';
 import SheriffsRequest from './sheriffs-request.js';
+import findElements from './find-elements.js';
 import {UPDATE} from './simple-redux.js';
 import {afterRender, animationFrame} from './utils.js';
 
@@ -44,6 +45,7 @@ suite('chromeperf-app', function() {
     originalFetch = window.fetch;
     window.fetch = async(url, options) => {
       return {
+        ok: true,
         async json() {
           if (url.startsWith(SessionStateRequest.URL)) {
             return {
@@ -239,6 +241,15 @@ suite('chromeperf-app', function() {
         app.chartSectionIds].descriptor.measurement.selectedOptions[0]);
     assert.strictEqual('master:bot', app.chartSectionsById[
         app.chartSectionIds].descriptor.bot.selectedOptions[0]);
+  });
+
+  test('Error saving session', async function() {
+    const app = fixture('test');
+    await afterRender();
+
+    const divs = findElements(section, e =>
+      e.matches('div.error') && /Error loading alerts/.test(e.textContent));
+    assert.lengthOf(divs, 1);
   });
 });
 </script>
