@@ -12,6 +12,11 @@ export default class TestSuitesRequest extends RequestBase {
     this.method_ = 'POST';
   }
 
+  fetchErrorMessage_(response) {
+    return `Error loading suites: ` +
+      `${response.status} ${response.statusText}`;
+  }
+
   get url_() {
     return TestSuitesRequest.URL;
   }
