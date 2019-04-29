@@ -14,7 +14,6 @@ from dashboard import add_point_queue
 from dashboard import alerts
 from dashboard import associate_alerts
 from dashboard import bug_details
-from dashboard import buildbucket_job_status
 from dashboard import create_health_report
 from dashboard import debug_alert
 from dashboard import delete_test_data
@@ -90,8 +89,6 @@ _URL_MAPPING = [
     (r'/api/timeseries2', timeseries2.Timeseries2Handler),
     ('/associate_alerts', associate_alerts.AssociateAlertsHandler),
     ('/bug_details', bug_details.BugDetailsHandler),
-    (r'/buildbucket_job_status/(\d+)',
-     buildbucket_job_status.BuildbucketJobStatusHandler),
     ('/create_health_report', create_health_report.CreateHealthReportHandler),
     ('/debug_alert', debug_alert.DebugAlertHandler),
     ('/delete_expired_entities',

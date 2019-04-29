@@ -9,7 +9,6 @@ found in the LICENSE file.
 <link rel="import" href="/components/iron-icons/iron-icons.html">
 <link rel="import" href="/components/paper-button/paper-button.html">
 
-<link rel="import" href="/dashboard/elements/bisect-status.html">
 <link rel="import" href="/dashboard/elements/bug-details.html">
 <link rel="import" href="/dashboard/elements/bug-info-span.html">
 <link rel="import" href="/dashboard/elements/revision-range.html">
@@ -377,9 +376,6 @@ found in the LICENSE file.
                            xsrf-token="{{xsrfToken}}"
                            on-untriaged="onUntriaged">
             </bug-info-span>
-            <bisect-status hidden$="{{!item.bug_id}}"
-                           status="{{item.bisect_status}}">
-            </bisect-status>
           </td>
           <td class="revision_range">
             <revision-range start="{{getDisplayStartRev(item)}}" 
