@@ -61,6 +61,7 @@ suite('chart-compound', function() {
     originalFetch = window.fetch;
     window.fetch = async(url, options) => {
       return {
+        ok: true,
         async json() {
           if (url === TimeseriesRequest.URL) {
             const data = [];
@@ -88,6 +89,10 @@ suite('chart-compound', function() {
   });
 
   teardown(() => {
+    for (const child of document.body.children) {
+      if (!child.matches('chart-compound')) continue;
+      document.body.removeChild(child);
+    }
     window.fetch = originalFetch;
   });
 

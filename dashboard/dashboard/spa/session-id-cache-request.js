@@ -49,6 +49,7 @@ export default class SessionIdCacheRequest extends CacheRequestBase {
     const response = await fetch(this.fetchEvent.request);
     const json = await response.json();
     if (json.sid !== sid) {
+      // TODO(918197) send this through ResultChannelSender
       throw new Error(`short_uri expected ${sid} actual ${json.sid}`);
     }
   }
