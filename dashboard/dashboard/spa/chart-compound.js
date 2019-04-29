@@ -93,6 +93,10 @@ export default class ChartCompound extends ElementBase {
           flex-direction: column;
         }
 
+        .error {
+          color: var(--error-color, red);
+        }
+
         #toggles {
           margin: 0 16px 0 0;
           display: flex;
@@ -106,6 +110,15 @@ export default class ChartCompound extends ElementBase {
           Displaying the first 10 lines. Select other items in order to
           display them.
         </div>
+
+        <dom-repeat items="[[union_(
+            minimapLayout.errors, chartLayout.errors)]]" as="error">
+          <template>
+            <div class="error">
+              [[error]]
+            </div>
+          </template>
+        </dom-repeat>
 
         <span
             id="options_container"
@@ -874,8 +887,12 @@ ChartCompound.findFirstNonEmptyLineDescriptor = async(
     const results = await Promise.all(fetchDescriptors.map(
         async fetchDescriptor => {
           const reader = new TimeseriesRequest(fetchDescriptor).reader();
-          for await (const timeseries of reader) {
-            return timeseries;
+          try {
+            for await (const timeseries of reader) {
+              return timeseries;
+            }
+          } catch (err) {
+            // Ignore errors here.
           }
         }));
 
