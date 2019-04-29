@@ -216,15 +216,35 @@ def main(args=None):
   parser.add_argument('--output-json', help='Output for buildbot status page')
   args = parser.parse_args(args)
 
-  steps = [{
-      # Always remove stale files first. Not listed as a test above
-      # because it is a step and not a test, and must be first.
-      'name': 'Remove Stale files',
-      'cmd': ['python',
-              os.path.join(args.api_path_checkout,
-                           'catapult_build', 'remove_stale_files.py'),
-              args.api_path_checkout, ','.join(_STALE_FILE_TYPES)]
-  }]
+  steps = [
+      {
+          # Always remove stale files first. Not listed as a test above
+          # because it is a step and not a test, and must be first.
+          'name':
+              'Remove Stale files',
+          'cmd': [
+              'python',
+              os.path.join(args.api_path_checkout, 'catapult_build',
+                           'remove_stale_files.py'),
+              args.api_path_checkout,
+              ','.join(_STALE_FILE_TYPES),
+          ]
+      },
+      {
+          # Before running any of the tests, we should always build the protocol
+          # buffers that need generating.
+          'name':
+              'Generate protocol buffers',
+          'cmd': [
+              'make',
+              '--directory=%s' %
+              (os.path.join(args.api_path_checkout, 'dashboard', 'dashboard',
+                            'sheriff_config')),
+              'all',
+          ]
+      },
+  ]
+
   if args.platform == 'android':
     # On Android, we need to prepare the devices a bit before using them in
     # tests. These steps are not listed as tests above because they aren't
@@ -249,6 +269,7 @@ def main(args=None):
                                  'android', 'tools', 'device_status.py')],
         },
     ])
+
 
   for test in _CATAPULT_TESTS:
     if args.platform in test.get('disabled', []):
