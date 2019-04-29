@@ -52,6 +52,23 @@
       "revId": "c47fdca6b72b182510c5b31e89229ae329c8520e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7025547f_14fed123",
+        "filename": "tracing/tracing/metrics/metric_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1115989
+      },
+      "writtenOn": "2019-04-29T17:48:57Z",
+      "side": 1,
+      "message": "Sidenote: Is canonical_url even used anymore? I think it might be leftover from when the long-dead perf_insights UI could be run metrics on traces in cloud storage and link to their URLs in the results view. Might be the case for report_progress too.",
+      "revId": "c47fdca6b72b182510c5b31e89229ae329c8520e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
