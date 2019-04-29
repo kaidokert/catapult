@@ -97,6 +97,10 @@ export class TimeseriesRequest extends RequestBase {
     return TimeseriesRequest.URL;
   }
 
+  channelErrorMessage_(err) {
+    return `Error loading timeseries: ${err.message}`;
+  }
+
   postProcess_(response, isFromChannel = false) {
     if (!response) return;
     let unit = tr.b.Unit.byJSONName[response.units];

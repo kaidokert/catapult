@@ -29,6 +29,7 @@ suite('TimeseriesRequest', function() {
   test('reader', async function() {
     window.fetch = async(url, options) => {
       return {
+        ok: true,
         async json() {
           return {
             units: 'ms',

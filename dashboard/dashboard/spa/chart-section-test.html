@@ -42,6 +42,7 @@ suite('chart-section', function() {
     originalFetch = window.fetch;
     window.fetch = async(url, options) => {
       return {
+        ok: true,
         async json() {
           if (url === TestSuitesRequest.URL) {
             return ['suite_a', 'suite_b', 'suite_c'];
@@ -148,6 +149,17 @@ suite('chart-section', function() {
     await afterRender();
     assert.strictEqual('test', chart.title);
     assert.isTrue(chart.isTitleCustom);
+  });
+
+  test('Error loading timeseries', async function() {
+    const chart = fixture('test');
+    chart.dispatch(ENSURE('test'));
+    chart.dispatch(UPDATE('test', ChartSection.buildState({})));
+    await afterRender();
+
+    const divs = findElements(section, e =>
+      e.matches('div.error') && /Error loading timeseries/.test(e.textContent));
+    assert.lengthOf(divs, 1);
   });
 });
 </script>

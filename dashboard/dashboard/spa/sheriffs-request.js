@@ -12,6 +12,11 @@ export default class SheriffsRequest extends RequestBase {
     this.method_ = 'POST';
   }
 
+  fetchErrorMessage_(response) {
+    return `Error loading sheriffs: ` +
+      `${response.status} ${response.statusText}`;
+  }
+
   get url_() {
     return SheriffsRequest.URL;
   }
