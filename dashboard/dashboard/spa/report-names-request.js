@@ -16,7 +16,18 @@ export default class ReportNamesRequest extends RequestBase {
     return ReportNamesRequest.URL;
   }
 
+  fetchErrorMessage_(response) {
+    return `Error loading report names: ` +
+      `${response.status} ${response.statusText}`;
+  }
+
+  jsonErrorMessage_(err) {
+    return `Error loading report names: ` +
+      `${err.message}`;
+  }
+
   postProcess_(json) {
+    if (json.error) throw new Error(json.error);
     return json.map(info => {
       return {...info, modified: new Date(info.modified)};
     });
