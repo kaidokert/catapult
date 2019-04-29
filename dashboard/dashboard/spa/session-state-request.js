@@ -12,6 +12,11 @@ export default class SessionStateRequest extends RequestBase {
     this.sessionId_ = options.sessionId;
   }
 
+  fetchErrorMessage_(response) {
+    return `Error loading session state: ` +
+      `${response.status} ${response.statusText}`;
+  }
+
   get url_() {
     return `${SessionStateRequest.URL}?v2=true&sid=${this.sessionId_}`;
   }
