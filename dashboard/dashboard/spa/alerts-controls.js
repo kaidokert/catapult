@@ -41,10 +41,13 @@ export default class AlertsControls extends ElementBase {
 
         #sheriff-container,
         #bug-container,
-        #report-container,
-        #report,
-        #min-revision {
+        #report-container {
           margin-right: 8px;
+        }
+
+        cp-input {
+          margin-right: 8px;
+          margin-top: 12px;
         }
 
         #report-container {
@@ -155,7 +158,7 @@ export default class AlertsControls extends ElementBase {
 
       <iron-collapse
           horizontal
-          id="sheriff-container"
+          id="min-container"
           opened="[[showInput_(showEmptyInputs, minRevision, maxRevision,
                                 sheriff, bug, report)]]">
         <cp-input
@@ -168,7 +171,7 @@ export default class AlertsControls extends ElementBase {
 
       <iron-collapse
           horizontal
-          id="sheriff-container"
+          id="max-container"
           opened="[[showInput_(showEmptyInputs, minRevision, maxRevision,
                                 sheriff, bug, report)]]">
         <cp-input
@@ -326,7 +329,7 @@ export default class AlertsControls extends ElementBase {
   }
 
   crbug_(bugId) {
-    return `http://crbug.com/${bugId}`;
+    return crbug(bugId);
   }
 
   async dispatchSources_() {

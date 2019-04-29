@@ -639,7 +639,7 @@ AlertsSection.computeLineDescriptor = alert => {
     measurement: alert.measurement,
     bots: [alert.master + ':' + alert.bot],
     cases: [alert.case],
-    statistic: 'avg',
+    statistic: alert.statistic,
     buildType: 'test',
   };
 };

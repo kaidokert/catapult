@@ -17,6 +17,7 @@ import {
   breakWords,
   buildProperties,
   buildState,
+  crbug,
   setImmutable,
 } from './utils.js';
 
@@ -320,7 +321,8 @@ export default class AlertsTable extends ElementBase {
                               </template>
                               <template is="dom-if"
     if="[[!isAlertIgnored_(alert.bugId)]]">
-                                <a href="https://crbug.com/[[alert.bugId]]" target="_blank">
+                                <a href="[[crbug_(alert.bugId)]]"
+    target="_blank">
                                   [[alert.bugId]]
                                 </a>
                               </template>
@@ -471,6 +473,10 @@ export default class AlertsTable extends ElementBase {
 
   isAlertIgnored_(bugId) {
     return bugId < 0;
+  }
+
+  crbug_(bugId) {
+    return crbug(bugId);
   }
 
   arePlaceholders_(alertGroups) {
