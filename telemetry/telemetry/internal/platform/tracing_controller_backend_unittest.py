@@ -70,7 +70,7 @@ class FakeTraceDataBuilder(object):
     del trace_part  # Unused.
     del value  # Unused.
 
-  def AsData(self):
+  def Freeze(self):
     return self
 
 
