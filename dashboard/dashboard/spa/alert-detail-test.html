@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<script src="/bower_components/web-component-tester/browser.js"></script>
+
+<link rel="import" href="/dashboard/spa/cp-input.html">
+<link rel="import" href="/dashboard/spa/element-base.html">
+<link rel="import" href="/dashboard/spa/raised-button.html">
+<link rel="import" href="/dashboard/spa/scalar-span.html">
+<script src="/dashboard/spa/import-module.js">
+
+<test-fixture id="test">
+  <template>
+    <alert-detail state-path="test"></alert-detail>
+  </template>
+</test-fixture>
+
+<script>
+'use strict';
+suite('alert-detail', function() {
+  test('', async function() {
+    await importModule('./alert-detail.js');
+    const ad = fixture('test');
+    this.timeout(1e6);await cp.timeout(9e5);
+  });
+});
+</script>
+
