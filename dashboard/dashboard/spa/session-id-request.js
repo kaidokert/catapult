@@ -18,7 +18,16 @@ export default class SessionIdRequest extends RequestBase {
     return SessionIdRequest.URL;
   }
 
+  channelErrorMessage_(err) {
+    return `Error saving session state: ${err.message}`;
+  }
+
+  jsonErrorMessage_(err) {
+    return `Error saving session state: ${err.message}`;
+  }
+
   postProcess_(json) {
+    if (json.error) throw new Error(json.error);
     return json.sid;
   }
 }

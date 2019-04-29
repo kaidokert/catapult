@@ -52,6 +52,10 @@ export default class ChromeperfApp extends ElementBase {
           color: var(--primary-color-dark, blue);
         }
 
+        .error {
+          color: var(--error-color, red);
+        }
+
         iron-icon {
           margin: 0 4px;
         }
@@ -204,6 +208,14 @@ export default class ChromeperfApp extends ElementBase {
           </template>
         </chops-header>
       </template>
+
+      <dom-repeat items="[[errors]]" as="error">
+        <template>
+          <div class="error">
+            [[error]]
+          </div>
+        </template>
+      </dom-repeat>
 
       <cp-loading loading$="[[isLoading]]"></cp-loading>
 
@@ -433,6 +445,7 @@ ChromeperfApp.State = {
   enableNav: options => true,
   isLoading: options => true,
   readied: options => false,
+  errors: options => [],
 
   reportSection: options => ReportSection.buildState({
     sources: [ReportControls.DEFAULT_NAME],
@@ -623,9 +636,15 @@ ChromeperfApp.actions = {
     const state = get(getState(), statePath);
     const sessionState = ChromeperfApp.getSessionState(state);
     const request = new SessionIdRequest({sessionState});
-    const session = await request.response;
-    const reduxRoutePath = new URLSearchParams({session});
-    dispatch(UPDATE(statePath, {reduxRoutePath}));
+    try {
+      for await (const session of request.reader()) {
+        const reduxRoutePath = new URLSearchParams({session});
+        dispatch(UPDATE(statePath, {reduxRoutePath}));
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);  // TODO(918197) display
+    }
   },
 
   // Compute one of 5 styles of route path (the part of the URL after the
