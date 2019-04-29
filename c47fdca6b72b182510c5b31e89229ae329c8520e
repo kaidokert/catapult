@@ -34,6 +34,24 @@
       "revId": "c47fdca6b72b182510c5b31e89229ae329c8520e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61527cc7_165c5df9",
+        "filename": "tracing/tracing/metrics/metric_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-29T17:39:30Z",
+      "side": 1,
+      "message": "I prefer to just remove support for report_progress, since I don\u0027t think it does anything for a single trace anyway.",
+      "parentUuid": "67e2e971_3c5f0c51",
+      "revId": "c47fdca6b72b182510c5b31e89229ae329c8520e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
