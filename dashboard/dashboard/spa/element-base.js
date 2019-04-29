@@ -103,6 +103,15 @@ export default class ElementBase extends PolymerElement {
     return sum;
   }
 
+  concat_() {
+    const results = [];
+    for (const arg of Array.from(arguments)) {
+      if (!arg) continue;
+      results.push(...arg);
+    }
+    return results;
+  }
+
   isEqual_() {
     const test = arguments[0];
     for (const arg of Array.from(arguments).slice(1)) {

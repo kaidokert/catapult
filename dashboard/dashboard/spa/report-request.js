@@ -17,6 +17,10 @@ export default class ReportRequest extends RequestBase {
     this.body_.set('revisions', options.revisions);
   }
 
+  channelErrorMessage_(err) {
+    return `Error loading report: ${err.message}`;
+  }
+
   get url_() {
     return ReportRequest.URL;
   }
