@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "480abef9_a4215350",
+        "filename": "tracing/tracing/metrics/metric_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-04-29T08:54:54Z",
+      "side": 1,
+      "message": "Should we just change the code of RunMetric instead of creating a new function? (e.g. if report_progress\u003dFalse, skip the multithreading)\n\nOtherwise, as it works on a single trace anyway, I see no reason why someone would call RunMetric instead of your newer RunMetricOnSingleTrace.",
+      "revId": "c47fdca6b72b182510c5b31e89229ae329c8520e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
