@@ -197,6 +197,24 @@
     },
     {
       "key": {
+        "uuid": "9bd6b6ad_0d2d2b27",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-04-29T01:32:13Z",
+      "side": 1,
+      "message": "This is how it causes combinatorial explosion:\n\n- Consider the number of subscriptions that are defined.\n- Multiply that with the number of available statistics to monitor.\n- Multiply that with the number of ways to configure anomaly configurations.\n- Multiply that with the number of metrics users can subscribe to.\n\nThe things that users can configure are: available statistics to monitor, the anomaly configuration settings, and the metrics they can subscribe to.\n\nTo be completely honest, find_anomalies is one of the things I\u0027ll be rearchitecting since it by design doesn\u0027t scale. So \"just manage the costs directly\" isn\u0027t exactly something you can do when you let users configure arbitrary percentiles -- because that turns something that has a fixed worst case, to one that can have a potentially infinite worst case. Since users will be directly configuring these instead of something the team will manage (the configuration will live in places where users control).\n\nI have a larger list of things to do to change the way the anomalies are computed to be able to handle the scale we\u0027re providing for in these changes. We can discuss that in isolation, which isn\u0027t really related to this configuration proto anymore.\n\nThe \"default\" set of metrics will be the current default, which is monitoring the mean. That\u0027s mostly for backward compatibility but I can\u0027t see why we change the default to include more basic statistics (like variance of variance, geomean changes) etc.\n\nConfiguring confidence intervals is independent of the percentile to watch, since that will be a change in the way anomaly configs are done. So we\u0027re left with thinking about what set of stats can we provide which is a good *starting* set of statistics, to cap the potential for user-defined combinatorial explosion.\n\nThe \"good actors\" are the ones we\u0027re optimising for here -- by forcing the \"bad\" actors to only be the worst good actor. We\u0027re eliminating the case where the bad actors can have a vector through which they\u0027re imposing undue burden.\n\nTo be honest, I\u0027m feeling a little confused what you want me to change here. What we\u0027re doing here is:\n\n- Providing a starting set of statistics we know folks doing latency/performance analysis already know about and use (for basic stats and tail percentiles).\n- Because this is a protocol buffer we can evolve this later.\n\nI\u0027ve made a case for why I\u0027ve chosen to not support arbitrary percentiles, and I\u0027m not sure what the objection is aside from \"users might want to experiment with different percentiles\" which I also addressed with a different way of accessing the data for those users (not the majority or the critical use case).\n\nIs there still a blocker here?",
+      "parentUuid": "5ad0b016_0ab8e871",
+      "revId": "2a643527c6c340816c4e0b97a3c109c7a17b948b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82cfa007_f0ab69f4",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 1
