@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5fb690b_c8838425",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-30T18:00:41Z",
+      "side": 1,
+      "message": "add a comment explaining why the order of operations is important here. (why this needs to be after LoadTestCasesToBeRun)",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 64
+      },
+      "revId": "30f9270830d26e04eb554e15f16d24996298baf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
