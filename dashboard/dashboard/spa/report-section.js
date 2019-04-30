@@ -120,7 +120,7 @@ ReportSection.actions = {
 
   loadReports: statePath => async(dispatch, getState) => {
     let state = get(getState(), statePath);
-    if (!state.minRevision || !state.maxRevision) return;
+    if (!state || !state.minRevision || !state.maxRevision) return;
 
     dispatch({
       type: ReportSection.reducers.requestReports.name,
