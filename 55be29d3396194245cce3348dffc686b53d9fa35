@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61176bcd_cb7fe57f",
+        "filename": "tracing/tracing/extras/importer/linux_perf/dma_fence_parser.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-30T21:41:35Z",
+      "side": 1,
+      "message": "Object keys don\u0027t need to be quoted.",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 28
+      },
+      "revId": "55be29d3396194245cce3348dffc686b53d9fa35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a9c35c8_259f8c47",
+        "filename": "tracing/tracing/extras/importer/linux_perf/dma_fence_parser.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-04-30T21:41:35Z",
+      "side": 1,
+      "message": "No blank lines at the end of blocks, please.",
+      "revId": "55be29d3396194245cce3348dffc686b53d9fa35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
