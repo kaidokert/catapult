@@ -27,6 +27,7 @@ from telemetry.internal.util import external_modules
 
 from devil.android import app_ui
 from devil.android import battery_utils
+from devil.android import cpu_temperature
 from devil.android import device_errors
 from devil.android import device_utils
 from devil.android.perf import cache_control
@@ -758,6 +759,17 @@ class AndroidPlatformBackend(
   def WaitForBatteryTemperature(self, temp):
     # Temperature is in tenths of a degree C, so we convert to that scale.
     self._battery.LetBatteryCoolToTemperature(temp * 10)
+
+  def WaitForCpuTemperature(self, temp):
+    _cpu_temperature = cpu_temperature.CpuTemperature(self._device)
+    # Check if the device temperature zones are known
+    if _cpu_temperature.IsSupported():
+      _cpu_temperature.LetCpuCoolToTemperature(temp)
+    else:
+      logging.warn('CPU temperature cooling delay - '
+                   'CPU temperature cannot be read: Either the current '
+                   'device is not supported or the specified temperature '
+                   'zones do not exist.')
 
 
 def _FixPossibleAdbInstability():
