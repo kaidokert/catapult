@@ -25,12 +25,8 @@ module.exports = {
     minimizer: [],
   },
   resolve: {
-    modules: [thirdParty],
+    modules: [nodeModules, thirdParty],
     alias: {
-      'symbol-observable': path.resolve(nodeModules, 'symbol-observable'),
-      '@webcomponents': path.resolve(nodeModules, '@webcomponents'),
-      '/@polymer': path.resolve(nodeModules, '@polymer'),
-      '@polymer': path.resolve(nodeModules, '@polymer'),
       '/idb/idb.js': path.resolve(thirdParty, 'idb', 'idb.js'),
     },
   },
