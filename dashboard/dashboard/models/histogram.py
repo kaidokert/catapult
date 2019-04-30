@@ -56,7 +56,7 @@ class HistogramRevisionRecord(ndb.Model):
     records = yield q.fetch_async(limit=1)
     if records:
       raise ndb.Return(records[0].revision - 1)
-    raise ndb.Return(sys.maxint)
+    raise ndb.Return(sys.maxsize)
 
 
 class JsonModel(internal_only_model.InternalOnlyModel):
@@ -95,7 +95,7 @@ class SparseDiagnostic(JsonModel):
   @ndb.tasklet
   def GetMostRecentDataByNamesAsync(cls, test_key, diagnostic_names):
     diagnostics = yield cls.query(
-        cls.end_revision == sys.maxint,
+        cls.end_revision == sys.maxsize,
         cls.test == test_key).fetch_async()
     diagnostics_by_name = {}
     for diagnostic in diagnostics:
@@ -143,7 +143,7 @@ class SparseDiagnostic(JsonModel):
       # Now fixup all the start/end revisions.
       for i in xrange(len(unique_diagnostics)):
         if i == len(unique_diagnostics) - 1:
-          unique_diagnostics[i].end_revision = sys.maxint
+          unique_diagnostics[i].end_revision = sys.maxsize
         else:
           unique_diagnostics[i].end_revision = (
               unique_diagnostics[i+1].start_revision - 1)
@@ -180,7 +180,7 @@ class SparseDiagnostic(JsonModel):
 def _FindOrInsertDiagnosticsLast(new_entities, test, rev):
   query = SparseDiagnostic.query(
       ndb.AND(
-          SparseDiagnostic.end_revision == sys.maxint,
+          SparseDiagnostic.end_revision == sys.maxsize,
           SparseDiagnostic.test == test))
   existing_entities = yield query.fetch_async()
   existing_entities = dict((d.name, d) for d in existing_entities)
@@ -200,7 +200,7 @@ def _FindOrInsertDiagnosticsLast(new_entities, test, rev):
           existing_entity.end_revision = rev - 1
           entity_futures.append(existing_entity.put_async())
           new_entity.start_revision = rev
-          new_entity.end_revision = sys.maxint
+          new_entity.end_revision = sys.maxsize
           entity_futures.append(new_entity.put_async())
       # Case 2: One in datastore, same as new one.
       else:
@@ -254,7 +254,7 @@ def _FindOrInsertNamedDiagnosticsOutOfOrder(
         #  2. There are commits, in which case we need to split the range.
 
         # 1. There are no commits.
-        if next_revision == sys.maxint:
+        if next_revision == sys.maxsize:
           cur.data = new_diagnostic.data
           cur.data['guid'] = cur.key.id()
 
@@ -356,14 +356,14 @@ def _FindOrInsertNamedDiagnosticsOutOfOrder(
       if not next_diagnostic:
         # There's no commit after this revision, which means we can extend this
         # diagnostic range to infinity.
-        if next_revision == sys.maxint:
+        if next_revision == sys.maxsize:
           new_diagnostic.end_revision = next_revision
         else:
           new_diagnostic.end_revision = next_revision
 
           clone_of_cur = SparseDiagnostic(
               data=cur.data, test=cur.test,
-              start_revision=next_revision + 1, end_revision=sys.maxint,
+              start_revision=next_revision + 1, end_revision=sys.maxsize,
               name=cur.name, internal_only=cur.internal_only)
           futures.append(clone_of_cur.put_async())
 

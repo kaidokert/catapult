@@ -84,7 +84,7 @@ class GetDiagnosticsHandler(post_data_handler.PostDataHandler):
 
     if end_revision == 'last':
       query = query.filter(
-          histogram.SparseDiagnostic.end_revision == sys.maxint)
+          histogram.SparseDiagnostic.end_revision == sys.maxsize)
 
     elif start_revision and end_revision:
       query = query.filter(

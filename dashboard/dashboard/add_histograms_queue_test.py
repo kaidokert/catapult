@@ -181,7 +181,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
         'type': 'GenericSet',
     }
     diag = histogram.SparseDiagnostic(
-        data=diag_dict, start_revision=1, end_revision=sys.maxint,
+        data=diag_dict, start_revision=1, end_revision=sys.maxsize,
         test=utils.TestKey('Chromium/win7/suite/metric'))
     diag.put()
     histogram.HistogramRevisionRecord.GetOrCreate(
@@ -214,7 +214,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
     }
     diag = histogram.SparseDiagnostic(
         data=diag_dict, name='owners',
-        start_revision=1, end_revision=sys.maxint,
+        start_revision=1, end_revision=sys.maxsize,
         test=utils.TestKey('Chromium/win7/suite/metric'))
     diag.put()
     histogram.HistogramRevisionRecord.GetOrCreate(

@@ -40,7 +40,7 @@ _TEST_DIAGNOSTIC_DATA = [
         'data': {'type': 'GenericSet', 'guid': 'jkl', 'values': ['foo', 'bar']}
     }, {
         'start_revision': 10,
-        'end_revision': sys.maxint,
+        'end_revision': sys.maxsize,
         'test_path': 'abcdef',
         'name': 'occam',
         'data': {'type': 'GenericSet', 'guid': 'mno', 'values': ['foo', 'bar']}

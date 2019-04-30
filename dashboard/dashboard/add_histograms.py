@@ -454,7 +454,7 @@ def FindSuiteLevelSparseDiagnostics(
         if existing_entity is None:
           diagnostics[name] = histogram.SparseDiagnostic(
               id=diag.guid, data=diag.AsDict(), test=suite_key,
-              start_revision=revision, end_revision=sys.maxint, name=name,
+              start_revision=revision, end_revision=sys.maxsize, name=name,
               internal_only=internal_only)
         elif existing_entity.key.id() != diag.guid:
           raise ValueError(

@@ -257,7 +257,7 @@ def ProcessDiagnostics(diagnostic_data, revision, test_key, internal_only):
     guid = diagnostic_datum['guid']
     diagnostic_entities.append(histogram.SparseDiagnostic(
         id=guid, name=name, data=diagnostic_datum, test=test_key,
-        start_revision=revision, end_revision=sys.maxint,
+        start_revision=revision, end_revision=sys.maxsize,
         internal_only=internal_only))
 
   suite_key = utils.TestKey('/'.join(test_key.id().split('/')[:3]))
