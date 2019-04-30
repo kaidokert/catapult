@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f945fa1e_24cda219",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-04-30T15:45:19Z",
+      "side": 1,
+      "message": "this field is ignored\n\nthe field is there because that message is used in a few places. Looks like doc is incomplete",
+      "revId": "ee60a22fb19eed8a599b088ad4e61b0d9003a692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e545abe_9e480a5c",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-04-30T15:45:19Z",
+      "side": 1,
+      "message": "this is the version of the protocol, not app. https://cs.chromium.org/chromium/infra/luci/appengine/components/components/config/proto/service_config.proto?g\u003d0\u0026rcl\u003dbe7f51a69f7ed3d1d61424e0150f65a932453735\u0026l\u003d100",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 26
+      },
+      "revId": "ee60a22fb19eed8a599b088ad4e61b0d9003a692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5addc46_c5e33177",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-04-30T15:45:19Z",
+      "side": 1,
+      "message": "i think `regex:projects/.+` will communicate the intent better\n\n\"config set\" concept is documented in https://chromium.googlesource.com/infra/luci/luci-py/+/HEAD/appengine/config_service/doc/README.md\n\nin your case, config sets are project config sets. They start with \"projects/\", for example projects/chromium\n\nAll project config sets: https://luci-config.appspot.com/#/q/projects/",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 39
+      },
+      "revId": "ee60a22fb19eed8a599b088ad4e61b0d9003a692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e9274f5_fe740b9c",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-04-30T15:45:19Z",
+      "side": 1,
+      "message": "usually we use https://cloud.google.com/appengine/docs/standard/python/refdocs/google.appengine.api.app_identity.app_identity#google.appengine.api.app_identity.app_identity.get_default_version_hostname\nthen you don\u0027t need domain var\n\nalso this is missing scheme",
+      "range": {
+        "startLine": 53,
+        "startChar": 36,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "ee60a22fb19eed8a599b088ad4e61b0d9003a692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
