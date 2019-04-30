@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee981c4_93bd6de1",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-04-30T19:27:07Z",
+      "side": 1,
+      "message": "Not needed.",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 12
+      },
+      "revId": "1c6acd4350e1f5bacb7f9f601a71089896287ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a84307cb_c96f939f",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-04-30T19:27:07Z",
+      "side": 1,
+      "message": "Could there be some side effect in delaying sp.communicate() until after the process exits? stdout from child process will stay inside the pipe. Is there any limit on how much data can be buffered in the pipe without being read? I don\u0027t know enough about pipe implementations on various platforms to know the answer.",
+      "range": {
+        "startLine": 320,
+        "startChar": 2,
+        "endLine": 320,
+        "endChar": 27
+      },
+      "revId": "1c6acd4350e1f5bacb7f9f601a71089896287ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
