@@ -11,6 +11,7 @@ import {get} from '/@polymer/polymer/lib/utils/path.js';
 
 import {
   DEFAULT_REDUCER_WRAPPERS,
+  RESET,
   createSimpleStore,
   freezingReducer,
   registerReducers,
@@ -147,6 +148,10 @@ export default class ElementBase extends PolymerElement {
 
   // This is used to bind state properties in `buildProperties()` in utils.js.
   identity_(x) { return x; }
+
+  static resetStoreForTest() {
+    getStore().dispatch(RESET());
+  }
 }
 
 if (window.location.hostname === 'localhost') {
