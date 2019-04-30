@@ -7,6 +7,10 @@
 This service implements the requirements for supporting sheriff configuration
 file validation.
 """
-import sheriff_config
 
-APP = sheriff_config.CreateApp()
+# Support python3
+from __future__ import absolute_import
+
+from dashboard.sheriff_config import service
+
+APP = service.CreateApp()
