@@ -404,7 +404,7 @@ AlertsSection.actions = {
     // alerts-controls.
     await timeout(NOTIFICATION_MS);
     state = get(getState(), statePath);
-    if (state.triagedBugId !== triagedBugId) return;
+    if (!state || (state.triagedBugId !== triagedBugId)) return;
     dispatch(AlertsSection.actions.cancelTriagedExisting(statePath));
   },
 
@@ -456,7 +456,7 @@ AlertsSection.actions = {
     // alerts-controls.
     await timeout(NOTIFICATION_MS);
     state = get(getState(), statePath);
-    if (state.ignoredCount !== ignoredCount) return;
+    if (!state || (state.ignoredCount !== ignoredCount)) return;
     dispatch(UPDATE(statePath, {
       hasIgnored: false,
       ignoredCount: 0,
@@ -548,7 +548,7 @@ AlertsSection.actions = {
     // alerts-controls.
     await timeout(NOTIFICATION_MS);
     state = get(getState(), statePath);
-    if (state.triagedBugId !== bugId) return;
+    if (!state || state.triagedBugId !== bugId) return;
     dispatch(UPDATE(statePath, {
       hasTriagedNew: false,
       triagedBugId: 0,
