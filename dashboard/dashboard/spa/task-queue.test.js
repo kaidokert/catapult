@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<!--
-Copyright 2018 The Chromium Authors. All rights reserved.
-Use of this source code is governed by a BSD-style license that can be
-found in the LICENSE file.
--->
-
-<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-<script src="/bower_components/web-component-tester/browser.js"></script>
-
-<script type="module">
+/* Copyright 2018 The Chromium Authors. All rights reserved.
+   Use of this source code is governed by a BSD-style license that can be
+   found in the LICENSE file.
+*/
 'use strict';
+
+import {assert} from 'chai';
 import TASK_QUEUE from './task-queue.js';
 import {timeout} from './utils.js';
 
@@ -88,4 +83,3 @@ suite('TASK_QUEUE', function() {
     assert.isTrue(complete);
   });
 });
-</script>

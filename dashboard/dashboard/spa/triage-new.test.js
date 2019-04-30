@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<!--
-Copyright 2018 The Chromium Authors. All rights reserved.
-Use of this source code is governed by a BSD-style license that can be
-found in the LICENSE file.
--->
-
-<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-<script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/dependencies.html">
-
-<script type="module">
+/* Copyright 2018 The Chromium Authors. All rights reserved.
+   Use of this source code is governed by a BSD-style license that can be
+   found in the LICENSE file.
+*/
 'use strict';
+
+import {assert} from 'chai';
 import TriageNew from './triage-new.js';
 
 suite('triage-new', function() {
@@ -56,4 +50,3 @@ suite('triage-new', function() {
     assert.deepEqual(expected, actual);
   });
 });
-</script>

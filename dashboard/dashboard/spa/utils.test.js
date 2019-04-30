@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<!--
-Copyright 2018 The Chromium Authors. All rights reserved.
-Use of this source code is governed by a BSD-style license that can be
-found in the LICENSE file.
--->
-
-<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-<script src="/bower_components/web-component-tester/browser.js"></script>
-<link rel="import" href="/dashboard/spa/dependencies.html">
-
-<script type="module">
+/* Copyright 2018 The Chromium Authors. All rights reserved.
+   Use of this source code is governed by a BSD-style license that can be
+   found in the LICENSE file.
+*/
 'use strict';
+
+import {assert} from 'chai';
 import * as utils from './utils.js';
 
 suite('utils', function() {
@@ -84,6 +78,7 @@ suite('utils', function() {
 
   test('measureElement', async function() {
     const input = document.createElement('input');
+    input.style.margin = '1px';
     document.body.appendChild(input);
     const rect = await utils.measureElement(input);
     assert.isBelow(0, rect.bottom);
@@ -373,4 +368,3 @@ suite('utils', function() {
     assert.lengthOf(utils.generateColors(10), 10);
   });
 });
-</script>
