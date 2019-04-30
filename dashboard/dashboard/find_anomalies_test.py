@@ -606,13 +606,13 @@ class ProcessAlertsTest(testing_common.TestCase):
     suite_key = utils.TestKey('ChromiumPerf/linux/page_cycler_v2')
     entity = histogram.SparseDiagnostic(
         data=data_samples[0], test=suite_key, start_revision=1,
-        end_revision=sys.maxint, id=data_samples[0]['guid'],
+        end_revision=sys.maxsize, id=data_samples[0]['guid'],
         name=reserved_infos.OWNERS.name)
     entity.put()
 
     entity = histogram.SparseDiagnostic(
         data=data_samples[1], test=suite_key, start_revision=1,
-        end_revision=sys.maxint, id=data_samples[1]['guid'],
+        end_revision=sys.maxsize, id=data_samples[1]['guid'],
         name=reserved_infos.BUG_COMPONENTS.name)
     entity.put()
 

@@ -105,12 +105,12 @@ class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
     histogram.SparseDiagnostic(
         test=utils.TestKey('master/a/suite/measurement/x'),
         name=reserved_infos.STORY_TAGS.name,
-        end_revision=sys.maxint,
+        end_revision=sys.maxsize,
         data=generic_set.GenericSet(['j']).AsDict()).put()
     histogram.SparseDiagnostic(
         test=utils.TestKey('master/a/suite/measurement/y'),
         name=reserved_infos.STORY_TAGS.name,
-        end_revision=sys.maxint,
+        end_revision=sys.maxsize,
         data=generic_set.GenericSet(['j', 'k']).AsDict()).put()
 
     self.Post('/update_test_suite_descriptors')

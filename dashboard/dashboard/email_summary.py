@@ -93,7 +93,7 @@ def _EmailSubject(sheriff_entity, anomalies):
 
 def _MaximalRevisionRange(anomalies):
   """Gets the lowest start and highest end revision for |anomalies|."""
-  lowest_revision = sys.maxint
+  lowest_revision = sys.maxsize
   highest_revision = 1
   for anomaly_entity in anomalies:
     if anomaly_entity.start_revision < lowest_revision:
