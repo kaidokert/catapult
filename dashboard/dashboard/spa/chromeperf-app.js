@@ -510,7 +510,8 @@ ChromeperfApp.actions = {
 
     await timeout(NOTIFICATION_MS);
     const state = get(getState(), statePath);
-    if (!state.closedAlertsIds.includes(sectionId)) {
+    if (!state || !state.closedAlertsIds ||
+        !state.closedAlertsIds.includes(sectionId)) {
       // This alerts section was reopened.
       return;
     }
@@ -644,7 +645,7 @@ ChromeperfApp.actions = {
   updateLocation: statePath => async(dispatch, getState) => {
     const rootState = getState();
     const state = get(rootState, statePath);
-    if (!state.readied) return;
+    if (!state || !state.readied) return;
     const nonEmptyAlerts = state.alertsSectionIds.filter(id =>
       !AlertsSection.isEmpty(state.alertsSectionsById[id]));
     const nonEmptyCharts = state.chartSectionIds.filter(id =>
@@ -726,7 +727,8 @@ ChromeperfApp.actions = {
 
     await timeout(NOTIFICATION_MS);
     const state = get(getState(), statePath);
-    if (!state.closedChartIds.includes(sectionId)) {
+    if (!state || !state.closedChartIds ||
+        !state.closedChartIds.includes(sectionId)) {
       // This chart was reopened.
       return;
     }
