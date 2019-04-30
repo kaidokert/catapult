@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74c4012d_af66a9c4",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-30T17:00:47Z",
+      "side": 1,
+      "message": "Looks like this argument isn\u0027t being used. You can explicitly\ndel should_add_value\nright away to make this clear, and then it will be easy to remove this argument altogether in a future changelist.",
+      "range": {
+        "startLine": 124,
+        "startChar": 18,
+        "endLine": 124,
+        "endChar": 38
+      },
+      "revId": "0dc03eb13f887e961493f68c47d5330c56a7223a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
