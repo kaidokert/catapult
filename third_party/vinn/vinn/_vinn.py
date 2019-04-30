@@ -136,6 +136,7 @@ def _GetD8BinaryPathForPlatform():
 # script attempts to remove a file before the process using the file has
 # completely terminated. So the function here attempts to retry a few times with
 # a second timeout between retries. More details at https://crbug.com/946012
+# TODO(sadrul): delete this speculative change since it didn't work.
 def _RemoveTreeWithRetry(tree, retry=3):
   for count in range(retry):
     try:
@@ -174,7 +175,7 @@ def ExecuteFile(file_path, source_paths=None, js_args=None, v8_args=None,
 
 
 def RunFile(file_path, source_paths=None, js_args=None, v8_args=None,
-            stdout=subprocess.PIPE, stdin=subprocess.PIPE):
+            timeout=None, stdout=subprocess.PIPE, stdin=subprocess.PIPE):
   """Runs JavaScript program in |file_path|.
 
   Args are same as ExecuteFile.
@@ -204,7 +205,8 @@ def RunFile(file_path, source_paths=None, js_args=None, v8_args=None,
                 (abs_file_path_str, abs_file_path_str))
       else:
         f.write('\nHTMLImportsLoader.loadFile(%s);' % abs_file_path_str)
-    result = _RunFileWithD8(temp_bootstrap_file, js_args, v8_args, stdout, stdin)
+    result = _RunFileWithD8(temp_bootstrap_file, js_args, v8_args, timeout,
+                            stdout, stdin)
   except:
     # Save the exception.
     t, v, tb = sys.exc_info()
@@ -255,7 +257,25 @@ def RunJsString(js_string, source_paths=None, js_args=None, v8_args=None,
   return result
 
 
-def _RunFileWithD8(js_file_path, js_args, v8_args, stdout, stdin):
+def _KillProcess(process, description):
+  # kill() does not close the handle to the process. On Windows, a process
+  # will live until you delete all handles to that subprocess, so
+  # ps_util.ListAllSubprocesses will find this subprocess if
+  # we haven't garbage-collected the handle yet. poll() should close the
+  # handle once the process dies.
+  process.kill()
+  time.sleep(.01)
+  for _ in range(100):
+    if process.poll() is None:
+      time.sleep(.1)
+      continue
+    break
+  else:
+    logging.warn('process %s is still running after we '
+                 'attempted to kill it.', description)
+
+
+def _RunFileWithD8(js_file_path, js_args, v8_args, timeout, stdout, stdin):
   """ Execute the js_files with v8 engine and return the output of the program.
 
   Args:
@@ -263,6 +283,8 @@ def _RunFileWithD8(js_file_path, js_args, v8_args, stdout, stdin):
     js_args: a list of arguments to passed to the |js_file_path| program.
     v8_args: extra arguments to pass into d8. (for the full list of these
       options, run d8 --help)
+    timeout: how many seconds to wait for d8 to finish. If None or 0 then
+      this will wait indefinitely.
     stdout: where to pipe the stdout of the executed program to. If
       subprocess.PIPE is used, stdout will be returned in RunResult.out.
       Otherwise RunResult.out is None
@@ -281,6 +303,20 @@ def _RunFileWithD8(js_file_path, js_args, v8_args, stdout, stdin):
 
   # Set stderr=None since d8 doesn't write into stderr anyway.
   sp = subprocess.Popen(args, stdout=stdout, stderr=None, stdin=stdin)
+  out = None
+  if timeout:
+    deadline = time.time() + timeout
+    while True:
+      if sp.poll() == None:
+        if deadline < time.time():
+          _KillProcess(sp, 'd8')
+          raise RuntimeError('Timed out waiting for d8 subprocess.')
+        # 5 seconds is chosen as a number granular enough that we are basically
+        # respecting the timeout but big enough that we don't slow down the
+        # metrics calculations too much.
+        time.sleep(5)
+      else:
+        break
   out, _ = sp.communicate()
 
   # On Windows, d8's print() method add the carriage return characters \r to
