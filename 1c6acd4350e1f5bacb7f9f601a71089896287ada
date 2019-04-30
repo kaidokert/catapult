@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1c224bd2_a54839b1",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-30T21:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cee981c4_93bd6de1",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 12
+      },
+      "revId": "1c6acd4350e1f5bacb7f9f601a71089896287ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a84307cb_c96f939f",
         "filename": "third_party/vinn/vinn/_vinn.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "1c6acd4350e1f5bacb7f9f601a71089896287ada",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d189dec_b1d41cda",
+        "filename": "third_party/vinn/vinn/_vinn.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-04-30T21:25:37Z",
+      "side": 1,
+      "message": "Thank you! We discussed offline and came up with a much better solution.",
+      "parentUuid": "a84307cb_c96f939f",
+      "range": {
+        "startLine": 320,
+        "startChar": 2,
+        "endLine": 320,
+        "endChar": 27
+      },
+      "revId": "1c6acd4350e1f5bacb7f9f601a71089896287ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
