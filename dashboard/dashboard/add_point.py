@@ -9,6 +9,7 @@ import json
 import logging
 import math
 import re
+import zlib
 
 from google.appengine.api import datastore_errors
 from google.appengine.api import taskqueue
@@ -128,6 +129,13 @@ class AddPointHandler(post_data_handler.PostDataHandler):
     if not data_str:
       self.ReportError('Missing "data" parameter.', status=400)
       return
+    if ('content-encoding' in self.request.headers and
+        self.request.headers['content-encoding'] == 'deflate'):
+      try:
+        data_str = zlib.decompress(data_str)
+      except zlib.error:
+        self.ReportError('Invalid compressed "data".', status=400)
+        return
 
     self.AddData(data_str)
 
