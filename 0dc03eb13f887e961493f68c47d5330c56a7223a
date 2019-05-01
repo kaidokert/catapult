@@ -22,6 +22,30 @@
       "revId": "0dc03eb13f887e961493f68c47d5330c56a7223a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19f42804_11dc3ff9",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-01T10:07:38Z",
+      "side": 1,
+      "message": "It is used below, passed to PageTestResults. What I simplified here was letting None pick up the default value, rather than having to write a lambda in the list of kwargs.",
+      "parentUuid": "74c4012d_af66a9c4",
+      "range": {
+        "startLine": 124,
+        "startChar": 18,
+        "endLine": 124,
+        "endChar": 38
+      },
+      "revId": "0dc03eb13f887e961493f68c47d5330c56a7223a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
