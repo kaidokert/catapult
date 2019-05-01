@@ -20,6 +20,7 @@ import {html} from '@polymer/polymer/polymer-element.js';
 import {
   buildProperties,
   buildState,
+  isElementChildOf,
   setImmutable,
 } from './utils.js';
 
