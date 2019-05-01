@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "498bc9e8_cd9053d0",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-05-01T00:26:02Z",
+      "side": 1,
+      "message": "This\u0027ll overwrite anything that\u0027s currently in ADB_KEYS_FILE. Would be nice to use AppendFile() if it was available, but I didn\u0027t really look into it since it\u0027s not a big deal.",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ef9c655_818b1c88",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-05-01T00:26:02Z",
+      "side": 1,
+      "message": "This change just prevents us from trying to reboot unauthorized devices, since that wouldn\u0027t really help in that case.",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
