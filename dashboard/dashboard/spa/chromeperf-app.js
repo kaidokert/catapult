@@ -52,6 +52,10 @@ export default class ChromeperfApp extends ElementBase {
           color: var(--primary-color-dark, blue);
         }
 
+        .error {
+          color: var(--error-color, red);
+        }
+
         iron-icon {
           margin: 0 4px;
         }
@@ -138,22 +142,23 @@ export default class ChromeperfApp extends ElementBase {
         }
 
         cp-toast {
-          border-radius: 24px;
-          cursor: pointer;
+          background-color: var(--background-color, white);
           display: flex;
           justify-content: center;
           margin-bottom: 8px;
           padding: 8px 0;
-          text-transform: uppercase;
-          user-select: none;
           white-space: nowrap;
           width: 100%;
         }
 
         cp-toast raised-button {
           background-color: var(--primary-color-dark, blue);
+          border-radius: 24px;
           color: var(--background-color, white);
+          cursor: pointer;
           padding: 8px;
+          text-transform: uppercase;
+          user-select: none;
         }
 
         #old_pages {
@@ -181,6 +186,10 @@ export default class ChromeperfApp extends ElementBase {
           color: grey;
           margin: 16px;
           text-align: right;
+        }
+
+        #error-container {
+          box-shadow: var(--elevation-2);
         }
       </style>
 
@@ -319,6 +328,16 @@ export default class ChromeperfApp extends ElementBase {
           Reopen chart
         </raised-button>
       </cp-toast>
+
+      <cp-toast id="error-container" opened="[[!isEmpty_(errors)]]">
+        <dom-repeat items="[[errors]]" as="error">
+          <template>
+            <div class="error">
+              [[error]]
+            </div>
+          </template>
+        </dom-repeat>
+      </cp-toast>
     `;
   }
 
@@ -433,6 +452,7 @@ ChromeperfApp.State = {
   enableNav: options => true,
   isLoading: options => true,
   readied: options => false,
+  errors: options => [],
 
   reportSection: options => ReportSection.buildState({
     sources: [ReportControls.DEFAULT_NAME],
@@ -553,7 +573,13 @@ ChromeperfApp.actions = {
   restoreSessionState: (statePath, sessionId) =>
     async(dispatch, getState) => {
       const request = new SessionStateRequest({sessionId});
-      const sessionState = await request.response;
+      let sessionState;
+      try {
+        sessionState = await request.response;
+      } catch (err) {
+        dispatch(UPDATE(statePath, {errors: [err.message]}));
+        return;
+      }
 
       await dispatch(CHAIN(
           {
@@ -626,9 +652,14 @@ ChromeperfApp.actions = {
     const state = get(getState(), statePath);
     const sessionState = ChromeperfApp.getSessionState(state);
     const request = new SessionIdRequest({sessionState});
-    const session = await request.response;
-    const reduxRoutePath = new URLSearchParams({session});
-    dispatch(UPDATE(statePath, {reduxRoutePath}));
+    try {
+      for await (const session of request.reader()) {
+        const reduxRoutePath = new URLSearchParams({session});
+        dispatch(UPDATE(statePath, {reduxRoutePath}));
+      }
+    } catch (err) {
+      dispatch(UPDATE(statePath, {errors: [err.message]}));
+    }
   },
 
   // Compute one of 5 styles of route path (the part of the URL after the
