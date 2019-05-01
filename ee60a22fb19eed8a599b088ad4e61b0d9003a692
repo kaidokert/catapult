@@ -217,6 +217,30 @@
       "revId": "ee60a22fb19eed8a599b088ad4e61b0d9003a692",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a0d84d9_78a6d417",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-01T02:49:51Z",
+      "side": 1,
+      "message": "Authorisation should be managed with Cloud Endpoints, memcache should be self-managed (the documentation lists alternatives), and authentication can be defined by the service.\n\nhttps://cloud.google.com/appengine/docs/standard/python3/python-differences\n\nIn our case, because we\u0027re only exposing the validation endpoint, we don\u0027t really need to protect this against \"unauthenticated\" users. This helps us provide an open configuration validation service. However, when we wire more endpoints, we\u0027ll be managing those with the cloud endpoints service anyway where API management is decoupled from the code handling the implementation.",
+      "parentUuid": "fa6fd606_9a5ce6d1",
+      "range": {
+        "startLine": 53,
+        "startChar": 36,
+        "endLine": 53,
+        "endChar": 42
+      },
+      "revId": "ee60a22fb19eed8a599b088ad4e61b0d9003a692",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
