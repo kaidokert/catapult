@@ -2,4 +2,5 @@
 __pycache__
 
 # Do not track generated protobuf files.
-proto/*_pb2.py
+proto/
+*_pb2.py

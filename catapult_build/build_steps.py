@@ -240,6 +240,12 @@ def main(args=None):
       # Since we might not have access to 'make', let's run the protobuf
       # compiler directly.
       {
+          # Ensure we have the correct directory for the sheriff_config
+          # protobufs to be there.
+          'name': 'Prep proto directory',
+          'cmd': ['mkdir', '-p', proto_output_path]
+      },
+      {
           # We want to run the proto compiler to generate the right data in
           # the right places.
           'name':
