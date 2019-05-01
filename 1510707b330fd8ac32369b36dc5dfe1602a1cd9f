@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "5555a9a4_fb809f35",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-01T00:59:58Z",
+      "side": 1,
+      "message": "I would prefer we not hard-code that into devil, though if we want to expose something in the CLI that allows the caller to pass in a custom key, that\u0027d be fine.",
+      "parentUuid": "a0aca2e6_78abea1d",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "498bc9e8_cd9053d0",
         "filename": "devil/devil/android/tools/device_recovery.py",
         "patchSetId": 3
@@ -105,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "aebec077_30d12886",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-01T00:59:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "498bc9e8_cd9053d0",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ef9c655_818b1c88",
         "filename": "devil/devil/android/tools/device_recovery.py",
         "patchSetId": 3
@@ -119,6 +155,24 @@
       "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "466192a1_005f8445",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-01T00:59:58Z",
+      "side": 1,
+      "message": "I think this can stay as-is in case restarting adb allows us to auth to the device?",
+      "parentUuid": "3ef9c655_818b1c88",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
