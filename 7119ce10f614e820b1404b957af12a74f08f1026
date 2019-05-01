@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b8cdc03_314e0f0a",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-01T17:31:19Z",
+      "side": 1,
+      "message": "Nice!\n\nYou should also add the tag here: https://cs.chromium.org/chromium/src/tools/perf/expectations.config?q\u003dexpectations.config\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d8\n\n(we should be checking that automatically I thought)",
+      "range": {
+        "startLine": 396,
+        "startChar": 17,
+        "endLine": 398,
+        "endChar": 0
+      },
+      "revId": "7119ce10f614e820b1404b957af12a74f08f1026",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
