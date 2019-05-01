@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c8e7dec_aaa94c25",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 29
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-05-01T18:53:21Z",
+      "side": 1,
+      "message": "This style + error section is repeated a few times, should it just be its\u0027 own element?",
+      "range": {
+        "startLine": 91,
+        "startChar": 11,
+        "endLine": 91,
+        "endChar": 17
+      },
+      "revId": "ba217a0085197a1aee8ccb3ea9c78477749b9c1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
