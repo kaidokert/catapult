@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "1e888c57_e83f7087",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2019-05-01T00:56:54Z",
+      "side": 1,
+      "message": "These need to be absolute paths or it won\u0027t work and it won\u0027t tell you why it\u0027s not working.  Maybe log errors if the keys don\u0027t start with \u0027/\u0027?",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "319fee9e_389488e1",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2019-05-01T00:56:54Z",
+      "side": 1,
+      "message": "You already have os.",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0034abb2_7ce9c50f",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2019-05-01T00:56:54Z",
+      "side": 1,
+      "message": "possible_keys \u003d [\u0027%s/%s\u0027 % (adb_wrapper.ADB_HOST_KEYS_DIR, k) for k in os.listdir(adb_wrapper.ADB_HOST_KEYS_DIR) if \u0027pub\u0027 not in k]",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0aca2e6_78abea1d",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2019-05-01T00:56:54Z",
+      "side": 1,
+      "message": "Also write chrome infra\u0027s key for portability.",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "498bc9e8_cd9053d0",
         "filename": "devil/devil/android/tools/device_recovery.py",
         "patchSetId": 3
@@ -16,6 +84,24 @@
       "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab6e37e9_8df7472c",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1117044
+      },
+      "writtenOn": "2019-05-01T00:56:54Z",
+      "side": 1,
+      "message": "We used to do this (me and navabi) by reading that file off the device, then adding the local key and the infra key, and writing it back.  Plz continue this magic for portability of devices.",
+      "parentUuid": "498bc9e8_cd9053d0",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
