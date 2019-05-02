@@ -192,7 +192,7 @@ def LoadTestCasesToBeRun(
 
 
 def _CreateTestArgParsers():
-  parser = typ.ArgumentParser(discovery=False, reporting=True, running=True)
+  parser = typ.ArgumentParser(discovery=True, reporting=True, running=True)
   parser.add_argument('test', type=str, help='Name of the test suite to run')
 
   parser.add_argument(
