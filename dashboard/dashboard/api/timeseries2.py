@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2018 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -110,7 +113,7 @@ class TimeseriesQuery(object):
         'units': self._units,
         'improvement_direction': self._improvement_direction,
         'data': [[datum.get(col) for col in self._columns]
-                 for _, datum in sorted(self._data.iteritems())],
+                 for _, datum in sorted(self._data.items())],
     })
 
   def _ResolveTimestamps(self):
@@ -260,11 +263,11 @@ class TimeseriesQuery(object):
           datum['timestamp'] = row.timestamp.isoformat()
         if 'revisions' in self._columns:
           datum['revisions'] = {
-              attr: value for attr, value in row.to_dict().iteritems()
+              attr: value for attr, value in row.to_dict().items()
               if attr.startswith('r_')}
         if 'annotations' in self._columns:
           datum['annotations'] = {
-              attr: value for attr, value in row.to_dict().iteritems()
+              attr: value for attr, value in row.to_dict().items()
               if attr.startswith('a_')}
 
     if 'histogram' in self._columns and test_desc.statistic == None:

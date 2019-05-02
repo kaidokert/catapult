@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2018 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -136,7 +139,7 @@ class Timeseries2Test(testing_common.TestCase):
       else:
         self.assertEqual(None, datum[4])
       if i in [0, 5]:
-        self.assertEqual('deviceIds', datum[5].keys()[0])
+        self.assertEqual('deviceIds', list(datum[5].keys())[0])
       else:
         self.assertEqual(None, datum[5])
       self.assertEqual(_TEST_HISTOGRAM_DATA['name'], datum[6]['name'])

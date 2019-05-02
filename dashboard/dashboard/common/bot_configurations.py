@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2018 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -30,7 +33,7 @@ def GetAliasesAsync(bot):
   if 'alias' in configurations[bot]:
     bot = configurations[bot]['alias']
     aliases.add(bot)
-  for name, configuration in configurations.iteritems():
+  for name, configuration in configurations.items():
     if configuration.get('alias') == bot:
       aliases.add(name)
   raise ndb.Return(aliases)
@@ -38,6 +41,6 @@ def GetAliasesAsync(bot):
 
 def List():
   bot_configurations = namespaced_stored_object.Get(BOT_CONFIGURATIONS_KEY)
-  canonical_names = [name for name, value in bot_configurations.iteritems()
+  canonical_names = [name for name, value in bot_configurations.items()
                      if 'alias' not in value]
   return sorted(canonical_names, key=string.lower)

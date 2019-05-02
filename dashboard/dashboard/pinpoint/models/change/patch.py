@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -182,7 +185,7 @@ class GerritPatch(collections.namedtuple(
     # Revision can be a revision ID or numeric patch number.
     if not revision:
       revision = patch_info['current_revision']
-    for revision_id, revision_info in patch_info['revisions'].iteritems():
+    for revision_id, revision_info in patch_info['revisions'].items():
       if revision == revision_id or revision == revision_info['_number']:
         revision = revision_id
         break

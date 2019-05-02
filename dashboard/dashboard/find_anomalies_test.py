@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -606,13 +609,13 @@ class ProcessAlertsTest(testing_common.TestCase):
     suite_key = utils.TestKey('ChromiumPerf/linux/page_cycler_v2')
     entity = histogram.SparseDiagnostic(
         data=data_samples[0], test=suite_key, start_revision=1,
-        end_revision=sys.maxint, id=data_samples[0]['guid'],
+        end_revision=sys.maxsize, id=data_samples[0]['guid'],
         name=reserved_infos.OWNERS.name)
     entity.put()
 
     entity = histogram.SparseDiagnostic(
         data=data_samples[1], test=suite_key, start_revision=1,
-        end_revision=sys.maxint, id=data_samples[1]['guid'],
+        end_revision=sys.maxsize, id=data_samples[1]['guid'],
         name=reserved_infos.BUG_COMPONENTS.name)
     entity.put()
 

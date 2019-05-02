@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -339,7 +342,7 @@ AttributeError: 'Namespace' object has no attribute 'benchmark_names'"""
     self.assertTrue(execution.completed)
     self.assertTrue(execution.failed)
     last_exception_line = execution.exception.splitlines()[-1]
-    self.assertTrue(last_exception_line.startswith('AttributeError'))
+    self.assertRegexpMatches(last_exception_line, '^AttributeError.*')
 
 
 @mock.patch('dashboard.services.swarming.Tasks.New')

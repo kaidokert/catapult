@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -702,7 +705,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
       expected[d.name].remove(
           (d.start_revision, d.end_revision, d.data['values']))
 
-    for k in expected.iterkeys():
+    for k in expected.keys():
       self.assertFalse(expected[k])
 
   def testPost_OutOfOrder_SuiteLevel(self):
@@ -714,12 +717,12 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
     expected = {
         'deviceIds': [
-            (1, sys.maxint, [u'd1'])
+            (1, sys.maxsize, [u'd1'])
         ],
         'owners': [
             (1, 14, [u'o1']),
             (15, 19, [u'o2']),
-            (20, sys.maxint, [u'o1'])
+            (20, sys.maxsize, [u'o1'])
         ]
     }
     self._CheckOutOfOrderExpectations(expected)
@@ -735,10 +738,10 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
         'deviceIds': [
             (1, 14, [u'd1']),
             (15, 19, [u'd2']),
-            (20, sys.maxint, [u'd1'])
+            (20, sys.maxsize, [u'd1'])
         ],
         'owners': [
-            (1, sys.maxint, [u'o1'])
+            (1, sys.maxsize, [u'o1'])
         ]
     }
     self._CheckOutOfOrderExpectations(expected)
@@ -956,7 +959,7 @@ class AddHistogramsTest(AddHistogramsBaseTest):
         'type': 'GenericSet'
     }
     diag = histogram.SparseDiagnostic(
-        data=diag_dict, start_revision=1, end_revision=sys.maxint,
+        data=diag_dict, start_revision=1, end_revision=sys.maxsize,
         test=utils.TestKey('master/bot/benchmark'))
     diag.put()
     data = json.dumps([
@@ -1010,7 +1013,7 @@ class AddHistogramsTest(AddHistogramsBaseTest):
     }
     diag = histogram.SparseDiagnostic(
         id='e9c2891d-2b04-413f-8cf4-099827e67626', data=diag_dict,
-        start_revision=1, end_revision=sys.maxint,
+        start_revision=1, end_revision=sys.maxsize,
         test=utils.TestKey('master/bot/benchmark'))
     diag.put()
     data = json.dumps([

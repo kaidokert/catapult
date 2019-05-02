@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -116,7 +119,7 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
     elif self._hist_name:
       # Histograms don't exist, which means this is summary
       summary_value = []
-      for test_path, histograms_for_test_path in histograms_by_path.iteritems():
+      for test_path, histograms_for_test_path in histograms_by_path.items():
         if test_path.startswith(test_path_to_match):
           for h in histograms_for_test_path:
             summary_value.extend(self._GetValuesOrStatistic(h))

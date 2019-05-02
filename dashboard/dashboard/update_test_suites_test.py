@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -312,14 +315,14 @@ class ListTestSuitesTest(testing_common.TestCase):
     suites = update_test_suites._FetchSuites()
     suite_keys = [s.key for s in suites]
     self.assertEqual(
-        map(utils.TestKey, [
+        list(map(utils.TestKey, [
             'Chromium/mac/dromaeo',
             'Chromium/mac/really',
             'Chromium/mac/scrolling',
             'Chromium/win7/dromaeo',
             'Chromium/win7/really',
             'Chromium/win7/scrolling',
-        ]),
+        ])),
         suite_keys)
 
   def testGetSubTestPath(self):

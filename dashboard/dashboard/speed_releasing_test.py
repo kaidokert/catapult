@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -156,7 +159,7 @@ class SpeedReleasingTest(testing_common.TestCase):
       for rev in revisions:
         row_key = utils.GetRowKey(key, rev)
         row = row_key.get()
-        row.r_commit_pos = str(rev / 10000)
+        row.r_commit_pos = str(rev // 10000)
         row.a_default_rev = 'r_foo'
         row.r_foo = 'abcdefghijk'
         row.put()

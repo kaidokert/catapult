@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -34,9 +37,9 @@ class UpdateBugWithResultsTest(testing_common.TestCase):
 
   def testMapAnomaliesToMergeIntoBug(self):
     # Add anomalies.
-    test_keys = map(utils.TestKey, [
+    test_keys = list(map(utils.TestKey, [
         'ChromiumGPU/linux-release/scrolling-benchmark/first_paint',
-        'ChromiumGPU/linux-release/scrolling-benchmark/mean_frame_time'])
+        'ChromiumGPU/linux-release/scrolling-benchmark/mean_frame_time']))
     anomaly.Anomaly(
         start_revision=9990, end_revision=9997, test=test_keys[0],
         median_before_anomaly=100, median_after_anomaly=200,
