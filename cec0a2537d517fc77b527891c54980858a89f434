@@ -22,6 +22,30 @@
       "revId": "cec0a2537d517fc77b527891c54980858a89f434",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1aea4a1_b55a4281",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-02T12:45:30Z",
+      "side": 1,
+      "message": "Ah, this is a good point! I played a bit with this, and I think I\u0027ve got a more general solution; which hopefully will also be more reusable. (python3 solves all of this, btw!)\n\nAnyway, I\u0027ll go ahead and land this with a TODO, and then follow up in another CL.",
+      "parentUuid": "4c932921_eb6d815f",
+      "range": {
+        "startLine": 154,
+        "startChar": 6,
+        "endLine": 155,
+        "endChar": 11
+      },
+      "revId": "cec0a2537d517fc77b527891c54980858a89f434",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
