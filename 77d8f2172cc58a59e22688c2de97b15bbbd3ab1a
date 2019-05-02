@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43be9bcb_9adc5646",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-02T09:48:44Z",
+      "side": 1,
+      "message": "Wouldn\u0027t just \"Android_Go Android_Webview\" on a single expectation line do the same?",
+      "revId": "77d8f2172cc58a59e22688c2de97b15bbbd3ab1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
