@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab5bee8e_3d964384",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-02T21:52:32Z",
+      "side": 1,
+      "message": "this is a case where early exit is useful, because it can avoid making complicated checks even more complicated.\n\nI\u0027d write this as :\n\n_validate_test_starts_with_prefix(...)\nif self.all:\n  return False\ntest_name \u003d test_case.id()...\n... the rest is unchanged ...\n\n\nAs a bonus, it\u0027ll be faster, too ... :)",
+      "revId": "d7b4a5617eaebe5b7ed7238e687f1c03daea545d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
