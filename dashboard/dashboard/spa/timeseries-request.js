@@ -20,8 +20,8 @@ const DETAILS_COLUMNS = new Set([
   'avg', 'std', 'count',  // TODO other statistics
   'revisions',
   'annotations',
+  'alert',
   // TODO Uncomment when ready to display these:
-  // 'alert',
   // 'diagnostics',
   // 'histogram',
 ]);
