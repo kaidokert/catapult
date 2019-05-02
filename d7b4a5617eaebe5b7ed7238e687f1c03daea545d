@@ -16,6 +16,24 @@
       "revId": "d7b4a5617eaebe5b7ed7238e687f1c03daea545d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b062b91_1d37bbc4",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-02T22:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab5bee8e_3d964384",
+      "revId": "d7b4a5617eaebe5b7ed7238e687f1c03daea545d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
