@@ -281,6 +281,24 @@
       "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "767c33cf_9c13fea2",
+        "filename": "devil/devil/android/tools/device_recovery.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-02T18:23:26Z",
+      "side": 1,
+      "message": "ah, yeah, I was missing how we\u0027d handle this case in the revised version of RecoverDevice. Fine w/ what you have.",
+      "parentUuid": "1d8c4696_799f77df",
+      "revId": "1510707b330fd8ac32369b36dc5dfe1602a1cd9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
