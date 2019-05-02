@@ -34,6 +34,24 @@
       "revId": "77d8f2172cc58a59e22688c2de97b15bbbd3ab1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9cc1191_39381b9e",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-02T15:42:58Z",
+      "side": 1,
+      "message": "Ah, you are right. Didn\u0027t notice that. Sorry for the noise. :)",
+      "parentUuid": "46fc76bd_1508fdbd",
+      "revId": "77d8f2172cc58a59e22688c2de97b15bbbd3ab1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
