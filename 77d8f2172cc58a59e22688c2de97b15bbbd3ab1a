@@ -16,6 +16,24 @@
       "revId": "77d8f2172cc58a59e22688c2de97b15bbbd3ab1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46fc76bd_1508fdbd",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-05-02T14:54:42Z",
+      "side": 1,
+      "message": "Yep, but it\u0027s set for other webview bots, wanted to be consistent.",
+      "parentUuid": "43be9bcb_9adc5646",
+      "revId": "77d8f2172cc58a59e22688c2de97b15bbbd3ab1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
