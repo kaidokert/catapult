@@ -830,7 +830,7 @@ class Runner(object):
 
     def default_classifier(self, test_set, test):
         if self.matches_filter(test):
-            if not self.args.all and self.should_skip(test):
+            if self.should_skip(test):
                 test_set.add_test_to_skip(test, 'skipped by request')
             elif self.should_isolate(test):
                 test_set.add_test_to_run_isolated(test)
@@ -861,8 +861,8 @@ class Runner(object):
         else:
             expected_results = set([ResultType.Pass])
         return (
-            ResultType.Skip in expected_results or
-            any(fnmatch.fnmatch(test_name, glob) for glob in self.args.skip))
+            not self.args.all and (ResultType.Skip in expected_results or
+            any(fnmatch.fnmatch(test_name, glob) for glob in self.args.skip)))
 
 
 def _test_adder(test_set, classifier):
