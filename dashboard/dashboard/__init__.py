@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import os
 import sys
 
+
 _CATAPULT_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..'))
 
