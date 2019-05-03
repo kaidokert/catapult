@@ -237,6 +237,8 @@ _EBUSY_RE = re.compile(
 
 _WEBVIEW_SYSUPDATE_CURRENT_PKG_RE = re.compile(
     r'Current WebView package.*:.*\(([a-z.]*),')
+_WEBVIEW_SYSUPDATE_NULL_PKG_RE = re.compile(
+    r'Current WebView package is null')
 _WEBVIEW_SYSUPDATE_FALLBACK_LOGIC_RE = re.compile(
     r'Fallback logic enabled: (true|false)')
 
@@ -2688,6 +2690,9 @@ class DeviceUtils(object):
       match = re.search(_WEBVIEW_SYSUPDATE_CURRENT_PKG_RE, line)
       if match:
         result['CurrentWebViewPackage'] = match.group(1)
+      match = re.search(_WEBVIEW_SYSUPDATE_NULL_PKG_RE, line)
+      if match:
+        result['CurrentWebViewPackage'] = None
       match = re.search(_WEBVIEW_SYSUPDATE_FALLBACK_LOGIC_RE, line)
       if match:
         result['FallbackLogicEnabled'] = \
