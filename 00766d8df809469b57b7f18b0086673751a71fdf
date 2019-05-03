@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbe1f581_ffa0c0e8",
+        "filename": "telemetry/telemetry/page/traffic_setting.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-05-03T13:30:14Z",
+      "side": 1,
+      "message": "Custom settings.",
+      "revId": "00766d8df809469b57b7f18b0086673751a71fdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
