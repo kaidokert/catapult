@@ -33,6 +33,10 @@ export default class DetailsTable extends ElementBase {
   static get is() { return 'details-table'; }
 
   static get template() {
+    const alertDetailPath = html([
+      '[[statePath]].bodies.[[bodyIndex]].alertCells.' +
+      '[[cellIndex]].alerts.[[alertIndex]]',
+    ]);
     return html`
       <style>
         :host {
@@ -60,6 +64,9 @@ export default class DetailsTable extends ElementBase {
           color: var(--color);
           border-bottom: 2px solid var(--color);
           padding-top: 4px;
+        }
+        td {
+          vertical-align: top;
         }
       </style>
 
@@ -96,7 +103,8 @@ export default class DetailsTable extends ElementBase {
           </template>
         </thead>
 
-        <template is="dom-repeat" items="[[bodies]]" as="body">
+        <template is="dom-repeat" items="[[bodies]]" as="body"
+                                  index-as="bodyIndex">
           <tbody>
             <template is="dom-if" if="[[isMultiple_(lineDescriptors)]]">
               <tr>
@@ -125,6 +133,41 @@ export default class DetailsTable extends ElementBase {
                 </template>
               </tr>
             </template>
+
+            <template is="dom-if" if="[[!isEmpty_(body.alertCells)]]">
+              <tr>
+                <td>Alerts</td>
+                <template is="dom-repeat" items="[[body.alertCells]]"
+                                          as="cell" index-as="cellIndex">
+                  <td>
+                    <template is="dom-repeat" items="[[cell.alerts]]"
+                                              index-as="alertIndex">
+                      <alert-detail state-path="${alertDetailPath}">
+                      </alert-detail>
+                    </template>
+                  </td>
+                </template>
+              </tr>
+            </template>
+
+            <tr>
+              <td>Bisect</td>
+              <template is="dom-if" if="[[body.bisectMessage]]">
+                <td colspan="99">
+                  [[bisectMessage]]
+                </td>
+              </template>
+              <template is="dom-if" if="[[!body.bisectMessage]]">
+                <template is="dom-repeat" items="[[body.bisectButtons]]"
+                    index-as="buttonIndex">
+                  <td>
+                    <raised-button on-click="onBisect_">
+                      Bisect
+                    </raised-button>
+                  </td>
+                </template>
+              </template>
+            </tr>
 
             <template is="dom-repeat" items="[[body.linkRows]]" as="row">
               <tr>
@@ -174,6 +217,10 @@ export default class DetailsTable extends ElementBase {
 
   hideEmpty_(isLoading, bodies) {
     return !isLoading || !this.isEmpty_(bodies);
+  }
+
+  async onBisect_(event) {
+    // TODO
   }
 }
 
@@ -277,6 +324,8 @@ function mergeData(timeserieses, range) {
           cell.timestampRange.addValue(cell.timestamp.getTime());
         }
         if (!cell.revisions) cell.revisions = {};
+        cell.alerts = [];
+        if (cell.alert) cell.alerts.push(cell.alert);
         continue;
       }
 
@@ -284,6 +333,8 @@ function mergeData(timeserieses, range) {
       if (datum.timestamp) {
         cell.timestampRange.addValue(datum.timestamp.getTime());
       }
+
+      if (datum.alert) cell.alerts.push(datum.alert);
 
       // TODO Uncomment when Histograms are displayed.
       // mergeHistograms(cell, datum);
@@ -300,10 +351,12 @@ function mergeData(timeserieses, range) {
 }
 
 // Merge timeserieses and format the detailed data as links and scalars.
-DetailsTable.buildCell = (setLink, setScalar, timeserieses, range,
+DetailsTable.buildCell = (setLink, setScalar, setAlerts, timeserieses, range,
     revisionInfo) => {
   const {reference, cell} = mergeData(timeserieses, range);
   if (!cell) return;
+
+  setAlerts(cell.alerts);
 
   for (const stat of ['avg', 'std', 'min', 'max', 'sum']) {
     if (cell[stat] === undefined || isNaN(cell[stat])) continue;
@@ -408,20 +461,35 @@ function buildBody({lineDescriptor, timeseriesesByRange}, descriptorFlags,
   const scalarRowsByLabel = new Map();
   const linkRowsByLabel = new Map();
   const columnCount = timeseriesesByRange.length;
+  const alertCells = new Array(columnCount);
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
     const setScalar = (rowLabel, value, unit) => setCell(
         scalarRowsByLabel, rowLabel, columnCount, columnIndex, {value, unit});
     const setLink = (rowLabel, href, label) => setCell(
         linkRowsByLabel, rowLabel, columnCount, columnIndex, {href, label});
+    const setAlerts = alerts => {
+      alertCells[columnIndex] = {alerts};
+    };
 
-    DetailsTable.buildCell(setLink, setScalar, timeserieses, range,
+    DetailsTable.buildCell(setLink, setScalar, setAlerts, timeserieses, range,
         revisionInfo);
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
   const linkRows = collectRowsByLabel(linkRowsByLabel);
-  return {descriptor, descriptorParts, scalarRows, linkRows};
+  if (alertCells.filter(cell => cell && cell.alerts.length).length === 0) {
+    alertCells.length = 0;
+  }
+  const bisectMessage = 'TODO';
+  return {
+    descriptor,
+    descriptorParts,
+    scalarRows,
+    bisectMessage,
+    linkRows,
+    alertCells,
+  };
 }
 
 // Return an object containing flags indicating whether to show parts of
