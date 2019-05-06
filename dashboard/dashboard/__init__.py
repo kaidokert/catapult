@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import os
 import sys
 
+
 _CATAPULT_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..'))
 
@@ -88,6 +89,10 @@ def PathsForTesting():
   paths.append(os.path.join(_CATAPULT_PATH, 'common', 'py_utils', 'py_utils'))
   # Required by py_utils
   paths.append(os.path.join(_CATAPULT_PATH, 'devil', 'devil'))
+
+  # Isolate the sheriff_config package, since it's deployed independently.
+  paths.append(
+      os.path.join(_CATAPULT_PATH, 'dashboard', 'dashboard', 'sheriff_config'))
   paths += _CatapultThirdPartyLibraryPaths()
   paths += _AllSdkThirdPartyLibraryPaths()
   return paths
