@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "791a9224_d5b5d11f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2671,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-06T23:29:34Z",
+      "side": 1,
+      "message": "nit: update this to mention the possibility of None",
+      "revId": "293c8dff0c61b809d261b1b3802c7f2b5e448e5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad7eba7e_4fc929db",
+        "filename": "devil/devil/android/tools/webview_app.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-06T23:29:34Z",
+      "side": 1,
+      "message": "nit: either indent install_timeout to the same depth as device or drop all parameters onto subsequent lines and indent four spaces.",
+      "revId": "293c8dff0c61b809d261b1b3802c7f2b5e448e5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
