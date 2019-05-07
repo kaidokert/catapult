@@ -37,6 +37,13 @@ import {
 
 const NOTIFICATION_MS = 5000;
 
+// Map from redux store keys to ConfigRequest keys.
+const CONFIG_KEYS = {
+  revisionInfo: 'revision_info',
+  bisectMasterWhitelist: 'bisect_bot_map',
+  bisectSuiteBlacklist: 'bisect_suite_blacklist',
+};
+
 export default class ChromeperfApp extends ElementBase {
   static get is() { return 'chromeperf-app'; }
 
@@ -478,7 +485,7 @@ ChromeperfApp.observers = [
 ChromeperfApp.actions = {
   ready: (statePath, routeParams) =>
     async(dispatch, getState) => {
-      ChromeperfApp.actions.getRevisionInfo()(dispatch, getState);
+      ChromeperfApp.actions.getConfigs()(dispatch, getState);
 
       dispatch(CHAIN(
           ENSURE(statePath),
@@ -549,16 +556,24 @@ ChromeperfApp.actions = {
     dispatch(UPDATE('', {
       userEmail: profile ? profile.getEmail() : '',
     }));
-    ChromeperfApp.actions.getRevisionInfo()(dispatch, getState);
+    ChromeperfApp.actions.getConfigs()(dispatch, getState);
     if (profile) {
       await ChromeperfApp.actions.getRecentBugs()(dispatch, getState);
     }
   },
 
-  getRevisionInfo: () => async(dispatch, getState) => {
-    const revisionInfo = await new ConfigRequest(
-        {key: 'revision_info'}).response;
-    dispatch(UPDATE('', {revisionInfo}));
+  getConfig: (reduxKey, backendKey) => async(dispatch, getState) => {
+    const request = new ConfigRequest({key: backendKey});
+    dispatch(UPDATE('', {[reduxKey]: await request.response}));
+  },
+
+  getConfigs: () => async(dispatch, getState) => {
+    const promises = [];
+    for (const [reduxKey, backendKey] of Object.entries(CONFIG_KEYS)) {
+      promises.push(ChromeperfApp.actions.getConfig(
+          reduxKey, backendKey)(dispatch, getState));
+    }
+    await Promise.all(promises);
   },
 
   restoreSessionState: (statePath, sessionId) =>
