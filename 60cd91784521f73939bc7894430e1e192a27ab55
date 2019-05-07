@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00a80c73_d65a7f10",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-07T15:50:21Z",
+      "side": 1,
+      "message": "Would need to update the docstring above, to explain when does the function return None, and when does it raise an exception.\n\nOr maybe keep this returning None and leave changes to this file (if needed) as a follow up?",
+      "revId": "60cd91784521f73939bc7894430e1e192a27ab55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
