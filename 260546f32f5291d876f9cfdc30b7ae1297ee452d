@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b486e16c_05ef3d6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-07T23:54:43Z",
+      "side": 1,
+      "message": "ah, makes sense. Thanks for explaining!",
+      "parentUuid": "6ad118c2_530eb8bb",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "260546f32f5291d876f9cfdc30b7ae1297ee452d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b42cfc0b_c374a791",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
