@@ -16,6 +16,24 @@
       "revId": "f27057bbc6ffd945168e51d32915831e253dd36b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "707a7c34_d350bd33",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-07T12:52:46Z",
+      "side": 0,
+      "message": "--browser list works fine in case of no browsers, because it\u0027s processed here, before any call to FindBrowser:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?l\u003d267\n\nOn the other hand, it appeared that many tests depend on FindBrowser returning None when running on bots, where no browser is installed. I think this can be addressed in a separate CL, but for now, I\u0027ll leave return None here, as you suggested.",
+      "parentUuid": "9c0f6624_5a5b724f",
+      "revId": "f27057bbc6ffd945168e51d32915831e253dd36b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
