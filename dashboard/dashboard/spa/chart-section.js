@@ -322,8 +322,11 @@ ChartSection.actions = {
   maybeLoadTimeseries: statePath => async(dispatch, getState) => {
     // If the first 3 components are filled, then load the timeseries.
     const state = get(getState(), statePath);
-    if (state.descriptor.suite.selectedOptions.length &&
+    if (state.descriptor.suite.selectedOptions &&
+        state.descriptor.suite.selectedOptions.length &&
+        state.descriptor.measurement.selectedOptions &&
         state.descriptor.measurement.selectedOptions.length &&
+        state.statistic.selectedOptions &&
         state.statistic.selectedOptions.length) {
       METRICS.endChartAction();
       ChartSection.actions.loadTimeseries(statePath)(dispatch, getState);
