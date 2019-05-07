@@ -68,14 +68,23 @@ suite('details-table', function() {
     window.fetch = originalFetch;
   });
 
-  test('load', async function() {
+  async function fixture() {
     const dt = document.createElement('details-table');
     dt.statePath = 'test';
     dt.dispatch(CHAIN(
+        UPDATE('', {
+          revisionInfo: {},
+          bisectMasterWhitelist: ['whitelistedMaster'],
+          bisectSuiteBlacklist: ['blacklistedSuite'],
+        }),
         ENSURE('test'),
         UPDATE('test', DetailsTable.buildState({}))));
     document.body.appendChild(dt);
     await afterRender();
+  }
+
+  test('load', async function() {
+    const dt = await fixture();
     await dt.dispatch(UPDATE('test', {
       lineDescriptors: [{
         suites: ['suite'],
@@ -287,5 +296,29 @@ suite('details-table', function() {
     assert.strictEqual('count', scalars[2].name);
     assert.strictEqual(140, scalars[2].value);
     assert.strictEqual(tr.b.Unit.byName.count, scalars[2].unit);
+  });
+
+  test('single revision cannot bisect', async function() {
+    const dt = await fixture();
+  });
+
+  test('multiple timeseries cannot bisect', async function() {
+    const dt = await fixture();
+  });
+
+  test('ref build cannot bisect', async function() {
+    const dt = await fixture();
+  });
+
+  test('blacklisted suite cannot bisect', async function() {
+    const dt = await fixture();
+  });
+
+  test('blacklisted master cannot bisect', async function() {
+    const dt = await fixture();
+  });
+
+  test('bisect', async function() {
+    const dt = await fixture();
   });
 });
