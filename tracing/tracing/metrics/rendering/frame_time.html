@@ -75,6 +75,9 @@ tr.exportTo('tr.metrics.rendering', function() {
   const DRM_EVENT = 'DrmEventFlipComplete';
   const SURFACE_FLINGER_EVENT = 'vsync_before';
   const COMPOSITOR_FRAME_PRESENTED_EVENT = 'FramePresented';
+  const RGB_DECODE_EVENT = 'ImageFrameGenerator::decode';
+  const YUV_DECODE_EVENT = 'ImageFrameGenerator::decodeToYUV';
+  const BLINK_DECODE_EVENT = 'GpuImageDecodeCache::DecodeImage';
 
   // In computing frame_lengths, avg_surface_fps, and jank_count, frames that
   // are shorter than half a vsync are ignored.
@@ -109,6 +112,25 @@ tr.exportTo('tr.metrics.rendering', function() {
     }
     return [...modelHelper.browserProcess.findTopmostSlicesNamed(
         DISPLAY_EVENT)];
+  }
+
+  function getImageDecodingEvents_(modelHelper) {
+    if (!modelHelper || !modelHelper.rendererHelpers) return [];
+    const events = [];
+    const processes = Object.values(modelHelper.rendererHelpers).map(
+        processHelper => processHelper.process);
+    for (const rendererProcess of processes) {
+      for (const thread of Object.values(rendererProcess.threads)) {
+        for (const slice of thread.sliceGroup.slices) {
+          if (slice.title === RGB_DECODE_EVENT ||
+              slice.title === YUV_DECODE_EVENT ||
+              slice.title === BLINK_DECODE_EVENT) {
+            events.push(slice);
+          }
+        }
+      }
+    }
+    return events;
   }
 
   function getUIPresentationEvents_(modelHelper) {
@@ -235,6 +257,44 @@ tr.exportTo('tr.metrics.rendering', function() {
         });
   }
 
+  function addImageDecodeTimeHistograms(histograms, model, segments) {
+    const modelHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const decodeEvents = getImageDecodingEvents_(modelHelper);
+    if (!decodeEvents) return;
+
+    histograms.createHistogram(
+        'rgb_decode_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        decodeEvents.filter(slice => slice.title === RGB_DECODE_EVENT).map(
+            slice => slice.cpuDuration),
+        { description: 'Duration of the Blink RGB decoding path for a chunk ' +
+                       'of image data (possibly the whole image).',
+        summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+
+    histograms.createHistogram(
+        'yuv_decode_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        decodeEvents.filter(slice => slice.title === YUV_DECODE_EVENT).map(
+            slice => slice.cpuDuration),
+        { description: 'Duration of the Blink YUV decoding path for a ' +
+                       'chunk of image data (possibly the whole image).',
+        summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+
+    histograms.createHistogram(
+        'blink_decode_time_gpu_rasterization',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        decodeEvents.filter(slice => slice.title === BLINK_DECODE_EVENT).map(
+            slice => slice.cpuDuration),
+        { description: 'Duration of decoding and scaling within the ' +
+                       'GpuImageDecodeCache for a chunk of image data ' +
+                       '(possibly the whole image)',
+        summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+        });
+  }
+
   function addUIFrameTimeHistograms(histograms, model, segments) {
     const events = getUIPresentationEvents_(
         model.getOrCreateHelper(tr.model.helpers.ChromeModelHelper));
@@ -299,6 +359,7 @@ tr.exportTo('tr.metrics.rendering', function() {
 
   return {
     addFrameTimeHistograms,
+    addImageDecodeTimeHistograms,
     addUIFrameTimeHistograms,
   };
 });
