@@ -22,6 +22,30 @@
       "revId": "195bcae748c760b75f9e3f8fe1a11fc0592ff9dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28bf1f6a_ca591ad3",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/multiprocessing_shim.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-07T23:49:31Z",
+      "side": 0,
+      "message": "Whenever Typ imports any unittest modules that imports the py_trace_event module, it causes this code to be run. Typ uses the multiprocessing.Process class to run tests in parallel, but when it py_trace_event is imported, it uses ProcessShim instead.",
+      "parentUuid": "ab3a0741_1caec4f4",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 39
+      },
+      "revId": "195bcae748c760b75f9e3f8fe1a11fc0592ff9dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
