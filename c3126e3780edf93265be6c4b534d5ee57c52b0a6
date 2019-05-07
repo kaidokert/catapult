@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "127f9697_7e674a1a",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-05-07T23:40:55Z",
+      "side": 1,
+      "message": "TWO_TWO_?",
+      "range": {
+        "startLine": 304,
+        "startChar": 8,
+        "endLine": 304,
+        "endChar": 31
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e138c006_161393a6",
+        "filename": "dashboard/dashboard/spa/bisect-dialog.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-05-07T23:40:55Z",
+      "side": 1,
+      "message": "2019 (might need to fix in other files in this CL too)",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d46432d2_41de8425",
+        "filename": "dashboard/dashboard/spa/bisect-dialog.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-05-07T23:40:55Z",
+      "side": 1,
+      "message": "would it make sense to move this into the start of the try block below? That way if something goes wrong constructing the request, the user isn\u0027t stuck looking at isLoading: true waiting for it to end?",
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17aaa6bb_27d55f48",
+        "filename": "dashboard/dashboard/spa/chart-compound.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-05-07T23:40:55Z",
+      "side": 1,
+      "message": "I don\u0027t see where this is used in this CL. Is it already in use but the import just missing?",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e465eb30_f94f422b",
+        "filename": "dashboard/dashboard/spa/details-table.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-05-07T23:40:55Z",
+      "side": 1,
+      "message": "timeserieses? \u0027Series\u0027 is both singular and plural, no?",
+      "range": {
+        "startLine": 536,
+        "startChar": 22,
+        "endLine": 536,
+        "endChar": 41
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
