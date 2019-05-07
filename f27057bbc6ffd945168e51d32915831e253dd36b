@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c0f6624_5a5b724f",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-07T08:58:58Z",
+      "side": 0,
+      "message": "I think these should still return None (e.g. in --browser list, it shouldn\u0027t be an error if there are no browsers).",
+      "revId": "f27057bbc6ffd945168e51d32915831e253dd36b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
