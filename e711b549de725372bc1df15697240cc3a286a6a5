@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8ad0ed2_1a614af9",
+        "filename": "telemetry/BUILD.gn",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-07T10:06:16Z",
+      "side": 1,
+      "message": "I remember the reason for this was having to *exclude* some large files that were not needed to run Telemetry. Is that right?\n\nIf so, we should probably file a bug to move those out of the telemetry/ path, so we don\u0027t have to keep tweaking this list by hand every time a new file is added.",
+      "revId": "e711b549de725372bc1df15697240cc3a286a6a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
