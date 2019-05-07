@@ -129,6 +129,9 @@ if trace_event_impl:
   def is_tracing_controllable():
     return trace_event_impl.is_tracing_controllable()
 
+  def trace_process_module():
+    return trace_event_impl.multiprocessing_shim.ProcessShim
+
 else:
   import contextlib
 
@@ -178,6 +181,10 @@ else:
 
   def is_tracing_controllable():
     return False
+
+  def trace_process_module():
+    return multiprocessing_shim.Process
+
 
 trace_enable.__doc__ = """Enables tracing.
 
