@@ -122,8 +122,9 @@ def FindBrowser(options):
         if b.browser_type == options.browser_type and
         b.SupportsOptions(options.browser_options)]
     if not matching_browsers:
-      logging.warning('Cannot find any matched browser')
-      return None
+      raise browser_finder_exceptions.BrowserFinderException(
+          'Cannot find browser of type %s' % options.browser_type)
+
     if len(matching_browsers) > 1:
       logging.warning('Multiple browsers of the same type found: %r',
                       matching_browsers)
