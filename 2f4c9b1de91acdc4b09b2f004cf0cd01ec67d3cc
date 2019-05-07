@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c24c2ad_eeb13daf",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-07T11:16:08Z",
+      "side": 1,
+      "message": "nit: It\u0027s a bit strange to have the \"_\" prefix on a variable name. Maybe call it \"temperature_controller\" or even just \"controller\".",
+      "revId": "2f4c9b1de91acdc4b09b2f004cf0cd01ec67d3cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
