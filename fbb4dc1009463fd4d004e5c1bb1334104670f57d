@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec998a0e_0b8df430",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-08T16:10:16Z",
+      "side": 1,
+      "message": "Looks like if there are no available browsers then we may raise an exception and we may return none, depending on various low-level details. Maybe it\u0027s better to just do one or the other?",
+      "range": {
+        "startLine": 53,
+        "startChar": 30,
+        "endLine": 58,
+        "endChar": 0
+      },
+      "revId": "fbb4dc1009463fd4d004e5c1bb1334104670f57d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
