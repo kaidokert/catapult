@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba769216_e8b6bee3",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1221484
+      },
+      "writtenOn": "2019-05-08T20:02:36Z",
+      "side": 1,
+      "message": "If this was a permanent change, it might be cleaner to move the cpuMetrics part into its own fn, but as I assume we\u0027ll be deprecating the non-experimental part once we\u0027re sure this works, this approach seems good to me.",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 40
+      },
+      "revId": "266231674aa589d994290a83da9491a59af4d58c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
