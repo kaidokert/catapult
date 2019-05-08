@@ -16,6 +16,24 @@
       "revId": "fc3d856e114362bc001b9f58c517a541e78c8b39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9807f1a_45bba4dc",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1221484
+      },
+      "writtenOn": "2019-05-08T19:50:04Z",
+      "side": 1,
+      "message": "Decode happens on one of the worker pool threads defined here:\nhttps://cs.chromium.org/chromium/src/content/renderer/categorized_worker_pool.cc?rcl\u003d1b1e2ee8601861895613775b4551f948c93c7ab1\u0026l\u003d25\n\nThere can be up to 4 of these, so it\u0027s not always one thread.\n\nNot too familiar with the code in this file, but maybe we can make it easier to identify the threads we care about?",
+      "parentUuid": "ecbeaa46_50016cc5",
+      "revId": "fc3d856e114362bc001b9f58c517a541e78c8b39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
