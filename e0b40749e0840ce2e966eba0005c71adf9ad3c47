@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05da0457_858e23d3",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-08T17:42:33Z",
+      "side": 1,
+      "message": "where is this used?",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 0
+      },
+      "revId": "e0b40749e0840ce2e966eba0005c71adf9ad3c47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e531539_043b0e35",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-08T17:42:33Z",
+      "side": 1,
+      "message": "I wonder if it would make more sense to just have the logic for whether to \"monkeypatch\" inside right here:\n\nif trace_event.trace_can_enable():\n  multiprocessing.Process \u003d multiprocessing_shim.ProcessShim\n\nThen you don\u0027t need the extra code in trace_event.",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 63
+      },
+      "revId": "e0b40749e0840ce2e966eba0005c71adf9ad3c47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
