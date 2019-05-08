@@ -4,6 +4,7 @@
 
 import logging
 import tempfile
+import multiprocessing
 
 from telemetry.internal.platform import tracing_agent
 from tracing.trace_data import trace_data
@@ -86,6 +87,10 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     trace_event.trace_enable(
         self._trace_file, format=trace_event.JSON_WITH_METADATA)
     assert self.is_tracing, 'Failed to start Telemetry tracing'
+
+    # Monkeypatch in our process replacement.
+    if trace_event.trace_can_enable():
+      multiprocessing.Process = trace_event.ProcessShim
     return True
 
   def StopAgentTracing(self):

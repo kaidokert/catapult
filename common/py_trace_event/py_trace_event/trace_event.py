@@ -70,6 +70,8 @@ TracedMetaClass = type
 if trace_event_impl:
   import time
 
+  ProcessShim = trace_event_impl.multiprocessing_shim.ProcessShim
+
   # Trace file formats
   JSON = trace_event_impl.JSON
   JSON_WITH_METADATA = trace_event_impl.JSON_WITH_METADATA
@@ -178,6 +180,7 @@ else:
 
   def is_tracing_controllable():
     return False
+
 
 trace_enable.__doc__ = """Enables tracing.
 
