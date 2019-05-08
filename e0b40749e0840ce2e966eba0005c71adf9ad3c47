@@ -69,6 +69,30 @@
       "revId": "e0b40749e0840ce2e966eba0005c71adf9ad3c47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb810447_408423d9",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-08T18:23:12Z",
+      "side": 1,
+      "message": "I added the code above, but defined a ProcessShim variable in the py_trace_event/trace_event.py script which holds the multiprocessing_shim.ProcessShim class. And in telemetry_tracing_agent.py script I put the following\n\nif trace_event.trace_can_enable():\n      multiprocessing.Process \u003d trace_event.ProcessShim",
+      "parentUuid": "3eda459f_0eb89dbb",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 63
+      },
+      "revId": "e0b40749e0840ce2e966eba0005c71adf9ad3c47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
