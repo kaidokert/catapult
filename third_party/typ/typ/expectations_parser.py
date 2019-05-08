@@ -37,7 +37,7 @@ class ParseError(Exception):
 
 class Expectation(object):
     def __init__(self, reason, test, tags, results, lineno,
-                 retry_on_failure=False):
+                 driver = None, retry_on_failure=False):
         """Constructor for expectations.
 
         Args:
@@ -57,6 +57,7 @@ class Expectation(object):
         self._tags = frozenset(tags)
         self._results = frozenset(results)
         self._lineno = lineno
+        self._driver = driver
         self.should_retry_on_failure = retry_on_failure
 
     def __eq__(self, other):
@@ -75,6 +76,10 @@ class Expectation(object):
     @property
     def tags(self):
         return self._tags
+
+    @property
+    def driver(self):
+        return self._driver
 
     @property
     def results(self):
@@ -195,7 +200,17 @@ class TaggedTestListParser(object):
 
         # Unused group is optional trailing comment.
         reason, raw_tags, test, raw_results, _ = match.groups()
-        tags = [raw_tag.lower() for raw_tag in raw_tags.split()] if raw_tags else []
+        tags = []
+        driver = []
+        if raw_tags:
+            for raw_tag in re.findall(r'\([^\)]*\)|\S+', raw_tags):
+                if raw_tag.startswith('('):
+                    if driver:
+                        raise ParseError(lineno, 'Duplicated driver: %s' % line)
+                    driver = raw_tag[1:len(raw_tag)-1].split()
+                else:
+                    tags.append(raw_tag)
+
         tag_set_ids = set()
 
         if '*' in test[:-1]:
@@ -238,13 +253,19 @@ class TaggedTestListParser(object):
         # instance. These tags will be compared to the tags passed in to
         # the Runner instance which are also stored in lower case.
         return Expectation(
-            reason, test, tags, results, lineno, retry_on_failure)
+            reason, test, tags, results, lineno, driver, retry_on_failure)
 
 
 class TestExpectations(object):
 
     def __init__(self, tags):
-        self.tags = [tag.lower() for tag in tags]
+        self.tags = []
+        self.driver = None
+        for tag in tags:
+          if isinstance(tag, str):
+            self.tags.append(tag.lower())
+          else:
+            self.driver = tag
 
         # Expectations may either refer to individual tests, or globs of
         # tests. Each test (or glob) may have multiple sets of tags and
@@ -303,6 +324,8 @@ class TestExpectations(object):
         # First, check for an exact match on the test name.
         for exp in self.individual_exps.get(test, []):
             if exp.tags.issubset(self.tags):
+                if self.driver and exp.driver and not self._match_driver(exp.driver):
+                    continue
                 results.update(exp.results)
                 should_retry_on_failure |= exp.should_retry_on_failure
         if results or should_retry_on_failure:
@@ -326,3 +349,37 @@ class TestExpectations(object):
 
         # Nothing matched, so by default, the test is expected to pass.
         return {ResultType.Pass}, False
+
+    def _match_driver(self, condition):
+        driver_vendor = self.driver[0]
+        driver_version = self.driver[1]
+        if not driver_vendor == condition[0]:
+            return False
+
+        diff = 0
+        regex = re.compile('([0-9]+)((\.[0-9]+)*)')
+        str1 = driver_version
+        str2 = condition[2]
+        while True:
+            match1 = regex.search(str1)
+            match2 = regex.search(str2)
+            if not match1 or not match2:
+                break;
+            if not match1.group(1) == match2.group(1):
+                diff = int(match1.group(1)) - int(match2.group(1))
+                break;
+            str1 = match1.group(2)[1:]
+            str2 = match2.group(2)[1:]
+
+        opt = condition[1]
+        if opt == '=':
+            return diff == 0
+        elif opt == '>':
+            return diff > 0
+        elif opt == '<':
+            return diff < 0
+        elif opt == '>=':
+            return diff >= 0
+        elif opt == '<=':
+            return diff <= 0
+        return False

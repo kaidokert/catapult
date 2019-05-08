@@ -16,11 +16,14 @@ class GPUDevice(object):
       0x10de: 'Nvidia',
   }
 
-  def __init__(self, vendor_id, device_id, vendor_string, device_string):
+  def __init__(self, vendor_id, device_id, vendor_string, device_string,
+               driver_vendor, driver_version):
     self._vendor_id = vendor_id
     self._device_id = device_id
     self._vendor_string = vendor_string
     self._device_string = device_string
+    self._driver_vendor = driver_vendor
+    self._driver_version = driver_version
 
   def __str__(self):
     vendor = 'VENDOR = 0x%x' % self._vendor_id
@@ -47,7 +50,8 @@ class GPUDevice(object):
        Raises an exception if any attributes are missing.
     """
     return cls(attrs['vendor_id'], attrs['device_id'],
-               attrs['vendor_string'], attrs['device_string'])
+               attrs['vendor_string'], attrs['device_string'],
+               attrs.get('driver_vendor'), attrs.get('driver_version'))
 
   @property
   def vendor_id(self):
@@ -82,3 +86,15 @@ class GPUDevice(object):
        Most mobile devices supply this information rather than the PCI
        IDs."""
     return self._device_string
+
+  @property
+  def driver_vendor(self):
+    """The GPU driver's vendor as a string, or the empty string if not
+       available."""
+    return self._driver_vendor
+
+  @property
+  def driver_version(self):
+    """The GPU driver's version as a string, or the empty string if not
+       available."""
+    return self._driver_version
