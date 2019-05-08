@@ -7,6 +7,7 @@ import os
 import sys
 import time
 import threading
+import multiprocessing_shim
 
 from py_trace_event.trace_event_impl import perfetto_trace_writer
 from py_trace_event import trace_time
@@ -291,3 +292,6 @@ def _trace_disable_atexit():
 def is_tracing_controllable():
   global _control_allowed
   return _control_allowed
+
+def trace_process_class():
+  return multiprocessing_shim.ProcessShim
