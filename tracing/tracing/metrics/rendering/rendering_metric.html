@@ -27,6 +27,8 @@ tr.exportTo('tr.metrics.rendering', function() {
     const segments = chromeHelper.telemetryHelper.segments;
     if (segments.length > 0) {
       tr.metrics.rendering.addFrameTimeHistograms(histograms, model, segments);
+      tr.metrics.rendering.addImageDecodeTimeHistograms(histograms, model,
+          segments);
       tr.metrics.rendering.addLatencyHistograms(histograms, model, segments);
       tr.metrics.rendering.addPipelineHistograms(histograms, model, segments);
       tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
