@@ -93,6 +93,30 @@
       "revId": "260546f32f5291d876f9cfdc30b7ae1297ee452d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d06d6d55_3651a872",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-08T00:15:43Z",
+      "side": 1,
+      "message": "Done. I opened crbug.com/960609",
+      "parentUuid": "b42cfc0b_c374a791",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 9
+      },
+      "revId": "260546f32f5291d876f9cfdc30b7ae1297ee452d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
