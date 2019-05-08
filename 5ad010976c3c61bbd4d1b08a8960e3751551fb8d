@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25811135_7b5cf6e3",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-05-08T18:59:05Z",
+      "side": 1,
+      "message": "If you are get the renderer-helper, then you could use |rasterWorkerThreads|, e.g.:\n\n  const events \u003d [];\n  for (const renderer of Object.values(modelHelper.rendererHelpers)) {\n    for (const thread of renderer.rasterWorkerThreads) {\n       ...\n    }\n  }",
+      "revId": "5ad010976c3c61bbd4d1b08a8960e3751551fb8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
