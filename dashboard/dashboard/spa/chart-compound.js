@@ -21,6 +21,7 @@ import {html} from '@polymer/polymer/polymer-element.js';
 import {
   buildProperties,
   buildState,
+  isElementChildOf,
   setImmutable,
 } from './utils.js';
 
@@ -361,6 +362,7 @@ export default class ChartCompound extends ElementBase {
   }
 
   onModeChange_(event) {
+    if (!event.detail.value) return;
     this.dispatch(UPDATE(this.statePath, {mode: event.detail.value}));
     this.dispatch('load', this.statePath);
 
