@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e8978e1a_9e2d0275",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-05-08T16:58:31Z",
+      "side": 1,
+      "message": "This is defined and commented at the top of the file.\nThis change fixes a bug with test suites that are in two_two_test_suites but not polymeasurement_test_suites. Such test suites were failing to replace colons with slashes in their measurement names when generating test paths.",
+      "parentUuid": "127f9697_7e674a1a",
+      "range": {
+        "startLine": 304,
+        "startChar": 8,
+        "endLine": 304,
+        "endChar": 31
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e138c006_161393a6",
         "filename": "dashboard/dashboard/spa/bisect-dialog.js",
         "patchSetId": 35
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fdb6f989_ba659a00",
+        "filename": "dashboard/dashboard/spa/bisect-dialog.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-05-08T16:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e138c006_161393a6",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d46432d2_41de8425",
         "filename": "dashboard/dashboard/spa/bisect-dialog.js",
         "patchSetId": 35
@@ -62,6 +110,24 @@
       "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "417752b1_49d3dff6",
+        "filename": "dashboard/dashboard/spa/bisect-dialog.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-05-08T16:58:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d46432d2_41de8425",
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "632d24b1_64c85237",
+        "filename": "dashboard/dashboard/spa/chart-compound.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-05-08T16:58:31Z",
+      "side": 1,
+      "message": "Yes, it\u0027s already used in onMenuBlur_, I forgot the import when I migrated it to an es6 module.",
+      "parentUuid": "17aaa6bb_27d55f48",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e465eb30_f94f422b",
         "filename": "dashboard/dashboard/spa/details-table.js",
         "patchSetId": 35
@@ -99,6 +189,30 @@
       "writtenOn": "2019-05-07T23:40:55Z",
       "side": 1,
       "message": "timeserieses? \u0027Series\u0027 is both singular and plural, no?",
+      "range": {
+        "startLine": 536,
+        "startChar": 22,
+        "endLine": 536,
+        "endChar": 41
+      },
+      "revId": "c3126e3780edf93265be6c4b534d5ee57c52b0a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aedd4479_7c2ef7c3",
+        "filename": "dashboard/dashboard/spa/details-table.js",
+        "patchSetId": 35
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-05-08T16:58:31Z",
+      "side": 1,
+      "message": "Yes, \u0027timeserieses\u0027 is used throughout spa to distinguish a collection of timeseries from a single timeseries, as in `for (const timeseries of timeserieses)`.",
+      "parentUuid": "e465eb30_f94f422b",
       "range": {
         "startLine": 536,
         "startChar": 22,
