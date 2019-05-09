@@ -22,6 +22,30 @@
       "revId": "266231674aa589d994290a83da9491a59af4d58c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdc2c03e_fc215e86",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-05-09T04:53:23Z",
+      "side": 1,
+      "message": "Indeed. I added the addCpuMetrics block here to avoid having to do a refactor that will go away once the old metrics are replaced with the new ones.",
+      "parentUuid": "ba769216_e8b6bee3",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 40
+      },
+      "revId": "266231674aa589d994290a83da9491a59af4d58c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
