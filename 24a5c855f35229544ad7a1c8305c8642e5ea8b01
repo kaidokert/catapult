@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b1ae9d7_cff63bc1",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-05-09T18:19:39Z",
+      "side": 1,
+      "message": "Please add some documentation for new metrics here explaining what each of them means and how it\u0027s computed.",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 3
+      },
+      "revId": "24a5c855f35229544ad7a1c8305c8642e5ea8b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "059fbaba_8bc218c7",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-05-09T18:19:39Z",
+      "side": 1,
+      "message": "It looks like the new metrics do not share code with frame time metrics. If that is the case, please create a new file for these metrics. There have been some talks recently about splitting the rendering metric into smaller sets of metrics. It will be nice if subsets of metrics that do not share code are defined in separate files just in case we decide to split rendering metrics in future.",
+      "range": {
+        "startLine": 261,
+        "startChar": 11,
+        "endLine": 261,
+        "endChar": 39
+      },
+      "revId": "24a5c855f35229544ad7a1c8305c8642e5ea8b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f19c39a_d2f29122",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-05-09T18:19:39Z",
+      "side": 1,
+      "message": "Note that you are collecting all image decoding events from the start of tracing to the end of tracing. Other rendering metrics usually collect the events during the time that the story is being run, for example, only while a page is being scrolled down, which is passed as the |segments| parameter. If this makes sense for your metrics too, you should filter out events that are not in |segments|.",
+      "range": {
+        "startLine": 264,
+        "startChar": 10,
+        "endLine": 264,
+        "endChar": 22
+      },
+      "revId": "24a5c855f35229544ad7a1c8305c8642e5ea8b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
