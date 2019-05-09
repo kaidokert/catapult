@@ -16,6 +16,24 @@
       "revId": "4b820d258aacedd439e126d54fcf484a92d4d916",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cafdbecb_151a6e8a",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-09T17:48:37Z",
+      "side": 1,
+      "message": "I moved the monkey patching into trace_enable.",
+      "parentUuid": "930fef01_93903ac1",
+      "revId": "4b820d258aacedd439e126d54fcf484a92d4d916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
