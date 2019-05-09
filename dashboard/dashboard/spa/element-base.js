@@ -58,8 +58,9 @@ export default class ElementBase extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.unsubscribeRedux_ = getStore().subscribe(() => this.updateState_());
-    this.updateState_();
+    this.unsubscribeRedux_ = getStore().subscribe(() =>
+      this.stateChanged(this.getState()));
+    this.stateChanged(this.getState());
   }
 
   getState() {
@@ -78,8 +79,7 @@ export default class ElementBase extends PolymerElement {
     return getStore().dispatch(action);
   }
 
-  updateState_() {
-    const state = this.getState();
+  stateChanged(state) {
     let propertiesChanged = false;
     for (const [name, prop] of Object.entries(this.constructor.properties)) {
       const {statePath} = this.constructor.properties[name];
