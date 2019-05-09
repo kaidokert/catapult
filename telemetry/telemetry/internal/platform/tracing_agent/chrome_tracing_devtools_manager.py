@@ -36,10 +36,8 @@ def IsSupported(platform_backend):
   _RemoveStaleDevToolsClient(platform_backend)
   devtools_clients_map = _platform_backends_to_devtools_clients_maps.get(
       platform_backend, {})
-  for _, devtools_client in devtools_clients_map.iteritems():
-    if devtools_client.IsChromeTracingSupported():
-      return True
-  return False
+  # Supported if there is at least one client.
+  return bool(devtools_clients_map)
 
 
 def GetDevToolsClients(platform_backend):
