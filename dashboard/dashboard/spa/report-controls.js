@@ -13,12 +13,7 @@ import ReportNamesRequest from './report-names-request.js';
 import {UPDATE} from './simple-redux.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
-
-import {
-  buildProperties,
-  buildState,
-  simpleGUID,
-} from './utils.js';
+import {simpleGUID} from './utils.js';
 
 export default class ReportControls extends ElementBase {
   static get is() { return 'report-controls'; }
@@ -123,6 +118,48 @@ export default class ReportControls extends ElementBase {
     this.dispatch('connected', this.statePath);
   }
 
+  static get properties() {
+    return {
+      statePath: String,
+      milestone: Number,
+      minRevision: Number,
+      maxRevision: Number,
+      minRevisionInput: String,
+      maxRevisionInput: String,
+      sectionId: Number,
+      source: Object,
+    };
+  }
+
+  static buildState(options) {
+    return {
+      milestone: parseInt(options.milestone) ||
+        ReportControls.CURRENT_MILESTONE,
+      minRevision: options.minRevision,
+      maxRevision: options.maxRevision,
+      minRevisionInput: options.minRevision,
+      maxRevisionInput: options.maxRevision,
+      sectionId: options.sectionId || simpleGUID(),
+      source: MenuInput.buildState({
+        label: 'Reports (loading)',
+        options: [
+          ReportControls.DEFAULT_NAME,
+          ReportControls.CREATE,
+        ],
+        selectedOptions: options.sources ? options.sources : [
+          ReportControls.DEFAULT_NAME,
+        ],
+      }),
+    };
+  }
+
+  stateChanged(rootState) {
+    this.userEmail = rootState.userEmail;
+    const state = get(rootState, this.statePath);
+    if (state === this.state) return;
+    this.setProperties(state);
+  }
+
   async onCloseSection_() {
     await this.dispatchEvent(new CustomEvent('close-section', {
       bubbles: true,
@@ -204,36 +241,6 @@ ReportControls.CURRENT_MILESTONE = Object.keys(
     ReportControls.CHROMIUM_MILESTONES).reduce((a, b) => Math.max(a, b));
 const MIN_MILESTONE = Object.keys(ReportControls.CHROMIUM_MILESTONES).reduce(
     (a, b) => Math.min(a, b));
-
-ReportControls.State = {
-  milestone: options => parseInt(options.milestone) ||
-    ReportControls.CURRENT_MILESTONE,
-  minRevision: options => options.minRevision,
-  maxRevision: options => options.maxRevision,
-  minRevisionInput: options => options.minRevision,
-  maxRevisionInput: options => options.maxRevision,
-  sectionId: options => options.sectionId || simpleGUID(),
-  source: options => MenuInput.buildState({
-    label: 'Reports (loading)',
-    options: [
-      ReportControls.DEFAULT_NAME,
-      ReportControls.CREATE,
-    ],
-    selectedOptions: options.sources ? options.sources : [
-      ReportControls.DEFAULT_NAME,
-    ],
-  }),
-};
-
-ReportControls.buildState = options => buildState(
-    ReportControls.State, options);
-
-ReportControls.properties = {
-  ...buildProperties('state', ReportControls.State),
-  userEmail: {statePath: 'userEmail'},
-};
-ReportControls.observers = [
-];
 
 ReportControls.DEFAULT_NAME = 'Chromium Performance Overview';
 ReportControls.CREATE = '[Create new report]';
