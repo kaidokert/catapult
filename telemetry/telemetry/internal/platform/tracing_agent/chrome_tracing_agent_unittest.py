@@ -23,14 +23,15 @@ class FakeTracingControllerBackend(object):
     self.is_tracing_running = False
 
 
-class FakePlatformBackend(object):
+class _FakePlatformBackend(object):
   def __init__(self):
     self.tracing_controller_backend = FakeTracingControllerBackend()
 
   def GetOSName(self):
-    return ''
+    raise NotImplementedError
 
-class FakeAndroidPlatformBackend(FakePlatformBackend):
+
+class FakeAndroidPlatformBackend(_FakePlatformBackend):
   def __init__(self):
     super(FakeAndroidPlatformBackend, self).__init__()
     devices = device_utils.DeviceUtils.HealthyDevices(None)
@@ -39,7 +40,7 @@ class FakeAndroidPlatformBackend(FakePlatformBackend):
   def GetOSName(self):
     return 'android'
 
-class FakeCrOSPlatformBackend(FakePlatformBackend):
+class FakeCrOSPlatformBackend(_FakePlatformBackend):
   def __init__(self):
     super(FakeCrOSPlatformBackend, self).__init__()
     remote = options_for_unittests.GetCopy().cros_remote
@@ -51,7 +52,7 @@ class FakeCrOSPlatformBackend(FakePlatformBackend):
   def GetOSName(self):
     return 'chromeos'
 
-class FakeDesktopPlatformBackend(FakePlatformBackend):
+class FakeDesktopPlatformBackend(_FakePlatformBackend):
   def GetOSName(self):
     system = platform.system()
     if system == 'Linux':
@@ -95,9 +96,6 @@ class FakeDevtoolsClient(object):
     del timeout # unused
     self.collected = True
 
-  def IsChromeTracingSupported(self):
-    return True
-
   def GetUpdatedInspectableContexts(self):
     return FakeContextMap([])
 
@@ -115,9 +113,9 @@ class FakeDevtoolsClient(object):
 
 class ChromeTracingAgentTest(unittest.TestCase):
   def setUp(self):
-    self.platform1 = FakePlatformBackend()
-    self.platform2 = FakePlatformBackend()
-    self.platform3 = FakePlatformBackend()
+    self.platform1 = FakeDesktopPlatformBackend()
+    self.platform2 = FakeDesktopPlatformBackend()
+    self.platform3 = FakeDesktopPlatformBackend()
 
   def StartTracing(self, platform_backend, enable_chrome_trace=True,
                    throw_exception=False):
