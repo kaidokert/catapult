@@ -7,6 +7,8 @@ import os
 import sys
 import time
 import threading
+import multiprocessing
+import multiprocessing_shim
 
 from py_trace_event.trace_event_impl import perfetto_trace_writer
 from py_trace_event import trace_time
@@ -120,6 +122,9 @@ def _write_header():
         "args": {"argv": sys.argv},
     }, _log_file)
     _log_file.write('\n')
+  # Monkeypatch in our process replacement for the multiprocessing.Process class
+  if multiprocessing.Process != multiprocessing_shim.ProcessShim:
+    multiprocessing.Process = multiprocessing_shim.ProcessShim
 
 
 @_locked
