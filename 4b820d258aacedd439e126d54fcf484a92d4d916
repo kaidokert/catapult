@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "930fef01_93903ac1",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-09T09:40:08Z",
+      "side": 1,
+      "message": "I think it\u0027s a bit strange that clients of py_trace_event need to know about this monkey patching.\n\nIs this something that trace_event.trace_enable could itself do?",
+      "revId": "4b820d258aacedd439e126d54fcf484a92d4d916",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
