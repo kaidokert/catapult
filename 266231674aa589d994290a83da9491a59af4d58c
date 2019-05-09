@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d1c018a5_34008865",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-09T17:21:02Z",
+      "side": 1,
+      "message": "using the spread operator here could cause stack overflow: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d953371#c18",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 15
+      },
+      "revId": "266231674aa589d994290a83da9491a59af4d58c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba769216_e8b6bee3",
         "filename": "tracing/tracing/metrics/rendering/frame_time.html",
         "patchSetId": 3
