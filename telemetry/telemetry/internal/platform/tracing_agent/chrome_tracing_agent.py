@@ -21,7 +21,6 @@ from telemetry.internal.platform.tracing_agent import (
     chrome_tracing_devtools_manager)
 
 _DESKTOP_OS_NAMES = ['linux', 'mac', 'win']
-_STARTUP_TRACING_OS_NAMES = _DESKTOP_OS_NAMES + ['android', 'chromeos']
 
 # The trace config file path should be the same as specified in
 # src/components/tracing/trace_config_file.[h|cc]
@@ -68,26 +67,17 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     return self._trace_config_file
 
   @classmethod
-  def IsStartupTracingSupported(cls, platform_backend):
-    return platform_backend.GetOSName() in _STARTUP_TRACING_OS_NAMES
-
-  @classmethod
   def IsSupported(cls, platform_backend):
-    if cls.IsStartupTracingSupported(platform_backend):
-      return True
-    else:
-      return chrome_tracing_devtools_manager.IsSupported(platform_backend)
+    del platform_backend  # Unused.
+    return True
 
   def _StartStartupTracing(self, config):
-    if not self.IsStartupTracingSupported(self._platform_backend):
-      return False
     self._CreateTraceConfigFile(config)
-    logging.info('Created trace config file in %s', self._trace_config_file)
+    logging.info('Created startup trace config file in: %s',
+                 self._trace_config_file)
     return True
 
   def _StartDevToolsTracing(self, config, timeout):
-    if not chrome_tracing_devtools_manager.IsSupported(self._platform_backend):
-      return False
     devtools_clients = (
         chrome_tracing_devtools_manager
         .GetActiveDevToolsClients(self._platform_backend))
@@ -161,12 +151,14 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
           'Tracing is not running on platform backend %s.'
           % self._platform_backend)
 
-    if self.IsStartupTracingSupported(self._platform_backend):
-      self._RemoveTraceConfigFile()
+    self._RemoveTraceConfigFile()
 
     # We get all DevTools clients including the stale ones, so that we get an
     # exception if there is a stale client. This is because we will potentially
     # lose data if there is a stale client.
+    # TODO(perezju): Check if this actually works. It looks like the call to
+    # GetActiveDevToolsClients in RecordClockSyncMarker would have wiped out
+    # the stale clients anyway.
     devtools_clients = (chrome_tracing_devtools_manager
                         .GetDevToolsClients(self._platform_backend))
     raised_exception_messages = []

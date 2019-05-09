@@ -95,9 +95,6 @@ class FakeDevtoolsClient(object):
     del timeout # unused
     self.collected = True
 
-  def IsChromeTracingSupported(self):
-    return True
-
   def GetUpdatedInspectableContexts(self):
     return FakeContextMap([])
 
