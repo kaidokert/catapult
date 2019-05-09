@@ -22,6 +22,30 @@
       "revId": "0e29a46f4a5d301e9dd421f9caa1964cf8e79c48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a87313cf_62fce981",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-09T17:56:26Z",
+      "side": 1,
+      "message": "Your right. I moved it this to _trace_enable.",
+      "parentUuid": "c242e4f4_9acf20bf",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 127,
+        "endChar": 11
+      },
+      "revId": "0e29a46f4a5d301e9dd421f9caa1964cf8e79c48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
