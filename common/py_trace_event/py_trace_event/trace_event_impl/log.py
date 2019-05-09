@@ -7,6 +7,8 @@ import os
 import sys
 import time
 import threading
+import multiprocessing
+import multiprocessing_shim
 
 from py_trace_event.trace_event_impl import perfetto_trace_writer
 from py_trace_event import trace_time
@@ -162,6 +164,9 @@ def _trace_enable(log_file=None, format=None):
     else:
       _note("trace_event: Opened existing tracelog")
     _log_file.flush()
+  # Monkeypatch in our process replacement for the multiprocessing.Process class
+  if multiprocessing.Process != multiprocessing_shim.ProcessShim:
+    multiprocessing.Process = multiprocessing_shim.ProcessShim
 
 @_locked
 def trace_flush():
