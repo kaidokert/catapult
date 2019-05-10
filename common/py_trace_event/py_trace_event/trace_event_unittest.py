@@ -14,6 +14,7 @@ import unittest
 from py_trace_event import trace_event
 from py_trace_event import trace_time
 from py_trace_event.trace_event_impl import log
+from py_trace_event.trace_event_impl import multiprocessing_shim
 from py_utils import tempfile_ext
 
 
@@ -70,10 +71,15 @@ class TraceEventTests(unittest.TestCase):
     assert False
 
   def testDisable(self):
+    _old_multiprocessing_process = multiprocessing.Process
     with self._test_trace(disable=False):
       with open(self._log_path, 'r') as f:
         self.assertTrue(trace_event.trace_is_enabled())
+        self.assertEqual(
+            multiprocessing.Process, multiprocessing_shim.ProcessShim)
         trace_event.trace_disable()
+        self.assertEqual(
+            multiprocessing.Process, _old_multiprocessing_process)
         self.assertEquals(len(json.loads(f.read() + ']')), 1)
         self.assertFalse(trace_event.trace_is_enabled())
 
@@ -343,9 +349,9 @@ class TraceEventTests(unittest.TestCase):
         self.assertLessEqual(one_open['ts'], two_open['ts'])
         self.assertLessEqual(one_close['ts'], two_close['ts'])
 
-  # TODO(khokhlov): Fix this test on Windows. See crbug.com/945819 for details.
-  def disabled_testMultiprocess(self):
+  def test_disabled_testMultiprocess(self):
     def child_function():
+      assert not trace_event.is_tracing_controllable()
       with trace_event.trace('child_event'):
         pass
 
