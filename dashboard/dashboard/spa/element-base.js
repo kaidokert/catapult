@@ -58,8 +58,9 @@ export default class ElementBase extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.unsubscribeRedux_ = getStore().subscribe(() => this.updateState_());
-    this.updateState_();
+    this.unsubscribeRedux_ = getStore().subscribe(() =>
+      this.stateChanged(this.getState()));
+    this.stateChanged(this.getState());
   }
 
   getState() {
@@ -78,8 +79,7 @@ export default class ElementBase extends PolymerElement {
     return getStore().dispatch(action);
   }
 
-  updateState_() {
-    const state = this.getState();
+  stateChanged(state) {
     let propertiesChanged = false;
     for (const [name, prop] of Object.entries(this.constructor.properties)) {
       const {statePath} = this.constructor.properties[name];
@@ -158,9 +158,6 @@ export default class ElementBase extends PolymerElement {
     this.debounceJobs_.set(jobName, Debouncer.debounce(
         this.debounceJobs_.get(jobName), asyncModule, callback));
   }
-
-  // This is used to bind state properties in `buildProperties()` in utils.js.
-  identity_(x) { return x; }
 
   static resetStoreForTest() {
     getStore().dispatch(RESET);

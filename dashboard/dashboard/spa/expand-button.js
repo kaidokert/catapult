@@ -8,13 +8,24 @@ import ElementBase from './element-base.js';
 import {TOGGLE} from './simple-redux.js';
 import {html} from '@polymer/polymer/polymer-element.js';
 
-import {
-  buildProperties,
-  buildState,
-} from './utils.js';
-
 export default class ExpandButton extends ElementBase {
   static get is() { return 'expand-button'; }
+
+  static get properties() {
+    return {
+      horizontal: {type: Boolean, value: false},
+      after: {type: Boolean, value: false},
+
+      statePath: String,
+      isExpanded: Boolean,
+    };
+  }
+
+  static buildState(options = {}) {
+    return {
+      isExpanded: options.isExpanded || false,
+    };
+  }
 
   static get template() {
     return html`
@@ -40,6 +51,10 @@ export default class ExpandButton extends ElementBase {
     this.addEventListener('click', this.onClick_.bind(this));
   }
 
+  stateChanged(rootState) {
+    this.setProperties(get(rootState, this.statePath));
+  }
+
   async onClick_(event) {
     await this.dispatch('toggle', this.statePath);
   }
@@ -56,24 +71,6 @@ ExpandButton.getIcon = (isExpanded, horizontal, after) => {
   }
   return (isExpanded ? 'cp:less' : 'cp:more');
 };
-
-const ExpandState = {
-  isExpanded: options => options.isExpanded || false,
-};
-
-ExpandButton.properties = {
-  ...buildProperties('state', ExpandState),
-  horizontal: {
-    type: Boolean,
-    value: false,
-  },
-  after: {
-    type: Boolean,
-    value: false,
-  },
-};
-
-ExpandButton.buildState = options => buildState(ExpandState, options);
 
 ExpandButton.actions = {
   toggle: statePath => async(dispatch, getState) => {
