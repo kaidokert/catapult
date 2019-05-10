@@ -31,6 +31,23 @@ import {
 export default class ChartCompound extends ElementBase {
   static get is() { return 'chart-compound'; }
 
+  static get properties() {
+    return {
+      statePath: String,
+      linkedStatePath: String,
+    };
+  }
+
+  static buildState(options = {}) {
+    return {
+    };
+  }
+
+  static buildLinkedState(options = {}) {
+    return {
+    };
+  }
+
   static get template() {
     return html`
       <style>
