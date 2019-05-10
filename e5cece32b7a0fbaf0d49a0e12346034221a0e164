@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c22410c_49625508",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-05-10T20:19:16Z",
+      "side": 1,
+      "message": "This is pretty weird. If you have a better idea, I\u0027m all ears.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 72
+      },
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
