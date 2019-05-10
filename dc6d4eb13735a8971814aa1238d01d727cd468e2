@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76bcec9b_6de04956",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-05-10T17:12:37Z",
+      "side": 0,
+      "message": "Heh, this is a walk down memory lane :)",
+      "range": {
+        "startLine": 145,
+        "startChar": 43,
+        "endLine": 145,
+        "endChar": 47
+      },
+      "revId": "dc6d4eb13735a8971814aa1238d01d727cd468e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
