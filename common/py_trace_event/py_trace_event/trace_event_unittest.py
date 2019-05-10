@@ -344,8 +344,9 @@ class TraceEventTests(unittest.TestCase):
         self.assertLessEqual(one_close['ts'], two_close['ts'])
 
   # TODO(khokhlov): Fix this test on Windows. See crbug.com/945819 for details.
-  def disabled_testMultiprocess(self):
+  def test_disabled_testMultiprocess(self):
     def child_function():
+      assert not trace_event.is_tracing_controllable()
       with trace_event.trace('child_event'):
         pass
 
