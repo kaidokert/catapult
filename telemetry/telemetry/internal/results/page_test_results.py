@@ -474,6 +474,22 @@ class PageTestResults(object):
     return failed_pages
 
   @property
+  def pages_not_skipped(self):
+    """Returns the set of pages that were run.
+
+    This includes both failures and successes but not pages that were
+    skipped.
+    """
+    pages_not_skipped = set()
+    pages_not_skipped.update(self.pages_that_succeeded_and_not_skipped)
+    pages_not_skipped.update(self.pages_that_failed)
+    return pages_not_skipped
+
+  @property
+  def had_successes_not_skipped(self):
+    return bool(self.pages_that_succeeded_and_not_skipped)
+
+  @property
   def had_failures(self):
     return any(run.failed for run in self.all_page_runs)
 
