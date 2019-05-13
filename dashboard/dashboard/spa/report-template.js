@@ -35,7 +35,7 @@ export default class ReportTemplate extends ElementBase {
         }
 
         table[placeholder] {
-          color: var(--neutral-color-dark);
+          color: var(--neutral-color-dark, grey);
         }
 
         h2 {
@@ -86,7 +86,7 @@ export default class ReportTemplate extends ElementBase {
         }
 
         .error {
-          color: var(--error-color);
+          color: var(--error-color, red);
         }
       </style>
 
