@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f85f29e_1c03e5e9",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-13T10:57:31Z",
+      "side": 1,
+      "message": "I wonder whether we should do this more broadly for all requests? Instead of duplicating similar code to this on many of these methods.",
+      "revId": "1ca2de56f6c14187bf7eb7d6d609e929b3dcdd91",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
