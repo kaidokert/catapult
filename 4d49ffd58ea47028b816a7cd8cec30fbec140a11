@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "436d6a28_3b7ca54b",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-13T09:22:17Z",
+      "side": 1,
+      "message": "nit: whitespace around the ` \u003d\u003d `",
+      "revId": "4d49ffd58ea47028b816a7cd8cec30fbec140a11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4444f28a_f8117f02",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-13T09:22:17Z",
+      "side": 1,
+      "message": "nit: extra blank line here.",
+      "revId": "4d49ffd58ea47028b816a7cd8cec30fbec140a11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
