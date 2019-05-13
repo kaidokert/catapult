@@ -8,6 +8,7 @@ import './scalar-span.js';
 import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
+import BisectDialog from './bisect-dialog.js';
 import ChartTimeseries from './chart-timeseries.js';
 import ElementBase from './element-base.js';
 import TimeseriesMerger from './timeseries-merger.js';
@@ -33,6 +34,14 @@ export default class DetailsTable extends ElementBase {
   static get is() { return 'details-table'; }
 
   static get template() {
+    const alertDetailPath = html([
+      '[[statePath]].bodies.[[bodyIndex]].alertCells.' +
+      '[[cellIndex]].alerts.[[alertIndex]]',
+    ]);
+    const bisectDialogPath = html([
+      '[[statePath]].bodies.[[bodyIndex]].bisectCells.[[bisectIndex]]',
+    ]);
+
     return html`
       <style>
         :host {
@@ -60,6 +69,9 @@ export default class DetailsTable extends ElementBase {
           color: var(--color);
           border-bottom: 2px solid var(--color);
           padding-top: 4px;
+        }
+        td {
+          vertical-align: top;
         }
       </style>
 
@@ -96,7 +108,8 @@ export default class DetailsTable extends ElementBase {
           </template>
         </thead>
 
-        <template is="dom-repeat" items="[[bodies]]" as="body">
+        <template is="dom-repeat" items="[[bodies]]" as="body"
+                                  index-as="bodyIndex">
           <tbody>
             <template is="dom-if" if="[[isMultiple_(lineDescriptors)]]">
               <tr>
@@ -147,6 +160,42 @@ export default class DetailsTable extends ElementBase {
                       [[cell.label]]
                     </template>
                   </td>
+                </template>
+              </tr>
+            </template>
+
+            <template is="dom-if" if="[[!isEmpty_(body.alertCells)]]">
+              <tr>
+                <td>Alerts</td>
+                <template is="dom-repeat" items="[[body.alertCells]]"
+                                          as="cell" index-as="cellIndex">
+                  <td>
+                    <template is="dom-repeat" items="[[cell.alerts]]"
+                                              index-as="alertIndex">
+                      <alert-detail state-path="${alertDetailPath}">
+                      </alert-detail>
+                    </template>
+                  </td>
+                </template>
+              </tr>
+            </template>
+
+            <template is="dom-if" if="[[!isEmpty_(body.bisectCells)]]">
+              <tr>
+                <td>Bisect</td>
+                <template is="dom-if" if="[[body.bisectMessage]]">
+                  <td colspan="99">
+                    [[body.bisectMessage]]
+                  </td>
+                </template>
+                <template is="dom-if" if="[[!body.bisectMessage]]">
+                  <template is="dom-repeat" items="[[body.bisectCells]]"
+                      as="bisect" index-as="bisectIndex">
+                    <td>
+                      <bisect-dialog state-path="${bisectDialogPath}">
+                      </bisect-dialog>
+                    </td>
+                  </template>
                 </template>
               </tr>
             </template>
@@ -277,6 +326,8 @@ function mergeData(timeserieses, range) {
           cell.timestampRange.addValue(cell.timestamp.getTime());
         }
         if (!cell.revisions) cell.revisions = {};
+        cell.alerts = [];
+        if (cell.alert) cell.alerts.push(cell.alert);
         continue;
       }
 
@@ -284,6 +335,8 @@ function mergeData(timeserieses, range) {
       if (datum.timestamp) {
         cell.timestampRange.addValue(datum.timestamp.getTime());
       }
+
+      if (datum.alert) cell.alerts.push(datum.alert);
 
       // TODO Uncomment when Histograms are displayed.
       // mergeHistograms(cell, datum);
@@ -300,17 +353,23 @@ function mergeData(timeserieses, range) {
 }
 
 // Merge timeserieses and format the detailed data as links and scalars.
-DetailsTable.buildCell = (setLink, setScalar, timeserieses, range,
-    revisionInfo) => {
+DetailsTable.buildCell = (
+    lineDescriptor, timeserieses, range, revisionInfo,
+    masterWhitelist, suiteBlacklist) => {
+  if (!timeserieses) return {};
   const {reference, cell} = mergeData(timeserieses, range);
-  if (!cell) return;
+  if (!cell) return {};
+
+  const alerts = cell.alerts;
+  const links = new Map();
+  const scalars = new Map();
 
   for (const stat of ['avg', 'std', 'min', 'max', 'sum']) {
     if (cell[stat] === undefined || isNaN(cell[stat])) continue;
-    setScalar(stat, cell[stat], cell.unit);
+    scalars.set(stat, {unit: cell.unit, value: cell[stat]});
   }
   if (cell.count !== undefined) {
-    setScalar('count', cell.count, tr.b.Unit.byName.count);
+    scalars.set('count', {unit: tr.b.Unit.byName.count, value: cell.count});
   }
 
   for (const [rName, r2] of Object.entries(cell.revisions)) {
@@ -332,7 +391,7 @@ DetailsTable.buildCell = (setLink, setScalar, timeserieses, range,
 
     const {name, url} = ChartTimeseries.revisionLink(
         revisionInfo, rName, r1, r2);
-    setLink(name, url, label);
+    links.set(name, {href: url, label});
   }
 
   for (const [key, value] of Object.entries(cell.annotations || {})) {
@@ -341,25 +400,57 @@ DetailsTable.buildCell = (setLink, setScalar, timeserieses, range,
     if (tr.b.isUrl(value)) {
       let label = key;
       if (label === 'a_tracing_uri') label = 'sample trace';
-      setLink(HIDE_ROW_PREFIX + key, value, label);
+      links.set(HIDE_ROW_PREFIX + key, {href: value, label});
       continue;
     }
 
     const match = value.match(MARKDOWN_LINK_REGEX);
     if (match && match[1] && match[2]) {
-      setLink(HIDE_ROW_PREFIX + key, match[2], match[1]);
+      links.set(HIDE_ROW_PREFIX + key, {href: match[2], label: match[1]});
       continue;
     }
   }
 
   if (cell.timestampRange.min === cell.timestampRange.max) {
-    setLink('Upload timestamp', '', tr.b.formatDate(cell.timestamp));
+    const label = tr.b.formatDate(cell.timestamp);
+    links.set('Upload timestamp', {href: '', label});
   } else {
     let label = tr.b.formatDate(new Date(cell.timestampRange.min));
     label += ' - ';
     label += tr.b.formatDate(new Date(cell.timestampRange.max));
-    setLink('Upload timestamp', '', label);
+    links.set('Upload timestamp', {href: '', label});
   }
+
+  const bisectCell = BisectDialog.buildState({
+    alertKeys: alerts.map(a => a.key),
+    startRevision: reference.revision + 1,
+    endRevision: cell.revision,
+    suite: lineDescriptor.suites[0],
+    measurement: lineDescriptor.measurement,
+    bot: lineDescriptor.bots[0],
+    case: lineDescriptor.cases[0],
+    statistic: lineDescriptor.statistic,
+  });
+  const isSingleRevision = (bisectCell.startRevision >= bisectCell.endRevision);
+  if (isSingleRevision) {
+    bisectCell.tooltip = 'Unable to bisect single revision';
+  }
+  bisectCell.able = !isSingleRevision;
+
+  for (const alert of alerts) {
+    alert.descriptorParts = [];
+    if (lineDescriptor.suites.length > 1) {
+      alert.descriptorParts.push(alert.suite);
+    }
+    if (lineDescriptor.bots.length !== 1) {
+      alert.descriptorParts.push(alert.bot);
+    }
+    if (lineDescriptor.cases.length !== (alert.case ? 1 : 0)) {
+      alert.descriptorParts.push(alert.case);
+    }
+  }
+
+  return {scalars, links, alerts, bisectCell};
 };
 
 // Build an array of strings to display the parts of lineDescriptor that are
@@ -377,6 +468,9 @@ function getDescriptorParts(lineDescriptor, descriptorFlags) {
   }
   if (descriptorFlags.cases) {
     descriptorParts.push(lineDescriptor.cases.map(breakWords).join('\n'));
+  }
+  if (descriptorFlags.statistic) {
+    descriptorParts.push(lineDescriptor.statistic);
   }
   if (descriptorFlags.buildType) {
     descriptorParts.push(lineDescriptor.buildType);
@@ -396,64 +490,110 @@ function collectRowsByLabel(rowsByLabel) {
   return rows;
 }
 
+function buildBisectMessage(
+    lineDescriptor, userEmail, masterWhitelist, suiteBlacklist) {
+  if (!userEmail) {
+    return 'Please sign in to start bisect jobs';
+  }
+
+  if (lineDescriptor.buildType === 'ref') {
+    return 'Unable to bisect ref build';
+  }
+
+  const parts = [];
+  if (lineDescriptor.suites.length !== 1) parts.push('suites');
+  if (lineDescriptor.bots.length !== 1) parts.push('bots');
+  if (lineDescriptor.cases.length > 1) parts.push('cases');
+  if (parts.length > 0) {
+    return 'Unable to bisect with multiple ' + parts.join(', ');
+  }
+
+  const master = lineDescriptor.bots[0].split(':')[0];
+  if (masterWhitelist && !masterWhitelist.includes(master)) {
+    return `Unable to bisect on ${master} bots`;
+  }
+
+  const suite = lineDescriptor.suites[0];
+  if (suiteBlacklist && suiteBlacklist.includes(suite)) {
+    return `Unable to bisect suite "${suite}"`;
+  }
+
+  return undefined;
+}
+
 // Build a table body {descriptorParts, scalarRows, linkRows} to display the
 // detailed data in timeseriesesByRange.
 function buildBody({lineDescriptor, timeseriesesByRange}, descriptorFlags,
-    revisionInfo) {
+    revisionInfo, userEmail, masterWhitelist, suiteBlacklist) {
   const descriptorParts = getDescriptorParts(lineDescriptor, descriptorFlags);
 
   // getColor_() uses this to look up this body's head color in colorByLine.
   const descriptor = ChartTimeseries.stringifyDescriptor(lineDescriptor);
 
+  const bisectMessage = buildBisectMessage(
+      lineDescriptor, userEmail, masterWhitelist, suiteBlacklist);
+
+  const columnCount = timeseriesesByRange.length;
   const scalarRowsByLabel = new Map();
   const linkRowsByLabel = new Map();
-  const columnCount = timeseriesesByRange.length;
+  const alertCells = new Array(columnCount);
+  const bisectCells = new Array(columnCount);
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
-    const setScalar = (rowLabel, value, unit) => setCell(
-        scalarRowsByLabel, rowLabel, columnCount, columnIndex, {value, unit});
-    const setLink = (rowLabel, href, label) => setCell(
-        linkRowsByLabel, rowLabel, columnCount, columnIndex, {href, label});
-
-    DetailsTable.buildCell(setLink, setScalar, timeserieses, range,
-        revisionInfo);
+    const {scalars, links, alerts, bisectCell} = DetailsTable.buildCell(
+        lineDescriptor, timeserieses, range, revisionInfo,
+        masterWhitelist, suiteBlacklist);
+    for (const [rowLabel, scalar] of scalars || []) {
+      setCell(scalarRowsByLabel, rowLabel, columnCount, columnIndex, scalar);
+    }
+    for (const [rowLabel, link] of links || []) {
+      setCell(linkRowsByLabel, rowLabel, columnCount, columnIndex, link);
+    }
+    if (alerts) alertCells[columnIndex] = {alerts};
+    bisectCells[columnIndex] = bisectCell;
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
   const linkRows = collectRowsByLabel(linkRowsByLabel);
-  return {descriptor, descriptorParts, scalarRows, linkRows};
+  if (alertCells.filter(cell => cell && cell.alerts.length).length === 0) {
+    alertCells.length = 0;
+  }
+
+  return {
+    alertCells,
+    bisectCells,
+    bisectMessage,
+    descriptor,
+    descriptorParts,
+    linkRows,
+    scalarRows,
+  };
 }
 
 // Return an object containing flags indicating whether to show parts of
 // lineDescriptors in descriptorParts.
 DetailsTable.descriptorFlags = lineDescriptors => {
+  if (lineDescriptors.length === 1) return {measurement: true};
+
   let suite = false;
   let measurement = false;
   let bot = false;
   let cases = false;
+  let statistic = false;
   let buildType = false;
   const firstSuites = lineDescriptors[0].suites.join('\n');
   const firstBots = lineDescriptors[0].bots.join('\n');
   const firstCases = lineDescriptors[0].cases.join('\n');
   for (const other of lineDescriptors.slice(1)) {
-    if (!suite && other.suites.join('\n') !== firstSuites) {
-      suite = true;
-    }
-    if (!measurement &&
-        other.measurement !== lineDescriptors[0].measurement) {
-      measurement = true;
-    }
-    if (!bot && other.bots.join('\n') !== firstBots) {
-      bot = true;
-    }
-    if (!cases && other.cases.join('\n') !== firstCases) {
-      cases = true;
-    }
-    if (!buildType && other.buildType !== lineDescriptors[0].buildType) {
-      buildType = true;
-    }
+    suite = suite || (other.suites.join('\n') !== firstSuites);
+    measurement = measurement || (
+      other.measurement !== lineDescriptors[0].measurement);
+    bot = bot || (other.bots.join('\n') !== firstBots);
+    cases = cases || (other.cases.join('\n') !== firstCases);
+    statistic = statistic || (other.statistic !== lineDescriptors[0].statistic);
+    buildType = buildType || (other.buildType !== lineDescriptors[0].buildType);
   }
-  return {suite, measurement, bot, cases, buildType};
+  return {suite, measurement, bot, cases, statistic, buildType};
 };
 
 DetailsTable.reducers = {
@@ -473,7 +613,12 @@ DetailsTable.reducers = {
     const bodies = [];
     for (const timeserieses of timeseriesesByLine) {
       const body = buildBody(
-          timeserieses, descriptorFlags, rootState.revisionInfo);
+          timeserieses,
+          descriptorFlags,
+          rootState.revisionInfo,
+          rootState.userEmail,
+          rootState.bisectMasterWhitelist,
+          rootState.bisectSuiteBlacklist);
       if (body.scalarRows.length === 0 && body.linkRows.length === 0) {
         continue;
       }
