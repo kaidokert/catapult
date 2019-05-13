@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b96be83_8a4f32f1",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2019-05-13T20:30:25Z",
+      "side": 1,
+      "message": "One arg is missing: --also-run-disabled-tests.",
+      "range": {
+        "startLine": 317,
+        "startChar": 2,
+        "endLine": 317,
+        "endChar": 51
+      },
+      "revId": "acbf095c15e9524a0a1116792c3b6698f8e9b85b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
