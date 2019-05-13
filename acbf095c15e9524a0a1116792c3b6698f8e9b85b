@@ -46,6 +46,30 @@
       "revId": "acbf095c15e9524a0a1116792c3b6698f8e9b85b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48d8d1aa_6a380c85",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2019-05-13T21:04:36Z",
+      "side": 1,
+      "message": "If so https://cs.chromium.org/chromium/src/testing/scripts/gpu_integration_test_adapter.py?q\u003dgpu_integration_test_adapter\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d13 should be updated.",
+      "parentUuid": "3e962875_ad47334b",
+      "range": {
+        "startLine": 317,
+        "startChar": 2,
+        "endLine": 317,
+        "endChar": 51
+      },
+      "revId": "acbf095c15e9524a0a1116792c3b6698f8e9b85b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
