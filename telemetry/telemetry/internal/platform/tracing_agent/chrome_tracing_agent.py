@@ -21,6 +21,7 @@ from telemetry.internal.platform.tracing_agent import (
     chrome_tracing_devtools_manager)
 
 _DESKTOP_OS_NAMES = ['linux', 'mac', 'win']
+_STARTUP_TRACING_OS_NAMES = _DESKTOP_OS_NAMES + ['android', 'chromeos']
 
 # The trace config file path should be the same as specified in
 # src/components/tracing/trace_config_file.[h|cc]
@@ -67,17 +68,26 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     return self._trace_config_file
 
   @classmethod
+  def IsStartupTracingSupported(cls, platform_backend):
+    return platform_backend.GetOSName() in _STARTUP_TRACING_OS_NAMES
+
+  @classmethod
   def IsSupported(cls, platform_backend):
-    del platform_backend  # Unused.
-    return True
+    if cls.IsStartupTracingSupported(platform_backend):
+      return True
+    else:
+      return chrome_tracing_devtools_manager.IsSupported(platform_backend)
 
   def _StartStartupTracing(self, config):
+    if not self.IsStartupTracingSupported(self._platform_backend):
+      return False
     self._CreateTraceConfigFile(config)
-    logging.info('Created startup trace config file in: %s',
-                 self._trace_config_file)
+    logging.info('Created trace config file in %s', self._trace_config_file)
     return True
 
   def _StartDevToolsTracing(self, config, timeout):
+    if not chrome_tracing_devtools_manager.IsSupported(self._platform_backend):
+      return False
     devtools_clients = (
         chrome_tracing_devtools_manager
         .GetActiveDevToolsClients(self._platform_backend))
@@ -151,14 +161,12 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
           'Tracing is not running on platform backend %s.'
           % self._platform_backend)
 
-    self._RemoveTraceConfigFile()
+    if self.IsStartupTracingSupported(self._platform_backend):
+      self._RemoveTraceConfigFile()
 
     # We get all DevTools clients including the stale ones, so that we get an
     # exception if there is a stale client. This is because we will potentially
     # lose data if there is a stale client.
-    # TODO(perezju): Check if this actually works. It looks like the call to
-    # GetActiveDevToolsClients in RecordClockSyncMarker would have wiped out
-    # the stale clients anyway.
     devtools_clients = (chrome_tracing_devtools_manager
                         .GetDevToolsClients(self._platform_backend))
     raised_exception_messages = []
@@ -212,8 +220,7 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
 
   def _CreateTraceConfigFile(self, config):
     assert not self._trace_config_file
-    os_name = self._platform_backend.GetOSName()
-    if os_name == 'android':
+    if self._platform_backend.GetOSName() == 'android':
       self._trace_config_file = os.path.join(_CHROME_TRACE_CONFIG_DIR_ANDROID,
                                              _CHROME_TRACE_CONFIG_FILE_NAME)
       self._platform_backend.device.WriteFile(
@@ -222,7 +229,7 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
       # The config file has fixed path on Android. We need to ensure it is
       # always cleaned up.
       atexit_with_log.Register(self._RemoveTraceConfigFile)
-    elif os_name == 'chromeos':
+    elif self._platform_backend.GetOSName() == 'chromeos':
       self._trace_config_file = os.path.join(_CHROME_TRACE_CONFIG_DIR_CROS,
                                              _CHROME_TRACE_CONFIG_FILE_NAME)
       cri = self._platform_backend.cri
@@ -232,7 +239,7 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
       # The config file has fixed path on CrOS. We need to ensure it is
       # always cleaned up.
       atexit_with_log.Register(self._RemoveTraceConfigFile)
-    elif os_name in _DESKTOP_OS_NAMES:
+    elif self._platform_backend.GetOSName() in _DESKTOP_OS_NAMES:
       self._trace_config_file = os.path.join(tempfile.mkdtemp(),
                                              _CHROME_TRACE_CONFIG_FILE_NAME)
       with open(self._trace_config_file, 'w') as f:
@@ -242,7 +249,7 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
       os.chmod(self._trace_config_file,
                os.stat(self._trace_config_file).st_mode | stat.S_IROTH)
     else:
-      raise NotImplementedError('Tracing not supported on: %s' % os_name)
+      raise NotImplementedError
 
   def _RemoveTraceConfigFile(self):
     if not self._trace_config_file:
