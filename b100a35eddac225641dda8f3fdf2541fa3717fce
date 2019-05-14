@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c22783e5_aa1a5cd7",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-14T17:49:53Z",
+      "side": 1,
+      "message": "however",
+      "range": {
+        "startLine": 46,
+        "startChar": 19,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6f8cd63_f9c4b8b4",
         "filename": "common/py_utils/py_utils/exc_util.py",
         "patchSetId": 1
@@ -16,6 +39,47 @@
       "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0eaf966_9652601f",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-14T17:49:53Z",
+      "side": 1,
+      "message": "I looked into this a bit.\n\nI wrote the following code: \n\nimport sys\ndef run():\n  try:\n    raise Exception\n  finally:\n    if sys.exc_info()[0]:\n      print(\u0027exception!\u0027)\n    else:\n      print(\u0027all good.\u0027)\nrun() \n\nand then ran it:\n\ncrouleau@crouleau:~/python_play$ python3 play.py\nexception!\nTraceback (most recent call last):\n  File \"play.py\", line 12, in \u003cmodule\u003e\n    run()\n  File \"play.py\", line 5, in run\n    raise Exception\nException\ncrouleau@crouleau:~/python_play$ python play.py\nall good.\nTraceback (most recent call last):\n  File \"play.py\", line 12, in \u003cmodule\u003e\n    run()\n  File \"play.py\", line 5, in run\n    raise Exception\nException\n\n\nSo this is another issue that is solved in python3.\n\n\nMaybe you can add a note explaining that BestEffort will no longer be needed for python3.",
+      "parentUuid": "f6f8cd63_f9c4b8b4",
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db06fa12_61f1744a",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-14T17:49:53Z",
+      "side": 1,
+      "message": "occurred",
+      "range": {
+        "startLine": 62,
+        "startChar": 47,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
