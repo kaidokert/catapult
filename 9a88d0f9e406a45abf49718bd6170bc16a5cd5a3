@@ -22,6 +22,30 @@
       "revId": "9a88d0f9e406a45abf49718bd6170bc16a5cd5a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "426e19eb_a770b7af",
+        "filename": "telemetry/telemetry/binary_dependencies.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-14T09:15:43Z",
+      "side": 1,
+      "message": "That is a good point. I think we\u0027ve been sloppy about this in the same way about all other binaries listed in this file.\n\nWhat about adding a binary_dependencies.md pointing to sources for this, and maybe small build instructions if needed? Or just add an extra key to this dict pointing to e.g. a gitiles url? Either way, we can start doing this for trace processor; then get clients of other tools to do the same for theirs.\n\n+jbudorick what are your thoughts? As you also mentioned maybe getting rid of binary manager in the future, we should do something that is compatible with cipd practices.",
+      "parentUuid": "870fda8b_6b76d941",
+      "range": {
+        "startLine": 308,
+        "startChar": 5,
+        "endLine": 308,
+        "endChar": 26
+      },
+      "revId": "9a88d0f9e406a45abf49718bd6170bc16a5cd5a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
