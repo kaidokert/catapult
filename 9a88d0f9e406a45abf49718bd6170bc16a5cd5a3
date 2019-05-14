@@ -46,6 +46,30 @@
       "revId": "9a88d0f9e406a45abf49718bd6170bc16a5cd5a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c07cafaf_03fc3440",
+        "filename": "telemetry/telemetry/binary_dependencies.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-14T12:13:56Z",
+      "side": 1,
+      "message": "Added a small doc to telemetry/docs with a link to the source.",
+      "parentUuid": "426e19eb_a770b7af",
+      "range": {
+        "startLine": 308,
+        "startChar": 5,
+        "endLine": 308,
+        "endChar": 26
+      },
+      "revId": "9a88d0f9e406a45abf49718bd6170bc16a5cd5a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
