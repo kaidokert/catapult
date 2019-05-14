@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8a642fb7_05b7cf0e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-14T09:26:02Z",
+      "side": 1,
+      "message": "Agree with this. Filed https://crbug.com/962863 to try to revisit this.",
+      "parentUuid": "a1bbd7b9_8cf3311e",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 59
+      },
+      "revId": "4d49ffd58ea47028b816a7cd8cec30fbec140a11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "436d6a28_3b7ca54b",
         "filename": "common/py_trace_event/py_trace_event/trace_event_unittest.py",
         "patchSetId": 17
