@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f6f8cd63_f9c4b8b4",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-14T15:43:50Z",
+      "side": 1,
+      "message": "Yikes, this is unintuitive. Unfortunately, I don\u0027t have a better suggestion.",
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db97ce73_7fafa640",
         "filename": "common/py_utils/py_utils/exc_util.py",
         "patchSetId": 1
@@ -30,6 +47,24 @@
       "writtenOn": "2019-05-14T14:48:31Z",
       "side": 1,
       "message": "The fact that a regular try-except-finally block does not work, and this monster is needed instead, was the main reason for me to abandon this approach.",
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6660ab1_9f01657b",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-05-14T15:43:50Z",
+      "side": 1,
+      "message": "I\u0027m wondering about something like\n\n  with reraise.OriginalException(lambda: worker.CleanUp()):\n    with reraise.OriginalException(lambda: worker.Disconnect()):\n      worker.Process()\n\nbut I think that might complicate the control flow a bit too much for too little benefit.",
+      "parentUuid": "11fef844_431f5e59",
       "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
