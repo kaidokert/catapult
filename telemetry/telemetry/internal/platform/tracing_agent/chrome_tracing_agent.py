@@ -132,6 +132,8 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     for client in devtools_clients:
       try:
         timestamp = trace_time.Now()
+        logging.warning('Recording clock sync on Chrome branch: %s',
+                        client.GetChromeBranchNumber())
         client.RecordChromeClockSyncMarker(sync_id)
         # We only need one successful clock sync.
         has_clock_synced = True
