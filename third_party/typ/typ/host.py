@@ -250,37 +250,42 @@ class Host(object):
         return out, err
 
 
-class _TeedStream(io.StringIO):
+class _TeedStream(object):
 
     def __init__(self, stream):
-        super(_TeedStream, self).__init__()
         self.stream = stream
         self.capturing = False
         self.diverting = False
+        self.read_fileno, self.write_fileno = os.pipe()
 
     def write(self, msg, *args, **kwargs):
         if self.capturing:
             if (sys.version_info.major == 2 and
                     isinstance(msg, str)):  # pragma: python2
                 msg = unicode(msg)
-            super(_TeedStream, self).write(msg, *args, **kwargs)
+            self.output.write(msg, *args, **kwargs)
         if not self.diverting:
             self.stream.write(msg, *args, **kwargs)
 
     def flush(self):
         if self.capturing:
-            super(_TeedStream, self).flush()
+            self.output.flush()
         if not self.diverting:
             self.stream.flush()
 
     def capture(self, divert=True):
-        self.truncate(0)
+        self.output = os.fdopen(self.write_fileno, 'w')
         self.capturing = True
         self.diverting = divert
 
     def restore(self):
-        msg = self.getvalue()
-        self.truncate(0)
         self.capturing = False
         self.diverting = False
-        return msg
+        self.output.close()
+        r = os.fdopen(self.read_fileno)
+        output = r.read()
+        r.close()
+        return output
+
+    def fileno(self):
+        return self.write_fileno

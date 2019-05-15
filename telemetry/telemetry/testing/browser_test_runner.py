@@ -37,7 +37,7 @@ def Run(project_config, args):
                                    'run_browser_tests.py')
 
   exit_code = subprocess.call([sys.executable, path_to_run_tests] + args,
-                              env=env)
+                              stdout=sys.stdout, stderr=sys.stderr, env=env)
   if exit_code:
     print '**Non zero exit code**'
     print ('If you don\'t see any error stack, this could have been a '
