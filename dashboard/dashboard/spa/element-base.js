@@ -116,6 +116,10 @@ export default class ElementBase extends PolymerElement {
     return true;
   }
 
+  default_(test, ifFalsy) {
+    return test || ifFalsy;
+  }
+
   plural_(count, pluralSuffix = 's', singularSuffix = '') {
     return plural(count, pluralSuffix, singularSuffix);
   }
