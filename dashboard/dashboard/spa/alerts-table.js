@@ -11,17 +11,45 @@ import './scalar-span.js';
 import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import ElementBase from './element-base.js';
+import {breakWords, crbug, setImmutable} from './utils.js';
+import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
-
-import {
-  breakWords,
-  buildProperties,
-  buildState,
-  setImmutable,
-} from './utils.js';
 
 export default class AlertsTable extends ElementBase {
   static get is() { return 'alerts-table'; }
+
+  static get properties() {
+    return {
+      areAlertGroupsPlaceholders: Boolean,
+      statePath: String,
+      previousSelectedAlertKey: String,
+      alertGroups: Array,
+      selectedAlertsCount: Number,
+      showBugColumn: Boolean,
+      showMasterColumn: Boolean,
+      showCaseColumn: Boolean,
+      showTriagedColumn: Boolean,
+      showingTriaged: Boolean,
+      sortColumn: String,
+      sortDescending: Boolean,
+    };
+  }
+
+  static buildState(options = {}) {
+    return {
+      previousSelectedAlertKey: undefined,
+      alertGroups: options.alertGroups ||
+        AlertsTable.placeholderAlertGroups(),
+      selectedAlertsCount: 0,
+      showBugColumn: options.showBugColumn !== false,
+      showMasterColumn: options.showMasterColumn !== false,
+      showCaseColumn: options.showCaseColumn !== false,
+      showTriagedColumn: options.showTriagedColumn !== false,
+      showingTriaged: options.showingTriaged || false,
+      sortColumn: options.sortColumn || 'startRevision',
+      sortDescending: options.sortDescending || false,
+    };
+  }
 
   static get template() {
     return html`
@@ -320,7 +348,8 @@ export default class AlertsTable extends ElementBase {
                               </template>
                               <template is="dom-if"
     if="[[!isAlertIgnored_(alert.bugId)]]">
-                                <a href="https://crbug.com/[[alert.bugId]]" target="_blank">
+                                <a href="[[crbug_(alert.bugId)]]"
+    target="_blank">
                                   [[alert.bugId]]
                                 </a>
                               </template>
@@ -394,6 +423,12 @@ export default class AlertsTable extends ElementBase {
   ready() {
     super.ready();
     this.scrollIntoView(true);
+  }
+
+  stateChanged(rootState) {
+    super.stateChanged(rootState);
+    this.set('areAlertGroupsPlaceholders', this.alertGroups ===
+      AlertsTable.placeholderAlertGroups());
   }
 
   anySelectedAlerts_(alertGroups) {
@@ -473,8 +508,8 @@ export default class AlertsTable extends ElementBase {
     return bugId < 0;
   }
 
-  arePlaceholders_(alertGroups) {
-    return alertGroups === AlertsTable.placeholderAlertGroups();
+  crbug_(bugId) {
+    return crbug(bugId);
   }
 
   async onSelectAll_(event) {
@@ -644,27 +679,6 @@ AlertsTable.placeholderAlertGroups = () => {
     });
   }
   return PLACEHOLDER_ALERT_GROUPS;
-};
-
-AlertsTable.State = {
-  previousSelectedAlertKey: options => undefined,
-  alertGroups: options => options.alertGroups ||
-    AlertsTable.placeholderAlertGroups(),
-  selectedAlertsCount: options => 0,
-  showBugColumn: options => options.showBugColumn !== false,
-  showMasterColumn: options => options.showMasterColumn !== false,
-  showCaseColumn: options => options.showCaseColumn !== false,
-  showTriagedColumn: options => options.showTriagedColumn !== false,
-  showingTriaged: options => options.showingTriaged || false,
-  sortColumn: options => options.sortColumn || 'startRevision',
-  sortDescending: options => options.sortDescending || false,
-};
-
-AlertsTable.properties = buildProperties('state', AlertsTable.State);
-AlertsTable.buildState = options => buildState(AlertsTable.State, options);
-
-AlertsTable.properties.areAlertGroupsPlaceholders = {
-  computed: 'arePlaceholders_(alertGroups)',
 };
 
 AlertsTable.actions = {

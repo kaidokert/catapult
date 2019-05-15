@@ -11,16 +11,39 @@ import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import ElementBase from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
-
-import {
-  buildProperties,
-  buildState,
-  isElementChildOf,
-} from './utils.js';
+import {measureElement, isElementChildOf} from './utils.js';
 
 export default class TriageExisting extends ElementBase {
   static get is() { return 'triage-existing'; }
+
+  static get properties() {
+    return {
+      statePath: String,
+      bugId: String,
+      isOpen: {type: Boolean, reflectToAttribute: true},
+      onlyIntersectingBugs: Boolean,
+      selectedRange: Object,
+      recentPerformanceBugs: Array,
+    };
+  }
+
+  static buildState(options = {}) {
+    const selectedRange = new tr.b.math.Range();
+    if (!options.alerts) return selectedRange;
+    for (const alert of options.alerts) {
+      selectedRange.addValue(alert.startRevision);
+      selectedRange.addValue(alert.endRevision);
+    }
+
+    return {
+      bugId: '',
+      isOpen: options.isOpen === true,
+      onlyIntersectingBugs: true,
+      selectedRange,
+    };
+  }
 
   static get template() {
     return html`
@@ -45,6 +68,7 @@ export default class TriageExisting extends ElementBase {
           align-items: center;
           display: flex;
           margin: 0;
+          min-width: 400px;
           padding: 0;
         }
 
@@ -85,7 +109,7 @@ export default class TriageExisting extends ElementBase {
         }
 
         td:nth-of-type(4) {
-          max-width: 500px;
+          min-width: 400px;
         }
       </style>
 
@@ -155,7 +179,20 @@ export default class TriageExisting extends ElementBase {
     super.ready();
     this.addEventListener('blur', this.onBlur_.bind(this));
     this.addEventListener('keyup', this.onKeyup_.bind(this));
-    this.style.minWidth = (window.innerWidth * 0.6) + 'px';
+  }
+
+  async stateChanged(rootState) {
+    const oldIsOpen = this.isOpen;
+    this.set('recentPerformanceBugs', rootState.recentPerformanceBugs);
+    super.stateChanged(rootState);
+
+    if (this.isOpen && !oldIsOpen) {
+      const rect = await measureElement(this);
+      // The drawer is about 33px. There's 32px of padding in this dialog.
+      this.style.maxWidth = (rect.right - 33 - 32) + 'px';
+
+      this.$.bug_input.focus();
+    }
   }
 
   async onKeyup_(event) {
@@ -190,12 +227,6 @@ export default class TriageExisting extends ElementBase {
     await this.dispatch('close', this.statePath);
   }
 
-  observeIsOpen_() {
-    if (this.isOpen) {
-      this.$.bug_input.focus();
-    }
-  }
-
   async onToggleOnlyIntersectingBugs_(event) {
     await this.dispatch('toggleOnlyIntersectingBugs', this.statePath);
   }
@@ -215,34 +246,6 @@ export default class TriageExisting extends ElementBase {
         event.target.value);
   }
 }
-
-TriageExisting.State = {
-  bugId: options => '',
-  isOpen: {
-    value: options => options.isOpen === true,
-    reflectToAttribute: true,
-  },
-  onlyIntersectingBugs: options => true,
-  selectedRange: options => {
-    const selectedRange = new tr.b.math.Range();
-    if (!options.alerts) return selectedRange;
-    for (const alert of options.alerts) {
-      selectedRange.addValue(alert.startRevision);
-      selectedRange.addValue(alert.endRevision);
-    }
-    return selectedRange;
-  },
-};
-
-TriageExisting.buildState = options =>
-  buildState(TriageExisting.State, options);
-
-TriageExisting.properties = {
-  ...buildProperties('state', TriageExisting.State),
-  recentPerformanceBugs: {statePath: 'recentPerformanceBugs'},
-};
-
-TriageExisting.observers = ['observeIsOpen_(isOpen)'];
 
 TriageExisting.actions = {
   toggleOnlyIntersectingBugs: statePath => async(dispatch, getState) => {

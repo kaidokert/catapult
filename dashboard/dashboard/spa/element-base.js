@@ -58,8 +58,9 @@ export default class ElementBase extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.unsubscribeRedux_ = getStore().subscribe(() => this.updateState_());
-    this.updateState_();
+    this.unsubscribeRedux_ = getStore().subscribe(() =>
+      this.stateChanged(this.getState()));
+    this.stateChanged(this.getState());
   }
 
   getState() {
@@ -78,19 +79,9 @@ export default class ElementBase extends PolymerElement {
     return getStore().dispatch(action);
   }
 
-  updateState_() {
-    const state = this.getState();
-    let propertiesChanged = false;
-    for (const [name, prop] of Object.entries(this.constructor.properties)) {
-      const {statePath} = this.constructor.properties[name];
-      if (!statePath) continue;
-      const value = (typeof statePath === 'function') ?
-        statePath.call(this, state) :
-        get(state, statePath);
-      const changed = this._setPendingPropertyOrPath(name, value, true);
-      propertiesChanged = propertiesChanged || changed;
-    }
-    if (propertiesChanged) this._invalidateProperties();
+  stateChanged(rootState) {
+    if (!this.statePath) return;
+    this.setProperties(get(rootState, this.statePath));
   }
 
   disconnectedCallback() {
@@ -123,6 +114,10 @@ export default class ElementBase extends PolymerElement {
       if (arg !== test) return false;
     }
     return true;
+  }
+
+  default_(test, ifFalsy) {
+    return test || ifFalsy;
   }
 
   plural_(count, pluralSuffix = 's', singularSuffix = '') {
@@ -158,9 +153,6 @@ export default class ElementBase extends PolymerElement {
     this.debounceJobs_.set(jobName, Debouncer.debounce(
         this.debounceJobs_.get(jobName), asyncModule, callback));
   }
-
-  // This is used to bind state properties in `buildProperties()` in utils.js.
-  identity_(x) { return x; }
 
   static resetStoreForTest() {
     getStore().dispatch(RESET);
