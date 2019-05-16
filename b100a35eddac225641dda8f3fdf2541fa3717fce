@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "35cd3724_36fe804f",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T14:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c22783e5_aa1a5cd7",
+      "range": {
+        "startLine": 46,
+        "startChar": 19,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6f8cd63_f9c4b8b4",
         "filename": "common/py_utils/py_utils/exc_util.py",
         "patchSetId": 1
@@ -60,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "5b38a563_59160347",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T14:29:36Z",
+      "side": 1,
+      "message": "Ah, thanks for checking this! I added another note to make it clear that this is python 2.7 behavior, and that none of this will be needed in Python 3.",
+      "parentUuid": "c0eaf966_9652601f",
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db06fa12_61f1744a",
         "filename": "common/py_utils/py_utils/exc_util.py",
         "patchSetId": 1
@@ -80,6 +122,30 @@
       "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7668dbe9_f9318146",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T14:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db06fa12_61f1744a",
+      "range": {
+        "startLine": 62,
+        "startChar": 47,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -129,6 +195,24 @@
       "side": 1,
       "message": "I\u0027m wondering about something like\n\n  with reraise.OriginalException(lambda: worker.CleanUp()):\n    with reraise.OriginalException(lambda: worker.Disconnect()):\n      worker.Process()\n\nbut I think that might complicate the control flow a bit too much for too little benefit.",
       "parentUuid": "11fef844_431f5e59",
+      "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94656fd8_89c4d546",
+        "filename": "common/py_utils/py_utils/exc_util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T14:29:36Z",
+      "side": 1,
+      "message": "Yup, agree. I also tried a few other things with context managers, but they all seemed to obscure rather than clarify the control flow.",
+      "parentUuid": "a6660ab1_9f01657b",
       "revId": "b100a35eddac225641dda8f3fdf2541fa3717fce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
