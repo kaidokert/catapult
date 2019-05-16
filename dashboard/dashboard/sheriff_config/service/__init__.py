@@ -7,9 +7,13 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import os
-
+import base64
+import luci_config
 from flask import Flask, request, jsonify
+from google.cloud import datastore
+import google.auth
+import httplib2
+import os
 import validator
 
 
@@ -49,6 +53,15 @@ def CreateApp(test_config=None):
   environ = os.environ if test_config is None else test_config.get(
       'environ', {})
 
+  # We can set up a preconfigured HTTP instance from the test_config, otherwise
+  # we'll use the default auth for the production environment.
+  if test_config:
+    http = test_config.get('http')
+  else:
+    http = httplib2.Http()
+    credentials = google.auth.default()
+    http = credentials.authorize(http)
+
   # In the python37 environment, we need to synthesize the URL from the
   # various parts in the environment variable, because we do not have access
   # to the appengine APIs in the python37 standard environment.
@@ -62,6 +75,17 @@ def CreateApp(test_config=None):
   domain = '{parts[service]}-dot-{parts[app_id]}.appspot.com'.format(
       parts=domain_parts)
 
+  # We create an instance of the luci-config client, which we'll use in all
+  # requests handled in this application.
+  config_client = luci_config.CreateConfigClient(http)
+
+  # First we check whether the test_config already has a predefined
+  # datastore_client.
+  if test_config:
+    datastore_client = test_config.get('datastore_client')
+  else:
+    datastore_client = datastore.Client()
+
   @app.route('/validate', methods=['POST'])
   def Validate():  # pylint: disable=unused-variable
     validation_request = request.get_json()
@@ -71,7 +95,8 @@ def CreateApp(test_config=None):
       if member not in validation_request:
         return u'Missing \'%s\' member in request.' % (member), 400
     try:
-      _ = validator.Validate(validation_request['content'])
+      _ = validator.Validate(
+          base64.standard_b64decode(validation_request['content']))
     except validator.Error as error:
       return jsonify({
           'messages': [{
@@ -94,5 +119,17 @@ def CreateApp(test_config=None):
             'url': 'https://%s/validate' % (domain)
         }
     })
+
+  @app.route('/update-configs')
+  def UpdateConfigs():  # pylint: disable=unused-variable
+    """Poll the luci-config service."""
+    configs = luci_config.FindAllSheriffConfigs(config_client)
+    luci_config.StoreConfigs(datastore_client, configs.get('configs', []))
+    return jsonify({})
+
+  @app.route('/match-subscriptions', methods=['POST'])
+  def MatchSubscriptions():  # pylint: disable=unused-variable
+    # FIXME: Implement this!
+    return jsonify({})
 
   return app
