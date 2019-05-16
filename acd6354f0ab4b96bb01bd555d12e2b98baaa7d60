@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "569c0bb6_1b787b30",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T16:01:08Z",
+      "side": 1,
+      "message": "Probably for a follow up CL; but I\u0027m thinking that we should change the interface between Telemetry and py_trace_event so that *only* benchmark_metadata is allowed. For example on the caller side, instead of:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py?rcl\u003d89ec6c772dbe1f6069051fb4210b31b5376324bf\u0026l\u003d22\n\nwe would write:\n\n  trace_event.add_benchmark_metadata(\n    benchmark_name\u003dtelemetry_info.benchmark_name,\n    benchmark_description\u003dtelemetry_info.benchmark_description,\n    ...\n  )\n\nand here on the PROTO case we basically just forward that call to perfetto_trace_writer, and in the JSON case we cache the data in a dict (i.e. move the code of the AsDict method from telemetry info to here) and finally write the dict when flushing the trace as is currently done for that case.",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf3b9877_48aa8fac",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T16:01:08Z",
+      "side": 1,
+      "message": "from the AsDict implementation [1] looks like this is optional?\n\nI\u0027m happy with making it required (at the proto level), but here maybe you need some sort of .get(..., \u0027(description missing)\u0027) ?\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003d89ec6c772dbe1f6069051fb4210b31b5376324bf\u0026l\u003d268",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "092c4d0e_f679a721",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-16T16:01:08Z",
+      "side": 1,
+      "message": "Hmm.. I couldn\u0027t find any place where we set this to something [2]. If that\u0027s the case let\u0027s try to remove this (both from telemetry_info and the proto definition). Sorry I didn\u0027t notice this earlier!\n\n[2]: https://cs.chromium.org/search/?q\u003d%5C.had_failures%5C+%3D",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
