@@ -53,7 +53,11 @@ export default class RecommendedOptions extends ElementBase {
 
   ready() {
     super.ready();
-    if (!this.optionRecommendations) this.dispatch('getRecommendations');
+    if (!this.optionRecommendations) {
+      this.dispatch({
+        type: RecommendedOptions.reducers.getRecommendations.name,
+      });
+    }
   }
 
   stateChanged(rootState) {
@@ -75,29 +79,21 @@ export default class RecommendedOptions extends ElementBase {
         !oldSelectedOptions.includes(o));
       // Ignore when users deselect options or select whole groups of options.
       if (addedOptions.length === 1) {
-        this.dispatch('updateRecommendations', addedOptions[0]);
+        this.dispatch({
+          type: RecommendedOptions.reducers.updateRecommendations.name,
+          addedOption: addedOptions[0],
+        });
       }
     }
   }
 }
 
 RecommendedOptions.actions = {
-  getRecommendations: () => async(dispatch, getState) => {
-    dispatch({type: RecommendedOptions.reducers.getRecommendations.name});
-  },
-
   recommendOptions: statePath => async(dispatch, getState) => {
     if (!get(getState(), statePath)) return;
     dispatch({
       type: RecommendedOptions.reducers.recommendOptions.name,
       statePath,
-    });
-  },
-
-  updateRecommendations: addedOption => async(dispatch, getState) => {
-    dispatch({
-      type: RecommendedOptions.reducers.updateRecommendations.name,
-      addedOption,
     });
   },
 };
