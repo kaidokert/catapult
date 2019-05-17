@@ -653,7 +653,7 @@ AlertsSection.computeLineDescriptor = alert => {
     measurement: alert.measurement,
     bots: [alert.master + ':' + alert.bot],
     cases: [alert.case],
-    statistic: 'avg',
+    statistic: alert.statistic,
     buildType: 'test',
   };
 };
@@ -949,8 +949,10 @@ AlertsSection.newStateOptionsFromQueryParams = queryParams => {
     minRevision: queryParams.get('minRev') || queryParams.get('rev'),
     maxRevision: queryParams.get('maxRev') || queryParams.get('rev'),
     sortColumn: queryParams.get('sort') || 'startRevision',
-    showingImprovements: queryParams.get('improvements') !== null,
-    showingTriaged: queryParams.get('triaged') !== null,
+    showingImprovements: ((queryParams.get('improvements') !== null) ||
+      (queryParams.get('bug') !== null)),
+    showingTriaged: ((queryParams.get('triaged') !== null) ||
+      (queryParams.get('bug') !== null)),
     sortDescending: queryParams.get('descending') !== null,
   };
 };
@@ -1020,8 +1022,13 @@ AlertsSection.getRouteParams = state => {
     }
   }
 
-  if (state.showingImprovements) queryParams.set('improvements', '');
-  if (state.showingTriaged) queryParams.set('triaged', '');
+  // #bug implies #improvements and #triaged
+  if (state.showingImprovements && !queryParams.get('bug')) {
+    queryParams.set('improvements', '');
+  }
+  if (state.showingTriaged && !queryParams.get('bug')) {
+    queryParams.set('triaged', '');
+  }
   if (state.sortColumn !== 'startRevision') {
     queryParams.set('sort', state.sortColumn);
   }

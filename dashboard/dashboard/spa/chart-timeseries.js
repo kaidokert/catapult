@@ -434,7 +434,9 @@ ChartTimeseries.reducers = {
       });
     }
 
-    rows.push({name: 'value', value: line.unit.format(datum.y)});
+    const value = (typeof(datum.y) === 'number') ? line.unit.format(datum.y) :
+      ('' + datum.y);
+    rows.push({name: 'value', value});
 
     let foundRevision = false;
     for (const [rName, value] of Object.entries(
@@ -677,7 +679,7 @@ ChartTimeseries.aggregateTimeserieses = (
   for (const [x, datum] of iter) {
     const icon = isXY ? {} : getIcon(datum);
     lineData.push({
-      datum, x, y: datum[lineDescriptor.statistic], ...icon,
+      datum, x, y: datum[lineDescriptor.statistic || 'avg'], ...icon,
     });
   }
 
