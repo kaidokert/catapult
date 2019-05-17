@@ -104,6 +104,24 @@
       "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ffe9b05_9a816eb6",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-17T10:14:44Z",
+      "side": 1,
+      "message": "No, it is called here:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/web_perf/timeline_based_measurement.py?rcl\u003dfd64d5d2d4a77c909aa24986a25b43f685d4504b\u0026l\u003d292\n\nAt that point tracing is still running only if some error prevented \"Measure\" from being called; so we do get the trace, although metrics are not computed on it. So, I retract my point above. Let\u0027s keep this had_failures; but make sure (on some follow up CL) that Telemetry set\u0027s this up properly.",
+      "parentUuid": "7cb90dad_2d4de63c",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
