@@ -73,7 +73,6 @@ class ReraiseTests(unittest.TestCase):
       except:
         client.Disconnect()
         raise
-
     self.assertLogMatches(re.compile(
         r'While handling a FakeConnectionError, .* was also raised:\n'
         r'Traceback \(most recent call last\):\n'

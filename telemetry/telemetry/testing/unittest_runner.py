@@ -43,6 +43,7 @@ def Run(project_config, no_browser=False,
   path_to_run_tests = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                    'run_tests.py')
   exit_code = subprocess.call([sys.executable, path_to_run_tests] + args,
+                              stdout=sys.stdout, stderr=sys.stderr,
                               env=env)
   if exit_code:
     print '**Non zero exit code**'
