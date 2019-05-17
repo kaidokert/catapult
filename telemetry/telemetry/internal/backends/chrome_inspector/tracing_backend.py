@@ -171,6 +171,8 @@ class TracingBackend(object):
     rc = self._inspector_websocket.SyncRequest(req, timeout=2)
     if 'error' in rc:
       raise ClockSyncResponseException(rc['error']['message'])
+    #else:
+    #  raise ClockSyncResponseException('Intentional clock sync exception')
 
   def StopTracing(self):
     """Stops tracing and pushes results to the supplied TraceDataBuilder.

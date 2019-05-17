@@ -174,7 +174,10 @@ class _DevToolsClientBackend(object):
     self._devtools_http = devtools_http.DevToolsHttp(self.local_port)
     # If the agent is not alive and ready, this will raise a
     # devtools_http.DevToolsClientConnectionError.
-    self.GetVersion()
+    version = self.GetChromeBranchNumber()
+    if version < 3029:
+      raise devtools_http.DevToolsClientConnectionError(
+          'Chrome branch number %d is too old' % version)
 
     if not self.supports_tracing:
       return
