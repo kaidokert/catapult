@@ -1,0 +1,18 @@
+{
+	"configs": [
+		{
+			"url": "https://example.com/project/sources/+/0123456789abcdef/configs/chromeperf-sheriff.cfg",
+			"content": "ewoJInN1YnNjcmlwdGlvbnMiOiBbCgkJewoJCQkibmFtZSI6ICIiLAoJCQkibm90aWZpY2F0aW9uX2VtYWlsIjogIiIsCgkJCSJidWdfbGFiZWxzIjogWyIiXSwKCQkJImJ1Z19jb21wb25lbnRzIjogWyIiXSwKCQkJInBhdHRlcm5zIjogW3siZ2xvYiI6ICJwcm9qZWN0LyoqIn1dCgkJfSwKCQl7CgkJCSJuYW1lIjogIiIsCgkJCSJub3RpZmljYXRpb25fZW1haWwiOiAiIiwKCQkJImJ1Z19sYWJlbHMiOiBbIiJdLAoJCQkicGF0dGVybnMiOiBbeyJyZWdleCI6ICJecHJvamVjdC9wbGF0Zm9ybS8uKi9tZW1vcnlfcGVhayQifV0KCQl9CgldCn0K",
+			"content_hash": "v1:somehash",
+			"config_set": "projects/project",
+			"revision": "0123456789abcdef"
+		},
+		{
+			"url": "https://example.com/other_project/sources/+/0123456789abcdff/configs/chromeperf-sheriff.cfg",
+			"content": "ewoJInN1YnNjcmlwdGlvbnMiOiBbCgkJewoJCQkibmFtZSI6ICJFeHBlY3RlZCAxIiwKCQkJIm5vdGlmaWNhdGlvbl9lbWFpbCI6ICJleHBlY3RlZC0xQGV4YW1wbGUuY29tIiwKCQkJImJ1Z19sYWJlbHMiOiBbIlNvbWUtTGFiZWwiXSwKCQkJImJ1Z19jb21wb25lbnRzIjogWyJTb21lPkNvbXBvbmVudCJdLAoJCQkicGF0dGVybnMiOiBbeyJnbG9iIjogIk1hc3Rlci9Cb3QvVGVzdC9NZXRyaWMvU29tZXRoaW5nIn1dCgkJfQoJXQp9Cgo=",
+			"content_hash": "v1:someotherhash",
+			"config_set": "projects/other_project",
+			"revision": "0123456789abcdff"
+		}
+	]
+}
