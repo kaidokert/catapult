@@ -49,7 +49,7 @@ export default class TriageNew extends ElementBase {
     return html`
       <style>
         :host {
-          background: var(--background-color);
+          background: var(--background-color, white);
           box-shadow: var(--elevation-2);
           display: none;
           flex-direction: column;
@@ -58,7 +58,7 @@ export default class TriageNew extends ElementBase {
           padding: 16px;
           position: absolute;
           right: 0;
-          z-index: var(--layer-menu);
+          z-index: var(--layer-menu, 100);
         }
         :host([is-open]) {
           display: flex;

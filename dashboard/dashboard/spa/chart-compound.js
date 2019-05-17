@@ -17,7 +17,7 @@ import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE} from './layout-timeseries.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
-import {setImmutable} from './utils.js';
+import {isElementChildOf, setImmutable} from './utils.js';
 
 /**
   * ChartCompound synchronizes revision ranges and axis properties between a

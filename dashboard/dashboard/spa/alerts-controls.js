@@ -19,6 +19,7 @@ import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
 import SheriffsRequest from './sheriffs-request.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
+import {crbug} from './utils.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
 
@@ -97,10 +98,13 @@ export default class AlertsControls extends ElementBase {
 
         #sheriff-container,
         #bug-container,
-        #report-container,
-        #report,
-        #min-revision {
+        #report-container {
           margin-right: 8px;
+        }
+
+        cp-input {
+          margin-right: 8px;
+          margin-top: 12px;
         }
 
         #report-container {
@@ -211,7 +215,7 @@ export default class AlertsControls extends ElementBase {
 
       <iron-collapse
           horizontal
-          id="sheriff-container"
+          id="min-container"
           opened="[[showInput_(showEmptyInputs, minRevision, maxRevision,
                                 sheriff, bug, report)]]">
         <cp-input
@@ -224,7 +228,7 @@ export default class AlertsControls extends ElementBase {
 
       <iron-collapse
           horizontal
-          id="sheriff-container"
+          id="max-container"
           opened="[[showInput_(showEmptyInputs, minRevision, maxRevision,
                                 sheriff, bug, report)]]">
         <cp-input
@@ -242,31 +246,37 @@ export default class AlertsControls extends ElementBase {
           on-click="onFilter_">
       </iron-icon>
 
-      <cp-switch
-          id="improvements"
-          disabled="[[!isEmpty_(bug.selectedOptions)]]"
-          checked$="[[showingImprovements]]"
-          on-change="onToggleImprovements_">
-        <template is="dom-if" if="[[showingImprovements]]">
-          Regressions and Improvements
-        </template>
-        <template is="dom-if" if="[[!showingImprovements]]">
-          Regressions Only
-        </template>
-      </cp-switch>
+      <iron-collapse
+          horizontal
+          opened="[[isEmpty_(bug.selectedOptions)]]">
+        <cp-switch
+            id="improvements"
+            disabled="[[!isEmpty_(bug.selectedOptions)]]"
+            title="[[getImprovementsTooltip_(showingImprovements)]]"
+            checked$="[[showingImprovements]]"
+            on-change="onToggleImprovements_">
+          <template is="dom-if" if="[[showingImprovements]]">
+            Regressions and Improvements
+          </template>
+          <template is="dom-if" if="[[!showingImprovements]]">
+            Regressions Only
+          </template>
+        </cp-switch>
 
-      <cp-switch
-          id="triaged"
-          disabled="[[!isEmpty_(bug.selectedOptions)]]"
-          checked$="[[showingTriaged]]"
-          on-change="onToggleTriaged_">
-        <template is="dom-if" if="[[showingTriaged]]">
-          New and Triaged
-        </template>
-        <template is="dom-if" if="[[!showingTriaged]]">
-          New Only
-        </template>
-      </cp-switch>
+        <cp-switch
+            id="triaged"
+            disabled="[[!isEmpty_(bug.selectedOptions)]]"
+            title="[[getTriagedTooltip_(showingTriaged)]]"
+            checked$="[[showingTriaged]]"
+            on-change="onToggleTriaged_">
+          <template is="dom-if" if="[[showingTriaged]]">
+            New and Triaged
+          </template>
+          <template is="dom-if" if="[[!showingTriaged]]">
+            New Only
+          </template>
+        </cp-switch>
+      </iron-collapse>
 
       <span id=spacer></span>
 
@@ -396,7 +406,7 @@ export default class AlertsControls extends ElementBase {
   }
 
   crbug_(bugId) {
-    return `http://crbug.com/${bugId}`;
+    return crbug(bugId);
   }
 
   async dispatchSources_() {
@@ -465,6 +475,24 @@ export default class AlertsControls extends ElementBase {
     this.debounce('dispatchSources', () => {
       this.dispatchSources_();
     }, PolymerAsync.timeOut.after(AlertsControls.TYPING_DEBOUNCE_MS));
+  }
+
+  getImprovementsTooltip_(showingImprovements) {
+    if (showingImprovements) {
+      return 'Now showing both regressions and improvements. ' +
+        'Click to toggle to show only regressions.';
+    }
+    return 'Now showing regressions but not improvements. ' +
+      'Click to toggle to show both regressions and improvements.';
+  }
+
+  getTriagedTooltip_(showingTriaged) {
+    if (showingTriaged) {
+      return 'Now showing both triaged and untriaged alerts. ' +
+        'Click to toggle to show only untriaged alerts.';
+    }
+    return 'Now showing only untriaged alerts. ' +
+      'Click to toggle to show both triaged and untriaged alerts.';
   }
 
   async onToggleImprovements_(event) {

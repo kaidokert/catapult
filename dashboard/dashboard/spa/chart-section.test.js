@@ -141,7 +141,7 @@ suite('chart-section', function() {
     chart.$.title.value = 'test';
     chart.$.title.dispatchEvent(new CustomEvent('keyup'));
     await afterRender();
-    assert.strictEqual('test', chart.title);
+    assert.strictEqual('test', chart.title_);
     assert.isTrue(chart.isTitleCustom);
   });
 });
