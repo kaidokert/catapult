@@ -385,12 +385,29 @@ tr.exportTo('tr.metrics.sh', function() {
     return lastCandidates;
   }
 
-  function findFCPPlusPlusSamples(rendererHelper, title, frameToNavStartEvents,
+  function findLargestTextPaintSamples(rendererHelper, frameToNavStartEvents,
       navIdToNavStartEvents) {
-    const timeToXEntries = findTimeToXEntries('loading', title, rendererHelper,
-        frameToNavStartEvents, navIdToNavStartEvents);
+    const timeToXEntries = findTimeToXEntries('loading',
+        'LargestTextPaint::Candidate', rendererHelper, frameToNavStartEvents,
+        navIdToNavStartEvents);
     const lastCandidateEvents =
         findLastCandidateForEachNavigation(timeToXEntries);
+    return collectTimeToEvent(rendererHelper, lastCandidateEvents);
+  }
+
+  function findLargestImagePaintSamples(rendererHelper, frameToNavStartEvents,
+      navIdToNavStartEvents) {
+    const timeToPaintEntries = findTimeToXEntries('loading',
+        'LargestImagePaint::Candidate', rendererHelper, frameToNavStartEvents,
+        navIdToNavStartEvents);
+    const timeToPaintBlockingEntries = findTimeToXEntries('loading',
+        'LargestImagePaint::NoCandidate', rendererHelper, frameToNavStartEvents,
+        navIdToNavStartEvents);
+    const lastCandidateEvents =
+        findLastCandidateForEachNavigation(
+            timeToPaintEntries.concat(timeToPaintBlockingEntries))
+            .filter(event =>
+              event.targetEvent.title !== 'LargestImagePaint::NoCandidate');
     return collectTimeToEvent(rendererHelper, lastCandidateEvents);
   }
 
@@ -418,11 +435,10 @@ tr.exportTo('tr.metrics.sh', function() {
         getAboveTheFoldLoadedToVisibleSamples(rendererHelper);
     const firstViewportReadySamples = getFirstViewportReadySamples(
         rendererHelper, navIdToNavStartEvents);
-    const largestImagePaintSamples = findFCPPlusPlusSamples(rendererHelper,
-        'LargestImagePaint::Candidate', frameToNavStartEvents,
-        navIdToNavStartEvents);
-    const largestTextPaintSamples = findFCPPlusPlusSamples(rendererHelper,
-        'LargestTextPaint::Candidate', frameToNavStartEvents,
+    const largestImagePaintSamples = findLargestImagePaintSamples(
+        rendererHelper, frameToNavStartEvents, navIdToNavStartEvents);
+    const largestTextPaintSamples = findLargestTextPaintSamples(
+        rendererHelper, frameToNavStartEvents,
         navIdToNavStartEvents);
 
     return {
