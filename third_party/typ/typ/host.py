@@ -244,43 +244,55 @@ class Host(object):
 
     def restore_output(self):
         assert isinstance(self.stdout, _TeedStream)
-        out, err = (self.stdout.restore(), self.stderr.restore())
+        out, err = self.stdout.restore(), self.stderr.restore()
         self.logger.handlers = self._orig_logging_handlers
         self._untap_output()
         return out, err
 
 
-class _TeedStream(io.StringIO):
+class _TeedStream(object):
 
     def __init__(self, stream):
-        super(_TeedStream, self).__init__()
         self.stream = stream
         self.capturing = False
         self.diverting = False
+        self.output_buffer = tempfile.NamedTemporaryFile(delete=True)
 
     def write(self, msg, *args, **kwargs):
         if self.capturing:
             if (sys.version_info.major == 2 and
                     isinstance(msg, str)):  # pragma: python2
                 msg = unicode(msg)
-            super(_TeedStream, self).write(msg, *args, **kwargs)
+            self.output_buffer.write(msg, *args, **kwargs)
         if not self.diverting:
             self.stream.write(msg, *args, **kwargs)
 
     def flush(self):
         if self.capturing:
-            super(_TeedStream, self).flush()
+            self.output_buffer.flush()
         if not self.diverting:
             self.stream.flush()
 
     def capture(self, divert=True):
-        self.truncate(0)
         self.capturing = True
         self.diverting = divert
 
     def restore(self):
-        msg = self.getvalue()
-        self.truncate(0)
         self.capturing = False
         self.diverting = False
-        return msg
+        self.output_buffer.flush()
+        os.lseek(self.output_buffer.fileno(), 0, 0)
+        output = self.output_buffer.read()
+        self.output_buffer.close()
+        return output
+
+    def fileno(self):
+        return self.output_buffer.fileno()
+
+    def getvalue(self):
+        self.output_buffer.flush()
+        os.lseek(self.output_buffer.fileno(), 0, 0)
+        return self.output_buffer.read()
+
+    def isatty(self):
+        return self.output_buffer.isatty()

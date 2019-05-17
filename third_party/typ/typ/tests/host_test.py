@@ -16,9 +16,10 @@ import logging
 import pickle
 import sys
 import unittest
+import os
+import subprocess
 
 from typ.host import Host
-
 
 class TestHost(unittest.TestCase):
 
@@ -214,3 +215,41 @@ class TestHost(unittest.TestCase):
     def test_platform(self):
         h = self.host()
         self.assertNotEqual(h.platform, None)
+
+
+class TestHostReceivesProcessOutput(unittest.TestCase):
+
+    def setUp(self):
+        self.script_path = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)), '..', 'runner.py')
+
+    def test1(self):
+        sys.stdout.write('Started test1')
+        host = Host()
+        host.capture_output()
+        self.assertEqual(
+            subprocess.call(
+                [sys.executable, self.script_path,
+                'typ.tests.host_test.TestHostReceivesSubProcessOutput.test2',
+                '-vv'], stdout=sys.stdout, stderr=sys.stderr),0)
+        out, _ = host.restore_output()
+        self.assertIn('Started test1', sys.stdout.getvalue())
+        sys.stdout.write(out)
+        self.assertIn('  Started test2', sys.stdout.getvalue())
+        self.assertIn('    Started test3', sys.stdout.getvalue())
+
+    def test2(self):
+        sys.stdout.write('Started test2')
+        host = Host()
+        host.capture_output()
+        self.assertEqual(
+            subprocess.call(
+                [sys.executable, self.script_path,
+                'typ.tests.host_test.TestHostReceivesSubProcessOutput.test3',
+                '-vv'], stdout=sys.stdout, stderr=sys.stderr), 0)
+        out, _ = host.restore_output()
+        sys.stderr.write(out)
+        self.assertIn('  Started test3', sys.stderr.getvalue())
+
+    def test3(self):
+        sys.stderr.write('Started test3')
