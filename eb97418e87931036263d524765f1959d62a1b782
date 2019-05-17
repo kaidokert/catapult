@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "13fba1be_cba871f2",
+        "filename": "telemetry/telemetry/testing/browser_test_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "No, it seems to use the terminal by default. You need to override that behavior by supplying the monkey patched sys.stdout and sys.stderr as named arguments",
+      "parentUuid": "b4050c37_7b6c8154",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9a3b460_020651ce",
         "filename": "telemetry/telemetry/testing/unittest_runner.py",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2019-05-17T01:22:18Z",
       "side": 1,
       "message": "same question",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf0868f_ee97a395",
+        "filename": "telemetry/telemetry/testing/unittest_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "same reply from browser_test_runner.py",
+      "parentUuid": "a9a3b460_020651ce",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d65459e8_74c08263",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6f73593_68487e5c",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebf2d38a_4fd0ded8",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 10
@@ -64,6 +118,24 @@
       "writtenOn": "2019-05-17T01:22:18Z",
       "side": 1,
       "message": "Should this be self.stream.fileno()?",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8286c931_c31e5ced",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "No, stream holds the original sys.stdout or sys.stderr stream. Returning them will redirect the output to the terminal as what was the prevous behaviour.",
+      "parentUuid": "ebf2d38a_4fd0ded8",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "a8d5c8ba_1b8038bc",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "Same answer as above. self.output_buffer.isatty() will return the isatty() result for the file object.",
+      "parentUuid": "101c53be_3af9a358",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0ff7e31_f2b1df79",
         "filename": "third_party/typ/typ/tests/host_test.py",
         "patchSetId": 10
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "86d960eb_92965681",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0ff7e31_f2b1df79",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f9b87cc_cc16c00c",
         "filename": "third_party/typ/typ/tests/host_test.py",
         "patchSetId": 10
@@ -115,6 +223,24 @@
       "writtenOn": "2019-05-17T01:22:18Z",
       "side": 1,
       "message": "If you run typ against these tests, does typ log these messages by default? Or only if you pass `-vv`?",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b199ee17_ec7d4fcb",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-17T01:47:41Z",
+      "side": 1,
+      "message": "Typ only logs this output by default if it is a failing test. If it is passing and you want to see output from stdout and stderr, then you need to pass in atleast -vv.",
+      "parentUuid": "0f9b87cc_cc16c00c",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
