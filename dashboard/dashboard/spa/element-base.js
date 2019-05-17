@@ -54,17 +54,18 @@ export default class ElementBase extends PolymerElement {
   constructor() {
     super();
     this.debounceJobs_ = new Map();
+    this.store = getStore();
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.unsubscribeRedux_ = getStore().subscribe(() =>
+    this.unsubscribeRedux_ = this.store.subscribe(() =>
       this.stateChanged(this.getState()));
     this.stateChanged(this.getState());
   }
 
   getState() {
-    return getStore().getState();
+    return this.store.getState();
   }
 
   dispatch(...args) {
@@ -76,7 +77,7 @@ export default class ElementBase extends PolymerElement {
       }
       action = this.constructor.actions[action](...args.slice(1));
     }
-    return getStore().dispatch(action);
+    return this.store.dispatch(action);
   }
 
   stateChanged(rootState) {

@@ -5,6 +5,8 @@
 'use strict';
 
 import './cp-checkbox.js';
+import './cp-loading.js';
+import './error-set.js';
 import './recommended-options.js';
 import '@polymer/polymer/lib/elements/dom-if.js';
 import DescribeRequest from './describe-request.js';
@@ -15,7 +17,7 @@ import OptionGroup from './option-group.js';
 import TagFilter from './tag-filter.js';
 import TestSuitesRequest from './test-suites-request.js';
 import {BatchIterator} from './utils.js';
-import {TOGGLE} from './simple-redux.js';
+import {TOGGLE, UPDATE} from './simple-redux.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
 
@@ -29,6 +31,8 @@ export default class TimeseriesDescriptor extends ElementBase {
       measurement: Object,
       bot: Object,
       case: Object,
+      isLoading: Boolean,
+      errors: Array,
     };
   }
 
@@ -56,6 +60,8 @@ export default class TimeseriesDescriptor extends ElementBase {
     if (!cas.tags.options) cas.tags.options = [];
 
     return {
+      isLoading: false,
+      errors: [],
       suite: {
         isAggregated: suite.isAggregated !== false,
         canAggregate: suite.canAggregate !== false,
@@ -82,7 +88,7 @@ export default class TimeseriesDescriptor extends ElementBase {
   static get template() {
     return html`
       <style>
-        :host {
+        #row {
           display: flex;
         }
         menu-input {
@@ -101,106 +107,199 @@ export default class TimeseriesDescriptor extends ElementBase {
         }
       </style>
 
-      <div>
-        <menu-input
-            state-path="[[statePath]].suite"
-            on-option-select="onSuiteSelect_">
-          <recommended-options slot="top" state-path="[[statePath]].suite">
-          </recommended-options>
-        </menu-input>
-
-        <div class="error" visible$="[[isEmpty_(suite.selectedOptions)]]">
-          At least one required
-        </div>
-
-        <template is="dom-if" if="[[suite.canAggregate]]">
-          <cp-checkbox
-              hidden$="[[isEmpty_(suite.selectedOptions)]]"
-              disabled$="[[!isMultiple_(suite.selectedOptions)]]"
-              checked="[[suite.isAggregated]]"
-              on-change="onSuiteAggregateChange_">
-            Aggregate
-          </cp-checkbox>
-        </template>
-      </div>
-
-      <div>
-        <menu-input
-            state-path="[[statePath]].measurement"
-            on-option-select="onMeasurementSelect_">
-          <div slot="top">
-            <recommended-options state-path="[[statePath]].measurement">
+      <div id="row">
+        <div>
+          <menu-input
+              state-path="[[statePath]].suite"
+              on-option-select="onSuiteSelect_">
+            <recommended-options slot="top" state-path="[[statePath]].suite">
             </recommended-options>
-            <memory-components state-path="[[statePath]].measurement">
-            </memory-components>
-          </div>
-        </menu-input>
+          </menu-input>
 
-        <template is="dom-if" if="[[!measurement.requireSingle]]">
-          <div class="error"
-                visible$="[[isEmpty_(measurement.selectedOptions)]]">
+          <div class="error" visible$="[[isEmpty_(suite.selectedOptions)]]">
             At least one required
           </div>
-        </template>
 
-        <template is="dom-if" if="[[measurement.requireSingle]]">
-          <div class="error"
-                visible$="[[showExactlyOneRequiredMeasurement_(measurement)]]">
-            Exactly one required
-          </div>
-        </template>
-      </div>
-
-      <div>
-        <menu-input
-            state-path="[[statePath]].bot"
-            on-option-select="onBotSelect_">
-          <recommended-options slot="top" state-path="[[statePath]].bot">
-          </recommended-options>
-        </menu-input>
-
-        <div class="error" visible$="[[isEmpty_(bot.selectedOptions)]]">
-          At least one required
+          <template is="dom-if" if="[[suite.canAggregate]]">
+            <cp-checkbox
+                hidden$="[[isEmpty_(suite.selectedOptions)]]"
+                disabled$="[[!isMultiple_(suite.selectedOptions)]]"
+                checked="[[suite.isAggregated]]"
+                on-change="onSuiteAggregateChange_">
+              Aggregate
+            </cp-checkbox>
+          </template>
         </div>
 
-        <template is="dom-if" if="[[bot.canAggregate]]">
-          <cp-checkbox
-              hidden$="[[isEmpty_(bot.selectedOptions)]]"
-              disabled$="[[!isMultiple_(bot.selectedOptions)]]"
-              checked="[[bot.isAggregated]]"
-              on-change="onBotAggregateChange_">
-            Aggregate
-          </cp-checkbox>
-        </template>
+        <div>
+          <menu-input
+              state-path="[[statePath]].measurement"
+              on-option-select="onMeasurementSelect_">
+            <div slot="top">
+              <recommended-options state-path="[[statePath]].measurement">
+              </recommended-options>
+              <memory-components state-path="[[statePath]].measurement">
+              </memory-components>
+            </div>
+          </menu-input>
+
+          <template is="dom-if" if="[[!measurement.requireSingle]]">
+            <div class="error"
+                visible$="[[isEmpty_(measurement.selectedOptions)]]">
+              At least one required
+            </div>
+          </template>
+
+          <template is="dom-if" if="[[measurement.requireSingle]]">
+            <div class="error"
+                visible$="[[showExactlyOneRequiredMeasurement_(measurement)]]">
+              Exactly one required
+            </div>
+          </template>
+        </div>
+
+        <div>
+          <menu-input
+              state-path="[[statePath]].bot"
+              on-option-select="onBotSelect_">
+            <recommended-options slot="top" state-path="[[statePath]].bot">
+            </recommended-options>
+          </menu-input>
+
+          <div class="error" visible$="[[isEmpty_(bot.selectedOptions)]]">
+            At least one required
+          </div>
+
+          <template is="dom-if" if="[[bot.canAggregate]]">
+            <cp-checkbox
+                hidden$="[[isEmpty_(bot.selectedOptions)]]"
+                disabled$="[[!isMultiple_(bot.selectedOptions)]]"
+                checked="[[bot.isAggregated]]"
+                on-change="onBotAggregateChange_">
+              Aggregate
+            </cp-checkbox>
+          </template>
+        </div>
+
+        <div>
+          <menu-input
+              state-path="[[statePath]].case"
+              on-option-select="onCaseSelect_">
+            <recommended-options slot="top" state-path="[[statePath]].case">
+            </recommended-options>
+
+            <tag-filter slot="left" state-path="[[statePath]].case">
+            </tag-filter>
+          </menu-input>
+
+          <template is="dom-if" if="[[case.canAggregate]]">
+            <cp-checkbox
+                disabled$="[[!isMultiple_(case.selectedOptions)]]"
+                checked="[[case.isAggregated]]"
+                on-change="onCaseAggregateChange_">
+              Aggregate
+            </cp-checkbox>
+          </template>
+        </div>
       </div>
 
-      <div>
-        <menu-input
-            state-path="[[statePath]].case"
-            on-option-select="onCaseSelect_">
-          <recommended-options slot="top" state-path="[[statePath]].case">
-          </recommended-options>
-
-          <tag-filter slot="left" state-path="[[statePath]].case">
-          </tag-filter>
-        </menu-input>
-
-        <template is="dom-if" if="[[case.canAggregate]]">
-          <cp-checkbox
-              disabled$="[[!isMultiple_(case.selectedOptions)]]"
-              checked="[[case.isAggregated]]"
-              on-change="onCaseAggregateChange_">
-            Aggregate
-          </cp-checkbox>
-        </template>
-      </div>
+      <cp-loading loading$="[[isLoading]]"></cp-loading>
+      <error-set errors="[[errors]]"></error-set>
     `;
   }
 
   async ready() {
     super.ready();
-    await this.dispatch('ready', this.statePath);
+    await TimeseriesDescriptor.ready(this.statePath, this.store);
     this.dispatchMatrixChange_();
+  }
+
+  static async ready(statePath, store) {
+    const suitesLoaded = TimeseriesDescriptor.loadSuites(statePath, store);
+
+    const state = get(store.getState(), statePath);
+    if (state && state.suite && state.suite.selectedOptions &&
+        state.suite.selectedOptions.length) {
+      await Promise.all([
+        suitesLoaded,
+        TimeseriesDescriptor.describeSuites(statePath, store),
+      ]);
+    } else {
+      await suitesLoaded,
+      MenuInput.actions.focus(`${statePath}.suite`)(
+          store.dispatch, store.getState);
+    }
+  }
+
+  static async loadSuites(statePath, store) {
+    try {
+      const request = new TestSuitesRequest({});
+      const suites = await request.response;
+      store.dispatch({
+        type: TimeseriesDescriptor.reducers.receiveTestSuites.name,
+        statePath,
+        suites,
+      });
+    } catch (err) {
+      store.dispatch(UPDATE(statePath, {errors: [err.message]}));
+    }
+  }
+
+  static async describeSuites(statePath, store) {
+    const mergedDescriptor = {
+      measurements: new Set(),
+      bots: new Set(),
+      cases: new Set(),
+      caseTags: new Map(),
+    };
+    let state = get(store.getState(), statePath);
+    if (state.suite.selectedOptions.length === 0) {
+      store.dispatch({
+        type: TimeseriesDescriptor.reducers.receiveDescriptor.name,
+        statePath,
+        descriptor: mergedDescriptor,
+      });
+      store.dispatch({
+        type: TimeseriesDescriptor.reducers.finalizeParameters.name,
+        statePath,
+      });
+      return;
+    }
+
+    const suites = new Set(state.suite.selectedOptions);
+    const descriptors = state.suite.selectedOptions.map(suite =>
+      new DescribeRequest({suite}).response);
+    for await (const {results, errors} of new BatchIterator(descriptors)) {
+      state = get(store.getState(), statePath);
+      if (!state.suite || !tr.b.setsEqual(
+          suites, new Set(state.suite.selectedOptions))) {
+        // The user changed the set of selected suites, so stop handling
+        // the old set of suites. The new set of suites will be
+        // handled by a new dispatch of this action creator.
+        return;
+      }
+      // TODO display errors
+      for (const descriptor of results) {
+        if (!descriptor) continue;
+        DescribeRequest.mergeDescriptor(mergedDescriptor, descriptor);
+      }
+      store.dispatch({
+        type: TimeseriesDescriptor.reducers.receiveDescriptor.name,
+        statePath,
+        descriptor: mergedDescriptor,
+      });
+    }
+    store.dispatch({
+      type: TimeseriesDescriptor.reducers.finalizeParameters.name,
+      statePath,
+    });
+
+    state = get(store.getState(), statePath);
+
+    if (state.measurement.selectedOptions.length === 0) {
+      MenuInput.actions.focus(`${statePath}.measurement`)(
+          store.dispatch, store.getState);
+    }
   }
 
   showExactlyOneRequiredMeasurement_(measurement) {
@@ -218,7 +317,7 @@ export default class TimeseriesDescriptor extends ElementBase {
 
   async onSuiteSelect_(event) {
     METRICS.startLoadMenu();
-    await this.dispatch('describeSuites', this.statePath);
+    await TimeseriesDescriptor.describeSuites(this.statePath, this.store);
     METRICS.endLoadMenu();
     this.dispatchMatrixChange_();
   }
@@ -265,94 +364,6 @@ export default class TimeseriesDescriptor extends ElementBase {
     this.dispatchMatrixChange_();
   }
 }
-
-TimeseriesDescriptor.actions = {
-  ready: statePath => async(dispatch, getState) => {
-    const suitesLoaded = TimeseriesDescriptor.actions.loadSuites(
-        statePath)(dispatch, getState);
-
-    const state = get(getState(), statePath);
-    if (state && state.suite && state.suite.selectedOptions &&
-        state.suite.selectedOptions.length) {
-      await Promise.all([
-        suitesLoaded,
-        TimeseriesDescriptor.actions.describeSuites(statePath)(
-            dispatch, getState),
-      ]);
-    } else {
-      await suitesLoaded,
-      MenuInput.actions.focus(`${statePath}.suite`)(
-          dispatch, getState);
-    }
-  },
-
-  loadSuites: statePath => async(dispatch, getState) => {
-    const request = new TestSuitesRequest({});
-    const suites = await request.response;
-    dispatch({
-      type: TimeseriesDescriptor.reducers.receiveTestSuites.name,
-      statePath,
-      suites,
-    });
-  },
-
-  describeSuites: statePath => async(dispatch, getState) => {
-    const mergedDescriptor = {
-      measurements: new Set(),
-      bots: new Set(),
-      cases: new Set(),
-      caseTags: new Map(),
-    };
-    let state = get(getState(), statePath);
-    if (state.suite.selectedOptions.length === 0) {
-      dispatch({
-        type: TimeseriesDescriptor.reducers.receiveDescriptor.name,
-        statePath,
-        descriptor: mergedDescriptor,
-      });
-      dispatch({
-        type: TimeseriesDescriptor.reducers.finalizeParameters.name,
-        statePath,
-      });
-      return;
-    }
-
-    const suites = new Set(state.suite.selectedOptions);
-    const descriptors = state.suite.selectedOptions.map(suite =>
-      new DescribeRequest({suite}).response);
-    for await (const {results, errors} of new BatchIterator(descriptors)) {
-      state = get(getState(), statePath);
-      if (!state.suite || !tr.b.setsEqual(
-          suites, new Set(state.suite.selectedOptions))) {
-        // The user changed the set of selected suites, so stop handling
-        // the old set of suites. The new set of suites will be
-        // handled by a new dispatch of this action creator.
-        return;
-      }
-      // TODO display errors
-      for (const descriptor of results) {
-        if (!descriptor) continue;
-        DescribeRequest.mergeDescriptor(mergedDescriptor, descriptor);
-      }
-      dispatch({
-        type: TimeseriesDescriptor.reducers.receiveDescriptor.name,
-        statePath,
-        descriptor: mergedDescriptor,
-      });
-    }
-    dispatch({
-      type: TimeseriesDescriptor.reducers.finalizeParameters.name,
-      statePath,
-    });
-
-    state = get(getState(), statePath);
-
-    if (state.measurement.selectedOptions.length === 0) {
-      MenuInput.actions.focus(`${statePath}.measurement`)(
-          dispatch, getState);
-    }
-  },
-};
 
 TimeseriesDescriptor.reducers = {
   receiveTestSuites: (state, {suites}, rootState) => {

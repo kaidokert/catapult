@@ -58,18 +58,12 @@ export default class TagFilter extends ElementBase {
   }
 
   onTagSelect_(event) {
-    this.dispatch('filter', this.statePath);
+    this.dispatch({
+      type: TagFilter.reducers.filter.name,
+      statePath: this.statePath,
+    });
   }
 }
-
-TagFilter.actions = {
-  filter: statePath => async(dispatch, getState) => {
-    dispatch({
-      type: TagFilter.reducers.filter.name,
-      statePath,
-    });
-  },
-};
 
 TagFilter.reducers = {
   filter: state => {
