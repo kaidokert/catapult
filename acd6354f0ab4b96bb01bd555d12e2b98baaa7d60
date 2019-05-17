@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ec63edbd_ae7d3eb6",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-17T09:29:14Z",
+      "side": 1,
+      "message": "Ack.\n\nI will do that in a follow-up.",
+      "parentUuid": "569c0bb6_1b787b30",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf3b9877_48aa8fac",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "66771c85_56920aa9",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-17T09:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf3b9877_48aa8fac",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "092c4d0e_f679a721",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 4
@@ -50,6 +86,24 @@
       "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cb90dad_2d4de63c",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-17T09:29:14Z",
+      "side": 1,
+      "message": "In fact, in case of failure there\u0027s no trace at all. At least TraceDataBuilder is not called, so nothing is saved. So it does not make sense indeed to have this field in metadata.",
+      "parentUuid": "092c4d0e_f679a721",
+      "revId": "acd6354f0ab4b96bb01bd555d12e2b98baaa7d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
