@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4050c37_7b6c8154",
+        "filename": "telemetry/telemetry/testing/browser_test_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "why do you need to specify these, aren\u0027t they the default?",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9a3b460_020651ce",
+        "filename": "telemetry/telemetry/testing/unittest_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "same question",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6f73593_68487e5c",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "If you\u0027re changing this to subclass from object, you don\u0027t need to call super().\n\nAlso, you should add self.output_buffer as an instance field.",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebf2d38a_4fd0ded8",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "Should this be self.stream.fileno()?",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "101c53be_3af9a358",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "This does the wrong thing, I think. shouldn\u0027t this be self.stream.isatty()?",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0ff7e31_f2b1df79",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "Nit: spelling: s/Recieve/Receive/.\n\nAlso, by convention I usually have classes that subclass from TestCase be called TestSomethingOrOther ... arguably the Test part is redundant, but I wouldn\u0027t stray from that convention in this CL (we could talk about doing it in a separate CL).",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f9b87cc_cc16c00c",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-17T01:22:18Z",
+      "side": 1,
+      "message": "If you run typ against these tests, does typ log these messages by default? Or only if you pass `-vv`?",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
