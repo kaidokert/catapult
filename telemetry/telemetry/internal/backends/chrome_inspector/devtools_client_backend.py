@@ -7,6 +7,7 @@ import re
 import socket
 import sys
 
+from py_utils import exc_util
 from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.backends import browser_backend
@@ -148,8 +149,6 @@ class _DevToolsClientBackend(object):
     try:
       self._Connect(devtools_port, browser_target)
     except:
-      # TODO(crbug.com/958778): Make sure we don't lose the original exception
-      # if a second exception is raised by Close().
       self.Close()  # Close any connections made if failed to connect to all.
       raise
 
@@ -174,7 +173,10 @@ class _DevToolsClientBackend(object):
     self._devtools_http = devtools_http.DevToolsHttp(self.local_port)
     # If the agent is not alive and ready, this will raise a
     # devtools_http.DevToolsClientConnectionError.
-    self.GetVersion()
+    version = self.GetChromeBranchNumber()
+    if version < 3029:
+      raise devtools_http.DevToolsClientConnectionError(
+          'Chrome branch number %d is too old' % version)
 
     if not self.supports_tracing:
       return
@@ -196,6 +198,7 @@ class _DevToolsClientBackend(object):
     if trace_config and not is_tracing:
       self.StartChromeTracing(trace_config)
 
+  @exc_util.BestEffort
   def Close(self):
     if self._tracing_backend is not None:
       self._tracing_backend.Close()
