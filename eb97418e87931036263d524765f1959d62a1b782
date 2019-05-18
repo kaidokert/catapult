@@ -303,6 +303,24 @@
     },
     {
       "key": {
+        "uuid": "f74ae3ce_3fc90f1e",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-18T02:06:05Z",
+      "side": 1,
+      "message": "If you actually need to write the data onto a file (and I think you do), I think not subclassing from io.StringIO is the right thing to do.\n\nI still think you could use self.stream.isatty() though? I\u0027m not sure what the right behavior is here. I\u0027d be inclined to use self.stream (i.e., lie and pretend you\u0027re a terminal); that would at least keep the passthrough behavior working properly, and it would correctly capture the stuff that got written when you tried to do terminal-specific things (like when typ will use \u0027\\r\u0027 to overwrite the current line).",
+      "parentUuid": "d996b2f1_b3c4fd91",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0ff7e31_f2b1df79",
         "filename": "third_party/typ/typ/tests/host_test.py",
         "patchSetId": 10
