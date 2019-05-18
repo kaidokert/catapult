@@ -214,6 +214,24 @@
     },
     {
       "key": {
+        "uuid": "495f2b32_d11f75bc",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-18T01:37:11Z",
+      "side": 1,
+      "message": "Ill take a look at the subprocess module and try to find out why it is using the original sys.stdout and sys.stderr instead of our monkey matched ones.",
+      "parentUuid": "a6adfbc2_d3b15cc5",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "101c53be_3af9a358",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 10
