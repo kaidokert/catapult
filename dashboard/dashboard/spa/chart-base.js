@@ -7,7 +7,7 @@
 import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
-import ElementBase from './element-base.js';
+import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
 import {animationFrame, hasCtrlKey, measureElement} from './utils.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
