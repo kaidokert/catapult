@@ -6,66 +6,47 @@
 
 import '@chopsui/tsmon-client';
 import 'dashboard-metrics';
-import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
+import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
+import {plural} from './utils.js';
 
 import {
   DEFAULT_REDUCER_WRAPPERS,
-  RESET,
   createSimpleStore,
   freezingReducer,
   registerReducers,
   renameReducer,
 } from './simple-redux.js';
 
-import {
-  plural,
-} from './utils.js';
+export const STORE = createSimpleStore({
+  devtools: {
+    // Do not record changes automatically when in a production environment.
+    shouldRecordChanges: !window.IS_PRODUCTION,
 
-// Lazily create STORE because Redux might not be loaded yet. In tests, it's
-// loaded via an html import, whereas subclasses are loaded via es6 import.
-// redux/es/redux.mjs uses require so it doesn't work in webpack.
-// redux/es/redux.js uses a bare import so it doesn't work in tests.
-let STORE;
-function getStore() {
-  if (!STORE) {
-    STORE = createSimpleStore({
-      devtools: {
-        // Do not record changes automatically when in a production environment.
-        shouldRecordChanges: !window.IS_PRODUCTION,
-
-        // Increase the maximum number of actions stored in the history tree.
-        // The oldest actions are removed once maxAge is reached.
-        maxAge: 75,
-      },
-    });
-  }
-  return STORE;
-}
+    // Increase the maximum number of actions stored in the history tree.
+    // The oldest actions are removed once maxAge is reached.
+    maxAge: 75,
+  },
+});
 
 /*
-  * This base class mixes PolymerElement with Polymer-Redux and provides
-  * utility functions to help data-bindings in elements perform minimal
-  * computation without computed properties.
-  */
-export default class ElementBase extends PolymerElement {
+ * This base class mixes PolymerElement with Polymer-Redux and provides
+ * utility functions to help data-bindings in elements perform minimal
+ * computation without computed properties.
+ */
+export class ElementBase extends PolymerElement {
   constructor() {
     super();
     this.debounceJobs_ = new Map();
-    this.store = getStore();
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.unsubscribeRedux_ = getStore().subscribe(() =>
-      this.stateChanged(this.getState()));
-    this.stateChanged(this.getState());
-  }
-
-  getState() {
-    return getStore().getState();
+    this.unsubscribeRedux_ = STORE.subscribe(() =>
+      this.stateChanged(STORE.getState()));
+    this.stateChanged(STORE.getState());
   }
 
   dispatch(...args) {
@@ -77,7 +58,7 @@ export default class ElementBase extends PolymerElement {
       }
       action = this.constructor.actions[action](...args.slice(1));
     }
-    return getStore().dispatch(action);
+    return STORE.dispatch(action);
   }
 
   stateChanged(rootState) {
@@ -153,10 +134,6 @@ export default class ElementBase extends PolymerElement {
     const asyncModule = opt_asyncModule || PolymerAsync.microTask;
     this.debounceJobs_.set(jobName, Debouncer.debounce(
         this.debounceJobs_.get(jobName), asyncModule, callback));
-  }
-
-  static resetStoreForTest() {
-    getStore().dispatch(RESET);
   }
 }
 

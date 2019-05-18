@@ -4,10 +4,11 @@
 */
 'use strict';
 
-import {assert} from 'chai';
 import RecommendedOptions from './recommended-options.js';
+import {STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
 import {afterRender} from './utils.js';
+import {assert} from 'chai';
 
 suite('recommended-options', function() {
   async function fixture() {
@@ -52,7 +53,7 @@ suite('recommended-options', function() {
       }),
     }));
     await afterRender();
-    const state = rec.getState().test;
+    const state = STORE.getState().test;
     assert.deepEqual(['ccc', 'bbb'], state.recommended.optionValues);
   });
 
@@ -108,12 +109,12 @@ suite('recommended-options', function() {
         options: ['aaa', 'bbb', 'ccc'],
       }),
     }));
-    let state = rec.getState().test;
+    let state = STORE.getState().test;
     assert.deepEqual(['ccc', 'bbb'], state.recommended.optionValues);
 
     rec.dispatch(UPDATE('test', {optionValues: ['ddd', 'ccc']}));
     await afterRender();
-    state = rec.getState().test;
+    state = STORE.getState().test;
     assert.deepEqual(['ccc'], state.recommended.optionValues);
   });
 });
