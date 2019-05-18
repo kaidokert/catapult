@@ -14,6 +14,7 @@ import SessionIdRequest from './session-id-request.js';
 import SessionStateRequest from './session-state-request.js';
 import SheriffsRequest from './sheriffs-request.js';
 import findElements from './find-elements.js';
+import {STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
 import {afterRender, animationFrame} from './utils.js';
 import {assert} from 'chai';
@@ -263,7 +264,7 @@ suite('chromeperf-app', function() {
   test('getRecentBugs', async function() {
     const app = await fixture();
     await app.dispatch('userUpdate', app.statePath);
-    const state = app.getState();
+    const state = STORE.getState();
     assert.lengthOf(state.recentPerformanceBugs, 2);
     assert.strictEqual(123, state.recentPerformanceBugs[1].revisionRange.min);
     assert.strictEqual(456, state.recentPerformanceBugs[1].revisionRange.max);
