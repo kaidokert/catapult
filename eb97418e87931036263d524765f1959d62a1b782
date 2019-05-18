@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "cab67f4a_e241d0ba",
+        "filename": "telemetry/telemetry/testing/browser_test_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-18T01:27:49Z",
+      "side": 1,
+      "message": "This function is being called in the same process as the typ.runner object. I believe  that subprocess is getting hold of the original sys.stdout and sys.stderr before we monkey patch the sys.stdout and sys.stderr streams in host.py. This could happen as soon as the subprocess module is imported. Ill see if we can monkey patch the subprocess\u0027s stream references.",
+      "parentUuid": "ffcd7780_a9593ae8",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9a3b460_020651ce",
         "filename": "telemetry/telemetry/testing/unittest_runner.py",
         "patchSetId": 10
@@ -178,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "a6adfbc2_d3b15cc5",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-18T01:27:49Z",
+      "side": 1,
+      "message": "The subprocess module is calling the fileno() function. So I believe it is using the file descriptors to write to stdout and stderr. I tried passing the _TeedStream instances as the stdout and stderr named arguments when _TeedStream was a sub class of io.StringIO, however subprocess.call would throw an exception because io.StringIO does not implement fileno. I believe the problem is that even though we monkey patch sys.stdout and sys.stderr when we call host\u0027s capture_output function, processes spawned by subprocess.call are still using the original stdout and stderr streams to write to the terminal. Therefore the child processes output is not being captured. The streams used by  subprocess.call could have been set when the subprocess module was imported, and therefore would not change when sys.stdout and sys.stderr are monkey patched.",
+      "parentUuid": "bae06220_e0a78677",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "101c53be_3af9a358",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 10
@@ -225,6 +261,24 @@
       "side": 1,
       "message": "I can see how this might have the same properties as the above, but this\u0027ll always return False, and that seems like it\u0027ll break other things, like .capture_output(divert\u003dFalse) will no longer act as if sys.stdout is a terminal.",
       "parentUuid": "a8d5c8ba_1b8038bc",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d996b2f1_b3c4fd91",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-18T01:27:49Z",
+      "side": 1,
+      "message": "Ok, maybe I can make this class a subclass of io.StringIO like before and it will inherit the isatty function from that class and therefore have the same behavior from before this CL.",
+      "parentUuid": "9edf00a7_a86802d7",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -312,6 +366,24 @@
       "writtenOn": "2019-05-18T00:35:41Z",
       "side": 1,
       "message": "I think I have the same questions about this that I do about the browser_test_runner change, except hopefully I at least understand that this is being called in-process from typ, so the comments about monkey-patching should definitely apply here (if I\u0027m right about subprocess having its own references to sys.stdout/sys.stderr).",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12750caf_5eaddbd9",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-18T01:27:49Z",
+      "side": 1,
+      "message": "Yes this is being called in the same process as Typ is running. The issue is the subprocess module maintains the original sys.stdout and sys.stderr streams instead of using the monkey patched ones.",
+      "parentUuid": "c28a1d19_81359f1c",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
