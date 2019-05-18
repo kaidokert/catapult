@@ -131,23 +131,16 @@ There’s a lot of boilerplate there, so V2SPA uses some helpers to reduce it.
 Here is the above example rewritten using these helpers.
 ```
 class FooView extends ElementBase {
+  static get properties() {
+    return {
+      statePath: String,
+      isEnabled: Boolean,
+    };
+  }
   onToggleIsEnabled_(event) {
-    this.dispatch('toggleIsEnabled', this.statePath);
+    STORE.dispatch(TOGGLE(this.statePath + '.isEnabled'));
   }
 }
-FooView.properties = statePathProperties('statePath', {
-  isEnabled: {type: Boolean},
-});
-FooView.actions = {
-  toggleIsEnabled: statePath => {
-    return {type: FooView.reducers.toggleIsEnabled.name, statePath};
-  },
-};
-FooView.reducers = {
-  toggleIsEnabled(localState, unusedAction, unusedRootState) {
-    return {...localState, isEnabled: !localState.isEnabled};
-  },
-};
 ElementBase.register(FooView);
 ```
 

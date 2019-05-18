@@ -8,6 +8,7 @@ import AlertDetail from './alert-detail.js';
 import ExistingBugRequest from './existing-bug-request.js';
 import NewBugRequest from './new-bug-request.js';
 import findElements from './find-elements.js';
+import {STORE} from './element-base.js';
 import {TimeseriesRequest} from './timeseries-request.js';
 import {UPDATE} from './simple-redux.js';
 import {afterRender, animationFrame, timeout} from './utils.js';
@@ -91,7 +92,7 @@ suite('alert-detail', function() {
       e.matches('raised-button') && /Nudge/.test(e.textContent))[0];
     nudge.click();
     await afterRender();
-    assert.isTrue(ad.getState().test.nudge.isOpen);
+    assert.isTrue(STORE.getState().test.nudge.isOpen);
   });
 
   test('chart', async function() {
