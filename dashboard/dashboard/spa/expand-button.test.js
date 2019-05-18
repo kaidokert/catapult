@@ -4,6 +4,7 @@
 */
 'use strict';
 
+import {STORE} from './element-base.js';
 import {assert} from 'chai';
 import ExpandButton from './expand-button.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
@@ -25,15 +26,15 @@ suite('expand-button', function() {
         expandButton.statePath, ExpandButton.buildState({})));
     assert.isFalse(expandButton.isExpanded);
     assert.isFalse(get(
-        expandButton.getState(), `${expandButton.statePath}.isExpanded`));
+        STORE.getState(), `${expandButton.statePath}.isExpanded`));
     expandButton.click();
     assert.isTrue(expandButton.isExpanded);
     assert.isTrue(get(
-        expandButton.getState(), `${expandButton.statePath}.isExpanded`));
+        STORE.getState(), `${expandButton.statePath}.isExpanded`));
     expandButton.click();
     assert.isFalse(expandButton.isExpanded);
     assert.isFalse(get(
-        expandButton.getState(), `${expandButton.statePath}.isExpanded`));
+        STORE.getState(), `${expandButton.statePath}.isExpanded`));
   });
 
   test('getIcon', async function() {

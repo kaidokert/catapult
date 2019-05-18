@@ -111,8 +111,7 @@ suite('sparkline-compound', function() {
     assert.lengthOf(sc.relatedTabs[1].sparklines, 3);
     assert.lengthOf(sc.relatedTabs[2].sparklines, 5);
 
-    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
-        sc.statePath, 'Suites'));
+    await SparklineCompound.selectRelatedTab(sc.statePath, 'Suites');
     await afterRender();
 
     assert.lengthOf(sc.relatedTabs[0].renderedSparklines, 3);
@@ -144,8 +143,7 @@ suite('sparkline-compound', function() {
           statePath: 'test',
         }));
     await afterRender();
-    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
-        sc.statePath, 'Suites'));
+    await SparklineCompound.selectRelatedTab(sc.statePath, 'Suites');
     await afterRender();
     await sc.dispatch(UPDATE(sc.statePath, {
       cursorRevision: NOW_MS - (MS_PER_YEAR / 20),
@@ -184,8 +182,7 @@ suite('sparkline-compound', function() {
           statePath: 'test',
         }));
     await afterRender();
-    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
-        sc.statePath, 'Suites'));
+    await SparklineCompound.selectRelatedTab(sc.statePath, 'Suites');
     await afterRender();
 
     let sparks = sc.relatedTabs[0].renderedSparklines;
@@ -233,8 +230,7 @@ suite('sparkline-compound', function() {
           statePath: 'test',
         }));
     await afterRender();
-    await sc.dispatch(SparklineCompound.actions.selectRelatedTab(
-        sc.statePath, 'Suites'));
+    await SparklineCompound.selectRelatedTab(sc.statePath, 'Suites');
     await afterRender();
 
     let newChartEvents = 0;

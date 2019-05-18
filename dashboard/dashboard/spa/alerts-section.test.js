@@ -4,7 +4,6 @@
 */
 'use strict';
 
-import {assert} from 'chai';
 import AlertsRequest from './alerts-request.js';
 import AlertsSection from './alerts-section.js';
 import DescribeRequest from './describe-request.js';
@@ -14,7 +13,9 @@ import ReportNamesRequest from './report-names-request.js';
 import SheriffsRequest from './sheriffs-request.js';
 import findElements from './find-elements.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
+import {STORE} from './element-base.js';
 import {afterRender} from './utils.js';
+import {assert} from 'chai';
 
 suite('alerts-section', function() {
   async function fixture() {
@@ -171,7 +172,7 @@ suite('alerts-section', function() {
     const selectAll = findElements(section, e =>
       e.matches('th cp-checkbox'))[0];
     selectAll.click();
-    let state = section.getState().test;
+    let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
 
     const button = findElements(section, e =>
@@ -194,7 +195,7 @@ suite('alerts-section', function() {
       assert.include(newBugBody.getAll('key'), 'key' + i);
     }
 
-    state = section.getState().test;
+    state = STORE.getState().test;
     assert.lengthOf(state.alertGroups, 0);
   });
 
@@ -210,7 +211,7 @@ suite('alerts-section', function() {
     const selectAll = findElements(section, e =>
       e.matches('th cp-checkbox'))[0];
     selectAll.click();
-    let state = section.getState().test;
+    let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
 
     const button = findElements(section, e =>
@@ -232,7 +233,7 @@ suite('alerts-section', function() {
       assert.include(existingBugBody.getAll('key'), 'key' + i);
     }
 
-    state = section.getState().test;
+    state = STORE.getState().test;
     assert.lengthOf(state.alertGroups, 0);
   });
 
@@ -248,7 +249,7 @@ suite('alerts-section', function() {
     const selectAll = findElements(section, e =>
       e.matches('th cp-checkbox'))[0];
     selectAll.click();
-    let state = section.getState().test;
+    let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
 
     const ignore = findElements(section, e =>
@@ -262,7 +263,7 @@ suite('alerts-section', function() {
       assert.include(existingBugBody.getAll('key'), 'key' + i);
     }
 
-    state = section.getState().test;
+    state = STORE.getState().test;
     assert.lengthOf(state.alertGroups, 0);
   });
 
@@ -278,7 +279,7 @@ suite('alerts-section', function() {
     const selectAll = findElements(section, e =>
       e.matches('th cp-checkbox'))[0];
     selectAll.click();
-    let state = section.getState().test;
+    let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
 
     const unassign = findElements(section, e =>
@@ -292,7 +293,7 @@ suite('alerts-section', function() {
       assert.include(existingBugBody.getAll('key'), 'key' + i);
     }
 
-    state = section.getState().test;
+    state = STORE.getState().test;
     assert.isBelow(0, state.alertGroups.length);
   });
 
