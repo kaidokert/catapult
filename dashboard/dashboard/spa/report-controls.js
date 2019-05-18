@@ -6,10 +6,10 @@
 
 import './cp-input.js';
 import './raised-button.js';
-import ElementBase from './element-base.js';
 import MenuInput from './menu-input.js';
 import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
+import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
 import {get} from '@polymer/polymer/lib/utils/path.js';
 import {html} from '@polymer/polymer/polymer-element.js';
