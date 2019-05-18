@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ffcd7780_a9593ae8",
+        "filename": "telemetry/telemetry/testing/browser_test_runner.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-18T00:35:41Z",
+      "side": 1,
+      "message": "I think I\u0027m a bit confused about who is calling this and when. \n\nIs this being called by the testcase directly (i.e., in the same process as the typ.runner object)? Or is the testcase calling a separate process which is then invoking this code?\n\nI think it\u0027s the former, right?\n\nI think that suggests that something in subprocess is getting a handle to the original sys.stdout and sys.stderr and using those instead of the ones we\u0027ve monkey-patched.\n\nCan you take a look and see if we can monkey-patch subprocess\u0027s references as well? Ideally we shouldn\u0027t have to have tests make changes like this in order to work.",
+      "parentUuid": "13fba1be_cba871f2",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a9a3b460_020651ce",
         "filename": "telemetry/telemetry/testing/unittest_runner.py",
         "patchSetId": 10
@@ -142,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "bae06220_e0a78677",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-18T00:35:41Z",
+      "side": 1,
+      "message": "I think I probably don\u0027t understand why you\u0027re needing to add fileno(); who is calling fileno()?\n\nI guess I could see why if someone called sys.stderr.fileno() and then wrote to it directly, they\u0027d bypass sys.stderr.write(), which would be bad.\n\nIs the problem that the subprocess is ending up using the underlying fds and so we\u0027re not able to shut it up?",
+      "parentUuid": "8286c931_c31e5ced",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "101c53be_3af9a358",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 10
@@ -171,6 +207,24 @@
       "side": 1,
       "message": "Same answer as above. self.output_buffer.isatty() will return the isatty() result for the file object.",
       "parentUuid": "101c53be_3af9a358",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9edf00a7_a86802d7",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-18T00:35:41Z",
+      "side": 1,
+      "message": "I can see how this might have the same properties as the above, but this\u0027ll always return False, and that seems like it\u0027ll break other things, like .capture_output(divert\u003dFalse) will no longer act as if sys.stdout is a terminal.",
+      "parentUuid": "a8d5c8ba_1b8038bc",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -241,6 +295,23 @@
       "side": 1,
       "message": "Typ only logs this output by default if it is a failing test. If it is passing and you want to see output from stdout and stderr, then you need to pass in atleast -vv.",
       "parentUuid": "0f9b87cc_cc16c00c",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c28a1d19_81359f1c",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-18T00:35:41Z",
+      "side": 1,
+      "message": "I think I have the same questions about this that I do about the browser_test_runner change, except hopefully I at least understand that this is being called in-process from typ, so the comments about monkey-patching should definitely apply here (if I\u0027m right about subprocess having its own references to sys.stdout/sys.stderr).",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
