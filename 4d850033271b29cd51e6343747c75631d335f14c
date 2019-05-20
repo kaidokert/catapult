@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6b5cfbb_a2c5376b",
+        "filename": "telemetry/telemetry/internal/app/android_app_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-20T11:27:44Z",
+      "side": 0,
+      "message": "This was the test causing all the trouble. It connected to the AGSA and tried to control a WebView on it. But this is using the stock Chrome on the phone, which is also tied to some old stock WebView implementation.",
+      "revId": "4d850033271b29cd51e6343747c75631d335f14c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
