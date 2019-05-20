@@ -82,6 +82,8 @@ tr.b.unittest.testSuite(function() {
         mgr.getModelTimeTransformer(ClockDomainId.DOMAIN_1)(100), 100);
   }, testOptions);
 
+  // TODO(crbug.com/962918): Re-enable when bug is fixed.
+  /*
   test('getModelTimeTransformer_noMarkersSecondDomainThrows', function() {
     const mgr = new ClockSyncManager();
 
@@ -92,6 +94,7 @@ tr.b.unittest.testSuite(function() {
     }, 'No clock sync markers exist pairing clock domain "DOMAIN2" with' +
         ' target clock domain "DOMAIN1".');
   }, testOptions);
+  */
 
   test('getModelTimeTransformer_noMarkersChromeLegacyFirst', function() {
     const mgr = new ClockSyncManager();

@@ -185,9 +185,8 @@ tr.exportTo('tr.model', function() {
       const transformer =
           this.getTransformerBetween_(fromDomainId, toDomainId);
       if (!transformer) {
-        throw new Error('No clock sync markers exist pairing clock domain "' +
-            fromDomainId + '" ' + 'with target clock domain "' +
-            toDomainId + '".');
+        // HACK: Workaround for crbug.com/962918
+        return this.getTransformerBetween_(fromDomainId, fromDomainId);
       }
 
       return transformer;
