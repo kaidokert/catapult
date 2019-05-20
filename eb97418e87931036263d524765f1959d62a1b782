@@ -232,6 +232,24 @@
     },
     {
       "key": {
+        "uuid": "dcc8ecc5_2282c970",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:33:40Z",
+      "side": 1,
+      "message": "After doing some research, I see that if the stdout named arg is passed with a stream to the subprocess.call method, then subprocess.call takes the passed stdout stream and duplicates its file descriptor onto the terminal stdout file descriptor which is 1 using the dup2 system call. It does the same thing for stderr terminal file descriptor if a the stderr named arg is passed with a stream. In my most recent patch I create a file and duplicate its file descriptor onto host.stream\u0027s file descriptor. Before doing that I duplicate host.stream\u0027s file descriptor using the dup system call and save it. When I restore the output I duplicate the saved file descriptor onto host.stream\u0027s. Please take a look at my most recent patch.",
+      "parentUuid": "495f2b32_d11f75bc",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "101c53be_3af9a358",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 10
@@ -315,6 +333,24 @@
       "side": 1,
       "message": "If you actually need to write the data onto a file (and I think you do), I think not subclassing from io.StringIO is the right thing to do.\n\nI still think you could use self.stream.isatty() though? I\u0027m not sure what the right behavior is here. I\u0027d be inclined to use self.stream (i.e., lie and pretend you\u0027re a terminal); that would at least keep the passthrough behavior working properly, and it would correctly capture the stuff that got written when you tried to do terminal-specific things (like when typ will use \u0027\\r\u0027 to overwrite the current line).",
       "parentUuid": "d996b2f1_b3c4fd91",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11a9824_f7670037",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:33:40Z",
+      "side": 1,
+      "message": "sounds good to me. I will return value of self.stream.isatty()",
+      "parentUuid": "f74ae3ce_3fc90f1e",
       "revId": "eb97418e87931036263d524765f1959d62a1b782",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
