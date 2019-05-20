@@ -514,7 +514,7 @@ export default class ChromeperfApp extends ElementBase {
   }
 
   isInternal_(userEmail) {
-    return userEmail.endsWith('@google.com');
+    return userEmail && userEmail.endsWith('@google.com');
   }
 
   get isProduction() {
@@ -958,7 +958,7 @@ ChromeperfApp.reducers = {
     return {
       ...state,
       chartSectionIds: [],
-      closedChartIds: Array.from(state.chartSectionIds),
+      closedChartIds: Array.from(state.chartSectionIds || []),
     };
   },
 
