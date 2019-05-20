@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf81b53e_993c3811",
+        "filename": "telemetry/telemetry/testing/browser_test_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-20T16:25:33Z",
+      "side": 1,
+      "message": "Add a note explaining that this is necessary because of the mockeypatching.",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 66
+      },
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e3958c7_c68189be",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-20T16:25:33Z",
+      "side": 1,
+      "message": "I\u0027m concerned about this change. What is it going to do to the output on the waterfall?",
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5a462a2_945c3993",
+        "filename": "telemetry/telemetry/testing/unittest_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-20T16:25:33Z",
+      "side": 1,
+      "message": "Add a note explaining that this is necessary because of the monkeypatching.",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 66
+      },
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8796149d_6637d5d9",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-20T16:25:33Z",
+      "side": 1,
+      "message": "What\u0027s the point of this test? Would it catch anything that the above two tests would not catch?",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 53
+      },
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
