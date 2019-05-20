@@ -5,6 +5,7 @@
 import logging
 import os
 
+from py_utils import exc_util
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import gpu_compositing_checker
@@ -304,6 +305,7 @@ class SharedPageState(story_module.SharedState):
       self._page_test.ValidateAndMeasurePage(
           self._current_page, self._current_tab, results)
 
+  @exc_util.BestEffort
   def TearDownState(self):
     self._StopBrowser()
     self.platform.StopAllLocalServers()

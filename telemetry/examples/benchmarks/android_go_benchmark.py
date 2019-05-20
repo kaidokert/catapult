@@ -5,6 +5,7 @@
 import contextlib
 import logging
 
+from py_utils import exc_util
 from telemetry.core import android_platform
 from telemetry.internal.browser import browser_finder
 from telemetry.timeline import chrome_trace_category_filter
@@ -45,6 +46,7 @@ class SharedAndroidStoryState(story_module.SharedState):
   def platform(self):
     return self._possible_browser.platform
 
+  @exc_util.BestEffort
   def TearDownState(self):
     self.platform.network_controller.Close()
 

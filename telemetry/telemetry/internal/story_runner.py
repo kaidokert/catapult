@@ -310,13 +310,8 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           # For all other errors, try to give the rest of stories a chance
           # to run by tearing down the state and creating a new state instance
           # in the next iteration.
-          try:
-            # If TearDownState raises, do not catch the exception.
-            # (The Error was saved as a failure value.)
-            state.TearDownState()
-          finally:
-            # Later finally-blocks use state, so ensure it is cleared.
-            state = None
+          state.TearDownState()
+          state = None
         finally:
           has_existing_exception = sys.exc_info() != (None, None, None)
           try:
@@ -342,15 +337,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
       results.AddSharedDiagnosticToAllHistograms(name, diag)
 
     if state:
-      has_existing_exception = sys.exc_info() != (None, None, None)
-      try:
-        state.TearDownState()
-      except Exception: # pylint: disable=broad-except
-        if not has_existing_exception:
-          raise
-        # Print current exception and propagate existing exception.
-        exception_formatter.PrintFormattedException(
-            msg='Exception from TearDownState:')
+      state.TearDownState()
 
 
 def ValidateStory(story):

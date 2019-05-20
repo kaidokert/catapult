@@ -16,6 +16,7 @@ import logging
 import mock
 
 from py_utils import cloud_storage
+from py_utils import exc_util
 
 from telemetry import benchmark
 from telemetry.core import exceptions
@@ -466,6 +467,7 @@ class StoryRunnerTest(unittest.TestCase):
     self.StubOutExceptionFormatting()
     story_set = story_module.StorySet()
     class SharedStoryThatCausesAppCrash(TestSharedPageState):
+      @exc_util.BestEffort
       def TearDownState(self):
         raise TestOnlyException()
 
@@ -543,6 +545,7 @@ class StoryRunnerTest(unittest.TestCase):
       pass
 
     class TestTearDownSharedState(TestSharedPageState):
+      @exc_util.BestEffort
       def TearDownState(self):
         unit_test_events.append('tear-down-state')
         raise DidRunTestError
