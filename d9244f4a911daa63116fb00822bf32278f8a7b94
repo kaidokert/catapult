@@ -1,0 +1,342 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "748df632_245232dd",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "is error a message? if so, how is different from .message? if not, this initializer is unnecessary\n\nfwiu .message is always empty, which is not how exceptions are supposed to be use, i believe.",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6313108a_f0862b8f",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "did you consider\n\n  def __init__(self, error):\n    super(FetchError, self).__init__(\u0027Failed fetching project configs: %s\u0027 % error)\n\n?",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9c0d2f8_43f95f64",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "the class is called very abstractly, any error related to config may falls into the category the name implies. But looks like the intention here is very concrete. Abstraction levels of class name and this message are misaligned",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 30
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6610de3c_780c200c",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "and instance of this class has neither error not message",
+      "range": {
+        "startLine": 49,
+        "startChar": 45,
+        "endLine": 49,
+        "endChar": 49
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aed1815b_aefc9983",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "there 8 exception classes in this file. Do we really expect to have 8 different code paths that handle these 8 errors?",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb7b48e3_bffe48a7",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "is there a more narrow exception we can catch? this will catch everything, potentially unrelated stuff, e.g. OOMs (for whatever reason)",
+      "range": {
+        "startLine": 106,
+        "startChar": 9,
+        "endLine": 106,
+        "endChar": 18
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58119192_b8216981",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "this file uses two terms for the same thing: service and client. Consider consistency",
+      "range": {
+        "startLine": 111,
+        "startChar": 26,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbb9dc8d_ecb06b39",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "i assume `configs` is a lists (it is not clear from the docstring)\nthen this could be simpler:\n\n  if not configs:",
+      "range": {
+        "startLine": 135,
+        "startChar": 20,
+        "endLine": 135,
+        "endChar": 23
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbf125a6_fa090068",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "nit: {\u0027config_set\u0027, \u0027content\u0027, \u0027revision\u0027, \u0027url\u0027, \u0027content_hash\u0027}",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca0d1a22_64058ac9",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "unnecessary: difference can accept any iterables, not necessarily sets",
+      "range": {
+        "startLine": 149,
+        "startChar": 48,
+        "endLine": 149,
+        "endChar": 51
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9b9235d_797e26ed",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "nit: \u0027{config_set}:{revision}:{content_hash}\u0027.format(**config)\n\nwould be more readable",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 80
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09281526_5a3a53e8",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "this creates a cross-group transaction that spans all config sets (since they belong to different entity groups). Is this intentional? If this is the only place where these entities are updated, then why are they in different entity groups? Seems to be a lost opportunity to have a strongly-consistent view over all configs\n\ncurrently the app may see two configs of the same subscrpiption",
+      "range": {
+        "startLine": 178,
+        "startChar": 14,
+        "endLine": 178,
+        "endChar": 25
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da5a745e_abca73e3",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "why two implementations of the same thing?",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 189,
+        "endChar": 70
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3842e19_5adc18de",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 28
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b945939f_14b39066",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "this is constant empty list. Also I don\u0027t see any attempt to write data.",
+      "range": {
+        "startLine": 208,
+        "startChar": 55,
+        "endLine": 208,
+        "endChar": 63
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93263680_dfbc8599",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-20T17:09:45Z",
+      "side": 1,
+      "message": "this seems to be reinventing the wheel. This entity stores what datastore already stores, i.e. the list of entities. Why not reuse an ancestor query which is strongly consistent?",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
