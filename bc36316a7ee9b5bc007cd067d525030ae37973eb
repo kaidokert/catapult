@@ -25,6 +25,47 @@
     },
     {
       "key": {
+        "uuid": "86230f73_29fffa3a",
+        "filename": "telemetry/telemetry/testing/browser_test_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:15:13Z",
+      "side": 1,
+      "message": "I removed this in previous patch.",
+      "parentUuid": "cf81b53e_993c3811",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 66
+      },
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "191573e4_2d29dfc8",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:15:13Z",
+      "side": 1,
+      "message": "Ill remove this as well.",
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8e3958c7_c68189be",
         "filename": "telemetry/telemetry/testing/run_tests.py",
         "patchSetId": 12
@@ -36,6 +77,24 @@
       "writtenOn": "2019-05-20T16:25:33Z",
       "side": 1,
       "message": "I\u0027m concerned about this change. What is it going to do to the output on the waterfall?",
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a42a8ac0_8a4e03cd",
+        "filename": "telemetry/telemetry/testing/run_tests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:15:13Z",
+      "side": 1,
+      "message": "Good point ill revert it.",
+      "parentUuid": "8e3958c7_c68189be",
       "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -65,6 +124,30 @@
     },
     {
       "key": {
+        "uuid": "5066ff60_b627d72e",
+        "filename": "telemetry/telemetry/testing/unittest_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:15:13Z",
+      "side": 1,
+      "message": "I removed this.",
+      "parentUuid": "b5a462a2_945c3993",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 66
+      },
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8796149d_6637d5d9",
         "filename": "third_party/typ/typ/tests/host_test.py",
         "patchSetId": 12
@@ -76,6 +159,30 @@
       "writtenOn": "2019-05-20T16:25:33Z",
       "side": 1,
       "message": "What\u0027s the point of this test? Would it catch anything that the above two tests would not catch?",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 53
+      },
+      "revId": "bc36316a7ee9b5bc007cd067d525030ae37973eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4e669a0_44a9f505",
+        "filename": "third_party/typ/typ/tests/host_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-20T23:15:13Z",
+      "side": 1,
+      "message": "Its purpose is to be called by testChildStderrIsInTypFinalOutput and coalesce the stderr output from this test to Typ\u0027s output in testChildStderrIsInTypFinalOutput and testFinalOutputContainsAllChildOutput.",
+      "parentUuid": "8796149d_6637d5d9",
       "range": {
         "startLine": 258,
         "startChar": 8,
