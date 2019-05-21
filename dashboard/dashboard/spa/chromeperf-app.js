@@ -17,7 +17,6 @@ import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
 import '@polymer/polymer/lib/elements/dom-if.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
-import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import AlertsSection from './alerts-section.js';
 import ChartCompound from './chart-compound.js';
 import ChartSection from './chart-section.js';
@@ -433,7 +432,7 @@ export default class ChromeperfApp extends ElementBase {
       (this.chartSectionsById !== oldChartSections))) {
       this.debounce('updateLocation', () => {
         ChromeperfApp.updateLocation(this.statePath);
-      }, PolymerAsync.animationFrame);
+      });
     }
   }
 
@@ -514,7 +513,7 @@ export default class ChromeperfApp extends ElementBase {
   }
 
   isInternal_(userEmail) {
-    return userEmail.endsWith('@google.com');
+    return userEmail && userEmail.endsWith('@google.com');
   }
 
   get isProduction() {
@@ -958,7 +957,7 @@ ChromeperfApp.reducers = {
     return {
       ...state,
       chartSectionIds: [],
-      closedChartIds: Array.from(state.chartSectionIds),
+      closedChartIds: Array.from(state.chartSectionIds || []),
     };
   },
 
