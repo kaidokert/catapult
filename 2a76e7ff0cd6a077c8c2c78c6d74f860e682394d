@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d173a3de_976bae6a",
+        "filename": "dashboard/dashboard/spa/cp-input.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:23:31Z",
+      "side": 1,
+      "message": "You\u0027ll probably want to ?disabled\u003d here. Without the ?, attribute binding will always evaluates this to \"true\" because an empty string or a string with the value \"false\" counts as a \"true\" value for an attribute.",
+      "range": {
+        "startLine": 83,
+        "startChar": 10,
+        "endLine": 83,
+        "endChar": 18
+      },
+      "revId": "2a76e7ff0cd6a077c8c2c78c6d74f860e682394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d48c9af_b1a2a390",
+        "filename": "dashboard/dashboard/spa/cp-input.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:23:31Z",
+      "side": 1,
+      "message": "this.disabled?",
+      "range": {
+        "startLine": 83,
+        "startChar": 22,
+        "endLine": 83,
+        "endChar": 30
+      },
+      "revId": "2a76e7ff0cd6a077c8c2c78c6d74f860e682394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f153240_6b9711fd",
+        "filename": "dashboard/dashboard/spa/cp-input.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:23:31Z",
+      "side": 1,
+      "message": "this.value",
+      "range": {
+        "startLine": 84,
+        "startChar": 19,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "revId": "2a76e7ff0cd6a077c8c2c78c6d74f860e682394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e695eeec_00df348b",
+        "filename": "dashboard/dashboard/spa/cp-input.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:23:31Z",
+      "side": 1,
+      "message": "@blur\u003d${this.onBlur_}, etc",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "2a76e7ff0cd6a077c8c2c78c6d74f860e682394d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
