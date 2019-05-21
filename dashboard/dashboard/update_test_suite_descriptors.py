@@ -120,7 +120,13 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
     for key in query_iter:
       test_path = utils.TestPath(key)
       key_count += 1
-      desc = descriptor.Descriptor.FromTestPathSync(test_path)
+
+      try:
+        desc = descriptor.Descriptor.FromTestPathSync(test_path)
+      except ValueError:
+        logging.error('DescriptorValueError %s', test_path)
+        break
+
       bots.add(desc.bot)
       if desc.measurement:
         measurements.add(desc.measurement)
