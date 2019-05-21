@@ -250,37 +250,61 @@ class Host(object):
         return out, err
 
 
-class _TeedStream(io.StringIO):
+class _TeedStream(object):
 
     def __init__(self, stream):
-        super(_TeedStream, self).__init__()
         self.stream = stream
         self.capturing = False
         self.diverting = False
+        self._capture_dir = tempfile.mkdtemp()
+        self._capture_file_path = os.path.join(
+            self._capture_dir, 'capture_%d.txt' % self.stream.fileno())
+        self._capture_file_no = os.open(
+            self._capture_file_path, os.O_CREAT | os.O_RDWR)
 
     def write(self, msg, *args, **kwargs):
+        if (sys.version_info.major == 2 and
+                isinstance(msg, str)):  # pragma: python2
+            msg = unicode(msg)
         if self.capturing:
-            if (sys.version_info.major == 2 and
-                    isinstance(msg, str)):  # pragma: python2
-                msg = unicode(msg)
-            super(_TeedStream, self).write(msg, *args, **kwargs)
+            os.write(self._capture_file_no, msg, *args, **kwargs)
         if not self.diverting:
-            self.stream.write(msg, *args, **kwargs)
+            self.original_stream.write(msg, *args, **kwargs)
 
     def flush(self):
         if self.capturing:
-            super(_TeedStream, self).flush()
+            os.fsync(self._capture_file_no)
         if not self.diverting:
-            self.stream.flush()
+            self.original_stream.flush()
 
     def capture(self, divert=True):
-        self.truncate(0)
         self.capturing = True
         self.diverting = divert
+        self.stream.flush()
+        self._saved_file_no = os.dup(self.stream.fileno())
+        self.original_stream = os.fdopen(self._saved_file_no, 'a')
+        os.dup2(self._capture_file_no, self.stream.fileno())
 
     def restore(self):
-        msg = self.getvalue()
-        self.truncate(0)
+        output = self.getvalue()
         self.capturing = False
         self.diverting = False
-        return msg
+        os.dup2(self._saved_file_no, self.stream.fileno())
+        self.original_stream.close()
+        os.close(self._capture_file_no)
+        shutil.rmtree(self._capture_dir)
+        return output
+
+    def fileno(self):
+        return self._capture_file_no
+
+    def getvalue(self):
+        assert self.capturing
+        self.flush()
+        os.lseek(self._capture_file_no, 0, 0)
+        return os.read(
+            self._capture_file_no,
+            os.path.getsize(self._capture_file_path))
+
+    def isatty(self):
+        return self.stream.isatty()
