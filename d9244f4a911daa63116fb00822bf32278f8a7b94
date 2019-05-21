@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "389d3bfb_4209e022",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Good point. No, error is a nested exception.",
+      "parentUuid": "748df632_245232dd",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6313108a_f0862b8f",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a154a44d_248455f6",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6313108a_f0862b8f",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "9cc636f4_e3793aa1",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9c0d2f8_43f95f64",
+      "range": {
+        "startLine": 43,
+        "startChar": 19,
+        "endLine": 43,
+        "endChar": 30
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6610de3c_780c200c",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "d690c32f_8eca0651",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6610de3c_780c200c",
+      "range": {
+        "startLine": 49,
+        "startChar": 45,
+        "endLine": 49,
+        "endChar": 49
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aed1815b_aefc9983",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -96,6 +180,24 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94cbe3b7_0de4577b",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "No, but from a debugging perspective, having additional context (the type) helps. This follows from best practice on user-defined exceptions.",
+      "parentUuid": "aed1815b_aefc9983",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "a3bfafef_19e2437c",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb7b48e3_bffe48a7",
+      "range": {
+        "startLine": 106,
+        "startChar": 9,
+        "endLine": 106,
+        "endChar": 18
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58119192_b8216981",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -142,6 +268,30 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37ef4df_461aa4a7",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58119192_b8216981",
+      "range": {
+        "startLine": 111,
+        "startChar": 26,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -168,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "57fa7c13_a60c43f3",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb9dc8d_ecb06b39",
+      "range": {
+        "startLine": 135,
+        "startChar": 20,
+        "endLine": 135,
+        "endChar": 23
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dbf125a6_fa090068",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -182,6 +356,24 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9db2577c_6a2d2db0",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbf125a6_fa090068",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -208,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "1e784824_b8259594",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca0d1a22_64058ac9",
+      "range": {
+        "startLine": 149,
+        "startChar": 48,
+        "endLine": 149,
+        "endChar": 51
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9b9235d_797e26ed",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -231,6 +447,30 @@
     },
     {
       "key": {
+        "uuid": "beb97555_23b4c2aa",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9b9235d_797e26ed",
+      "range": {
+        "startLine": 157,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 80
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "09281526_5a3a53e8",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -242,6 +482,30 @@
       "writtenOn": "2019-05-20T17:09:45Z",
       "side": 1,
       "message": "this creates a cross-group transaction that spans all config sets (since they belong to different entity groups). Is this intentional? If this is the only place where these entities are updated, then why are they in different entity groups? Seems to be a lost opportunity to have a strongly-consistent view over all configs\n\ncurrently the app may see two configs of the same subscrpiption",
+      "range": {
+        "startLine": 178,
+        "startChar": 14,
+        "endLine": 178,
+        "endChar": 25
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb449b80_4797abd4",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Where does it create a cross-group transaction? All the entities share a common parent (the SubscriptionIndex) and are part of the same entity group.\n\nhttps://cloud.google.com/datastore/docs/concepts/transactions\n\nThis transaction ensures that we\u0027re only updating the SubscriptionIndex once we\u0027ve successfully stored the individual Subscription instances. We do a lookup first to not bother updating existing revisions. Since we\u0027re referring to the key identifiers in the SubscriptionIndex, this allows us to keep track of the latest revisions for all the config sets.\n\nThe transaction ensures that all the operations happen atomically, so there is always a consistent view of the data -- which gives us a very strongly consistent view.\n\nWhat did I miss?",
+      "parentUuid": "09281526_5a3a53e8",
       "range": {
         "startLine": 178,
         "startChar": 14,
@@ -277,6 +541,30 @@
     },
     {
       "key": {
+        "uuid": "92f42efc_84de0f64",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Oh, right -- for .get_multi(...) it doesn\u0027t raise an exception when the list is a single element.",
+      "parentUuid": "da5a745e_abca73e3",
+      "range": {
+        "startLine": 187,
+        "startChar": 6,
+        "endLine": 189,
+        "endChar": 70
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3842e19_5adc18de",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -297,6 +585,30 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81030cf1_2acaf8be",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "For .put_multi(...) it will raise an exception if the list is only a single elements (according to the documentation):\n\nhttps://googleapis.github.io/google-cloud-python/latest/datastore/client.html#google.cloud.datastore.client.Client.put_multi",
+      "parentUuid": "e3842e19_5adc18de",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 28
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -323,6 +635,30 @@
     },
     {
       "key": {
+        "uuid": "260ab027_37213dfa",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b945939f_14b39066",
+      "range": {
+        "startLine": 208,
+        "startChar": 55,
+        "endLine": 208,
+        "endChar": 63
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93263680_dfbc8599",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -337,6 +673,24 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "974e1d6d_7abf3b8c",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-21T02:33:05Z",
+      "side": 1,
+      "message": "Because we don\u0027t have a time dimension on which we can query on. I considered storing a timestamp (or using the timestamp that Datastore might generate) to rank the config sets in freshness order. Notice that we\u0027re storing all versions of the project config sets, because there will be a lookup on the state of the configuration at a given revision (later).\n\nQueries on datastore don\u0027t allow us to do an ancestor query with only the latest version of each child entity.\n\nhttps://cloud.google.com/datastore/docs/concepts/queries\n\nI may end up needing to provide a timestamp anyway since one of the P2 requirements here is to display in the timeline when a set of sheriff configurations started applying. So far I\u0027ve been deferring this since the data is in luci-config/gitiles anyway.\n\nThe other option here is I just store a single object reflecting the conglomeration of all the config sets. In that scenario I lose the ability to refer to specific revisions per config set locally.\n\nNotice we\u0027re only storing a single object (kind\u003dSubscriptionIndex, id\u003d\u0027global\u0027) which will be updated atomically as part of this transaction. This gives us the atomicity we\u0027re looking for.",
+      "parentUuid": "93263680_dfbc8599",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
