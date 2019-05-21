@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61971b39_f1bab188",
+        "filename": "dashboard/dashboard/spa/cp-textarea.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:21:11Z",
+      "side": 1,
+      "message": "this.label?",
+      "range": {
+        "startLine": 64,
+        "startChar": 23,
+        "endLine": 64,
+        "endChar": 30
+      },
+      "revId": "f37a30d61d2f8d0c712a6b5850bf6c128444251a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ca3d8b_0388d226",
+        "filename": "dashboard/dashboard/spa/cp-textarea.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:21:11Z",
+      "side": 1,
+      "message": "this.value?",
+      "range": {
+        "startLine": 67,
+        "startChar": 19,
+        "endLine": 67,
+        "endChar": 24
+      },
+      "revId": "f37a30d61d2f8d0c712a6b5850bf6c128444251a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7775307e_b43a3c6c",
+        "filename": "dashboard/dashboard/spa/cp-textarea.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:21:11Z",
+      "side": 1,
+      "message": "These should be: @blur\u003d${this.onBlur_}, etc",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "f37a30d61d2f8d0c712a6b5850bf6c128444251a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
