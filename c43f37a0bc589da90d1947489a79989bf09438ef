@@ -117,6 +117,30 @@
       "revId": "c43f37a0bc589da90d1947489a79989bf09438ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e18da2a4_d3ec36af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1242479
+      },
+      "writtenOn": "2019-05-21T18:15:46Z",
+      "side": 1,
+      "message": "Ack thanks!",
+      "parentUuid": "35ac44a4_35d46750",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "c43f37a0bc589da90d1947489a79989bf09438ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

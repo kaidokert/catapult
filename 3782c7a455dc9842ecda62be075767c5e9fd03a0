@@ -22,6 +22,30 @@
       "revId": "3782c7a455dc9842ecda62be075767c5e9fd03a0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec23bb8f_0f0362e9",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1242479
+      },
+      "writtenOn": "2019-05-21T18:15:46Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "95dcf1ba_71d85d09",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 52
+      },
+      "revId": "3782c7a455dc9842ecda62be075767c5e9fd03a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
