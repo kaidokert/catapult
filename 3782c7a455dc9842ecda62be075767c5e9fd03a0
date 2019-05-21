@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95dcf1ba_71d85d09",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-21T18:12:39Z",
+      "side": 0,
+      "message": "There should be a comment here pointing to the exact code in the perfetto repo that this should be kept in sync with.",
+      "range": {
+        "startLine": 25,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 52
+      },
+      "revId": "3782c7a455dc9842ecda62be075767c5e9fd03a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
