@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0f36265_d82cb4f7",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-05-21T22:35:51Z",
+      "side": 1,
+      "message": "This just makes this kind of failure easier to find in the logs.",
+      "revId": "49c10e6b7a01b10e3b3fbaace5fc6b0118860d54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
