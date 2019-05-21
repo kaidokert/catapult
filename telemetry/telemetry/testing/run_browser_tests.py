@@ -313,6 +313,7 @@ def RunTests(args):
   typ_runner.args.test_filter = options.test_filter
   typ_runner.args.suffixes = TEST_SUFFIXES
   typ_runner.path_delimiter = test_class.GetJSONResultsDelimiter()
+  typ_runner.args.quiet = options.quiet
 
   tests_to_run = LoadTestCasesToBeRun(
       test_class=test_class, finder_options=typ_runner.context.finder_options,
