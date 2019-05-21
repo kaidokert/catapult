@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dedf8408_539bac55",
+        "filename": "dashboard/dashboard/static/alerts.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2019-05-21T18:16:11Z",
+      "side": 1,
+      "message": "No longer strictly true :)",
+      "range": {
+        "startLine": 38,
+        "startChar": 34,
+        "endLine": 38,
+        "endChar": 52
+      },
+      "revId": "4db15f1db5c77b11816f93c4f9df77b60a9fd5f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
