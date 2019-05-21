@@ -80,17 +80,6 @@ class Runner(object):
         self.call('pylint --rcfile=pylintrc */*.py */*/*.py', shell=True)
 
     def run_tests(self, _args):
-        # Test running the typ module directly if it is in sys.path.
-        self.call([
-            self._python, '-m', 'typ',
-            'typ.tests.main_test.TestMain.test_basic',
-        ])
-
-        # Testing running the runner directly if nothing is in sys.path.
-        home_dir = os.environ['HOME']
-        self.call([self._python, self._path_to_runner,
-                   'typ.tests.main_test.TestMain.test_basic'], cwd=home_dir)
-
         # Run the remaining tests.
         self.call([self._python, self._path_to_runner])
 
