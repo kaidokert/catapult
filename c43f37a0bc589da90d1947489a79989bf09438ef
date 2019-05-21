@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0aabb3c_1b881926",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-21T18:03:58Z",
+      "side": 1,
+      "message": "Unless this information is already in the bug, you should include in your commit message the details on how you picked these new shas and why updating them is needed.",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "c43f37a0bc589da90d1947489a79989bf09438ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4bf0e54_30aa1ccb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-21T18:03:58Z",
+      "side": 1,
+      "message": "I don\u0027t know how to view this.",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "c43f37a0bc589da90d1947489a79989bf09438ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
