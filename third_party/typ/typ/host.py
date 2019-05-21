@@ -250,37 +250,56 @@ class Host(object):
         return out, err
 
 
-class _TeedStream(io.StringIO):
+class _TeedStream(object):
 
     def __init__(self, stream):
-        super(_TeedStream, self).__init__()
         self.stream = stream
         self.capturing = False
         self.diverting = False
+        self._capture_file = tempfile.NamedTemporaryFile(delete=True)
+        self._orig_stream_fileno = os.dup(self.stream.fileno())
+        self.original_stream = os.fdopen(self._orig_stream_fileno, 'w')
 
     def write(self, msg, *args, **kwargs):
+        if (sys.version_info.major == 2 and
+                isinstance(msg, str)):  # pragma: python2
+            msg = unicode(msg)
         if self.capturing:
-            if (sys.version_info.major == 2 and
-                    isinstance(msg, str)):  # pragma: python2
-                msg = unicode(msg)
-            super(_TeedStream, self).write(msg, *args, **kwargs)
-        if not self.diverting:
             self.stream.write(msg, *args, **kwargs)
+        if not self.diverting:
+            self.original_stream.write(msg, *args, **kwargs)
 
     def flush(self):
         if self.capturing:
-            super(_TeedStream, self).flush()
-        if not self.diverting:
             self.stream.flush()
+        if not self.diverting:
+            self.original_stream.flush()
 
     def capture(self, divert=True):
-        self.truncate(0)
         self.capturing = True
         self.diverting = divert
+        self.stream.flush()
+        os.dup2(self._capture_file.fileno(), self.stream.fileno())
 
     def restore(self):
-        msg = self.getvalue()
-        self.truncate(0)
         self.capturing = False
         self.diverting = False
-        return msg
+        self.stream.flush()
+        self.original_stream.flush()
+        os.dup2(self._orig_stream_fileno, self.stream.fileno())
+        os.lseek(self._capture_file.fileno(), 0, 0)
+        output = self._capture_file.read()
+        self.original_stream.close()
+        self._capture_file.close()
+        return output
+
+    def fileno(self):
+        return self.stream.fileno()
+
+    def getvalue(self):
+        self._capture_file.flush()
+        os.lseek(self._capture_file.fileno(), 0, 0)
+        return self._capture_file.read()
+
+    def isatty(self):
+        return self.stream.isatty()
