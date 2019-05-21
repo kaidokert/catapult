@@ -30,10 +30,9 @@ class InvalidOptionsError(Exception):
 
 class BenchmarkMetadata(object):
 
-  def __init__(self, name, description='', rerun_options=None):
+  def __init__(self, name, description=''):
     self._name = name
     self._description = description
-    self._rerun_options = rerun_options
 
   @property
   def name(self):
@@ -45,14 +44,14 @@ class BenchmarkMetadata(object):
 
   @property
   def rerun_options(self):
-    return self._rerun_options
+    return []  # This feature is now deprecated.
 
   def AsDict(self):
     return {
         'type': 'telemetry_benchmark',
-        'name': self._name,
-        'description': self._description,
-        'rerun_options': self._rerun_options,
+        'name': self.name,
+        'description': self.description,
+        'rerun_options': self.rerun_options,
     }
 
 
@@ -118,23 +117,12 @@ class Benchmark(command_line.Command):
   def AddCommandLineArgs(cls, parser):
     group = optparse.OptionGroup(parser, '%s test options' % cls.Name())
     cls.AddBenchmarkCommandLineArgs(group)
-
-    if cls.HasTraceRerunDebugOption():
-      group.add_option(
-          '--rerun-with-debug-trace',
-          action='store_true',
-          help='Rerun option that enables more extensive tracing.')
-
     if group.option_list:
       parser.add_option_group(group)
 
   @classmethod
   def AddBenchmarkCommandLineArgs(cls, group):
     del group  # unused
-
-  @classmethod
-  def HasTraceRerunDebugOption(cls):
-    return False
 
   @classmethod
   def GetSupportedPlatformNames(cls, supported_platforms):
@@ -148,24 +136,6 @@ class Benchmark(command_line.Command):
     for p in supported_platforms:
       result.update(p.GetSupportedPlatformNames())
     return frozenset(result)
-
-  def GetTraceRerunCommands(self):
-    if self.HasTraceRerunDebugOption():
-      return [['Debug Trace', '--rerun-with-debug-trace']]
-    return []
-
-  def SetupTraceRerunOptions(self, browser_options, tbm_options):
-    if self.HasTraceRerunDebugOption():
-      if browser_options.rerun_with_debug_trace:
-        self.SetupBenchmarkDebugTraceRerunOptions(tbm_options)
-      else:
-        self.SetupBenchmarkDefaultTraceRerunOptions(tbm_options)
-
-  def SetupBenchmarkDefaultTraceRerunOptions(self, tbm_options):
-    """Setup tracing categories associated with default trace option."""
-
-  def SetupBenchmarkDebugTraceRerunOptions(self, tbm_options):
-    """Setup tracing categories associated with debug trace option."""
 
   @classmethod
   def SetArgumentDefaults(cls, parser):
@@ -203,8 +173,7 @@ class Benchmark(command_line.Command):
     """Add options that are required by this benchmark."""
 
   def GetMetadata(self):
-    return BenchmarkMetadata(self.Name(), self.__doc__,
-                             self.GetTraceRerunCommands())
+    return BenchmarkMetadata(self.Name(), self.__doc__)
 
   def GetBugComponents(self):
     """Returns a GenericSet Diagnostic containing the benchmark's Monorail
@@ -339,7 +308,6 @@ class Benchmark(command_line.Command):
       return self.test()  # pylint: disable=no-value-for-parameter
 
     opts = self._GetTimelineBasedMeasurementOptions(options)
-    self.SetupTraceRerunOptions(options, opts)
     return self.test(opts)
 
   def CreateStorySet(self, options):
