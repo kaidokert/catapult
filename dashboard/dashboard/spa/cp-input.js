@@ -4,68 +4,84 @@
 */
 'use strict';
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 import {getActiveElement, timeout} from './utils.js';
 
-export default class CpInput extends PolymerElement {
-  static get is() { return 'cp-input'; }
+export default class CpInput extends LitElement {
+  static get properties() {
+    return {
+      autofocus: {type: Boolean},
+      focused: {
+        type: Boolean,
+        reflect: true,
+      },
+      disabled: {
+        type: Boolean,
+        reflect: true,
+      },
+      label: {type: String},
+      value: {type: String},
+    };
+  }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        align-items: center;
+        border-radius: 4px;
+        border: 1px solid var(--neutral-color-dark, grey);
+        cursor: text;
+        display: flex;
+        justify-content: space-between;
+        outline: none;
+        padding: 4px;
+        position: relative;
+      }
+      #label {
+        background-color: var(--background-color, white);
+        color: var(--neutral-color-dark, grey);
+        font-size: smaller;
+        padding: 4px;
+        position: absolute;
+        transform: translate(0px, -1.5em);
+        transition: color var(--transition-short, 0.2s);
+        white-space: nowrap;
+      }
+      :host([disabled]) {
+        border: 1px solid var(--neutral-color-light, lightgrey);
+        cursor: unset;
+      }
+      :host([focused]) {
+        border: 2px solid var(--primary-color-dark, blue);
+        padding: 3px;
+      }
+      :host([focused]) #label {
+        color: var(--primary-color-dark, blue);
+      }
+      :host([error]) {
+        border-color: var(--error-color, red);
+      }
+      input {
+        background-color: inherit;
+        border: 0;
+        box-sizing: border-box;
+        flex-grow: 1;
+        font-size: inherit;
+        outline: none;
+        padding: 8px 4px 4px 4px;
+        width: 100%;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          align-items: center;
-          border-radius: 4px;
-          border: 1px solid var(--neutral-color-dark, grey);
-          cursor: text;
-          display: flex;
-          justify-content: space-between;
-          outline: none;
-          padding: 4px;
-          position: relative;
-        }
-        #label {
-          background-color: var(--background-color, white);
-          color: var(--neutral-color-dark, grey);
-          font-size: smaller;
-          padding: 4px;
-          position: absolute;
-          transform: translate(0px, -1.5em);
-          transition: color var(--transition-short, 0.2s);
-          white-space: nowrap;
-        }
-        :host([disabled]) {
-          border: 1px solid var(--neutral-color-light, lightgrey);
-          cursor: unset;
-        }
-        :host([focused]) {
-          border: 2px solid var(--primary-color-dark, blue);
-          padding: 3px;
-        }
-        :host([focused]) #label {
-          color: var(--primary-color-dark, blue);
-        }
-        :host([error]) {
-          border-color: var(--error-color, red);
-        }
-        input {
-          background-color: inherit;
-          border: 0;
-          box-sizing: border-box;
-          flex-grow: 1;
-          font-size: inherit;
-          outline: none;
-          padding: 8px 4px 4px 4px;
-          width: 100%;
-        }
-      </style>
-
-      <div id="label">[[label]]</div>
+      <div id="label">${label}</div>
       <input
           id="input"
           size="0"
-          disabled="[[disabled]]"
-          value="[[value]]"
+          disabled="${disabled}"
+          value="${value}"
           on-blur="onBlur_"
           on-focus="onFocus_"
           on-keyup="onKeyup_"></input>
@@ -127,18 +143,4 @@ export default class CpInput extends PolymerElement {
   }
 }
 
-CpInput.properties = {
-  autofocus: {type: Boolean},
-  focused: {
-    type: Boolean,
-    reflectToAttribute: true,
-  },
-  disabled: {
-    type: Boolean,
-    reflectToAttribute: true,
-  },
-  label: {type: String},
-  value: {type: String},
-};
-
-customElements.define(CpInput.is, CpInput);
+customElements.define('cp-input', CpInput);
