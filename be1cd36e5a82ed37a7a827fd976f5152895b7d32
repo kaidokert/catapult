@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "984a823a_115886b5",
+        "filename": "dashboard/dashboard/spa/cp-checkbox.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-21T18:12:23Z",
+      "side": 1,
+      "message": "$\u003d goes away in lit-html templating. I think what you want here ?disabled\n\n(same for above)",
+      "range": {
+        "startLine": 87,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 33
+      },
+      "revId": "be1cd36e5a82ed37a7a827fd976f5152895b7d32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
