@@ -250,6 +250,24 @@
     },
     {
       "key": {
+        "uuid": "9592413d_8e2ab8de",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-21T01:00:15Z",
+      "side": 1,
+      "message": "Hm. Looking briefly at patchset #17, I can see that the logic gets way more os-level specific, and, at least at first glance to me, is significantly more subtle than what the code doing prior to this patch.\n\nI\u0027m going to have to look at the new stuff more carefully than I have time for tonight; I\u0027ll try to do so tomorrow.",
+      "parentUuid": "dcc8ecc5_2282c970",
+      "revId": "eb97418e87931036263d524765f1959d62a1b782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "101c53be_3af9a358",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 10
