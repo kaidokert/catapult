@@ -201,6 +201,24 @@
     },
     {
       "key": {
+        "uuid": "7bd46f00_9c6dc313",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "if humans are the only consumers of this, the additional context is already there as a prefix of the message. If we had only one exception class in this file, this would be same for the human. The prefix would be in the line of code that creates an exception.\n\nIf one day we need different exception handling code paths, we can always add complexity. I just don\u0027t see a reason to add complexity without justifying it with a value.",
+      "parentUuid": "94cbe3b7_0de4577b",
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb7b48e3_bffe48a7",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -518,6 +536,30 @@
     },
     {
       "key": {
+        "uuid": "ebdd9b3a_3c2cdb5b",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "you are right, i missed \"parent\u003d\" in key creation code. Resolving the comment.",
+      "parentUuid": "cb449b80_4797abd4",
+      "range": {
+        "startLine": 178,
+        "startChar": 14,
+        "endLine": 178,
+        "endChar": 25
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5a745e_abca73e3",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 6
@@ -609,6 +651,30 @@
       "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b64e2ab8_fc8e67af",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "i don\u0027t see where the doc say that it will raise an exception if the list has only one item\n\nmoreover, put is implemented as put_multi with one item\nhttps://googleapis.github.io/google-cloud-python/latest/_modules/google/cloud/datastore/client.html#Client.put",
+      "parentUuid": "81030cf1_2acaf8be",
+      "range": {
+        "startLine": 204,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 28
+      },
+      "revId": "d9244f4a911daa63116fb00822bf32278f8a7b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {

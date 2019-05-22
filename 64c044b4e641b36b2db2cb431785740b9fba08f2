@@ -1,0 +1,227 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61a427d0_c6adedb0",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "this is unnecessary because it is identical to the __init__ in the superclass",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff3c62ec_4c5b270b",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "nit: also unnecessary since iterating a dict returns keys",
+      "range": {
+        "startLine": 143,
+        "startChar": 54,
+        "endLine": 143,
+        "endChar": 61
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb5fbf04_fa918196",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "if a config is removed, missing_entities is empty, but SubscriptionIndex is not updated, so it still refers to the removed config",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a86d0a1_cb035f70",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "can we combine this put with the put above? smth like\n\n  to_put \u003d list(entities.values()) + [subscription_index]\n  try:\n     client.put_multi(to_put)\n   except ValueError as error:\n     raise StorageError(\u0027put\u0027, error)\n\nthen we have only one try..except",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d1dc234_55ec7a12",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "unfinished sentence?",
+      "range": {
+        "startLine": 213,
+        "startChar": 36,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88e3680c_9e74be11",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "we don\u0027t need this txn because Subscription entities are immutable",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b9a1200_552ed606",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "this code is pretty much dead, right? we never delete the global entity",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de1282dc_fd3a7ba6",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "same thing implemented twice",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 237,
+        "endChar": 7
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "962af191_c0793848",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "interestingly, noMATCHINGconfigs fires only when there are no configs at all, and it does not fire when there are no matching configs (below)",
+      "range": {
+        "startLine": 239,
+        "startChar": 14,
+        "endLine": 239,
+        "endChar": 22
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07724cba_669c3ada",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "this crashes if none of global or regex supplied. Can it happen?",
+      "range": {
+        "startLine": 252,
+        "startChar": 24,
+        "endLine": 252,
+        "endChar": 30
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d57a3c_ae90143a",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-22T01:53:10Z",
+      "side": 1,
+      "message": "why we break here? cannot tell from the code or doc string",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
