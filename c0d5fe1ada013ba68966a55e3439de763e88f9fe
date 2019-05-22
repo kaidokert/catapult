@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3427c663_5a536141",
+        "filename": "dashboard/dashboard/spa/scalar-span.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T19:00:23Z",
+      "side": 1,
+      "message": "Nit: Get rid of is() and move to the custom element definition? static get is() was necessary in old versions of Polymer for automatic registration, but doesn\u0027t really do anything in lit-element.",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "c0d5fe1ada013ba68966a55e3439de763e88f9fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f901f57f_c3f5379b",
+        "filename": "dashboard/dashboard/spa/scalar-span.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T19:00:23Z",
+      "side": 1,
+      "message": "Nit $\u003d can just be \u003d",
+      "range": {
+        "startLine": 60,
+        "startChar": 17,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "c0d5fe1ada013ba68966a55e3439de763e88f9fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb432f78_5d1077c5",
+        "filename": "dashboard/dashboard/spa/scalar-span.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T19:00:23Z",
+      "side": 1,
+      "message": "Nit: same as above",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 17
+      },
+      "revId": "c0d5fe1ada013ba68966a55e3439de763e88f9fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
