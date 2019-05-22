@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e25cad16_84ca2c45",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a427d0_c6adedb0",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff3c62ec_4c5b270b",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f96a18cf_732304e7",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff3c62ec_4c5b270b",
+      "range": {
+        "startLine": 143,
+        "startChar": 54,
+        "endLine": 143,
+        "endChar": 61
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb5fbf04_fa918196",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "9d142f5a_b98a8eab",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Oh, good catch! Fixed. Also added more test cases to catch this.",
+      "parentUuid": "cb5fbf04_fa918196",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a86d0a1_cb035f70",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -79,6 +145,24 @@
       "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9d772cd_3d328cf0",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a86d0a1_cb035f70",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "a6f61473_7f34e387",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d1dc234_55ec7a12",
+      "range": {
+        "startLine": 213,
+        "startChar": 36,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88e3680c_9e74be11",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -122,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "71f521ce_f473efa4",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "We still want to ensure that we don\u0027t race with the update code, so we want to ensure that if we observe the update to the SubscriptionIndex element, that all the puts have already committed too. We can enforce that the transaction is a read-only transaction, which helps slightly.",
+      "parentUuid": "88e3680c_9e74be11",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b9a1200_552ed606",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -136,6 +262,24 @@
       "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be14a333_229bfba9",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Not really -- we could be in a state where the SubscriptionIndex hasn\u0027t been created yet.",
+      "parentUuid": "3b9a1200_552ed606",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -162,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "f1ebb727_45d00797",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de1282dc_fd3a7ba6",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 237,
+        "endChar": 7
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "962af191_c0793848",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -182,6 +350,30 @@
       "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a66b921_13ce7450",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "Good point. Fixed. No more exceptions in this code path (though we raise a StopIteration instead).",
+      "parentUuid": "962af191_c0793848",
+      "range": {
+        "startLine": 239,
+        "startChar": 14,
+        "endLine": 239,
+        "endChar": 22
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -208,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "ae5df84e_db6db7ce",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "It shouldn\u0027t, because we have a validator which enforces that on input. However, we could have a case where we update the proto and the code doesn\u0027t know how to handle the new version yet (maybe due to a release rollback).\n\nUpdated to handle the case when neither are set to skip the pattern (to not crash).",
+      "parentUuid": "07724cba_669c3ada",
+      "range": {
+        "startLine": 252,
+        "startChar": 24,
+        "endLine": 252,
+        "endChar": 30
+      },
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1d57a3c_ae90143a",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 7
@@ -222,6 +438,24 @@
       "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e610bdb_2754f6c4",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-22T13:46:49Z",
+      "side": 1,
+      "message": "We break this level to skip all the patterns for this subscription. Added a comment to explain.",
+      "parentUuid": "f1d57a3c_ae90143a",
+      "revId": "64c044b4e641b36b2db2cb431785740b9fba08f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
