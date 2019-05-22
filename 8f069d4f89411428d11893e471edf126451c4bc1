@@ -16,6 +16,29 @@
       "revId": "8f069d4f89411428d11893e471edf126451c4bc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d4f212c_2917d256",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-22T15:30:45Z",
+      "side": 1,
+      "message": "I\u0027m confused by this. format_version is already 0.1",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 56
+      },
+      "revId": "8f069d4f89411428d11893e471edf126451c4bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
