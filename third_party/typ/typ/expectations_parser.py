@@ -246,6 +246,7 @@ class TestExpectations(object):
 
     def __init__(self, tags):
         self.tags = [tag.lower() for tag in tags]
+        self.expectations_tags = frozenset()
 
         # Expectations may either refer to individual tests, or globs of
         # tests. Each test (or glob) may have multiple sets of tags and
@@ -277,6 +278,9 @@ class TestExpectations(object):
         glob_exps.sort(key=lambda exp: len(exp.test), reverse=True)
         for exp in glob_exps:
             self.glob_exps.setdefault(exp.test, []).append(exp)
+
+        for tag_set in parser.tag_sets:
+            self.expectations_tags = self.expectations_tags.union(tag_set)
 
         return 0, None
 

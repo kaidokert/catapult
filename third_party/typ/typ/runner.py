@@ -392,7 +392,11 @@ class Runner(object):
                                          data_suffix=True)
             self.cov.erase()
 
-        if args.expectations_files:
+        # Sometimes parse_expectations could be invoked intentionally
+        # before runner.run(), so avoid repetition here.
+        if self.has_expectations:
+            pass
+        elif args.expectations_files:
             ret = self.parse_expectations()
             if ret:
                 return ret

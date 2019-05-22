@@ -215,6 +215,12 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     return self.__class__._typ_runner.expectations_for(self)
 
   @classmethod
+  def GetExpectationsTags(cls):
+    if cls._typ_runner and cls._typ_runner.expectations:
+      return cls._typ_runner.expectations.expectations_tags
+    return None
+
+  @classmethod
   def GetPlatformTags(cls, browser):
     """This method uses the Browser instances's platform member variable to get
     the operating system, operating system version and browser type tags.

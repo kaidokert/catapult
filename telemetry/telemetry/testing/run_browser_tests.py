@@ -347,6 +347,13 @@ def RunTests(args):
   typ_runner.args.verbose = options.verbose
   typ_runner.win_multiprocessing = typ.WinMultiprocessing.importable
 
+  # Parse expectations before generating tags so that the test class can
+  # get the tags included in the expectations file in advance.
+  if typ_runner.args.expectations_files:
+    ret = typ_runner.parse_expectations()
+    if ret:
+      return ret
+
   possible_browser = browser_finder.FindBrowser(
       typ_runner.context.finder_options)
   typ_runner.args.tags.extend(test_class.GenerateTags(
