@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a84613c2_91b4ad78",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T18:56:21Z",
+      "side": 1,
+      "message": "Nit: $\u003d can just be \u003d for attribute binding in lit",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 31
+      },
+      "revId": "bd5d57a167238f1bc49503a2276b26dec3871674",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9da7de0_70c0b027",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T18:56:21Z",
+      "side": 1,
+      "message": "Nit: ?checked\u003d",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "bd5d57a167238f1bc49503a2276b26dec3871674",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61930ee3_79bdba3d",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T18:56:21Z",
+      "side": 1,
+      "message": "Nit: ?disabled\u003d",
+      "range": {
+        "startLine": 98,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 20
+      },
+      "revId": "bd5d57a167238f1bc49503a2276b26dec3871674",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac1319f3_4e2c7d5f",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T18:56:21Z",
+      "side": 1,
+      "message": "Nit: @change\u003d${this.onSelect_}",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "bd5d57a167238f1bc49503a2276b26dec3871674",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c734ba79_1d13c66c",
+        "filename": "dashboard/dashboard/spa/option-group.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-05-22T18:56:21Z",
+      "side": 1,
+      "message": "Nit: Since option-group is a lit-element, attribute mapping is changed to use camelCase instead of kebab case. ie: instead of state-path, we\u0027d have statePath here, unless explicitly configured otherwise. \n\nIf option-group was still Polymer, Polymer\u0027s default attribute mappings could still be used but would need to be converted once the component was lit.",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 22
+      },
+      "revId": "bd5d57a167238f1bc49503a2276b26dec3871674",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
