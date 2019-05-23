@@ -218,8 +218,19 @@ class Runner(object):
             if self.args.tags:
                 self.metadata['tags'] = self.args.tags
             if self.args.expectations_files:
+                # Use the shortest relative path to top level directory
+                # for expectations files paths. Ideally we want to find the
+                # relative path between an expectations file  and a top level
+                # directory where the expectations file path falls under the
+                # top level directory. This relative path is also the shortest
+                # relative path.
+                search_dirs =  self.top_level_dirs + [os.getcwd()]
                 self.metadata['expectations_files'] = [
-                    os.path.basename(p) for p in self.args.expectations_files]
+                        sorted(
+                            [os.path.relpath(
+                                self.args.expectations_files[0], top_dir)
+                             for top_dir in search_dirs],
+                            key=lambda rp: len(rp))[0]]
             if self.args.list_only:
                 self.print_('\n'.join(all_tests))
             else:
