@@ -16,6 +16,24 @@
       "revId": "869bd5ab0a63a83ba9917ce4e1baa1dcd3f12a50",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "182173f5_90f25652",
+        "filename": "web_page_replay_go/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2019-05-23T15:19:38Z",
+      "side": 1,
+      "message": "I would leave it to someone else",
+      "parentUuid": "41646908_e3bf37ee",
+      "revId": "869bd5ab0a63a83ba9917ce4e1baa1dcd3f12a50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
