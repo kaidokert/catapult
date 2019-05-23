@@ -5,7 +5,7 @@
 from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
-from future_builtins import map # pylint: disable=redefined-builtin
+from future_builtins import map  # pylint: disable=redefined-builtin
 
 import collections
 import functools
@@ -20,9 +20,7 @@ from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import compare
 from dashboard.pinpoint.models import errors
 
-
 _REPEAT_COUNT_INCREASE = 10
-
 
 FUNCTIONAL = 'functional'
 PERFORMANCE = 'performance'
@@ -36,18 +34,22 @@ class JobState(object):
   use regular Python objects, with constructors, dicts, and object references.
 
   We lose the ability to index and query the fields, but it's all internal
-  anyway. Everything queryable should be on the Job object."""
+  anyway. Everything queryable should be on the Job object.
+  """
 
-  def __init__(self, quests, comparison_mode=None,
-               comparison_magnitude=None, pin=None):
+  def __init__(self,
+               quests,
+               comparison_mode=None,
+               comparison_magnitude=None,
+               pin=None):
     """Create a JobState.
 
     Args:
       comparison_mode: Either 'functional' or 'performance', which the Job uses
-          to figure out whether to perform a functional or performance bisect.
-          If None, the Job will not automatically add any Attempts or Changes.
+        to figure out whether to perform a functional or performance bisect. If
+        None, the Job will not automatically add any Attempts or Changes.
       comparison_magnitude: The estimated size of the regression or improvement
-          to look for. Smaller magnitudes require more repeats.
+        to look for. Smaller magnitudes require more repeats.
       quests: A sequence of quests to run on each Change.
       pin: A Change (Commits + Patch) to apply to every Change in this Job.
     """
@@ -126,8 +128,7 @@ class JobState(object):
           midpoint = change_module.Change.Midpoint(change_a, change_b)
         except change_module.NonLinearError:
           continue
-        except (httplib.HTTPException,
-                urlfetch_errors.DeadlineExceededError):
+        except (httplib.HTTPException, urlfetch_errors.DeadlineExceededError):
           raise errors.RecoverableError()
 
         logging.info('Adding Change %s.', midpoint)
@@ -183,14 +184,19 @@ class JobState(object):
       A list of tuples: [(Change_before, Change_after), ...]
     """
     differences = []
+
     def Comparison(a, b):
+      if not a:
+        return b
       if self._Compare(a, b) == compare.DIFFERENT:
         differences.append((a, b))
       return b
+
     functools.reduce(Comparison, self._changes, None)
     return differences
 
   def AsDict(self):
+
     def Transform(change):
       return ({
           'attempts': [attempt.AsDict() for attempt in self._attempts[change]],
@@ -279,10 +285,14 @@ class JobState(object):
           any_unknowns = True
 
       # Compare result values.
-      values_a = tuple(Mean(execution.result_values)
-                       for execution in executions_a if execution.result_values)
-      values_b = tuple(Mean(execution.result_values)
-                       for execution in executions_b if execution.result_values)
+      values_a = tuple(
+          Mean(execution.result_values)
+          for execution in executions_a
+          if execution.result_values)
+      values_b = tuple(
+          Mean(execution.result_values)
+          for execution in executions_b
+          if execution.result_values)
       if values_a and values_b:
         if (hasattr(self, '_comparison_magnitude') and
             self._comparison_magnitude):
