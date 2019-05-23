@@ -68,6 +68,10 @@ export default class ReportTable extends ElementBase {
           border-collapse: collapse;
         }
 
+        #table tbody tr:nth-child(even) {
+          background-color: #f4f4f4;
+        }
+
         table[placeholder] {
           color: var(--neutral-color-dark);
         }
