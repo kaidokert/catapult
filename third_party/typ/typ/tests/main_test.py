@@ -15,7 +15,9 @@
 import io
 import json
 import os
+import shutil
 import sys
+import tempfile
 import textwrap
 
 from typ import main
@@ -1066,6 +1068,36 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(results['expected'],'SKIP')
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
+
+    def test_relative_paths_used_for_expectations_files_in_metadata(self):
+        test_expectations = (
+        '# tags: [ foo bar ]\n'
+        'crbug.com/12345 [ foo ] test_dir.failing.FailingTest.test_fail '
+        '[ Failure ]\n')
+        temp_dir = tempfile.mkdtemp()
+        test_dir = os.path.join(temp_dir, 'test_dir')
+        test_exp_dir = os.path.join(test_dir, 'test_expectations')
+        os.mkdir(test_dir)
+        os.mkdir(test_exp_dir)
+        test_file = open(os.path.join(test_dir, 'failing.py'), 'w')
+        test_file.write(FAIL_TEST_PY)
+        test_exp = open(
+            os.path.join(test_exp_dir, 'test_expectations.txt'), 'w')
+        test_exp.write(test_expectations)
+        test_file.close()
+        test_exp.close()
+        try:
+            _, out, _, files = self.check(
+                ['--top-level-dir', temp_dir, '--write-full-results-to',
+                 'full_results.json', '-X', test_exp.name, '-x', 'foo'],
+                ret=0, err='', files={})
+            self.assertIn('test_dir.failing.FailingTests.test_fail failed', out)
+            results = json.loads(files['full_results.json'])
+            self.assertEqual(
+                ['test_dir/test_expectations/test_expectations.txt'],
+                results['metadata']['expectations_files'])
+        finally:
+            shutil.rmtree(temp_dir)
 
     def test_implement_test_name_prefix_exclusion_in_finished_test_output(self):
         files = PASS_TEST_FILES
