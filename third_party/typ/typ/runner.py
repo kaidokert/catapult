@@ -218,8 +218,15 @@ class Runner(object):
             if self.args.tags:
                 self.metadata['tags'] = self.args.tags
             if self.args.expectations_files:
+                # use the shortest relative path to top level directory
+                # for expectations files paths
+                search_dirs =  self.top_level_dirs + [os.getcwd()]
                 self.metadata['expectations_files'] = [
-                    os.path.basename(p) for p in self.args.expectations_files]
+                        sorted(
+                            [os.path.relpath(p, top_dir)
+                             for top_dir in search_dirs],
+                             key=lambda rp: len(rp))[0]
+                        for p in self.args.expectations_files]
             if self.args.list_only:
                 self.print_('\n'.join(all_tests))
             else:
