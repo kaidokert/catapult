@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "edddde72_be117243",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-23T12:50:20Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m still having a bit of trouble to follow up.\n\nThis means that the Differences method wasn\u0027t being tested, and all these new checks above would have failed without the fix?",
+      "revId": "27be1bfb85f6806540fb971606098f86978f7a5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
