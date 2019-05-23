@@ -322,7 +322,7 @@ export default class ChromeperfApp extends ElementBase {
           </button>
 
           <a class="drawerbutton"
-              href="https://github.com/catapult-project/catapult/tree/master/dashboard"
+              href="https://github.com/catapult-project/catapult/tree/master/dashboard/docs/user-guide.md"
               target="_blank">
             <iron-icon icon="cp:help"></iron-icon>
             <span class="nav_button_label">Documentation</span>
