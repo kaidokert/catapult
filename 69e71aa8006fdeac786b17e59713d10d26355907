@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed55acde_357555dd",
+        "filename": "dashboard/docs/user-guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-05-23T13:45:35Z",
+      "side": 1,
+      "message": "I think this covers the most critical information for users who need to sheriff.\n\nLonger term, it would be great if this also covered the reports and graphs that can be added. Not necessary for this CL.",
+      "revId": "69e71aa8006fdeac786b17e59713d10d26355907",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
