@@ -16,6 +16,24 @@
       "revId": "27be1bfb85f6806540fb971606098f86978f7a5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71546425_b02c70cf",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T16:01:35Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "edddde72_be117243",
+      "revId": "27be1bfb85f6806540fb971606098f86978f7a5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
