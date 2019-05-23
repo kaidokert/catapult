@@ -87,6 +87,30 @@
       "revId": "8f069d4f89411428d11893e471edf126451c4bc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c8579f8_e347940a",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-23T13:59:42Z",
+      "side": 1,
+      "message": "Note this is for the chart_json format only; histograms don\u0027t use this path. Looking at /add_point.py [1] it seems like the chart_json importer still relies on the \u0027outer\u0027 keys, and does not read \u0027benchmark_metadata\u0027 at all. In fact I could not find any code reading that \u0027benchmark_metadata\u0027 key.\n\nadd_point also claims that the json format is defined in go/telemetry-json and that one itself points to https://github.com/catapult-project/catapult/blob/master/dashboard/docs/data-format.md as the \"current\" definition - the format indeed says nothing about a \u0027benchmark_metadata\u0027 key.\n\nTo play it safe I\u0027m going to land this as-is; and then do some cleanup work on a follow up CL to both remove the \u0027benchmark_metadata\u0027 key and update the docs.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/add_point.py?rcl\u003da021ed98634297a4e0c0b904eecf2f00b5e1355e\u0026l\u003d235",
+      "parentUuid": "1a782683_7aa9fab9",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 56
+      },
+      "revId": "8f069d4f89411428d11893e471edf126451c4bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
