@@ -63,6 +63,30 @@
       "revId": "8f069d4f89411428d11893e471edf126451c4bc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a782683_7aa9fab9",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-05-23T13:21:53Z",
+      "side": 1,
+      "message": "I\u0027m really sorry, I don\u0027t remember the context.\n\nI\u0027m pretty sure that these are only used for histogramset json, though. If you can remove them and get json the dashboard can process, I think you\u0027re good to go.",
+      "parentUuid": "188ca837_2256b17f",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 56
+      },
+      "revId": "8f069d4f89411428d11893e471edf126451c4bc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
