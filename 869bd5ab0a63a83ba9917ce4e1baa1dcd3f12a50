@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41646908_e3bf37ee",
+        "filename": "web_page_replay_go/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-23T15:16:21Z",
+      "side": 1,
+      "message": "Yiming is also out, so you could remove him in this changelist or someone else can do it instead.",
+      "revId": "869bd5ab0a63a83ba9917ce4e1baa1dcd3f12a50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
