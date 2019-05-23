@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3d81001_cf8edea8",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-23T20:58:37Z",
+      "side": 1,
+      "message": "not used",
+      "revId": "45fd1f028bc8c30c87389ea2d291017768245705",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f795524d_9078d710",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-23T20:58:37Z",
+      "side": 1,
+      "message": "nit: consider inlining",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "45fd1f028bc8c30c87389ea2d291017768245705",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5348f0c_4fd72982",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-05-23T20:58:37Z",
+      "side": 1,
+      "message": "nit: consider inlining",
+      "range": {
+        "startLine": 187,
+        "startChar": 4,
+        "endLine": 187,
+        "endChar": 19
+      },
+      "revId": "45fd1f028bc8c30c87389ea2d291017768245705",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
