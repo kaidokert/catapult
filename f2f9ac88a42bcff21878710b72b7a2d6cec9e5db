@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dd24512c_6a402d86",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T04:53:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9618005a_bddec265",
+      "range": {
+        "startLine": 35,
+        "startChar": 65,
+        "endLine": 35,
+        "endChar": 72
+      },
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad6839f0_bb5d0c4a",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 8
@@ -39,6 +63,24 @@
       "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07161d0a_428e7c65",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T04:53:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad6839f0_bb5d0c4a",
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "c6636902_461941d2",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T04:53:53Z",
+      "side": 1,
+      "message": "Yes, because the context manager closes the file. :)",
+      "parentUuid": "99c9f791_4619a063",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27fb64cb_5ed8f821",
         "filename": "dashboard/dashboard/sheriff_config/tests/sheriff_config_test.py",
         "patchSetId": 8
@@ -85,6 +151,30 @@
       "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22683233_f37779c5",
+        "filename": "dashboard/dashboard/sheriff_config/tests/sheriff_config_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T04:53:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27fb64cb_5ed8f821",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "bf4d0de7_1a588857",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T04:53:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ef27cde_ed335961",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91f378b8_a0e794fe",
         "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
         "patchSetId": 8
@@ -122,6 +236,24 @@
       "writtenOn": "2019-05-23T01:36:05Z",
       "side": 1,
       "message": "I don\u0027t understand the _MatchProject*  helpers.  Or rather, it\u0027s harder than it ought to be to understand them.\n\nMy limited familiarity with this system doesn\u0027t help.  Is POSTing to /subscriptions/match here a read-only operation, or is this acting on the system?  I.e. are these helpers mixing actions on the system under test with assertions, or is this intended to be essentially an assertion helper?  Also, some of the logic is conditional, although on closer reading it appears to be just assertions that are conditional?\n\nA more explicit name than _MatchProject1 (perhaps starting with the word “assert” if it is essentially a flavour of assertion) and renaming the `code` param to `expected_code` might sufficiently mitigate these issues?\n\nBut at the moment the cognitive load to read a test and jump back to the helper definition to understand the meaning then jump back to the test to check the code param then jump back to the definition to trace the logic that\u0027s conditional on that param is a bit much!  And then jumping over to the sample configs test data files and comparing the values there…\n\nAnother question I have trying to understand the tests using these helpers: Is “Project1” short-hand for “Project numbered 1” or “Set of Projects numbered 1” or “Project Configuration State numbered 1”?",
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6323f2d5_1c8e30db",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-23T04:53:53Z",
+      "side": 1,
+      "message": "Yeah, I went back and forth on this one. The repetition is a problem, making the test harder to read when I inlined all the code. Even if I move out the dict\u0027s, the repetition makes it really hard to see what it\u0027s trying to do (at least to my eyes).\n\nI\u0027ve renamed it AssertProjectConfigSetNHolds(...) to make it look like it\u0027s encapsulating a set of assertions.\n\nWhat\u0027s happening here, is that we\u0027re isolating the POST to /subscriptions/match to ensure that the currently live configuration yields the information we\u0027re looking for (or the error we\u0027re expecting). It\u0027s interacting with the \u0027app\u0027 which is the HTTP routing and underlying logic, making calls to the datastore. The GET to /configs/update does the \"poll\" via HTTP to the luci-config service (which we\u0027re mocking for now) which is meant to persist data in datastore.\n\nThis is as end-to-end of a test we can make, hitting both the storage and retrieval of the data.\n\nDoes this help?",
+      "parentUuid": "91f378b8_a0e794fe",
       "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
