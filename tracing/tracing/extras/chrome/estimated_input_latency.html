@@ -21,6 +21,14 @@ tr.exportTo('tr.e.chrome', function() {
       tr.b.getCategoryParts(event.category).includes(category);
   }
 
+  const assert = (assertion, text) => {
+    if (!assertion) {
+      console.assert(false, text);
+      debugger;
+      throw Error(text);
+    }
+  }
+
   function getNavStartTimestamps(rendererHelper) {
     const navStartTimestamps = [];
     for (const e of rendererHelper.mainThread.sliceGroup.childEvents()) {
@@ -355,7 +363,155 @@ tr.exportTo('tr.e.chrome', function() {
     return maxEQT;
   }
 
+  /* ***********************
+   * EFID code starts here
+   * ***********************
+   */
+
+  // Titles for top level tasks in the scheduler. Any input event queued during
+  // a top level task cannot be handled until the end of that task.
+  const SCHEDULER_TOP_LEVEL_TASK_TITLE = 'ThreadControllerImpl::RunTask';
+  const TOP_LEVEL_TASK_TITLES = [
+    SCHEDULER_TOP_LEVEL_TASK_TITLE,
+    'ThreadControllerImpl::DoWork',
+    'TaskQueueManager::ProcessTaskFromWorkQueue'
+  ];
+
+  // SEE https://docs.google.com/document/d/1w61RapIN6OAQhIXTh2O6D57NZYiQhiF-o0AmbyK2B9s/edit
+  // Approximate the curve by sampling every 1ms
+  const INTEGRAL_ESTIMATION_INTERVAL = 1;
+  // Model the probability of user input at a given time with a
+  // log-normal distribution fit to UMA data.
+  const INPUT_DISTRIBUTION = tr.b.math.Statistics.LogNormalDistribution
+        .fromMedianAndDiminishingReturns(3412, 160);
+
+
+  function convertTasksToInterpolatedDelays(tasks, interval) {
+    const delays = [];
+    for (const task of tasks) {
+      for (let t = task.start; t <= task.end; t += interval) {
+        delays.push({start: t, duration: task.end - t,
+          taskIndex: task.taskIndex});
+      }
+      delays.push({start: task.end, duration: 0});
+    }
+    return delays;
+  }
+  /**
+   * Extracts tasks for EFID computation from the given renderer.
+   * A task is a pair of {start, end} times.
+   */
+  function getTasks(rendererHelper) {
+    const tasks = [];
+    for (const slice of
+         tr.e.chrome.EventFinderUtils.findToplevelSchedulerTasks(rendererHelper.mainThread)) {
+      if (slice.duration > 0) {
+        tasks.push({
+          start: slice.start,
+          end: slice.start + slice.duration,
+          duration: slice.duration,
+        });
+      }
+    }
+    return tasks;
+  }
+
+  /**
+   * Shifts the time of tasks to start from |newZeroTime|.
+   * If task start or end is before newZeroTime, it is clamped at 0,
+   * so task durations may change. If the task is entirely before
+   * newZeroTime, it is dropped. Tasks also have a new taskIndex
+   * field for convenience.
+   */
+  function shiftTaskTimeOrigin(tasks, newZeroTime) {
+    return tasks
+          .filter(task => task.end > newZeroTime)
+          .map((task, taskIndex) => {
+            return {
+              taskIndex,
+              start: Math.max(task.start - newZeroTime, 0),
+              end: task.end - newZeroTime,
+              duration: task.end - Math.max(task.start, newZeroTime),
+            };
+          });
+  }
+
+  function computeExpectedFIDFromTasks(tasks, fcpEvent) {
+    const tasksWithFCPTimeOrigin = shiftTaskTimeOrigin(tasks, fcpEvent.start);
+    const inputDelays = convertTasksToInterpolatedDelays(
+        tasksWithFCPTimeOrigin, INTEGRAL_ESTIMATION_INTERVAL);
+    const probabilityByTaskIndex = new Map();
+    let eFID = 0;
+    for (let i = 0; i < inputDelays.length; i++) {
+      const currentTime = inputDelays[i].start;
+      const nextTime = i === inputDelays.length - 1 ?
+          1e10 : inputDelays[i + 1].start;
+      const probability = INPUT_DISTRIBUTION.computePercentile(nextTime) -
+          INPUT_DISTRIBUTION.computePercentile(currentTime);
+      const contribution = probability * inputDelays[i].duration;
+      probabilityByTaskIndex.set(inputDelays[i].taskIndex,
+          probabilityByTaskIndex.get(inputDelays[i].taskIndex) || 0 +
+          probability);
+      eFID += contribution;
+    }
+    const top5Tasks = Array.from(probabilityByTaskIndex.entries())
+        .map(([taskIndex, probability]) => Object.assign(
+            {probability}, tasksWithFCPTimeOrigin[taskIndex]))
+        .sort((a, b) => b.probability * b.duration -
+            a.probability * a.duration)
+        .slice(0, 5);
+    return {eFID, top5Tasks};
+  }
+
+  function computeExpectedFID(rendererHelper, fcpEvent) {
+    if (!fcpEvent) return undefined;
+    const tasks = getTasks(rendererHelper);
+    return computeExpectedFIDFromTasks(tasks, fcpEvent);
+  }
+
+  /**
+   * Let's say fid_threshold_ms is 50. If the whole task is [400, 600],
+   * high FID range is [400, 550], because if a user input happens
+   * there FID will be > 50ms.
+   */
+  function computeHighFidRanges(tasks, fid_threshold_ms) {
+    const output = [];
+    for (const task of tasks) {
+      if (task.start < 0 || task.end < 0 || task.duration < 0) {
+        // Sanity check to make sure there is no time origin shift bug.
+        throw Error("Timestamp or duration cannot be negative.");
+      }
+      if ((task.end - task.start) < fid_threshold_ms) continue;
+      const end = task.end - fid_threshold_ms;
+      output.push(tr.b.math.Range.fromExplicitRange(task.start, end));
+    }
+    return output;
+  }
+
+  function computeProbabilityOfHighFidFromTasks(tasks,
+                                               lowerBound, fid_threshold_ms) {
+    const timeShiftedTasks = shiftTaskTimeOrigin(tasks, lowerBound);
+    const highRanges = computeHighFidRanges(timeShiftedTasks, fid_threshold_ms);
+
+    // Probability of high FID is the probability of first input landing
+    // occurring during the high FID ranges.
+    let probability = 0;
+    for (const range of highRanges) {
+      const prob_first_input_during_range =
+            (INPUT_DISTRIBUTION.computePercentile(range.max) -
+             INPUT_DISTRIBUTION.computePercentile(range.min));
+      probability += prob_first_input_during_range;
+    }
+
+    assert(probability <= 1, "Probability cannot be bigger than 1");
+    return probability;
+  }
+
   return {
+    computeExpectedFIDFromTasks,
+    computeExpectedFID,
+    computeHighFidRanges,
+    computeProbabilityOfHighFidFromTasks,
     getPostInteractiveTaskWindows,
     getNavStartTimestamps,
     getInteractiveTimestamps,

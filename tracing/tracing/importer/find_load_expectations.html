@@ -8,6 +8,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/extras/chrome/event_finder_utils.html">
 <link rel="import" href="/tracing/extras/chrome/time_to_interactive.html">
 <link rel="import" href="/tracing/model/user_model/load_expectation.html">
+<link rel="import" href="/tracing/base/math/range.html">
 
 <script>
 'use strict';
@@ -21,6 +22,68 @@ tr.exportTo('tr.importer', function() {
     '',
     'about:blank',
   ];
+
+  const simple = value => ({value, diagnostics: {}});
+
+  const closeTo = (a, b, epsilon) => (Math.abs(a-b) < epsilon);
+
+  const assert = (assertion, text) => {
+    if (!assertion) {
+      console.assert(false, text);
+      debugger;
+      throw Error(text);
+    }
+  }
+
+  // Params: (ranges: Range[], clipWindow: Range)
+  // @returns Range[]
+  // Drops 0 duration ranges, so don't pass instant events into this.
+  function clipRanges(ranges, clipWindow) {
+    return ranges.map(r => r.findIntersection(clipWindow))
+      .filter(r => r.duration > 0);
+  }
+
+  // function getJankZoneFromTasks(tasks) {
+
+  // }
+
+  // Params: mainThreadTasks: {start, end}[], clipWindow: Range, jankZonePower: number
+  // @returns number
+  function computeJankZoneSum(mainThreadTasks, clipWindow, jankZonePower) {
+    const jankZones = [];
+    for (const task of mainThreadTasks) {
+      if (task.duration < 50) continue;
+      jankZones.push(tr.b.math.Range.fromExplicitRange(task.start, task.end - 50));
+    }
+    const clippedJankZones = clipRanges(jankZones, clipWindow);
+
+    let sum = 0;
+    for (const range of clippedJankZones) {
+      sum += Math.pow(range.duration, jankZonePower);
+    }
+
+    return sum;
+  }
+
+  /**
+   * @param  {!tr.model.Process} process
+   * @param  {!tr.b.math.Range} range
+   * @return {Array.<tr.model.Event>} An array of network events of a process
+   * and that are intersecting a range.
+   */
+  function getNetworkEventsInRange(process, range) {
+    const networkEvents = [];
+    for (const thread of Object.values(process.threads)) {
+      const threadHelper = new tr.model.helpers.ChromeThreadHelper(thread);
+      const events = threadHelper.getNetworkEvents();
+      for (const event of events) {
+        if (range.intersectsExplicitRangeInclusive(event.start, event.end)) {
+          networkEvents.push(event);
+        }
+      }
+    }
+    return networkEvents;
+  }
 
   function findFrameLoaderSnapshotAt(rendererHelper, frameIdRef, ts) {
     const objects = rendererHelper.process.objects;
@@ -79,13 +142,41 @@ tr.exportTo('tr.importer', function() {
    *           firstCpuIdleTime: {number}|undefined}
    */
   function computeInteractivityMetricSample_(rendererHelper, navigationStart,
-      fmpEvent, domContentLoadedEndEvent, searchWindowEnd) {
-    // Cannot determine TTI if DomContentLoadedEnd was never reached or if
-    // there is no corresponding fmpEvent.
-    if (domContentLoadedEndEvent === undefined || fmpEvent === undefined) {
-      return {interactiveTime: undefined, firstCpuIdleTime: undefined};
-    }
+      fmpEvent, domContentLoadedEndEvent, searchWindowEnd, fcpEvent) {
+    const xpMetrics = new Map();
+    let reachedTTI = false;
+    const addMetric = (name, sample) => {
+      assert(!xpMetrics.has(name));
+      xpMetrics.set(name, sample);
+    };
+    const getMetricSample = name => {
+      const sample = xpMetrics.get(name);
+      assert(sample !== undefined, `Metric ${name} was never added`);
+      return sample;
+    };
+    const getMetricValue = name => {
+      return getMetricSample(name).value;
+    };
 
+    const navigationStartTime = navigationStart.start;
+    const resourceLoadEvents =
+          tr.e.chrome.EventFinderUtils.getNetworkEventsInRange(
+            rendererHelper.process,
+            tr.b.math.Range.fromExplicitRange(navigationStart.start,
+                                              searchWindowEnd));
+    // Cannot determine TTI if DomContentLoadedEnd was never reached or if
+    // there is no corresponding fmp/fcpEvent, or if there are no network events
+    // in the trace.
+    if (domContentLoadedEndEvent === undefined || fmpEvent === undefined
+        || fcpEvent === undefined
+        || resourceLoadEvents.length === 0) {
+      return {
+        interactiveTime: undefined,
+        firstCpuIdleTime: undefined,
+        xpData: {reachedTTI, xpMetrics},
+      };
+    }
+    const firstContentfulPaintTime = fcpEvent.start;
     const firstMeaningfulPaintTime = fmpEvent.start;
     const mainThreadTasks =
         tr.e.chrome.EventFinderUtils.findToplevelSchedulerTasks(
@@ -97,11 +188,6 @@ tr.exportTo('tr.importer', function() {
         task => task.range.intersectsExplicitRangeInclusive(
             firstMeaningfulPaintTime, searchWindowEnd));
 
-    const resourceLoadEvents =
-        tr.e.chrome.EventFinderUtils.getNetworkEventsInRange(
-            rendererHelper.process,
-            tr.b.math.Range.fromExplicitRange(navigationStart.start,
-                searchWindowEnd));
 
     const firstCpuIdleTime =
         tr.e.chrome.findFirstCpuIdleTime(
@@ -116,7 +202,218 @@ tr.exportTo('tr.importer', function() {
           domContentLoadedEndEvent.start, longTasksInWindow,
           resourceLoadEvents) : undefined;
 
-    return {interactiveTime, firstCpuIdleTime};
+    // Experimental
+    try {
+      // Only keeps events that intersect with the [start, end] window.
+      const filterToWindow = (tasks, [start, end]) => tasks.filter(
+        task => tr.b.math.Range.fromExplicitRange(task.start, task.start + task.duration)
+          .intersectsExplicitRangeInclusive(start, end));
+
+      const filterToSearchWindow = longTasks =>
+            filterToWindow(longTasks, [firstMeaningfulPaintTime, searchWindowEnd]);
+
+      const tasksLongerThan = threshold =>
+            mainThreadTasks.filter(task => task.duration >= threshold);
+      const pickLongestTask = tasks => {
+        let longest = null;
+        let maxDur = 0;
+        for (const task of tasks) {
+          if (task.duration > maxDur) {
+            maxDur = task.duration;
+            longest = task;
+          }
+        }
+        return longest;
+      }
+
+      const navLongTasks = filterToWindow(tasksLongerThan(LONG_TASK_THRESHOLD_MS),
+                                          [navigationStartTime, searchWindowEnd]);
+
+      const long_task_thresholds = [50, 100, 200];
+      for (const threshold of long_task_thresholds) {
+        const tasksConsidered = filterToSearchWindow(tasksLongerThan(threshold));
+        const intTime = tr.e.chrome.findInteractiveTime(
+          firstContentfulPaintTime, searchWindowEnd,
+          domContentLoadedEndEvent.start,
+          tasksConsidered,
+          resourceLoadEvents) || 0;
+
+        // Mark TTI reached.
+        if (intTime !== 0 && threshold === 50) {
+          reachedTTI = true;
+        }
+
+        const tti = (intTime !== 0) ? intTime - navigationStart.start : null;
+        const fixOrigin = t => t - navigationStartTime;
+        addMetric(
+          `TTI-${threshold}`, {
+            value: (intTime !== 0) ? intTime - navigationStart.start : null,
+            diagnostics: {
+              navigationStart: navigationStartTime,
+              interactiveTime: intTime,
+              pid: rendererHelper.process.pid,
+              longTasks: navLongTasks.map(t => ({
+                start: fixOrigin(t.start),
+                end: fixOrigin(t.end),
+                dur: t.duration})),
+            }
+          });
+
+        const fcpToTtiRange = [firstContentfulPaintTime,
+                               intTime !== 0 ? intTime : searchWindowEnd];
+
+        const longestTask = pickLongestTask(filterToWindow(
+          mainThreadTasks, fcpToTtiRange));
+        const longestTaskTs = longestTask ?
+              longestTask.start - navigationStart.start: null;
+        addMetric(`TTI-${threshold}-LongestTaskDuration`,
+                  simple(longestTask ? longestTask.duration : null));
+        addMetric(`TTI-${threshold}-LongestTaskTs`,
+                 simple(longestTaskTs))
+
+        const longTasksInFcpToTti =
+              filterToWindow(tasksConsidered, fcpToTtiRange)
+        const lastLongTask =
+              longTasksInFcpToTti[longTasksInFcpToTti.length - 1];
+        const lastLongTaskDuration = lastLongTask ?
+              lastLongTask.duration : null;
+        const lastLongTaskTs = lastLongTask ?
+              lastLongTask.start - navigationStart.start : null;
+        addMetric(`TTI-${threshold}-LastLongTaskDuration`,
+                  simple(lastLongTaskDuration));
+        addMetric(`TTI-${threshold}-LastLongTaskTs`,
+                  simple(lastLongTaskTs));
+      };
+
+      if (!reachedTTI) {
+        // No point continuing.
+        return {interactiveTime, firstCpuIdleTime,
+                xpData: {reachedTTI, xpMetrics}};
+      }
+
+      addMetric("DCL",
+        simple(domContentLoadedEndEvent.start - navigationStart.start));
+
+      const longestTaskInTrace = pickLongestTask(
+        filterToWindow(mainThreadTasks,
+                       [firstContentfulPaintTime, searchWindowEnd]));
+      const longestTaskInTraceDuration = longestTaskInTrace ?
+        longestTaskInTrace.duration : null;
+      const longestTaskInTraceTs = longestTaskInTrace ?
+            longestTaskInTrace.start - navigationStart.start : null;
+
+      addMetric('LongestTaskInTraceDuration',
+                    simple(longestTaskInTraceDuration));
+      addMetric('LongestTaskInTraceTs',
+                simple(longestTaskInTraceTs));
+
+
+      // TTI with FCP as lower bound. This is the definition used in lighthouse.
+      const lighthouseIntTime = getMetricSample('TTI-50').diagnostics.interactiveTime;
+
+      // Do not use hyphens in endpoint name.
+      // endpoints must be in order of events so we can have some easy
+      // correctness checks.
+      const endpoints = [
+        { name: 'navStart', time: navigationStartTime },
+        { name: 'FCP', time: firstContentfulPaintTime },
+        { name: 'Interactive', time: lighthouseIntTime },
+        // Technically this could also be navigation end, but we ensure only one navigation.
+        { name: 'TtiPlus10s', time: lighthouseIntTime + 10e3},
+      ];
+
+
+      // All tasks in this navigation.
+      const tasksInCurrentNavigation = filterToWindow(mainThreadTasks, [navigationStartTime, searchWindowEnd]);
+      // All long tasks in this navigation.
+      // TODO: Why does tasksLongerThan not take tasks as an argument?
+
+      // Reducer.
+      const sumLongTasksFn = clipWindow => (sum, task) => task.duration > 50 ?
+            sum + task.range.findExplicitIntersectionDuration(clipWindow[0], clipWindow[1])
+            : sum;
+
+
+      // Reducer
+      const sumArray = arr => arr.reduce((acc, x) => acc + x, 0);
+
+      const genMetricName = (endpoints, prefix, i, j) => `${prefix}-${endpoints[i].name}-${endpoints[j].name}`;
+
+      for (let i = 0; i < endpoints.length; i++) {
+        for (let j = i + 1; j < endpoints.length; j++) {
+          const clipWindow = [endpoints[i].time, endpoints[j].time];
+
+          // Get tasks intersecting with clipWindow. Does not clip tasks.
+          const tasksInWindow = filterToWindow(navLongTasks, clipWindow);
+
+          const longTasksSum = tasksInWindow.reduce(sumLongTasksFn(clipWindow), 0);
+          addMetric(
+            genMetricName(endpoints, 'SumOfLongTasks', i, j),
+            simple(longTasksSum));
+
+          const clipWindowRange =
+                tr.b.math.Range.fromExplicitRange(clipWindow[0], clipWindow[1]);
+
+          const jankZoneSumP1 = computeJankZoneSum(navLongTasks, clipWindowRange, 1);
+          addMetric(genMetricName(endpoints, 'SumOfQueuingTimeGT50_p1.0', i, j),
+                    simple(jankZoneSumP1));
+          const jankZoneSumP1p5 = computeJankZoneSum(navLongTasks, clipWindowRange, 1.5);
+          addMetric(genMetricName(endpoints, 'SumOfQueuingTimeGT50_p1.5', i, j),
+                    simple(jankZoneSumP1p5));
+          const jankZoneSumP2 = computeJankZoneSum(navLongTasks, clipWindowRange, 2.0);
+          addMetric(genMetricName(endpoints, 'SumOfQueuingTimeGT50_p2.0', i, j),
+                    simple(jankZoneSumP2));
+        }
+      }
+
+      const fid_thresholds_ms = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500];
+      for (const threshold_ms of fid_thresholds_ms) {
+        addMetric(
+          `ProbFidMoreThan-${threshold_ms}`,
+          simple(tr.e.chrome.computeProbabilityOfHighFidFromTasks(
+            tasksInCurrentNavigation, firstContentfulPaintTime, threshold_ms)),
+        );
+      }
+
+      /*************************************************
+       * Sanity checks.
+       *************************************************/
+
+      // Assert every interval adds up.
+      for (let i = 0; i < endpoints.length; i++) {
+        for (let j = i + 1; j < endpoints.length; j++) {
+          for (let k = i + 1; k < j - 1; k++) {
+            const metric = 'SumOfLongTasks';
+            const getName = (name, i, j) => genMetricName(endpoints, name, i, j);
+            assert(closeTo(
+              getMetricValue(getName(metric, i, j)),
+              getMetricValue(getName(metric, i, k)) +
+                getMetricValue(getName(metric, k, j)),
+              0.001
+            ));
+          }
+        }
+      }
+
+      {
+        // Assert that as the thresholds increase, the probability for high input
+        // decreases.
+        const sorted_fid_thresholds_ms = fid_thresholds_ms.sort((a, b) => a - b);
+        let curr = Infinity;
+        for (const t of sorted_fid_thresholds_ms) {
+          const next = getMetricValue(`ProbFidMoreThan-${t}`);
+          assert(next <= curr,
+                         "Probability of high FID should decrease as threshold increases.");
+          curr = next;
+        }
+      }
+
+      return {interactiveTime, firstCpuIdleTime,
+              xpData: {reachedTTI, xpMetrics}};
+    } catch (e) {
+      console.error(e);
+      debugger;
+    }
   }
 
   /* Constructs a loading metrics for the specified navigation start event and
@@ -138,7 +435,7 @@ tr.exportTo('tr.importer', function() {
    *     because new navigation has started or the trace has ended.
    * @param {string} url - URL of the current main frame document.
    * @param {number} frameId - fameId.
-   * @returns {{start: {number}, duration: {number},
+   * @retcollectMetricsFromLoadExpectationsurner}, duration: {number},
    *  fmpEvent: {tr.model.ThreadSlice}, navStart: {tr.model.ThreadSlice},
    *  dclEndTime: {tr.model.ThreadSlice}, firstCpuIdleTime: {number}|undefined,
    *  interactiveSample: {number}|undefined, url: {string}, frameId: {number}}}
@@ -165,21 +462,50 @@ tr.exportTo('tr.importer', function() {
         dclTimesInWindow[dclTimesInWindow.length - 1];
     }
 
-    const {interactiveTime, firstCpuIdleTime} =
-      computeInteractivityMetricSample_(
-          rendererHelper, navigationStart, fmpEvent,
-          domContentLoadedEndEvent, searchWindowEnd);
+    // EFID code.
+    // FROM https://chromium-review.googlesource.com/c/catapult/+/921483/3/tracing/tracing/importer/find_load_expectations.html#203
+    const frameToFCPEvents =
+          tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'firstContentfulPaint', 'loading');
+    const fcpEventsForFrame = frameToFCPEvents.get(frameId) || [];
+    // Reuse the dclSearchRange.
+    const fcpEventsInWindow =
+          dclSearchRange.filterArray(fcpEventsForFrame, event => event.start);
+    let fcpEvent = undefined;
+    if (fcpEventsInWindow.length !== 0) {
+      // There really shouldn't be more than one FCP event, but if there is,
+      // pick the last one.
+      fcpEvent = fcpEventsInWindow[fcpEventsInWindow.length - 1];
+    }
 
-    const duration = (interactiveTime === undefined) ?
-      searchWindowEnd - navigationStart.start :
-      interactiveTime - navigationStart.start;
+    // Experimental
+    try {
 
-    return new tr.model.um.LoadExpectation(
+      const expectedFIDData = tr.e.chrome.computeExpectedFID(
+        rendererHelper, fcpEvent);
+
+      const {interactiveTime, firstCpuIdleTime,
+             xpData} =
+            computeInteractivityMetricSample_(
+              rendererHelper, navigationStart, fmpEvent,
+              domContentLoadedEndEvent, searchWindowEnd, fcpEvent);
+
+      const duration = (interactiveTime === undefined) ?
+            searchWindowEnd - navigationStart.start :
+            interactiveTime - navigationStart.start;
+
+
+      return new tr.model.um.LoadExpectation(
         rendererHelper.modelHelper.model,
         tr.model.um.LOAD_SUBTYPE_NAMES.SUCCESSFUL, navigationStart.start,
         duration, rendererHelper.process, navigationStart, fmpEvent,
         domContentLoadedEndEvent, firstCpuIdleTime, interactiveTime, url,
-        frameId);
+        frameId, fcpEvent, expectedFIDData, xpData);
+    } catch (e) {
+      console.error(e);
+      debugger;
+    }
+
   }
 
   /**
@@ -301,6 +627,8 @@ tr.exportTo('tr.importer', function() {
 
   return {
     findLoadExpectations,
+    clipRanges,
+    computeJankZoneSum,
   };
 });
 </script>
