@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8af03815_d25fb1c8",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-05-24T15:04:43Z",
+      "side": 1,
+      "message": "Are we confident that there will always be only one evData that we care about for each frame? If yes, could you add that as a comment here? :)",
+      "revId": "aa7bdfc51c3489a620a3386fe7527f745c74db44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

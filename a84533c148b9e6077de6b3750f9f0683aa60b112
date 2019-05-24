@@ -34,6 +34,24 @@
       "revId": "a84533c148b9e6077de6b3750f9f0683aa60b112",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "305b7fe8_c627398b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 13
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-05-24T15:04:43Z",
+      "side": 1,
+      "message": "\"documentCumulativeLayoutShiftScore\" is fine! Looking around, general trend in the code is to avoid acronyms in histogram name. Cpu time metric histogram names are even longer than this, so this definitely won\u0027t be the longest histogram name.\n\nI\u0027m not actually sure where the description string shows up so I wouldn\u0027t rely on that.",
+      "parentUuid": "bc0c227b_26cb8ad3",
+      "revId": "a84533c148b9e6077de6b3750f9f0683aa60b112",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
