@@ -8,7 +8,7 @@ import '@chopsui/tsmon-client';
 import 'dashboard-metrics';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {LitElement} from 'lit-element';
 import {get} from '@polymer/polymer/lib/utils/path.js';
 import {plural} from './utils.js';
 
@@ -32,11 +32,11 @@ export const STORE = createSimpleStore({
 });
 
 /*
- * This base class mixes PolymerElement with Polymer-Redux and provides
+ * This base class mixes LitElement with Polymer-Redux and provides
  * utility functions to help data-bindings in elements perform minimal
  * computation without computed properties.
  */
-export class ElementBase extends PolymerElement {
+export class ElementBase extends LitElement {
   constructor() {
     super();
     this.debounceJobs_ = new Map();
@@ -51,7 +51,7 @@ export class ElementBase extends PolymerElement {
 
   stateChanged(rootState) {
     if (!this.statePath) return;
-    this.setProperties(get(rootState, this.statePath));
+    Object.assign(this, get(rootState, this.statePath));
   }
 
   disconnectedCallback() {
