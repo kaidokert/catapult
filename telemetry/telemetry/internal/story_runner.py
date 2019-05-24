@@ -263,7 +263,6 @@ def Run(test, story_set, finder_options, results, max_failures=None,
     pageset_repeat = finder_options.pageset_repeat
     for storyset_repeat_counter in xrange(pageset_repeat):
       for story in stories:
-        start_timestamp = time.time()
         if not state:
           # Construct shared state by using a copy of finder_options. Shared
           # state may update the finder_options. If we tear down the shared
@@ -323,7 +322,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             if state and state.platform:
               _CheckThermalThrottling(state.platform)
             results.DidRunPage(story)
-            story_run.SetDuration(time.time() - start_timestamp)
+            story_run.Finish()
           except Exception:  # pylint: disable=broad-except
             if not has_existing_exception:
               raise
