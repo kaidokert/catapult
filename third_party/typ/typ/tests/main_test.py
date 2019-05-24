@@ -15,7 +15,9 @@
 import io
 import json
 import os
+import shutil
 import sys
+import tempfile
 import textwrap
 
 from typ import main
@@ -1066,6 +1068,28 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(results['expected'],'SKIP')
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
+
+    def test_relative_paths_used_for_expectations_files_in_metadata(self):
+        test_expectations = (
+        '# tags: [ foo bar ]\n'
+        'crbug.com/12345 [ foo ] test_dir.failing_test.FailingTest.test_fail '
+        '[ Failure ]\n')
+        _, out, _, files = self.check(
+            ['--write-full-results-to', 'full_results.json',
+            '-X', 'test_dir/test_expectations/test_expectations.txt',
+            '-x', 'foo'],
+            ret=0, err='', files={
+                'test_dir/failing_test.py': FAIL_TEST_PY,
+                ('test_dir/test_expectations'
+                 '/test_expectations.txt'): test_expectations,
+                'test_dir/__init__.py': ''
+            })
+        self.assertIn(
+            ' test_dir.failing_test.FailingTest.test_fail failed', out)
+        results = json.loads(files['full_results.json'])
+        self.assertEqual(
+            ['test_dir/test_expectations/test_expectations.txt'],
+            results['metadata']['expectations_files'])
 
     def test_implement_test_name_prefix_exclusion_in_finished_test_output(self):
         files = PASS_TEST_FILES
