@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cef27e49_d6d352b7",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-05-24T20:32:31Z",
+      "side": 1,
+      "message": "This change is wrong (expected values aren\u0027t per-run, they are static across all runs); see also https://bugs.chromium.org/p/chromium/issues/detail?id\u003d754825#c21 .",
+      "revId": "65522d23bceb52ccbe3c52e5e517ba523addb340",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
