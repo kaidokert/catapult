@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "adaabdb3_b01639e0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-24T17:03:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f12ce04d_a8e43dd4",
+      "revId": "8c91c36db9adc59238e7f1d2937bf4b9192af5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13d19797_b91c48a8",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c403511f_33a9045e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-24T17:03:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13d19797_b91c48a8",
+      "revId": "8c91c36db9adc59238e7f1d2937bf4b9192af5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfac7f27_fde6e6b1",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2019-05-24T16:00:05Z",
       "side": 1,
       "message": "let\u0027s move these unit conversions to py_trace_event.",
+      "revId": "8c91c36db9adc59238e7f1d2937bf4b9192af5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4e877f7_72004ad8",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-24T17:03:50Z",
+      "side": 1,
+      "message": "Py_trace_event interface is now consistent (all timestamps are in microseconds) and corresponds to what is actually being written to protobuf. It\u0027s a telemetry quirk that it stores benchmark start in seconds and story start in milliseconds. I think it\u0027s better to keep it inside telemetry.\n\nPerhaps proper way to fix these inconsistencies is to store all values in microseconds from the very beginning. I can do it in a follow-up CL.",
+      "parentUuid": "bfac7f27_fde6e6b1",
       "revId": "8c91c36db9adc59238e7f1d2937bf4b9192af5bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
