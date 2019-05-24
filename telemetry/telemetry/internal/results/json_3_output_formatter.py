@@ -63,8 +63,7 @@ def ResultsAsDict(page_test_results, artifacts=None):
     if 'expected' not in test:
       test['expected'] = expected
     else:
-      if expected not in test['expected']:
-        test['expected'] += (' ' + expected)
+      test['expected'] += (' ' + expected)
 
     if 'is_unexpected' not in test:
       test['is_unexpected'] = status != expected
@@ -85,20 +84,6 @@ def ResultsAsDict(page_test_results, artifacts=None):
     # for details.
     if run.failed and 'GTEST_SHARD_INDEX' in os.environ:
       test['shard'] = int(os.environ['GTEST_SHARD_INDEX'])
-
-  # The following logic can interfere with calculating flakiness percentages.
-  # The logic does allow us to re-run tests without them automatically
-  # being marked as flaky by the flakiness dashboard and milo.
-  # Note that it does not change the total number of passes in
-  # num_failures_by_type
-  # crbug.com/754825
-  for _, stories in result_dict['tests'].iteritems():
-    for _, story_results in stories.iteritems():
-      deduped_results = set(story_results['actual'].split(' '))
-      if deduped_results == {'PASS'}:
-        story_results['actual'] = 'PASS'
-      elif deduped_results == {'SKIP'}:
-        story_results['actual'] = 'SKIP'
 
   result_dict['num_failures_by_type'] = dict(status_counter)
   return result_dict
