@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "19c26df9_a2b44147",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-05-24T03:48:21Z",
+      "side": 1,
+      "message": "So does file\u0027s destructor, which at least in CPython would also be run immediately.\n\nBut sure, this is more pedantically robust.  But I\u0027m not sure it makes any practical difference in this test code, hence the comment.\n\n(I guess you could make ReadFile(filename) -\u003e bytes helper, but that does seem like overkill.)",
+      "parentUuid": "c6636902_461941d2",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27fb64cb_5ed8f821",
         "filename": "dashboard/dashboard/sheriff_config/tests/sheriff_config_test.py",
         "patchSetId": 8
@@ -257,6 +281,24 @@
       "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "059d8613_94882f3a",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-05-24T03:48:21Z",
+      "side": 1,
+      "message": "Thanks, the renamings do help a lot.  I agree inlining would be worse here.\n\nI\u0027m still left wondering where project sets 1 and 2 are defined, but I guess that\u0027s in the sample config file.",
+      "parentUuid": "6323f2d5_1c8e30db",
+      "revId": "f2f9ac88a42bcff21878710b72b7a2d6cec9e5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
