@@ -31,6 +31,14 @@ tr.exportTo('tr.metrics.sh', function() {
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.e.chrome.EventFinderUtils;
 
+  const assert = (assertion, text) => {
+    if (!assertion) {
+      console.assert(false, text);
+      debugger;
+      throw Error(text);
+    }
+  }
+
   /**
    * @param {!Object.<string, Object>} breakdownTree
    * @return {tr.v.d.Breakdown} A breakdown with categories and the total time
@@ -60,6 +68,8 @@ tr.exportTo('tr.metrics.sh', function() {
 
   const LAYOUT_SHIFT_SCORE_BOUNDARIES = tr.v.HistogramBinBoundaries
       .createLinear(0, 50, 25);
+  const EFID_BOUNDARIES = tr.v.HistogramBinBoundaries
+        .createExponential(1, 2e3, 40);
 
   const SUMMARY_OPTIONS = {
     avg: true,
@@ -435,6 +445,35 @@ tr.exportTo('tr.metrics.sh', function() {
     return collectTimeToEvent(rendererHelper, lastCandidateEvents);
   }
 
+  function decorateEFIDSampleWithDiagnostics_(rendererHelper,
+                                              efid, navigationStartEvent, firstContentfulPaintTime, interactiveTime,
+                                              url) {
+    if (efid === undefined) return undefined;
+    const navigationStartTime = navigationStartEvent.start;
+    const tasks = efid.top5Tasks.map(task => {
+      return ({
+        url,
+        probability: task.probability,
+        start: task.start,
+        duration: task.duration,
+      });
+    });
+    return {
+      value: efid.eFID,
+      diagnostics: tr.v.d.DiagnosticMap.fromObject({
+        'Navigation infos': new tr.v.d.GenericSet([{
+          url,
+          pid: rendererHelper.pid,
+          navigationStartTime,
+          firstContentfulPaintTime,
+          interactiveTime,
+          expectedFirstInputDelay: efid.eFID,
+        }]),
+        'Top Tasks': new tr.v.d.GenericSet(tasks),
+      }),
+    };
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -486,6 +525,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const efidSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -515,6 +555,14 @@ tr.exportTo('tr.metrics.sh', function() {
             expectation.fmpEvent.start,
             expectation.domContentLoadedEndEvent.start, expectation.url));
       }
+      if (expectation.expectedFirstInputDelay !== undefined) {
+        efidSamples.push(decorateEFIDSampleWithDiagnostics_(
+          rendererHelper, expectation.expectedFirstInputDelay,
+          expectation.navigationStart,
+          expectation.fcpEvent.start,
+          expectation.timeToInteractive,
+          expectation.url));
+      }
     }
 
     return {
@@ -522,6 +570,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      efidSamples,
     };
   }
 
@@ -529,6 +578,7 @@ tr.exportTo('tr.metrics.sh', function() {
     for (const sample of samples) {
       histogram.addSample(sample.value, sample.diagnostics);
 
+      continue;  // Disable adding FCP breakdowns as histograms.
       // Only add breakdown histograms for FCP.
       // http://crbug.com/771610
       if (histogram.name !== 'timeToFirstContentfulPaint') continue;
@@ -562,6 +612,51 @@ tr.exportTo('tr.metrics.sh', function() {
               Object.entries(breakdown.events)),
         });
       }
+    }
+  }
+
+  function wrapDiagnostics(sample) {
+    const newDiagnostics = {};
+    for (const [k, v] of Object.entries(sample.diagnostics)) {
+      newDiagnostics[k] = new tr.v.d.GenericSet([v]);
+    }
+    return {
+      value: sample.value,
+      // diagnostics: new tr.v.d.GenericSet([sample.diagnostics]),
+      diagnostics: tr.v.d.DiagnosticMap.fromObject(newDiagnostics),
+    };
+  }
+
+  function addExperimentalMetrics(model, histograms) {
+    const loadExpectations = model.userModel.expectations.filter(
+      exp => exp instanceof tr.model.um.LoadExpectation &&
+        !tr.e.chrome.CHROME_INTERNAL_URLS.includes(exp.url) &&
+        exp.xpData && exp.xpData.reachedTTI
+    );
+
+    histograms.createHistogram("navigationsReachedTTI",
+                              timeDurationInMs_smallerIsBetter,
+                              loadExpectations.length);
+
+    if (loadExpectations.length === 0) return;
+
+    // Pick the expectation with largest TTI to report.
+    // Decide later if it's worth looking at if navigationsReachedTTI > 1.
+    let expToReport = null;
+    let largestTTI = -Infinity;
+    for (const exp of loadExpectations) {
+      assert(exp.xpData.xpMetrics.has('TTI-50'));
+      const tti = exp.xpData.xpMetrics.get('TTI-50').value;
+      if (tti > largestTTI) {
+        largestTTI = tti;
+        expToReport = exp;
+      }
+    }
+
+    for (const [name, sample] of expToReport.xpData.xpMetrics.entries()) {
+      histograms.createHistogram(
+        name, timeDurationInMs_smallerIsBetter,
+        wrapDiagnostics(sample));
     }
   }
 
@@ -615,6 +710,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to First CPU Idle',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const expectedFirstInputDelayHistogram = histograms.createHistogram(
+      'expectedFirstInputDelay', timeDurationInMs_smallerIsBetter, [], {
+        binBoundaries: EFID_BOUNDARIES,
+        description: 'Expected First Input Delay',
+        summaryOptions: SUMMARY_OPTIONS,
+      });
     const aboveTheFoldLoadedToVisibleHistogram = histograms.createHistogram(
         'aboveTheFoldLoadedToVisible', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: TIME_TO_INTERACTIVE_BOUNDARIES,
@@ -704,6 +805,16 @@ tr.exportTo('tr.metrics.sh', function() {
         samplesSet.firstCpuIdleSamples,
         timeToFirstCpuIdleHistogram,
         histograms);
+    addSamplesToHistogram(
+      samplesSet.efidSamples,
+      expectedFirstInputDelayHistogram,
+      histograms);
+
+    try {
+      addExperimentalMetrics(model, histograms);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   tr.metrics.MetricRegistry.register(loadingMetric);
