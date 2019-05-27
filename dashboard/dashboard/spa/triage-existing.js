@@ -132,13 +132,9 @@ export default class TriageExisting extends ElementBase {
 
         <cp-switch
             checked="[[onlyIntersectingBugs]]"
+            title="[[getIntersectingTooltip_(onlyIntersectingBugs)]]"
             on-change="onToggleOnlyIntersectingBugs_">
-          <template is="dom-if" if="[[onlyIntersectingBugs]]">
-            Intersecting Bugs Only
-          </template>
-          <template is="dom-if" if="[[!onlyIntersectingBugs]]">
-            All Bugs
-          </template>
+          Intersecting Bugs Only
         </cp-switch>
       </div>
 
@@ -225,6 +221,12 @@ export default class TriageExisting extends ElementBase {
       return;
     }
     await STORE.dispatch(UPDATE(this.statePath, {isOpen: false}));
+  }
+
+  getIntersectingTooltip_(onlyIntersectingBugs) {
+    return onlyIntersectingBugs ? `Now only showing intersecting bugs. Click to
+    switch to show all bugs.` : `Now showing all bugs. Click to switch to only
+    show intersecting bugs.`;
   }
 
   async onToggleOnlyIntersectingBugs_(event) {

@@ -253,12 +253,7 @@ export default class AlertsControls extends ElementBase {
             title="[[getImprovementsTooltip_(showingImprovements)]]"
             checked$="[[showingImprovements]]"
             on-change="onToggleImprovements_">
-          <template is="dom-if" if="[[showingImprovements]]">
-            Regressions and Improvements
-          </template>
-          <template is="dom-if" if="[[!showingImprovements]]">
-            Regressions Only
-          </template>
+          Improvements
         </cp-switch>
 
         <cp-switch
@@ -267,12 +262,7 @@ export default class AlertsControls extends ElementBase {
             title="[[getTriagedTooltip_(showingTriaged)]]"
             checked$="[[showingTriaged]]"
             on-change="onToggleTriaged_">
-          <template is="dom-if" if="[[showingTriaged]]">
-            New and Triaged
-          </template>
-          <template is="dom-if" if="[[!showingTriaged]]">
-            New Only
-          </template>
+          Triaged
         </cp-switch>
       </iron-collapse>
 

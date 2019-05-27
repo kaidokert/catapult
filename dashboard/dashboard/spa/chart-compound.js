@@ -214,33 +214,21 @@ export default class ChartCompound extends ElementBase {
                 <b>Options</b>
                 <cp-switch
                     checked="[[isLinked]]"
+                    title="[[getLinkedTooltip_(isLinked)]]"
                     on-change="onToggleLinked_">
-                  <template is="dom-if" if="[[isLinked]]">
-                    Linked to other charts
-                  </template>
-                  <template is="dom-if" if="[[!isLinked]]">
-                    Unlinked from other charts
-                  </template>
+                  Linked to other charts
                 </cp-switch>
                 <cp-switch
                     checked="[[zeroYAxis]]"
+                    title="[[getZeroYAxisTooltip_(zeroYAxis)]]"
                     on-change="onToggleZeroYAxis_">
-                  <template is="dom-if" if="[[zeroYAxis]]">
-                    Zero Y-Axis
-                  </template>
-                  <template is="dom-if" if="[[!zeroYAxis]]">
-                    Floating Y-Axis
-                  </template>
+                  Zero Y-Axis
                 </cp-switch>
                 <cp-switch
                     checked="[[fixedXAxis]]"
+                    title="[[getFixedXAxisTooltip_(fixedXAxis)]]"
                     on-change="onToggleFixedXAxis_">
-                  <template is="dom-if" if="[[fixedXAxis]]">
-                    Fixed X-Axis
-                  </template>
-                  <template is="dom-if" if="[[!fixedXAxis]]">
-                    True X-Axis
-                  </template>
+                  Fixed X-Axis
                 </cp-switch>
               </div>
               <div class="column">
@@ -552,6 +540,24 @@ export default class ChartCompound extends ElementBase {
       type: ChartCompound.reducers.brushMinimap.name,
       statePath: this.statePath,
     });
+  }
+
+  getLinkedTooltip_(isLinked) {
+    return isLinked ? `Now synchronizing options with other linked charts. Click
+    to switch to unlink.` : `Now unlinked from other charts. Click to switch to
+    synchronizing options with other linked charts.`;
+  }
+
+  getZeroYAxisTooltip_(zeroYAxis) {
+    return zeroYAxis ? `Now zeroing y-axis. Click to switch to floating
+    y-axis.` : `Now floating y-axis. Click to switch to zero y-axis.`;
+  }
+
+  getFixedXAxisTooltip_(fixedXAxis) {
+    return fixedXAxis ? `Now fixing x-axis distance between points. Click to
+    switch to scale x-axis distance between points.` : `Now scaling x-axis
+    distance between points. Click to switch to fix a-xis distance between
+    points.`;
   }
 
   async onToggleLinked_(event) {
