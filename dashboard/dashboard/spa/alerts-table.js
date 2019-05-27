@@ -127,6 +127,11 @@ export default class AlertsTable extends ElementBase {
           border-color: var(--primary-color-light, lightblue);
           border-width: 8px;
         }
+
+        tr[triaged] {
+          background: repeating-linear-gradient(
+            45deg, transparent, transparent 1%, #eee 1%, #eee 2%);
+        }
       </style>
 
       <template is="dom-if" if="[[allTriaged_(alertGroups, showingTriaged)]]">
@@ -291,7 +296,7 @@ export default class AlertsTable extends ElementBase {
                   <template is="dom-if" if="[[shouldDisplayAlert_(
                       areAlertGroupsPlaceholders, showingTriaged, alertGroup,
                       alertIndex, alertGroup.triaged.isExpanded)]]">
-                    <tr on-click="onRowClick_">
+                    <tr on-click="onRowClick_" triaged$="[[alert.bugId]]">
 
                       <td>
                         <template is="dom-if"
