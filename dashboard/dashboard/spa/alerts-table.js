@@ -127,6 +127,16 @@ export default class AlertsTable extends ElementBase {
           border-color: var(--primary-color-light, lightblue);
           border-width: 8px;
         }
+
+        tr[triaged] {
+          background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            #eee 10px,
+            #eee 20px
+          );
+        }
       </style>
 
       <template is="dom-if" if="[[allTriaged_(alertGroups, showingTriaged)]]">
@@ -142,7 +152,7 @@ export default class AlertsTable extends ElementBase {
         <div id="scroll">
           <table is-placeholder$="[[areAlertGroupsPlaceholders]]">
             <thead>
-              <tr>
+              <tr triaged$="[[bugId]]">
                 <th>
                   <column-head
                       name="count"
