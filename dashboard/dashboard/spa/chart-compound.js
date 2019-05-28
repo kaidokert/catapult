@@ -8,7 +8,6 @@ import './cp-radio-group.js';
 import './cp-radio.js';
 import './cp-switch.js';
 import './error-set.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ChartTimeseries from './chart-timeseries.js';
 import DetailsTable from './details-table.js';
@@ -17,9 +16,8 @@ import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MAX_POINTS} from './timeseries-merger.js';
 import {MODE} from './layout-timeseries.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, setImmutable, BatchIterator} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, setImmutable, BatchIterator} from './utils.js';
 
 /**
   * ChartCompound synchronizes revision ranges and axis properties between a

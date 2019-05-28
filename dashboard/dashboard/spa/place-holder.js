@@ -4,9 +4,9 @@
 */
 'use strict';
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 
-class PlaceHolder extends PolymerElement {
+class PlaceHolder extends LitElement {
   static get is() { return 'place-holder'; }
 
   static get template() {

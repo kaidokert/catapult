@@ -3,9 +3,9 @@
 // found in the LICENSE file.
 'use strict';
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 
-export class ChopsHeader extends PolymerElement {
+export class ChopsHeader extends LitElement {
   static get is() { return 'chops-header'; }
 
   constructor() {

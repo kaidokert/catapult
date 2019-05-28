@@ -8,9 +8,8 @@ import './cp-input.js';
 import OptionGroup from './option-group.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, setImmutable} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, setImmutable} from './utils.js';
 
 export default class MenuInput extends ElementBase {
   static get is() { return 'menu-input'; }

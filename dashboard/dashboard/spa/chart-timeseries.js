@@ -5,20 +5,19 @@
 'use strict';
 
 import './place-holder.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import ChartBase from './chart-base.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE, layoutTimeseries} from './layout-timeseries.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, css} from 'lit-element';
 
 import {
   BatchIterator,
   CTRL_KEY_NAME,
   generateColors,
+  get,
   measureText,
 } from './utils.js';
 

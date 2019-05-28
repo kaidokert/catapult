@@ -6,14 +6,12 @@
 
 import './cp-loading.js';
 import './error-set.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import NudgeAlertRequest from './nudge-alert-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, afterRender} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, afterRender} from './utils.js';
 
 export default class NudgeAlert extends ElementBase {
   static get is() { return 'nudge-alert'; }

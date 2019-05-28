@@ -11,9 +11,8 @@ import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {simpleGUID} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, simpleGUID} from './utils.js';
 
 export default class ReportControls extends ElementBase {
   static get is() { return 'report-controls'; }

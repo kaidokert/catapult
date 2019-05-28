@@ -10,11 +10,10 @@ import './cp-radio-group.js';
 import './cp-radio.js';
 import './error-set.js';
 import './raised-button.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import NewPinpointRequest from './new-pinpoint-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, css} from 'lit-element';
 import {isElementChildOf, pinpointJob} from './utils.js';
 
 // Display a warning when bisecting large revision ranges.

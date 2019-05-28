@@ -4,10 +4,10 @@
 */
 'use strict';
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 import {afterRender} from './utils.js';
 
-export default class CpTabBar extends PolymerElement {
+export default class CpTabBar extends LitElement {
   static get is() { return 'cp-tab-bar'; }
 
   static get template() {

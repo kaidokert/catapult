@@ -4,11 +4,10 @@
 */
 'use strict';
 
-import '@polymer/polymer/lib/elements/dom-if.js';
 import OptionGroup from './option-group.js';
 import {ElementBase, STORE} from './element-base.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {get} from './utils.js';
+import {html, css} from 'lit-element';
 
 const DEFAULT_RECOMMENDATIONS = [
   'Chromium Perf Sheriff',

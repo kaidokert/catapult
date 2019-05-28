@@ -5,8 +5,6 @@
 'use strict';
 
 import './scalar-span.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import AlertDetail from './alert-detail.js';
 import BisectDialog from './bisect-dialog.js';
 import ChartTimeseries from './chart-timeseries.js';
@@ -14,9 +12,8 @@ import NudgeAlert from './nudge-alert.js';
 import {DetailsFetcher} from './details-fetcher.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
-import {breakWords, enumerate} from './utils.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {breakWords, enumerate, get} from './utils.js';
+import {html, css} from 'lit-element';
 
 // Sort hidden rows after rows with visible labels.
 const HIDE_ROW_PREFIX = String.fromCharCode('z'.charCodeAt(0) + 1).repeat(3);

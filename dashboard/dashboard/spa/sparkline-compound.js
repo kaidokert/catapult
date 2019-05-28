@@ -7,17 +7,14 @@
 import './cp-loading.js';
 import './cp-tab-bar.js';
 import './cp-tab.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import ChartTimeseries from './chart-timeseries.js';
 import OptionGroup from './option-group.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {ElementBase, STORE} from './element-base.js';
 import {MODE} from './layout-timeseries.js';
 import {UPDATE} from './simple-redux.js';
-import {breakWords} from './utils.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {breakWords, get} from './utils.js';
+import {html, css} from 'lit-element';
 
 export default class SparklineCompound extends ElementBase {
   static get is() { return 'sparkline-compound'; }
