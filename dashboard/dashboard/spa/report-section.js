@@ -6,8 +6,6 @@
 
 import './cp-dialog.js';
 import './cp-loading.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
@@ -15,11 +13,10 @@ import ReportRequest from './report-request.js';
 import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
-import {BatchIterator} from './utils.js';
+import {BatchIterator, get} from './utils.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, css} from 'lit-element';
 
 const DEBOUNCE_LOAD_MS = 200;
 
@@ -43,19 +40,22 @@ export default class ReportSection extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      #tables {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      report-template {
+        background-color: var(--background-color, white);
+        overflow: auto;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        #tables {
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-        }
-        report-template {
-          background-color: var(--background-color, white);
-          overflow: auto;
-        }
-      </style>
 
       <report-controls state-path="[[statePath]]">
       </report-controls>

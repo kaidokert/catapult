@@ -19,9 +19,8 @@ import sha from './sha.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {MODE} from './layout-timeseries.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {simpleGUID} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, simpleGUID} from './utils.js';
 
 export default class ChartSection extends ElementBase {
   static get is() { return 'chart-section'; }
@@ -98,55 +97,57 @@ export default class ChartSection extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      #controls {
+        align-items: center;
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      #controls_inner {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #parameters {
+        display: flex;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #toggle_chart_only,
+      #copy,
+      #close {
+        align-self: flex-start;
+        cursor: pointer;
+        flex-shrink: 0;
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
+      }
+
+      #chart_container {
+        display: flex;
+      }
+
+      chart-legend {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      #legend_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 311px;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        #controls {
-          align-items: center;
-          display: flex;
-          margin-bottom: 8px;
-        }
-
-        #controls_inner {
-          display: flex;
-          flex-direction: column;
-        }
-
-        #parameters {
-          display: flex;
-        }
-
-        #spacer {
-          flex-grow: 1;
-        }
-
-        #toggle_chart_only,
-        #copy,
-        #close {
-          align-self: flex-start;
-          cursor: pointer;
-          flex-shrink: 0;
-          height: var(--icon-size, 1em);
-          width: var(--icon-size, 1em);
-        }
-
-        #chart_container {
-          display: flex;
-        }
-
-        chart-legend {
-          overflow-y: auto;
-          overflow-x: hidden;
-        }
-
-        #legend_container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          max-height: 311px;
-        }
-      </style>
-
       <div id="controls">
         <div id="controls_inner">
           <iron-collapse id="parameters"
@@ -303,11 +304,11 @@ export default class ChartSection extends ElementBase {
     STORE.dispatch(CHAIN(
         {
           type: ChartTimeseries.reducers.mouseYTicks.name,
-          statePath: statePath + '.chartLayout',
+          statePath: this.statePath + '.chartLayout',
         },
         {
           type: ChartBase.reducers.boldLine.name,
-          statePath: statePath + '.chartLayout',
+          statePath: this.statePath + '.chartLayout',
         },
     ));
   }

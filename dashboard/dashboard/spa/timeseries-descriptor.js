@@ -8,18 +8,16 @@ import './cp-checkbox.js';
 import './cp-loading.js';
 import './error-set.js';
 import './recommended-options.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import DescribeRequest from './describe-request.js';
 import MemoryComponents from './memory-components.js';
 import MenuInput from './menu-input.js';
 import OptionGroup from './option-group.js';
 import TagFilter from './tag-filter.js';
 import TestSuitesRequest from './test-suites-request.js';
-import {BatchIterator} from './utils.js';
+import {BatchIterator, get} from './utils.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, css} from 'lit-element';
 
 export default class TimeseriesDescriptor extends ElementBase {
   static get is() { return 'timeseries-descriptor'; }
@@ -85,28 +83,30 @@ export default class TimeseriesDescriptor extends ElementBase {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
-        #row {
-          display: flex;
-        }
-        menu-input {
-          margin-right: 8px;
-        }
-        .error {
-          color: var(--error-color, red);
-          position: absolute;
-          visibility: hidden;
-        }
-        .error[visible] {
-          visibility: visible;
-        }
-        cp-checkbox[hidden] {
-          visibility: hidden;
-        }
-      </style>
+  static get styles() {
+    return css`
+      #row {
+        display: flex;
+      }
+      menu-input {
+        margin-right: 8px;
+      }
+      .error {
+        color: var(--error-color, red);
+        position: absolute;
+        visibility: hidden;
+      }
+      .error[visible] {
+        visibility: visible;
+      }
+      cp-checkbox[hidden] {
+        visibility: hidden;
+      }
+    `;
+  }
 
+  render() {
+    return html`
       <div id="row">
         <div>
           <menu-input
@@ -361,6 +361,77 @@ export default class TimeseriesDescriptor extends ElementBase {
     STORE.dispatch(TOGGLE(`${this.statePath}.case.isAggregated`));
     this.dispatchMatrixChange_();
   }
+
+  static getParameterMatrix(suite, measurement, bot, cas) {
+    // Organizes selected options from redux state into an object like
+    // {suites, measurements, bots, cases}.
+    // suites is an array of arrays of test suite names.
+    // measurements is an array of measurement names.
+    // bots is an array of arrays of bot names.
+    // cases is an array of arrays of test case names.
+    // suites, bots, and cases can be aggregated or unaggregated.
+    // Aggregated parameters contain a single array that can contain multiple
+    // names like [[a, b, c]].
+    // Unaggregated parameters contain multiple arrays that contain a single
+    // name like [[a], [b], [c]].
+
+    if (!suite || !measurement || !bot || !cas) {
+      return {suites: [], measurements: [], bots: [], cases: []};
+    }
+
+    let suites = suite.selectedOptions;
+    if (suite.isAggregated) {
+      suites = [suites];
+    } else {
+      suites = suites.map(suite => [suite]);
+    }
+
+    let bots = bot.selectedOptions;
+    if (bot.isAggregated) {
+      bots = [bots];
+    } else {
+      bots = bots.map(bot => [bot]);
+    }
+
+    let cases = cas.selectedOptions.filter(x => x);
+    if (cas.isAggregated) {
+      cases = [cases];
+    } else {
+      cases = cases.map(c => [c]);
+    }
+    if (cases.length === 0) cases.push([]);
+
+    const measurements = measurement.selectedOptions;
+    return {suites, measurements, bots, cases};
+  }
+
+  static createLineDescriptors({
+    suiteses, measurements, botses, caseses, statistics,
+    buildTypes,
+  }) {
+    const lineDescriptors = [];
+    for (const suites of suiteses) {
+      for (const measurement of measurements) {
+        for (const bots of botses) {
+          for (const cases of caseses) {
+            for (const statistic of statistics) {
+              for (const buildType of buildTypes) {
+                lineDescriptors.push({
+                  suites,
+                  measurement,
+                  bots,
+                  cases,
+                  statistic,
+                  buildType,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+    return lineDescriptors;
+  }
 }
 
 TimeseriesDescriptor.reducers = {
@@ -451,77 +522,6 @@ TimeseriesDescriptor.reducers = {
 
     return state;
   },
-};
-
-TimeseriesDescriptor.getParameterMatrix = (suite, measurement, bot, cas) => {
-  // Organizes selected options from redux state into an object like
-  // {suites, measurements, bots, cases}.
-  // suites is an array of arrays of test suite names.
-  // measurements is an array of measurement names.
-  // bots is an array of arrays of bot names.
-  // cases is an array of arrays of test case names.
-  // suites, bots, and cases can be aggregated or unaggregated.
-  // Aggregated parameters contain a single array that can contain multiple
-  // names like [[a, b, c]].
-  // Unaggregated parameters contain multiple arrays that contain a single
-  // name like [[a], [b], [c]].
-
-  if (!suite || !measurement || !bot || !cas) {
-    return {suites: [], measurements: [], bots: [], cases: []};
-  }
-
-  let suites = suite.selectedOptions;
-  if (suite.isAggregated) {
-    suites = [suites];
-  } else {
-    suites = suites.map(suite => [suite]);
-  }
-
-  let bots = bot.selectedOptions;
-  if (bot.isAggregated) {
-    bots = [bots];
-  } else {
-    bots = bots.map(bot => [bot]);
-  }
-
-  let cases = cas.selectedOptions.filter(x => x);
-  if (cas.isAggregated) {
-    cases = [cases];
-  } else {
-    cases = cases.map(c => [c]);
-  }
-  if (cases.length === 0) cases.push([]);
-
-  const measurements = measurement.selectedOptions;
-  return {suites, measurements, bots, cases};
-};
-
-TimeseriesDescriptor.createLineDescriptors = ({
-  suiteses, measurements, botses, caseses, statistics,
-  buildTypes,
-}) => {
-  const lineDescriptors = [];
-  for (const suites of suiteses) {
-    for (const measurement of measurements) {
-      for (const bots of botses) {
-        for (const cases of caseses) {
-          for (const statistic of statistics) {
-            for (const buildType of buildTypes) {
-              lineDescriptors.push({
-                suites,
-                measurement,
-                bots,
-                cases,
-                statistic,
-                buildType,
-              });
-            }
-          }
-        }
-      }
-    }
-  }
-  return lineDescriptors;
 };
 
 ElementBase.register(TimeseriesDescriptor);

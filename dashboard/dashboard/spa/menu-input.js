@@ -8,9 +8,8 @@ import './cp-input.js';
 import OptionGroup from './option-group.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, setImmutable} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, setImmutable} from './utils.js';
 
 export default class MenuInput extends ElementBase {
   static get is() { return 'menu-input'; }
@@ -40,38 +39,40 @@ export default class MenuInput extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+        padding-top: 12px;
+      }
+
+      #clear {
+        color: var(--neutral-color-dark, grey);
+        cursor: pointer;
+        flex-shrink: 0;
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
+      }
+
+      #menu {
+        background-color: var(--background-color, white);
+        box-shadow: var(--elevation-2);
+        max-height: 600px;
+        outline: none;
+        overflow: auto;
+        padding-right: 8px;
+        position: absolute;
+        z-index: var(--layer-menu, 100);
+      }
+
+      #bottom {
+        display: flex;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          display: block;
-          padding-top: 12px;
-        }
-
-        #clear {
-          color: var(--neutral-color-dark, grey);
-          cursor: pointer;
-          flex-shrink: 0;
-          height: var(--icon-size, 1em);
-          width: var(--icon-size, 1em);
-        }
-
-        #menu {
-          background-color: var(--background-color, white);
-          box-shadow: var(--elevation-2);
-          max-height: 600px;
-          outline: none;
-          overflow: auto;
-          padding-right: 8px;
-          position: absolute;
-          z-index: var(--layer-menu, 100);
-        }
-
-        #bottom {
-          display: flex;
-        }
-      </style>
-
       <cp-input
           id="input"
           autofocus="[[isFocused]]"

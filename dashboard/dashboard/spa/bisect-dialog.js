@@ -10,11 +10,10 @@ import './cp-radio-group.js';
 import './cp-radio.js';
 import './error-set.js';
 import './raised-button.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import NewPinpointRequest from './new-pinpoint-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, css} from 'lit-element';
 import {isElementChildOf, pinpointJob} from './utils.js';
 
 // Display a warning when bisecting large revision ranges.
@@ -69,47 +68,49 @@ export default class BisectDialog extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        position: relative;
+      }
+
+      #dialog {
+        background: var(--background-color, white);
+        box-shadow: var(--elevation-2);
+        flex-direction: column;
+        outline: none;
+        padding: 16px;
+        position: absolute;
+        bottom: 0;
+        z-index: var(--layer-menu, 100);
+      }
+      cp-input {
+        margin: 12px 4px 4px 4px;
+        width: 100px;
+      }
+      cp-radio-group {
+        margin-left: 8px;
+        flex-direction: row;
+      }
+      .row raised-button {
+        flex-grow: 1;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+      }
+      .warning {
+        color: var(--error-color, red);
+      }
+      #cancel {
+        background: var(--background-color, white);
+        box-shadow: none;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          position: relative;
-        }
-
-        #dialog {
-          background: var(--background-color, white);
-          box-shadow: var(--elevation-2);
-          flex-direction: column;
-          outline: none;
-          padding: 16px;
-          position: absolute;
-          bottom: 0;
-          z-index: var(--layer-menu, 100);
-        }
-        cp-input {
-          margin: 12px 4px 4px 4px;
-          width: 100px;
-        }
-        cp-radio-group {
-          margin-left: 8px;
-          flex-direction: row;
-        }
-        .row raised-button {
-          flex-grow: 1;
-        }
-        .row {
-          display: flex;
-          align-items: center;
-        }
-        .warning {
-          color: var(--error-color, red);
-        }
-        #cancel {
-          background: var(--background-color, white);
-          box-shadow: none;
-        }
-      </style>
-
       <raised-button
           id="open"
           disabled$="[[!able]]"

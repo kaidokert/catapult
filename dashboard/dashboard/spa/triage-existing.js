@@ -7,13 +7,10 @@
 import './cp-input.js';
 import './cp-switch.js';
 import './raised-button.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {measureElement, isElementChildOf} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, measureElement, isElementChildOf} from './utils.js';
 
 export default class TriageExisting extends ElementBase {
   static get is() { return 'triage-existing'; }
@@ -45,74 +42,76 @@ export default class TriageExisting extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        background: var(--background-color);
+        box-shadow: var(--elevation-2);
+        color: initial;
+        display: none;
+        flex-direction: column;
+        outline: none;
+        padding: 16px;
+        position: absolute;
+        right: 0;
+        z-index: var(--layer-menu);
+      }
+      :host([is-open]) {
+        display: flex;
+      }
+
+      #controls {
+        align-items: center;
+        display: flex;
+        margin: 0;
+        min-width: 400px;
+        padding: 0;
+      }
+
+      .spacer {
+        flex-grow: 1;
+      }
+
+      cp-switch {
+        margin-right: 16px;
+      }
+
+      #table-container {
+        max-height: 500px;
+        overflow: auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      table {
+        border-collapse: collapse;
+        line-height: 24px;
+        margin: 16px 0;
+        width: 100%;
+      }
+
+      tbody {
+        border-width: 0;
+      }
+
+      tbody tr:hover {
+        background: #eee;
+      }
+
+      .bug_id {
+        cursor: pointer;
+        outline: none;
+        font-weight: bold;
+      }
+
+      td:nth-of-type(4) {
+        min-width: 400px;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          background: var(--background-color);
-          box-shadow: var(--elevation-2);
-          color: initial;
-          display: none;
-          flex-direction: column;
-          outline: none;
-          padding: 16px;
-          position: absolute;
-          right: 0;
-          z-index: var(--layer-menu);
-        }
-        :host([is-open]) {
-          display: flex;
-        }
-
-        #controls {
-          align-items: center;
-          display: flex;
-          margin: 0;
-          min-width: 400px;
-          padding: 0;
-        }
-
-        .spacer {
-          flex-grow: 1;
-        }
-
-        cp-switch {
-          margin-right: 16px;
-        }
-
-        #table-container {
-          max-height: 500px;
-          overflow: auto;
-          margin: 0;
-          padding: 0;
-        }
-
-        table {
-          border-collapse: collapse;
-          line-height: 24px;
-          margin: 16px 0;
-          width: 100%;
-        }
-
-        tbody {
-          border-width: 0;
-        }
-
-        tbody tr:hover {
-          background: #eee;
-        }
-
-        .bug_id {
-          cursor: pointer;
-          outline: none;
-          font-weight: bold;
-        }
-
-        td:nth-of-type(4) {
-          min-width: 400px;
-        }
-      </style>
-
       <div id="controls">
         <cp-input
             id="bug_input"
@@ -243,14 +242,14 @@ export default class TriageExisting extends ElementBase {
     }
     await STORE.dispatch(UPDATE(this.statePath, {bugId: event.target.value}));
   }
-}
 
-TriageExisting.filterBugs =
-  (recentPerformanceBugs, onlyIntersectingBugs, selectedRange) => {
+  static filterBugs(
+      recentPerformanceBugs, onlyIntersectingBugs, selectedRange) {
     if (!recentPerformanceBugs || !selectedRange) return [];
     if (!onlyIntersectingBugs) return recentPerformanceBugs;
     return recentPerformanceBugs.filter(bug =>
       bug.revisionRange.intersectsRangeInclusive(selectedRange));
-  };
+  }
+}
 
 ElementBase.register(TriageExisting);

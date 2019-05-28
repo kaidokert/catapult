@@ -8,7 +8,6 @@ import './cp-radio-group.js';
 import './cp-radio.js';
 import './cp-switch.js';
 import './error-set.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ChartTimeseries from './chart-timeseries.js';
 import DetailsTable from './details-table.js';
@@ -17,9 +16,8 @@ import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MAX_POINTS} from './timeseries-merger.js';
 import {MODE} from './layout-timeseries.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, setImmutable, BatchIterator} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, setImmutable, BatchIterator} from './utils.js';
 
 /**
   * ChartCompound synchronizes revision ranges and axis properties between a
@@ -108,77 +106,79 @@ export default class ChartCompound extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      #minimap,
+      #chart {
+        width: 100%;
+      }
+
+      #minimap {
+        max-height: 75px;
+        --chart-placeholder: {
+          max-height: 0;
+        };
+      }
+
+      :host {
+        flex-grow: 1;
+        margin-right: 8px;
+        min-width: 500px;
+      }
+
+      #chart {
+        --chart-placeholder: {
+          height: 310px;
+        }
+      }
+
+      #options {
+        color: var(--primary-color-dark, blue);
+        cursor: pointer;
+        height: var(--icon-size, 1em);
+        outline: none;
+        padding: 0;
+        width: var(--icon-size, 1em);
+      }
+
+      #options_container {
+        position: absolute;
+        margin-top: 20px;
+      }
+
+      #options_menu {
+        background-color: var(--background-color, white);
+        box-shadow: var(--elevation-2);
+        max-height: 600px;
+        overflow: hidden;
+        outline: none;
+        padding-right: 8px;
+        position: absolute;
+        z-index: var(--layer-menu, 100);
+      }
+
+      #options_menu_inner {
+        display: flex;
+        padding: 16px;
+        overflow: hidden;
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #toggles {
+        margin: 0 16px 0 0;
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        #minimap,
-        #chart {
-          width: 100%;
-        }
-
-        #minimap {
-          max-height: 75px;
-          --chart-placeholder: {
-            max-height: 0;
-          };
-        }
-
-        :host {
-          flex-grow: 1;
-          margin-right: 8px;
-          min-width: 500px;
-        }
-
-        #chart {
-          --chart-placeholder: {
-            height: 310px;
-          }
-        }
-
-        #options {
-          color: var(--primary-color-dark, blue);
-          cursor: pointer;
-          height: var(--icon-size, 1em);
-          outline: none;
-          padding: 0;
-          width: var(--icon-size, 1em);
-        }
-
-        #options_container {
-          position: absolute;
-          margin-top: 20px;
-        }
-
-        #options_menu {
-          background-color: var(--background-color, white);
-          box-shadow: var(--elevation-2);
-          max-height: 600px;
-          overflow: hidden;
-          outline: none;
-          padding-right: 8px;
-          position: absolute;
-          z-index: var(--layer-menu, 100);
-        }
-
-        #options_menu_inner {
-          display: flex;
-          padding: 16px;
-          overflow: hidden;
-        }
-
-        .column {
-          display: flex;
-          flex-direction: column;
-        }
-
-        #toggles {
-          margin: 0 16px 0 0;
-          display: flex;
-          flex-direction: column;
-          white-space: nowrap;
-        }
-      </style>
-
       <iron-collapse opened="[[isExpanded]]">
         <div hidden$="[[fewEnoughLines_(lineDescriptors)]]">
           Displaying the first 10 lines. Select other items in order to

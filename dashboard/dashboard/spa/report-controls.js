@@ -11,9 +11,8 @@ import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {simpleGUID} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, simpleGUID} from './utils.js';
 
 export default class ReportControls extends ElementBase {
   static get is() { return 'report-controls'; }
@@ -53,49 +52,51 @@ export default class ReportControls extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        display: flex;
+        align-items: center;
+      }
+
+      #source {
+        width: 250px;
+      }
+
+      #prev_mstone,
+      #next_mstone {
+        font-size: larger;
+      }
+
+      #alerts {
+        color: var(--primary-color-dark);
+      }
+
+      #min_revision {
+        margin-right: 8px;
+      }
+
+      #min_revision,
+      #max_revision {
+        width: 84px;
+      }
+
+      #close {
+        align-self: flex-start;
+        cursor: pointer;
+        flex-shrink: 0;
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
+      }
+
+      .spacer {
+        flex-grow: 1;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          display: flex;
-          align-items: center;
-        }
-
-        #source {
-          width: 250px;
-        }
-
-        #prev_mstone,
-        #next_mstone {
-          font-size: larger;
-        }
-
-        #alerts {
-          color: var(--primary-color-dark);
-        }
-
-        #min_revision {
-          margin-right: 8px;
-        }
-
-        #min_revision,
-        #max_revision {
-          width: 84px;
-        }
-
-        #close {
-          align-self: flex-start;
-          cursor: pointer;
-          flex-shrink: 0;
-          height: var(--icon-size, 1em);
-          width: var(--icon-size, 1em);
-        }
-
-        .spacer {
-          flex-grow: 1;
-        }
-      </style>
-
       <menu-input id="source" state-path="[[statePath]].source"></menu-input>
 
       <raised-button
