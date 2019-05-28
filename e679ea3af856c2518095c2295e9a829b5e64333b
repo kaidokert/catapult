@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a018036_1b72ca41",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_service_cases.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-05-28T07:21:01Z",
+      "side": 1,
+      "message": "Nit: uppercase ‘s’ in HTTPS.",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 54
+      },
+      "revId": "e679ea3af856c2518095c2295e9a829b5e64333b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
