@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b62a4f32_60466369",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-28T14:38:26Z",
+      "side": 1,
+      "message": "Would it make more sense to add you to https://cs.corp.google.com/github/catapult-project/catapult/dashboard/OWNERS ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 11
+      },
+      "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
