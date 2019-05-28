@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61e9f994_c20ef623",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-28T21:51:49Z",
+      "side": 1,
+      "message": "probably not just for chartjson. I assume test results format would use this as well.",
+      "range": {
+        "startLine": 392,
+        "startChar": 4,
+        "endLine": 392,
+        "endChar": 20
+      },
+      "revId": "aab42b20d57f4ab8bd01daf5a2878ef6213f2205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
