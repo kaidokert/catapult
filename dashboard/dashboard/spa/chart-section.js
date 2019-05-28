@@ -303,11 +303,11 @@ export default class ChartSection extends ElementBase {
     STORE.dispatch(CHAIN(
         {
           type: ChartTimeseries.reducers.mouseYTicks.name,
-          statePath: statePath + '.chartLayout',
+          statePath: this.statePath + '.chartLayout',
         },
         {
           type: ChartBase.reducers.boldLine.name,
-          statePath: statePath + '.chartLayout',
+          statePath: this.statePath + '.chartLayout',
         },
     ));
   }
