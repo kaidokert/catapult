@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08df8df7_e307f9a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-28T21:46:42Z",
+      "side": 1,
+      "message": "LUCI Test Results project is not yet approved, so it may not get headcount. We should go over a design doc for this work before jumping straight to using LUCI Test Results.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "24d11d1b4816bf06a8c48ebe9ea231addc67bd51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
