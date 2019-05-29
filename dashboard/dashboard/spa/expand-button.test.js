@@ -8,7 +8,7 @@ import ExpandButton from './expand-button.js';
 import {STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
 import {assert} from 'chai';
-import {get} from '@polymer/polymer/lib/utils/path.js';
+import {get} from './utils.js';
 
 suite('expand-button', function() {
   teardown(() => {
