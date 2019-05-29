@@ -8,7 +8,6 @@ import './cp-radio-group.js';
 import './cp-radio.js';
 import './cp-switch.js';
 import './error-set.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ChartTimeseries from './chart-timeseries.js';
 import DetailsTable from './details-table.js';
@@ -17,9 +16,8 @@ import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MAX_POINTS} from './timeseries-merger.js';
 import {MODE} from './layout-timeseries.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, setImmutable, BatchIterator} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, setImmutable, BatchIterator} from './utils.js';
 
 /**
   * ChartCompound synchronizes revision ranges and axis properties between a
@@ -108,77 +106,89 @@ export default class ChartCompound extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      #minimap,
+      #chart {
+        width: 100%;
+      }
+
+      #minimap {
+        max-height: 75px;
+        --chart-placeholder: {
+          max-height: 0;
+        };
+      }
+
+      :host {
+        flex-grow: 1;
+        margin-right: 8px;
+        min-width: 500px;
+      }
+
+      #chart {
+        --chart-placeholder: {
+          height: 310px;
+        }
+      }
+
+      #options {
+        color: var(--primary-color-dark, blue);
+        cursor: pointer;
+        height: var(--icon-size, 1em);
+        outline: none;
+        padding: 0;
+        width: var(--icon-size, 1em);
+      }
+
+      #options_container {
+        position: absolute;
+        margin-top: 20px;
+      }
+
+      #options_menu {
+        background-color: var(--background-color, white);
+        box-shadow: var(--elevation-2);
+        max-height: 600px;
+        overflow: hidden;
+        outline: none;
+        padding-right: 8px;
+        position: absolute;
+        z-index: var(--layer-menu, 100);
+      }
+
+      #options_menu_inner {
+        display: flex;
+        padding: 16px;
+        overflow: hidden;
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #toggles {
+        margin: 0 16px 0 0;
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+      }
+    `;
+  }
+
+  render() {
+    const linkedTitle = this.isLinked ? `Now synchronizing options with other
+    linked charts. Click to switch to unlink.` : `Now unlinked from other
+    charts. Click to switch to synchronizing options with other linked charts.`;
+    const zeroYTitle = this.zeroYAxis ? `Now zeroing y-axis. Click to switch to
+    floating y-axis.` : `Now floating y-axis. Click to switch to zero y-axis.`;
+    const fixedXTitle = this.fixedXAxis ? `Now fixing x-axis distance between
+    points. Click to switch to scale x-axis distance between points.` : `Now
+    scaling x-axis distance between points. Click to switch to fix a-xis
+    distance between points.`;
+
     return html`
-      <style>
-        #minimap,
-        #chart {
-          width: 100%;
-        }
-
-        #minimap {
-          max-height: 75px;
-          --chart-placeholder: {
-            max-height: 0;
-          };
-        }
-
-        :host {
-          flex-grow: 1;
-          margin-right: 8px;
-          min-width: 500px;
-        }
-
-        #chart {
-          --chart-placeholder: {
-            height: 310px;
-          }
-        }
-
-        #options {
-          color: var(--primary-color-dark, blue);
-          cursor: pointer;
-          height: var(--icon-size, 1em);
-          outline: none;
-          padding: 0;
-          width: var(--icon-size, 1em);
-        }
-
-        #options_container {
-          position: absolute;
-          margin-top: 20px;
-        }
-
-        #options_menu {
-          background-color: var(--background-color, white);
-          box-shadow: var(--elevation-2);
-          max-height: 600px;
-          overflow: hidden;
-          outline: none;
-          padding-right: 8px;
-          position: absolute;
-          z-index: var(--layer-menu, 100);
-        }
-
-        #options_menu_inner {
-          display: flex;
-          padding: 16px;
-          overflow: hidden;
-        }
-
-        .column {
-          display: flex;
-          flex-direction: column;
-        }
-
-        #toggles {
-          margin: 0 16px 0 0;
-          display: flex;
-          flex-direction: column;
-          white-space: nowrap;
-        }
-      </style>
-
       <iron-collapse opened="[[isExpanded]]">
         <div hidden$="[[fewEnoughLines_(lineDescriptors)]]">
           Displaying the first 10 lines. Select other items in order to
@@ -197,15 +207,15 @@ export default class ChartCompound extends ElementBase {
               icon="cp:settings"
               style$="width: calc([[chartLayout.yAxisWidth]]px - 8px);"
               tabindex="0"
-              on-click="onOptionsToggle_">
+              @click="${this.onOptionsToggle_}">
           </iron-icon>
 
           <iron-collapse
               id="options_menu"
               opened="[[isShowingOptions]]"
               tabindex="0"
-              on-blur="onMenuBlur_"
-              on-keyup="onMenuKeyup_">
+              @blur="${this.onMenuBlur_}"
+              @keyup="${this.onMenuKeyup_}">
             <iron-collapse
                 id="options_menu_inner"
                 horizontal
@@ -214,40 +224,28 @@ export default class ChartCompound extends ElementBase {
                 <b>Options</b>
                 <cp-switch
                     checked="[[isLinked]]"
-                    on-change="onToggleLinked_">
-                  <template is="dom-if" if="[[isLinked]]">
-                    Linked to other charts
-                  </template>
-                  <template is="dom-if" if="[[!isLinked]]">
-                    Unlinked from other charts
-                  </template>
+                    title="${linkedTitle}"
+                    @change="${this.onToggleLinked_}">
+                  Linked to other charts
                 </cp-switch>
                 <cp-switch
                     checked="[[zeroYAxis]]"
-                    on-change="onToggleZeroYAxis_">
-                  <template is="dom-if" if="[[zeroYAxis]]">
-                    Zero Y-Axis
-                  </template>
-                  <template is="dom-if" if="[[!zeroYAxis]]">
-                    Floating Y-Axis
-                  </template>
+                    title="${zeroYTitle}"
+                    @change="${this.onToggleZeroYAxis_}">
+                  Zero Y-Axis
                 </cp-switch>
                 <cp-switch
                     checked="[[fixedXAxis]]"
-                    on-change="onToggleFixedXAxis_">
-                  <template is="dom-if" if="[[fixedXAxis]]">
-                    Fixed X-Axis
-                  </template>
-                  <template is="dom-if" if="[[!fixedXAxis]]">
-                    True X-Axis
-                  </template>
+                    title="${fixedXTitle}"
+                    @change="${this.onToggleFixedXAxis_}">
+                  Fixed X-Axis
                 </cp-switch>
               </div>
               <div class="column">
                 <b>Mode</b>
                 <cp-radio-group
                     selected="[[mode]]"
-                    on-selected-changed="onModeChange_">
+                    @selected-changed="${this.onModeChange_}">
                   <cp-radio name="NORMALIZE_UNIT">
                     Normalize per unit
                   </cp-radio>
@@ -270,17 +268,17 @@ export default class ChartCompound extends ElementBase {
         <chart-timeseries
             id="minimap"
             state-path="[[statePath]].minimapLayout"
-            on-brush="onMinimapBrush_">
+            @brush="${this.onMinimapBrush_}">
         </chart-timeseries>
       </iron-collapse>
 
       <chart-timeseries
           id="chart"
           state-path="[[statePath]].chartLayout"
-          on-get-tooltip="onGetTooltip_"
-          on-brush="onChartBrush_"
-          on-line-count-change="onLineCountChange_"
-          on-chart-click="onChartClick_">
+          @get-tooltip="${this.onGetTooltip_}"
+          @brush="${this.onChartBrush_}"
+          @line-count-change="${this.onLineCountChange_}"
+          @chart-click="${this.onChartClick_}">
         <slot></slot>
       </chart-timeseries>
 
@@ -288,7 +286,7 @@ export default class ChartCompound extends ElementBase {
         <details-table
             id="details"
             state-path="[[statePath]].details"
-            on-reload-chart="onReload_">
+            @reload-chart="${this.onReload_}">
         </details-table>
       </iron-collapse>
     `;
