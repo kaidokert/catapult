@@ -70,6 +70,30 @@
       "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac7cd458_7ea61d3f",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:37:16Z",
+      "side": 1,
+      "message": "Unfortunately, I\u0027ve now been waiting multiple days, over weekends and holidays, and P0 things needing P0 changes get blocked just because I\u0027m not in OWNERS while simonhatch@ is on vacation and sullivan@ is on leave. This means you are the sole owner that\u0027s active at this time, and unfortunately the bottleneck now -- when you go on vacation while everyone else is, that means we have zero active OWNERS to address active work being done.\n\nTBR is not ideal, and having all reviewers be in timezones with only 2-4 hours overlap depending on the seasons with folks working in Sydney and other parts of Asia sounds like (and is already) a bad state of affairs.\n\nChanges in catapult_build/* are testable, I\u0027ve already made multiple changes to those files, and I don\u0027t understand why I couldn\u0027t be in OWNERS at the top level to offer timezone diversity.",
+      "parentUuid": "e0865a45_6646012d",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 11
+      },
+      "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
