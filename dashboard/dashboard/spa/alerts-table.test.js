@@ -571,7 +571,7 @@ suite('alerts-table', function() {
         findElements(table, e => e.matches('tbody'))[0],
         e => e.matches('cp-checkbox'));
     checkboxes[1].click();
-    checkboxes[3].$.native.dispatchEvent(new CustomEvent('change', {
+    checkboxes[3].native.dispatchEvent(new CustomEvent('change', {
       detail: {shiftKey: true},
     }));
     await afterRender();
