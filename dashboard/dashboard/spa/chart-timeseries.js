@@ -5,20 +5,19 @@
 'use strict';
 
 import './place-holder.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
 import ChartBase from './chart-base.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {MODE, layoutTimeseries} from './layout-timeseries.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {html, css} from 'lit-element';
 
 import {
   BatchIterator,
   CTRL_KEY_NAME,
   generateColors,
+  get,
   measureText,
 } from './utils.js';
 
@@ -67,30 +66,28 @@ export default class ChartTimeseries extends ElementBase {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
-        :host {
-          display: block;
-        }
-        place-holder {
-          @apply --chart-placeholder;
-        }
-      </style>
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+      }
+      place-holder {
+        @apply --chart-placeholder;
+      }
+    `;
+  }
 
-      <template is="dom-if" if="[[showPlaceholder(isLoading, lines)]]">
-        <place-holder>
-          <slot></slot>
-        </place-holder>
-      </template>
-
-      <template is="dom-if" if="[[!showPlaceholder(isLoading, lines)]]">
-        <chart-base
-            state-path="[[statePath]]"
-            on-get-tooltip="onGetTooltip_"
-            on-mouse-leave-main="onMouseLeaveMain_">
-        </chart-base>
-      </template>
+  render() {
+    return (!this.isLoading && !this.lines.length) ? html`
+      <place-holder>
+        <slot></slot>
+      </place-holder>
+    ` : html`
+      <chart-base
+          state-path="${this.statePath}"
+          @get-tooltip="${this.onGetTooltip_}"
+          @mouse-leave-main="${this.onMouseLeaveMain_}">
+      </chart-base>
     `;
   }
 
@@ -105,7 +102,7 @@ export default class ChartTimeseries extends ElementBase {
     const oldMinRevision = this.minRevision;
     const oldMaxRevision = this.maxRevision;
 
-    this.setProperties(get(rootState, this.statePath));
+    Object.assign(this, get(rootState, this.statePath));
 
     const newLineCount = this.lines ? this.lines.length : 0;
     if (newLineCount !== oldLineCount) {
