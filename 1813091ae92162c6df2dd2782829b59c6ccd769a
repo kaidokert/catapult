@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1443ff6_630e1b17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2019-05-29T19:32:00Z",
+      "side": 1,
+      "message": "no space here, otherwise, the bot will not pick it up. (if presubmit complains that there is no prefix needed, just drop it)",
+      "range": {
+        "startLine": 13,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "1813091ae92162c6df2dd2782829b59c6ccd769a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
