@@ -19,9 +19,8 @@ import sha from './sha.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {MODE} from './layout-timeseries.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {simpleGUID} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, simpleGUID} from './utils.js';
 
 export default class ChartSection extends ElementBase {
   static get is() { return 'chart-section'; }
@@ -98,55 +97,57 @@ export default class ChartSection extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      #controls {
+        align-items: center;
+        display: flex;
+        margin-bottom: 8px;
+      }
+
+      #controls_inner {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #parameters {
+        display: flex;
+      }
+
+      #spacer {
+        flex-grow: 1;
+      }
+
+      #toggle_chart_only,
+      #copy,
+      #close {
+        align-self: flex-start;
+        cursor: pointer;
+        flex-shrink: 0;
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
+      }
+
+      #chart_container {
+        display: flex;
+      }
+
+      chart-legend {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      #legend_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 311px;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        #controls {
-          align-items: center;
-          display: flex;
-          margin-bottom: 8px;
-        }
-
-        #controls_inner {
-          display: flex;
-          flex-direction: column;
-        }
-
-        #parameters {
-          display: flex;
-        }
-
-        #spacer {
-          flex-grow: 1;
-        }
-
-        #toggle_chart_only,
-        #copy,
-        #close {
-          align-self: flex-start;
-          cursor: pointer;
-          flex-shrink: 0;
-          height: var(--icon-size, 1em);
-          width: var(--icon-size, 1em);
-        }
-
-        #chart_container {
-          display: flex;
-        }
-
-        chart-legend {
-          overflow-y: auto;
-          overflow-x: hidden;
-        }
-
-        #legend_container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          max-height: 311px;
-        }
-      </style>
-
       <div id="controls">
         <div id="controls_inner">
           <iron-collapse id="parameters"
@@ -154,13 +155,13 @@ export default class ChartSection extends ElementBase {
             <timeseries-descriptor
                 id="descriptor"
                 state-path="[[statePath]].descriptor"
-                on-matrix-change="onMatrixChange_">
+                @matrix-change="onMatrixChange_">
             </timeseries-descriptor>
 
             <menu-input
                 id="statistic"
                 state-path="[[statePath]].statistic"
-                on-option-select="onStatisticSelect_">
+                @option-select="onStatisticSelect_">
             </menu-input>
           </iron-collapse>
 
@@ -169,7 +170,7 @@ export default class ChartSection extends ElementBase {
                 id="title"
                 value="[[title_]]"
                 label="Title"
-                on-keyup="onTitleKeyup_">
+                @keyup="onTitleKeyup_">
             </cp-input>
           </iron-collapse>
         </div>
@@ -185,14 +186,14 @@ export default class ChartSection extends ElementBase {
             id="copy"
             icon="cp:copy"
             title="Clone"
-            on-click="onCopy_">
+            @click="onCopy_">
         </iron-icon>
 
         <iron-icon
             id="close"
             icon="cp:close"
             title="Close"
-            on-click="onClose_">
+            @click="onClose_">
         </iron-icon>
       </div>
 
@@ -204,7 +205,7 @@ export default class ChartSection extends ElementBase {
         <chart-compound
             state-path="[[statePath]]"
             linked-state-path="[[linkedStatePath]]"
-            on-line-count-change="onLineCountChange_">
+            @line-count-change="onLineCountChange_">
           Select at least one Test suite and Measurement above.
         </chart-compound>
 
@@ -212,12 +213,12 @@ export default class ChartSection extends ElementBase {
             id="legend_container"
             horizontal
             opened="[[isLegendOpen_(isExpanded, legend)]]"
-            on-click="onLegendClick_">
+            @click="onLegendClick_">
           <chart-legend
               items="[[legend]]"
-              on-leaf-mouseover="onLegendMouseOver_"
-              on-leaf-mouseout="onLegendMouseOut_"
-              on-leaf-click="onLegendLeafClick_">
+              @leaf-mouseover="onLegendMouseOver_"
+              @leaf-mouseout="onLegendMouseOut_"
+              @leaf-click="onLegendLeafClick_">
           </chart-legend>
         </iron-collapse>
       </div>
@@ -303,11 +304,11 @@ export default class ChartSection extends ElementBase {
     STORE.dispatch(CHAIN(
         {
           type: ChartTimeseries.reducers.mouseYTicks.name,
-          statePath: statePath + '.chartLayout',
+          statePath: this.statePath + '.chartLayout',
         },
         {
           type: ChartBase.reducers.boldLine.name,
-          statePath: statePath + '.chartLayout',
+          statePath: this.statePath + '.chartLayout',
         },
     ));
   }
