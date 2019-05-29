@@ -6,14 +6,12 @@
 
 import './cp-loading.js';
 import './error-set.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import NudgeAlertRequest from './nudge-alert-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {isElementChildOf, afterRender} from './utils.js';
+import {html, css} from 'lit-element';
+import {isElementChildOf, get, afterRender} from './utils.js';
 
 export default class NudgeAlert extends ElementBase {
   static get is() { return 'nudge-alert'; }
@@ -54,57 +52,59 @@ export default class NudgeAlert extends ElementBase {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
-        :host {
-          background: var(--background-color, white);
-          bottom: 0;
-          box-shadow: var(--elevation-2);
-          display: none;
-          flex-direction: column;
-          padding: 16px;
-          position: absolute;
-          right: 0;
-          white-space: nowrap;
-          z-index: var(--layer-menu, 100);
-        }
-        :host([is-open]) {
-          display: flex;
-        }
-        #scroller {
-          max-height: 200px;
-          overflow: auto;
-        }
-        table {
-          border-collapse: collapse;
-        }
-        tr[selected] {
-          background-color: var(--neutral-color-dark, grey);
-        }
-        tr:not([selected]) {
-          cursor: pointer;
-        }
-        tr:not([selected]):hover {
-          background-color: var(--neutral-color-light, lightgrey);
-        }
-        td {
-          padding: 4px;
-        }
-      </style>
+  static get styles() {
+    return css`
+      :host {
+        background: var(--background-color, white);
+        bottom: 0;
+        box-shadow: var(--elevation-2);
+        display: none;
+        flex-direction: column;
+        padding: 16px;
+        position: absolute;
+        right: 0;
+        white-space: nowrap;
+        z-index: var(--layer-menu, 100);
+      }
+      :host([is-open]) {
+        display: flex;
+      }
+      #scroller {
+        max-height: 200px;
+        overflow: auto;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      tr[selected] {
+        background-color: var(--neutral-color-dark, grey);
+      }
+      tr:not([selected]) {
+        cursor: pointer;
+      }
+      tr:not([selected]):hover {
+        background-color: var(--neutral-color-light, lightgrey);
+      }
+      td {
+        padding: 4px;
+      }
+    `;
+  }
 
-      <error-set errors="[[errors]]"></error-set>
-      <cp-loading loading$="[[isLoading]]"></cp-loading>
+  render() {
+    return html`
+      <error-set errors="${this.errors}"></error-set>
+      <cp-loading loading="${this.isLoading}"></cp-loading>
 
       <div id="scroller">
         <table>
-          <template is="dom-repeat" items="[[options]]" as="option">
-            <tr selected$="[[isEqual_(option.endRevision, endRevision)]]"
-                on-click="onNudge_">
-              <td>[[option.revisions]]</td>
-              <td>[[option.scalar]]</td>
+          ${this.options.map(option => html`
+            <tr selected="${option.endRevision === this.endRevision}"
+                @click="${this.onNudge_}">
+              <td>${option.revisions}</td>
+              <td>${option.scalar}</td>
             </tr>
-          </template>
+          `)}
         </table>
       </div>
     `;
