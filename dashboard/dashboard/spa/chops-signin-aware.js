@@ -6,9 +6,9 @@
 
 // TODO(950011) Import this from node_modules.
 
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {LitElement} from 'lit-element';
 
-// This component adapts chops-signin to an API that is more familiar to Polymer
+// This component adapts chops-signin to an API that is more familiar to Lit
 // components. Use this table to convert from google-signin-aware:
 
 // google-signin-aware                    chops-signin-aware
@@ -25,7 +25,7 @@ import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 // theme                                  (not supported)
 // (user.getBasicProfile())               profile
 
-class ChopsSigninAware extends PolymerElement {
+class ChopsSigninAware extends LitElement {
   static get is() {
     return 'chops-signin-aware';
   }
