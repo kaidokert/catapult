@@ -22,6 +22,7 @@ export default class AlertsTable extends ElementBase {
     return {
       areAlertGroupsPlaceholders: Boolean,
       statePath: String,
+      sheriff: Object,
       previousSelectedAlertKey: String,
       alertGroups: Array,
       selectedAlertsCount: Number,
@@ -126,6 +127,10 @@ export default class AlertsTable extends ElementBase {
         tbody[expandedGroup] {
           border-color: var(--primary-color-light, lightblue);
           border-width: 8px;
+        }
+
+        tr[untriaged] {
+          font-weight: bold;
         }
       </style>
 
@@ -291,7 +296,8 @@ export default class AlertsTable extends ElementBase {
                   <template is="dom-if" if="[[shouldDisplayAlert_(
                       areAlertGroupsPlaceholders, showingTriaged, alertGroup,
                       alertIndex, alertGroup.triaged.isExpanded)]]">
-                    <tr on-click="onRowClick_">
+                    <tr on-click="onRowClick_" untriaged$="[[
+                        shouldStyleUntriagedAlert_(sheriff, alert)]]">
 
                       <td>
                         <template is="dom-if"
@@ -479,6 +485,11 @@ export default class AlertsTable extends ElementBase {
     return AlertsTable.shouldDisplayAlert(
         areAlertGroupsPlaceholders, showingTriaged, alertGroup, alertIndex,
         triagedExpanded);
+  }
+
+  shouldStyleUntriagedAlert_(sheriff, alert) {
+    return (sheriff && sheriff.selectedOptions &&
+      sheriff.selectedOptions.length && alert && !alert.bugId) || false;
   }
 
   shouldDisplayExpandGroupButton_(
