@@ -45,6 +45,7 @@ suite('alerts-section', function() {
         UPDATE('test', AlertsSection.buildState({}))));
     document.body.appendChild(section);
     await afterRender();
+    await afterRender();
     return section;
   }
 

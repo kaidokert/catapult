@@ -6,14 +6,12 @@
 
 import './cp-input.js';
 import './raised-button.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import ReportTemplateRequest from './report-template-request.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {get} from './utils.js';
+import {html, css} from 'lit-element';
 
 export default class ReportTemplate extends ElementBase {
   static get is() { return 'report-template'; }
@@ -41,73 +39,75 @@ export default class ReportTemplate extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        padding: 16px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 16px;
+      }
+
+      table[placeholder] {
+        color: var(--neutral-color-dark, grey);
+      }
+
+      h2 {
+        text-align: center;
+        margin: 0;
+      }
+
+      .name_column {
+        text-align: left;
+      }
+
+      td, th {
+        padding: 4px;
+        vertical-align: top;
+      }
+
+      .edit_form_controls {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .edit_form_controls cp-input {
+        width: 250px;
+      }
+
+      .edit_form_controls menu-input:not(:last-child),
+      .edit_form_controls cp-input:not(:last-child) {
+        margin-right: 8px;
+      }
+
+      cp-input {
+        margin-top: 12px;
+      }
+
+      #cancel,
+      #save {
+        flex-grow: 1;
+      }
+
+      .row_button {
+        vertical-align: middle;
+      }
+
+      .row_button iron-icon {
+        cursor: pointer;
+        height: var(--icon-size, 1em);
+        width: var(--icon-size, 1em);
+      }
+
+      .error {
+        color: var(--error-color, red);
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          padding: 16px;
-        }
-        table {
-          border-collapse: collapse;
-          margin-top: 16px;
-        }
-
-        table[placeholder] {
-          color: var(--neutral-color-dark, grey);
-        }
-
-        h2 {
-          text-align: center;
-          margin: 0;
-        }
-
-        .name_column {
-          text-align: left;
-        }
-
-        td, th {
-          padding: 4px;
-          vertical-align: top;
-        }
-
-        .edit_form_controls {
-          display: flex;
-          justify-content: space-evenly;
-        }
-
-        .edit_form_controls cp-input {
-          width: 250px;
-        }
-
-        .edit_form_controls menu-input:not(:last-child),
-        .edit_form_controls cp-input:not(:last-child) {
-          margin-right: 8px;
-        }
-
-        cp-input {
-          margin-top: 12px;
-        }
-
-        #cancel,
-        #save {
-          flex-grow: 1;
-        }
-
-        .row_button {
-          vertical-align: middle;
-        }
-
-        .row_button iron-icon {
-          cursor: pointer;
-          height: var(--icon-size, 1em);
-          width: var(--icon-size, 1em);
-        }
-
-        .error {
-          color: var(--error-color, red);
-        }
-      </style>
-
       <div class="edit_form_controls">
         <div>
           <cp-input
@@ -115,7 +115,7 @@ export default class ReportTemplate extends ElementBase {
               error$="[[isEmpty_(name)]]"
               label="Report Name"
               value="[[name]]"
-              on-keyup="onTemplateNameKeyUp_">
+              @keyup="onTemplateNameKeyUp_">
           </cp-input>
           <span class="error" hidden$="[[!isEmpty_(name)]]">
             required
@@ -127,7 +127,7 @@ export default class ReportTemplate extends ElementBase {
               error$="[[isEmpty_(owners)]]"
               label="Owners"
               value="[[owners]]"
-              on-keyup="onTemplateOwnersKeyUp_">
+              @keyup="onTemplateOwnersKeyUp_">
           </cp-input>
           <span class="error" hidden$="[[!isEmpty_(owners)]]">
               comma-separate list of complete email addresses
@@ -141,7 +141,7 @@ export default class ReportTemplate extends ElementBase {
           <cp-input
               label="Documentation"
               value="[[url]]"
-              on-keyup="onTemplateUrlKeyUp_">
+              @keyup="onTemplateUrlKeyUp_">
           </cp-input>
         </div>
       </div>
@@ -156,7 +156,7 @@ export default class ReportTemplate extends ElementBase {
                     label="Label"
                     error$="[[isEmpty_(row.label)]]"
                     value="[[row.label]]"
-                    on-keyup="onTemplateRowLabelKeyUp_">
+                    @keyup="onTemplateRowLabelKeyUp_">
                 </cp-input>
                 <span class="error" hidden$="[[!isEmpty_(row.label)]]">
                   required
@@ -170,14 +170,14 @@ export default class ReportTemplate extends ElementBase {
               <td class="row_button">
                 <iron-icon
                     icon="cp:add"
-                    on-click="onTemplateAddRow_">
+                    @click="onTemplateAddRow_">
                 </iron-icon>
               </td>
               <td class="row_button">
                 <template is="dom-if" if="[[isMultiple_(rows)]]">
                   <iron-icon
                       icon="cp:remove"
-                      on-click="onTemplateRemoveRow_">
+                      @click="onTemplateRemoveRow_">
                   </iron-icon>
                 </template>
               </td>
@@ -189,7 +189,7 @@ export default class ReportTemplate extends ElementBase {
       <div class="edit_form_controls">
         <raised-button
             id="cancel"
-            on-click="onCancel_">
+            @click="onCancel_">
           <iron-icon icon="cp:cancel">
           </iron-icon>
           Cancel
@@ -198,7 +198,7 @@ export default class ReportTemplate extends ElementBase {
         <raised-button
             id="save"
             disabled$="[[!canSave_(name, owners, statistic, rows)]]"
-            on-click="onTemplateSave_">
+            @click="onTemplateSave_">
           <iron-icon icon="cp:save">
           </iron-icon>
           Save
