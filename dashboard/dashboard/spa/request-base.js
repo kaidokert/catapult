@@ -4,6 +4,7 @@
 */
 'use strict';
 
+import {getAuthorizationHeaders} from '@chopsui/chops-signin/index.js';
 import ResultChannelReceiver from './result-channel-receiver.js';
 
 export default class RequestBase {
@@ -50,9 +51,14 @@ export default class RequestBase {
             new URLSearchParams(this.body_));
   }
 
+  // Wrap imported function to allow tests to fake it.
+  static async getAuthorizationHeaders() {
+    return await getAuthorizationHeaders();
+  }
+
   async addAuthorizationHeaders_() {
     if (!window.AUTH_CLIENT_ID) return;
-    const headers = await window.getAuthorizationHeaders();
+    const headers = await RequestBase.getAuthorizationHeaders();
     for (const [name, value] of Object.entries(headers)) {
       this.headers_.set(name, value);
     }
