@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "316cf5e3_1e719925",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-05-29T20:06:01Z",
+      "side": 1,
+      "message": "overridden",
+      "range": {
+        "startLine": 9,
+        "startChar": 58,
+        "endLine": 9,
+        "endChar": 67
+      },
+      "revId": "d6f8e29f8ba0e0733061dc9e484c98415aaede07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a47a2f0_4b8895fb",
+        "filename": "telemetry/telemetry/testing/run_chromeos_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-05-29T20:06:01Z",
+      "side": 1,
+      "message": "Should probably be a property",
+      "revId": "d6f8e29f8ba0e0733061dc9e484c98415aaede07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
