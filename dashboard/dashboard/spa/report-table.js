@@ -6,13 +6,10 @@
 
 import './cp-toast.js';
 import './scalar-span.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {measureElement} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, measureElement} from './utils.js';
 
 export default class ReportTable extends ElementBase {
   static get is() { return 'report-table'; }
@@ -52,101 +49,103 @@ export default class ReportTable extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        position: relative;
+      }
+      .report_name {
+        display: flex;
+        justify-content: center;
+        margin: 24px 0 0 0;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      #table tbody tr {
+        border-bottom: 1px solid var(--neutral-color-medium, grey);
+      }
+
+      table[placeholder] {
+        color: var(--neutral-color-dark, grey);
+      }
+
+      h2 {
+        text-align: center;
+        margin: 0;
+      }
+
+      .name_column {
+        text-align: left;
+      }
+
+      td, th {
+        padding: 4px;
+        vertical-align: top;
+      }
+
+      #edit,
+      #copy,
+      #documentation {
+        color: var(--primary-color-dark, blue);
+        cursor: pointer;
+        flex-shrink: 0;
+        margin: 0 0 0 8px;
+        padding: 0;
+        width: var(--icon-size, 1em);
+        height: var(--icon-size, 1em);
+      }
+
+      .report_name span {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      #tooltip {
+        display: none;
+        position: absolute;
+        z-index: var(--layer-menu, 100);
+      }
+
+      :host(:hover) #tooltip {
+        display: block;
+      }
+
+      #tooltip table {
+        background-color: var(--background-color, white);
+        border: 2px solid var(--primary-color-dark, blue);
+        padding: 8px;
+      }
+
+      #tooltip td {
+        padding: 2px;
+      }
+
+      #copied {
+        display: flex;
+        justify-content: center;
+        background-color: var(--primary-color-dark, blue);
+        color: var(--background-color, white);
+        padding: 8px;
+      }
+
+      #scratch {
+        opacity: 0;
+        position: absolute;
+        z-index: var(--layer-hidden, -100);
+      }
+
+      iron-icon[hidden] {
+        display: none;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          position: relative;
-        }
-        .report_name {
-          display: flex;
-          justify-content: center;
-          margin: 24px 0 0 0;
-        }
-
-        table {
-          border-collapse: collapse;
-        }
-
-        #table tbody tr {
-          border-bottom: 1px solid var(--neutral-color-medium, grey);
-        }
-
-        table[placeholder] {
-          color: var(--neutral-color-dark, grey);
-        }
-
-        h2 {
-          text-align: center;
-          margin: 0;
-        }
-
-        .name_column {
-          text-align: left;
-        }
-
-        td, th {
-          padding: 4px;
-          vertical-align: top;
-        }
-
-        #edit,
-        #copy,
-        #documentation {
-          color: var(--primary-color-dark, blue);
-          cursor: pointer;
-          flex-shrink: 0;
-          margin: 0 0 0 8px;
-          padding: 0;
-          width: var(--icon-size, 1em);
-          height: var(--icon-size, 1em);
-        }
-
-        .report_name span {
-          position: relative;
-          display: flex;
-          align-items: center;
-        }
-
-        #tooltip {
-          display: none;
-          position: absolute;
-          z-index: var(--layer-menu, 100);
-        }
-
-        :host(:hover) #tooltip {
-          display: block;
-        }
-
-        #tooltip table {
-          background-color: var(--background-color, white);
-          border: 2px solid var(--primary-color-dark, blue);
-          padding: 8px;
-        }
-
-        #tooltip td {
-          padding: 2px;
-        }
-
-        #copied {
-          display: flex;
-          justify-content: center;
-          background-color: var(--primary-color-dark, blue);
-          color: var(--background-color, white);
-          padding: 8px;
-        }
-
-        #scratch {
-          opacity: 0;
-          position: absolute;
-          z-index: var(--layer-hidden, -100);
-        }
-
-        iron-icon[hidden] {
-          display: none;
-        }
-      </style>
-
       <div class="report_name">
         <h2>[[name]]</h2>
 
@@ -164,7 +163,7 @@ export default class ReportTable extends ElementBase {
             id="copy"
             icon="cp:copy"
             title="Copy measurements"
-            on-click="onCopy_">
+            @click="onCopy_">
         </iron-icon>
 
         <iron-icon
@@ -172,7 +171,7 @@ export default class ReportTable extends ElementBase {
             hidden$="[[!canEdit_(owners, userEmail)]]"
             icon="cp:edit"
             title="Edit template"
-            on-click="onToggleEditing_">
+            @click="onToggleEditing_">
         </iron-icon>
       </div>
 
@@ -210,13 +209,13 @@ export default class ReportTable extends ElementBase {
 
         <tbody>
           <template is="dom-repeat" items="[[rows]]" as="row">
-            <tr on-mouseenter="onEnterRow_">
+            <tr @mouseenter="onEnterRow_">
               <template is="dom-repeat" items="[[row.labelParts]]"
                   as="labelPart" index-as="labelPartIndex">
                 <template is="dom-if" if="[[labelPart.isFirst]]">
                   <td row-span="[[labelPart.rowCount]]">
                     <a href="[[labelPart.href]]"
-                        on-click="onOpenChart_">
+                        @click="onOpenChart_">
                       [[labelPart.label]]
                     </a>
                   </td>
