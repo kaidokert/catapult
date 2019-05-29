@@ -22,6 +22,30 @@
       "revId": "e679ea3af856c2518095c2295e9a829b5e64333b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b2b1629_e4c4ec94",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_service_cases.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T02:24:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a018036_1b72ca41",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 54
+      },
+      "revId": "e679ea3af856c2518095c2295e9a829b5e64333b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
