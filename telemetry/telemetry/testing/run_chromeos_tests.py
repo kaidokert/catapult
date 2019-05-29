@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import logging
+import sys
 
 from telemetry.testing import run_tests
 
@@ -58,3 +59,6 @@ class _LoggingOutputStream(object):
 
   def flush(self):
     pass
+
+  def fileno(self):
+    return sys.stdout.fileno()
