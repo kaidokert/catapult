@@ -3,9 +3,9 @@
 // found in the LICENSE file.
 'use strict';
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 
-export class ChopsHeader extends PolymerElement {
+export class ChopsHeader extends LitElement {
   static get is() { return 'chops-header'; }
 
   constructor() {
@@ -39,64 +39,67 @@ export class ChopsHeader extends PolymerElement {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
-        :host {
-          color: var(--chops-header-text-color);
-          box-sizing: border-box;
-          background: hsl(221, 67%, 92%);
-          font-size: 14px;
-          width: 100%;
-          height: 50px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          z-index: 100;
-        }
-        a {
-          color: var(--chops-header-text-color);
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
-        #headerTitle {
-          font-size: 18px;
-          display: flex;
-          align-items: center;
-        }
-        #headerTitle img {
-          height: 32px;
-          width: 32px;
-          font-size: 10px;
-          overflow: hidden;
-          margin: 0;
-        }
-        #headerTitle small {
-          font-size: 14px;
-        }
-        #headerTitleText {
-          display: flex;
-          align-items: baseline;
-        }
-        #headerTitleTextMain {
-          padding: 0 8px;
-        }
+  static get styles() {
+    return css`
+      :host {
+        color: var(--chops-header-text-color);
+        box-sizing: border-box;
+        background: hsl(221, 67%, 92%);
+        font-size: 14px;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+      }
+      a {
+        color: var(--chops-header-text-color);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      #headerTitle {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+      }
+      #headerTitle img {
+        height: 32px;
+        width: 32px;
+        font-size: 10px;
+        overflow: hidden;
+        margin: 0;
+      }
+      #headerTitle small {
+        font-size: 14px;
+      }
+      #headerTitleText {
+        display: flex;
+        align-items: baseline;
+      }
+      #headerTitleTextMain {
+        padding: 0 8px;
+      }
+      .header-section {
+        padding: 0.5em 16px;
+        display: flex;
+        align-items: center;
+      }
+      @media (max-width: 840px) {
         .header-section {
-          padding: 0.5em 16px;
-          display: flex;
-          align-items: center;
+          font-size: 0.8em;
+          min-width: 10%;
+          text-align: left;
         }
-        @media (max-width: 840px) {
-          .header-section {
-            font-size: 0.8em;
-            min-width: 10%;
-            text-align: left;
-          }
-        }
-      </style>
+      }
+    `;
+  }
+
+  render() {
+    return html`
       <div class="header-section">
         <slot name="before-header"></slot>
         <div id="headerTitle">
