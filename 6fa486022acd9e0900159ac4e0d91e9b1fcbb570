@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94465c08_74e2f446",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-05-29T18:46:32Z",
+      "side": 1,
+      "message": "As mentioned in the bug, I don\u0027t expect this to be a temporary metric.",
+      "revId": "6fa486022acd9e0900159ac4e0d91e9b1fcbb570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9e57d9e_e2195fac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-05-29T18:46:32Z",
+      "side": 1,
+      "message": "Can you include a brief summary of the discussion in the bug here?",
+      "revId": "6fa486022acd9e0900159ac4e0d91e9b1fcbb570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77f98dd0_9bd55f65",
+        "filename": "tracing/tracing/metrics/rendering/cpu_utilization.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-05-29T18:46:32Z",
+      "side": 1,
+      "message": "Is there a reason to keep this?",
+      "revId": "6fa486022acd9e0900159ac4e0d91e9b1fcbb570",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
