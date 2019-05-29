@@ -46,6 +46,30 @@
       "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0865a45_6646012d",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:25:46Z",
+      "side": 1,
+      "message": "Makes sense. For anything urgent, you can always TBR me. Otherwise I think that waiting a day for a catapult_build/* review is reasonable since problems in that directory can cause breakages in lots of projects like Devil and Telemetry.",
+      "parentUuid": "c622dc26_89bc49fe",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 11
+      },
+      "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
