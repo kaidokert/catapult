@@ -57,6 +57,24 @@
       "revId": "d6f8e29f8ba0e0733061dc9e484c98415aaede07",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7957e8fc_3f45f67c",
+        "filename": "telemetry/telemetry/testing/run_chromeos_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-05-29T20:08:59Z",
+      "side": 1,
+      "message": "The subprocess.call method calls this method, that\u0027s why it needs to be a function.",
+      "parentUuid": "8c2dea2c_b9f0ca8b",
+      "revId": "d6f8e29f8ba0e0733061dc9e484c98415aaede07",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
