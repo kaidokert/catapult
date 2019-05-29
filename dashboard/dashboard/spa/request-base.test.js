@@ -14,11 +14,11 @@ suite('RequestBase', function() {
   let originalAuthorizationHeaders;
   setup(() => {
     originalFetch = window.fetch;
-    originalAuthorizationHeaders = window.getAuthorizationHeaders;
+    originalAuthorizationHeaders = RequestBase.getAuthorizationHeaders;
   });
   teardown(() => {
     window.fetch = originalFetch;
-    window.getAuthorizationHeaders = originalAuthorizationHeaders;
+    RequestBase.getAuthorizationHeaders = originalAuthorizationHeaders;
   });
 
   // HTML imports may not have loaded when suite() is called, but are loaded
@@ -42,7 +42,7 @@ suite('RequestBase', function() {
   }
 
   test('getAuthorizationHeaders', async() => {
-    window.getAuthorizationHeaders = async() => {
+    RequestBase.getAuthorizationHeaders = async() => {
       return {Authorization: 'test Authorization'};
     };
     window.fetch = async(url, options) => {

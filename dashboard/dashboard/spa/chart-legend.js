@@ -4,54 +4,54 @@
 */
 'use strict';
 
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 
-export default class ChartLegend extends PolymerElement {
-  static get is() { return 'chart-legend'; }
+export default class ChartLegend extends LitElement {
+  static get properties() {
+    return {
+      items: {type: Array},
+    };
+  }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        display: flex;
+        flex-direction: column;
+      }
+      :host * {
+        flex-shrink: 0;
+      }
+      chart-legend {
+        margin-left: 16px;
+      }
+      .leaf {
+        cursor: pointer;
+      }
+      .leaf:hover {
+        background: #eee;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          display: flex;
-          flex-direction: column;
-        }
-        :host * {
-          flex-shrink: 0;
-        }
-        chart-legend {
-          margin-left: 16px;
-        }
-        .leaf {
-          cursor: pointer;
-        }
-        .leaf:hover {
-          background: #eee;
-        }
-      </style>
+      ${(this.items || []).map(item => (item.children ? html`
+        <div class="branch">
+          ${item.label}
+        </div>
 
-      <template is="dom-repeat" items="[[items]]">
-        <template is="dom-if" if="[[item.children]]">
-          <div class="branch">
-            [[item.label]]
-          </div>
-
-          <chart-legend items="[[item.children]]">
-          </chart-legend>
-        </template>
-
-        <template is="dom-if" if="[[!item.children]]">
-          <div class="leaf"
-              style$="color: [[item.color]];"
-              on-mouseover="onLeafMouseOver_"
-              on-mouseout="onLeafMouseOut_"
-              on-click="onLeafClick_">
-            [[item.label]]
-          </div>
-        </template>
-      </template>
+        <chart-legend .items="${item.children}">
+        </chart-legend>
+      ` : html`
+        <div class="leaf"
+            style="color: ${item.color};"
+            @mouseover="${this.onLeafMouseOver_}"
+            @mouseout="${this.onLeafMouseOut_}"
+            @click="${this.onLeafClick_}">
+          ${item.label}
+        </div>
+      `))}
     `;
   }
 
@@ -81,8 +81,4 @@ export default class ChartLegend extends PolymerElement {
   }
 }
 
-ChartLegend.properties = {
-  items: {type: Array},
-};
-
-customElements.define(ChartLegend.is, ChartLegend);
+customElements.define('chart-legend', ChartLegend);
