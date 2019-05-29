@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c657a191_0f23344d",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "120c8101_f3488ee2",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 105,
+        "startChar": 22,
+        "endLine": 105,
+        "endChar": 23
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "882ac450_2978b011",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 114,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 32
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7947c5b_6545dd56",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 125,
+        "startChar": 22,
+        "endLine": 125,
+        "endChar": 29
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d83f977_a4494da0",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 146,
+        "startChar": 22,
+        "endLine": 146,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2caf6be6_c261f9a6",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 179,
+        "startChar": 13,
+        "endLine": 179,
+        "endChar": 20
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1975a0f_d32e5c0d",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 263,
+        "startChar": 23,
+        "endLine": 263,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2baebe4_2ca005e4",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 269,
+        "startChar": 23,
+        "endLine": 269,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54ba5d43_81add41c",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 275,
+        "startChar": 23,
+        "endLine": 275,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fade32a_0fee1c7c",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 285,
+        "startChar": 16,
+        "endLine": 285,
+        "endChar": 20
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73c1b1b_0681c04e",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-29T15:23:05Z",
+      "side": 0,
+      "message": "Any reason for this change? I think the previous version was more readable.",
+      "range": {
+        "startLine": 295,
+        "startChar": 27,
+        "endLine": 295,
+        "endChar": 28
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
