@@ -62,26 +62,21 @@ suite('bisect-dialog', function() {
 
   test('submit', async function() {
     const bd = await fixture();
-    bd.$.open.click();
+    bd.shadowRoot.querySelector('#open').click();
     await afterRender();
 
-    bd.$.patch.dispatchEvent(new CustomEvent('change', {
-      detail: {value: 'patch'},
-    }));
-    bd.$.start_revision.dispatchEvent(new CustomEvent('change', {
-      detail: {value: '5'},
-    }));
-    bd.$.end_revision.dispatchEvent(new CustomEvent('change', {
-      detail: {value: '25'},
-    }));
-    bd.$.bug_id.dispatchEvent(new CustomEvent('change', {
-      detail: {value: '321'},
-    }));
-    bd.$.mode.dispatchEvent(new CustomEvent('selected-changed', {
-      detail: {value: 'functional'},
-    }));
+    bd.shadowRoot.querySelector('#patch').dispatchEvent(
+        new CustomEvent('change', {detail: {value: 'patch'}}));
+    bd.shadowRoot.querySelector('#start_revision').dispatchEvent(
+        new CustomEvent('change', {detail: {value: '5'}}));
+    bd.shadowRoot.querySelector('#end_revision').dispatchEvent(
+        new CustomEvent('change', {detail: {value: '25'}}));
+    bd.shadowRoot.querySelector('#bug_id').dispatchEvent(
+        new CustomEvent('change', {detail: {value: '321'}}));
+    bd.shadowRoot.querySelector('#mode').dispatchEvent(
+        new CustomEvent('selected-changed', {detail: {value: 'functional'}}));
 
-    bd.$.start.click();
+    bd.shadowRoot.querySelector('#start').click();
     await afterRender();
 
     assert.strictEqual('5', newPinpointBody.get('start_commit'));
