@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4fd1fe0a_7df9da69",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "This is an automated change, using \u0027pyformat\u0027: https://pypi.org/project/pyformat/\n\nJust like all of the other formatting changes.",
+      "parentUuid": "c657a191_0f23344d",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "120c8101_f3488ee2",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "531c874e_39e3b17b",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "120c8101_f3488ee2",
+      "range": {
+        "startLine": 105,
+        "startChar": 22,
+        "endLine": 105,
+        "endChar": 23
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e74dcc99_295ea820",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "882ac450_2978b011",
+      "range": {
+        "startLine": 114,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 32
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7947c5b_6545dd56",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 14
@@ -91,6 +163,30 @@
       "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "045b8ac6_697b8c11",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "a7947c5b_6545dd56",
+      "range": {
+        "startLine": 125,
+        "startChar": 22,
+        "endLine": 125,
+        "endChar": 29
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "b8a3dbdf_c2415430",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "4d83f977_a4494da0",
+      "range": {
+        "startLine": 146,
+        "startChar": 22,
+        "endLine": 146,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2caf6be6_c261f9a6",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 14
@@ -137,6 +257,30 @@
       "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee153677_5f7794f0",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "2caf6be6_c261f9a6",
+      "range": {
+        "startLine": 179,
+        "startChar": 13,
+        "endLine": 179,
+        "endChar": 20
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "ea1e9f17_8f05ebe5",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "c1975a0f_d32e5c0d",
+      "range": {
+        "startLine": 263,
+        "startChar": 23,
+        "endLine": 263,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2baebe4_2ca005e4",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 14
@@ -183,6 +351,30 @@
       "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4054f2e_2df0fc55",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "c2baebe4_2ca005e4",
+      "range": {
+        "startLine": 269,
+        "startChar": 23,
+        "endLine": 269,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "fba1e970_9d59a838",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "54ba5d43_81add41c",
+      "range": {
+        "startLine": 275,
+        "startChar": 23,
+        "endLine": 275,
+        "endChar": 27
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2fade32a_0fee1c7c",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 14
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "08bff5ad_603d38fa",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "2fade32a_0fee1c7c",
+      "range": {
+        "startLine": 285,
+        "startChar": 16,
+        "endLine": 285,
+        "endChar": 20
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f73c1b1b_0681c04e",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 14
@@ -252,6 +492,30 @@
       "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21a15d33_3d52630b",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T23:28:43Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "f73c1b1b_0681c04e",
+      "range": {
+        "startLine": 295,
+        "startChar": 27,
+        "endLine": 295,
+        "endChar": 28
+      },
+      "revId": "a63e7596c1e62f0d23970d30cd69c3192777dfdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
