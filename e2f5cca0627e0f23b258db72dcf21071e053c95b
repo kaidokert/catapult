@@ -22,6 +22,30 @@
       "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c622dc26_89bc49fe",
+        "filename": "OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-05-29T01:11:33Z",
+      "side": 1,
+      "message": "That\u0027s addressed by https://chromium-review.googlesource.com/c/catapult/+/1631855.\n\nHowever, there are things in the catapult top-level directory that I sometimes have to change, like catapult_build/*. Unless we place OWNERS in that directory as well.",
+      "parentUuid": "b62a4f32_60466369",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 2,
+        "endChar": 11
+      },
+      "revId": "e2f5cca0627e0f23b258db72dcf21071e053c95b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
