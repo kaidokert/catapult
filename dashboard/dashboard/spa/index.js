@@ -6,14 +6,14 @@
 
 METRICS.frontendVersion = 2;
 
-window.IS_DEBUG = location.hostname === 'localhost';
-const PRODUCTION = 'v2spa-dot-chromeperf.appspot.com';
-window.IS_PRODUCTION = location.hostname === PRODUCTION;
+import {isDebug, isProduction} from './utils.js';
+import {init} from '@chopsui/chops-signin/index.js';
 
-window.AUTH_CLIENT_ID = !IS_PRODUCTION ? '' :
+const CLIENT_ID =
   '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com';
+if (isProduction()) init(CLIENT_ID);
 
-if ('serviceWorker' in navigator && !IS_DEBUG) {
+if ('serviceWorker' in navigator && !isDebug()) {
   document.addEventListener('DOMContentLoaded', async() => {
     await navigator.serviceWorker.register(
         'service-worker.js?' + VULCANIZED_TIMESTAMP.getTime());
