@@ -6,6 +6,7 @@
 
 import ChartSection from './chart-section.js';
 import DescribeRequest from './describe-request.js';
+import RequestBase from './request-base.js';
 import TestSuitesRequest from './test-suites-request.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import findElements from './find-elements.js';
@@ -33,8 +34,8 @@ suite('chart-section', function() {
   let originalAuthorizationHeaders;
   let timeseriesBody;
   setup(() => {
-    originalAuthorizationHeaders = window.getAuthorizationHeaders;
-    window.getAuthorizationHeaders = async() => {
+    originalAuthorizationHeaders = RequestBase.getAuthorizationHeaders;
+    RequestBase.getAuthorizationHeaders = async() => {
       return {};
     };
 
@@ -72,7 +73,7 @@ suite('chart-section', function() {
       document.body.removeChild(child);
     }
     window.fetch = originalFetch;
-    window.getAuthorizationHeaders = originalAuthorizationHeaders;
+    RequestBase.getAuthorizationHeaders = originalAuthorizationHeaders;
   });
 
   test('descriptor', async function() {

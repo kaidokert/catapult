@@ -8,12 +8,9 @@ import './column-head.js';
 import './cp-checkbox.js';
 import './expand-button.js';
 import './scalar-span.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import {ElementBase, STORE} from './element-base.js';
-import {breakWords, crbug, setImmutable} from './utils.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {breakWords, crbug, get, setImmutable} from './utils.js';
+import {html, css} from 'lit-element';
 
 export default class AlertsTable extends ElementBase {
   static get is() { return 'alerts-table'; }
@@ -51,372 +48,388 @@ export default class AlertsTable extends ElementBase {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
-        #cat {
-          display: block;
-          height: 300px;
-          width: 300px;
-        }
+  static get styles() {
+    return css`
+      #cat {
+        display: block;
+        height: 300px;
+        width: 300px;
+      }
 
-        :host {
-          --min-table-height: 122px;
-          --non-table-height: 483px;
-        }
+      :host {
+        --min-table-height: 122px;
+        --non-table-height: 483px;
+      }
 
+      #scroll {
+        max-height: calc(100vh - var(--non-table-height));
+        margin: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      @media screen and (max-height: calc(var(--min-table-height) +
+                                          var(--non-table-height))) {
         #scroll {
-          max-height: calc(100vh - var(--non-table-height));
-          margin: 0;
-          overflow-y: auto;
-          overflow-x: hidden;
+          max-height: var(--min-table-height);
         }
+      }
 
-        @media screen and (max-height: calc(var(--min-table-height) +
-                                            var(--non-table-height))) {
-          #scroll {
-            max-height: var(--min-table-height);
-          }
-        }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-        table {
-          border-collapse: collapse;
-          width: 100%;
-        }
+      table[is-placeholder] {
+        color: var(--neutral-color-dark, grey);
+      }
 
-        table[is-placeholder] {
-          color: var(--neutral-color-dark, grey);
-        }
+      th {
+        padding: 8px;
+        white-space: nowrap;
+      }
 
-        th {
-          padding: 8px;
-          white-space: nowrap;
-        }
+      th.checkbox {
+        padding-left: 4px;
+        text-align: left;
+      }
 
-        th.checkbox {
-          padding-left: 4px;
-          text-align: left;
-        }
+      td {
+        padding: 4px;
+      }
 
-        td {
-          padding: 4px;
-        }
+      tbody tr:hover {
+        background: #eee;
+      }
 
-        tbody tr:hover {
-          background: #eee;
-        }
+      td:last-child {
+        padding-right: 0;
+      }
 
-        td:last-child {
-          padding-right: 0;
-        }
+      expand-button {
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 16px;
+      }
 
-        expand-button {
-          align-items: center;
-          justify-content: flex-end;
-          margin-right: 16px;
-        }
+      tbody {
+        border-color: var(--background-color, white);
+        border-style: solid;
+        border-width: 0 8px;
+        transition: border-width var(--transition-short, 0.2s);
+      }
 
-        tbody {
-          border-color: var(--background-color, white);
-          border-style: solid;
-          border-width: 0 8px;
-          transition: border-width var(--transition-short, 0.2s);
-        }
+      tbody[expandedGroup] {
+        border-color: var(--primary-color-light, lightblue);
+        border-width: 8px;
+      }
+    `;
+  }
 
-        tbody[expandedGroup] {
-          border-color: var(--primary-color-light, lightblue);
-          border-width: 8px;
-        }
-      </style>
+  render() {
+    const allTriaged = this.showingTriaged ? (this.alertGroups.length === 0) :
+      ((this.alertGroups || []).filter(group =>
+        group.alerts.length > group.triaged.count).length === 0);
+    const bodies = (this.alertGroups || []).map((alertGroup, alertGroupIndex) =>
+      this.renderGroup(alertGroup, alertGroupIndex));
 
-      <template is="dom-if" if="[[allTriaged_(alertGroups, showingTriaged)]]">
-        <center>
-          All alerts triaged!
-          <iron-icon id="cat" icon="cp-big:cat">
-          </iron-icon>
-        </center>
-      </template>
+    return allTriaged ? html`
+      <center>
+        All alerts triaged!
+        <iron-icon id="cat" icon="cp-big:cat">
+        </iron-icon>
+      </center>
+    ` : html`
+      <div id="scroll">
+        <table is-placeholder="${this.areAlertGroupsPlaceholders}">
+          <thead>
+            <tr>
+              <th>
+                <column-head
+                    .name="count"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Count
+                </column-head>
+              </th>
 
-      <template is="dom-if" if="[[!allTriaged_(
-          alertGroups, showingTriaged)]]">
-        <div id="scroll">
-          <table is-placeholder$="[[areAlertGroupsPlaceholders]]">
-            <thead>
-              <tr>
+              ${this.showTriagedColumn ? html`
                 <th>
                   <column-head
-                      name="count"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Count
+                      .name="triaged"
+                      .sortColumn="${this.sortColumn}"
+                      .sortDescending="${this.sortDescending}"
+                      ?disabled="${this.areAlertGroupsPlaceholders}"
+                      @click="${this.onSort_}">
+                    Triaged
                   </column-head>
                 </th>
+              ` : ''}
 
-                <template is="dom-if" if="[[showTriagedColumn]]">
-                  <th>
-                    <column-head
-                        name="triaged"
-                        sort-column="[[sortColumn]]"
-                        sort-descending="[[sortDescending]]"
-                        disabled="[[areAlertGroupsPlaceholders]]"
-                        on-click="onSort_">
-                      Triaged
-                    </column-head>
-                  </th>
-                </template>
+              <th class="checkbox">
+                <cp-checkbox
+                    ?checked="${this.selectedAlertsCount > 0}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @change="${this.onSelectAll_}">
+                </cp-checkbox>
+              </th>
 
-                <th class="checkbox">
-                  <cp-checkbox
-                      checked="[[anySelectedAlerts_(alertGroups)]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-change="onSelectAll_">
-                  </cp-checkbox>
-                </th>
-
-                <template is="dom-if" if="[[showBugColumn]]">
-                  <th>
-                    <column-head
-                        name="bugId"
-                        sort-column="[[sortColumn]]"
-                        sort-descending="[[sortDescending]]"
-                        disabled="[[areAlertGroupsPlaceholders]]"
-                        on-click="onSort_">
-                      Bug
-                    </column-head>
-                  </th>
-                </template>
-
+              ${this.showBugColumn ? html`
                 <th>
                   <column-head
-                      name="startRevision"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Revisions
+                      .name="bugId"
+                      .sortColumn="${this.sortColumn}"
+                      .sortDescending="${this.sortDescending}"
+                      ?disabled="${this.areAlertGroupsPlaceholders}"
+                      @click="${this.onSort_}">
+                    Bug
                   </column-head>
                 </th>
+              ` : ''}
 
+              <th>
+                <column-head
+                    .name="startRevision"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Revisions
+                </column-head>
+              </th>
+
+              <th>
+                <column-head
+                    .name="suite"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Suite
+                </column-head>
+              </th>
+
+              <th>
+                <column-head
+                    .name="measurement"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Measurement
+                </column-head>
+              </th>
+
+              ${this.showMasterColumn ? html`
                 <th>
                   <column-head
-                      name="suite"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Suite
+                      .name="master"
+                      .sortColumn="${this.sortColumn}"
+                      .sortDescending="${this.sortDescending}"
+                      ?disabled="${this.areAlertGroupsPlaceholders}"
+                      @click="${this.onSort_}">
+                    Master
                   </column-head>
                 </th>
+              ` : ''}
 
+              <th>
+                <column-head
+                    .name="bot"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Bot
+                </column-head>
+              </th>
+
+              ${this.showCaseColumn ? html`
                 <th>
                   <column-head
-                      name="measurement"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Measurement
+                      .name="case"
+                      .sortColumn="${this.sortColumn}"
+                      .sortDescending="${this.sortDescending}"
+                      ?disabled="${this.areAlertGroupsPlaceholders}"
+                      @click="${this.onSort_}">
+                    Case
                   </column-head>
                 </th>
+              ` : ''}
 
-                <template is="dom-if" if="[[showMasterColumn]]">
-                  <th>
-                    <column-head
-                        name="master"
-                        sort-column="[[sortColumn]]"
-                        sort-descending="[[sortDescending]]"
-                        disabled="[[areAlertGroupsPlaceholders]]"
-                        on-click="onSort_">
-                      Master
-                    </column-head>
-                  </th>
-                </template>
+              <th>
+                <column-head
+                    .name="deltaValue"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Delta
+                </column-head>
+              </th>
 
-                <th>
-                  <column-head
-                      name="bot"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Bot
-                  </column-head>
-                </th>
+              <th>
+                <column-head
+                    .name="percentDeltaValue"
+                    .sortColumn="${this.sortColumn}"
+                    .sortDescending="${this.sortDescending}"
+                    ?disabled="${this.areAlertGroupsPlaceholders}"
+                    @click="${this.onSort_}">
+                  Delta %
+                </column-head>
+              </th>
+            </tr>
+          </thead>
 
-                <template is="dom-if" if="[[showCaseColumn]]">
-                  <th>
-                    <column-head
-                        name="case"
-                        sort-column="[[sortColumn]]"
-                        sort-descending="[[sortDescending]]"
-                        disabled="[[areAlertGroupsPlaceholders]]"
-                        on-click="onSort_">
-                      Case
-                    </column-head>
-                  </th>
-                </template>
+          ${bodies}
+        </table>
+      </div>
+    `;
+  }
 
-                <th>
-                  <column-head
-                      name="deltaValue"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Delta
-                  </column-head>
-                </th>
+  renderGroup(alertGroup, alertGroupIndex) {
+    const expandedGroup = alertGroup.isExpanded ||
+      alertGroup.triaged.isExpanded;
+    const rows = alertGroup.alerts.map((alert, alertIndex) =>
+      this.renderAlert(alertGroup, alertGroupIndex, alert, alertIndex));
+    return html`
+      <tbody expandedGroup="${expandedGroup}">
+        ${rows}
+      </tbody>
+    `;
+  }
 
-                <th>
-                  <column-head
-                      name="percentDeltaValue"
-                      sort-column="[[sortColumn]]"
-                      sort-descending="[[sortDescending]]"
-                      disabled="[[areAlertGroupsPlaceholders]]"
-                      on-click="onSort_">
-                    Delta %
-                  </column-head>
-                </th>
-              </tr>
-            </thead>
+  renderAlert(alertGroup, alertGroupIndex, alert, alertIndex) {
+    if (!AlertsTable.shouldDisplayAlert(
+        this.areAlertGroupsPlaceholders, this.showingTriaged, alertGroup,
+        alertIndex, alertGroup.triaged.isExpanded)) {
+      return '';
+    }
 
-            <template is="dom-repeat" items="[[alertGroups]]" as="alertGroup"
-                                      index-as="alertGroupIndex">
-              <tbody expandedGroup$="[[isExpandedGroup_(
-                  alertGroup.isExpanded, alertGroup.triaged.isExpanded)]]">
-                <template is="dom-repeat" items="[[alertGroup.alerts]]"
-                    as="alert" index-as="alertIndex">
-                  <template is="dom-if" if="[[shouldDisplayAlert_(
-                      areAlertGroupsPlaceholders, showingTriaged, alertGroup,
-                      alertIndex, alertGroup.triaged.isExpanded)]]">
-                    <tr on-click="onRowClick_">
+    // Most monitored timeseries on ChromiumPerf bots use revisions that are
+    // supported by test-results.appspot.com.
+    // TODO(benjhayden) Support revision range links more generally.
+    const alertRevisionHref = (alert.master !== 'ChromiumPerf') ? '' :
+      `http://test-results.appspot.com/revision_range?start=${alert.startRevision}&end=${alert.endRevision}&n=1000`;
 
-                      <td>
-                        <template is="dom-if"
-                            if="[[shouldDisplayExpandGroupButton_(
-                              alertGroup, alertIndex, showingTriaged,
-                              sortColumn, sortDescending)]]">
-                          <expand-button
-                    state-path="[[statePath]].alertGroups.[[alertGroupIndex]]">
-                            [[getExpandGroupButtonLabel_(
-                              alertGroup, showingTriaged)]]
-                          </expand-button>
-                        </template>
-                      </td>
+    const alertRevisionString = (alert.startRevision === alert.endRevision) ?
+      alert.startRevision : (alert.startRevision + '-' + alert.endRevision);
 
-                      <template is="dom-if" if="[[showTriagedColumn]]">
-                        <td>
-                          <template is="dom-if"
-    if="[[shouldDisplayExpandTriagedButton_(showingTriaged, alertGroup,
-      alertIndex, sortColumn, sortDescending)]]">
-                            <expand-button
-    state-path="[[statePath]].alertGroups.[[alertGroupIndex]].triaged">
-                              [[alertGroup.triaged.count]]
-                            </expand-button>
-                          </template>
-                        </td>
-                      </template>
+    const shouldDisplayExpandGroupButton =
+      AlertsTable.shouldDisplayExpandGroupButton(
+          alertGroup, alertIndex, this.showingTriaged);
 
-                      <td>
-                        <cp-checkbox
-                            checked="[[alert.isSelected]]"
-                            disabled="[[areAlertGroupsPlaceholders]]"
-                            on-change="onSelect_">
-                          <template is="dom-if"
-    if="[[shouldDisplaySelectedCount_(showingTriaged, alertGroup, alertIndex,
-      sortColumn, sortDescending)]]">
-                            [[selectedCount_(alertGroup)]]
-                          </template>
-                        </cp-checkbox>
-                      </td>
+    const expandGroupButtonLabel = this.showingTriaged ?
+      alertGroup.alerts.length :
+      (alertGroup.alerts.length - alertGroup.triaged.count);
 
-                      <template is="dom-if" if="[[showBugColumn]]">
-                        <td>
-                          <template is="dom-if" if="[[!isEqual_(
-                              alert.bugId, '')]]">
-                            <template is="dom-if"
-    if="[[areAlertGroupsPlaceholders]]">
-                              [[alert.bugId]]
-                            </template>
-                            <template is="dom-if"
-    if="[[!areAlertGroupsPlaceholders]]">
-                              <template is="dom-if"
-    if="[[isAlertIgnored_(alert.bugId)]]">
-                                ignored
-                              </template>
-                              <template is="dom-if"
-    if="[[!isAlertIgnored_(alert.bugId)]]">
-                                <a href="[[crbug_(alert.bugId)]]"
-    target="_blank">
-                                  [[alert.bugId]]
-                                </a>
-                              </template>
-                            </template>
-                          </template>
-                        </td>
-                      </template>
+    const shouldDisplayExpandTriagedButton =
+      AlertsTable.shouldDisplayExpandTriagedButton(
+          this.showingTriaged, alertGroup, alertIndex);
 
-                      <td>
-                        <template is="dom-if"
-    if="[[alertRevisionHref_(alert)]]">
-                          <a href="[[alertRevisionHref_(alert)]]"
-    target="_blank">
-                            [[alertRevisionString_(alert)]]
-                          </a>
-                        </template>
-                        <template is="dom-if"
-    if="[[!alertRevisionHref_(alert)]]">
-                          [[alertRevisionString_(alert)]]
-                        </template>
-                      </td>
+    const shouldDisplaySelectedCount = (this.showingTriaged) ?
+      (alertIndex === 0) :
+      (alertIndex === alertGroup.alerts.findIndex(a => !a.bugId));
 
-                      <td style$="color: [[alert.color]];">
-                        [[breakWords_(alert.suite)]]
-                      </td>
-                      <td style$="color: [[alert.color]];">
-                        [[breakWords_(alert.measurement)]]
-                      </td>
+    const expandTriagedStatePath =
+      `${this.statePath}.alertGroups.${alertGroupIndex}.triaged`;
 
-                      <template is="dom-if" if="[[showMasterColumn]]">
-                        <td style$="color: [[alert.color]];">
-                          [[alert.master]]
-                        </td>
-                      </template>
+    return html`
+      <tr @click="${event =>
+    this.onRowClick_(event, alertGroupIndex, alertIndex)}">
+        <td>
+          ${shouldDisplayExpandGroupButton ? html`
+            <expand-button
+                .statePath="${this.statePath}.alertGroups.${alertGroupIndex}">
+              ${expandGroupButtonLabel}
+            </expand-button>
+          ` : ''}
+        </td>
 
-                      <td style$="color: [[alert.color]];">
-                        [[alert.bot]]
-                      </td>
+        ${this.showTriagedColumn ? html`
+          <td>
+            ${shouldDisplayExpandTriagedButton ? html`
+              <expand-button .statePath="${expandTriagedStatePath}">
+                ${alertGroup.triaged.count}
+              </expand-button>
+            ` : ''}
+          </td>
+        ` : ''}
 
-                      <template is="dom-if" if="[[showCaseColumn]]">
-                        <td style$="color: [[alert.color]];">
-                          [[breakWords_(alert.case)]]
-                        </td>
-                      </template>
+        <td>
+          <cp-checkbox
+              ?checked="${alert.isSelected}"
+              ?disabled="${this.areAlertGroupsPlaceholders}"
+              @change="${event =>
+    this.onSelect_(event, alertGroupIndex, alertIndex)}">
+            ${shouldDisplaySelectedCount ? this.selectedCount_(alertGroup) : ''}
+          </cp-checkbox>
+        </td>
 
-                      <td>
-                        <scalar-span
-                            value="[[alert.deltaValue]]"
-                            unit="[[alert.deltaUnit]]">
-                        </scalar-span>
-                      </td>
+        ${this.showBugColumn ? html`
+          <td>
+            ${!alert.bugId ? '' : (this.areAlertGroupsPlaceholders ? html`
+              ${alert.bugId}
+            ` : ((alert.bugId < 0) ? html`
+              ignored
+            ` : html`
+              <a href="${crbug(alert.bugId)}" target="_blank">
+                ${alert.bugId}
+              </a>
+            `))}
+          </td>
+        ` : ''}
 
-                      <td>
-                        <scalar-span
-                            value="[[alert.percentDeltaValue]]"
-                            unit="[[alert.percentDeltaUnit]]"
-                            maximum-fraction-digits="1">
-                        </scalar-span>
-                      </td>
-                    </tr>
-                  </template>
-                </template>
-              </tbody>
-            </template>
-          </table>
-        </div>
-      </template>
+        <td>
+          ${alertRevisionHref ? html`
+            <a href="${alertRevisionHref}" target="_blank">
+              ${alertRevisionString}
+            </a>
+          ` : html`
+            ${alertRevisionString}
+          `}
+        </td>
+
+        <td style="color: ${alert.color};">
+          ${breakWords(alert.suite)}
+        </td>
+        <td style="color: ${alert.color};">
+          ${breakWords(alert.measurement)}
+        </td>
+
+        ${this.showMasterColumn ? html`
+          <td style="color: ${alert.color};">
+            ${alert.master}
+          </td>
+        ` : ''}
+
+        <td style="color: ${alert.color};">
+          ${alert.bot}
+        </td>
+
+        ${this.showCaseColumn ? html`
+          <td style="color: ${alert.color};">
+            ${breakWords(alert.case)}
+          </td>
+        ` : ''}
+
+        <td>
+          <scalar-span
+              .value="${alert.deltaValue}"
+              .unit="${alert.deltaUnit}">
+          </scalar-span>
+        </td>
+
+        <td>
+          <scalar-span
+              .value="${alert.percentDeltaValue}"
+              .unit="${alert.percentDeltaUnit}"
+              .maximumFractionDigits="1">
+          </scalar-span>
+        </td>
+      </tr>
     `;
   }
 
@@ -427,12 +440,8 @@ export default class AlertsTable extends ElementBase {
 
   stateChanged(rootState) {
     super.stateChanged(rootState);
-    this.set('areAlertGroupsPlaceholders', this.alertGroups ===
+    this.areAlertGroupsPlaceholders = (this.alertGroups ===
       AlertsTable.placeholderAlertGroups());
-  }
-
-  anySelectedAlerts_(alertGroups) {
-    return AlertsTable.getSelectedAlerts(alertGroups).length > 0;
   }
 
   selectedCount_(alertGroup) {
@@ -444,72 +453,6 @@ export default class AlertsTable extends ElementBase {
     }
     if (count === 0) return '';
     return `${count}/${alertGroup.alerts.length}`;
-  }
-
-  allTriaged_(alertGroups, showingTriaged) {
-    if (showingTriaged) return alertGroups.length === 0;
-    return (alertGroups || []).filter(group =>
-      group.alerts.length > group.triaged.count).length === 0;
-  }
-
-  alertRevisionString_(alert) {
-    if (alert.startRevision === alert.endRevision) return alert.startRevision;
-    return alert.startRevision + '-' + alert.endRevision;
-  }
-
-  alertRevisionHref_(alert) {
-    // Most monitored timeseries on ChromiumPerf bots use revisions that are
-    // supported by test-results.appspot.com.
-    // TODO(benjhayden) Support revision range links more generally.
-    if (alert.master === 'ChromiumPerf') return `http://test-results.appspot.com/revision_range?start=${alert.startRevision}&end=${alert.endRevision}&n=1000`;
-    return '';
-  }
-
-  breakWords_(str) {
-    return breakWords(str);
-  }
-
-  isExpandedGroup_(groupIsExpanded, triagedIsExpanded) {
-    return groupIsExpanded || triagedIsExpanded;
-  }
-
-  shouldDisplayAlert_(
-      areAlertGroupsPlaceholders, showingTriaged, alertGroup, alertIndex,
-      triagedExpanded) {
-    return AlertsTable.shouldDisplayAlert(
-        areAlertGroupsPlaceholders, showingTriaged, alertGroup, alertIndex,
-        triagedExpanded);
-  }
-
-  shouldDisplayExpandGroupButton_(
-      alertGroup, alertIndex, showingTriaged, sortColumn, sortDescending) {
-    return AlertsTable.shouldDisplayExpandGroupButton(
-        alertGroup, alertIndex, showingTriaged);
-  }
-
-  getExpandGroupButtonLabel_(alertGroup, showingTriaged) {
-    if (showingTriaged) return alertGroup.alerts.length;
-    return alertGroup.alerts.length - alertGroup.triaged.count;
-  }
-
-  shouldDisplayExpandTriagedButton_(
-      showingTriaged, alertGroup, alertIndex, sortColumn, sortDescending) {
-    return AlertsTable.shouldDisplayExpandTriagedButton(
-        showingTriaged, alertGroup, alertIndex);
-  }
-
-  shouldDisplaySelectedCount_(
-      showingTriaged, alertGroup, alertIndex, sortColumn, sortDescending) {
-    if (showingTriaged) return alertIndex === 0;
-    return alertIndex === alertGroup.alerts.findIndex(a => !a.bugId);
-  }
-
-  isAlertIgnored_(bugId) {
-    return bugId < 0;
-  }
-
-  crbug_(bugId) {
-    return crbug(bugId);
   }
 
   async onSelectAll_(event) {
@@ -524,7 +467,7 @@ export default class AlertsTable extends ElementBase {
     }));
   }
 
-  async onSelect_(event) {
+  async onSelect_(event, alertGroupIndex, alertIndex) {
     let shiftKey = false;
     if (event.detail && event.detail.event &&
         (event.detail.event.shiftKey ||
@@ -534,8 +477,8 @@ export default class AlertsTable extends ElementBase {
     await STORE.dispatch({
       type: AlertsTable.reducers.selectAlert.name,
       statePath: this.statePath,
-      alertGroupIndex: event.model.parentModel.alertGroupIndex,
-      alertIndex: event.model.alertIndex,
+      alertGroupIndex,
+      alertIndex,
       shiftKey,
     });
     this.dispatchEvent(new CustomEvent('selected', {
@@ -556,14 +499,14 @@ export default class AlertsTable extends ElementBase {
     }));
   }
 
-  async onRowClick_(event) {
+  async onRowClick_(event, alertGroupIndex, alertIndex) {
     if (event.target.tagName !== 'TD') return;
     this.dispatchEvent(new CustomEvent('alert-click', {
       bubbles: true,
       composed: true,
       detail: {
-        alertGroupIndex: event.model.alertGroupIndex,
-        alertIndex: event.model.alertIndex,
+        alertGroupIndex,
+        alertIndex,
       },
     }));
   }
@@ -693,7 +636,8 @@ AlertsTable.placeholderAlertGroups = () => {
 
 AlertsTable.reducers = {
   sort: (state, action, rootState) => {
-    if (state.alertGroups === AlertsTable.placeholderAlertGroups()) {
+    if (!state ||
+        (state.alertGroups === AlertsTable.placeholderAlertGroups())) {
       return state;
     }
     const sortDescending = state.sortDescending ^ (state.sortColumn ===
@@ -783,6 +727,7 @@ AlertsTable.reducers = {
   },
 
   selectAllAlerts: (state, action, rootState) => {
+    if (!state) return state;
     const select = (state.selectedAlertsCount === 0);
     const alertGroups = state.alertGroups.map(alertGroup => {
       return {

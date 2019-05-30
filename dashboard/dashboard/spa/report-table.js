@@ -6,13 +6,10 @@
 
 import './cp-toast.js';
 import './scalar-span.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
-import {measureElement} from './utils.js';
+import {html, css} from 'lit-element';
+import {get, measureElement} from './utils.js';
 
 export default class ReportTable extends ElementBase {
   static get is() { return 'report-table'; }
@@ -52,206 +49,208 @@ export default class ReportTable extends ElementBase {
     };
   }
 
-  static get template() {
+  static get styles() {
+    return css`
+      :host {
+        position: relative;
+      }
+      .report_name {
+        display: flex;
+        justify-content: center;
+        margin: 24px 0 0 0;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      #table tbody tr {
+        border-bottom: 1px solid var(--neutral-color-medium, grey);
+      }
+
+      table[placeholder] {
+        color: var(--neutral-color-dark, grey);
+      }
+
+      h2 {
+        text-align: center;
+        margin: 0;
+      }
+
+      .name_column {
+        text-align: left;
+      }
+
+      td, th {
+        padding: 4px;
+        vertical-align: top;
+      }
+
+      #edit,
+      #copy,
+      #documentation {
+        color: var(--primary-color-dark, blue);
+        cursor: pointer;
+        flex-shrink: 0;
+        margin: 0 0 0 8px;
+        padding: 0;
+        width: var(--icon-size, 1em);
+        height: var(--icon-size, 1em);
+      }
+
+      .report_name span {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      #tooltip {
+        display: none;
+        position: absolute;
+        z-index: var(--layer-menu, 100);
+      }
+
+      :host(:hover) #tooltip {
+        display: block;
+      }
+
+      #tooltip table {
+        background-color: var(--background-color, white);
+        border: 2px solid var(--primary-color-dark, blue);
+        padding: 8px;
+      }
+
+      #tooltip td {
+        padding: 2px;
+      }
+
+      #copied {
+        display: flex;
+        justify-content: center;
+        background-color: var(--primary-color-dark, blue);
+        color: var(--background-color, white);
+        padding: 8px;
+      }
+
+      #scratch {
+        opacity: 0;
+        position: absolute;
+        z-index: var(--layer-hidden, -100);
+      }
+
+      iron-icon[hidden] {
+        display: none;
+      }
+    `;
+  }
+
+  render() {
     return html`
-      <style>
-        :host {
-          position: relative;
-        }
-        .report_name {
-          display: flex;
-          justify-content: center;
-          margin: 24px 0 0 0;
-        }
-
-        table {
-          border-collapse: collapse;
-        }
-
-        #table tbody tr {
-          border-bottom: 1px solid var(--neutral-color-medium, grey);
-        }
-
-        table[placeholder] {
-          color: var(--neutral-color-dark, grey);
-        }
-
-        h2 {
-          text-align: center;
-          margin: 0;
-        }
-
-        .name_column {
-          text-align: left;
-        }
-
-        td, th {
-          padding: 4px;
-          vertical-align: top;
-        }
-
-        #edit,
-        #copy,
-        #documentation {
-          color: var(--primary-color-dark, blue);
-          cursor: pointer;
-          flex-shrink: 0;
-          margin: 0 0 0 8px;
-          padding: 0;
-          width: var(--icon-size, 1em);
-          height: var(--icon-size, 1em);
-        }
-
-        .report_name span {
-          position: relative;
-          display: flex;
-          align-items: center;
-        }
-
-        #tooltip {
-          display: none;
-          position: absolute;
-          z-index: var(--layer-menu, 100);
-        }
-
-        :host(:hover) #tooltip {
-          display: block;
-        }
-
-        #tooltip table {
-          background-color: var(--background-color, white);
-          border: 2px solid var(--primary-color-dark, blue);
-          padding: 8px;
-        }
-
-        #tooltip td {
-          padding: 2px;
-        }
-
-        #copied {
-          display: flex;
-          justify-content: center;
-          background-color: var(--primary-color-dark, blue);
-          color: var(--background-color, white);
-          padding: 8px;
-        }
-
-        #scratch {
-          opacity: 0;
-          position: absolute;
-          z-index: var(--layer-hidden, -100);
-        }
-
-        iron-icon[hidden] {
-          display: none;
-        }
-      </style>
-
       <div class="report_name">
-        <h2>[[name]]</h2>
+        <h2>${this.name}</h2>
 
-        <template is="dom-if" if="[[url]]">
+        ${!this.url ? '' : html`
           <a id="documentation"
-              href="[[url]]"
+              href="${this.url}"
               target="_blank"
               title="Documentation">
             <iron-icon icon="cp:help">
             </iron-icon>
           </a>
-        </template>
+        `}
 
         <iron-icon
             id="copy"
             icon="cp:copy"
             title="Copy measurements"
-            on-click="onCopy_">
+            @click="${this.onCopy_}">
         </iron-icon>
 
         <iron-icon
             id="edit"
-            hidden$="[[!canEdit_(owners, userEmail)]]"
+            hidden="${!ReportTable.canEdit(this.owners, this.userEmail)}"
             icon="cp:edit"
             title="Edit template"
-            on-click="onToggleEditing_">
+            @click="${this.onToggleEditing_}">
         </iron-icon>
       </div>
 
-      <table id="table" placeholder$="[[isPlaceholder]]">
+      <table id="table" placeholder="${this.isPlaceholder}">
         <thead>
           <tr>
-            <th colspan$="[[maxLabelParts]]">&nbsp;</th>
-            <th colspan$="[[lengthOf_(statistics)]]">
-              [[prevMstoneLabel_(milestone, maxRevision)]]
+            <th colspan="${this.maxLabelParts}">&nbsp;</th>
+            <th colspan="${this.statistics.length}">
+              M${(this.maxRevision === 'latest') ? this.milestone :
+    (this.milestone - 1)}
               <br>
-              [[minRevision]]
+              ${this.minRevision}
             </th>
-            <th colspan$="[[lengthOf_(statistics)]]">
-              [[curMstoneLabel_(milestone, maxRevision)]]
+            <th colspan="${this.statistics.length}">
+              ${(this.maxRevision === 'latest') ? '' : ('M' + this.milestone)}
               <br>
-              [[maxRevision]]
+              ${this.maxRevision}
             </th>
-            <th colspan$="[[numChangeColumns_(statistics)]]">Change</th>
+            <th colspan="${2 * this.statistics.length}">Change</th>
           </tr>
-          <template is="dom-if" if="[[isMultiple_(statistics)]]">
+          ${(this.statistics.length <= 1) ? '' : html`
             <tr>
-              <th colspan$="[[maxLabelParts]]">&nbsp;</th>
-              <template is="dom-repeat" items="[[statistics]]" as="statistic">
-                <th>[[statistic]]</th>
-              </template>
-              <template is="dom-repeat" items="[[statistics]]" as="statistic">
-                <th>[[statistic]]</th>
-              </template>
-              <template is="dom-repeat" items="[[statistics]]" as="statistic">
-                <th colspan="2">[[statistic]]</th>
-              </template>
+              <th colspan="${this.maxLabelParts}">&nbsp;</th>
+              ${this.statistics.map(statistic => html`
+                <th>${statistic}</th>
+              `)}
+              ${this.statistics.map(statistic => html`
+                <th>${statistic}</th>
+              `)}
+              ${this.statistics.map(statistic => html`
+                <th colspan="2">${statistic}</th>
+              `)}
             </tr>
-          </template>
+          `}
         </thead>
 
         <tbody>
-          <template is="dom-repeat" items="[[rows]]" as="row">
-            <tr on-mouseenter="onEnterRow_">
-              <template is="dom-repeat" items="[[row.labelParts]]"
-                  as="labelPart" index-as="labelPartIndex">
-                <template is="dom-if" if="[[labelPart.isFirst]]">
-                  <td row-span="[[labelPart.rowCount]]">
-                    <a href="[[labelPart.href]]"
-                        on-click="onOpenChart_">
-                      [[labelPart.label]]
+          ${this.rows.map(row => html`
+            <tr @mouseenter="${event => this.onEnterRow_(event, row)}">
+              ${row.labelParts.map((labelPart, labelPartIndex) =>
+    (!labelPart.isFirst ? '' : html`
+                  <td row-span="${labelPart.rowCount}">
+                    <a href="${labelPart.href}"
+                        @click="${event =>
+        this.onOpenChart_(event, labelPartIndex, row)}">
+                      ${labelPart.label}
                     </a>
                   </td>
-                </template>
-              </template>
+              `))}
 
-              <template is="dom-repeat" items="[[row.scalars]]" as="scalar">
+              ${row.scalars.map(scalar => html`
                 <td>
                   <scalar-span
-                      unit="[[scalar.unit]]"
-                      unit-prefix="[[scalar.unitPrefix]]"
-                      value="[[scalar.value]]">
+                      .unit="${scalar.unit}"
+                      .unitPrefix="${scalar.unitPrefix}"
+                      .value="${scalar.value}">
                   </scalar-span>
                 </td>
-              </template>
+              `)}
             </tr>
-          </template>
+          `)}
         </tbody>
       </table>
 
       <div id="tooltip"
-          style$="top: [[tooltip.top]]px; left: [[tooltip.left]]px;">
-        <template is="dom-if" if="[[!isEmpty_(tooltip.rows)]]">
+          style="top: ${this.tooltip.top}px; left: ${this.tooltip.left}px;">
+        ${(!this.tooltip.rows || !this.tooltip.rows.length) ? '' : html`
           <table>
             <tbody>
-              <template is="dom-repeat" items="[[tooltip.rows]]" as="row">
+              ${this.tooltip.rows.map(row => html`
                 <tr>
-                  <template is="dom-repeat" items="[[row]]" as="cell">
-                    <td>[[cell]]</td>
-                  </template>
+                  ${row.map(cell => html`
+                    <td>${cell}</td>
+                  `)}
                 </tr>
-              </template>
+              `)}
             </tbody>
           </table>
-        </template>
+        `}
       </div>
 
       <div id="scratch">
@@ -264,18 +263,8 @@ export default class ReportTable extends ElementBase {
   }
 
   stateChanged(rootState) {
-    this.set('userEmail', rootState.userEmail);
+    this.userEmail = rootState.userEmail;
     super.stateChanged(rootState);
-  }
-
-  prevMstoneLabel_(milestone, maxRevision) {
-    if (maxRevision === 'latest') milestone += 1;
-    return `M${milestone - 1}`;
-  }
-
-  curMstoneLabel_(milestone, maxRevision) {
-    if (maxRevision === 'latest') return '';
-    return `M${milestone}`;
   }
 
   async onCopy_(event) {
@@ -319,7 +308,7 @@ export default class ReportTable extends ElementBase {
     await STORE.dispatch(TOGGLE(this.statePath + '.isEditing'));
   }
 
-  async onOpenChart_(event) {
+  async onOpenChart_(event, labelPartIndex, row) {
     event.preventDefault();
 
     // The user may have clicked a link for an individual row (in which case
@@ -328,10 +317,10 @@ export default class ReportTable extends ElementBase {
     // collect all parameters for all rows in the group (all measurements, all
     // bots, all test cases, all test suites).
     function getLabelPrefix(row) {
-      return row.labelParts.slice(0, event.model.labelPartIndex + 1).map(
+      return row.labelParts.slice(0, labelPartIndex + 1).map(
           p => p.label).join(':');
     }
-    const labelPrefix = getLabelPrefix(event.model.parentModel.row);
+    const labelPrefix = getLabelPrefix(row);
     const suites = new Set();
     const measurements = new Set();
     const bots = new Set();
@@ -374,16 +363,8 @@ export default class ReportTable extends ElementBase {
     }));
   }
 
-  numChangeColumns_(statistics) {
-    return 2 * this.lengthOf_(statistics);
-  }
-
-  canEdit_(owners, userEmail) {
-    return ReportTable.canEdit(owners, userEmail);
-  }
-
-  async onEnterRow_(event) {
-    if (!event.model.row.actualDescriptors) return;
+  async onEnterRow_(event, row) {
+    if (!row.actualDescriptors) return;
     let tr;
     for (const elem of event.path) {
       if (elem.tagName === 'TR') {
@@ -397,7 +378,7 @@ export default class ReportTable extends ElementBase {
     const thisRect = await measureElement(this);
     await STORE.dispatch(UPDATE(this.statePath, {
       tooltip: {
-        rows: event.model.row.actualDescriptors.map(descriptor => [
+        rows: row.actualDescriptors.map(descriptor => [
           descriptor.testSuite, descriptor.bot, descriptor.testCase]),
         top: (tdRect.bottom - thisRect.top),
         left: (tdRect.left - thisRect.left),

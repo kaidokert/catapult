@@ -10,6 +10,7 @@ import DescribeRequest from './describe-request.js';
 import RecentBugsRequest from './recent-bugs-request.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
+import RequestBase from './request-base.js';
 import SessionIdRequest from './session-id-request.js';
 import SessionStateRequest from './session-state-request.js';
 import SheriffsRequest from './sheriffs-request.js';
@@ -33,12 +34,12 @@ suite('chromeperf-app', function() {
   let originalAuthorizationHeaders;
   let originalUserProfile;
   setup(() => {
-    originalUserProfile = window.getUserProfileAsync;
-    window.getUserProfileAsync = async() => {
+    originalUserProfile = ChromeperfApp.getUserProfileAsync;
+    ChromeperfApp.getUserProfileAsync = async() => {
       return {getEmail() { return 'you@there.com'; }};
     };
-    originalAuthorizationHeaders = window.getAuthorizationHeaders;
-    window.getAuthorizationHeaders = async() => {
+    originalAuthorizationHeaders = RequestBase.getAuthorizationHeaders;
+    RequestBase.getAuthorizationHeaders = async() => {
       return {};
     };
     originalFetch = window.fetch;
@@ -101,22 +102,22 @@ suite('chromeperf-app', function() {
       if (!child.matches('chromeperf-app')) continue;
       document.body.removeChild(child);
     }
-    window.getUserProfileAsync = originalUserProfile;
+    ChromeperfApp.getUserProfileAsync = originalUserProfile;
     window.fetch = originalFetch;
-    window.getAuthorizationHeaders = originalAuthorizationHeaders;
+    RequestBase.getAuthorizationHeaders = originalAuthorizationHeaders;
   });
 
   test('newAlerts', async function() {
     const app = await fixture();
     assert.lengthOf(app.alertsSectionIds, 0);
-    app.$.new_alerts.click();
+    app.shadowRoot.querySelector('#new_alerts').click();
     await afterRender();
     assert.lengthOf(app.alertsSectionIds, 1);
   });
 
   test('closeAlerts', async function() {
     const app = await fixture();
-    app.$.new_alerts.click();
+    app.shadowRoot.querySelector('#new_alerts').click();
     await afterRender();
     const alerts = app.shadowRoot.querySelector('alerts-section');
     alerts.dispatchEvent(new CustomEvent('close-section'));
@@ -128,16 +129,15 @@ suite('chromeperf-app', function() {
 
   test('reopenAlerts', async function() {
     const app = await fixture();
-    app.$.new_alerts.click();
+    app.shadowRoot.querySelector('#new_alerts').click();
     await afterRender();
     const alerts = app.shadowRoot.querySelector('alerts-section');
     // Make the alerts-section not empty so that it can be reopened.
     STORE.dispatch(UPDATE(alerts.statePath + '.bug', {
       selectedOptions: [42],
     }));
-    alerts.$.controls.dispatchEvent(new CustomEvent('sources', {
-      detail: {sources: [{bug: 42}]},
-    }));
+    alerts.shadowRoot.querySelector('#controls').dispatchEvent(
+        new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
     await afterRender();
 
     alerts.dispatchEvent(new CustomEvent('close-section'));
