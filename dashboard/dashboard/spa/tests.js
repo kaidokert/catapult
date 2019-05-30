@@ -21,7 +21,6 @@ Mocha.before(async function() {
 });
 
 Mocha.beforeEach(async function() {
-  window.AUTH_CLIENT_ID = '';
   window.location.hash = '';
   STORE.dispatch(RESET);
   await afterRender();

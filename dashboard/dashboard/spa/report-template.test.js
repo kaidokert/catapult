@@ -159,7 +159,7 @@ suite('report-template', function() {
 
   test('save', async function() {
     const template = await fixture();
-    template.$.save.click();
+    template.shadowRoot.querySelector('#save').click();
     await afterRender();
     assert.strictEqual('42', templateBody.get('id'));
     assert.strictEqual('test name', templateBody.get('name'));

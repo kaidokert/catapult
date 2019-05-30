@@ -69,7 +69,7 @@ suite('report-table', function() {
 
   test('tooltip', async function() {
     const report = await fixture();
-    const tr = report.$.table.querySelector('tbody').children[0];
+    const tr = report.table.querySelector('tbody').children[0];
     tr.dispatchEvent(new CustomEvent('mouseenter', {}));
     await afterRender();
     await afterRender();
@@ -100,7 +100,7 @@ suite('report-table', function() {
 
   test('copy', async function() {
     const report = await fixture();
-    report.$.copy.click();
-    assert.isTrue(report.$.copied.opened);
+    report.shadowRoot.querySelector('#copy').click();
+    assert.isTrue(report.copiedToast.opened);
   });
 });
