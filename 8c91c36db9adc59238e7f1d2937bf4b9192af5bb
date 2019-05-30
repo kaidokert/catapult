@@ -104,6 +104,24 @@
       "revId": "8c91c36db9adc59238e7f1d2937bf4b9192af5bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28876d3b_c25f41fd",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T09:31:45Z",
+      "side": 1,
+      "message": "Yes, that\u0027s a good point. Let\u0027s do it as you suggest here.",
+      "parentUuid": "b4e877f7_72004ad8",
+      "revId": "8c91c36db9adc59238e7f1d2937bf4b9192af5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8bb29a3_38b7263e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T09:31:45Z",
+      "side": 1,
+      "message": "nit: also add a comment indicating that for the PROTOBUF case, the metadata has been already written.",
+      "revId": "efb4f4dc1e46a1d6bdaae6d69e42c38f49f7ffbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2fc90c3_bf6255c4",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T09:31:45Z",
+      "side": 1,
+      "message": "As the dict will only be ever used for the json format, let\u0027s already write it here exactly as would be needed for writing in the footer, i.e. very much like you do in _build_metadata_for_json above.",
+      "revId": "efb4f4dc1e46a1d6bdaae6d69e42c38f49f7ffbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
