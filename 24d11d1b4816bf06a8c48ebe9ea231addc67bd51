@@ -22,6 +22,30 @@
       "revId": "24d11d1b4816bf06a8c48ebe9ea231addc67bd51",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a40a8f8_7a7566df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T11:35:37Z",
+      "side": 1,
+      "message": "Yup. Will do.",
+      "parentUuid": "08df8df7_e307f9a4",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "24d11d1b4816bf06a8c48ebe9ea231addc67bd51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
