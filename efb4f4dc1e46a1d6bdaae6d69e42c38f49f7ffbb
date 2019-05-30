@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7d9205b5_24308f4b",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T09:34:09Z",
+      "side": 1,
+      "message": "Also, with this code now here. Can we already remove the AsDict method in telemetry_info?\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003d601317b5ca393f9d6a76679e5640de77aa3d84a9\u0026l\u003d260\n\nCould also be a follow up CL.",
+      "revId": "efb4f4dc1e46a1d6bdaae6d69e42c38f49f7ffbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8bb29a3_38b7263e",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 2
