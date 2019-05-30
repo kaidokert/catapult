@@ -14,7 +14,7 @@ import SheriffsRequest from './sheriffs-request.js';
 import findElements from './find-elements.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
 import {STORE} from './element-base.js';
-import {afterRender} from './utils.js';
+import {afterRender, setDebugForTesting} from './utils.js';
 import {assert} from 'chai';
 
 suite('alerts-section', function() {
@@ -45,6 +45,7 @@ suite('alerts-section', function() {
         UPDATE('test', AlertsSection.buildState({}))));
     document.body.appendChild(section);
     await afterRender();
+    await afterRender();
     return section;
   }
 
@@ -52,7 +53,7 @@ suite('alerts-section', function() {
   let existingBugBody;
   let newBugBody;
   setup(() => {
-    window.IS_DEBUG = true;
+    setDebugForTesting(true);
     originalFetch = window.fetch;
     window.fetch = async(url, options) => {
       return {
@@ -162,11 +163,8 @@ suite('alerts-section', function() {
 
   test('triageNew', async function() {
     const section = await fixture();
-    section.$.controls.dispatchEvent(new CustomEvent('sources', {
-      detail: {sources: [
-        {bug: 42},
-      ]},
-    }));
+    section.shadowRoot.querySelector('#controls').dispatchEvent(
+        new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
     await afterRender();
 
     const selectAll = findElements(section, e =>
@@ -201,11 +199,8 @@ suite('alerts-section', function() {
 
   test('triageExisting', async function() {
     const section = await fixture();
-    section.$.controls.dispatchEvent(new CustomEvent('sources', {
-      detail: {sources: [
-        {bug: 42},
-      ]},
-    }));
+    section.shadowRoot.querySelector('#controls').dispatchEvent(
+        new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
     await afterRender();
 
     const selectAll = findElements(section, e =>
@@ -239,11 +234,8 @@ suite('alerts-section', function() {
 
   test('ignore', async function() {
     const section = await fixture();
-    section.$.controls.dispatchEvent(new CustomEvent('sources', {
-      detail: {sources: [
-        {bug: 42},
-      ]},
-    }));
+    section.shadowRoot.querySelector('#controls').dispatchEvent(
+        new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
     await afterRender();
 
     const selectAll = findElements(section, e =>
@@ -269,11 +261,8 @@ suite('alerts-section', function() {
 
   test('unassign', async function() {
     const section = await fixture();
-    section.$.controls.dispatchEvent(new CustomEvent('sources', {
-      detail: {sources: [
-        {bug: 42},
-      ]},
-    }));
+    section.shadowRoot.querySelector('#controls').dispatchEvent(
+        new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
     await afterRender();
 
     const selectAll = findElements(section, e =>
@@ -349,11 +338,8 @@ suite('alerts-section', function() {
     };
 
     const section = await fixture();
-    section.$.controls.dispatchEvent(new CustomEvent('sources', {
-      detail: {sources: [
-        {bug: 42},
-      ]},
-    }));
+    section.shadowRoot.querySelector('#controls').dispatchEvent(
+        new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
     await afterRender();
 
     const divs = findElements(section, e => e.matches('div.error') &&
