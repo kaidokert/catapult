@@ -4,10 +4,10 @@
 */
 'use strict';
 
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html, css} from 'lit-element';
 import {simpleGUID, timeout} from './utils.js';
 
-export default class CpToast extends PolymerElement {
+export default class CpToast extends LitElement {
   static get is() { return 'cp-toast'; }
 
   static get properties() {
@@ -20,9 +20,8 @@ export default class CpToast extends PolymerElement {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
+  static get styles() {
+    return css`
         :host {
           bottom: 0;
           left: 0;
@@ -32,12 +31,11 @@ export default class CpToast extends PolymerElement {
         :host(:not([opened])) {
           visibility: hidden;
         }
-      </style>
-
-      <iron-collapse opened="[[opened]]">
-        <slot></slot>
-      </iron-collapse>
     `;
+  }
+
+  render() {
+    return html`<slot></slot>`;
   }
 
   /*
