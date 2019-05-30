@@ -46,7 +46,6 @@ suite('recommended-options', function() {
       ],
     }));
     const rec = await fixture();
-    rec.ready();
     STORE.dispatch(UPDATE('', {
       test: RecommendedOptions.buildState({
         options: ['aaa', 'bbb', 'ccc'],
@@ -103,7 +102,6 @@ suite('recommended-options', function() {
       optionRecommendations: undefined,
     }));
     await afterRender();
-    rec.ready();
     STORE.dispatch(UPDATE('', {
       test: RecommendedOptions.buildState({
         options: ['aaa', 'bbb', 'ccc'],
