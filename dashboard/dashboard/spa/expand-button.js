@@ -6,8 +6,8 @@
 
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE} from './simple-redux.js';
-import {get} from '@polymer/polymer/lib/utils/path.js';
-import {html} from '@polymer/polymer/polymer-element.js';
+import {get} from './utils.js';
+import {html, css} from 'lit-element';
 
 export default class ExpandButton extends ElementBase {
   static get is() { return 'expand-button'; }
@@ -28,20 +28,24 @@ export default class ExpandButton extends ElementBase {
     };
   }
 
-  static get template() {
-    return html`
-      <style>
-        :host {
-          display: flex;
-          cursor: pointer;
-        }
-        iron-icon {
-          height: 20px;
-          width: 20px;
-        }
-      </style>
+  static get styles() {
+    return css`
+      :host {
+        display: flex;
+        cursor: pointer;
+      }
+      iron-icon {
+        height: 20px;
+        width: 20px;
+      }
+    `;
+  }
 
-      <iron-icon icon="[[getIcon_(isExpanded)]]">
+  render() {
+    const icon = ExpandButton.getIcon(
+        this.isExpanded, this.horizontal, this.after);
+    return html`
+      <iron-icon icon="${icon}">
       </iron-icon>
       <slot></slot>
     `;
@@ -52,12 +56,12 @@ export default class ExpandButton extends ElementBase {
     this.addEventListener('click', this.onClick_.bind(this));
   }
 
-  async onClick_(event) {
-    STORE.dispatch(TOGGLE(this.statePath + '.isExpanded'));
+  click() {
+    this.onClick_();
   }
 
-  getIcon_(isExpanded) {
-    return ExpandButton.getIcon(isExpanded, this.horizontal, this.after);
+  async onClick_(event) {
+    STORE.dispatch(TOGGLE(this.statePath + '.isExpanded'));
   }
 
   static getIcon(isExpanded, horizontal, after) {

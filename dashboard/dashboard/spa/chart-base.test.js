@@ -50,7 +50,7 @@ suite('chart-base', function() {
         },
       ],
     })));
-    chart.$.main.style.setProperty('--mouse', 'inside');
+    chart.mainDiv.style.setProperty('--mouse', 'inside');
     let mouseLeftEvents = 0;
     chart.addEventListener('mouse-leave-main', e => {
       ++mouseLeftEvents;
@@ -66,7 +66,7 @@ suite('chart-base', function() {
     const mouseEvent = new CustomEvent('mousemove');
     mouseEvent.x = 0;
     mouseEvent.y = 0;
-    chart.$.main.dispatchEvent(mouseEvent);
+    chart.mainDiv.dispatchEvent(mouseEvent);
     assert.strictEqual(0, mouseLeftEvents);
     assert.strictEqual(0, getTooltipEvents);
     await animationFrame();
@@ -76,9 +76,9 @@ suite('chart-base', function() {
 
     mouseEvent.x = 500;
     mouseEvent.y = 500;
-    chart.$.main.dispatchEvent(mouseEvent);
-    chart.$.main.dispatchEvent(mouseEvent);
-    chart.$.main.dispatchEvent(mouseEvent);
+    chart.mainDiv.dispatchEvent(mouseEvent);
+    chart.mainDiv.dispatchEvent(mouseEvent);
+    chart.mainDiv.dispatchEvent(mouseEvent);
     assert.strictEqual(0, mouseLeftEvents);
     assert.strictEqual(1, getTooltipEvents);
     await animationFrame();
@@ -86,7 +86,7 @@ suite('chart-base', function() {
     assert.strictEqual(0, mouseLeftEvents);
     assert.strictEqual(2, getTooltipEvents);
 
-    chart.$.main.style.setProperty('--mouse', 'outside');
+    chart.mainDiv.style.setProperty('--mouse', 'outside');
     await animationFrame();
     await animationFrame();
     assert.strictEqual(1, mouseLeftEvents);
@@ -242,11 +242,11 @@ suite('chart-base', function() {
     })));
     await afterRender();
 
-    assert.strictEqual('50%', chart.$.tooltip.style.left);
-    assert.strictEqual('50%', chart.$.tooltip.style.top);
+    assert.strictEqual('50%', chart.tooltipDiv.style.left);
+    assert.strictEqual('50%', chart.tooltipDiv.style.top);
     assert.strictEqual('purple',
-        chart.$.tooltip.querySelector('table').style.borderColor);
-    assert.strictEqual('flex', getComputedStyle(chart.$.tooltip).display);
+        chart.tooltipDiv.querySelector('table').style.borderColor);
+    assert.strictEqual('flex', getComputedStyle(chart.tooltipDiv).display);
 
     assert.isDefined(findElements(chart, e =>
       e.tagName === 'foreignObject' &&

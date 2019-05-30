@@ -115,7 +115,6 @@ suite('chart-timeseries', function() {
 
     const ct = await fixture();
 
-    window.IS_DEBUG = false;
     window.fetch = async(url, options) => {
       return {
         ok: true,

@@ -15,14 +15,14 @@ suite('column-head', function() {
     columnHead.name = 'A';
     columnHead.sortColumn = 'B';
     columnHead.sortDescending = false;
-    assert.isTrue(columnHead.$.icon.hasAttribute('empty'));
+    assert.isTrue(columnHead.icon.hasAttribute('empty'));
 
     columnHead.sortColumn = 'A';
-    assert.isFalse(columnHead.$.icon.hasAttribute('empty'));
-    assert.strictEqual('cp:arrow-upward', columnHead.$.icon.icon);
+    assert.isFalse(columnHead.icon.hasAttribute('empty'));
+    assert.strictEqual('cp:arrow-upward', columnHead.icon.icon);
 
     columnHead.sortDescending = true;
-    assert.strictEqual('cp:arrow-downward', columnHead.$.icon.icon);
+    assert.strictEqual('cp:arrow-downward', columnHead.icon.icon);
     document.body.removeChild(columnHead);
   });
 });
