@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e5fd8f9_21193ac2",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T14:29:54Z",
+      "side": 1,
+      "message": "let\u0027s make this a regular GetStoryTagsList() method, not a property.\n\n(As a rule of thumb, I think properties should be reserved for inmutable values that don\u0027t take long to compute; and this returns a list which is mutable.)",
+      "revId": "7ceb663c9b1b86778e47f59016bb3fe86ab58c19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c93b8f33_6843e0b7",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-30T14:29:54Z",
+      "side": 1,
+      "message": "Looking at [1] and the few entries that we need to fill in, I think we can simplify this by tweaking SetDiagnosticsValue to be called as:\n\n  SetDiagnosticsValue(reserved_infos.BENCHMARKS, self.benchmark_name)\n\nThen in SetDiagnosticsValue:\n- Skip if the diagnostic value is None.\n- No need for GetTypeForName, that should be just info.type\n- If info.type \u003d\u003d \u0027GenericSet\u0027 then wrap the value in a list.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/value/diagnostics/reserved_infos.py?rcl\u003df7446c38416a4d15d5f592bcec7de988298b2341\u0026l\u003d28",
+      "revId": "7ceb663c9b1b86778e47f59016bb3fe86ab58c19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
