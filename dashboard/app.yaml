@@ -3,7 +3,7 @@
 
 runtime: python27
 api_version: 1
-threadsafe: false
+threadsafe: true
 instance_class: F2
 automatic_scaling:
   max_concurrent_requests: 80
@@ -74,7 +74,24 @@ handlers:
   upload: tsmon-client.js
   secure: always
 
-- url: /.*
+- url: /
+  static_files: index.vulcanized.html
+  upload: index.vulcanized.html
+  secure: always
+  http_headers:
+    Content-Security-Policy: "script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://apis.google.com; worker-src 'self'"
+
+- url: /index.js
+  static_files: webpack/index.js
+  upload: webpack/index.js
+  secure: always
+
+- url: /service-worker.js
+  static_files: webpack/service-worker.js
+  upload: webpack/service-worker.js
+  secure: always
+
+- url: /.+
   script: dashboard.dispatcher.APP
   secure: always
 
