@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dca4a9f0_cfdef6da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-31T17:27:29Z",
+      "side": 1,
+      "message": "My reading of this change is that it will impact more than just ChromeOS, so please fix up this commit message (or change the code)",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "0a331ad40c974d69f0b5680183ed9641cccb36e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c4677cd_ffdcca17",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-05-31T17:27:29Z",
+      "side": 1,
+      "message": "In general, I would like to avoid making the generic shared_page_state code more complicated since that makes it more difficult to maintain. It sounds like this new change is a workaround for a workaround.\n\nI wonder if you could instead put the warm and hot cached runs inside the same story as what is doing the warming up so that WillRunStory doesn\u0027t get called multiple times?",
+      "range": {
+        "startLine": 214,
+        "startChar": 14,
+        "endLine": 214,
+        "endChar": 45
+      },
+      "revId": "0a331ad40c974d69f0b5680183ed9641cccb36e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
