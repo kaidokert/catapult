@@ -211,11 +211,19 @@ class SharedPageState(story_module.SharedState):
       # not to be closed.
       should_close_last_tab = self.platform.GetOSName() != 'android'
 
+      is_warm_or_hot_cache = (self._current_page.cache_temperature == 'warm' or
+                              self._current_page.cache_temperature == 'hot')
+
       # If we didn't start the browser, then there is a single tab left from the
       # previous story. The tab may have some state that may effect the next
       # story. Close it to reset the state. Tab.Close(), when there is only one
       # tab left, creates a new tab and closes the old tab.
-      if not started_browser and should_close_last_tab:
+      # However, we don't close the tab on chromeos if the current page is in
+      # warm or hot cache temperature. For warm and hot cache temperature, it
+      # needs to be ensured that the page was visited once or at least twice
+      # before the run in the same renderer.
+      if (not started_browser and should_close_last_tab and
+          not is_warm_or_hot_cache):
         self.browser.tabs[-1].Close()
 
       # Must wait for tab to commit otherwise it can commit after the next
