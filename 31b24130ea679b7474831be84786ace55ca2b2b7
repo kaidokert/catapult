@@ -34,6 +34,24 @@
       "revId": "31b24130ea679b7474831be84786ace55ca2b2b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "658b70d9_648c00f6",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-05-31T10:41:31Z",
+      "side": 1,
+      "message": ":( that\u0027s sad. Can you file a bug for this (to check if this behavior can be fixed) and leave a todo pointing to that bug and mentioning this is intentional for now. We can then try that change on a follow up CL.",
+      "parentUuid": "6b7c15a1_6136874b",
+      "revId": "31b24130ea679b7474831be84786ace55ca2b2b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
