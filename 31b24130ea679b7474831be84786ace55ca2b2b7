@@ -16,6 +16,24 @@
       "revId": "31b24130ea679b7474831be84786ace55ca2b2b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b7c15a1_6136874b",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-05-31T09:51:10Z",
+      "side": 1,
+      "message": "The case of zero values is not actually hypothetical: storyset_repear_counter, for example, usually has the value of 0. And because of the way the check is written now [1], it\u0027s left out of the resulting diagnostics.\n\nI do agree with you that this is probably not the intended behavior, but it is how it works now, and something might depend on it. At least two tests failed when I changed this. So I decided to preserve the current behavior.\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?g\u003d0\u0026l\u003d301",
+      "parentUuid": "4e343d4b_8aaeecd3",
+      "revId": "31b24130ea679b7474831be84786ace55ca2b2b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
