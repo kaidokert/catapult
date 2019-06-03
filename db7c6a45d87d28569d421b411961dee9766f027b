@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dc5f368_9d7b3fbb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-03T22:54:16Z",
+      "side": 1,
+      "message": "you mean typ? Telemetry already does this using https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/artifact_results.py",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "db7c6a45d87d28569d421b411961dee9766f027b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
