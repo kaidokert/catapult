@@ -16,6 +16,24 @@
       "revId": "6d48df4ad33876e8a55186c0b2ed8ed976bfec17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a99a2dcc_8b707ea5",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-03T13:19:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "918665b1_4a3f2dd0",
+      "revId": "6d48df4ad33876e8a55186c0b2ed8ed976bfec17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
