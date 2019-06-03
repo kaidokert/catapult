@@ -167,6 +167,13 @@ export default class MenuInput extends ElementBase {
     if (event.key === 'Escape') {
       this.nativeInput.blur();
       return;
+    } else if (event.key.startsWith('Arrow')) {
+      STORE.dispatch({
+        type: MenuInput.reducers.arrowCursor.name,
+        statePath: this.statePath,
+        key: event.key,
+      });
+      return;
     }
     STORE.dispatch(UPDATE(this.statePath, {query: event.target.value}));
     this.dispatchEvent(new CustomEvent('input-keyup', {
@@ -216,6 +223,29 @@ MenuInput.reducers = {
     return setImmutable(rootState, inputStatePath, inputState => {
       return {...inputState, focusTimestamp, hasBeenOpened: true};
     });
+  },
+
+  arrowCursor: (state, {key, statePath}, rootState) => {
+    let cursor = state.cursor && state.cursor.split('.');
+    if (key === 'ArrowUp') {
+      // While the last optionIndex is 0, strip it.
+      // If state.cursor === statePath, cursor = undefined
+      console.log(key);
+    } else if (key === 'ArrowDown') {
+      // While the last optionIndex is length-1, strip it.
+      // If state.cursor === statePath, cursor = undefined
+      console.log(key);
+    } else if (key === 'ArrowLeft') {
+      // If the option at cursor has children, collapse it.
+      console.log(key);
+    } else if (key === 'ArrowRight') {
+      // If the option at cursor has children, expand it.
+      console.log(key);
+    } else {
+      console.log(key);
+      return state;
+    }
+    return {...state, cursor};
   },
 };
 
