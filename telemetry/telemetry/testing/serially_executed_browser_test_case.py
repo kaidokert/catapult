@@ -214,6 +214,14 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     """
     return self.__class__._typ_runner.expectations_for(self)
 
+  def AddLinkToResults(self, description, url):
+    """Adds an entry to the dictionary of descriptions/link text to urls that
+    will be included in the test results' 'links' field."""
+    # Automatically prepend the method name so that the same description used by
+    # different tests don't clobber each other.
+    description = '%s: %s' % (self.shortName(), description)
+    self.__class__._typ_runner.add_link(description, url)
+
   @classmethod
   def GetPlatformTags(cls, browser):
     """This method uses the Browser instances's platform member variable to get

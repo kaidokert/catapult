@@ -118,3 +118,63 @@ class TestMakeFullResults(unittest.TestCase):
                         }}}},
             'version': 3}
         self.assertEqual(full_results, expected_full_results)
+
+    def test_links(self):
+        test_names = ['foo_test.FooTest.test_fail',
+                      'foo_test.FooTest.test_pass',
+                      'foo_test.FooTest.test_skip']
+
+        result_set = json_results.ResultSet()
+        result_set.add(
+            json_results.Result('foo_test.FooTest.test_fail',
+                                json_results.ResultType.Failure, 0, 0.1, 0,
+                                unexpected=True))
+        result_set.add(json_results.Result('foo_test.FooTest.test_pass',
+                                           json_results.ResultType.Pass,
+                                           0, 0.2, 0))
+        result_set.add(json_results.Result('foo_test.FooTest.test_skip',
+                                           json_results.ResultType.Skip,
+                                           0, 0.3, 0,
+                                           expected=[json_results.ResultType.Skip],
+                                           unexpected=False))
+        links = {'description': 'url'}
+
+        full_results = json_results.make_full_results(
+            {'foo': 'bar'}, 0, test_names, result_set, links=links)
+        expected_full_results = {
+            'foo': 'bar',
+            'metadata': {
+                'foo': 'bar'},
+            'interrupted': False,
+            'links': {
+                'description': 'url',
+            },
+            'num_failures_by_type': {
+                'FAIL': 1,
+                'PASS': 1,
+                'SKIP': 1},
+            'num_regressions': 1,
+            'path_delimiter': '.',
+            'seconds_since_epoch': 0,
+            'tests': {
+                'foo_test': {
+                    'FooTest': {
+                        'test_fail': {
+                            'expected': 'PASS',
+                            'actual': 'FAIL',
+                            'times': [0.1],
+                            'is_unexpected': True,
+                            'is_regression': True,
+                        },
+                        'test_pass': {
+                            'expected': 'PASS',
+                            'actual': 'PASS',
+                            'times': [0.2],
+                        },
+                        'test_skip': {
+                            'expected': 'SKIP',
+                            'actual': 'SKIP',
+                            'times': [0.3],
+                        }}}},
+            'version': 3}
+        self.assertEqual(full_results, expected_full_results)
