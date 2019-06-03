@@ -22,6 +22,30 @@
       "revId": "12181b3b8d48525da622a0910de8bbc05cc7cdf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f24c386c_d7f9249b",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-03T05:47:46Z",
+      "side": 1,
+      "message": "Turns out, no -- I tried just passing it through and I\u0027m encountering issues in testing.",
+      "parentUuid": "2e6fd0fb_1ce93708",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 34
+      },
+      "revId": "12181b3b8d48525da622a0910de8bbc05cc7cdf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
