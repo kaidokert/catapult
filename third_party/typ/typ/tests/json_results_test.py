@@ -118,3 +118,29 @@ class TestMakeFullResults(unittest.TestCase):
                         }}}},
             'version': 3}
         self.assertEqual(full_results, expected_full_results)
+
+    def test_links(self):
+        test_names = ['foo_test.FooTest.test_fail',
+                      'foo_test.FooTest.test_pass',
+                      'foo_test.FooTest.test_skip']
+
+        result_set = json_results.ResultSet()
+        result_set.add(
+            json_results.Result('foo_test.FooTest.test_fail',
+                                json_results.ResultType.Failure, 0, 0.1, 0,
+                                unexpected=True))
+        result_set.add(json_results.Result('foo_test.FooTest.test_pass',
+                                           json_results.ResultType.Pass,
+                                           0, 0.2, 0))
+        result_set.add(json_results.Result('foo_test.FooTest.test_skip',
+                                           json_results.ResultType.Skip,
+                                           0, 0.3, 0,
+                                           expected=[json_results.ResultType.Skip],
+                                           unexpected=False))
+        links = {'description': 'url'}
+
+        full_results = json_results.make_full_results(
+            {'foo': 'bar'}, 0, test_names, result_set, links=links)
+        self.assertIn('links', full_results)
+        self.assertIn('description', full_results['links'])
+        self.assertEqual('url', full_results['links']['description'])

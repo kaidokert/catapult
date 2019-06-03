@@ -139,6 +139,20 @@ class RunnerTests(TestCase):
         ret = r.main([], tests=['typ.tests.runner_test.ContextTests'])
         self.assertEqual(ret, 0)
 
+    def test_links(self):
+        class FakeRunner(Runner):
+            def _run_one_set(self, stats, result_set, test_set, jobs, pool):
+                self.add_link('description', 'url')
+        r = FakeRunner()
+        r.context = {'foo': 'bar'}
+        r.setup_fn = _setup_process
+        r.teardown_fn = _teardown_process
+        r.win_multiprocessing = WinMultiprocessing.importable
+        _, full_results, _ = r.run()
+        self.assertIn('links', full_results)
+        self.assertIn('description', full_results['links'])
+        self.assertEqual('url', full_results['links']['description'])
+
 
 class TestSetTests(TestCase):
     # This class exists to test the failures that can come up if you
