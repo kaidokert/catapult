@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "601caefc_f4324e26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-03T22:57:25Z",
+      "side": 1,
+      "message": "How can I easily view a diff between the previous change and the reland? Usually patchset1 is the original and the later patchsets contain the reland, but that doesn\u0027t seem to be the case here, so it\u0027s difficult to review this code.",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 51
+      },
+      "revId": "c9d4ecdb6539206da99b1efca055ea8475f02229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
