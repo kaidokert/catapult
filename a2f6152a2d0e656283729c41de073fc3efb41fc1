@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d483ffd_85bdcf27",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-03T23:45:21Z",
+      "side": 1,
+      "message": "This description is verbose but yet confusing. Maybe something like\n\n\"\"\"Add a link to the test results.\n\nThis link can be displayed in Milo or other UI.\n\"\"\"\n\nimprovements:\n1. python style is that the first line of a docstring should be a single-line summary. I know other code in here doesn\u0027t follow that, but I would prefer we move to that.\n2. \u0027dictionary\u0027 is an implementation detail of test results. Let\u0027s say that typ reimplements test results to use LUCI Test Results format or any other format instead of JSON Test Results v3 (which it currently uses). In that case, the underlying implementation may no longer be a dictionary.\n3. Documentation should say \"why?\" instead of just \"what?\" since you can figure out \"what?\" by reading the nearby code, but it is usually much harder to figure out why. So that\u0027s why \"This link can be displayed in Milo or other UI.\" is useful.",
+      "range": {
+        "startLine": 218,
+        "startChar": 7,
+        "endLine": 219,
+        "endChar": 56
+      },
+      "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
