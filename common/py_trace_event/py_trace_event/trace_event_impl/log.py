@@ -290,10 +290,12 @@ def trace_add_benchmark_metadata(
     story_run_index,
     label=None,
     had_failures=None,
+    trace_url=None,
 ):
   global _benchmark_metadata
   if _format == PROTOBUF:
     # Write metadata immediately.
+    # Note that trace_url is not supported in proto format.
     perfetto_trace_writer.write_metadata(
         benchmark_start_time_us=benchmark_start_time_us,
         story_run_time_us=story_run_time_us,
@@ -320,6 +322,8 @@ def trace_add_benchmark_metadata(
       telemetry_metadata_for_json["labels"] = [label]
     if had_failures:
       telemetry_metadata_for_json["hadFailures"] = [had_failures]
+    if trace_url:
+      telemetry_metadata_for_json["traceUrls"] = [trace_url]
 
     _benchmark_metadata = {
         # TODO(crbug.com/948633): For right now, we use "TELEMETRY" as the
