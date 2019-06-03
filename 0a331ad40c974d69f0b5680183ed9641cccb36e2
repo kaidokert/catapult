@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "56e47457_f3cc4d34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2019-06-03T04:02:49Z",
+      "side": 1,
+      "message": "Thanks for the comment, Caleb. This change should only impact platforms that don\u0027t stop the browser, which I think is just ChromeOS. Maybe my understanding for the code is wrong?",
+      "parentUuid": "dca4a9f0_cfdef6da",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "0a331ad40c974d69f0b5680183ed9641cccb36e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c4677cd_ffdcca17",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-31T17:27:29Z",
       "side": 1,
       "message": "In general, I would like to avoid making the generic shared_page_state code more complicated since that makes it more difficult to maintain. It sounds like this new change is a workaround for a workaround.\n\nI wonder if you could instead put the warm and hot cached runs inside the same story as what is doing the warming up so that WillRunStory doesn\u0027t get called multiple times?",
+      "range": {
+        "startLine": 214,
+        "startChar": 14,
+        "endLine": 214,
+        "endChar": 45
+      },
+      "revId": "0a331ad40c974d69f0b5680183ed9641cccb36e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "704b5678_4f61a509",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2019-06-03T04:02:49Z",
+      "side": 1,
+      "message": "Thanks for the comment, Caleb.\nThis change is based on CL (https://chromium-review.googlesource.com/c/catapult/+/1363552) but adjusted for loading benchmarks such as loading.desktop.\nFor loading.desktop, each page will be configured to run in cold cache (page_COLD) once, followed by one consecutive warm cache run (page_WARM). My understanding is that page_COLD and page_WARM require different cache temperatures and are actually treated as two different story runs, each story run will call WillRunStory and then invoke EnsurePageCacheTemperature to make sure the page cache temperature is correctly configured before loading.",
+      "parentUuid": "6c4677cd_ffdcca17",
       "range": {
         "startLine": 214,
         "startChar": 14,
