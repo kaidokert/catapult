@@ -141,6 +141,30 @@
       "revId": "0a331ad40c974d69f0b5680183ed9641cccb36e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fdb0d64_910eca28",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-03T21:01:03Z",
+      "side": 1,
+      "message": "Note that it\u0027s also fine to make a subclass of SharedPageState if you want specific behavior for something.",
+      "parentUuid": "e5ea86c9_cc9e626f",
+      "range": {
+        "startLine": 214,
+        "startChar": 14,
+        "endLine": 214,
+        "endChar": 45
+      },
+      "revId": "0a331ad40c974d69f0b5680183ed9641cccb36e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
