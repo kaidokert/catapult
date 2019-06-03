@@ -46,6 +46,30 @@
       "revId": "db7c6a45d87d28569d421b411961dee9766f027b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b42bb9ef_646d841e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-03T23:01:54Z",
+      "side": 1,
+      "message": "For Telemetry we have the merge script do the actual linking into Milo since we have a custom merge script. (it looks like this at the end: https://ci.chromium.org/p/chrome/builders/ci/linux-perf/2866 and we use a merge script called \"process_perf_results\" to make it do that)\n\n... but that isn\u0027t relevant to this change. My point is that Telemetry benchmarks already report links. This CL is changing telemetry_browser_tests, which depend on both typ and Telemetry. It specifically is changing the typ parts of that architecture.",
+      "parentUuid": "ddd4ee3e_41247e04",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "db7c6a45d87d28569d421b411961dee9766f027b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
