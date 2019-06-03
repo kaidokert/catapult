@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8836cd1e_b4c9094e",
+        "filename": "third_party/typ/typ/tests/json_results_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-03T23:05:17Z",
+      "side": 1,
+      "message": "seems like a change-detector test. I suspect that you would be better off just checking for the links section of the output.",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 61
+      },
+      "revId": "87ee29423f59b124a04d058e663fde8dbfbf1b7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
