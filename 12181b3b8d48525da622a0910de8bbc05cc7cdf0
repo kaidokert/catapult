@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e6fd0fb_1ce93708",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1275796
+      },
+      "writtenOn": "2019-06-03T04:20:19Z",
+      "side": 1,
+      "message": "Does the \u0027credentials\u0027 argument to \u0027build\u0027 default to None? If so, you could just pass \u0027credentials\u0027 through unconditionally.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 34
+      },
+      "revId": "12181b3b8d48525da622a0910de8bbc05cc7cdf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
