@@ -63,7 +63,8 @@ DEFAULT_TEST_SEPARATOR = '.'
 
 
 def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
-                      test_separator=DEFAULT_TEST_SEPARATOR):
+                      test_separator=DEFAULT_TEST_SEPARATOR,
+                      links=None):
     """Convert the typ results to the Chromium JSON test result format.
 
     See http://www.chromium.org/developers/the-json-test-results-format
@@ -101,6 +102,9 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
             full_results['tests'], test_name, value, test_separator)
         if value.get('is_regression'):
             full_results['num_regressions'] += 1
+
+    if links:
+        full_results['links'] = OrderedDict(links)
 
     return full_results
 
