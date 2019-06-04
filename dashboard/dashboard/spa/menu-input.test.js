@@ -64,4 +64,69 @@ suite('menu-input', function() {
     assert.strictEqual('[2 selected]', MenuInput.inputValue(
         false, 'q', ['o', 'p']));
   });
+
+  const OPTIONS_3_3_3 = new Set([
+    'a0:a1:a2',
+    'a0:a1:b2',
+    'a0:a1:c2',
+    'a0:b1:a2',
+    'a0:b1:b2',
+    'a0:b1:c2',
+    'a0:c1:a2',
+    'a0:c1:b2',
+    'a0:c1:c2',
+    'b0:a1:a2',
+    'b0:a1:b2',
+    'b0:a1:c2',
+    'b0:b1:a2',
+    'b0:b1:b2',
+    'b0:b1:c2',
+    'b0:c1:a2',
+    'b0:c1:b2',
+    'b0:c1:c2',
+    'c0:a1:a2',
+    'c0:a1:b2',
+    'c0:a1:c2',
+    'c0:b1:a2',
+    'c0:b1:b2',
+    'c0:b1:c2',
+    'c0:c1:a2',
+    'c0:c1:b2',
+    'c0:c1:c2',
+  ]);
+
+  function press(key) {
+    STORE.dispatch({
+      type: MenuInput.reducers.arrowCursor.name,
+      statePath: 'test',
+      key,
+    });
+  }
+
+  test('arrowCursor', async function() {
+    STORE.dispatch(UPDATE('', {
+      test: MenuInput.buildState({options: OPTIONS_3_3_3}),
+    }));
+
+    press('ArrowUp');
+    assert.strictEqual('', STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('', STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('', STORE.getState().test.cursor);
+
+    press('ArrowLeft');
+    assert.isFalse(STORE.getState().options[1].isExpanded);
+
+    press('ArrowRight');
+    assert.isTrue(STORE.getState().options[1].isExpanded);
+
+    press('ArrowRight');
+    assert.isTrue(STORE.getState().options[1].isExpanded);
+
+    press('ArrowLeft');
+    assert.isFalse(STORE.getState().options[1].isExpanded);
+  });
 });
