@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24be5038_275625f1",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-04T19:11:49Z",
+      "side": 1,
+      "message": "per https://google.github.io/styleguide/jsguide.html#features-functions-arrow-functions (which Chromium follows per https://chromium.googlesource.com/chromium/src/+/master/styleguide/web/web.md#style ), it would be better to switch this to use an arrow function. I think the syntax is something like the following, but my JS is a bit rusty:\n\n          (thread) \u003d\u003e return thread.name.startsWith(\n                \u0027ThreadPoolSingleThreadSharedForegroundBlocking\u0027);",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "7931f0934b444f26949327e1d26e424ee858f8d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
