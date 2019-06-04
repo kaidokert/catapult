@@ -93,6 +93,24 @@
       "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ade052c4_33c1ea05",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-04T00:37:04Z",
+      "side": 1,
+      "message": "I probably wouldn\u0027t want to try and push the links field into the metadata dict.\n\nThe metadata dict is really meant for simple key/value data (like builder name or commit position), and not for holding more complicated nested data.\n\nWe might want to think a bit more carefully about whether a \u0027links\u0027 field is the right top-level concept, or whether there should be something more generic (like a block of a safe subset of HTML or something).",
+      "parentUuid": "75278deb_a4e5d6db",
+      "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
