@@ -46,6 +46,30 @@
       "revId": "7931f0934b444f26949327e1d26e424ee858f8d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca69d47f_9f476d25",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-06-04T19:49:47Z",
+      "side": 1,
+      "message": "When the body of a arrow function isn\u0027t enclosed in {}, it needs to be an expression (which is implicitly returned) instead of a statement:\n\n    (thread) \u003d\u003e thread.name.startsWith(\n                \u0027ThreadPoolSingleThreadSharedForegroundBlocking\u0027);",
+      "parentUuid": "d03213f6_aa5c2cc1",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "7931f0934b444f26949327e1d26e424ee858f8d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
