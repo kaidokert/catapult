@@ -57,6 +57,24 @@
       "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e605395_5a217738",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-04T00:20:40Z",
+      "side": 1,
+      "message": "I believe that adding new fields to json results by adding arguments to make_full_results is not the right way to go. I believe that you should add the links list to the metadata dictionary. This would make metadata dictionaries different across swarming bots. Therefore you would need to modify results_merge.py script which can be found in the link below.\n\nhttps://cs.chromium.org/chromium/src/testing/merge_scripts/results_merger.py?g\u003d0\n\nYou would need to move the metadata key from the OPTIONAL_MATCHING dictionary to the OPTIONAL_IGNORED field. You would also need to add the links key to the OPTIONAL_IGNORED dictionary if you want the links to be a top level field.",
+      "parentUuid": "27a84224_52d5f078",
+      "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
