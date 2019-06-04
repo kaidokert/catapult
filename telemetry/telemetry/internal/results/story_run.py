@@ -2,13 +2,15 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from telemetry.value import skip
+import logging
 
 
 class StoryRun(object):
   def __init__(self, story):
     self._story = story
     self._values = []
+    self._skip_reason = None
+    self._skip_expected = False
     self._failed = False
     self._failure_str = None
     self._duration = None
@@ -21,7 +23,14 @@ class StoryRun(object):
     self._failure_str = failure_str
 
   def Skip(self, reason, is_expected=True):
-    self.AddValue(skip.SkipValue(self.story, reason, is_expected))
+    if not reason:
+      raise ValueError('A skip reason must be given')
+    # TODO(#4254): Turn this into a hard failure.
+    if self.skipped:
+      logging.warning(
+          'Story was already skipped with reason: %s', self.skip_reason)
+    self._skip_reason = reason
+    self._skip_expected = is_expected
 
   def SetDuration(self, duration_in_seconds):
     self._duration = duration_in_seconds
@@ -39,25 +48,20 @@ class StoryRun(object):
   def ok(self):
     return not self.skipped and not self.failed
 
-  # TODO(#4254): Make skipped and failed mutually exclusive and simplify these.
   @property
   def skipped(self):
-    """Whether the current run is being skipped.
+    """Whether the current run is being skipped."""
+    return self._skip_reason is not None
 
-    To be precise: returns true if there is any SkipValue in self.values.
-    """
-    return any(isinstance(v, skip.SkipValue) for v in self.values)
+  @property
+  def skip_reason(self):
+    return self._skip_reason
 
   @property
   def expected(self):
-    for v in self.values:
-      if isinstance(v, skip.SkipValue):
-        if v.expected:
-          return 'SKIP'
-        else:
-          return 'PASS'
-    return 'PASS'
+    return 'SKIP' if self._skip_expected else 'PASS'
 
+  # TODO(#4254): Make skipped and failed mutually exclusive and simplify these.
   @property
   def failed(self):
     return not self.skipped and self._failed
