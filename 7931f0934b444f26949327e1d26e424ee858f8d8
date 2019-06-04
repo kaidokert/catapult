@@ -22,6 +22,30 @@
       "revId": "7931f0934b444f26949327e1d26e424ee858f8d8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d03213f6_aa5c2cc1",
+        "filename": "tracing/tracing/metrics/media_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001250
+      },
+      "writtenOn": "2019-06-04T19:17:02Z",
+      "side": 1,
+      "message": "I originally wrote it that way, but no matter which way I modified the code I could not get it to pass the style checker. I.e., if I take the code you\u0027ve written you get:\n  45:23  error  Parsing error: Unexpected token return\n\nIf you enclose the return in {} you get:\n  45:23  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `\u003d\u003e`  arrow-body-style\n\nSo I just went with this after spending 20 minutes fighting the style checker :|",
+      "parentUuid": "24be5038_275625f1",
+      "range": {
+        "startLine": 45,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "7931f0934b444f26949327e1d26e424ee858f8d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
