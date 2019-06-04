@@ -75,6 +75,24 @@
       "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75278deb_a4e5d6db",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-04T00:29:34Z",
+      "side": 1,
+      "message": "According to https://cs.chromium.org/chromium/build/scripts/slave/recipe_modules/chromium_swarming/api.py?q\u003dchromium_swarming/api.py\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d535, the \"links\" field should be a top level field. Thus, I don\u0027t think we can just include the links in the metadata dict.\n\nIf it\u0027s preferable to adding new arguments to make_full_results, I could add the links to the metadata dict and special case that key to be copied as a top level field (and removed from the metadata dict) in make_full_results.",
+      "parentUuid": "1e605395_5a217738",
+      "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
