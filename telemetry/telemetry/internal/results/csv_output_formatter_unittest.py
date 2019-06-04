@@ -6,8 +6,6 @@ import os
 import StringIO
 import unittest
 
-import mock
-
 from telemetry import story
 from telemetry import benchmark
 from telemetry.internal.results import csv_output_formatter
@@ -15,8 +13,6 @@ from telemetry.internal.results import page_test_results
 from telemetry import page as page_module
 from telemetry.value import improvement_direction
 from telemetry.value import scalar
-from telemetry.value import trace
-from tracing.trace_data import trace_data
 
 
 def _MakeStorySet():
@@ -84,14 +80,7 @@ class CsvOutputFormatterTest(unittest.TestCase):
 
     self.assertEqual(expected, self.Format())
 
-  @mock.patch('py_utils.cloud_storage.Insert')
-  def testMultiplePagesAndValues(self, cs_insert_mock):
-    cs_insert_mock.return_value = 'https://cloud_storage_url/foo'
-    trace_value = trace.TraceValue(
-        None, trace_data.CreateTestTrace(),
-        remote_path='rp', upload_bucket='foo', cloud_url='http://google.com')
-    trace_value.SerializeTraceData()
-    trace_value.UploadToCloud()
+  def testMultiplePagesAndValues(self):
     self.SimulateBenchmarkRun([
         (self._story_set[0], [
             scalar.ScalarValue(
@@ -101,7 +90,6 @@ class CsvOutputFormatterTest(unittest.TestCase):
             scalar.ScalarValue(
                 None, 'foo', 'seconds', 3.4,
                 improvement_direction=improvement_direction.DOWN),
-            trace_value,
             scalar.ScalarValue(
                 None, 'bar', 'km', 10,
                 improvement_direction=improvement_direction.DOWN),
