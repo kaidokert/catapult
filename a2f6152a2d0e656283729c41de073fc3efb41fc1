@@ -39,6 +39,24 @@
       "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27a84224_52d5f078",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-04T00:08:27Z",
+      "side": 1,
+      "message": "There isn\u0027t necessarily a guarantee of that, but the one use of this that\u0027s being added automatically prepends the test name to the link description before passing it to typ. Since AFAIK the same test should not be running multiple times on different shards from a single test invocation, that should mean that we don\u0027t have to worry about the same link description being generated on multiple bots.",
+      "parentUuid": "b23abaf7_7b98746b",
+      "revId": "a2f6152a2d0e656283729c41de073fc3efb41fc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
