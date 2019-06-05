@@ -46,6 +46,30 @@
       "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47d72606_70819833",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T19:53:17Z",
+      "side": 1,
+      "message": "I don\u0027t think that this is the right solution to that problem. You\u0027re lying to the dashboard about the data. A better solution would be to implement something on the dashboard side to let you know when the data stops coming in.",
+      "parentUuid": "e5ce6c08_ae1ae7a1",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
