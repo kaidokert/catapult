@@ -22,6 +22,30 @@
       "revId": "2f1b7075cf617e6dde379fd7aa52bee1eabe06f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99e0331b_d1e0c996",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-05T08:07:13Z",
+      "side": 1,
+      "message": "Ah, it\u0027s intended to also support None.\n\nUpdating the description to make it clearer.",
+      "parentUuid": "48965ab0_61efae6e",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 16
+      },
+      "revId": "2f1b7075cf617e6dde379fd7aa52bee1eabe06f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
