@@ -81,6 +81,9 @@ tr.exportTo('tr.metrics.rendering', function() {
   // are shorter than half a vsync are ignored.
   const MIN_FRAME_LENGTH = 0.5;
 
+  // The least number of frames needed to report frame_times.
+  const MIN_FRAME_COUNT = 10;
+
   // In computing the number of janks, frame length differences that are at
   // least PAUSE_THRESHOLD vsyncs are considered pauses, not janks.
   const PAUSE_THRESHOLD = 20;
@@ -164,6 +167,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     const frameSegments = [];
     for (const segment of segments) {
       const filtered = segment.boundsRange.filterArray(timestamps, x => x[0]);
+      if (filtered.length < MIN_FRAME_COUNT) continue;
       for (let i = 1; i < filtered.length; i++) {
         const duration = filtered[i][1] - filtered[i - 1][1];
         frameSegments.push(
@@ -180,7 +184,7 @@ tr.exportTo('tr.metrics.rendering', function() {
     histograms.createHistogram(
         `${prefix}frame_times`,
         tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
-        frameTimes,
+        (frameSegments.length === 0) ? [0] : frameTimes,
         { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 50, 20),
           description: 'Raw frame times.',
           summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
