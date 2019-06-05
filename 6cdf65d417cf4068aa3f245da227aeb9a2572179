@@ -22,6 +22,30 @@
       "revId": "6cdf65d417cf4068aa3f245da227aeb9a2572179",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c11cc6d_847ab2ac",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-06-05T00:55:03Z",
+      "side": 1,
+      "message": "We log a lot of GPU related information in telemetry, not just gpu_device, but also display info, blacklist decisions, etc. They are quite useful while we look at GPU related failures. So I am not sure if dumping all of them to swarming bot state is the right thing to do.\n\nRegardless, this is a bug and let\u0027s fix this first. We can discuss your proposal separately.",
+      "parentUuid": "7cbd089d_89f5a3a8",
+      "range": {
+        "startLine": 38,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 66
+      },
+      "revId": "6cdf65d417cf4068aa3f245da227aeb9a2572179",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
