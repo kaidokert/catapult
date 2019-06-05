@@ -16,6 +16,24 @@
       "revId": "e398e91d7dd80a012aac27048716bb522f97b536",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6485e524_78440df9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1186495
+      },
+      "writtenOn": "2019-06-05T16:59:59Z",
+      "side": 1,
+      "message": "GetProp has cache\u003dFalse by default, so nothing changed here. If things were the other way, then I\u0027d rather add a similar argument to HasRoot, with True as the default value (and make EnableRoot pass False to it). But doing so now would change behavior for all other uses of HasRoot.",
+      "parentUuid": "ffc90284_53c991cb",
+      "revId": "e398e91d7dd80a012aac27048716bb522f97b536",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
