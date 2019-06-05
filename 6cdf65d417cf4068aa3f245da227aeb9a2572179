@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cbd089d_89f5a3a8",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T00:24:38Z",
+      "side": 1,
+      "message": "Seems like it would be cleaner to include this type of information in the swarming bot state section. For example: https://chrome-swarming.appspot.com/bot?id\u003dbuild200-m7\u0026s\u003dtrue",
+      "range": {
+        "startLine": 38,
+        "startChar": 19,
+        "endLine": 39,
+        "endChar": 66
+      },
+      "revId": "6cdf65d417cf4068aa3f245da227aeb9a2572179",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
