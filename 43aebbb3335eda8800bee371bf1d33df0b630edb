@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93c05884_43a56012",
+        "filename": "telemetry/telemetry/internal/results/csv_output_formatter_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T17:25:48Z",
+      "side": 1,
+      "message": "This seems like a misuse of the API since I would expect that __eq__ would be for two objects of the same type. \n\ni.e. [1,2,3] !\u003d {1,2,3}\nsince [1,2,3] is a list but {1,2,3} is a set.\n\nCould you just have a method for comparing these? Maybe name it something like \"def IsSimilarTo(self, url_string)\" ?\n\n...\n\nAh, I see that you want this because you want to do self.assertEqual below... But it still feels like a hack that might confuse others down the road.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "43aebbb3335eda8800bee371bf1d33df0b630edb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d59ef19b_ec05e4dd",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T17:25:48Z",
+      "side": 1,
+      "message": "immediately",
+      "range": {
+        "startLine": 719,
+        "startChar": 21,
+        "endLine": 719,
+        "endChar": 33
+      },
+      "revId": "43aebbb3335eda8800bee371bf1d33df0b630edb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9bc12d1_f1e90797",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T17:25:48Z",
+      "side": 1,
+      "message": "immediately",
+      "range": {
+        "startLine": 271,
+        "startChar": 42,
+        "endLine": 271,
+        "endChar": 54
+      },
+      "revId": "43aebbb3335eda8800bee371bf1d33df0b630edb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
