@@ -481,6 +481,10 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
     try:
+      if self.build_type == 'eng':
+        # 'eng' builds have root enabled by default and the adb session cannot
+        # be unrooted.
+        return True
       if self.product_name in _SPECIAL_ROOT_DEVICE_LIST:
         return self.GetProp('service.adb.root') == '1'
       self.RunShellCommand(['ls', '/root'], check_return=True)
@@ -539,6 +543,9 @@ class DeviceUtils(object):
       CommandFailedError if root could not be enabled.
       CommandTimeoutError on timeout.
     """
+    if self.HasRoot():
+      return
+
     if 'needs_su' in self._cache:
       del self._cache['needs_su']
 
