@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec17b421_e8e1083d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T19:42:09Z",
+      "side": 1,
+      "message": "I think it would be better not to report any frame time in that case. Otherwise you get the same issue with tests that oscillate between 9 frames and 11 frames for example.",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
