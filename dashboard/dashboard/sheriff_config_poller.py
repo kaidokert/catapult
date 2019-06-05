@@ -8,8 +8,8 @@ from __future__ import division
 from __future__ import print_function
 
 from dashboard.common import request_handler
-from oauth2client import appengine
-import httplib2
+from google.auth import app_engine
+from google.auth.transport.requests import AuthorizedSession
 import webapp2
 
 
@@ -18,12 +18,10 @@ class ConfigsUpdateHandler(request_handler.RequestHandler):
 
   def get(self):
     """Make the Cloud Endpoints request from this handler."""
-    credentials = appengine.AppAssertionCredentials(
-        scope='https://www.googleapis.com/auth/userinfo.email')
-    http = credentials.authorize(httplib2.Http())
-    (response, content) = http.request(
-        'https://sheriff-config-dot-chromeperf.appspot.com/configs/update',
-        'GET')
-    if response.status != '200':
-      return webapp2.Response('FAILED: %r\n%s' % (response, content))
+    credentials = app_engine.Credentials()
+    authed_session = AuthorizedSession(credentials)
+    response = authed_session.get(
+        'https://sheriff-config-dot-chromeperf.appspot.com/configs/update')
+    if response.status_code != 200:
+      return webapp2.Response('FAILED: %r\n%s' % (response, response.text))
     return webapp2.Response('OK')
