@@ -64,4 +64,129 @@ suite('menu-input', function() {
     assert.strictEqual('[2 selected]', MenuInput.inputValue(
         false, 'q', ['o', 'p']));
   });
+
+  function press(key) {
+    STORE.dispatch({
+      type: MenuInput.reducers.arrowCursor.name,
+      statePath: 'test',
+      key,
+    });
+  }
+
+  test('arrowCursor', async function() {
+    STORE.dispatch(UPDATE('', {
+      test: MenuInput.buildState({
+        options: new Set([
+          'a',
+          'b:0',
+          'b:1:a',
+          'b:1:b',
+          'b:1:c',
+          'b:2',
+          'c',
+        ]),
+      }),
+    }));
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.0', STORE.getState().test.cursor);
+    STORE.dispatch(UPDATE('test', {cursor: null}));
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.2', STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1', STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.0', STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.2', STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.0', STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1', STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.2', STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1', STORE.getState().test.cursor);
+
+    press('ArrowLeft');
+    assert.isFalse(STORE.getState().test.options[1].isExpanded);
+
+    press('ArrowRight');
+    assert.isTrue(STORE.getState().test.options[1].isExpanded);
+
+    press('ArrowRight');
+    assert.isTrue(STORE.getState().test.options[1].isExpanded);
+
+    press('ArrowLeft');
+    assert.isFalse(STORE.getState().test.options[1].isExpanded);
+
+    press('ArrowRight');
+    assert.isTrue(STORE.getState().test.options[1].isExpanded);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1.options.0',
+        STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1.options.1',
+        STORE.getState().test.cursor);
+
+    press('ArrowRight');
+    assert.isTrue(STORE.getState().test.options[1].options[1].isExpanded);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1.options.1.options.0',
+        STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1.options.1.options.1',
+        STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1.options.1.options.2',
+        STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.1.options.2',
+        STORE.getState().test.cursor);
+
+    press('ArrowDown');
+    assert.strictEqual('test.options.2', STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1.options.2',
+        STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1.options.1.options.2',
+        STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1.options.1.options.1',
+        STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1.options.1.options.0',
+        STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1.options.1',
+        STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.1.options.0',
+        STORE.getState().test.cursor);
+
+    press('ArrowUp');
+    assert.strictEqual('test.options.0',
+        STORE.getState().test.cursor);
+  });
 });
