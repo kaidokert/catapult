@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48965ab0_61efae6e",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1275796
+      },
+      "writtenOn": "2019-06-05T08:05:08Z",
+      "side": 1,
+      "message": "Prior to this patch, None or empty was an error.\nYour description mentions that empty shouldn\u0027t be an error.\nAfter this patch, neither None or empty are an error.\n\nWas it intentional to also support None? Or should there be an extra check to reject configs \u003d None?",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 16
+      },
+      "revId": "2f1b7075cf617e6dde379fd7aa52bee1eabe06f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
