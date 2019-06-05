@@ -22,6 +22,30 @@
       "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5ce6c08_ae1ae7a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-06-05T19:49:54Z",
+      "side": 1,
+      "message": "I agree with that, but the issue I was hoping to solve by sending zero is dashboard\u0027s not plotting of the missing data.\n\nFor example in https://chromeperf.appspot.com/group_report?keys\u003dagxzfmNocm9tZXBlcmZyFAsSB0Fub21hbHkYgICw_IHIqQkM\n\nThe time span between the last two data point is more than 20 days, which sows that the high values are some flaking data. But currently dashboard is not plotting that and as a result the plot implies that the issue has been consistent during the last month. And reporting zero when no values exist would help with this, specially that alerts are triggered based on these values.",
+      "parentUuid": "ec17b421_e8e1083d",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
