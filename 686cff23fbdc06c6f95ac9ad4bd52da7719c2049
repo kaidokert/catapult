@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bed8767_a68fc7dd",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-05T18:26:28Z",
+      "side": 1,
+      "message": "Note why this is done. Something like\n\n// Measurements done with very few frames tend to be unstable.\n// See crbug.com/954984 for example.",
+      "range": {
+        "startLine": 84,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 29
+      },
+      "revId": "686cff23fbdc06c6f95ac9ad4bd52da7719c2049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
