@@ -167,6 +167,13 @@ export default class MenuInput extends ElementBase {
     if (event.key === 'Escape') {
       this.nativeInput.blur();
       return;
+    } else if (event.key.startsWith('Arrow')) {
+      STORE.dispatch({
+        type: MenuInput.reducers.arrowCursor.name,
+        statePath: this.statePath,
+        key: event.key,
+      });
+      return;
     }
     STORE.dispatch(UPDATE(this.statePath, {query: event.target.value}));
     this.dispatchEvent(new CustomEvent('input-keyup', {
@@ -216,6 +223,84 @@ MenuInput.reducers = {
     return setImmutable(rootState, inputStatePath, inputState => {
       return {...inputState, focusTimestamp, hasBeenOpened: true};
     });
+  },
+
+  arrowCursor: (state, {key, statePath}, rootState) => {
+    const indices = [];
+    let cursorOption;
+    let cursorRelPath;
+    if (state.cursor) {
+      cursorRelPath = state.cursor.substr((statePath + '.options.').length);
+      cursorOption = get(state.options, cursorRelPath);
+      indices.push(...cursorRelPath.split('.options.').map(i => parseInt(i)));
+    }
+
+    // Handle the key.
+    if (key === 'ArrowUp') {
+      while (indices.length && (indices[indices.length - 1] === 0)) {
+        indices.pop();
+      }
+      if (indices.length) {
+        indices[indices.length - 1] -= 1;
+      } else {
+        indices.push(state.options.length - 1);
+      }
+    } else if (key === 'ArrowDown') {
+      if (cursorOption.options && cursorOption.options.length &&
+          cursorOption.isExpanded) {
+        indices.push(0);
+      } else {
+        function optionCount() {
+          let options = state.options;
+          for (const i of indices.slice(0, indices.length - 1)) {
+            options = options[i].options;
+          }
+          return options.length;
+        }
+        while (indices.length &&
+              (indices[indices.length - 1] === (optionCount() - 1))) {
+          indices.pop();
+        }
+        if (indices.length) {
+          indices[indices.length - 1] += 1;
+        } else {
+          indices.push(0);
+        }
+      }
+    } else if (key === 'ArrowLeft') {
+      // If the option at cursor has children, collapse it.
+      if (cursorOption && cursorOption.options && cursorOption.options.length &&
+          cursorOption.isExpanded) {
+        const path = `options.${cursorRelPath}.isExpanded`;
+        return setImmutable(state, path, false);
+      }
+    } else if (key === 'ArrowRight') {
+      // If the option at cursor has children, expand it.
+      if (cursorOption && cursorOption.options && cursorOption.options.length &&
+          !cursorOption.isExpanded) {
+        const path = `options.${cursorRelPath}.isExpanded`;
+        return setImmutable(state, path, true);
+      }
+    } else {
+      return state;
+    }
+
+    // Pop up to the first un-expanded option.
+    let options = state.options;
+    for (let i = 0; i < indices.length - 1; ++i) {
+      const index = indices[i];
+      const option = options[index];
+      if (!option.isExpanded) {
+        indices.splice(i, indices.length - i);
+        break;
+      }
+      options = option.options;
+    }
+
+    // Translate indices back to a statePath string.
+    indices.unshift(statePath);
+    const cursor = indices.join('.options.');
+    return {...state, cursor};
   },
 };
 
