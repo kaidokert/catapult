@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9e66c04_942a11e8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-06-05T17:03:19Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment. Why can\u0027 we just os.path.join()?",
+      "range": {
+        "startLine": 1389,
+        "startChar": 35,
+        "endLine": 1389,
+        "endChar": 36
+      },
+      "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
