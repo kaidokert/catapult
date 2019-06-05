@@ -1,0 +1,9 @@
+Name: requests
+URL: https://github.com/requests/requests
+Version: 2019.4.13
+License: Apache 2.0
+
+Description:
+Requests is a simpler HTTP library.
+
+This was installed for vendoring using `pip install --no-cache -t third_party/requests requests`, and then having all pip-related artifacts removed.
