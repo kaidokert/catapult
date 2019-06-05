@@ -70,6 +70,30 @@
       "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63b627b6_b977052d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-06-05T19:56:34Z",
+      "side": 1,
+      "message": "I totally agree.",
+      "parentUuid": "47d72606_70819833",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
