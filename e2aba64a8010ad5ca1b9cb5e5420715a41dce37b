@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be8011f2_43e8d313",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-06-05T22:01:15Z",
+      "side": 1,
+      "message": "I think the existing logic (and this new patch) do the wrong thing if someone calls device.RunShellCommand(\u0027su \u003cless-powerful-user\u003e\u0027), because IIRC devil reuses a persistent shell for all subsequent shell commands. I\u0027m not super worried about this case, but we can take a look at fixing it if you think it\u0027s worth it.",
+      "range": {
+        "startLine": 10,
+        "startChar": 52,
+        "endLine": 12,
+        "endChar": 63
+      },
+      "revId": "e2aba64a8010ad5ca1b9cb5e5420715a41dce37b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
