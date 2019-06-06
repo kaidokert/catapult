@@ -16,6 +16,24 @@
       "revId": "ba771eece64d319dcc6dd62423bd3d183687cec0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f467293f_765b53fc",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-06-06T04:23:13Z",
+      "side": 1,
+      "message": "Not necessary, seems like just an optimization (seems as though `self.adb.Root()` does not through).\n\nRemoved this and reverted the changes to the relevant tests (*_alreadyHasRoot is now redundant with _succeeds).",
+      "parentUuid": "95296e5c_d6a3e5ca",
+      "revId": "ba771eece64d319dcc6dd62423bd3d183687cec0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
