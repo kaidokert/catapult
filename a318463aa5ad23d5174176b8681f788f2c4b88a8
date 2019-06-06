@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef68fe3c_8312a902",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T21:57:18Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s a good idea to catch these super generic errors. Instead, find places where you would get a KeyError or a value error and handle them explicitly:\n\nif \u0027targetId\u0027 not in response:\n  raise TabUnexpectedResponseException(...)\n\nThe reason is that otherwise you may make some unexpected code mistake and it will be reclassified as a TabUnexpectedResponseException when really it\u0027s just bad code. Also, it\u0027a easier to understand in what cases you will get that type of exception if you are explicit about it.\n\n\nAnother alternative that is fine is to do something like\n\ntry:\n  context_id \u003d response[\u0027targetId\u0027]\nexcept KeyError:\n  raise TabUnexpectedResponseException(...)\n\nSince the block that the try-except covers is so minimal, it\u0027s easy to be sure what is causing the KeyError.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "917ba81a_a4b3703d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T21:57:18Z",
+      "side": 1,
+      "message": "don\u0027t put these in parens.",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b9b212e_39574f4a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T21:57:18Z",
+      "side": 1,
+      "message": "Why create a new error instead of using TabUnexpectedResponseException instead? I doubt that client code will ever need to handle these two errors separately.",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
