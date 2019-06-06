@@ -18,14 +18,14 @@ class StoryRunTest(unittest.TestCase):
     self.story = story_module.Story(shared_state.SharedState, name='foo')
 
   def testStoryRunFailed(self):
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     run.SetFailed('abc')
     self.assertFalse(run.ok)
     self.assertTrue(run.failed)
     self.assertFalse(run.skipped)
     self.assertEquals(run.failure_str, 'abc')
 
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     run.AddValue(scalar.ScalarValue(
         self.story, 'a', 's', 1,
         improvement_direction=improvement_direction.UP))
@@ -36,7 +36,7 @@ class StoryRunTest(unittest.TestCase):
     self.assertEquals(run.failure_str, 'something is wrong')
 
   def testStoryRunSkipped(self):
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     run.SetFailed('oops')
     run.Skip('test', is_expected=True)
     self.assertFalse(run.ok)
@@ -45,7 +45,7 @@ class StoryRunTest(unittest.TestCase):
     self.assertEquals(run.expected, 'SKIP')
     self.assertEquals(run.failure_str, 'oops')
 
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     run.AddValue(scalar.ScalarValue(
         self.story, 'a', 's', 1,
         improvement_direction=improvement_direction.UP))
@@ -57,13 +57,13 @@ class StoryRunTest(unittest.TestCase):
     self.assertEquals(run.failure_str, None)
 
   def testStoryRunSucceeded(self):
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     self.assertTrue(run.ok)
     self.assertFalse(run.failed)
     self.assertFalse(run.skipped)
     self.assertEquals(run.failure_str, None)
 
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     run.AddValue(scalar.ScalarValue(
         self.story, 'a', 's', 1,
         improvement_direction=improvement_direction.UP))
@@ -77,7 +77,7 @@ class StoryRunTest(unittest.TestCase):
   def testAsDict(self, time_module):
     time_module.time.side_effect = [1234567890.987,
                                     1234567900.987]
-    run = story_run.StoryRun(self.story)
+    run = story_run.StoryRun('suite', self.story)
     run.AddValue(scalar.ScalarValue(
         self.story, 'a', 's', 1,
         improvement_direction=improvement_direction.UP))
@@ -86,7 +86,7 @@ class StoryRunTest(unittest.TestCase):
         run.AsDict(),
         {
             'testRun': {
-                'testName': 'foo',
+                'testName': 'suite/foo',
                 'status': 'PASS',
                 'startTime': '2009-02-13T23:31:30.987000Z',
                 'endTime': '2009-02-13T23:31:40.987000Z'

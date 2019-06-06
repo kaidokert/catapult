@@ -18,7 +18,8 @@ def _FormatTimeStamp(epoch):
 
 
 class StoryRun(object):
-  def __init__(self, story):
+  def __init__(self, benchmark_name, story):
+    self._benchmark_name = benchmark_name
     self._story = story
     self._values = []
     self._failed = False
@@ -61,8 +62,7 @@ class StoryRun(object):
 
   @property
   def test_name(self):
-    # TODO(crbug.com/966835): This should be prefixed with the benchmark name.
-    return self.story.name
+    return '/'.join([self._benchmark_name, self.story.name])
 
   @property
   def values(self):

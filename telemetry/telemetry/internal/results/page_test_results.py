@@ -519,7 +519,8 @@ class PageTestResults(object):
 
   def WillRunPage(self, page, storyset_repeat_counter=0):
     assert not self._current_page_run, 'Did not call DidRunPage.'
-    self._current_page_run = story_run.StoryRun(page)
+    self._current_page_run = story_run.StoryRun(
+        self.telemetry_info.benchmark_name, page)
     self._progress_reporter.WillRunPage(self)
     self.telemetry_info.WillRunStory(
         page, storyset_repeat_counter)
