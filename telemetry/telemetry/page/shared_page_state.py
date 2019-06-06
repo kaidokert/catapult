@@ -211,12 +211,8 @@ class SharedPageState(story_module.SharedState):
       # not to be closed.
       should_close_last_tab = self.platform.GetOSName() != 'android'
 
-      # If we didn't start the browser, then there is a single tab left from the
-      # previous story. The tab may have some state that may effect the next
-      # story. Close it to reset the state. Tab.Close(), when there is only one
-      # tab left, creates a new tab and closes the old tab.
-      if not started_browser and should_close_last_tab:
-        self.browser.tabs[-1].Close()
+      self.CloseTabBeforeNextStoryRun(is_started_browser=started_browser,
+                                      is_close_last_tab=should_close_last_tab)
 
       # Must wait for tab to commit otherwise it can commit after the next
       # navigation has begun and RenderFrameHostManager::DidNavigateMainFrame()
@@ -239,6 +235,20 @@ class SharedPageState(story_module.SharedState):
           upload_bandwidth_kbps=s.upload_bandwidth_kbps)
 
     self._AllowInteractionForStage('before-run-story')
+
+  def CloseTabBeforeNextStoryRun(self, is_started_browser=None,
+                                 is_close_last_tab=None):
+    """Close tab before running next story.
+
+    If we didn't start the browser, then there is a single tab left from the
+    previous story. The tab may have some state that may effect the next
+    story. Close it to reset the state. Tab.Close(), when there is only one
+    tab left, creates a new tab and closes the old tab.
+
+    Subclasses may override this method to change this behavior.
+    """
+    if not is_started_browser and is_close_last_tab:
+      self.browser.tabs[-1].Close()
 
   def CanRunStory(self, page):
     return self.CanRunOnBrowser(browser_info_module.BrowserInfo(self.browser),
@@ -332,3 +342,15 @@ class SharedTabletPageState(SharedPageState):
 
 class Shared10InchTabletPageState(SharedPageState):
   _device_type = 'tablet_10_inch'
+
+class SharedDesktopLoadingPageState(SharedPageState):
+  _device_type = 'desktop'
+
+  def CloseTabBeforeNextStoryRun(self, is_started_browser=None,
+                                 is_close_last_tab=None):
+    """ Don't close tab for loading benchmark stories on desktop, esp.
+    ChromeOS. For warm and hot cache temperature run, we need to
+    ensure that the page was visited once or at least twice in the
+    same renderer.
+    """
+    pass
