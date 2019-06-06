@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7cf60e8d_fbbefaf4",
+        "filename": "telemetry/telemetry/internal/results/csv_output_formatter_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T21:29:46Z",
+      "side": 1,
+      "message": "Nice! Thanks",
+      "parentUuid": "f14d7f26_cb3b4ff2",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "43aebbb3335eda8800bee371bf1d33df0b630edb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d59ef19b_ec05e4dd",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 2
