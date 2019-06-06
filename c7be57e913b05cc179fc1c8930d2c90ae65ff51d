@@ -94,6 +94,30 @@
       "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3adc9f1f_de13c193",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2019-06-06T19:17:46Z",
+      "side": 1,
+      "message": "I checked with Sadrul and apparently there is no case that frame_times would be zero, so representing no frames with a single frame time of zero duration can be valid to keep data more consistent. specially that having no values (not frame times) in clustering script is considered as missing value, and the stories with lots of missing values are omitted from the set of stories to be clustered. Setting a zero value to this case makes grouping similar stories easier as well.",
+      "parentUuid": "63b627b6_b977052d",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
