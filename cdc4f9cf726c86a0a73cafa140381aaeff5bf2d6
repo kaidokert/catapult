@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e8234dc_ca55ab0b",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T23:03:33Z",
+      "side": 1,
+      "message": "remove spaces",
+      "range": {
+        "startLine": 207,
+        "startChar": 18,
+        "endLine": 207,
+        "endChar": 23
+      },
+      "revId": "cdc4f9cf726c86a0a73cafa140381aaeff5bf2d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c75399d_70f392c0",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T23:03:33Z",
+      "side": 1,
+      "message": "remove spaces.",
+      "range": {
+        "startLine": 282,
+        "startChar": 17,
+        "endLine": 282,
+        "endChar": 24
+      },
+      "revId": "cdc4f9cf726c86a0a73cafa140381aaeff5bf2d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
