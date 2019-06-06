@@ -118,6 +118,30 @@
       "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3cf0d4f_439d2b27",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-06T19:32:15Z",
+      "side": 1,
+      "message": "I think that you understand the consequences of this, and if you really want to do it then that\u0027s fine with me.",
+      "parentUuid": "3adc9f1f_de13c193",
+      "range": {
+        "startLine": 10,
+        "startChar": 40,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "c7be57e913b05cc179fc1c8930d2c90ae65ff51d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
