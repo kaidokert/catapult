@@ -22,6 +22,30 @@
       "revId": "e2aba64a8010ad5ca1b9cb5e5420715a41dce37b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c44d17b8_959b28dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-06-06T04:03:38Z",
+      "side": 1,
+      "message": "I think this is an acceptable case for now; in practice, I don\u0027t think we\u0027re very concerned about the case where we have multiple users with disparate permissions given that our users are primarily either (1) bots with the same permissions all the time or (2) individual users with sole access to their machines.",
+      "parentUuid": "be8011f2_43e8d313",
+      "range": {
+        "startLine": 10,
+        "startChar": 52,
+        "endLine": 12,
+        "endChar": 63
+      },
+      "revId": "e2aba64a8010ad5ca1b9cb5e5420715a41dce37b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
