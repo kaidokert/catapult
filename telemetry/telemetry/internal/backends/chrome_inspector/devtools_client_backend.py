@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
 import logging
 import re
 import socket
@@ -29,6 +30,9 @@ class TabNotFoundError(exceptions.Error):
 class UnsupportedVersionError(exceptions.Error):
   pass
 
+
+class TabCreationError(exceptions.Error):
+  pass
 
 # Only versions of Chrome from M58 and above are supported. Older versions
 # did not support many of the modern features currently in use by Telemetry.
@@ -240,26 +244,31 @@ class _DevToolsClientBackend(object):
   def _ListInspectableContexts(self):
     return self._devtools_http.RequestJson('')
 
-  def RequestNewTab(self, timeout):
-    """Creates a new tab.
+  def RequestNewTab(self, timeout, in_new_window=False):
+    """Creates a new tab, either in new window or current window.
 
     Returns:
       A JSON string as returned by DevTools. Example:
       {
-        "description": "",
-        "devtoolsFrontendUrl":
-            "/devtools/inspector.html?ws=host:port/devtools/page/id-string",
-        "id": "id-string",
-        "title": "Page Title",
-        "type": "page",
-        "url": "url",
-        "webSocketDebuggerUrl": "ws://host:port/devtools/page/id-string"
+        "targetId": "id-string";
       }
 
     Raises:
-      devtools_http.DevToolsClientConnectionError
+      TabCreationError
     """
-    return self._devtools_http.Request('new', timeout=timeout)
+    request = {
+        'method': 'Target.createTarget',
+        'params': {
+            'url': 'about:blank',
+            'newWindow': in_new_window
+        }
+    }
+    response = self._browser_websocket.SyncRequest(request, timeout)
+    if 'error' in response:
+      raise TabCreationError(
+          'WebSocket returned unexpected response for Target.createTarget:\n' +
+          json.dumps(response, indent=2))
+    return response['result']
 
   def CloseTab(self, tab_id, timeout):
     """Closes the tab with the given id.
