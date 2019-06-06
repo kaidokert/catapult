@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36877ae3_d23fa5ee",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-06T09:37:31Z",
+      "side": 1,
+      "message": "Looking at this again more carefully: the \"page cache temperature\" setting happens here, afer any tab closing was done (or not) above. So the renderer *will* have visited the page a few times before the actual run that gets measured. Right?\n\nSo, now I think the change above is a mistake. Even in ChromeOS the tab should be closed, otherwise you\u0027re leaking state from one story to the next.",
+      "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
