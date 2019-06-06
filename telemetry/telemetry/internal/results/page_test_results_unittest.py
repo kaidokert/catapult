@@ -817,11 +817,12 @@ class PageTestResultsFilterTest(unittest.TestCase):
       results = self.getPageTestResults(
           upload_bucket='abc', artifact_results=ar)
 
-
-      with results.CreateArtifact('story1', 'screenshot') as screenshot1:
+      results.WillRunPage(self.pages[0])
+      with results.CreateArtifact('screenshot') as screenshot1:
         pass
 
-      with results.CreateArtifact('story2', 'log') as log2:
+      results.WillRunPage(self.pages[1])
+      with results.CreateArtifact('log') as log2:
         pass
 
       results.UploadArtifactsToCloud()
@@ -848,10 +849,12 @@ class PageTestResultsFilterTest(unittest.TestCase):
           upload_bucket='abc', artifact_results=ar)
 
 
-      with results.CreateArtifact('story1', 'screenshot'):
+      results.WillRunPage(self.pages[0])
+      with results.CreateArtifact('screenshot'):
         pass
 
-      with results.CreateArtifact('story2', 'log'):
+      results.WillRunPage(self.pages[1])
+      with results.CreateArtifact('log'):
         pass
 
       # Just make sure that this does not crash

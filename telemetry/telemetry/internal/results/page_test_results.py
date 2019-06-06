@@ -690,12 +690,15 @@ class PageTestResults(object):
     assert self._current_page_run, 'Not currently running test.'
     self.AddValue(skip.SkipValue(self.current_page, reason, is_expected))
 
-  def CreateArtifact(self, story, name, prefix='', suffix=''):
+  def CreateArtifact(self, name, prefix='', suffix=''):
+    assert self._current_page_run, 'Not currently running test.'
     return self._artifact_results.CreateArtifact(
-        story, name, prefix=prefix, suffix=suffix)
+        self._current_page_run.story.name, name, prefix=prefix, suffix=suffix)
 
-  def AddArtifact(self, story, name, path):
-    self._artifact_results.AddArtifact(story, name, path)
+  def AddArtifact(self, name, path):
+    assert self._current_page_run, 'Not currently running test.'
+    self._artifact_results.AddArtifact(
+        self._current_page_run.story.name, name, path)
 
   def AddSummaryValue(self, value):
     assert value.page is None
