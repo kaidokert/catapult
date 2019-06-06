@@ -22,6 +22,30 @@
       "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d31e809c_e7ea9884",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-06-06T09:56:38Z",
+      "side": 1,
+      "message": "From https://docs.python.org/3/library/os.path.html#os.path.join\n\n\"\"\"\nIf a component is an absolute path, all previous components are thrown away and joining continues from the absolute path component.\n\"\"\"\n\nFor example, libassistant.so is located at out/target/product/[device_codename]/symbols/system/chrome/lib/libassistant.so, the symfile.path will be /system/chrome/lib/libassistant.so, so no matter what format of \"--output-directory\" is, if we use os.path.join(output_path, symfile.paht), it will be overridden by symfile.path\n\nOr we can add the prefix \".\" to symfile.path. Which becomes\n\nos.path.join(output_path, CAST_FILE_PREFIX + symfile.path)\n\nBut I think both of them are platform dependent. What\u0027s your suggestion?\n\nThanks",
+      "parentUuid": "a9e66c04_942a11e8",
+      "range": {
+        "startLine": 1389,
+        "startChar": 35,
+        "endLine": 1389,
+        "endChar": 36
+      },
+      "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
