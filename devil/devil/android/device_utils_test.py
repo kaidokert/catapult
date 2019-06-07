@@ -786,6 +786,18 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
       self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0,
                           permissions=[])
 
+  def testInstall_differentPriorInstallSplitApk(self):
+    with self.assertCalls(
+        (mock.call.os.path.exists('/fake/test/app.apk'), True),
+        (self.call.device._GetApplicationPathsInternal('test.package'),
+         ['/fake/data/app/test.package.apk',
+          '/fake/data/app/test.package2.apk']),
+        self.call.device.Uninstall('test.package'),
+        self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+                              allow_downgrade=False)):
+      self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0,
+                          permissions=[])
+
   def testInstall_differentPriorInstall_reinstall(self):
     with self.assertCalls(
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
@@ -926,6 +938,25 @@ class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
         self.device.InstallSplitApk(DeviceUtilsInstallSplitApkTest.mock_apk,
             ['split1.apk', 'split2.apk', 'split3.apk'], permissions=[],
             retries=0)
+
+  def testInstallSplitApk_previouslyNonSplit(self):
+    with self.assertCalls(
+        (self.call.device._CheckSdkLevel(21)),
+        (mock.call.devil.android.sdk.split_select.SelectSplits(
+            self.device, 'base.apk',
+            ['split1.apk', 'split2.apk', 'split3.apk'],
+            allow_cached_props=False),
+         ['split2.apk']),
+        (mock.call.os.path.exists('base.apk'), True),
+        (mock.call.os.path.exists('split2.apk'), True),
+        (self.call.device._GetApplicationPathsInternal(
+            'test.package'), ['/fake/data/app/test.package.apk']),
+        self.call.device.Uninstall('test.package'),
+        (self.call.adb.InstallMultiple(
+            ['base.apk', 'split2.apk'], partial=None, reinstall=False,
+            allow_downgrade=False))):
+      self.device.InstallSplitApk(DeviceUtilsInstallSplitApkTest.mock_apk,
+          ['split1.apk', 'split2.apk', 'split3.apk'], permissions=[], retries=0)
 
 
 class DeviceUtilsInstallBundleTest(DeviceUtilsTest):
