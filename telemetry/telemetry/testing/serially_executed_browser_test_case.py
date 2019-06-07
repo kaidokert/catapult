@@ -214,6 +214,10 @@ class SeriallyExecutedBrowserTestCase(unittest.TestCase):
     """
     return self.__class__._typ_runner.expectations_for(self)
 
+  def GetArtifactResults(self):
+    """Returns the ArtifactResults instance associated with the typ runner."""
+    return self.__class__._typ_runner.artifact_results
+
   @classmethod
   def GetPlatformTags(cls, browser):
     """This method uses the Browser instances's platform member variable to get

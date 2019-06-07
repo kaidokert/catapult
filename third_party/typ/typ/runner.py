@@ -37,6 +37,7 @@ if dir_above_typ not in sys.path:  # pragma: no cover
     sys.path.append(dir_above_typ)
 
 
+from typ import artifact_results
 from typ import json_results
 from typ.arg_parser import ArgumentParser
 from typ.expectations_parser import TestExpectations
@@ -141,6 +142,7 @@ class Runner(object):
         self.expectations = None
         self.metadata = {}
         self.path_delimiter = json_results.DEFAULT_TEST_SEPARATOR
+        self.artifact_results = None
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -181,6 +183,12 @@ class Runner(object):
         if self.args.version:
             self.print_(VERSION)
             return ret, None, None
+
+        if self.args.write_full_results_to:
+            self.artifact_results = artifact_results.ArtifactResults(
+                    os.path.dirname(self.args.write_full_results_to))
+        else:
+            self.artifact_results = artifact_results.NoopArtifactResults()
 
         should_spawn = self._check_win_multiprocessing()
         if should_spawn:
@@ -597,7 +605,8 @@ class Runner(object):
         full_results = json_results.make_full_results(self.metadata,
                                                       int(h.time()),
                                                       all_tests, result_set,
-                                                      self.path_delimiter)
+                                                      self.path_delimiter,
+                                                      self.artifact_results)
 
         return (json_results.exit_code_from_full_results(full_results),
                 full_results)
