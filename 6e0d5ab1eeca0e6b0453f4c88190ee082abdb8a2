@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51b5d97b_f79be362",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-07T19:29:20Z",
+      "side": 1,
+      "message": "So, if we don\u0027t set --repository-absolute-path, we don\u0027t get these entries at all?\n\nThat seems like it might be confusing. I\u0027d either make it an error to specify --expectations-files but not --repository-absolute-path, or I\u0027d at least set something in the metadata. In the latter case, what you were doing before (using just the basename) seems okay.",
+      "revId": "6e0d5ab1eeca0e6b0453f4c88190ee082abdb8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9977c63_bcb07169",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-07T19:29:20Z",
+      "side": 1,
+      "message": "Can you not write a good enough test with passing a files dict to self.check(), like we do in the test on line 1110?\n\nWe should try very hard not to have to actually talk to the filesystem, because it\u0027s slow. If we need to add scaffolding to make this test possible, we should do so, but I\u0027d be surprised if we needed to add it.",
+      "revId": "6e0d5ab1eeca0e6b0453f4c88190ee082abdb8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
