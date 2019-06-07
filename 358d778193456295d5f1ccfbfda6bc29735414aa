@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c76fb19_9411e851",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-07T17:09:29Z",
+      "side": 1,
+      "message": "I think that you should do error handling in tab_list_backend.py \"New\" method. The reason is that then we can raise a TabUnexpectedResponseException from there. TabUnexpectedResponseException is a type of DevtoolsTargetCrashException which is a type of AppCrashException, which has special logic for reporting crash dumps. \n\nSo this method should just return the whole response.",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 270,
+        "endChar": 41
+      },
+      "revId": "358d778193456295d5f1ccfbfda6bc29735414aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

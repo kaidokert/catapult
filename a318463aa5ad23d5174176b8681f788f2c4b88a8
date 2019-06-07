@@ -140,6 +140,30 @@
       "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7371e965_15ec7fa8",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-07T17:09:29Z",
+      "side": 1,
+      "message": "I still don\u0027t think we should have a TabCreationError. I explain in the other comment.",
+      "parentUuid": "b75bd64e_9e24c576",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
