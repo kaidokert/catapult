@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e24d5731_c97cffe0",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-07T20:45:24Z",
+      "side": 1,
+      "message": "The plan is to have recipes output links to any artifacts a test produces, but do additional work for certain artifact types. In the case of a link type, the plan was to have the recipe also output a direct link to what the artifact is pointing to in order to remove an unnecessary click for the user.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
