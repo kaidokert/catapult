@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "9cc49c09_43459659",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-06-07T15:54:57Z",
+      "side": 1,
+      "message": "Good point, I was following the old code.",
+      "parentUuid": "ef68fe3c_8312a902",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c6128a3_b87c3861",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-06-07T15:54:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "917ba81a_a4b3703d",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b9b212e_39574f4a",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b75bd64e_9e24c576",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-06-07T15:54:57Z",
+      "side": 1,
+      "message": "TabUnexpectedResponseException is not visible to the devtools_client_backend.py module, so I\u0027d have to import it, or use this custom one.",
+      "parentUuid": "6b9b212e_39574f4a",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "a318463aa5ad23d5174176b8681f788f2c4b88a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
