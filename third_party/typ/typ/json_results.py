@@ -63,7 +63,8 @@ DEFAULT_TEST_SEPARATOR = '.'
 
 
 def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
-                      test_separator=DEFAULT_TEST_SEPARATOR):
+                      test_separator=DEFAULT_TEST_SEPARATOR,
+                      artifact_results=None):
     """Convert the typ results to the Chromium JSON test result format.
 
     See http://www.chromium.org/developers/the-json-test-results-format
@@ -82,6 +83,9 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
     if metadata:
         full_results['metadata'] = metadata
 
+    if artifact_results:
+        full_results['artifact_types'] = artifact_results.GetArtifactTypes()
+
     passing_tests = _passing_test_names(results)
     skipped_tests = _skipped_test_names(results)
     failed_tests = set(all_test_names) - passing_tests - skipped_tests
@@ -97,6 +101,10 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
 
     for test_name in all_test_names:
         value = _results_for_test(test_name, results)
+        if artifact_results:
+            artifacts = artifact_results.GetArtifactsForTest(test_name)
+            if artifacts:
+                value['artifacts'] = artifacts
         _add_path_to_trie(
             full_results['tests'], test_name, value, test_separator)
         if value.get('is_regression'):

@@ -118,3 +118,51 @@ class TestMakeFullResults(unittest.TestCase):
                         }}}},
             'version': 3}
         self.assertEqual(full_results, expected_full_results)
+
+    def test_artifacts_and_types_added(self):
+        class FakeArtifactResults(object):
+            def __init__(self):
+                self.artifact_type_map = {}
+                self.artifact_map = {}
+            def GetArtifactsForTest(self, test_name):
+                return self.artifact_map.get(test_name, {})
+            def GetArtifactTypes(self):
+                return self.artifact_type_map
+
+        test_names = ['foo_test.FooTest.test_fail',
+                      'foo_test.FooTest.test_pass',
+                      'foo_test.FooTest.test_skip']
+
+        result_set = json_results.ResultSet()
+        result_set.add(
+            json_results.Result('foo_test.FooTest.test_fail',
+                                json_results.ResultType.Failure, 0, 0.1, 0,
+                                unexpected=True))
+        result_set.add(json_results.Result('foo_test.FooTest.test_pass',
+                                           json_results.ResultType.Pass,
+                                           0, 0.2, 0))
+        result_set.add(json_results.Result('foo_test.FooTest.test_skip',
+                                           json_results.ResultType.Skip,
+                                           0, 0.3, 0,
+                                           expected=[json_results.ResultType.Skip],
+                                           unexpected=False))
+        ar = FakeArtifactResults()
+        ar.artifact_type_map = {'artifact_type': 'mime_type'}
+        ar.artifact_map = {
+            'foo_test.FooTest.test_pass': {
+                'artifact_type': ['artifact_name'],
+            },
+        }
+
+        full_results = json_results.make_full_results(
+                {'foo': 'bar'}, 0, test_names, result_set, artifact_results=ar)
+
+        self.assertIn('artifact_types', full_results)
+        self.assertEqual(
+                full_results['artifact_types'], {'artifact_type': 'mime_type'})
+        tests = full_results['tests']['foo_test']['FooTest']
+        self.assertIn('artifacts', tests['test_pass'])
+        self.assertEqual(tests['test_pass']['artifacts'],
+                         {'artifact_type': ['artifact_name']})
+        self.assertNotIn('artifacts', tests['test_skip'])
+        self.assertNotIn('artifacts', tests['test_fail'])
