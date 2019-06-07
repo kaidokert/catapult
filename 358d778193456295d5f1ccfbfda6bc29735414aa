@@ -22,6 +22,30 @@
       "revId": "358d778193456295d5f1ccfbfda6bc29735414aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09fd6216_d33262e7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-06-07T17:27:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c76fb19_9411e851",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 270,
+        "endChar": 41
+      },
+      "revId": "358d778193456295d5f1ccfbfda6bc29735414aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
