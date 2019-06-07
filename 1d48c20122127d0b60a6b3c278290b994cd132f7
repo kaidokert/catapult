@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ca64722_9f96e508",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-07T17:24:01Z",
+      "side": 1,
+      "message": "It would be nice to include estimates for how much this will reduce the metrics calculations runtime.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "1d48c20122127d0b60a6b3c278290b994cd132f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "102bc6e9_361abc39",
+        "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-07T17:24:01Z",
+      "side": 1,
+      "message": "What is this change for? Seems unrelated to the other changes.",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 67
+      },
+      "revId": "1d48c20122127d0b60a6b3c278290b994cd132f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
