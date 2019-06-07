@@ -15,8 +15,10 @@
 import io
 import json
 import os
+import shutil
 import sys
 import textwrap
+import tempfile
 
 from typ import main
 from typ import test_case
@@ -990,7 +992,6 @@ class TestCli(test_case.MainTestCase):
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
         self.assertEqual(results['metadata']['tags'], ['foo', 'bar'])
-        self.assertEqual(results['metadata']['expectations_files'], ['expectations.txt'])
 
     def test_skip_test_with_expectations_file_skip_expectation(self):
         files = {'fail_test.py': FAIL_TEST_PY,
@@ -1066,6 +1067,45 @@ class TestCli(test_case.MainTestCase):
         self.assertEqual(results['expected'],'SKIP')
         self.assertNotIn('is_unexpected', results)
         self.assertNotIn('is_regression', results)
+
+    def test_relative_paths_used_for_expectations_files_in_metadata(self):
+        test_expectations = (
+            '# tags: [ foo bar ]\n'
+            'crbug.com/12345 [ foo ] test_dir.failing_test.FailingTest.test_fail '
+            '[ Failure ]\n')
+        tmp_dir = tempfile.mkdtemp()
+        test_dir = os.path.join(tmp_dir, 'test_dir')
+        test_file = os.path.join(test_dir, 'failing_test.py')
+        os.mkdir(test_dir)
+        os.mkdir(os.path.join(test_dir, 'test_expectations'))
+        tobj = open(test_file, 'w')
+        tobj.write(FAIL_TEST_PY)
+        tobj.close()
+        init = open(os.path.join(tmp_dir, '__init__.py'), 'w')
+        init1 = open(os.path.join(test_dir, '__init__.py'), 'w')
+        init.write('')
+        init1.write('')
+        init.close()
+        init1.close()
+        test_exp = open(
+            os.path.join(test_dir, 'test_expectations', 'test_expectations.txt'), 'w')
+        test_exp.write(test_expectations)
+        test_exp.close()
+        try:
+            _, out, _, files = self.check(
+                ['--write-full-results-to', 'full_results.json',
+                 '--test-name-prefix', (
+                      '%s.' % os.path.basename(os.path.dirname(init.name))),
+                 '-X', test_exp.name, '-x', 'foo', tmp_dir,
+                 '--repository-absolute-path', tmp_dir],
+                ret=0, err='', files={})
+            results = json.loads(files['full_results.json'])
+            self.assertEqual(
+                [os.path.sep.join(
+                    ['','', 'test_dir', 'test_expectations', 'test_expectations.txt'])],
+                results['metadata']['expectations_files'])
+        finally:
+            shutil.rmtree(tmp_dir)
 
     def test_implement_test_name_prefix_exclusion_in_finished_test_output(self):
         files = PASS_TEST_FILES
