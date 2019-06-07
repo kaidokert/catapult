@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ab5a2d83_317bec1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2019-06-07T17:38:24Z",
+      "side": 1,
+      "message": "Done.\n\nThe right pinpoint link: https://pinpoint-dot-chromeperf.appspot.com/job/16c1d7fa6c0000",
+      "parentUuid": "3ca64722_9f96e508",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "1d48c20122127d0b60a6b3c278290b994cd132f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "102bc6e9_361abc39",
         "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "1d48c20122127d0b60a6b3c278290b994cd132f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a164d36_e798b771",
+        "filename": "tracing/tracing/model/helpers/chrome_renderer_helper.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2019-06-07T17:38:24Z",
+      "side": 1,
+      "message": "Just a drive-by refactoring to be consistent with line 29. (no behavior change)",
+      "parentUuid": "102bc6e9_361abc39",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 25,
+        "endChar": 67
+      },
+      "revId": "1d48c20122127d0b60a6b3c278290b994cd132f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
