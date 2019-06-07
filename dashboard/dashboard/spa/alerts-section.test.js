@@ -259,7 +259,8 @@ suite('alerts-section', function() {
     ignore.click();
     await afterRender();
 
-    assert.strictEqual('-2', existingBugBody.get('bug'));
+    assert.strictEqual('' + ExistingBugRequest.IGNORE_BUG_ID,
+        existingBugBody.get('bug'));
     assert.lengthOf(existingBugBody.getAll('key'), 10);
     for (let i = 0; i < 10; ++i) {
       assert.include(existingBugBody.getAll('key'), 'key' + i);
