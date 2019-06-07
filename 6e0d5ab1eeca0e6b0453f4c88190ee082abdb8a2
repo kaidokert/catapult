@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "d88b51ae_2ce21357",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-07T20:44:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9718a819_12c3d13b",
+      "revId": "6e0d5ab1eeca0e6b0453f4c88190ee082abdb8a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9977c63_bcb07169",
         "filename": "third_party/typ/typ/tests/main_test.py",
         "patchSetId": 14
