@@ -104,7 +104,7 @@ class _RunTestExecutionTest(unittest.TestCase):
             'extra_args': ['arg'],
             'dimensions': DIMENSIONS,
             'execution_timeout_secs': '21600',
-            'io_timeout_secs': '1200',
+            'io_timeout_secs': '14400',
             'caches': [
                 {
                     'name': 'swarming_module_cache_vpython',
