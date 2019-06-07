@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a8ba94ee_04ba5ab4",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1321474
+      },
+      "writtenOn": "2019-06-07T14:50:45Z",
+      "side": 1,
+      "message": "Removing spaces results into eslint error of space-infix-ops: Infix operators must be spaced.",
+      "parentUuid": "7e8234dc_ca55ab0b",
+      "range": {
+        "startLine": 207,
+        "startChar": 18,
+        "endLine": 207,
+        "endChar": 23
+      },
+      "revId": "cdc4f9cf726c86a0a73cafa140381aaeff5bf2d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c75399d_70f392c0",
         "filename": "tracing/tracing/metrics/rendering/frame_time.html",
         "patchSetId": 8
