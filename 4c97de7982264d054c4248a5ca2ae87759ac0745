@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9b049d17_b85c8dfd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-06-07T23:37:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd3e24dd_35159b9a",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "4c97de7982264d054c4248a5ca2ae87759ac0745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "760255d4_ec08127a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-06-07T17:28:20Z",
       "side": 1,
       "message": "I think the best solution could be to allow uploads without the project. Just default to chromium now since we intentionally don\u0027t use the github stuff much at all anymore.",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "4c97de7982264d054c4248a5ca2ae87759ac0745",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5b79d7b_19af8a23",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-06-07T23:37:12Z",
+      "side": 1,
+      "message": "I\u0027m not sure how the gerrit autolinking (and, later, auto-bug-commenting) works. Does all that \"Just Work\" and it\u0027s safe to delete the presubmit?",
+      "parentUuid": "760255d4_ec08127a",
       "range": {
         "startLine": 9,
         "startChar": 11,
