@@ -12,7 +12,7 @@ export default class CpSwitch extends LitElement {
   static get properties() {
     return {
       checked: {type: Boolean},
-      disabled: {type: Boolean},
+      disabled: {type: Boolean, reflect: true},
     };
   }
 
@@ -20,6 +20,9 @@ export default class CpSwitch extends LitElement {
     return css`
         :host {
           padding: 8px;
+        }
+        :host([disabled]) label {
+          color: var(--neutral-color-dark, grey);
         }
         input {
           display: none;
