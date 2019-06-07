@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd7b90bd_1d22592c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-07T22:04:40Z",
+      "side": 1,
+      "message": "Now nothing is catching KeyErrors here. I guess if we don\u0027t think they are likely to happen ever then that\u0027s okay.",
+      "range": {
+        "startLine": 46,
+        "startChar": 48,
+        "endLine": 46,
+        "endChar": 70
+      },
+      "revId": "5d5ba8a6089448edf127f65a92f81bd2fad0831e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
