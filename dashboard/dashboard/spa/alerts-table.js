@@ -788,14 +788,14 @@ AlertsTable.reducers = {
     };
   },
 
-  selectAlert: (state, action, rootState) => {
+  selectAlert: (state, {shiftKey, alertIndex, alertGroupIndex}, rootState) => {
     let alertGroups = state.alertGroups;
-    const alertGroup = alertGroups[action.alertGroupIndex];
+    const alertGroup = alertGroups[alertGroupIndex];
     let alerts = alertGroup.alerts;
-    const alert = alerts[action.alertIndex];
+    const alert = alerts[alertIndex];
     const isSelected = !alert.isSelected;
 
-    if (action.shiftKey) {
+    if (shiftKey) {
       // [De]select all alerts between previous selected alert and |alert|.
       // Deep-copy alerts so that we can freely modify them.
       // Copy references to individual alerts out of their groups to reflect
@@ -828,9 +828,9 @@ AlertsTable.reducers = {
       let toggleAll = false;
       if (!alertGroup.isExpanded) {
         if (state.showingTriaged) {
-          toggleAll = action.alertIndex === 0;
+          toggleAll = alertIndex === 0;
         } else {
-          toggleAll = action.alertIndex === alertGroup.alerts.findIndex(
+          toggleAll = alertIndex === alertGroup.alerts.findIndex(
               a => !a.bugId);
         }
       }
@@ -845,11 +845,11 @@ AlertsTable.reducers = {
       } else {
         // Only toggle this alert.
         alerts = setImmutable(
-            alerts, `${action.alertIndex}.isSelected`, isSelected);
+            alerts, `${alertIndex}.isSelected`, isSelected);
       }
 
       alertGroups = setImmutable(
-          state.alertGroups, `${action.alertGroupIndex}.alerts`, alerts);
+          state.alertGroups, `${alertGroupIndex}.alerts`, alerts);
     }
 
     const selectedAlertsCount = AlertsTable.getSelectedAlerts(
