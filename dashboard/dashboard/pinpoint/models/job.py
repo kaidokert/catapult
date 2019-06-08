@@ -538,6 +538,7 @@ def _FormatDifferenceForBug(commit_info, values_a, values_b, metric):
   difference = '%s%s %s %s' % (metric, formatted_a, _RIGHT_ARROW, formatted_b)
   if values_a and values_b:
     difference += ' (%+.4g)' % (mean_b - mean_a)
+    difference += ' (%+.4g%%)' % ((mean_b - mean_a) / mean_a * 100)
 
   return '\n'.join((subject, commit_info['url'], difference))
 
