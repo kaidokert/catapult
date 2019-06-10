@@ -200,7 +200,8 @@ def _RequestBuild(builder_name, change, bucket):
   base_review_url = urlparse.urlunsplit(
       (url_parts.scheme, url_parts.netloc, '', '', ''))
 
-  change_info = gerrit_service.GetChange(base_review_url, change_id)
+  change_info = gerrit_service.GetChange(
+      base_review_url, change_id, branch='master')
 
   commit_url_parts = urlparse.urlparse(base_as_dict['url'])
 
