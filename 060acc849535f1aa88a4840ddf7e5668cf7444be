@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efc1f73c_79b28181",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-10T21:05:35Z",
+      "side": 1,
+      "message": "remove this line.",
+      "range": {
+        "startLine": 524,
+        "startChar": 0,
+        "endLine": 524,
+        "endChar": 0
+      },
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
