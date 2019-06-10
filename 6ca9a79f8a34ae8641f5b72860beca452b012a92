@@ -94,6 +94,30 @@
       "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9291daf3_8988cbe9",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-06-10T16:11:21Z",
+      "side": 1,
+      "message": "I dno\u0027t see the updated comment. ps#4 looks identical to ps#3 to me.",
+      "parentUuid": "2ff47acf_7316fe95",
+      "range": {
+        "startLine": 1389,
+        "startChar": 35,
+        "endLine": 1389,
+        "endChar": 36
+      },
+      "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
