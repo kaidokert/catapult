@@ -16,6 +16,10 @@ def _FormatTimeStamp(epoch):
   return datetime.datetime.utcfromtimestamp(epoch).isoformat() + 'Z'
 
 
+def _FormatDuration(seconds):
+  return '{:.2f}s'.format(seconds)
+
+
 class StoryRun(object):
   def __init__(self, story):
     self._story = story
@@ -58,8 +62,9 @@ class StoryRun(object):
         'testRun': {
             'testName': self.test_name,
             'status': self.status,
+            'isExpected': self.is_expected,
             'startTime': _FormatTimeStamp(self._start_time),
-            'endTime': _FormatTimeStamp(self._end_time)
+            'runDuration': _FormatDuration(self.duration)
         }
     }
 
@@ -100,8 +105,9 @@ class StoryRun(object):
     return self._skip_reason
 
   @property
-  def expected(self):
-    return SKIP if self._skip_expected else PASS
+  def is_expected(self):
+    """Whether the test status is expected."""
+    return self._skip_expected or self.ok
 
   # TODO(#4254): Make skipped and failed mutually exclusive and simplify these.
   @property
