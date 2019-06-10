@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7c937273_e8791935",
+        "filename": "tracing/tracing/metrics/rendering/frame_time.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-06-10T14:56:05Z",
+      "side": 1,
+      "message": "Default parameter values are allowed by the style guide. However, if you want to be consistent with the rest of the Catapult JS, I think the style here is to always use optional parameters:\n\nfunction addFrameTimeHistograms(..., opt_minFrameCount) {\n  minFrameCount \u003d opt_minFrameCount || MIN_FRAME_COUNT;\n  ...\n}",
+      "parentUuid": "a8ba94ee_04ba5ab4",
+      "range": {
+        "startLine": 207,
+        "startChar": 18,
+        "endLine": 207,
+        "endChar": 23
+      },
+      "revId": "cdc4f9cf726c86a0a73cafa140381aaeff5bf2d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c75399d_70f392c0",
         "filename": "tracing/tracing/metrics/rendering/frame_time.html",
         "patchSetId": 8
@@ -65,6 +89,29 @@
         "startChar": 17,
         "endLine": 282,
         "endChar": 24
+      },
+      "revId": "cdc4f9cf726c86a0a73cafa140381aaeff5bf2d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936912f1_fbe100c5",
+        "filename": "tracing/tracing/metrics/rendering/frame_time_test.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-06-10T14:56:05Z",
+      "side": 1,
+      "message": "Wrong comment?",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 383,
+        "endChar": 74
       },
       "revId": "cdc4f9cf726c86a0a73cafa140381aaeff5bf2d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
