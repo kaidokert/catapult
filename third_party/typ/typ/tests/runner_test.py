@@ -139,6 +139,27 @@ class RunnerTests(TestCase):
         ret = r.main([], tests=['typ.tests.runner_test.ContextTests'])
         self.assertEqual(ret, 0)
 
+    def test_artifacts_passed_to_results(self):
+        class FakeArtifactResults(object):
+            def GetArtifactTypes(self):
+                return {'artifact_type': 'mime_type'}
+            def GetArtifactsForTest(self, test_name):
+                return {}
+            def HasArtifactData(self):
+                return True
+        class FakeRunner(Runner):
+            def _run_one_set(self, stats, result_set, test_set, jobs, pool):
+                self.artifact_results = FakeArtifactResults()
+        r = FakeRunner()
+        r.context = {'foo': 'bar'}
+        r.setup_fn = _setup_process
+        r.teardown_fn = _teardown_process
+        r.win_multiprocessing = WinMultiprocessing.importable
+        _, full_results, _ = r.run()
+        self.assertIn('artifact_types', full_results)
+        self.assertEqual(
+                full_results['artifact_types'], {'artifact_type': 'mime_type'})
+
 
 class TestSetTests(TestCase):
     # This class exists to test the failures that can come up if you

@@ -37,6 +37,7 @@ if dir_above_typ not in sys.path:  # pragma: no cover
     sys.path.append(dir_above_typ)
 
 
+from typ import artifact_results
 from typ import json_results
 from typ.arg_parser import ArgumentParser
 from typ.expectations_parser import TestExpectations
@@ -141,6 +142,7 @@ class Runner(object):
         self.expectations = None
         self.metadata = {}
         self.path_delimiter = json_results.DEFAULT_TEST_SEPARATOR
+        self.artifact_results = None
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -181,6 +183,12 @@ class Runner(object):
         if self.args.version:
             self.print_(VERSION)
             return ret, None, None
+
+        if self.args.write_full_results_to:
+            self.artifact_results = artifact_results.ArtifactResults(
+                    os.path.dirname(self.args.write_full_results_to))
+        else:
+            self.artifact_results = artifact_results.NoopArtifactResults()
 
         should_spawn = self._check_win_multiprocessing()
         if should_spawn:
@@ -576,6 +584,7 @@ class Runner(object):
                              self.args.retry_limit))
                 self.print_('')
 
+                self.artifact_results.IncrementIteration()
                 stats = Stats(self.args.status_format, h.time, 1)
                 stats.total = len(tests_to_retry)
                 test_set = TestSet(self.args.test_name_prefix)
@@ -597,7 +606,8 @@ class Runner(object):
         full_results = json_results.make_full_results(self.metadata,
                                                       int(h.time()),
                                                       all_tests, result_set,
-                                                      self.path_delimiter)
+                                                      self.path_delimiter,
+                                                      self.artifact_results)
 
         return (json_results.exit_code_from_full_results(full_results),
                 full_results)
@@ -915,6 +925,7 @@ class _Child(object):
         self.has_expectations = parent.has_expectations
         self.expectations = parent.expectations
         self.test_name_prefix = parent.args.test_name_prefix
+        self.artifacts = parent.artifact_results
 
 
 def _setup_process(host, worker_num, child):
@@ -1016,7 +1027,9 @@ def _run_one_test(child, test_input):
         h.restore_output()
         return (Result(test_name, ResultType.Failure, started, took=0,
                        worker=child.worker_num, unexpected=True, code=1,
-                       err=err, pid=pid), False)
+                       err=err, pid=pid,
+                       artifacts=child.artifacts.GetArtifactsForTest(
+                               test_name)), False)
 
     test_case = tests[0]
     if isinstance(test_case, TypTestCase):
@@ -1039,7 +1052,9 @@ def _run_one_test(child, test_input):
     took = h.time() - started
     return (_result_from_test_result(test_result, test_name, started, took, out,
                                     err, child.worker_num, pid,
-                                    expected_results, child.has_expectations),
+                                    expected_results, child.has_expectations,
+                                    child.artifacts.GetArtifactsForTest(
+                                            test_name)),
             should_retry_on_failure)
 
 
@@ -1056,7 +1071,7 @@ def _run_under_debugger(host, test_case, suite,
 
 def _result_from_test_result(test_result, test_name, started, took, out, err,
                              worker_num, pid, expected_results,
-                             has_expectations):
+                             has_expectations, artifacts):
     if test_result.failures:
         actual = ResultType.Failure
         code = 1
@@ -1092,7 +1107,8 @@ def _result_from_test_result(test_result, test_name, started, took, out, err,
 
     flaky = False
     return Result(test_name, actual, started, took, worker_num,
-                  expected_results, unexpected, flaky, code, out, err, pid)
+                  expected_results, unexpected, flaky, code, out, err, pid,
+                  artifacts)
 
 
 def _load_via_load_tests(child, test_name):

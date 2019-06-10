@@ -118,3 +118,107 @@ class TestMakeFullResults(unittest.TestCase):
                         }}}},
             'version': 3}
         self.assertEqual(full_results, expected_full_results)
+
+    def test_artifacts_and_types_added(self):
+        class FakeArtifactResults(object):
+            def __init__(self):
+                self.artifact_type_map = {}
+                self.artifact_map = {}
+            def GetArtifactsForTest(self, test_name):
+                return self.artifact_map.get(test_name, {}).get(0, {})
+            def GetArtifactTypes(self):
+                return self.artifact_type_map
+            def HasArtifactData(self):
+                return len(self.artifact_map) > 0
+
+        test_names = ['foo_test.FooTest.test_fail',
+                      'foo_test.FooTest.test_pass',
+                      'foo_test.FooTest.test_skip']
+
+        ar = FakeArtifactResults()
+        ar.artifact_type_map = {'artifact_type': 'mime_type'}
+        ar.artifact_map = {
+            'foo_test.FooTest.test_pass': {
+                0: {
+                    'artifact_type': ['artifact_name'],
+                },
+            },
+        }
+
+        pass_artifacts = ar.GetArtifactsForTest('foo_test.FooTest.test_pass')
+
+        result_set = json_results.ResultSet()
+        result_set.add(
+            json_results.Result('foo_test.FooTest.test_fail',
+                                json_results.ResultType.Failure, 0, 0.1, 0,
+                                unexpected=True))
+        result_set.add(json_results.Result('foo_test.FooTest.test_pass',
+                                           json_results.ResultType.Pass,
+                                           0, 0.2, 0, artifacts=pass_artifacts))
+        result_set.add(json_results.Result('foo_test.FooTest.test_skip',
+                                           json_results.ResultType.Skip,
+                                           0, 0.3, 0,
+                                           expected=[json_results.ResultType.Skip],
+                                           unexpected=False))
+
+        full_results = json_results.make_full_results(
+                {'foo': 'bar'}, 0, test_names, result_set, artifact_results=ar)
+
+        self.assertIn('artifact_types', full_results)
+        self.assertEqual(
+                full_results['artifact_types'], {'artifact_type': 'mime_type'})
+        tests = full_results['tests']['foo_test']['FooTest']
+        self.assertIn('artifacts', tests['test_pass'])
+        self.assertEqual(tests['test_pass']['artifacts'],
+                         {'artifact_type': ['artifact_name']})
+        self.assertNotIn('artifacts', tests['test_skip'])
+        self.assertNotIn('artifacts', tests['test_fail'])
+
+    def test_artifacts_merged(self):
+        class FakeArtifactResults(object):
+            def __init__(self):
+                self.artifact_type_map = {}
+                self.artifact_map = {}
+                self.iteration = 0
+            def GetArtifactsForTest(self, test_name):
+                return self.artifact_map.get(test_name, {}).get(
+                        self.iteration, {})
+            def GetArtifactTypes(self):
+                return self.artifact_type_map
+            def HasArtifactData(self):
+                return len(self.artifact_map) > 0
+
+        test_names = ['foo_test.FooTest.some_test']
+        ar = FakeArtifactResults()
+        ar.artifact_type_map = {'artifact_type': 'mime_type'}
+        ar.artifact_map = {
+            'foo_test.FooTest.some_test': {
+                0: {
+                    'artifact_type': ['artifact_name'],
+                },
+                1: {
+                    'artifact_type': ['another_artifact_name'],
+                },
+            },
+        }
+
+        fail_artifacts = ar.GetArtifactsForTest('foo_test.FooTest.some_test')
+        ar.iteration = 1
+        pass_artifacts = ar.GetArtifactsForTest('foo_test.FooTest.some_test')
+
+        result_set = json_results.ResultSet()
+        result_set.add(json_results.Result(
+                'foo_test.FooTest.some_test', json_results.ResultType.Failure,
+                0, 0.1, 0, unexpected=True, artifacts=fail_artifacts))
+        result_set.add(json_results.Result(
+                'foo_test.FooTest.some_test', json_results.ResultType.Pass,
+                0, 0.2, 0, artifacts=pass_artifacts))
+
+        full_results = json_results.make_full_results(
+                {'foo': 'bar'}, 0, test_names, result_set, artifact_results=ar)
+
+        results = full_results['tests']['foo_test']['FooTest']['some_test']
+        self.assertIn('artifacts', results)
+        self.assertEqual(
+                {'artifact_type': ['artifact_name', 'another_artifact_name']},
+                results['artifacts'])
