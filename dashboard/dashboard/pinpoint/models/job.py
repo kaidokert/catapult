@@ -36,6 +36,7 @@ _TASK_INTERVAL = 60
 
 
 _CRYING_CAT_FACE = u'\U0001f63f'
+_INFINITY = u'\u221e'
 _RIGHT_ARROW = u'\u2192'
 _ROUND_PUSHPIN = u'\U0001f4cd'
 
@@ -261,6 +262,7 @@ class Job(ndb.Model):
 
     difference_details = []
     commit_infos = []
+    authors_deltas = dict()
     for change_a, change_b in differences:
       if change_b.patch:
         commit_info = change_b.patch.AsDict()
@@ -273,11 +275,17 @@ class Job(ndb.Model):
                                            self.state.metric)
       difference_details.append(difference)
       commit_infos.append(commit_info)
+      if values_a and values_b:
+        authors_deltas[commit_info['author']] = job_state.Mean(
+            values_b) - job_state.Mean(values_a)
+      else:
+        authors_deltas[commit_info['author']] = None
+
 
     deferred.defer(
         _UpdatePostAndMergeDeferred,
-        difference_details, commit_infos, self.bug_id, self.tags, self.url,
-        _retry_options=RETRY_OPTIONS)
+        difference_details, commit_infos, authors_deltas, self.bug_id,
+        self.tags, self.url, _retry_options=RETRY_OPTIONS)
 
   def _UpdateGerritIfNeeded(self):
     if self.gerrit_server and self.gerrit_change_id:
@@ -459,13 +467,15 @@ def _GenerateCommitCacheKey(commit_infos):
   return commit_cache_key
 
 
-def _ComputePostOwnerSheriffCCList(commit_infos):
+def _ComputePostOwnerSheriffCCList(commit_infos, authors_deltas):
   owner = None
   sheriff = None
   cc_list = set()
+
+  if authors_deltas:
+    owner = max(authors_deltas, key=authors_deltas.get)
+
   for cur_commit in commit_infos:
-    # TODO: Assign the largest difference, not the last one.
-    owner = cur_commit['author']
     sheriff = utils.GetSheriffForAutorollCommit(owner, cur_commit['message'])
     cc_list.add(cur_commit['author'])
     if sheriff:
@@ -474,14 +484,15 @@ def _ComputePostOwnerSheriffCCList(commit_infos):
 
 
 def _UpdatePostAndMergeDeferred(
-    difference_details, commit_infos, bug_id, tags, url):
+    difference_details, commit_infos, authors_deltas, bug_id, tags, url):
   if not bug_id:
     return
 
   commit_cache_key = _GenerateCommitCacheKey(commit_infos)
 
   # Bring it all together.
-  owner, sheriff, cc_list = _ComputePostOwnerSheriffCCList(commit_infos)
+  owner, sheriff, cc_list = _ComputePostOwnerSheriffCCList(commit_infos,
+                                                           authors_deltas)
   comment = _FormatComment(difference_details, commit_infos, sheriff, tags, url)
 
   issue_tracker = issue_tracker_service.IssueTrackerService(
@@ -538,6 +549,10 @@ def _FormatDifferenceForBug(commit_info, values_a, values_b, metric):
   difference = '%s%s %s %s' % (metric, formatted_a, _RIGHT_ARROW, formatted_b)
   if values_a and values_b:
     difference += ' (%+.4g)' % (mean_b - mean_a)
+    if mean_a:
+      difference += ' (%+.4g%%)' % ((mean_b - mean_a) / mean_a * 100)
+    else:
+      difference += ' (+%s%%)' % _INFINITY
 
   return '\n'.join((subject, commit_info['url'], difference))
 
