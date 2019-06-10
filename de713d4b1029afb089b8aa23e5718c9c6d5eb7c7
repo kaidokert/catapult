@@ -16,6 +16,24 @@
       "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3108a40_10720040",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2019-06-10T01:38:55Z",
+      "side": 1,
+      "message": "Hi Juan, warm and hot cache temperature requires that the page/story (which is exact the same story as previous cold temperature) was visited once or at least twice before the run in the *same* renderer for loading benchmarks.(https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/page/cache_temperature.py?l\u003d28)\n\nOn ChromeOS, if we close the tab before each run, the run order for loading benchmarks will be: page1_COLD - close tab - start new tab - page1_WARM - close tab - start new tab - page2_COLD.... Closing tab and starting a new one  for each load will kill the previous renderer and start a new one, which makes page1_WARM and page1_COLD in two different renderers.\n\nWithout closing the tab (which is also the behavior before loading CL https://chromium-review.googlesource.com/c/catapult/+/1363552), the run order is: page1_COLD - page1_WARM - page2_COLD - page2_WARM..., which ensures that page1_WARM is in the *same* renderer as page1_COLD so that WARM load could use the memory cache from COLD load, and this is critical to WARM load performance. Besides, page2 is from a different origin as page1, and clear cache would be done before each COLD load, so page1 and page2 are actually in different renderer and the state won\u0027t be leaked from page1 to page2.",
+      "parentUuid": "36877ae3_d23fa5ee",
+      "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
