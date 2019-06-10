@@ -22,6 +22,23 @@
       "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "365385e4_e1e87f05",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-10T09:44:02Z",
+      "side": 1,
+      "message": "This is a \"mistake\" I\u0027m trying to correct now in the new Telemetry implementation. Currently, like you do here, the \"artifact_results\" has a global view of all the artifacts for the entire test suite grouped by test name. But if you ran some test multiple times, you can\u0027t easily tell which artifacts belong to which test run. [And, for the future go/luci-test-results-design you do want to be able to make that distinction.]\n\nMaybe instead you want to keep a set of artifacts for each individual \"result\" [1], and then let the aggregation happen (in case of multiple test runs) at [2].\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/third_party/typ/typ/json_results.py?rcl\u003d93cd912aa60ef771f5aef978e3ba7f886c02bf9b\u0026l\u003d31\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/third_party/typ/typ/json_results.py?rcl\u003d93cd912aa60ef771f5aef978e3ba7f886c02bf9b\u0026l\u003d159",
+      "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
