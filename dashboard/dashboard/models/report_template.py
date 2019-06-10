@@ -10,7 +10,7 @@ import functools
 
 from google.appengine.ext import ndb
 
-from dashboard.common import report_query
+from dashboard.common import descriptor
 from dashboard.common import timing
 from dashboard.common import utils
 from dashboard.models import internal_only_model
@@ -71,11 +71,11 @@ def Static(internal_only, template_id, name, modified):
       template_id=1797699531,
       name='Paryl:Awesome:Report',
       modified=datetime.datetime(2018, 8, 2))
-  def ParylAwesomeReport(revisions):
+  def ParylAwesomeReport():
     desc = update_test_suite_descriptors.FetchCachedTestSuiteDescriptor('paryl')
     template = MakeAwesomeTemplate(desc)
     template['url'] = 'https://example.com/your/documentation.html'
-    return report_query.ReportQuery(template, revisions)
+    return template
 
   Names need to be mutable and are for display purposes only. Identifiers need
   to be immutable and are used for caching. Ids are required to be ints so the
@@ -85,10 +85,8 @@ def Static(internal_only, template_id, name, modified):
   assert isinstance(template_id, int)  # JS can't handle python floats or longs!
   def Decorator(decorated):
     @functools.wraps(decorated)
-    def Replacement(revisions):
-      report = decorated(revisions)
-      if isinstance(report, report_query.ReportQuery):
-        report = report.FetchSync()
+    def Replacement():
+      report = decorated()
       assert isinstance(report.get('url'), basestring), (
           'Reports are required to link to documentation')
       return report
@@ -111,6 +109,9 @@ def List():
             'id': template.key.id(),
             'name': template.name,
             'modified': template.modified.isoformat(),
+            'internal': template.internal_only,
+            'owners': getattr(template, 'owners'),
+            'template': getattr(template, 'template'),
         }
         for template in templates]
     return sorted(templates, key=lambda d: d['name'])
@@ -150,7 +151,7 @@ def PutTemplate(template_id, name, owners, template):
 def _GetInternalOnly(template):
   futures = []
   for table_row in template['rows']:
-    for desc in report_query.TableRowDescriptors(table_row):
+    for desc in TableRowDescriptors(table_row):
       for test_path in desc.ToTestPathsSync():
         futures.append(utils.TestMetadataKey(test_path).get_async())
       desc.statistic = 'avg'
@@ -161,47 +162,11 @@ def _GetInternalOnly(template):
   return any(test.internal_only for test in tests if test)
 
 
-def GetReport(template_id, revisions):
-  with timing.WallTimeLogger('GetReport'), timing.CpuTimeLogger('GetReport'):
-    try:
-      template = ndb.Key('ReportTemplate', template_id).get()
-    except AssertionError:
-      # InternalOnlyModel._post_get_hook asserts that the user can access the
-      # entity.
-      return None
-
-    result = {'editable': False}
-    if template:
-      result['owners'] = template.owners
-      result['editable'] = utils.GetEmail() in template.owners
-      result['report'] = report_query.ReportQuery(
-          template.template, revisions).FetchSync()
-    else:
-      for handler in ListStaticTemplates():
-        if handler.template.key.id() != template_id:
-          continue
-        template = handler.template
-        report = handler(revisions)
-        if isinstance(report, report_query.ReportQuery):
-          report = report.FetchSync()
-        result['report'] = report
-        break
-      if template is None:
-        return None
-
-    result['id'] = template.key.id()
-    result['name'] = template.name
-    result['internal'] = template.internal_only
-    return result
-
-
-def TestKeysForReportTemplate(template_id):
-  template = ndb.Key('ReportTemplate', int(template_id)).get()
-  if not template:
-    return
-
-  for table_row in template.template['rows']:
-    for desc in report_query.TableRowDescriptors(table_row):
-      for test_path in desc.ToTestPathsSync():
-        yield utils.TestMetadataKey(test_path)
-        yield utils.OldStyleTestKey(test_path)
+def TableRowDescriptors(table_row):
+  for test_suite in table_row['testSuites']:
+    for bot in table_row['bots']:
+      for case in table_row['testCases']:
+        yield descriptor.Descriptor(
+            test_suite, table_row['measurement'], bot, case)
+      if not table_row['testCases']:
+        yield descriptor.Descriptor(test_suite, table_row['measurement'], bot)

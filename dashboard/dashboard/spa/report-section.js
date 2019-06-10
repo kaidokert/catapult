@@ -9,12 +9,13 @@ import './cp-loading.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
-import ReportRequest from './report-request.js';
 import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {BatchIterator, get} from './utils.js';
 import {ElementBase, STORE} from './element-base.js';
+import {ReportFetcher} from './report-fetcher.js';
+import {ReportMerger} from './report-merger.js';
 import {UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
 
@@ -91,17 +92,17 @@ export default class ReportSection extends ElementBase {
 
   stateChanged(rootState) {
     if (!this.statePath) return;
-    const state = get(rootState, this.statePath);
+    const newState = get(rootState, this.statePath);
 
-    const sourcesChanged = (
-      state && this.source && state.source && (
-        (this.minRevision !== state.minRevision) ||
-        (this.maxRevision !== state.maxRevision) ||
-        !tr.b.setsEqual(
-            new Set(this.source.selectedOptions),
-            new Set(state.source.selectedOptions))));
+    const sourcesChanged = newState && newState.source && (
+      !this.source ||
+      (this.minRevision !== newState.minRevision) ||
+      (this.maxRevision !== newState.maxRevision) ||
+      !tr.b.setsEqual(
+          new Set(this.source.selectedOptions),
+          new Set(newState.source.selectedOptions)));
 
-    Object.assign(this, state);
+    Object.assign(this, newState);
 
     if (sourcesChanged) {
       this.debounce('loadReports', () => {
@@ -146,8 +147,7 @@ export default class ReportSection extends ElementBase {
     for (const name of names) {
       for (const templateInfo of reportTemplateInfos) {
         if (templateInfo.name === name) {
-          readers.push(new ReportRequest(
-              {...templateInfo, revisions}).reader());
+          readers.push(new ReportFetcher(templateInfo, revisions));
         }
       }
     }
@@ -217,7 +217,10 @@ ReportSection.reducers = {
   receiveReports: (state, {reports}, rootState) => {
     const tables = [...state.tables];
     for (const report of reports) {
-      if (!report || !report.report || !report.report.rows) {
+      // TODO report.errors
+
+      console.log(report);
+      if (!report || !report.timeseriesesByLine) {
         continue;
       }
 
@@ -226,10 +229,13 @@ ReportSection.reducers = {
         table && (table.name === report.name));
       tables.splice(placeholderIndex, 1);
 
-      const rows = report.report.rows.map(
-          row => ReportSection.transformReportRow(
-              row, state.minRevision, state.maxRevision,
-              report.report.statistics));
+      const merger = new ReportMerger(
+          report.timeseriesesByLine,
+          [state.minRevision, state.maxRevision]);
+      const rows = merger.mergedRows.map(row =>
+        ReportSection.transformReportRow(
+            row, state.minRevision, state.maxRevision,
+            report.template.statistics));
 
       // Right-align labelParts.
       const maxLabelParts = tr.b.math.Statistics.max(rows, row =>
@@ -261,6 +267,7 @@ ReportSection.reducers = {
         }
       }
 
+      // TODO XXX redo this
       let minRevision;
       let maxRevision;
       if (report.report && report.report.rows && report.report.rows[0] &&
@@ -302,7 +309,7 @@ ReportSection.reducers = {
             '95%',
             '99%',
           ],
-          selectedOptions: report.report.statistics,
+          selectedOptions: report.template.statistics,
           required: true,
         },
       });
@@ -415,6 +422,7 @@ function chartHref(lineDescriptor) {
 
 ReportSection.transformReportRow = (
     row, minRevision, maxRevision, statistics) => {
+  console.log(row, minRevision, maxRevision, statistics);
   if (!row.suites) row.suites = row.testSuites;
   if (!row.cases) row.cases = row.testCases;
 
