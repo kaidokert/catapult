@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c4cc442e_98e887bf",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-10T20:50:55Z",
+      "side": 1,
+      "message": "Looks like this is set client-side by the test runner script https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/testing/run_browser_tests.py?q\u003d_typ_runner\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d274",
+      "parentUuid": "5924d77c_b9a4c223",
+      "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e24d5731_c97cffe0",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 4
@@ -89,6 +107,24 @@
       "side": 1,
       "message": "I tend to agree w/ perezju@ that we don\u0027t want to implement this via a global dict if we can avoid it. \n\nIt\u0027s not actually true that you can\u0027t report results back, but we might have to tweak the way test cases are declared to do so. TYP supports a form of instance-probing, where if your testcase object derives from typ.test_case.TestCase, it has methods to point at the child and context vars. We could do something similar to define a protocol where the testcase object could specify additional ways to pass links to artifacts back.",
       "parentUuid": "7c68e7ee_63b115be",
+      "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67ce2004_fbc8f506",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-10T20:50:55Z",
+      "side": 1,
+      "message": "Ack, I\u0027ll take a look into making SeriallyExecutedBrowserTestCase inherit from typ.test_case.TestCase instead of unittest.TestCase.",
+      "parentUuid": "8653cc91_02132440",
       "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
