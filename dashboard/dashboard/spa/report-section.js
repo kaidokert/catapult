@@ -15,8 +15,11 @@ import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {BatchIterator, get} from './utils.js';
 import {ElementBase, STORE} from './element-base.js';
+import {ReportFetcher} from './report-fetcher.js';
 import {UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
+
+window.ReportFetcher = ReportFetcher;  // TODO XXX DO NOT COMMIT
 
 const DEBOUNCE_LOAD_MS = 200;
 
