@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac502e65_8546d5c9",
+        "filename": "dashboard/dashboard/spa/menu-input.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-06-10T19:05:04Z",
+      "side": 1,
+      "message": "Comment nit: Just because it\u0027s a bit confusing to me as someone who hasn\u0027t worked directly in this codebase before, why is indices necessary? ie: why is storing a cursor location insufficient?",
+      "range": {
+        "startLine": 249,
+        "startChar": 5,
+        "endLine": 250,
+        "endChar": 17
+      },
+      "revId": "ef8a304a6ec5a52e778b820c0ded8d3046013a9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e1322ba_8b8472cd",
+        "filename": "dashboard/dashboard/spa/menu-input.test.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-06-10T19:05:04Z",
+      "side": 1,
+      "message": "Awesome, it\u0027s cool that you were able to find a way to consistently mock keystrokes. :) I\u0027ve struggled with trying to simulate native browser key events in the past.",
+      "range": {
+        "startLine": 68,
+        "startChar": 11,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "ef8a304a6ec5a52e778b820c0ded8d3046013a9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
