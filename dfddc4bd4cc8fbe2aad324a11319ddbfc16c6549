@@ -16,6 +16,24 @@
       "revId": "dfddc4bd4cc8fbe2aad324a11319ddbfc16c6549",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c44e362_23a2607a",
+        "filename": "telemetry/telemetry/story/shared_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-10T22:02:38Z",
+      "side": 1,
+      "message": "That should probably be in a TODO comment.",
+      "parentUuid": "54b3f0f9_50d68e88",
+      "revId": "dfddc4bd4cc8fbe2aad324a11319ddbfc16c6549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
