@@ -34,7 +34,8 @@ class Result(object):
 
     def __init__(self, name, actual, started, took, worker,
                  expected=None, unexpected=False,
-                 flaky=False, code=0, out='', err='', pid=0):
+                 flaky=False, code=0, out='', err='', pid=0,
+                 artifacts=None):
         self.name = name
         self.actual = actual
         self.started = started
@@ -48,6 +49,7 @@ class Result(object):
         self.err = err
         self.pid = pid
         self.is_regression = actual != ResultType.Pass and unexpected
+        self.artifacts = artifacts or {}
 
 
 class ResultSet(object):
@@ -63,7 +65,8 @@ DEFAULT_TEST_SEPARATOR = '.'
 
 
 def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
-                      test_separator=DEFAULT_TEST_SEPARATOR):
+                      test_separator=DEFAULT_TEST_SEPARATOR,
+                      artifact_results=None):
     """Convert the typ results to the Chromium JSON test result format.
 
     See http://www.chromium.org/developers/the-json-test-results-format
@@ -81,6 +84,9 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
 
     if metadata:
         full_results['metadata'] = metadata
+
+    if artifact_results and artifact_results.HasArtifactData():
+        full_results['artifact_types'] = artifact_results.GetArtifactTypes()
 
     passing_tests = _passing_test_names(results)
     skipped_tests = _skipped_test_names(results)
@@ -192,6 +198,22 @@ def _results_for_test(test_name, results):
             # This assumes that the expected values are the same for every
             # invocation of the test.
             value['expected'] = ' '.join(sorted(r.expected))
+
+            # We end up losing explicit per-iteration splitting of artifacts
+            # here since the canonical format does not support that, but they
+            # should still be pretty obvious to users since the iteration number
+            # is part of each artifact's filepath.
+            if r.artifacts:
+                if 'artifacts' not in value:
+                    value['artifacts'] = r.artifacts
+                else:
+                    # We need to manually merge since .update() will clobber
+                    # existing artifacts of the same type.
+                    for a_type, filepaths in r.artifacts.iteritems():
+                        if a_type not in value['artifacts']:
+                            value['artifacts'][a_type] = filepaths
+                        else:
+                            value['artifacts'][a_type].extend(filepaths)
 
     if not actuals:  # pragma: untested
         actuals.append('SKIP')
