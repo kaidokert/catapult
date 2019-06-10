@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f46ad4f_76ba9403",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-06-10T16:51:43Z",
+      "side": 1,
+      "message": "I suppose it should be caught in case the DevTools API changes. Added.",
+      "parentUuid": "cd7b90bd_1d22592c",
+      "range": {
+        "startLine": 46,
+        "startChar": 48,
+        "endLine": 46,
+        "endChar": 70
+      },
+      "revId": "5d5ba8a6089448edf127f65a92f81bd2fad0831e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "813936ed_f34201b9",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "5d5ba8a6089448edf127f65a92f81bd2fad0831e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf4f56a8_ecbe3025",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-06-10T16:51:43Z",
+      "side": 1,
+      "message": "This uses a different endpoint, which does not return those fields. They don\u0027t seem to be used anywhere else (confirmed by using codesearch for the method RequestNewTab).",
+      "parentUuid": "813936ed_f34201b9",
+      "range": {
+        "startLine": 249,
+        "startChar": 55,
+        "endLine": 249,
+        "endChar": 58
+      },
+      "revId": "5d5ba8a6089448edf127f65a92f81bd2fad0831e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
