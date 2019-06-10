@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec305b84_962f39e4",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-10T16:23:18Z",
+      "side": 1,
+      "message": "Sorry, one more nit. Don\u0027t use os.path.sep, use \u0027/\u0027; we don\u0027t want \"\\\\content\" to show up on Windows, we want \"//content\".",
+      "revId": "cdb6e54fc373f8c2bb7638f91d3d29cc010100df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f10f691_bb738147",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-10T16:23:18Z",
+      "side": 1,
+      "message": "These imports are probably no longer needed?",
+      "revId": "cdb6e54fc373f8c2bb7638f91d3d29cc010100df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
