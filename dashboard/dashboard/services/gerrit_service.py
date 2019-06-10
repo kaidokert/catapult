@@ -19,9 +19,16 @@ GERRIT_SCOPE = 'https://www.googleapis.com/auth/gerritcodereview'
 NotFoundError = request.NotFoundError
 
 
-def GetChange(server_url, change_id, fields=None):
-  url = '%s/changes/%s' % (server_url, change_id)
-  return request.RequestJson(url, use_auth=True, scope=GERRIT_SCOPE, o=fields)
+def GetChange(server_url, change_id, branch=None, fields=None):
+  url = '%s/changes/' % server_url
+  query = 'change:"%s"' % change_id
+  if branch:
+    query += '+branch:"%s"' % branch
+  changes = request.RequestJson(
+      url, use_auth=True, scope=GERRIT_SCOPE, o=fields, q=query)
+  if changes:
+    return changes[0]
+  return None
 
 
 def PostChangeComment(server_url, change_id, comment):
