@@ -9,14 +9,16 @@ import './cp-loading.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
-import ReportRequest from './report-request.js';
 import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {BatchIterator, get} from './utils.js';
 import {ElementBase, STORE} from './element-base.js';
+import {ReportFetcher} from './report-fetcher.js';
 import {UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
+
+window.ReportFetcher = ReportFetcher;  // TODO XXX DO NOT COMMIT
 
 const DEBOUNCE_LOAD_MS = 200;
 
@@ -146,8 +148,7 @@ export default class ReportSection extends ElementBase {
     for (const name of names) {
       for (const templateInfo of reportTemplateInfos) {
         if (templateInfo.name === name) {
-          readers.push(new ReportRequest(
-              {...templateInfo, revisions}).reader());
+          readers.push(new ReportFetcher({...templateInfo, revisions}));
         }
       }
     }
