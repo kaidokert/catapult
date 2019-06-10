@@ -34,6 +34,24 @@
       "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1251574_97748711",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-10T10:36:59Z",
+      "side": 1,
+      "message": "How things work (or *should* work if they aren\u0027t) is:\n\npage1_cold:\n- (all tabs are closed)\n- open tab\n- navigate to page1\n- measure (this is cold)\n- close tab.\n\npage1_warm:\n- (all tabs are closed)\n- open tab\n- navigate to page1\n- navigate to about:blank\n- navigate to page1\n- measure (this is warm)\n- close tab.\n\npage2_cold:\n- (all tabs are closed)\n- open tab\n- navigate to page2\n- measure (this is cold)\n- close tab.\n\netc.\n\nThis way each story is independent of each other; they don\u0027t depend on the order in which they are run; and you can run any one of them without having to run the others (needed e.g. for bisect tools).\n\nThe extra navigations in the same renderer are what this call to EnsurePageCacheTemperature is meant to do for you.",
+      "parentUuid": "d3108a40_10720040",
+      "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
