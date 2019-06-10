@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5924d77c_b9a4c223",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-10T20:37:15Z",
+      "side": 1,
+      "message": "Who sets this variable? I\u0027m trying to understand whether this is set typ-client-side (i.e., the thing that calls runner.run()) or whether this is set somehow inside a test case?",
+      "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e24d5731_c97cffe0",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 4
@@ -54,6 +71,24 @@
       "side": 1,
       "message": "Unfortunately, due to the way that typ runs tests (via a process pool), it doesn\u0027t look like a test would be able to easily report artifacts only for use in the one Results object for that run.\n\nAs a workaround, I made the ArtifactResults object have an internal counter for the current iteration so that its map is now:\n\ntest_name: {\n  iteration: {\n    artifact_type: [filepaths]\n  }\n}\n\nand the artifact retrieval only retrieves the results for the current iteration. The typ runner increments this counter on every retry. So while the ArtifactResults technically has a global view of all artifacts, they\u0027re only accessible on a per run basis.",
       "parentUuid": "365385e4_e1e87f05",
+      "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8653cc91_02132440",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-10T20:37:15Z",
+      "side": 1,
+      "message": "I tend to agree w/ perezju@ that we don\u0027t want to implement this via a global dict if we can avoid it. \n\nIt\u0027s not actually true that you can\u0027t report results back, but we might have to tweak the way test cases are declared to do so. TYP supports a form of instance-probing, where if your testcase object derives from typ.test_case.TestCase, it has methods to point at the child and context vars. We could do something similar to define a protocol where the testcase object could specify additional ways to pass links to artifacts back.",
+      "parentUuid": "7c68e7ee_63b115be",
       "revId": "ad1164f9b50b9bd99d3cfe96bbed5a142adbdeda",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
