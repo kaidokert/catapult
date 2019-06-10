@@ -272,6 +272,61 @@ tr.exportTo('tr.metrics.sh', function() {
     return sample ? [sample] : [];
   }
 
+  function getLastTimeEdited(samples, rendererHelper, navigationStart,duration) {
+    let height,width,x,y;
+    let sample;
+    let size = 0;
+    for (const event of EventFinderUtils.getMainThreadEvents(rendererHelper,
+          'viewport', 'loading')) {
+        x = event.args.data.x;
+        y = event.args.data.y;
+        width = event.args.data.width;
+        height = event.args.data.height;
+        size++;
+    }
+    if(size===0 || duration<2000) return;
+    const objects = rendererHelper.process.objects;
+    let pixels = new Array(height);
+    for (let i = 0; i < height; i++) {
+      pixels[i] = new Array(width).fill(0.0);
+    }
+    for(let i = 0; i<objects.instancesByTypeName_["cc::DisplayItemList"].length; i++){
+      let displayListItemSnapshots = objects.instancesByTypeName_["cc::DisplayItemList"][i].snapshots;
+      for(let j=0; j<displayListItemSnapshots.length; j++){
+        let snapshot = displayListItemSnapshots[j];
+        let timestamp = snapshot.ts;
+
+        if(timestamp < navigationStart || timestamp > navigationStart+duration) continue;
+
+        let left,right,top,bottom;
+        if(left > x+width) continue;
+        if(right<x) continue;
+        if(top > y+height) continue;
+        if(bottom <y) continue;
+
+        left = Math.max(snapshot.args.params.layerRect.left,x);
+        right = Math.min(snapshot.args.params.layerRect.right,x+width);
+        top = Math.max(snapshot.args.params.layerRect.top,y);
+        bottom = Math.min(snapshot.args.params.layerRect.bottom,y+height);
+
+        for(let u = top; u<bottom; u++){
+          for(let v = left; v<right; v++){
+            if(pixels[u-y][v-x]<timestamp-navigationStart){
+              pixels[u-y][v-x] = timestamp-navigationStart;
+            }
+          }
+        }
+
+      }  
+    }
+    let value = 0;
+    for(let i = 0;i<pixels.length;i++){
+      value+=pixels[i].filter(x=>x>2000).length;
+    }
+    value = value/(width*height);
+    samples.push({value: value});
+  }
+
   function addFirstMeaningfulPaintSample(samples, rendererHelper,
       navigationStart, fmpMarkerEvent, url) {
     const navStartToFMPRange = tr.b.math.Range.fromExplicitRange(
@@ -466,6 +521,7 @@ tr.exportTo('tr.metrics.sh', function() {
         navIdToNavStartEvents);
     const layoutShiftSamples = findLayoutShiftSamples(rendererHelper);
 
+
     return {
       frameToNavStartEvents,
       firstPaintSamples,
@@ -486,6 +542,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const TimeSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -493,6 +550,7 @@ tr.exportTo('tr.metrics.sh', function() {
       }
       const rendererHelper = chromeHelper.rendererHelpers[
           expectation.renderProcess.pid];
+      getLastTimeEdited(TimeSamples, rendererHelper, expectation.navigationStart.start, expectation.duration);
       if (expectation.fmpEvent !== undefined) {
         addFirstMeaningfulPaintSample(firstMeaningfulPaintSamples,
             rendererHelper, expectation.navigationStart, expectation.fmpEvent,
@@ -522,6 +580,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      TimeSamples,
     };
   }
 
@@ -646,6 +705,13 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
+    const TimeHistogram = histograms.createHistogram(
+        'LastTimeEdited', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'metric using draw commands',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
     for (const pid in chromeHelper.rendererHelpers) {
@@ -704,6 +770,8 @@ tr.exportTo('tr.metrics.sh', function() {
         samplesSet.firstCpuIdleSamples,
         timeToFirstCpuIdleHistogram,
         histograms);
+    addSamplesToHistogram(
+        samplesSet.TimeSamples, TimeHistogram, histograms);
   }
 
   tr.metrics.MetricRegistry.register(loadingMetric);
