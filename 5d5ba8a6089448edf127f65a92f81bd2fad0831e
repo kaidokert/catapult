@@ -22,6 +22,29 @@
       "revId": "5d5ba8a6089448edf127f65a92f81bd2fad0831e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "813936ed_f34201b9",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1301626
+      },
+      "writtenOn": "2019-06-10T12:28:38Z",
+      "side": 1,
+      "message": "Is there a reason the other fields will no longer be returned? I\u0027m surprised there aren\u0027t existing tests that use them.",
+      "range": {
+        "startLine": 249,
+        "startChar": 55,
+        "endLine": 249,
+        "endChar": 58
+      },
+      "revId": "5d5ba8a6089448edf127f65a92f81bd2fad0831e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
