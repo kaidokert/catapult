@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01f85967_dffda74e",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-10T15:25:43Z",
+      "side": 1,
+      "message": "note: this is the implementation of the old formatter.",
+      "revId": "d8010adefc1bb876de293d15d7a2ad9f42df2edd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffcae4c4_37b00687",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-10T15:25:43Z",
+      "side": 1,
+      "message": "This is the only bit for the new formatter that we\u0027re prepping to be ready.",
+      "revId": "d8010adefc1bb876de293d15d7a2ad9f42df2edd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
