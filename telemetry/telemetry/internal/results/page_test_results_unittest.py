@@ -790,7 +790,8 @@ class PageTestResultsFilterTest(unittest.TestCase):
           any_order=True)
 
       # Assert that the path is now the cloud storage path
-      for _, artifacts in results._artifact_results.IterTestAndArtifacts():
+      for run in results._all_page_runs:
+        artifacts = run.GetArtifacts()
         for artifact_type in artifacts:
           for i, _ in enumerate(artifacts[artifact_type]):
             self.assertEquals(cs_path_name, artifacts[artifact_type][i])

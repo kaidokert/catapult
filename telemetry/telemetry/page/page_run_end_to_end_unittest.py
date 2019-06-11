@@ -621,8 +621,9 @@ class FakePageRunEndToEndTests(unittest.TestCase):
         story_runner.Run(DummyTest(), story_set, self.options, results,
                          max_failures=2)
         self.assertTrue(results.had_failures)
-        artifacts = results._artifact_results.GetTestArtifacts(
-            failing_page.name)
+        page_run = results._all_page_runs[-1]
+        self.assertEqual(page_run.story.name, failing_page.name)
+        artifacts = page_run.GetArtifacts()
         self.assertIsNotNone(artifacts)
         self.assertIn('screenshot', artifacts)
 

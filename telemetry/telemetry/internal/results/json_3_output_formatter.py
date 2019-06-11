@@ -76,7 +76,7 @@ def ResultsAsDict(page_test_results):
     else:
       test['times'].append(run.duration)
 
-    story_artifacts = page_test_results.GetTestArtifacts(run.story.name)
+    story_artifacts = run.GetArtifacts()
     if story_artifacts:
       test['artifacts'] = dict(story_artifacts)
 
