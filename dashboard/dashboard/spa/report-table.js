@@ -210,7 +210,7 @@ export default class ReportTable extends ElementBase {
             <tr @mouseenter="${event => this.onEnterRow_(event, row)}">
               ${row.labelParts.map((labelPart, labelPartIndex) =>
     (!labelPart.isFirst ? '' : html`
-                  <td row-span="${labelPart.rowCount}">
+                  <td rowspan="${labelPart.rowCount}">
                     <a href="${labelPart.href}"
                         @click="${event =>
         this.onOpenChart_(event, labelPartIndex, row)}">
