@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85f2d7b8_d985efa7",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T10:31:57Z",
+      "side": 1,
+      "message": "Here it has to change a bit. In the past you used to get a single dict mapping each artifact name to a list of all file paths recorded for all runs of the same story (i.e. same story.name).\n\nNow a single story may have been run multiple times (so you will see many run\u0027s with the same story.name); but the artifacts for a single run are a mapping from each artifact name to a single file path (also see my comment below). So here you need to rebuild the list back.\n\nE.g. if story_foo was run twice, maybe you\u0027ll see:\n\n  story_foo \u003d\u003e {\u0027log\u0027: \u0027log1.txt\u0027, \u0027trace\u0027: \u0027trace1.txt\u0027}\n  story_foo \u003d\u003e {\u0027log\u0027: \u0027log2.txt\u0027}\n\nAnd the artifacts dict that we need to populate here should be:\n\n  {\u0027log\u0027: [\u0027log1.txt\u0027, \u0027log2.txt\u0027], \u0027trace\u0027: [\u0027trace1.txt\u0027]}\n\nAlso, if this change didn\u0027t cause some test to break, do add a new test that checks for this behavior.",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56b11316_d90861c0",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T10:31:57Z",
+      "side": 1,
+      "message": "In the new implementation there should be a single filepath for each artifact name; so this can be a regular dict (values are strings not a list).\n\nSee \"file\" in: https://docs.google.com/document/d/13irBr2qCc8SLYZN-ATNUr52b0XHb7s8oxUH1Pfpy5jk/edit#heading\u003dh.j6s2qrevtzp6",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4477541_8f39a0c0",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T10:31:57Z",
+      "side": 1,
+      "message": "it should be an error if we already have an artifact for this \"name\".",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53bd6225_a488ed17",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T10:31:57Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf71a909_af9b2bda",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T10:31:57Z",
+      "side": 1,
+      "message": "Let\u0027s try to avoid doing this, because you expose the internal dict and clients might inadvertently change it without us knowing. I think you should be able to replace this with an `IterArtifacts()` method that just returns `self._artifacts.iteritems()`; otherwise, if really needed, return a (shallow) copy of the dict.",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31adbe3f_92f3296f",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T10:31:57Z",
+      "side": 1,
+      "message": "instead you could do e.g.:\n\n  failed_run \u003d next(run for run in results._all_page_runs \n                    if run.story.name \u003d\u003d failing_page.name)",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
