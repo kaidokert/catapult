@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86766138_260d96b9",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T14:03:35Z",
+      "side": 1,
+      "message": "nit: setdefault also returns the existing value or the newly inserted default, so you can also do:\n\n  artifacts_list \u003d test.setdefault(\u0027artifacts\u0027, {}).setdefault(artifact_type, [])\n  artifacts_list.append(artifact_path)\n\nbut if it gets too long you might also keep something closer to your version for readability.",
+      "revId": "5affdebddc05b18381e85607e625d38177893b9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9598538_8a5b6adc",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T14:03:35Z",
+      "side": 1,
+      "message": "neat, thanks!",
+      "revId": "5affdebddc05b18381e85607e625d38177893b9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e815c56c_7188a179",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T14:03:35Z",
+      "side": 1,
+      "message": "nit: maybe provide a slightly better error string, e.g. \n\n  assert name not in self._artifacts, \u0027Story already has an artifact: %s\u0027 % name",
+      "revId": "5affdebddc05b18381e85607e625d38177893b9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "041007b5_668420e0",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T14:03:35Z",
+      "side": 1,
+      "message": "You could also add a run.GetArtifact(name) to make things like this easier (and it\u0027s a reasonable API to expose anyway).",
+      "revId": "5affdebddc05b18381e85607e625d38177893b9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

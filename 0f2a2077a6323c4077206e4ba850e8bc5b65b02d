@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "3196080c_b56de845",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T14:03:35Z",
+      "side": 1,
+      "message": "Ah, yes. I remember seeing that and thinking how ugly it was.\n\nMaybe then add a new method UploadArtifacts(bucket) that uploads the local files and updates the internal dict? Basically move some of that external code messing with our internals back in here.\n\nAnd then make this an IterArtifacts for external clients.",
+      "parentUuid": "9c9b4311_b998f389",
+      "revId": "0f2a2077a6323c4077206e4ba850e8bc5b65b02d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "31adbe3f_92f3296f",
         "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
         "patchSetId": 1
