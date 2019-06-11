@@ -118,6 +118,30 @@
       "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35ff9953_5db1370e",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-06-11T02:25:37Z",
+      "side": 1,
+      "message": "Sorry I forgot to include the changes. Updated. Will merge it now. Thanks",
+      "parentUuid": "9291daf3_8988cbe9",
+      "range": {
+        "startLine": 1389,
+        "startChar": 35,
+        "endLine": 1389,
+        "endChar": 36
+      },
+      "revId": "6ca9a79f8a34ae8641f5b72860beca452b012a92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
