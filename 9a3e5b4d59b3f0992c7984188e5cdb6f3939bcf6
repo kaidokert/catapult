@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53a81aef_0421d4fe",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T16:33:38Z",
+      "side": 1,
+      "message": "nit: I think `IterArtifacts` is more idiomatic (like Python\u0027s iteritems).",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2f7cd1b_6058326e",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T16:33:38Z",
+      "side": 1,
+      "message": "nit: I think it\u0027s fine to have this as self._artifacts.get(name) and let it return None if there is no artifact for the given name.",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3809c66_21909783",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T16:33:38Z",
+      "side": 1,
+      "message": "Add a docstring and document the fact that this swaps out the local paths to cloud URLs.",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aab7981_ab9999d7",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T16:33:38Z",
+      "side": 1,
+      "message": "nit: `for name, local_path in self.IterArtifacts():` would be cleaner and more idiomatic (then you don\u0027t have to get `self._artifacts[name]` later)",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
