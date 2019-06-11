@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "7200953f_9ca240d4",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T09:30:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07adb0f4_9b9b701a",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 16
+      },
+      "revId": "d8010adefc1bb876de293d15d7a2ad9f42df2edd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0dbdf36_23c668e8",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 1
@@ -53,6 +77,30 @@
       "writtenOn": "2019-06-10T16:30:58Z",
       "side": 1,
       "message": "what\u0027s used as a separator here (e.g. separating class and method)? i got feedback that periods aren\u0027t going to work because some webkit layout tests use them in filenames. So far we were using \"|\" in our prototypes, but pipe is not very shell-friendly (have to quote a string).\n\":\" is also an option. So far this part of the format was not stabilized",
+      "range": {
+        "startLine": 63,
+        "startChar": 29,
+        "endLine": 63,
+        "endChar": 38
+      },
+      "revId": "d8010adefc1bb876de293d15d7a2ad9f42df2edd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5fb218_9bf76ebb",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-11T09:30:01Z",
+      "side": 1,
+      "message": "At the moment we don\u0027t have a separator here. This is just the \"leaf\" name of the test. I have a TODO below at line 77 to fix this.\n\nI think \":\" won\u0027t work for us because some of our story names are e.g. \"browse:social:facebook\".  In the old format it looks like currently we do an awkward (and not very consistent) mix of \".\" and \"/\", e.g. for smoke tests they currently look like:\n\n    benchmarks.system_health_smoke_test.SystemHealthBenchmarkSmokeTest.system_health.memory_mobile/load:news:washingtonpost\n\nTo be honest \"|\" is probably a better choice for a separator as people are less likely to be \"already using it\" as part of their name \"atoms\". For us the above would become:\n\n  benchmarks|system_health_smoke_test|SystemHealthBenchmarkSmokeTest|system_health.memory_mobile|load:news:washingtonpost\n\nAlternatively you could force us to stick within some \"allowed set of chars\" for those name atoms, and that would give us an excuse to clean up our names (e.g. stop using URLs as names in some old benchmarks). Of course that will also involve migrations in dashboards consuming the data, so not a trivial task either.",
+      "parentUuid": "e0dbdf36_23c668e8",
       "range": {
         "startLine": 63,
         "startChar": 29,
