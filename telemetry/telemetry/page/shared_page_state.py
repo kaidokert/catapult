@@ -217,7 +217,10 @@ class SharedPageState(story_module.SharedState):
       # tab left, creates a new tab and closes the old tab.
       if not started_browser and should_close_last_tab:
         self.browser.tabs[-1].Close()
-
+        # Set _previous_page as None if not to ensure each story is independent
+        # of each other
+        if self._previous_page is not None:
+          self._previous_page = None
       # Must wait for tab to commit otherwise it can commit after the next
       # navigation has begun and RenderFrameHostManager::DidNavigateMainFrame()
       # will cancel the next navigation because it's pending. This manifests as
