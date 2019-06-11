@@ -196,9 +196,14 @@ def _RequestBuild(builder_name, change, bucket):
     raise BuildError(
         'Could not find gerrit change id for commit: ' + str(base_as_dict))
 
+  repo_parts = urlparse.urlparse(change.base_commit.repository_url)
+  review_url = base_as_dict.get('review_url')
+
   url_parts = urlparse.urlparse(review_url)
   base_review_url = urlparse.urlunsplit(
       (url_parts.scheme, url_parts.netloc, '', '', ''))
+
+  change_id = '%s~%s~%s' % (repo_parts.path[1:], 'master', change_id)
 
   change_info = gerrit_service.GetChange(base_review_url, change_id)
 

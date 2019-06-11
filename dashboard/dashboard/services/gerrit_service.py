@@ -20,8 +20,13 @@ NotFoundError = request.NotFoundError
 
 
 def GetChange(server_url, change_id, fields=None):
-  url = '%s/changes/%s' % (server_url, change_id)
-  return request.RequestJson(url, use_auth=True, scope=GERRIT_SCOPE, o=fields)
+  url = '%s/changes/' % server_url
+  params = 'change:%s' % change_id
+  changes = request.RequestJson(
+      url, use_auth=True, scope=GERRIT_SCOPE, o=fields, q=params, n=1)
+  if changes:
+    return changes[0]
+  return None
 
 
 def PostChangeComment(server_url, change_id, comment):
