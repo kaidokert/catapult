@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec46f4dc_1f57e9a1",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-11T18:27:52Z",
+      "side": 1,
+      "message": "This could just be \nself._previous_page \u003d None\n\nthe if is not necessary.",
+      "range": {
+        "startLine": 222,
+        "startChar": 8,
+        "endLine": 223,
+        "endChar": 36
+      },
+      "revId": "0b4c2906f66cb4f748792482b403af071a6e675f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
