@@ -116,6 +116,30 @@ tr.exportTo('tr.model.helpers', function() {
         }
       }
 
+      if (this.segments_.length === 0) {
+        // If there are no interaction-records, then the trace was likely
+        // collected from chrome:tracing. Look at the segments in the user-model
+        // to find the interactions.
+        // Note that the expectations in user-model can overlap with each other,
+        // but the segments in user-model cannot. So, it is necessary to include
+        // all segments that are contained inside non-idle expectations.
+        const expectations = [];
+        for (const ue of this.modelHelper.model.userModel.expectations) {
+          if (Object.values(
+              tr.model.um.INITIATOR_TYPE).indexOf(ue.initiatorType) > 0) {
+            expectations.push(ue);
+          }
+        }
+        for (const segment of this.modelHelper.model.userModel.segments) {
+          for (const ue of expectations) {
+            if (ue.bounds(segment)) {
+              this.segments_.push(segment);
+              break;
+            }
+          }
+        }
+      }
+
       this.segments_.sort((x, y) => x.start - y.start);
       this.uiSegments_.sort((x, y) => x.start - y.start);
     }
