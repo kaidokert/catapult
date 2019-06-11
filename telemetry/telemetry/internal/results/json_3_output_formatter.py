@@ -76,9 +76,10 @@ def ResultsAsDict(page_test_results):
     else:
       test['times'].append(run.duration)
 
-    story_artifacts = page_test_results.GetTestArtifacts(run.story.name)
-    if story_artifacts:
-      test['artifacts'] = dict(story_artifacts)
+    for artifact_type, artifact_path in run.GetArtifacts().iteritems():
+      test.setdefault('artifacts', {})
+      test['artifacts'].setdefault(artifact_type, [])
+      test['artifacts'][artifact_type].append(artifact_path)
 
     # Shard index is really only useful for failed tests. See crbug.com/960951
     # for details.
