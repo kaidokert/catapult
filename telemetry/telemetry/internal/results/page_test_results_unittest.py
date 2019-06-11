@@ -269,9 +269,9 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     v = values[0]
     self.assertEquals(v.grouping_keys['foo'], 'bar')
     self.assertEquals(v.grouping_keys['answer'], '42')
-    self.assertEquals(v.tir_label, '42_bar')
+    self.assertEquals(v.grouping_label, '42_bar')
 
-  def testAddValueWithStoryGroupingKeysAndMatchingTirLabel(self):
+  def testAddValueWithStoryGroupingKeysAndMatchingGroupingLabel(self):
     results = self.getPageTestResults()
     self.pages[0].grouping_keys['foo'] = 'bar'
     self.pages[0].grouping_keys['answer'] = '42'
@@ -279,7 +279,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.AddValue(scalar.ScalarValue(
         self.pages[0], 'a', 'seconds', 3,
         improvement_direction=improvement_direction.UP,
-        tir_label='42_bar'))
+        grouping_label='42_bar'))
     results.DidRunPage(self.pages[0])
 
     results.PrintSummary()
@@ -288,28 +288,18 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     v = values[0]
     self.assertEquals(v.grouping_keys['foo'], 'bar')
     self.assertEquals(v.grouping_keys['answer'], '42')
-    self.assertEquals(v.tir_label, '42_bar')
+    self.assertEquals(v.grouping_label, '42_bar')
 
-  def testAddValueWithStoryGroupingKeysAndMismatchingTirLabel(self):
+  def testAddValueWithStoryGroupingKeysAndMismatchingGroupingLabel(self):
     results = self.getPageTestResults()
     self.pages[0].grouping_keys['foo'] = 'bar'
     self.pages[0].grouping_keys['answer'] = '42'
     results.WillRunPage(self.pages[0])
-    with self.assertRaises(AssertionError):
+    with self.assertRaises(ValueError):
       results.AddValue(scalar.ScalarValue(
           self.pages[0], 'a', 'seconds', 3,
           improvement_direction=improvement_direction.UP,
-          tir_label='another_label'))
-
-  def testAddValueWithDuplicateStoryGroupingKeyFails(self):
-    results = self.getPageTestResults()
-    self.pages[0].grouping_keys['foo'] = 'bar'
-    results.WillRunPage(self.pages[0])
-    with self.assertRaises(AssertionError):
-      results.AddValue(scalar.ScalarValue(
-          self.pages[0], 'a', 'seconds', 3,
-          improvement_direction=improvement_direction.UP,
-          grouping_keys={'foo': 'bar'}))
+          grouping_label='another_label'))
 
   def testUrlIsInvalidValue(self):
     results = self.getPageTestResults()
@@ -428,22 +418,6 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.DidRunPage(self.pages[1])
 
     values = results.FindValues(lambda v: v.value == 3)
-    self.assertEquals([v0], values)
-
-  def testValueWithTIRLabel(self):
-    results = self.getPageTestResults()
-    results.WillRunPage(self.pages[0])
-    v0 = scalar.ScalarValue(
-        self.pages[0], 'a', 'seconds', 3, tir_label='foo',
-        improvement_direction=improvement_direction.UP)
-    results.AddValue(v0)
-    v1 = scalar.ScalarValue(
-        self.pages[0], 'a', 'seconds', 3, tir_label='bar',
-        improvement_direction=improvement_direction.UP)
-    results.AddValue(v1)
-    results.DidRunPage(self.pages[0])
-
-    values = results.FindAllPageSpecificValuesFromIRNamed('foo', 'a')
     self.assertEquals([v0], values)
 
   def testTraceValue(self):

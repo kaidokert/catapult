@@ -31,13 +31,13 @@ class TestBase(unittest.TestCase):
     return self.story_set.stories
 
 class MergeValueTest(TestBase):
-  def testDefaultKeyFuncWithTirLabel(self):
+  def testDefaultKeyFuncWithGroupingLabel(self):
     page0 = self.pages[0]
 
     value = scalar.ScalarValue(
         page0, 'x', 'units', 1,
         improvement_direction=improvement_direction.UP,
-        tir_label='foo')
+        grouping_label='foo')
 
     self.assertEquals(('x', 'foo'), merge_values.DefaultKeyFunc(value))
 
@@ -117,31 +117,32 @@ class MergeValueTest(TestBase):
     self.assertEquals(all_values[0].name, merged_values[0].name)
     self.assertEquals(all_values[0].units, merged_values[0].units)
 
-  def testSamePageMergeWithInteractionRecord(self):
+  def testSamePageMergeWithGroupingLabel(self):
     page0 = self.pages[0]
 
     all_values = [
         scalar.ScalarValue(
-            page0, 'foo-x', 'units', 1, tir_label='foo',
+            page0, 'foo-x', 'units', 1, grouping_label='foo',
             improvement_direction=improvement_direction.UP),
         scalar.ScalarValue(
-            page0, 'foo-x', 'units', 4, tir_label='foo',
+            page0, 'foo-x', 'units', 4, grouping_label='foo',
             improvement_direction=improvement_direction.UP)]
 
     merged_values = merge_values.MergeLikeValuesFromSamePage(all_values)
     self.assertEquals(1, len(merged_values))
-    self.assertEquals('foo', merged_values[0].tir_label)
+    self.assertEquals('foo', merged_values[0].grouping_label)
 
-  def testSamePageMergeWithTwoInteractionRecords(self):
+  def testSamePageMergeWithTwoGroupingLabels(self):
     page0 = self.pages[0]
 
-    all_values = [scalar.ScalarValue(page0, 'x', 'units', 1, tir_label='foo'),
-                  scalar.ScalarValue(page0, 'x', 'units', 4, tir_label='bar')]
+    all_values = [
+        scalar.ScalarValue(page0, 'x', 'units', 1, grouping_label='foo'),
+        scalar.ScalarValue(page0, 'x', 'units', 4, grouping_label='bar')]
 
     merged_values = merge_values.MergeLikeValuesFromSamePage(all_values)
     self.assertEquals(2, len(merged_values))
-    self.assertEquals('foo', merged_values[0].tir_label)
-    self.assertEquals('bar', merged_values[1].tir_label)
+    self.assertEquals('foo', merged_values[0].grouping_label)
+    self.assertEquals('bar', merged_values[1].grouping_label)
 
   def testDifferentPageMergeBasic(self):
     page0 = self.pages[0]
@@ -216,25 +217,25 @@ class MergeValueTest(TestBase):
         isinstance(merged_values[0], list_of_scalar_values.ListOfScalarValues))
     self.assertEquals([1], merged_values[0].values)
 
-  def testDifferentPageMergeWithInteractionRecord(self):
+  def testDifferentPageMergeWithGroupingLabel(self):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    v0 = scalar.ScalarValue(page0, 'x', 'units', 1, tir_label='foo')
-    v1 = scalar.ScalarValue(page0, 'y', 'units', 30, tir_label='bar')
-    v2 = scalar.ScalarValue(page1, 'x', 'units', 2, tir_label='foo')
-    v3 = scalar.ScalarValue(page1, 'y', 'units', 40, tir_label='baz')
+    v0 = scalar.ScalarValue(page0, 'x', 'units', 1, grouping_label='foo')
+    v1 = scalar.ScalarValue(page0, 'y', 'units', 30, grouping_label='bar')
+    v2 = scalar.ScalarValue(page1, 'x', 'units', 2, grouping_label='foo')
+    v3 = scalar.ScalarValue(page1, 'y', 'units', 40, grouping_label='baz')
 
     all_values = [v0, v1, v2, v3]
 
     merged_x = list_of_scalar_values.ListOfScalarValues(
-        None, 'x', 'units', [1, 2], tir_label='foo')
+        None, 'x', 'units', [1, 2], grouping_label='foo')
     merged_y_bar = list_of_scalar_values.ListOfScalarValues(
-        None, 'y', 'units', [30], tir_label='bar')
+        None, 'y', 'units', [30], grouping_label='bar')
     merged_y_baz = list_of_scalar_values.ListOfScalarValues(
-        None, 'y', 'units', [40], tir_label='baz')
+        None, 'y', 'units', [40], grouping_label='baz')
 
     merged_values = merge_values.MergeLikeValuesFromDifferentPages(all_values)
-    merged_values.sort(key=lambda x: x.tir_label)
+    merged_values.sort(key=lambda x: x.grouping_label)
 
     self.assertEquals([merged_y_bar, merged_y_baz, merged_x], merged_values)

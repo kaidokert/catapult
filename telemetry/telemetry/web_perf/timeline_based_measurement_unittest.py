@@ -169,21 +169,6 @@ class LegacyTimelineBasedMetricsTests(unittest.TestCase):
     self.assertEquals(50, interactions[0].start)
     self.assertEquals(65, interactions[0].end)
 
-  def testAddResults(self):
-    d = TimelineBasedMetricTestData(self._options)
-    d.AddInteraction(d.renderer_thread, ts=0, duration=20,
-                     marker='Interaction.LogicalName1')
-    d.AddInteraction(d.foo_thread, ts=25, duration=5,
-                     marker='Interaction.LogicalName2')
-    d.FinalizeImport()
-    d.AddResults()
-    self.assertEquals(1, len(d.results.FindAllPageSpecificValuesFromIRNamed(
-        'LogicalName1', 'FakeSmoothMetric')))
-    self.assertEquals(1, len(d.results.FindAllPageSpecificValuesFromIRNamed(
-        'LogicalName2', 'FakeLoadingMetric')))
-    self.assertEquals(1, len(d.results.FindAllPageSpecificValuesNamed(
-        'FakeStartupMetric')))
-
   def testDuplicateInteractionsInDifferentThreads(self):
     d = TimelineBasedMetricTestData(self._options)
     d.AddInteraction(d.renderer_thread, ts=10, duration=5,

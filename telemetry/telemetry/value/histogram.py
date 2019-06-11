@@ -30,11 +30,11 @@ class HistogramValueBucket(object):
 class HistogramValue(summarizable.SummarizableValue):
   def __init__(self, page, name, units,
                raw_value=None, raw_value_json=None, important=True,
-               description=None, tir_label=None, improvement_direction=None,
-               grouping_keys=None):
+               description=None, grouping_label=None,
+               improvement_direction=None):
     super(HistogramValue, self).__init__(page, name, units, important,
-                                         description, tir_label,
-                                         improvement_direction, grouping_keys)
+                                         description, grouping_label,
+                                         improvement_direction)
     if raw_value_json:
       assert raw_value is None, \
              'Don\'t specify both raw_value and raw_value_json'
@@ -55,16 +55,15 @@ class HistogramValue(summarizable.SummarizableValue):
     else:
       page_name = 'None'
     return ('HistogramValue(%s, %s, %s, raw_json_string=%s, '
-            'important=%s, description=%s, tir_label=%s, '
-            'improvement_direction=%s, grouping_keys=%s)') % (
+            'important=%s, description=%s, grouping_label=%s, '
+            'improvement_direction=%s)') % (
                 page_name,
                 self.name, self.units,
                 self.ToJSONString(),
                 self.important,
                 self.description,
-                self.tir_label,
-                self.improvement_direction,
-                self.grouping_keys)
+                self.grouping_label,
+                self.improvement_direction)
 
   def ToJSONString(self):
     # This has to hand-JSONify the histogram to ensure the order of keys
@@ -96,9 +95,9 @@ class HistogramValue(summarizable.SummarizableValue):
         raw_value_json=histogram_util.AddHistograms(
             [v.ToJSONString() for v in values]),
         description=v0.description,
-        important=v0.important, tir_label=value_module.MergedTirLabel(values),
-        improvement_direction=v0.improvement_direction,
-        grouping_keys=v0.grouping_keys)
+        important=v0.important,
+        grouping_label=value_module.MergedGroupingLabel(values),
+        improvement_direction=v0.improvement_direction)
 
   @classmethod
   def MergeLikeValuesFromDifferentPages(cls, values):

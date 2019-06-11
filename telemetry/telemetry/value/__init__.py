@@ -31,7 +31,7 @@ class Value(object):
   """An abstract value produced by a telemetry page test.
   """
   def __init__(self, page, name, units, important, description,
-               tir_label, grouping_keys):
+               grouping_label):
     """A generic Value object.
 
     Args:
@@ -45,9 +45,9 @@ class Value(object):
           by default in downstream UIs.
       description: A string explaining in human-understandable terms what this
           value represents.
-      tir_label: The string label of the TimelineInteractionRecord with
-          which this value is associated.
-      grouping_keys: A dict that maps grouping key names to grouping keys.
+      grouping_label: A label used to group values when summarizing.
+          Note: this used to be called 'tir_label', although that is now an
+          obsolete concept.
     """
     # TODO(eakuefner): Check story here after migration (crbug.com/442036)
     if not isinstance(name, basestring):
@@ -58,23 +58,17 @@ class Value(object):
       raise ValueError('important field of Value must be bool.')
     if not ((description is None) or isinstance(description, basestring)):
       raise ValueError('description field of Value must absent or string.')
-    if not ((tir_label is None) or
-            isinstance(tir_label, basestring)):
-      raise ValueError('tir_label field of Value must absent or '
+    if not ((grouping_label is None) or
+            isinstance(grouping_label, basestring)):
+      raise ValueError('grouping_label field of Value must absent or '
                        'string.')
-    if not ((grouping_keys is None) or isinstance(grouping_keys, dict)):
-      raise ValueError('grouping_keys field of Value must be absent or dict')
-
-    if grouping_keys is None:
-      grouping_keys = {}
 
     self.page = page
     self.name = name
     self.units = units
     self.important = important
     self.description = description
-    self.tir_label = tir_label
-    self.grouping_keys = grouping_keys
+    self._grouping_label = grouping_label
 
   def __eq__(self, other):
     return hash(self) == hash(other)
@@ -139,6 +133,19 @@ class Value(object):
     """Gets the typename for serialization to JSON using AsDict."""
     raise NotImplementedError()
 
+  @property
+  def grouping_label(self):
+    return self._grouping_label
+
+  def SetGroupingLabel(self, value):
+    assert value, 'Should not set an empty grouping label'
+    if self._grouping_label is not None and self._grouping_label != value:
+      raise ValueError(
+          'Value already has a grouping_label (%s) that does not match the '
+          'supplied one (%s)' % (self._grouping_label, value))
+    else:
+      self._grouping_label = value
+
   def AsDict(self):
     """Pre-serializes a value to a dict for output as JSON."""
     return self._AsDictImpl()
@@ -154,38 +161,30 @@ class Value(object):
     if self.description:
       d['description'] = self.description
 
-    if self.tir_label:
-      d['tir_label'] = self.tir_label
+    if self.grouping_label:
+      # Some clients might still depend on the legacy name 'tir_label'.
+      d['tir_label'] = self.grouping_label
 
     if self.page:
       d['page_id'] = self.page.id
 
-    if self.grouping_keys:
-      d['grouping_keys'] = self.grouping_keys
-
     return d
 
 
-def MergedTirLabel(values):
-  """Returns the tir_label that should be applied to a merge of values.
-
-  As of TBMv2, we encounter situations where we need to merge values with
-  different tir_labels because Telemetry's tir_label field is being used to
-  store story keys for system health stories. As such, when merging, we want to
-  take the common tir_label if all values share the same label (legacy
-  behavior), or have no tir_label if not.
+def MergedGroupingLabel(values):
+  """Returns the grouping_label that should be applied to a merge of values.
 
   Args:
     values: a list of Value instances
 
   Returns:
-    The tir_label that would be set on the merge of |values|.
+    The grouping_label that would be set on the merge of |values|.
   """
   assert len(values) > 0
   v0 = values[0]
 
-  first_tir_label = v0.tir_label
-  if all(v.tir_label == first_tir_label for v in values):
-    return first_tir_label
+  first_label = v0.grouping_label
+  if all(v.grouping_label == first_label for v in values):
+    return first_label
   else:
     return None

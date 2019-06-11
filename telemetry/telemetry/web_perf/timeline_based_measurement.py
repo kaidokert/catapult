@@ -53,11 +53,6 @@ class ResultsWrapperInterface(object):
 
 class _TBMResultWrapper(ResultsWrapperInterface):
   def AddValue(self, value):
-    assert self._tir_label
-    if value.tir_label:
-      assert value.tir_label == self._tir_label
-    else:
-      value.tir_label = self._tir_label
     self._results.AddValue(value)
 
 

@@ -95,13 +95,13 @@ class ChartJsonTest(unittest.TestCase):
 
     self.assertEquals('', d['benchmark_metadata']['description'])
 
-  def testAsChartDictPageSpecificValuesSamePageWithInteractionRecord(self):
+  def testAsChartDictPageSpecificValuesSamePageWithGroupingLabel(self):
     v0 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 3,
                             improvement_direction=improvement_direction.DOWN,
-                            tir_label='MyIR')
+                            grouping_label='my_label')
     v1 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 4,
                             improvement_direction=improvement_direction.DOWN,
-                            tir_label='MyIR')
+                            grouping_label='my_label')
     results = _MakePageTestResults()
     results.WillRunPage(self._story_set[0])
     results.AddValue(v0)
@@ -115,7 +115,7 @@ class ChartJsonTest(unittest.TestCase):
     self.assertTrue('http://www.foo.com/' in d['charts']['MyIR@@foo'])
     self.assertTrue(d['enabled'])
 
-  def testAsChartDictPageSpecificValuesSamePageWithoutInteractionRecord(self):
+  def testAsChartDictPageSpecificValuesSamePageWithoutGroupingLabel(self):
     v0 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 3,
                             improvement_direction=improvement_direction.DOWN)
     v1 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 4,
