@@ -125,7 +125,7 @@ class ValueTest(TestBase):
 
   def testAsDictBaseKeys(self):
     v = ValueForAsDictTest(None, 'x', 'unit', important=True, description=None,
-                           tir_label='bar', grouping_keys={'foo': 'baz'})
+                           tir_label=None, grouping_keys={'foo': 'baz'})
     d = v.AsDict()
 
     self.assertEquals(d, {
@@ -133,7 +133,6 @@ class ValueTest(TestBase):
         'type': 'baz',
         'units': 'unit',
         'important': True,
-        'tir_label': 'bar',
         'grouping_keys': {'foo': 'baz'}
     })
 
@@ -165,10 +164,12 @@ class ValueTest(TestBase):
                            tir_label=None, grouping_keys=None)
     self.assertNotIn('description', v.AsDict())
 
-  def testAsDictWithInteractionRecord(self):
+  def testAsDictWithGroupingLabel(self):
+    page = self.pages[0]
+    page.grouping_key['label'] = 'foo'
     v = ValueForAsDictTest(None, 'x', 'unit', important=False,
                            description='Some description.',
-                           tir_label='foo', grouping_keys=None)
+                           tir_label=None, grouping_keys=None)
     d = v.AsDict()
     self.assertEqual('foo', d['tir_label'])
 
@@ -203,20 +204,6 @@ class ValueTest(TestBase):
     v = value.Value.FromDict(d, page_dict)
 
     self.assertEquals(v.page.id, page0.id)
-
-  def testFromDictWithPageId0(self):
-    page_dict = {0: 'foo'}
-
-    d = {
-        'type': 'value_for_from_dict_test',
-        'name': 'x',
-        'units': 'unit',
-        'page_id': 0
-    }
-
-    v = value.Value.FromDict(d, page_dict)
-
-    self.assertEquals(v.page, 'foo')
 
   def testFromDictWithoutPage(self):
     d = {
