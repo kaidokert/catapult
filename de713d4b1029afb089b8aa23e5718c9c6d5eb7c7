@@ -70,6 +70,24 @@
       "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b01dba3d_fc81b732",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1240549
+      },
+      "writtenOn": "2019-06-11T05:42:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbf9e2ef_41d467aa",
+      "revId": "de713d4b1029afb089b8aa23e5718c9c6d5eb7c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
