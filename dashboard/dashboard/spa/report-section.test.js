@@ -6,7 +6,6 @@
 
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
-import ReportRequest from './report-request.js';
 import ReportSection from './report-section.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
 import {STORE} from './element-base.js';
@@ -27,54 +26,6 @@ suite('report-section', function() {
               id: 42,
               modified: new Date(),
             }];
-          }
-          if (url === ReportRequest.URL) {
-            return {
-              name: ReportControls.DEFAULT_NAME,
-              owners: ['me@chromium.org'],
-              url: 'http://example.com/',
-              report: {
-                rows: [
-                  {
-                    label: 'group:label',
-                    units: 'ms_smallerIsBetter',
-                    testSuites: ['suite'],
-                    bots: ['master:bot'],
-                    testCases: ['case'],
-                    measurement: 'measurement',
-                    data: {
-                      [ReportControls.CHROMIUM_MILESTONES[
-                          ReportControls.CURRENT_MILESTONE]]: {
-                        descriptors: [
-                          {
-                            testSuite: 'suite',
-                            measurement: 'measurement',
-                            bot: 'master:bot',
-                            testCase: 'case',
-                          },
-                        ],
-                        statistics: [10, 0, 0, 100, 0, 0, 100],
-                        revision: ReportControls.CHROMIUM_MILESTONES[
-                            ReportControls.CURRENT_MILESTONE],
-                      },
-                      latest: {
-                        descriptors: [
-                          {
-                            testSuite: 'suite',
-                            measurement: 'measurement',
-                            bot: 'master:bot',
-                            testCase: 'case',
-                          },
-                        ],
-                        statistics: [10, 0, 0, 100, 0, 0, 100],
-                        revision: 999999,
-                      },
-                    },
-                  },
-                ],
-                statistics: ['avg'],
-              },
-            };
           }
         },
       };
