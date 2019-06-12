@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4f8dd3f_eda988bb",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-12T10:21:10Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this fix. I think paths should have the correct separator from their host os?",
+      "revId": "44f5a764fcdb6cb49903a4b5a978fdc2944fcd18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
