@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "82473aff_ca66c166",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-12T10:16:14Z",
+      "side": 1,
+      "message": "At the moment the callers are just a couple of tests, which will work fine either way. :)\n\nAnd callers are likely going to have to deal with the possibility of the artifact not being there anyway. So really you have two possibilities:\na) let GetArtifact raise an error (a KeyError possibly, not an AssertError), and provide a HasArtifact method that callers can use to check if the artifact is there before trying to get it; or\nb) just let GetArtifact return None if the artifact is not there; then callers can inspect the return value to determine whether the artifact was there or not.\n\nI tend to like \"b\" because you only need to provide one method on your API, not two; and should be slightly more efficient since you consult the index of the dict to \"check and get\" both at the same time; rather than consulting the index twice: once to check if the item is there, and then a second time to get the item.",
+      "parentUuid": "1f1e9661_ebc72cfb",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3809c66_21909783",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
