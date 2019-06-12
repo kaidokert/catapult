@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f37e1466_6df7887f",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-12T01:13:18Z",
+      "side": 1,
+      "message": "Seems like this works in 1 case, but doesn\u0027t if the regression is in the opposite direction. Ie. if you have 2 differences in the range, and the means are [5, 10] \u003d\u003e b - a \u003d\u003e 5, [10, 100] \u003d\u003e 90, this will correctly choose the [10, 100] delta as the largest.\n\nBut if you have [100, 10] \u003d\u003e -90, [10, 5] \u003d\u003e -5 as the means, it will choose -5 which seems wrong.\n\nChoosing the largest absolute change might improve things? Also maybe you could get a hint about the \"right\" direction by comparing the direction of the change between the first and last revision in the job.",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 22
+      },
+      "revId": "46c469f59bbde0488a84ebe7154714a3370dc156",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
