@@ -22,6 +22,30 @@
       "revId": "46c469f59bbde0488a84ebe7154714a3370dc156",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d87b71e3_80823f0e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2019-06-12T10:22:52Z",
+      "side": 1,
+      "message": "Thanks. This was mainly based on my brief search across bugs: I saw people flagging negative deltas as actual improvements, and decided it was the most common case.\n\nI\u0027ll update the code to compare absolute values (PTAL, my Python is rusty) when sorting to keep the actual numbers handy. Once we add (don\u0027t know how yet) the notion of good/bad into the intent, we would make use of it here and in other places.",
+      "parentUuid": "f37e1466_6df7887f",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 22
+      },
+      "revId": "46c469f59bbde0488a84ebe7154714a3370dc156",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
