@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70342923_24dd3542",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-12T15:47:19Z",
+      "side": 1,
+      "message": "you can ditch this loop and just use\n\nowners \u003d max(author_deltas.values(), key\u003dlambda x: abs(x))",
+      "range": {
+        "startLine": 476,
+        "startChar": 6,
+        "endLine": 476,
+        "endChar": 20
+      },
+      "revId": "b13a1a5757ade1999a6616edb7b669dd34730f1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
