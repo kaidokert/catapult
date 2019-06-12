@@ -137,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "35c293e8_cc07cc40",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-12T17:28:13Z",
+      "side": 1,
+      "message": "getMainThreadEvents returns an iterable object. The for loop is almost like calling \"next\" on an iterator and that\u0027s when the function executes and \"returns\" the next value.\nThe yield keyword in the for loop inside the generator function returns a value then pauses the execution until \"next\" is called again.",
+      "parentUuid": "68d082fe_1adeb834",
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b7a9a68_ff0a5c1f",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 1
@@ -184,6 +202,24 @@
       "side": 1,
       "message": "Same confusion as above: does the object returned not have a notion of length / size that we can just query?",
       "parentUuid": "812203bc_bd3a1b61",
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1164b54a_5841a814",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-12T17:28:13Z",
+      "side": 1,
+      "message": "no it does not have a notion of length",
+      "parentUuid": "8891cec3_0ba5e5e2",
       "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
