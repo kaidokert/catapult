@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f50bfd09_72b4ca62",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2019-06-12T22:16:32Z",
+      "side": 1,
+      "message": "Values can be None when we have no info. Hence the check \u0027v and abs()\u0027 before calling abs().\n\nThe suggestion, if I\u0027m interpreting it correctly, returns largest V but treats it as |V| when sorting/comparing, instead of returning K. None \u0027V\u0027 would cause abs() to throw.",
+      "parentUuid": "70342923_24dd3542",
+      "range": {
+        "startLine": 476,
+        "startChar": 6,
+        "endLine": 476,
+        "endChar": 20
+      },
+      "revId": "b13a1a5757ade1999a6616edb7b669dd34730f1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "55b05ef9_b1345e07",
         "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "b13a1a5757ade1999a6616edb7b669dd34730f1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68f833ae_8270d919",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2019-06-12T22:16:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55b05ef9_b1345e07",
+      "range": {
+        "startLine": 487,
+        "startChar": 35,
+        "endLine": 487,
+        "endChar": 36
+      },
+      "revId": "b13a1a5757ade1999a6616edb7b669dd34730f1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
