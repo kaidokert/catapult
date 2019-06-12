@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "68d082fe_1adeb834",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-06-12T16:35:25Z",
+      "side": 1,
+      "message": "I don\u0027t understand, I\u0027m assuming getMainThreadEvents() returns some sort of list? Then we can look at the length and just take the values at [length - 1]?",
+      "parentUuid": "e13d0e0e_c56eb067",
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b7a9a68_ff0a5c1f",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 1
@@ -151,6 +169,24 @@
       "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8891cec3_0ba5e5e2",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-06-12T16:35:25Z",
+      "side": 1,
+      "message": "Same confusion as above: does the object returned not have a notion of length / size that we can just query?",
+      "parentUuid": "812203bc_bd3a1b61",
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
