@@ -5,6 +5,8 @@
 import os
 import unittest
 
+from py_utils import tempfile_ext
+
 from telemetry import decorators
 from telemetry import story
 from telemetry.internal.results import page_test_results
@@ -283,9 +285,11 @@ class TimelineBasedMeasurementTest(page_test_test_case.PageTestTestCase):
     options = tbm_module.Options()
     options.config.enable_chrome_trace = True
     options.SetTimelineBasedMetrics(['sampleMetric'])
-
     tbm = tbm_module.TimelineBasedMeasurement(options)
-    results = self.RunMeasurement(tbm, ps, self._options)
+
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      self._options.output_dir = tempdir
+      results = self.RunMeasurement(tbm, ps, self._options)
 
     self.assertTrue(results.had_failures)
     self.assertEquals(1, len(results.FindAllTraceValues()))
@@ -300,9 +304,11 @@ class TimelineBasedMeasurementTest(page_test_test_case.PageTestTestCase):
     options = tbm_module.Options()
     options.config.enable_chrome_trace = True
     options.SetTimelineBasedMetrics(['sampleMetric'])
-
     tbm = tbm_module.TimelineBasedMeasurement(options)
-    results = self.RunMeasurement(tbm, ps, self._options)
+
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      self._options.output_dir = tempdir
+      results = self.RunMeasurement(tbm, ps, self._options)
 
     self.assertFalse(results.had_failures)
 
