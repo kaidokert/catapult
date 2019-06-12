@@ -1,0 +1,278 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b17ebc4e_3bd54cd6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Let\u0027s give a bit more detail in the commit message. Something like this:\n\nImplement Visually Complete at 2s Metric \n\nWe\u0027re experimenting with a new kind of loading metric based on last update time of each pixel. As a first proof of concept of a metric like this, we want to calculate what portion of a viewport pixels reached its final value at the 2nd second (the choice of 2 is completely arbitrary). In this patch, we\u0027re consider the whole layerRect to be updated at each cc::DisplayItemList snapshot. In subsequent CLs, this algorithm will be made more precise by parsing Skia draw commands and inferring exactly which pixel values were updated.",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "219aecd7_972aaf2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem like the right bug for this patch. We need a better bug describing the thing we\u0027re trying to do. npm@ do we have one?",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd4cec78_941904fc",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "We can name of this function can be better (see comment below around histogram name for ideas.)\n\nAlso, it\u0027s not immediately obvious to me what this function is trying to do. Can you add some jsdoc explaining its behavior? This will be helpful when you send it for OWNER review too. See example here: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/extras/chrome/time_to_interactive.html?l\u003d101\u0026rcl\u003db64faff265e813a264b472c7bb62848c84f8f99b\n\nSomething like \"Returns the percentage of pixels that reached the end state at 2 second... \u003cexplain how you get end state\u003e.. \u003cexplain that you\u0027re considering a pixel to be updated if a layerRect in cc:DisplayItemList object snapshot contains that pixel\u003e\"",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0189fe5a_1daf2cf8",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "nit: duration -\u003e loadDuration to make it clear what this is.",
+      "range": {
+        "startLine": 275,
+        "startChar": 71,
+        "endLine": 275,
+        "endChar": 79
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a994c1d5_acf51b7d",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you be getting the viewport size after the navigationStart event? Also, we also need to be dumping the frame id in the viewport, so you can get the viewport size for the right frame.",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab80be38_e0d6fe63",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Instead of doing this four lines of work for every event (and then overwriting them right away for all of them except the last one), let\u0027s do something like\nlet lastViewportEvent \u003d null;\n\nfor (const event of EventFinderUtils.getMainThreadEvents(...)) {\n  lastViewportEvent \u003d event;\n}\n\nconst {x, y, width, height} \u003d lastViewportEvent.args.data;\n\nAlso, nit: x -\u003e viewportX etc because I kept losing track of what x actually was when reading the code.",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 286,
+        "endChar": 40
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56e3fb50_4c7685ef",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "if (duration \u003c 2000) return; // This should be the first line of the function.",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e97ed5d0_0fe0e4f3",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Move this variable right above where it\u0027s used (before the for loop).",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "805bf2bd_9dd3e9ea",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "nit: maybe pixel -\u003e lastUpdateTimes, since it\u0027s actually a matrix of timestamps and not pixels, which can get confusing.",
+      "range": {
+        "startLine": 291,
+        "startChar": 8,
+        "endLine": 291,
+        "endChar": 14
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a95b438a_5e5cfc8f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Don\u0027t use private properties. Use the \"objects.getAllInstancesNamed(..)\" function [1]\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/model/object_collection.html?type\u003dcs\u0026q\u003dinstancesByTypeName_\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d178",
+      "range": {
+        "startLine": 295,
+        "startChar": 31,
+        "endLine": 295,
+        "endChar": 51
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9460464_3791f2d5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 296,
+        "startChar": 45,
+        "endLine": 296,
+        "endChar": 65
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7ebd828_90930962",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Could you add a comment somewhere along the line of \"layerRect coordinates are relative to the whole document but we\u0027re interested in coordinates relative to the viewport\". I was confused for a while why u - y and v - x was necessary.",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "800082d4_e78135f8",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Very nice use of filter :)",
+      "range": {
+        "startLine": 327,
+        "startChar": 25,
+        "endLine": 327,
+        "endChar": 46
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfbccaf8_f93f0cab",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-12T19:11:12Z",
+      "side": 1,
+      "message": "Let\u0027s find a better name for the metric/histogram - timeHistogram is a bit vague. How about: \u0027visuallyCompleteAt2Second\u0027/visuallyCompleteAt2SecondHistogram?",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
