@@ -379,12 +379,14 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options.output_formats = ['none']
     options.suppress_gtest_report = True
     SetUpStoryRunnerArguments(options)
-    results = results_options.CreateResults(EmptyMetadataForTest(), options)
-    story_runner.Run(test, story_set, options, results)
-    self.assertFalse(test.will_navigate_to_page_called)
-    self.assertEquals(1, len(GetSuccessfulPageRuns(results)))
-    self.assertTrue(results.had_skips)
-    self.assertFalse(results.had_failures)
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      options.output_dir = tempdir
+      results = results_options.CreateResults(EmptyMetadataForTest(), options)
+      story_runner.Run(test, story_set, options, results)
+      self.assertFalse(test.will_navigate_to_page_called)
+      self.assertEquals(1, len(GetSuccessfulPageRuns(results)))
+      self.assertTrue(results.had_skips)
+      self.assertFalse(results.had_failures)
 
   # Verifies that if the browser is not closed between tests (as happens on
   # ChromeOS), the page state is reset. The first page scrolls to the end, and
@@ -441,9 +443,11 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options.output_formats = ['none']
     options.suppress_gtest_report = True
     SetUpStoryRunnerArguments(options)
-    results = results_options.CreateResults(EmptyMetadataForTest(), options)
-    story_runner.Run(test, story_set, options, results)
-    self.assertTrue(test_page.was_page_at_top_on_start)
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      options.output_dir = tempdir
+      results = results_options.CreateResults(EmptyMetadataForTest(), options)
+      story_runner.Run(test, story_set, options, results)
+      self.assertTrue(test_page.was_page_at_top_on_start)
 
   def _RunPageTestThatRaisesAppCrashException(self, test, max_failures):
     class TestPage(page_module.Page):
@@ -460,9 +464,11 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options.output_formats = ['none']
     options.suppress_gtest_report = True
     SetUpStoryRunnerArguments(options)
-    results = results_options.CreateResults(EmptyMetadataForTest(), options)
-    story_runner.Run(test, story_set, options, results,
-                     max_failures=max_failures)
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      options.output_dir = tempdir
+      results = results_options.CreateResults(EmptyMetadataForTest(), options)
+      story_runner.Run(test, story_set, options, results,
+                       max_failures=max_failures)
     return results
 
   def testSingleTabMeansCrashWillCauseFailure(self):
@@ -499,18 +505,20 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options.output_formats = ['none']
     options.suppress_gtest_report = True
     SetUpStoryRunnerArguments(options)
-    results = results_options.CreateResults(EmptyMetadataForTest(), options)
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      options.output_dir = tempdir
+      results = results_options.CreateResults(EmptyMetadataForTest(), options)
 
-    story_runner.Run(test, story_set, options, results)
+      story_runner.Run(test, story_set, options, results)
 
-    self.longMessage = True
-    self.assertIn('Example Domain', body[0],
-                  msg='URL: %s' % story_set.stories[0].url)
-    self.assertIn('Example Domain', body[1],
-                  msg='URL: %s' % story_set.stories[1].url)
+      self.longMessage = True
+      self.assertIn('Example Domain', body[0],
+                    msg='URL: %s' % story_set.stories[0].url)
+      self.assertIn('Example Domain', body[1],
+                    msg='URL: %s' % story_set.stories[1].url)
 
-    self.assertEquals(2, len(GetSuccessfulPageRuns(results)))
-    self.assertFalse(results.had_failures)
+      self.assertEquals(2, len(GetSuccessfulPageRuns(results)))
+      self.assertFalse(results.had_failures)
 
   def testScreenShotTakenForFailedPage(self):
     self.CaptureFormattedException()
@@ -579,11 +587,13 @@ class FakePageRunEndToEndTests(unittest.TestCase):
     failing_page = FailingTestPage('chrome://version', story_set,
                                    name='failing')
     story_set.AddStory(failing_page)
-    results = results_options.CreateResults(
-        EmptyMetadataForTest(), self.options)
-    story_runner.Run(DummyTest(), story_set, self.options, results,
-                     max_failures=2)
-    self.assertTrue(results.had_failures)
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      self.options.output_dir = tempdir
+      results = results_options.CreateResults(
+          EmptyMetadataForTest(), self.options)
+      story_runner.Run(DummyTest(), story_set, self.options, results,
+                       max_failures=2)
+      self.assertTrue(results.had_failures)
 
   def testScreenShotTakenForFailedPageOnSupportedPlatform(self):
     fake_platform = self.options.fake_possible_browser.returned_browser.platform
