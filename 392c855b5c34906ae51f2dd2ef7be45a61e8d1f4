@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ea271d8_2af681df",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-12T18:23:23Z",
+      "side": 1,
+      "message": "What are these tests actually testing? You\u0027re not checking out or files against anything, only checking the error code, so it\u0027s not clear what you\u0027re looking for other than that something passes.",
+      "revId": "392c855b5c34906ae51f2dd2ef7be45a61e8d1f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
