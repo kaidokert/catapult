@@ -34,6 +34,24 @@
       "revId": "44f5a764fcdb6cb49903a4b5a978fdc2944fcd18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56e60a71_2511b94a",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-12T12:35:55Z",
+      "side": 1,
+      "message": "Yup! Moving to the output formatter sgtm.",
+      "parentUuid": "ce631570_50e36d4b",
+      "revId": "44f5a764fcdb6cb49903a4b5a978fdc2944fcd18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
