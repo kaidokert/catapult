@@ -16,6 +16,24 @@
       "revId": "392c855b5c34906ae51f2dd2ef7be45a61e8d1f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40595f75_2bda2419",
+        "filename": "third_party/typ/typ/tests/main_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-12T20:11:12Z",
+      "side": 1,
+      "message": "Okay I see. I made the tests look at the output to make it more clear what they are testing for.",
+      "parentUuid": "0ea271d8_2af681df",
+      "revId": "392c855b5c34906ae51f2dd2ef7be45a61e8d1f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
