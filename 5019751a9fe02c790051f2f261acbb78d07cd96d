@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "698519ad_10809b42",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-12T23:58:25Z",
+      "side": 1,
+      "message": "You can filter out the authors that don\u0027t have associated deltas in-line, so you don\u0027t have to handle the None case especially:\n\nowner \u003d max(map(abs, filter(None, authors_deltas)), key\u003dauthors_deltas.get)",
+      "range": {
+        "startLine": 477,
+        "startChar": 4,
+        "endLine": 477,
+        "endChar": 55
+      },
+      "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
