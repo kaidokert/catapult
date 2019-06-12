@@ -173,6 +173,24 @@
     },
     {
       "key": {
+        "uuid": "f8f14f6e_609a9a85",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-12T18:48:35Z",
+      "side": 1,
+      "message": "hmm in the getMainThreadEvents function it says \"Events yielded by childEvents() are sorted by start time.\"\nnot sure how they\u0027re sorted or what start time in this case mean.\nbut anyway, we can use the first viewport size recorded since the choice to use the last one recorded was kind of arbitrary.",
+      "parentUuid": "8c7ae223_5d9b2d8d",
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b7a9a68_ff0a5c1f",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 1
@@ -241,6 +259,24 @@
       "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e5e4e8a_3544fe84",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-12T18:48:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1164b54a_5841a814",
+      "revId": "060acc849535f1aa88a4840ddf7e5668cf7444be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
