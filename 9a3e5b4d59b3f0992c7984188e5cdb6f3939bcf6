@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9d1ea478_af3f4be8",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-12T09:35:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53a81aef_0421d4fe",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2f7cd1b_6058326e",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f1e9661_ebc72cfb",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-12T09:35:20Z",
+      "side": 1,
+      "message": "I would really prefer raising an exception to returning None, for the following reasons:\n1) Returning None will lead to additional checks on the side of callers, which complicates the code.\n2) If something eventually fails, the failure will be harder to debug, because the error will be in a different place with an irrelevant message.",
+      "parentUuid": "b2f7cd1b_6058326e",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d5e12167_95e1a3b3",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-12T09:35:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3809c66_21909783",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aab7981_ab9999d7",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -67,6 +121,24 @@
       "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6aa67025_e29bb4a6",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-12T09:35:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aab7981_ab9999d7",
+      "revId": "9a3e5b4d59b3f0992c7984188e5cdb6f3939bcf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
