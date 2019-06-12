@@ -16,6 +16,24 @@
       "revId": "44f5a764fcdb6cb49903a4b5a978fdc2944fcd18",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce631570_50e36d4b",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-12T12:27:00Z",
+      "side": 1,
+      "message": "The json test results format specification states that \"artifacts\" field should only contain \u0027/\u0027 as path separators [1]. This is probably because the result files can be read on a different platform from where they were generated.\n\nPerhaps we should move this conversion to the json formatter though, to keep the code here clear.\n\n[1] https://chromium.googlesource.com/chromium/src/+/master/docs/testing/json_test_results_format.md#per_test-fields",
+      "parentUuid": "b4f8dd3f_eda988bb",
+      "revId": "44f5a764fcdb6cb49903a4b5a978fdc2944fcd18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
