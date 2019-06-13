@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f0448d1_d109666f",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-13T20:37:51Z",
+      "side": 1,
+      "message": "nit: unresovolved comment from last time - add jsdoc.",
+      "revId": "4149cdb6583584dda2b8f93e78f135193c1b94df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80436d70_62631164",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-13T20:37:51Z",
+      "side": 1,
+      "message": "nit: viewportWidth/Height?",
+      "revId": "4149cdb6583584dda2b8f93e78f135193c1b94df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0689f67_e45bab2b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-13T20:37:51Z",
+      "side": 1,
+      "message": "nit value -\u003e pixelsLastUpdatedAfter2s.",
+      "range": {
+        "startLine": 340,
+        "startChar": 8,
+        "endLine": 340,
+        "endChar": 13
+      },
+      "revId": "4149cdb6583584dda2b8f93e78f135193c1b94df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52940f24_f67c7ce3",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-13T20:37:51Z",
+      "side": 1,
+      "message": "I think if we\u0027re calling the function visuallyCompleteAt2Second then I expect to count the number of pixels that were complete within 2 second, not the opposite of it. So I expect this condition to be \"x \u003c 2000\". (I know this is just a prototype metric so this is not that important, but it\u0027s nice to keep things consistent)",
+      "range": {
+        "startLine": 342,
+        "startChar": 41,
+        "endLine": 342,
+        "endChar": 54
+      },
+      "revId": "4149cdb6583584dda2b8f93e78f135193c1b94df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dcb3a22_e4ca1c6d",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-13T20:37:51Z",
+      "side": 1,
+      "message": "In the same vein as above, this should probably be \"Fraction of pixels in the initial viewport reaching final value within 2 seconds after navigation start.\" Sorry didn\u0027t catch this earlier.",
+      "range": {
+        "startLine": 730,
+        "startChar": 0,
+        "endLine": 730,
+        "endChar": 58
+      },
+      "revId": "4149cdb6583584dda2b8f93e78f135193c1b94df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
