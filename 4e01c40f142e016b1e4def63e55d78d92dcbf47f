@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a79ac4f_55d6d49b",
+        "filename": "telemetry/telemetry/benchmark_run_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-13T08:29:44Z",
+      "side": 1,
+      "message": "nit: Add a comment explaining these need to happen in the end to override defaults from parser creation and arg processing.",
+      "revId": "4e01c40f142e016b1e4def63e55d78d92dcbf47f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bf8b1da_e1944efb",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-13T08:29:44Z",
+      "side": 1,
+      "message": "Do these really need an output dir? or can we set it to None?\n\nIf they do need the output dir, let\u0027s try to factor out managing the lifetime of the tempdir to setUp, tearDown methods where possible.",
+      "revId": "4e01c40f142e016b1e4def63e55d78d92dcbf47f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
