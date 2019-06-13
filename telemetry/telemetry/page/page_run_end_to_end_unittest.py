@@ -378,6 +378,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
+    options.output_dir = None
     SetUpStoryRunnerArguments(options)
     results = results_options.CreateResults(EmptyMetadataForTest(), options)
     story_runner.Run(test, story_set, options, results)
@@ -440,6 +441,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
+    options.output_dir = None
     SetUpStoryRunnerArguments(options)
     results = results_options.CreateResults(EmptyMetadataForTest(), options)
     story_runner.Run(test, story_set, options, results)
@@ -459,6 +461,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
+    options.output_dir = None
     SetUpStoryRunnerArguments(options)
     results = results_options.CreateResults(EmptyMetadataForTest(), options)
     story_runner.Run(test, story_set, options, results,
@@ -498,6 +501,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     options = options_for_unittests.GetCopy()
     options.output_formats = ['none']
     options.suppress_gtest_report = True
+    options.output_dir = None
     SetUpStoryRunnerArguments(options)
     results = results_options.CreateResults(EmptyMetadataForTest(), options)
 
@@ -563,6 +567,7 @@ class FakePageRunEndToEndTests(unittest.TestCase):
     self.options = fakes.CreateBrowserFinderOptions()
     self.options.output_formats = ['none']
     self.options.suppress_gtest_report = True
+    self.options.output_dir = None
     SetUpStoryRunnerArguments(self.options)
 
   def testNoScreenShotTakenForFailedPageDueToNoSupport(self):
