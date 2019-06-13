@@ -22,6 +22,30 @@
       "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "252c1ccf_980ff122",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2019-06-13T01:55:34Z",
+      "side": 1,
+      "message": "I don\u0027t think this would work either: this filters out None keys (authors_deltas is a dict) and tries to feed them to abs():\n\n\u003e\u003e\u003e values \u003d {\u0027author1\u0027: -55, \u0027author2\u0027: 5, \u0027author3\u0027: None}\n\u003e\u003e\u003e max(map(abs, filter(None, values)), key\u003dvalues.get)\nTraceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nTypeError: bad operand type for abs(): \u0027str\u0027\n\nWe could probably drop in some lambdas to filter by values but I\u0027m not sure how since we ultimately need to change values associated with some keys and lambdas don\u0027t allow statements, and whether it\u0027d be more readable.",
+      "parentUuid": "698519ad_10809b42",
+      "range": {
+        "startLine": 477,
+        "startChar": 4,
+        "endLine": 477,
+        "endChar": 55
+      },
+      "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
