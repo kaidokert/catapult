@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e24fb0b_49f3ce21",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-13T10:33:24Z",
+      "side": 0,
+      "message": "This now happens automatically when each value for the page is created.",
+      "revId": "b64faff265e813a264b472c7bb62848c84f8f99b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c19968_18525d26",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-13T10:33:24Z",
+      "side": 0,
+      "message": "This and other removed tests below were testing behaviors that can no longer occur.",
+      "revId": "b64faff265e813a264b472c7bb62848c84f8f99b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

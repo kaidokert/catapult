@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63bb6e24_5df659a1",
+        "filename": "telemetry/telemetry/value/__init__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-13T10:33:24Z",
+      "side": 1,
+      "message": "Mapping from story.grouping_keys to value.grouping_label now happens here instead of PageTestResults.",
+      "revId": "985402df42bcaf679df8d8f1abf4dbf1f9583a06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
