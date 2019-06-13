@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "122e9f2b_45a8a99c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b17ebc4e_3bd54cd6",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "219aecd7_972aaf2c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -51,6 +69,24 @@
       "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89639f8d_a1d42af8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ebaf5f4_3da5fbac",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +130,48 @@
     },
     {
       "key": {
+        "uuid": "9a9bf80a_03905d3e",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "work in progress.",
+      "parentUuid": "dd4cec78_941904fc",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2c22c1d_b8aeff21",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0189fe5a_1daf2cf8",
+      "range": {
+        "startLine": 275,
+        "startChar": 71,
+        "endLine": 275,
+        "endChar": 79
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a994c1d5_acf51b7d",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -108,6 +186,24 @@
       "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c0e9d3_b81c2307",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a994c1d5_acf51b7d",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +230,30 @@
     },
     {
       "key": {
+        "uuid": "32e99b64_75e3b601",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "This code is not relevant now that we have the frameID!\nWe would just loop through the events until we find a viewport event which have the same frame id as the navigationStart.",
+      "parentUuid": "ab80be38_e0d6fe63",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 286,
+        "endChar": 40
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56e3fb50_4c7685ef",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -151,6 +271,24 @@
     },
     {
       "key": {
+        "uuid": "3e21480c_864676e3",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56e3fb50_4c7685ef",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e97ed5d0_0fe0e4f3",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -165,6 +303,24 @@
       "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52129c5d_d309bea3",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e97ed5d0_0fe0e4f3",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -191,6 +347,30 @@
     },
     {
       "key": {
+        "uuid": "9a5ca50b_93a47eb5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "805bf2bd_9dd3e9ea",
+      "range": {
+        "startLine": 291,
+        "startChar": 8,
+        "endLine": 291,
+        "endChar": 14
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a95b438a_5e5cfc8f",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -211,6 +391,30 @@
       "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18184c3e_673fa43b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a95b438a_5e5cfc8f",
+      "range": {
+        "startLine": 295,
+        "startChar": 31,
+        "endLine": 295,
+        "endChar": 51
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -237,6 +441,30 @@
     },
     {
       "key": {
+        "uuid": "a8d536d8_5de895ec",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9460464_3791f2d5",
+      "range": {
+        "startLine": 296,
+        "startChar": 45,
+        "endLine": 296,
+        "endChar": 65
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7ebd828_90930962",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -251,6 +479,24 @@
       "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca0d5806_a43ff3b9",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7ebd828_90930962",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -277,6 +523,30 @@
     },
     {
       "key": {
+        "uuid": "882c2427_209d1a50",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "thanks :)",
+      "parentUuid": "800082d4_e78135f8",
+      "range": {
+        "startLine": 327,
+        "startChar": 25,
+        "endLine": 327,
+        "endChar": 46
+      },
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfbccaf8_f93f0cab",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -291,6 +561,24 @@
       "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6484ebe_876d0069",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-13T17:22:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfbccaf8_f93f0cab",
+      "revId": "d15080e3de4ff06496e6b1f326f82c2733915e1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
