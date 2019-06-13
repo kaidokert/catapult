@@ -390,20 +390,20 @@ tr.exportTo('tr.metrics.sh', function() {
       }
       entryMap.get(navStartEvent).push(e);
     }
-    const lastCandidates = [];
-    for (const timeToXEntriesByNavigation of entryMap.values()) {
+    const lastCandidates = new Map();
+    for (const [navStartEvent, timeToXEntriesByNavigation] of entryMap.entries()) {
       let lastCandidate = timeToXEntriesByNavigation.shift();
       for (const entry of timeToXEntriesByNavigation) {
         if (getCandidateIndex(entry) > getCandidateIndex(lastCandidate)) {
           lastCandidate = entry;
         }
       }
-      lastCandidates.push(lastCandidate);
+      lastCandidates.set(navStartEvent, lastCandidate);
     }
     return lastCandidates;
   }
 
-  function findLargestTextPaintSamples(rendererHelper, frameToNavStartEvents,
+  function findLargestTextPaintLastEvents(rendererHelper, frameToNavStartEvents,
       navIdToNavStartEvents) {
     const timeToPaintEntries = findTimeToXEntries('loading',
         'LargestTextPaint::Candidate', rendererHelper, frameToNavStartEvents,
@@ -411,16 +411,17 @@ tr.exportTo('tr.metrics.sh', function() {
     const timeToPaintBlockingEntries = findTimeToXEntries('loading',
         'LargestTextPaint::NoCandidate', rendererHelper, frameToNavStartEvents,
         navIdToNavStartEvents);
+    let keys = Array.from( myMap.keys() );
     const lastCandidateEvents =
-        findLastCandidateForEachNavigation(
-            timeToPaintEntries.concat(timeToPaintBlockingEntries))
+        Array.from(findLastCandidateForEachNavigation(
+            timeToPaintEntries.concat(timeToPaintBlockingEntries)).values())
             .filter(event =>
               event.targetEvent.title !== 'LargestTextPaint::NoCandidate');
-    return collectTimeToEvent(rendererHelper, lastCandidateEvents);
+    return lastCandidateEvents;
   }
 
-  function findLargestImagePaintSamples(rendererHelper, frameToNavStartEvents,
-      navIdToNavStartEvents) {
+  function findLargestImagePaintLastEvents(rendererHelper,
+      frameToNavStartEvents, navIdToNavStartEvents) {
     const timeToPaintEntries = findTimeToXEntries('loading',
         'LargestImagePaint::Candidate', rendererHelper, frameToNavStartEvents,
         navIdToNavStartEvents);
@@ -428,11 +429,32 @@ tr.exportTo('tr.metrics.sh', function() {
         'LargestImagePaint::NoCandidate', rendererHelper, frameToNavStartEvents,
         navIdToNavStartEvents);
     const lastCandidateEvents =
-        findLastCandidateForEachNavigation(
-            timeToPaintEntries.concat(timeToPaintBlockingEntries))
+        Array.from(findLastCandidateForEachNavigation(
+            timeToPaintEntries.concat(timeToPaintBlockingEntries)).values())
             .filter(event =>
               event.targetEvent.title !== 'LargestImagePaint::NoCandidate');
+    return lastCandidates;
+  }
+
+  function findLargestTextPaintSamples(rendererHelper, frameToNavStartEvents,
+      navIdToNavStartEvents) {
+    const lastCandidateEvents =
+        findLargestTextPaintLastEvents(rendererHelper, frameToNavStartEvents,
+            navIdToNavStartEvents);
     return collectTimeToEvent(rendererHelper, lastCandidateEvents);
+  }
+
+  function findLargestImagePaintSamples(rendererHelper, frameToNavStartEvents,
+      navIdToNavStartEvents) {
+    const lastCandidateEvents =
+        findLargestImagePaintLastEvents(rendererHelper, frameToNavStartEvents,
+            navIdToNavStartEvents);
+    return collectTimeToEvent(rendererHelper, lastCandidateEvents);
+  }
+
+  function findLargestContentfulPaintSamples(rendererHelper, frameToNavStartEvents,
+      navIdToNavStartEvents) {
+    ...
   }
 
   function collectLoadingMetricsForRenderer(rendererHelper) {
@@ -465,6 +487,9 @@ tr.exportTo('tr.metrics.sh', function() {
         rendererHelper, frameToNavStartEvents,
         navIdToNavStartEvents);
     const layoutShiftSamples = findLayoutShiftSamples(rendererHelper);
+    const navigationStartSamples = timeToFCPEntries.map(entry=>{
+      return { value: entry.navigationStartEvent.start}
+    });
 
     return {
       frameToNavStartEvents,
@@ -476,7 +501,8 @@ tr.exportTo('tr.metrics.sh', function() {
       firstViewportReadySamples,
       largestImagePaintSamples,
       largestTextPaintSamples,
-      layoutShiftSamples
+      layoutShiftSamples,
+      navigationStartSamples,
     };
   }
 
@@ -645,6 +671,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Main Frame Document Cumulative Layout Shift Score',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const navigationStartHistogram = histograms.createHistogram(
+        'navigationStart', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'navigationStart',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
 
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
@@ -685,6 +717,10 @@ tr.exportTo('tr.metrics.sh', function() {
           histograms);
       addSamplesToHistogram(
           samplesSet.layoutShiftSamples, layoutShiftHistogram, histograms);
+      addSamplesToHistogram(
+          samplesSet.navigationStartSamples,
+          navigationStartHistogram,
+          histograms);
     }
 
     const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper);
