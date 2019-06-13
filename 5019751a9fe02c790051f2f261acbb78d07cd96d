@@ -46,6 +46,30 @@
       "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760d6f02_a8ae8d40",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-13T16:05:48Z",
+      "side": 1,
+      "message": "To continue the bikeshedding:\n\nowner \u003d max(filter(None, author_deltas.values()), key\u003dlambda x: abs(x)) works I think\n\nOr alternatively don\u0027t put None\u0027s in the list.",
+      "parentUuid": "252c1ccf_980ff122",
+      "range": {
+        "startLine": 477,
+        "startChar": 4,
+        "endLine": 477,
+        "endChar": 55
+      },
+      "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
