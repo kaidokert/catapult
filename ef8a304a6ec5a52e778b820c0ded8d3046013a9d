@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c394b3e_5523f7fa",
+        "filename": "dashboard/dashboard/spa/menu-input.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-13T23:40:10Z",
+      "side": 1,
+      "message": "Added a comment:\nThis path is stored in the Redux STORE as a statePath string.\n  // MenuInput.reducers.arrowCursor transforms the cursor statePath to `indices`\n  // to make it easier for these handlers to modify, then transformed back to a\n  // statePath string.\n\nDoes that help?",
+      "parentUuid": "ac502e65_8546d5c9",
+      "range": {
+        "startLine": 249,
+        "startChar": 5,
+        "endLine": 250,
+        "endChar": 17
+      },
+      "revId": "ef8a304a6ec5a52e778b820c0ded8d3046013a9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e1322ba_8b8472cd",
         "filename": "dashboard/dashboard/spa/menu-input.test.js",
         "patchSetId": 9
