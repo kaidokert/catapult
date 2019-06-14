@@ -173,7 +173,7 @@ tr.exportTo('tr.metrics.sh', function() {
   // Assume that this event has |event.arg.frame|.
   function findTimeToXEntries(
       category, eventName, rendererHelper, frameToNavStartEvents,
-      navIdToNavStartEvents) {
+      navIdToNavStartEvents, includeSubframes = false) {
     const targetEvents = findAllEvents(rendererHelper, category, eventName);
     const entries = [];
     for (const targetEvent of targetEvents) {
@@ -181,7 +181,8 @@ tr.exportTo('tr.metrics.sh', function() {
       const frameIdRef = targetEvent.args.frame;
       const snapshot = findFrameLoaderSnapshotAt(
           rendererHelper, frameIdRef, targetEvent.start);
-      if (snapshot === undefined || !snapshot.args.isLoadingMainFrame) continue;
+      if (snapshot === undefined) continue;
+      if (!includeSubframes && !snapshot.args.isLoadingMainFrame) continue;
       const url = snapshot.args.documentLoaderURL;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(url)) continue;
       let navigationStartEvent;
@@ -407,10 +408,10 @@ tr.exportTo('tr.metrics.sh', function() {
       navIdToNavStartEvents) {
     const timeToPaintEntries = findTimeToXEntries('loading',
         'LargestTextPaint::Candidate', rendererHelper, frameToNavStartEvents,
-        navIdToNavStartEvents);
+        navIdToNavStartEvents, true);
     const timeToPaintBlockingEntries = findTimeToXEntries('loading',
         'LargestTextPaint::NoCandidate', rendererHelper, frameToNavStartEvents,
-        navIdToNavStartEvents);
+        navIdToNavStartEvents, true);
     const lastCandidateEvents =
         findLastCandidateForEachNavigation(
             timeToPaintEntries.concat(timeToPaintBlockingEntries))
@@ -423,10 +424,10 @@ tr.exportTo('tr.metrics.sh', function() {
       navIdToNavStartEvents) {
     const timeToPaintEntries = findTimeToXEntries('loading',
         'LargestImagePaint::Candidate', rendererHelper, frameToNavStartEvents,
-        navIdToNavStartEvents);
+        navIdToNavStartEvents, true);
     const timeToPaintBlockingEntries = findTimeToXEntries('loading',
         'LargestImagePaint::NoCandidate', rendererHelper, frameToNavStartEvents,
-        navIdToNavStartEvents);
+        navIdToNavStartEvents, true);
     const lastCandidateEvents =
         findLastCandidateForEachNavigation(
             timeToPaintEntries.concat(timeToPaintBlockingEntries))
