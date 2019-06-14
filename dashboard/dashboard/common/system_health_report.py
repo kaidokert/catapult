@@ -9,7 +9,6 @@ from __future__ import absolute_import
 import datetime
 import functools
 
-from dashboard.common import report_query
 from dashboard.models import report_template
 from dashboard import update_test_suite_descriptors
 
@@ -107,15 +106,14 @@ def CreateSystemHealthReport(template_id, name, builder, is_fyi, modified):
       name=name,
       internal_only=False,
       modified=modified)
-  def Report(revisions):
+  def Report():
     # Template is updated on each call to the handler to make sure that we use
     # an up to date set of foreground/background stories.
-    template = {
+    return {
         'rows': list(IterTemplateRows(browser, bot)),
         'statistics': ['avg', 'std', 'max'],
         'url': 'https://bit.ly/system-health-benchmarks'
     }
-    return report_query.ReportQuery(template, revisions)
 
   return Report
 
@@ -123,7 +121,7 @@ def CreateSystemHealthReport(template_id, name, builder, is_fyi, modified):
 CreateSystemHealthReport(
     template_id=2013652838,
     name='Health:Chrome:Android Go',
-    builder='android-go-perf',
+    builder='android-nexus5x-perf',
     is_fyi=False,
     modified=datetime.datetime(2019, 3, 22))
 
