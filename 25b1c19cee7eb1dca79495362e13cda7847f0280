@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45f3c2ca_34b84648",
+        "filename": "tracing/tracing/tests.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-14T15:22:42Z",
+      "side": 1,
+      "message": ":S",
+      "range": {
+        "startLine": 35,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "25b1c19cee7eb1dca79495362e13cda7847f0280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
