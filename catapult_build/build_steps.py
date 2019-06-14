@@ -138,7 +138,17 @@ _CATAPULT_TESTS = [
         'uses_sandbox_env': True,
         'disabled': ['android', 'linux'],  # TODO(nedn): enable this on linux
     },
-    # TODO(crbug.com/973847): Urgent! Reenable tracing dev server tests somehow.
+    {
+        'name': 'Tracing Dev Server Tests M72',
+        'path': 'tracing/bin/run_dev_server_tests',
+        'additional_args': [
+            '--no-install-hooks',
+            '--no-use-local-chrome',
+            '--channel=m72',
+        ],
+        'outputs_presentation_json': True,
+        'disabled': ['android'],
+    },
     {
         'name': 'Tracing D8 Tests',
         'path': 'tracing/bin/run_vinn_tests',
