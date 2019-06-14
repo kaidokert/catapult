@@ -16,6 +16,29 @@
       "revId": "985402df42bcaf679df8d8f1abf4dbf1f9583a06",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd1668c8_c45935f9",
+        "filename": "telemetry/telemetry/value/__init__.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-14T00:27:28Z",
+      "side": 1,
+      "message": "This should be a TODO to migrate the clients off of this.",
+      "range": {
+        "startLine": 168,
+        "startChar": 5,
+        "endLine": 169,
+        "endChar": 23
+      },
+      "revId": "985402df42bcaf679df8d8f1abf4dbf1f9583a06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
