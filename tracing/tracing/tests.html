@@ -30,22 +30,24 @@ found in the LICENSE file.
     'use strict';
     window.addEventListener('load', function() {
       HTMLImports.whenReady(function loadAndRunTests(e) {
-        tr.b.unittest.loadAndRunTests({
-          title: 'All Trace-Viewer Tests',
-          getAllSuiteRelPathsAsync() {
-            return tr.b.getAsync('/tracing/tests').then(function(json) {
-              return JSON.parse(json).test_relpaths;
-            }).catch(function(e) {
-              throw e;
-            });
-          },
-          testLinks: [
-            {linkPath: '/tracing_examples/skia_debugger.html',
-              title: 'Skia Debugger'},
-            {linkPath: '/tracing_examples/trace_viewer.html',
-              title: 'Trace File Viewer'}
-          ]
-        });
+        setTimeout(function() {
+          tr.b.unittest.loadAndRunTests({
+            title: 'All Trace-Viewer Tests',
+            getAllSuiteRelPathsAsync() {
+              return tr.b.getAsync('/tracing/tests').then(function(json) {
+                return JSON.parse(json).test_relpaths;
+              }).catch(function(e) {
+                throw e;
+              });
+            },
+            testLinks: [
+              {linkPath: '/tracing_examples/skia_debugger.html',
+                title: 'Skia Debugger'},
+              {linkPath: '/tracing_examples/trace_viewer.html',
+                title: 'Trace File Viewer'}
+            ]
+          });
+        }, 1000);
       });
     });
   </script>

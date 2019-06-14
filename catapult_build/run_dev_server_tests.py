@@ -7,6 +7,7 @@ import argparse
 import json
 import logging
 import os
+import pipes
 import re
 import shutil
 import subprocess
@@ -116,6 +117,7 @@ def Main(argv):
                         help='Path to Chrome browser binary.')
     parser.add_argument('--no-use-local-chrome',
                         dest='use_local_chrome', action='store_false')
+    parser.add_argument('--no-xvfb', dest='use_xvfb', action='store_false')
     parser.add_argument(
         '--no-install-hooks', dest='install_hooks', action='store_false')
     parser.add_argument('--tests', type=str,
@@ -145,11 +147,12 @@ def Main(argv):
     server_command = [server_path, '--no-install-hooks', '--port', port]
     if sys.platform.startswith('win'):
       server_command = ['python.exe'] + server_command
-    print "Starting dev_server..."
+    print 'Starting dev_server...'
+    print '- command:', ' '.join(pipes.quote(a) for a in server_command)
     server_process = subprocess.Popen(
         server_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
         bufsize=1)
-    time.sleep(1)
+    print '- dev_server pid:', server_process.pid
     if sys.platform != 'win32':
       output = server_process.stderr.readline()
       port = re.search(
@@ -174,7 +177,7 @@ def Main(argv):
       chrome_path, version = chrome_manager.FetchPathWithVersion(
           'chrome_%s' % channel, arch, os_name)
       print 'Finished fetching the chrome binary to %s' % chrome_path
-      if xvfb.ShouldStartXvfb():
+      if args.use_xvfb and xvfb.ShouldStartXvfb():
         print 'Starting xvfb...'
         xvfb_process = xvfb.StartXvfb()
       chrome_info = 'version %s from channel %s' % (version, channel)
@@ -192,7 +195,7 @@ def Main(argv):
     print "Starting Chrome %s..." % chrome_info
     chrome_process = subprocess.Popen(
         chrome_command, stdout=sys.stdout, stderr=sys.stderr)
-    print 'chrome process command: %s' % ' '.join(chrome_command)
+    print '- command:', ' '.join(pipes.quote(a) for a in chrome_command)
     print "Waiting for tests to finish..."
     server_out, server_err = server_process.communicate()
     print "Killing Chrome..."

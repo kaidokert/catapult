@@ -616,6 +616,9 @@ tr.exportTo('tr.b.unittest', function() {
           function(err) {
             hideLoadingOverlay();
             tr.showPanic('Module loading failure', err);
+            // Let the dev_server know we could not run any tests.
+            tr.b.postAsync('/tracing/notify_tests_completed',
+                'FATAL_ERROR\n' + err);
             throw err;
           });
       return p;
