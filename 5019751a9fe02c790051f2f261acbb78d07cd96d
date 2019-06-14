@@ -94,6 +94,30 @@
       "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44a270b6_d8a14898",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1351423
+      },
+      "writtenOn": "2019-06-14T10:29:38Z",
+      "side": 1,
+      "message": "Thanks for messing with this.\n\nBikeshedding is very helpful: I realised that Nones must be deleted anyway, my original code relied on comparing numbers with None which would (rightfully) throw an exception in Python3.\n\nI\u0027ve also added a check since there\u0027s a case in which authors_with_deltas is empty because there was only one author found with no values so it wouldn\u0027t get into the dict().",
+      "parentUuid": "0356f8dc_80509d4a",
+      "range": {
+        "startLine": 477,
+        "startChar": 4,
+        "endLine": 477,
+        "endChar": 55
+      },
+      "revId": "5019751a9fe02c790051f2f261acbb78d07cd96d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
