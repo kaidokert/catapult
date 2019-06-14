@@ -628,6 +628,7 @@ ChartTimeseries.createFetchDescriptors = (lineDescriptor, levelOfDetail) => {
           measurement: lineDescriptor.measurement,
           case: cas,
           statistic: lineDescriptor.statistic,
+          statistics: lineDescriptor.statistics,
           buildType: lineDescriptor.buildType,
           levelOfDetail,
         });
