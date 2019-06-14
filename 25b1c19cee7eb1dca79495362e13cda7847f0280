@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "fc1a1b05_0204ce7a",
+        "filename": "tracing/tracing/base/unittest/interactive_test_runner.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-14T15:33:10Z",
+      "side": 1,
+      "message": "It looks like the Mac Tryserver is still hanging. :(\nhttps://ci.chromium.org/p/catapult/builders/try/Catapult%20Mac%20Tryserver/2793 (step should have finished in a few minutes)\n\nNot sure if I\u0027m missing something like this elsewhere?\n\nAnother alternative would be to run the command with a timeout at:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/catapult_build/run_dev_server_tests.py?rcl\u003de502dbcca0143f5ea1a82b62ef81817d0f0c961f\u0026l\u003d197",
+      "revId": "25b1c19cee7eb1dca79495362e13cda7847f0280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45f3c2ca_34b84648",
         "filename": "tracing/tracing/tests.html",
         "patchSetId": 3
