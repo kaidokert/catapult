@@ -33,17 +33,21 @@ found in the LICENSE file.
 
     window.addEventListener('load', function() {
       HTMLImports.whenReady(function loadAndRunTests(e) {
-        tr.b.unittest.loadAndRunTests({
-          title: 'All Dashboard Tests',
-          getAllSuiteRelPathsAsync() {
-            return tr.b.getAsync('/dashboard/tests').then(function(json) {
-              return JSON.parse(json).test_relpaths;
-            }).catch (function(e) {
-              throw e;
-            });
-          },
-          testLinks: []
-        });
+        // HACK: HTMLImports aren't actually "ready" at this point. Give them
+        // some extra time to load before trying to load and run tests.
+        setTimeout(function() {
+          tr.b.unittest.loadAndRunTests({
+            title: 'All Dashboard Tests',
+            getAllSuiteRelPathsAsync() {
+              return tr.b.getAsync('/dashboard/tests').then(function(json) {
+                return JSON.parse(json).test_relpaths;
+              }).catch (function(e) {
+                throw e;
+              });
+            },
+            testLinks: []
+          });
+        }, 1000);
       });
     });
   </script>
