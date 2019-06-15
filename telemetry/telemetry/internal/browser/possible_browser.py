@@ -123,3 +123,7 @@ class PossibleBrowser(possible_app.PossibleApp):
   @property
   def last_modification_time(self):
     return -1
+
+  def GetTypExpectationsTags(self):
+    tags = self.platform.GetTypExpectationsTags()
+    return tags + [self.browser_type.replace('_', '-').replace(' ', '-')]
