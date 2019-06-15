@@ -243,3 +243,8 @@ class PlatformBackend(object):
 
   def WaitForCpuTemperature(self, temp):
     pass
+
+  def GetTypExpectationsTags(self):
+    return [tag.replace(' ', '-').replace('_', '-') for tag in [
+        self.GetOSName(), self.GetOSVersionName(),
+        self.GetOSVersionDetailString()] if tag]
