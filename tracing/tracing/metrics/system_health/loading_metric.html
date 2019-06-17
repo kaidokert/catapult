@@ -272,6 +272,91 @@ tr.exportTo('tr.metrics.sh', function() {
     return sample ? [sample] : [];
   }
 
+  /**
+   * Returns the percentage of pixels that reached their end state at 2 seconds.
+   *
+   * We're considering a pixel to be updated if a layerRect
+   * in cc:DisplayItemList object snapshot contains that pixel.
+   * The pixel reaches its end state whenever it was last updated within a
+   * single navigation window.
+   *
+   */
+  function addVisuallyCompleteAt2SecondSample(samples, rendererHelper,
+      navigationStart, loadDuration, frameID) {
+    if (loadDuration < 2000) return;
+
+    let viewportX;
+    let viewportY;
+    let viewportWidth;
+    let viewportHeight;
+    for (const event of EventFinderUtils.getMainThreadEvents(rendererHelper,
+        'viewport', 'loading')) {
+      if (event.args.data.frameID === frameID &&
+        event.start > navigationStart &&
+        event.start < navigationStart + loadDuration) {
+        viewportX = event.args.data.x;
+        viewportY = event.args.data.y;
+        viewportWidth = event.args.data.width;
+        viewportHeight = event.args.data.height;
+        break;
+      }
+    }
+
+    const lastUpdateTimes = new Array(viewportHeight);
+    for (let i = 0; i < viewportHeight; i++) {
+      lastUpdateTimes[i] = new Array(viewportWidth).fill(0.0);
+    }
+    const objects = rendererHelper.process.objects;
+    if (objects.getAllInstancesNamed('cc::DisplayItemList') === undefined) {
+      return;
+    }
+    for (let i = 0;
+      i < objects.getAllInstancesNamed('cc::DisplayItemList').length; i++) {
+      const displayListItemSnapshots =
+      objects.getAllInstancesNamed('cc::DisplayItemList')[i].snapshots;
+      for (let j = 0; j < displayListItemSnapshots.length; j++) {
+        const snapshot = displayListItemSnapshots[j];
+        const timestamp = snapshot.ts;
+
+        if (timestamp < navigationStart ||
+        timestamp > navigationStart + loadDuration) {
+          continue;
+        }
+
+        let left = snapshot.args.params.layerRect.left;
+        let right = snapshot.args.params.layerRect.right;
+        let top = snapshot.args.params.layerRect.top;
+        let bottom = snapshot.args.params.layerRect.bottom;
+        if (left > viewportX + viewportWidth) continue;
+        if (right < viewportX) continue;
+        if (top > viewportY + viewportHeight) continue;
+        if (bottom < viewportY) continue;
+
+        left = Math.max(left, viewportX);
+        right = Math.min(right, viewportX + viewportWidth);
+        top = Math.max(top, viewportY);
+        bottom = Math.min(bottom, viewportY + viewportHeight);
+
+        for (let u = top; u < bottom; u++) {
+          for (let v = left; v < right; v++) {
+            // layerRect coordinates are relative to the whole document
+            // but we're interested in coordinates relative to the viewport.
+            lastUpdateTimes[u - viewportY][v - viewportX] =
+              Math.max(lastUpdateTimes[u - viewportY][v - viewportX],
+                  timestamp - navigationStart);
+          }
+        }
+      }
+    }
+    let pixelsLastUpdatedAfter2s = 0;
+    for (let i = 0; i < lastUpdateTimes.length; i++) {
+      pixelsLastUpdatedAfter2s +=
+        lastUpdateTimes[i].filter(x => x < 2000 && x > 0).length;
+    }
+    pixelsLastUpdatedAfter2s /= (viewportWidth * viewportHeight);
+    samples.push({value: pixelsLastUpdatedAfter2s});
+  }
+
   function addFirstMeaningfulPaintSample(samples, rendererHelper,
       navigationStart, fmpMarkerEvent, url) {
     const navStartToFMPRange = tr.b.math.Range.fromExplicitRange(
@@ -486,6 +571,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstCpuIdleSamples = [];
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
+    const visuallyCompleteAt2SecondSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -493,6 +579,9 @@ tr.exportTo('tr.metrics.sh', function() {
       }
       const rendererHelper = chromeHelper.rendererHelpers[
           expectation.renderProcess.pid];
+      addVisuallyCompleteAt2SecondSample(visuallyCompleteAt2SecondSamples,
+          rendererHelper, expectation.navigationStart.start,
+          expectation.duration, expectation.navigationStart.args.frame);
       if (expectation.fmpEvent !== undefined) {
         addFirstMeaningfulPaintSample(firstMeaningfulPaintSamples,
             rendererHelper, expectation.navigationStart, expectation.fmpEvent,
@@ -522,6 +611,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstMeaningfulPaintCpuTimeSamples,
       firstCpuIdleSamples,
       interactiveSamples,
+      visuallyCompleteAt2SecondSamples,
     };
   }
 
@@ -646,6 +736,14 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
+    const visuallyCompleteAt2SecondHistogram = histograms.createHistogram(
+        'visuallyCompleteAt2Second', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Fraction of pixels in the initial viewport ' +
+          'reaching final value within 2 seconds after navigation start.',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
     for (const pid in chromeHelper.rendererHelpers) {
@@ -654,7 +752,6 @@ tr.exportTo('tr.metrics.sh', function() {
 
       const samplesSet =
           collectLoadingMetricsForRenderer(rendererHelper);
-
       addSamplesToHistogram(
           samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
       addSamplesToHistogram(
@@ -703,6 +800,10 @@ tr.exportTo('tr.metrics.sh', function() {
     addSamplesToHistogram(
         samplesSet.firstCpuIdleSamples,
         timeToFirstCpuIdleHistogram,
+        histograms);
+    addSamplesToHistogram(
+        samplesSet.visuallyCompleteAt2SecondSamples,
+        visuallyCompleteAt2SecondHistogram,
         histograms);
   }
 
