@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54e88594_de2fb937",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:34:50Z",
+      "side": 1,
+      "message": "Could we factor out this string sanitation code to be reused in all places where it is needed? Also maybe something more general like `re.subs(r\u0027\\W+\u0027, \u0027-\u0027, tag)` would be appropriate?\n\nIs this going to affect whether existing tags used in the code match or not? And do you still need the .lower() that was removed in serially_executed_browser_test_case.py?",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb30c4d0_ff9a6a6f",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:34:50Z",
+      "side": 1,
+      "message": "At least for the platform you can probably use a Mock from the mock library [1]; e.g.\n\n  platform \u003d mock.Mock()\n  platform.GetOSName.return_value \u003d \u0027linux\u0027\n  platform.GetOSVersionName.return_value \u003d \u0027debian\u0027\n\n[1]: https://docs.python.org/3/library/unittest.mock.html\n\nFor the browser, if mocking the whole thing is too much, you can keep something similar to what you have but call it a FakeBrowser.",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc2d0f6b_e1a7cbf7",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:34:50Z",
+      "side": 1,
+      "message": "Also would be nice if this tested some of the \"string sanitation\" code in the tags.",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6eb51d52_1c7bd15a",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:34:50Z",
+      "side": 1,
+      "message": "could this just be `return browser.GetTypExpectationsTags()` ? (which already includes the platform ones?)",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
