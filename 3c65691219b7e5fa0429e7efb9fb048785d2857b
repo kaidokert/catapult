@@ -16,6 +16,24 @@
       "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "732c78ff_52d80170",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-17T13:41:07Z",
+      "side": 1,
+      "message": "Allowing to set metrics only once sgtm.\n\nAs for making it a tuple, there\u0027s an explicit assert later on [1] that it is a list. Converting it to a tuple and then back to a list seems pretty strange to me, to be honest, so perhaps we can leave it a list?\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/metrics/metric_runner.py?l\u003d29",
+      "parentUuid": "eebf05e2_163fb66e",
+      "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
