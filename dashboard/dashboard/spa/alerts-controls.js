@@ -342,6 +342,102 @@ export default class AlertsControls extends ElementBase {
         </div>
       </span>
 
+      <span>
+        <cp-icon id="help" icon="help" @click="${this.onHelp_}"></cp-icon>
+        <div>
+          <table>
+            <tr>
+              <td>?</td>
+              <td>Toggle this dialog</td>
+            </tr>
+            <tr>
+              <td>j</td>
+              <td>Move the cursor down through the alerts table</td>
+            </tr>
+            <tr>
+              <td>k</td>
+              <td>Move the cursor up through the alerts table</td>
+            </tr>
+            <tr>
+              <td>x</td>
+              <td>Toggle selection of the alert at the cursor</td>
+            </tr>
+            <tr>
+              <td>g</td>
+              <td>Toggle expansion of the alert group at the cursor</td>
+            </tr>
+            <tr>
+              <td>t</td>
+              <td>Toggle expansion of the triaged alerts at the cursor</td>
+            </tr>
+            <tr>
+              <td>a</td>
+              <td>Accept autotriage suggestion for selected alerts</td>
+            </tr>
+            <tr>
+              <td>e</td>
+              <td>Assign selected alerts to an existing bug</td>
+            </tr>
+            <tr>
+              <td>n</td>
+              <td>File a new bug for selected alerts</td>
+            </tr>
+            <tr>
+              <td>i</td>
+              <td>Ignore selected alerts</td>
+            </tr>
+            <tr>
+              <td>u</td>
+              <td>Unassign selected alerts</td>
+            </tr>
+            <tr>
+              <td>/</td>
+              <td>Focus the Sheriff menu</td>
+            </tr>
+            <tr>
+              <td>sc</td>
+              <td>Sort the alerts table by Count</td>
+            </tr>
+            <tr>
+              <td>st</td>
+              <td>Sort the alerts table by Triaged</td>
+            </tr>
+            <tr>
+              <td>su</td>
+              <td>Sort the alerts table by Bug</td>
+            </tr>
+            <tr>
+              <td>ss</td>
+              <td>Sort the alerts table by Suite</td>
+            </tr>
+            <tr>
+              <td>sm</td>
+              <td>Sort the alerts table by Measurement</td>
+            </tr>
+            <tr>
+              <td>sa</td>
+              <td>Sort the alerts table by Master</td>
+            </tr>
+            <tr>
+              <td>sb</td>
+              <td>Sort the alerts table by Bot</td>
+            </tr>
+            <tr>
+              <td>se</td>
+              <td>Sort the alerts table by Case</td>
+            </tr>
+            <tr>
+              <td>sd</td>
+              <td>Sort the alerts table by Delta</td>
+            </tr>
+            <tr>
+              <td>sp</td>
+              <td>Sort the alerts table by Percent Delta</td>
+            </tr>
+          </table>
+        </div>
+      </span>
+
       <cp-icon id="close" icon="close" @click="${this.onClose_}"></cp-icon>
     `;
   }
