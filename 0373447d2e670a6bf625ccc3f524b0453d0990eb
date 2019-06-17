@@ -16,6 +16,24 @@
       "revId": "0373447d2e670a6bf625ccc3f524b0453d0990eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b79dff3_14a5a79f",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-17T15:58:23Z",
+      "side": 1,
+      "message": "Fixed.\n\nCan\u0027t remove the other assert though, because the AddTraces() method can be called both with and without tbm_metrics, it\u0027s not an error in both cases. So we should check somewhere that SetTimelineBasedMetrics() has been called.",
+      "parentUuid": "9df87cf9_e44a27d5",
+      "revId": "0373447d2e670a6bf625ccc3f524b0453d0990eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

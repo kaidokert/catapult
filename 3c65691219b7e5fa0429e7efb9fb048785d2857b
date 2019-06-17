@@ -52,6 +52,24 @@
       "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f2c69b9_b3c10251",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-17T15:58:23Z",
+      "side": 1,
+      "message": "Perhaps we can make an interface change a topic of another CL? I thinks it makes sense to keep this CL concise and focused on moving the TBM metrics list from TraceValue to StoryRun, while keeping all interfaces intact.",
+      "parentUuid": "2c60c81f_32fed7f0",
+      "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
