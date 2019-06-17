@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cc1f605c_b6c6e962",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-17T17:24:43Z",
+      "side": 1,
+      "message": "It will only add to the existing tags. Which will not affect the existing expectations. We don\u0027t need the .lower(), since I made the tags case insensitive in another CL.",
+      "parentUuid": "54e88594_de2fb937",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb30c4d0_ff9a6a6f",
         "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
         "patchSetId": 3
@@ -64,6 +82,24 @@
       "writtenOn": "2019-06-17T13:34:50Z",
       "side": 1,
       "message": "could this just be `return browser.GetTypExpectationsTags()` ? (which already includes the platform ones?)",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db3b2b49_6ac6cdca",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-17T17:24:43Z",
+      "side": 1,
+      "message": "The browser passed here is the actual Browser object created from PossibleBrowser\u0027s BrowserSession function. The Browser instance is needed in the GPU test\u0027s GetPlatformTags implementations.",
+      "parentUuid": "6eb51d52_1c7bd15a",
       "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
