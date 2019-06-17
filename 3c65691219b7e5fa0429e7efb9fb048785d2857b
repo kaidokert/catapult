@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eebf05e2_163fb66e",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:03:28Z",
+      "side": 1,
+      "message": "This is exposing the inner list which callers might accidentally mutate. But I also think it would be nice if we force clients to only be able to set the tbm metrics in a single place once. So I would suggest.\n\n- replace AddTbmMetric with SetTbmMetrics(metrics) where you set self._tbm_metrics \u003d tuple(metrics), and complain if metrics were already set.\n- let this property as is, callers now get a tuple they cannot change. :)",
+      "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
