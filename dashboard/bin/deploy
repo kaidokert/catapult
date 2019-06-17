@@ -44,6 +44,11 @@ def Main():
     from catapult_build import appengine_deploy
     appengine_deploy.Deploy(deployment_paths, sys.argv[1:],
                             os.environ.get('VERSION'))
+
+    # TODO(crbug.com/941888): Remove after all queue handlers are threadsafe.
+    if not sys.argv[1:] and not os.environ.get('VERSION'):
+      appengine_deploy.Deploy(deployment_paths, ['unsafe.yaml'], 'unsafe')
+
   except RuntimeError:
     pass
   finally:
