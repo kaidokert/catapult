@@ -34,6 +34,24 @@
       "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c60c81f_32fed7f0",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:51:55Z",
+      "side": 1,
+      "message": ":( but why?\n\nAnyway, yeah, it might be a bit strange, but I still think it makes more sense to keep this as a tuple here and convert back to list in the call at page_test_results.py.\n\nLet\u0027s reduce the number of places where things can go wrong. (Also you could tweak https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/web_perf/timeline_based_measurement.py?rcl\u003d07b0ead06a3beba8177e0c0d5bd16b5621827178\u0026l\u003d103 to already return a tuple; as that API has the same problem.)",
+      "parentUuid": "732c78ff_52d80170",
+      "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

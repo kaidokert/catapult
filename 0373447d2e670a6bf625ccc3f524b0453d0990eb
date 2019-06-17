@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9df87cf9_e44a27d5",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T13:51:55Z",
+      "side": 1,
+      "message": "nit: \" -\u003e \u0027 \n\nfor consistency, single quotes are already being used elsewhere in this file.\n\nAlso maybe this should complain if the new metrics are an empty sequence (and then you can remove the other assert at [1]).\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/web_perf/timeline_based_measurement.py?rcl\u003d07b0ead06a3beba8177e0c0d5bd16b5621827178\u0026l\u003d150",
+      "revId": "0373447d2e670a6bf625ccc3f524b0453d0990eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
