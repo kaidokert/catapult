@@ -6,9 +6,23 @@ import logging
 import time
 import unittest
 
+from mock import patch
 from telemetry.core import platform as platform_module
+from telemetry.internal.platform import platform_backend
+from telemetry.internal.browser import possible_browser
 from telemetry import decorators
 
+class FakeBrowser(                     # pylint: disable=abstract-method
+    possible_browser.PossibleBrowser):
+
+  def __init__(
+      self, platform, browser_type, target_os, supports_tab_control=False):
+    super(FakeBrowser, self).__init__(
+        browser_type, target_os, supports_tab_control)
+    self._platform = platform
+
+  def _InitPlatformIfNeeded(self):
+    pass
 
 class PlatformBackendTest(unittest.TestCase):
   @decorators.Disabled('mac',       # crbug.com/440666
@@ -37,3 +51,15 @@ class PlatformBackendTest(unittest.TestCase):
     output = platform.StopMonitoringPower()
     self.assertTrue(output.has_key('energy_consumption_mwh'))
     self.assertTrue(output.has_key('identifier'))
+
+  def testGetTypExpectationsTags(self):
+    with patch.object(
+        platform_backend.PlatformBackend, 'GetOSName', return_value='win'):
+      with patch.object(
+          platform_backend.PlatformBackend,
+          'GetOSVersionName', return_value='win 10'):
+        platform = platform_module.Platform(platform_backend.PlatformBackend())
+        browser = FakeBrowser(platform, 'reference_debug', 'win')
+        self.assertEqual(
+            set(browser.GetTypExpectationsTags()),
+            set(['win', 'win-10', 'reference-debug']))
