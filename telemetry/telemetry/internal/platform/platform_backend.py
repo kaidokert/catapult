@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import re
+
 from telemetry.internal.forwarders import do_nothing_forwarder
 from telemetry.internal.platform import network_controller_backend
 from telemetry.internal.platform import tracing_controller_backend
@@ -243,3 +245,7 @@ class PlatformBackend(object):
 
   def WaitForCpuTemperature(self, temp):
     pass
+
+  def GetTypExpectationsTags(self):
+    return [re.sub('[ _]', '-', tag) for tag in [
+        self.GetOSName(), self.GetOSVersionName()] if tag]

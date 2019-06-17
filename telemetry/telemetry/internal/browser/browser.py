@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import logging
+import re
 
 from py_utils import cloud_storage
 from py_utils import exc_util
@@ -84,6 +85,10 @@ class Browser(app.App):
       raise browser_backend.ExtensionsNotSupportedException(
           'Extensions not supported')
     return extension_dict.ExtensionDict(self._browser_backend.extension_backend)
+
+  def GetTypExpectationsTags(self):
+    tags = self.platform.GetTypExpectationsTags()
+    return tags + [re.sub('[ _]', '-', self.browser_type)]
 
   def _LogBrowserInfo(self):
     trim_logs = self._browser_backend.browser_options.trim_logs
