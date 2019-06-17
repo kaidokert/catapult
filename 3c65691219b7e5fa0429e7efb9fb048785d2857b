@@ -70,6 +70,24 @@
       "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "734e277a_d0e26e6f",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-17T16:11:35Z",
+      "side": 1,
+      "message": "Ack, sgtm.",
+      "parentUuid": "5f2c69b9_b3c10251",
+      "revId": "3c65691219b7e5fa0429e7efb9fb048785d2857b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
