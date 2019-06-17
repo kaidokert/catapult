@@ -4,6 +4,7 @@
 
 import contextlib
 import logging
+import re
 
 from telemetry.internal.app import possible_app
 
@@ -123,3 +124,7 @@ class PossibleBrowser(possible_app.PossibleApp):
   @property
   def last_modification_time(self):
     return -1
+
+  def GetTypExpectationsTags(self):
+    tags = self.platform.GetTypExpectationsTags()
+    return tags + [re.sub('[ _]', '-', self.browser_type)]
