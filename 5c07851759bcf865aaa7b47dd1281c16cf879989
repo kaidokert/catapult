@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d5cced11_7b8f0f11",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-17T21:51:58Z",
+      "side": 1,
+      "message": "I created a tag sanitation  method in telemetry.util.perf_tests_helper and call it where it is needed.",
+      "parentUuid": "cc1f605c_b6c6e962",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb30c4d0_ff9a6a6f",
         "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
         "patchSetId": 3
