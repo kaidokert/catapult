@@ -133,6 +133,18 @@ class MacPlatformBackend(posix_platform_backend.PosixPlatformBackend):
 
     raise NotImplementedError('Unknown mac version %s.' % os_version)
 
+  def GetTypExpectationsTags(self):
+    # telemetry benchmarks expectations need to know if the version number
+    # of the operating system is 10.12 or 10.13
+    tags = super(MacPlatformBackend, self).GetTypExpectationsTags()
+    detail_string = self.GetOSVersionDetailString()
+    if detail_string.startswith('10.11'):
+      return ['snowleopard-10.11'] + tags
+    elif detail_string.startswith('10.12'):
+      return ['snowleopard-10.12'] + tags
+    else:
+      return tags
+
   @decorators.Cache
   def GetOSVersionDetailString(self):
     product = subprocess.check_output(['sw_vers', '-productVersion']).strip()
