@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "066e6693_4fb89569",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-18T13:15:46Z",
+      "side": 1,
+      "message": "nit: Let\u0027s save the results of objects.getAllInstancesNamed(\u0027cc::DisplayItemList\u0027) in a variable sooner (above line 310) instead of calling it multiple times.",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 316,
+        "endChar": 57
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1380b7d_13422f07",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-18T13:15:46Z",
+      "side": 1,
+      "message": "Now that you changed the filter condition to x \u003c 2000, this variable should be called pixelsLastUpdatedBefore2s right?",
+      "range": {
+        "startLine": 351,
+        "startChar": 8,
+        "endLine": 351,
+        "endChar": 32
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08b0de57_7fc9e51e",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-18T13:15:46Z",
+      "side": 1,
+      "message": "Is it possible for an update time to be negative?",
+      "range": {
+        "startLine": 354,
+        "startChar": 51,
+        "endLine": 354,
+        "endChar": 56
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a63b222_97649c96",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-18T13:15:46Z",
+      "side": 1,
+      "message": "Ah you can push an expectation directly! Cool :)",
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
