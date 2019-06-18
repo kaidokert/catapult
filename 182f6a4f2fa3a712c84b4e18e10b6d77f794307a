@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ec43236a_a2f1a32c",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-18T14:54:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "066e6693_4fb89569",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 316,
+        "endChar": 57
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1380b7d_13422f07",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f531d78f_dea12c57",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-18T14:54:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1380b7d_13422f07",
+      "range": {
+        "startLine": 351,
+        "startChar": 8,
+        "endLine": 351,
+        "endChar": 32
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f5e6e6b2_9b80a960",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-18T14:54:51Z",
+      "side": 1,
+      "message": "No! but if the last update time is 0 then the pixel wasn\u0027t touched during this navigation window and so I assumed we wouldn\u0027t count it as a pixel that was updated.\nwhat do you think?",
+      "parentUuid": "08b0de57_7fc9e51e",
+      "range": {
+        "startLine": 354,
+        "startChar": 51,
+        "endLine": 354,
+        "endChar": 56
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a63b222_97649c96",
         "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
         "patchSetId": 9
@@ -85,6 +157,24 @@
       "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "202352f0_327ddfc9",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-18T14:54:51Z",
+      "side": 1,
+      "message": ":)",
+      "parentUuid": "2a63b222_97649c96",
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
