@@ -3,7 +3,6 @@
 # found in the LICENSE file.
 
 import StringIO
-import os
 import unittest
 
 from py_utils import tempfile_ext
@@ -30,13 +29,12 @@ from tracing.value.diagnostics import reserved_infos
 
 class TelemetryInfoTest(unittest.TestCase):
   def testTraceLocalPathWithoutLabel(self):
-    ti = page_test_results.TelemetryInfo(output_dir='/tmp')
-    ti.benchmark_name = 'benchmark'
-    ti.benchmark_start_epoch = 123
-    ti.benchmark_descriptions = 'foo'
-    story_set = story.StorySet(base_dir=os.path.dirname(__file__))
+    ti = page_test_results.TelemetryInfo(
+        benchmark_name='benchmark',
+        benchmark_description='foo',
+        output_dir='/tmp')
+    story_set = story.StorySet()
     bar_story = page_module.Page("http://www.bar.com/", story_set,
-                                 story_set.base_dir,
                                  name='http://www.bar.com/')
     story_set.AddStory(bar_story)
     ti.WillRunStory(bar_story, None)
@@ -44,14 +42,13 @@ class TelemetryInfoTest(unittest.TestCase):
     self.assertNotIn('custom_label', ti.trace_local_path)
 
   def testTraceLocalPathWithLabel(self):
-    ti = page_test_results.TelemetryInfo(output_dir='/tmp')
-    ti.benchmark_name = 'benchmark'
-    ti.benchmark_start_epoch = 123
-    ti.benchmark_descriptions = 'foo'
-    ti.label = 'custom_label'
-    story_set = story.StorySet(base_dir=os.path.dirname(__file__))
+    ti = page_test_results.TelemetryInfo(
+        benchmark_name='benchmark',
+        benchmark_description='foo',
+        results_label='custom_label',
+        output_dir='/tmp')
+    story_set = story.StorySet()
     bar_story = page_module.Page("http://www.bar.com/", story_set,
-                                 story_set.base_dir,
                                  name='http://www.bar.com/')
     story_set.AddStory(bar_story)
     ti.WillRunStory(bar_story, None)
@@ -59,13 +56,11 @@ class TelemetryInfoTest(unittest.TestCase):
     self.assertIn('custom_label', ti.trace_local_path)
 
   def testGetDiagnostics(self):
-    ti = page_test_results.TelemetryInfo()
-    ti.benchmark_name = 'benchmark'
-    ti.benchmark_start_epoch = 123
-    ti.benchmark_descriptions = 'foo'
-    story_set = story.StorySet(base_dir=os.path.dirname(__file__))
+    ti = page_test_results.TelemetryInfo(
+        benchmark_name='benchmark',
+        benchmark_description='foo')
+    story_set = story.StorySet()
     foo_story = page_module.Page("http://www.foo.com/", story_set,
-                                 story_set.base_dir,
                                  name='story1')
     story_set.AddStory(foo_story)
     ti.WillRunStory(foo_story, None)
@@ -89,9 +84,8 @@ class TelemetryInfoTest(unittest.TestCase):
 
 
     # Now reset the story and assert that we update the diagnostics.
-    story_set = story.StorySet(base_dir=os.path.dirname(__file__))
+    story_set = story.StorySet()
     bar_story = page_module.Page("http://www.bar.com/", story_set,
-                                 story_set.base_dir,
                                  name='story2')
     story_set.AddStory(bar_story)
     ti.WillRunStory(bar_story, None)
@@ -114,15 +108,12 @@ class TelemetryInfoTest(unittest.TestCase):
 
 class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
   def setUp(self):
-    story_set = story.StorySet(base_dir=os.path.dirname(__file__))
+    story_set = story.StorySet()
     story_set.AddStory(page_module.Page("http://www.bar.com/", story_set,
-                                        story_set.base_dir,
                                         name='http://www.bar.com/'))
     story_set.AddStory(page_module.Page("http://www.baz.com/", story_set,
-                                        story_set.base_dir,
                                         name='http://www.baz.com/'))
     story_set.AddStory(page_module.Page("http://www.foo.com/", story_set,
-                                        story_set.base_dir,
                                         name='http://www.foo.com/'))
     self.story_set = story_set
 
@@ -535,12 +526,12 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
 
 class PageTestResultsFilterTest(unittest.TestCase):
   def setUp(self):
-    story_set = story.StorySet(base_dir=os.path.dirname(__file__))
+    story_set = story.StorySet()
     story_set.AddStory(
-        page_module.Page('http://www.foo.com/', story_set, story_set.base_dir,
+        page_module.Page('http://www.foo.com/', story_set,
                          name='http://www.foo.com'))
     story_set.AddStory(
-        page_module.Page('http://www.bar.com/', story_set, story_set.base_dir,
+        page_module.Page('http://www.bar.com/', story_set,
                          name='http://www.bar.com/'))
     self.story_set = story_set
 
