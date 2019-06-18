@@ -34,19 +34,13 @@ class TestBase(unittest.TestCase):
   def pages(self):
     return self.story_set.stories
 
-  def getPageTestResults(self):
-    results = page_test_results.PageTestResults()
-    results.telemetry_info.benchmark_name = 'benchmark'
-    results.telemetry_info.benchmark_start_epoch = 123
-    results.telemetry_info.benchmark_descriptions = 'foo'
-    return results
 
 class SummaryTest(TestBase):
   def testBasicSummary(self):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
 
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 3,
@@ -82,7 +76,7 @@ class SummaryTest(TestBase):
   def testBasicSummaryWithOnlyOnePage(self):
     page0 = self.pages[0]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
 
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 3,
@@ -109,7 +103,7 @@ class SummaryTest(TestBase):
     page1 = self.pages[1]
     page2 = self.pages[2]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 3,
                             improvement_direction=improvement_direction.UP)
@@ -175,7 +169,7 @@ class SummaryTest(TestBase):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 3,
                             improvement_direction=improvement_direction.UP)
@@ -208,7 +202,7 @@ class SummaryTest(TestBase):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 3,
                             improvement_direction=improvement_direction.UP)
@@ -252,7 +246,7 @@ class SummaryTest(TestBase):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 3,
                             improvement_direction=improvement_direction.UP)
@@ -299,7 +293,7 @@ class SummaryTest(TestBase):
   def testPageRunsTwice(self):
     page0 = self.pages[0]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
 
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'b', 'seconds', 2,
@@ -331,7 +325,7 @@ class SummaryTest(TestBase):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
 
     results.WillRunPage(page0)
     v0 = list_of_scalar_values.ListOfScalarValues(
@@ -363,7 +357,7 @@ class SummaryTest(TestBase):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
     results.WillRunPage(page0)
     v0 = histogram.HistogramValue(
         page0, 'a', 'units',
@@ -391,7 +385,7 @@ class SummaryTest(TestBase):
     page0 = self.pages[0]
     page1 = self.pages[1]
 
-    results = self.getPageTestResults()
+    results = page_test_results.PageTestResults()
 
     results.WillRunPage(page0)
     v0 = scalar.ScalarValue(page0, 'a', 'seconds', 20,
