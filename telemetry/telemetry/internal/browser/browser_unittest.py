@@ -34,6 +34,16 @@ class BrowserTest(browser_test_case.BrowserTestCase):
     # Different browsers boot up to different things.
     assert self._browser.tabs[0].url
 
+  def testGetTypExpectationsTags(self):
+    self._browser._app_backend._app_type = 'reference_debug'
+    self._browser.platform._platform_backend.GetOSName = mock.MagicMock(
+        return_value='win')
+    self._browser.platform._platform_backend.GetOSVersionName = mock.MagicMock(
+        return_value='win 10')
+    self.assertEqual(
+        set(self._browser.GetTypExpectationsTags()),
+        set(['win', 'win-10', 'reference-debug']))
+
   @decorators.Enabled('has tabs')
   def testNewCloseTab(self):
     existing_tab = self._browser.tabs[0]
