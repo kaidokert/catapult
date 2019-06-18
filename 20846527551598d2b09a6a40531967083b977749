@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c262eac5_d3a17c66",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-18T21:26:26Z",
+      "side": 1,
+      "message": "I removed the patch decorators and use MagicMock instead.",
+      "parentUuid": "edefe194_724e1677",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc09c9c5_6521b559",
         "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
         "patchSetId": 12
@@ -68,6 +86,24 @@
       "revId": "20846527551598d2b09a6a40531967083b977749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e8bdc19_9d99f58c",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-18T21:26:26Z",
+      "side": 1,
+      "message": "I removed the @patch decorators and use MagicMark instead",
+      "parentUuid": "bc09c9c5_6521b559",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
