@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef5c4ba1_7f1f45ff",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-18T09:08:04Z",
+      "side": 1,
+      "message": "\"tags\" should already be cleaned up here, so this should be:\n\n    return tags + perf_tests_helper.sanitizeTypExpectationsTags([self.browser_type])\n\nsimilarly in other places below.",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edefe194_724e1677",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-18T09:08:04Z",
+      "side": 1,
+      "message": "This usage is a bit strange, I think it\u0027s clearer if you mock the entire object; and not methods on the class. Also the change in the signature of browser.Browser constructor is a bit confusing (and thus the pylint complaint).\n\nLooking at the code, you might be able to create mocks for both the browser_backend and the platform_backend; with the necessary methods set as needed. Then use the real browser.Browser class with its real constructor taking the mocks as input args.",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc09c9c5_6521b559",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-18T09:08:04Z",
+      "side": 1,
+      "message": "similar comment as above, hoping there is an clearer incantation for this.",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6acf201e_0fa2acb0",
+        "filename": "telemetry/telemetry/util/perf_tests_helper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-18T09:08:04Z",
+      "side": 1,
+      "message": "Oh, this file looks like dead code. We no longer use this in Telemetry. (I\u0027ll write a CL to remove it.)\n\nI think a better location for this would be in a new file, maybe something like:\n\n  telemetry/testing/test_utils.py or even typ_utils.py",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

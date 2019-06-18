@@ -175,6 +175,24 @@
       "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d23b982_bbd6454a",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-18T09:08:04Z",
+      "side": 1,
+      "message": "Thanks! Looks good.",
+      "parentUuid": "6f63506c_a4ae17af",
+      "revId": "5c07851759bcf865aaa7b47dd1281c16cf879989",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
