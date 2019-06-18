@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "a77b9af9_beb64d1b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-18T15:09:10Z",
+      "side": 1,
+      "message": "As discussed offline, since we now renamed it to pixelsLastUpdatedBefore2s, we should include the 0 values.",
+      "parentUuid": "f5e6e6b2_9b80a960",
+      "range": {
+        "startLine": 354,
+        "startChar": 51,
+        "endLine": 354,
+        "endChar": 56
+      },
+      "revId": "182f6a4f2fa3a712c84b4e18e10b6d77f794307a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a63b222_97649c96",
         "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
         "patchSetId": 9
