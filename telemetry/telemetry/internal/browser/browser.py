@@ -15,6 +15,7 @@ from telemetry.internal.backends.chrome_inspector import tracing_backend
 from telemetry.internal.browser import extension_dict
 from telemetry.internal.browser import tab_list
 from telemetry.internal.browser import web_contents
+from telemetry.util import perf_tests_helper
 
 
 class Browser(app.App):
@@ -84,6 +85,11 @@ class Browser(app.App):
       raise browser_backend.ExtensionsNotSupportedException(
           'Extensions not supported')
     return extension_dict.ExtensionDict(self._browser_backend.extension_backend)
+
+  def GetTypExpectationsTags(self):
+    tags = self.platform.GetTypExpectationsTags()
+    return perf_tests_helper.sanitizeTypExpectationsTags(
+        tags + [self.browser_type])
 
   def _LogBrowserInfo(self):
     trim_logs = self._browser_backend.browser_options.trim_logs
