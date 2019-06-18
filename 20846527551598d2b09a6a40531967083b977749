@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b9694629_33c7b260",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-18T17:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef5c4ba1_7f1f45ff",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edefe194_724e1677",
         "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
         "patchSetId": 12
@@ -67,6 +85,24 @@
       "revId": "20846527551598d2b09a6a40531967083b977749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84675b93_fbde6f5b",
+        "filename": "telemetry/telemetry/util/perf_tests_helper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-18T17:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6acf201e_0fa2acb0",
+      "revId": "20846527551598d2b09a6a40531967083b977749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
