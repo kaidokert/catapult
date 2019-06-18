@@ -10,10 +10,12 @@ import unittest
 
 from telemetry.core import exceptions
 from telemetry import decorators
+from telemetry.core import platform as platform_module
 from telemetry.internal.browser import browser as browser_module
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.platform import gpu_device
 from telemetry.internal.platform import gpu_info
+from telemetry.internal.platform import platform_backend
 from telemetry.internal.platform import system_info
 from telemetry.testing import browser_test_case
 from telemetry.testing import options_for_unittests
@@ -33,6 +35,21 @@ class BrowserTest(browser_test_case.BrowserTestCase):
 
     # Different browsers boot up to different things.
     assert self._browser.tabs[0].url
+
+  @mock.patch.object(browser_module.Browser, '__init__', lambda x: None)
+  @mock.patch.object(browser_module.Browser, 'browser_type', 'reference_debug')
+  @mock.patch.object(platform_backend.PlatformBackend, 'GetOSName')
+  @mock.patch.object(platform_backend.PlatformBackend, 'GetOSVersionName')
+  def testGetTypExpectationsTags(self, os_version_fn, os_name_fn):
+    os_name_fn.return_value = 'win'
+    os_version_fn.return_value = 'win 10'
+    pb = platform_backend.PlatformBackend()
+    _ = platform_module.Platform(pb)
+    b = browser_module.Browser()  # pylint: disable=no-value-for-parameter
+    b._platform_backend = pb
+    self.assertEqual(
+        set(b.GetTypExpectationsTags()),
+        set(['win', 'win-10', 'reference-debug']))
 
   @decorators.Enabled('has tabs')
   def testNewCloseTab(self):
