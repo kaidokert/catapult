@@ -67,6 +67,24 @@
       "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffceb770_56d0f905",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-19T21:10:03Z",
+      "side": 1,
+      "message": "We will eventually need a matrix of pixels, because we\u0027re aiming to identify the individual pixels that were updated for arbitrary shapes. Is the memory consumption really that large here? Even for a 1080p viewport, it\u0027s 8 bytes per int * 1920 x 1080 \u003d 16.5MB, which is quickly freed at the end of the function. \n\nHaving said that, it would be nice to not increase OOM probability on our perf infrastructure while we\u0027re experimenting with metrics. Is there any way to land this without running it every time loadingMetric is run? One way to do that would be to extract this metric to it\u0027s own metric file. Would that be better?",
+      "parentUuid": "48f9b27a_96761749",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
