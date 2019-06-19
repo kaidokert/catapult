@@ -85,6 +85,24 @@
       "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2790a08c_e957e199",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-06-19T21:14:57Z",
+      "side": 1,
+      "message": "Alternatively we can guard it on the existence of the traces we need, right? Are the \"cc::DisplayItemList\" trace events normally gathered? We could avoid creating this array if there are no such events.",
+      "parentUuid": "ffceb770_56d0f905",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
