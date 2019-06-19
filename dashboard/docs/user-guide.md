@@ -73,6 +73,19 @@ The four buttons at the top of the alerts table allow triaging alerts.
    a dialog. It immediately unassigns selected alerts so that they may be
    assigned to a different bug.
 
+### Autotriage
+
+The box above the light blue triage controls bar automatically suggests triage
+actions for selected alerts, and explains its suggestions.
+
+Full automatic mode is currently disabled until sheriffs are comfortable with
+the heuristics.  After full automatic mode is deemed safe and enabled, when
+activated, then the AUTOTRIAGE button would change to a START/STOP button.
+When you click START, autotriage will automatically take the suggested action.
+However, autotriage would wait a few seconds between computing a suggestion and
+taking the action in order to allow you to click STOP to review the suggested
+action, dig into the timeseries, and possibly take a different action.
+
 ### Timeseries Charts
 
 When alerts are selected, their timeseries are displayed in the chart below the
