@@ -6,7 +6,10 @@ import logging
 import time
 import unittest
 
+from mock import MagicMock
 from telemetry.core import platform as platform_module
+from telemetry.internal.platform import platform_backend
+from telemetry.internal.browser import possible_browser
 from telemetry import decorators
 
 
@@ -37,3 +40,22 @@ class PlatformBackendTest(unittest.TestCase):
     output = platform.StopMonitoringPower()
     self.assertTrue(output.has_key('energy_consumption_mwh'))
     self.assertTrue(output.has_key('identifier'))
+
+  def testGetTypExpectationsTags(self):
+    pbe = platform_backend.PlatformBackend()
+    pb = possible_browser.PossibleBrowser('reference_debug', 'win', False)
+    os_name_fn = pbe.GetOSName
+    os_version_name_fn = pbe.GetOSVersionName
+    _init_platform_fn = pb._InitPlatformIfNeeded
+    try:
+      pbe.GetOSName = MagicMock(return_value='win')
+      pbe.GetOSVersionName = MagicMock(return_value='win 10')
+      pb._InitPlatformIfNeeded = MagicMock(return_value=None)
+      pb._platform = platform_module.Platform(pbe)
+      self.assertEqual(
+          set(pb.GetTypExpectationsTags()),
+          set(['win', 'win-10', 'reference-debug']))
+    finally:
+      pbe.GetOSName = os_name_fn
+      pbe.GetOSVersionName = os_version_name_fn
+      pb._InitPlatformIfNeeded = _init_platform_fn
