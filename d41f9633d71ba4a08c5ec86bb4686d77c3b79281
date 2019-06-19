@@ -103,6 +103,24 @@
       "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932796e9_e33a5389",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-19T21:47:28Z",
+      "side": 1,
+      "message": "I was also thinking maybe computing one column at a time.\nIt will be less efficient but we will avoid it being OOM.",
+      "parentUuid": "2790a08c_e957e199",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
