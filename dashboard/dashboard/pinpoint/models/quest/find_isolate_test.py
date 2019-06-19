@@ -10,6 +10,7 @@ import unittest
 
 import mock
 
+from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import isolate
 from dashboard.pinpoint.models.change import change_test
 from dashboard.pinpoint.models.quest import find_isolate

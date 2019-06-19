@@ -10,6 +10,7 @@ import json
 import urlparse
 
 from dashboard.pinpoint.models import change as change_module
+from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import isolate
 from dashboard.pinpoint.models.quest import execution
 from dashboard.pinpoint.models.quest import quest
@@ -20,14 +21,14 @@ from dashboard.services import gerrit_service
 BUCKET = 'master.tryserver.chromium.perf'
 
 
-class IsolateNotFoundError(execution.FatalError):
+class IsolateNotFoundError(errors.FatalError):
   """Raised when the build succeeds, but Pinpoint can't find the isolate.
 
   This error is fatal to the Job.
   """
 
 
-class BuildError(execution.InformationalError):
+class BuildError(errors.InformationalError):
   """Raised when the build fails."""
 
 
@@ -139,9 +140,9 @@ class _FindIsolateExecution(execution.Execution):
       return
 
     if build['result'] == 'FAILURE':
-      raise BuildError('Build failed: ' + build['failure_reason'])
+      raise BuildError(errors.BUILD_FAILED % build['failure_reason'])
     if build['result'] == 'CANCELED':
-      raise BuildError('Build was canceled: ' + build['cancelation_reason'])
+      raise BuildError(errors.BUILD_CANCELLED % build['cancelation_reason'])
 
     # The build succeeded. Parse the result and complete this Quest.
     properties = json.loads(build['result_details_json'])['properties']
@@ -151,9 +152,7 @@ class _FindIsolateExecution(execution.Execution):
     key = '_'.join(('swarm_hashes', commit_position, suffix))
 
     if self._target not in properties[key]:
-      raise IsolateNotFoundError(
-          'Buildbucket says the build completed successfully, '
-          "but Pinpoint can't find the isolate hash.")
+      raise IsolateNotFoundError(errors.BUILD_ISOLATE_NOT_FOUND)
 
     result_arguments = {
         'isolate_server': properties['isolate_server'],
