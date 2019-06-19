@@ -33,6 +33,24 @@
       "revId": "364e2bdb4141ddccd45101f876f8e260654c0153",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d788b65_989ade5d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-19T11:53:16Z",
+      "side": 1,
+      "message": "In our particular case, swapping `with` and `try` would be sufficient. But the next time we may hit another issue. Having a broad except block that does not even log anything is pretty dangerous, in my opinion.\n\nTotally agree about the general messiness of this code. I might try to look into ways to simplify it a little (but definitely not in this CL).",
+      "parentUuid": "3638f4dc_3ee87c84",
+      "revId": "364e2bdb4141ddccd45101f876f8e260654c0153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
