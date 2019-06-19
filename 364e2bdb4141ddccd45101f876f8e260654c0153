@@ -51,6 +51,24 @@
       "revId": "364e2bdb4141ddccd45101f876f8e260654c0153",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59a897a7_1b539f8e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-19T12:10:43Z",
+      "side": 1,
+      "message": "I also agree, \"a broad except block that does not even log anything\" is a bad bad thing. But fixing that may be part of that later carefully written CL and not this one.\n\nThe issue with your current solution (I think) is that \"handleable\" exceptions (e.g. those processed above in line 154) will be logged and recorded twice. And our logs are pretty spammy already, so I would prefer to avoid that.\n\nMaybe the solution is that _RunStoryAndProcessErrorIfNeeded should not re-raise errors that were already \"processed\". But again, not sure if that can be done as a simple fix here, or should be part of a follow up CL.",
+      "parentUuid": "3d788b65_989ade5d",
+      "revId": "364e2bdb4141ddccd45101f876f8e260654c0153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
