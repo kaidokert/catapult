@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05cb378a_5e1a78c5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-19T20:39:52Z",
+      "side": 1,
+      "message": "If 2s is arbitrary, then it should be easy to change as a constant without renaming functions.",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b273ce5_7985ed26",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-19T20:39:52Z",
+      "side": 1,
+      "message": "Please define a constant for this number and also reference it on line 352 in the filter().",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c1d606d_648afcad",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-19T20:39:52Z",
+      "side": 1,
+      "message": "Why not use a single variable viewport \u003d event.args.data?",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48f9b27a_96761749",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-19T20:39:52Z",
+      "side": 1,
+      "message": "This is going to consume a huge amount of memory!\nCan you see if the layer tree quad stack view contains enough math to factor out an R-tree?\nIf not, please consider implementing an R-tree for this. Otherwise, I\u0027m concerned that this metric will OOM. Traces already consume a huge amount of memory.\nThere\u0027s an R-tree in src/cc/base, it might be quicker to emscripten that.\n\nIf implementing an R-tree in js or emscripten-ing the one in cc/base is too much trouble for this experiment, please consider down-sampling. That will at least give you a constant that you can tune to balance accuracy vs OOMs.",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
