@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2c06166_8a5f1721",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-19T11:08:14Z",
+      "side": 1,
+      "message": "maybe swapping here the order of the `with` and the `try` should do the work?",
+      "revId": "364e2bdb4141ddccd45101f876f8e260654c0153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3638f4dc_3ee87c84",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-19T11:08:14Z",
+      "side": 1,
+      "message": "see my comment above, ideally \"_RunStoryAndProcessErrorIfNeeded\" should have \"processed\" and recorded this error.\n\n(Aside, this whole code is a big mess, we\u0027ve had crbug.com/866458 open for a long time to try and simplify this. But also is tricky making changes here that don\u0027t have unintended consequences, so we have to do this with care. :-/)",
+      "revId": "364e2bdb4141ddccd45101f876f8e260654c0153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
