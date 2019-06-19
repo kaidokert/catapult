@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3936e5d8_7d6554e8",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-19T19:39:21Z",
+      "side": 1,
+      "message": "It looks like there are now two dimensions to each error: type and message.\nWould it be simpler to merge the messages into the type system?\nThat would allow callers to raise BuildFailed(reason) instead of needing to compose a string first.\nBase classes could be used to allow except blocks to handle groups of errors like RecoverableError, but callers would not need to think about the base classes.\nThat seems like a more common api pattern than requiring users to combine a type, message, and message sub-part.\nIt looks like some of these messages are not passed to an Exception subclass, like REFRESH_FAILURE is only passed to Fail(). So maybe it can stay with its only caller to make it easier to find from the error message? Or maybe it can stay a simple string outside of the type system?",
+      "revId": "2e45603c64910ba95493e7a55547dad0ccb08043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
