@@ -5,7 +5,9 @@
 import os
 import unittest
 
+from mock import MagicMock
 from telemetry.core import platform as platform_module
+from telemetry.internal.platform import mac_platform_backend
 from telemetry.core import os_version
 from telemetry import decorators
 
@@ -38,3 +40,15 @@ class MacPlatformBackendTest(unittest.TestCase):
   def testGetSystemLogSmoke(self):
     platform = platform_module.GetHostPlatform()
     self.assertTrue(platform.GetSystemLog())
+
+  def testGetTypExpectationsTagsIncludesSnowLeopard10_11Tag(self):
+    backend = mac_platform_backend.MacPlatformBackend()
+    backend.GetOSVersionName = MagicMock(return_value='snowleopard')
+    backend.GetOSVersionDetailString = MagicMock(return_value='10.11')
+    self.assertIn('snowleopard-10.11', backend.GetTypExpectationsTags())
+
+  def testGetTypExpectationsTagsIncludesSnowLeopard10_12Tag(self):
+    backend = mac_platform_backend.MacPlatformBackend()
+    backend.GetOSVersionName = MagicMock(return_value='snowleopard')
+    backend.GetOSVersionDetailString = MagicMock(return_value='10.12')
+    self.assertIn('snowleopard-10.12', backend.GetTypExpectationsTags())
