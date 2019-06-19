@@ -16,6 +16,7 @@ import json
 import re
 import shlex
 
+from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution as execution_module
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
@@ -74,11 +75,11 @@ _VPYTHON_PARAMS = {
 }
 
 
-class RunTestError(execution_module.InformationalError):
+class RunTestError(errors.InformationalError):
   pass
 
 
-class SwarmingExpiredError(execution_module.FatalError):
+class SwarmingExpiredError(errors.FatalError):
   """Raised when the Swarming task expires before running.
 
   This error is fatal, and stops the entire Job. If this error happens, the
@@ -258,21 +259,18 @@ class _RunTestExecution(execution_module.Execution):
       return
 
     if result['state'] == 'EXPIRED':
-      raise SwarmingExpiredError('The swarming task expired. The bots are '
-                                 'likely overloaded, dead, or misconfigured.')
+      raise SwarmingExpiredError(errors.SWARMING_EXPIRED)
 
     if result['state'] != 'COMPLETED':
-      raise SwarmingTaskError('The swarming task failed with '
-                              'state "%s".' % result['state'])
+      raise SwarmingTaskError(errors.SWARMING_TASK_ERROR % result['state'])
 
     if result['failure']:
       exception_string = _ParseException(swarming_task.Stdout()['output'])
       if exception_string:
-        raise SwarmingTestError("The test failed. The test's error "
-                                'message was:\n%s' % exception_string)
+        raise SwarmingTestError(
+            errors.SWARMING_TEST_FAILED % exception_string)
       else:
-        raise SwarmingTestError('The test failed. No Python '
-                                'exception was found in the log.')
+        raise SwarmingTestError(errors.SWARMING_TEST_FAILED_NO_EXCEPTION)
 
     result_arguments = {
         'isolate_server': result['outputs_ref']['isolatedserver'],
@@ -289,7 +287,7 @@ class _RunTestExecution(execution_module.Execution):
         # it couldn't find any device to run on. Subsequent Executions probably
         # wouldn't have any better luck, and failing fast is less complex than
         # handling retries.
-        raise RunTestError('There are no bots available to run the test.')
+        raise RunTestError(errors.SWARMING_NO_BOTS)
       else:
         return
 
