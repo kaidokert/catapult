@@ -259,7 +259,8 @@ suite('alerts-section', function() {
     ignore.click();
     await afterRender();
 
-    assert.strictEqual('-2', existingBugBody.get('bug'));
+    assert.strictEqual('' + ExistingBugRequest.IGNORE_BUG_ID,
+        existingBugBody.get('bug'));
     assert.lengthOf(existingBugBody.getAll('key'), 10);
     for (let i = 0; i < 10; ++i) {
       assert.include(existingBugBody.getAll('key'), 'key' + i);
@@ -356,5 +357,14 @@ suite('alerts-section', function() {
     const divs = findElements(section, e => e.matches('div.error') &&
       /Error loading alerts: 500 test/.test(e.textContent));
     assert.lengthOf(divs, 1);
+  });
+
+  test('autotriage', async function() {
+    const section = await fixture();
+    const autotriage = section.shadowRoot.querySelector('#autotriage');
+    const explanation = autotriage.querySelector('#explanation');
+    const button = autotriage.querySelector('raised-button');
+    button.click();
+    await afterRender();
   });
 });
