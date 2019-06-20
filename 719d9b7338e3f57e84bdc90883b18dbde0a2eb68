@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "089ba84d_e8177de3",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "Agreed, I am using mock.patch now.",
+      "parentUuid": "00a1d5ac_1f1a5acb",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7eb4059_7d621aac",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 27
@@ -33,6 +51,24 @@
       "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50ad234a_551be014",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7eb4059_7d621aac",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "177b69e5_e3f8329c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "I removed all functions like these in the unittests I created in this CL.\nDone",
+      "parentUuid": "aa0cb1d6_1b658de5",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d45cd914_42f0397e",
         "filename": "telemetry/telemetry/internal/platform/mac_platform_backend.py",
         "patchSetId": 27
@@ -67,6 +121,24 @@
       "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b198254d_4561f1bc",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d45cd914_42f0397e",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "e8ea5f5f_55a6475e",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc1442a7_e7c8f34a",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c18df719_a4b22d74",
         "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
         "patchSetId": 27
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "42ede255_0c716970",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c18df719_a4b22d74",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ea1c2a6_c581b6fa",
         "filename": "telemetry/telemetry/testing/test_utils.py",
         "patchSetId": 27
@@ -118,6 +226,24 @@
       "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53ff40cf_17ed7554",
+        "filename": "telemetry/telemetry/testing/test_utils.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-06-20T18:51:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ea1c2a6_c581b6fa",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
