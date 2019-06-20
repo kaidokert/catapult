@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c27558bd_fc71e178",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-20T21:20:45Z",
+      "side": 1,
+      "message": "Done.\nI couldn\u0027t come up with a better name but I\u0027m open to suggestions!",
+      "parentUuid": "05cb378a_5e1a78c5",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b273ce5_7985ed26",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 11
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "5406a45a_0c90aae6",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-20T21:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b273ce5_7985ed26",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c1d606d_648afcad",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 11
@@ -50,6 +86,24 @@
       "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23ba231f_cfbcc017",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-20T21:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c1d606d_648afcad",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -136,6 +190,24 @@
       "side": 1,
       "message": "Splitting it to a separate metric would help only if that would help structure the telemetry benchmarks such that it isn\u0027t run on the bots but could be run by users. I\u0027m not sure if telemetry works like that.\n\nDo the trace events record irregular shapes or just rectangles? If just rectangles, then an R-tree should be the most efficient representation.\n\nAnother alternative design might use a BigUint64Array as a bitmap. That would use up to 1920 x 1080 bits / 8 \u003d 259KB.\nfor each rect:\n  for each x,y in rect:\n    i, mask \u003d pointToBitmap(x, y)\n    bitmap[i] |\u003d mask\n\npixels \u003d sum(countOnes(uint64) for uint64 in bitmap)",
       "parentUuid": "932796e9_e33a5389",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93b23b8b_18982807",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-06-20T21:20:45Z",
+      "side": 1,
+      "message": "Right now, it\u0027s just rectangles!\nThanks for the suggestion of using a bitmap. Will probably use it in the improved version of this metric.\nFor now though, I ended up implementing linesweep since it\u0027s less complex than implementing an R-tree.\nIts space complexity is in the order of the number of rectangles we\u0027re dealing with.\nI used it to find the area of the union of rectangles that were updated after the 2 seconds mark and then inferred the area that was updated before.",
+      "parentUuid": "f0c6a29e_078baec4",
       "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
