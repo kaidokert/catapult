@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00a1d5ac_1f1a5acb",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "This try-finally \"patching\" is what the mock library should do for you. Also, looking a bit more carefully, by digging that much into private attributes of other objects, you are testing implementation details beyond what the browser.GetTypExpectationsTags should know or care about.\n\nThis particular one, for example, should just test that the browser type is sanitized and added to whatever platform.GetTypExpectationsTags returns, e.g.:\n\n  with mock.patch.object(self._browser.platform, \u0027GetTypExpectationsTags\u0027, \n                         return_value\u003d[\u0027win\u0027, \u0027win-10\u0027]):\n    with mock.patch.object(self._browser, \u0027browser_type\u0027, \u0027reference_debug\u0027):\n      self.assertItemsEqual([\u0027win\u0027, \u0027win-10\u0027, \u0027reference-debug\u0027],\n                            self._browser.GetTypExpectationsTags())\n\nSimilarly you can simplify mocking in the other tests.",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7eb4059_7d621aac",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "nit: should this be just \"android-svelte\"?",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa0cb1d6_1b658de5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "If possible try to avoid functions like this. They hide away the details of why each of the individual test cases below should fail or succeed.",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d45cd914_42f0397e",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "nit: maybe this should just do tags.append(\u0027snowleopard-10.11\u0027), and leave an unconditional return tags at the end.",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc1442a7_e7c8f34a",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "We import only modules; not classes or functions. So this should be only \"import mock\"",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c18df719_a4b22d74",
+        "filename": "telemetry/telemetry/internal/platform/platform_backend_unittest.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "ditto: just import mock.",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ea1c2a6_c581b6fa",
+        "filename": "telemetry/telemetry/testing/test_utils.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-20T09:04:54Z",
+      "side": 1,
+      "message": "nit: Extra blank line here.",
+      "revId": "719d9b7338e3f57e84bdc90883b18dbde0a2eb68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
