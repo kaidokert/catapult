@@ -121,6 +121,24 @@
       "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0c6a29e_078baec4",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-20T19:58:05Z",
+      "side": 1,
+      "message": "Splitting it to a separate metric would help only if that would help structure the telemetry benchmarks such that it isn\u0027t run on the bots but could be run by users. I\u0027m not sure if telemetry works like that.\n\nDo the trace events record irregular shapes or just rectangles? If just rectangles, then an R-tree should be the most efficient representation.\n\nAnother alternative design might use a BigUint64Array as a bitmap. That would use up to 1920 x 1080 bits / 8 \u003d 259KB.\nfor each rect:\n  for each x,y in rect:\n    i, mask \u003d pointToBitmap(x, y)\n    bitmap[i] |\u003d mask\n\npixels \u003d sum(countOnes(uint64) for uint64 in bitmap)",
+      "parentUuid": "932796e9_e33a5389",
+      "revId": "d41f9633d71ba4a08c5ec86bb4686d77c3b79281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
