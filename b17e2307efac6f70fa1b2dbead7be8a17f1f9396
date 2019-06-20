@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1b42783_4a898824",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-20T22:13:22Z",
+      "side": 1,
+      "message": "Arrow functions are useful here.\nsort((a, b) \u003d\u003e a.value - b.value);",
+      "revId": "b17e2307efac6f70fa1b2dbead7be8a17f1f9396",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
