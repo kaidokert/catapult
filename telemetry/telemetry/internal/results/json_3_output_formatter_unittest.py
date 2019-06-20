@@ -243,7 +243,6 @@ class Json3OutputFormatterTest(unittest.TestCase):
 
 
   def testIntegrationCreateJsonTestResultsWithDisabledBenchmark(self):
-    benchmark_metadata = benchmark.BenchmarkMetadata('test_benchmark')
     options = options_for_unittests.GetCopy()
     options.output_formats = ['json-test-results']
     options.upload_results = False
@@ -253,8 +252,7 @@ class Json3OutputFormatterTest(unittest.TestCase):
       options.suppress_gtest_report = False
       options.results_label = None
       results_options.ProcessCommandLineArgs(options)
-      results = results_options.CreateResults(
-          benchmark_metadata, options, benchmark_enabled=False)
+      results = results_options.CreateResults(options, benchmark_enabled=False)
       results.PrintSummary()
       results.CloseOutputFormatters()
 
@@ -276,7 +274,6 @@ class Json3OutputFormatterTest(unittest.TestCase):
   def testIntegrationCreateJsonTestResults(self, time_module):
     time_module.time.side_effect = [1.0, 6.0123]
 
-    benchmark_metadata = benchmark.BenchmarkMetadata('test_benchmark')
     options = options_for_unittests.GetCopy()
     options.output_formats = ['json-test-results']
     options.upload_results = False
@@ -286,7 +283,8 @@ class Json3OutputFormatterTest(unittest.TestCase):
       options.suppress_gtest_report = False
       options.results_label = None
       results_options.ProcessCommandLineArgs(options)
-      results = results_options.CreateResults(benchmark_metadata, options)
+      results = results_options.CreateResults(
+          options, benchmark_name='test_benchmark')
 
       story_set = story.StorySet(base_dir=os.path.dirname(__file__))
       test_page = page_module.Page(
