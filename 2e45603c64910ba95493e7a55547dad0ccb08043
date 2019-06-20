@@ -16,6 +16,24 @@
       "revId": "2e45603c64910ba95493e7a55547dad0ccb08043",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8042dbf7_bb066aa1",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-20T01:36:28Z",
+      "side": 1,
+      "message": "Discussed offline, thanks for the suggestion, redid the errors merging the type and message.",
+      "parentUuid": "3936e5d8_7d6554e8",
+      "revId": "2e45603c64910ba95493e7a55547dad0ccb08043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
