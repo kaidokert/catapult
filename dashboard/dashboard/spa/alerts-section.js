@@ -204,6 +204,23 @@ export default class AlertsSection extends ElementBase {
     `;
   }
 
+  constructor() {
+    super();
+    this.onKeydown_ = this.onKeydown_.bind(this);
+    this.onScroll_ = this.onScroll_.bind(this);
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('keydown', this.onKeydown_);
+    window.addEventListener('scroll', this.onScroll_);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('keydown', this.onKeydown_);
+    super.disconnectedCallback();
+  }
+
   firstUpdated() {
     this.scrollIntoView(true);
   }
@@ -213,6 +230,31 @@ export default class AlertsSection extends ElementBase {
     if (this.showingTriaged) return this.alertGroups.length === 0;
     return this.alertGroups.filter(group =>
       group.alerts.length > group.triaged.count).length === 0;
+  }
+
+  async onScroll_(event) {
+    // Debounce
+    // Draw a blue focus border around this alerts-section if it's in the middle
+    // of the screen.
+  }
+
+  async onKeydown_(event) {
+    console.log(event);
+    // Ignore event if there are multiple alerts-sections and this one is not in
+    // the middle of the screen.
+    // ?: toggle the dialog explaining the keymap
+    // j/k: move cursor up/down alerts-table, scrollIntoView()
+    // x: toggle whether alert at cursor is selected
+    // a: accept autotriage suggestion
+    // e: existing bug
+    // n: new bug
+    // i: ignore
+    // u: untriage
+    // g: toggle whether a group is expanded
+    // t: toggle whether triaged alerts are expanded
+    // /: focus the Sheriff menu-input
+    // s: wait for the next keydown, sort by the indicated column. Underline the
+    // letter in the column name, like desktop apps did when holding Alt.
   }
 
   async onSources_(event) {
@@ -763,7 +805,9 @@ function loadMore(batches, alertGroups, nextRequests, triagedRequests,
   if (!triagedMaxStartRevision ||
       (minStartRevision < triagedMaxStartRevision)) {
     for (const request of triagedRequests) {
-      request.min_start_revision = minStartRevision;
+      if (minStartRevision) {
+        request.min_start_revision = minStartRevision;
+      }
       if (triagedMaxStartRevision) {
         request.max_start_revision = triagedMaxStartRevision;
       }

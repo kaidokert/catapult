@@ -31,6 +31,7 @@ export default class AlertsTable extends ElementBase {
       showingTriaged: Boolean,
       sortColumn: String,
       sortDescending: Boolean,
+      cursor: Array,
     };
   }
 
@@ -47,6 +48,7 @@ export default class AlertsTable extends ElementBase {
       showingTriaged: options.showingTriaged || false,
       sortColumn: options.sortColumn || 'startRevision',
       sortDescending: options.sortDescending || false,
+      cursor: undefined,
     };
   }
 
@@ -90,6 +92,15 @@ export default class AlertsTable extends ElementBase {
       th {
         padding: 8px;
         white-space: nowrap;
+      }
+
+      th:first-child,
+      td:first-child {
+        padding: 0;
+      }
+
+      td[iscursor] {
+        background: var(--primary-color-dark);
       }
 
       th.checkbox {
@@ -276,6 +287,8 @@ export default class AlertsTable extends ElementBase {
         <table ?placeholder="${this.areAlertGroupsPlaceholders}">
           <thead>
             <tr>
+              <th>&nbsp;</th>
+
               <th>
                 <column-head
                      name="count"
@@ -484,8 +497,15 @@ export default class AlertsTable extends ElementBase {
       }
     }
 
+    const isCursor = this.cursor && (this.cursor[0] === alertGroupIndex) &&
+      (this.cursor[1] === alertIndex);
+
     return html`
       <tr ?untriaged="${!alert.bugId}" @click="${onRowClick}">
+        <td ?iscursor="${isCursor}">
+          &nbsp;
+        </td>
+
         <td>
           ${shouldDisplayExpandGroupButton ? html`
             <expand-button
