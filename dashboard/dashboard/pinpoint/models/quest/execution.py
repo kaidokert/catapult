@@ -83,6 +83,9 @@ class Execution(object):
         'details': self._AsDict(),
     }
 
+    if isinstance(self._exception, basestring):
+      d['exception'] = (self._exception.splitlines()[-1], self._exception)
+
     return d
 
   def _AsDict(self):
@@ -108,11 +111,11 @@ class Execution(object):
       # Some built-in exceptions are derived from RuntimeError which we'd like
       # to treat as errors.
       raise
-    except Exception:  # pylint: disable=broad-except
+    except Exception as e:  # pylint: disable=broad-except
       # We allow broad exception handling here, because we log the exception and
       # display it in the UI.
       self._completed = True
-      self._exception = traceback.format_exc()
+      self._exception = (e.message, traceback.format_exc())
     except:
       # All other exceptions must be propagated.
       raise
