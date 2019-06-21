@@ -27,6 +27,7 @@ import {
   get,
   isDebug,
   isProduction,
+  measureElement,
   plural,
   setImmutable,
   simpleGUID,
@@ -40,6 +41,41 @@ const NOTIFICATION_MS = 5000;
 // loaded enough alert groups and spent enough time waiting for the backend.
 const ENOUGH_GROUPS = 100;
 const ENOUGH_LOADING_MS = 60000;
+
+const HOTKEYS = {
+  HELP: '?',
+  DOWN: 'j',
+  UP: 'k',
+  NEW_BUG: 'n',
+  SELECT: 'x',
+  EXPAND_GROUP: 'g',
+  EXPAND_TRIAGED: 't',
+  START_SORT: 's',
+  AUTOTRIAGE: 'a',
+  EXISTING_BUG: 'e',
+  NEW_BUG: 'n',
+  IGNORE: 'i',
+  UNASSIGN: 'u',
+  SEARCH: '/',
+};
+
+const SORT_HOTKEYS = {
+  'c': 'count',
+  't': 'triaged',
+  'u': 'bugId',
+  'r': 'startRevision',
+  's': 'suite',
+  'm': 'measurement',
+  'a': 'master',
+  'b': 'bot',
+  'e': 'case',
+  'd': 'deltaValue',
+  'p': 'percentDeltaValue',
+};
+
+if (new Set(Object.values(HOTKEYS)).size !== Object.keys(HOTKEYS).length) {
+  throw new Error('Duplicate hotkey');
+}
 
 export default class AlertsSection extends ElementBase {
   static get is() { return 'alerts-section'; }
@@ -57,6 +93,7 @@ export default class AlertsSection extends ElementBase {
       sectionId: Number,
       selectedAlertPath: String,
       totalCount: Number,
+      hotkeyable: Boolean,
     };
   }
 
@@ -71,11 +108,21 @@ export default class AlertsSection extends ElementBase {
       sectionId: options.sectionId || simpleGUID(),
       selectedAlertPath: undefined,
       totalCount: 0,
+      hotkeyable: false,
     };
   }
 
   static get styles() {
     return css`
+      #wrapper {
+        border: 4px solid var(--background-color);
+        padding: 4px;
+      }
+
+      #wrapper[hotkeyable] {
+        border-color: var(--primary-color-medium);
+      }
+
       #triage_controls {
         align-items: center;
         display: flex;
@@ -125,87 +172,112 @@ export default class AlertsSection extends ElementBase {
         this.showingTriaged, this.alertGroups, this.totalCount);
 
     return html`
-      <alerts-controls
-          id="controls"
-          .statePath="${this.statePath}"
-          @sources="${this.onSources_}">
-      </alerts-controls>
+      <div id="wrapper" ?hotkeyable="${this.hotkeyable}">
+        <alerts-controls
+            id="controls"
+            .statePath="${this.statePath}"
+            @sources="${this.onSources_}">
+        </alerts-controls>
 
-      <error-set .errors="${this.errors}"></error-set>
-      <cp-loading ?loading="${this.isLoading || this.preview.isLoading}">
-      </cp-loading>
+        <error-set .errors="${this.errors}"></error-set>
+        <cp-loading ?loading="${this.isLoading || this.preview.isLoading}">
+        </cp-loading>
 
-      ${(this.alertGroups && this.alertGroups.length) ? html`
-        <div id="triage_controls"
-            ?anySelected="${this.selectedAlertsCount !== 0}">
-          <div id="count">
-            ${this.selectedAlertsCount} selected of ${summary}
+        ${(this.alertGroups && this.alertGroups.length) ? html`
+          <div id="triage_controls"
+              ?anySelected="${this.selectedAlertsCount !== 0}">
+            <div id="count">
+              ${this.selectedAlertsCount} selected of ${summary}
+            </div>
+
+            ${!isProduction() ? '' : html`
+              <span style="position: relative;">
+                <div class="button"
+                    ?disabled="${!canTriage}"
+                    @click="${this.onTriageNew_}">
+                  New Bug
+                </div>
+
+                <triage-new
+                    tabindex="0"
+                    .statePath="${this.statePath}.newBug"
+                    @submit="${this.onTriageNewSubmit_}">
+                </triage-new>
+              </span>
+
+              <span style="position: relative;">
+                <div class="button"
+                    ?disabled="${!canTriage}"
+                    @click="${this.onTriageExisting_}">
+                  Existing Bug
+                </div>
+
+                <triage-existing
+                    tabindex="0"
+                    .statePath="${this.statePath}.existingBug"
+                    @submit="${this.onTriageExistingSubmit_}">
+                </triage-existing>
+              </span>
+
+              <div class="button"
+                  ?disabled="${!canTriage}"
+                  @click="${this.onIgnore_}">
+                Ignore
+              </div>
+
+              <div class="button"
+                  ?disabled="${!anyTriaged}"
+                  @click="${this.onUnassign_}">
+                Unassign
+              </div>
+            `}
           </div>
+        ` : html``}
 
-          ${!isProduction() ? '' : html`
-            <span style="position: relative;">
-              <div class="button"
-                  ?disabled="${!canTriage}"
-                  @click="${this.onTriageNew_}">
-                New Bug
-              </div>
+        <alerts-table
+            .statePath="${this.statePath}"
+            @selected="${this.onSelected_}"
+            @alert-click="${this.onAlertClick_}">
+        </alerts-table>
 
-              <triage-new
-                  tabindex="0"
-                  .statePath="${this.statePath}.newBug"
-                  @submit="${this.onTriageNewSubmit_}">
-              </triage-new>
-            </span>
-
-            <span style="position: relative;">
-              <div class="button"
-                  ?disabled="${!canTriage}"
-                  @click="${this.onTriageExisting_}">
-                Existing Bug
-              </div>
-
-              <triage-existing
-                  tabindex="0"
-                  .statePath="${this.statePath}.existingBug"
-                  @submit="${this.onTriageExistingSubmit_}">
-              </triage-existing>
-            </span>
-
-            <div class="button"
-                ?disabled="${!canTriage}"
-                @click="${this.onIgnore_}">
-              Ignore
-            </div>
-
-            <div class="button"
-                ?disabled="${!anyTriaged}"
-                @click="${this.onUnassign_}">
-              Unassign
-            </div>
-          `}
-        </div>
-      ` : html``}
-
-      <alerts-table
-          .statePath="${this.statePath}"
-          @selected="${this.onSelected_}"
-          @alert-click="${this.onAlertClick_}">
-      </alerts-table>
-
-      <chart-compound
-          id="preview"
-          ?hidden="${allTriaged}"
-          .statePath="${this.statePath}.preview"
-          .linkedStatePath="${this.linkedStatePath}"
-          @line-count-change="${this.onPreviewLineCountChange_}">
-        Select alerts using the checkboxes in the table above to preview
-        their timeseries.
-      </chart-compound>
+        <chart-compound
+            id="preview"
+            ?hidden="${allTriaged}"
+            .statePath="${this.statePath}.preview"
+            .linkedStatePath="${this.linkedStatePath}"
+            @line-count-change="${this.onPreviewLineCountChange_}">
+          Select alerts using the checkboxes in the table above to preview
+          their timeseries.
+        </chart-compound>
+      </div>
     `;
+  }
+
+  constructor() {
+    super();
+    this.onKeyup_ = this.onKeyup_.bind(this);
+  }
+
+  async connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('keyup', this.onKeyup_);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('keyup', this.onKeyup_);
+    super.disconnectedCallback();
   }
 
   firstUpdated() {
     this.scrollIntoView(true);
+    this.updateHotkeyable_();
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('alertGroups') ||
+        changedProperties.has('preview')) {
+      this.updateHotkeyable_();
+    }
   }
 
   allTriaged_() {
@@ -213,6 +285,73 @@ export default class AlertsSection extends ElementBase {
     if (this.showingTriaged) return this.alertGroups.length === 0;
     return this.alertGroups.filter(group =>
       group.alerts.length > group.triaged.count).length === 0;
+  }
+
+  async updateHotkeyable_() {
+    const thisRect = await measureElement(this);
+    const midline = window.innerHeight / 2;
+    STORE.dispatch(UPDATE(this.statePath, {
+      hotkeyable: (thisRect.top < midline && thisRect.bottom > midline),
+    }));
+  }
+
+  onScroll() {
+    this.updateHotkeyable_();
+  }
+
+  async onKeyup_(event) {
+    if (!this.hotkeyable) return;
+
+    if (this.isHotkeySorting) {
+      STORE.dispatch({
+        type: AlertsSection.reducers.hotkeySort.name,
+        statePath: this.statePath,
+        key: event.key,
+      });
+      return;
+    }
+
+    if (event.key === HOTKEYS.AUTOTRIAGE) {
+      await AlertsSection.autotriage(this.statePath);
+      return;
+    }
+
+    if (event.key === HOTKEYS.EXISTING_BUG) {
+      await AlertsSection.submitExistingBug(this.statePath);
+      return;
+    }
+
+    if (event.key === HOTKEYS.NEW_BUG) {
+      await AlertsSection.openNewBugDialog(this.statePath);
+      STORE.dispatch(UPDATE(this.statePath + '.newBug', {isOpen: false}));
+      await AlertsSection.submitNewBug(this.statePath);
+      return;
+    }
+
+    if (event.key === HOTKEYS.IGNORE) {
+      AlertsSection.ignore(this.statePath);
+      return;
+    }
+
+    if (event.key === HOTKEYS.UNASSIGN) {
+      await AlertsSection.changeBugId(this.statePath, 0);
+      return;
+    }
+
+    if (event.key === HOTKEYS.SEARCH) {
+      MenuInput.focus(this.statePath + '.sheriff');
+      return;
+    }
+
+    STORE.dispatch({
+      type: AlertsSection.reducers.hotkey.name,
+      statePath: this.statePath,
+      key: event.key,
+    });
+
+    if (event.key === HOTKEYS.SELECT) {
+      AlertsSection.maybeLayoutPreview(this.statePath);
+    }
   }
 
   async onSources_(event) {
@@ -763,7 +902,9 @@ function loadMore(batches, alertGroups, nextRequests, triagedRequests,
   if (!triagedMaxStartRevision ||
       (minStartRevision < triagedMaxStartRevision)) {
     for (const request of triagedRequests) {
-      request.min_start_revision = minStartRevision;
+      if (minStartRevision) {
+        request.min_start_revision = minStartRevision;
+      }
       if (triagedMaxStartRevision) {
         request.max_start_revision = triagedMaxStartRevision;
       }
@@ -1075,6 +1216,78 @@ AlertsSection.reducers = {
       started,
       totalCount: 0,
     };
+  },
+
+  hotkey: (state, {key}, rootState) => {
+    if (key === HOTKEYS.HELP) return {...state, isHelping: !state.isHelping};
+    if (key === HOTKEYS.DOWN) return AlertsSection.reducers.cursorDown(state);
+    if (key === HOTKEYS.UP) return AlertsSection.reducers.cursorUp(state);
+    if (key === HOTKEYS.SELECT) {
+      return AlertsSection.reducers.selectCursor(state);
+    }
+    if (key === HOTKEYS.EXPAND_GROUP) {
+      return AlertsSection.reducers.expandCursor(state);
+    }
+    if (key === HOTKEYS.EXPAND_TRIAGED) {
+      return AlertsSection.reducers.expandTriagedCursor(state);
+    }
+    if (key === HOTKEYS.START_SORT) {
+      return AlertsSection.reducers.startSort(state);
+    }
+    return state;
+  },
+
+  hotkeySort: (state, {key}, rootState) => {
+    state = {...state, isHotkeySorting: false};
+    const sortColumn = SORT_HOTKEYS[key];
+    if (!sortColumn) return state;
+    return AlertsTable.reducers.sort(state, {sortColumn}, rootState);
+  },
+
+  cursorDown: (state) => {
+    let [groupIndex, alertIndex] = state.cursor || [
+      state.alertGroups.length - 1,
+      state.alertGroups[state.alertGroups.length - 1].alerts.length,
+    ];
+    ++groupIndex;
+    groupIndex %= state.alertGroups.length;
+    console.log(groupIndex);
+    alertIndex %= state.alertGroups[groupIndex].alerts.length;
+    return {...state, cursor: [groupIndex, alertIndex]};
+  },
+
+  cursorUp: (state) => {
+    let [groupIndex, alertIndex] = state.cursor || [0, 0];
+    --groupIndex;
+    while (groupIndex < 0) {
+      groupIndex += state.alertGroups.length;
+    }
+    alertIndex %= state.alertGroups[groupIndex].alerts.length;
+    return {...state, cursor: [groupIndex, alertIndex]};
+  },
+
+  selectCursor: (state) => {
+    if (!state.cursor) return state;
+    return AlertsTable.reducers.selectAlert(state, {
+      alertGroupIndex: state.cursor[0],
+      alertIndex: state.cursor[1],
+    });
+  },
+
+  expandCursor: (state) => {
+    if (!state.cursor) return state;
+    const path = `alertGroups.${state.cursor[0]}.isExpanded`;
+    return setImmutable(state, path, e => !e);
+  },
+
+  expandTriagedCursor: (state) => {
+    if (!state.cursor) return state;
+    const path = `alertGroups.${state.cursor[0]}.triaged.isExpanded`;
+    return setImmutable(state, path, e => !e);
+  },
+
+  startSort: (state) => {
+    return {...state, isHotkeySorting: true};
   },
 };
 
