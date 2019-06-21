@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee6c5fb7_39b7e6e6",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-06-21T22:31:46Z",
+      "side": 1,
+      "message": "I intend to include also the LIP \u0026 LTP in the class so using plural form.",
+      "revId": "ace6d5873180db9a0025910584d8a439d40cfd3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
