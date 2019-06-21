@@ -253,6 +253,76 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(800, hist.running.mean);
   });
 
+  test('timeToLargestContentfulPaint', function() {
+    const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
+      const mainThread = model.browserMain;
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'NavStartToLargestContentfulPaint::Candidate::AllFrames::UKM',
+        start: 200,
+        duration: 0.0,
+        args: {
+          data: { durationInMilliseconds: 100, type: 'text', size: 1000 }}
+      }));
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    const hist = histograms.getHistogramNamed('largestContentfulPaint');
+    assert.strictEqual(1, hist.running.count);
+    assert.strictEqual(100, hist.running.mean);
+  });
+
+  test('timeToLargestContentfulPaint_LastCandidate', function() {
+    const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
+      const mainThread = model.browserMain;
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'NavStartToLargestContentfulPaint::Candidate::AllFrames::UKM',
+        start: 200,
+        duration: 0.0,
+        args: {
+          data: { durationInMilliseconds: 100, type: 'text', size: 1000 }}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'NavStartToLargestContentfulPaint::Candidate::AllFrames::UKM',
+        start: 300,
+        duration: 0.0,
+        args: {
+          data: { durationInMilliseconds: 200, type: 'image', size: 2000 }}
+      }));
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    const hist = histograms.getHistogramNamed('largestContentfulPaint');
+    assert.strictEqual(1, hist.running.count);
+    assert.strictEqual(200, hist.running.mean);
+  });
+
+  test('timeToLargestContentfulPaint_Invalidate', function() {
+    const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
+      const mainThread = model.browserMain;
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'NavStartToLargestContentfulPaint::Candidate::AllFrames::UKM',
+        start: 200,
+        duration: 0.0,
+        args: {
+          data: { durationInMilliseconds: 100, type: 'text', size: 1000 }}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'loading',
+        title: 'NavStartToLargestContentfulPaint::Invalidate::AllFrames::UKM',
+        start: 300,
+        duration: 0.0,
+      }));
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    const hist = histograms.getHistogramNamed('largestContentfulPaint');
+    assert.strictEqual(0, hist.numValues);
+  });
+
   test('FCPPlusPlus_lastIsCandidateIsFinal', function() {
     const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
       const rendererProcess = model.rendererProcess;
