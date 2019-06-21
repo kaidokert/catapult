@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2e915e1_afcef3c0",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-21T14:00:44Z",
+      "side": 1,
+      "message": "Maybe \u0027benchmark_info\u0027? Just \u0027benchmark\u0027 might be confusing for those using code search.",
+      "revId": "f20f237c75b09b60729e35b98d401fd92c10a5eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
