@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b367a865_525585ea",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T12:14:32Z",
+      "side": 1,
+      "message": "Good point. I replaced the internal references with \"_benchmark_info\" now. I still left the constructor argument named as \"benchmark_metadata\" to avoid having to update all callers. But left a TODO (and have a followup CL nearly ready) to replace that with individual \"benchmark_name\", \"benchmark_description\" args which are easier for the callers to supply.\n\nSo all references to benchmark_metadata will be gone soon.",
+      "parentUuid": "d8b9222d_68b8304f",
+      "revId": "825100ae922f14af122fe16021a7e29cb178a556",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90c7ef66_55ed4d69",
         "filename": "telemetry/telemetry/web_perf/timeline_based_measurement_unittest.py",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2019-06-21T11:01:01Z",
       "side": 1,
       "message": "Perhaps it makes sense to make this a constant, page_test_test_case.BENCHMARK_NAME.",
+      "revId": "825100ae922f14af122fe16021a7e29cb178a556",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44cca947_3d412816",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T12:14:32Z",
+      "side": 1,
+      "message": "That\u0027s a good idea. Done.",
+      "parentUuid": "90c7ef66_55ed4d69",
       "revId": "825100ae922f14af122fe16021a7e29cb178a556",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
