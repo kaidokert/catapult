@@ -130,11 +130,12 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     return self.story_set.stories
 
   def getPageTestResults(self, output_formatters=None, benchmark_metadata=None,
-                         start=123, benchmark_enabled=True):
+                         start=123, benchmark_enabled=True, output_dir=None):
     results = page_test_results.PageTestResults(
         benchmark_metadata=benchmark_metadata,
         output_formatters=output_formatters,
-        benchmark_enabled=benchmark_enabled)
+        benchmark_enabled=benchmark_enabled,
+        output_dir=output_dir)
     results.telemetry_info.benchmark_name = 'benchmark'
     results.telemetry_info.benchmark_start_epoch = start
     results.telemetry_info.benchmark_descriptions = 'foo'
@@ -371,23 +372,22 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     values = results.FindValues(lambda v: v.value == 3)
     self.assertEquals([v0], values)
 
-  def testTraceValue(self):
-    results = self.getPageTestResults()
-    try:
-      results.WillRunPage(self.pages[0])
-      results.AddTraces(trace_data.CreateTestTrace(1))
-      results.DidRunPage(self.pages[0])
+  def testAddTraces(self):
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      results = self.getPageTestResults(output_dir=tempdir)
+      try:
+        results.WillRunPage(self.pages[0])
+        results.AddTraces(trace_data.CreateTestTrace(1))
+        results.DidRunPage(self.pages[0])
 
-      results.WillRunPage(self.pages[1])
-      results.AddTraces(trace_data.CreateTestTrace(2))
-      results.DidRunPage(self.pages[1])
+        results.WillRunPage(self.pages[1])
+        results.AddTraces(trace_data.CreateTestTrace(2))
+        results.DidRunPage(self.pages[1])
 
-      results.PrintSummary()
-
-      values = results.FindAllTraceValues()
-      self.assertEquals(2, len(values))
-    finally:
-      results.CleanUp()
+        runs = list(results.IterRunsWithTraces())
+        self.assertEquals(2, len(runs))
+      finally:
+        results.CleanUp()
 
   def testNoTracesLeftAfterCleanUp(self):
     results = self.getPageTestResults()
@@ -740,3 +740,25 @@ class PageTestResultsFilterTest(unittest.TestCase):
 
     # Just make sure that this does not crash
     results.UploadArtifactsToCloud()
+
+  @mock.patch('py_utils.cloud_storage.Insert')
+  def testUploadTraceFilesToCloud(self, cloud_storage_insert_patch):
+    cs_path_name = 'https://cs_foo'
+    cloud_storage_insert_patch.return_value = cs_path_name
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      results = self.getPageTestResults(
+          upload_bucket='abc', output_dir=tempdir)
+
+      results.WillRunPage(self.pages[0])
+      results.AddTraces(trace_data.CreateTestTrace(1))
+      results.DidRunPage(self.pages[0])
+
+      results.WillRunPage(self.pages[1])
+      results.AddTraces(trace_data.CreateTestTrace(2))
+      results.DidRunPage(self.pages[1])
+
+      results.UploadArtifactsToCloud()
+      cloud_storage_insert_patch.assert_has_calls(
+          [mock.call('abc', mock.ANY, mock.ANY),
+           mock.call('abc', mock.ANY, mock.ANY)],
+          any_order=True)

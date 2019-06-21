@@ -7,6 +7,7 @@ import datetime
 import logging
 import os
 import shutil
+import sys
 import tempfile
 import time
 import uuid
@@ -14,6 +15,10 @@ import uuid
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry.internal.util import file_handle
+
+
+
+
 
 
 PASS = 'PASS'
@@ -98,6 +103,10 @@ class StoryRun(object):
     return self._story
 
   @property
+  def output_dir(self):
+    return self._output_dir
+
+  @property
   def test_name(self):
     # TODO(crbug.com/966835): This should be prefixed with the benchmark name.
     return self.story.name
@@ -147,6 +156,10 @@ class StoryRun(object):
   @property
   def failure_str(self):
     return self._failure_str
+
+  @property
+  def start_datetime(self):
+    return datetime.datetime.utcfromtimestamp(self._start_time)
 
   @property
   def duration(self):
@@ -238,6 +251,11 @@ class StoryRun(object):
           self._output_dir, local_path))
       remote_path = str(uuid.uuid1())
       cloud_url = cloud_storage.Insert(bucket, remote_path, abs_artifact_path)
-      self._artifacts[name] = cloud_url
-      logging.warning('Uploading %s of page %s to %s\n' % (
-          name, self._story.name, cloud_url))
+      if name == 'html_trace':
+        sys.stderr.write(
+            'View generated trace files online at %s for story %s\n' % (
+                cloud_url, self._story.name))
+      else:
+        self._artifacts[name] = cloud_url
+        logging.warning('Uploading %s of page %s to %s\n' % (
+            name, self._story.name, cloud_url))
