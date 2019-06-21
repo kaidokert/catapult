@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61de55d2_156ac020",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-21T14:21:28Z",
+      "side": 1,
+      "message": "You\u0027ll have to rebase it on your previous CL, since it removes the \u0027benchmark_metadata\u0027 argument.",
+      "revId": "8268e916bef83ed87ba1fde85d3fb70b1ed6f801",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
