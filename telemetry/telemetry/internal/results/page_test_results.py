@@ -279,6 +279,22 @@ class TelemetryInfo(object):
     SetDiagnosticsValue(reserved_infos.TRACE_URLS, self.trace_url)
 
 
+class BenchmarkInfo(object):
+  def __init__(self, name=None, description=None):
+    # TODO(crbug.com/973837): Move other benchmark related info from
+    # TelemetryInfo into here.
+    self._name = name or '(unknown benchmark)'
+    self._description = description or ''
+
+  @property
+  def name(self):
+    return self._name
+
+  @property
+  def description(self):
+    return self._description
+
+
 class PageTestResults(object):
   def __init__(self, output_formatters=None,
                progress_reporter=None, output_dir=None,
@@ -322,15 +338,11 @@ class PageTestResults(object):
     self._histograms = histogram_set.HistogramSet()
 
     if benchmark_metadata is None:
-      benchmark_name = '(unknown benchmark)'
-      benchmark_description = None
-    else:
-      benchmark_name = benchmark_metadata.name
-      benchmark_description = benchmark_metadata.description
+      benchmark_metadata = BenchmarkInfo()
 
     self._telemetry_info = TelemetryInfo(
-        benchmark_name=benchmark_name,
-        benchmark_description=benchmark_description,
+        benchmark_name=benchmark_metadata.name,
+        benchmark_description=benchmark_metadata.description,
         results_label=results_label,
         upload_bucket=upload_bucket, output_dir=output_dir)
 
