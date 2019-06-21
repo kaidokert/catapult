@@ -9,12 +9,13 @@ import './cp-loading.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
-import ReportRequest from './report-request.js';
 import ReportTable from './report-table.js';
 import ReportTemplate from './report-template.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
-import {BatchIterator, get} from './utils.js';
+import {BatchIterator, animationFrame, get} from './utils.js';
 import {ElementBase, STORE} from './element-base.js';
+import {ReportFetcher} from './report-fetcher.js';
+import {ReportMerger} from './report-merger.js';
 import {UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
 
@@ -91,17 +92,17 @@ export default class ReportSection extends ElementBase {
 
   stateChanged(rootState) {
     if (!this.statePath) return;
-    const state = get(rootState, this.statePath);
+    const newState = get(rootState, this.statePath);
 
-    const sourcesChanged = (
-      state && this.source && state.source && (
-        (this.minRevision !== state.minRevision) ||
-        (this.maxRevision !== state.maxRevision) ||
-        !tr.b.setsEqual(
-            new Set(this.source.selectedOptions),
-            new Set(state.source.selectedOptions))));
+    const sourcesChanged = newState && newState.source && (
+      !this.source ||
+      (this.minRevision !== newState.minRevision) ||
+      (this.maxRevision !== newState.maxRevision) ||
+      !tr.b.setsEqual(
+          new Set(this.source.selectedOptions),
+          new Set(newState.source.selectedOptions)));
 
-    Object.assign(this, state);
+    Object.assign(this, newState);
 
     if (sourcesChanged) {
       this.debounce('loadReports', () => {
@@ -140,16 +141,15 @@ export default class ReportSection extends ElementBase {
       name !== ReportControls.CREATE);
     const requestedReports = new Set(state.source.selectedOptions);
     const revisions = [state.minRevision, state.maxRevision];
+    const minMinRevision = ReportControls.CHROMIUM_MILESTONES[
+        state.milestone - 1];
     const reportTemplateInfos = await new ReportNamesRequest().response;
     const readers = [];
 
-    for (const name of names) {
-      for (const templateInfo of reportTemplateInfos) {
-        if (templateInfo.name === name) {
-          readers.push(new ReportRequest(
-              {...templateInfo, revisions}).reader());
-        }
-      }
+    for (const templateInfo of reportTemplateInfos) {
+      if (!names.includes(templateInfo.name)) continue;
+      readers.push(new ReportFetcher(
+          templateInfo, revisions, minMinRevision));
     }
 
     for await (const {results, errors} of new BatchIterator(readers)) {
@@ -165,6 +165,7 @@ export default class ReportSection extends ElementBase {
         statePath,
         reports: results,
       });
+      await animationFrame();
     }
 
     STORE.dispatch(UPDATE(statePath, {isLoading: false}));
@@ -217,7 +218,9 @@ ReportSection.reducers = {
   receiveReports: (state, {reports}, rootState) => {
     const tables = [...state.tables];
     for (const report of reports) {
-      if (!report || !report.report || !report.report.rows) {
+      // TODO handle report.errors
+
+      if (!report || !report.timeseriesesByLine) {
         continue;
       }
 
@@ -226,10 +229,13 @@ ReportSection.reducers = {
         table && (table.name === report.name));
       tables.splice(placeholderIndex, 1);
 
-      const rows = report.report.rows.map(
-          row => ReportSection.transformReportRow(
-              row, state.minRevision, state.maxRevision,
-              report.report.statistics));
+      const merger = new ReportMerger(
+          report.timeseriesesByLine,
+          [state.minRevision, state.maxRevision]);
+      const rows = merger.mergedRows.map(row =>
+        ReportSection.transformReportRow(
+            row, state.minRevision, state.maxRevision,
+            report.template.statistics));
 
       // Right-align labelParts.
       const maxLabelParts = tr.b.math.Statistics.max(rows, row =>
@@ -261,32 +267,31 @@ ReportSection.reducers = {
         }
       }
 
-      let minRevision;
-      let maxRevision;
-      if (report.report && report.report.rows && report.report.rows[0] &&
-          report.report.rows[0].data) {
-        if (report.report.rows[0].data[state.minRevision]) {
-          minRevision = report.report.rows[0].data[state.minRevision].revision;
+      const minRevisions = new Set();
+      const maxRevisions = new Set();
+      for (const row of rows) {
+        for (const rev of row.minRevisions) {
+          minRevisions.add(rev);
         }
-        if (report.report.rows[0].data[state.maxRevision]) {
-          maxRevision = report.report.rows[0].data[state.maxRevision].revision;
+        for (const rev of row.maxRevisions) {
+          maxRevisions.add(rev);
         }
       }
 
       tables.push({
         name: report.name,
         milestone: state.milestone,
-        minRevision,
-        maxRevision,
+        minRevision: [...minRevisions].join(','),
+        maxRevision: [...maxRevisions].join(','),
         id: report.id,
         internal: report.internal,
         canEdit: false,
         isEditing: false,
         isPlaceholder: false,
         rows,
-        tooltip: {},
         maxLabelParts,
         owners: (report.owners || []).join(', '),
+        statistics: report.template.statistics,
         statistic: {
           label: 'Statistics',
           query: '',
@@ -302,7 +307,7 @@ ReportSection.reducers = {
             '95%',
             '99%',
           ],
-          selectedOptions: report.report.statistics,
+          selectedOptions: report.template.statistics,
           required: true,
         },
       });
@@ -428,99 +433,68 @@ ReportSection.transformReportRow = (
     };
   });
 
-  let rowUnit = tr.b.Unit.byJSONName[row.units];
-  let conversionFactor = 1;
-  if (!rowUnit) {
-    rowUnit = tr.b.Unit.byName.unitlessNumber;
-    const info = tr.v.LEGACY_UNIT_INFO.get(row.units);
-    let improvementDirection = tr.b.ImprovementDirection.DONT_CARE;
-    if (info) {
-      conversionFactor = info.conversionFactor;
-      if (info.defaultImprovementDirection !== undefined) {
-        improvementDirection = info.defaultImprovementDirection;
-      }
-      const unitNameSuffix = tr.b.Unit.nameSuffixForImprovementDirection(
-          improvementDirection);
-      rowUnit = tr.b.Unit.byName[info.name + unitNameSuffix];
-    }
-  }
-  if (rowUnit.improvementDirection === tr.b.ImprovementDirection.DONT_CARE &&
-      row.improvement_direction !== 4) {
-    const improvementDirection = (row.improvement_direction === 0) ?
-      tr.b.ImprovementDirection.BIGGER_IS_BETTER :
-      tr.b.ImprovementDirection.SMALLER_IS_BETTER;
-    const unitNameSuffix = tr.b.Unit.nameSuffixForImprovementDirection(
-        improvementDirection);
-    rowUnit = tr.b.Unit.byName[rowUnit.unitName + unitNameSuffix];
-  }
-
   const scalars = [];
   for (const revision of [minRevision, maxRevision]) {
     for (let statistic of statistics) {
+      const scalar = {};
+      scalars.push(scalar);
+
       // IndexedDB can return impartial results if there is no data cached for
       // the requested revision.
-      if (!row.data[revision]) {
-        scalars.push({}); // insert empty column
+      if (!row.data[revision] || !row.data[revision].statistics) {
         continue;
       }
 
       if (statistic === 'avg') statistic = 'mean';
       if (statistic === 'std') statistic = 'stddev';
 
-      const unit = (statistic === 'count') ? tr.b.Unit.byName.count :
-        rowUnit;
-      let unitPrefix;
-      if (rowUnit.baseUnit === tr.b.Unit.byName.sizeInBytes) {
-        unitPrefix = tr.b.UnitPrefixScale.BINARY.KIBI;
+      scalar.unit = (statistic === 'count') ? tr.b.Unit.byName.count : row.unit;
+      if (row.unit.baseUnit === tr.b.Unit.byName.sizeInBytes) {
+        scalar.unitPrefix = tr.b.UnitPrefixScale.BINARY.KIBI;
       }
-      const running = tr.b.math.RunningStatistics.fromDict(
-          row.data[revision].statistics);
-      scalars.push({
-        unit,
-        unitPrefix,
-        value: running[statistic],
-      });
+      scalar.value = row.data[revision].statistics[statistic];
     }
   }
+
+  // Create relative and absolute delta scalars.
   for (let statistic of statistics) {
+    const relDelta = {};
+    const absDelta = {};
+    scalars.push(relDelta);
+    scalars.push(absDelta);
+
     if (statistic === 'avg') statistic = 'mean';
     if (statistic === 'std') statistic = 'stddev';
 
     // IndexedDB can return impartial results if there is no data cached for
     // the requested min or max revision.
-    if (!row.data[minRevision] || !row.data[maxRevision]) {
-      scalars.push({}); // insert empty relative delta
-      scalars.push({}); // insert empty absolute delta
+    if (!row.data[minRevision] ||
+        !row.data[minRevision].statistics ||
+        !row.data[maxRevision] ||
+        !row.data[maxRevision].statistics) {
       continue;
     }
 
-    const unit = ((statistic === 'count') ? tr.b.Unit.byName.count :
-      rowUnit).correspondingDeltaUnit;
-    const deltaValue = (
-      tr.b.math.RunningStatistics.fromDict(
-          row.data[maxRevision].statistics)[statistic] -
-      tr.b.math.RunningStatistics.fromDict(
-          row.data[minRevision].statistics)[statistic]);
+    absDelta.unit = ((statistic === 'count') ? tr.b.Unit.byName.count :
+      row.unit).correspondingDeltaUnit;
     const suffix = tr.b.Unit.nameSuffixForImprovementDirection(
-        unit.improvementDirection);
-    scalars.push({
-      unit: tr.b.Unit.byName[`normalizedPercentageDelta${suffix}`],
-      value: deltaValue / tr.b.math.RunningStatistics.fromDict(
-          row.data[minRevision].statistics)[statistic],
-    });
-    scalars.push({
-      unit,
-      value: deltaValue,
-    });
+        absDelta.unit.improvementDirection);
+    relDelta.unit = tr.b.Unit.byName[`normalizedPercentageDelta${suffix}`];
+
+    const minRevValue = row.data[minRevision].statistics[statistic];
+    const maxRevValue = row.data[maxRevision].statistics[statistic];
+
+    absDelta.value = maxRevValue - minRevValue;
+    relDelta.value = absDelta.value / minRevValue;
   }
-  const actualDescriptors = (
-    row.data[minRevision] || row.data[maxRevision] || {}).descriptors;
 
   return {
     labelParts,
     scalars,
     label: row.label,
-    actualDescriptors,
+    minRevisions: row.data[minRevision] ? row.data[minRevision].revisions : [],
+    maxRevisions: row.data[maxRevision] ? row.data[maxRevision].revisions : [],
+
     ...TimeseriesDescriptor.buildState({
       suite: {
         selectedOptions: row.suites,
