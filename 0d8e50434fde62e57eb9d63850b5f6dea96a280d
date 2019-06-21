@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d0b5d58_5d67e334",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-06-21T17:37:42Z",
+      "side": 1,
+      "message": "We should also guard the work on the existence of the viewport event (early return here):\nlet viewport \u003d null;\nfor ... {}\nif (!viewport) return;",
+      "revId": "0d8e50434fde62e57eb9d63850b5f6dea96a280d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66f73ca6_be96c572",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-06-21T17:37:42Z",
+      "side": 1,
+      "message": "Did you confirm that ccDisplayItemListObjects is undefined when there are no cc::DisplayItemList? This seems odd to me (I\u0027d expect null or length 0).",
+      "revId": "0d8e50434fde62e57eb9d63850b5f6dea96a280d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
