@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9902928b_8f3393ee",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 0,
+      "message": "maybe you can remove this function as part of this CL? Otherwise leave a TODO to remove later.",
+      "revId": "94c77e7ec6164015e09be1463642987391ef5577",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

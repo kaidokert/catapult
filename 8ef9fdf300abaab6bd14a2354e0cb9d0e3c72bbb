@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c55217d4_537c276c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "that should probably be os.sep?",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "687f7a6d_6755f962",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "There should probably be a run.*Artifact method to help doing this, similar to tempfile_ext.TemporaryFileName, which gives you a path to a file that doesn\u0027t yet exist but will be added to the artifacts when done; e.g.:\n\n  with run.CreateArtifactFileName(\u0027html_trace\u0027) as filepath:\n    # filepath does not yet exist.\n    builder.Serialize(filepath)\n\n  # when exiting the context manager RunStory checks that the file now exists\n  # and adds it to artifacts.\n\nI would suggest writing anther CL first to add this new method, and then come back to this one.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53ecd10b_2a5d550e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "maybe also before this CL we can factor out the builder.Serialize code so you can call something like trace_data.SerializeAsHtml(agent_trace_files, html_output_file) and avoid the TraceDataBuilder altogether?",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8eb01d1_de86c29c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "add a TODO that pointing to the bug you\u0027re working on, and noting that we want to remove this TraceValue but is here now because of chartjson.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cb767f0_8a6e2b24",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "ditto as above, some AddArtifact should help with this.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d684a8e3_d50fd86d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "I _think_ we should be able to remove this else branch; and always serialize at the end. But for now let\u0027s leave a TODO to follow up on this later.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b0a689_07408d69",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "I\u0027m thinking now that run.GetArtifact should return some little \"Artifact\" object with properties:\n\n  artifact.name  # relative path within artifacts dir\n  artifact.path  # absolute path to the file\n  artifact.url   # after we\u0027ve uploaded the file\n  artifact.mime_type\n\nAnd some artifact.AsDict() to produce the little dict expected by the LUCI test results format.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a869d7db_9a287759",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "This is fine for now, but let\u0027s also leave a TODO to see if we can avoid this. There should be no reason to output the same files both in output_dir and in output_dir/artifacts. It should be enough to keep them in the artifacts dir. But we need to figure out first if some clients depend on the current location of traces before making this change.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "141aed46_d7c84bda",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "sounds like we should have a run.has_traces property.\n\nmaybe also a run.IterArtifacts(dir\u003d\u0027trace\u0027) to make this sort of things easier.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b862d81e_16f9bd18",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "I think we should try to keep this function decoupled from the PageTestResults object, so for now move back as a module level function. This is the \"trace processing\" part that should eventually work with just the LUCI test results as input, and be moved to chromium repo.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0420a57_35cb3307",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "we may not need this if we implement the Artifact object I mentioned above.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee79e16_d8ae09b7",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "+1 this is neat to have",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6798203_12d69447",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T11:59:33Z",
+      "side": 1,
+      "message": "This doesn\u0027t belong here. After uploading the caller should iterate over the artifacts and print the urls itself.",
+      "revId": "8ef9fdf300abaab6bd14a2354e0cb9d0e3c72bbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
