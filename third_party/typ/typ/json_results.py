@@ -16,6 +16,8 @@ from collections import OrderedDict
 
 import json
 
+from typ import artifact_results
+
 _show_only_in_metadata = set(['tags', 'expectations_files', 'test_name_prefix'])
 
 class ResultType(object):
@@ -34,7 +36,8 @@ class Result(object):
 
     def __init__(self, name, actual, started, took, worker,
                  expected=None, unexpected=False,
-                 flaky=False, code=0, out='', err='', pid=0):
+                 flaky=False, code=0, out='', err='', pid=0,
+                 artifact_results=None):
         self.name = name
         self.actual = actual
         self.started = started
@@ -48,6 +51,7 @@ class Result(object):
         self.err = err
         self.pid = pid
         self.is_regression = actual != ResultType.Pass and unexpected
+        self.artifact_results = artifact_results
 
 
 class ResultSet(object):
@@ -95,12 +99,17 @@ def make_full_results(metadata, seconds_since_epoch, all_test_names, results,
 
     full_results['tests'] = OrderedDict()
 
+    artifact_type_map = {}
+
     for test_name in all_test_names:
-        value = _results_for_test(test_name, results)
+        value = _results_for_test(test_name, results, artifact_type_map)
         _add_path_to_trie(
             full_results['tests'], test_name, value, test_separator)
         if value.get('is_regression'):
             full_results['num_regressions'] += 1
+
+    if artifact_type_map:
+        full_results['artifact_types'] = artifact_type_map
 
     return full_results
 
@@ -156,7 +165,7 @@ def _passing_test_names(results):
     return set(r.name for r in results.results if r.actual == ResultType.Pass)
 
 
-def _results_for_test(test_name, results):
+def _results_for_test(test_name, results, artifact_type_map):
     value = OrderedDict()
     actuals = []
     times = []
@@ -192,6 +201,30 @@ def _results_for_test(test_name, results):
             # This assumes that the expected values are the same for every
             # invocation of the test.
             value['expected'] = ' '.join(sorted(r.expected))
+
+            # Handle artifacts
+            if not r.artifact_results or not r.artifact_results.GetArtifacts():
+                continue
+            if 'artifacts' not in value:
+                value['artifacts'] = {}
+            for artifact_type, files in (
+                    r.artifact_results.GetArtifacts().iteritems()):
+                if artifact_type in value['artifacts']:
+                    value['artifacts'][artifact_type].extend(files)
+                else:
+                    value['artifacts'][artifact_type] = files
+            types = r.artifact_results.GetArtifactTypes()
+            for artifact_type, mime_type in types.iteritems():
+                if artifact_type in artifact_type_map:
+                    if artifact_type_map[artifact_type] != mime_type:
+                        raise artifact_results.ArtifactTypeConflictError(
+                            'Artifact type %s with MIME type %s defined by '
+                            'test %s already defined with MIME type %s in a '
+                            'different test.' % (
+                                    artifact_type, mime_type, test_name,
+                                    artifact_type_map[artifact_type]))
+                    continue
+                artifact_type_map[artifact_type] = mime_type
 
     if not actuals:  # pragma: untested
         actuals.append('SKIP')
