@@ -275,28 +275,33 @@ class BenchmarkInfo(object):
 
 
 class PageTestResults(object):
-  def __init__(self, output_formatters=None,
-               progress_reporter=None, output_dir=None,
-               should_add_value=None,
-               benchmark_enabled=True, upload_bucket=None,
-               benchmark_metadata=None, results_label=None):
+  def __init__(self, output_formatters=None, progress_reporter=None,
+               output_dir=None, should_add_value=None, benchmark_name=None,
+               benchmark_description=None, benchmark_enabled=True,
+               upload_bucket=None, results_label=None):
     """
     Args:
       output_formatters: A list of output formatters. The output
           formatters are typically used to format the test results, such
-          as CsvPivotTableOutputFormatter, which output the test results as CSV.
+          as CsvOutputFormatter, which output the test results as CSV.
       progress_reporter: An instance of progress_reporter.ProgressReporter,
           to be used to output test status/results progressively.
-      output_dir: A string specified the directory where to store the test
-          artifacts, e.g: trace, videos,...
+      output_dir: A string specifying the directory where to store the test
+          artifacts, e.g: trace, videos, etc.
       should_add_value: A function that takes two arguments: a value name and
           a boolean (True when the value belongs to the first run of the
           corresponding story). It returns True if the value should be added
           to the test results and False otherwise.
-      benchmark_metadata: A page_test_results.BenchmarkInfo object.
-          TODO(crbug.com/973837): Replace this argument with separate
-          benchmark_name, benchmark_description (providing a simpler API to
-          callers) and have this object build the BenchmarkInfo from them.
+      benchmark_name: A string with the name of the currently running benchmark.
+      benchmark_description: A string with a description of the currently
+          running benchmark.
+      benchmark_enabled: A boolean indicating whether the benchmark to run
+          is enabled. (Some output formats need to produce special output for
+          disabled benchmarks).
+      upload_bucket: A string identifting a cloud storage bucket where to
+          upload artifacts.
+      results_label: A string that serves as an identifier for the current
+          benchmark run.
     """
     super(PageTestResults, self).__init__()
     self._progress_reporter = (
@@ -318,10 +323,8 @@ class PageTestResults(object):
 
     self._histograms = histogram_set.HistogramSet()
 
-    if benchmark_metadata is None:
-      self._benchmark_info = BenchmarkInfo()
-    else:
-      self._benchmark_info = benchmark_metadata
+    self._benchmark_info = BenchmarkInfo(
+        name=benchmark_name, description=benchmark_description)
 
     self._telemetry_info = TelemetryInfo(
         benchmark_name=self._benchmark_info.name,
@@ -342,6 +345,10 @@ class PageTestResults(object):
   def telemetry_info(self):
     return self._telemetry_info
 
+  @property
+  def benchmark(self):
+    return self._benchmark_info
+
   def AsHistogramDicts(self):
     return self._histograms.AsDicts()
 
@@ -349,8 +356,7 @@ class PageTestResults(object):
     if len(self._histograms):
       return
 
-    chart_json = chart_json_output_formatter.ResultsAsChartDict(
-        self._benchmark_info, self)
+    chart_json = chart_json_output_formatter.ResultsAsChartDict(self)
     info = self.telemetry_info
     chart_json['label'] = info.label
     chart_json['benchmarkStartMs'] = info.benchmark_start_us / 1000.0
