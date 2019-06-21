@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0024d207_e4838fce",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-06-21T01:29:37Z",
+      "side": 1,
+      "message": "How are these numbers determined?",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "ac9f7400acd02ad56654dbefbc2a26d3138201a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1d4b251_a590ab15",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-06-21T01:29:37Z",
+      "side": 1,
+      "message": "The unsafeCSS + calc usage here makes me wonder if the CSS could be simplified to be less dependent on specific values. Do you think that could be a possibility here?",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 65
+      },
+      "revId": "ac9f7400acd02ad56654dbefbc2a26d3138201a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac414bfb_1259aa60",
+        "filename": "dashboard/dashboard/spa/alerts-table.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-06-21T01:29:37Z",
+      "side": 1,
+      "message": "Optional nit: I know linting with template strings is difficult but perhaps there\u0027s a way to have better indentation here?",
+      "revId": "ac9f7400acd02ad56654dbefbc2a26d3138201a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
