@@ -467,7 +467,6 @@ def RunBenchmark(benchmark, finder_options):
 
     try:
       if finder_options.upload_results:
-        results.UploadTraceFilesToCloud()
         results.UploadArtifactsToCloud()
     finally:
       memory_debug.LogHostMemoryUsage()

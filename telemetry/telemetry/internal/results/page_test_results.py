@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import random
+import shutil
 import tempfile
 import time
 import traceback
@@ -25,6 +26,7 @@ from telemetry.value import common_value_helpers
 from telemetry.value import trace
 
 from tracing.metrics import metric_runner
+from tracing.trace_data import trace_data
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
 from tracing.value.diagnostics import all_diagnostics
@@ -33,67 +35,22 @@ from tracing.value.diagnostics import reserved_infos
 _TEN_MINUTES = 60*10
 
 
-def _ComputeMetricsInPool((run, trace_value)):
-  story_name = run.story.name
-  try:
-    assert not trace_value.is_serialized, (
-        "%s: TraceValue should not be serialized." % story_name)
-    retvalue = {
-        'run': run,
-        'fail': [],
-        'histogram_dicts': None,
-        'scalars': []
-    }
-    extra_import_options = {
-        'trackDetailedModelStats': True
-    }
+def _BuildHtmlTraceFromParts(run):
+  builder = trace_data.TraceDataBuilder()
+  for name, path in run.IterArtifacts():
+    if name.startswith('trace/'):
+      trace_part = name[6:]
+      abs_path = os.path.join(run.output_dir, path)
+      temp_file = tempfile.NamedTemporaryFile()
+      temp_file.close()
+      shutil.copy(abs_path, temp_file.name)
+      builder.AddTraceFileFor(trace_data.TraceDataPart(trace_part),
+                              temp_file.name)
 
-    logging.info('%s: Serializing trace.', story_name)
-    trace_value.SerializeTraceData()
-    trace_size_in_mib = os.path.getsize(trace_value.filename) / (2 ** 20)
-    # Bails out on trace that are too big. See crbug.com/812631 for more
-    # details.
-    if trace_size_in_mib > 400:
-      retvalue['fail'].append(
-          '%s: Trace size is too big: %s MiB' % (story_name, trace_size_in_mib))
-      return retvalue
-
-    logging.info('%s: Starting to compute metrics on trace.', story_name)
-    start = time.time()
-    # This timeout needs to be coordinated with the Swarming IO timeout for the
-    # task that runs this code. If this timeout is longer or close in length
-    # to the swarming IO timeout then we risk being forcibly killed for not
-    # producing any output. Note that this could be fixed by periodically
-    # outputing logs while waiting for metrics to be calculated.
-    timeout = _TEN_MINUTES
-    mre_result = metric_runner.RunMetricOnSingleTrace(
-        trace_value.filename, run.tbm_metrics,
-        extra_import_options, canonical_url=trace_value.trace_url,
-        timeout=timeout)
-    logging.info('%s: Computing metrics took %.3f seconds.' % (
-        story_name, time.time() - start))
-
-    if mre_result.failures:
-      for f in mre_result.failures:
-        retvalue['fail'].append('%s: %s' % (story_name, str(f)))
-
-    histogram_dicts = mre_result.pairs.get('histograms', [])
-    retvalue['histogram_dicts'] = histogram_dicts
-
-    scalars = []
-    for d in mre_result.pairs.get('scalars', []):
-      scalars.append(common_value_helpers.TranslateScalarValue(
-          d, trace_value.page))
-    retvalue['scalars'] = scalars
-    return retvalue
-  except Exception as e:  # pylint: disable=broad-except
-    # logging exception here is the only way to get a stack trace since
-    # multiprocessing's pool implementation does not save that data. See
-    # crbug.com/953365.
-    logging.error('%s: Exception while calculating metric', story_name)
-    logging.exception(e)
-    raise
-
+  html_trace_file = tempfile.NamedTemporaryFile(delete=False, suffix='.html')
+  html_trace_file.close()
+  builder.Serialize(html_trace_file.name)
+  run.AddArtifact('html_trace', html_trace_file.name)
 
 class TelemetryInfo(object):
   def __init__(self, benchmark_name, benchmark_description, results_label=None,
@@ -531,17 +488,13 @@ class PageTestResults(object):
         logging.warn('cpu_count() not implemented.')
         return 8
 
-    runs_and_values = self._FindRunsAndValuesWithTimelineBasedMetrics()
-    if not runs_and_values:
-      return
-
     # Note that this is speculatively halved as an attempt to fix
     # crbug.com/953365.
-    threads_count = min(_GetCpuCount()/2 or 1, len(runs_and_values))
+    threads_count = min(_GetCpuCount()/2 or 1, len(self._all_page_runs))
     pool = ThreadPool(threads_count)
     try:
-      for result in pool.imap_unordered(_ComputeMetricsInPool,
-                                        runs_and_values):
+      for result in pool.imap_unordered(self._ComputeMetricsInPool,
+                                        self.IterRunsWithTraces()):
         self._AddPageResults(result)
     finally:
       pool.terminate()
@@ -663,6 +616,13 @@ class PageTestResults(object):
         cloud_url=self.telemetry_info.trace_remote_url,
         trace_url=self.telemetry_info.trace_url)
     self.AddValue(trace_value)
+
+    for part, filename in traces.IterTraceParts():
+      output_file = tempfile.NamedTemporaryFile(delete=False)
+      output_file.close()
+      shutil.copy(filename, output_file.name)
+      self.AddArtifact('trace/' + part, output_file.name)
+
     if tbm_metrics:
       # Both trace serialization and metric computation will happen later
       # asynchronously during ComputeTimelineBasedMetrics.
@@ -670,6 +630,8 @@ class PageTestResults(object):
     else:
       # Otherwise we immediately serialize the trace data.
       trace_value.SerializeTraceData()
+      if self._output_dir:
+        _BuildHtmlTraceFromParts(self._current_page_run)
 
   def AddSummaryValue(self, value):
     assert value.page is None
@@ -692,8 +654,10 @@ class PageTestResults(object):
       if (self._output_dir and
           any(isinstance(o, html_output_formatter.HtmlOutputFormatter)
               for o in self._output_formatters)):
-        for value in self.FindAllTraceValues():
-          value.Serialize()
+        for run in self.IterRunsWithTraces():
+          html_trace_path = os.path.join(run.output_dir,
+                                         run.GetArtifact('html_trace'))
+          shutil.copy(html_trace_path, self.telemetry_info.trace_local_path)
 
       for output_formatter in self._output_formatters:
         output_formatter.Format(self)
@@ -725,18 +689,82 @@ class PageTestResults(object):
   def FindAllTraceValues(self):
     return self.FindValues(lambda v: isinstance(v, trace.TraceValue))
 
-  def _FindRunsAndValuesWithTimelineBasedMetrics(self):
-    values = []
-    for run in self._all_page_runs:
-      if run.tbm_metrics:
-        for v in run.values:
-          if isinstance(v, trace.TraceValue):
-            values.append((run, v))
-    return values
+  def IterRunsWithTraces(self):
+    for run in self._IterAllStoryRuns():
+      for name, _ in run.IterArtifacts():
+        if name.startswith('trace/'):
+          yield run
+          break
 
-  def UploadTraceFilesToCloud(self):
-    for value in self.FindAllTraceValues():
-      value.UploadToCloud()
+  def _ComputeMetricsInPool(self, run):
+    story_name = run.story.name
+    try:
+      retvalue = {
+          'run': run,
+          'fail': [],
+          'histogram_dicts': None,
+          'scalars': []
+      }
+      extra_import_options = {
+          'trackDetailedModelStats': True
+      }
+
+      if run.GetArtifact('html_trace') is None:
+        _BuildHtmlTraceFromParts(run)
+      html_trace_path = os.path.join(run.output_dir,
+                                     run.GetArtifact('html_trace'))
+      trace_size_in_mib = os.path.getsize(html_trace_path) / (2 ** 20)
+      # Bails out on trace that are too big. See crbug.com/812631 for more
+      # details.
+      if trace_size_in_mib > 400:
+        retvalue['fail'].append(
+            '%s: Trace size is too big: %s MiB' % (
+                story_name, trace_size_in_mib))
+        return retvalue
+
+      trace_remote_name = '%s_%s_%s_%s.html' % (
+          run.story.file_safe_name, self.telemetry_info.label,
+          run.start_datetime.strftime('%Y-%m-%d_%H-%M-%S'),
+          random.randint(1, 1e5))
+      trace_remote_url = (
+          'https://console.developers.google.com/m/cloudstorage/b/%s/o/%s' % (
+              self.telemetry_info.upload_bucket, trace_remote_name))
+
+      logging.info('%s: Starting to compute metrics on trace.', story_name)
+      start = time.time()
+      # This timeout needs to be coordinated with the Swarming IO timeout for
+      # the task that runs this code. If this timeout is longer or close in
+      # length to the swarming IO timeout then we risk being forcibly killed for
+      # not producing any output. Note that this could be fixed by periodically
+      # outputing logs while waiting for metrics to be calculated.
+      timeout = _TEN_MINUTES
+      mre_result = metric_runner.RunMetricOnSingleTrace(
+          html_trace_path, run.tbm_metrics,
+          extra_import_options, canonical_url=trace_remote_url,
+          timeout=timeout)
+      logging.info('%s: Computing metrics took %.3f seconds.' % (
+          story_name, time.time() - start))
+
+      if mre_result.failures:
+        for f in mre_result.failures:
+          retvalue['fail'].append('%s: %s' % (story_name, str(f)))
+
+      histogram_dicts = mre_result.pairs.get('histograms', [])
+      retvalue['histogram_dicts'] = histogram_dicts
+
+      scalars = []
+      for d in mre_result.pairs.get('scalars', []):
+        scalars.append(common_value_helpers.TranslateScalarValue(
+            d, run.story))
+      retvalue['scalars'] = scalars
+      return retvalue
+    except Exception as e:  # pylint: disable=broad-except
+      # logging exception here is the only way to get a stack trace since
+      # multiprocessing's pool implementation does not save that data. See
+      # crbug.com/953365.
+      logging.error('%s: Exception while calculating metric', story_name)
+      logging.exception(e)
+      raise
 
   #TODO(crbug.com/772216): Remove this once the uploading is done by Chromium
   # test recipe.
