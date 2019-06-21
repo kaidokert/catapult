@@ -16,6 +16,24 @@
       "revId": "f20f237c75b09b60729e35b98d401fd92c10a5eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c5c05b6_6482f425",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-21T14:29:31Z",
+      "side": 1,
+      "message": "Yeah, I thought about that. I kinda liked being able to write e.g. results.benchmark.name; but the point about better code search probably trumps my little stylistic preference.\n\nI guess the other alternative is to get rid of this BenchmarkInfo altogether, and just expose a e.g. results.benchmark_name property. That seems even cleaner.\n\nWhat do you think?",
+      "parentUuid": "e2e915e1_afcef3c0",
+      "revId": "f20f237c75b09b60729e35b98d401fd92c10a5eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
