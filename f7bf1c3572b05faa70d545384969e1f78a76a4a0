@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a06c20bd_d304bf8e",
+        "filename": "dashboard/dashboard/spa/alerts-section.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-06-22T01:41:32Z",
+      "side": 1,
+      "message": "Oh woah, I wonder why syntax highlighting stops working in this part. I don\u0027t notice anything odd about the code - could it be a Gerrit bug?",
+      "range": {
+        "startLine": 432,
+        "startChar": 52,
+        "endLine": 432,
+        "endChar": 72
+      },
+      "revId": "f7bf1c3572b05faa70d545384969e1f78a76a4a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
