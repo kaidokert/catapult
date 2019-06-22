@@ -47,13 +47,6 @@ suite('report-table', function() {
           case: {
             selectedOptions: ['case'],
           },
-          actualDescriptors: [
-            {
-              testSuite: 'suite',
-              bot: 'bot',
-              testCase: 'case',
-            },
-          ],
           labelParts: [
             {isFirst: true, rowCount: 2, label: 'measure', href: '/'},
           ],

@@ -163,6 +163,7 @@ class TimeseriesSlice {
       body,
     });
     if (!response.ok) {
+      console.log(response.status, this.measurement, this.testCase, columns.join(','), this.revisionRange.min, this.revisionRange.max);
       return {};
     }
     const responseJson = await response.json();
