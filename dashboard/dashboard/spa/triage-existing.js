@@ -4,9 +4,9 @@
 */
 'use strict';
 
-import './cp-input.js';
-import './cp-switch.js';
-import './raised-button.js';
+import '@chopsui/chops-input';
+import '@chopsui/chops-switch';
+import '@chopsui/chops-button';
 import {ElementBase, STORE} from './element-base.js';
 import {TOGGLE, UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
@@ -129,11 +129,11 @@ export default class TriageExisting extends ElementBase {
             @keyup="${this.onIdKeyup_}">
         </cp-input>
 
-        <raised-button
+        <chops-button
             ?disabled="${!this.isIdValid_(this.bugId)}"
             @click="${this.onSubmit_}">
           Submit
-        </raised-button>
+        </chops-button>
 
         <span class="spacer">&nbsp;</span>
 

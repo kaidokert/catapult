@@ -5,10 +5,10 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-checkbox.js';
-import './cp-input.js';
-import './cp-switch.js';
-import './raised-button.js';
+import '@chopsui/chops-checkbox';
+import '@chopsui/chops-input';
+import '@chopsui/chops-switch';
+import '@chopsui/chops-button';
 import './recommended-options.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import AlertsTable from './alerts-table.js';
@@ -284,13 +284,13 @@ export default class AlertsControls extends ElementBase {
       <span id=spacer></span>
 
       <span id="recent-bugs-container">
-        <raised-button
+        <chops-button
             id="recent-bugs"
             ?disabled="${
   this.recentlyModifiedBugs && (this.recentlyModifiedBugs.length === 0)}"
             @click="${this.onClickRecentlyModifiedBugs_}">
           Recent Bugs
-        </raised-button>
+        </chops-button>
 
         <div
             class="bug_notification"

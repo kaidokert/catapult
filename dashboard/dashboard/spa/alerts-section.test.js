@@ -186,7 +186,7 @@ suite('alerts-section', function() {
     button.click();
 
     const submit = findElements(section, e =>
-      e.matches('raised-button') && /SUBMIT/i.test(e.textContent))[0];
+      e.matches('chops-button') && /SUBMIT/i.test(e.textContent))[0];
     submit.click();
     await afterRender();
 
@@ -227,7 +227,7 @@ suite('alerts-section', function() {
 
     const menu = findElements(section, e => e.matches('triage-existing'))[0];
     const submit = findElements(menu, e =>
-      e.matches('raised-button') && /SUBMIT/i.test(e.textContent))[0];
+      e.matches('chops-button') && /SUBMIT/i.test(e.textContent))[0];
     submit.click();
     await afterRender();
 

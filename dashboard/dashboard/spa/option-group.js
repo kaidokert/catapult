@@ -4,7 +4,7 @@
 */
 'use strict';
 
-import './cp-checkbox.js';
+import '@chopsui/chops-checkbox';
 import './expand-button.js';
 import {ElementBase, STORE} from './element-base.js';
 import {get} from './utils.js';

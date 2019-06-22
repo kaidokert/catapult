@@ -6,8 +6,8 @@
 
 import './cp-icon.js';
 import './chart-legend.js';
-import './cp-input.js';
-import './cp-loading.js';
+import '@chopsui/chops-input';
+import '@chopsui/chops-loading';
 import './expand-button.js';
 import ChartBase from './chart-base.js';
 import ChartCompound from './chart-compound.js';

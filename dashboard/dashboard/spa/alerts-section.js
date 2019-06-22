@@ -4,7 +4,7 @@
 */
 'use strict';
 
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import './error-set.js';
 import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';

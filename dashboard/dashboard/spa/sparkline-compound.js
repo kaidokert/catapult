@@ -4,9 +4,9 @@
 */
 'use strict';
 
-import './cp-loading.js';
-import './cp-tab-bar.js';
-import './cp-tab.js';
+import '@chopsui/chops-loading';
+import '@chopsui/chops-tab-bar';
+import '@chopsui/chops-tab';
 import ChartTimeseries from './chart-timeseries.js';
 import OptionGroup from './option-group.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';

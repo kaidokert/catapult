@@ -6,7 +6,7 @@
 
 import './cp-icon.js';
 import './column-head.js';
-import './cp-checkbox.js';
+import '@chopsui/chops-checkbox';
 import './expand-button.js';
 import './scalar-span.js';
 import {ElementBase, STORE} from './element-base.js';

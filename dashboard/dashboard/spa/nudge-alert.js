@@ -4,7 +4,7 @@
 */
 'use strict';
 
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import './error-set.js';
 import NudgeAlertRequest from './nudge-alert-request.js';
 import {ElementBase, STORE} from './element-base.js';

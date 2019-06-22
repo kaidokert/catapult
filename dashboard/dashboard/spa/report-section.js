@@ -5,7 +5,7 @@
 'use strict';
 
 import './cp-dialog.js';
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';

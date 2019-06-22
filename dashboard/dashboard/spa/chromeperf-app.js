@@ -5,10 +5,10 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import './cp-toast.js';
 import './error-set.js';
-import './raised-button.js';
+import '@chopsui/chops-button';
 import '@chopsui/chops-header/chops-header.js';
 import AlertsSection from './alerts-section.js';
 import ChartCompound from './chart-compound.js';
@@ -217,7 +217,7 @@ export default class ChromeperfApp extends ElementBase {
         width: 100%;
       }
 
-      cp-toast raised-button {
+      cp-toast chops-button {
         background-color: var(--primary-color-dark, blue);
         border-radius: 24px;
         color: var(--background-color, white);
@@ -379,19 +379,19 @@ export default class ChromeperfApp extends ElementBase {
 
       <cp-toast ?opened="${
   this.closedAlertsIds && this.closedAlertsIds.length}">
-        <raised-button
+        <chops-button
             id="reopen_alerts"
             @click="${this.onReopenClosedAlerts_}">
           <cp-icon icon="alert"></cp-icon>
           Reopen alerts
-        </raised-button>
+        </chops-button>
       </cp-toast>
 
       <cp-toast ?opened="${this.closedChartIds && this.closedChartIds.length}">
-        <raised-button id="reopen_chart" @click="${this.onReopenClosedChart_}">
+        <chops-button id="reopen_chart" @click="${this.onReopenClosedChart_}">
           <cp-icon icon="chart"></cp-icon>
           Reopen chart
-        </raised-button>
+        </chops-button>
       </cp-toast>
 
       <cp-toast

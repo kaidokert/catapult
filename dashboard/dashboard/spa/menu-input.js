@@ -5,7 +5,7 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-input.js';
+import '@chopsui/chops-input';
 import OptionGroup from './option-group.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';

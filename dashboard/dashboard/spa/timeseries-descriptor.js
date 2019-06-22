@@ -4,8 +4,8 @@
 */
 'use strict';
 
-import './cp-checkbox.js';
-import './cp-loading.js';
+import '@chopsui/chops-checkbox';
+import '@chopsui/chops-loading';
 import './error-set.js';
 import './recommended-options.js';
 import DescribeRequest from './describe-request.js';

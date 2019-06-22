@@ -4,12 +4,12 @@
 */
 'use strict';
 
-import './cp-input.js';
-import './cp-loading.js';
-import './cp-radio-group.js';
-import './cp-radio.js';
+import '@chopsui/chops-input';
+import '@chopsui/chops-loading';
+import '@chopsui/chops-radio-group';
+import '@chopsui/chops-radio';
 import './error-set.js';
-import './raised-button.js';
+import '@chopsui/chops-button';
 import NewPinpointRequest from './new-pinpoint-request.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
@@ -92,7 +92,7 @@ export default class BisectDialog extends ElementBase {
         margin-left: 8px;
         flex-direction: row;
       }
-      .row raised-button {
+      .row chops-button {
         flex-grow: 1;
       }
       .row {
@@ -111,13 +111,13 @@ export default class BisectDialog extends ElementBase {
 
   render() {
     return html`
-      <raised-button
+      <chops-button
           id="open"
           ?disabled="${!this.able}"
           title="${this.tooltip}"
           @click="${this.onOpen_}">
         Bisect ${this.startRevision} - ${this.endRevision}
-      </raised-button>
+      </chops-button>
 
       <error-set .errors="${this.errors}"></error-set>
       <cp-loading ?loading="${this.isLoading}">
@@ -214,18 +214,18 @@ export default class BisectDialog extends ElementBase {
         `}
 
         <div class="row">
-          <raised-button
+          <chops-button
               id="cancel"
               @click="${this.onCancel_}"
               tabindex="0">
             Cancel
-          </raised-button>
-          <raised-button
+          </chops-button>
+          <chops-button
               id="start"
               @click="${this.onSubmit_}"
               tabindex="0">
             Start
-          </raised-button>
+          </chops-button>
         </div>
       </div>
     `;

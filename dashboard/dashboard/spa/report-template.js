@@ -5,8 +5,8 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-input.js';
-import './raised-button.js';
+import '@chopsui/chops-input';
+import '@chopsui/chops-button';
 import ReportTemplateRequest from './report-template-request.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
 import {ElementBase, STORE} from './element-base.js';
@@ -186,21 +186,21 @@ export default class ReportTemplate extends ElementBase {
       </table>
 
       <div class="edit_form_controls">
-        <raised-button
+        <chops-button
             id="cancel"
             @click="${this.onCancel_}">
           <cp-icon icon="cancel"></cp-icon>
           Cancel
-        </raised-button>
+        </chops-button>
 
-        <raised-button
+        <chops-button
             id="save"
             ?disabled="${!ReportTemplate.canSave(
       this.name, this.owners, this.statistic, this.rows)}"
             @click="${this.onTemplateSave_}">
           <cp-icon icon="save"></cp-icon>
           Save
-        </raised-button>
+        </chops-button>
       </div>
     `;
   }

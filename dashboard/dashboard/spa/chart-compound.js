@@ -5,9 +5,9 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-radio-group.js';
-import './cp-radio.js';
-import './cp-switch.js';
+import '@chopsui/chops-radio-group';
+import '@chopsui/chops-radio';
+import '@chopsui/chops-switch';
 import './error-set.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ChartTimeseries from './chart-timeseries.js';
