@@ -6,7 +6,7 @@
 
 import './cp-icon.js';
 import './column-head.js';
-import './cp-checkbox.js';
+import '@chopsui/chops-checkbox';
 import './expand-button.js';
 import './scalar-span.js';
 import {ElementBase, STORE} from './element-base.js';
@@ -301,11 +301,11 @@ export default class AlertsTable extends ElementBase {
               ` : ''}
 
               <th class="checkbox">
-                <cp-checkbox
+                <chops-checkbox
                     ?checked="${this.selectedAlertsCount > 0}"
                     ?disabled="${this.areAlertGroupsPlaceholders}"
                     @change="${this.onSelectAll_}">
-                </cp-checkbox>
+                </chops-checkbox>
               </th>
 
               ${this.showBugColumn ? html`
@@ -506,13 +506,13 @@ export default class AlertsTable extends ElementBase {
         ` : ''}
 
         <td>
-          <cp-checkbox
+          <chops-checkbox
               ?checked="${alert.isSelected}"
               ?disabled="${this.areAlertGroupsPlaceholders}"
               @change="${event =>
     this.onSelect_(event, alertGroupIndex, alertIndex)}">
             ${shouldDisplaySelectedCount ? this.selectedCount_(alertGroup) : ''}
-          </cp-checkbox>
+          </chops-checkbox>
         </td>
 
         ${this.showBugColumn ? html`

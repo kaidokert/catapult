@@ -6,6 +6,7 @@
 
 import './place-holder.js';
 import ChartBase from './chart-base.js';
+import {BatchIterator} from '@chopsui/batch-iterator';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
@@ -14,7 +15,6 @@ import {TimeseriesMerger} from './timeseries-merger.js';
 import {html, css} from 'lit-element';
 
 import {
-  BatchIterator,
   CTRL_KEY_NAME,
   generateColors,
   get,
