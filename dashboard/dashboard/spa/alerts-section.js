@@ -4,8 +4,8 @@
 */
 'use strict';
 
-import './cp-loading.js';
 import './error-set.js';
+import '@chopsui/chops-loading';
 import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';
 import AlertsTable from './alerts-table.js';
@@ -17,12 +17,12 @@ import NewBugRequest from './new-bug-request.js';
 import TriageExisting from './triage-existing.js';
 import TriageNew from './triage-new.js';
 import groupAlerts from './group-alerts.js';
+import {BatchIterator} from '@chopsui/batch-iterator';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
 
 import {
-  BatchIterator,
   animationFrame,
   get,
   isDebug,
@@ -132,8 +132,8 @@ export default class AlertsSection extends ElementBase {
       </alerts-controls>
 
       <error-set .errors="${this.errors}"></error-set>
-      <cp-loading ?loading="${this.isLoading || this.preview.isLoading}">
-      </cp-loading>
+      <chops-loading ?loading="${this.isLoading || this.preview.isLoading}">
+      </chops-loading>
 
       ${(this.alertGroups && this.alertGroups.length) ? html`
         <div id="triage_controls"

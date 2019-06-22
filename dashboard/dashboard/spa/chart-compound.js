@@ -5,13 +5,14 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-radio-group.js';
-import './cp-radio.js';
-import './cp-switch.js';
 import './error-set.js';
+import '@chopsui/chops-radio';
+import '@chopsui/chops-radio-group';
+import '@chopsui/chops-switch';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ChartTimeseries from './chart-timeseries.js';
 import DetailsTable from './details-table.js';
+import {BatchIterator} from '@chopsui/batch-iterator';
 import {CHAIN, TOGGLE, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
@@ -24,7 +25,6 @@ import {
   get,
   isDebug,
   setImmutable,
-  BatchIterator,
 } from './utils.js';
 
 /**
@@ -233,43 +233,43 @@ export default class ChartCompound extends ElementBase {
             <div id="options-menu-inner">
               <div id="toggles" class="column">
                 <b>Options</b>
-                <cp-switch
+                <chops-switch
                     ?checked="${this.isLinked}"
                     title="${linkedTitle}"
                     @change="${this.onToggleLinked_}">
                   Linked to other charts
-                </cp-switch>
-                <cp-switch
+                </chops-switch>
+                <chops-switch
                     ?checked="${this.zeroYAxis}"
                     title="${zeroYTitle}"
                     @change="${this.onToggleZeroYAxis_}">
                   Zero Y-Axis
-                </cp-switch>
-                <cp-switch
+                </chops-switch>
+                <chops-switch
                     ?checked="${this.fixedXAxis}"
                     title="${fixedXTitle}"
                     @change="${this.onToggleFixedXAxis_}">
                   Fixed X-Axis
-                </cp-switch>
+                </chops-switch>
               </div>
               <div class="column">
                 <b>Mode</b>
-                <cp-radio-group
+                <chops-radio-group
                     selected="${this.mode}"
                     @selected-changed="${this.onModeChange_}">
-                  <cp-radio name="NORMALIZE_UNIT">
+                  <chops-radio name="NORMALIZE_UNIT">
                     Normalize per unit
-                  </cp-radio>
-                  <cp-radio name="NORMALIZE_LINE">
+                  </chops-radio>
+                  <chops-radio name="NORMALIZE_LINE">
                     Normalize per line
-                  </cp-radio>
-                  <cp-radio name="CENTER">
+                  </chops-radio>
+                  <chops-radio name="CENTER">
                     Center
-                  </cp-radio>
-                  <cp-radio name="DELTA">
+                  </chops-radio>
+                  <chops-radio name="DELTA">
                     Delta
-                  </cp-radio>
-                </cp-radio-group>
+                  </chops-radio>
+                </chops-radio-group>
               </div>
             </div>
           </div>

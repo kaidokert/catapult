@@ -6,8 +6,8 @@
 
 import './cp-icon.js';
 import './chart-legend.js';
-import './cp-input.js';
-import './cp-loading.js';
+import '@chopsui/chops-input';
+import '@chopsui/chops-loading';
 import './expand-button.js';
 import ChartBase from './chart-base.js';
 import ChartCompound from './chart-compound.js';
@@ -179,12 +179,12 @@ export default class ChartSection extends ElementBase {
           </div>
 
           <div ?hidden="${this.isExpanded}">
-            <cp-input
+            <chops-input
                 id="title"
                 value="${this.title_}"
                 label="Title"
                 @keyup="${this.onTitleKeyup_}">
-            </cp-input>
+            </chops-input>
           </div>
         </div>
 
@@ -210,7 +210,7 @@ export default class ChartSection extends ElementBase {
         </cp-icon>
       </div>
 
-      <cp-loading ?loading="${isLoading}"></cp-loading>
+      <chops-loading ?loading="${isLoading}"></chops-loading>
 
       <div id="chart_container">
         <chart-compound

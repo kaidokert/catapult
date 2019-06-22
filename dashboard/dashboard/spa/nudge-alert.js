@@ -4,7 +4,7 @@
 */
 'use strict';
 
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import './error-set.js';
 import NudgeAlertRequest from './nudge-alert-request.js';
 import {ElementBase, STORE} from './element-base.js';
@@ -95,7 +95,7 @@ export default class NudgeAlert extends ElementBase {
   render() {
     return html`
       <error-set .errors="${this.errors}"></error-set>
-      <cp-loading ?loading="${this.isLoading}"></cp-loading>
+      <chops-loading ?loading="${this.isLoading}"></chops-loading>
 
       <div id="scroller">
         <table>

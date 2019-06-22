@@ -4,9 +4,9 @@
 */
 'use strict';
 
-import './cp-loading.js';
-import './cp-tab-bar.js';
-import './cp-tab.js';
+import '@chopsui/chops-loading';
+import '@chopsui/chops-tab-bar';
+import '@chopsui/chops-tab';
 import ChartTimeseries from './chart-timeseries.js';
 import OptionGroup from './option-group.js';
 import TimeseriesDescriptor from './timeseries-descriptor.js';
@@ -81,7 +81,7 @@ export default class SparklineCompound extends ElementBase {
         width: 100%;
       }
 
-      cp-tab-bar {
+      chops-tab-bar {
         border-bottom: 2px solid var(--primary-color-dark, blue);
       }
     `;
@@ -91,15 +91,15 @@ export default class SparklineCompound extends ElementBase {
     if (!this.relatedTabs || (this.relatedTabs.length === 0)) return '';
 
     return html`
-      <cp-tab-bar selected="${this.selectedRelatedTabName}">
+      <chops-tab-bar selected="${this.selectedRelatedTabName}">
         ${this.relatedTabs.map((tab, tabIndex) => html`
-          <cp-tab
+          <chops-tab
               name="${tab.name}"
               @click="${event => this.onRelatedTabClick_(tab)}">
             ${tab.name}
-          </cp-tab>
+          </chops-tab>
         `)}
-      </cp-tab-bar>
+      </chops-tab-bar>
 
       ${this.relatedTabs.map((tab, tabIndex) => html`
         <div class="related_tab"
@@ -111,8 +111,8 @@ export default class SparklineCompound extends ElementBase {
                   ?hidden="${this.hideTile_(sparkline)}"
                   @click="${event => this.onSparklineClick_(sparkline)}">
                 <div class="sparkline_name">${sparkline.name}</div>
-                <cp-loading ?loading="${sparkline.layout.isLoading}">
-                </cp-loading>
+                <chops-loading ?loading="${sparkline.layout.isLoading}">
+                </chops-loading>
                 <chart-timeseries .statePath="${
   this.statePath}.relatedTabs.${tabIndex}.renderedSparklines.${
   index}.layout">
