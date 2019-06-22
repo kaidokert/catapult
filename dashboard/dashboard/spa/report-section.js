@@ -5,7 +5,7 @@
 'use strict';
 
 import './cp-dialog.js';
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
@@ -59,11 +59,11 @@ export default class ReportSection extends ElementBase {
       <report-controls .statePath="${this.statePath}">
       </report-controls>
 
-      <cp-loading ?loading="${this.isLoading}"></cp-loading>
+      <chops-loading ?loading="${this.isLoading}"></chops-loading>
 
       <div id="tables">
         ${(this.tables || []).map((table, tableIndex) => html`
-          <cp-loading ?loading="${table.isLoading}"></cp-loading>
+          <chops-loading ?loading="${table.isLoading}"></chops-loading>
 
           <report-table .statePath="${this.statePath}.tables.${tableIndex}">
           </report-table>

@@ -176,7 +176,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -186,7 +186,7 @@ suite('alerts-section', function() {
     button.click();
 
     const submit = findElements(section, e =>
-      e.matches('raised-button') && /SUBMIT/i.test(e.textContent))[0];
+      e.matches('chops-button') && /SUBMIT/i.test(e.textContent))[0];
     submit.click();
     await afterRender();
 
@@ -213,7 +213,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -227,7 +227,7 @@ suite('alerts-section', function() {
 
     const menu = findElements(section, e => e.matches('triage-existing'))[0];
     const submit = findElements(menu, e =>
-      e.matches('raised-button') && /SUBMIT/i.test(e.textContent))[0];
+      e.matches('chops-button') && /SUBMIT/i.test(e.textContent))[0];
     submit.click();
     await afterRender();
 
@@ -249,7 +249,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -277,7 +277,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);

@@ -4,7 +4,7 @@
 */
 'use strict';
 
-import './cp-loading.js';
+import '@chopsui/chops-loading';
 import './error-set.js';
 import AlertsControls from './alerts-controls.js';
 import AlertsRequest from './alerts-request.js';
@@ -132,8 +132,8 @@ export default class AlertsSection extends ElementBase {
       </alerts-controls>
 
       <error-set .errors="${this.errors}"></error-set>
-      <cp-loading ?loading="${this.isLoading || this.preview.isLoading}">
-      </cp-loading>
+      <chops-loading ?loading="${this.isLoading || this.preview.isLoading}">
+      </chops-loading>
 
       ${(this.alertGroups && this.alertGroups.length) ? html`
         <div id="triage_controls"

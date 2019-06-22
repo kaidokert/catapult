@@ -4,8 +4,8 @@
 */
 'use strict';
 
-import './cp-checkbox.js';
-import './cp-loading.js';
+import '@chopsui/chops-checkbox';
+import '@chopsui/chops-loading';
 import './error-set.js';
 import './recommended-options.js';
 import DescribeRequest from './describe-request.js';
@@ -99,7 +99,7 @@ export default class TimeseriesDescriptor extends ElementBase {
       .error[visible] {
         visibility: visible;
       }
-      cp-checkbox[hidden] {
+      chops-checkbox[hidden] {
         visibility: hidden;
       }
     `;
@@ -125,13 +125,13 @@ export default class TimeseriesDescriptor extends ElementBase {
           </div>
 
           ${!this.suite.canAggregate ? '' : html`
-            <cp-checkbox
+            <chops-checkbox
                 ?hidden="${this.suite.selectedOptions.length === 0}"
                 ?disabled="${this.suite.selectedOptions.length === 1}"
                 ?checked="${this.suite.isAggregated}"
                 @change="${this.onSuiteAggregateChange_}">
               Aggregate
-            </cp-checkbox>
+            </chops-checkbox>
           `}
         </div>
 
@@ -176,13 +176,13 @@ export default class TimeseriesDescriptor extends ElementBase {
           </div>
 
           ${!this.bot.canAggregate ? '' : html`
-            <cp-checkbox
+            <chops-checkbox
                 ?hidden="${this.bot.selectedOptions.length === 0}"
                 ?disabled="${this.bot.selectedOptions.length === 1}"
                 ?checked="${this.bot.isAggregated}"
                 @change="${this.onBotAggregateChange_}">
               Aggregate
-            </cp-checkbox>
+            </chops-checkbox>
           `}
         </div>
 
@@ -199,18 +199,18 @@ export default class TimeseriesDescriptor extends ElementBase {
           </menu-input>
 
           ${!this.case.canAggregate ? '' : html`
-            <cp-checkbox
+            <chops-checkbox
                 ?hidden="${this.case.selectedOptions.length === 0}"
                 ?disabled="${this.case.selectedOptions.length === 1}"
                 ?checked="${this.case.isAggregated}"
                 @change="${this.onCaseAggregateChange_}">
               Aggregate
-            </cp-checkbox>
+            </chops-checkbox>
           `}
         </div>
       </div>
 
-      <cp-loading ?loading="${this.isLoading}"></cp-loading>
+      <chops-loading ?loading="${this.isLoading}"></chops-loading>
       <error-set .errors="${this.errors}"></error-set>
     `;
   }

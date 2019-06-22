@@ -5,7 +5,7 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-input.js';
+import '@chopsui/chops-input';
 import OptionGroup from './option-group.js';
 import {ElementBase, STORE} from './element-base.js';
 import {UPDATE} from './simple-redux.js';
@@ -72,7 +72,7 @@ export default class MenuInput extends ElementBase {
 
   render() {
     return html`
-      <cp-input
+      <chops-input
           id="input"
           ?autofocus="${this.isFocused}"
           .error="${!this.isValid_()}"
@@ -92,7 +92,7 @@ export default class MenuInput extends ElementBase {
             alt="clear"
             @click="${this.onClear_}">
         </cp-icon>
-      </cp-input>
+      </chops-input>
 
       <div id="menu" tabindex="0" ?hidden="${!this.isFocused}">
         <slot name="top"></slot>
@@ -121,7 +121,7 @@ export default class MenuInput extends ElementBase {
   }
 
   firstUpdated() {
-    this.nativeInput = this.shadowRoot.querySelector('cp-input');
+    this.nativeInput = this.shadowRoot.querySelector('chops-input');
     this.observeIsFocused_();
   }
 

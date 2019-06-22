@@ -422,7 +422,7 @@ suite('alerts-table', function() {
       ],
     });
     const tbody = findElements(table, e => e.matches('tbody'))[0];
-    const checkbox = findElements(tbody, e => e.matches('cp-checkbox'))[0];
+    const checkbox = findElements(tbody, e => e.matches('chops-checkbox'))[0];
     checkbox.click();
     await afterRender();
     assert.isTrue(STORE.getState().test.alertGroups[0].alerts[0].isSelected);
@@ -467,7 +467,7 @@ suite('alerts-table', function() {
       ],
     });
     const tbody = findElements(table, e => e.matches('tbody'))[0];
-    const checkbox = findElements(tbody, e => e.matches('cp-checkbox'))[0];
+    const checkbox = findElements(tbody, e => e.matches('chops-checkbox'))[0];
     checkbox.click();
     await afterRender();
     assert.isTrue(STORE.getState().test.alertGroups[0].alerts[0].isSelected);
@@ -567,7 +567,7 @@ suite('alerts-table', function() {
     });
     const checkboxes = findElements(
         findElements(table, e => e.matches('tbody'))[0],
-        e => e.matches('cp-checkbox'));
+        e => e.matches('chops-checkbox'));
     checkboxes[1].click();
     checkboxes[3].native.dispatchEvent(new CustomEvent('change', {
       detail: {shiftKey: true},
