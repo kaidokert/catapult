@@ -117,7 +117,7 @@ export default class DetailsTable extends ElementBase {
 
   render() {
     return html`
-      <cp-loading ?loading="${this.isLoading}"></cp-loading>
+      <chops-loading ?loading="${this.isLoading}"></chops-loading>
 
       <div id="empty" ?hidden="${!this.isLoading || this.bodies.length}">
         Loading details

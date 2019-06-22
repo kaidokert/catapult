@@ -5,10 +5,10 @@
 'use strict';
 
 import './cp-icon.js';
-import './cp-checkbox.js';
-import './cp-input.js';
-import './cp-switch.js';
-import './raised-button.js';
+import '@chopsui/chops-checkbox';
+import '@chopsui/chops-input';
+import '@chopsui/chops-switch';
+import '@chopsui/chops-button';
 import './recommended-options.js';
 import * as PolymerAsync from '@polymer/polymer/lib/utils/async.js';
 import AlertsTable from './alerts-table.js';
@@ -100,7 +100,7 @@ export default class AlertsControls extends ElementBase {
         margin-right: 8px;
       }
 
-      cp-input {
+      chops-input {
         margin-right: 8px;
         margin-top: 12px;
       }
@@ -237,22 +237,22 @@ export default class AlertsControls extends ElementBase {
 
       <div id="min-container"
           ?hidden="${!showMin}">
-        <cp-input
+        <chops-input
             id="min-revision"
             .value="${this.minRevision}"
             label="Min Revision"
             @keyup="${this.onMinRevisionKeyup_}">
-        </cp-input>
+        </chops-input>
       </div>
 
       <div id="max-container"
           ?hidden="${!showMax}">
-        <cp-input
+        <chops-input
             id="max-revision"
             .value="${this.maxRevision}"
             label="Max Revision"
             @keyup="${this.onMaxRevisionKeyup_}">
-        </cp-input>
+        </chops-input>
       </div>
 
       <cp-icon
@@ -263,34 +263,34 @@ export default class AlertsControls extends ElementBase {
       </cp-icon>
 
       <div ?hidden="${this.bug && this.bug.selectedOptions.length > 0}">
-        <cp-switch
+        <chops-switch
             id="improvements"
             title="${improvementsTooltip}"
             ?checked="${this.showingImprovements}"
             @change="${this.onToggleImprovements_}">
           Improvements
-        </cp-switch>
+        </chops-switch>
 
-        <cp-switch
+        <chops-switch
             id="triaged"
             ?disabled="${this.bug && (this.bug.selectedOptions.length > 0)}"
             title="${triagedTooltip}"
             ?checked="${this.showingTriaged}"
             @change="${this.onToggleTriaged_}">
           Triaged
-        </cp-switch>
+        </chops-switch>
       </div>
 
       <span id=spacer></span>
 
       <span id="recent-bugs-container">
-        <raised-button
+        <chops-button
             id="recent-bugs"
             ?disabled="${
   this.recentlyModifiedBugs && (this.recentlyModifiedBugs.length === 0)}"
             @click="${this.onClickRecentlyModifiedBugs_}">
           Recent Bugs
-        </raised-button>
+        </chops-button>
 
         <div
             class="bug_notification"
