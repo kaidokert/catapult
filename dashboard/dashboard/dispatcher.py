@@ -65,7 +65,6 @@ from dashboard.api import new_bug
 from dashboard.api import new_pinpoint
 from dashboard.api import existing_bug
 from dashboard.api import nudge_alert
-from dashboard.api import report_generate
 from dashboard.api import report_names
 from dashboard.api import report_template
 from dashboard.api import sheriffs
@@ -91,7 +90,6 @@ _URL_MAPPING = [
     (r'/api/new_pinpoint', new_pinpoint.NewPinpointHandler),
     (r'/api/existing_bug', existing_bug.ExistingBugHandler),
     (r'/api/nudge_alert', nudge_alert.NudgeAlertHandler),
-    (r'/api/report/generate', report_generate.ReportGenerateHandler),
     (r'/api/report/names', report_names.ReportNamesHandler),
     (r'/api/report/template', report_template.ReportTemplateHandler),
     (r'/api/sheriffs', sheriffs.SheriffsHandler),
