@@ -16,6 +16,24 @@
       "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e328848_a18c0f9b",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T13:57:12Z",
+      "side": 1,
+      "message": "We don\u0027t know the names of trace parts here, so all we can do is just list all the files with their sizes. That\u0027s a bit different from what is being logged now (now file sizes from the same part are added together). Is it ok?",
+      "parentUuid": "370e1ec7_b646ca6c",
+      "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
