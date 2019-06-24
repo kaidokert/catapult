@@ -34,6 +34,24 @@
       "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e68cde30_8aadbeab",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T14:12:12Z",
+      "side": 1,
+      "message": "Ah, true. Then let\u0027s just sum up the size of all input traces, and then log a single line at the end that looks like:\n\n  \u0027trace2html processed %.01f MiB of trace data in %.02f seconds.\u0027\n\nIf we do this it\u0027s probably still fine to remove the original logging above for the size of individual traces (as this is run by multiprocessing, the current output is already not very useful).",
+      "parentUuid": "6e328848_a18c0f9b",
+      "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
