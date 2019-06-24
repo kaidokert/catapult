@@ -104,7 +104,7 @@ class TaggedTestListParser(object):
       crbug.com/123 [ Win ] benchmark/story [ Skip ]
       ...
     """
-
+    RESULT_TOKEN = '# results: ['
     TAG_TOKEN = '# tags: ['
     # The bug field (optional), including optional subproject.
     _MATCH_STRING = r'^(?:(crbug.com/(?:[^/]*/)?\d+) )?'
@@ -117,6 +117,7 @@ class TaggedTestListParser(object):
     def __init__(self, raw_data):
         self.tag_sets = []
         self.expectations = []
+        self.allowed_results = set()
         self._tag_to_tag_set = {}
         self._parse_raw_expectation_data(raw_data)
 
@@ -128,7 +129,12 @@ class TaggedTestListParser(object):
         first_tag_line = None
         while lineno <= num_lines:
             line = lines[lineno - 1].strip()
-            if line.startswith(self.TAG_TOKEN):
+            if (line.startswith(self.TAG_TOKEN) or
+                line.startswith(self.RESULT_TOKEN)):
+                if line.startswith(self.TAG_TOKEN):
+                    token = self.TAG_TOKEN
+                else:
+                    token = self.RESULT_TOKEN
                 # Handle tags.
                 if self.expectations:
                     raise ParseError(lineno,
@@ -138,7 +144,7 @@ class TaggedTestListParser(object):
                 right_bracket = line.find(']')
                 if right_bracket == -1:
                     # multi-line tag set
-                    tag_set = set(line[len(self.TAG_TOKEN):].split())
+                    tag_set = set(line[len(token):].split())
                     lineno += 1
                     while lineno <= num_lines and right_bracket == -1:
                         line = lines[lineno - 1].strip()
@@ -164,12 +170,15 @@ class TaggedTestListParser(object):
                             'Nothing is allowed after a closing tag '
                             'bracket')
                     tag_set = set(
-                        line[len(self.TAG_TOKEN):right_bracket].split())
-                tag_sets_intersection.update(
-                    (t for t in tag_set if t.lower() in self._tag_to_tag_set))
-                self.tag_sets.append(tag_set)
-                self._tag_to_tag_set.update(
-                    {tg.lower(): id(tag_set) for tg in tag_set})
+                        line[len(token):right_bracket].split())
+                if token == self.TAG_TOKEN:
+                    tag_sets_intersection.update(
+                        (t for t in tag_set if t.lower() in self._tag_to_tag_set))
+                    self.tag_sets.append(tag_set)
+                    self._tag_to_tag_set.update(
+                        {tg.lower(): id(tag_set) for tg in tag_set})
+                else:
+                    self.allowed_results.update(tag_set)
             elif line.startswith('#') or not line:
                 # Ignore, it is just a comment or empty.
                 lineno += 1
@@ -222,7 +231,12 @@ class TaggedTestListParser(object):
 
         results = []
         retry_on_failure = False
+
         for r in raw_results.split():
+            if (self.allowed_results and
+                r not in self.allowed_results):
+                raise ParseError(lineno, "Result '%s' is not"
+                                " part of the allowed results" % r)
             try:
                 # The test expectations may contain expected results and
                 # the RetryOnFailure tag
