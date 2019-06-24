@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "c1ed5677_810f8958",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T23:12:54Z",
+      "side": 1,
+      "message": "Are you suggesting that we use the (unique) artifact name in place of the artifact type in the JSON results?\n\nE.g. an \"artifacts\" entry for a test would be:\n\"artifacts\": {\n  \"failure_screenshot.png\": \"path/to/failure_screenshot.png\"\n}\n\nand the \"artifact_types\" entry would be:\n\"artifact_types\": {\n  \"failure_screenshot.png\": \"image/png\"\n}\n\nThe issue I see with that is then the names have to be unique across iterations, which I don\u0027t think we want to be the case.\n\nAlternatively, we could just MIME types for the artifact types, so we get:\n\"artifacts\": {\n  \"image/png\": [\"path/to/failure_screenshot.png\", \"path/to/another_screenshot.png\"]\n}\n\"artifact_types\": {\n  \"image/png\": \"image/png\"\n}\n\nWDYT?",
+      "parentUuid": "a5216d6a_4ad41faa",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -98,6 +116,24 @@
       "writtenOn": "2019-06-24T22:06:19Z",
       "side": 1,
       "message": "Do you need this to be a map of type -\u003e [file]? Can\u0027t you just do name -\u003e file?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab88a9d8_05d4d634",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T23:12:54Z",
+      "side": 1,
+      "message": "See above comment about the artifact types.",
+      "parentUuid": "a694488d_b2a790ae",
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -166,6 +202,24 @@
       "writtenOn": "2019-06-24T22:06:19Z",
       "side": 1,
       "message": "You don\u0027t need the os.path.exists() check, makedirs() will create it if it doesn\u0027t exist, and do nothing if it does.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71056205_af3f0647",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T23:12:54Z",
+      "side": 1,
+      "message": "https://docs.python.org/2/library/os.html#os.makedirs\n\n\"Raises an error exception if the leaf directory already exists or cannot be created\".",
+      "parentUuid": "9922f3a2_c168cd06",
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
