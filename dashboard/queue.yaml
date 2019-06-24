@@ -36,6 +36,7 @@ queue:
      task_retry_limit: 1
 
  - name: histograms-queue
+   target: upload
    rate: 50/s
    max_concurrent_requests: 100
    retry_parameters:
@@ -59,6 +60,7 @@ queue:
      task_retry_limit: 1
 
  - name: new-points-queue
+   target: upload
    rate: 100/s
    max_concurrent_requests: 100
    retry_parameters:
