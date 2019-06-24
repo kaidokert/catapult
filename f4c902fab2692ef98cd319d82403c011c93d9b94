@@ -52,6 +52,24 @@
       "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4df8269_c806ef54",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T15:35:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e68cde30_8aadbeab",
+      "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
