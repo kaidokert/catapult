@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d56564b1_2c43570d",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Yeah, you are right, we can use the whole name.",
+      "parentUuid": "ff5cb711_5de48948",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6032516_d44303ea",
         "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78bf3569_4e106c2f",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6032516_d44303ea",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "463a3986_6e3d2570",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50e4d091_594272a8",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e08a08a7_356a5993",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "216e0b83_97097f60",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e08a08a7_356a5993",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc276ae7_a3139d1b",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2019-06-24T13:34:17Z",
       "side": 1,
       "message": "I think we should add name here too.\n\nThis way e.g. IterArtifacts() can just be _artifacts.itervalues() and clients have all the info about the artifact object in a single place.\n\nStill good to have _artifacts as a dict, e.g. to quickly check for duplicates, but that is now an internal detail.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a50a8608_22761f31",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "The only place where the name is used now is the json output formatter, and what it actually needs is not the name, but the artifact path relative to the output directory. Perhaps it makes more sense then, to add a relative_path attribute?",
+      "parentUuid": "bc276ae7_a3139d1b",
       "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "9c9ae978_0f95aa14",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c57e6aeb_7cc47460",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43b5fd31_0c26515a",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -118,6 +226,24 @@
       "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a37a13e_11493ee8",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43b5fd31_0c26515a",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "0c989e77_96a5d315",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf4afe19_e1a31a3c",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "017813d3_c0c04888",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "6f2a9a7a_8bb791b2",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "017813d3_c0c04888",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0643e3d_dc512648",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -166,6 +328,24 @@
       "writtenOn": "2019-06-24T13:34:17Z",
       "side": 1,
       "message": "Why do you need this? Let\u0027s see if we can avoid exposing this.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60ec4707_8ad2e0cb",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "We need this for json output formatter only (see also above, the relative_path attribute can solve this problem).",
+      "parentUuid": "b0643e3d_dc512648",
       "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "37471406_5b1a1753",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "168d5dc8_b29ae8c1",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1795e082_48a1fbef",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -200,6 +398,24 @@
       "writtenOn": "2019-06-24T13:34:17Z",
       "side": 1,
       "message": "The two APIs above are great, thanks for those! And they should be enough for all client needs.\n\nCould we get rid of this AddArtifact? (Will also help to get rid of the artifact file moving code which is pretty scary too.)",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca30a85b_ea871bce",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-24T16:09:42Z",
+      "side": 1,
+      "message": "Sure, we can replace every call to AddArtifact with (CaptureArtifact + shutil.move). That will move the file moving code to the client side. But I\u0027m not sure it will be better that what we have now.",
+      "parentUuid": "1795e082_48a1fbef",
       "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
