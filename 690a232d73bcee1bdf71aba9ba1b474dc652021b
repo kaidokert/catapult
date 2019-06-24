@@ -118,6 +118,23 @@
       "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5b629f8_cefd3395",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:48Z",
+      "side": 1,
+      "message": "Question: in this case, what cleans up the temp dir?",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
