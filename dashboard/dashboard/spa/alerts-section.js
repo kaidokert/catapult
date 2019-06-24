@@ -655,6 +655,7 @@ export default class AlertsSection extends ElementBase {
 
   static async selectFirstGroup(statePath) {
     const state = get(STORE.getState(), statePath);
+    if (!state.alertGroups.length) return;
     STORE.dispatch(CHAIN({
       type: AlertsTable.reducers.selectAlert.name,
       statePath,
