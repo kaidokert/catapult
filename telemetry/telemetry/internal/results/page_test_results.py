@@ -637,9 +637,13 @@ class PageTestResults(object):
     assert self._current_page_run, 'Not currently running test.'
     self._current_page_run.Skip(reason, is_expected)
 
-  def CreateArtifact(self, name, prefix='', suffix=''):
+  def CreateArtifact(self, name):
     assert self._current_page_run, 'Not currently running test.'
-    return self._current_page_run.CreateArtifact(name, prefix, suffix)
+    return self._current_page_run.CreateArtifact(name)
+
+  def CaptureArtifact(self, name):
+    assert self._current_page_run, 'Not currently running test.'
+    return self._current_page_run.CaptureArtifact(name)
 
   def AddArtifact(self, name, path):
     assert self._current_page_run, 'Not currently running test.'
