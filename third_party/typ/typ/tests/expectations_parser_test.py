@@ -91,11 +91,11 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
             expectations_parser.TaggedTestListParser(raw_data)
 
     def testParseExpectationLineNoTags(self):
-        raw_data = '# tags: [ All ]\ncrbug.com/12345 b1/s1 [ Skip ]'
+        raw_data = '# tags: [ All ]\n# results: [ Skip ]\ncrbug.com/12345 b1/s1 [ Skip ]'
         parser = expectations_parser.TaggedTestListParser(raw_data)
         expected_outcome = [
             expectations_parser.Expectation('crbug.com/12345', 'b1/s1', [],
-                                            ['SKIP'], 2),
+                                            ['SKIP'], 3),
         ]
         for i in range(len(parser.expectations)):
             self.assertEqual(parser.expectations[i], expected_outcome[i])
@@ -120,17 +120,20 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
 
     def testParseExpectationLineMultipleTags(self):
         raw_data = ('# tags: [ All None batman ]\n'
+                    '# results: [ Skip \n'
+                    '# Pass RetryOnFailure\n'
+                    '# Failure ]\n'
                     'crbug.com/123 [ all ] b1/s1 [ Skip ]\n'
                     'crbug.com/124 [ None ] b1/s2 [ Pass ]\n'
                     'crbug.com/125 [ Batman ] b1/s3 [ Failure ]')
         parser = expectations_parser.TaggedTestListParser(raw_data)
         expected_outcome = [
             expectations_parser.Expectation(
-                'crbug.com/123', 'b1/s1', ['all'], ['SKIP'], 2),
+                'crbug.com/123', 'b1/s1', ['all'], ['SKIP'], 5),
             expectations_parser.Expectation(
-                'crbug.com/124', 'b1/s2', ['none'], ['PASS'], 3),
+                'crbug.com/124', 'b1/s2', ['none'], ['PASS'], 6),
             expectations_parser.Expectation(
-                'crbug.com/125', 'b1/s3', ['batman'], ['FAIL'], 4)
+                'crbug.com/125', 'b1/s3', ['batman'], ['FAIL'], 7)
         ]
         for i in range(len(parser.expectations)):
             self.assertEqual(parser.expectations[i], expected_outcome[i])
@@ -362,3 +365,14 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'crbug.com/23456 [ Linux ] b1/*/c [ RetryOnFailure ]\n')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
+
+    def testResultTagIsNotInAllowedResults(self):
+        raw_data = (
+            '# tags: [ Linux ]\n'
+            '# results: [ Failure Skip ]\n'
+            'crbug.com/23456 [ Linux ] b1/c [ RetryOnFailure ]\n')
+        with self.assertRaises(expectations_parser.ParseError) as context:
+            expectations_parser.TaggedTestListParser(raw_data)
+        self.assertIn(
+            "3: Result 'RetryOnFailure' is not part of the allowed results",
+            str(context.exception))
