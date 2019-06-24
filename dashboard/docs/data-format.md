@@ -1,6 +1,26 @@
-# Chrome Performance Dashboard Data Format
+# Chrome Performance Dashboard Data Formats
 
-## Recommended Format: Dashboard JSON v1
+Currently, the performance dashboard accepts data in two main formats:
+- Histograms, via the `add_histograms` endpoint.
+- Chart JSON, via the `add_point` endpoint.
+
+While both formats are supported for data upload to the performance dashboard,
+if the tool you use to produce data is able to output histograms then that is
+the preferred format.
+
+**Note:** [Telemetry](/telemetry/README.md), in particular, is due to deprecate
+chart JSON output.
+
+## Histograms
+
+The endpoint that accepts new histograms
+(`https://chromeperf.appspot.com/add_histograms`) accepts HTTP POST
+requests. The body of the request should be a JSON encoded list of histogram
+dicts. See [HistogramSet JSON Format](/docs/histogram-set-json-format.md) for
+details on the format.
+
+
+## Chart JSON v1
 
 The endpoint that accepts new points
 (`https://chromeperf.appspot.com/add_point`) accepts HTTP POST
