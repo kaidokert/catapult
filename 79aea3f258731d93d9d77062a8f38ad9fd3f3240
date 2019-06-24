@@ -1,0 +1,344 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "afa4f528_197b0189",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "I\u0027d just use ValueErrors rather than defining custom exceptions.\n\nDefining custom exceptions to me feels very un-pythonic and should only be used when you really need them.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "370fb0f3_f4b8e17f",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Can we call this just Artifacts() instead? The \"Results\" part feels redundant.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5216d6a_4ad41faa",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Thinking about this, I think the entire concept of artifact type is probably unnecessary.\n\nI feel like we can and should require that each artifact has a mime type, and that each artifact has a separate (unique) name, like \u0027output_log\u0027 and \u0027error_log\u0027. If we do, I don\u0027t think that keeping a map of artifact types really tells you much, and moving from a set of triples to two sets of tuples (name -\u003e type and name -\u003e value) simplifies things, I\u0027d guess.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aea4d31_3088903b",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Please give an example of path resulting from this.\n\nAlso, I worry that this could end up creating a lot of directories and be generally really annoying to navigate if you\u0027re trying to look at things by hand.\n\nThe web_tests use\n\n$(iteration)/$(dirname testname)/$(basename testname)-$(artifact_name) \n\n(roughly), and I think something like that\u0027d work better. The artifact type shouldn\u0027t need to be in the path, and the other differences cut out a lot of additional directories.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8730f19c_ac3b0c42",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "I\u0027d normally use public class members where possible, and definitely if it let me cut out accessor methods (I think it\u0027s better style and more pythonic to do both of these things). \n\nAlso, the style that typ is written in (and my preference for writing code generally, which I think also tends to be more pythonic) is to trust the caller to do the right thing most of the time, and only be defensive where you really need to (i.e., don\u0027t use frozen values because you\u0027re worried that a caller might mutate things).\n\nI\u0027d make all of these public, and probably call _artifact_type_map just `file_types` and _artifact_map `files`.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a694488d_b2a790ae",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Do you need this to be a map of type -\u003e [file]? Can\u0027t you just do name -\u003e file?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ba85a16_03cf36c9",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "I\u0027d add something about, where possible, using one of the helpers instead, and maybe add a note to say if the user doesn\u0027t find a suitable helper, ask for one to be added (somewhere? chromium-dev?)",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60a7d118_f4d4ea5f",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "As noted above, I think we don\u0027t really need both the artifact_type and the artifact_name? Can\u0027t you basically infer the former from the latter?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97f5d9bc_1cf7f033",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "If you get rid of the custom exceptions, you can also get rid of the \"Raises\" clause.\n\nIn general, I try to keep docstrings as terse as I reasonable can, and only include them when they are really needed.\n\nThen again, I wouldn\u0027t call typ well-documented, so don\u0027t go too far. Though, it not being well-documented isn\u0027t intentional :).",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9922f3a2_c168cd06",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "You don\u0027t need the os.path.exists() check, makedirs() will create it if it doesn\u0027t exist, and do nothing if it does.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17102cb0_b8acb340",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "If you make _artifact_map a public field, you don\u0027t need this.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79d804b8_6e1b1c0a",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "If I\u0027m right in the other comments, this routine can and  should just go away.\n\nHowever, if it was going to stick around ...\n\nIf you were going to use a generator, you should use .items(), not iteritems(), for python 3 compatibility (all typ code must by python3 compatible). But, using a generator is overkill for this; I would just return a list.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adde5996_641ef95c",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Why do you need both this and IterArtifacts()?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88abb321_427d3f5c",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "These are docstrings that don\u0027t add much, IMO, though I\u0027m not sure that I\u0027d actually omit them, they\u0027re right on the border ...",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37c0cdb8_80e25691",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "As elsewhere, I\u0027d just raise a ValueError() here.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e04719f_e523195a",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "It feels somewhat wrong for iteration to be a property of the test input (rather than a property of the test run), but given that the pool persists across multiple iterations, I guess I don\u0027t see a way to have this be elsewhere.\n\nAssuming you agree (and that\u0027s why the code is the way it is), can you add a comment to capture this idea? It\u0027s not totally obvious why this is the way this is, otherwise.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47d6f13f_b0971fe8",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Ick, this is kinda ugly; it means that tests will write artifacts to an indeterminate location.\n\nI wonder if we should make an error to call CreateArtifact() during tests if write_full_results_to wasn\u0027t specified, instead?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ab30f66_32b33ecd",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "Why is .iteration a member variable, and not a local variable? \n\nAnd, is it redundant with retry_limit at this point? I.e., can you just get rid of retry_limit and change the loop on 586 to loop up to self.args.retry_limit ?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df9b9468_80561011",
+        "filename": "third_party/typ/typ/tests/json_results_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "I think you don\u0027t need this import?",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f0e748_ffc07a01",
+        "filename": "third_party/typ/typ/tests/json_results_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-24T22:06:19Z",
+      "side": 1,
+      "message": "I\u0027d lift this up to be a top-level class, there\u0027s no real benefit to it being nested.",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
