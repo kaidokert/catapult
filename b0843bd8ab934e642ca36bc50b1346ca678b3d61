@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b02d044_c9115355",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T15:49:11Z",
+      "side": 1,
+      "message": "nit: maybe add a check and raise ValueError if trace_files is empty (or falsy).",
+      "revId": "b0843bd8ab934e642ca36bc50b1346ca678b3d61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50bcc9e1_d83aecd6",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T15:49:11Z",
+      "side": 1,
+      "message": "nit: MiB \u003d\u003d 1024 * 1024, you can also define this as a constant at the top.\n\n(MB \u003d\u003d 1e6, but let\u0027s use MiB)",
+      "revId": "b0843bd8ab934e642ca36bc50b1346ca678b3d61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
