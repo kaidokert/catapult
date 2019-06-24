@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff5cb711_5de48948",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "wondering whether (in the old format) we can use the entire name as the artifact_type?",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6032516_d44303ea",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "nit: add back the \"on all platforms\" bit.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50e4d091_594272a8",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "use os.path.relpath for this.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e08a08a7_356a5993",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "nit: Add a little docstring here.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc276ae7_a3139d1b",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "I think we should add name here too.\n\nThis way e.g. IterArtifacts() can just be _artifacts.itervalues() and clients have all the info about the artifact object in a single place.\n\nStill good to have _artifacts as a dict, e.g. to quickly check for duplicates, but that is now an internal detail.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c57e6aeb_7cc47460",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "I think some of the tools expect to see a single artifacts dir, so I would instead make this produce in the end something like os.path.join(self._output_dir, \u0027artifacts\u0027, \u0027{story}_{timestamp}_{rand}\u0027)",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b5fd31_0c26515a",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "Use story.file_safe_name here.\n\nSee: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/story.py?rcl\u003d6643ef1bddde64e223924eb23fabc47acc3da16c\u0026l\u003d120",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf4afe19_e1a31a3c",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "This will have \u0027:\u0027 symbols which may be problematic on windows. You can probably use your own string formatting here so this looks like e.g. \u0027YYYYMMDD_HHMMSS\u0027",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "017813d3_c0c04888",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "super nit: _artifact_dir -\u003e _artifacts_dir ?",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0643e3d_dc512648",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "Why do you need this? Let\u0027s see if we can avoid exposing this.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "168d5dc8_b29ae8c1",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "super nit: remove those \u0027*\u0027 in args.",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1795e082_48a1fbef",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:34:17Z",
+      "side": 1,
+      "message": "The two APIs above are great, thanks for those! And they should be enough for all client needs.\n\nCould we get rid of this AddArtifact? (Will also help to get rid of the artifact file moving code which is pretty scary too.)",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
