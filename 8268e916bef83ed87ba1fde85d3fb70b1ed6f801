@@ -16,6 +16,24 @@
       "revId": "8268e916bef83ed87ba1fde85d3fb70b1ed6f801",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7b1bc2a_be1f20b4",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:53:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61de55d2_156ac020",
+      "revId": "8268e916bef83ed87ba1fde85d3fb70b1ed6f801",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
