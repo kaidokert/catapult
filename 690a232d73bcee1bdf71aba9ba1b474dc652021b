@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b9ed5368_dfaa52c7",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bef242e_47121c81",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "338f7f43_ea78956e",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "559bbe38_1504592a",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "338f7f43_ea78956e",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "e7139ed7_dbfd5e5a",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a62562a_0feaf6c8",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eedf1e29_f05b60f6",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42e4f742_6943ff7e",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "Either works for me. IMO the second is a little more intuitive from a user\u0027s perspective since it\u0027s more like dict.iteritems(), but I don\u0027t have strong opinions either way.\n\nI\u0027ve gone with the first approach for now.",
+      "parentUuid": "eedf1e29_f05b60f6",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8769c98c_7a9a1352",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f2f7ba8_3dbed496",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dab887cc_1dc1aa4d",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 2
@@ -101,6 +191,24 @@
       "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc3b0e46_b310259d",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dab887cc_1dc1aa4d",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "e7c8524b_2d7bac66",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": ":D",
+      "parentUuid": "ce361567_5bd24b53",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5b629f8_cefd3395",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2019-06-24T08:54:48Z",
       "side": 1,
       "message": "Question: in this case, what cleans up the temp dir?",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e95e4616_680550bd",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-24T17:47:56Z",
+      "side": 1,
+      "message": "I was relying on the OS to clean this up eventually, but I could add explicit logic to clean this up in the test runner if that\u0027s preferable.",
+      "parentUuid": "e5b629f8_cefd3395",
       "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
