@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dc69b09_595c2572",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T12:45:13Z",
+      "side": 1,
+      "message": "Not sure if this legacy format still exists/is supported?",
+      "revId": "af0d1a38d8ed60bddf5c3101f98fed7bb3583eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
