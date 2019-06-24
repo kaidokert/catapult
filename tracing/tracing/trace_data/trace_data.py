@@ -207,16 +207,7 @@ class TraceDataBuilder(object):
       trace_files.append(trace.handle.name)
     logging.info('Trace sizes in bytes: %s', dict(trace_size_data))
 
-    cmd = ['python', _TRACE2HTML_PATH]
-    cmd.extend(trace_files)
-    cmd.extend(['--output', file_path])
-    if trace_title is not None:
-      cmd.extend(['--title', trace_title])
-
-    start_time = time.time()
-    subprocess.check_output(cmd)
-    elapsed_time = time.time() - start_time
-    logging.info('trace2html finished in %.02f seconds.', elapsed_time)
+    SerializeAsHtml(trace_files, file_path, trace_title)
 
   def AsData(self):
     """Allow in-memory access to read the collected JSON trace data.
@@ -269,3 +260,24 @@ def CreateFromRawChromeEvents(events):
   assert isinstance(events, list)
   return _TraceData({
       CHROME_TRACE_PART.raw_field_name: [{'traceEvents': events}]})
+
+
+def SerializeAsHtml(trace_files, html_file, trace_title=None):
+  """Serialize a set of traces to a single file in HTML format.
+
+  Args:
+    trace_files: a list of file names, each containing a trace from
+        one of the tracing agents.
+    html_file: a name of the output file.
+    trace_title: optional. A title for the resulting trace.
+  """
+  cmd = ['python', _TRACE2HTML_PATH]
+  cmd.extend(trace_files)
+  cmd.extend(['--output', html_file])
+  if trace_title is not None:
+    cmd.extend(['--title', trace_title])
+
+  start_time = time.time()
+  subprocess.check_output(cmd)
+  elapsed_time = time.time() - start_time
+  logging.info('trace2html finished in %.02f seconds.', elapsed_time)
