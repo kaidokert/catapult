@@ -176,7 +176,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -186,7 +186,7 @@ suite('alerts-section', function() {
     button.click();
 
     const submit = findElements(section, e =>
-      e.matches('raised-button') && /SUBMIT/i.test(e.textContent))[0];
+      e.matches('chops-button') && /SUBMIT/i.test(e.textContent))[0];
     submit.click();
     await afterRender();
 
@@ -213,7 +213,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -227,7 +227,7 @@ suite('alerts-section', function() {
 
     const menu = findElements(section, e => e.matches('triage-existing'))[0];
     const submit = findElements(menu, e =>
-      e.matches('raised-button') && /SUBMIT/i.test(e.textContent))[0];
+      e.matches('chops-button') && /SUBMIT/i.test(e.textContent))[0];
     submit.click();
     await afterRender();
 
@@ -249,7 +249,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -278,7 +278,7 @@ suite('alerts-section', function() {
     await afterRender();
 
     const selectAll = findElements(section, e =>
-      e.matches('th cp-checkbox'))[0];
+      e.matches('th chops-checkbox'))[0];
     selectAll.click();
     let state = STORE.getState().test;
     assert.strictEqual(10, state.selectedAlertsCount);
@@ -368,12 +368,13 @@ suite('alerts-section', function() {
     await afterRender();
     const groupCount = section.alertGroups.length;
     const selectAll = findElements(section, e =>
-      e.matches('td cp-checkbox'))[0];
-    selectAll.click();
+      e.matches('td chops-checkbox'))[0];
+    selectAll.dispatchEvent(new CustomEvent('change'));
     await afterRender();
+
     const autotriage = section.shadowRoot.querySelector('#autotriage');
     const explanation = autotriage.querySelector('#explanation');
-    const button = autotriage.querySelector('raised-button');
+    const button = autotriage.querySelector('chops-button');
     button.click();
     await afterRender();
 
@@ -461,12 +462,14 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
     await afterRender();
     assert.strictEqual('0,0', section.cursor.join());
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('j');
     await afterRender();
     assert.strictEqual('1,0', section.cursor.join());
@@ -530,12 +533,14 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('k');
     await afterRender();
     assert.strictEqual('1,0', section.cursor.join());
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('k');
     await afterRender();
     assert.isFalse(section.isHelping);
@@ -546,6 +551,7 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
@@ -553,6 +559,7 @@ suite('alerts-section', function() {
     await afterRender();
     assert.isTrue(section.alertGroups[0].alerts[0].isSelected);
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('x');
     await afterRender();
     assert.isFalse(section.alertGroups[0].alerts[0].isSelected);
@@ -562,13 +569,16 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
+    await afterRender();
     press('g');
     await afterRender();
     assert.isTrue(section.alertGroups[0].isExpanded);
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('g');
     await afterRender();
     assert.isFalse(section.alertGroups[0].isExpanded);
@@ -578,13 +588,16 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
+    await afterRender();
     press('t');
     await afterRender();
     assert.isTrue(section.alertGroups[0].triaged.isExpanded);
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('t');
     await afterRender();
     assert.isFalse(section.alertGroups[0].triaged.isExpanded);
