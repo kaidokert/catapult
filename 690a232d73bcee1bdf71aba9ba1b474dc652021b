@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8bef242e_47121c81",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "It would be nice to give a couple of example strings for each of these args.",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "338f7f43_ea78956e",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "suggestion nit: you can use `setdefault` instead of `get`; this way in existing_paths you end up with the existing list of paths, or the newly created list that got assigned to _artifact_map[artifact_type].",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a62562a_0feaf6c8",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "If you do as I suggested above, then no need for this condition (it already happened); and the line below can just become `existing_paths.append(artifact_path)`.",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eedf1e29_f05b60f6",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "This exposes the internal map, allowing clients to mutate without this object knowing. (The old Telemetry implementation had this problem, and some clients were abusing it!) The solution is typically to instead return an iterator, which is what your clients really want. In this case you could either:\n\n  def IterArtifacts(self):\n    for artifact_type, files in self._artifact_map.iteritems():\n      for file in files:\n        yield artifact_type, file\n\nor:\n\n  def IterArtifacts(self):\n    for artifact_type, files in self._artifact_map.iteritems():\n      yield artifact_type, tuple(files)  # (*)\n\n(*) Instead of tuple that could be list, or set, or iter; but maybe not plain \u0027files\u0027, as that would have the same problem.\n\nNow, looking at both, and because it\u0027s harder to explain what this second alternative returns, I\u0027m leaning towards something like the first version. What do you think?",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f2f7ba8_3dbed496",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "Similar as above; but this one is easier to fix, call it IterArtifactTypes and just return self._artifact_type_map.iteritems()",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dab887cc_1dc1aa4d",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "is this a text file containing a single URL? Or what is it? Maybe add a short docstring (for this and others).",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce361567_5bd24b53",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T08:54:04Z",
+      "side": 1,
+      "message": "+1 I like how this API turned out!",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
