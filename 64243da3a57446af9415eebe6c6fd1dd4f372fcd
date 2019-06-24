@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31b985af_05a614a3",
+        "filename": "dashboard/dashboard/pinpoint/handlers/fifo_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-06-24T05:07:32Z",
+      "side": 1,
+      "message": "Nit: it\u0027s slightly more robust to use addCleanup instead:\n\n  def setUp(self):\n    …\n    self.logger.addHandler(self.stream_hanlder)\n    self.addCleanup(self.logger.removeHandler, self.stream_handler)\n\nIt runs even if tearDown doesn\u0027t (e.g. when setUp fails part way through), and it\u0027s less error-prone (if you override tearDown then you should call the superclass\u0027 tearDown, and if other test cases inherit from this class and override tearDown they need to remove to call this tearDown).",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "64243da3a57446af9415eebe6c6fd1dd4f372fcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0313f265_486c1885",
+        "filename": "dashboard/dashboard/pinpoint/handlers/fifo_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-06-24T05:07:32Z",
+      "side": 1,
+      "message": "Nit: Just `range(total_queues)`.",
+      "range": {
+        "startLine": 96,
+        "startChar": 28,
+        "endLine": 96,
+        "endChar": 50
+      },
+      "revId": "64243da3a57446af9415eebe6c6fd1dd4f372fcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32ee47d0_ddc741c6",
+        "filename": "dashboard/dashboard/pinpoint/handlers/fifo_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-06-24T05:07:32Z",
+      "side": 1,
+      "message": "Maybe call self.skipTest(\u0027Not implemented yet.\u0027) here?\n\nPython\u0027s test runner has a concept of skipped tests in addition to success/fail, which seems like a more accurate outcome than “success” here.\n\nAlternatively write the test, but apply the @unittest.expectedFailure decorator?",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 8
+      },
+      "revId": "64243da3a57446af9415eebe6c6fd1dd4f372fcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
