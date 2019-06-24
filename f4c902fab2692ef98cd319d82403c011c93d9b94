@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "370e1ec7_b646ca6c",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-24T13:38:03Z",
+      "side": 1,
+      "message": "I think it would be useful to keep the code that loops through the files and writes their size to the logs. So let\u0027s move that here (even if that means looping through the list of files twice).",
+      "revId": "f4c902fab2692ef98cd319d82403c011c93d9b94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
