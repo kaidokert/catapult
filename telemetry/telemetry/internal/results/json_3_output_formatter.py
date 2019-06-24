@@ -71,11 +71,19 @@ def ResultsAsDict(page_test_results):
     else:
       test['times'].append(run.duration)
 
-    for name, path in run.IterArtifacts():
-      # Use '/' as a separator on all platforms as required by the spec.
-      standard_path = path.replace(os.sep, '/')
-      test.setdefault('artifacts', {}).setdefault(name, []).append(
-          standard_path)
+    for name, artifact in run.IterArtifacts():
+      # Artifact type is the first part of its name.
+      artifact_type = name.split('/', 1)[0]
+      if artifact.url is not None:
+        artifact_path = artifact.url
+      else:
+        # Paths in json format should be relative to the output directory and
+        # '/'-delimited according to the spec.
+        relative_path = artifact.local_path[len(run.output_dir + os.sep):]
+        artifact_path = relative_path.replace(os.sep, '/')
+
+      test.setdefault('artifacts', {}).setdefault(artifact_type, []).append(
+          artifact_path)
 
     # Shard index is really only useful for failed tests. See crbug.com/960951
     # for details.
