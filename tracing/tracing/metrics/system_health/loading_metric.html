@@ -566,6 +566,64 @@ tr.exportTo('tr.metrics.sh', function() {
     return collectTimeToEvent(rendererHelper, lastCandidateEvents);
   }
 
+  class LargestContentfulPaintMetrics {
+    constructor(browserHelper) {
+      this.browserHelper = browserHelper;
+    }
+
+    findCandidate() {
+      const finalEvent = this.findFinalEvent(this.browserHelper);
+      if (!finalEvent || this.isInvalidateEvent(finalEvent)) {
+        return null;
+      }
+      const { durationInMilliseconds, size, type, inMainFrame } =
+          finalEvent.args.data;
+      if (durationInMilliseconds === undefined || size === undefined ||
+          type === undefined || inMainFrame === undefined) {
+        throw new Error('The LCP event format is unexpected.');
+      }
+      return finalEvent.args.data;
+    }
+
+    // Return at most one sample.
+    findHistogramSamples() {
+      const lcpSamples = [];
+      const candidate = this.findCandidate();
+      if (!candidate) {
+        return lcpSamples;
+      }
+      const { durationInMilliseconds, size, type, inMainFrame } = candidate;
+      lcpSamples.push({
+        value: durationInMilliseconds,
+        diagnostics: {
+          size: new tr.v.d.GenericSet([size]),
+          type: new tr.v.d.GenericSet([type]),
+          inMainFrame: new tr.v.d.GenericSet([inMainFrame]),
+        },
+      });
+      return lcpSamples;
+    }
+
+    isInvalidateEvent(event) {
+      return event && event.title ===
+          'NavStartToLargestContentfulPaint::Invalidate::AllFrames::UKM';
+    }
+
+    isCandidateEvent(event) {
+      return event && event.title ===
+          'NavStartToLargestContentfulPaint::Candidate::AllFrames::UKM';
+    }
+
+    // TODO(maxlg): we should retrieve the LCP of every mainframe navigation
+    // instead of the last LCP.
+    findFinalEvent(browserHelper) {
+      const events = browserHelper.mainThread.sliceGroup.slices.filter(event =>
+        this.isInvalidateEvent(event) || this.isCandidateEvent(event))
+          .sort((a, b) => a.start - b.start);
+      return events[events.length - 1];
+    }
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -776,6 +834,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to Largest Text Paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const largestContentfulPaintHistogram = histograms.createHistogram(
+        'largestContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Time to Largest Contentful Paint',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
     const layoutShiftHistogram = histograms.createHistogram(
         'mainFrameCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
           binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
@@ -799,6 +863,13 @@ tr.exportTo('tr.metrics.sh', function() {
 
       const samplesSet =
           collectLoadingMetricsForRenderer(rendererHelper);
+
+      const lcpMetrics =
+          new LargestContentfulPaintMetrics(chromeHelper.browserHelper);
+      const lcpSamples = lcpMetrics.findHistogramSamples();
+      addSamplesToHistogram(
+          lcpSamples, largestContentfulPaintHistogram, histograms);
+
       addSamplesToHistogram(
           samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
       addSamplesToHistogram(
