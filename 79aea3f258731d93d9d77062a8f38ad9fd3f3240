@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "d1e6e1e2_6747978a",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-25T00:23:00Z",
+      "side": 1,
+      "message": "Good point that we need to account for iterations (I hadn\u0027t been thinking about that), but I\u0027m not seeing how the artifact_type is needed for this?\n\ni.e., I had been assuming that for TestFoo.test_bar, you\u0027d have:\n\u0027artifacts\u0027: {\u0027screenshot\u0027: \u0027TestFoo/test_bar-screenshot.png\u0027} \n\nand then in the json results, you\u0027d have:\n\n\u0027artifacts\u0027: {\n  \u0027screenshot\u0027: [\n    \u0027iteration_1/TestFoo/test_bar-screenshot.png\u0027, \n    \u0027iteration_2/TestFoo/test_bar-screenshot.png\u0027\n  ]\n}\n\nI don\u0027t see how artifact_type really helps here?",
+      "parentUuid": "c1ed5677_810f8958",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -223,6 +241,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db8cd35_ec8e8252",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-25T00:23:00Z",
+      "side": 1,
+      "message": "Oh, you\u0027re right. In Python3, there\u0027s an exist_ok flag for that case. Never mind :).",
+      "parentUuid": "71056205_af3f0647",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
