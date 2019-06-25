@@ -16,6 +16,24 @@
       "revId": "8ea07ef9821f1e8eb781c8ec71769823cbebf5f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d009dea_6d20d485",
+        "filename": "dashboard/app.yaml",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-06-25T21:06:30Z",
+      "side": 1,
+      "message": "Yes, bin/deploy vulcanizes some stuff from tracing/tracing via dependencies.html.",
+      "parentUuid": "acf5be13_9b7c63d4",
+      "revId": "8ea07ef9821f1e8eb781c8ec71769823cbebf5f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
