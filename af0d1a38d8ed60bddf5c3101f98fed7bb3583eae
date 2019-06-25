@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "2d25ed5a_7fe4d489",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-25T04:33:05Z",
+      "side": 1,
+      "message": "Actually, I confused this with /add_points -- you\u0027re right it is a JSON encoded list of histogram dicts, but we do prefer it to be gzip\u0027ed. :)",
+      "revId": "af0d1a38d8ed60bddf5c3101f98fed7bb3583eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7dc69b09_595c2572",
         "filename": "dashboard/docs/data-format.md",
         "patchSetId": 3
