@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "33b35391_90a5fae3",
+        "filename": "tracing/bin/snapdragon2trace",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-06-25T17:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bc7c56c_b8527835",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 12
+      },
+      "revId": "fefe1c1c0eba4a4f8816ade7e1106bcabc0e10bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d488c2bb_2f95de00",
         "filename": "tracing/bin/snapdragon2trace",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "fefe1c1c0eba4a4f8816ade7e1106bcabc0e10bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9ec095a_9e552862",
+        "filename": "tracing/bin/snapdragon2trace",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-06-25T17:37:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d488c2bb_2f95de00",
+      "range": {
+        "startLine": 18,
+        "startChar": 52,
+        "endLine": 18,
+        "endChar": 61
+      },
+      "revId": "fefe1c1c0eba4a4f8816ade7e1106bcabc0e10bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
