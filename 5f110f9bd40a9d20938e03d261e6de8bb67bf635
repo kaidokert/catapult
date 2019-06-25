@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f0c012e_47d41230",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-25T15:35:10Z",
+      "side": 1,
+      "message": "Might be useful to put this class in tracing/extras/chrome (like time_to_interactive.html) and follow the apparent convention of one class per file. This file is already a bit bloated.",
+      "revId": "5f110f9bd40a9d20938e03d261e6de8bb67bf635",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02059ecc_98777d77",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-06-25T15:35:10Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you be doing this within a navigation like the rest of our metrics? Looks like this is finding one candidate from the whole trace.",
+      "revId": "5f110f9bd40a9d20938e03d261e6de8bb67bf635",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
