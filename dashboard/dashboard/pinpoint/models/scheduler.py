@@ -188,8 +188,10 @@ def Cancel(job):
     if queued_job.job_id == job.job_id:
       if queued_job.status in {'Running', 'Queued'}:
         queued_job.status = 'Cancelled'
-        queue.put()
-      return
+      break
+
+  # Remove all 'Done' and 'Cancelled' jobs.
+  queue.jobs = [j for j in queue.jobs if j.status not in {'Done', 'Cancelled'}]
 
 
 @ndb.transactional
@@ -212,16 +214,16 @@ def Complete(job):
 
   queue = ConfigurationQueue.GetOrCreateQueue(configuration)
 
-  # Remove all 'Done' and 'Cancelled' jobs.
-  queue.jobs = [j for j in queue.jobs if j.status not in {'Done', 'Cancelled'}]
-
   # We can only complete 'Running' jobs.
   for queued_job in queue.jobs:
     if queued_job.job_id == job.job_id:
       if queued_job.status == 'Running':
         queued_job.status = 'Done'
-        queue.put()
-      return
+      break
+
+  # Remove all 'Done' and 'Cancelled' jobs.
+  queue.jobs = [j for j in queue.jobs if j.status not in {'Done', 'Cancelled'}]
+  queue.put()
 
 
 @ndb.transactional
