@@ -308,6 +308,11 @@ export class BatchIterator {
 
   add(task) {
     if (task instanceof Promise) task = asGenerator(task);
+    if (!task.next && task[Symbol.asyncIterator]) {
+      // It's probably an instance of a class that implements this method like
+      // ReportFetcher.
+      task = task[Symbol.asyncIterator]();
+    }
     this.generate_(task);
   }
 
