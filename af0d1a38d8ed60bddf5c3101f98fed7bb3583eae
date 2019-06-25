@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ff6722f_03494cbc",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-25T04:29:26Z",
+      "side": 1,
+      "message": "Probably should mention that it must be gzipp\u0027ed as well. Also, we need the list to be in the \"data\" field of the body. So gzip-compress the following:\n\n```\n{\n  \"data\": [\u003cHistogram\u003e, \u003cHistogram\u003e]\n}\n```",
+      "range": {
+        "startLine": 17,
+        "startChar": 46,
+        "endLine": 17,
+        "endChar": 58
+      },
+      "revId": "af0d1a38d8ed60bddf5c3101f98fed7bb3583eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7dc69b09_595c2572",
         "filename": "dashboard/docs/data-format.md",
         "patchSetId": 3
