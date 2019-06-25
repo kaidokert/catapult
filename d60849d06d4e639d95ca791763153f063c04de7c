@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b182346_0015a52b",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T11:17:49Z",
+      "side": 1,
+      "message": "This should be just artifact.name.",
+      "revId": "d60849d06d4e639d95ca791763153f063c04de7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9723e066_7fa7fc4c",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T11:17:49Z",
+      "side": 1,
+      "message": "I would feel better if you expose a results.output_dir; then compute the \"legacy_path\" here as the relpath between artifact.local_path and results.output_dir.\n\nThat leaves the implementation of Artifact cleaner; and pushes details about how this formatter needs to mangle those paths here, where it should belong.",
+      "revId": "d60849d06d4e639d95ca791763153f063c04de7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e0342a1_906c3763",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T11:17:49Z",
+      "side": 1,
+      "message": "nit: two blank lines between top level definitions.",
+      "revId": "d60849d06d4e639d95ca791763153f063c04de7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd22c891_59d1d884",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T11:17:49Z",
+      "side": 1,
+      "message": "I think there is no need for the object to remember the output_dir; we only needed it to compute the right _artifacts_dir, right?",
+      "revId": "d60849d06d4e639d95ca791763153f063c04de7c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

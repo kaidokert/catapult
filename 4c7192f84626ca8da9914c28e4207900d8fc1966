@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "359c9c01_a061879f",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T11:17:49Z",
+      "side": 1,
+      "message": "It does need the name, though. And your current code needs to \"extract\" the name out of the legacy_path. Let\u0027s just expose artifact.name. (Also the LUCI format will need the name too.)",
+      "parentUuid": "a50a8608_22761f31",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c57e6aeb_7cc47460",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 3
@@ -416,6 +434,24 @@
       "side": 1,
       "message": "Sure, we can replace every call to AddArtifact with (CaptureArtifact + shutil.move). That will move the file moving code to the client side. But I\u0027m not sure it will be better that what we have now.",
       "parentUuid": "1795e082_48a1fbef",
+      "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a671f2_ed560a5f",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T11:17:49Z",
+      "side": 1,
+      "message": "Yes I think that\u0027s better than the current code that conditionally moves the file depending on where it currently lives. Pushing that decision to the clients makes things clearer and more explicit.",
+      "parentUuid": "ca30a85b_ea871bce",
       "revId": "4c7192f84626ca8da9914c28e4207900d8fc1966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
