@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "349a55b3_4c1e4768",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 39
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T08:41:23Z",
+      "side": 1,
+      "message": "Are we sure this is the right approach? This just seems to be moving the cpu that was burned on the server now to the client. Waiting 2 min for the report to fully load does not sound reasonable.\n\nWhy can\u0027t we have a periodic job on the server precomputing the summary metrics needed for reports; so we are then able to serve them immediately when trying to view the page with the report?\n\nThis probably needs a design doc before more coding, and close collaboration with +yfriedman, +benmason and myself; as this tool will be central to a potential new \"system health rotation\" we\u0027re hoping to bootstrap.",
+      "revId": "ccd2fe17bf3fd4d7f9bc48203c30385d1d7695d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
