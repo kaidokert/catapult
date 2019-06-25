@@ -461,12 +461,14 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
     await afterRender();
     assert.strictEqual('0,0', section.cursor.join());
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('j');
     await afterRender();
     assert.strictEqual('1,0', section.cursor.join());
@@ -530,12 +532,14 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('k');
     await afterRender();
     assert.strictEqual('1,0', section.cursor.join());
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('k');
     await afterRender();
     assert.isFalse(section.isHelping);
@@ -546,13 +550,16 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
+    await afterRender();
     press('x');
     await afterRender();
     assert.isTrue(section.alertGroups[0].alerts[0].isSelected);
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('x');
     await afterRender();
     assert.isFalse(section.alertGroups[0].alerts[0].isSelected);
@@ -562,13 +569,16 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
+    await afterRender();
     press('g');
     await afterRender();
     assert.isTrue(section.alertGroups[0].isExpanded);
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('g');
     await afterRender();
     assert.isFalse(section.alertGroups[0].isExpanded);
@@ -578,13 +588,18 @@ suite('alerts-section', function() {
     const section = await fixture();
     section.shadowRoot.querySelector('#controls').dispatchEvent(
         new CustomEvent('sources', {detail: {sources: [{bug: 42}]}}));
+    await afterRender();
     STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     await afterRender();
     press('j');
+    await afterRender();
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
+    await afterRender();
     press('t');
     await afterRender();
     assert.isTrue(section.alertGroups[0].triaged.isExpanded);
 
+    STORE.dispatch(UPDATE(section.statePath, {hotkeyable: true}));
     press('t');
     await afterRender();
     assert.isFalse(section.alertGroups[0].triaged.isExpanded);

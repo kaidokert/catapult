@@ -8,6 +8,7 @@ import ReportControls from './report-controls.js';
 import ReportNamesRequest from './report-names-request.js';
 import findElements from './find-elements.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
+import {LATEST_REVISION} from './report-fetcher.js';
 import {STORE} from './element-base.js';
 import {afterRender} from './utils.js';
 import {assert} from 'chai';
@@ -67,7 +68,7 @@ suite('report-controls', function() {
     const controls = await fixture();
     assert.strictEqual(ReportControls.CHROMIUM_MILESTONES[
         ReportControls.CURRENT_MILESTONE], controls.minRevision);
-    assert.strictEqual('latest', controls.maxRevision);
+    assert.strictEqual(LATEST_REVISION, controls.maxRevision);
 
     controls.shadowRoot.querySelector('#prev-mstone').click();
     await afterRender();
@@ -80,7 +81,7 @@ suite('report-controls', function() {
     await afterRender();
     assert.strictEqual(ReportControls.CHROMIUM_MILESTONES[
         ReportControls.CURRENT_MILESTONE], controls.minRevision);
-    assert.strictEqual('latest', controls.maxRevision);
+    assert.strictEqual(LATEST_REVISION, controls.maxRevision);
   });
 
   test('alerts', async function() {
@@ -92,7 +93,7 @@ suite('report-controls', function() {
     controls.shadowRoot.querySelector('#alerts').click();
     assert.strictEqual(ReportControls.CHROMIUM_MILESTONES[
         ReportControls.CURRENT_MILESTONE], controls.minRevision);
-    assert.strictEqual('latest', options.maxRevision);
+    assert.strictEqual(LATEST_REVISION, options.maxRevision);
     assert.deepEqual([ReportControls.DEFAULT_NAME], options.reports);
     assert.isTrue(options.showingTriaged);
   });

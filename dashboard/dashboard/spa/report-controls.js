@@ -11,9 +11,10 @@ import MenuInput from './menu-input.js';
 import OptionGroup from './option-group.js';
 import ReportNamesRequest from './report-names-request.js';
 import {ElementBase, STORE} from './element-base.js';
+import {LATEST_REVISION} from './report-fetcher.js';
 import {UPDATE} from './simple-redux.js';
-import {html, css} from 'lit-element';
 import {get, isDebug, simpleGUID} from './utils.js';
+import {html, css} from 'lit-element';
 
 export default class ReportControls extends ElementBase {
   static get is() { return 'report-controls'; }
@@ -115,7 +116,7 @@ export default class ReportControls extends ElementBase {
           id="prev-mstone"
           ?disabled="${this.milestone <= (MIN_MILESTONE + 1)}"
           @click="${this.onPreviousMilestone_}">
-        M${this.milestone - ((this.maxRevision === 'latest') ? 1 : 2)}
+        M${this.milestone - ((this.maxRevision === LATEST_REVISION) ? 1 : 2)}
         <cp-icon icon="left"></cp-icon>
       </raised-button>
 
@@ -279,7 +280,7 @@ ReportControls.CREATE = '[Create new report]';
 ReportControls.reducers = {
   selectMilestone: (state, {milestone}, rootState) => {
     const maxRevision = (milestone === ReportControls.CURRENT_MILESTONE) ?
-      'latest' : ReportControls.CHROMIUM_MILESTONES[milestone + 1];
+      LATEST_REVISION : ReportControls.CHROMIUM_MILESTONES[milestone + 1];
     const minRevision = ReportControls.CHROMIUM_MILESTONES[milestone];
     return {
       ...state,
