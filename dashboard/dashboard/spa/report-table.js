@@ -12,6 +12,33 @@ import {TOGGLE, UPDATE} from './simple-redux.js';
 import {html, css} from 'lit-element';
 import {get, isDebug, measureElement} from './utils.js';
 
+const DASHES = '-'.repeat(5);
+const PLACEHOLDER_TABLE = {
+  name: DASHES,
+  isPlaceholder: true,
+  statistics: ['avg'],
+  report: {rows: []},
+};
+// Keep this the same shape as the default report so that the buttons don't
+// move when the default report loads.
+for (let i = 0; i < 4; ++i) {
+  const scalars = [];
+  for (let j = 0; j < 4 * PLACEHOLDER_TABLE.statistics.length; ++j) {
+    scalars.push({value: 0});
+  }
+  PLACEHOLDER_TABLE.report.rows.push({
+    labelParts: [
+      {
+        href: '',
+        label: DASHES,
+        isFirst: true,
+        rowCount: 1,
+      },
+    ],
+    scalars,
+  });
+}
+
 export default class ReportTable extends ElementBase {
   static get is() { return 'report-table'; }
 
@@ -30,7 +57,6 @@ export default class ReportTable extends ElementBase {
       statistics: Array,
       rows: Array,
       owners: Array,
-      tooltip: Object,
     };
   }
 
@@ -46,7 +72,6 @@ export default class ReportTable extends ElementBase {
       statistics: options.statistics || ['avg'],
       rows: options.rows || [],
       owners: options.owners || [],
-      tooltip: {},
     };
   }
 
@@ -101,26 +126,6 @@ export default class ReportTable extends ElementBase {
         position: relative;
         display: flex;
         align-items: center;
-      }
-
-      #tooltip {
-        display: none;
-        position: absolute;
-        z-index: var(--layer-menu, 100);
-      }
-
-      :host(:hover) #tooltip {
-        display: block;
-      }
-
-      #tooltip table {
-        background-color: var(--background-color, white);
-        border: 2px solid var(--primary-color-dark, blue);
-        padding: 8px;
-      }
-
-      #tooltip td {
-        padding: 2px;
       }
 
       #copied {
@@ -207,10 +212,10 @@ export default class ReportTable extends ElementBase {
 
         <tbody>
           ${(this.rows || []).map(row => html`
-            <tr @mouseenter="${event => this.onEnterRow_(event, row)}">
+            <tr>
               ${row.labelParts.map((labelPart, labelPartIndex) =>
     (!labelPart.isFirst ? '' : html`
-                  <td row-span="${labelPart.rowCount}">
+                  <td rowspan="${labelPart.rowCount}">
                     <a href="${labelPart.href}"
                         @click="${event =>
         this.onOpenChart_(event, labelPartIndex, row)}">
@@ -232,22 +237,6 @@ export default class ReportTable extends ElementBase {
           `)}
         </tbody>
       </table>
-
-      <div id="tooltip"
-          style="top: ${this.tooltip ? this.tooltip.top : 0}px;
-                 left: ${this.tooltip ? this.tooltip.left : 0}px;">
-        <table>
-          <tbody>
-            ${(this.tooltip && this.tooltip.rows || []).map(row => html`
-              <tr>
-                ${row.map(cell => html`
-                  <td>${cell}</td>
-                `)}
-              </tr>
-            `)}
-          </tbody>
-        </table>
-      </div>
 
       <div id="scratch">
       </div>
@@ -365,67 +354,13 @@ export default class ReportTable extends ElementBase {
     }));
   }
 
-  async onEnterRow_(event, row) {
-    if (!row.actualDescriptors) return;
-    let tr;
-    for (const elem of event.path) {
-      if (elem.tagName === 'TR') {
-        tr = elem;
-        break;
-      }
-    }
-    if (!tr) return;
-    const td = tr.querySelector('scalar-span').parentNode;
-    const [thisRect, tdRect] = await Promise.all([
-      measureElement(this), measureElement(td),
-    ]);
-    await STORE.dispatch(UPDATE(this.statePath, {
-      tooltip: {
-        rows: row.actualDescriptors.map(descriptor => [
-          descriptor.testSuite, descriptor.bot, descriptor.testCase]),
-        top: (tdRect.bottom - thisRect.top),
-        left: (tdRect.left - thisRect.left),
-      },
-    }));
+  static canEdit(owners, userEmail) {
+    return isDebug() || (owners && userEmail && owners.includes(userEmail));
+  }
+
+  static placeholderTable(name) {
+    return {...PLACEHOLDER_TABLE, name};
   }
 }
-
-ReportTable.canEdit = (owners, userEmail) =>
-  isDebug() ||
-  (owners && userEmail && owners.includes(userEmail));
-
-const DASHES = '-'.repeat(5);
-const PLACEHOLDER_TABLE = {
-  name: DASHES,
-  isPlaceholder: true,
-  statistics: ['avg'],
-  report: {rows: []},
-};
-// Keep this the same shape as the default report so that the buttons don't
-// move when the default report loads.
-for (let i = 0; i < 4; ++i) {
-  const scalars = [];
-  for (let j = 0; j < 4 * PLACEHOLDER_TABLE.statistics.length; ++j) {
-    scalars.push({value: 0});
-  }
-  PLACEHOLDER_TABLE.report.rows.push({
-    labelParts: [
-      {
-        href: '',
-        label: DASHES,
-        isFirst: true,
-        rowCount: 1,
-      },
-    ],
-    scalars,
-  });
-}
-
-ReportTable.placeholderTable = name => {
-  return {
-    ...PLACEHOLDER_TABLE,
-    name,
-  };
-};
 
 ElementBase.register(ReportTable);
