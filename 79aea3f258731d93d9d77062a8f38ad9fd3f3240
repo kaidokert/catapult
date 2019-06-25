@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "cd04f5cf_2c2937f7",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-25T00:45:01Z",
+      "side": 1,
+      "message": "It\u0027s not a question of helpfulness, but rather conforming to the JSON results specifications https://chromium.googlesource.com/chromium/src/+/master/docs/testing/json_test_results_format.md\n\n\"artifact_types\t| dict | Optional. Required if any artifacts are present for any tests. MIME Type information for artifacts in this json file. All artifacts with the same name must share the same MIME type.\"\n\nSo, I think there are three options:\n1. Keep it as-is with the artifact types\n2. Just use the MIME type for the artifact type, so tests don\u0027t have to actually provide an artifact type\n3. Ignore the specification and leave out the \"artifact_types\" field (probably not advisable, but Telemetry\u0027s getting away with it ATM)",
+      "parentUuid": "d1e6e1e2_6747978a",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
