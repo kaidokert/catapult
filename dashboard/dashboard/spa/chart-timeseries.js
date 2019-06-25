@@ -116,7 +116,9 @@ export default class ChartTimeseries extends ElementBase {
         this.zeroYAxis !== oldZeroYAxis ||
         this.minRevision !== oldMinRevision ||
         this.maxRevision !== oldMaxRevision) {
-      this.debounce('load', () => {
+      const rectPromise = measureElement(this);
+      this.debounce('load', async() => {
+        console.log((await rectPromise).width);
         ChartTimeseries.load(this.statePath);
       });
     }
