@@ -279,6 +279,24 @@
       "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8144cd3d_0e4ce8a5",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T09:07:10Z",
+      "side": 1,
+      "message": "I think that\u0027s frowned upon. I remember some infra tools complaining (with a warning) when scripts left temp dirs lying around.",
+      "parentUuid": "e95e4616_680550bd",
+      "revId": "690a232d73bcee1bdf71aba9ba1b474dc652021b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

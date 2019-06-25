@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "da7acd47_58da2a40",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T09:07:10Z",
+      "side": 1,
+      "message": "Oh, I had never seen that artifact_types in the spec, and no Telemetry does not produce them. We only produce the per-test artifacts (mapping name to paths). I would be happy either way to remove the artifact_types dict fro the spec, or to implement in in Telemetry too (as a mapping of name to mime-types).\n\nAlso agree that the notion of artifact_type is not needed at all, and a good name is all what is needed.",
+      "parentUuid": "de135a3f_504c806b",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
