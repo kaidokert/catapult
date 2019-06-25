@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "de135a3f_504c806b",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-25T02:58:31Z",
+      "side": 1,
+      "message": "Ah, that\u0027s a misunderstanding of the spec (I probably didn\u0027t word it clearly enough).\n\nThe top-level artifact_types dict is supposed to be a map from artifact names to mime types. Then the per-test artifacts dict maps artifact names to paths.\n\nThat said, if telemetry\u0027s not using the artifact_types field, I think we\u0027re free to change the spec however we need to (no one else is likely using it). I had thought telemetry was using it (and/or the per-test artifact fields) already, but maybe we never ended launching that?",
+      "parentUuid": "cd04f5cf_2c2937f7",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
