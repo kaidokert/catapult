@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "5afd3a1a_8b81bdf7",
+        "filename": "dashboard/docs/data-format.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-25T09:17:28Z",
+      "side": 1,
+      "message": "Done. Added note saying it should be gzip compressed. :)",
+      "parentUuid": "2d25ed5a_7fe4d489",
+      "revId": "af0d1a38d8ed60bddf5c3101f98fed7bb3583eae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7dc69b09_595c2572",
         "filename": "dashboard/docs/data-format.md",
         "patchSetId": 3
