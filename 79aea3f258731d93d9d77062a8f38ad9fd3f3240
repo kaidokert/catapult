@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dedbffae_7c951297",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-26T17:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afa4f528_197b0189",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "370fb0f3_f4b8e17f",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f351d883_d866d39e",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-26T17:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "370fb0f3_f4b8e17f",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "Oh, I had never seen that artifact_types in the spec, and no Telemetry does not produce them. We only produce the per-test artifacts (mapping name to paths). I would be happy either way to remove the artifact_types dict fro the spec, or to implement in in Telemetry too (as a mapping of name to mime-types).\n\nAlso agree that the notion of artifact_type is not needed at all, and a good name is all what is needed.",
       "parentUuid": "de135a3f_504c806b",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abaa391f_5919351f",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-26T17:58:52Z",
+      "side": 1,
+      "message": "One more comment about artifact types:\n\nThe driving use case for adding artifacts to typ is so that the GPU tests can report Gold triage links to be shown in Milo. In general, artifacts that a test produces will be linked in Milo, but in the case of links, it makes sense to generate a link directly to what the artifact is pointing to, as otherwise the user has to click the link to the artifact and manually copy its URL for use.\n\nThe plan was to have some extra logic in the recipe if the artifact type was \"link\", but if artifact types are removed, what should be done instead? See if the file contents are URL-like using urlparse? https://docs.python.org/2/library/urlparse.html",
+      "parentUuid": "da7acd47_58da2a40",
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
