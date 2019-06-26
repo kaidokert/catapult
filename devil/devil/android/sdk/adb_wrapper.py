@@ -264,6 +264,15 @@ class AdbWrapper(object):
   @decorators.WithTimeoutAndConditionalRetries(_ShouldRetryAdbCmd)
   def _RunAdbCmd(cls, args, timeout=None, retries=None, device_serial=None,
                  check_error=True, cpu_affinity=None, additional_env=None):
+    if ('shell' in args[0] and '(' not in args[1]):
+      args[1] = 'su 0 ' + args[1];
+    if ('shell' in args[0]):
+      args[1] = args[1].replace('( sh ', '( su 0 sh ');
+      args[1] = args[1].replace('( chown ', '( su 0 chown ');
+      args[1] = args[1].replace('( am ', '( su 0 am ');
+      args[1] = args[1].replace('( ls ', '( su 0 ls ');
+    print(args);
+
     if timeout:
       remaining = timeout_retry.CurrentTimeoutThreadGroup().GetRemainingTime()
       if remaining:
