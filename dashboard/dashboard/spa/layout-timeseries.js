@@ -19,51 +19,35 @@ export const MODE = {
   NORMALIZE_UNIT: 'NORMALIZE_UNIT',
 };
 
-export function layoutTimeseries(state) {
-  let rawXs;
-  if (state.fixedXAxis) {
-    rawXs = fixLinesXInPlace(state.lines);
-  }
-
+function getXExtension(ticks) {
   // Extend xRange in both directions for chartLayout, not minimapLayout in
   // order to make room for icons.
-  const xExtension = state.yAxis.generateTicks ? (
-    ICON_WIDTH_PX / 2 / ESTIMATED_WIDTH_PX) : 0;
+  return ticks ? (ICON_WIDTH_PX / 2 / ESTIMATED_WIDTH_PX) : 0;
+}
 
+function getYExtension(ticks) {
   // Extend yRange in both directions to prevent clipping yAxis.ticks.
-  const yExtension = state.yAxis.generateTicks ? (
-    TEXT_HEIGHT_PX / 2 / HEIGHT_PX) : 0;
+  return ticks ? (TEXT_HEIGHT_PX / 2 / HEIGHT_PX) : 0;
+}
 
-  const {xRange, yRangeForUnitName} = normalizeLinesInPlace(
-      state.lines, {
-        mode: state.mode,
-        zeroYAxis: state.zeroYAxis,
-        xExtension,
-        yExtension,
-      });
+export function layoutTimeseries(state) {
+  if (state.fixedXAxis) {
+    fixLinesXInPlace(state.lines);
+  }
 
-  state = {
+  const {xRange, rangeForUnitName} = normalizeLinesInPlace(state.lines, {
+    mode: state.mode,
+    zeroYAxis: state.zeroYAxis,
+    xExtension: getXExtension(state.xAxis.generateTicks),
+    yExtension: getYExtension(state.yAxis.generateTicks),
+  });
+  const range = getRevisionRange(state.lines, 0);
+
+  return {
     ...state,
-    xAxis: {
-      ...state.xAxis,
-      range: getRevisionRange(state.lines, 0),
-    },
-    yAxis: {
-      ...state.yAxis,
-      rangeForUnitName: yRangeForUnitName,
-    }
+    xAxis: {...state.xAxis, range, displayRange: xRange},
+    yAxis: {...state.yAxis, rangeForUnitName},
   };
-
-  if (state.xAxis.generateTicks) {
-    const ticks = computeXTicks(state.xAxis.range, xRange, rawXs);
-    state = {...state, xAxis: {...state.xAxis, ticks}};
-  }
-
-  if (state.yAxis.generateTicks) {
-    state = generateYTicksReducer(state, yRangeForUnitName, yExtension);
-  }
-
-  return state;
 }
 
 function fixLinesXInPlace(lines) {
@@ -80,7 +64,6 @@ function fixLinesXInPlace(lines) {
       datum.xFixed = rawXs.indexOf(datum.x);
     }
   }
-  return rawXs;
 }
 
 function getX(datum) {
@@ -124,7 +107,32 @@ function getXPct(pct) {
   return tr.b.math.truncate(pct * 100, 1) + '%';
 }
 
-function computeXTicks(revisionRange, displayRange, rawXs) {
+// Return an array of xAxis ticks like {text, xPct, anchor}.
+// Measure the text to prevent overlap.
+// Render timestamps as dates.
+// Render a tick at the beginning and a tick at the end.
+// Consider state.fixedXAxis.
+export async function generateXTicks(state) {
+  const ticks = [];
+
+  // Choose a formatter and a generator.
+  // Create the start and end ticks.
+  // Generate intermediate ticks: if they don't overlap any existing ticks, then
+  // format and add them.
+
+  const revisionRange = state.xAxis.range;
+  const displayRange = state.xAxis.displayRange;
+  const xAxisWidth = state.width - state.yAxis.width;
+
+  let rawXs = new Set();
+  for (const line of state.lines) {
+    for (const datum of line.data) {
+      rawXs.add(datum.x);
+    }
+  }
+  rawXs = Array.from(rawXs);
+  rawXs.sort((x, y) => x - y);
+
   // Timestamps can be in either seconds or milliseconds.
   const {dateRange, displayMs, rawMs} = revisionRangeAsDates(
       revisionRange, displayRange, rawXs);
@@ -145,16 +153,20 @@ function computeXTicks(revisionRange, displayRange, rawXs) {
     };
   }
 
-  return computeTicks(revisionRange).map(formatTick);
+  return [
+    {
+      text: revisionRange.min,
+      anchor: 'start',
+      xPct: getXPct(0),
+    },
+    ...generateTicks(revisionRange).map(formatTick),
+    {
+      text: revisionRange.min,
+      anchor: 'end',
+      xPct: getXPct(1),
+    },
+  ];
 }
-
-let CHAR_SIZE_PX;
-
-layoutTimeseries.isReady = false;
-layoutTimeseries.readyPromise = (async() => {
-  CHAR_SIZE_PX = await measureText('0');
-  layoutTimeseries.isReady = true;
-})();
 
 function calendarTick(ms, text, xPct, anchor) {
   const width = Math.ceil(CHAR_SIZE_PX.width * text.length);
@@ -201,12 +213,12 @@ function calendarTickFromDate(date, text, displayRange, rawMs) {
 }
 
 function generateMonths(
-    ticks, year, minMonth, maxMonth, displayRange, rawMs) {
+    ticks, year, minMonth, maxMonth, displayRange, rawMs, xAxisWidth) {
   for (let month = minMonth; month <= maxMonth; ++month) {
     const date = new Date(year, month, 1);
     const text = date.toLocaleString(navigator.language, {month: 'short'});
     const tick = calendarTickFromDate(date, text, displayRange, rawMs);
-    if (maybeInsertTick(ticks, tick)) {
+    if (maybeInsertTick(ticks, tick, xAxisWidth)) {
       generateDates(ticks, year, month - 1, 1, daysInMonth(year, month),
           displayRange, rawMs);
     }
@@ -214,32 +226,33 @@ function generateMonths(
 }
 
 function generateDates(
-    ticks, year, month, minDate, maxDate, displayRange, rawMs) {
+    ticks, year, month, minDate, maxDate, displayRange, rawMs, xAxisWidth) {
   for (let day = minDate; day <= maxDate; ++day) {
     const date = new Date(year, month, day);
     const text = day.toString();
     const ms = date.getTime();
     const tick = calendarTickFromDate(date, text, displayRange, rawMs);
-    if (maybeInsertTick(ticks, tick) && (day < maxDate)) {
-      generateHours(ticks, year, month, day, 1, 60, displayRange, rawMs);
+    if (maybeInsertTick(ticks, tick, xAxisWidth) && (day < maxDate)) {
+      generateHours(ticks, year, month, day, 1, 60, displayRange, rawMs,
+          xAxisWidth);
     }
   }
 }
 
-function generateHours(
-    ticks, year, month, date, minHour, maxHour, displayRange, rawMs) {
+function generateHours(ticks, year, month, date, minHour, maxHour, displayRange,
+    rawMs, xAxisWidth) {
 }
 
 function generateMinutes(ticks, year, month, date, hour, minMinutes,
     maxMinutes, displayRange, rawMs) {
 }
 
-function maybeInsertTick(ticks, tick) {
+function maybeInsertTick(ticks, tick, xAxisWidth) {
   // If tick does not overlap any ticks, then insert it and return true.
   const index = tr.b.findLowIndexInSortedArray(ticks, t => t.ms, tick.ms);
 
   if (tick.px.max < 0) return false;
-  if (tick.px.min >= ESTIMATED_WIDTH_PX) return false;
+  if (tick.px.min >= xAxisWidth) return false;
 
   if (ticks[index] && tick.px.intersectsRangeExclusive(ticks[index].px)) {
     return false;
@@ -259,7 +272,7 @@ function maybeInsertTick(ticks, tick) {
   return true;
 }
 
-function calendarTicks(dates, displayRange, rawMs) {
+function calendarTicks(dates, displayRange, rawMs, xAxisWidth) {
   // Always start with the full date of dates.min and end with dates.max.
   const ticks = [
     calendarTick(
@@ -276,22 +289,24 @@ function calendarTicks(dates, displayRange, rawMs) {
 
   if (dates.max.getFullYear() !== dates.min.getFullYear()) {
     generateMonths(ticks, dates.min.getFullYear(),
-        dates.min.getMonth() + 1, 11, displayRange, rawMs);
+        dates.min.getMonth() + 1, 11, displayRange, rawMs, xAxisWidth);
     for (let y = 1 + dates.min.getFullYear(); y <= dates.max.getFullYear();
       ++y) {
       const date = new Date(y, 0, 1);
       const text = y.toString();
       const tick = calendarTickFromDate(date, text, displayRange, rawMs);
-      if (maybeInsertTick(ticks, tick) && (y < dates.max.getFullYear())) {
+      if (maybeInsertTick(ticks, tick, xAxisWidth) &&
+          (y < dates.max.getFullYear())) {
         generateMonths(ticks, dates.max.getFullYear(), 2, 11,
-            displayRange, rawMs);
+            displayRange, rawMs, xAxisWidth);
       }
     }
     generateMonths(ticks, dates.max.getFullYear(),
-        2, dates.max.getMonth() + 1, displayRange, rawMs);
+        2, dates.max.getMonth() + 1, displayRange, rawMs, xAxisWidth);
   } else if (dates.max.getMonth() !== dates.min.getMonth()) {
     generateMonths(ticks, dates.min.getFullYear(),
-        dates.min.getMonth(), dates.max.getMonth(), displayRange, rawMs);
+        dates.min.getMonth(), dates.max.getMonth(), displayRange, rawMs,
+        xAxisWidth);
   } else if (dates.max.getDate() !== dates.min.getDate()) {
     generateDates(ticks, dates.min.getFullYear(),
         dates.min.getMonth(), dates.min.getDate(), dates.max.getDate(),
@@ -299,11 +314,12 @@ function calendarTicks(dates, displayRange, rawMs) {
   } else if (dates.max.getHour() !== dates.min.getHour()) {
     generateHours(ticks, dates.min.getFullYear(),
         dates.min.getMonth(), dates.min.getDate(), dates.min.getHour(),
-        dates.max.getHour(), displayRange, rawMs);
+        dates.max.getHour(), displayRange, rawMs, xAxisWidth);
   } else if (dates.max.getMinutes() !== dates.min.getMinutes()) {
     generateMinutes(ticks, dates.min.getFullYear(),
         dates.min.getMonth(), dates.min.getDate(), dates.min.getHour(),
-        dates.min.getMinutes(), dates.max.getMinutes(), displayRange, rawMs);
+        dates.min.getMinutes(), dates.max.getMinutes(), displayRange, rawMs,
+        xAxisWidth);
   }
 
   return ticks;
@@ -410,21 +426,22 @@ function normalizeLinesInPlace(lines, opt_options) {
   return {xRange, yRangeForUnitName};
 }
 
-function generateYTicksReducer(state, yRangeForUnitName, yExtension) {
+export function generateYTicks(state) {
   let yAxis = state.yAxis;
   let ticks = [];
+  const yExtension = getYExtension(true);
   if (state.mode === MODE.NORMALIZE_LINE || state.mode === MODE.CENTER) {
     for (const line of state.lines) {
-      line.ticks = generateYTicks(line.yRange, line.unit, yExtension);
+      line.ticks = generateYTicksInternal(line.yRange, line.unit, yExtension);
     }
     if (state.lines.length === 1) {
       ticks = state.lines[0].ticks;
     }
   } else {
     const ticksForUnitName = new Map();
-    for (const [unitName, range] of yRangeForUnitName) {
+    for (const [unitName, range] of state.yAxis.rangeForUnitName) {
       const unit = tr.b.Unit.byName[unitName];
-      const ticks = generateYTicks(range, unit, yExtension);
+      const ticks = generateYTicksInternal(range, unit, yExtension);
       ticksForUnitName.set(unitName, ticks);
     }
     yAxis = {...yAxis, ticksForUnitName};
@@ -436,11 +453,11 @@ function generateYTicksReducer(state, yRangeForUnitName, yExtension) {
   return {...state, yAxis};
 }
 
-function generateYTicks(displayRange, unit, yExtension) {
+function generateYTicksInternal(displayRange, unit, yExtension) {
   const dataRange = tr.b.math.Range.fromExplicitRange(
       displayRange.min + (displayRange.range * yExtension),
       displayRange.max - (displayRange.range * yExtension));
-  return computeTicks(dataRange).map(y => {
+  return generateTicks(dataRange).map(y => {
     return {
       text: unit.format(y),
       yPct: tr.b.math.truncate(
@@ -449,7 +466,7 @@ function generateYTicks(displayRange, unit, yExtension) {
   });
 }
 
-export function computeTicks(range, numTicks = 5) {
+export function generateTicks(range, numTicks = 5) {
   const ticks = [];
 
   let tickPower = tr.b.math.lesserPower(range.range);

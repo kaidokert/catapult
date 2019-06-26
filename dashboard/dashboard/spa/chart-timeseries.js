@@ -9,15 +9,23 @@ import ChartBase from './chart-base.js';
 import {CHAIN, UPDATE} from './simple-redux.js';
 import {ElementBase, STORE} from './element-base.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
-import {MODE, layoutTimeseries} from './layout-timeseries.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
 import {html, css} from 'lit-element';
 
 import {
+  MODE,
+  generateXTicks,
+  generateYTicks,
+  layoutTimeseries,
+} from './layout-timeseries.js';
+
+import {
   BatchIterator,
   CTRL_KEY_NAME,
+  afterRender,
   generateColors,
   get,
+  measureElement,
   measureText,
 } from './utils.js';
 
@@ -116,10 +124,16 @@ export default class ChartTimeseries extends ElementBase {
         this.zeroYAxis !== oldZeroYAxis ||
         this.minRevision !== oldMinRevision ||
         this.maxRevision !== oldMaxRevision) {
-      this.debounce('load', () => {
+      this.debounce('load', async() => {
+        this.updateWidth_();
         ChartTimeseries.load(this.statePath);
       });
     }
+  }
+
+  async updateWidth_() {
+    const rect = await measureElement(this);
+    STORE.dispatch(UPDATE(this.statePath, {width: rect.width}));
   }
 
   showPlaceholder(isLoading, lines) {
@@ -213,17 +227,34 @@ export default class ChartTimeseries extends ElementBase {
         errors,
         statePath,
       });
-      ChartTimeseries.measureYTicks(statePath);
+      ChartTimeseries.generateTicks(statePath);
+      await afterRender();
       if (timeseriesesByLine.length) METRICS.endLoadChart();
     }
   }
 
-  // Measure the yAxis tick labels on the screen and size the yAxis region
-  // appropriately. Measuring elements is asynchronous, so this logic needs to
-  // be an action creator.
+  // Generate yAxis ticks if necessary. Measure them and set yAxis.width
+  // appropriately. Then generate xAxis ticks to fill the remaining space.
+  static async generateTicks(statePath) {
+    await ChartTimeseries.measureYTicks(statePath);
+
+    const state = get(STORE.getState(), statePath);
+    const ticks = await generateXTicks(state);
+    STORE.dispatch(UPDATE(statePath + '.xAxis', {ticks}));
+  }
+
   static async measureYTicks(statePath) {
-    const ticks = collectYAxisTicks(get(STORE.getState(), statePath));
+    STORE.dispatch({
+      type: ChartTimeseries.reducers.generateYTicks.name,
+      statePath,
+    });
+    const state = get(STORE.getState(), statePath);
+    const ticks = collectYAxisTicks(state);
     if (ticks.length === 0) return;
+
+    // Measure the yAxis tick labels on the screen and size the yAxis region
+    // appropriately. Measuring elements is asynchronous, so this logic needs to
+    // be an action creator.
     STORE.dispatch({
       type: ChartTimeseries.reducers.yAxisWidth.name,
       statePath,
@@ -352,6 +383,11 @@ ChartTimeseries.reducers = {
     state = layoutTimeseries(state);
     state = ChartTimeseries.brushRevisions(state);
     return state;
+  },
+
+  generateYTicks: (state, action, rootState) => {
+    if (!state.yAxis.generateTicks) return state;
+    return generateYTicks(state);
   },
 
   // Size the yAxis region according to max tick width.
