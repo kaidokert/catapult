@@ -7,6 +7,7 @@
 import './scalar-span.js';
 import AlertDetail from './alert-detail.js';
 import BisectDialog from './bisect-dialog.js';
+import ChartBase from './chart-base.js';
 import ChartTimeseries from './chart-timeseries.js';
 import NudgeAlert from './nudge-alert.js';
 import {DetailsFetcher} from './details-fetcher.js';
@@ -92,7 +93,7 @@ export default class DetailsTable extends ElementBase {
     `;
   }
 
-  renderLinkRow(row) {
+  renderLinkRow_(row) {
     return html`
       <tr>
         <td>
@@ -115,6 +116,78 @@ export default class DetailsTable extends ElementBase {
     `;
   }
 
+  renderScalarRow_(row) {
+    return html`
+      <tr>
+        <td>${row.label}</td>
+        ${row.cells.map(cell => html`
+          <td>
+            <scalar-span
+                .value="${cell.value}"
+                .unit="${cell.unit}">
+            </scalar-span>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderAlertsRow_(alertCells, bodyIndex) {
+    return html`
+      <tr>
+        <td>Alerts</td>
+        ${alertCells.map((cell, cellIndex) => html`
+          <td>
+            ${cell.alerts.map((alert, alertIndex) => html`
+              <alert-detail .statePath="${
+  this.statePath}.bodies.${bodyIndex}.alertCells.${cellIndex}.alerts.${
+  alertIndex}">
+              </alert-detail>
+            `)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderBisectRow_(body, bodyIndex) {
+    return html`
+      <tr>
+        <td>Bisect</td>
+        ${body.bisectMessage ? html`
+          <td colspan="99">
+            ${body.bisectMessage}
+          </td>
+        ` : body.bisectCells.map((bisect, bisectIndex) => html`
+          <td>
+            <bisect-dialog .statePath="${
+  this.statePath}.bodies.${bodyIndex}.bisectCells.${bisectIndex}">
+            </bisect-dialog>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderHistogramRow_(cells, bodyIndex) {
+    if (!cells.filter(c => c).length) return '';
+
+    return html`
+      <tr>
+        <td>Histogram</td>
+        ${cells.map((cell, cellIndex) => html`
+          <td>
+            ${!cell ? '' : html`
+              <chart-base .statePath="${
+  this.statePath}.bodies.${bodyIndex}.histogramCells.${cellIndex}">
+              </chart-base>
+            `}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
   render() {
     return html`
       <cp-loading ?loading="${this.isLoading}"></cp-loading>
@@ -125,7 +198,7 @@ export default class DetailsTable extends ElementBase {
 
       <table ?hidden="${!this.bodies || (this.bodies.length === 0)}">
         <thead>
-          ${(this.commonLinkRows || []).map(row => this.renderLinkRow(row))}
+          ${(this.commonLinkRows || []).map(row => this.renderLinkRow_(row))}
         </thead>
 
         ${(this.bodies || []).map((body, bodyIndex) => html`
@@ -141,54 +214,18 @@ export default class DetailsTable extends ElementBase {
               </tr>
             `}
 
-            ${body.scalarRows.map(row => html`
-              <tr>
-                <td>${row.label}</td>
-                ${row.cells.map(cell => html`
-                  <td>
-                    <scalar-span
-                        .value="${cell.value}"
-                        .unit="${cell.unit}">
-                    </scalar-span>
-                  </td>
-                `)}
-              </tr>
-            `)}
+            ${body.scalarRows.map(row => this.renderScalarRow_(row))}
 
-            ${body.linkRows.map(row => this.renderLinkRow(row))}
+            ${body.linkRows.map(row => this.renderLinkRow_(row))}
 
-            ${!body.alertCells.length ? '' : html`
-              <tr>
-                <td>Alerts</td>
-                ${body.alertCells.map((cell, cellIndex) => html`
-                  <td>
-                    ${cell.alerts.map((alert, alertIndex) => html`
-                      <alert-detail .statePath="${
-  this.statePath}.bodies.${bodyIndex}.alertCells.${cellIndex}.alerts.${
-  alertIndex}">
-                      </alert-detail>
-                    `)}
-                  </td>
-                `)}
-              </tr>
-            `}
+            ${!body.histogramCells.length ? '' : this.renderHistogramRow_(
+      body.histogramCells, bodyIndex)}
 
-            ${!body.bisectCells.length ? '' : html`
-              <tr>
-                <td>Bisect</td>
-                ${body.bisectMessage ? html`
-                  <td colspan="99">
-                    ${body.bisectMessage}
-                  </td>
-                ` : body.bisectCells.map((bisect, bisectIndex) => html`
-                  <td>
-                    <bisect-dialog .statePath="${
-  this.statePath}.bodies.${bodyIndex}.bisectCells.${bisectIndex}">
-                    </bisect-dialog>
-                  </td>
-                `)}
-              </tr>
-            `}
+            ${!body.alertCells.length ? '' : this.renderAlertsRow_(
+      body.alertCells, bodyIndex)}
+
+            ${!body.bisectCells.length ? '' : this.renderBisectRow_(
+      body, bodyIndex)}
           </tbody>
         `)}
       </table>
@@ -233,6 +270,7 @@ export default class DetailsTable extends ElementBase {
         state.minRevision, state.maxRevision,
         state.revisionRanges);
     for await (const {timeseriesesByLine, errors} of fetcher) {
+      console.log('load', timeseriesesByLine);
       state = get(STORE.getState(), statePath);
       if (!state || state.started !== started) return;
 
@@ -254,21 +292,22 @@ function setCell(map, key, columnCount, columnIndex, value) {
 }
 
 function mergeHistograms(cell, datum) {
-  if (datum.histogram) {
-    if (cell.histogram) {
-      // Merge Histograms if possible, otherwise ignore earlier data.
-      if (cell.histogram.canAddHistogram(datum.histogram)) {
-        try {
-          cell.histogram.addHistogram(datum.histogram);
-        } catch (err) {
-          // TODO resolve DiagnosticRefs and remove this try-catch.
-        }
-      } else if (datum.revision > cell.revision) {
-        cell.histogram = datum.histogram;
-      }
-    } else {
-      cell.histogram = datum.histogram;
+  if (!datum.histogram) return;
+  if (!cell.histogram) {
+    cell.histogram = datum.histogram;
+    return;
+  }
+
+  // Merge Histograms if possible, otherwise ignore earlier data.
+  if (cell.histogram.canAddHistogram(datum.histogram)) {
+    try {
+      cell.histogram.addHistogram(datum.histogram);
+    } catch (err) {
+      console.log(err);
+      // TODO resolve DiagnosticRefs and remove this try-catch.
     }
+  } else if (datum.revision > cell.revision) {
+    cell.histogram = datum.histogram;
   }
 }
 
@@ -280,6 +319,7 @@ function mergeData(timeserieses, range) {
   let cell;
   for (const timeseries of timeserieses) {
     for (const datum of timeseries) {
+      console.log('occam', datum.histogram);
       if (datum.revision < range.min) {
         if (!reference.revision ||
             datum.revision < reference.revision) {
@@ -299,6 +339,7 @@ function mergeData(timeserieses, range) {
         if (!cell.revisions) cell.revisions = {};
         cell.alerts = [];
         if (cell.alert) cell.alerts.push(cell.alert);
+        console.log('cell', cell.histogram);
         continue;
       }
 
@@ -309,8 +350,7 @@ function mergeData(timeserieses, range) {
 
       if (datum.alert) cell.alerts.push(datum.alert);
 
-      // TODO Uncomment when Histograms are displayed.
-      // mergeHistograms(cell, datum);
+      mergeHistograms(cell, datum);
 
       if (datum.revision > cell.revision) {
         cell.revision = datum.revision;
@@ -426,8 +466,36 @@ DetailsTable.buildCell = (
     }
   }
 
-  return {scalars, links, alerts, bisectCell};
+  const histogram = buildHistogram(cell.histogram);
+
+  return {scalars, links, alerts, bisectCell, histogram};
 };
+
+function buildHistogram(hist) {
+  console.log('buildHistogram', hist);
+  if (!hist) return undefined;
+
+  const bars = [];
+  const maxCount = tr.b.math.Statistics.max(
+      hist.allBins, bin => bin.count);
+  const height = (100 / hist.allBins.length) + '%';
+
+  for (const [i, bin] of enumerate(hist.allBins)) {
+    if (!bin.count) continue;
+
+    const width = (100 * bin.count / maxCount) + '%';
+    bars.push({
+      x: '0%',
+      y: (100 * i / hist.allBins.length) + '%',
+      width,
+      height,
+    });
+  }
+
+  return ChartBase.buildState({
+    bars,
+  });
+}
 
 const MISSING_CASE_LABEL = '[no case]';
 
@@ -526,20 +594,23 @@ function buildBody(
   const linkRowsByLabel = new Map();
   const alertCells = new Array(columnCount);
   const bisectCells = new Array(columnCount);
+  const histogramCells = new Array(columnCount);
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
-    const {scalars, links, alerts, bisectCell} = DetailsTable.buildCell(
+    const cell = DetailsTable.buildCell(
         lineDescriptor, timeserieses, range, revisionInfo,
         minRevision, maxRevision,
         masterWhitelist, suiteBlacklist);
-    for (const [rowLabel, scalar] of scalars || []) {
+
+    for (const [rowLabel, scalar] of cell.scalars || []) {
       setCell(scalarRowsByLabel, rowLabel, columnCount, columnIndex, scalar);
     }
-    for (const [rowLabel, link] of links || []) {
+    for (const [rowLabel, link] of cell.links || []) {
       setCell(linkRowsByLabel, rowLabel, columnCount, columnIndex, link);
     }
-    if (alerts) alertCells[columnIndex] = {alerts};
-    bisectCells[columnIndex] = bisectCell;
+    if (cell.alerts) alertCells[columnIndex] = {alerts: cell.alerts};
+    bisectCells[columnIndex] = cell.bisectCell;
+    histogramCells[columnIndex] = cell.histogram;
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
@@ -556,6 +627,7 @@ function buildBody(
     descriptorParts,
     linkRows,
     scalarRows,
+    histogramCells,
   };
 }
 

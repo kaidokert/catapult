@@ -103,6 +103,7 @@ export class DetailsFetcher {
     return (async function* () {
       const request = new TimeseriesRequest(fetchDescriptor);
       for await (const timeseries of request.reader()) {
+        console.log('fD', timeseries);
         this.timeseriesesByLine_.receive(
             lineIndex, rangeIndex, fetchIndex, timeseries);
         yield {/* Pump BatchIterator. */};
