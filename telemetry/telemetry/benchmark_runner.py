@@ -274,11 +274,11 @@ class Run(command_line.OptparseCommand):
       expectations_file = environment.expectations_files[0]
     else:
       expectations_file = None
+    possible_browser = browser_finder.FindBrowser(options)
     if not options.positional_args:
-      possible_browser = (browser_finder.FindBrowser(options)
-                          if options.browser_type else None)
       PrintBenchmarkList(
-          all_benchmarks, possible_browser, expectations_file)
+          all_benchmarks, (possible_browser if options.browser_type else None),
+          expectations_file)
       sys.exit(-1)
 
     input_benchmark_name = options.positional_args[0]
@@ -315,6 +315,7 @@ class Run(command_line.OptparseCommand):
 
     cls._benchmark = benchmark_class
     cls._expectations_path = expectations_file
+    cls._benchmark.platform_tags = possible_browser.GetTypExpectationsTags()
 
   def Run(self, options):
     b = self._benchmark()
