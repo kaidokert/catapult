@@ -254,18 +254,22 @@ class TestExpectations(object):
         # a regular dict for reasons given below.
         self.individual_exps = {}
         self.glob_exps = OrderedDict()
+        self.parser = None
 
     def parse_tagged_list(self, raw_data):
         try:
             parser = TaggedTestListParser(raw_data)
         except ParseError as e:
             return 1, e.message
+        self.classify_test_expectations(parser.expectations)
+        return 0, None
 
+    def classify_test_expectations(self, expectations):
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
         glob_exps = []
-        for exp in parser.expectations:
+        for exp in expectations:
             if exp.test.endswith('*'):
                 glob_exps.append(exp)
             else:
@@ -277,8 +281,6 @@ class TestExpectations(object):
         glob_exps.sort(key=lambda exp: len(exp.test), reverse=True)
         for exp in glob_exps:
             self.glob_exps.setdefault(exp.test, []).append(exp)
-
-        return 0, None
 
     def expectations_for(self, test):
         # Returns a tuple of (expectations, should_retry_on_failure)
