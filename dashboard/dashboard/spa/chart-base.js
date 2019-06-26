@@ -31,6 +31,7 @@ export default class ChartBase extends ElementBase {
       brushSize: options.brushSize || 10,
       graphHeight: options.graphHeight || 200,
       lines: options.lines || [],
+      bars: options.bars || [],
       showTooltip: options.showTooltip || false,
       tooltip: {
         isVisible: false,
@@ -92,7 +93,7 @@ export default class ChartBase extends ElementBase {
         vector-effect: non-scaling-stroke;
       }
 
-      rect {
+      rect.antiBrush {
         opacity: 0.05;
       }
 
@@ -205,11 +206,10 @@ export default class ChartBase extends ElementBase {
               height="${this.graphHeight}"
               preserveAspectRatio="none"
               @click="${this.onMainClick_}">
-            ${!this.yAxis.showTickLines ? '' : this.yAxis.ticks.map(
-      tick => svg`
-        <line x1="0" x2="100%" y1="${tick.yPct}" y2="${tick.yPct}">
-        </line>
-      `)}
+            ${!this.yAxis.showTickLines ? '' : this.yAxis.ticks.map(tick => svg`
+              <line x1="0" x2="100%" y1="${tick.yPct}" y2="${tick.yPct}">
+              </line>
+            `)}
 
             ${(!this.yAxis || !this.yAxis.cursor ||
                !this.yAxis.cursor.pct) ? '' : svg`
@@ -222,11 +222,10 @@ export default class ChartBase extends ElementBase {
                 </line>
               `}
 
-            ${!this.xAxis.showTickLines ? '' : this.xAxis.ticks.map(
-      tick => svg`
-        <line x1="${tick.xPct}" x2="${tick.xPct}" y1="0" y2="100%">
-        </line>
-      `)}
+            ${!this.xAxis.showTickLines ? '' : this.xAxis.ticks.map(tick => svg`
+              <line x1="${tick.xPct}" x2="${tick.xPct}" y1="0" y2="100%">
+              </line>
+            `)}
 
             ${(!this.xAxis || !this.xAxis.cursor ||
                !this.xAxis.cursor.pct) ? '' : svg`
@@ -241,6 +240,7 @@ export default class ChartBase extends ElementBase {
 
             ${ChartBase.antiBrushes(this.xAxis.brushes).map(antiBrush => svg`
               <rect
+                  class="antiBrush"
                   x="${antiBrush.start}"
                   y="0"
                   width="${antiBrush.length}"
@@ -248,7 +248,8 @@ export default class ChartBase extends ElementBase {
               </rect>
             `)}
 
-            ${this.lines.map(line => this.renderLine(line))}
+            ${this.lines.map(line => this.renderLine_(line))}
+            ${this.bars.map(bar => this.renderBar_(bar))}
           </svg>
 
           <div id="tooltip"
@@ -289,7 +290,19 @@ export default class ChartBase extends ElementBase {
     `;
   }
 
-  renderLine(line) {
+  renderBar_(bar) {
+    return svg`
+      <rect
+          fill="${bar.fill}"
+          x="${bar.x}"
+          y="${bar.y}"
+          width="${bar.width}"
+          height="${bar.height}">
+      </rect>
+    `;
+  }
+
+  renderLine_(line) {
     const icons = (!line || !line.data) ? [] : line.data.filter(datum =>
       datum.icon);
     return html`

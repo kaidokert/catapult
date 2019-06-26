@@ -92,7 +92,7 @@ export default class DetailsTable extends ElementBase {
     `;
   }
 
-  renderLinkRow(row) {
+  renderLinkRow_(row) {
     return html`
       <tr>
         <td>
@@ -115,6 +115,74 @@ export default class DetailsTable extends ElementBase {
     `;
   }
 
+  renderScalarRow_(row) {
+    return html`
+      <tr>
+        <td>${row.label}</td>
+        ${row.cells.map(cell => html`
+          <td>
+            <scalar-span
+                .value="${cell.value}"
+                .unit="${cell.unit}">
+            </scalar-span>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderAlertsRow_(alertCells, bodyIndex) {
+    return html`
+      <tr>
+        <td>Alerts</td>
+        ${alertCells.map((cell, cellIndex) => html`
+          <td>
+            ${cell.alerts.map((alert, alertIndex) => html`
+              <alert-detail .statePath="${
+  this.statePath}.bodies.${bodyIndex}.alertCells.${cellIndex}.alerts.${
+  alertIndex}">
+              </alert-detail>
+            `)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderBisectRow_(body, bodyIndex) {
+    return html`
+      <tr>
+        <td>Bisect</td>
+        ${body.bisectMessage ? html`
+          <td colspan="99">
+            ${body.bisectMessage}
+          </td>
+        ` : body.bisectCells.map((bisect, bisectIndex) => html`
+          <td>
+            <bisect-dialog .statePath="${
+  this.statePath}.bodies.${bodyIndex}.bisectCells.${bisectIndex}">
+            </bisect-dialog>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderHistogramRow_(cells, bodyIndex) {
+    return html`
+      <tr>
+        <td>Histogram</td>
+        ${body.histogramCells.map((cell, cellIndex) => html`
+          <td>
+            <chart-base .statePath="${
+  this.statePath}.bodies.${bodyIndex}.histogramCells.${cellIndex}">
+            </chart-base>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
   render() {
     return html`
       <cp-loading ?loading="${this.isLoading}"></cp-loading>
@@ -125,7 +193,7 @@ export default class DetailsTable extends ElementBase {
 
       <table ?hidden="${!this.bodies || (this.bodies.length === 0)}">
         <thead>
-          ${(this.commonLinkRows || []).map(row => this.renderLinkRow(row))}
+          ${(this.commonLinkRows || []).map(row => this.renderLinkRow_(row))}
         </thead>
 
         ${(this.bodies || []).map((body, bodyIndex) => html`
@@ -141,54 +209,18 @@ export default class DetailsTable extends ElementBase {
               </tr>
             `}
 
-            ${body.scalarRows.map(row => html`
-              <tr>
-                <td>${row.label}</td>
-                ${row.cells.map(cell => html`
-                  <td>
-                    <scalar-span
-                        .value="${cell.value}"
-                        .unit="${cell.unit}">
-                    </scalar-span>
-                  </td>
-                `)}
-              </tr>
-            `)}
+            ${body.scalarRows.map(row => this.renderScalarRow_(row))}
 
-            ${body.linkRows.map(row => this.renderLinkRow(row))}
+            ${body.linkRows.map(row => this.renderLinkRow_(row))}
 
-            ${!body.alertCells.length ? '' : html`
-              <tr>
-                <td>Alerts</td>
-                ${body.alertCells.map((cell, cellIndex) => html`
-                  <td>
-                    ${cell.alerts.map((alert, alertIndex) => html`
-                      <alert-detail .statePath="${
-  this.statePath}.bodies.${bodyIndex}.alertCells.${cellIndex}.alerts.${
-  alertIndex}">
-                      </alert-detail>
-                    `)}
-                  </td>
-                `)}
-              </tr>
-            `}
+            ${!body.histogramCells.length ? '' : this.renderHistogramRow_(
+      body.histogramCells, bodyIndex)}
 
-            ${!body.bisectCells.length ? '' : html`
-              <tr>
-                <td>Bisect</td>
-                ${body.bisectMessage ? html`
-                  <td colspan="99">
-                    ${body.bisectMessage}
-                  </td>
-                ` : body.bisectCells.map((bisect, bisectIndex) => html`
-                  <td>
-                    <bisect-dialog .statePath="${
-  this.statePath}.bodies.${bodyIndex}.bisectCells.${bisectIndex}">
-                    </bisect-dialog>
-                  </td>
-                `)}
-              </tr>
-            `}
+            ${!body.alertCells.length ? '' : this.renderAlertsRow_(
+      body.alertCells, bodyIndex)}
+
+            ${!body.bisectCells.length ? '' : this.renderBisectRow_(
+      body, bodyIndex)}
           </tbody>
         `)}
       </table>
@@ -426,7 +458,11 @@ DetailsTable.buildCell = (
     }
   }
 
-  return {scalars, links, alerts, bisectCell};
+  const histogram = ChartBase.buildState({
+    bars: [],
+  });
+
+  return {scalars, links, alerts, bisectCell, histogram};
 };
 
 const MISSING_CASE_LABEL = '[no case]';
@@ -526,20 +562,23 @@ function buildBody(
   const linkRowsByLabel = new Map();
   const alertCells = new Array(columnCount);
   const bisectCells = new Array(columnCount);
+  const histogramCells = new Array(columnCount);
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
-    const {scalars, links, alerts, bisectCell} = DetailsTable.buildCell(
+    const cell = DetailsTable.buildCell(
         lineDescriptor, timeserieses, range, revisionInfo,
         minRevision, maxRevision,
         masterWhitelist, suiteBlacklist);
-    for (const [rowLabel, scalar] of scalars || []) {
+
+    for (const [rowLabel, scalar] of cell.scalars || []) {
       setCell(scalarRowsByLabel, rowLabel, columnCount, columnIndex, scalar);
     }
-    for (const [rowLabel, link] of links || []) {
+    for (const [rowLabel, link] of cell.links || []) {
       setCell(linkRowsByLabel, rowLabel, columnCount, columnIndex, link);
     }
-    if (alerts) alertCells[columnIndex] = {alerts};
-    bisectCells[columnIndex] = bisectCell;
+    if (cell.alerts) alertCells[columnIndex] = {alerts: cell.alerts};
+    bisectCells[columnIndex] = cell.bisectCell;
+    histogramCells[columnIndex] = cell.histogram;
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
@@ -556,6 +595,7 @@ function buildBody(
     descriptorParts,
     linkRows,
     scalarRows,
+    histogramCells,
   };
 }
 
