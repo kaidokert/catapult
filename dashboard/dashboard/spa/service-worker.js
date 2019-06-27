@@ -33,3 +33,18 @@ self.addEventListener('fetch', fetchEvent => {
   if (!cls) return;
   new cls(fetchEvent).respond();
 });
+
+// TODO When a user generates a report more than some frequency, subscribe to
+// it.
+// TODO When a user fetches alerts for a sheriff more than some frequency,
+// subscribe to it.
+
+async function handlePush(event) {
+  const subscription = self.registration.pushManager.getSubscription();
+  console.log(subscription);
+  // TODO fetch timeseries data described by subscription
+}
+
+self.addEventListener('push', event => {
+  event.waitUntil(handlePush(event));
+});
