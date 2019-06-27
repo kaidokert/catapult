@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b37cbb09_9f36aa63",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "nit: IterArtifacts does not return pairs any more, so this is a mistake?",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e27c05de_850a27bf",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "optional nit: having this one, maybe you can now remove _FormatTimeStamp* functions at the top and inline them where needed, e.g. line 85 becomes: self.start_datetime.strftime(\u0027%Y%m%dT%H%M%SZ\u0027).",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b2503e7_2c3a3166",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "super nit: for consistency, no space between: \"\"\" Ensure",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9371b99_791bab7d",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "I think the artifact should be added after yield; and the file removed in case of errors, e.g. something like ... ?\n\n    try:\n      with open(local_path, \u0027w+b\u0027) as file_obj:\n        yield file_obj\n    except:\n      os.path.remove(local_path)\n      raise\n    self._artifacts[name] \u003d Artifact(name, local_path)",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6caa7ca2_95a0fbbb",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "This would fail if there is no output_dir, right?\n\nI guess in that case we should return a file name with tempfile_ext.TemporaryFileName.",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf9ae2aa_4685ed98",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "nit: the second condition can be\n\n  name.startswith(posixpath.join(subdir, \u0027\u0027))\n\nThe \"join\" with empty file makes sure the path ends with \u0027/\u0027.\n\nSo all of the following would work:\n\n   IterArtifacts(\u0027trace\u0027)\n   IterArtifacts(\u0027trace/\u0027)\n   IterArtifacts(\u0027deeply/nested/dir\u0027)",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56e3ea12_26b72efa",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T09:29:06Z",
+      "side": 1,
+      "message": "nit: let\u0027s switch this to logging.info",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
