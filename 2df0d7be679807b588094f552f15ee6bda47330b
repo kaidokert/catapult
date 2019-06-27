@@ -22,6 +22,30 @@
       "revId": "2df0d7be679807b588094f552f15ee6bda47330b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2043b23_d053b06b",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-06-27T02:25:07Z",
+      "side": 1,
+      "message": "Thanks -- that gave me an idea to enforce that invariant in an overload of the \u0027put()\u0027 member function instead, which allows us to consolidate the model\u0027s consistency. PTAL?",
+      "parentUuid": "6dfeaac5_008f9deb",
+      "range": {
+        "startLine": 225,
+        "startChar": 1,
+        "endLine": 226,
+        "endChar": 79
+      },
+      "revId": "2df0d7be679807b588094f552f15ee6bda47330b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
