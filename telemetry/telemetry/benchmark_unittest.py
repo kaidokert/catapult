@@ -4,6 +4,7 @@
 
 import optparse
 import unittest
+import mock
 
 from telemetry import android
 from telemetry import benchmark
@@ -25,8 +26,8 @@ class DummyPageTest(legacy_page_test.LegacyPageTest):
 
 
 class TestBenchmark(benchmark.Benchmark):
-  def __init__(self, story):
-    super(TestBenchmark, self).__init__()
+  def __init__(self, story, options=None):
+    super(TestBenchmark, self).__init__(options=options)
     self._story_set = story_module.StorySet()
     self._story_set.AddStory(story)
 
@@ -50,6 +51,16 @@ class BenchmarkTest(unittest.TestCase):
   @classmethod
   def GetOptions(cls):
     return cls._options.Copy()
+
+  def testNewTestExpectationsFormatIsUsed(self):
+    with mock.patch.object(
+        TestBenchmark, '_use_new_test_expectations_format', True):
+      b = TestBenchmark(
+          story_module.Story(
+              name='test name',
+              shared_state_class=shared_page_state.SharedPageState))
+      self.assertIsInstance(
+          b.expectations, story_module.new_expectations.StoryExpectations)
 
   def testPageTestWithIncompatibleStory(self):
     b = TestBenchmark(story_module.Story(
