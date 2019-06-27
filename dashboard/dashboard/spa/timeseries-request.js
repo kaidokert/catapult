@@ -17,13 +17,11 @@ export const LEVEL_OF_DETAIL = Object.freeze({
 const DETAILS_COLUMNS = new Set([
   'revision',
   'timestamp',
-  'avg', 'std', 'count',  // TODO other statistics
+  'avg', 'std', 'count', 'min', 'max',
   'revisions',
   'annotations',
   'alert',
-  // TODO Uncomment when ready to display these:
-  // 'diagnostics',
-  // 'histogram',
+  'histogram',
 ]);
 
 export function getColumnsByLevelOfDetail(levelOfDetail, statistic) {
