@@ -30,7 +30,7 @@ class RepeatableScrollActionTest(tab_test_case.TabTestCase):
     self._window_height = int(
         self._tab.EvaluateJavaScript('__GestureCommon_GetWindowHeight()'))
 
-  @decorators.Disabled('mac')  # crbug.com/934649
+  #@decorators.Disabled('mac')  # crbug.com/934649
   # https://github.com/catapult-project/catapult/issues/3099
   # Test flaky on chromeos: https://crbug.com/826527.
   @decorators.Disabled('android', 'chromeos')
@@ -45,8 +45,8 @@ class RepeatableScrollActionTest(tab_test_case.TabTestCase):
     scroll_position = self._tab.EvaluateJavaScript(
         'document.scrollingElement.scrollTop')
     # We can only expect the final scroll position to be approximatly equal.
-    self.assertTrue(
-        abs(scroll_position - expected_scroll) < 20,
+    self.assertTrue(scroll_position == expected_scroll,
+        #abs(scroll_position - expected_scroll) < 20,
         msg='scroll_position=%d;expected %d' % (scroll_position,
                                                 expected_scroll))
 
@@ -66,7 +66,8 @@ class RepeatableScrollActionTest(tab_test_case.TabTestCase):
         'document.scrollingElement.scrollTop')
     # We can only expect the final scroll position to be approximatly equal.
     self.assertTrue(
-        abs(scroll_position - expected_scroll) < 20,
+        scroll_position == expected_scroll, 
+        #abs(scroll_position - expected_scroll) < 20,
         msg='scroll_position=%d;expected %d' % (scroll_position,
                                                 expected_scroll))
 
