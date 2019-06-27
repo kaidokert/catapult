@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "96fe7800_b57a1554",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T12:54:49Z",
+      "side": 1,
+      "message": "What I had in mind were exceptions that happened in the context managed code. E.g. if the client does:\n\n  with results.CreateArtifact(\u0027foo\u0027):\n    raise Exception(\u0027!\u0027)\n\nthen the artifact should not be collected and the file cleaned up. You are right, though, my suggested implementation is not completely right either.",
+      "parentUuid": "4328008c_d83c23d1",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6caa7ca2_95a0fbbb",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
@@ -171,6 +189,24 @@
       "side": 1,
       "message": "Special case of output_dir\u003dNone is really there only for tests; and I believe treating tests as a special case is a bad thing in general, because they don\u0027t test the code branch that is actually executed in the real case.\n\nI would really like to remove that special case altogether, but unfortunately didn\u0027t have time for that yet. At least it looks reasonable to avoid introducing new tests with output_dir\u003dNone. So I deliberately assumed that output_dir is not None here, so that all future tests had a real output directory.",
       "parentUuid": "6caa7ca2_95a0fbbb",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47e1bdc9_bbe53dee",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T12:54:49Z",
+      "side": 1,
+      "message": "Yeah, agree with you 100%. Let\u0027s go with this.\n\nJust add an explicit assert to check that the artifacts dir is not None here. And put a TODO up there to mention we want to remove the usage of a None output_dir.",
+      "parentUuid": "99342904_7fe0d841",
       "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
