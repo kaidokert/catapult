@@ -7,7 +7,7 @@
 import {assert} from 'chai';
 import {
   MODE,
-  computeTicks,
+  generateTicks,
   layoutTimeseries,
 } from './layout-timeseries.js';
 
@@ -261,23 +261,23 @@ suite('layout-timeseries', function() {
     ]);
   });
 
-  test('computeTicks', async function() {
-    assert.deepEqual(computeTicks(explicitRange(-11, 11)), [
+  test('generateTicks', async function() {
+    assert.deepEqual(generateTicks(explicitRange(-11, 11)), [
       -10.5, -5.25, 0, 5.25, 10.5,
     ]);
-    assert.deepEqual(computeTicks(explicitRange(1, 11)), [
+    assert.deepEqual(generateTicks(explicitRange(1, 11)), [
       2, 4.25, 6.5, 8.75, 11,
     ]);
-    assert.deepEqual(computeTicks(explicitRange(-1, 11)), [
+    assert.deepEqual(generateTicks(explicitRange(-1, 11)), [
       0, 2.75, 5.5, 8.25, 11,
     ]);
-    assert.deepEqual(computeTicks(explicitRange(-11111, 11111)), [
+    assert.deepEqual(generateTicks(explicitRange(-11111, 11111)), [
       -10500, -5250, 0, 5250, 10500,
     ]);
-    assert.deepEqual(computeTicks(explicitRange(1, 11111)), [
+    assert.deepEqual(generateTicks(explicitRange(1, 11111)), [
       1000, 3500, 6000, 8500, 11000,
     ]);
-    assert.deepEqual(computeTicks(explicitRange(-1, 11111)), [
+    assert.deepEqual(generateTicks(explicitRange(-1, 11111)), [
       0, 2500, 5000, 7500, 10000,
     ]);
   });
