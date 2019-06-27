@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "267d494b_73914400",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T13:24:11Z",
+      "side": 1,
+      "message": "Perhaps this will do then?\n\n    with open(local_path, \u0027w+b\u0027) as file_obj:\n      try:\n        yield file_obj\n      except:\n        file_obj.close()\n        os.remove(file_obj.name)\n        raise",
+      "parentUuid": "96fe7800_b57a1554",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6caa7ca2_95a0fbbb",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
@@ -210,6 +228,24 @@
       "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a856c915_dab84655",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T13:24:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47e1bdc9_bbe53dee",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
