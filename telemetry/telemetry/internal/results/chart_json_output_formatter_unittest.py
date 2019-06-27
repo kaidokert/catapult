@@ -7,6 +7,8 @@ import os
 import StringIO
 import unittest
 
+from py_utils import tempfile_ext
+
 from telemetry import story
 from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import page_test_results
@@ -26,11 +28,13 @@ def _MakeStorySet():
   return ps
 
 
-def _MakePageTestResults(description='benchmark_description', enabled=True):
+def _MakePageTestResults(
+    description='benchmark_description', enabled=True, output_dir=None):
   return page_test_results.PageTestResults(
       benchmark_name='benchmark_name',
       benchmark_description=description,
-      benchmark_enabled=enabled)
+      benchmark_enabled=enabled,
+      output_dir=output_dir)
 
 
 class ChartJsonTest(unittest.TestCase):
@@ -207,6 +211,24 @@ class ChartJsonTest(unittest.TestCase):
       self.assertTrue(d['enabled'])
     finally:
       results.CleanUp()
+
+  def testAsChartDictWithTracesInArtifacts(self):
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      results = _MakePageTestResults(output_dir=tempdir)
+      try:
+        results.WillRunPage(self._story_set[0])
+        with results.CreateArtifact(results.HTML_TRACE_NAME):
+          pass
+        results.DidRunPage(self._story_set[0])
+
+        d = chart_json_output_formatter.ResultsAsChartDict(results)
+
+        self.assertTrue('trace' in d['charts'])
+        self.assertTrue('http://www.foo.com/' in d['charts']['trace'],
+                        msg=d['charts']['trace'])
+        self.assertTrue(d['enabled'])
+      finally:
+        results.CleanUp()
 
   def testAsChartDictValueSmokeTest(self):
     v0 = list_of_scalar_values.ListOfScalarValues(
