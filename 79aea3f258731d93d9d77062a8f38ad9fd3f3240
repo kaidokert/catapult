@@ -197,6 +197,24 @@
     },
     {
       "key": {
+        "uuid": "0839b424_99af6e41",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T08:46:39Z",
+      "side": 1,
+      "message": "Ah! I was confused about this \"link\" type, and did not understand why you needed this wrapper file with a single URL as content.\n\nThe output format already allows (or should allow) passing a URL instead of a local path as the location of the artifact. In fact, Telemetry uploads all artifacts to cloud storage and swaps out the local paths with could URLs before producing the test results output. If you already have a URL, then no need for the local file or a \"link\" type at all.\n\nThe plan was that the recipe code dealing with test results would do the artifact uploading (e.g. we have this comment in [1]); but I\u0027m not sure if that ever got implemented.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003dd16c4109ffabb35f9f1288c6f01d90bd02b740ce\u0026l\u003d720",
+      "parentUuid": "abaa391f_5919351f",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
