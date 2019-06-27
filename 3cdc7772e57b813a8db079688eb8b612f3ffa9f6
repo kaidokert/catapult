@@ -178,6 +178,24 @@
     },
     {
       "key": {
+        "uuid": "5eaefd36_a8ff4083",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-27T13:27:11Z",
+      "side": 1,
+      "message": "yep! that should do.",
+      "parentUuid": "267d494b_73914400",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6caa7ca2_95a0fbbb",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
