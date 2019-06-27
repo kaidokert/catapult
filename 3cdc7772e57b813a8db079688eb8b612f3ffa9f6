@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2194fda5_3210fcd9",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "Yeah, thank you, I missed this one.",
+      "parentUuid": "b37cbb09_9f36aa63",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e27c05de_850a27bf",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90d68556_ac322232",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e27c05de_850a27bf",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "db7fa18e_a088ea6a",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b2503e7_2c3a3166",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9371b99_791bab7d",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2019-06-27T09:29:06Z",
       "side": 1,
       "message": "I think the artifact should be added after yield; and the file removed in case of errors, e.g. something like ... ?\n\n    try:\n      with open(local_path, \u0027w+b\u0027) as file_obj:\n        yield file_obj\n    except:\n      os.path.remove(local_path)\n      raise\n    self._artifacts[name] \u003d Artifact(name, local_path)",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4328008c_d83c23d1",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "I might be mistaken, but I think that when open() throws an exception, the file is not created, so there\u0027s nothing to remove.\n\nAdding artifact after the yield SGTM.",
+      "parentUuid": "f9371b99_791bab7d",
       "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "99342904_7fe0d841",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "Special case of output_dir\u003dNone is really there only for tests; and I believe treating tests as a special case is a bad thing in general, because they don\u0027t test the code branch that is actually executed in the real case.\n\nI would really like to remove that special case altogether, but unfortunately didn\u0027t have time for that yet. At least it looks reasonable to avoid introducing new tests with output_dir\u003dNone. So I deliberately assumed that output_dir is not None here, so that all future tests had a real output directory.",
+      "parentUuid": "6caa7ca2_95a0fbbb",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf9ae2aa_4685ed98",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "f69a5aa0_6efbf519",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "Thank you, that\u0027s really neat.",
+      "parentUuid": "bf9ae2aa_4685ed98",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56e3ea12_26b72efa",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 6
@@ -118,6 +226,24 @@
       "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ded475f5_a33f022b",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-27T11:02:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56e3ea12_26b72efa",
+      "revId": "3cdc7772e57b813a8db079688eb8b612f3ffa9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
