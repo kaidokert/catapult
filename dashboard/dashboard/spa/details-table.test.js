@@ -5,6 +5,7 @@
 'use strict';
 
 import DetailsTable from './details-table.js';
+import findElements from './find-elements.js';
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
 import {STORE} from './element-base.js';
 import {TimeseriesRequest} from './timeseries-request.js';
@@ -307,25 +308,37 @@ suite('details-table', function() {
 
   test('single revision cannot bisect', async function() {
     const dt = await fixture();
+    assert.isDefined(findElements(dt, e =>
+      /Unable to bisect single revision/.test(e.textContent))[0]);
   });
 
   test('multiple timeseries cannot bisect', async function() {
     const dt = await fixture();
+    assert.strictEqual('XXX');
   });
 
   test('ref build cannot bisect', async function() {
     const dt = await fixture();
+    assert.strictEqual('XXX');
   });
 
   test('blacklisted suite cannot bisect', async function() {
     const dt = await fixture();
+    assert.strictEqual('XXX');
   });
 
   test('blacklisted master cannot bisect', async function() {
     const dt = await fixture();
+    assert.strictEqual('XXX');
   });
 
   test('bisect', async function() {
     const dt = await fixture();
+    assert.strictEqual('XXX');
+  });
+
+  test('histogram', async function() {
+    const dt = await fixture();
+    assert.strictEqual('XXX');
   });
 });
