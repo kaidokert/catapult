@@ -296,9 +296,6 @@ class Job(ndb.Model):
   def Fail(self, exception=None):
     if exception:
       self.exception = exception
-      tb = traceback.format_exc()
-      if tb:
-        self.exception += '\n%s' % tb
     else:
       self.exception = traceback.format_exc()
 
