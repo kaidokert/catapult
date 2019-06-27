@@ -33,3 +33,12 @@ self.addEventListener('fetch', fetchEvent => {
   if (!cls) return;
   new cls(fetchEvent).respond();
 });
+
+async function handlePush(event) {
+  const subscription = self.registration.pushManager.getSubscription();
+  console.log(subscription);
+}
+
+self.addEventListener('push', event => {
+  event.waitUntil(handlePush(event));
+});
