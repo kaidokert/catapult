@@ -215,6 +215,24 @@
     },
     {
       "key": {
+        "uuid": "fea1e59d_5eb506df",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "I think special casing the AddLink method to take the content directly instead of providing a file handle and using that content for the path should work.\n\nI think https://bugs.chromium.org/p/chromium/issues/detail?id\u003d772216 is a little different than changes I was thinking of, though. The bug makes it sound like it would be done via a merge script, while the changes I was thinking of are to the Chromium recipe itself.\n\nI think the two are somewhat orthogonal since AFAIK there isn\u0027t a good way to tell the recipe where to upload artifacts to. So, I think the merge script can do any uploading it wants to, while the recipe can handle generating clickable links to the artifacts. If an artifact has a non-URL path, we might be able to just link to it in the isolated output?",
+      "parentUuid": "0839b424_99af6e41",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -246,6 +264,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23ddec48_b57cfb6d",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8730f19c_ac3b0c42",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +337,24 @@
     },
     {
       "key": {
+        "uuid": "f77901db_3afd7725",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ba85a16_03cf36c9",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60a7d118_f4d4ea5f",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -332,6 +386,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d256894f_93d08b95",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97f5d9bc_1cf7f033",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -405,6 +477,24 @@
     },
     {
       "key": {
+        "uuid": "7aa49b7c_e297ba5e",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17102cb0_b8acb340",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79d804b8_6e1b1c0a",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -456,6 +546,24 @@
     },
     {
       "key": {
+        "uuid": "76e7ae51_81cd3c0b",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "I removed the \"Args\" sections since it should be obvious. I\u0027ve kept the rest of the docstring, though, as I think that clarifying what type of data should be written to the file is at least somewhat useful.",
+      "parentUuid": "88abb321_427d3f5c",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37c0cdb8_80e25691",
         "filename": "third_party/typ/typ/json_results.py",
         "patchSetId": 3
@@ -473,6 +581,24 @@
     },
     {
       "key": {
+        "uuid": "a31c9442_82d7405c",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37c0cdb8_80e25691",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e04719f_e523195a",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 3
@@ -487,6 +613,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d71b273_43b39afc",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e04719f_e523195a",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -524,6 +668,24 @@
     },
     {
       "key": {
+        "uuid": "5facf1ff_d934d0a7",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ab30f66_32b33ecd",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df9b9468_80561011",
         "filename": "third_party/typ/typ/tests/json_results_test.py",
         "patchSetId": 3
@@ -541,6 +703,24 @@
     },
     {
       "key": {
+        "uuid": "b2fa80fc_b1c3018f",
+        "filename": "third_party/typ/typ/tests/json_results_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df9b9468_80561011",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7f0e748_ffc07a01",
         "filename": "third_party/typ/typ/tests/json_results_test.py",
         "patchSetId": 3
@@ -555,6 +735,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92e916a0_22b7ccc2",
+        "filename": "third_party/typ/typ/tests/json_results_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T17:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7f0e748_ffc07a01",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
