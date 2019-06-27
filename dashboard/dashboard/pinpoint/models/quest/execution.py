@@ -83,6 +83,9 @@ class Execution(object):
         'details': self._AsDict(),
     }
 
+    if isinstance(self._exception, basestring):
+      d['exception'] = (self._exception.splitlines()[-1], self._exception)
+
     return d
 
   def _AsDict(self):
@@ -112,9 +115,9 @@ class Execution(object):
       # We allow broad exception handling here, because we log the exception and
       # display it in the UI.
       self._completed = True
-      self._exception = traceback.format_exc()
+      self._exception = (e.message, traceback.format_exc())
       if hasattr(e, 'task_output'):
-        self._exception += '\n%s' % getattr(e, 'task_output')
+        self._exception[1] += '\n%s' % getattr(e, 'task_output')
     except:
       # All other exceptions must be propagated.
       raise

@@ -304,12 +304,9 @@ class Job(ndb.Model):
 
   def Fail(self, exception=None):
     if exception:
-      self.exception = exception
-      tb = traceback.format_exc()
-      if tb:
-        self.exception += '\n%s' % tb
+      self.exception = (exception, traceback.format_exc())
     else:
-      self.exception = traceback.format_exc()
+      self.exception = (sys.exc_info()[1].message, traceback.format_exc())
 
     title = _CRYING_CAT_FACE + ' Pinpoint job stopped with an error.'
     exc_info = sys.exc_info()
@@ -431,6 +428,9 @@ class Job(ndb.Model):
         'exception': self.exception,
         'status': self.status,
     }
+
+    if isinstance(self.exception, basestring):
+      d['exception'] = (self.exception.strip().splitlines()[-1], self.exception)
 
     if not options:
       return d
