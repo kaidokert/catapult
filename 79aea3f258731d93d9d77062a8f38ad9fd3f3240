@@ -233,6 +233,24 @@
     },
     {
       "key": {
+        "uuid": "946579dc_2cb51867",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T18:19:27Z",
+      "side": 1,
+      "message": "So, my plan was to use the provided MIME type to generate the extension for the file, but it turns out that mimetypes.guess_extension isn\u0027t so great. It returns \".ksh\" for \"text/plain\".\n\nIs MIME type even necessary? If the user includes the extension in the artifact name, then MIME type isn\u0027t needed anywhere.",
+      "parentUuid": "fea1e59d_5eb506df",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -512,6 +530,24 @@
     },
     {
       "key": {
+        "uuid": "d5bf691b_8869ecae",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T18:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79d804b8_6e1b1c0a",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "adde5996_641ef95c",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -526,6 +562,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f04b59b_7087792c",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T18:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adde5996_641ef95c",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -648,6 +702,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95db0537_9c810166",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-27T18:19:27Z",
+      "side": 1,
+      "message": "Done, made CreateArtifact() raise a ValueError if used without an output directory specified.",
+      "parentUuid": "47d6f13f_b0971fe8",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
