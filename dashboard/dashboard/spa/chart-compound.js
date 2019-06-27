@@ -90,7 +90,7 @@ export default class ChartCompound extends ElementBase {
       minimapLayout,
       chartLayout,
       details: DetailsTable.buildState(),
-      isShowingOptions: false,
+      isShowingOptions: true,
       isLinked: options.isLinked !== false,
       cursorRevision: 0,
       cursorScalar: undefined,
@@ -131,32 +131,20 @@ export default class ChartCompound extends ElementBase {
         min-width: 500px;
       }
 
-      #options {
-        color: var(--primary-color-dark, blue);
-        cursor: pointer;
-        outline: none;
-        padding: 0;
+      #options-menu {
+        border: 1px solid var(--primary-color-dark, blue);
       }
 
-      #options-container {
+      #options-menu::after {
+        position: relative;
+        content: '';
+        border-left: 1px solid var(--primary-color-dark, blue);
+        border-bottom: 1px solid var(--primary-color-dark, blue);
+      }
+
+      #options {
         position: absolute;
         margin-top: 20px;
-      }
-
-      #options-menu {
-        background-color: var(--background-color, white);
-        box-shadow: var(--elevation-2);
-        max-height: 600px;
-        overflow: hidden;
-        padding-right: 8px;
-        position: absolute;
-        z-index: var(--layer-menu, 100);
-      }
-
-      #options-menu-inner {
-        display: flex;
-        padding: 16px;
-        overflow: hidden;
       }
 
       .column {
@@ -212,68 +200,58 @@ export default class ChartCompound extends ElementBase {
 
         <error-set .errors="${[...errors]}"></error-set>
 
-        <span
-            id="options-container"
-            ?hidden="${hideOptions}">
-          <cp-icon
-              id="options"
-              icon="settings"
-              style="width: calc(${
-  this.chartLayout ? this.chartLayout.yAxisWidth : 8}px - 8px);"
-              tabindex="0"
-              @click="${this.onOptionsToggle_}">
-          </cp-icon>
-
-          <div
-              id="options-menu"
-              ?hidden="${!this.isShowingOptions}"
-              tabindex="0"
-              @blur="${this.onMenuBlur_}"
-              @keyup="${this.onMenuKeyup_}">
-            <div id="options-menu-inner">
-              <div id="toggles" class="column">
-                <b>Options</b>
-                <cp-switch
-                    ?checked="${this.isLinked}"
-                    title="${linkedTitle}"
-                    @change="${this.onToggleLinked_}">
-                  Linked to other charts
-                </cp-switch>
-                <cp-switch
-                    ?checked="${this.zeroYAxis}"
-                    title="${zeroYTitle}"
-                    @change="${this.onToggleZeroYAxis_}">
-                  Zero Y-Axis
-                </cp-switch>
-                <cp-switch
-                    ?checked="${this.fixedXAxis}"
-                    title="${fixedXTitle}"
-                    @change="${this.onToggleFixedXAxis_}">
-                  Fixed X-Axis
-                </cp-switch>
-              </div>
-              <div class="column">
-                <b>Mode</b>
-                <cp-radio-group
-                    selected="${this.mode}"
-                    @selected-changed="${this.onModeChange_}">
-                  <cp-radio name="NORMALIZE_UNIT">
-                    Normalize per unit
-                  </cp-radio>
-                  <cp-radio name="NORMALIZE_LINE">
-                    Normalize per line
-                  </cp-radio>
-                  <cp-radio name="CENTER">
-                    Center
-                  </cp-radio>
-                  <cp-radio name="DELTA">
-                    Delta
-                  </cp-radio>
-                </cp-radio-group>
-              </div>
-            </div>
+        <div id="options-menu" ?hidden="${!this.isShowingOptions}">
+          <div>
+            <b>Options</b>
+            <cp-switch
+                ?checked="${this.isLinked}"
+                title="${linkedTitle}"
+                @change="${this.onToggleLinked_}">
+              Linked to other charts
+            </cp-switch>
+            <cp-switch
+                ?checked="${this.zeroYAxis}"
+                title="${zeroYTitle}"
+                @change="${this.onToggleZeroYAxis_}">
+              Zero Y-Axis
+            </cp-switch>
+            <cp-switch
+                ?checked="${this.fixedXAxis}"
+                title="${fixedXTitle}"
+                @change="${this.onToggleFixedXAxis_}">
+              Fixed X-Axis
+            </cp-switch>
           </div>
-        </span>
+          <div>
+            <b>Mode</b>
+            <cp-radio-group
+                selected="${this.mode}"
+                @selected-changed="${this.onModeChange_}">
+              <cp-radio name="NORMALIZE_UNIT">
+                Normalize per unit
+              </cp-radio>
+              <cp-radio name="NORMALIZE_LINE">
+                Normalize per line
+              </cp-radio>
+              <cp-radio name="CENTER">
+                Center
+              </cp-radio>
+              <cp-radio name="DELTA">
+                Delta
+              </cp-radio>
+            </cp-radio-group>
+          </div>
+        </div>
+
+        <cp-icon
+            id="options"
+            icon="settings"
+            ?hidden="${hideOptions}">
+            style="width: calc(${
+  this.chartLayout ? this.chartLayout.yAxisWidth : 8}px - 8px);"
+            tabindex="0"
+            @click="${this.onOptionsToggle_}">
+        </cp-icon>
 
         <chart-timeseries
             id="minimap"
@@ -522,32 +500,8 @@ export default class ChartCompound extends ElementBase {
     });
   }
 
-  async onMenuKeyup_(event) {
-    if (event.key === 'Escape') {
-      await STORE.dispatch(UPDATE(this.statePath, {
-        isShowingOptions: false,
-      }));
-    }
-  }
-
   firstUpdated() {
     this.minimap = this.shadowRoot.querySelector('#minimap');
-    this.optionsContainer = this.shadowRoot.querySelector('#options-container');
-  }
-
-  updated() {
-    if (this.isShowingOptions) {
-      this.shadowRoot.querySelector('#options-menu').focus();
-    }
-  }
-
-  async onMenuBlur_(event) {
-    if (isElementChildOf(event.relatedTarget, this.optionsContainer)) {
-      return;
-    }
-    await STORE.dispatch(UPDATE(this.statePath, {
-      isShowingOptions: false,
-    }));
   }
 
   async onOptionsToggle_(event) {
