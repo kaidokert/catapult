@@ -12,9 +12,11 @@ from telemetry.internal import story_runner
 from telemetry.internal.util import command_line
 from telemetry.page import legacy_page_test
 from telemetry.story import expectations as expectations_module
+from telemetry.story import new_expectations
 from telemetry.web_perf import story_test
 from telemetry.web_perf import timeline_based_measurement
 from tracing.value.diagnostics import generic_set
+from typ import expectations_parser as typ_expectations_parser
 
 Info = decorators.Info
 
@@ -43,15 +45,24 @@ class Benchmark(command_line.Command):
   SUPPORTED_PLATFORMS = [expectations_module.ALL]
 
   MAX_NUM_VALUES = sys.maxint
+  _use_new_test_expectations_format = False
+  platform_tags = []
 
-  def __init__(self, max_failures=None):
+  def __init__(self, max_failures=None, parser=None, options=None):
     """Creates a new Benchmark.
 
     Args:
       max_failures: The number of story run's failures before bailing
           from executing subsequent page runs. If None, we never bail.
     """
-    self._expectations = expectations_module.StoryExpectations()
+    if parser or options:
+      self.ProcessCommandLineArgs(parser, options)
+    # pylint: disable=redefined-variable-type
+    if self._use_new_test_expectations_format:
+      self._expectations = new_expectations.StoryExpectations(
+          self.platform_tags)
+    else:
+      self._expectations = expectations_module.StoryExpectations()
     self._max_failures = max_failures
     # TODO: There should be an assertion here that checks that only one of
     # the following is true:
@@ -60,7 +71,6 @@ class Benchmark(command_line.Command):
     # * It's a legacy benchmark, with either CreatePageTest defined or
     #   Benchmark.test set.
     # See https://github.com/catapult-project/catapult/issues/3708
-
 
   def _CanRunOnPlatform(self, platform, finder_options):
     for p in self.SUPPORTED_PLATFORMS:
@@ -121,7 +131,9 @@ class Benchmark(command_line.Command):
 
   @classmethod
   def ProcessCommandLineArgs(cls, parser, args):
-    pass
+    del parser
+    cls._use_new_test_expectations_format = (
+        args.use_new_test_expectations_format)
 
   # pylint: disable=unused-argument
   @classmethod
@@ -297,7 +309,11 @@ class Benchmark(command_line.Command):
     return []
 
   def AugmentExpectationsWithParser(self, data):
-    parser = expectations_parser.TestExpectationParser(data)
+    # pylint: disable=redefined-variable-type
+    if self._use_new_test_expectations_format:
+      parser = typ_expectations_parser.TaggedTestListParser(data)
+    else:
+      parser = expectations_parser.TestExpectationParser(data)
     self._expectations.GetBenchmarkExpectationsFromParser(
         parser.expectations, self.Name())
 
