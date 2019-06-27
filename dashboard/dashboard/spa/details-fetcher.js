@@ -114,7 +114,7 @@ export class DetailsFetcher {
 
 // This is a 3-dimensional matrix of timeserieses. The dimensions are
 // [line in the main chart, brushed revision range, fetchDescriptor]
-class TimeseriesesByLine {
+export class TimeseriesesByLine {
   constructor(fetchDescriptorsByLine, revisionRanges) {
     this.timeseriesesByLine_ = [];
 
