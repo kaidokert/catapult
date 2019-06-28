@@ -287,6 +287,24 @@
     },
     {
       "key": {
+        "uuid": "0daf2ce5_a5a5bcda",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-06-28T21:23:55Z",
+      "side": 1,
+      "message": "I\u0027m fine with ditching the artifact_types and mime types if we think we don\u0027t need them.\n\nThe spec can mutate to whatever we want it to be, as long as we can make things consistent across the different test harnesses.\n\nAnd, I\u0027ll almost always err on the side of simple and minimal at first. We can add more later, but it\u0027s harder to take stuff away.\n\nAs far as URLs go, I am fine with \u0027screenshot\u0027: \u0027https://\u0027 and recognizing something is a URL instead of a local path.",
+      "parentUuid": "e83a9fb7_50255d82",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
