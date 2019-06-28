@@ -26,24 +26,6 @@ class LinuxBasedPlatformBackend(platform_backend.PlatformBackend):
       return None
     return self._ConvertToBytes(meminfo['MemTotal'])
 
-  def GetCpuStats(self, pid):
-    results = {}
-    stats = self._GetProcFileForPid(pid, 'stat')
-    if not stats:
-      return results
-    stats = stats.split()
-    utime = float(stats[13])
-    stime = float(stats[14])
-    cpu_process_jiffies = utime + stime
-    clock_ticks = self.GetClockTicks()
-    results.update({'CpuProcessTime': cpu_process_jiffies / clock_ticks})
-    return results
-
-  def GetCpuTimestamp(self):
-    total_jiffies = self._GetProcJiffies()
-    clock_ticks = self.GetClockTicks()
-    return {'TotalTime': total_jiffies / clock_ticks}
-
   @decorators.Cache
   def GetClockTicks(self):
     """Returns the number of clock ticks per second.
