@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73b78548_9d13aaff",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T08:58:18Z",
+      "side": 1,
+      "message": "If not removing TraceValue\u0027s entirely from the list of values yet; maybe at least skip over them  in this loop?",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b4e987_32b84915",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T08:58:18Z",
+      "side": 1,
+      "message": "A similar comment to this should be added below on the artifacts loop; i.e. it intentionally overrides traces for the same story, and only the last one is reported.",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a482a41_82b827ba",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T08:58:18Z",
+      "side": 1,
+      "message": "I *think* it\u0027s the other way around, chart_name\u003drun.story.name and trace_name\u003d\u0027trace\u0027; can you double check?",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bc59205_c875bce6",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T08:58:18Z",
+      "side": 1,
+      "message": "nit: I think you can also do\n\n    with _MakePageTestResults(output_dir\u003dtempdir) as results:\n      ...\n\nand that will do the cleanup for you.",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5107b788_fcb2f95b",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T08:58:18Z",
+      "side": 1,
+      "message": "for these there is assertIn:\nhttps://docs.python.org/2.7/library/unittest.html#unittest.TestCase.assertIn",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
