@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "184a2b42_f50fa1fa",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T09:45:37Z",
+      "side": 1,
+      "message": "Yeah, I know. I still kind of want this as a \"proof\" that the new code path is working. Otherwise traces are being written twice; and maybe omissions on the new code path are not apparent because the old path is still here too.",
+      "parentUuid": "5a174a80_214caa5c",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19b4e987_32b84915",
         "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
         "patchSetId": 1
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "I was confused by the field names and double-checked it several times :-)\n\nWhen processing TraceValues, chart_name is set in this line\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/chart_json_output_formatter.py?l\u003d20\nto value.name, which is \u0027trace\u0027\n\nand trace_name is set in this line\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/chart_json_output_formatter.py?l\u003d22\nto value.page.name, which is a story name.",
       "parentUuid": "0a482a41_82b827ba",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb341cca_de86e4d3",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T09:45:37Z",
+      "side": 1,
+      "message": "You are right. :)",
+      "parentUuid": "1b7087fc_2b7f0341",
       "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false

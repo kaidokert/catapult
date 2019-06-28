@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c2a3b96_8ffeb369",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T09:45:37Z",
+      "side": 1,
+      "message": "Thanks for fixing all of these too!",
+      "revId": "866e23a2c594c388ac28f2c30efef3e95101c472",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
