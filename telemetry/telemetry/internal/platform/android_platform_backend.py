@@ -16,12 +16,6 @@ from telemetry import decorators
 from telemetry.internal.forwarders import android_forwarder
 from telemetry.internal.platform import android_device
 from telemetry.internal.platform import linux_based_platform_backend
-from telemetry.internal.platform.power_monitor import android_dumpsys_power_monitor
-from telemetry.internal.platform.power_monitor import android_fuelgauge_power_monitor
-from telemetry.internal.platform.power_monitor import android_temperature_monitor
-from telemetry.internal.platform.power_monitor import (
-    android_power_monitor_controller)
-from telemetry.internal.platform.power_monitor import sysfs_power_monitor
 from telemetry.internal.util import binary_manager
 from telemetry.internal.util import external_modules
 from telemetry.testing import test_utils
@@ -91,15 +85,6 @@ class AndroidPlatformBackend(
     self._thermal_throttle = thermal_throttle.ThermalThrottle(self._device)
     self._raw_display_frame_rate_measurements = []
     self._device_copy_script = None
-    self._power_monitor = (
-        android_power_monitor_controller.AndroidPowerMonitorController([
-            android_temperature_monitor.AndroidTemperatureMonitor(self._device),
-            android_dumpsys_power_monitor.DumpsysPowerMonitor(
-                self._battery, self),
-            sysfs_power_monitor.SysfsPowerMonitor(self, standalone=True),
-            android_fuelgauge_power_monitor.FuelGaugePowerMonitor(
-                self._battery),
-        ], self._battery))
     self._system_ui = None
 
     _FixPossibleAdbInstability()
@@ -394,15 +379,6 @@ class AndroidPlatformBackend(
 
   def RemoveSystemPackages(self, packages):
     system_app.RemoveSystemApps(self._device, packages)
-
-  def CanMonitorPower(self):
-    return self._power_monitor.CanMonitorPower()
-
-  def StartMonitoringPower(self, browser):
-    self._power_monitor.StartMonitoringPower(browser)
-
-  def StopMonitoringPower(self):
-    return self._power_monitor.StopMonitoringPower()
 
   def PathExists(self, device_path, **kwargs):
     """ Return whether the given path exists on the device.

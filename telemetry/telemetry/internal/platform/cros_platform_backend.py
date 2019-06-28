@@ -160,9 +160,6 @@ class CrosPlatformBackend(
     self.RunCommand(['chmod', '+x', flush_command])
     self.RunCommand([flush_command, '--recurse', directory])
 
-  def CanMonitorPower(self):
-    return False
-
   def PathExists(self, path, timeout=None, retries=None):
     if timeout or retries:
       logging.warning(
