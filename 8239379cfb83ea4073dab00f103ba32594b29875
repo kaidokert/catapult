@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0902aa41_fb3739c2",
+        "filename": "dashboard/queue.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-28T16:13:03Z",
+      "side": 1,
+      "message": "Maybe it would make sense to rearrange this file and group similar targets together.",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 9
+      },
+      "revId": "8239379cfb83ea4073dab00f103ba32594b29875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec53752b_2a952a2e",
+        "filename": "dashboard/upload.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-28T16:13:03Z",
+      "side": 1,
+      "message": "Does remote_api need to be enabled for both of these services or just the main app.yaml?",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "8239379cfb83ea4073dab00f103ba32594b29875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
