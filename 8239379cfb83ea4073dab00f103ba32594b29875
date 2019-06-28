@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "9a15e15b_cbea4200",
+        "filename": "dashboard/upload.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-06-28T16:14:29Z",
+      "side": 1,
+      "message": "I don\u0027t think the threadsafe setting was to ensure consistency, I think we were blowing out memory since the instances were downgraded to F2\u0027s.",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "8239379cfb83ea4073dab00f103ba32594b29875",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ec53752b_2a952a2e",
         "filename": "dashboard/upload.yaml",
         "patchSetId": 7
