@@ -94,6 +94,10 @@ def AddCommandLineArgs(parser):
                     'until the device CPU has cooled down. If '
                     'not specified, this wait is disabled. '
                     'Device must be supported. ')
+  parser.add_option('--use-new-test-expectations-format',
+                    default=False, action='store_true',
+                    help='Make telemetry benchmark runner use the new test '
+                    'expectations format')
 
 
 def ProcessCommandLineArgs(parser, args):
