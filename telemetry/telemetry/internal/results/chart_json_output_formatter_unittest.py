@@ -16,7 +16,6 @@ from telemetry import page as page_module
 from telemetry.value import improvement_direction
 from telemetry.value import list_of_scalar_values
 from telemetry.value import scalar
-from tracing.trace_data import trace_data
 
 
 def _MakeStorySet():
@@ -195,18 +194,6 @@ class ChartJsonTest(unittest.TestCase):
 
     self.assertIn('summary', d['charts']['foo'])
     self.assertTrue(d['enabled'])
-
-  def testAsChartDictWithTraceValues(self):
-    with _MakePageTestResults() as results:
-      results.WillRunPage(self._story_set[0])
-      results.AddTraces(trace_data.CreateTestTrace())
-      results.DidRunPage(self._story_set[0])
-
-      d = chart_json_output_formatter.ResultsAsChartDict(results)
-
-      self.assertIn('trace', d['charts'])
-      self.assertIn('http://www.foo.com/', d['charts']['trace'])
-      self.assertTrue(d['enabled'])
 
   def testAsChartDictWithTracesInArtifacts(self):
     with tempfile_ext.NamedTemporaryDirectory() as tempdir:

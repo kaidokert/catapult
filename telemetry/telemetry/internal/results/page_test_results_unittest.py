@@ -299,38 +299,22 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     values = results.FindValues(lambda v: v.value == 3)
     self.assertEquals([v0], values)
 
-  def testTraceValue(self):
-    results = page_test_results.PageTestResults()
-    try:
-      results.WillRunPage(self.pages[0])
-      results.AddTraces(trace_data.CreateTestTrace(1))
-      results.DidRunPage(self.pages[0])
+  def testAddTraces(self):
+    with tempfile_ext.NamedTemporaryDirectory() as tempdir:
+      results = page_test_results.PageTestResults(output_dir=tempdir)
+      try:
+        results.WillRunPage(self.pages[0])
+        results.AddTraces(trace_data.CreateTestTrace(1))
+        results.DidRunPage(self.pages[0])
 
-      results.WillRunPage(self.pages[1])
-      results.AddTraces(trace_data.CreateTestTrace(2))
-      results.DidRunPage(self.pages[1])
+        results.WillRunPage(self.pages[1])
+        results.AddTraces(trace_data.CreateTestTrace(2))
+        results.DidRunPage(self.pages[1])
 
-      results.PrintSummary()
-
-      values = results.FindAllTraceValues()
-      self.assertEquals(2, len(values))
-    finally:
-      results.CleanUp()
-
-  def testNoTracesLeftAfterCleanUp(self):
-    results = page_test_results.PageTestResults()
-    try:
-      results.WillRunPage(self.pages[0])
-      results.AddTraces(trace_data.CreateTestTrace(1))
-      results.DidRunPage(self.pages[0])
-
-      results.WillRunPage(self.pages[1])
-      results.AddTraces(trace_data.CreateTestTrace(2))
-      results.DidRunPage(self.pages[1])
-    finally:
-      results.CleanUp()
-
-    self.assertFalse(results.FindAllTraceValues())
+        runs = list(results.IterRunsWithTraces())
+        self.assertEquals(2, len(runs))
+      finally:
+        results.CleanUp()
 
   def testPrintSummaryDisabledResults(self):
     output_stream = StringIO.StringIO()

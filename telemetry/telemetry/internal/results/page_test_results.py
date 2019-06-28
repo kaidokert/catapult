@@ -9,12 +9,17 @@ import json
 import logging
 import os
 import random
+import shutil
+import sys
 import tempfile
 import time
 import traceback
+import uuid
 
 import multiprocessing
 from multiprocessing.dummy import Pool as ThreadPool
+
+from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry import value as value_module
 from telemetry.internal.results import chart_json_output_formatter
@@ -25,6 +30,7 @@ from telemetry.value import common_value_helpers
 from telemetry.value import trace
 
 from tracing.metrics import metric_runner
+from tracing.trace_data import trace_data
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
 from tracing.value.diagnostics import all_diagnostics
@@ -33,11 +39,42 @@ from tracing.value.diagnostics import reserved_infos
 _TEN_MINUTES = 60*10
 
 
-def _ComputeMetricsInPool((run, trace_value)):
+def _TraceCanonicalName(run, label):
+  if label is None:
+    return '%s_%s_%s.html' % (
+        run.story.file_safe_name,
+        run.start_datetime.strftime('%Y-%m-%d_%H-%M-%S'),
+        random.randint(1, 1e5))
+  else:
+    return '%s_%s_%s_%s.html' % (
+        run.story.file_safe_name,
+        label,
+        run.start_datetime.strftime('%Y-%m-%d_%H-%M-%S'),
+        random.randint(1, 1e5))
+
+
+def _SerializeAndUploadHtmlTrace(run, html_trace_name, label, bucket):
+  html_trace = run.GetArtifact(html_trace_name)
+  if html_trace is None:
+    trace_files = [art.local_path for art in run.IterArtifacts('trace')]
+    with run.CaptureArtifact(html_trace_name) as html_path:
+      trace_data.SerializeAsHtml(trace_files, html_path)
+
+  html_trace = run.GetArtifact(html_trace_name)
+  if bucket is not None and html_trace.url is None:
+    remote_name = _TraceCanonicalName(run, label)
+    cloud_url = cloud_storage.Insert(bucket, remote_name, html_trace.local_path)
+    sys.stderr.write(
+        'View generated trace files online at %s for story %s\n' % (
+            cloud_url, run.story.name))
+    html_trace.SetUrl(cloud_url)
+
+  return html_trace
+
+
+def _ComputeMetricsInPool(run, html_trace_name, label=None, bucket=None):
   story_name = run.story.name
   try:
-    assert not trace_value.is_serialized, (
-        "%s: TraceValue should not be serialized." % story_name)
     retvalue = {
         'run': run,
         'fail': [],
@@ -48,9 +85,9 @@ def _ComputeMetricsInPool((run, trace_value)):
         'trackDetailedModelStats': True
     }
 
-    logging.info('%s: Serializing trace.', story_name)
-    trace_value.SerializeTraceData()
-    trace_size_in_mib = os.path.getsize(trace_value.filename) / (2 ** 20)
+    html_trace = _SerializeAndUploadHtmlTrace(
+        run, html_trace_name, label, bucket)
+    trace_size_in_mib = os.path.getsize(html_trace.local_path) / (2 ** 20)
     # Bails out on trace that are too big. See crbug.com/812631 for more
     # details.
     if trace_size_in_mib > 400:
@@ -67,8 +104,8 @@ def _ComputeMetricsInPool((run, trace_value)):
     # outputing logs while waiting for metrics to be calculated.
     timeout = _TEN_MINUTES
     mre_result = metric_runner.RunMetricOnSingleTrace(
-        trace_value.filename, run.tbm_metrics,
-        extra_import_options, canonical_url=trace_value.trace_url,
+        html_trace.local_path, run.tbm_metrics,
+        extra_import_options, canonical_url=html_trace.url,
         timeout=timeout)
     logging.info('%s: Computing metrics took %.3f seconds.' % (
         story_name, time.time() - start))
@@ -83,7 +120,7 @@ def _ComputeMetricsInPool((run, trace_value)):
     scalars = []
     for d in mre_result.pairs.get('scalars', []):
       scalars.append(common_value_helpers.TranslateScalarValue(
-          d, trace_value.page))
+          d, run.story))
     retvalue['scalars'] = scalars
     return retvalue
   except Exception as e:  # pylint: disable=broad-except
@@ -313,6 +350,14 @@ class PageTestResults(object):
     if len(self._histograms):
       return
 
+    # We ensure that html traces are serialized and uploaded if necessary
+    for run in self.IterRunsWithTraces():
+      _SerializeAndUploadHtmlTrace(
+          run,
+          self.HTML_TRACE_NAME,
+          self.telemetry_info.label,
+          self.telemetry_info.upload_bucket)
+
     chart_json = chart_json_output_formatter.ResultsAsChartDict(self)
     info = self.telemetry_info
     chart_json['label'] = info.label
@@ -487,17 +532,19 @@ class PageTestResults(object):
         logging.warn('cpu_count() not implemented.')
         return 8
 
-    runs_and_values = self._FindRunsAndValuesWithTimelineBasedMetrics()
-    if not runs_and_values:
-      return
-
     # Note that this is speculatively halved as an attempt to fix
     # crbug.com/953365.
-    threads_count = min(_GetCpuCount()/2 or 1, len(runs_and_values))
+    threads_count = min(_GetCpuCount()/2 or 1, len(self._all_page_runs))
     pool = ThreadPool(threads_count)
+    metrics_runner = lambda run: _ComputeMetricsInPool(
+        run,
+        self.HTML_TRACE_NAME,
+        self.telemetry_info.label,
+        self.telemetry_info.upload_bucket)
+
     try:
-      for result in pool.imap_unordered(_ComputeMetricsInPool,
-                                        runs_and_values):
+      for result in pool.imap_unordered(metrics_runner,
+                                        self.IterRunsWithTraces()):
         self._AddPageResults(result)
     finally:
       pool.terminate()
@@ -640,21 +687,11 @@ class PageTestResults(object):
         input traces.
     """
     assert self._current_page_run, 'Not currently running test.'
-    trace_value = trace.TraceValue(
-        self.current_page, traces,
-        file_path=self.telemetry_info.trace_local_path,
-        remote_path=self.telemetry_info.trace_remote_path,
-        upload_bucket=self.telemetry_info.upload_bucket,
-        cloud_url=self.telemetry_info.trace_remote_url,
-        trace_url=self.telemetry_info.trace_url)
-    self.AddValue(trace_value)
+    for part, filename in traces.IterTraceParts():
+      with self.CaptureArtifact('trace/' + part) as artifact_path:
+        shutil.copy(filename, artifact_path)
     if tbm_metrics:
-      # Both trace serialization and metric computation will happen later
-      # asynchronously during ComputeTimelineBasedMetrics.
       self._current_page_run.SetTbmMetrics(tbm_metrics)
-    else:
-      # Otherwise we immediately serialize the trace data.
-      trace_value.SerializeTraceData()
 
   def AddSummaryValue(self, value):
     assert value.page is None
@@ -677,8 +714,13 @@ class PageTestResults(object):
       if (self._output_dir and
           any(isinstance(o, html_output_formatter.HtmlOutputFormatter)
               for o in self._output_formatters)):
-        for value in self.FindAllTraceValues():
-          value.Serialize()
+        for run in self.IterRunsWithTraces():
+          # Just to make sure that html trace is there in artifacts dir
+          _SerializeAndUploadHtmlTrace(
+              run,
+              self.HTML_TRACE_NAME,
+              self.telemetry_info.label,
+              self.telemetry_info.upload_bucket)
 
       for output_formatter in self._output_formatters:
         output_formatter.Format(self)
@@ -710,22 +752,26 @@ class PageTestResults(object):
   def FindAllTraceValues(self):
     return self.FindValues(lambda v: isinstance(v, trace.TraceValue))
 
-  def _FindRunsAndValuesWithTimelineBasedMetrics(self):
-    values = []
-    for run in self._all_page_runs:
-      if run.tbm_metrics:
-        for v in run.values:
-          if isinstance(v, trace.TraceValue):
-            values.append((run, v))
-    return values
-
-  def UploadTraceFilesToCloud(self):
-    for value in self.FindAllTraceValues():
-      value.UploadToCloud()
+  def IterRunsWithTraces(self):
+    for run in self._IterAllStoryRuns():
+      for _ in run.IterArtifacts('trace'):
+        yield run
+        break
 
   #TODO(crbug.com/772216): Remove this once the uploading is done by Chromium
   # test recipe.
   def UploadArtifactsToCloud(self):
+    """Upload all artifacts of the test to cloud storage.
+
+    Sets 'url' attribute of each artifact to its cloud URL.
+    """
     bucket = self.telemetry_info.upload_bucket
     for run in self._all_page_runs:
-      run.UploadArtifactsToCloud(bucket)
+      for artifact in run.IterArtifacts():
+        if artifact.url is None:
+          remote_name = str(uuid.uuid1())
+          cloud_url = cloud_storage.Insert(
+              bucket, remote_name, artifact.local_path)
+          logging.info('Uploading %s of page %s to %s\n' % (
+              artifact.name, run.story.name, cloud_url))
+          artifact.SetUrl(cloud_url)

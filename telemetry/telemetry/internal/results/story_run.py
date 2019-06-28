@@ -9,9 +9,6 @@ import os
 import posixpath
 import random
 import time
-import uuid
-
-from py_utils import cloud_storage  # pylint: disable=import-error
 
 PASS = 'PASS'
 FAIL = 'FAIL'
@@ -266,14 +263,3 @@ class StoryRun(object):
     Returns an Artifact object or None, if there's no artifact with this name.
     """
     return self._artifacts.get(name)
-
-  def UploadArtifactsToCloud(self, bucket):
-    """Upload all artifacts of the test to cloud storage.
-
-    Sets 'url' attribute of each artifact to its cloud URL.
-    """
-    for artifact in self.IterArtifacts():
-      artifact.SetUrl(cloud_storage.Insert(
-          bucket, str(uuid.uuid1()), artifact.local_path))
-      logging.info('Uploading %s of page %s to %s\n' % (
-          artifact.name, self._story.name, artifact.url))
