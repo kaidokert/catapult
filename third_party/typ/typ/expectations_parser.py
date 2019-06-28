@@ -261,11 +261,15 @@ class TestExpectations(object):
         except ParseError as e:
             return 1, e.message
 
+        self.classify_test_expectations(parser.expectations)
+        return 0, None
+
+    def classify_test_expectations(self, expectations):
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
         glob_exps = []
-        for exp in parser.expectations:
+        for exp in expectations:
             if exp.test.endswith('*'):
                 glob_exps.append(exp)
             else:
@@ -277,8 +281,6 @@ class TestExpectations(object):
         glob_exps.sort(key=lambda exp: len(exp.test), reverse=True)
         for exp in glob_exps:
             self.glob_exps.setdefault(exp.test, []).append(exp)
-
-        return 0, None
 
     def expectations_for(self, test):
         # Returns a tuple of (expectations, should_retry_on_failure)
@@ -306,8 +308,10 @@ class TestExpectations(object):
         for exp in self.individual_exps.get(test, []):
             if exp.tags.issubset(self.tags):
                 results.update(exp.results)
-                reasons.update([exp.reason])
                 should_retry_on_failure |= exp.should_retry_on_failure
+                if exp.reason:
+                    reasons.update([exp.reason])
+
         if results or should_retry_on_failure:
             return (results or {ResultType.Pass}), should_retry_on_failure, reasons
 
@@ -319,8 +323,10 @@ class TestExpectations(object):
                 for exp in exps:
                     if exp.tags.issubset(self.tags):
                         results.update(exp.results)
-                        reasons.update([exp.reason])
                         should_retry_on_failure |= exp.should_retry_on_failure
+                        if exp.reason:
+                            reasons.update([exp.reason])
+
                 # if *any* of the exps matched, results will be non-empty,
                 # and we're done. If not, keep looking through ever-shorter
                 # globs.
