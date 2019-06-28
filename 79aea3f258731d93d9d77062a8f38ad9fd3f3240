@@ -269,6 +269,24 @@
     },
     {
       "key": {
+        "uuid": "e83a9fb7_50255d82",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-28T17:11:08Z",
+      "side": 1,
+      "message": "But is the MIME type even necessary if we\u0027re not including the \"artifact_types\" field in the JSON results? AFAIK that\u0027s the only place it shows up.",
+      "parentUuid": "8cb19b4d_2b6d8940",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
