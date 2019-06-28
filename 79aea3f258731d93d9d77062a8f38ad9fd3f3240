@@ -251,6 +251,24 @@
     },
     {
       "key": {
+        "uuid": "8cb19b4d_2b6d8940",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T08:26:30Z",
+      "side": 1,
+      "message": "\u003e I think special casing the AddLink method to take the content directly instead of providing a file handle and using that content for the path should work.\n\nYes.\n\n\u003e Is MIME type even necessary? If the user includes the extension in the artifact name, then MIME type isn\u0027t needed anywhere.\n\nThat\u0027s what I had in mind for Telemetry too (although we haven\u0027t implemented this yet). To guess the MIME type from the extension, if not explicitly provided by the user.",
+      "parentUuid": "946579dc_2cb51867",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
