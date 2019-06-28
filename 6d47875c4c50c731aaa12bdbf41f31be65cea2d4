@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03b5eb81_f6d9609f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 0,
+      "message": "let\u0027s double check that this implies upload_bucket is None.",
+      "revId": "6d47875c4c50c731aaa12bdbf41f31be65cea2d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

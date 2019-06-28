@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2120732_6896b02e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "can you create a new file, maybe telemetry/internal/results/results_processor.py, where to move all of this trace serialization and metric computation?\n\nSuggestions for a better name welcome. The idea is that this file is what we would end up moving from catapult to chromium repo for result processing business.",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ad00fd5_3a73b42c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "nit: I would suggest:\n\n  parts \u003d [run.story.file_safe_name, label, ...]\n  return \u0027_\u0027.join(str(p) for p in parts if p] + \u0027.html\u0027",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd07a66a_1d29845e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "Maybe move HTML_TRACE_NAME out of the class and to a module level constant? This way there is no need to pass it as argument.",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "515f34f5_eeab5caf",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "probably no need for label and bucket to be optional; they\u0027re always passed by all callers?",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8527847_d9dd895c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "we still probably need here something like:\n\n  runs_with_traces \u003d list(self.IterRunsWithTraces())\n\nso you can exit early if there are no traces and use these instead of _all_page_runs when estimating the threads_count.",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5467245_dae7ed41",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "As we spoke offline, let\u0027s try to see if we can reduce the number of places where traces are serialized/uploaded.",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2e9a64f_c27ce09c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T15:11:11Z",
+      "side": 1,
+      "message": "This is a bit strange to read. Maybe there should be a run.HasArtifacts(dirname) to make this clearer. You can implement that as something like\n\n   return next(self.IterArticats(dirname), None) is not None\n\nI also think the intent is a bit more explicit if you pass \u0027trace/\u0027 as the dir.",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
