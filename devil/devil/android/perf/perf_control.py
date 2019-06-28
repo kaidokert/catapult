@@ -42,6 +42,19 @@ _PERFORMANCE_MODE_DEFINITIONS = {
      },
     'default_mode_governor': 'schedutil',
   },
+  'Pixel 2': {
+     'high_perf_mode': {
+       'bring_cpu_cores_online': True,
+       # The SoC is Arm big.LITTLE. The cores 0..3 are LITTLE, the 4..7 are big.
+       'cpu_max_freq': {'0..3': 1248000, '4..7': 1267200},
+       'gpu_max_freq': 515000000,
+     },
+     'default_mode': {
+       'cpu_max_freq': {'0..3': 1900800, '4..7': 2457600},
+       'gpu_max_freq': 710000000,
+     },
+    'default_mode_governor': 'schedutil',
+  },
   'GT-I9300': {
     'default_mode_governor': 'pegasusq',
   },
