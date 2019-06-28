@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a174a80_214caa5c",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T09:32:37Z",
+      "side": 1,
+      "message": "There will be no point where there are both artifacts with traces and TraceValues.\nThe next CL will switch from TraceValues to Artifacts, the one after that remove TraceValues completely.",
+      "parentUuid": "73b78548_9d13aaff",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19b4e987_32b84915",
         "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "421e69a3_8ac4c009",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T09:32:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19b4e987_32b84915",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1b7087fc_2b7f0341",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T09:32:37Z",
+      "side": 1,
+      "message": "I was confused by the field names and double-checked it several times :-)\n\nWhen processing TraceValues, chart_name is set in this line\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/chart_json_output_formatter.py?l\u003d20\nto value.name, which is \u0027trace\u0027\n\nand trace_name is set in this line\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/chart_json_output_formatter.py?l\u003d22\nto value.page.name, which is a story name.",
+      "parentUuid": "0a482a41_82b827ba",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0bc59205_c875bce6",
         "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "be63f247_5f3966ca",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T09:32:37Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "0bc59205_c875bce6",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5107b788_fcb2f95b",
         "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
         "patchSetId": 1
@@ -84,6 +156,24 @@
       "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76b44284_0d7a846a",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T09:32:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5107b788_fcb2f95b",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
