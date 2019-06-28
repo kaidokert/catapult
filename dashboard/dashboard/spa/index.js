@@ -10,7 +10,7 @@ import {isDebug} from './utils.js';
 
 if ('serviceWorker' in navigator && !isDebug()) {
   document.addEventListener('DOMContentLoaded', async() => {
-    await navigator.serviceWorker.register(
+    const registration = await navigator.serviceWorker.register(
         'service-worker.js?' + VULCANIZED_TIMESTAMP.getTime());
 
     if (navigator.serviceWorker.controller === null) {
@@ -19,6 +19,8 @@ if ('serviceWorker' in navigator && !isDebug()) {
       // finish installing.
       location.reload();
     }
+
+    const subscription = await registration.pushManager.getSubscription();
   });
 }
 
