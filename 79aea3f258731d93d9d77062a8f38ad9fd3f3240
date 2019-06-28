@@ -305,6 +305,24 @@
     },
     {
       "key": {
+        "uuid": "8e46af40_a2a9cffc",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-28T22:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0daf2ce5_a5a5bcda",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3aea4d31_3088903b",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -319,6 +337,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a7e74c6_578f95ed",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-28T22:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aea4d31_3088903b",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -392,6 +428,24 @@
     },
     {
       "key": {
+        "uuid": "15e254a8_f650cddf",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-28T22:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab88a9d8_05d4d634",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ba85a16_03cf36c9",
         "filename": "third_party/typ/typ/artifact_results.py",
         "patchSetId": 3
@@ -441,6 +495,24 @@
       "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10fb6970_a13dfc67",
+        "filename": "third_party/typ/typ/artifact_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-06-28T22:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60a7d118_f4d4ea5f",
+      "revId": "79aea3f258731d93d9d77062a8f38ad9fd3f3240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
