@@ -109,7 +109,7 @@ class ExecutionTest(unittest.TestCase):
     self.assertTrue(e.completed)
     self.assertTrue(e.failed)
     expected = 'InformationalError: Expected error for testing.'
-    self.assertEqual(e.exception.splitlines()[-1], expected)
+    self.assertEqual(e.exception[1].splitlines()[-1], expected)
     self.assertEqual(e.result_values, ())
     self.assertEqual(e.result_arguments, {})
 

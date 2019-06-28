@@ -115,6 +115,7 @@ class Job(ndb.Model):
   # The string contents of any Exception that was thrown to the top level.
   # If it's present, the job failed.
   exception = ndb.TextProperty()
+  exception_details = ndb.TextProperty()
 
   difference_count = ndb.IntegerProperty()
 
@@ -303,22 +304,17 @@ class Job(ndb.Model):
           _retry_options=RETRY_OPTIONS)
 
   def Fail(self, exception=None):
-    if exception:
-      self.exception = exception
-      tb = traceback.format_exc()
-      if tb:
-        self.exception += '\n%s' % tb
-    else:
-      self.exception = traceback.format_exc()
-
+    tb = traceback.format_exc() or ''
     title = _CRYING_CAT_FACE + ' Pinpoint job stopped with an error.'
     exc_info = sys.exc_info()
     exc_message = ''
-    if exc_info[1]:
+    if exception:
+      exc_message = exception
+    elif exc_info[1]:
       exc_message = sys.exc_info()[1].message
-    elif self.exception:
-      exc_message = self.exception.splitlines()[-1]
 
+    self.exception = exc_message
+    self.exception_details = tb
     self.task = None
 
     comment = '\n'.join((title, self.url, '', exc_message))
@@ -366,6 +362,7 @@ class Job(ndb.Model):
     Run() call on the task queue.
     """
     self.exception = None  # In case the Job succeeds on retry.
+    self.exception_details = None
     self.task = None  # In case an exception is thrown.
 
     try:
@@ -428,9 +425,12 @@ class Job(ndb.Model):
         'created': self.created.isoformat(),
         'updated': self.updated.isoformat(),
         'difference_count': self.difference_count,
-        'exception': self.exception,
+        'exception': [self.exception, self.exception_details],
         'status': self.status,
     }
+
+    if isinstance(self.exception, basestring):
+      d['exception'] = [self.exception.strip().splitlines()[-1], self.exception]
 
     if not options:
       return d
