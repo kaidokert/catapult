@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3ab1900_1d306fd8",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-06-28T22:44:00Z",
+      "side": 1,
+      "message": "Can you do the typ fix in another changelist? This changelist is really big.",
+      "range": {
+        "startLine": 264,
+        "startChar": 12,
+        "endLine": 264,
+        "endChar": 26
+      },
+      "revId": "af498d9089f8a1e3a5d09df2bfbd343fb959de3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
