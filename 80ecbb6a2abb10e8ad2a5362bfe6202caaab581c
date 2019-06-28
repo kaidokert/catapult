@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bf685b58_3e9c43d8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2120732_6896b02e",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ad00fd5_3a73b42c",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f69c14b_007ecbcc",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "Yeah, thank you, it looks much nicer!",
+      "parentUuid": "6ad00fd5_3a73b42c",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9e1eb886_d30c4291",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "I tried this, but had problems importing this constant from chart_json_output_formatter (it causes a cyclic import between these two modules).\n\nMoving this code to a new file will solve both problems though.",
+      "parentUuid": "cd07a66a_1d29845e",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "515f34f5_eeab5caf",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "527ed28e_460b037c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "515f34f5_eeab5caf",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "b8ce09c7_d7b19ab8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8527847_d9dd895c",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5467245_dae7ed41",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "0f8a61af_b6b4d7a0",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "There are currently three of them.\n\nOne is inside _ComputeMetricsInPool, it\u0027s there because we want to serialize traces in parallel to speed things up.\n\nThe other one is here, in PrintSummary, to obtain the trace in case there were no metrics to compute.\n\nThe third one is in PopulateHistogramSet. Perhaps we will be able to get rid of this function at some point. So far, we have to serialize trace inside it because chart_json formatter expects traces to have their URL set.",
+      "parentUuid": "c5467245_dae7ed41",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2e9a64f_c27ce09c",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -118,6 +226,24 @@
       "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b024cf4_4c1e7cae",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2e9a64f_c27ce09c",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

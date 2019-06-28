@@ -16,6 +16,24 @@
       "revId": "6d47875c4c50c731aaa12bdbf41f31be65cea2d4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7894bbeb_1e215d10",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-06-28T16:51:29Z",
+      "side": 0,
+      "message": "Yes it does:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/results_options.py?q\u003dupload_bucket\u0026l\u003d129",
+      "parentUuid": "03b5eb81_f6d9609f",
+      "revId": "6d47875c4c50c731aaa12bdbf41f31be65cea2d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
