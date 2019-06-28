@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "3b8c16ac_19bfa43d",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-06-28T09:46:31Z",
+      "side": 1,
+      "message": "Actually. Ignore my comment. I just re-read and understood your point. This lgtm.",
+      "parentUuid": "184a2b42_f50fa1fa",
+      "revId": "08a1e9d871096e7210755e08009afe54d43f2172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19b4e987_32b84915",
         "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
         "patchSetId": 1
