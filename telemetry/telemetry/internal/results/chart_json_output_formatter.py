@@ -8,7 +8,6 @@ import json
 import os
 
 from telemetry.internal.results import output_formatter
-from telemetry.value import trace
 
 
 def _GetChartAndTraceName(value):
@@ -29,7 +28,7 @@ def _GetChartAndTraceName(value):
   # value has grouping_label, we preserve the chart_name.
   # For relevant section code of dashboard code that handles this, see:
   # https://github.com/catapult-project/catapult/blob/25e660b/dashboard/dashboard/add_point.py#L199#L216
-  if value.grouping_label and not isinstance(value, trace.TraceValue):
+  if value.grouping_label:
     chart_name = value.grouping_label + '@@' + chart_name
 
   return chart_name, trace_name

@@ -27,7 +27,6 @@ from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import progress_reporter as reporter_module
 from telemetry.internal.results import story_run
 from telemetry.value import common_value_helpers
-from telemetry.value import trace
 
 from tracing.metrics import metric_runner
 from tracing.trace_data import trace_data
@@ -464,14 +463,6 @@ class PageTestResults(object):
     if self._current_page_run:
       yield self._current_page_run
 
-  def CleanUp(self):
-    """Clean up any TraceValues contained within this results object."""
-    for run in self._all_page_runs:
-      for v in run.values:
-        if isinstance(v, trace.TraceValue):
-          v.CleanUp()
-          run.values.remove(v)
-
   def CloseOutputFormatters(self):
     """
     Clean up any open output formatters contained within this results object
@@ -483,7 +474,6 @@ class PageTestResults(object):
     return self
 
   def __exit__(self, _, __, ___):
-    self.CleanUp()
     self.CloseOutputFormatters()
 
   def WillRunPage(self, page, storyset_repeat_counter=0):
@@ -638,8 +628,7 @@ class PageTestResults(object):
     is_first_result = (
         self._current_page_run.story not in self._all_stories)
 
-    if not (isinstance(value, trace.TraceValue) or
-            self._should_add_value(value.name, is_first_result)):
+    if not self._should_add_value(value.name, is_first_result):
       return
     self._current_page_run.AddValue(value)
 
@@ -748,9 +737,6 @@ class PageTestResults(object):
 
   def FindAllPageSpecificValuesNamed(self, value_name):
     return self.FindValues(lambda v: v.name == value_name)
-
-  def FindAllTraceValues(self):
-    return self.FindValues(lambda v: isinstance(v, trace.TraceValue))
 
   def IterRunsWithTraces(self):
     for run in self._IterAllStoryRuns():
