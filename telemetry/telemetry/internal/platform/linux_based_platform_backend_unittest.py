@@ -41,12 +41,6 @@ class LinuxBasedPlatformBackendTest(unittest.TestCase):
     # 67479191552 == MemTotal * 1024
     self.assertEquals(result, 67479191552)
 
-  def testGetCpuStatsBasic(self):
-    backend = TestLinuxBackend()
-    self.SetMockFileInBackend(backend, 'stat', '/proc/1/stat')
-    result = backend.GetCpuStats(1)
-    self.assertEquals(result, {'CpuProcessTime': 22.0})
-
   def testGetCpuTimestampBasic(self):
     jiffies_grep_string = """
     jiffies

@@ -128,9 +128,6 @@ class PlatformBackend(object):
   def GetSystemTotalPhysicalMemory(self):
     raise NotImplementedError()
 
-  def GetCpuStats(self, pid):
-    return {}
-
   def GetCpuTimestamp(self):
     return {}
 
