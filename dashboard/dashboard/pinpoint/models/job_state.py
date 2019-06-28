@@ -160,7 +160,7 @@ class JobState(object):
       for attempt in attempts:
         if not attempt.exception:
           return
-        counter[attempt.exception.splitlines()[-1]] += 1
+        counter[attempt.exception[1].splitlines()[-1]] += 1
 
     most_common_exceptions = counter.most_common(1)
     if not most_common_exceptions:

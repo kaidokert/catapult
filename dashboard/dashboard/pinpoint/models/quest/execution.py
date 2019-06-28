@@ -54,6 +54,8 @@ class Execution(object):
   @property
   def exception(self):
     """Returns the stack trace if the Execution failed, or None otherwise."""
+    if isinstance(self._exception, basestring):
+      return (self._exception.splitlines()[-1], self._exception)
     return self._exception
 
   @property
@@ -82,6 +84,9 @@ class Execution(object):
         'exception': self._exception,
         'details': self._AsDict(),
     }
+
+    if isinstance(self._exception, basestring):
+      d['exception'] = (self._exception.splitlines()[-1], self._exception)
 
     return d
 
@@ -112,9 +117,10 @@ class Execution(object):
       # We allow broad exception handling here, because we log the exception and
       # display it in the UI.
       self._completed = True
-      self._exception = traceback.format_exc()
+      tb = traceback.format_exc()
       if hasattr(e, 'task_output'):
-        self._exception += '\n%s' % getattr(e, 'task_output')
+        tb += '\n%s' % getattr(e, 'task_output')
+      self._exception = [e.message, tb]
     except:
       # All other exceptions must be propagated.
       raise
