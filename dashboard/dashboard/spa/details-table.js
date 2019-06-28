@@ -7,11 +7,13 @@
 import './scalar-span.js';
 import AlertDetail from './alert-detail.js';
 import BisectDialog from './bisect-dialog.js';
+import ChartBase from './chart-base.js';
 import ChartTimeseries from './chart-timeseries.js';
 import NudgeAlert from './nudge-alert.js';
 import {DetailsFetcher} from './details-fetcher.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
+import {UPDATE} from './simple-redux.js';
 import {breakWords, enumerate, isProduction} from './utils.js';
 import {get} from 'dot-prop-immutable';
 import {html, css} from 'lit-element';
@@ -87,7 +89,7 @@ export default class DetailsTable extends ElementBase {
     `;
   }
 
-  renderLinkRow(row) {
+  renderLinkRow_(row) {
     return html`
       <tr>
         <td>
@@ -110,6 +112,92 @@ export default class DetailsTable extends ElementBase {
     `;
   }
 
+  renderScalarRow_(row) {
+    return html`
+      <tr>
+        <td>${row.label}</td>
+        ${row.cells.map(cell => html`
+          <td>
+            <scalar-span
+                .value="${cell.value}"
+                .unit="${cell.unit}">
+            </scalar-span>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderAlertsRow_(alertCells, bodyIndex) {
+    return html`
+      <tr>
+        <td>Alerts</td>
+        ${alertCells.map((cell, cellIndex) => html`
+          <td>
+            ${cell.alerts.map((alert, alertIndex) => html`
+              <alert-detail .statePath="${
+  this.statePath}.bodies.${bodyIndex}.alertCells.${cellIndex}.alerts.${
+  alertIndex}">
+              </alert-detail>
+            `)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderBisectRow_(body, bodyIndex) {
+    return html`
+      <tr>
+        <td>Bisect</td>
+        ${body.bisectMessage ? html`
+          <td colspan="99">
+            ${body.bisectMessage}
+          </td>
+        ` : body.bisectCells.map((bisect, bisectIndex) => html`
+          <td>
+            <bisect-dialog .statePath="${
+  this.statePath}.bodies.${bodyIndex}.bisectCells.${bisectIndex}">
+            </bisect-dialog>
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderHistogram_(body, bodyIndex, cellIndex) {
+    const statePath = [
+      this.statePath, 'bodies', bodyIndex, 'histogramCells', cellIndex,
+    ].join('.');
+    const onMouseMove = event => this.onMouseMoveHistogram_(
+        bodyIndex, cellIndex, event);
+    return html`
+      <chart-base
+          .statePath="${statePath}"
+          style="--color: ${this.getColor_(body)};"
+          @mousemove="${onMouseMove}">
+      </chart-base>
+    `;
+  }
+
+  onMouseMoveHistogram_(bodyIndex, cellIndex, event) {
+  }
+
+  renderHistogramRow_(body, bodyIndex) {
+    if (!body.histogramCells.filter(c => c).length) return '';
+
+    return html`
+      <tr>
+        <td>Histogram</td>
+        ${body.histogramCells.map((cell, cellIndex) => html`
+          <td>
+            ${!cell ? '' : this.renderHistogram_(body, bodyIndex, cellIndex)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
   render() {
     return html`
       <chops-loading ?loading="${this.isLoading}"></chops-loading>
@@ -120,7 +208,7 @@ export default class DetailsTable extends ElementBase {
 
       <table ?hidden="${!this.bodies || (this.bodies.length === 0)}">
         <thead>
-          ${(this.commonLinkRows || []).map(row => this.renderLinkRow(row))}
+          ${(this.commonLinkRows || []).map(row => this.renderLinkRow_(row))}
         </thead>
 
         ${(this.bodies || []).map((body, bodyIndex) => html`
@@ -136,54 +224,18 @@ export default class DetailsTable extends ElementBase {
               </tr>
             `}
 
-            ${body.scalarRows.map(row => html`
-              <tr>
-                <td>${row.label}</td>
-                ${row.cells.map(cell => html`
-                  <td>
-                    <scalar-span
-                        .value="${cell.value}"
-                        .unit="${cell.unit}">
-                    </scalar-span>
-                  </td>
-                `)}
-              </tr>
-            `)}
+            ${body.scalarRows.map(row => this.renderScalarRow_(row))}
 
-            ${body.linkRows.map(row => this.renderLinkRow(row))}
+            ${body.linkRows.map(row => this.renderLinkRow_(row))}
 
-            ${!body.alertCells.length ? '' : html`
-              <tr>
-                <td>Alerts</td>
-                ${body.alertCells.map((cell, cellIndex) => html`
-                  <td>
-                    ${cell.alerts.map((alert, alertIndex) => html`
-                      <alert-detail .statePath="${
-  this.statePath}.bodies.${bodyIndex}.alertCells.${cellIndex}.alerts.${
-  alertIndex}">
-                      </alert-detail>
-                    `)}
-                  </td>
-                `)}
-              </tr>
-            `}
+            ${!body.histogramCells.length ? '' : this.renderHistogramRow_(
+      body, bodyIndex)}
 
-            ${!body.bisectCells.length ? '' : html`
-              <tr>
-                <td>Bisect</td>
-                ${body.bisectMessage ? html`
-                  <td colspan="99">
-                    ${body.bisectMessage}
-                  </td>
-                ` : body.bisectCells.map((bisect, bisectIndex) => html`
-                  <td>
-                    <bisect-dialog .statePath="${
-  this.statePath}.bodies.${bodyIndex}.bisectCells.${bisectIndex}">
-                    </bisect-dialog>
-                  </td>
-                `)}
-              </tr>
-            `}
+            ${!body.alertCells.length ? '' : this.renderAlertsRow_(
+      body.alertCells, bodyIndex)}
+
+            ${!body.bisectCells.length ? '' : this.renderBisectRow_(
+      body, bodyIndex)}
           </tbody>
         `)}
       </table>
@@ -236,9 +288,217 @@ export default class DetailsTable extends ElementBase {
         statePath,
         timeseriesesByLine,
       });
+      await DetailsTable.generateTicks(statePath);
     }
 
-    STORE.dispatch({type: DetailsTable.reducers.doneLoading.name, statePath});
+    STORE.dispatch(UPDATE(statePath, {isLoading: false}));
+  }
+
+  static async generateTicks(statePath) {
+    // TODO
+    // collect histogram yAxis.ticks[*].text
+    // measureText
+    // update yAxis.width
+    // graphWidth - yAxis.width
+    // filter xAxis.ticks
+  }
+
+  // Factor common linkRows out to share above the bodies.
+  static extractCommonLinkRows(bodies) {
+    const commonLinkRows = [];
+    if (bodies.length <= 1) return commonLinkRows;
+
+    for (const linkRow of bodies[0].linkRows) {
+      let isCommon = true;
+      for (const body of bodies.slice(1)) {
+        let isFound = false;
+        for (const otherLinkRow of body.linkRows) {
+          if (otherLinkRow.label !== linkRow.label) continue;
+
+          isFound = true;
+          for (const [index, cell] of enumerate(linkRow.cells)) {
+            const missing = (cell === undefined);
+            const otherCell = otherLinkRow.cells[index];
+            const otherMissing = (otherCell === undefined);
+            if (missing && otherMissing) continue;
+            if (missing !== otherMissing ||
+                cell.href !== otherCell.href ||
+                cell.label !== otherCell.label) {
+              isCommon = false;
+              break;
+            }
+          }
+          if (!isCommon) break;
+        }
+        if (!isFound) isCommon = false;
+        if (!isCommon) break;
+      }
+
+      if (isCommon) {
+        commonLinkRows.push(linkRow);
+        for (const body of bodies) {
+          body.linkRows = body.linkRows.filter(test =>
+            test.label !== linkRow.label);
+        }
+      }
+    }
+    return commonLinkRows;
+  }
+
+  static buildCellRevisions(cell, reference, revisionInfo, links) {
+    for (const [rName, r2] of Object.entries(cell.revisions)) {
+      // Abbreviate git hashes.
+      let label = (r2.length >= MAX_REVISION_LENGTH) ? r2.substr(0, 7) : r2;
+
+      let r1;
+      if (reference && reference.revisions && reference.revisions[rName]) {
+        r1 = reference.revisions[rName];
+
+        // If the reference revision is a number, increment it to start the
+        // range *after* the reference revision.
+        if (r1.match(/^\d+$/)) r1 = (parseInt(r1) + 1).toString();
+
+        let r1Label = r1;
+        if (r1.length >= MAX_REVISION_LENGTH) r1Label = r1.substr(0, 7);
+        label = r1Label + ' - ' + label;
+      }
+
+      const {name, url} = ChartTimeseries.revisionLink(
+          revisionInfo, rName, r1, r2);
+      links.set(name, {href: url, label});
+    }
+  }
+
+  static buildCellAnnotations(cell, links) {
+    for (const [key, value] of Object.entries(cell.annotations || {})) {
+      if (!value) continue;
+
+      if (tr.b.isUrl(value)) {
+        let label = key;
+        if (label === 'a_tracing_uri') label = 'sample trace';
+        links.set(HIDE_ROW_PREFIX + key, {href: value, label});
+        continue;
+      }
+
+      const match = value.match(MARKDOWN_LINK_REGEX);
+      if (match && match[1] && match[2]) {
+        links.set(HIDE_ROW_PREFIX + key, {href: match[2], label: match[1]});
+        continue;
+      }
+    }
+  }
+
+  static buildCellBisect(cell, reference, alerts, lineDescriptor) {
+    const bisectCell = BisectDialog.buildState({
+      alertKeys: alerts.map(a => a.key),
+      startRevision: reference.revision + 1,
+      endRevision: cell.revision,
+      suite: lineDescriptor.suites[0],
+      measurement: lineDescriptor.measurement,
+      bot: lineDescriptor.bots[0],
+      case: lineDescriptor.cases[0],
+      statistic: lineDescriptor.statistic,
+    });
+    bisectCell.able = true;
+    if (bisectCell.startRevision >= bisectCell.endRevision) {
+      bisectCell.able = false;
+      bisectCell.tooltip = 'Unable to bisect single revision';
+    }
+    return bisectCell;
+  }
+
+  static buildCellScalars(cell) {
+    const scalars = new Map();
+    for (const stat of ['avg', 'std', 'min', 'max', 'sum']) {
+      if (cell[stat] === undefined || isNaN(cell[stat])) continue;
+      scalars.set(stat, {unit: cell.unit, value: cell[stat]});
+    }
+    if (cell.count !== undefined) {
+      scalars.set('count', {unit: tr.b.Unit.byName.count, value: cell.count});
+    }
+    return scalars;
+  }
+
+  static buildCellAlerts(alerts) {
+    for (const alert of alerts) {
+      alert.nudge = NudgeAlert.buildState({minRevision, maxRevision, ...alert});
+
+      alert.descriptorParts = [];
+      if (lineDescriptor.suites.length > 1) {
+        alert.descriptorParts.push(alert.suite);
+      }
+      if (lineDescriptor.bots.length !== 1) {
+        alert.descriptorParts.push(alert.bot);
+      }
+      if (lineDescriptor.cases.length !== (alert.case ? 1 : 0)) {
+        alert.descriptorParts.push(alert.case || MISSING_CASE_LABEL);
+      }
+    }
+  }
+
+  static buildCellTimestamp(cell, links) {
+    if (cell.timestampRange.min === cell.timestampRange.max) {
+      if (cell.timestamp) {
+        const label = tr.b.formatDate(cell.timestamp);
+        links.set('Upload timestamp', {href: '', label});
+      }
+    } else {
+      let label = tr.b.formatDate(new Date(cell.timestampRange.min));
+      label += ' - ';
+      label += tr.b.formatDate(new Date(cell.timestampRange.max));
+      links.set('Upload timestamp', {href: '', label});
+    }
+  }
+
+  // Merge timeserieses and format the detailed data as links and scalars.
+  static buildCell(
+      lineDescriptor, timeserieses, range, revisionInfo,
+      minRevision, maxRevision,
+      masterWhitelist, suiteBlacklist) {
+    if (!timeserieses) return {};
+    const {reference, cell} = mergeData(timeserieses, range);
+    if (!cell) return {};
+
+    const links = new Map();
+    DetailsTable.buildCellRevisions(cell, reference, revisionInfo, links);
+    DetailsTable.buildCellAnnotations(cell, links);
+    DetailsTable.buildCellTimestamp(cell, links);
+    const scalars = DetailsTable.buildCellScalars(cell);
+    const alerts = cell.alerts.map(alert => AlertDetail.buildState(alert));
+    const bisectCell = DetailsTable.buildCellBisect(
+        cell, reference, alerts, lineDescriptor);
+    DetailsTable.buildCellAlerts(alerts);
+    const histogram = cell.histogram;
+
+    return {scalars, links, alerts, bisectCell, histogram};
+  }
+
+  // Return an object containing flags indicating whether to show parts of
+  // lineDescriptors in descriptorParts.
+  static descriptorFlags(lineDescriptors) {
+    if (lineDescriptors.length === 1) return {measurement: true};
+
+    let suite = false;
+    let measurement = false;
+    let bot = false;
+    let cases = false;
+    let statistic = false;
+    let buildType = false;
+    const firstSuites = lineDescriptors[0].suites.join('\n');
+    const firstBots = lineDescriptors[0].bots.join('\n');
+    const firstCases = lineDescriptors[0].cases.join('\n');
+    for (const other of lineDescriptors.slice(1)) {
+      suite = suite || (other.suites.join('\n') !== firstSuites);
+      measurement = measurement || (
+        other.measurement !== lineDescriptors[0].measurement);
+      bot = bot || (other.bots.join('\n') !== firstBots);
+      cases = cases || (other.cases.join('\n') !== firstCases);
+      statistic = statistic || (
+        other.statistic !== lineDescriptors[0].statistic);
+      buildType = buildType || (
+        other.buildType !== lineDescriptors[0].buildType);
+    }
+    return {suite, measurement, bot, cases, statistic, buildType};
   }
 }
 
@@ -248,22 +508,28 @@ function setCell(map, key, columnCount, columnIndex, value) {
   map.get(key)[columnIndex] = value;
 }
 
+function removeDiagnosticRefs(hist) {
+  for (const [name, diag] of hist.diagnostics) {
+    if (!(diag instanceof tr.v.d.DiagnosticRef)) continue;
+    hist.diagnostics.delete(name);
+  }
+}
+
 function mergeHistograms(cell, datum) {
-  if (datum.histogram) {
-    if (cell.histogram) {
-      // Merge Histograms if possible, otherwise ignore earlier data.
-      if (cell.histogram.canAddHistogram(datum.histogram)) {
-        try {
-          cell.histogram.addHistogram(datum.histogram);
-        } catch (err) {
-          // TODO resolve DiagnosticRefs and remove this try-catch.
-        }
-      } else if (datum.revision > cell.revision) {
-        cell.histogram = datum.histogram;
-      }
-    } else {
-      cell.histogram = datum.histogram;
-    }
+  if (!datum.histogram) return;
+  if (!cell.histogram) {
+    cell.histogram = datum.histogram;
+    return;
+  }
+
+  // Merge Histograms if possible, otherwise ignore earlier data.
+  if (cell.histogram.canAddHistogram(datum.histogram)) {
+    // TODO Resolve DiagnosticRefs before here instead of removing them here.
+    removeDiagnosticRefs(cell.histogram);
+    removeDiagnosticRefs(datum.histogram);
+    cell.histogram.addHistogram(datum.histogram);
+  } else if (datum.revision > cell.revision) {
+    cell.histogram = datum.histogram;
   }
 }
 
@@ -304,8 +570,7 @@ function mergeData(timeserieses, range) {
 
       if (datum.alert) cell.alerts.push(datum.alert);
 
-      // TODO Uncomment when Histograms are displayed.
-      // mergeHistograms(cell, datum);
+      mergeHistograms(cell, datum);
 
       if (datum.revision > cell.revision) {
         cell.revision = datum.revision;
@@ -318,111 +583,79 @@ function mergeData(timeserieses, range) {
   return {reference, cell};
 }
 
-// Merge timeserieses and format the detailed data as links and scalars.
-DetailsTable.buildCell = (
-    lineDescriptor, timeserieses, range, revisionInfo,
-    minRevision, maxRevision,
-    masterWhitelist, suiteBlacklist) => {
-  if (!timeserieses) return {};
-  const {reference, cell} = mergeData(timeserieses, range);
-  if (!cell) return {};
-
-  const alerts = cell.alerts.map(alert => AlertDetail.buildState(alert));
-  const links = new Map();
-  const scalars = new Map();
-
-  for (const stat of ['avg', 'std', 'min', 'max', 'sum']) {
-    if (cell[stat] === undefined || isNaN(cell[stat])) continue;
-    scalars.set(stat, {unit: cell.unit, value: cell[stat]});
-  }
-  if (cell.count !== undefined) {
-    scalars.set('count', {unit: tr.b.Unit.byName.count, value: cell.count});
+function buildHistogramCells(hists) {
+  const dataRange = new tr.b.math.Range();
+  for (const hist of hists) {
+    if (!hist) continue;
+    dataRange.addValue(hist.min);
+    dataRange.addValue(hist.max);
   }
 
-  for (const [rName, r2] of Object.entries(cell.revisions)) {
-    // Abbreviate git hashes.
-    let label = (r2.length >= MAX_REVISION_LENGTH) ? r2.substr(0, 7) : r2;
+  return hists.map(hist => buildHistogram(hist, dataRange));
+}
 
-    let r1;
-    if (reference && reference.revisions && reference.revisions[rName]) {
-      r1 = reference.revisions[rName];
+const TEXT_HEIGHT_PX = 15;  // TODO measureText
 
-      // If the reference revision is a number, increment it to start the
-      // range *after* the reference revision.
-      if (r1.match(/^\d+$/)) r1 = (parseInt(r1) + 1).toString();
+function buildHistogram(hist, dataRange) {
+  if (!hist) return undefined;
 
-      let r1Label = r1;
-      if (r1.length >= MAX_REVISION_LENGTH) r1Label = r1.substr(0, 7);
-      label = r1Label + ' - ' + label;
-    }
-
-    const {name, url} = ChartTimeseries.revisionLink(
-        revisionInfo, rName, r1, r2);
-    links.set(name, {href: url, label});
+  const bars = [];
+  const maxCount = tr.b.math.Statistics.max(
+      hist.allBins, bin => bin.count);
+  const binIndices = new tr.b.math.Range();
+  for (const [i, bin] of enumerate(hist.allBins)) {
+    if (!bin.range.intersectsRangeExclusive(dataRange)) continue;
+    binIndices.addValue(i);
   }
 
-  for (const [key, value] of Object.entries(cell.annotations || {})) {
-    if (!value) continue;
-
-    if (tr.b.isUrl(value)) {
-      let label = key;
-      if (label === 'a_tracing_uri') label = 'sample trace';
-      links.set(HIDE_ROW_PREFIX + key, {href: value, label});
-      continue;
-    }
-
-    const match = value.match(MARKDOWN_LINK_REGEX);
-    if (match && match[1] && match[2]) {
-      links.set(HIDE_ROW_PREFIX + key, {href: match[2], label: match[1]});
-      continue;
-    }
+  if (binIndices.min === binIndices.max) {
+    // Don't display the bar chart if it would only contain a single
+    // uninteresting bar.
+    return undefined;
   }
 
-  if (cell.timestampRange.min === cell.timestampRange.max) {
-    if (cell.timestamp) {
-      const label = tr.b.formatDate(cell.timestamp);
-      links.set('Upload timestamp', {href: '', label});
-    }
-  } else {
-    let label = tr.b.formatDate(new Date(cell.timestampRange.min));
-    label += ' - ';
-    label += tr.b.formatDate(new Date(cell.timestampRange.max));
-    links.set('Upload timestamp', {href: '', label});
+  binIndices.addValue(binIndices.max + 1);
+  const barHeight = (100 / binIndices.range) + '%';
+  const graphHeight = TEXT_HEIGHT_PX * binIndices.range;
+  const yTicks = [];
+
+  for (let i = binIndices.min; i < binIndices.max; ++i) {
+    const bin = hist.allBins[i];
+    yTicks.push({
+      anchor: 'bottom',
+      yPct: (100 * (1 - binIndices.normalize(i))) + '%',
+      text: hist.unit.format(bin.range.min),
+    });
+    if (!bin.count) continue;
+    bars.push({
+      fill: 'var(--color)',
+      x: '0%',
+      y: (100 * (1 - binIndices.normalize(i + 1))) + '%',
+      width: (100 * bin.count / maxCount) + '%',
+      height: barHeight,
+    });
   }
 
-  const bisectCell = BisectDialog.buildState({
-    alertKeys: alerts.map(a => a.key),
-    startRevision: reference.revision + 1,
-    endRevision: cell.revision,
-    suite: lineDescriptor.suites[0],
-    measurement: lineDescriptor.measurement,
-    bot: lineDescriptor.bots[0],
-    case: lineDescriptor.cases[0],
-    statistic: lineDescriptor.statistic,
+  const xTicks = [
+    {text: '0', xPct: 0, anchor: 'start'},
+    // TODO generateTicks
+    {text: maxCount, xPct: '100%', anchor: 'end'},
+  ];
+
+  return ChartBase.buildState({
+    bars,
+    graphHeight,
+    xAxis: {
+      showTickLines: true,
+      ticks: xTicks,
+      height: TEXT_HEIGHT_PX,
+    },
+    yAxis: {
+      ticks: yTicks,
+      showTickLines: true,
+    },
   });
-  const isSingleRevision = (bisectCell.startRevision >= bisectCell.endRevision);
-  if (isSingleRevision) {
-    bisectCell.tooltip = 'Unable to bisect single revision';
-  }
-  bisectCell.able = !isSingleRevision;
-
-  for (const alert of alerts) {
-    alert.nudge = NudgeAlert.buildState({minRevision, maxRevision, ...alert});
-
-    alert.descriptorParts = [];
-    if (lineDescriptor.suites.length > 1) {
-      alert.descriptorParts.push(alert.suite);
-    }
-    if (lineDescriptor.bots.length !== 1) {
-      alert.descriptorParts.push(alert.bot);
-    }
-    if (lineDescriptor.cases.length !== (alert.case ? 1 : 0)) {
-      alert.descriptorParts.push(alert.case || MISSING_CASE_LABEL);
-    }
-  }
-
-  return {scalars, links, alerts, bisectCell};
-};
+}
 
 const MISSING_CASE_LABEL = '[no case]';
 
@@ -521,20 +754,23 @@ function buildBody(
   const linkRowsByLabel = new Map();
   const alertCells = new Array(columnCount);
   const bisectCells = new Array(columnCount);
+  const histograms = new Array(columnCount);
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
-    const {scalars, links, alerts, bisectCell} = DetailsTable.buildCell(
+    const cell = DetailsTable.buildCell(
         lineDescriptor, timeserieses, range, revisionInfo,
         minRevision, maxRevision,
         masterWhitelist, suiteBlacklist);
-    for (const [rowLabel, scalar] of scalars || []) {
+
+    for (const [rowLabel, scalar] of cell.scalars || []) {
       setCell(scalarRowsByLabel, rowLabel, columnCount, columnIndex, scalar);
     }
-    for (const [rowLabel, link] of links || []) {
+    for (const [rowLabel, link] of cell.links || []) {
       setCell(linkRowsByLabel, rowLabel, columnCount, columnIndex, link);
     }
-    if (alerts) alertCells[columnIndex] = {alerts};
-    bisectCells[columnIndex] = bisectCell;
+    if (cell.alerts) alertCells[columnIndex] = {alerts: cell.alerts};
+    bisectCells[columnIndex] = cell.bisectCell;
+    histograms[columnIndex] = cell.histogram;
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
@@ -542,6 +778,7 @@ function buildBody(
   if (alertCells.filter(cell => cell && cell.alerts.length).length === 0) {
     alertCells.length = 0;
   }
+  const histogramCells = buildHistogramCells(histograms);
 
   return {
     alertCells,
@@ -551,34 +788,9 @@ function buildBody(
     descriptorParts,
     linkRows,
     scalarRows,
+    histogramCells,
   };
 }
-
-// Return an object containing flags indicating whether to show parts of
-// lineDescriptors in descriptorParts.
-DetailsTable.descriptorFlags = lineDescriptors => {
-  if (lineDescriptors.length === 1) return {measurement: true};
-
-  let suite = false;
-  let measurement = false;
-  let bot = false;
-  let cases = false;
-  let statistic = false;
-  let buildType = false;
-  const firstSuites = lineDescriptors[0].suites.join('\n');
-  const firstBots = lineDescriptors[0].bots.join('\n');
-  const firstCases = lineDescriptors[0].cases.join('\n');
-  for (const other of lineDescriptors.slice(1)) {
-    suite = suite || (other.suites.join('\n') !== firstSuites);
-    measurement = measurement || (
-      other.measurement !== lineDescriptors[0].measurement);
-    bot = bot || (other.bots.join('\n') !== firstBots);
-    cases = cases || (other.cases.join('\n') !== firstCases);
-    statistic = statistic || (other.statistic !== lineDescriptors[0].statistic);
-    buildType = buildType || (other.buildType !== lineDescriptors[0].buildType);
-  }
-  return {suite, measurement, bot, cases, statistic, buildType};
-};
 
 DetailsTable.reducers = {
   startLoading: (state, {started}, rootState) => {
@@ -609,52 +821,6 @@ DetailsTable.reducers = {
     const commonLinkRows = DetailsTable.extractCommonLinkRows(bodies);
     return {...state, commonLinkRows, bodies};
   },
-
-  doneLoading: (state, action, rootState) => {
-    return {...state, isLoading: false};
-  },
-};
-
-// Factor common linkRows out to share above the bodies.
-DetailsTable.extractCommonLinkRows = bodies => {
-  const commonLinkRows = [];
-  if (bodies.length <= 1) return commonLinkRows;
-
-  for (const linkRow of bodies[0].linkRows) {
-    let isCommon = true;
-    for (const body of bodies.slice(1)) {
-      let isFound = false;
-      for (const otherLinkRow of body.linkRows) {
-        if (otherLinkRow.label !== linkRow.label) continue;
-
-        isFound = true;
-        for (const [index, cell] of enumerate(linkRow.cells)) {
-          const missing = (cell === undefined);
-          const otherCell = otherLinkRow.cells[index];
-          const otherMissing = (otherCell === undefined);
-          if (missing && otherMissing) continue;
-          if (missing !== otherMissing ||
-              cell.href !== otherCell.href ||
-              cell.label !== otherCell.label) {
-            isCommon = false;
-            break;
-          }
-        }
-        if (!isCommon) break;
-      }
-      if (!isFound) isCommon = false;
-      if (!isCommon) break;
-    }
-
-    if (isCommon) {
-      commonLinkRows.push(linkRow);
-      for (const body of bodies) {
-        body.linkRows = body.linkRows.filter(test =>
-          test.label !== linkRow.label);
-      }
-    }
-  }
-  return commonLinkRows;
 };
 
 ElementBase.register(DetailsTable);
