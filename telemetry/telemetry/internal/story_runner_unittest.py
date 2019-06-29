@@ -172,8 +172,8 @@ class _DisableStoryExpectations(story_module.expectations.StoryExpectations):
 
 
 class FakeBenchmark(benchmark.Benchmark):
-  def __init__(self):
-    super(FakeBenchmark, self).__init__()
+  def __init__(self, options=None):
+    super(FakeBenchmark, self).__init__(options=options)
     self._disabled = False
     self._story_disabled = False
 
@@ -680,6 +680,25 @@ class StoryRunnerTest(unittest.TestCase):
     self.assertEquals(0, GetNumberOfSkippedPageRuns(results))
     self.assertFalse(results.had_failures)
     self.assertEquals(2, len(values))
+
+  def testRunStoryDisabledStoryWithNewFormat(self):
+    expectations = (
+        '# tags: [ all ]\n'
+        '[ all ] fake/one [ Skip ]\n')
+    story_set = story_module.StorySet()
+    story_one = DummyLocalStory(TestSharedPageState, name='one')
+    story_set.AddStory(story_one)
+    results = results_options.CreateResults(self.options)
+    with mock.patch.object(FakeBenchmark, 'platform_tags', ['all']):
+      with mock.patch.object(
+          benchmark.Benchmark, '_use_new_test_expectations_format', True):
+        fake = FakeBenchmark()
+        fake.AugmentExpectationsWithParser(expectations)
+        story_runner.Run(_Measurement(), story_set, self.options, results,
+                         expectations=fake._expectations)
+
+        self.assertEquals(1, GetNumberOfSuccessfulPageRuns(results))
+        self.assertEquals(1, GetNumberOfSkippedPageRuns(results))
 
   def testRunStoryPopulatesHistograms(self):
     self.StubOutExceptionFormatting()
