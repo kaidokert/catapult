@@ -128,8 +128,10 @@ class RunTestsUnitTest(unittest.TestCase):
       expected_exit_code=0):
     extra_args = extra_args or []
     expectations = ('# tags: [ foo bar mac ]\n'
+                    '# results: [ %s ]\n'
                     'crbug.com/123 [ %s ] %s [ %s ]')
-    expectations = expectations % (test_tags, full_test_name, expectation)
+    expectations = expectations % (expectation, test_tags,
+                                   full_test_name, expectation)
     expectations_file = tempfile.NamedTemporaryFile(delete=False)
     expectations_file.write(expectations)
     results = tempfile.NamedTemporaryFile(delete=False)
