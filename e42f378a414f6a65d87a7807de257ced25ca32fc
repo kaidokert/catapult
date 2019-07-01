@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8af32541_e7fb03d7",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T11:01:29Z",
+      "side": 1,
+      "message": "nit: Call this something like \"AddMetricPageResults\" so it\u0027s a bit more explicit; and add a little docstring at least noting that the result arg is a dict produced by _ComputeMetricsInPool.",
+      "revId": "e42f378a414f6a65d87a7807de257ced25ca32fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9486b00_eef36185",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T11:01:29Z",
+      "side": 1,
+      "message": "style nit: Move closing \"\"\" to end of previous line.",
+      "revId": "e42f378a414f6a65d87a7807de257ced25ca32fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
