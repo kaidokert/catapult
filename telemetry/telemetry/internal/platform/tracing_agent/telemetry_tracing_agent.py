@@ -21,16 +21,16 @@ def RecordBenchmarkMetadata(results):
   if IsAgentEnabled():
     # TODO(crbug.com/973837): Get the data we need directly from the results
     # object, rather than having to go through the telemetry_info attr.
-    telemetry_info = results.telemetry_info
+    telemetry_info = results._telemetry_info
     trace_event.trace_add_benchmark_metadata(
-        benchmark_start_time_us=telemetry_info.benchmark_start_us,
+        benchmark_name=results.benchmark_name,
+        benchmark_description=results.benchmark_description,
+        benchmark_start_time_us=results.benchmark_start_us,
+        label=results.label,
         story_run_time_us=telemetry_info.trace_start_us,
-        benchmark_name=telemetry_info.benchmark_name,
-        benchmark_description=telemetry_info.benchmark_descriptions,
         story_name=telemetry_info.story_display_name,
         story_tags=telemetry_info.GetStoryTagsList(),
         story_run_index=telemetry_info.storyset_repeat_counter,
-        label=telemetry_info.label,
         had_failures=telemetry_info.had_failures,
         trace_url=telemetry_info.trace_url,
     )
