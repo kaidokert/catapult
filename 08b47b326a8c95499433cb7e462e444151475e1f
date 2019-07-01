@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d519a0f2_9141bb35",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-01T23:17:22Z",
+      "side": 1,
+      "message": "Okay, I will use .format to create the test expectations",
+      "parentUuid": "40d5cd48_a5f1a7a1",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 27
+      },
+      "revId": "08b47b326a8c95499433cb7e462e444151475e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac751c14_df5e1244",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 10
