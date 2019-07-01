@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95acd0cb_9e922467",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: `if not runs_with_traces` is more idiomatic.",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e18571b2_f046caed",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: Have you checked whether this works? In other projects I remember having troubles passing lambda\u0027s for pool processing. The alternative is to build a list of tuples to unpack in the mapped function (similar to what the current code does).",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6ba2c1c_cae05a4d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: This same bit of code exists twice. Maybe factor out into a function in results_processor that iterates and uploads all traces in the results object?\n\n(Then, possibly, SerializeAndUploadHtmlTrace can be a private function in results_processor.)",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a9a755_4e718a1f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: Maybe also remove this entirely. The story_runner module can directly call results_processor.UploadArtifactsToCloud.",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d44cc2d_f4d57e49",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: 2019",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a63a983_c7535d39",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: maybe make this take the full results object and move the other for-loop in here too?",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "328f7503_9810c471",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "nit: can you take the chance to fix this? The first one should be logging.exception; and the second one is not needed.",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

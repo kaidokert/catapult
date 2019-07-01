@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "33b956e8_4e6f4718",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "Great!",
+      "parentUuid": "9e1eb886_d30c4291",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "515f34f5_eeab5caf",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -206,6 +224,24 @@
       "side": 1,
       "message": "There are currently three of them.\n\nOne is inside _ComputeMetricsInPool, it\u0027s there because we want to serialize traces in parallel to speed things up.\n\nThe other one is here, in PrintSummary, to obtain the trace in case there were no metrics to compute.\n\nThe third one is in PopulateHistogramSet. Perhaps we will be able to get rid of this function at some point. So far, we have to serialize trace inside it because chart_json formatter expects traces to have their URL set.",
       "parentUuid": "c5467245_dae7ed41",
+      "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb670272_7fefeafa",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-01T09:09:09Z",
+      "side": 1,
+      "message": "This is good, thanks for the changes! The new results_processor is looking great, and helping crystallize the difference between results collecting and processing.",
+      "parentUuid": "0f8a61af_b6b4d7a0",
       "revId": "80ecbb6a2abb10e8ad2a5362bfe6202caaab581c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
