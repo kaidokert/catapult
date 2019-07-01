@@ -4,12 +4,14 @@
 */
 'use strict';
 
+import markdown from 'markdown';
 import './scalar-span.js';
 import AlertDetail from './alert-detail.js';
 import BisectDialog from './bisect-dialog.js';
 import ChartTimeseries from './chart-timeseries.js';
 import NudgeAlert from './nudge-alert.js';
 import {DetailsFetcher} from './details-fetcher.js';
+import {EditNote} from './edit-note.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
 import {breakWords, enumerate, isProduction} from './utils.js';
@@ -184,9 +186,34 @@ export default class DetailsTable extends ElementBase {
                 `)}
               </tr>
             `}
+
+            ${this.renderNotesRow_(bodyIndex)}
           </tbody>
         `)}
       </table>
+    `;
+  }
+
+  renderNotesRow_(bodyIndex) {
+    return `html
+      <tr>
+        <td>Notes</td>
+        ${this.bodies[bodyIndex].noteCells.map((note, noteIndex) => html`
+          <td>
+            ${this.renderNote_(note, bodyIndex, noteIndex)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderNote_(note, bodyIndex, noteIndex) {
+    const statePath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', noteIndex,
+    ].join('.');
+    return html`
+      ${(!note || !note.text) ? '' : markdown.toHTML(note.text)}
+      <edit-note .statePath="${statePath}"></edit-note>
     `;
   }
 
@@ -543,6 +570,8 @@ function buildBody(
     alertCells.length = 0;
   }
 
+  const noteCells = [];
+
   return {
     alertCells,
     bisectCells,
@@ -551,6 +580,7 @@ function buildBody(
     descriptorParts,
     linkRows,
     scalarRows,
+    noteCells,
   };
 }
 
