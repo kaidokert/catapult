@@ -45,6 +45,30 @@
       "revId": "08b47b326a8c95499433cb7e462e444151475e1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59208ace_6c4625fd",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-01T21:55:05Z",
+      "side": 1,
+      "message": "The existing web_test implementation is case-insensitive, and typ is case-insensitive currently for expectations. \n\nTo me, being case-insensitive in a human-edited format is convenient. I thought the spec might note that for expectations, but we should add that if it doesn\u0027t.\n\nThat said, I don\u0027t feel strongly about this. I wouldn\u0027t expect anything to rely on this.",
+      "parentUuid": "ac751c14_df5e1244",
+      "range": {
+        "startLine": 235,
+        "startChar": 12,
+        "endLine": 235,
+        "endChar": 25
+      },
+      "revId": "08b47b326a8c95499433cb7e462e444151475e1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
