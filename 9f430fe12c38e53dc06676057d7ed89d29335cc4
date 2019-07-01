@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5e9e1b7c_eccbf769",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95acd0cb_9e922467",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e18571b2_f046caed",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74c232f6_113f0d28",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Yes, I\u0027ve checked this, it really works.\n\nThe ThreadPool here is actually a multiprocessing.dummy.Pool, which uses threading module for parallelism. It does not require pickling, so lambdas work perfectly.",
+      "parentUuid": "e18571b2_f046caed",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "03c21a8e_55cab7d8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6ba2c1c_cae05a4d",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4a9a755_4e718a1f",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea6ef14c_2e20760f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4a9a755_4e718a1f",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "877f6962_867ab090",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d44cc2d_f4d57e49",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a63a983_c7535d39",
         "filename": "telemetry/telemetry/internal/results/results_processor.py",
         "patchSetId": 2
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "af0f8c38_cc686d04",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a63a983_c7535d39",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "328f7503_9810c471",
         "filename": "telemetry/telemetry/internal/results/results_processor.py",
         "patchSetId": 2
@@ -118,6 +226,24 @@
       "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "567e6603_1de98505",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-01T10:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "328f7503_9810c471",
+      "revId": "9f430fe12c38e53dc06676057d7ed89d29335cc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
