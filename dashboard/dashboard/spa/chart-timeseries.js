@@ -632,21 +632,40 @@ ChartTimeseries.createFetchDescriptors = (lineDescriptor, levelOfDetail) => {
   return fetchDescriptors;
 };
 
+const WHITELISTED_DIAGNOSTIC_NAMES = [
+  tr.v.d.RESERVED_NAMES.OS_VERSIONS,
+];
+
 // Improvement alerts display thumbup icons. Regression alerts display error
-// icons.
+// icons. Whitelisted diagnostics display feedback icons. See ./cp-icon.js for
+// available icons.
 function getIcon(datum) {
-  if (!datum.alert) return {};
-  if (datum.alert.improvement) {
+  if (datum.alert) {
+    if (datum.alert.improvement) {
+      return {
+        icon: 'thumbup',
+        iconColor: 'var(--improvement-color, green)',
+      };
+    }
     return {
-      icon: 'thumbup',
-      iconColor: 'var(--improvement-color, green)',
+      icon: 'error',
+      iconColor: datum.alert.bugId ?
+        'var(--neutral-color-dark, grey)' : 'var(--error-color, red)',
     };
   }
-  return {
-    icon: 'error',
-    iconColor: datum.alert.bugId ?
-      'var(--neutral-color-dark, grey)' : 'var(--error-color, red)',
-  };
+
+  if (datum.diagnostics) {
+    for (const name of WHITELISTED_DIAGNOSTIC_NAMES) {
+      if (datum.diagnostics.has(name)) {
+        return {
+          icon: 'feedback',
+          iconColor: 'var(--primary-color-dark, blue)',
+        };
+      }
+    }
+  }
+
+  return {};
 }
 
 ChartTimeseries.aggregateTimeserieses = (
