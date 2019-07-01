@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "552aaa54_f6faf89b",
+        "filename": "devil/devil/android/crash_handler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-07-01T23:15:15Z",
+      "side": 1,
+      "message": "I\u0027m guessing that if this works, you don\u0027t plan on reverting it? If so, pls remove the leading \u0027_\u0027 on this method so we can just get rid of the pylint error.",
+      "range": {
+        "startLine": 42,
+        "startChar": 31,
+        "endLine": 42,
+        "endChar": 63
+      },
+      "revId": "8363cdb28bd2471617f3a30a83182dba336b9942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
