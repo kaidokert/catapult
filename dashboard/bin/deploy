@@ -44,6 +44,13 @@ def Main():
     from catapult_build import appengine_deploy
     appengine_deploy.Deploy(deployment_paths, sys.argv[1:],
                             os.environ.get('VERSION'))
+
+    if not sys.argv[1:] and not os.environ.get('VERSION'):
+      logging.info('Deploying api, upload, and pinpoint services')
+      appengine_deploy.Deploy(deployment_paths, ['api.yaml'], 'api')
+      appengine_deploy.Deploy(deployment_paths, ['pinpoint.yaml'], 'pinpoint')
+      appengine_deploy.Deploy(deployment_paths, ['upload.yaml'], 'upload')
+
   except RuntimeError:
     pass
   finally:
