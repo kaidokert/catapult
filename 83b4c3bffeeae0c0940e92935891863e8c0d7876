@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d38c2e71_f4e4603a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-02T15:34:46Z",
+      "side": 1,
+      "message": "Is this actually a python None or the string \"(None)\"?",
+      "range": {
+        "startLine": 125,
+        "startChar": 57,
+        "endLine": 125,
+        "endChar": 61
+      },
+      "revId": "83b4c3bffeeae0c0940e92935891863e8c0d7876",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
