@@ -11,6 +11,7 @@ from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import gpu_compositing_checker
 from telemetry.internal.browser import browser_info as browser_info_module
 from telemetry.internal.browser import browser_interval_profiling_controller
+from telemetry.internal.browser import collect_process_types
 from telemetry.page import cache_temperature
 from telemetry.page import legacy_page_test
 from telemetry.page import traffic_setting
@@ -69,6 +70,8 @@ class SharedPageState(story_module.SharedState):
             periods=finder_options.interval_profiling_periods,
             frequency=finder_options.interval_profiling_frequency,
             profiler_options=finder_options.interval_profiler_options))
+    self._collect_process_types = (
+        collect_process_types.CollectProcessTypes())
 
     self.platform.SetFullPerformanceModeEnabled(
         finder_options.full_performance_mode)
@@ -78,6 +81,10 @@ class SharedPageState(story_module.SharedState):
   @property
   def interval_profiling_controller(self):
     return self._interval_profiling_controller
+
+  @property
+  def collect_process_types(self):
+    return self._collect_process_types
 
   @property
   def browser(self):
@@ -120,6 +127,7 @@ class SharedPageState(story_module.SharedState):
           self._current_tab.Close()
       self._interval_profiling_controller.GetResults(
           self._current_page.file_safe_name, results)
+      self._collect_process_types.GetResults(results)
     finally:
       self._current_page = None
       self._current_tab = None
