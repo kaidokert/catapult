@@ -22,6 +22,30 @@
       "revId": "5552967dfd19bcd82a00606ec94d5dfeaae38548",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75ff2314_59dbf9cf",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-02T18:13:01Z",
+      "side": 1,
+      "message": "We could experiment with showing some or all icons outside the main chart area, or using CSS animations to cycle between them, or something else fancy, but I\u0027d suggest doing so at a low priority since the expectation is for users to drill down into the details-table. WDYT?",
+      "parentUuid": "a56ed534_07d3b08f",
+      "range": {
+        "startLine": 657,
+        "startChar": 5,
+        "endLine": 661,
+        "endChar": 22
+      },
+      "revId": "5552967dfd19bcd82a00606ec94d5dfeaae38548",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
