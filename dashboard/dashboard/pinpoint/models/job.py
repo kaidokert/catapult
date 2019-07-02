@@ -120,6 +120,10 @@ class Job(ndb.Model):
 
   retry_count = ndb.IntegerProperty(default=0)
 
+  # We expose the configuration as a first-class property of the Job.
+  configuration = ndb.ComputedProperty(
+      lambda self: self.arguments.get('configuration', '(None)'))
+
 
   @classmethod
   def New(cls, quests, changes, arguments=None, bug_id=None,
@@ -417,6 +421,7 @@ class Job(ndb.Model):
   def AsDict(self, options=None):
     d = {
         'job_id': self.job_id,
+        'configuration': self.configuration,
         'results_url': self.results_url,
 
         'arguments': self.arguments,
