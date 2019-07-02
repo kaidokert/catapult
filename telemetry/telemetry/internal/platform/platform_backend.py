@@ -128,12 +128,6 @@ class PlatformBackend(object):
   def GetSystemTotalPhysicalMemory(self):
     raise NotImplementedError()
 
-  def GetChildPids(self, pid):
-    raise NotImplementedError()
-
-  def GetCommandLine(self, pid):
-    raise NotImplementedError()
-
   def GetDeviceTypeName(self):
     raise NotImplementedError()
 
