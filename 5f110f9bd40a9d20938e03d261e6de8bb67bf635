@@ -33,6 +33,24 @@
       "revId": "5f110f9bd40a9d20938e03d261e6de8bb67bf635",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6671bf4d_287985b8",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 11
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-07-02T20:11:29Z",
+      "side": 1,
+      "message": "\"Looks like this is finding one candidate from the whole trace.\"\nThat\u0027s true. I should correct this behaviour to find one candidate each navigation.\n\n\"Shouldn\u0027t you be doing this within a navigation like the rest of our metrics\"\nNote that LCP is different from other metrics here because LCP is dumped from the browser process. Because of this, LCP needs to be processed differently. After the landing of https://chromium-review.googlesource.com/c/chromium/src/+/1680874, LCPs of different navigations can distinguished by the main-frame\u0027s tree_node_id. I will make a change accordingly soon.",
+      "parentUuid": "02059ecc_98777d77",
+      "revId": "5f110f9bd40a9d20938e03d261e6de8bb67bf635",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
