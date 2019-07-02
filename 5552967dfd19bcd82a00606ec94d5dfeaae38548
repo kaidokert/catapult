@@ -70,6 +70,30 @@
       "revId": "5552967dfd19bcd82a00606ec94d5dfeaae38548",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18d9189c_269af707",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-02T18:21:32Z",
+      "side": 1,
+      "message": "I\u0027ll get started on it today, probably land next week since this one is short.",
+      "parentUuid": "3ce3a7a2_d946cd99",
+      "range": {
+        "startLine": 657,
+        "startChar": 5,
+        "endLine": 661,
+        "endChar": 22
+      },
+      "revId": "5552967dfd19bcd82a00606ec94d5dfeaae38548",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
