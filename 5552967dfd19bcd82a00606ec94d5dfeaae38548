@@ -46,6 +46,30 @@
       "revId": "5552967dfd19bcd82a00606ec94d5dfeaae38548",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ce3a7a2_d946cd99",
+        "filename": "dashboard/dashboard/spa/chart-timeseries.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-02T18:14:06Z",
+      "side": 1,
+      "message": "Sounds good. Is fixing the details-table something that you can do soon?",
+      "parentUuid": "75ff2314_59dbf9cf",
+      "range": {
+        "startLine": 657,
+        "startChar": 5,
+        "endLine": 661,
+        "endChar": 22
+      },
+      "revId": "5552967dfd19bcd82a00606ec94d5dfeaae38548",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
