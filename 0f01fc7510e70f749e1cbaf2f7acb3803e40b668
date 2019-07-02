@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3374cd2_4b22ba74",
+        "filename": "dashboard/api.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-02T23:36:23Z",
+      "side": 1,
+      "message": "Where\u0027s the service field?",
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21338d6f_305e36f9",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-02T23:36:23Z",
+      "side": 1,
+      "message": "I would consider a different name for the service, since \u0027api-dot-chromeperf.appspot.com\u0027 sounds like a catch-all which doesn\u0027t reflect a sufficient decomposition of the functionality.\n\nIf the APIs are for UX-specific operations, we should probably name it appropriately, like \u0027views\u0027 or \u0027data\u0027.",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 50,
+        "endChar": 68
+      },
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a4d44f6_c7995400",
+        "filename": "dashboard/docs/services.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-02T23:36:23Z",
+      "side": 1,
+      "message": "There\u0027s also the \u0027sheriff-config\u0027 service, which is in the dashboard/dashboard/sheriff_config subdirectory. That\u0027s deployed with the App Engine Python 3 Flexible Environment and is served behind a Cloud Endpoints v2 service.",
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba3770d_63db8907",
+        "filename": "dashboard/upload.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-02T23:36:23Z",
+      "side": 1,
+      "message": "service field here too?",
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
