@@ -108,17 +108,6 @@ class CrosPlatformBackend(
   def GetOSVersionDetailString(self):
     return ''  # TODO(kbr): Implement this.
 
-  def GetChildPids(self, pid):
-    """Returns a list of child pids of |pid|."""
-    all_process_info = self._cri.ListProcesses()
-    processes = [(curr_pid, curr_ppid, curr_state)
-                 for curr_pid, _, curr_ppid, curr_state in all_process_info]
-    return ps_util.GetChildPids(processes, pid)
-
-  def GetCommandLine(self, pid):
-    procs = self._cri.ListProcesses()
-    return next((proc[1] for proc in procs if proc[0] == pid), None)
-
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
 

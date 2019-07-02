@@ -96,33 +96,6 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
       process_info.append(pi)
     return process_info
 
-  def GetChildPids(self, pid):
-    """Retunds a list of child pids of |pid|."""
-    ppid_map = collections.defaultdict(list)
-    creation_map = {}
-    for pi in self.GetSystemProcessInfo():
-      ppid_map[pi['ParentProcessId']].append(pi['ProcessId'])
-      if pi['CreationDate']:
-        creation_map[pi['ProcessId']] = pi['CreationDate']
-
-    def _InnerGetChildPids(pid):
-      if not pid or pid not in ppid_map:
-        return []
-      ret = [p for p in ppid_map[pid] if creation_map[p] >= creation_map[pid]]
-      for child in ret:
-        if child == pid:
-          continue
-        ret.extend(_InnerGetChildPids(child))
-      return ret
-
-    return _InnerGetChildPids(pid)
-
-  def GetCommandLine(self, pid):
-    for pi in self.GetSystemProcessInfo():
-      if pid == pi['ProcessId']:
-        return pi['CommandLine']
-    raise exceptions.ProcessGoneException()
-
   @decorators.Cache
   def GetArchName(self):
     return platform.machine()
