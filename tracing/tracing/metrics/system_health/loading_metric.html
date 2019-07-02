@@ -566,6 +566,84 @@ tr.exportTo('tr.metrics.sh', function() {
     return collectTimeToEvent(rendererHelper, lastCandidateEvents);
   }
 
+  class LargestContentfulPaintMetrics {
+    constructor(browserHelper) {
+      this.browserHelper = browserHelper;
+    }
+
+    findCandidates() {
+      const finalEvents =
+          this.findFinalEventOfEachNavigation(this.browserHelper);
+      const finalValidEvents = finalEvents.filter(
+          finalEvent => !this.isInvalidateEvent(finalEvent));
+      const finalCandidates = finalValidEvents.map(finalEvent => {
+        const { durationInMilliseconds, size, type, inMainFrame } =
+            finalEvent.args.data;
+        if (durationInMilliseconds === undefined || size === undefined ||
+            type === undefined || inMainFrame === undefined ||
+            finalEvent.args.main_frame_tree_node_id === undefined) {
+          throw new Error('The LCP event format is unexpected.');
+        }
+        const mainFrameTreeNodeId = finalEvent.args.main_frame_tree_node_id;
+        return {...finalEvent.args.data, mainFrameTreeNodeId };
+      });
+      return finalCandidates;
+    }
+
+    findHistogramSamples() {
+      const candidates = this.findCandidates();
+      const lcpSamples = candidates.map(candidate => {
+        const { durationInMilliseconds, size, type, inMainFrame,
+          mainFrameTreeNodeId } = candidate;
+        return {
+          value: durationInMilliseconds,
+          diagnostics: {
+            size: new tr.v.d.GenericSet([size]),
+            type: new tr.v.d.GenericSet([type]),
+            inMainFrame: new tr.v.d.GenericSet([inMainFrame]),
+            mainFrameTreeNodeId: new tr.v.d.GenericSet([mainFrameTreeNodeId]),
+          },
+        };
+      });
+      return lcpSamples;
+    }
+
+    isInvalidateEvent(event) {
+      return event && event.title ===
+          'NavStartToLargestContentfulPaint::Invalidate::AllFrames::UKM';
+    }
+
+    isCandidateEvent(event) {
+      return event && event.title ===
+          'NavStartToLargestContentfulPaint::Candidate::AllFrames::UKM';
+    }
+
+    findFinalEventOfEachNavigation(browserHelper) {
+      const events = browserHelper.mainThread.sliceGroup.slices.filter(event =>
+        this.isInvalidateEvent(event) || this.isCandidateEvent(event));
+
+      const eventsGroupedByNavigation = {};
+      events.forEach(e => {
+        const key = e.args.main_frame_tree_node_id;
+        if (key === undefined) {
+          throw new Error('Missing main_frame_tree_node_id from LCP event.');
+        }
+        if (!eventsGroupedByNavigation[key]) {
+          eventsGroupedByNavigation[key] = [];
+        }
+        eventsGroupedByNavigation[key].push(e);
+      });
+
+      const theFinalEventOfEachNaivgation = [];
+      Object.values(eventsGroupedByNavigation).forEach(eventList => {
+        eventList.sort((a, b) => a.start - b.start);
+        theFinalEventOfEachNaivgation.push(eventList[eventList.length - 1]);
+      });
+
+      return theFinalEventOfEachNaivgation;
+    }
+  }
+
   function collectLoadingMetricsForRenderer(rendererHelper) {
     const frameToNavStartEvents =
         EventFinderUtils.getSortedMainThreadEventsByFrame(
@@ -776,6 +854,12 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'Time to Largest Text Paint',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const largestContentfulPaintHistogram = histograms.createHistogram(
+        'largestContentfulPaint', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Time to Largest Contentful Paint',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
     const layoutShiftHistogram = histograms.createHistogram(
         'mainFrameCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
           binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
@@ -799,6 +883,13 @@ tr.exportTo('tr.metrics.sh', function() {
 
       const samplesSet =
           collectLoadingMetricsForRenderer(rendererHelper);
+
+      const lcpMetrics =
+          new LargestContentfulPaintMetrics(chromeHelper.browserHelper);
+      const lcpSamples = lcpMetrics.findHistogramSamples();
+      addSamplesToHistogram(
+          lcpSamples, largestContentfulPaintHistogram, histograms);
+
       addSamplesToHistogram(
           samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
       addSamplesToHistogram(
