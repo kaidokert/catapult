@@ -384,7 +384,7 @@ def _AssignBugToCLAuthor(bug_id, commit_info, service):
       owner=author)
 
 def FileBug(http, owner, cc, summary, description, labels, components,
-            urlsafe_keys):
+            urlsafe_keys, needs_bisect=True):
   alert_keys = [ndb.Key(urlsafe=k) for k in urlsafe_keys]
   alerts = ndb.get_multi(alert_keys)
 
@@ -423,7 +423,6 @@ def FileBug(http, owner, cc, summary, description, labels, components,
     logging.info('Kicking bisect for bug ' + str(bug_id))
     culprit_rev = _GetSingleCLForAnomalies(alerts)
 
-    needs_bisect = True
     if culprit_rev is not None:
       commit_info = _GetCommitInfoForAlert(alerts[0])
       if commit_info:
