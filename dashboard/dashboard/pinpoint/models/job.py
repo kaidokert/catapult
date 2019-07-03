@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import datetime
+import logging
 import os
 import sys
 import traceback
@@ -238,6 +239,7 @@ class Job(ndb.Model):
         _retry_options=RETRY_OPTIONS)
 
   def _Complete(self):
+    logging.debug('Job [%s]: Completed', self.job_id)
     if self.comparison_mode:
       self.difference_count = len(self.state.Differences())
 
