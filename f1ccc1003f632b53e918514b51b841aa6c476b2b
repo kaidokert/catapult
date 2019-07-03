@@ -22,6 +22,29 @@
       "revId": "f1ccc1003f632b53e918514b51b841aa6c476b2b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b19e70ca_dc2b211e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-03T14:43:15Z",
+      "side": 1,
+      "message": "Okay, reading into results2.ScheduleResults2Generation(...), it looks like it returns a success/failure result, which we ignore here. It\u0027s also internally intercepting task enqueue exceptions instead of propagating those through so if we encounter errors in the scheduling then it turns into a return.",
+      "range": {
+        "startLine": 246,
+        "startChar": 4,
+        "endLine": 249,
+        "endChar": 10
+      },
+      "revId": "f1ccc1003f632b53e918514b51b841aa6c476b2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
