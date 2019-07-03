@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1da336b_8a63804f",
+        "filename": "dashboard/dashboard/spa/chart-base.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1159599
+      },
+      "writtenOn": "2019-07-03T00:48:56Z",
+      "side": 1,
+      "message": "From reading the function header, it\u0027s not super clear to me what \"antiBrushes\" means. Perhaps it might be helpful to add a comment describing what this function does?",
+      "range": {
+        "startLine": 484,
+        "startChar": 2,
+        "endLine": 484,
+        "endChar": 31
+      },
+      "revId": "7af75143165d364579e7aec2c891af58fcab2615",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
