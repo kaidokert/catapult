@@ -95,6 +95,11 @@ def AddCommandLineArgs(parser):
                     'until the device CPU has cooled down. If '
                     'not specified, this wait is disabled. '
                     'Device must be supported. ')
+  parser.add_option('--run-full-story-set', action='store_true', default=False,
+                    help='Whether to run the complete set of stories instead '
+                    'of an abridged version. Note that if the story set '
+                    'does not provide the information require to abridge it, '
+                    'then this argument will have no impact either way.')
 
 
 def ProcessCommandLineArgs(parser, args):
@@ -205,11 +210,12 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   We "white list" certain exceptions for which the story runner
   can continue running the remaining stories.
   """
-  for s in story_set:
+  stories = story_set.stories
+  for s in stories:
     ValidateStory(s)
 
   # Filter page set based on options.
-  stories = story_module.StoryFilter.FilterStorySet(story_set)
+  stories = story_module.StoryFilter.FilterStories(stories)
   wpr_archive_info = story_set.wpr_archive_info
   # Sort the stories based on the archive name, to minimize how often the
   # network replay-server needs to be restarted.
@@ -257,6 +263,12 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
   possible_browser = _GetPossibleBrowser(finder_options)
 
+  tag_filter = None
+  if not finder_options.run_full_story_set:
+    tag_filter = story_set.GetAbridgedStorySetTagFilter()
+  if tag_filter:
+    stories = [story for story in stories if tag_filter in story.tags]
+
   state = None
   device_info_diags = {}
   # TODO(crbug.com/866458): unwind the nested blocks
@@ -293,6 +305,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             if finder_options.wait_for_cpu_temp:
               state.platform.WaitForCpuTemperature(38.0)
             _WaitForThermalThrottlingIfNeeded(state.platform)
+          #logging.warn('blah: %s', story.name)
           _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
 
           num_values = len(results.all_page_specific_values)
@@ -419,10 +432,10 @@ def RunBenchmark(benchmark, finder_options):
   pt = benchmark.CreatePageTest(finder_options)
   pt.__name__ = benchmark.__class__.__name__
 
-  stories = benchmark.CreateStorySet(finder_options)
+  story_set = benchmark.CreateStorySet(finder_options)
 
   if isinstance(pt, legacy_page_test.LegacyPageTest):
-    if any(not isinstance(p, page.Page) for p in stories.stories):
+    if any(not isinstance(p, page.Page) for p in story_set.stories):
       raise Exception(
           'PageTest must be used with StorySet containing only '
           'telemetry.page.Page stories.')
@@ -434,7 +447,7 @@ def RunBenchmark(benchmark, finder_options):
       benchmark_enabled=True,
       should_add_value=benchmark.ShouldAddValue) as results:
     try:
-      Run(pt, stories, finder_options, results, benchmark.max_failures,
+      Run(pt, story_set, finder_options, results, benchmark.max_failures,
           expectations=benchmark.expectations,
           max_num_values=benchmark.MAX_NUM_VALUES)
       if results.had_failures:
@@ -445,14 +458,17 @@ def RunBenchmark(benchmark, finder_options):
         return_code = -1  # All stories were skipped.
       # We want to make sure that all expectations are linked to real stories,
       # this will log error messages if names do not match what is in the set.
-      benchmark.GetBrokenExpectations(stories)
+      benchmark.GetBrokenExpectations(story_set)
     except Exception as e: # pylint: disable=broad-except
 
       logging.fatal(
           'Benchmark execution interrupted by a fatal exception: %s(%s)' %
           (type(e), e))
 
-      filtered_stories = story_module.StoryFilter.FilterStorySet(stories)
+      filtered_stories = story_module.StoryFilter.FilterStories(
+          story_set.stories)
+      # TODO(crbug.com/980781): This appears to mark expected skipped stories
+      # as unexpectedly skipped stories.
       results.InterruptBenchmark(
           filtered_stories, finder_options.pageset_repeat)
       exception_formatter.PrintFormattedException()
