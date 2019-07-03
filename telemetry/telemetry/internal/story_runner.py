@@ -95,6 +95,11 @@ def AddCommandLineArgs(parser):
                     'until the device CPU has cooled down. If '
                     'not specified, this wait is disabled. '
                     'Device must be supported. ')
+  parser.add_option('--run-full-story-set', action='store_true', default=False,
+                    help='Whether to run the complete set of stories instead '
+                    'of an abridged version. Note that if the benchmark '
+                    'does not provide capability to abridge its story set, '
+                    'then this argument will have no impact either way.')
 
 
 def ProcessCommandLineArgs(parser, args):
@@ -197,20 +202,21 @@ def _GetPossibleBrowser(finder_options):
   return possible_browser
 
 
-def Run(test, story_set, finder_options, results, max_failures=None,
-        expectations=None, max_num_values=sys.maxint):
+def Run(test, story_set_obj, finder_options, results, benchmark,
+        max_failures=None, expectations=None, max_num_values=sys.maxint):
   """Runs a given test against a given page_set with the given options.
 
   Stop execution for unexpected exceptions such as KeyboardInterrupt.
   We "white list" certain exceptions for which the story runner
   can continue running the remaining stories.
   """
-  for s in story_set:
+  stories = story_set_obj.stories
+  for s in stories:
     ValidateStory(s)
 
   # Filter page set based on options.
-  stories = story_module.StoryFilter.FilterStorySet(story_set)
-  wpr_archive_info = story_set.wpr_archive_info
+  stories = story_module.StoryFilter.FilterStories(stories)
+  wpr_archive_info = story_set_obj.wpr_archive_info
   # Sort the stories based on the archive name, to minimize how often the
   # network replay-server needs to be restarted.
   if wpr_archive_info:
@@ -234,17 +240,17 @@ def Run(test, story_set, finder_options, results, max_failures=None,
       finder_options.browser_options.wpr_mode != wpr_modes.WPR_RECORD):
     # Get the serving dirs of the filtered stories.
     # TODO(crbug.com/883798): removing story_set._serving_dirs
-    serving_dirs = story_set._serving_dirs.copy()
+    serving_dirs = story_set_obj._serving_dirs.copy()
     for story in stories:
       if story.serving_dir:
         serving_dirs.add(story.serving_dir)
 
-    if story_set.bucket:
+    if story_set_obj.bucket:
       for directory in serving_dirs:
         cloud_storage.GetFilesInDirectoryIfChanged(directory,
-                                                   story_set.bucket)
-    if story_set.archive_data_file and not _UpdateAndCheckArchives(
-        story_set.archive_data_file, wpr_archive_info, stories):
+                                                   story_set_obj.bucket)
+    if story_set_obj.archive_data_file and not _UpdateAndCheckArchives(
+        story_set_obj.archive_data_file, wpr_archive_info, stories):
       return
 
   if not stories:
@@ -256,6 +262,13 @@ def Run(test, story_set, finder_options, results, max_failures=None,
     effective_max_failures = max_failures
 
   possible_browser = _GetPossibleBrowser(finder_options)
+
+  tag_filter = None
+  if not finder_options.run_full_story_set:
+    tag_filter = benchmark.GetAbridgedStorySetTagFilter(
+        possible_browser.platform.GetOSName())
+  if tag_filter:
+    stories = [story for story in stories if tag_filter in story.tags]
 
   state = None
   device_info_diags = {}
@@ -270,8 +283,8 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           # state may update the finder_options. If we tear down the shared
           # state after this story run, we want to construct the shared
           # state for the next story from the original finder_options.
-          state = story_set.shared_state_class(
-              test, finder_options.Copy(), story_set, possible_browser)
+          state = story_set_obj.shared_state_class(
+              test, finder_options.Copy(), story_set_obj, possible_browser)
 
         results.WillRunPage(story, storyset_repeat_counter)
 
@@ -293,7 +306,8 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             if finder_options.wait_for_cpu_temp:
               state.platform.WaitForCpuTemperature(38.0)
             _WaitForThermalThrottlingIfNeeded(state.platform)
-          _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
+          logging.warn('blah: %s', story.name)
+          #_RunStoryAndProcessErrorIfNeeded(story, results, state, test)
 
           num_values = len(results.all_page_specific_values)
           # TODO(#4259): Convert this to an exception-based failure
@@ -419,10 +433,10 @@ def RunBenchmark(benchmark, finder_options):
   pt = benchmark.CreatePageTest(finder_options)
   pt.__name__ = benchmark.__class__.__name__
 
-  stories = benchmark.CreateStorySet(finder_options)
+  story_set_obj = benchmark.CreateStorySet(finder_options)
 
   if isinstance(pt, legacy_page_test.LegacyPageTest):
-    if any(not isinstance(p, page.Page) for p in stories.stories):
+    if any(not isinstance(p, page.Page) for p in story_set_obj.stories):
       raise Exception(
           'PageTest must be used with StorySet containing only '
           'telemetry.page.Page stories.')
@@ -434,8 +448,8 @@ def RunBenchmark(benchmark, finder_options):
       benchmark_enabled=True,
       should_add_value=benchmark.ShouldAddValue) as results:
     try:
-      Run(pt, stories, finder_options, results, benchmark.max_failures,
-          expectations=benchmark.expectations,
+      Run(pt, story_set_obj, finder_options, results, benchmark,
+          benchmark.max_failures, expectations=benchmark.expectations,
           max_num_values=benchmark.MAX_NUM_VALUES)
       if results.had_failures:
         return_code = 1
@@ -445,14 +459,17 @@ def RunBenchmark(benchmark, finder_options):
         return_code = -1  # All stories were skipped.
       # We want to make sure that all expectations are linked to real stories,
       # this will log error messages if names do not match what is in the set.
-      benchmark.GetBrokenExpectations(stories)
+      benchmark.GetBrokenExpectations(story_set_obj)
     except Exception as e: # pylint: disable=broad-except
 
       logging.fatal(
           'Benchmark execution interrupted by a fatal exception: %s(%s)' %
           (type(e), e))
 
-      filtered_stories = story_module.StoryFilter.FilterStorySet(stories)
+      filtered_stories = story_module.StoryFilter.FilterStories(
+          story_set_obj.stories)
+      # TODO(crbug.com/980781): This appears to mark expected skipped stories
+      # as unexpectedly skipped stories.
       results.InterruptBenchmark(
           filtered_stories, finder_options.pageset_repeat)
       exception_formatter.PrintFormattedException()

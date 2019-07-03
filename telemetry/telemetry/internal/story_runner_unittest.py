@@ -323,7 +323,8 @@ class StoryRunnerTest(unittest.TestCase):
     for i in xrange(number_stories):
       story_set.AddStory(DummyLocalStory(FooStoryState, name='story_%d' % i))
     test = DummyTest()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.Run(test, story_set, self.options, self.results,
+                     benchmark.Benchmark())
     self.assertFalse(self.results.had_failures)
     self.assertEquals(number_stories,
                       GetNumberOfSuccessfulPageRuns(self.results))
@@ -1593,6 +1594,27 @@ class StoryRunnerTest(unittest.TestCase):
       # Foo is the only included story serving dir.
       self.assertEqual(cloud_patch.call_count, 1)
       cloud_patch.assert_called_once_with(foo_page.serving_dir, bucket)
+
+  def testAbridgedStorySet(self):
+    class TestBenchmark(benchmark.Benchmark):
+      test = DummyTest
+      def CreateStorySet(self, options):
+        story_set = story_module.StorySet()
+        story_set.AddStory(page_module.Page(
+            'file://foo/foo', name='foo', tags=['foo']))
+        story_set.AddStory(page_module.Page(
+            'file://bar/bar', name='bar', tags=['bar']))
+        return story_set
+      @classmethod
+      def GetAbridgedStorySetTagFilter(cls, platform):
+        del platform
+        return 'foo'
+    test_benchmark = TestBenchmark()
+    options = _GenerateBaseBrowserFinderOptions()
+    patch_method = 'py_utils.cloud_storage.GetFilesInDirectoryIfChanged'
+    with mock.patch(patch_method) as cloud_patch:
+      story_runner.RunBenchmark(test_benchmark, options)
+      self.assertEqual(cloud_patch.call_count, 1)
 
 
 class BenchmarkJsonResultsTest(unittest.TestCase):

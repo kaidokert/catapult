@@ -291,6 +291,15 @@ class Benchmark(command_line.Command):
       raise NotImplementedError('This test has no "page_set" attribute.')
     return self.page_set()  # pylint: disable=not-callable
 
+  def GetAbridgedStorySetTagFilter(self, platform):
+    """Override this to provide an abridged story set.
+
+    Returns a story tag string that marks the stories that are
+    part of the abridged story set.
+    """
+    del platform
+    return None
+
   def GetBrokenExpectations(self, story_set):
     if self._expectations:
       return self._expectations.GetBrokenExpectations(story_set)
