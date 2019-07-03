@@ -4,22 +4,26 @@
 */
 'use strict';
 
+import MarkdownIt from 'markdown-it';
 import './scalar-span.js';
 import AlertDetail from './alert-detail.js';
 import BisectDialog from './bisect-dialog.js';
 import ChartTimeseries from './chart-timeseries.js';
 import NudgeAlert from './nudge-alert.js';
 import {DetailsFetcher} from './details-fetcher.js';
+import {EditNote} from './edit-note.js';
 import {ElementBase, STORE} from './element-base.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
 import {breakWords, enumerate, isProduction} from './utils.js';
 import {get} from 'dot-prop-immutable';
-import {html, css} from 'lit-element';
+import {html, css, unsafeHTML} from 'lit-element';
 
 // Sort hidden rows after rows with visible labels.
 const HIDE_ROW_PREFIX = String.fromCharCode('z'.charCodeAt(0) + 1).repeat(3);
 
 const MARKDOWN_LINK_REGEX = /^\[([^\]]+)\]\(([^\)]+)\)/;
+
+const MARKDOWN_IT = new MarkdownIt('default', {});
 
 const MAX_REVISION_LENGTH = 30;
 
@@ -28,6 +32,7 @@ export default class DetailsTable extends ElementBase {
 
   static get properties() {
     return {
+      userEmail: String,
       statePath: String,
       isLoading: Boolean,
       colorByLine: Array,
@@ -184,9 +189,58 @@ export default class DetailsTable extends ElementBase {
                 `)}
               </tr>
             `}
+
+            ${this.renderNotesRow_(bodyIndex)}
           </tbody>
         `)}
       </table>
+    `;
+  }
+
+  renderNotesRow_(bodyIndex) {
+    return html`
+      <tr>
+        <td>Notes</td>
+        ${this.bodies[bodyIndex].noteCells.map((cell, cellIndex) => html`
+          <td>
+            ${this.renderNoteCell_(cell, bodyIndex, cellIndex)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderNoteCell_(cell, bodyIndex, cellIndex) {
+    const createPath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', cellIndex, 'create',
+    ].join('.');
+
+    return html`
+      ${cell.notes.map((note, noteIndex) =>
+    this.renderNote_(note, bodyIndex, cellIndex, noteIndex))}
+
+      ${!this.userEmail ? '' : html`
+        <edit-note .statePath="${createPath}"></edit-note>
+      `}
+    `;
+  }
+
+  renderNote_(note, bodyIndex, noteIndex) {
+    const editPath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', cellIndex, 'notes',
+      noteIndex,
+    ].join('.');
+
+    return html`
+      <div class="note-head">
+        ${note.author} at ${note.updated}
+        ${(note.author !== this.userEmail) ? '' : html`
+          <edit-note .statePath="${editPath}"></edit-note>
+        `}
+      </div>
+      <div class="note-body">
+        ${unsafeHTML(MARKDOWN_IT.render(note.text))}
+      </div>
     `;
   }
 
@@ -196,6 +250,7 @@ export default class DetailsTable extends ElementBase {
     const oldLineDescriptors = this.lineDescriptors;
     const oldRevisionRanges = this.revisionRanges;
 
+    this.userEmail = rootState.userEmail;
     Object.assign(this, get(rootState, this.statePath));
 
     if (this.lineDescriptors !== oldLineDescriptors ||
@@ -322,7 +377,7 @@ function mergeData(timeserieses, range) {
 DetailsTable.buildCell = (
     lineDescriptor, timeserieses, range, revisionInfo,
     minRevision, maxRevision,
-    masterWhitelist, suiteBlacklist) => {
+    masterWhitelist, suiteBlacklist, userEmail) => {
   if (!timeserieses) return {};
   const {reference, cell} = mergeData(timeserieses, range);
   if (!cell) return {};
@@ -421,7 +476,22 @@ DetailsTable.buildCell = (
     }
   }
 
-  return {scalars, links, alerts, bisectCell};
+  const noteCell = {
+    notes: [],
+  };
+
+  if (userEmail) {
+    noteCell.create = EditNote.buildState({
+      suite: lineDescriptor.suites.length === 1 ? lineDescriptor.suites[0] : '',
+      measurement: lineDescriptor.measurement,
+      bot: lineDescriptor.bots.length === 1 ? lineDescriptor.bots[0] : '',
+      case: lineDescriptor.cases.length === 1 ? lineDescriptor.cases[0] : '',
+      minRevision: reference.revision + 1,
+      maxRevision: cell.revision,
+    });
+  }
+
+  return {scalars, links, alerts, bisectCell, noteCell};
 };
 
 const MISSING_CASE_LABEL = '[no case]';
@@ -521,20 +591,23 @@ function buildBody(
   const linkRowsByLabel = new Map();
   const alertCells = new Array(columnCount);
   const bisectCells = new Array(columnCount);
+  const noteCells = [];
+
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
-    const {scalars, links, alerts, bisectCell} = DetailsTable.buildCell(
+    const cell = DetailsTable.buildCell(
         lineDescriptor, timeserieses, range, revisionInfo,
         minRevision, maxRevision,
-        masterWhitelist, suiteBlacklist);
-    for (const [rowLabel, scalar] of scalars || []) {
+        masterWhitelist, suiteBlacklist, userEmail);
+    for (const [rowLabel, scalar] of cell.scalars || []) {
       setCell(scalarRowsByLabel, rowLabel, columnCount, columnIndex, scalar);
     }
-    for (const [rowLabel, link] of links || []) {
+    for (const [rowLabel, link] of cell.links || []) {
       setCell(linkRowsByLabel, rowLabel, columnCount, columnIndex, link);
     }
-    if (alerts) alertCells[columnIndex] = {alerts};
-    bisectCells[columnIndex] = bisectCell;
+    if (cell.alerts) alertCells[columnIndex] = {alerts: cell.alerts};
+    bisectCells[columnIndex] = cell.bisectCell;
+    noteCells[columnIndex] = cell.noteCell;
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
@@ -551,6 +624,7 @@ function buildBody(
     descriptorParts,
     linkRows,
     scalarRows,
+    noteCells,
   };
 }
 
