@@ -157,6 +157,17 @@ class StorySet(object):
     return self.wpr_archive_info.WprFilePathForStory(
         story, target_platform=target_platform)
 
+  def GetAbridgedStorySetTagFilter(self):
+    """Override this to method to shorten your story set.
+
+    Returns a story tag string that marks the stories that are
+    part of the abridged story set.
+
+    Abridging your story set is useful for large benchmarks so that they can
+    be run quickly when needed.
+    """
+    return None
+
   def __iter__(self):
     return self.stories.__iter__()
 
