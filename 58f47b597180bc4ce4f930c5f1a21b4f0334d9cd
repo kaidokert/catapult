@@ -22,6 +22,30 @@
       "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19de048b_7100bf68",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-03T19:04:19Z",
+      "side": 1,
+      "message": "Hey Caleb, what\u0027s wrong with adding this line now?\nNot having it generates a presubmit error which means we can\u0027t land the CL.",
+      "parentUuid": "567cc51c_e0092273",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
