@@ -118,6 +118,30 @@
       "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad04e705_30f2e4be",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-03T19:27:02Z",
+      "side": 1,
+      "message": "I added it to excluded paths in generate_telemetry_build.py.",
+      "parentUuid": "d9b1e69d_d5a85da4",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
