@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "567cc51c_e0092273",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-03T18:57:55Z",
+      "side": 1,
+      "message": "nit: don\u0027t add this until you use it.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
