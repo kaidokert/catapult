@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f4635b5_7b23c891",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-03T14:29:35Z",
+      "side": 1,
+      "message": "Probably log here too?",
+      "range": {
+        "startLine": 249,
+        "startChar": 6,
+        "endLine": 249,
+        "endChar": 10
+      },
+      "revId": "f1ccc1003f632b53e918514b51b841aa6c476b2b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
