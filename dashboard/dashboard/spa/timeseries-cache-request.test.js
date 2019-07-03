@@ -5,7 +5,6 @@
 'use strict';
 
 import {assert} from 'chai';
-window.assert = assert;
 import testUtils from './cache-request-base.js';
 import TimeseriesCacheRequest from './timeseries-cache-request.js';
 import {
