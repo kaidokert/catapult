@@ -46,6 +46,30 @@
       "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17fd30d6_730c1ee6",
+        "filename": "BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-03T19:08:36Z",
+      "side": 1,
+      "message": "What\u0027s the PRESUBMIT error?\n\nIf you add this, it will ship this code to a ton of bots that won\u0027t need it. It\u0027s just a waste of resources.",
+      "parentUuid": "19de048b_7100bf68",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "58f47b597180bc4ce4f930c5f1a21b4f0334d9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
