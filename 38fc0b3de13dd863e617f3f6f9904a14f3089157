@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af69ae78_dcf65c2f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-03T23:25:01Z",
+      "side": 1,
+      "message": "required?",
+      "range": {
+        "startLine": 101,
+        "startChar": 54,
+        "endLine": 101,
+        "endChar": 61
+      },
+      "revId": "38fc0b3de13dd863e617f3f6f9904a14f3089157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4da7c6_ffa3b110",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-03T23:25:01Z",
+      "side": 1,
+      "message": "sounds like you can remove the \"either way\" here",
+      "range": {
+        "startLine": 102,
+        "startChar": 60,
+        "endLine": 102,
+        "endChar": 70
+      },
+      "revId": "38fc0b3de13dd863e617f3f6f9904a14f3089157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "205ac51b_b1958475",
+        "filename": "telemetry/telemetry/story/story_set.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-03T23:25:01Z",
+      "side": 1,
+      "message": "could just be \"pass\" here",
+      "range": {
+        "startLine": 170,
+        "startChar": 4,
+        "endLine": 170,
+        "endChar": 15
+      },
+      "revId": "38fc0b3de13dd863e617f3f6f9904a14f3089157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
