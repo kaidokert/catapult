@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c13fcc35_8fc92f6a",
+        "filename": "tracing/bin/snapdragon2trace",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-07-04T15:47:16Z",
+      "side": 1,
+      "message": "Added some information. Please let me know if it\u0027s not clear enough.",
+      "parentUuid": "7b1fbe77_5e8a4e5f",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 17
+      },
+      "revId": "e703da565c68cc1bf9e22641aa001fa973fbe9e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51a1ba6d_4880c902",
         "filename": "tracing/bin/snapdragon2trace",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-02T20:17:27Z",
       "side": 1,
       "message": "Can you provide a documentation link for the snapdragon csv format?",
+      "range": {
+        "startLine": 19,
+        "startChar": 22,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "e703da565c68cc1bf9e22641aa001fa973fbe9e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6fc468_6981438d",
+        "filename": "tracing/bin/snapdragon2trace",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-07-04T15:47:16Z",
+      "side": 1,
+      "message": "Unfortunately, the Snapdragon Profiler User Guide (https://developer.qualcomm.com/qfile/30580/snapdragon_profiler_user_guide_oct2018.pdf) has nothing about the CSV format. I figured it out by looking at example captures.",
+      "parentUuid": "51a1ba6d_4880c902",
       "range": {
         "startLine": 19,
         "startChar": 22,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f117b921_c2e99440",
+        "filename": "tracing/bin/snapdragon2trace",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-07-04T15:47:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "003ef88c_57f92b56",
+      "range": {
+        "startLine": 40,
+        "startChar": 49,
+        "endLine": 40,
+        "endChar": 74
+      },
+      "revId": "e703da565c68cc1bf9e22641aa001fa973fbe9e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8a1e86b_c1d77bfb",
         "filename": "tracing/tracing_build/snapdragon2trace.py",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "e703da565c68cc1bf9e22641aa001fa973fbe9e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebd2f5b1_f1c46248",
+        "filename": "tracing/tracing_build/snapdragon2trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1112474
+      },
+      "writtenOn": "2019-07-04T15:47:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8a1e86b_c1d77bfb",
+      "range": {
+        "startLine": 114,
+        "startChar": 52,
+        "endLine": 114,
+        "endChar": 54
+      },
+      "revId": "e703da565c68cc1bf9e22641aa001fa973fbe9e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
