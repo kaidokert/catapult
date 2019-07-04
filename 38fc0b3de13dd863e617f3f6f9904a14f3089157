@@ -48,6 +48,40 @@
     },
     {
       "key": {
+        "uuid": "3feb9c35_ff99471e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-04T08:18:17Z",
+      "side": 1,
+      "message": "In the body of the second if we should log a warning: \u0027Running an abridged set of stories (tagged {tag_filter}), use --run-full-story-set if you need to run all stories\u0027.\n\nnit: you can also nest the second if within the body of the first one; and then there is no need for the `tag_filter \u003d None` at the top.",
+      "revId": "38fc0b3de13dd863e617f3f6f9904a14f3089157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e11955af_206f06bf",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-04T08:18:17Z",
+      "side": 1,
+      "message": "nit: two blank lines between top level definitions.",
+      "revId": "38fc0b3de13dd863e617f3f6f9904a14f3089157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "205ac51b_b1958475",
         "filename": "telemetry/telemetry/story/story_set.py",
         "patchSetId": 7
@@ -59,6 +93,30 @@
       "writtenOn": "2019-07-03T23:25:01Z",
       "side": 1,
       "message": "could just be \"pass\" here",
+      "range": {
+        "startLine": 170,
+        "startChar": 4,
+        "endLine": 170,
+        "endChar": 15
+      },
+      "revId": "38fc0b3de13dd863e617f3f6f9904a14f3089157",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4615d6a_6320b67f",
+        "filename": "telemetry/telemetry/story/story_set.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-04T08:18:17Z",
+      "side": 1,
+      "message": "I actually prefer `return None` in this context. Although both end up doing the same thing, the return statement more explicitly says \"there is no tag to abridge this story set\", as opposed to pass which just says \"this method does nothing\".",
+      "parentUuid": "205ac51b_b1958475",
       "range": {
         "startLine": 170,
         "startChar": 4,
