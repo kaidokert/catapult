@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "625c00f9_ef82cfab",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-04T13:46:11Z",
+      "side": 1,
+      "message": "These would be called \"output_formats\" and \"legacy_output_formats\" instead.",
+      "revId": "5ddbae542a8590a5e5ef8c2b10cb7b5d829c52a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
