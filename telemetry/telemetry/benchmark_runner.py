@@ -16,6 +16,8 @@ from telemetry import benchmark
 from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_options
+from telemetry.internal.results import results_options
+from telemetry.internal import story_runner
 from telemetry.internal.util import binary_manager
 from telemetry.internal.util import command_line
 from telemetry.internal.util import ps_util
@@ -250,7 +252,7 @@ class Run(command_line.OptparseCommand):
 
   @classmethod
   def AddCommandLineArgs(cls, parser, environment):
-    benchmark.AddCommandLineArgs(parser)
+    story_runner.AddCommandLineArgs(parser, environment)
 
     # Allow benchmarks to add their own command line options.
     matching_benchmarks = []
@@ -310,16 +312,31 @@ class Run(command_line.OptparseCommand):
     assert issubclass(benchmark_class,
                       benchmark.Benchmark), ('Trying to run a non-Benchmark?!')
 
-    benchmark.ProcessCommandLineArgs(parser, options)
+    story_runner.ProcessCommandLineArgs(parser, options)
     benchmark_class.ProcessCommandLineArgs(parser, options)
 
     cls._benchmark = benchmark_class
     cls._expectations_path = expectations_file
+    if environment.results_processor is not None:
+      cls._results_processor = environment.results_processor
+    else:
+      logging.warning('Result processor not specified in project_config')
+
+  def _ProcessResults(self, options):
+    if self._results_processor is None:
+      logging.warning('Result processor not specified in project_config')
+
+    return self._results_processor.Process(
+        os.path.join(options.output_dir, 'test-results.json'),
+        options.results_processor_formats)
 
   def Run(self, options):
     b = self._benchmark()
     _SetExpectations(b, self._expectations_path)
-    return min(255, b.Run(options))
+    # TODO: Call story_runner.RunBenchmark directly.
+    exit_code = b.Run(options)
+    exit_code = max(self._ProcessResults(options), exit_code)
+    return min(255, exit_code)
 
 
 def _ScriptName():

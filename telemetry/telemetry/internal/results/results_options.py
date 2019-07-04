@@ -44,16 +44,24 @@ _OUTPUT_FILENAME_LOOKUP = {
 }
 
 
-def AddResultsOptions(parser):
+def AddResultsOptions(parser, environment):
+  if environment.results_processor:
+    external_formats = environment.results_processor.SUPPORTED_FORMATS
+  else:
+    external_formats = []
+  parser.set_defaults(results_processor_supported=external_formats)
+  parser.set_defaults(results_processor_formats=[])
+  formats = sorted(set(_OUTPUT_FORMAT_CHOICES).union(external_formats))
+
   group = optparse.OptionGroup(parser, 'Results options')
   group.add_option(
       '--output-format',
       action='append',
       dest='output_formats',
-      choices=_OUTPUT_FORMAT_CHOICES,
+      choices=formats,
       default=[],
-      help='Output format. Defaults to "%%default". '
-      'Can be %s.' % ', '.join(_OUTPUT_FORMAT_CHOICES))
+      help='Output format. Defaults to "%s". Can be: %s.' % (
+          _DEFAULT_OUTPUT_FORMAT, ', '.join(formats)))
   group.add_option(
       '--output-dir',
       default=util.GetBaseDir(),
@@ -83,6 +91,7 @@ def AddResultsOptions(parser):
 
 
 def ProcessCommandLineArgs(args):
+  args.output_dir = os.path.expanduser(args.output_dir)
   try:
     os.makedirs(args.output_dir)
   except OSError:
@@ -90,7 +99,11 @@ def ProcessCommandLineArgs(args):
     # get overwritten.
     pass
 
-  args.output_dir = os.path.expanduser(args.output_dir)
+  selected_output_formats = set(args.output_formats)
+  args.results_processor_formats = selected_output_formats.intersection(
+      args.results_processor_supported)
+  args.output_formats = selected_output_formats.difference(
+      args.results_processor_formats)
 
 
 def _GetOutputStream(output_format, output_dir):

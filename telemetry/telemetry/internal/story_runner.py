@@ -47,9 +47,9 @@ class ArchiveError(Exception):
   pass
 
 
-def AddCommandLineArgs(parser):
+def AddCommandLineArgs(parser, environment):
   story_module.StoryFilter.AddCommandLineArgs(parser)
-  results_options.AddResultsOptions(parser)
+  results_options.AddResultsOptions(parser, environment)
 
   # Page set options
   group = optparse.OptionGroup(parser, 'Page set repeat options')

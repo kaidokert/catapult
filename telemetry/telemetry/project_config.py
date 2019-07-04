@@ -17,16 +17,20 @@ class ProjectConfig(object):
       features depend on chromium source tree's presence and those won't work
       in case this is not specified.
     expectations_file: A path to expectations file.
+    results_processor: A function implementing the "results processor"
+      interface.
   """
   def __init__(self, top_level_dir, benchmark_dirs=None,
                benchmark_aliases=None, client_configs=None,
-               default_chrome_root=None, expectations_files=None):
+               default_chrome_root=None, expectations_files=None,
+               results_processor=None):
     self._top_level_dir = top_level_dir
     self._benchmark_dirs = benchmark_dirs or []
     self._benchmark_aliases = benchmark_aliases or dict()
     self._client_configs = client_configs or []
     self._default_chrome_root = default_chrome_root
     self._expectations_files = expectations_files or []
+    self._results_processor = results_processor
 
   @property
   def top_level_dir(self):
@@ -55,3 +59,7 @@ class ProjectConfig(object):
   @property
   def expectations_files(self):
     return self._expectations_files
+
+  @property
+  def results_processor(self):
+    return self._results_processor
