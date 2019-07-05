@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "427a5d41_e652e385",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-05T15:10:47Z",
+      "side": 1,
+      "message": "It would be consistent to rename this as well.",
+      "revId": "cd01d92b9a6dcd02056826f006a239d85b3e484a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccffbeca_6a5c0d79",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-05T15:10:47Z",
+      "side": 1,
+      "message": "Not sure about these.",
+      "revId": "cd01d92b9a6dcd02056826f006a239d85b3e484a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
