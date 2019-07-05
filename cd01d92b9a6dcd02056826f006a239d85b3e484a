@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3569628a_99a8d8b5",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-05T15:40:37Z",
+      "side": 1,
+      "message": "Yes, have a follow up CL ready:\nhttps://chromium-review.googlesource.com/c/catapult/+/1688801\n\nI initially tried to do all in one CL, but got messy very quickly.",
+      "parentUuid": "427a5d41_e652e385",
+      "revId": "cd01d92b9a6dcd02056826f006a239d85b3e484a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccffbeca_6a5c0d79",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-07-05T15:10:47Z",
       "side": 1,
       "message": "Not sure about these.",
+      "revId": "cd01d92b9a6dcd02056826f006a239d85b3e484a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fff2f2a_cd933b77",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-05T15:40:37Z",
+      "side": 1,
+      "message": "Yup, also will go away:\nhttps://chromium-review.googlesource.com/c/catapult/+/1688802",
+      "parentUuid": "ccffbeca_6a5c0d79",
       "revId": "cd01d92b9a6dcd02056826f006a239d85b3e484a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
