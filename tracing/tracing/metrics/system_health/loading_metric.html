@@ -18,6 +18,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/model/timed_event.html">
 <link rel="import" href="/tracing/value/diagnostics/diagnostic_map.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<script src="/pngjs-browserified.js"></script>
 
 <script>
 'use strict';
@@ -31,6 +32,7 @@ tr.exportTo('tr.metrics.sh', function() {
   const RelatedEventSet = tr.v.d.RelatedEventSet;
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.e.chrome.EventFinderUtils;
+  const PNG = png.PNG;
 
   /**
    * @param {!Object.<string, Object>} breakdownTree
@@ -703,6 +705,10 @@ tr.exportTo('tr.metrics.sh', function() {
   }
 
   function loadingMetric(histograms, model) {
+    /* Example usage, following https://github.com/lukeapage/pngjs/blob/master/examples/sync.js */
+    const data = PNG.sync.read('putyourpngdatahere', {filterType: -1});
+    // Do something with data.
+
     const firstPaintHistogram = histograms.createHistogram(
         'timeToFirstPaint', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,

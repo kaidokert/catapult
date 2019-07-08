@@ -83,6 +83,7 @@ class TracingProject(object):
 
   jszip_path = os.path.join(tracing_third_party_path, 'jszip')
   pako_path = os.path.join(tracing_third_party_path, 'pako')
+  pngjs_path = os.path.join(tracing_third_party_path, 'pngjs')
 
   glmatrix_path = os.path.join(
       tracing_third_party_path, 'gl-matrix', 'dist')
@@ -120,6 +121,7 @@ class TracingProject(object):
     self.source_paths.append(self.mre_path)
     self.source_paths.append(self.jszip_path)
     self.source_paths.append(self.pako_path)
+    self.source_paths.append(self.pngjs_path)
     self.source_paths.append(self.glmatrix_path)
     self.source_paths.append(self.mannwhitneyu_path)
     self.source_paths.append(self.d3_path)

@@ -1,0 +1,16 @@
+Name: pngjs
+Short Name: pngjs
+URL: https://github.com/lukeapage/pngjs
+Version: 3.4.0
+Revision: 8cf115b010b3055a2ead41921ed63765604b4d86
+Date: Sat Mar 16 19:08:44 2019 +0100
+License: MIT
+License File: LICENCSE
+Security Critical: no
+
+Description:
+A pure JS PNG encoder/decoder with no dependencies.
+
+Local Modifications:
+Minified file to pngjs-browser.js (`npm run browserify`, then `mv browserify
+pngjs-browserify.js`). Deleted everything else.
