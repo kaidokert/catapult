@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "01b56117_28d6364d",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-08T18:15:52Z",
+      "side": 1,
+      "message": "Is there a reason this is a class-level field rather than an instance-level field? I try to avoid the former if at all possible, particularly for mutable values.",
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "06b80107_5a84c422",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 35
@@ -36,6 +53,30 @@
       "writtenOn": "2019-07-08T17:50:57Z",
       "side": 1,
       "message": "this is a very heavy weight operation. I\u0027m not okay with adding it here.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 58
+      },
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8c5139a_53425ae6",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-08T18:15:52Z",
+      "side": 1,
+      "message": "Is there a better location for it? I think you need a browser before you can set up the platform tags on line 318.",
+      "parentUuid": "06b80107_5a84c422",
       "range": {
         "startLine": 277,
         "startChar": 0,
@@ -65,6 +106,47 @@
         "endLine": 101,
         "endChar": 42
       },
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3794a613_59069a11",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-08T18:15:52Z",
+      "side": 1,
+      "message": "Where else would you add it? benchmark.py doesn\u0027t seem to define any options; would you prefer we changed that to add one there?",
+      "parentUuid": "4c697f74_82115b51",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 42
+      },
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96df4ca2_9c8eb789",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-08T18:15:52Z",
+      "side": 1,
+      "message": "Why are these not implemented? Mostly to keep the size of the CL down?",
       "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
