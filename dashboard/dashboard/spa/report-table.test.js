@@ -47,13 +47,6 @@ suite('report-table', function() {
           case: {
             selectedOptions: ['case'],
           },
-          actualDescriptors: [
-            {
-              testSuite: 'suite',
-              bot: 'bot',
-              testCase: 'case',
-            },
-          ],
           labelParts: [
             {isFirst: true, rowCount: 2, label: 'measure', href: '/'},
           ],
@@ -66,39 +59,6 @@ suite('report-table', function() {
       ],
     };
   }
-
-  test('tooltip', async function() {
-    const report = await fixture();
-    const tr = report.table.querySelector('tbody').children[0];
-    const td = tr.children[1];
-    tr.dispatchEvent(new CustomEvent('mouseenter', {}));
-    await afterRender();
-    await afterRender();
-    await afterRender();
-    await afterRender();
-    assert.deepEqual(report.tooltip.rows, [['suite', 'bot', 'case']]);
-    const reportRect = report.getBoundingClientRect();
-    const tdRect = td.getBoundingClientRect();
-    assert.strictEqual(report.tooltip.top, tdRect.bottom - reportRect.top);
-    assert.strictEqual(report.tooltip.left, tdRect.left - reportRect.left);
-
-    const a = tr.children[0].children[0];
-    let chartOptions;
-    report.addEventListener('new-chart', e => {
-      chartOptions = e.detail.options;
-    });
-    a.click();
-    assert.deepEqual(chartOptions, {
-      minRevision: 10,
-      maxRevision: 100,
-      parameters: {
-        suites: ['suite'],
-        measurements: ['measure'],
-        bots: ['bot'],
-        cases: ['case'],
-      },
-    });
-  });
 
   test('copy', async function() {
     const report = await fixture();
