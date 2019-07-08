@@ -413,6 +413,9 @@ def RunBenchmark(benchmark, finder_options):
   """
   benchmark.CustomizeOptions(finder_options)
   possible_browser = browser_finder.FindBrowser(finder_options)
+  benchmark.expectations.InitExpectations(
+      possible_browser.GetTypExpectationsTags())
+
   if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
     return -1
 

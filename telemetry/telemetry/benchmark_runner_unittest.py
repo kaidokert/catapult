@@ -55,9 +55,11 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
         '  BenchmarkBar Benchmark bar for testing.\n'
         '  BenchmarkFoo Benchmark foo for testing.\n'
         'Pass --browser to list benchmarks for another browser.\n\n')
+    options = mock.MagicMock()
+    options.use_new_test_expectations_format = False
     benchmark_runner.PrintBenchmarkList([BenchmarkBar, BenchmarkFoo],
                                         self._mock_possible_browser, None,
-                                        self._stream)
+                                        options, self._stream)
     self.assertEquals(expected_printed_stream, self._stream.getvalue())
 
   def testPrintBenchmarkListWithOneDisabledBenchmark(self):
@@ -76,17 +78,48 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
 
     expectations_file = tempfile.NamedTemporaryFile(bufsize=0, delete=False)
     try:
+      options = mock.MagicMock()
+      options.use_new_test_expectations_format = False
       expectations_file.write(expectations_file_contents)
       expectations_file.close()
       benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
                                           self._mock_possible_browser,
-                                          expectations_file.name,
+                                          expectations_file.name, options,
                                           self._stream)
-
       self.assertEquals(expected_printed_stream, self._stream.getvalue())
-
     finally:
       os.remove(expectations_file.name)
+
+  def testPrintBenchmarkListWithOneDisabledBenchmarkUsingNewFormat(self):
+    expected_printed_stream = (
+        'Available benchmarks for TestBrowser are:\n'
+        '  BenchmarkFoo Benchmark foo for testing.\n'
+        '\n'
+        'Disabled benchmarks for TestBrowser are (force run with -d):\n'
+        '  BenchmarkBar Benchmark bar for testing.\n'
+        'Pass --browser to list benchmarks for another browser.\n\n')
+
+    expectations_file_contents = (
+        '# tags: [ All ]\n'
+        'crbug.com/123 [ All ] BenchmarkBar* [ Skip ]\n'
+    )
+
+    expectations_file = tempfile.NamedTemporaryFile(bufsize=0, delete=False)
+    with mock.patch.object(
+        self._mock_possible_browser, 'GetTypExpectationsTags',
+        return_value=['All']):
+      try:
+        options = mock.MagicMock()
+        options.use_new_test_expectations_format = True
+        expectations_file.write(expectations_file_contents)
+        expectations_file.close()
+        benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
+                                            self._mock_possible_browser,
+                                            expectations_file.name, options,
+                                            self._stream)
+        self.assertEquals(expected_printed_stream, self._stream.getvalue())
+      finally:
+        os.remove(expectations_file.name)
 
   def testPrintBenchmarkListInJSON(self):
     expected_json_stream = json.dumps(
@@ -117,11 +150,13 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
 
     expectations_file = tempfile.NamedTemporaryFile(bufsize=0, delete=False)
     try:
+      options = mock.MagicMock()
+      options.use_new_test_expectations_format = False
       expectations_file.write(expectations_file_contents)
       expectations_file.close()
       benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
                                           self._mock_possible_browser,
-                                          expectations_file.name,
+                                          expectations_file.name, options,
                                           self._stream, self._json_stream)
 
       self.assertEquals(expected_json_stream, self._json_stream.getvalue())
