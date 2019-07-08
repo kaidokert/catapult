@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbe0ba0b_36bb86a7",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-08T17:50:57Z",
+      "side": 1,
+      "message": "What is this new line for?",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06b80107_5a84c422",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-08T17:50:57Z",
+      "side": 1,
+      "message": "this is a very heavy weight operation. I\u0027m not okay with adding it here.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 58
+      },
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c697f74_82115b51",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-08T17:50:57Z",
+      "side": 1,
+      "message": "I think it\u0027s strange to define this argument in a different file than the one that uses it.",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 42
+      },
+      "revId": "92e94e0519969c38109eb053cbff8641e758ae0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
