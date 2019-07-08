@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ffba4f4e_1c03fd37",
+        "filename": "dashboard/api.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-08T18:33:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3374cd2_4b22ba74",
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21338d6f_305e36f9",
         "filename": "dashboard/bin/deploy",
         "patchSetId": 11
@@ -30,6 +48,30 @@
       "writtenOn": "2019-07-02T23:36:23Z",
       "side": 1,
       "message": "I would consider a different name for the service, since \u0027api-dot-chromeperf.appspot.com\u0027 sounds like a catch-all which doesn\u0027t reflect a sufficient decomposition of the functionality.\n\nIf the APIs are for UX-specific operations, we should probably name it appropriately, like \u0027views\u0027 or \u0027data\u0027.",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 50,
+        "endChar": 68
+      },
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e442ed8b_0b06d975",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-08T18:33:53Z",
+      "side": 1,
+      "message": "The APIs are not specific to the spa. The APIs are general-purpose. They also handle requests from users via scripts such as soundwave, colab, etc. The spa uses the same API as other clients in order to share code.",
+      "parentUuid": "21338d6f_305e36f9",
       "range": {
         "startLine": 50,
         "startChar": 6,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "778b278f_ccf739db",
+        "filename": "dashboard/docs/services.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-08T18:33:53Z",
+      "side": 1,
+      "message": "I\u0027ll let you edit this file to reference that service as you wish.",
+      "parentUuid": "9a4d44f6_c7995400",
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ba3770d_63db8907",
         "filename": "dashboard/upload.yaml",
         "patchSetId": 11
@@ -73,6 +133,24 @@
       "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff9f3a0_aed84745",
+        "filename": "dashboard/upload.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-08T18:33:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ba3770d_63db8907",
+      "revId": "0f01fc7510e70f749e1cbaf2f7acb3803e40b668",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
