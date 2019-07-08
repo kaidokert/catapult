@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a01d5337_2606daea",
+        "filename": "tracing/tracing/extras/chrome/largest_contentful_paint.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-07-08T15:30:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cf213a4_545b37bd",
+      "revId": "1e0f0276ce292c5d938fcb08a05c18b115ca0fe5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d479f323_ed43aa46",
         "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
         "patchSetId": 16
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "422231c5_2e42038b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-07-08T15:30:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d479f323_ed43aa46",
+      "range": {
+        "startLine": 313,
+        "startChar": 12,
+        "endLine": 313,
+        "endChar": 22
+      },
+      "revId": "1e0f0276ce292c5d938fcb08a05c18b115ca0fe5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "375a4f61_5b63e728",
         "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
         "patchSetId": 16
@@ -53,6 +95,30 @@
       "writtenOn": "2019-07-08T15:03:20Z",
       "side": 1,
       "message": "nit: Is the next test this id is a string (\u0027first\u0027). Is it always a string, or can it sometimes be a number? It will be nice to keep the type consistent across all the tests.",
+      "range": {
+        "startLine": 333,
+        "startChar": 35,
+        "endLine": 333,
+        "endChar": 40
+      },
+      "revId": "1e0f0276ce292c5d938fcb08a05c18b115ca0fe5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3de9947a_abca9686",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 16
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1215729
+      },
+      "writtenOn": "2019-07-08T15:30:50Z",
+      "side": 1,
+      "message": "The actual value would be an int -https://cs.chromium.org/chromium/src/chrome/browser/page_load_metrics/observers/ukm_page_load_metrics_observer.cc?dr\u003dCSs\u0026g\u003d0\u0026l\u003d648.\n\nBut for the Telemetry LCP as an individual module, whether the id is int or string should work. I guess it does no harm to diversify the possible inputs in the test?",
+      "parentUuid": "375a4f61_5b63e728",
       "range": {
         "startLine": 333,
         "startChar": 35,
