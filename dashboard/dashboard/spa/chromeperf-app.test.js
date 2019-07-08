@@ -91,6 +91,10 @@ suite('chromeperf-app', function() {
               name: ReportControls.DEFAULT_NAME,
               id: 42,
               modified: new Date(),
+              template: {
+                rows: [],
+                statistics: ['avg'],
+              },
             }];
           }
         },
