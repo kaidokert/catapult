@@ -335,6 +335,9 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             results.num_failed > effective_max_failures):
           logging.error('Too many failures. Aborting.')
           return
+#  except:
+#    import traceback
+#    sys.stderr.write(traceback.format_exc())
   finally:
     results_processor.ComputeTimelineBasedMetrics(results)
     results.PopulateHistogramSet()
@@ -413,6 +416,9 @@ def RunBenchmark(benchmark, finder_options):
   """
   benchmark.CustomizeOptions(finder_options)
   possible_browser = browser_finder.FindBrowser(finder_options)
+  benchmark.expectations.InitExpectations(
+      possible_browser.GetTypExpectationsTags())
+
   if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
     return -1
 
