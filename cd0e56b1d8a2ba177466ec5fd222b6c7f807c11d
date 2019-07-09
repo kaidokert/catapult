@@ -34,6 +34,24 @@
       "revId": "cd0e56b1d8a2ba177466ec5fd222b6c7f807c11d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "591ec6fb_9fe2ea5a",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-07-09T22:23:40Z",
+      "side": 1,
+      "message": "It indeed does not work since local mode does actually use the \"linux\" binaries for everything... I\u0027m surprised that works tbh.\n\nReworked it so local mode has the same behavior as before.",
+      "parentUuid": "20eea626_ce5da498",
+      "revId": "cd0e56b1d8a2ba177466ec5fd222b6c7f807c11d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
