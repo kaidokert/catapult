@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f81116f8_9a5aab89",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 1,
+      "message": "nit: maybe add an: assert reason, \u0027A reason to interrupt must be given\u0027.\n\nAlso, I kind of liked the old name \u0027InterruptBenchmark\u0027 better (similar in tone to to \u0027Skip\u0027 and \u0027Fail\u0027).",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d1fb17_9ee106fe",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 1,
+      "message": "optional nit: e -\u003e exc",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfbecc68_5daa7c34",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 1,
+      "message": "I think `\u0027.. fatal exception: %r\u0027 % exc` does what you want.",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b91ab4ab_2938ce45",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 1,
+      "message": "If there is a \"handleable\" exception and then a second exception happens during state tear down; that would end up kicking us out of the story runner loop. The catch in the caller still marks the benchmark as interrupted; but the \"unexpected skips\" are not recorded (I think? This loop is hairy!).",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a1faac_47c44e4e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 1,
+      "message": "I have a strong preference to keep using logging.exception as it\u0027s part of the standard library and it\u0027s intended precisely for what we want to do here. If we want to tweak the exception formatting to add more info, there is a formatException we can override on the logger too [1].\n\nSo I would suggest to keep this as is, then later tweak the exception formatting and eventually get rid of PrintFormattedException on separate/follow up CLs.\n\n[1]: https://docs.python.org/2.7/library/logging.html#logging.Formatter.formatException",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccbe7027_9aedad0c",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 1,
+      "message": "I think we should still process results even if the benchmark got interrupted (e.g. compute metrics of stories that ran before the fatal error).",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

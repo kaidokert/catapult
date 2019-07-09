@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6269831_46f5499c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 0,
+      "message": "+1! Thanks for removing this, I had my eye on it.",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbcfc22b_ce6636aa",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T10:49:43Z",
+      "side": 0,
+      "message": "why this change?",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
