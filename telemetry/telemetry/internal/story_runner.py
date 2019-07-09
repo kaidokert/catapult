@@ -279,6 +279,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
     pageset_repeat = finder_options.pageset_repeat
     for storyset_repeat_counter in xrange(pageset_repeat):
       for story in stories:
+        logging.fatal('blah')
         if not state:
           # Construct shared state by using a copy of finder_options. Shared
           # state may update the finder_options. If we tear down the shared
@@ -301,6 +302,12 @@ def Run(test, story_set, finder_options, results, max_failures=None,
               results.DidRunPage(story)
               continue
 
+        logging.fatal('blahblah')
+        if results.benchmark_interrupted:
+          results.Skip(results.benchmark_interruption, is_expected=False)
+          results.DidRunPage(story)
+          continue
+
         try:
           if state.platform:
             state.platform.WaitForBatteryTemperature(35)
@@ -317,10 +324,16 @@ def Run(test, story_set, finder_options, results, max_failures=None,
             results.Fail(msg)
 
           device_info_diags = _MakeDeviceInfoDiagnostics(state)
-        except _UNHANDLEABLE_ERRORS:
-          # Nothing else we should do for these. Re-raise the error.
-          raise
+        except _UNHANDLEABLE_ERRORS as e:
+          logging.fatal('unhandleable')
+          logging.fatal('Exception raised during story run.')
+          interruption = (
+              'Benchmark execution interrupted by a fatal exception: %s(%s)' %
+              (type(e), e))
+          results.MarkBenchmarkInterrupted(interruption)
+          exception_formatter.PrintFormattedException()
         except Exception:  # pylint: disable=broad-except
+          logging.fatal('except Exception')
           # For all other errors, try to give the rest of stories a chance
           # to run by tearing down the state and creating a new state instance
           # in the next iteration.
@@ -331,41 +344,44 @@ def Run(test, story_set, finder_options, results, max_failures=None,
           finally:
             # Later finally-blocks use state, so ensure it is cleared.
             state = None
-          logging.exception('Exception raised during story run.')
-          results.Fail(sys.exc_info())
+          #logging.error('Exception raised during story run.')
+          logging.fatal('Exception raised during story run.')
+          exception_formatter.PrintFormattedException()
+          #results.Fail(sys.exc_info()) TODO
         finally:
-          has_existing_exception = sys.exc_info() != (None, None, None)
+          logging.fatal('in finally')
           try:
             if state and state.platform:
               _CheckThermalThrottling(state.platform)
             results.DidRunPage(story)
-          except Exception:  # pylint: disable=broad-except
-            if not has_existing_exception:
-              raise
-            # Print current exception and propagate existing exception.
-            exception_formatter.PrintFormattedException(
-                msg='Exception from result processing:')
+          except Exception as e:  # pylint: disable=broad-except
+            interruption = 'Benchmark harness failure: %s(%s)' % (
+                type(e), e)
+            results.MarkBenchmarkInterrupted(interruption)
+            exception_formatter.PrintFormattedException()
         if (effective_max_failures is not None and
             results.num_failed > effective_max_failures):
-          logging.error('Too many failures. Aborting.')
-          return
+          interruption = (
+              'Too many stories failed. Aborting the rest of the stories.')
+          results.MarkBenchmarkInterrupted(interruption)
   finally:
-    results_processor.ComputeTimelineBasedMetrics(results)
-    results.PopulateHistogramSet()
+    if not results.benchmark_interrupted:
+      results_processor.ComputeTimelineBasedMetrics(results)
+      results.PopulateHistogramSet()
 
-    for name, diag in device_info_diags.iteritems():
-      results.AddSharedDiagnosticToAllHistograms(name, diag)
+      for name, diag in device_info_diags.iteritems():
+        results.AddSharedDiagnosticToAllHistograms(name, diag)
 
-    if state:
-      has_existing_exception = sys.exc_info() != (None, None, None)
-      try:
-        state.TearDownState()
-      except Exception: # pylint: disable=broad-except
-        if not has_existing_exception:
-          raise
-        # Print current exception and propagate existing exception.
-        exception_formatter.PrintFormattedException(
-            msg='Exception from TearDownState:')
+      if state:
+        has_existing_exception = sys.exc_info() != (None, None, None)
+        try:
+          state.TearDownState()
+        except Exception: # pylint: disable=broad-except
+          if not has_existing_exception:
+            raise
+          # Print current exception and propagate existing exception.
+          exception_formatter.PrintFormattedException(
+              msg='Exception from TearDownState:')
 
 
 def ValidateStory(story):
@@ -451,6 +467,8 @@ def RunBenchmark(benchmark, finder_options):
       Run(pt, story_set, finder_options, results, benchmark.max_failures,
           expectations=benchmark.expectations,
           max_num_values=benchmark.MAX_NUM_VALUES)
+      if results.benchmark_interrupted:
+        return_code = 2
       if results.had_failures:
         return_code = 1
       elif results.had_successes_not_skipped:
@@ -461,17 +479,8 @@ def RunBenchmark(benchmark, finder_options):
       # this will log error messages if names do not match what is in the set.
       benchmark.GetBrokenExpectations(story_set)
     except Exception as e: # pylint: disable=broad-except
-
-      logging.fatal(
-          'Benchmark execution interrupted by a fatal exception: %s(%s)' %
-          (type(e), e))
-
-      filtered_stories = story_module.StoryFilter.FilterStories(
-          story_set.stories)
-      # TODO(crbug.com/980781): This appears to mark expected skipped stories
-      # as unexpectedly skipped stories.
-      results.InterruptBenchmark(
-          filtered_stories, finder_options.pageset_repeat)
+      interruption = 'Benchmark execution interrupted: %s(%s)' % (type(e), e)
+      results.MarkBenchmarkInterrupted(interruption)
       exception_formatter.PrintFormattedException()
       return_code = 2
 
