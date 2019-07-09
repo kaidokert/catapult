@@ -373,3 +373,12 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'crbug.com/23456 [ Linux ] b1/*/c [ RetryOnFailure ]\n')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
+
+    def testMurMurMur(self):
+        raw_data = (
+            '# tags: [ all ]\n'
+            'crbug.com/123 [ all ] fake/* [ Skip ]\n')
+        with self.assertRaises(expectations_parser.ParseError):
+            expectations_parser.TaggedTestListParser(raw_data)
+
+
