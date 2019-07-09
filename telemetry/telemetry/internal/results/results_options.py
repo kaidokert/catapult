@@ -123,9 +123,6 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
   Args:
     options: Contains the options specified in AddResultsOptions.
   """
-  if not options.output_formats:
-    options.output_formats = [_DEFAULT_OUTPUT_FORMAT]
-
   upload_bucket = None
   if options.upload_results:
     upload_bucket = options.upload_bucket
@@ -133,7 +130,7 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
       upload_bucket = cloud_storage.BUCKET_ALIASES[upload_bucket]
 
   output_formatters = []
-  for output_format in options.output_formats:
+  for output_format in options.legacy_formats:
     if output_format == 'none' or output_format == "gtest":
       continue
     output_stream = _GetOutputStream(output_format, options.output_dir)
