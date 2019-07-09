@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb63b286_7995292b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2881,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-07-09T16:52:35Z",
+      "side": 1,
+      "message": "Thanks for clarifying this.",
+      "revId": "c72031b4d8658d0cc55a13015d28681da8bb6201",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
