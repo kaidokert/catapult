@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f3be7597_5db9e952",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T13:47:54Z",
+      "side": 1,
+      "message": "Rephrased this to make it clearer.",
+      "parentUuid": "b22d4c4a_8f592e6c",
+      "range": {
+        "startLine": 317,
+        "startChar": 11,
+        "endLine": 317,
+        "endChar": 20
+      },
+      "revId": "7cc82b674cf704849cf62d7addd8fbd4daf7233e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0c1e941_9cc8c5fa",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-08T21:04:07Z",
       "side": 1,
       "message": "I\u0027m confused about this since some of the data appears to apply to the current story and some of it appears to apply to the whole benchmark.",
+      "range": {
+        "startLine": 319,
+        "startChar": 28,
+        "endLine": 326,
+        "endChar": 43
+      },
+      "revId": "7cc82b674cf704849cf62d7addd8fbd4daf7233e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24f99223_5738646f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T13:47:54Z",
+      "side": 1,
+      "message": "Yes, it\u0027s both. Similar to what gets recorded in the trace of each story: info on what the current story is and the benchmark that the story belongs to.\n\nThis code path is for (some) benchmarks that use legacy values, as there may be no traces, we still want these diagnostics to be recorded on the histograms. In truth this all is really messy, and hope to clean this up as we either use tracing everywhere or find some other alternative for legacy values.",
+      "parentUuid": "b0c1e941_9cc8c5fa",
       "range": {
         "startLine": 319,
         "startChar": 28,
