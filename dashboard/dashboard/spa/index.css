@@ -83,3 +83,19 @@ body {
   font-family: helvetica,arial,sans-serif;
   font-size: 13px;
 }
+
+cp-flex {
+  display: flex;
+}
+
+cp-flex[hidden] {
+  display: none;
+}
+
+cp-flex[column] {
+  flex-direction: column;
+}
+
+cp-flex[grows] * {
+  flex-grow: 1;
+}
