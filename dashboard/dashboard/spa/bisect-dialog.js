@@ -77,7 +77,6 @@ export class BisectDialog extends ElementBase {
       #dialog {
         background: var(--background-color, white);
         box-shadow: var(--elevation-2);
-        flex-direction: column;
         outline: none;
         padding: 16px;
         position: absolute;
@@ -92,11 +91,7 @@ export class BisectDialog extends ElementBase {
         margin-left: 8px;
         flex-direction: row;
       }
-      .row chops-button {
-        flex-grow: 1;
-      }
       .row {
-        display: flex;
         align-items: center;
       }
       .warning {
@@ -154,7 +149,7 @@ export class BisectDialog extends ElementBase {
           `}
         </table>
 
-        <div class="row">
+        <flex class="row">
           <chops-input
               id="start_revision"
               label="Start Revision"
@@ -170,9 +165,9 @@ export class BisectDialog extends ElementBase {
               .value="${this.endRevision}"
               @change="${this.onEndRevision_}">
           </chops-input>
-        </div>
+        </flex>
 
-        <div class="row">
+        <flex class="row">
           <chops-input
               id="bug_id"
               label="Bug ID"
@@ -189,9 +184,9 @@ export class BisectDialog extends ElementBase {
               .value="${this.patch}"
               @change="${this.onPatch_}">
           </chops-input>
-        </div>
+        </flex>
 
-        <div class="row">
+        <flex class="row">
           Mode:
           <chops-radio-group
               id="mode"
@@ -204,16 +199,16 @@ export class BisectDialog extends ElementBase {
               Functional
             </chops-radio>
           </chops-radio-group>
-        </div>
+        </flex>
 
         ${((this.endRevision - this.startRevision) < MANY_REVISIONS) ? '' :
     html`
-          <div class="row warning">
+          <flex class="row warning">
             Warning: bisect large revision ranges is slow and expensive.
-          </div>
+          </flex>
         `}
 
-        <div class="row">
+        <flex grows class="row">
           <chops-button
               id="cancel"
               @click="${this.onCancel_}"
@@ -226,7 +221,7 @@ export class BisectDialog extends ElementBase {
               tabindex="0">
             Start
           </chops-button>
-        </div>
+        </flex>
       </div>
     `;
   }

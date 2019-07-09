@@ -150,8 +150,7 @@ export class ChartCompound extends ElementBase {
         width: 16px;
       }
 
-      #options-menu div {
-        display: flex;
+      #options-menu flex {
         align-items: center;
       }
 
@@ -166,18 +165,6 @@ export class ChartCompound extends ElementBase {
       #options {
         position: absolute;
         margin-top: 20px;
-      }
-
-      .column {
-        display: flex;
-        flex-direction: column;
-      }
-
-      #toggles {
-        margin: 0 16px 0 0;
-        display: flex;
-        flex-direction: column;
-        white-space: nowrap;
       }
     `;
   }
@@ -224,7 +211,7 @@ export class ChartCompound extends ElementBase {
         <div
             id="options-menu"
             ?hidden="${hideOptions || !this.isShowingOptions}">
-          <div>
+          <flex>
             <b>Options</b>
             <chops-switch
                 ?checked="${this.isLinked}"
@@ -244,8 +231,8 @@ export class ChartCompound extends ElementBase {
                 @change="${this.onToggleFixedXAxis_}">
               Fixed X-Axis
             </chops-switch>
-          </div>
-          <div>
+          </flex>
+          <flex>
             <b>Mode</b>
             <chops-radio-group
                 selected="${this.mode}"
@@ -263,7 +250,7 @@ export class ChartCompound extends ElementBase {
                 Delta
               </chops-radio>
             </chops-radio-group>
-          </div>
+          </flex>
         </div>
 
         <cp-icon
