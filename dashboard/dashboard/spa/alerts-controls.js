@@ -108,13 +108,6 @@ export class AlertsControls extends ElementBase {
         margin-top: 12px;
       }
 
-      #report-container {
-        display: flex;
-      }
-      #report-container[hidden] {
-        display: none;
-      }
-
       #triaged {
         margin-left: 8px;
         margin-right: 8px;
@@ -240,8 +233,7 @@ export class AlertsControls extends ElementBase {
         </menu-input>
       </div>
 
-      <div id="report-container"
-          ?hidden="${!showReport}">
+      <cp-flex id="report-container" ?hidden="${!showReport}">
         <menu-input
             id="report"
             .statePath="${this.statePath}.report"
@@ -252,7 +244,7 @@ export class AlertsControls extends ElementBase {
               .statePath="${this.statePath}.report">
           </recommended-options>
         </menu-input>
-      </div>
+      </cp-flex>
 
       <div id="min-container"
           ?hidden="${!showMin}">
