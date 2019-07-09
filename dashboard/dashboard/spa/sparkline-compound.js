@@ -49,7 +49,6 @@ export class SparklineCompound extends ElementBase {
     return css`
       .related_tab {
         background-color: var(--primary-color-light, lightblue);
-        display: flex;
         flex-wrap: wrap;
         max-height: 380px;
         overflow: auto;
@@ -65,7 +64,6 @@ export class SparklineCompound extends ElementBase {
       }
 
       .sparkline_name {
-        display: flex;
         justify-content: center;
         padding: 4px;
       }
@@ -76,7 +74,6 @@ export class SparklineCompound extends ElementBase {
       }
 
       .sparkline_container {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
@@ -103,15 +100,15 @@ export class SparklineCompound extends ElementBase {
       </chops-tab-bar>
 
       ${this.relatedTabs.map((tab, tabIndex) => html`
-        <div class="related_tab"
+        <flex class="related_tab"
             ?hidden="${tab.name !== this.selectedRelatedTabName}">
-          <div class="sparkline_container">
+          <flex class="sparkline_container">
             ${(tab.renderedSparklines || []).map((sparkline, index) => html`
               <div
                   class="sparkline_tile"
                   ?hidden="${this.hideTile_(sparkline)}"
                   @click="${event => this.onSparklineClick_(sparkline)}">
-                <div class="sparkline_name">${sparkline.name}</div>
+                <flex class="sparkline_name">${sparkline.name}</flex>
                 <chops-loading ?loading="${sparkline.layout.isLoading}">
                 </chops-loading>
                 <chart-timeseries .statePath="${
@@ -120,8 +117,8 @@ export class SparklineCompound extends ElementBase {
                 </chart-timeseries>
               </div>
             `)}
-          </div>
-        </div>
+          </flex>
+        </flex>
       `)}
     `;
   }
