@@ -15,6 +15,8 @@ from dashboard.common import utils
 
 
 OAUTH_CLIENT_ID_WHITELIST = [
+    # SPA
+    '62121018386-46jg2iobqrgkloianifcthge1screla2.apps.googleusercontent.com',
     # This oauth client id is from Pinpoint.
     '62121018386-aqdfougp0ddn93knqj6g79vvn42ajmrg.apps.googleusercontent.com',
     # This oauth client id is from the 'chromeperf' API console.
