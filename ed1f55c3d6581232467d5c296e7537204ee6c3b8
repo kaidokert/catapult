@@ -16,6 +16,24 @@
       "revId": "ed1f55c3d6581232467d5c296e7537204ee6c3b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36e26a27_6644942c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T14:18:30Z",
+      "side": 1,
+      "message": "yup, blink perf is full of it :(\nhttps://cs.chromium.org/search/?q\u003dFindAllPageSpecificValuesNamed\n\nbut don\u0027t want to migrate those away until we have thought out how to deal with non-trace \"values\" in the future.",
+      "parentUuid": "2978d8a8_e3844f30",
+      "revId": "ed1f55c3d6581232467d5c296e7537204ee6c3b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
