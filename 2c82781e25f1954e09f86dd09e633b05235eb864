@@ -22,6 +22,29 @@
       "revId": "2c82781e25f1954e09f86dd09e633b05235eb864",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7898313d_f512a192",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-07-09T23:27:09Z",
+      "side": 1,
+      "message": "Since you\u0027re here, perhaps drop aiolos since she no longer works on the project",
+      "range": {
+        "startLine": 144,
+        "startChar": 13,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "2c82781e25f1954e09f86dd09e633b05235eb864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
