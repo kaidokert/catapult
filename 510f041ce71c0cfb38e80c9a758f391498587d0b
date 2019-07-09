@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "fa1af4eb_9f276c99",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-09T22:12:37Z",
+      "side": 1,
+      "message": "It is possible to determine if a file is using the new format. I removed the command line argument. Instead I will attempt to parse the file in the Benchmark instances AugmentExpectationWithParser method with typ\u0027s expectations parser. If it can parse it then the benchmark runner will use the new_expectations module to handle test expectations.",
+      "parentUuid": "8c8f1bb8_aff581e9",
+      "revId": "510f041ce71c0cfb38e80c9a758f391498587d0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e22fba8a_eda5e7da",
         "filename": "telemetry/telemetry/benchmark_runner.py",
         "patchSetId": 37
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "e22fba8a_eda5e7da",
+      "revId": "510f041ce71c0cfb38e80c9a758f391498587d0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "372597fa_0fadc6b6",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-09T22:12:37Z",
+      "side": 1,
+      "message": "I removed the command line argument, so I reverted changes to this function.",
+      "parentUuid": "51307a6c_1cfd546d",
       "revId": "510f041ce71c0cfb38e80c9a758f391498587d0b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
