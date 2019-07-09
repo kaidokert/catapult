@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dce435a_5fe8114f",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-07-09T06:42:04Z",
+      "side": 1,
+      "message": "Does this break running on the DUT?",
+      "revId": "cd0e56b1d8a2ba177466ec5fd222b6c7f807c11d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
