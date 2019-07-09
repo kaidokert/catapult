@@ -18,7 +18,7 @@ suite('TimeseriesCacheRequest', function() {
   class MockFetchEvent {
     constructor(parameters) {
       parameters.columns = [...getColumnsByLevelOfDetail(
-          parameters.levelOfDetail, parameters.statistic || 'avg')].join(',');
+          parameters.levelOfDetail, [parameters.statistic || 'avg'])].join(',');
       parameters.test_suite = parameters.testSuite;
       parameters.min_revision = parameters.minRevision;
       parameters.max_revision = parameters.maxRevision;
@@ -36,7 +36,7 @@ suite('TimeseriesCacheRequest', function() {
 
   function mockApiResponse({
     levelOfDetail, columns, minRevision = 1, maxRevision = 5}) {
-    if (!columns) columns = getColumnsByLevelOfDetail(levelOfDetail, 'avg');
+    if (!columns) columns = getColumnsByLevelOfDetail(levelOfDetail, ['avg']);
     const data = [];
     minRevision = parseInt(minRevision);
     for (let i = minRevision; i <= maxRevision; ++i) {
@@ -92,7 +92,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
   });
@@ -117,7 +117,7 @@ suite('TimeseriesCacheRequest', function() {
     }
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
 
@@ -133,7 +133,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 2);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     delete results[1].columns;
     assert.deepInclude(results, response);
@@ -161,7 +161,7 @@ suite('TimeseriesCacheRequest', function() {
     }
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
 
@@ -182,7 +182,7 @@ suite('TimeseriesCacheRequest', function() {
     // was [1, 3] and the current range is [4, 7].
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
   });
@@ -210,7 +210,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
 
@@ -232,9 +232,9 @@ suite('TimeseriesCacheRequest', function() {
     parameters.maxRevision = 3;
     const cacheResponse = mockApiResponse(parameters);
     cacheResponse.data = cacheResponse.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
 
     assert.lengthOf(results, 2);
     delete results[0].columns;
@@ -269,7 +269,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
 
@@ -287,7 +287,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
 
@@ -305,7 +305,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 1);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     assert.deepEqual(results[0], response);
 
@@ -323,7 +323,7 @@ suite('TimeseriesCacheRequest', function() {
 
     assert.lengthOf(results, 2);
     response.data = response.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     delete results[0].columns;
     delete results[1].columns;
     assert.deepInclude(results, response);
@@ -375,13 +375,13 @@ suite('TimeseriesCacheRequest', function() {
 
     const responseA = mockApiResponse(parametersA);
     responseA.data = responseA.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsA) delete results.columns;
     assert.deepInclude(resultsA, responseA);
 
     const responseB = mockApiResponse(parametersB);
     responseB.data = responseB.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsB) delete results.columns;
     assert.deepInclude(resultsB, responseB);
   });
@@ -433,13 +433,13 @@ suite('TimeseriesCacheRequest', function() {
 
     const responseA = mockApiResponse(parametersA);
     responseA.data = responseA.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsA) delete results.columns;
     assert.deepInclude(resultsA, responseA);
 
     const responseB = mockApiResponse(parametersB);
     responseB.data = responseB.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsB) delete results.columns;
     assert.deepInclude(resultsB.map(r => JSON.stringify(r)),
         JSON.stringify(responseB));
@@ -492,13 +492,13 @@ suite('TimeseriesCacheRequest', function() {
 
     const responseA = mockApiResponse(parametersA);
     responseA.data = responseA.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsA) delete results.columns;
     assert.deepInclude(resultsA, responseA);
 
     const responseB = mockApiResponse(parametersB);
     responseB.data = responseB.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsB) delete results.columns;
     assert.deepInclude(resultsB.map(r => JSON.stringify(r)),
         JSON.stringify(responseB));
@@ -554,14 +554,14 @@ suite('TimeseriesCacheRequest', function() {
 
     const responseA = mockApiResponse(parametersA);
     responseA.data = responseA.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsA) delete results.columns;
     assert.deepInclude(resultsA, responseA);
 
     const responseB = mockApiResponse(parametersB);
     responseB.data = responseB.data.map(d => normalize(
         [...getColumnsByLevelOfDetail(
-            LEVEL_OF_DETAIL.ANNOTATIONS, 'avg')], d));
+            LEVEL_OF_DETAIL.ANNOTATIONS, ['avg'])], d));
     for (const results of resultsB) delete results.columns;
     assert.deepInclude(resultsB, responseB);
   });
@@ -616,14 +616,14 @@ suite('TimeseriesCacheRequest', function() {
 
     const responseA = mockApiResponse(parametersA);
     responseA.data = responseA.data.map(d => normalize(
-        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, 'avg')], d));
+        [...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, ['avg'])], d));
     for (const results of resultsA) delete results.columns;
     assert.deepInclude(resultsA, responseA);
 
     const responseB = mockApiResponse(parametersB);
     responseB.data = responseB.data.map(d => normalize(
         [...getColumnsByLevelOfDetail(
-            LEVEL_OF_DETAIL.ANNOTATIONS, 'avg')], d));
+            LEVEL_OF_DETAIL.ANNOTATIONS, ['avg'])], d));
     for (const results of resultsB) delete results.columns;
     assert.deepInclude(resultsB, responseB);
   });

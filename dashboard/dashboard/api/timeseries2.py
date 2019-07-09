@@ -6,6 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import logging
+
 from google.appengine.ext import ndb
 
 from dashboard import alerts
@@ -144,6 +146,7 @@ class TimeseriesQuery(object):
 
     desc.statistic = None
     unsuffixed_test_paths = desc.ToTestPathsSync()
+    logging.debug('unsuffixed_test_paths: %r', unsuffixed_test_paths)
     self._unsuffixed_test_metadata_keys = [
         utils.TestMetadataKey(path) for path in unsuffixed_test_paths]
 

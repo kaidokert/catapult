@@ -294,7 +294,7 @@ suite('details-table', function() {
       buildType: 'test',
     };
     const {scalars, links, alerts, bisectCell} = DetailsTable.buildCell(
-        lineDescriptor, timeserieses, range, revisionInfo,
+        lineDescriptor, timeserieses, [], range, revisionInfo, 'you@here.com',
         masterWhitelist, suiteBlacklist);
 
     assert.lengthOf(links, 3);
