@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2dcc22b1_49ed2d5b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-09T18:53:17Z",
+      "side": 1,
+      "message": "Should this be the string \u0027ts\u0027? I don\u0027t see |ts| defined",
+      "range": {
+        "startLine": 415,
+        "startChar": 24,
+        "endLine": 415,
+        "endChar": 26
+      },
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f964a2_d3843b08",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-09T18:53:17Z",
+      "side": 1,
+      "message": "Are the events sorted by timestamp? Otherwise not sure this works.",
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e770cf8_5a05f77b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-09T18:53:17Z",
+      "side": 1,
+      "message": "What\u0027s the format of quad? It seems to have 6 points, which is strange for a quad?",
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a683c933_1c09b51a",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-09T18:53:17Z",
+      "side": 1,
+      "message": "Isn\u0027t this in ms?",
+      "range": {
+        "startLine": 843,
+        "startChar": 22,
+        "endLine": 843,
+        "endChar": 36
+      },
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
