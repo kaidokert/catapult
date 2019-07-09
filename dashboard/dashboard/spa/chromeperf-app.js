@@ -129,9 +129,6 @@ export class ChromeperfApp extends ElementBase {
         margin-left: 16px;
       }
 
-      #body {
-        display: flex;
-      }
       #drawer {
         background: white;
         border-right: 1px solid var(--primary-color-medium, blue);
@@ -297,7 +294,7 @@ export class ChromeperfApp extends ElementBase {
 
       <chops-loading ?loading="${this.isLoading}"></chops-loading>
 
-      <div id="body">
+      <flex>
         <div id="drawer" ?hidden="${!this.enableNav}">
           <button
               class="drawerbutton"
@@ -384,7 +381,7 @@ export class ChromeperfApp extends ElementBase {
             ${this.vulcanizedDate}
           </div>
         </div>
-      </div>
+      </flex>
 
       <cp-toast ?opened="${
   this.closedAlertsIds && this.closedAlertsIds.length}">
