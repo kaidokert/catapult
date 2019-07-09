@@ -25,8 +25,9 @@ class DummyPageTest(legacy_page_test.LegacyPageTest):
 
 
 class TestBenchmark(benchmark.Benchmark):
-  def __init__(self, story):
-    super(TestBenchmark, self).__init__()
+  def __init__(self, story, use_new_expectations_format=False):
+    super(TestBenchmark, self).__init__(
+        use_new_expectations_format=use_new_expectations_format)
     self._story_set = story_module.StorySet()
     self._story_set.AddStory(story)
 
@@ -50,6 +51,15 @@ class BenchmarkTest(unittest.TestCase):
   @classmethod
   def GetOptions(cls):
     return cls._options.Copy()
+
+  def testNewTestExpectationsFormatIsUsed(self):
+    b = TestBenchmark(
+        story_module.Story(
+            name='test name',
+            shared_state_class=shared_page_state.SharedPageState),
+        use_new_expectations_format=True)
+    self.assertIsInstance(
+        b.expectations, story_module.new_expectations.StoryExpectations)
 
   def testPageTestWithIncompatibleStory(self):
     b = TestBenchmark(story_module.Story(
