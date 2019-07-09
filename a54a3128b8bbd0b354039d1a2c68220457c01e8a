@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81bc4477_e10b1fdd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-07-09T18:31:36Z",
+      "side": 1,
+      "message": "This bug is invalid",
+      "revId": "a54a3128b8bbd0b354039d1a2c68220457c01e8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
