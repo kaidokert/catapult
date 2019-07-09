@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09836a64_7dc76eee",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T08:42:14Z",
+      "side": 1,
+      "message": "I\u0027m wondering, whether the new format should be used or not, surely depends on the expectations file being read, and not on which benchmark are we trying to run. Could we figure out from the file contents of the expectations file itself whether the new or old format should be used?\n\nI\u0027m a bit wary about wiring through this new flag everywhere, which will need to be removed again after the flip to the new format is completed.",
+      "revId": "510f041ce71c0cfb38e80c9a758f391498587d0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e22fba8a_eda5e7da",
+        "filename": "telemetry/telemetry/benchmark_runner.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T08:42:14Z",
+      "side": 1,
+      "message": "If it\u0027s unavoidable passing the extra arg, I think we should pass the use_new_format flag only, and not the entire options object.",
+      "revId": "510f041ce71c0cfb38e80c9a758f391498587d0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd9cdb7c_38a06a31",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-09T08:42:14Z",
+      "side": 1,
+      "message": "nit: _benchmark_name is defined twice",
+      "revId": "510f041ce71c0cfb38e80c9a758f391498587d0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
