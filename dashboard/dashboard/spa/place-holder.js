@@ -18,7 +18,6 @@ class PlaceHolder extends LitElement {
 
       #container {
         position: absolute;
-        display: flex;
         align-items: center;
         justify-content: center;
       }
@@ -41,11 +40,11 @@ class PlaceHolder extends LitElement {
 
   render() {
     return html`
-      <div id="container">
+      <flex id="container">
         <div id="content">
           <slot></slot>
         </div>
-      </div>
+      </flex>
 
       <svg>
         <pattern id="pattern"
