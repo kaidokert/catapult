@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a3bdbac_c0441768",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-09T22:47:26Z",
+      "side": 1,
+      "message": "This function should be renamed. I don\u0027t think this code is very readable. What does os_name refer to? The name of the target device os? Not really, since it returns \u0027linux\u0027 for \u0027chromeos\u0027. The host os? Nope, since it returns \u0027android\u0027 not \u0027linux\u0027 for a linux-hosted android run. \n\nHonestly it would be better to inline the function versus having their current names.",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "2c82781e25f1954e09f86dd09e633b05235eb864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
