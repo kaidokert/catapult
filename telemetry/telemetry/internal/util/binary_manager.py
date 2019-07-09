@@ -80,9 +80,11 @@ def InitDependencyManager(client_configs):
   devil_env.config.Initialize()
 
 
-# Use linux binaries for chromeos.
+# Use linux binaries for chromeos local mode.
 def _GetOSName(os_name):
-  return 'linux' if os_name == 'chromeos' else os_name
+  if os_name == 'chromeos' and py_utils.GetHostOsName() == 'chromeos':
+    return 'linux'
+  return os_name
 
 
 def _GetOSForPlatform(platform):
@@ -134,16 +136,17 @@ def FetchBinaryDependencies(
 
   host_platform = None
   fetch_devil_deps = False
-  if os_name == 'android':
+  if os_name in ('android', 'chromeos'):
     host_platform = '%s_%s' % (
         py_utils.GetHostOsName(), py_utils.GetHostArchName())
     dep_manager.PrefetchPaths(host_platform)
-    # TODO(aiolos): this is a hack to prefetch the devil deps.
-    if host_platform == 'linux_x86_64':
-      fetch_devil_deps = True
-    else:
-      logging.error('Devil only supports 64 bit linux as a host platform. '
-                    'Android tests may fail.')
+    if os_name == 'android':
+      # TODO(aiolos): this is a hack to prefetch the devil deps.
+      if host_platform == 'linux_x86_64':
+        fetch_devil_deps = True
+      else:
+        logging.error('Devil only supports 64 bit linux as a host platform. '
+                      'Android tests may fail.')
 
   if fetch_reference_chrome_binary:
     _FetchReferenceBrowserBinary(platform)
