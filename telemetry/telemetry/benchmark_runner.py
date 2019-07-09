@@ -35,9 +35,12 @@ def _SetExpectations(bench, path):
   return bench.expectations
 
 
-def _IsBenchmarkEnabled(bench, possible_browser, expectations_file):
-  b = bench()
+def _IsBenchmarkEnabled(
+    bench, possible_browser, expectations_file, use_new_expectations_format):
+  b = bench(
+      use_new_expectations_format=use_new_expectations_format)
   expectations = _SetExpectations(b, expectations_file)
+  expectations.SetTags(possible_browser.GetTypExpectationsTags())
   return (
       # Test that the current platform is supported.
       any(t.ShouldDisable(possible_browser.platform, possible_browser)
@@ -84,8 +87,8 @@ def _GetStoriesWithTags(b):
 
 
 def PrintBenchmarkList(
-    benchmarks, possible_browser, expectations_file, output_pipe=sys.stdout,
-    json_pipe=None):
+    benchmarks, possible_browser, expectations_file, options,
+    output_pipe=sys.stdout, json_pipe=None):
   """ Print benchmarks that are not filtered in the same order of benchmarks in
   the |benchmarks| list.
 
@@ -129,7 +132,8 @@ def PrintBenchmarkList(
     benchmark_info = {'name': b.Name(), 'description': b.Description()}
     benchmark_info['enabled'] = (
         not possible_browser or
-        _IsBenchmarkEnabled(b, possible_browser, expectations_file))
+        _IsBenchmarkEnabled(b, possible_browser, expectations_file,
+                            options.use_new_test_expectations_format))
     benchmark_info['stories'] = _GetStoriesWithTags(b)
     all_benchmark_info.append(benchmark_info)
 
@@ -197,6 +201,11 @@ class List(command_line.OptparseCommand):
   def AddCommandLineArgs(cls, parser, _):
     parser.add_option('--json', action='store', dest='json_filename',
                       help='Output the list in JSON')
+    parser.add_option('--use-new-test-expectations-format',
+                      default=False, action='store_true',
+                      help='Make telemetry benchmark runner use the new test '
+                      'expectations format')
+
 
   @classmethod
   def CreateParser(cls):
@@ -229,11 +238,11 @@ class List(command_line.OptparseCommand):
     if options.json_filename:
       with open(options.json_filename, 'w') as json_out:
         PrintBenchmarkList(options.benchmarks, possible_browser,
-                           self._expectations_file,
+                           self._expectations_file, options,
                            json_pipe=json_out)
     else:
       PrintBenchmarkList(options.benchmarks, possible_browser,
-                         self._expectations_file)
+                         self._expectations_file, options)
     return 0
 
 
@@ -278,7 +287,7 @@ class Run(command_line.OptparseCommand):
       possible_browser = (browser_finder.FindBrowser(options)
                           if options.browser_type else None)
       PrintBenchmarkList(
-          all_benchmarks, possible_browser, expectations_file)
+          all_benchmarks, possible_browser, expectations_file, options)
       sys.exit(-1)
 
     input_benchmark_name = options.positional_args[0]
@@ -291,7 +300,7 @@ class Run(command_line.OptparseCommand):
       if most_likely_matched_benchmarks:
         print >> sys.stderr, 'Do you mean any of those benchmarks below?'
         PrintBenchmarkList(most_likely_matched_benchmarks, None,
-                           expectations_file, sys.stderr)
+                           expectations_file, options, sys.stderr)
       sys.exit(-1)
 
     if len(matching_benchmarks) > 1:
@@ -300,7 +309,7 @@ class Run(command_line.OptparseCommand):
       print >> sys.stderr, 'Did you mean one of these?'
       print >> sys.stderr
       PrintBenchmarkList(matching_benchmarks, None,
-                         expectations_file, sys.stderr)
+                         expectations_file, options, sys.stderr)
       sys.exit(-1)
 
     benchmark_class = matching_benchmarks.pop()
@@ -317,7 +326,7 @@ class Run(command_line.OptparseCommand):
     cls._expectations_path = expectations_file
 
   def Run(self, options):
-    b = self._benchmark()
+    b = self._benchmark(options.use_new_test_expectations_format)
     _SetExpectations(b, self._expectations_path)
     return min(255, b.Run(options))
 
