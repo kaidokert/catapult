@@ -33,7 +33,7 @@ export class RequestBase {
       // Create the receiver before fetching so we don't miss any results.
       const receiver = new ResultChannelReceiver(this.channelName);
       const response = await this.response;
-      if (response) yield response;
+      if (response) yield this.postProcess_(response, false);
 
       // The service worker doesn't actually run on localhost.
       if (isDebug()) return;
