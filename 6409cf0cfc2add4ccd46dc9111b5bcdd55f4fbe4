@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8059196e_6582d52c",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-07-10T18:50:18Z",
+      "side": 1,
+      "message": "I think it\u0027s worthwhile adding a comment that android/chromeos run tests remotely, and we want the binaries to match the host platform.",
+      "revId": "6409cf0cfc2add4ccd46dc9111b5bcdd55f4fbe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
