@@ -215,6 +215,23 @@ entry to hide all other lines. Click it again to show them again.
 When data points in the main chart are selected by clicking them, this table
 loads all available data about the selected data points.
 
+### Notes
+
+If signed in, the details-table offers a button to create a note. This button
+opens a form in a dialog to compose and save a note that will be displayed to
+all users in the details-table using [markdown](https://markdown-it.github.io/).
+Authors of notes may edit their own notes. Authors of notes may delete their own
+notes by clearing the text.
+Notes are displayed for timeseries with matching Suite, Measurement, Bot, and
+Case. You can clear the Suite, Measurement, Bot, and/or Case inputs in the note
+form dialog in order to allow the note to match many timeseries. For example,
+clear the Case input without clearing the Suite, Measurement, and Bot in order
+to display the note for the timeseries for all Cases for that Suite,
+Measurement, and Bot. Clear the Bot input to display the note for the timeseries
+for all Bots. And so on for Suite and Measurement. If all of Suite, Measurement,
+Bot, and Case are cleared, then the note is displayed for all timeseries, but
+only for data points within the note's revision range.
+
 ### Sparklines
 
 When Aggregating multiple Suites, Bots, or Cases, tabs for these menus are
