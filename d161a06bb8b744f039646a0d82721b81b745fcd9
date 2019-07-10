@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e942298_4aa30552",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-10T02:22:18Z",
+      "side": 1,
+      "message": "Nit: this is a weirdly redundant set of three lines. I\u0027d just do:\n\n  def __init__(self, tags\u003dNone):\n    self.set_tags(tags or [])",
+      "revId": "d161a06bb8b744f039646a0d82721b81b745fcd9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
