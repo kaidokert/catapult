@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b9816ba_cf573fc5",
+        "filename": "tracing/tracing/metrics/blink/gc_metric_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2019-07-10T13:58:21Z",
+      "side": 1,
+      "message": "Thanks for adding the test!",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 39
+      },
+      "revId": "f2715137f400014ed7c12c2b2c6d04d389f5bb98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
