@@ -30,8 +30,6 @@ export class TagFilter extends ElementBase {
       #container {
         align-items: center;
         border-right: 1px solid black;
-        display: flex;
-        flex-direction: column;
         height: 100%;
         padding-right: 8px;
       }
@@ -48,14 +46,14 @@ export class TagFilter extends ElementBase {
       return html``;
     }
     return html`
-      <div id="container">
+      <cp-flex column id="container">
         <span id="tag_head">Tags</span>
         <option-group
             .statePath="${this.statePath}.tags"
             .rootStatePath="${this.statePath}.tags"
             @option-select="${this.onTagSelect_}">
         </option-group>
-      </div>
+      </cp-flex>
     `;
   }
 

@@ -74,11 +74,10 @@ export class DetailsTable extends ElementBase {
       #empty {
         min-width: 300px;
         min-height: 50px;
-        display: flex;
         align-items: center;
         justify-content: center;
       }
-      #empty[hidden], table[hidden] {
+      table[hidden] {
         display: none;
       }
       table {
@@ -240,9 +239,9 @@ export class DetailsTable extends ElementBase {
     return html`
       <chops-loading ?loading="${this.isLoading}"></chops-loading>
 
-      <div id="empty" ?hidden="${!this.isLoading || this.bodies.length}">
+      <cp-flex id="empty" ?hidden="${!this.isLoading || this.bodies.length}">
         Loading details
-      </div>
+      </cp-flex>
 
       <table ?hidden="${!this.bodies || (this.bodies.length === 0)}">
         <thead>
