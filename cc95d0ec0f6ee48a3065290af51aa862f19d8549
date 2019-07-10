@@ -16,6 +16,24 @@
       "revId": "cc95d0ec0f6ee48a3065290af51aa862f19d8549",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64c9ae90_e7cfa901",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-07-10T20:38:26Z",
+      "side": 0,
+      "message": "Added a docstring for the method (but moved the essence of the original comment to FetchBinaryDependencies() below)",
+      "parentUuid": "dd335ef3_e30592b3",
+      "revId": "cc95d0ec0f6ee48a3065290af51aa862f19d8549",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
