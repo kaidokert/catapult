@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "94bed2a9_f84604b5",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-07-10T18:22:55Z",
+      "side": 1,
+      "message": "Done. LMK how that looks.",
+      "parentUuid": "1a3bdbac_c0441768",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "2c82781e25f1954e09f86dd09e633b05235eb864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7898313d_f512a192",
         "filename": "telemetry/telemetry/internal/util/binary_manager.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "2c82781e25f1954e09f86dd09e633b05235eb864",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee1e1d4_70a65601",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-07-10T18:22:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7898313d_f512a192",
+      "range": {
+        "startLine": 144,
+        "startChar": 13,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "2c82781e25f1954e09f86dd09e633b05235eb864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
