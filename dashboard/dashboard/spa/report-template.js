@@ -69,7 +69,6 @@ export class ReportTemplate extends ElementBase {
       }
 
       .edit_form_controls {
-        display: flex;
         justify-content: space-evenly;
       }
 
@@ -84,11 +83,6 @@ export class ReportTemplate extends ElementBase {
 
       chops-input {
         margin-top: 12px;
-      }
-
-      #cancel,
-      #save {
-        flex-grow: 1;
       }
 
       .row_button {
@@ -107,7 +101,7 @@ export class ReportTemplate extends ElementBase {
 
   render() {
     return html`
-      <div class="edit_form_controls">
+      <cp-flex class="edit_form_controls">
         <div>
           <chops-input
               id="name"
@@ -143,7 +137,7 @@ export class ReportTemplate extends ElementBase {
               @keyup="${this.onTemplateUrlKeyUp_}">
           </chops-input>
         </div>
-      </div>
+      </cp-flex>
 
       <table>
         <tbody>
@@ -185,7 +179,7 @@ export class ReportTemplate extends ElementBase {
         </tbody>
       </table>
 
-      <div class="edit_form_controls">
+      <cp-flex grows class="edit_form_controls">
         <chops-button
             id="cancel"
             @click="${this.onCancel_}">
@@ -201,7 +195,7 @@ export class ReportTemplate extends ElementBase {
           <cp-icon icon="save"></cp-icon>
           Save
         </chops-button>
-      </div>
+      </cp-flex>
     `;
   }
 
