@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c4e1de5_6b23d52b",
+        "filename": "tracing/tracing/metrics/v8/runtime_stats_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-10T20:07:12Z",
+      "side": 1,
+      "message": "Have you considered iterating over only the process, threads, and event containers that could contains these events?",
+      "revId": "a1501766f6bebf086c43148ad185d82ace045927",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
