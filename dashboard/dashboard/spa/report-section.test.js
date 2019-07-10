@@ -7,10 +7,10 @@
 import {CHAIN, ENSURE, UPDATE} from './simple-redux.js';
 import {ReportControls} from './report-controls.js';
 import {ReportNamesRequest} from './report-names-request.js';
-import {ReportRequest} from './report-request.js';
 import {ReportSection} from './report-section.js';
 import {STORE} from './element-base.js';
-import {afterRender} from './utils.js';
+import {TimeseriesRequest} from './timeseries-request.js';
+import {afterRender, denormalize} from './utils.js';
 import {assert} from 'chai';
 
 suite('report-section', function() {
@@ -26,60 +26,44 @@ suite('report-section', function() {
               name: ReportControls.DEFAULT_NAME,
               id: 42,
               modified: new Date(),
-            }];
-          }
-          if (url === ReportRequest.URL) {
-            return {
-              name: ReportControls.DEFAULT_NAME,
-              owners: ['me@chromium.org'],
-              url: 'http://example.com/',
-              report: {
+              template: {
+                statistics: ['avg'],
                 rows: [
                   {
                     label: 'group:label',
-                    units: 'ms_smallerIsBetter',
                     testSuites: ['suite'],
+                    measurement: 'ms',
                     bots: ['master:bot'],
                     testCases: ['case'],
-                    measurement: 'measurement',
-                    data: {
-                      [ReportControls.CHROMIUM_MILESTONES[
-                          ReportControls.CURRENT_MILESTONE]]: {
-                        descriptors: [
-                          {
-                            testSuite: 'suite',
-                            measurement: 'measurement',
-                            bot: 'master:bot',
-                            testCase: 'case',
-                          },
-                        ],
-                        statistics: [10, 0, 0, 100, 0, 0, 100],
-                        revision: ReportControls.CHROMIUM_MILESTONES[
-                            ReportControls.CURRENT_MILESTONE],
-                      },
-                      latest: {
-                        descriptors: [
-                          {
-                            testSuite: 'suite',
-                            measurement: 'measurement',
-                            bot: 'master:bot',
-                            testCase: 'case',
-                          },
-                        ],
-                        statistics: [10, 0, 0, 100, 0, 0, 100],
-                        revision: 999999,
-                      },
-                    },
                   },
                 ],
-                statistics: ['avg'],
               },
+            }];
+          }
+          if (url === TimeseriesRequest.URL) {
+            const data = [
+              {
+                revision: ReportControls.CHROMIUM_MILESTONES[
+                    ReportControls.CURRENT_MILESTONE] - 1,
+                timestamp: 1000, avg: 100, count: 1,
+              },
+              {
+                revision: ReportControls.CHROMIUM_MILESTONES[
+                    ReportControls.CURRENT_MILESTONE] + 1,
+                timestamp: 2000, avg: 100, count: 1,
+              },
+            ];
+            return {
+              units: options.body.get('measurement'),
+              data: denormalize(
+                  data, options.body.get('columns').split(',')),
             };
           }
         },
       };
     };
   });
+
   teardown(() => {
     for (const child of document.body.children) {
       if (!child.matches('report-section')) continue;
