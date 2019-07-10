@@ -8,6 +8,7 @@ import {BatchIterator} from '@chopsui/batch-iterator';
 import {ChartTimeseries} from './chart-timeseries.js';
 import {LEVEL_OF_DETAIL, TimeseriesRequest} from './timeseries-request.js';
 import {enumerate} from './utils.js';
+import {NotesRequest} from './notes-request.js';
 
 // DetailsTable contains one table body per line in the main chart, and one
 // column per revisionRange.
@@ -53,15 +54,46 @@ export class DetailsFetcher {
       }
       this.fetchDescriptorsByLine_.push({lineDescriptor, fetchDescriptors});
     }
+    this.notesFetchDescriptorsByLine_ = [];
+    for (const lineDescriptor of lineDescriptors) {
+      const fetchDescriptors = DetailsFetcher.createNotesFetchDescriptors(
+          lineDescriptor);
+      this.notesFetchDescriptorsByLine_.push(
+          {lineDescriptor, fetchDescriptors});
+    }
 
     // This collates results.
     this.timeseriesesByLine_ = new TimeseriesesByLine(
         this.fetchDescriptorsByLine_, revisionRanges);
+    this.notesByLine_ = new TimeseriesesByLine(
+        this.notesFetchDescriptorsByLine_, revisionRanges);
 
     // This batches the stream of results to reduce unnecessary rendering.
     // This does not batch the results themselves, they need to be collated by
     // this.timeseriesesByLine_.
     this.batches_ = new BatchIterator();
+  }
+
+  static createNotesFetchDescriptors(lineDescriptor) {
+    const fetchDescriptors = [];
+    if (lineDescriptor.buildType === 'ref') return fetchDescriptors;
+
+    const suites = ['', ...lineDescriptor.suites];
+    const measurements = ['', lineDescriptor.measurement];
+    const bots = ['', ...lineDescriptor.bots];
+    const cases = ['', ...lineDescriptor.cases];
+
+    for (const suite of suites) {
+      for (const measurement of measurements) {
+        for (const bot of bots) {
+          for (const cas of cases) {
+            fetchDescriptors.push({suite, measurement, bot, case: cas});
+          }
+        }
+      }
+    }
+
+    return fetchDescriptors;
   }
 
   [Symbol.asyncIterator]() {
@@ -76,10 +108,36 @@ export class DetailsFetcher {
               lineIndex, fetchIndex, fetchDescriptor));
         }
       }
+      for (const [lineIndex, {fetchDescriptors}] of enumerate(
+          this.notesFetchDescriptorsByLine_)) {
+        for (const [fetchIndex] of enumerate(fetchDescriptors)) {
+          for (const [rangeIndex] of enumerate(this.revisionRanges_)) {
+            this.batches_.add(this.fetchNotes_(
+                lineIndex, rangeIndex, fetchIndex));
+          }
+        }
+      }
 
       for await (const {results, errors} of this.batches_) {
         const timeseriesesByLine = this.timeseriesesByLine_.populatedResults;
-        yield {errors, timeseriesesByLine};
+        const notesByLine = this.notesByLine_.populatedResults;
+        yield {errors, timeseriesesByLine, notesByLine};
+      }
+    }).call(this);
+  }
+
+  fetchNotes_(lineIndex, rangeIndex, fetchIndex) {
+    return (async function* () {
+      const line = this.notesFetchDescriptorsByLine_[lineIndex];
+      const request = new NotesRequest({
+        ...line.fetchDescriptors[fetchIndex],
+        minRevision: this.revisionRanges_[rangeIndex].min,
+        maxRevision: this.revisionRanges_[rangeIndex].max,
+      });
+      for await (const timeseries of request.reader()) {
+        this.notesByLine_.receive(
+            lineIndex, rangeIndex, fetchIndex, timeseries);
+        yield {/* Pump BatchIterator. */};
       }
     }).call(this);
   }
@@ -114,7 +172,7 @@ export class DetailsFetcher {
 
 // This is a 3-dimensional matrix of timeserieses. The dimensions are
 // [line in the main chart, brushed revision range, fetchDescriptor]
-class TimeseriesesByLine {
+export class TimeseriesesByLine {
   constructor(fetchDescriptorsByLine, revisionRanges) {
     this.timeseriesesByLine_ = [];
 

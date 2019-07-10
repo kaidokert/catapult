@@ -12,6 +12,7 @@ import {SessionIdCacheRequest} from './session-id-cache-request.js';
 import {SheriffsCacheRequest} from './sheriffs-cache-request.js';
 import {TestSuitesCacheRequest} from './test-suites-cache-request.js';
 import {TimeseriesCacheRequest} from './timeseries-cache-request.js';
+import {NotesCacheRequest} from './notes-cache-request.js';
 
 self.addEventListener('activate', activateEvent => {
   activateEvent.waitUntil(self.clients.claim());
@@ -20,6 +21,7 @@ self.addEventListener('activate', activateEvent => {
 const FETCH_HANDLERS = {
   '/api/config': ConfigCacheRequest,
   '/api/describe': DescribeCacheRequest,
+  '/api/notes': NotesCacheRequest,
   '/api/report/generate': ReportCacheRequest,
   '/api/report/names': ReportNamesCacheRequest,
   '/api/sheriffs': SheriffsCacheRequest,
