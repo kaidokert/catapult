@@ -39,7 +39,7 @@ import {
 } from '@chopsui/chops-signin/index.js';
 
 const CLIENT_ID =
-  '62121018386-rhk28ad5lbqheinh05fgau3shotl2t6c.apps.googleusercontent.com';
+  '62121018386-46jg2iobqrgkloianifcthge1screla2.apps.googleusercontent.com';
 
 const NOTIFICATION_MS = 5000;
 
