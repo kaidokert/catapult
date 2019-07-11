@@ -38,6 +38,7 @@ def _SetExpectations(bench, path):
 def _IsBenchmarkEnabled(bench, possible_browser, expectations_file):
   b = bench()
   expectations = _SetExpectations(b, expectations_file)
+  expectations.SetTags(possible_browser.GetTypExpectationsTags())
   return (
       # Test that the current platform is supported.
       any(t.ShouldDisable(possible_browser.platform, possible_browser)
