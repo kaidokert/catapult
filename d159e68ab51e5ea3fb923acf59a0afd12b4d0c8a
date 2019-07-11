@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d746901_c4ab94cd",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: ret -\u003e error, makes the rest of the code more readable.",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "478341e6_ee12a8c0",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: add a comment here we fall back to the old expectations format, and a TODO to remove once all expectations files have been migrated.",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e935d590_4a730c2e",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: also add a comment with a TODO pointing to the relevant bug.",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c78225a_879c39c2",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: not sure about the \"new_expectations\" name (years in the future these might be not so \"new\" any more). I don\u0027t have a alternative suggestion, maybe \"typ_expectations\"?",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9abe6459_2e2ee9d3",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: Add a module level docstring, explaining this is mostly a wrapper around the typ expectations_parser",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e577627b_1b413a33",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: extra blank line here (two lines between top level module definitions)",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17cf9763_6f5e2e5e",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: extra blank line here",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c9b8708_ead4b166",
+        "filename": "telemetry/telemetry/story/new_expectations.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-11T08:45:09Z",
+      "side": 1,
+      "message": "nit: prefer to use TODO(crbug.com/973936) instead of user name",
+      "revId": "d159e68ab51e5ea3fb923acf59a0afd12b4d0c8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
