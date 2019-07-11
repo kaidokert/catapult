@@ -621,6 +621,8 @@ ChartSection.getRouteParams = state => {
     return undefined;
   }
 
+  // TODO If any bots are internal, return undefined.
+
   const routeParams = new URLSearchParams();
   for (const suite of state.descriptor.suite.selectedOptions) {
     routeParams.append('suite', suite);

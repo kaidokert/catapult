@@ -25,7 +25,9 @@ export class DescribeRequest extends RequestBase {
   postProcess_(response, isFromChannel = false) {
     if (!response) throw new Error('null descriptor');
     if (response.error) throw new Error(response.error);
-    if (!response.bots) throw new Error('missing bots');
+    if (!response.bots) {
+      response.bots = [...response.externalBots, ...response.internalBots];
+    }
     if (!response.bots.length) throw new Error('empty bots');
     if (!response.measurements) throw new Error('missing measurements');
     if (!response.measurements.length) throw new Error('empty measurements');
