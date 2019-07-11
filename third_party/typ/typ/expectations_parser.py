@@ -256,9 +256,8 @@ class TaggedTestListParser(object):
 
 class TestExpectations(object):
 
-    def __init__(self, tags):
-        self.tags = [tag.lower() for tag in tags]
-
+    def __init__(self, tags=None):
+        self.set_tags(tags or [])
         # Expectations may either refer to individual tests, or globs of
         # tests. Each test (or glob) may have multiple sets of tags and
         # expected results, so we store these in dicts ordered by the string
@@ -267,11 +266,17 @@ class TestExpectations(object):
         self.individual_exps = {}
         self.glob_exps = OrderedDict()
 
+    def set_tags(self, tags):
+        self.tags = [tag.lower() for tag in tags]
+
     def parse_tagged_list(self, raw_data):
         try:
             parser = TaggedTestListParser(raw_data)
         except ParseError as e:
             return 1, e.message
+
+        self.individual_exps = {}
+        self.glob_exps = OrderedDict()
 
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
