@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c14f378f_526db761",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-12T16:28:37Z",
+      "side": 1,
+      "message": "Ah, hm. All of these tests should be using FakeHosts, rather than talking to the OS and writing files directly. I missed that in the original review, and will have to fix it (in a separate CL, of course).",
+      "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
