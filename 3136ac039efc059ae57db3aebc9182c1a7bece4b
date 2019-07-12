@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55e863b2_d5c0df67",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-12T08:43:38Z",
+      "side": 1,
+      "message": "nit: instead of duplicating the code just call self.AugmentExpectationsWithFile(raw_data).",
+      "revId": "3136ac039efc059ae57db3aebc9182c1a7bece4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db625fb6_b8c0e1db",
+        "filename": "telemetry/telemetry/benchmark_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-12T08:43:38Z",
+      "side": 1,
+      "message": "nit: I think here (and in all other tests) you should be using the new name already.",
+      "revId": "3136ac039efc059ae57db3aebc9182c1a7bece4b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
