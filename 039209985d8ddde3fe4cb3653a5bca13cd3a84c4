@@ -16,6 +16,24 @@
       "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c21c01d_eb91f3bb",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-12T17:03:25Z",
+      "side": 1,
+      "message": "semi-related, the fake host framework is giving me hell with its streams \u0026 string-vs-bytes handling.  i haven\u0027t quite nailed down the flow yet, but hopefully i\u0027ll be able to digest the runtime model to make it work.",
+      "parentUuid": "c14f378f_526db761",
+      "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
