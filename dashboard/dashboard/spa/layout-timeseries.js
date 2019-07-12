@@ -19,51 +19,35 @@ export const MODE = {
   NORMALIZE_UNIT: 'NORMALIZE_UNIT',
 };
 
-export function layoutTimeseries(state) {
-  let rawXs;
-  if (state.fixedXAxis) {
-    rawXs = fixLinesXInPlace(state.lines);
-  }
-
+function getXExtension(ticks) {
   // Extend xRange in both directions for chartLayout, not minimapLayout in
   // order to make room for icons.
-  const xExtension = state.yAxis.generateTicks ? (
-    ICON_WIDTH_PX / 2 / ESTIMATED_WIDTH_PX) : 0;
+  return ticks ? (ICON_WIDTH_PX / 2 / ESTIMATED_WIDTH_PX) : 0;
+}
 
+function getYExtension(ticks) {
   // Extend yRange in both directions to prevent clipping yAxis.ticks.
-  const yExtension = state.yAxis.generateTicks ? (
-    TEXT_HEIGHT_PX / 2 / HEIGHT_PX) : 0;
+  return ticks ? (TEXT_HEIGHT_PX / 2 / HEIGHT_PX) : 0;
+}
 
-  const {xRange, yRangeForUnitName} = normalizeLinesInPlace(
-      state.lines, {
-        mode: state.mode,
-        zeroYAxis: state.zeroYAxis,
-        xExtension,
-        yExtension,
-      });
+export function layoutTimeseries(state) {
+  if (state.fixedXAxis) {
+    fixLinesXInPlace(state.lines);
+  }
 
-  state = {
+  const {xRange, rangeForUnitName} = normalizeLinesInPlace(state.lines, {
+    mode: state.mode,
+    zeroYAxis: state.zeroYAxis,
+    xExtension: getXExtension(state.xAxis.generateTicks),
+    yExtension: getYExtension(state.yAxis.generateTicks),
+  });
+  const range = getRevisionRange(state.lines, 0);
+
+  return {
     ...state,
-    xAxis: {
-      ...state.xAxis,
-      range: getRevisionRange(state.lines, 0),
-    },
-    yAxis: {
-      ...state.yAxis,
-      rangeForUnitName: yRangeForUnitName,
-    }
+    xAxis: {...state.xAxis, range, displayRange: xRange},
+    yAxis: {...state.yAxis, rangeForUnitName},
   };
-
-  if (state.xAxis.generateTicks) {
-    const ticks = computeXTicks(state.xAxis.range, xRange, rawXs);
-    state = {...state, xAxis: {...state.xAxis, ticks}};
-  }
-
-  if (state.yAxis.generateTicks) {
-    state = generateYTicksReducer(state, yRangeForUnitName, yExtension);
-  }
-
-  return state;
 }
 
 function fixLinesXInPlace(lines) {
@@ -80,7 +64,6 @@ function fixLinesXInPlace(lines) {
       datum.xFixed = rawXs.indexOf(datum.x);
     }
   }
-  return rawXs;
 }
 
 function getX(datum) {
@@ -124,37 +107,52 @@ function getXPct(pct) {
   return tr.b.math.truncate(pct * 100, 1) + '%';
 }
 
-function computeXTicks(revisionRange, displayRange, rawXs) {
-  // Timestamps can be in either seconds or milliseconds.
-  const {dateRange, displayMs, rawMs} = revisionRangeAsDates(
-      revisionRange, displayRange, rawXs);
-  if (dateRange) {
-    return calendarTicks(dateRange, displayMs, rawMs);
-  }
+// Returns [{text, xPct, anchor}].
+export async function generateXTicks(state) {
+  // Input: isCalendrical, xAxisWidthPx, rawXs (if fixedXAxis)
+  const rangePx = tr.b.math.Range.fromExplicitRange(0, widthPx);
 
-  let formatTick;
-  if (rawXs) {
-    // fixedXAxis
-    formatTick = text => {
-      const x = tr.b.findLowIndexInSortedArray(rawXs, x => x, text);
-      return {text, xPct: getXPct(displayRange.normalize(x))};
-    };
+  // format start/end ticks
+  const ticks = [{anchor: 'start', xPct: '0%'}, {anchor: 'end', xPct: '100%'}];
+  if (areTimestamps) {
+    ticks[0].text = tr.b.formatDate(TODO);
+    ticks[1].text = formatEndDate(TODO);
   } else {
-    formatTick = text => {
-      return {text, xPct: getXPct(displayRange.normalize(text))};
-    };
+    ticks[0].text = TODO;
+    ticks[1].text = TODO;
   }
 
-  return computeTicks(revisionRange).map(formatTick);
+  // measure start/end ticks
+  const rects = await Promise.all(ticks.map(tick => measureText(tick.text)));
+  //  - compute new rangePx
+  rangePx.min += rects[0].width;
+  rangePx.max += rects[1].width;
+
+  ticks.push(...await generateXTicksRecurse(rangePx));
+  return ticks;
 }
 
-let CHAR_SIZE_PX;
+async function generateXTicksRecurse(rangePx) {
+  // TODO generate tick candidates (calendrical or pow10muls)
+  const candidates = generateTicks().map(tick => {
+    if (areTimestamps) {
+    }
+  });
 
-layoutTimeseries.isReady = false;
-layoutTimeseries.readyPromise = (async() => {
-  CHAR_SIZE_PX = await measureText('0');
-  layoutTimeseries.isReady = true;
-})();
+  // measure candidates
+  const rects = await Promise.all(ticks.map(tick => measureText(tick.text)));
+
+  // keep candidates that fit
+  const ticks = candidates.filter();
+
+  // generate new px ranges
+  // recurse
+  for (const rangePx of differences) {
+    ticks.push(...await generateXTicksRecurse(rangePx));
+  }
+
+  return ticks;
+}
 
 function calendarTick(ms, text, xPct, anchor) {
   const width = Math.ceil(CHAR_SIZE_PX.width * text.length);
@@ -187,126 +185,6 @@ function formatEndDate(range) {
 
 function daysInMonth(y, m) {
   return new Date(y, m + 1, 0).getDate();
-}
-
-function calendarTickFromDate(date, text, displayRange, rawMs) {
-  const ms = date.getTime();
-  let x = ms;
-  if (rawMs) {
-    x = tr.b.findLowIndexInSortedArray(rawMs, x => x, x);
-    if (ms < rawMs[x]) ++x;
-  }
-  const xPct = displayRange.normalize(x);
-  return calendarTick(ms, text, xPct);
-}
-
-function generateMonths(
-    ticks, year, minMonth, maxMonth, displayRange, rawMs) {
-  for (let month = minMonth; month <= maxMonth; ++month) {
-    const date = new Date(year, month, 1);
-    const text = date.toLocaleString(navigator.language, {month: 'short'});
-    const tick = calendarTickFromDate(date, text, displayRange, rawMs);
-    if (maybeInsertTick(ticks, tick)) {
-      generateDates(ticks, year, month - 1, 1, daysInMonth(year, month),
-          displayRange, rawMs);
-    }
-  }
-}
-
-function generateDates(
-    ticks, year, month, minDate, maxDate, displayRange, rawMs) {
-  for (let day = minDate; day <= maxDate; ++day) {
-    const date = new Date(year, month, day);
-    const text = day.toString();
-    const ms = date.getTime();
-    const tick = calendarTickFromDate(date, text, displayRange, rawMs);
-    if (maybeInsertTick(ticks, tick) && (day < maxDate)) {
-      generateHours(ticks, year, month, day, 1, 60, displayRange, rawMs);
-    }
-  }
-}
-
-function generateHours(
-    ticks, year, month, date, minHour, maxHour, displayRange, rawMs) {
-}
-
-function generateMinutes(ticks, year, month, date, hour, minMinutes,
-    maxMinutes, displayRange, rawMs) {
-}
-
-function maybeInsertTick(ticks, tick) {
-  // If tick does not overlap any ticks, then insert it and return true.
-  const index = tr.b.findLowIndexInSortedArray(ticks, t => t.ms, tick.ms);
-
-  if (tick.px.max < 0) return false;
-  if (tick.px.min >= ESTIMATED_WIDTH_PX) return false;
-
-  if (ticks[index] && tick.px.intersectsRangeExclusive(ticks[index].px)) {
-    return false;
-  }
-
-  if (ticks[index - 1] &&
-      tick.px.intersectsRangeExclusive(ticks[index - 1].px)) {
-    return false;
-  }
-
-  if (ticks[index + 1] &&
-      tick.px.intersectsRangeExclusive(ticks[index + 1].px)) {
-    return false;
-  }
-
-  ticks.splice(index, 0, tick);
-  return true;
-}
-
-function calendarTicks(dates, displayRange, rawMs) {
-  // Always start with the full date of dates.min and end with dates.max.
-  const ticks = [
-    calendarTick(
-        dates.min.getTime(),
-        tr.b.formatDate(dates.min),
-        displayRange.normalize(rawMs ? 0 : dates.min),
-        'start'),
-    calendarTick(
-        dates.max.getTime(),
-        formatEndDate(dates),
-        displayRange.normalize(rawMs ? rawMs.length - 1 : dates.max),
-        'end'),
-  ];
-
-  if (dates.max.getFullYear() !== dates.min.getFullYear()) {
-    generateMonths(ticks, dates.min.getFullYear(),
-        dates.min.getMonth() + 1, 11, displayRange, rawMs);
-    for (let y = 1 + dates.min.getFullYear(); y <= dates.max.getFullYear();
-      ++y) {
-      const date = new Date(y, 0, 1);
-      const text = y.toString();
-      const tick = calendarTickFromDate(date, text, displayRange, rawMs);
-      if (maybeInsertTick(ticks, tick) && (y < dates.max.getFullYear())) {
-        generateMonths(ticks, dates.max.getFullYear(), 2, 11,
-            displayRange, rawMs);
-      }
-    }
-    generateMonths(ticks, dates.max.getFullYear(),
-        2, dates.max.getMonth() + 1, displayRange, rawMs);
-  } else if (dates.max.getMonth() !== dates.min.getMonth()) {
-    generateMonths(ticks, dates.min.getFullYear(),
-        dates.min.getMonth(), dates.max.getMonth(), displayRange, rawMs);
-  } else if (dates.max.getDate() !== dates.min.getDate()) {
-    generateDates(ticks, dates.min.getFullYear(),
-        dates.min.getMonth(), dates.min.getDate(), dates.max.getDate(),
-        displayRange, rawMs);
-  } else if (dates.max.getHour() !== dates.min.getHour()) {
-    generateHours(ticks, dates.min.getFullYear(),
-        dates.min.getMonth(), dates.min.getDate(), dates.min.getHour(),
-        dates.max.getHour(), displayRange, rawMs);
-  } else if (dates.max.getMinutes() !== dates.min.getMinutes()) {
-    generateMinutes(ticks, dates.min.getFullYear(),
-        dates.min.getMonth(), dates.min.getDate(), dates.min.getHour(),
-        dates.min.getMinutes(), dates.max.getMinutes(), displayRange, rawMs);
-  }
-
-  return ticks;
 }
 
 function getRevisionRange(lines, extension) {
@@ -410,21 +288,22 @@ function normalizeLinesInPlace(lines, opt_options) {
   return {xRange, yRangeForUnitName};
 }
 
-function generateYTicksReducer(state, yRangeForUnitName, yExtension) {
+export function generateYTicks(state) {
   let yAxis = state.yAxis;
   let ticks = [];
+  const yExtension = getYExtension(true);
   if (state.mode === MODE.NORMALIZE_LINE || state.mode === MODE.CENTER) {
     for (const line of state.lines) {
-      line.ticks = generateYTicks(line.yRange, line.unit, yExtension);
+      line.ticks = generateYTicksInternal(line.yRange, line.unit, yExtension);
     }
     if (state.lines.length === 1) {
       ticks = state.lines[0].ticks;
     }
   } else {
     const ticksForUnitName = new Map();
-    for (const [unitName, range] of yRangeForUnitName) {
+    for (const [unitName, range] of state.yAxis.rangeForUnitName) {
       const unit = tr.b.Unit.byName[unitName];
-      const ticks = generateYTicks(range, unit, yExtension);
+      const ticks = generateYTicksInternal(range, unit, yExtension);
       ticksForUnitName.set(unitName, ticks);
     }
     yAxis = {...yAxis, ticksForUnitName};
@@ -436,11 +315,11 @@ function generateYTicksReducer(state, yRangeForUnitName, yExtension) {
   return {...state, yAxis};
 }
 
-function generateYTicks(displayRange, unit, yExtension) {
+function generateYTicksInternal(displayRange, unit, yExtension) {
   const dataRange = tr.b.math.Range.fromExplicitRange(
       displayRange.min + (displayRange.range * yExtension),
       displayRange.max - (displayRange.range * yExtension));
-  return computeTicks(dataRange).map(y => {
+  return generateTicks(dataRange).map(y => {
     return {
       text: unit.format(y),
       yPct: tr.b.math.truncate(
@@ -449,7 +328,7 @@ function generateYTicks(displayRange, unit, yExtension) {
   });
 }
 
-export function computeTicks(range, numTicks = 5) {
+export function generateTicks(range, numTicks = 5) {
   const ticks = [];
 
   let tickPower = tr.b.math.lesserPower(range.range);
