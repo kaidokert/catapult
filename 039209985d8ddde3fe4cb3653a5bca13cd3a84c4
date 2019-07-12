@@ -52,6 +52,24 @@
       "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "700fca02_7f83c6b7",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-12T17:49:01Z",
+      "side": 1,
+      "message": "i started looking at typ only because porting grit started running into issues with the typ code when it imported it for its test runner.  i\u0027m more than happy to let you drive typ if you want to.\n\nthe only pending work i had atm is the stream handling in host.py \u0026 host_fake.py, so i can pause that.",
+      "parentUuid": "c1158fb4_ee40122c",
+      "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
