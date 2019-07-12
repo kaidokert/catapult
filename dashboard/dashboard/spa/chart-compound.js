@@ -21,7 +21,7 @@ import {MAX_POINTS} from './timeseries-merger.js';
 import {MODE} from './layout-timeseries.js';
 import {get, set} from 'dot-prop-immutable';
 import {html, css} from 'lit-element';
-import {isElementChildOf, isDebug} from './utils.js';
+import {createFetchDescriptors, isElementChildOf, isDebug} from './utils.js';
 
 /**
   * ChartCompound synchronizes revision ranges and axis properties between a
@@ -555,7 +555,7 @@ export class ChartCompound extends ElementBase {
   // found.
   static async findFirstNonEmptyLineDescriptor(lineDescriptors) {
     for (const lineDescriptor of lineDescriptors) {
-      const fetchDescriptors = ChartTimeseries.createFetchDescriptors(
+      const fetchDescriptors = createFetchDescriptors(
           lineDescriptor, LEVEL_OF_DETAIL.XY);
       const batches = new BatchIterator();
       for (const fetchDescriptor of fetchDescriptors) {
