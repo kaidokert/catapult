@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a642c9a5_75802728",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-12T14:38:28Z",
+      "side": 1,
+      "message": "You can define a property by assigning it a value.\nSimilar to line 425.",
+      "parentUuid": "2dcc22b1_49ed2d5b",
+      "range": {
+        "startLine": 415,
+        "startChar": 24,
+        "endLine": 415,
+        "endChar": 26
+      },
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "90f964a2_d3843b08",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "fef138e8_e132a3a5",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-12T14:38:28Z",
+      "side": 1,
+      "message": "They were sorted in the trace I looked at but that might be a coincidence.\nOnce Max checks in his code I can look at how they are recorded and sort them here if they\u0027re not sorted already.",
+      "parentUuid": "90f964a2_d3843b08",
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e770cf8_5a05f77b",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -53,6 +95,24 @@
       "writtenOn": "2019-07-09T18:53:17Z",
       "side": 1,
       "message": "What\u0027s the format of quad? It seems to have 6 points, which is strange for a quad?",
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "627048ef_bbdf1634",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-12T14:38:28Z",
+      "side": 1,
+      "message": "A quad has 4 coordinate points (8 values). Assuming a quad represents a rectangle, we just need to look at 3 points (6 values) to calculate the area.",
+      "parentUuid": "6e770cf8_5a05f77b",
       "revId": "d3a182692b564b1b2882671259e58515acc362c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -79,6 +139,30 @@
       "revId": "d3a182692b564b1b2882671259e58515acc362c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aa28ecd_ed0d4f92",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-12T14:38:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a683c933_1c09b51a",
+      "range": {
+        "startLine": 843,
+        "startChar": 22,
+        "endLine": 843,
+        "endChar": 36
+      },
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
