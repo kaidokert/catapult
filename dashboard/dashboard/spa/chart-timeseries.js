@@ -617,15 +617,21 @@ ChartTimeseries.createFetchDescriptors = (lineDescriptor, levelOfDetail) => {
   for (const suite of lineDescriptor.suites) {
     for (const bot of lineDescriptor.bots) {
       for (const cas of cases) {
-        fetchDescriptors.push({
+        const fetchDescriptor = {
           suite,
           bot,
           measurement: lineDescriptor.measurement,
           case: cas,
-          statistic: lineDescriptor.statistic,
           buildType: lineDescriptor.buildType,
           levelOfDetail,
-        });
+        };
+        if (lineDescriptor.statistics) {
+          fetchDescriptor.statistics = lineDescriptor.statistics;
+        }
+        if (lineDescriptor.statistic) {
+          fetchDescriptor.statistic = lineDescriptor.statistic;
+        }
+        fetchDescriptors.push(fetchDescriptor);
       }
     }
   }
