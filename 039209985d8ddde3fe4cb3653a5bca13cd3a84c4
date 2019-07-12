@@ -34,6 +34,24 @@
       "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1158fb4_ee40122c",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-12T17:45:26Z",
+      "side": 1,
+      "message": "This stuff all used to work w/ python3 when typ was in its own repo, but it has regressed over time when it moved into catapult and we added more stuff but stopped testing under python3.\n\nI\u0027d be happy to do that work instead of making you do it.",
+      "parentUuid": "1c21c01d_eb91f3bb",
+      "revId": "039209985d8ddde3fe4cb3653a5bca13cd3a84c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
