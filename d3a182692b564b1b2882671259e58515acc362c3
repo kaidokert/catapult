@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "4933d724_2e57ea70",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-12T18:36:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fef138e8_e132a3a5",
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e770cf8_5a05f77b",
         "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
         "patchSetId": 2
@@ -113,6 +131,24 @@
       "side": 1,
       "message": "A quad has 4 coordinate points (8 values). Assuming a quad represents a rectangle, we just need to look at 3 points (6 values) to calculate the area.",
       "parentUuid": "6e770cf8_5a05f77b",
+      "revId": "d3a182692b564b1b2882671259e58515acc362c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51983db9_3e3a59d0",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-12T18:36:20Z",
+      "side": 1,
+      "message": "A rectangle only needs two points (as long as they are opposites), that\u0027s why I wonder...",
+      "parentUuid": "627048ef_bbdf1634",
       "revId": "d3a182692b564b1b2882671259e58515acc362c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
