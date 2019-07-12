@@ -36,6 +36,11 @@ class ParseError(Exception):
 
 
 class Expectation(object):
+    try:
+        _str_type = basestring
+    except NameError:
+        _str_type = str
+
     def __init__(self, reason, test, tags, results, lineno,
                  retry_on_failure=False):
         """Constructor for expectations.
@@ -50,8 +55,8 @@ class Expectation(object):
               set; just 'Mac', or 'Mac' and 'Release', would not qualify.
           results: List of outcomes for test. Example: ['Skip', 'Pass']
         """
-        assert isinstance(reason, basestring) or reason is None
-        assert isinstance(test, basestring)
+        assert isinstance(reason, self._str_type) or reason is None
+        assert isinstance(test, self._str_type)
         self._reason = reason
         self._test = test
         self._tags = frozenset(tags)
