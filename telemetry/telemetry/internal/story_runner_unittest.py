@@ -484,8 +484,8 @@ class StoryRunnerTest(unittest.TestCase):
     # This erroneous test is set up to raise exception for the 1st story
     # run.
     class Test(legacy_page_test.LegacyPageTest):
-      def __init__(self, *args):
-        super(Test, self).__init__(*args)
+      def __init__(self):
+        super(Test, self).__init__()
         self.run_count = 0
 
       def RunPage(self, *_):
@@ -514,8 +514,8 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
 
     class Test(legacy_page_test.LegacyPageTest):
-      def __init__(self, *args):
-        super(Test, self).__init__(*args)
+      def __init__(self):
+        super(Test, self).__init__()
         self.run_count = 0
 
       def RunPage(self, *_):
@@ -554,8 +554,8 @@ class StoryRunnerTest(unittest.TestCase):
 
 
     class Test(legacy_page_test.LegacyPageTest):
-      def __init__(self, *args):
-        super(Test, self).__init__(*args)
+      def __init__(self):
+        super(Test, self).__init__()
         self.run_count = 0
 
       def RunPage(self, *_):
@@ -688,8 +688,8 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
 
     class Test(legacy_page_test.LegacyPageTest):
-      def __init__(self, *args):
-        super(Test, self).__init__(*args)
+      def __init__(self):
+        super(Test, self).__init__()
 
       # pylint: disable=unused-argument
       def RunPage(self, _, _2, results):
@@ -770,8 +770,8 @@ class StoryRunnerTest(unittest.TestCase):
 
   def testRunStoryAddsDeviceInfo_OnePerStorySet(self):
     class Test(legacy_page_test.LegacyPageTest):
-      def __init__(self, *args):
-        super(Test, self).__init__(*args)
+      def __init__(self):
+        super(Test, self).__init__()
 
       # pylint: disable=unused-argument
       def RunPage(self, _, _2, results):
