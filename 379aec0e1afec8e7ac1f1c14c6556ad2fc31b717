@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a8c45c9_af5522bc",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-12T08:55:29Z",
+      "side": 0,
+      "message": "Stories are now always independent. No need to know any more about the previous_page.",
+      "revId": "379aec0e1afec8e7ac1f1c14c6556ad2fc31b717",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
