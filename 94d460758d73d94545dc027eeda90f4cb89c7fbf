@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "554ce622_1ff5b535",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-15T20:22:18Z",
+      "side": 1,
+      "message": "nit: add TODO linking to bug here",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 17
+      },
+      "revId": "94d460758d73d94545dc027eeda90f4cb89c7fbf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc2b5814_afac09b2",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-15T20:22:18Z",
+      "side": 1,
+      "message": "I think this is going to break Windows and Mac (and maybe Android). The issue is that on those platforms closing the last tab will close the whole browser. I think perhaps you should add a test to make sure that the ShouldReuseBrowserForAllStoryRuns() returns True case is covered for Windows and Mac. I\u0027m surprised that testPageResetWhenBrowserReusedBetweenStories seems to be passing.",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 211,
+        "endChar": 37
+      },
+      "revId": "94d460758d73d94545dc027eeda90f4cb89c7fbf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
