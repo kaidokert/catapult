@@ -381,6 +381,9 @@ def _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
         finder_options.browser_options.browser_type, benchmark.Name()))
     return False
 
+  benchmark.expectations.SetTags(
+      possible_browser.GetTypExpectationsTags())
+
   # In other cases, if there is a browser, we exit early if we determine
   # that the benchmark should be run.
 
@@ -427,6 +430,7 @@ def RunBenchmark(benchmark, finder_options):
   """
   benchmark.CustomizeOptions(finder_options)
   possible_browser = browser_finder.FindBrowser(finder_options)
+
   if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
     return -1
 
