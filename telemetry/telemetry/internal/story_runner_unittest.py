@@ -536,7 +536,7 @@ class StoryRunnerTest(unittest.TestCase):
     self.assertTrue(self.results.had_failures)
     self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
 
-  def testAppCrashThenRaiseInTearDownFatal(self):
+  def testAppCrashThenRaiseInTearDown_Interrupted(self):
     self.StubOutExceptionFormatting()
     story_set = story_module.StorySet()
 
@@ -571,13 +571,31 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(TestTearDownSharedState, name='foo'))
     story_set.AddStory(DummyLocalStory(TestTearDownSharedState, name='bar'))
     test = Test()
-
-    with self.assertRaises(DidRunTestError):
-      story_runner.Run(test, story_set, self.options, self.results)
-    self.assertEqual(['app-crash', 'dump-state', 'tear-down-state'],
-                     unit_test_events)
-    # The AppCrashException gets added as a failure.
-    self.assertTrue(self.results.had_failures)
+    story_runner.Run(test, story_set, self.options, self.results)
+    self.assertEqual([
+        'app-crash', 'dump-state',
+        # This event happens because of the app crash.
+        'tear-down-state',
+        # This event happens since state must be reopened to check whether
+        # later stories should be skipped or unexpectedly skipped. Then
+        # state is torn down normally at the end of the runs.
+        'tear-down-state',
+    ], unit_test_events)
+    self.assertIn('DidRunTestError', self.results.benchmark_interruption)
+    story_runs = list(self.results.IterStoryRuns())
+    self.assertEqual(len(story_runs), 2)
+    self.assertTrue(story_runs[0].failed,
+                    'It threw an exceptions.AppCrashException')
+    self.assertTrue(
+        story_runs[1].skipped,
+        'We should unexpectedly skip later runs since the DidRunTestError '
+        'during state teardown should cause the Benchmark to be marked as '
+        'interrupted.')
+    self.assertFalse(
+        story_runs[1].is_expected,
+        'We should unexpectedly skip later runs since the DidRunTestError '
+        'during state teardown should cause the Benchmark to be marked as '
+        'interrupted.')
 
   def testPagesetRepeat(self):
     story_set = story_module.StorySet()
@@ -963,7 +981,6 @@ class StoryRunnerTest(unittest.TestCase):
     story_runner.Run(
         DummyTest(), story_set, options,
         results, max_failures=runner_max_failures)
-    self.assertEquals(0, GetNumberOfSuccessfulPageRuns(results))
     self.assertTrue(results.had_failures)
     for ii, story in enumerate(story_set.stories):
       self.assertEqual(story.was_run, ii < expected_num_failures)
