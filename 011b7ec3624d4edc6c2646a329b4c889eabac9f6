@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d3dab9d_173a772d",
+        "filename": "telemetry/telemetry/internal/results/gtest_progress_reporter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-15T21:19:42Z",
+      "side": 1,
+      "message": "nit: find or create a \"update Telemetry to python3 bug\" and add a TODO here linking to that.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 76
+      },
+      "revId": "011b7ec3624d4edc6c2646a329b4c889eabac9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
