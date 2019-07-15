@@ -963,7 +963,6 @@ class StoryRunnerTest(unittest.TestCase):
     story_runner.Run(
         DummyTest(), story_set, options,
         results, max_failures=runner_max_failures)
-    self.assertEquals(0, GetNumberOfSuccessfulPageRuns(results))
     self.assertTrue(results.had_failures)
     for ii, story in enumerate(story_set.stories):
       self.assertEqual(story.was_run, ii < expected_num_failures)
