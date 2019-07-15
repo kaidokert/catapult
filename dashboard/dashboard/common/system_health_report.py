@@ -9,7 +9,6 @@ from __future__ import absolute_import
 import datetime
 import functools
 
-from dashboard.common import report_query
 from dashboard.models import report_template
 from dashboard import update_test_suite_descriptors
 
@@ -102,17 +101,16 @@ def CreateSystemHealthReport(template_id, name, builder, is_fyi, modified):
       name=name,
       internal_only=False,
       modified=modified)
-  def Report(revisions):
+  def ReportTemplate():
     # Template is updated on each call to the handler to make sure that we use
     # an up to date set of foreground/background stories.
-    template = {
+    return {
         'rows': list(IterTemplateRows(browser, bot)),
         'statistics': ['avg', 'std', 'max'],
         'url': 'https://bit.ly/system-health-benchmarks'
     }
-    return report_query.ReportQuery(template, revisions)
 
-  return Report
+  return ReportTemplate
 
 
 CreateSystemHealthReport(
