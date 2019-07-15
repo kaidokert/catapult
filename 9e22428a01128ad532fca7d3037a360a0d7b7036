@@ -22,6 +22,30 @@
       "revId": "9e22428a01128ad532fca7d3037a360a0d7b7036",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "823f6e14_630126eb",
+        "filename": "telemetry/telemetry/internal/actions/scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-07-15T16:50:49Z",
+      "side": 1,
+      "message": "Bug 983602 is for SeekActionTest. This is tracking a ScrollActionTest test. (testDiagonalScrollAction in fact passes in one of the failed builds in bug 983602.)",
+      "parentUuid": "8e2623d4_95ce99a7",
+      "range": {
+        "startLine": 199,
+        "startChar": 48,
+        "endLine": 199,
+        "endChar": 54
+      },
+      "revId": "9e22428a01128ad532fca7d3037a360a0d7b7036",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
