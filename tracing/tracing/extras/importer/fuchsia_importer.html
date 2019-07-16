@@ -125,7 +125,8 @@ tr.exportTo('tr.e.importer.fuchsia', function() {
 
       const cpu = this.model_.kernel.getOrCreateCpu(event.cpu);
       const timestamp = tr.b.Unit.timestampFromUs(event.ts);
-      cpu.switchActiveThread(timestamp, {}, tid, name, tid);
+      cpu.switchActiveThread(timestamp, {}, tid, name,
+                             {'tid': tid, 'prio': prio});
 
       const SCHEDULING_STATE = tr.model.SCHEDULING_STATE;
       this.recordThreadState_(tid, timestamp, SCHEDULING_STATE.RUNNING, prio);
