@@ -45,6 +45,30 @@
       "revId": "bd4b7480e5eb0de963597d919d0ae30c68311f71",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bc8e5b1_b8917f3f",
+        "filename": "telemetry/telemetry/internal/actions/repeatable_scroll_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-07-16T16:14:47Z",
+      "side": 1,
+      "message": "This is really just a check to make sure the test can succeed in the first place. I\u0027m not sure when it would happen, but it would keep the scrolling from succeeding even though it\u0027s working as expected. I can make the test fail instead so that it doesn\u0027t fail silently.",
+      "parentUuid": "6738c7d5_a6254bbe",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 65
+      },
+      "revId": "bd4b7480e5eb0de963597d919d0ae30c68311f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
