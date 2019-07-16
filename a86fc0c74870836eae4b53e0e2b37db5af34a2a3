@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "90f96d3b_d71746e3",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f81116f8_9a5aab89",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35d1fb17_9ee106fe",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 12
@@ -33,6 +51,24 @@
       "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dd38541_2b06e510",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35d1fb17_9ee106fe",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6959129e_33401518",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfbecc68_5daa7c34",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b91ab4ab_2938ce45",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 12
@@ -67,6 +121,24 @@
       "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4494c267_9600228d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 1,
+      "message": "Thanks for catching this!\n\nI don\u0027t think the benchmark would have been marked as interrupted in this code. I fixed that and also caught the exception. For simplicity, I mark any failure of TearDownState() as an interruption (rather than differentiating between handleable errors and unhandleable errors here.)",
+      "parentUuid": "b91ab4ab_2938ce45",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "788f1c03_f33df747",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13a1faac_47c44e4e",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccbe7027_9aedad0c",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 12
@@ -101,6 +191,24 @@
       "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03edbfca_53caf2a6",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccbe7027_9aedad0c",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

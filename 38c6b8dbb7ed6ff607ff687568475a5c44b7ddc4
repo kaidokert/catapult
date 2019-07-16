@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "31747a39_13b8899e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 0,
+      "message": "Sure thing!",
+      "parentUuid": "d6269831_46f5499c",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fbcfc22b_ce6636aa",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 12
@@ -33,6 +51,24 @@
       "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd0c732d_51443323",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:44:36Z",
+      "side": 0,
+      "message": "This is a behavior change of this changelist as explained by the CL description:\n\nIf you set max failures, then this changelist will mark\nany story after the max failures as unexpectedly skipped\n(rather than pretending that those stories did not exist).\n\nGetNumberOfSuccessfulPageRuns counts unexpectedly skipped pages as successful.\n\n\nI added additional test code to make sure that the expected number of skips occurs :)",
+      "parentUuid": "fbcfc22b_ce6636aa",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
