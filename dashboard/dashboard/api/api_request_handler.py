@@ -18,6 +18,7 @@ from dashboard.common import utils
 
 _ALLOWED_ORIGINS = [
     'chromeperf.appspot.com',
+    'pinpoint-dot-chromeperf.appspot.com',
     'chromiumdash.appspot.com',
     'chromiumdash-staging.googleplex.com',
 ]
@@ -69,7 +70,7 @@ class ApiRequestHandler(webapp2.RequestHandler):
       return
     api_auth.Authorize()
 
-  def post(self, *args):
+  def post(self, *args, **kwargs):
     """Returns alert data in response to API requests.
 
     Outputs:
@@ -91,7 +92,7 @@ class ApiRequestHandler(webapp2.RequestHandler):
     # Allow oauth.Error to manifest as HTTP 500.
 
     try:
-      results = self.Post(*args)
+      results = self.Post(*args, **kwargs)
       self.response.out.write(json.dumps(results))
     except NotFoundError as e:
       self.WriteErrorMessage(e.message, 404)
@@ -108,9 +109,10 @@ class ApiRequestHandler(webapp2.RequestHandler):
     self.response.headers['Content-Type'] = 'application/json; charset=utf-8'
     set_cors_headers = False
     origin = self.request.headers.get('Origin', '')
+    logging.info('Origin: %s', origin)
     for allowed in _ALLOWED_ORIGINS:
       dev_pattern = re.compile(
-          r'https://[A-Za-z0-9]+-dot-' + re.escape(allowed))
+          r'https://dev-[A-Za-z0-9-]+-dot-' + re.escape(allowed))
       prod_pattern = re.compile(r'https://' + re.escape(allowed))
       if dev_pattern.match(origin) or prod_pattern.match(origin):
         set_cors_headers = True

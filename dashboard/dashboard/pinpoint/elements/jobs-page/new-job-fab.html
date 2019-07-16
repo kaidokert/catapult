@@ -16,6 +16,7 @@ found in the LICENSE file.
 <link rel="import" href="/components/paper-item/paper-item.html">
 <link rel="import" href="/components/paper-listbox/paper-listbox.html">
 <link rel="import" href="/components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/dashboard/elements/autocomplete-box.html">
 
 <link rel="import" href="/elements/base-style.html">
 
@@ -49,6 +50,10 @@ found in the LICENSE file.
           <p class="error">[[error]]
         </template>
         <iron-ajax method="post" headers="[[authHeaders]]" auto url="/api/config" last-response="{{config}}"></iron-ajax>
+        <iron-ajax method="post" headers="[[authHeaders]]" auto url="https://dev-simonhatch-43959e2a-dot-chromeperf.appspot.com/api/test_suites" last-response="{{testSuites}}"></iron-ajax>
+        <template is="dom-if" if="{{hasBenchmark(benchmark)}}">
+          <iron-ajax method="post" headers="[[authHeaders]]" auto url="https://dev-simonhatch-43959e2a-dot-chromeperf.appspot.com/api/describe" params="{{describeParams(benchmark)}}" headers='{"access-control-allow-origin": "*"}' last-response="{{benchmarkConfig}}"></iron-ajax>
+        </template>
         <iron-form id="try_form" headers="[[authHeaders]]" on-iron-form-error="handleError" on-iron-form-response="handleResponse">
           <form action="/api/new" method="POST">
             <input type="hidden" name="start_git_hash" value="HEAD">
@@ -56,17 +61,24 @@ found in the LICENSE file.
             <input type="hidden" name="target" value="[[telemetryIsolate(configuration, benchmark)]]">
             <paper-input name="bug_id" label="Bug ID"></paper-input>
             <paper-input name="patch" label="Gerrit URL" required></paper-input>
-            <paper-dropdown-menu name="configuration" label="Bot" horizontal-align="left" selected-item-label="{{configuration}}" required>
-              <!-- TODO: remove "class" after Polymer 2.0 migration -->
-              <paper-listbox class="dropdown-content" slot="dropdown-content">
-                <template is="dom-repeat" items="[[config.configurations]]">
-                  <paper-item>[[item]]</paper-item>
-                </template>
-              </paper-listbox>
-            </paper-dropdown-menu>
-            <paper-input name="benchmark" label="Benchmark" value="{{benchmark::input}}" required></paper-input>
-            <paper-input name="story" label="Story (optional)"></paper-input>
-            <paper-input name="story_tags" label="Story Tags (optional, comma-separated)"></paper-input>
+
+            <autocomplete-box items="{{benchmarks(testSuites)}}"
+                              placeholder="Benchmark"
+                              selected-name="{{benchmark}}"></autocomplete-box>
+
+            <autocomplete-box items="{{bots(config.configurations, benchmark)}}"
+                              placeholder="Bot"
+                              disabled="{{invalidBenchmark(benchmark)}}"
+                              selected-name="{{configuration}}"></autocomplete-box>
+
+            <autocomplete-box items="{{storyCases(benchmarkConfig, benchmark)}}"
+                              disabled="{{invalidBenchmark(benchmark)}}"
+                              placeholder="Story (optional)"></autocomplete-box>
+
+            <autocomplete-box items="{{storyTags(benchmarkConfig, benchmark)}}"
+                              disabled="{{invalidBenchmark(benchmark)}}"
+                              placeholder="Story Tags (optional, comma-separated)"></autocomplete-box>
+
             <paper-input name="extra_test_args" label="Extra Test Arguments (optional)"></paper-input>
           </form>
         </iron-form>
@@ -109,6 +121,67 @@ found in the LICENSE file.
       handleResponse(event) {
         this.set('route.path', '/job/' + event.detail.response.jobId);
         this.$.try_dialog.close();
+      },
+
+      describeParams(benchmark) {
+        return {test_suite: benchmark};
+      },
+
+      invalidBenchmark(benchmark) {
+        return !this.hasBenchmark(benchmark);
+      },
+
+      hasBenchmark(benchmark) {
+        if (!benchmark) {
+          return false;
+        }
+        return benchmark != '';
+      },
+
+      arrayToAutocompleteList(arr) {
+        if (!arr) {
+          return [];
+        }
+
+        const vals = [];
+        for (const cur of arr) {
+          vals.push({name: cur});
+        }
+        return vals;
+      },
+
+      benchmarks(config2) {
+        return this.arrayToAutocompleteList(config2);
+      },
+
+      bots(config, benchmark) {
+        if (benchmark === '') {
+          return [];
+        }
+        return this.arrayToAutocompleteList(config);
+      },
+
+      storyCases(config3, benchmark) {
+        if (benchmark === '') {
+          return [];
+        }
+        if (!config3) {
+          return [];
+        }
+
+        return this.arrayToAutocompleteList(config3.cases);
+      },
+
+      storyTags(config3, benchmark) {
+        if (benchmark === '') {
+          return [];
+        }
+        if (!config3) {
+          return [];
+        }
+
+        return this.arrayToAutocompleteList(
+            Object.keys(config3.caseTags));
       },
 
       telemetryIsolate(configuration, benchmark) {
