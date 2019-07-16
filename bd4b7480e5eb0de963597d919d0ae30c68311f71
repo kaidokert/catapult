@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07d4d744_5cf6368c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:08:01Z",
+      "side": 1,
+      "message": "[Telemetry] Fix and re-enable android repeatable scroll tests.",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "bd4b7480e5eb0de963597d919d0ae30c68311f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6738c7d5_a6254bbe",
+        "filename": "telemetry/telemetry/internal/actions/repeatable_scroll_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T00:08:01Z",
+      "side": 1,
+      "message": "I\u0027m a bit concerned about skipping tests dynamically since we can lose coverage without being notified. When do we expect this to happen?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 65
+      },
+      "revId": "bd4b7480e5eb0de963597d919d0ae30c68311f71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
