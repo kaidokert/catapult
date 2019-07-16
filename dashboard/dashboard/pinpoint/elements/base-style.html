@@ -8,6 +8,11 @@ found in the LICENSE file.
 <dom-module id="base-style">
   <template>
     <style>
+      :root {
+        /* Dropdown menus should always be on top of dialogs. */
+        --layer-menus: 300;
+      }
+
       a {
         color: var(--paper-indigo-500);
         text-decoration: none;
