@@ -250,6 +250,8 @@ const AutocompleteBoxBehavior = {
       */
     selectedName: {
       type: String,
+      notify: true,
+      readOnly: true,
       computed: 'computeSelectedName(selectedItem)'
     },
   },
