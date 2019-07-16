@@ -69,6 +69,24 @@
       "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25d9dfe7_de9ba5e7",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-16T09:15:46Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "fd0c732d_51443323",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

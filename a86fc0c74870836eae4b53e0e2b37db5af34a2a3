@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "ce058424_cc16230c",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-16T09:15:46Z",
+      "side": 1,
+      "message": "sgtm!",
+      "parentUuid": "4494c267_9600228d",
+      "revId": "a86fc0c74870836eae4b53e0e2b37db5af34a2a3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13a1faac_47c44e4e",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 12
