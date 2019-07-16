@@ -10,6 +10,7 @@ import {enumerate} from './utils.js';
 
 import {
   TimeseriesRequest,
+  LEVEL_OF_DETAIL,
   createFetchDescriptors,
 } from './timeseries-request.js';
 
@@ -34,6 +35,9 @@ export class ChartFetcher {
     this.timeseriesesByLine_ = new TimeseriesesByLine(
         this.fetchDescriptorsByLine_, [revisions]);
 
+    this.histogramsByLine_ = new TimeseriesesByLine(
+        this.fetchDescriptorsByLine_, [{}]);
+
     // This batches the stream of results to reduce unnecessary rendering.
     // This does not batch the results themselves, they need to be collated by
     // this.timeseriesesByLine_.
@@ -49,17 +53,22 @@ export class ChartFetcher {
           this.batches_.add(this.fetchTimeseries_(
               lineIndex, fetchIndex, fetchDescriptor));
         }
+        this.batches_.add(this.fetchHistogram_(lineIndex));
       }
 
       for await (const {results, errors} of this.batches_) {
         const timeseriesesByLine = this.timeseriesesByLine_.populatedResults;
+        const histogramsByLine = this.histogramsByLine_.populatedResults;
 
         // ChartFetcher only supports a single revision range.
         for (const lineData of timeseriesesByLine) {
           lineData.timeserieses = lineData.timeseriesesByRange[0].timeserieses;
         }
+        for (const lineData of histogramsByLine) {
+          lineData.timeserieses = lineData.timeseriesesByRange[0].timeserieses;
+        }
 
-        yield {errors, timeseriesesByLine};
+        yield {errors, timeseriesesByLine, histogramsByLine};
       }
     }).call(this);
   }
@@ -70,6 +79,29 @@ export class ChartFetcher {
       for await (const timeseries of request.reader()) {
         this.timeseriesesByLine_.receive(lineIndex, 0, fetchIndex, timeseries);
         yield {/* Pump BatchIterator. See timeseriesesByLine. */};
+      }
+    }).call(this);
+  }
+
+  fetchHistogram_(lineIndex) {
+    return (async function* () {
+      for (const [fetchIndex, fetchDescriptor] of enumerate(
+          this.fetchDescriptorsByLine_[lineIndex].fetchDescriptors)) {
+        const request = new TimeseriesRequest({
+          ...fetchDescriptor,
+          minRevision: undefined,
+          maxRevision: undefined,
+          limit: 1,
+          levelOfDetail: LEVEL_OF_DETAIL.HISTOGRAM,
+        });
+        for await (const timeseries of request.reader()) {
+          this.timeseriesesByLine_.receive(
+              lineIndex, 0, fetchIndex, timeseries);
+          yield {/* Pump BatchIterator. See timeseriesesByLine. */};
+
+          // Stop after finding a Histogram.
+          return;
+        }
       }
     }).call(this);
   }

@@ -195,7 +195,8 @@ export class ChartTimeseries extends ElementBase {
         state.lineDescriptors.slice(0, ChartTimeseries.MAX_LINES),
         {minRevision: state.minRevision, maxRevision: state.maxRevision},
         state.levelOfDetail);
-    for await (const {timeseriesesByLine, errors} of fetcher) {
+    for await (const {histogramsByLine, timeseriesesByLine, errors} of
+      fetcher) {
       if (!layoutTimeseries.isReady) await layoutTimeseries.readyPromise;
 
       const state = get(STORE.getState(), statePath);
@@ -208,6 +209,7 @@ export class ChartTimeseries extends ElementBase {
       STORE.dispatch({
         type: ChartTimeseries.reducers.layout.name,
         timeseriesesByLine,
+        histogramsByLine,
         errors,
         statePath,
       });
@@ -396,13 +398,13 @@ ChartTimeseries.MAX_LINES = 10;
 
 ChartTimeseries.reducers = {
   // Aggregate timeserieses, assign colors, layout chart data, snap revisions.
-  layout: (state, {timeseriesesByLine, errors}, rootState) => {
-    errors = errors.map(e => e.message);
+  layout: (state, action, rootState) => {
+    let errors = action.errors.map(e => e.message);
     errors = new Set([...state.errors, ...errors]);
     state = {...state, errors};
 
     const lines = [];
-    for (const {lineDescriptor, timeserieses} of timeseriesesByLine) {
+    for (const {lineDescriptor, timeserieses} of action.timeseriesesByLine) {
       const data = ChartTimeseries.aggregateTimeserieses(
           lineDescriptor, timeserieses, state.levelOfDetail, {
             minRevision: state.minRevision,
@@ -422,7 +424,19 @@ ChartTimeseries.reducers = {
         for (const datum of data) datum.y -= offset;
       }
 
-      lines.push({descriptor: lineDescriptor, unit, data, strokeWidth: 1});
+      let histogram;
+      for (const histogramLine of action.histogramsByLine) {
+        if (histogramLine.lineDescriptor !== lineDescriptor) continue;
+        histogram = histogramLine.timeserieses[0][0].histogram;
+      }
+
+      lines.push({
+        descriptor: lineDescriptor,
+        unit,
+        data,
+        histogram,
+        strokeWidth: 1,
+      });
     }
 
     state = {...state, lines};

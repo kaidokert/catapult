@@ -212,6 +212,12 @@ export class ChartCompound extends ElementBase {
           display them.
         </div>
 
+        <div>
+          ${isOneMeasurement ? 'TODO' : html`
+            Hover in the main chart for metric descriptions.
+          `}
+        </div>
+
         <error-set .errors="${[...errors]}"></error-set>
 
         <div

@@ -12,6 +12,7 @@ export const LEVEL_OF_DETAIL = Object.freeze({
   ALERTS: 'ALERTS',
   ANNOTATIONS: 'ANNOTATIONS',
   DETAILS: 'DETAILS',
+  HISTOGRAM: 'HISTOGRAM',
 });
 
 // A lineDescriptor may require data from multiple timeseries.
@@ -66,6 +67,8 @@ export function getColumnsByLevelOfDetail(levelOfDetail, statistic) {
       ].sort());
     case LEVEL_OF_DETAIL.DETAILS:
       return DETAILS_COLUMNS;
+    case LEVEL_OF_DETAIL.HISTOGRAM:
+      return new Set(['histogram']);
     default:
       throw new Error(`${levelOfDetail} is not a valid Level Of Detail`);
   }
@@ -116,6 +119,10 @@ export class TimeseriesRequest extends RequestBase {
     }
     if (options.maxRevision) {
       this.body_.set('max_revision', options.maxRevision);
+    }
+
+    if (options.limit) {
+      this.body_.set('limit', options.limit);
     }
   }
 
