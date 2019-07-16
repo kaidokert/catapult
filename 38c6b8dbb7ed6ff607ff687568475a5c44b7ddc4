@@ -105,6 +105,24 @@
       "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85911132_56be6f49",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-16T19:07:44Z",
+      "side": 0,
+      "message": "That\u0027s unrelated to this changelist.\n\nI made changes such that I checked that the right number of stories were skipped and the right number of stories were failed.",
+      "parentUuid": "46546a5b_10b2e8b5",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
