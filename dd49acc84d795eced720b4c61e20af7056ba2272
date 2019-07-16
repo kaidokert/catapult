@@ -46,6 +46,30 @@
       "revId": "dd49acc84d795eced720b4c61e20af7056ba2272",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71262005_fdacaadc",
+        "filename": "tracing/tracing/metrics/system_health/expected_queueing_time_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1118564
+      },
+      "writtenOn": "2019-07-16T11:49:58Z",
+      "side": 0,
+      "message": "Actually, yeah, we do want to keep that. We added those last quarter and are planning to evaluate closely when we move inlining to the background thread. Can we keep the optimize metrics?",
+      "parentUuid": "c701fafa_16455d75",
+      "range": {
+        "startLine": 433,
+        "startChar": 4,
+        "endLine": 433,
+        "endChar": 36
+      },
+      "revId": "dd49acc84d795eced720b4c61e20af7056ba2272",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
