@@ -87,6 +87,24 @@
       "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46546a5b_10b2e8b5",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-16T09:22:51Z",
+      "side": 0,
+      "message": "Actually, could we tweak GetNumberOfSuccessfulPageRuns so it only counts either:\n- pages that really did succeed (run.ok)\n- pages that either succeeded or were expected skips (run.expected gives you that)\n\nI think either of those would be more natural than counting unexpected skips as \"successful\".",
+      "parentUuid": "25d9dfe7_de9ba5e7",
+      "revId": "38c6b8dbb7ed6ff607ff687568475a5c44b7ddc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
