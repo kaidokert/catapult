@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/utils.html">
+<link rel="import" href="/tracing/extras/chrome/estimated_input_latency.html">
+<link rel="import" href="/tracing/extras/v8/runtime_stats_entry.html">
+<link rel="import" href="/tracing/metrics/v8/utils.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/value/histogram.html">
+<script>
+'use strict';
+tr.exportTo('tr.metrics.sh', function() {
+  const MAXIMUM_EXPECTED_FID = 1000;
+  const EFID_BOUNDARIES = tr.v.HistogramBinBoundaries
+      .createExponential(0.01, MAXIMUM_EXPECTED_FID, 50);
+  /**
+   * @param {!string} name Name of the histogram.
+   * @param {!string} description Description of the histogram.
+   * @returns {!tr.v.Histogram}
+   */
+  function createHistogramForEFID_(name, description) {
+    const histogram = new tr.v.Histogram(name,
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, EFID_BOUNDARIES);
+    histogram.customizeSummaryOptions({
+      avg: false,
+      count: false,
+      max: true,
+      min: false,
+      std: false,
+      sum: false,
+    });
+    histogram.description = description;
+    return histogram;
+  }
+  function efidMetric(histograms, model) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    const rendererHelpers = Object.values(chromeHelper.rendererHelpers);
+    addExpectedFirstInputDelayMetric_(
+        'renderer_efid', rendererHelpers, histograms,
+        model);
+  }
+  function getMainFrameNavStart(rendererHelper) {
+    const frameToNavStartEvents =
+        tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'navigationStart', 'blink.user_timing');
+    // Probably totally wrong
+    for (const [frameId, navStartEvents] of frameToNavStartEvents) {
+      const navStart = navStartEvents
+          .find(evt => evt.args.data.isLoadingMainFrame);
+      if (navStart) return {frameId, navStart};
+    }
+    return undefined;
+  }
+  /**
+  * @callback EventTimesCallback
+  * @param {!tr.b.Event} event
+  * @return {{start: !number, duration: !number}} event start time and duration.
+  */
+  /**
+   * The actual implementation of the EFID metric.
+   * @param {!string} efidName the metric name part of the histogram name.
+   * @param {!Array.<tr.model.helpers.ChromeRendererHelper>} rendererHelpers.
+   */
+  function addExpectedFirstInputDelayMetric_(efidName,
+      rendererHelpers, histograms, model) {
+    const totalHistogram = createHistogramForEFID_(
+        `total:${efidName}`,
+        'The expected value of FID for a given renderer');
+    for (const rendererHelper of rendererHelpers) {
+      if (rendererHelper.isChromeTracingUI) continue;
+      const frameIdAndNavStart = getMainFrameNavStart(rendererHelper);
+      if (!frameIdAndNavStart) continue;
+      const {frameId, navStart} = frameIdAndNavStart;
+      const dclSearchRange = tr.b.math.Range.fromExplicitRange(
+          navStart.start, rendererHelper.modelHelper.chromeBounds.max);
+      const frameToFCPEvents =
+            tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+                rendererHelper, 'firstContentfulPaint', 'loading');
+      const fcpEventsForFrame = frameToFCPEvents.get(frameId) || [];
+      // Reuse the dclSearchRange.
+      const fcpEventsInWindow =
+            dclSearchRange.filterArray(fcpEventsForFrame, event => event.start);
+      let fcpEvent = undefined;
+      if (fcpEventsInWindow.length !== 0) {
+        // There really shouldn't be more than one FCP event, but if there is,
+        // pick the last one.
+        fcpEvent = fcpEventsInWindow[fcpEventsInWindow.length - 1];
+      }
+      const fid = tr.e.chrome.computeExpectedFID(rendererHelper, fcpEvent);
+      if (fid === undefined) continue;
+      totalHistogram.addSample(fid.eFID);
+    }
+    histograms.addHistogram(totalHistogram);
+  }
+  tr.metrics.MetricRegistry.register(efidMetric);
+  return {
+    efidMetric,
+  };
+});
+</script>

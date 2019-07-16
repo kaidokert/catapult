@@ -25,6 +25,9 @@ GOOD_3G = 'Good-3G'
 REGULAR_4G = 'Regular-4G'
 DSL = 'DSL'
 WIFI = 'WiFi'
+WPT_4G = 'WPT-4G'
+SUPERFAST = 'super-fast'
+TEST_NET = 'test-net'
 
 
 NETWORK_CONFIGS = {
@@ -37,4 +40,7 @@ NETWORK_CONFIGS = {
     REGULAR_4G: _Configs(4 * 1024, 3 * 1024, 20),
     DSL: _Configs(2 * 1024, 1 * 1024, 5),
     WIFI: _Configs(30 * 1024, 15 * 1024, 2),
+    WPT_4G: _Configs(9 * 1024, 9 * 1024, 170),
+    TEST_NET: _Configs(9 * 1024, 9 * 1024, 0),
+    SUPERFAST: _Configs(9000 * 1024, 9000 * 1024, 0),
 }

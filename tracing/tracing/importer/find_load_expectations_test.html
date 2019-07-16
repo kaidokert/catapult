@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/assert_utils.html">
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/extras/chrome/chrome_test_utils.html">
+<link rel="import" href="/tracing/importer/find_load_expectations.html">
+<link rel="import" href="/tracing/base/math/range.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  const computeJankZoneSum = tr.importer.computeJankZoneSum;
+
+  function convertToRanges(explicitRanges) {
+    return explicitRanges.map(r => tr.b.math.Range.fromExplicitRange(r[0], r[1]));
+  }
+
+  function convertToSlices(explicitRanges) {
+    return explicitRanges.map(r => ({start: r[0], end: r[1], duration: r[1] - r[0]}));
+  }
+
+  function toRange(start, end) {
+    return tr.b.math.Range.fromExplicitRange(start, end);
+  }
+
+  test('clipRanges', () => {
+    const input = convertToRanges([
+      [0, 10],
+      [100, 500],
+      [600, 700],
+      [800, 1000],
+    ]);
+    const clipWindow = tr.b.math.Range.fromExplicitRange(400, 900);
+
+    const expectedOutput = convertToRanges([
+      [400, 500],
+      [600, 700],
+      [800, 900],
+    ]);
+    const actualOutput = tr.importer.clipRanges(input, clipWindow);
+    assert.strictEqual(actualOutput.length, expectedOutput.length);
+    for (let i = 0; i < expectedOutput.length; i++) {
+      assert(actualOutput[i].equals(expectedOutput[i]));
+    }
+  });
+
+  test('jankZoneSumPower1', () => {
+    const mainThreadTasks = convertToSlices([
+      [100, 300],  // Contributes 50.
+      [310, 370],  // Contributes 10.
+      [400, 560],  // Contributes 100.
+    ]);
+
+    const clipWindow = toRange(200, 500);
+    const jankZonePower = 1;
+    const metricOutput = computeJankZoneSum(mainThreadTasks,
+                                        clipWindow, jankZonePower);
+
+    assert.closeTo(metricOutput, 160, 1e-6);
+  })
+
+  test('jankZoneSumPower1.5', () => {
+    const mainThreadTasks = convertToSlices([
+      [100, 300],  // Contributes 50.
+      [310, 370],  // Contributes 10.
+      [400, 560],  // Contributes 100.
+    ]);
+
+    const clipWindow = toRange(200, 500);
+    const jankZonePower = 1.5;
+    const metricOutput = computeJankZoneSum(mainThreadTasks,
+                                            clipWindow, jankZonePower);
+
+    assert.closeTo(metricOutput, Math.pow(50, 1.5) + Math.pow(10, 1.5) + Math.pow(100, 1.5), 1e-6);
+  })
+});
+</script>

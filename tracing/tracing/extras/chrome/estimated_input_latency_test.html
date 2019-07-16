@@ -25,6 +25,8 @@ tr.b.unittest.testSuite(function() {
   const expectedQueueingTime = tr.e.chrome.expectedQueueingTime;
   const maxExpectedQueueingTimeInSlidingWindow =
       tr.e.chrome.maxExpectedQueueingTimeInSlidingWindow;
+  const computeProbabilityOfHighFidFromTasks = tr.e.chrome.computeProbabilityOfHighFidFromTasks;
+  const computeExpectedFIDFromTasks = tr.e.chrome.computeExpectedFIDFromTasks;
   const weightedExpectedQueueingTime = tr.e.chrome.weightedExpectedQueueingTime;
   const assertRangeEquals = tr.b.assertRangeEquals;
 
@@ -379,6 +381,42 @@ tr.b.unittest.testSuite(function() {
         maxExpectedQueueingTimeInSlidingWindow(0, 1000, 100,
             [{start: 0, end: 100.02}, {start: 100.0, end: 200}]),
         1e-6);
+  });
+
+  // P (FID  > nms) tests.
+  test('fidNeverHigh', () => {
+    const tasks = [];
+    for (const threshold of [50, 100, 250]) {
+      for (let i = 0; i < 1000; i++) {
+        tasks.push({start: i * threshold, end: (i + 1) * threshold});
+      }
+      assert.closeTo(computeProbabilityOfHighFidFromTasks(tasks, 1000, threshold), 0, 1e-6);
+      assert.closeTo(computeProbabilityOfHighFidFromTasks(tasks, 0, threshold), 0, 1e-6);
+      assert.closeTo(computeProbabilityOfHighFidFromTasks(tasks, 2000, threshold), 0, 1e-6);
+      assert.closeTo(computeProbabilityOfHighFidFromTasks(tasks, 5000, threshold), 0, 1e-6);
+    }
+  });
+
+  test('fidAlwaysHigh', () => {
+    const tasks = [{start: 0, end: 100 * 1000}];
+    // 0.99 instead of 1 because of the long tail of input probability distribution.
+    assert.closeTo(computeProbabilityOfHighFidFromTasks(tasks, 0, 50), .99, .01);
+  });
+
+  test('halfHighFIDIn80thPercentileRange', () => {
+    // The input distribution has 79.7% of probability of first input happening
+    // in the first 8.5 seconds. Fill it with 100ms tasks (so we know half of
+    // the range has input delay > 50ms.) and check P(FID > 50) comes close to
+    // .5 * 80% = 40%, +/- 5%.
+    const tasks = [];
+    const taskLength = 100;
+    const taskStartInterval = 100;
+    const numberOfTasks = 85;
+    for (let i = 0; i < numberOfTasks; i++) {
+      const start = i * taskStartInterval;
+      tasks.push({start, end: start + taskLength});
+    }
+    assert.closeTo(computeProbabilityOfHighFidFromTasks(tasks, 0, 50), .4, .05);
   });
 });
 </script>

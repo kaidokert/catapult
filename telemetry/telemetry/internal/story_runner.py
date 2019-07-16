@@ -303,7 +303,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
 
         try:
           if state.platform:
-            state.platform.WaitForBatteryTemperature(35)
+            # state.platform.WaitForBatteryTemperature(35)
             if finder_options.wait_for_cpu_temp:
               state.platform.WaitForCpuTemperature(38.0)
             _WaitForThermalThrottlingIfNeeded(state.platform)
