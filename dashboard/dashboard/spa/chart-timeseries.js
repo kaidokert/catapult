@@ -524,6 +524,13 @@ ChartTimeseries.reducers = {
       ('' + datum.y);
     rows.push({name: 'value', value});
 
+    if (line.unit.improvementDirection !==
+        tr.b.ImprovementDirection.DONT_CARE) {
+      const better = (line.unit.improvementDirection ===
+        tr.b.ImprovementDirection.BIGGER_IS_BETTER) ? 'higher' : 'lower';
+      rows.push({name: better + ' is better', colspan: 2});
+    }
+
     let foundRevision = false;
     for (const [rName, value] of Object.entries(
         datum.datum.revisions || {})) {
