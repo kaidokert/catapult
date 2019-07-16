@@ -8,11 +8,12 @@ import tempfile
 import StringIO
 import unittest
 
-from telemetry import benchmark
-from telemetry import benchmark_runner
-from telemetry import story as story_module
-from telemetry import page as page_module
 import mock
+
+from telemetry import benchmark
+from telemetry.command_line import commands
+from telemetry import page as page_module
+from telemetry import story as story_module
 
 
 class BenchmarkFoo(benchmark.Benchmark):
@@ -41,7 +42,7 @@ class BenchmarkBar(benchmark.Benchmark):
     return 'BenchmarkBar'
 
 
-class BenchmarkRunnerUnittest(unittest.TestCase):
+class PrintCommandUnittest(unittest.TestCase):
 
   def setUp(self):
     self._stream = StringIO.StringIO()
@@ -55,9 +56,9 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
         '  BenchmarkBar Benchmark bar for testing.\n'
         '  BenchmarkFoo Benchmark foo for testing.\n'
         'Pass --browser to list benchmarks for another browser.\n\n')
-    benchmark_runner.PrintBenchmarkList([BenchmarkBar, BenchmarkFoo],
-                                        self._mock_possible_browser, None,
-                                        self._stream)
+    commands.PrintBenchmarkList([BenchmarkBar, BenchmarkFoo],
+                                self._mock_possible_browser, None,
+                                self._stream)
     self.assertEquals(expected_printed_stream, self._stream.getvalue())
 
   def testPrintBenchmarkListWithOneDisabledBenchmark(self):
@@ -78,10 +79,10 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
     try:
       expectations_file.write(expectations_file_contents)
       expectations_file.close()
-      benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
-                                          self._mock_possible_browser,
-                                          expectations_file.name,
-                                          self._stream)
+      commands.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
+                                  self._mock_possible_browser,
+                                  expectations_file.name,
+                                  self._stream)
       self.assertEquals(expected_printed_stream, self._stream.getvalue())
     finally:
       os.remove(expectations_file.name)
@@ -108,10 +109,10 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
       try:
         expectations_file.write(expectations_file_contents)
         expectations_file.close()
-        benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
-                                            self._mock_possible_browser,
-                                            expectations_file.name,
-                                            self._stream)
+        commands.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
+                                    self._mock_possible_browser,
+                                    expectations_file.name,
+                                    self._stream)
         self.assertEquals(expected_printed_stream, self._stream.getvalue())
       finally:
         os.remove(expectations_file.name)
@@ -147,10 +148,10 @@ class BenchmarkRunnerUnittest(unittest.TestCase):
     try:
       expectations_file.write(expectations_file_contents)
       expectations_file.close()
-      benchmark_runner.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
-                                          self._mock_possible_browser,
-                                          expectations_file.name,
-                                          self._stream, self._json_stream)
+      commands.PrintBenchmarkList([BenchmarkFoo, BenchmarkBar],
+                                  self._mock_possible_browser,
+                                  expectations_file.name,
+                                  self._stream, self._json_stream)
 
       self.assertEquals(expected_json_stream, self._json_stream.getvalue())
 
