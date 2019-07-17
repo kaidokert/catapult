@@ -51,17 +51,17 @@ const DETAILS_COLUMNS = new Set([
   'histogram',
 ]);
 
-export function getColumnsByLevelOfDetail(levelOfDetail, statistic) {
+export function getColumnsByLevelOfDetail(levelOfDetail, statistics) {
   switch (levelOfDetail) {
     case LEVEL_OF_DETAIL.XY:
-      return new Set(['revision', statistic]);
+      return new Set(['revision', ...statistics]);
     case LEVEL_OF_DETAIL.ALERTS:
       return new Set(['revision', 'alert']);
     case LEVEL_OF_DETAIL.ANNOTATIONS:
       return new Set([
-        ...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, statistic),
+        ...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.XY, statistics),
         'timestamp', 'count',
-        ...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.ALERTS, statistic),
+        ...getColumnsByLevelOfDetail(LEVEL_OF_DETAIL.ALERTS, []),
         'diagnostics', 'revisions',
       ].sort());
     case LEVEL_OF_DETAIL.DETAILS:
@@ -108,7 +108,7 @@ export class TimeseriesRequest extends RequestBase {
     this.body_.set('build_type', options.buildType || 'test');
 
     this.columns_ = [...getColumnsByLevelOfDetail(
-        options.levelOfDetail, this.statistic_)];
+        options.levelOfDetail, options.statistics || [this.statistic_])];
     this.body_.set('columns', this.columns_.join(','));
 
     if (options.minRevision) {

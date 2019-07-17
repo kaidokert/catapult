@@ -11,8 +11,12 @@ import unittest
 
 from google.appengine.ext import ndb
 
+from dashboard import update_test_suite_descriptors
 from dashboard.api import api_auth
 from dashboard.api import report_template as api_report_template
+from dashboard.common import datastore_hooks
+from dashboard.common import namespaced_stored_object
+from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.models import report_template
 
@@ -25,6 +29,20 @@ class ReportTemplateTest(testing_common.TestCase):
         ('/api/report/template', api_report_template.ReportTemplateHandler),
     ])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_WHITELIST[0])
+
+    # Fake data for system_health_reports
+    key = namespaced_stored_object.NamespaceKey(
+        update_test_suite_descriptors.CacheKey('system_health.memory_mobile'),
+        datastore_hooks.EXTERNAL)
+    stored_object.Set(key, {
+        'caseTags': {'health_check': []},
+    })
+    key = namespaced_stored_object.NamespaceKey(
+        update_test_suite_descriptors.CacheKey('system_health.memory_mobile'),
+        datastore_hooks.INTERNAL)
+    stored_object.Set(key, {
+        'caseTags': {'health_check': []},
+    })
 
   def _Post(self, **params):
     return json.loads(self.Post('/api/report/template', params).body)

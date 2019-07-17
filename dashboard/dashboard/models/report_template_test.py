@@ -12,7 +12,6 @@ import unittest
 from google.appengine.ext import ndb
 
 from dashboard.common import descriptor
-from dashboard.common import report_query
 from dashboard.common import stored_object
 from dashboard.common import testing_common
 from dashboard.models import graph_data
@@ -24,13 +23,24 @@ from dashboard.models import report_template
     template_id=584630894,
     name='Test:External',
     modified=datetime.datetime.now())
-def _External(revisions):
-  template = {
+def _External():
+  return {
       'rows': [],
       'statistics': ['avg'],
       'url': 'http://exter.nal',
   }
-  return report_query.ReportQuery(template, revisions)
+
+@report_template.Static(
+    internal_only=True,
+    template_id=684630895,
+    name='Test:Internal',
+    modified=datetime.datetime.now())
+def _Internal():
+  return {
+      'rows': [],
+      'statistics': ['avg'],
+      'url': 'http://inter.nal',
+  }
 
 
 class ReportTemplateTest(testing_common.TestCase):
@@ -53,6 +63,10 @@ class ReportTemplateTest(testing_common.TestCase):
         id='in-id',
         owners=[testing_common.INTERNAL_USER.email()],
         template={'rows': [], 'statistics': ['avg']}).put()
+
+  def testExternal_List(self):
+    names = [t['name'] for t in report_template.List()]
+    self.assertNotIn('Test:Internal', names)
 
   def testInternal_PutTemplate(self):
     self.SetCurrentUser(testing_common.INTERNAL_USER.email())
@@ -132,34 +146,6 @@ class ReportTemplateTest(testing_common.TestCase):
       report_template.PutTemplate(
           'ex-id', 'foo', [testing_common.EXTERNAL_USER.email()], {})
     self.assertEqual('external', ndb.Key('ReportTemplate', 'ex-id').get().name)
-
-  def testInternal_GetReport(self):
-    self.SetCurrentUser(testing_common.INTERNAL_USER.email())
-    report = report_template.GetReport('in-id', [10, 20])
-    self.assertTrue(report['internal'])
-    self.assertEqual(0, len(report['report']['rows']))
-    self.assertEqual('internal', report['name'])
-    self.assertTrue(report['editable'])
-    self.assertEqual([testing_common.INTERNAL_USER.email()], report['owners'])
-
-  def testAnonymous_GetReport(self):
-    self.SetCurrentUser('')
-    self.assertEqual(None, report_template.GetReport('in-id', [10, 20]))
-    report = report_template.GetReport('ex-id', [10, 20])
-    self.assertFalse(report['internal'])
-    self.assertEqual(0, len(report['report']['rows']))
-    self.assertEqual('external', report['name'])
-    self.assertFalse(report['editable'])
-    self.assertEqual([testing_common.EXTERNAL_USER.email()], report['owners'])
-
-  def testGetReport_Static(self):
-    self.SetCurrentUser(testing_common.EXTERNAL_USER.email())
-    report = report_template.GetReport(584630894, ['latest'])
-    self.assertFalse(report['internal'])
-    self.assertEqual('http://exter.nal', report['report']['url'])
-    self.assertEqual('Test:External', report['name'])
-    self.assertFalse(report['editable'])
-    self.assertNotIn('owners', report)
 
 
 if __name__ == '__main__':

@@ -167,6 +167,3 @@ The bugs API returns the following JSON about the bug:
     Optionally set `id` to a template id as returned by `/api/report/names` in
     order to modify an existing template.
     Returns the full new list of report templates `{name, id, modified}`.
-  * `/api/report/generate`: Generates reports.
-    Set `id` to a template id as returned by `/api/report/names`.
-    Set `revisions` to a comma-separated list of point id numbers or `latest`.
