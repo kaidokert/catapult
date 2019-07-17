@@ -4,7 +4,14 @@
 */
 'use strict';
 
+import MarkdownIt from 'markdown-it';
 import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
+
+const MARKDOWN_IT = new MarkdownIt('default', {});
+
+export function renderMarkdown(md) {
+  return MARKDOWN_IT.render(md);
+}
 
 let isDebugForTesting;
 export function isDebug() {

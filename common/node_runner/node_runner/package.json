@@ -15,6 +15,7 @@
   "gypfile": false,
   "private": true,
   "dependencies": {
+    "markdown-it": "^8.4.0",
     "dot-prop-immutable": "1.5.0",
     "@chopsui/result-channel": "0.1.0",
     "@chopsui/batch-iterator": "0.1.0",

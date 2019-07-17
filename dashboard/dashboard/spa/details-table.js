@@ -11,6 +11,7 @@ import {BisectDialog} from './bisect-dialog.js';
 import {ChartBase} from './chart-base.js';
 import {ChartTimeseries} from './chart-timeseries.js';
 import {DetailsFetcher} from './details-fetcher.js';
+import {EditNote} from './edit-note.js';
 import {ElementBase, STORE} from './element-base.js';
 import {NudgeAlert} from './nudge-alert.js';
 import {TimeseriesMerger} from './timeseries-merger.js';
@@ -39,6 +40,7 @@ export class DetailsTable extends ElementBase {
 
   static get properties() {
     return {
+      userEmail: String,
       statePath: String,
       isLoading: Boolean,
       colorByLine: Array,
@@ -276,10 +278,93 @@ export class DetailsTable extends ElementBase {
 
             ${!body.bisectCells.length ? '' : this.renderBisectRow_(
       body, bodyIndex)}
+
+            ${this.renderNotesRow_(bodyIndex)}
           </tbody>
         `)}
       </table>
     `;
+  }
+
+  renderNotesRow_(bodyIndex) {
+    const body = this.bodies[bodyIndex];
+    if (body.lineDescriptor.buildType === 'ref') return '';
+    if (!this.userEmail && !body.noteCells.filter(cell =>
+      cell.notes.filter(note => note).length).length) {
+      return '';
+    }
+
+    return html`
+      <tr>
+        <td>Notes</td>
+        ${body.noteCells.map((cell, cellIndex) => html`
+          <td>
+            ${this.renderNoteCell_(cell, bodyIndex, cellIndex)}
+          </td>
+        `)}
+      </tr>
+    `;
+  }
+
+  renderNoteCell_(cell, bodyIndex, cellIndex) {
+    const createPath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', cellIndex, 'create',
+    ].join('.');
+    const renderNote = (note, noteIndex) =>
+      this.renderNote_(note, bodyIndex, cellIndex, noteIndex);
+    const onSubmit = (event) => this.onNoteCreate_(event, bodyIndex, cellIndex);
+    return html`
+      ${cell.notes.map(renderNote)}
+      <edit-note .statePath="${createPath}" @submit="${onSubmit}">
+      </edit-note>
+    `;
+  }
+
+  renderNote_(note, bodyIndex, cellIndex, noteIndex) {
+    const editPath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', cellIndex, 'notes',
+      noteIndex,
+    ].join('.');
+    const onSubmit = (event) =>
+      this.onNoteEdit_(event, bodyIndex, cellIndex, noteIndex);
+    return html`
+      <edit-note .statePath="${editPath}" @submit="${onSubmit}">
+      </edit-note>
+    `;
+  }
+
+  onNoteCreate_(event, bodyIndex, cellIndex) {
+    const cellPath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', cellIndex,
+    ].join('.');
+    const cell = get(STORE.getState(), cellPath);
+
+    if (!cell || this.isLoading) {
+      this.debounce('load', () => {
+        DetailsTable.load(this.statePath);
+      });
+      return;
+    }
+
+    const notes = [...cell.notes, event.detail.note];
+    STORE.dispatch(UPDATE(cellPath, {notes}));
+  }
+
+  onNoteEdit_(event, bodyIndex, cellIndex, noteIndex) {
+    const notePath = [
+      this.statePath, 'bodies', bodyIndex, 'noteCells', cellIndex, 'notes',
+      noteIndex,
+    ].join('.');
+    const cell = get(STORE.getState(), notePath);
+
+    if (!cell || this.isLoading) {
+      this.debounce('load', () => {
+        DetailsTable.load(this.statePath);
+      });
+      return;
+    }
+
+    STORE.dispatch(UPDATE(notePath, event.detail.note));
   }
 
   stateChanged(rootState) {
@@ -288,6 +373,7 @@ export class DetailsTable extends ElementBase {
     const oldLineDescriptors = this.lineDescriptors;
     const oldRevisionRanges = this.revisionRanges;
 
+    this.userEmail = rootState.userEmail;
     Object.assign(this, get(rootState, this.statePath));
 
     if (this.lineDescriptors !== oldLineDescriptors ||
@@ -319,7 +405,7 @@ export class DetailsTable extends ElementBase {
         state.lineDescriptors,
         state.minRevision, state.maxRevision,
         state.revisionRanges);
-    for await (const {timeseriesesByLine, errors} of fetcher) {
+    for await (const {timeseriesesByLine, notesByLine, errors} of fetcher) {
       state = get(STORE.getState(), statePath);
       if (!state || state.started !== started) return;
 
@@ -327,6 +413,8 @@ export class DetailsTable extends ElementBase {
         type: DetailsTable.reducers.receiveData.name,
         statePath,
         timeseriesesByLine,
+        notesByLine,
+        errors,
       });
       await DetailsTable.generateTicks(statePath);
     }
@@ -507,7 +595,7 @@ export class DetailsTable extends ElementBase {
 
   // Merge timeserieses and format the detailed data as links and scalars.
   static buildCell(
-      lineDescriptor, timeserieses, range, revisionInfo,
+      lineDescriptor, timeserieses, notes, range, revisionInfo, userEmail,
       minRevision, maxRevision,
       masterWhitelist, suiteBlacklist) {
     if (!timeserieses) return {};
@@ -526,8 +614,42 @@ export class DetailsTable extends ElementBase {
         lineDescriptor, alerts, minRevision, maxRevision);
     const histogram = cell.histogram;
     const diagnostics = cell.diagnostics;
+    const noteCell = DetailsTable.buildCellNotes(
+        lineDescriptor, reference, cell, notes, userEmail);
 
-    return {scalars, links, alerts, bisectCell, histogram, diagnostics};
+    return {
+      scalars, links, alerts, bisectCell, histogram, diagnostics, noteCell,
+    };
+  }
+
+  static buildCellNotes(lineDescriptor, reference, cell, notes, userEmail) {
+    if (lineDescriptor.buildType === 'ref') return undefined;
+
+    const noteCell = {
+      notes: [],
+    };
+    for (const timeseries of notes) {
+      for (let note of timeseries) {
+        if (note.author === userEmail) {
+          note = EditNote.buildState(note);
+        }
+        noteCell.notes.push(note);
+      }
+    }
+    noteCell.notes.sort((a, b) => a.modified - b.modified);
+
+    if (userEmail) {
+      noteCell.create = EditNote.buildState({
+        suite: lineDescriptor.suites.length === 1 ? lineDescriptor.suites[0] :
+          '',
+        measurement: lineDescriptor.measurement,
+        bot: lineDescriptor.bots.length === 1 ? lineDescriptor.bots[0] : '',
+        case: lineDescriptor.cases.length === 1 ? lineDescriptor.cases[0] : '',
+        minRevision: reference.revision + 1,
+        maxRevision: cell.revision,
+      });
+    }
+    return noteCell;
   }
 
   // Return an object containing flags indicating whether to show parts of
@@ -801,10 +923,24 @@ function buildBisectMessage(
   return undefined;
 }
 
+function findNotesForLine(notesByLine, target) {
+  for (const {lineDescriptor, timeseriesesByRange} of notesByLine) {
+    if (lineDescriptor === target) return timeseriesesByRange;
+  }
+  return [];
+}
+
+function findNotesForRange(notesByRange, target) {
+  for (const {range, timeserieses} of notesByRange) {
+    if (range === target) return timeserieses;
+  }
+  return [];
+}
+
 // Build a table body {descriptorParts, scalarRows, linkRows} to display the
 // detailed data in timeseriesesByRange.
 function buildBody(
-    {lineDescriptor, timeseriesesByRange},
+    {lineDescriptor, timeseriesesByRange}, notesByRange,
     descriptorFlags, revisionInfo, userEmail,
     minRevision, maxRevision,
     masterWhitelist, suiteBlacklist) {
@@ -822,12 +958,14 @@ function buildBody(
   const alertCells = new Array(columnCount);
   const bisectCells = new Array(columnCount);
   const diagnosticsCells = new Array(columnCount);
-
   const histograms = new Array(columnCount);
+  const noteCells = new Array(columnCount);
+
   for (const [columnIndex, {range, timeserieses}] of enumerate(
       timeseriesesByRange)) {
+    const notes = findNotesForRange(notesByRange, range);
     const cell = DetailsTable.buildCell(
-        lineDescriptor, timeserieses, range, revisionInfo,
+        lineDescriptor, timeserieses, notes, range, revisionInfo, userEmail,
         minRevision, maxRevision,
         masterWhitelist, suiteBlacklist);
     for (const [rowLabel, scalar] of cell.scalars || []) {
@@ -840,6 +978,7 @@ function buildBody(
     bisectCells[columnIndex] = cell.bisectCell;
     diagnosticsCells[columnIndex] = cell.diagnostics;
     histograms[columnIndex] = cell.histogram;
+    noteCells[columnIndex] = cell.noteCell;
   }
 
   const scalarRows = collectRowsByLabel(scalarRowsByLabel);
@@ -855,10 +994,12 @@ function buildBody(
     bisectMessage,
     descriptor,
     descriptorParts,
+    lineDescriptor,
     linkRows,
     scalarRows,
     diagnosticsCells,
     histogramCells,
+    noteCells,
   };
 }
 
@@ -873,13 +1014,17 @@ DetailsTable.reducers = {
     };
   },
 
-  receiveData: (state, {timeseriesesByLine}, rootState) => {
-    const descriptorFlags = DetailsTable.descriptorFlags(
-        state.lineDescriptors);
+  receiveData: (
+      state, {timeseriesesByLine, notesByLine, errors}, rootState) => {
+    // TODO errors
+
+    const descriptorFlags = DetailsTable.descriptorFlags(state.lineDescriptors);
     const bodies = [];
+
     for (const timeserieses of timeseriesesByLine) {
+      const notes = findNotesForLine(notesByLine, timeserieses.lineDescriptor);
       const body = buildBody(
-          timeserieses,
+          timeserieses, notes,
           descriptorFlags, rootState.revisionInfo, rootState.userEmail,
           state.minRevision, state.maxRevision,
           rootState.bisectMasterWhitelist, rootState.bisectSuiteBlacklist);
@@ -888,6 +1033,7 @@ DetailsTable.reducers = {
       }
       bodies.push(body);
     }
+
     const commonLinkRows = DetailsTable.extractCommonLinkRows(bodies);
     return {...state, commonLinkRows, bodies};
   },

@@ -32,6 +32,7 @@ _INTERNAL_ONLY_KINDS = [
     'Histogram',
     'SparseDiagnostic',
     'ReportTemplate',
+    'UserNote',
 ]
 
 # Permissions namespaces.
