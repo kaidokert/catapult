@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e45aa828_dc0219e2",
+        "filename": "dashboard/dashboard/models/report_template.py",
+        "patchSetId": 52
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-17T19:01:09Z",
+      "side": 1,
+      "message": "Isn\u0027t it utils.IsInternalUser()?",
+      "range": {
+        "startLine": 34,
+        "startChar": 44,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "17c0eab31b326d6ccf76826b3c82a82bb08e5d94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a57c2b4d_d88e9f2f",
+        "filename": "dashboard/dashboard/models/report_template_test.py",
+        "patchSetId": 52
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-17T19:01:09Z",
+      "side": 1,
+      "message": "I feel like there\u0027s a gap in the testing if the utils.IsInternalUser: thing got through",
+      "range": {
+        "startLine": 34,
+        "startChar": 6,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "17c0eab31b326d6ccf76826b3c82a82bb08e5d94",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
