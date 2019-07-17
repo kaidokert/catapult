@@ -9,6 +9,7 @@
 # that might not be possible.
 
 import fnmatch
+import itertools
 import re
 
 from collections import OrderedDict
@@ -24,10 +25,12 @@ _EXPECTATION_MAP = {
     'skip': ResultType.Skip
 }
 
+
 def _group_to_string(group):
     msg = ', '.join(group)
     k = msg.rfind(', ')
     return msg[:k] + ' and ' + msg[k+2:] if k != -1 else msg
+
 
 class ParseError(Exception):
 
@@ -269,12 +272,16 @@ class TestExpectations(object):
     def set_tags(self, tags):
         self.tags = [tag.lower() for tag in tags]
 
-    def parse_tagged_list(self, raw_data):
+    def parse_tagged_list(self, raw_data, file_name):
+        assert not self.individual_exps and not self.glob_exps, (
+            'Currently there is no support for multiple test expectations'
+            ' files in a TestExpectations instance')
+        self.file_name = file_name
         try:
             parser = TaggedTestListParser(raw_data)
         except ParseError as e:
             return 1, e.message
-
+        self.tag_sets = parser.tag_sets
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
@@ -346,3 +353,43 @@ class TestExpectations(object):
 
         # Nothing matched, so by default, the test is expected to pass.
         return {ResultType.Pass}, False, set()
+
+    def check_for_broken_expectations(self, test_names):
+        # It returns a list expectations that do not apply to any test names in
+        # the test_names list.
+        #
+        # args:
+        # test_names: list of test names that are used to find test expectations
+        # that do not apply to any of test names in the list.
+        trie = {}
+        for test in test_names:
+            _trie = trie.setdefault(test[0], {})
+            for l in test[1:]:
+                _trie = _trie.setdefault(l, {})
+            _trie.setdefault('$', {})
+
+        broken_expectations = []
+
+        def _get_broken_expectations(patterns_to_exps):
+            exps_dont_apply = []
+            for pattern, exps in patterns_to_exps.items():
+                _trie = trie
+                is_glob = False
+                broken_exp = False
+                for l in pattern:
+                    if l == '*':
+                        is_glob = True
+                        break
+                    if l not in _trie:
+                        exps_dont_apply.extend(exps)
+                        broken_exp = True
+                        break
+                    _trie = _trie[l]
+                if not broken_exp and not is_glob and '$' not in _trie:
+                    exps_dont_apply.extend(exps)
+            return exps_dont_apply
+
+        broken_expectations.extend(_get_broken_expectations(self.glob_exps))
+        broken_expectations.extend(
+            _get_broken_expectations(self.individual_exps))
+        return broken_expectations
