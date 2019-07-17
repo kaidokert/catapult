@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9a82bda_5d5a1e84",
+        "filename": "devil/devil/android/tools/script_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-07-17T23:24:26Z",
+      "side": 1,
+      "message": "I left this one untouched since I\u0027m not sure how this differs from HealthyDevices() (and maybe it\u0027s easier to recommend dependents use that method instead).",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 69
+      },
+      "revId": "24f7b691f8bd459bc14a195b17788922c936725a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
