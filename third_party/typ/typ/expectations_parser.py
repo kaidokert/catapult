@@ -9,6 +9,7 @@
 # that might not be possible.
 
 import fnmatch
+import itertools
 import re
 
 from collections import OrderedDict
@@ -24,10 +25,12 @@ _EXPECTATION_MAP = {
     'skip': ResultType.Skip
 }
 
+
 def _group_to_string(group):
     msg = ', '.join(group)
     k = msg.rfind(', ')
     return msg[:k] + ' and ' + msg[k+2:] if k != -1 else msg
+
 
 class ParseError(Exception):
 
@@ -269,12 +272,16 @@ class TestExpectations(object):
     def set_tags(self, tags):
         self.tags = [tag.lower() for tag in tags]
 
-    def parse_tagged_list(self, raw_data):
+    def parse_tagged_list(self, raw_data, file_name):
+        assert not self.individual_exps and not self.glob_exps, (
+            'Currently there is no support for multiple test expectations'
+            ' files in a TestExpectations instance')
+        self.file_name = file_name
         try:
             parser = TaggedTestListParser(raw_data)
         except ParseError as e:
             return 1, e.message
-
+        self.tag_sets = parser.tag_sets
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
@@ -346,3 +353,118 @@ class TestExpectations(object):
 
         # Nothing matched, so by default, the test is expected to pass.
         return {ResultType.Pass}, False, set()
+
+    @staticmethod
+    def _conflict_leaks_regression(possible_collision, exp):
+        reason_template = (
+            'Pattern \'{0}\' on line {1} has the %s expectation however '
+            'the expectation on line {2} has the Pass expectation').format(
+                possible_collision.test, possible_collision.lineno,
+                exp.lineno)
+        causes_regression = not(
+            ResultType.Failure in exp.results or ResultType.Skip in exp.results)
+        if (ResultType.Skip in possible_collision.results
+            and causes_regression):
+            return reason_template % 'Skip'
+        if (ResultType.Failure in possible_collision.results and
+            causes_regression):
+            return reason_template % 'Failure'
+        return ''
+
+    def tag_sets_conflict(self, s1, s2):
+        # Tag sets s1 and s2 have no conflict when there exists a tag in s1
+        # and tag in s2 that are from the same tag declaration set and are not
+        # equal to each other. This function may be overridden to add extra
+        # constraints.
+        for tag_set in self.tag_sets:
+            for t1, t2 in itertools.product(s1, s2):
+                if t1 in tag_set and t2 in tag_set and t1 != t2:
+                    return False
+        return True
+
+    def check_test_expectations_patterns_for_conflicts(self):
+        # This function makes sure that any test expectations that have the same
+        # pattern do not conflict with each other. Test expectations conflict
+        # if their tag sets do not have conflicting tags. Tags conflict when
+        # they belong to the same tag declaration set. For example an
+        # expectations file may have a tag declaration set for operating systems
+        # which might look like [ win linux]. A test expectation that has the
+        # linux tag will not conflict with an expectation that has the win tag.
+        error_msg = ''
+        for pattern, exps in self.individual_exps.items():
+            conflicts_exist = False
+            for e1, e2 in itertools.combinations(exps, 2):
+                if self.tag_sets_conflict(e1.tags, e2.tags):
+                    if not conflicts_exist:
+                        error_msg += (
+                            '\n\nFound conflicts for test %s in %s:\n' %
+                            (pattern, self.file_name))
+                    conflicts_exist = True
+                    error_msg += ('  line %d conflicts with line %d\n' %
+                                  (e1.lineno, e2.lineno))
+        return error_msg
+
+    def check_test_expectations_globs_for_conflicts(self):
+        # This function looks for conflicts between test expectations with
+        # patterns that match with test expectation patterns that are globs.
+        # A test expectation collides with another if its pattern matches with
+        # another's glob and if they do not have conflicting tags. The conflict
+        # must also leak a unexpected regression.
+        #
+        # For example:
+        #     [ win ] b1* [ Failure ]
+        #     ...
+        #     [ win intel ] b1/s1 [ RetryOnFailure ]
+        #
+        # The above two expectations have a conflict. Since the b1/s1 matches
+        # a test name exactly it trumps the first expectation. This could an
+        # an unexpected regression if a developer is not aware of the second
+        # expectation.
+        error_msg = ''
+        trie = {}
+        globs_to_expectations = defaultdict(list)
+
+        for glob in self.glob_exps.keys():
+            _trie = trie.setdefault(glob[0], {})
+            for l in glob[1:]:
+                _trie = _trie.setdefault(l, {})
+
+        def _map_exps_to_globs(patterns_to_exps):
+            for pattern, exps in patterns_to_exps.items():
+                _trie = trie
+                current_pattern = ''
+                for l in pattern:
+                    if '*' in _trie:
+                        globs_to_expectations[current_pattern + '*'].extend(
+                            exps)
+                    current_pattern += l
+                    if l in _trie:
+                        _trie = _trie[l]
+                    else:
+                        break
+                if '*' in _trie:
+                    globs_to_expectations[current_pattern + '*'].extend(exps)
+
+        _map_exps_to_globs(self.glob_exps)
+        _map_exps_to_globs(self.individual_exps)
+
+        for glob, expectations in globs_to_expectations.items():
+            conflicts_exist = False
+            globs_to_match = [e for e in expectations if e.test == glob]
+            matched_to_globs = [e for e in expectations if e.test != glob]
+            for match in matched_to_globs:
+                for possible_collision in globs_to_match:
+                    reason = self._conflict_leaks_regression(
+                         possible_collision, match)
+                    if (reason and
+                        self.tag_sets_conflict(
+                            possible_collision.tags, match.tags)):
+                        if not conflicts_exist:
+                            error_msg += (
+                                '\n\nFound conflicts for pattern %s in %s:\n' %
+                                (glob, self.file_name))
+                        conflicts_found = True
+                        error_msg += ('  line %d conflicts with line %d: %s\n' %
+                                      (possible_collision.lineno,
+                                       match.lineno, reason))
+        return error_msg
