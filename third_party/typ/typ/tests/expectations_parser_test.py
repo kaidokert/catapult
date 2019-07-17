@@ -344,8 +344,8 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '[ linux ] b1/s2 [ RetryOnFailure ]\n'
             'crbug.com/24341 [ Linux ] b1/s3 [ Failure ]\n')
         test_expectations = expectations_parser.TestExpectations(['Linux'])
-        self.assertEqual(test_expectations.parse_tagged_list(raw_data),
-                         (0,None))
+        self.assertEqual(
+            test_expectations.parse_tagged_list(raw_data, 'test.txt'), (0,None))
         self.assertEqual(test_expectations.expectations_for('b1/s1'),
                          (set([ResultType.Failure]), True, set(['crbug.com/23456'])))
         self.assertEqual(test_expectations.expectations_for('b1/s2'),
@@ -361,8 +361,9 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '# results: [ RetryOnFailure ]\n'
             'crbug.com/23456 [ Linux ] b1/* [ RetryOnFailure ]\n')
         test_expectations = expectations_parser.TestExpectations(['Linux'])
-        self.assertEqual(test_expectations.parse_tagged_list(raw_data),
-                         (0, None))
+        self.assertEqual(
+            test_expectations.parse_tagged_list(raw_data, 'test.txt'),
+            (0, None))
         self.assertEqual(test_expectations.expectations_for('b1/s1'),
                          (set([ResultType.Pass]), True, set(['crbug.com/23456'])))
 
@@ -373,3 +374,35 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'crbug.com/23456 [ Linux ] b1/*/c [ RetryOnFailure ]\n')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
+
+    def testExpectationPatternIsBroken(self):
+        test_expectations = '# results: [ Failure ]\na/b [ Failure ]'
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations, 'test.txt')
+        broken_expectations = expectations.check_for_broken_expectations(
+            ['a/b/c'])
+        self.assertEqual(broken_expectations[0].test, 'a/b')
+
+    def testExpectationPatternIsNotBroken(self):
+        test_expectations = '# results: [ Failure ]\na/b/d [ Failure ]'
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations, 'test.txt')
+        broken_expectations = expectations.check_for_broken_expectations(
+            ['a/b/c'])
+        self.assertEqual(broken_expectations[0].test, 'a/b/d')
+
+    def testExpectationWithGlobIsBroken(self):
+        test_expectations = '# results: [ Failure ]\na/b/d* [ Failure ]'
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations, 'test.txt')
+        broken_expectations = expectations.check_for_broken_expectations(
+            ['a/b/c/d', 'a/b', 'a/b/c'])
+        self.assertEqual(broken_expectations[0].test, 'a/b/d*')
+
+    def testExpectationWithGlobIsNotBroken(self):
+        test_expectations = '# results: [ Failure ]\na/b* [ Failure ]'
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations, 'test.txt')
+        broken_expectations = expectations.check_for_broken_expectations(
+            ['a/b/c'])
+        self.assertFalse(broken_expectations)
