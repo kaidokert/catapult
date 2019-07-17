@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c7dd5f9_ecfb1681",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-17T23:49:10Z",
+      "side": 1,
+      "message": "So, there are two interesting questions that this specific example raises.\n\nFirst, whether RetryOnFailure should be considered \"special\" and not conflicting with other expectations, i.e., would you consider:\n\n    [ win ] FooTest.TestBar [ RetryOnFailure ]\n    [ win ] FooTest.TestBar [ Failure ]\n\nIs that illegal and \n\n    [ win ] FooTest.TestBar [ Failure RetryOnFailure ]\n\nokay?\n\n(If RetryOnFailure is confusing here, consider instead the \"Slow\" modifier in the web_tests). How would we distinguish between a tag that conflicts and a tag that doesn\u0027t?\n\nSecond, in point of fact this example *isn\u0027t* a conflict, in the normal sense, because a more specific test is supposed to be able to coexist with a less specific one. So, I\u0027m not sure if you\u0027re trying to prevent this case (which is normally fine, so I\u0027m not sure why you\u0027d want that), or if you really want to prevent just:\n\n    [ win ] FooTest.TestBar [ Failure ]\n    [ win ] FooTest.TestBar [ Pass ]\n\nor\n\n    [ Win ] FooTest.TestBar [ Failure ]\n    [ Debug ] FooTestTestBar [ Skip ]\n\non a [ Win Debug] configuration.",
+      "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
