@@ -10,6 +10,16 @@ import sys
 from tools import cov
 
 
+# Taken from https://stackoverflow.com/a/377028, but simplified to not handle
+# being given a path since we only need it to find Python.
+def find_executable(executable):
+    for path in os.environ['PATH'].split(os.pathsep):
+        f = os.path.join(path, executable)
+        if os.path.isfile(f) and os.access(f, os.X_OK):
+            return f
+    return None
+
+
 class Runner(object):
 
     def __init__(self):
@@ -80,19 +90,36 @@ class Runner(object):
         self.call('pylint --rcfile=pylintrc */*.py */*/*.py', shell=True)
 
     def run_tests(self, _args):
+        # Typ should be compatible with both Python 2 and 3, so run the tests
+        # with both versions if available.
+        v = sys.version_info.major
+        print('Running tests with provided Python (Python %d)' % v)
+        self._run_tests_one_version(self._python)
+
+        other_version = 3 if v == 2 else 3
+        other_executable = find_executable('python%d' % other_version)
+        if other_executable:
+            print('Running tests with Python %d (%s)' % (
+                    other_version, other_executable))
+            self._run_tests_one_version(other_executable)
+        else:
+            print('Could not find Python %d version to run tests with. Please '
+                  'do so manually before submitting.' % other_version)
+
+    def _run_tests_one_version(self, executable):
         # Test running the typ module directly if it is in sys.path.
         self.call([
-            self._python, '-m', 'typ',
+            executable, '-m', 'typ',
             'typ.tests.main_test.TestMain.test_basic',
         ])
 
         # Testing running the runner directly if nothing is in sys.path.
         home_dir = os.environ['HOME']
-        self.call([self._python, self._path_to_runner,
+        self.call([executable, self._path_to_runner,
                    'typ.tests.main_test.TestMain.test_basic'], cwd=home_dir)
 
         # Run the remaining tests.
-        self.call([self._python, self._path_to_runner])
+        self.call([executable, self._path_to_runner])
 
 
 if __name__ == '__main__':

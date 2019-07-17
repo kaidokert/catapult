@@ -101,6 +101,10 @@ class MainTestCase(TestCase):
             result = self.call(host, prog + argv, stdin=stdin, env=env)
 
             actual_ret, actual_out, actual_err = result
+            if isinstance(actual_out, bytes):
+                actual_out = actual_out.decode('utf-8')
+            if isinstance(actual_err, bytes):
+                actual_err = actual_err.decode('utf-8')
             actual_files = self._read_files(host, tmpdir)
         finally:
             host.chdir(orig_wd)
@@ -109,7 +113,6 @@ class MainTestCase(TestCase):
 
         if universal_newlines:
             actual_out = convert_newlines(actual_out)
-        if universal_newlines:
             actual_err = convert_newlines(actual_err)
 
         if ret is not None:
