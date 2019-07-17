@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6ecdbd2_0e05a1ea",
+        "filename": "dashboard/dashboard/api/notes.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-17T18:48:56Z",
+      "side": 1,
+      "message": "If a test path is internal only, should we also restrict people from getting the notes attached to it?",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "41736b247fe5ce77ac4248261970c61543e11f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8447a28c_59f33ab0",
+        "filename": "dashboard/dashboard/api/notes.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-17T18:48:56Z",
+      "side": 1,
+      "message": "Should we split this endpoint into like 2 to avoid this setting a field transforms it from a get to a set?\n\nie. /api/notes and /api/notes/edit?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 10
+      },
+      "revId": "41736b247fe5ce77ac4248261970c61543e11f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "967f6edd_cb41cc20",
+        "filename": "dashboard/dashboard/api/notes.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-17T18:48:56Z",
+      "side": 1,
+      "message": "Why both min/max revision?",
+      "range": {
+        "startLine": 28,
+        "startChar": 37,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "41736b247fe5ce77ac4248261970c61543e11f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccbd0d92_94ba9f53",
+        "filename": "dashboard/dashboard/models/user_note.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-17T18:48:56Z",
+      "side": 1,
+      "message": "Can you put the parts that make up the test path together, with an explanation. Especially since the terminology differs from existing TestMetadata.\n\nAlso, why are we using different terms here?",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "41736b247fe5ce77ac4248261970c61543e11f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
