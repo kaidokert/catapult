@@ -344,8 +344,8 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '[ linux ] b1/s2 [ RetryOnFailure ]\n'
             'crbug.com/24341 [ Linux ] b1/s3 [ Failure ]\n')
         test_expectations = expectations_parser.TestExpectations(['Linux'])
-        self.assertEqual(test_expectations.parse_tagged_list(raw_data),
-                         (0,None))
+        self.assertEqual(
+            test_expectations.parse_tagged_list(raw_data, 'test.txt'), (0,''))
         self.assertEqual(test_expectations.expectations_for('b1/s1'),
                          (set([ResultType.Failure]), True, set(['crbug.com/23456'])))
         self.assertEqual(test_expectations.expectations_for('b1/s2'),
@@ -361,8 +361,9 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             '# results: [ RetryOnFailure ]\n'
             'crbug.com/23456 [ Linux ] b1/* [ RetryOnFailure ]\n')
         test_expectations = expectations_parser.TestExpectations(['Linux'])
-        self.assertEqual(test_expectations.parse_tagged_list(raw_data),
-                         (0, None))
+        self.assertEqual(
+            test_expectations.parse_tagged_list(raw_data, 'test.txt'),
+            (0, ''))
         self.assertEqual(test_expectations.expectations_for('b1/s1'),
                          (set([ResultType.Pass]), True, set(['crbug.com/23456'])))
 
@@ -373,3 +374,123 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'crbug.com/23456 [ Linux ] b1/*/c [ RetryOnFailure ]\n')
         with self.assertRaises(expectations_parser.ParseError):
             expectations_parser.TaggedTestListParser(raw_data)
+
+    def testUseIncorrectvalueForConflictsAllowedDescriptor(self):
+        test_expectations = '''# tags: [ mac win linux ]
+        # tags: [ intel amd nvidia ]
+        # tags: [ debug release ]
+        # results: [ Failure Skip ]
+        # conflicts_allowed: Unknown
+        [ intel debug mac ] a/b/c/* [ Failure ]
+        [ intel debug ] a/b/c/d [ Failure ]
+        [ intel debug ] a/b/c/d [ Skip ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, msg = expectations.parse_tagged_list(test_expectations, 'test.txt')
+        self.assertEqual("5: Unrecognized value 'unknown' "
+                         "given for conflicts_allowed  descriptor", msg)
+
+    def testCollisionInTestExpectation(self):
+        expectations = expectations_parser.TestExpectations()
+        _, errors = expectations.parse_tagged_list(
+            '# tags: [ mac win linux ]\n'
+            '# tags: [ intel amd nvidia ]\n'
+            '# tags: [ debug release ]\n'
+            '# conflicts_allowed: False\n'
+            '# results: [ Failure Skip RetryOnFailure ]\n'
+            '[ intel win ] a/b/c/d [ Failure ]\n'
+            '[ intel win debug ] a/b/c/d [ Skip ]\n'
+            '[ intel  ] a/b/c/d [ Failure ]\n'
+            '[ amd mac ] a/b [ RetryOnFailure ]\n'
+            '[ mac ] a/b [ Skip ]\n'
+            '[ amd mac ] a/b/c [ Failure ]\n'
+            '[ intel mac ] a/b/c [ Failure ]\n', 'test.txt')
+        self.assertIn("Found conflicts for test a/b/c/d in test.txt:", errors)
+        self.assertIn('line 6 conflicts with line 7', errors)
+        self.assertIn('line 6 conflicts with line 8', errors)
+        self.assertIn('line 7 conflicts with line 8', errors)
+        self.assertIn("Found conflicts for test a/b in test.txt:", errors)
+        self.assertIn('line 9 conflicts with line 10', errors)
+        self.assertNotIn("Found conflicts for test a/b/c in test.txt:", errors)
+
+    def testNoCollisionInTestExpectations(self):
+      test_expectations = '''# tags: [ mac win linux ]
+      # tags: [ intel amd nvidia ]
+      # tags: [ debug release ]
+      # results: [ Failure ]
+      # conflicts_allowed: False
+      [ intel debug ] a/b/c/d [ Failure ]
+      [ nvidia debug ] a/b/c/d [ Failure ]
+      '''
+      expectations = expectations_parser.TestExpectations()
+      _, errors = expectations.parse_tagged_list(test_expectations, 'test.txt')
+      self.assertFalse(errors)
+
+    def testCollisionWithGlobExpectationWithFailureExpectation(self):
+        test_expectations = '''# tags: [ mac win linux ]
+        # tags: [ intel amd nvidia ]
+        # tags: [ debug release ]
+        # results: [ Failure RetryOnFailure ]
+        # conflicts_allowed: false
+        [ intel debug ] a/b/c/d* [ Failure ]
+        [ intel debug mac ] a/b/c/d [ RetryOnFailure ]
+        [ intel debug mac ] a/b/c/d/e [ Failure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, errors = expectations.parse_tagged_list(test_expectations, 'test.txt')
+        self.assertIn('Found conflicts for pattern a/b/c/d* in test.txt:',
+            errors)
+        self.assertIn(("line 6 conflicts with line 7: Pattern 'a/b/c/d*' on "
+            "line 6 has the Failure expectation however the expectation"
+            " on line 7 has the Pass expectation"),
+            errors)
+        self.assertNotIn('line 6 conflicts with line 8',
+            errors)
+
+    def testNoCollisionWithGlobExpectationWithFailureExpectation(self):
+        test_expectations = '''# tags: [ mac win linux ]
+        # tags: [ intel amd nvidia ]
+        # tags: [ debug release ]
+        # results: [ Failure Skip ]
+        # conflicts_allowed: False
+        [ intel debug mac ] a/b/c/* [ Failure ]
+        [ intel debug ] a/b/c/d [ Failure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, errors = expectations.parse_tagged_list(
+            test_expectations, 'test.txt')
+        self.assertFalse(errors)
+
+    def testCollisionWithGlobExpectationWithSkipExpectation(self):
+        test_expectations = '''# tags: [ mac win linux ]
+        # tags: [ intel amd nvidia ]
+        # tags: [ debug release ]
+        # results: [ Skip Failure RetryOnFailure ]
+        [ intel debug ] a/b/c/d* [ Skip ]
+        [ intel debug mac ] a/b/c/d [ Failure ]
+        [ intel debug mac ] a/b/c/d/e [ RetryOnFailure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations, 'test.txt')
+        errors = expectations.check_test_expectations_globs_for_conflicts()
+        self.assertIn('Found conflicts for pattern a/b/c/d* in test.txt:',
+                      errors)
+        self.assertNotIn('line 5 conflicts with line 6', errors)
+        self.assertIn('line 5 conflicts with line 7', errors)
+        self.assertIn(("line 5 conflicts with line 7: Pattern 'a/b/c/d*' on"
+                       " line 5 has the Skip expectation however the "
+                       "expectation on line 7 has the Pass expectation"),
+                       errors)
+
+    def testNoCollisionWithGlobExpectationWithSkipExpectation(self):
+        test_expectations = '''# tags: [ mac win linux ]
+        # tags: [ intel amd nvidia ]
+        # tags: [ debug release ]
+        # results: [ Skip ]
+        # conflicts_allowed: False
+        [ intel debug mac ] a/b/c/* [ Skip ]
+        [ intel debug ] a/b/c/d [ Skip ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, errors = expectations.parse_tagged_list(test_expectations, 'test.txt')
+        self.assertFalse(errors)
