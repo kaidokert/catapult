@@ -1,7 +1,7 @@
 # Copyright 2013 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
-"""Defines the commands provided by Telemetry: Run, List, Help."""
+"""Defines the commands provided by Telemetry: Run, List."""
 
 import json
 import logging
@@ -152,31 +152,6 @@ def PrintBenchmarkList(
                                    sort_keys=True, separators=(',', ': ')),
 
 
-class Help(command_line.OptparseCommand):
-  """Display help information about a command"""
-
-  usage = '[command]'
-
-  def Run(self, args):
-    if len(args.positional_args) == 1:
-      commands = MatchingCommands(args.positional_args[0])
-      if len(commands) == 1:
-        command = commands[0]
-        parser = command.CreateParser()
-        command.AddCommandLineArgs(parser, None)
-        parser.print_help()
-        return 0
-
-    print >> sys.stderr, ('usage: %s [command] [<options>]' % ScriptName())
-    print >> sys.stderr, 'Available commands are:'
-    for command in ALL_COMMANDS:
-      print >> sys.stderr, '  %-10s %s' % (command.Name(),
-                                           command.Description())
-    print >> sys.stderr, ('"%s help <command>" to see usage information '
-                          'for a specific command.' % ScriptName())
-    return 0
-
-
 class List(command_line.OptparseCommand):
   """Lists the available benchmarks"""
 
@@ -303,15 +278,6 @@ class Run(command_line.OptparseCommand):
     return min(255, b.Run(options))
 
 
-def ScriptName():
-  return os.path.basename(sys.argv[0])
-
-
-def MatchingCommands(string):
-  return [command for command in ALL_COMMANDS
-          if command.Name().startswith(string)]
-
-
 def _FuzzyMatchBenchmarkNames(benchmark_name, benchmark_classes):
   def _Matches(input_string, search_string):
     if search_string.startswith(input_string):
@@ -323,6 +289,3 @@ def _FuzzyMatchBenchmarkNames(benchmark_name, benchmark_classes):
 
   return [
       cls for cls in benchmark_classes if _Matches(benchmark_name, cls.Name())]
-
-
-ALL_COMMANDS = [Help, List, Run]
