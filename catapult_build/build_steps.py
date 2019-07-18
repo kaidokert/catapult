@@ -190,6 +190,8 @@ def main(args=None):
   parser.add_argument('--platform',
                       help='Platform name (linux, mac, or win)')
   parser.add_argument('--output-json', help='Output for buildbot status page')
+  parser.add_argument(
+      '--run_android_tests', default=True, help='Run Android tests')
   args = parser.parse_args(args)
 
   proto_output_path = os.path.join(args.api_path_checkout, 'dashboard',
@@ -234,7 +236,7 @@ def main(args=None):
   ]
 
 
-  if args.platform == 'android':
+  if args.platform == 'android' and args.run_android_tests:
     # On Android, we need to prepare the devices a bit before using them in
     # tests. These steps are not listed as tests above because they aren't
     # tests and because they must precede all tests.
