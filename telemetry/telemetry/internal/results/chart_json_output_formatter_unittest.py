@@ -29,11 +29,10 @@ def _MakeStorySet():
 
 
 def _MakePageTestResults(
-    description='benchmark_description', enabled=True, output_dir=None):
+    description='benchmark_description', output_dir=None):
   return page_test_results.PageTestResults(
       benchmark_name='benchmark_name',
       benchmark_description=description,
-      benchmark_enabled=enabled,
       output_dir=output_dir)
 
 
@@ -59,12 +58,6 @@ class ChartJsonTest(unittest.TestCase):
     d = json.loads(self._output.getvalue())
     self.assertIn('foo', d['charts'])
 
-  def testOutputAndParseDisabled(self):
-    self._formatter.FormatDisabled(_MakePageTestResults(enabled=False))
-    d = json.loads(self._output.getvalue())
-    self.assertEquals(d['benchmark_name'], 'benchmark_name')
-    self.assertFalse(d['enabled'])
-
   def testAsChartDictSerializable(self):
     v0 = scalar.ScalarValue(self._story_set[0], 'foo', 'seconds', 3,
                             improvement_direction=improvement_direction.DOWN)
@@ -85,7 +78,7 @@ class ChartJsonTest(unittest.TestCase):
     self.assertEquals(d['benchmark_metadata']['description'],
                       'benchmark_description')
     self.assertEquals(d['benchmark_metadata']['type'], 'telemetry_benchmark')
-    self.assertTrue(d['enabled'])
+    self.assertFalse(d['enabled'])
 
   def testAsChartDictNoDescription(self):
     d = chart_json_output_formatter.ResultsAsChartDict(
@@ -182,7 +175,6 @@ class ChartJsonTest(unittest.TestCase):
     d = chart_json_output_formatter.ResultsAsChartDict(results)
 
     self.assertIn('bar', d['charts']['foo'])
-    self.assertTrue(d['enabled'])
 
   def testAsChartDictSummaryValueWithoutTraceName(self):
     v0 = list_of_scalar_values.ListOfScalarValues(
@@ -194,7 +186,6 @@ class ChartJsonTest(unittest.TestCase):
     d = chart_json_output_formatter.ResultsAsChartDict(results)
 
     self.assertIn('summary', d['charts']['foo'])
-    self.assertTrue(d['enabled'])
 
   def testAsChartDictWithTracesInArtifacts(self):
     with tempfile_ext.NamedTemporaryDirectory() as tempdir:
@@ -208,7 +199,6 @@ class ChartJsonTest(unittest.TestCase):
 
       self.assertIn('trace', d['charts'])
       self.assertIn('http://www.foo.com/', d['charts']['trace'])
-      self.assertTrue(d['enabled'])
 
   def testAsChartDictValueSmokeTest(self):
     v0 = list_of_scalar_values.ListOfScalarValues(

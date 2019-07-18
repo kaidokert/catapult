@@ -20,6 +20,9 @@ class HtmlOutputFormatter(output_formatter.OutputFormatter):
     self._reset_results = reset_results
 
   def Format(self, page_test_results):
+    if not page_test_results.had_results():
+      return
+
     histograms = page_test_results.AsHistogramDicts()
 
     vulcanize_histograms_viewer.VulcanizeAndRenderHistogramsViewer(
