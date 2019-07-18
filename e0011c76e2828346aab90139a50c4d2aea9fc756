@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "8f2745d0_dd4a5d4d",
+        "filename": "third_party/typ/run",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-18T17:36:57Z",
+      "side": 1,
+      "message": "Removed these changes.",
+      "parentUuid": "d05b8f43_0714d711",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "737a2e9d_9a31bcf9",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -144,6 +162,24 @@
     },
     {
       "key": {
+        "uuid": "dbbb623d_f4a63ebb",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-18T17:36:57Z",
+      "side": 1,
+      "message": "six is included in catapult/third_party, so we should be able to rely on it as typ currently is. I\u0027ll leave it to Dirk to decide whether he wants to take that dependency or not.\n\nIn the meantime, I\u0027ve added a helper to python_2_3_compat for this.",
+      "parentUuid": "e830d37c_f0b29913",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2edc6036_1a8546cf",
         "filename": "third_party/typ/typ/python_2_3_compat.py",
         "patchSetId": 3
@@ -158,6 +194,24 @@
       "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f96595f_49cce703",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-18T17:36:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2edc6036_1a8546cf",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -211,6 +265,24 @@
       "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06a6b3f9_3672785c",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-18T17:36:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "038d0c34_b4c1ab1f",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
