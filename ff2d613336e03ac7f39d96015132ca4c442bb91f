@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "c8fcb605_b80a2e5b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T23:52:37Z",
+      "side": 1,
+      "message": "Instead of overriding the method, maybe I can add a dictionary that maps specific tags like gpu devices tags to generic tags like vendor tags. And use that in the logic in this function to find conflicts. During the presubmit checks I can populate the dictionary before checking for conflicts.",
+      "parentUuid": "0c8b12ed_ad6b36dd",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "739913f5_31f6e429",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 19
@@ -121,6 +139,24 @@
       "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b55b5c19_ebe10fcf",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T23:52:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "739913f5_31f6e429",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
