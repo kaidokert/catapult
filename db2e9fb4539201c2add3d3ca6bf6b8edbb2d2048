@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94fc1ec8_2237979f",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-18T09:01:25Z",
+      "side": 0,
+      "message": "It is used:\nhttps://cs.chromium.org/chromium/src/tools/perf/measurements/dual_metric_measurement.py?rcl\u003dfdd4ca1322934d4db76276d040c44cf7cfad88a9\u0026l\u003d49",
+      "revId": "db2e9fb4539201c2add3d3ca6bf6b8edbb2d2048",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
