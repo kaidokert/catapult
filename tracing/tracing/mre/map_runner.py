@@ -1,12 +1,13 @@
+# Lint as: python2, python3
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 import multiprocessing
 import sys
 
+from tracing.mre import gtest_progress_reporter
 from tracing.mre import map_single_trace
 from tracing.mre import threaded_work_queue
-from tracing.mre import gtest_progress_reporter
 
 AUTO_JOB_COUNT = -1
 
@@ -97,7 +98,7 @@ class MapRunner(object):
 
   def Run(self):
     results_by_trace = self.RunMapper()
-    results = results_by_trace.values()
+    results = list(results_by_trace.values())
 
     for of in self._output_formatters:
       of.Format(results)

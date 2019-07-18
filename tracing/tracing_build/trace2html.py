@@ -1,24 +1,27 @@
+# Lint as: python2, python3
 # Copyright (c) 2014 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
+from __future__ import division
 from __future__ import print_function
 
 import argparse
-import codecs
 import base64
+import codecs
 import gzip
 import io
 import json
 import os
 
-import tracing_project
-
 from py_vulcanize import generate
+import six
+import tracing_project
 
 
 try:
-  StringTypes = basestring
+  StringTypes = six.string_types
 except NameError:
   StringTypes = str
 

@@ -1,15 +1,22 @@
+# Lint as: python2, python3
 # Copyright 2018 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
 import math
 import numbers
 
+import six
+from six.moves import zip
 from tracing.value.diagnostics import diagnostic
 
 
 try:
-  StringTypes = basestring
+  StringTypes = six.string_types
 except NameError:
   StringTypes = str
 
@@ -57,7 +64,7 @@ class Breakdown(diagnostic.Diagnostic):
     return result
 
   def Serialize(self, serializer):
-    keys = self._values.keys()
+    keys = list(self._values.keys())
     keys.sort()
     return [
         serializer.GetOrAllocateId(self.color_scheme),
@@ -106,4 +113,3 @@ class Breakdown(diagnostic.Diagnostic):
 
   def __len__(self):
     return len(self._values)
-

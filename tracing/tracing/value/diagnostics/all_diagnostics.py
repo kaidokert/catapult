@@ -1,3 +1,4 @@
+# Lint as: python2, python3
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -25,7 +26,7 @@ def IsDiagnosticTypename(name):
 
 
 def GetDiagnosticTypenames():
-  return _MODULES_BY_DIAGNOSTIC_NAME.keys()
+  return list(_MODULES_BY_DIAGNOSTIC_NAME.keys())
 
 
 def GetDiagnosticClassForName(name):

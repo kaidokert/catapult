@@ -1,7 +1,10 @@
+# Lint as: python2, python3
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
+from __future__ import division
 from __future__ import print_function
 
 import json
@@ -11,6 +14,7 @@ import random
 import tempfile
 import unittest
 
+from six.moves import range
 from tracing.metrics import compare_samples
 
 

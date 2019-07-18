@@ -1,12 +1,18 @@
+# Lint as: python2, python3
 # Copyright 2017 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
 import copy
 import json
 import math
 import unittest
 
+from six.moves import range
 from tracing.value import histogram
 from tracing.value.diagnostics import date_range
 from tracing.value.diagnostics import diagnostic
@@ -261,7 +267,7 @@ class HistogramUnittest(unittest.TestCase):
     # samples from either end of the range, by treating odd numbers in the
     # beginning and even numbers as negative offsets from the max of the range
     # (10,000).
-    for sample in xrange(0, 400):
+    for sample in range(0, 400):
       hist.AddSample(sample if sample % 2 else 10000 - sample)
 
     d = hist.AsDict()

@@ -1,3 +1,4 @@
+# Lint as: python2, python3
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -91,7 +92,7 @@ def Main(argv):
 
   print('\nEvents histogram for the original trace (count by phase)')
   print('--------------------------------------------------------')
-  for phase, count in sorted(phase_count.items(), key=lambda x: x[1]):
+  for phase, count in sorted(list(phase_count.items()), key=lambda x: x[1]):
     print('%s %d' % (phase, count))
 
   out_path = in_path.split('.json')[0] + '-filtered.json'

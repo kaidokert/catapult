@@ -1,7 +1,11 @@
+# Lint as: python2, python3
 # Copyright 2014 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 import collections
 import gzip
 import json
@@ -11,10 +15,11 @@ import shutil
 import subprocess
 import tempfile
 import time
+import six
 
 
 try:
-  StringTypes = basestring
+  StringTypes = six.string_types
 except NameError:
   StringTypes = str
 
