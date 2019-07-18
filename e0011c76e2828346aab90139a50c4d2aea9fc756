@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2d961dbd_582d4b16",
+        "filename": "third_party/typ/run",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-18T00:35:40Z",
+      "side": 1,
+      "message": "what I\u0027ve done with other projects is explicitly run via the preupload hooks. I think it\u0027s reasonable to require people running `gut cl` to have python2 \u0026 python3 installed. those can be responsible for doing `python2 run_tests`.",
+      "parentUuid": "66c924ce_82a2ad7a",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "737a2e9d_9a31bcf9",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -30,6 +48,41 @@
       "writtenOn": "2019-07-18T00:26:42Z",
       "side": 1,
       "message": "This won\u0027t work in python 2 if reason is a unicode string. You probably don\u0027t want to prevent that. \n\nI think the convention we\u0027re moving to is:\n\n    isinstance(reason, str) or sys.version_info.major \u003d\u003d 2 and isinstance(reason, unicode)\n\n(which is way more awkward, admittedly)\n\nor doing something like we do in host_fake.py to redefine unicode",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25e6850a_a1993912",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-18T00:35:40Z",
+      "side": 1,
+      "message": "pylint won\u0027t like that form I don\u0027t think. can we rely on the six module?",
+      "parentUuid": "737a2e9d_9a31bcf9",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2edc6036_1a8546cf",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-18T00:35:40Z",
+      "side": 1,
+      "message": "bad indent",
       "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
