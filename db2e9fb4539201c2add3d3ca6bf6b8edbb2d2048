@@ -16,6 +16,24 @@
       "revId": "db2e9fb4539201c2add3d3ca6bf6b8edbb2d2048",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52b9b9ff_38fd3e85",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-18T23:11:52Z",
+      "side": 0,
+      "message": "ah darn. In general, it\u0027s bad that dual_metric_benchmark is directly accessing the results object I think since it is in telemetry/internal... I reviewed that code when it got added  :(",
+      "parentUuid": "94fc1ec8_2237979f",
+      "revId": "db2e9fb4539201c2add3d3ca6bf6b8edbb2d2048",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
