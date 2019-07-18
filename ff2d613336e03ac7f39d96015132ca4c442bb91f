@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9b9d91f5_5f4b9f81",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T23:45:17Z",
+      "side": 1,
+      "message": "No, I will remove it.",
+      "parentUuid": "c2616920_c8f0099f",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f42672d7_d988eb01",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 19
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6f8f1baf_3ee87099",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T23:45:17Z",
+      "side": 1,
+      "message": "ty, I will.",
+      "parentUuid": "f42672d7_d988eb01",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "449d04dc_63392f1a",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 19
@@ -47,6 +83,24 @@
       "writtenOn": "2019-07-18T21:41:20Z",
       "side": 1,
       "message": "What do you mean by \"This function may be overridden\"?",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c8b12ed_ad6b36dd",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T23:45:17Z",
+      "side": 1,
+      "message": "Some test runners may have have some other conditions for conflicts between test expectation tag sets. One example are gpu tags in gpu tests. There are vendor tags like nvidia, and device tags like nvidia-0x1cb3. These tags would be considered as equal to each other because in a system configuration that has the nvidia gpu with 0x1cb3 device id, both the nvidia tag and nvidia-0x1cb3 would be in the tag list describing a system and therefore both expectations would apply to a test run. I was planning on overriding this method in the gpu tests presubmit to catch these conflicts.",
+      "parentUuid": "449d04dc_63392f1a",
       "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
