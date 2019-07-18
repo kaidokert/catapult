@@ -69,6 +69,24 @@
       "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a378be39_7edc8297",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T23:59:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "673ea427_9e97cd88",
+      "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
