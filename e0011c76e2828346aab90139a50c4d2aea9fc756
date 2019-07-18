@@ -68,6 +68,24 @@
       "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "038d0c34_b4c1ab1f",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T00:33:46Z",
+      "side": 1,
+      "message": "But that\u0027s what you want, right? (since \u0027\u0027 and b\u0027\u0027 are the same thing in python 2).",
+      "parentUuid": "96d865ea_a5326741",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
