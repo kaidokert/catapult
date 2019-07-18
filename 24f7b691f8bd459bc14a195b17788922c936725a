@@ -22,6 +22,30 @@
       "revId": "24f7b691f8bd459bc14a195b17788922c936725a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1eb23dc8_24388986",
+        "filename": "devil/devil/android/tools/script_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-07-18T15:34:10Z",
+      "side": 1,
+      "message": "At this point, HealthyDevices has learned how to do most of what this is doing. I think the only divergence is in how it creates an instance of Blacklist if blacklist_file isn\u0027t one already. I think it\u0027s fine to leave this alone in this CL and generally recommend switching to calling HealthyDevices directly.",
+      "parentUuid": "b9a82bda_5d5a1e84",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 69
+      },
+      "revId": "24f7b691f8bd459bc14a195b17788922c936725a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
