@@ -70,7 +70,6 @@ class PageTestResults(object):
     self._all_story_runs = []
     self._all_stories = set()
     self._representative_value_for_each_value_name = {}
-    self._all_summary_values = []
 
     self._histograms = histogram_set.HistogramSet()
 
@@ -149,10 +148,6 @@ class PageTestResults(object):
       return []
     self._histograms.ImportDicts(json.loads(vinn_result.stdout))
     self._histograms.ImportDicts(self._histogram_dicts_to_add)
-
-  @property
-  def all_summary_values(self):
-    return self._all_summary_values
 
   @property
   def current_page(self):
@@ -397,11 +392,6 @@ class PageTestResults(object):
         shutil.copy(filename, artifact_path)
     if tbm_metrics:
       self._current_story_run.SetTbmMetrics(tbm_metrics)
-
-  def AddSummaryValue(self, value):
-    assert value.page is None
-    self._ValidateValue(value)
-    self._all_summary_values.append(value)
 
   def _ValidateValue(self, value):
     assert isinstance(value, value_module.Value)

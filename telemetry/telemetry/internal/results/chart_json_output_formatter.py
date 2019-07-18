@@ -3,7 +3,6 @@
 # found in the LICENSE file.
 
 import collections
-import itertools
 import json
 import os
 
@@ -52,12 +51,8 @@ def ResultsAsChartDict(results):
   Returns:
     A Chart JSON dict corresponding to the given data.
   """
-  values = itertools.chain(
-      output_formatter.SummarizePageSpecificValues(results),
-      results.all_summary_values)
   charts = collections.defaultdict(dict)
-
-  for value in values:
+  for value in output_formatter.SummarizePageSpecificValues(results):
     chart_name, trace_name = _GetChartAndTraceName(value)
 
     # This intentionally overwrites the trace if it already exists because this
