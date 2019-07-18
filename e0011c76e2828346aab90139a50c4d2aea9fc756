@@ -50,6 +50,24 @@
       "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d865ea_a5326741",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-18T00:30:37Z",
+      "side": 1,
+      "message": "For whatever reason, msg.encode() will return a str type in Python 2.",
+      "parentUuid": "9ba7a178_00cf9bce",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
