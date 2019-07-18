@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2616920_c8f0099f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "Is this method needed?",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f42672d7_d988eb01",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "This is a really nice definition / property, and it probably wouldn\u0027t have occurred to me. Nice job! \n\nWe should make sure we include this when we document this in the file format.",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "449d04dc_63392f1a",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "What do you mean by \"This function may be overridden\"?",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "739913f5_31f6e429",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "You can shorten this example to just line 383, right? Or maybe lines 381-383?",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec971a86_b44f46e8",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "We should probably add an explicit test for the \u0027conflicts_allowed: true\u0027 case, rather than relying on implicit coverage via other test cases.",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -34,6 +34,41 @@
       "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84933481_cf8dfcf3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "ok. I\u0027m fine with catching conflicts, I just want to be clear that we know what is a conflict and what isn\u0027t :).",
+      "parentUuid": "c1cbf6a4_b79524f6",
+      "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "673ea427_9e97cd88",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T21:41:20Z",
+      "side": 1,
+      "message": "I think this should default to false, at least for intra-file conflicts (i.e., we probably shouldn\u0027t allow conflicts by default).",
+      "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
