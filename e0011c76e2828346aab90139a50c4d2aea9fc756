@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "e830d37c_f0b29913",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T16:07:26Z",
+      "side": 1,
+      "message": "sorry, I meant pylint.",
+      "parentUuid": "e22b02a1_3ea16ad5",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2edc6036_1a8546cf",
         "filename": "third_party/typ/typ/python_2_3_compat.py",
         "patchSetId": 3
