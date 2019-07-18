@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "d05b8f43_0714d711",
+        "filename": "third_party/typ/run",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T00:59:03Z",
+      "side": 1,
+      "message": "Yeah, or I\u0027d use tox or something. I think it\u0027s still TBD how we\u0027ll want to enforce python2/3 compat generally for stuff like this in src and the dependent projects.",
+      "parentUuid": "2d961dbd_582d4b16",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "737a2e9d_9a31bcf9",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "pylint won\u0027t like that form I don\u0027t think. can we rely on the six module?",
       "parentUuid": "737a2e9d_9a31bcf9",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2de380c_1eb136bc",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-18T00:59:03Z",
+      "side": 1,
+      "message": "which form won\u0027t python like? \n\nIt looks like six is part of the vpython environment, but I\u0027m not sure if it\u0027s generally available if people try to run things directly under python. I\u0027ve tried to avoid six in the past where possible, and there\u0027s still a part of me that would like to be able to split typ out into a separate standalone project again (as a subtree mirror of this; this\u0027d still be the source of truth) and I\u0027d like to avoid the dependency there.",
+      "parentUuid": "25e6850a_a1993912",
       "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
