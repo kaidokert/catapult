@@ -16,6 +16,24 @@
       "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1cbf6a4_b79524f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-18T18:14:46Z",
+      "side": 1,
+      "message": "I agree with not making my example above a conflict. I will remove that example an any logic used to implement it. I want to prevent conflicts between non glob test expectations irregardless of their expected results. kbr@ suggested that I implement this for gpu tests. I went one step further and tried to prevent conflicts between test expectations with globs. His reasoning was that for a large file like webgl_conformance_test_expectations.txt, allowing two expectations for a test that can both apply to some system configuration introduces errors to the test expectations and cause unexpected test runs, test disabling or regressions.  \n\nFor instance one might have added the following expectation to a file\n\n[ Debug ] FooTest.TestBar [ Skip ]\n\nand then later added\n\n[ Win ] FooTest.TestBar [ RetryOnFailure ]\n\nHowever FooTest.TestBar would not running on bot with a {win, debug} configuration. Someone would not find this error without looking\nat the results.\n\nIt also becomes easier to remove stale expectations in a large file.",
+      "parentUuid": "9c7dd5f9_ecfb1681",
+      "revId": "370d397a45dbe47cf2688012ba3e2a3b3d16d9f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
