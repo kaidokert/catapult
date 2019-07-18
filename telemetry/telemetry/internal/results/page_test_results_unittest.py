@@ -126,15 +126,6 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
             self.pages[0], 'url', 'string', 'foo',
             improvement_direction=improvement_direction.UP)))
 
-  def testAddSummaryValueWithPageSpecified(self):
-    results = page_test_results.PageTestResults()
-    results.WillRunPage(self.pages[0])
-    self.assertRaises(
-        AssertionError,
-        lambda: results.AddSummaryValue(scalar.ScalarValue(
-            self.pages[0], 'a', 'units', 3,
-            improvement_direction=improvement_direction.UP)))
-
   def testUnitChange(self):
     results = page_test_results.PageTestResults()
     results.WillRunPage(self.pages[0])
