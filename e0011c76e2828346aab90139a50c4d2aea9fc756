@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "e22b02a1_3ea16ad5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-18T01:02:23Z",
+      "side": 1,
+      "message": "python should be fine, it\u0027s pylint that would complain :)",
+      "parentUuid": "e2de380c_1eb136bc",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2edc6036_1a8546cf",
         "filename": "third_party/typ/typ/python_2_3_compat.py",
         "patchSetId": 3
