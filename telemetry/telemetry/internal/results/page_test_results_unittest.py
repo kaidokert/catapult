@@ -6,6 +6,7 @@ import StringIO
 import unittest
 
 from py_utils import tempfile_ext
+import json
 import mock
 
 from telemetry import story
@@ -218,7 +219,11 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
       self.assertEquals(1, len(runs))
 
   def testPrintSummaryDisabledResults(self):
-    output_stream = StringIO.StringIO()
+    class StringIOWithName(StringIO.StringIO):
+      @property
+      def name(self):
+        return 'name_of_file'
+    output_stream = StringIOWithName()
     output_formatters = []
     output_formatters.append(
         chart_json_output_formatter.ChartJsonOutputFormatter(output_stream))
@@ -226,14 +231,12 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         output_stream, reset_results=True))
     results = page_test_results.PageTestResults(
         output_formatters=output_formatters,
-        benchmark_name='benchmark_name',
-        benchmark_description='benchmark_description',
-        benchmark_enabled=False)
+        benchmark_name='fake_benchmark_name',
+        benchmark_description='benchmark_description')
     results.PrintSummary()
-    self.assertEquals(
-        output_stream.getvalue(),
-        '{\n  \"enabled\": false,\n  ' +
-        '\"benchmark_name\": \"benchmark_name\"\n}\n')
+    output = json.loads(output_stream.getvalue())
+    self.assertFalse(output['enabled'])
+    self.assertEqual(output['benchmark_name'], 'fake_benchmark_name')
 
   def testImportHistogramDicts(self):
     hs = histogram_set.HistogramSet()

@@ -419,7 +419,6 @@ def _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
       finder_options,
       benchmark_name=benchmark.Name(),
       benchmark_description=benchmark.Description(),
-      benchmark_enabled=False,
       should_add_value=benchmark.ShouldAddValue) as results:
     results.PrintSummary()
   return False
@@ -454,7 +453,6 @@ def RunBenchmark(benchmark, finder_options):
       finder_options,
       benchmark_name=benchmark.Name(),
       benchmark_description=benchmark.Description(),
-      benchmark_enabled=True,
       should_add_value=benchmark.ShouldAddValue) as results:
     try:
       Run(pt, story_set, finder_options, results, benchmark.max_failures,
