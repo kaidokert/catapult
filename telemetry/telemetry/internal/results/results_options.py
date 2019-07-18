@@ -22,7 +22,6 @@ from telemetry.internal.results import page_test_results
 _OUTPUT_FORMAT_CHOICES = (
     'chartjson',
     'csv',
-    'gtest',
     'histograms',
     'html',
     'json-test-results',
@@ -73,10 +72,6 @@ def AddResultsOptions(parser):
       '--results-label',
       default=None,
       help='Optional label to use for the results of a run .')
-  group.add_option(
-      '--suppress_gtest_report',
-      default=False,
-      help='Whether to suppress GTest progress report.')
   parser.add_option_group(group)
 
 
@@ -93,11 +88,10 @@ def ProcessCommandLineArgs(args):
 
 def _GetOutputStream(output_format, output_dir):
   assert output_format in _OUTPUT_FORMAT_CHOICES, 'Must specify a valid format.'
-  assert output_format not in ('gtest', 'none'), (
-      'Cannot set stream for \'gtest\' or \'none\' output formats.')
+  assert output_format != 'none', "Cannot set stream for 'none' output format."
 
   assert output_format in _OUTPUT_FILENAME_LOOKUP, (
-      'No known filename for the \'%s\' output format' % output_format)
+      "No known filename for the '%s' output format" % output_format)
   output_file = os.path.join(output_dir, _OUTPUT_FILENAME_LOOKUP[output_format])
 
   # TODO(eakuefner): Factor this hack out after we rewrite HTMLOutputFormatter.
@@ -109,7 +103,8 @@ def _GetOutputStream(output_format, output_dir):
 
 
 def CreateResults(options, benchmark_name=None, benchmark_description=None,
-                  benchmark_enabled=True, should_add_value=None):
+                  benchmark_enabled=True, report_progress=False,
+                  should_add_value=None):
   """
   Args:
     options: Contains the options specified in AddResultsOptions.
@@ -125,7 +120,7 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
 
   output_formatters = []
   for output_format in options.output_formats:
-    if output_format == 'none' or output_format == "gtest":
+    if output_format == 'none':
       continue
     output_stream = _GetOutputStream(output_format, options.output_dir)
     if output_format == 'html':
@@ -152,7 +147,7 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
 
   return page_test_results.PageTestResults(
       output_formatters=output_formatters,
-      progress_stream=None if options.suppress_gtest_report else sys.stdout,
+      progress_stream=sys.stdout if report_progress else None,
       output_dir=options.output_dir,
       should_add_value=should_add_value,
       benchmark_name=benchmark_name,
