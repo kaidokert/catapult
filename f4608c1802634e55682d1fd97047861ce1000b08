@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b89b2c5f_e508a2fc",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-18T22:04:19Z",
+      "side": 1,
+      "message": "Looks like this only disables the steps that do the preparation, not the test steps themselves, unless I\u0027m missing something.\n\n_CATAPULT_TESTS contains the actual tests. They are added to steps on the loop starting at line 265. I think could do something like\n\n   if args.platform \u003d\u003d \u0027android\u0027 and not args.run_android_tests:\n     steps \u003d []\n   ...\n   with open(args.output_json, \u0027w\u0027) as outfile:\n     json.dump(steps, outfile)\n\nto completely disable all steps for android bots.",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 194,
+        "endChar": 36
+      },
+      "revId": "f4608c1802634e55682d1fd97047861ce1000b08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
