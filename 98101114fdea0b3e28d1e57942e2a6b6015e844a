@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61e4bf58_ac35fc24",
+        "filename": "dashboard/dashboard/spa/report-fetcher.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-18T17:15:47Z",
+      "side": 1,
+      "message": "I\u0027m having a bit of trouble grokking whats happening here, what the expected input to this is, and for whatever reason this comment isn\u0027t helping. Maybe a test with some simple input/output?",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 16
+      },
+      "revId": "98101114fdea0b3e28d1e57942e2a6b6015e844a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fc51152_6cccc451",
+        "filename": "dashboard/dashboard/spa/report-fetcher.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-18T17:15:47Z",
+      "side": 1,
+      "message": "nit: do you need to pass this in since it\u0027s already in self.info_",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "98101114fdea0b3e28d1e57942e2a6b6015e844a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
