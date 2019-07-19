@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef89d20c_e4185c4f",
+        "filename": "telemetry/telemetry/internal/results/chart_json_output_formatter.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T08:43:38Z",
+      "side": 1,
+      "message": "nit: I made a suggestion below to expose an \"empty\" property, so this would become `not results.empty`.",
+      "revId": "888cf09d0975d57ff146cda753537f10d3b5e24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dcd4ea1_1cc3172b",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T08:43:38Z",
+      "side": 1,
+      "message": "I would propose instead to expose an \"empty\" property instead. Also the first half of the condition can just be bool(self._all_story_runs).",
+      "revId": "888cf09d0975d57ff146cda753537f10d3b5e24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d13fef9b_e2f4d6b8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T08:43:38Z",
+      "side": 1,
+      "message": "I think this one should be split into three tests, one for each output format (possibly factoring out some common code to a helper function). Also rename -\u003e DisabledResults -\u003e EmptyResults",
+      "revId": "888cf09d0975d57ff146cda753537f10d3b5e24f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
