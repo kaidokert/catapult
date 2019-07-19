@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3984a4f0_9b21edeb",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-19T21:56:47Z",
+      "side": 1,
+      "message": "This was actually capable of returning a list of paths as well, although that was a bit of a hack to support the multiple crash test. With your suggestion of passing the oldest allowable timestamp instead, that\u0027s no longer necessary, so name changed to singular.",
+      "parentUuid": "3a28298d_5b094679",
+      "range": {
+        "startLine": 74,
+        "startChar": 55,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "5d6bf14ca725111fc7795044bebcb3e415aaa546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d523902_ddf5c649",
         "filename": "telemetry/telemetry/internal/browser/browser.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "5d6bf14ca725111fc7795044bebcb3e415aaa546",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deee4e4b_1b5105fa",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-07-19T21:56:47Z",
+      "side": 1,
+      "message": "Agreed, which also removes the need to be able to return multiple.",
+      "parentUuid": "0d523902_ddf5c649",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 20
+      },
+      "revId": "5d6bf14ca725111fc7795044bebcb3e415aaa546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
