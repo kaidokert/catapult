@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d99d83d2_93ce350a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-19T16:02:00Z",
+      "side": 1,
+      "message": "Usually we have verbs in commit messages. Could this be \"Implement Earth Mover\u0027s Distance\" or similar?",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79a50a27_b8a40ecf",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-19T16:02:00Z",
+      "side": 1,
+      "message": "Copyright year is incorrect.",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f83c8001_1b8b52d9",
+        "filename": "tracing/tracing/base/math/earth_movers_distance_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-19T16:02:00Z",
+      "side": 1,
+      "message": "Can we add a couple more tests? For instance one test where the two are the same",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
