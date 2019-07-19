@@ -36,6 +36,86 @@
     },
     {
       "key": {
+        "uuid": "d79479d8_f49779d4",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-19T16:10:50Z",
+      "side": 1,
+      "message": "You should check this in your function, and throw an error otherwise (I\u0027m guessing the two histograms should have equal sums?)",
+      "range": {
+        "startLine": 19,
+        "startChar": 54,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aad9f95_c9229f4d",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-19T16:10:50Z",
+      "side": 1,
+      "message": "nit: \" \"For one dimensional distributions, when the two distributions are non-negative...\".",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 6
+      },
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08553be2_6e3311fa",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-19T16:10:50Z",
+      "side": 1,
+      "message": "Worth adding a line about the input format here in case anyone else wants to use this later: \"This function takes in histograms as input, represented as an array of numbers where the n-th element is the weight of the n-th bin. Throws error if the two input histograms don\u0027t have same number of bins.\"",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f17522af_6f982628",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-19T16:10:50Z",
+      "side": 1,
+      "message": "You should throw an error here instead silently returning undefined.",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f83c8001_1b8b52d9",
         "filename": "tracing/tracing/base/math/earth_movers_distance_test.html",
         "patchSetId": 1
@@ -47,6 +127,23 @@
       "writtenOn": "2019-07-19T16:02:00Z",
       "side": 1,
       "message": "Can we add a couple more tests? For instance one test where the two are the same",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83dca023_5ddcda37",
+        "filename": "tracing/tracing/base/math/earth_movers_distance_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-19T16:10:50Z",
+      "side": 1,
+      "message": "You need a few more tests. Check the boundary conditions: \n- you throw an error when the histograms are of different length. \n- you throw an error when the histograms have unequal sum. \n- case where histograms have no bins.\n- (as npm@ said) check when two are the same.",
       "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
