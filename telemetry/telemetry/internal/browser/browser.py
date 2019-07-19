@@ -172,6 +172,29 @@ class Browser(app.App):
     """Returns the path to the most recent minidump."""
     return self._browser_backend.GetMostRecentMinidumpPath()
 
+  def GetRecentMinidumpPathsWithTimeout(
+      self, timeout_s=15, age_s=60, num_dumps=1):
+    """Get a path to a recent minidump, blocking until one is available.
+
+    Similar to GetMostRecentMinidumpPath, but does not assume that any pending
+    dumps have been written to disk yet. Instead, waits until the specified
+    number of fresh minidumps are found or the timeout is reached.
+
+    Args:
+      timeout_s: The timeout in seconds.
+      age_s: The maximum amount of time in seconds between the the current time
+          and the creation of a minidump for it to be considered fresh enough
+          to return.
+      num_dumps: How many minidumps to search for.
+
+    Return:
+      None if the timeout is hit, a str containing the path to the found
+      minidump if num_dumps=1, or a list containing paths to the found minidumps
+      if num_dumps>1.
+    """
+    return self._browser_backend.GetRecentMinidumpPathsWithTimeout(
+        timeout_s, age_s, num_dumps)
+
   def GetAllMinidumpPaths(self):
     """Returns all minidump paths available in the backend."""
     return self._browser_backend.GetAllMinidumpPaths()

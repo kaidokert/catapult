@@ -105,6 +105,9 @@ class BrowserBackend(app_backend.AppBackend):
   def GetMostRecentMinidumpPath(self):
     raise NotImplementedError()
 
+  def GetRecentMinidumpPathsWithTimeout(self, timeout_s, age_s, num_dumps):
+    raise NotImplementedError()
+
   def GetAllMinidumpPaths(self):
     raise NotImplementedError()
 
