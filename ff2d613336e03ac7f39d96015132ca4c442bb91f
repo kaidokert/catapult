@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "3859d581_6d054cbf",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-19T00:26:13Z",
+      "side": 1,
+      "message": "Okay, the way I read \"may be overridden\" is literally, in that someone can create a subclass of ExpectationsParser to override this, and I think we don\u0027t want that.\n\nIf instead you meant \"TODO(rmhasan): we might need to add a way to override this in the future\", I\u0027m fine with that, but maybe change the wording to reflect that :).\n\nI don\u0027t think I understand the example (nvidia vs. nvidia-0x1cb3) though. I would expect this to be the same as \"win\" vs \"win7\", in that they should conflict?",
+      "parentUuid": "c8fcb605_b80a2e5b",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "739913f5_31f6e429",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 19
