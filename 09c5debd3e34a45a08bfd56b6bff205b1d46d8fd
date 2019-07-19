@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "59794de7_8e860cd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-19T18:58:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d99d83d2_93ce350a",
+      "revId": "09c5debd3e34a45a08bfd56b6bff205b1d46d8fd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79a50a27_b8a40ecf",
         "filename": "tracing/tracing/base/math/earth_movers_distance.html",
         "patchSetId": 1
