@@ -27,7 +27,7 @@ from tracing.value.diagnostics import reserved_infos
 class PageTestResults(object):
   def __init__(self, output_formatters=None, progress_stream=None,
                output_dir=None, should_add_value=None, benchmark_name=None,
-               benchmark_description=None, benchmark_enabled=True,
+               benchmark_description=None,
                upload_bucket=None, results_label=None):
     """
     Args:
@@ -45,9 +45,6 @@ class PageTestResults(object):
       benchmark_name: A string with the name of the currently running benchmark.
       benchmark_description: A string with a description of the currently
           running benchmark.
-      benchmark_enabled: A boolean indicating whether the benchmark to run
-          is enabled. (Some output formats need to produce special output for
-          disabled benchmarks).
       upload_bucket: A string identifting a cloud storage bucket where to
           upload artifacts.
       results_label: A string that serves as an identifier for the current
@@ -69,7 +66,6 @@ class PageTestResults(object):
     self._all_story_runs = []
     self._all_stories = set()
     self._representative_value_for_each_value_name = {}
-    self._all_summary_values = []
 
     self._histograms = histogram_set.HistogramSet()
 
@@ -81,10 +77,6 @@ class PageTestResults(object):
     # Interruptions occur for unrecoverable exceptions.
     self._interruption = None
     self._results_label = results_label
-
-    # State of the benchmark this set of results represents.
-    self._benchmark_enabled = benchmark_enabled
-
     self._histogram_dicts_to_add = []
 
   @property
@@ -204,6 +196,10 @@ class PageTestResults(object):
       yield run
     if self._current_story_run:
       yield self._current_story_run
+
+  def had_results(self):
+    """Whether there were any story runs or results."""
+    return bool(list(self.IterStoryRuns())) or bool(self._all_summary_values)
 
   def IterStoryRuns(self):
     return iter(self._all_story_runs)
@@ -346,7 +342,6 @@ class PageTestResults(object):
     be recorded in traces.
     """
     assert self._current_story_run, 'Not currently running a story.'
-    assert self._benchmark_enabled, 'Cannot add value to disabled results'
 
     self._ValidateValue(value)
     is_first_result = (
@@ -421,22 +416,18 @@ class PageTestResults(object):
     assert value.IsMergableWith(representative_value)
 
   def PrintSummary(self):
-    if self._benchmark_enabled:
-      self._progress_reporter.DidFinishAllStories(self)
+    self._progress_reporter.DidFinishAllTests(self)
 
-      # Only serialize the trace if output_format is json or html.
-      if (self._output_dir and
-          any(isinstance(o, html_output_formatter.HtmlOutputFormatter)
-              for o in self._output_formatters)):
-        # Just to make sure that html trace is there in artifacts dir
-        results_processor.SerializeAndUploadHtmlTraces(self)
+    # Only serialize the trace if output_format is json or html.
+    if (self._output_dir and
+        any(isinstance(o, html_output_formatter.HtmlOutputFormatter)
+            for o in self._output_formatters)):
+      # Just to make sure that html trace is there in artifacts dir
+      results_processor.SerializeAndUploadHtmlTraces(self)
 
-      for output_formatter in self._output_formatters:
-        output_formatter.Format(self)
-        output_formatter.PrintViewResults()
-    else:
-      for output_formatter in self._output_formatters:
-        output_formatter.FormatDisabled(self)
+    for output_formatter in self._output_formatters:
+      output_formatter.Format(self)
+      output_formatter.PrintViewResults()
 
   def FindAllPageSpecificValuesNamed(self, value_name):
     """DEPRECATED: New benchmarks should not use legacy values."""
