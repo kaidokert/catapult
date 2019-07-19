@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
 import StringIO
 import unittest
 
@@ -126,15 +127,6 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
             self.pages[0], 'url', 'string', 'foo',
             improvement_direction=improvement_direction.UP)))
 
-  def testAddSummaryValueWithPageSpecified(self):
-    results = page_test_results.PageTestResults()
-    results.WillRunPage(self.pages[0])
-    self.assertRaises(
-        AssertionError,
-        lambda: results.AddSummaryValue(scalar.ScalarValue(
-            self.pages[0], 'a', 'units', 3,
-            improvement_direction=improvement_direction.UP)))
-
   def testUnitChange(self):
     results = page_test_results.PageTestResults()
     results.WillRunPage(self.pages[0])
@@ -218,7 +210,11 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
       self.assertEquals(1, len(runs))
 
   def testPrintSummaryDisabledResults(self):
-    output_stream = StringIO.StringIO()
+    class StringIOWithName(StringIO.StringIO):
+      @property
+      def name(self):
+        return 'name_of_file'
+    output_stream = StringIOWithName()
     output_formatters = []
     output_formatters.append(
         chart_json_output_formatter.ChartJsonOutputFormatter(output_stream))
@@ -226,14 +222,12 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         output_stream, reset_results=True))
     results = page_test_results.PageTestResults(
         output_formatters=output_formatters,
-        benchmark_name='benchmark_name',
-        benchmark_description='benchmark_description',
-        benchmark_enabled=False)
+        benchmark_name='fake_benchmark_name',
+        benchmark_description='benchmark_description')
     results.PrintSummary()
-    self.assertEquals(
-        output_stream.getvalue(),
-        '{\n  \"enabled\": false,\n  ' +
-        '\"benchmark_name\": \"benchmark_name\"\n}\n')
+    output = json.loads(output_stream.getvalue())
+    self.assertFalse(output['enabled'])
+    self.assertEqual(output['benchmark_name'], 'fake_benchmark_name')
 
   def testImportHistogramDicts(self):
     hs = histogram_set.HistogramSet()
@@ -246,6 +240,9 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
     results.ImportHistogramDicts(histogram_dicts)
     results.DidRunPage(self.pages[0])
     self.assertEqual(results.AsHistogramDicts(), histogram_dicts)
+
+  def testEmptyResultsProducesEmptyHistogramsList(self):
+    pass
 
   def testImportHistogramDicts_DelayedImport(self):
     hs = histogram_set.HistogramSet()
