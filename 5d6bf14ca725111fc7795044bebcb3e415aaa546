@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a28298d_5b094679",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-19T20:57:47Z",
+      "side": 1,
+      "message": "This is plural \"Paths\" but the variable it returns to is not plural.",
+      "range": {
+        "startLine": 74,
+        "startChar": 55,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "5d6bf14ca725111fc7795044bebcb3e415aaa546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d523902_ddf5c649",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-19T20:57:47Z",
+      "side": 1,
+      "message": "It might be simpler to simply allow the user to specify a youngest timestamp. What do you think?",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 20
+      },
+      "revId": "5d6bf14ca725111fc7795044bebcb3e415aaa546",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
