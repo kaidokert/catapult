@@ -32,6 +32,10 @@ def _group_to_string(group):
     return msg[:k] + ' and ' + msg[k+2:] if k != -1 else msg
 
 
+def _default_tags_overlap(t1, t2):
+    return t1 == t2
+
+
 class ParseError(Exception):
 
     def __init__(self, lineno, msg):
@@ -283,7 +287,8 @@ class TestExpectations(object):
     def set_tags(self, tags):
         self.tags = [tag.lower() for tag in tags]
 
-    def parse_tagged_list(self, raw_data, file_name=''):
+    def parse_tagged_list(self, raw_data, file_name='',
+                          tags_overlap=_default_tags_overlap):
         # TODO(rmhasan): If we decide to support multiple test expectations in
         # one TestExpectations instance, then we should make the file_name field
         # mandatory.
@@ -296,6 +301,7 @@ class TestExpectations(object):
         except ParseError as e:
             return 1, e.message
         self.tag_sets = parser.tag_sets
+        self._tags_overlap = tags_overlap
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
@@ -379,7 +385,8 @@ class TestExpectations(object):
         # a generic tag like 'win' and a more specific tag like 'win7'.
         for tag_set in self.tag_sets:
             for t1, t2 in itertools.product(s1, s2):
-                if t1 in tag_set and t2 in tag_set and t1 != t2:
+                if (t1 in tag_set and t2 in tag_set and
+                    not self._tags_overlap(t1, t2)):
                     return False
         return True
 
