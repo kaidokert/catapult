@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2014 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/tracing/base/math/earth_movers_distance.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('earthMoversDistance', function() {
+    const firstHistogram = [1, 2, 3, 2];
+    const secondHistogram = [3, 1, 1, 3];
+    assert.strictEqual(4,
+        tr.b.math.earthMoversDistance(firstHistogram, secondHistogram));
+  });
+});
+</script>
