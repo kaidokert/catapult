@@ -143,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "9dc9f8fa_5117a744",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-19T00:47:03Z",
+      "side": 1,
+      "message": "nvidia and nvidia-0x1cb3 should conflict in the same sense that win and win7 should conflict. When I say conflict I mean if one expectation has nvidia only in it\u0027s tag list and another expectation has only nvidia-0x1cb3 in its tag list, then those expectations should have a conflict. I will also update the comment to better reflect future developements.",
+      "parentUuid": "3859d581_6d054cbf",
+      "revId": "ff2d613336e03ac7f39d96015132ca4c442bb91f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "739913f5_31f6e429",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 19
