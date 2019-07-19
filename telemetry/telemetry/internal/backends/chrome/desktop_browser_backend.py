@@ -516,6 +516,25 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def GetMostRecentMinidumpPath(self):
     return self._GetMostRecentMinidump()
 
+  def GetRecentMinidumpPathsWithTimeout(self, timeout_s, age_s, num_dumps):
+    assert num_dumps >= 1
+    assert timeout_s > 0
+    assert age_s > 0
+    start_time = time.time()
+    found_dumps = []
+    while time.time() - start_time < timeout_s:
+      dump_path = self.GetMostRecentMinidumpPath()
+      if not dump_path:
+        continue
+      if os.path.getmtime(dump_path) < time.time() - age_s:
+        continue
+      found_dumps.append(dump_path)
+      if len(found_dumps) == num_dumps:
+        break
+    if len(found_dumps) < num_dumps:
+      return None
+    return found_dumps[0] if num_dumps == 1 else found_dumps
+
   def GetAllMinidumpPaths(self):
     reports_list = self._GetAllCrashpadMinidumps()
     if reports_list:
