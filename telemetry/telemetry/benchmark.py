@@ -9,6 +9,7 @@ from py_utils import class_util
 from py_utils import expectations_parser
 from telemetry import decorators
 from telemetry.internal import story_runner
+from telemetry.internal.browser import browser_options
 from telemetry.internal.util import command_line
 from telemetry.page import legacy_page_test
 from telemetry.story import expectations as expectations_module
@@ -115,9 +116,36 @@ class Benchmark(command_line.Command):
     default_values = parser.get_default_values()
     invalid_options = [o for o in cls.options if not hasattr(default_values, o)]
     if invalid_options:
-      raise InvalidOptionsError('Invalid benchmark options: %s',
-                                ', '.join(invalid_options))
+      raise InvalidOptionsError(
+          'Invalid benchmark options: %s' % ', '.join(invalid_options))
     parser.set_defaults(**cls.options)
+
+  @classmethod
+  def GetDefaultOptions(cls, options=None, processed=False):
+    """Return an options object filled in with defaults for this benchmark.
+
+    Args:
+      options: An optional set of base options which to extend.
+      processed: Also run the relevant ProcessCommandLineArgs on the options.
+
+    Returns:
+      The options object extended with default values defined by the benchmark.
+
+    Raises:
+      InvalidOptionsError if the options class attribute of the benchmark
+      tries to define unknown options.
+    """
+    if options is None:
+      options = browser_options.BrowserFinderOptions()
+    parser = options.CreateParser()
+    cls.AddCommandLineArgs(parser)
+    story_runner.AddCommandLineArgs(parser)
+    cls.SetArgumentDefaults(parser)
+    options.MergeDefaultValues(parser.get_default_values())
+    if processed:
+      cls.ProcessCommandLineArgs(parser, options)
+      story_runner.ProcessCommandLineArgs(parser, options)
+    return options
 
   @classmethod
   def ProcessCommandLineArgs(cls, parser, args):
