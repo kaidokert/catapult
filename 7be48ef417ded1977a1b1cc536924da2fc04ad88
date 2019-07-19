@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6855b690_9debe456",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-19T10:20:46Z",
+      "side": 1,
+      "message": "Should the argument be called \u0027options\u0027? It\u0027s parsed already.",
+      "revId": "7be48ef417ded1977a1b1cc536924da2fc04ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0edd53b6_d873f47f",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-07-19T10:20:46Z",
+      "side": 1,
+      "message": "Also \u0027options\u0027.",
+      "revId": "7be48ef417ded1977a1b1cc536924da2fc04ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
