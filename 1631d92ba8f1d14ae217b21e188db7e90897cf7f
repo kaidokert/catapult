@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1d45ec35_6e350eb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-19T18:36:55Z",
+      "side": 1,
+      "message": "nit: just write distributions. It doesn\u0027t have to be probability distribution specifically, does it?",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "1631d92ba8f1d14ae217b21e188db7e90897cf7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bd419277_8a1b60b0",
         "filename": "tracing/tracing/base/math/earth_movers_distance_test.html",
         "patchSetId": 4
