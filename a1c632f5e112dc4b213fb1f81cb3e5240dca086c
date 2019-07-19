@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acaa805d_8ad4b397",
+        "filename": "dashboard/dashboard/elements/autocomplete-box.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T16:31:08Z",
+      "side": 1,
+      "message": "Did this fix the scrollbar glitch?",
+      "revId": "a1c632f5e112dc4b213fb1f81cb3e5240dca086c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d4e26b1_a43ebc36",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T16:31:08Z",
+      "side": 1,
+      "message": "Should \u0027config\u0027 be in properties?",
+      "revId": "a1c632f5e112dc4b213fb1f81cb3e5240dca086c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "777229e1_1a0b54d4",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T16:31:08Z",
+      "side": 1,
+      "message": "Why not just call arrayToAutocompleteList directly?",
+      "revId": "a1c632f5e112dc4b213fb1f81cb3e5240dca086c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e11e7da5_df91874c",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T16:31:08Z",
+      "side": 1,
+      "message": "If you want to be consistent, /api/describe returns a \u0027descriptor\u0027.",
+      "revId": "a1c632f5e112dc4b213fb1f81cb3e5240dca086c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f958a3_9dbf4910",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T16:31:08Z",
+      "side": 1,
+      "message": "Why \u00272\u0027?",
+      "revId": "a1c632f5e112dc4b213fb1f81cb3e5240dca086c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
