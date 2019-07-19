@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2474a487_530b6d4b",
+        "filename": "dashboard/dashboard/spa/report-fetcher.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T19:39:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61e4bf58_ac35fc24",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 16
+      },
+      "revId": "98101114fdea0b3e28d1e57942e2a6b6015e844a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fc51152_6cccc451",
         "filename": "dashboard/dashboard/spa/report-fetcher.js",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "98101114fdea0b3e28d1e57942e2a6b6015e844a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ff0f912_d6711492",
+        "filename": "dashboard/dashboard/spa/report-fetcher.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1115874
+      },
+      "writtenOn": "2019-07-19T19:39:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fc51152_6cccc451",
+      "range": {
+        "startLine": 50,
+        "startChar": 26,
+        "endLine": 50,
+        "endChar": 30
+      },
+      "revId": "98101114fdea0b3e28d1e57942e2a6b6015e844a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
