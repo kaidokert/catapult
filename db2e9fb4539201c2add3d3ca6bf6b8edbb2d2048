@@ -34,6 +34,24 @@
       "revId": "db2e9fb4539201c2add3d3ca6bf6b8edbb2d2048",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "115397ae_729f8edd",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T11:08:20Z",
+      "side": 0,
+      "message": "I think \"creating\" result objects is considered internal; but the result object itself is passed around to many public facing methods, e.g. results.AddValue is also used all over: https://cs.chromium.org/search/?q\u003dresults%5C.AddValue\n\nBut this is something soon we\u0027ll have to think about, as we try to move away from these legacy values in the context of the new results_processor. In a week or two I\u0027ll probably write a design doc about this very topic.",
+      "parentUuid": "52b9b9ff_38fd3e85",
+      "revId": "db2e9fb4539201c2add3d3ca6bf6b8edbb2d2048",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
