@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "81f27e6a_58c3e20e",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T11:13:39Z",
+      "side": 1,
+      "message": "Yes, I wasn\u0027t sure, but I think you are right. Done.",
+      "parentUuid": "6855b690_9debe456",
+      "revId": "7be48ef417ded1977a1b1cc536924da2fc04ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0edd53b6_d873f47f",
         "filename": "telemetry/telemetry/command_line/parser.py",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "7be48ef417ded1977a1b1cc536924da2fc04ad88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a610282_98cd7d10",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T11:13:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0edd53b6_d873f47f",
+      "revId": "7be48ef417ded1977a1b1cc536924da2fc04ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
