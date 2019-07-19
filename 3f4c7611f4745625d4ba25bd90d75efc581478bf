@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ee65247_48a27a97",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-19T18:17:34Z",
+      "side": 1,
+      "message": "nit: no uppercase.",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "3f4c7611f4745625d4ba25bd90d75efc581478bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ba8113_f5f0fd5e",
+        "filename": "tracing/tracing/base/math/earth_movers_distance.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2019-07-19T18:17:34Z",
+      "side": 1,
+      "message": "nit: histograms\u0027 sizes",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "3f4c7611f4745625d4ba25bd90d75efc581478bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
