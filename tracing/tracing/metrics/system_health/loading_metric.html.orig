@@ -661,10 +661,14 @@ tr.exportTo('tr.metrics.sh', function() {
         rendererHelper, frameToNavStartEvents,
         navIdToNavStartEvents);
     const layoutShiftSamples = findLayoutShiftSamples(rendererHelper);
+<<<<<<< HEAD
     const speedIndexSamples = addSpeedIndexSample(rendererHelper);
+||||||| merged common ancestors
+=======
     const navigationStartSamples = timeToFCPEntries.map(entry=>{
       return { value: entry.navigationStartEvent.start}
     });
+>>>>>>> [FCP++] Add navigationStart histogram
 
     return {
       frameToNavStartEvents,
@@ -676,9 +680,15 @@ tr.exportTo('tr.metrics.sh', function() {
       firstViewportReadySamples,
       largestImagePaintSamples,
       largestTextPaintSamples,
+<<<<<<< HEAD
       layoutShiftSamples,
-      speedIndexSamples,
-      navigationStartSamples
+      speedIndexSamples
+||||||| merged common ancestors
+      layoutShiftSamples
+=======
+      layoutShiftSamples,
+      navigationStartSamples,
+>>>>>>> [FCP++] Add navigationStart histogram
     };
   }
 
@@ -926,8 +936,16 @@ tr.exportTo('tr.metrics.sh', function() {
           histograms);
       addSamplesToHistogram(
           samplesSet.layoutShiftSamples, layoutShiftHistogram, histograms);
+<<<<<<< HEAD
       addSamplesToHistogram(
           samplesSet.speedIndexSamples, speedIndexHistogram, histograms);
+||||||| merged common ancestors
+=======
+      addSamplesToHistogram(
+          samplesSet.navigationStartSamples,
+          navigationStartHistogram,
+          histograms);
+>>>>>>> [FCP++] Add navigationStart histogram
     }
 
     const samplesSet = collectMetricsFromLoadExpectations(model, chromeHelper);
