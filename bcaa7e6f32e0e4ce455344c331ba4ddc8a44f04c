@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6030f2e_e70f129e",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-19T06:44:53Z",
+      "side": 0,
+      "message": "Instead, the new top level help would look like:\n\n$ ./run_benchmark --help\nusage: run_benchmark [-h] {run,list} ...\n\nCommand line tool to run performance benchmarks.\n\noptional arguments:\n  -h, --help  show this help message and exit\n\ncommands:\n  {run,list}\n    run       run a benchmark (default)\n    list      list benchmarks or stories\n\nTo get help about a command use e.g.: run_benchmark run --help",
+      "revId": "bcaa7e6f32e0e4ce455344c331ba4ddc8a44f04c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
