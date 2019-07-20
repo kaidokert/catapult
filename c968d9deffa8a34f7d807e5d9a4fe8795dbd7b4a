@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc38cbcf_88694a42",
+        "filename": "dashboard/dashboard/spa/report-fetcher.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-20T01:02:05Z",
+      "side": 1,
+      "message": "nit: call it something like rowFetchDescriptors",
+      "range": {
+        "startLine": 82,
+        "startChar": 18,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "c968d9deffa8a34f7d807e5d9a4fe8795dbd7b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10edf5fa_d481dd4f",
+        "filename": "dashboard/dashboard/spa/report-fetcher.test.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-20T01:02:05Z",
+      "side": 1,
+      "message": "Can you add more tests, at a glance seems there\u0027s plenty like revisions \u003d latest, revisions \u003d list, schedules, errors",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "c968d9deffa8a34f7d807e5d9a4fe8795dbd7b4a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

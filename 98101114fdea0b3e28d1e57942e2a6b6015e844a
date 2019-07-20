@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "4dcfbcf8_381d260d",
+        "filename": "dashboard/dashboard/spa/report-fetcher.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-20T01:02:05Z",
+      "side": 1,
+      "message": "Ah ok that\u0027s a bit clearer.\n\nSo a ReportFetcher basically takes a template and some revisions. The template specifies which test paths it cares about (rows).\n\nThen for each test path, for each for each statistic, for each revision, get the data.",
+      "parentUuid": "2474a487_530b6d4b",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 16
+      },
+      "revId": "98101114fdea0b3e28d1e57942e2a6b6015e844a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fc51152_6cccc451",
         "filename": "dashboard/dashboard/spa/report-fetcher.js",
         "patchSetId": 2
