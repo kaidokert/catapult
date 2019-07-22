@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2fc9476_44c45bc4",
+        "filename": "dashboard/dashboard/api/api_request_handler.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:03:12Z",
+      "side": 1,
+      "message": "nit: test",
+      "range": {
+        "startLine": 101,
+        "startChar": 11,
+        "endLine": 101,
+        "endChar": 25
+      },
+      "revId": "fb83b055a48f607a90ee9788ba1d9b058c0c57a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b419de_7f9a080f",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:03:12Z",
+      "side": 1,
+      "message": "Can you add test coverage.",
+      "range": {
+        "startLine": 426,
+        "startChar": 4,
+        "endLine": 426,
+        "endChar": 19
+      },
+      "revId": "fb83b055a48f607a90ee9788ba1d9b058c0c57a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebc61d30_1e58ae03",
+        "filename": "dashboard/dashboard/pinpoint/handlers/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:03:12Z",
+      "side": 1,
+      "message": "nit: if these are in alphabetical order, move cancel to top",
+      "range": {
+        "startLine": 13,
+        "startChar": 33,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "fb83b055a48f607a90ee9788ba1d9b058c0c57a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d99a9f69_b8513a68",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:03:12Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "fb83b055a48f607a90ee9788ba1d9b058c0c57a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fcd3144_0276a9f6",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:03:12Z",
+      "side": 1,
+      "message": "testCancelRunningJob",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "fb83b055a48f607a90ee9788ba1d9b058c0c57a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958c39a2_3af451e0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:03:12Z",
+      "side": 1,
+      "message": "Does this stop a running job? I can see how setting the cancelled on the scheduler prevents them from starting, but once a job has started, they schedule themselves over and over.\n\nAlso, seems like theres potential for the cancelled flag to get overwritten. If a job is currently running, and then put()\u0027s itself at the end, if you were to cancel during this time, the entity would just get overwritten with the older values.",
+      "range": {
+        "startLine": 482,
+        "startChar": 6,
+        "endLine": 482,
+        "endChar": 12
+      },
+      "revId": "fb83b055a48f607a90ee9788ba1d9b058c0c57a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
