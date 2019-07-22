@@ -9,16 +9,16 @@ from __future__ import absolute_import
 import json
 import mock
 
+from dashboard.pinpoint import test
 from dashboard.pinpoint.handlers import jobs
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import results2 as results2_module
-from dashboard.pinpoint import test
 
 
 class JobsTest(test.TestCase):
 
   @mock.patch.object(jobs.utils, 'GetEmail', mock.MagicMock(return_value=None))
-  @mock.patch.object(results2_module, 'GetCachedResults2', return_value="")
+  @mock.patch.object(results2_module, 'GetCachedResults2', return_value='')
   def testGet_NoUser(self, _):
     job = job_module.Job.New((), ())
 
@@ -30,7 +30,7 @@ class JobsTest(test.TestCase):
 
   @mock.patch.object(jobs.utils, 'GetEmail',
                      mock.MagicMock(return_value='lovely.user@example.com'))
-  @mock.patch.object(results2_module, 'GetCachedResults2', return_value="")
+  @mock.patch.object(results2_module, 'GetCachedResults2', return_value='')
   def testGet_WithUser(self, _):
     job_module.Job.New((), ())
     job_module.Job.New((), (), user='lovely.user@example.com')
