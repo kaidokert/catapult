@@ -162,6 +162,29 @@
     },
     {
       "key": {
+        "uuid": "7799da51_690643bc",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:29:16Z",
+      "side": 1,
+      "message": "Have we typedef-ed it somwhere? You could typedef a type called colorHistogram (to prevent naming ambiguity with metric histograms) with a brief explanation of the structure and use that here.",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2880552_423e1a08",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
