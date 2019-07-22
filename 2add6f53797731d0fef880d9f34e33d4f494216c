@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d19fd3e_d8b00b0a",
+        "filename": "dashboard/dashboard/pinpoint/elements/cancel-job-dialog.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-22T15:38:20Z",
+      "side": 1,
+      "message": "test",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 9
+      },
+      "revId": "2add6f53797731d0fef880d9f34e33d4f494216c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
