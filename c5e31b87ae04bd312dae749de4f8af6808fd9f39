@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "945e8401_5210f482",
+        "filename": "telemetry/telemetry/internal/app/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-22T09:59:48Z",
+      "side": 1,
+      "message": "nit: ... timestamp (in seconds since epoch) that a minidump ...",
+      "revId": "c5e31b87ae04bd312dae749de4f8af6808fd9f39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f405421_2ba5b463",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-22T09:59:48Z",
+      "side": 1,
+      "message": "nit: you can `return dump_path` here and `return None` if we exit the while loop.",
+      "revId": "c5e31b87ae04bd312dae749de4f8af6808fd9f39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
