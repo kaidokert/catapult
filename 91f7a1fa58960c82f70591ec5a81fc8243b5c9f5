@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e4c5b7e3_330de04c",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-22T06:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed55b8e3_2d4f1a88",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 76
+      },
+      "revId": "91f7a1fa58960c82f70591ec5a81fc8243b5c9f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3baf5384_eb558edf",
         "filename": "dashboard/dashboard/pinpoint/handlers/cancel_test.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-22T05:51:12Z",
       "side": 1,
       "message": "Optional:\n\nDo you think this would be better using assertIn (with the args reversed, of course)?  You just want a substring check here, not a regexp match.",
+      "range": {
+        "startLine": 42,
+        "startChar": 9,
+        "endLine": 42,
+        "endChar": 28
+      },
+      "revId": "91f7a1fa58960c82f70591ec5a81fc8243b5c9f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91111933_b57a0a86",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-22T06:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3baf5384_eb558edf",
       "range": {
         "startLine": 42,
         "startChar": 9,
@@ -62,6 +110,24 @@
       "revId": "91f7a1fa58960c82f70591ec5a81fc8243b5c9f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3980a25_997c0551",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cancel_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-22T06:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08017b42_a43adb5c",
+      "revId": "91f7a1fa58960c82f70591ec5a81fc8243b5c9f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
