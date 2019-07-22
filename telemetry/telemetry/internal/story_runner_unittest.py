@@ -156,7 +156,7 @@ class DummyLocalStory(story_module.Story):
 class DummyPage(page_module.Page):
   def __init__(self, page_set, name):
     super(DummyPage, self).__init__(
-        url='file://dummy_pages/dummy_page.html',
+        url='about:blank',
         name=name,
         page_set=page_set)
 
@@ -213,17 +213,6 @@ class FakeBenchmark(benchmark.Benchmark):
     return story_module.expectations.StoryExpectations()
 
 
-def _GetOptionForUnittest():
-  options = options_for_unittests.GetCopy()
-  options.output_formats = ['none']
-  options.output_dir = tempfile.mkdtemp(prefix='story_runner_test')
-  parser = options.CreateParser()
-  story_runner.AddCommandLineArgs(parser)
-  options.MergeDefaultValues(parser.get_default_values())
-  story_runner.ProcessCommandLineArgs(parser, options)
-  return options
-
-
 class FakeExceptionFormatterModule(object):
   @staticmethod
   def PrintFormattedException(
@@ -257,6 +246,7 @@ class _Measurement(legacy_page_test.LegacyPageTest):
         page, 'metric', 'unit', self.i,
         improvement_direction=improvement_direction.UP))
 
+
 def _GenerateBaseBrowserFinderOptions(options_callback=None):
   options = fakes.CreateBrowserFinderOptions()
   options.upload_results = None
@@ -281,6 +271,15 @@ def _GenerateBaseBrowserFinderOptions(options_callback=None):
   options.output_dir = None
   return options
 
+def _GetOptionForUnittest():
+  options = options_for_unittests.GetCopy()
+  options.output_formats = ['none']
+  options.output_dir = tempfile.mkdtemp(prefix='story_runner_test')
+  parser = options.CreateParser()
+  story_runner.AddCommandLineArgs(parser)
+  options.MergeDefaultValues(parser.get_default_values())
+  story_runner.ProcessCommandLineArgs(parser, options)
+  return options
 
 
 class StoryRunnerTest(unittest.TestCase):
@@ -288,9 +287,20 @@ class StoryRunnerTest(unittest.TestCase):
     self.fake_stdout = StringIO.StringIO()
     self.actual_stdout = sys.stdout
     sys.stdout = self.fake_stdout
-    self.options = _GetOptionForUnittest()
+    self.options = options_for_unittests.GetRunOptions()
+    self.options.output_dir = tempfile.mkdtemp()
     self.results = results_options.CreateResults(self.options)
     self._story_runner_logging_stub = None
+
+  def tearDown(self):
+    sys.stdout = self.actual_stdout
+    results_file_path = os.path.join(os.path.dirname(__file__), '..',
+                                     'testing', 'results.html')
+    if os.path.isfile(results_file_path):
+      os.remove(results_file_path)
+    self.RestoreExceptionFormatter()
+
+    shutil.rmtree(self.options.output_dir)
 
   def StubOutExceptionFormatting(self):
     """Fake out exception formatter to avoid spamming the unittest stdout."""
@@ -304,16 +314,6 @@ class StoryRunnerTest(unittest.TestCase):
     if self._story_runner_logging_stub:
       self._story_runner_logging_stub.Restore()
       self._story_runner_logging_stub = None
-
-  def tearDown(self):
-    sys.stdout = self.actual_stdout
-    results_file_path = os.path.join(os.path.dirname(__file__), '..',
-                                     'testing', 'results.html')
-    if os.path.isfile(results_file_path):
-      os.remove(results_file_path)
-    self.RestoreExceptionFormatter()
-
-    shutil.rmtree(self.options.output_dir)
 
   def testRunStorySet(self):
     number_stories = 3
@@ -605,10 +605,8 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(green_story)
 
     self.options.pageset_repeat = 2
-    self.options.output_formats = []
-    results = results_options.CreateResults(self.options)
-    story_runner.Run(_Measurement(), story_set, self.options, results)
-    summary = summary_module.Summary(results)
+    story_runner.Run(_Measurement(), story_set, self.options, self.results)
+    summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
     blank_value = list_of_scalar_values.ListOfScalarValues(
@@ -622,8 +620,8 @@ class StoryRunnerTest(unittest.TestCase):
         [1, 3, 2, 4], std=math.sqrt(2),  # Pooled standard deviation.
         improvement_direction=improvement_direction.UP)
 
-    self.assertEquals(4, GetNumberOfSuccessfulPageRuns(results))
-    self.assertFalse(results.had_failures)
+    self.assertEquals(4, GetNumberOfSuccessfulPageRuns(self.results))
+    self.assertFalse(self.results.had_failures)
     self.assertEquals(3, len(values))
     self.assertIn(blank_value, values)
     self.assertIn(green_value, values)
@@ -638,30 +636,27 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(green_story)
 
     self.options.pageset_repeat = 1
-    results = results_options.CreateResults(self.options)
-    story_runner.Run(_Measurement(), story_set, self.options, results)
-    summary = summary_module.Summary(results)
+    story_runner.Run(_Measurement(), story_set, self.options, self.results)
+    summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
-
-    self.assertEquals(2, GetNumberOfSuccessfulPageRuns(results))
-    self.assertFalse(results.had_failures)
+    self.assertEquals(2, GetNumberOfSuccessfulPageRuns(self.results))
+    self.assertFalse(self.results.had_failures)
     self.assertEquals(3, len(values))
 
   def testRunStoryDisabledStory(self):
     story_set = story_module.StorySet()
     story_one = DummyLocalStory(TestSharedPageState, name='one')
     story_set.AddStory(story_one)
-    results = results_options.CreateResults(self.options)
 
-    story_runner.Run(_Measurement(), story_set, self.options, results,
+    story_runner.Run(_Measurement(), story_set, self.options, self.results,
                      expectations=_DisableStoryExpectations())
-    summary = summary_module.Summary(results)
+    summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
-    self.assertEquals(1, GetNumberOfSuccessfulPageRuns(results))
-    self.assertEquals(1, GetNumberOfSkippedPageRuns(results))
-    self.assertFalse(results.had_failures)
+    self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
+    self.assertEquals(1, GetNumberOfSkippedPageRuns(self.results))
+    self.assertFalse(self.results.had_failures)
     self.assertEquals(0, len(values))
 
   def testRunStoryOneDisabledOneNot(self):
@@ -670,16 +665,15 @@ class StoryRunnerTest(unittest.TestCase):
     story_two = DummyLocalStory(TestSharedPageState, name='two')
     story_set.AddStory(story_one)
     story_set.AddStory(story_two)
-    results = results_options.CreateResults(self.options)
 
-    story_runner.Run(_Measurement(), story_set, self.options, results,
+    story_runner.Run(_Measurement(), story_set, self.options, self.results,
                      expectations=_DisableStoryExpectations())
-    summary = summary_module.Summary(results)
+    summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
-    self.assertEquals(2, GetNumberOfSuccessfulPageRuns(results))
-    self.assertEquals(1, GetNumberOfSkippedPageRuns(results))
-    self.assertFalse(results.had_failures)
+    self.assertEquals(2, GetNumberOfSuccessfulPageRuns(self.results))
+    self.assertEquals(1, GetNumberOfSkippedPageRuns(self.results))
+    self.assertFalse(self.results.had_failures)
     self.assertEquals(2, len(values))
 
   def testRunStoryDisabledOverriddenByFlag(self):
@@ -687,16 +681,15 @@ class StoryRunnerTest(unittest.TestCase):
     story_one = DummyLocalStory(TestSharedPageState, name='one')
     story_set.AddStory(story_one)
     self.options.run_disabled_tests = True
-    results = results_options.CreateResults(self.options)
 
-    story_runner.Run(_Measurement(), story_set, self.options, results,
+    story_runner.Run(_Measurement(), story_set, self.options, self.results,
                      expectations=_DisableStoryExpectations())
-    summary = summary_module.Summary(results)
+    summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
-    self.assertEquals(1, GetNumberOfSuccessfulPageRuns(results))
-    self.assertEquals(0, GetNumberOfSkippedPageRuns(results))
-    self.assertFalse(results.had_failures)
+    self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
+    self.assertEquals(0, GetNumberOfSkippedPageRuns(self.results))
+    self.assertFalse(self.results.had_failures)
     self.assertEquals(2, len(values))
 
   def testRunStoryDisabledStoryWithNewFormat(self):
@@ -707,14 +700,13 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
     story_one = DummyLocalStory(TestSharedPageState, name='one')
     story_set.AddStory(story_one)
-    results = results_options.CreateResults(self.options)
     fake = FakeBenchmark()
     fake.AugmentExpectationsWithFile(expectations)
     fake._expectations.SetTags(['all'])
-    story_runner.Run(_Measurement(), story_set, self.options, results,
+    story_runner.Run(_Measurement(), story_set, self.options, self.results,
                      expectations=fake._expectations)
-    self.assertEquals(1, GetNumberOfSuccessfulPageRuns(results))
-    self.assertEquals(1, GetNumberOfSkippedPageRuns(results))
+    self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
+    self.assertEquals(1, GetNumberOfSkippedPageRuns(self.results))
 
   def testRunStoryPopulatesHistograms(self):
     self.StubOutExceptionFormatting()
@@ -961,17 +953,15 @@ class StoryRunnerTest(unittest.TestCase):
     for i in range(num_failing_stories):
       story_set.AddStory(FailingStory(name='failing%d' % i))
 
-    options = _GetOptionForUnittest()
-    options.output_formats = ['none']
     if options_max_failures:
-      options.max_failures = options_max_failures
+      self.options.max_failures = options_max_failures
 
-    results = results_options.CreateResults(options)
     story_runner.Run(
-        DummyTest(), story_set, options,
-        results, max_failures=runner_max_failures)
-    self.assertEquals(expected_num_skips, GetNumberOfSkippedPageRuns(results))
-    self.assertTrue(results.had_failures)
+        DummyTest(), story_set, self.options, self.results,
+        max_failures=runner_max_failures)
+    self.assertEquals(expected_num_skips,
+                      GetNumberOfSkippedPageRuns(self.results))
+    self.assertTrue(self.results.had_failures)
     for ii, story in enumerate(story_set.stories):
       self.assertEqual(story.was_run, ii < expected_num_failures)
 
@@ -1269,49 +1259,34 @@ class StoryRunnerTest(unittest.TestCase):
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
     ])
 
+  def ReadOutputJson(self, filename):
+    with open(os.path.join(self.options.output_dir, filename)) as f:
+      return json.load(f)
 
   def testRunBenchmarkDisabledBenchmarkViaCanRunonPlatform(self):
     fake_benchmark = FakeBenchmark()
     fake_benchmark.SUPPORTED_PLATFORMS = []
-    options = _GenerateBaseBrowserFinderOptions()
-    tmp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = tmp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(tmp_path, 'results-chart.json')) as f:
-        data = json.load(f)
-      self.assertFalse(data['enabled'])
-    finally:
-      shutil.rmtree(tmp_path)
+    self.options.output_formats = ['chartjson']
+    story_runner.RunBenchmark(fake_benchmark, self.options)
+    data = self.ReadOutputJson('results-chart.json')
+    self.assertFalse(data['enabled'])
 
   def testRunBenchmarkDisabledBenchmark(self):
     fake_benchmark = FakeBenchmark()
     fake_benchmark.disabled = True
-    options = _GenerateBaseBrowserFinderOptions()
-    tmp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = tmp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(tmp_path, 'results-chart.json')) as f:
-        data = json.load(f)
-      self.assertFalse(data['enabled'])
-    finally:
-      shutil.rmtree(tmp_path)
+    self.options.output_formats = ['chartjson']
+    story_runner.RunBenchmark(fake_benchmark, self.options)
+    data = self.ReadOutputJson('results-chart.json')
+    self.assertFalse(data['enabled'])
 
   def testRunBenchmarkDisabledBenchmarkCanOverriddenByCommandLine(self):
     fake_benchmark = FakeBenchmark()
     fake_benchmark.disabled = True
-    options = _GenerateBaseBrowserFinderOptions()
-    options.run_disabled_tests = True
-    temp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(temp_path, 'results-chart.json')) as f:
-        data = json.load(f)
-      self.assertTrue(data['enabled'])
-    finally:
-      shutil.rmtree(temp_path)
+    self.options.output_formats = ['chartjson']
+    self.options.run_disabled_tests = True
+    story_runner.RunBenchmark(fake_benchmark, self.options)
+    data = self.ReadOutputJson('results-chart.json')
+    self.assertTrue(data['enabled'])
 
   def testRunBenchmarkWithRelativeOutputDir(self):
     class FakeBenchmarkWithAStory(FakeBenchmark):
@@ -1328,22 +1303,22 @@ class StoryRunnerTest(unittest.TestCase):
         return story_set
 
     fake_benchmark = FakeBenchmarkWithAStory()
-    options = _GenerateBaseBrowserFinderOptions()
-    temp_path = tempfile.mkdtemp()
+    base_output_dir = self.options.output_dir
+    # Create a copy of the options with a new relative output dir.
+    our_options = self.options.Copy()
+    our_options.output_dir = 'output_subdir'
+    our_options.output_formats = ['json-test-results']
     cur_dir = os.getcwd()
     try:
-      os.chdir(temp_path)
-      options.output_dir = 'output'
-      options.output_formats = ['json-test-results']
-      results_options.ProcessCommandLineArgs(options)
-      story_runner.RunBenchmark(fake_benchmark, options)
-      with open(os.path.join(temp_path, 'output', 'test-results.json')) as f:
-        json_results = json.load(f)
-        story_run = json_results['tests']['fake_with_a_story']['story']
-        self.assertEqual(story_run['actual'], 'PASS')
+      os.chdir(base_output_dir)
+      story_runner.RunBenchmark(fake_benchmark, our_options)
+      data = self.ReadOutputJson(
+          os.path.join('output_subdir', 'test-results.json'))
     finally:
       os.chdir(cur_dir)
-      shutil.rmtree(temp_path)
+
+    story_run = data['tests']['fake_with_a_story']['story']
+    self.assertEqual(story_run['actual'], 'PASS')
 
   def testRunBenchmark_AddsOwners_NoComponent(self):
     @benchmark.Owner(emails=['alice@chromium.org'])
@@ -1354,31 +1329,22 @@ class StoryRunnerTest(unittest.TestCase):
         self._story_disabled = False
 
     fake_benchmark = FakeBenchmarkWithOwner()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['histograms']
-    temp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+    self.options.output_formats = ['histograms']
+    story_runner.RunBenchmark(fake_benchmark, self.options)
+    data = self.ReadOutputJson('histograms.json')
 
-      with open(os.path.join(temp_path, 'histograms.json')) as f:
-        data = json.load(f)
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(data)
 
-      hs = histogram_set.HistogramSet()
-      hs.ImportDicts(data)
+    generic_diagnostics = hs.GetSharedDiagnosticsOfType(
+        generic_set.GenericSet)
 
-      generic_diagnostics = hs.GetSharedDiagnosticsOfType(
-          generic_set.GenericSet)
+    self.assertGreater(len(generic_diagnostics), 0)
 
-      self.assertGreater(len(generic_diagnostics), 0)
+    generic_diagnostics_values = [
+        list(diagnostic) for diagnostic in generic_diagnostics]
 
-      generic_diagnostics_values = [
-          list(diagnostic) for diagnostic in generic_diagnostics]
-
-      self.assertIn(['alice@chromium.org'], generic_diagnostics_values)
-
-    finally:
-      shutil.rmtree(temp_path)
+    self.assertIn(['alice@chromium.org'], generic_diagnostics_values)
 
   def testRunBenchmark_AddsComponent(self):
     @benchmark.Owner(emails=['alice@chromium.org', 'bob@chromium.org'],
@@ -1390,33 +1356,24 @@ class StoryRunnerTest(unittest.TestCase):
         self._story_disabled = False
 
     fake_benchmark = FakeBenchmarkWithOwner()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['histograms']
-    temp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+    self.options.output_formats = ['histograms']
+    story_runner.RunBenchmark(fake_benchmark, self.options)
+    data = self.ReadOutputJson('histograms.json')
 
-      with open(os.path.join(temp_path, 'histograms.json')) as f:
-        data = json.load(f)
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(data)
 
-      hs = histogram_set.HistogramSet()
-      hs.ImportDicts(data)
+    generic_diagnostics = hs.GetSharedDiagnosticsOfType(
+        generic_set.GenericSet)
 
-      generic_diagnostics = hs.GetSharedDiagnosticsOfType(
-          generic_set.GenericSet)
+    self.assertGreater(len(generic_diagnostics), 0)
 
-      self.assertGreater(len(generic_diagnostics), 0)
+    generic_diagnostics_values = [
+        list(diagnostic) for diagnostic in generic_diagnostics]
 
-      generic_diagnostics_values = [
-          list(diagnostic) for diagnostic in generic_diagnostics]
-
-      self.assertIn(['fooBar'], generic_diagnostics_values)
-      self.assertIn(['alice@chromium.org', 'bob@chromium.org'],
-                    generic_diagnostics_values)
-
-    finally:
-      shutil.rmtree(temp_path)
+    self.assertIn(['fooBar'], generic_diagnostics_values)
+    self.assertIn(['alice@chromium.org', 'bob@chromium.org'],
+                  generic_diagnostics_values)
 
   def testRunBenchmark_AddsDocumentationUrl(self):
     @benchmark.Owner(emails=['bob@chromium.org'],
@@ -1428,34 +1385,25 @@ class StoryRunnerTest(unittest.TestCase):
         self._story_disabled = False
 
     fake_benchmark = FakeBenchmarkWithOwner()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['histograms']
-    temp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = temp_path
-      story_runner.RunBenchmark(fake_benchmark, options)
+    self.options.output_formats = ['histograms']
+    story_runner.RunBenchmark(fake_benchmark, self.options)
+    data = self.ReadOutputJson('histograms.json')
 
-      with open(os.path.join(temp_path, 'histograms.json')) as f:
-        data = json.load(f)
+    hs = histogram_set.HistogramSet()
+    hs.ImportDicts(data)
 
-      hs = histogram_set.HistogramSet()
-      hs.ImportDicts(data)
+    generic_diagnostics = hs.GetSharedDiagnosticsOfType(
+        generic_set.GenericSet)
 
-      generic_diagnostics = hs.GetSharedDiagnosticsOfType(
-          generic_set.GenericSet)
+    self.assertGreater(len(generic_diagnostics), 0)
 
-      self.assertGreater(len(generic_diagnostics), 0)
+    generic_diagnostics_values = [
+        list(diagnostic) for diagnostic in generic_diagnostics]
 
-      generic_diagnostics_values = [
-          list(diagnostic) for diagnostic in generic_diagnostics]
-
-      self.assertIn([['Benchmark documentation link', 'https://darth.vader']],
-                    generic_diagnostics_values)
-      self.assertIn(['bob@chromium.org'],
-                    generic_diagnostics_values)
-
-    finally:
-      shutil.rmtree(temp_path)
+    self.assertIn([['Benchmark documentation link', 'https://darth.vader']],
+                  generic_diagnostics_values)
+    self.assertIn(['bob@chromium.org'],
+                  generic_diagnostics_values)
 
   def testRunBenchmarkStoryTimeDuration(self):
     class FakeBenchmarkWithStories(FakeBenchmark):
@@ -1474,42 +1422,30 @@ class StoryRunnerTest(unittest.TestCase):
         return story_set
 
     fake_benchmark = FakeBenchmarkWithStories()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['json-test-results']
-    options.pageset_repeat = 2
-
-    tmp_path = tempfile.mkdtemp()
+    self.options.output_formats = ['json-test-results']
+    self.options.pageset_repeat = 2
 
     with mock.patch('telemetry.internal.story_runner.time.time') as time_patch:
       time_patch.side_effect = itertools.count()
-      try:
-        options.output_dir = tmp_path
-        story_runner.RunBenchmark(fake_benchmark, options)
-        with open(os.path.join(tmp_path, 'test-results.json')) as f:
-          json_results = json.load(f)
-          for fake_benchmark in json_results['tests']:
-            stories = json_results['tests'][fake_benchmark]
-            for story in stories:
-              result = stories[story]
-              times = result['times']
-              self.assertEqual(len(times), 2, times)
-              for t in times:
-                self.assertGreater(t, 1)
-      finally:
-        shutil.rmtree(tmp_path)
+      story_runner.RunBenchmark(fake_benchmark, self.options)
+      data = self.ReadOutputJson('test-results.json')
+
+    for fake_benchmark in data['tests']:
+      stories = data['tests'][fake_benchmark]
+      for story in stories:
+        result = stories[story]
+        times = result['times']
+        self.assertEqual(len(times), 2, times)
+        for t in times:
+          self.assertGreater(t, 1)
 
   def testRunBenchmarkDisabledStoryWithBadName(self):
     fake_benchmark = FakeBenchmark()
     fake_benchmark.story_disabled = True
-    options = _GenerateBaseBrowserFinderOptions()
-    tmp_path = tempfile.mkdtemp()
-    try:
-      options.output_dir = tmp_path
-      rc = story_runner.RunBenchmark(fake_benchmark, options)
-      # Test should return -1 since the test was skipped.
-      self.assertEqual(rc, -1)
-    finally:
-      shutil.rmtree(tmp_path)
+
+    return_code = story_runner.RunBenchmark(fake_benchmark, self.options)
+    # Test should return -1 since the test was skipped.
+    self.assertEqual(return_code, -1)
 
   def testRunBenchmark_TooManyValues(self):
     self.StubOutExceptionFormatting()
@@ -1540,9 +1476,7 @@ class StoryRunnerTest(unittest.TestCase):
         return story_set
 
     sucessful_benchmark = TestBenchmark()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['none']
-    return_code = story_runner.RunBenchmark(sucessful_benchmark, options)
+    return_code = story_runner.RunBenchmark(sucessful_benchmark, self.options)
     self.assertEquals(0, return_code)
 
   def testRunBenchmarkReturnCodeCaughtException(self):
@@ -1564,9 +1498,8 @@ class StoryRunnerTest(unittest.TestCase):
         return story_set
 
     story_failure_benchmark = TestBenchmark()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['none']
-    return_code = story_runner.RunBenchmark(story_failure_benchmark, options)
+    return_code = story_runner.RunBenchmark(
+        story_failure_benchmark, self.options)
     self.assertEquals(1, return_code)
 
   def testRunBenchmarkReturnCode_UnhandleableError(self):
@@ -1587,10 +1520,8 @@ class StoryRunnerTest(unittest.TestCase):
         return story_set
 
     unhandled_failure_benchmark = TestBenchmark()
-    options = _GenerateBaseBrowserFinderOptions()
-    options.output_formats = ['none']
     return_code = story_runner.RunBenchmark(
-        unhandled_failure_benchmark, options)
+        unhandled_failure_benchmark, self.options)
     self.assertEquals(2, return_code)
 
   def testDownloadMinimalServingDirs(self):
@@ -1610,15 +1541,14 @@ class StoryRunnerTest(unittest.TestCase):
         story_set.AddStory(bar_page)
         return story_set
 
-    def options_callback(options):
-      options.story_tag_filter = 'foo'
-
     test_benchmark = TestBenchmark()
-    options = _GenerateBaseBrowserFinderOptions(options_callback)
-    options.output_formats = ['none']
+    our_options = options_for_unittests.GetRunOptions(
+        override={'story_tag_filter': 'foo'})
+    our_options.output_dir = self.options.output_dir
+    our_options.output_formats = ['none']
     patch_method = 'py_utils.cloud_storage.GetFilesInDirectoryIfChanged'
     with mock.patch(patch_method) as cloud_patch:
-      story_runner.RunBenchmark(test_benchmark, options)
+      story_runner.RunBenchmark(test_benchmark, our_options)
       # Foo is the only included story serving dir.
       self.assertEqual(cloud_patch.call_count, 1)
       cloud_patch.assert_called_once_with(foo_page.serving_dir, bucket)
@@ -1646,35 +1576,38 @@ class AbridgeableStorySetTest(unittest.TestCase):
 
   def setUp(self):
     self.benchmark = BenchmarkWithAbridgeableStorySet()
-    self.options = _GenerateBaseBrowserFinderOptions()
-    self.options.output_formats = ['none']
+    self.run_story_mock = mock.patch.object(
+        story_runner, '_RunStoryAndProcessErrorIfNeeded').start()
+    self.options = options_for_unittests.GetRunOptions()
+    self.options.output_dir = tempfile.mkdtemp()
+
+  def tearDown(self):
+    shutil.rmtree(self.options.output_dir)
+    mock.patch.stopall()
 
   def testAbridged(self):
-    patch_method = (
-        'telemetry.internal.story_runner._RunStoryAndProcessErrorIfNeeded')
-    with mock.patch(patch_method) as run_story_patch:
-      story_runner.RunBenchmark(self.benchmark, self.options)
-      self.assertEqual(run_story_patch.call_count, 1)
+    story_runner.RunBenchmark(self.benchmark, self.options)
+    self.assertEqual(self.run_story_mock.call_count, 1)
 
   def testFullRun(self):
     self.options.run_full_story_set = True
-    patch_method = (
-        'telemetry.internal.story_runner._RunStoryAndProcessErrorIfNeeded')
-    with mock.patch(patch_method) as run_story_patch:
-      story_runner.RunBenchmark(self.benchmark, self.options)
-      self.assertEqual(run_story_patch.call_count, 2)
+    story_runner.RunBenchmark(self.benchmark, self.options)
+    self.assertEqual(self.run_story_mock.call_count, 2)
 
 
 class BenchmarkJsonResultsTest(unittest.TestCase):
 
   def setUp(self):
-    self._temp_dir = tempfile.mkdtemp()
-    self._options = _GenerateBaseBrowserFinderOptions()
+    self._options = options_for_unittests.GetRunOptions()
     self._options.output_formats = ['json-test-results']
-    self._options.output_dir = self._temp_dir
+    self._options.output_dir = tempfile.mkdtemp()
 
   def tearDown(self):
-    shutil.rmtree(self._temp_dir)
+    shutil.rmtree(self._options.output_dir)
+
+  def ReadOutputJson(self, filename):
+    with open(os.path.join(self._options.output_dir, filename)) as f:
+      return json.load(f)
 
   def testArtifactLogsContainHandleableException(self):
 
@@ -1704,12 +1637,10 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
     return_code = story_runner.RunBenchmark(
         story_failure_benchmark, self._options)
     self.assertEquals(1, return_code)
-    json_data = {}
-    with open(os.path.join(self._temp_dir, 'test-results.json')) as f:
-      json_data = json.load(f)
+    json_data = self.ReadOutputJson('test-results.json')
     foo_artifacts = json_data['tests']['TestBenchmark']['foo']['artifacts']
     foo_artifact_log_path = os.path.join(
-        self._temp_dir, foo_artifacts['logs'][0])
+        self._options.output_dir, foo_artifacts['logs'][0])
     with open(foo_artifact_log_path) as f:
       foo_log = f.read()
 
@@ -1749,13 +1680,10 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
         unhandled_failure_benchmark, self._options)
     self.assertEquals(2, return_code)
 
-    json_data = {}
-    with open(os.path.join(self._temp_dir, 'test-results.json')) as f:
-      json_data = json.load(f)
-
+    json_data = self.ReadOutputJson('test-results.json')
     foo_artifacts = json_data['tests']['TestBenchmark']['foo']['artifacts']
     foo_artifact_log_path = os.path.join(
-        self._temp_dir, foo_artifacts['logs'][0])
+        self._options.output_dir, foo_artifacts['logs'][0])
     with open(foo_artifact_log_path) as f:
       foo_log = f.read()
 
@@ -1806,25 +1734,21 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
     # Also set the filtering to only run from story 10 --> story 40
     stories_to_crash = set('story_%s' % i for i in range(30, 50))
 
-    def options_callback(options):
-      options.story_shard_begin_index = 10
-      options.story_shard_end_index = 41
-
-    options = _GenerateBaseBrowserFinderOptions(options_callback)
-    options.output_formats = ['json-test-results']
-    options.output_dir = self._temp_dir
+    our_options = options_for_unittests.GetRunOptions(override={
+        'story_shard_begin_index': 10,
+        'story_shard_end_index': 41})
+    our_options.output_formats = ['json-test-results']
+    our_options.output_dir = self._options.output_dir
 
     unhandled_failure_benchmark = TestBenchmark()
     return_code = story_runner.RunBenchmark(
-        unhandled_failure_benchmark, self._options)
+        unhandled_failure_benchmark, our_options)
     self.assertEquals(2, return_code)
 
     # The results should contain entries of story 10 --> story 40. Of those
     # entries, story 31's actual result is 'FAIL' and
     # stories from 31 to 40 will shows 'SKIP'.
-    json_data = {}
-    with open(os.path.join(self._temp_dir, 'test-results.json')) as f:
-      json_data = json.load(f)
+    json_data = self.ReadOutputJson('test-results.json')
     stories = json_data['tests']['TestBenchmark']
     self.assertEquals(len(stories.keys()), 31)
 
