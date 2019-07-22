@@ -1,0 +1,221 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "298c1a5f_1dc0c774",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "Could you export a class with static functions instead? Example: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/extras/chrome/event_finder_utils.html?l\u003d44\u0026rcl\u003d5edc9691c639cdad3146b82d5eafa35c07b51e7a\n\nOtherwise the tr.e.chrome namespace would have vaguely named functions like getSnapshotProgress. It\u0027s nicer if they\u0027re scoped down into a class like tr.r.chrome.SpeedIndex.getSnapshotProgress etc.",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61239599_cc5a1209",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "nit: timestamp.",
+      "range": {
+        "startLine": 15,
+        "startChar": 38,
+        "endLine": 15,
+        "endChar": 42
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4b65091_782cee27",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "This is great! nit: Add a blank line between this and the next comment.",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a411d1e3_f7725877",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "nit: number[][] might be easier to read? Would that be valid jsdoc?",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb8ba833_f20bc308",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "Few comments here:\n(1) As it stands, the user of this code will have to first turn each jpeg screenshot into an array of pixels, and then pass that array of pixel arrays into this functions. That\u0027s holding a lot of pixels in memory. Instead, we should let the user turn the screenshots into color histograms as quickly as possible.\n\nCurrently we would have to do something like this in loading_metric.html:\nconst screenshotPixelValues \u003d traceEvents.map(\n    event \u003d\u003e jpegDecode(event.args.screenshot)); // Too much meomry\nconst timestamps \u003d traceEvents.map(event \u003d\u003e event.ts);\nconst snapshotProgress \u003d getSnapshotsProgress(screenshotPixelValues, timestamps);\nconst speedIndex \u003d calculateSpeedIndex(snapshotsProgress);\n\nInstead, we should do something like this:\nconst screenshotColorHistograms \u003d traceEvents.map(\n    event \u003d\u003e createColorHistogram(jpegDecode(event.args.screenshot)));  // More compact.\nconst timestamps \u003d traceEvents.map(event \u003d\u003e event.ts);\nconst snapshotProgress \u003d getSnapshotsProgress(screenshotColorHistograms, timestamps);\nconst speedIndex \u003d calculateSpeedIndex(snapshotsProgress);\n\n\n(2) the snapshotProgress is an implementation detail that ideally should not be exposed. We could do better by hiding it inside calculateSpeedIndex. So now our loading_metric code will look like:\nconst screenshotColorHistograms \u003d traceEvents.map(\nevent \u003d\u003e createColorHistogram(jpegDecode(event.args.screenshot)));  // More compact.\nconst timestamps \u003d traceEvents.map(event \u003d\u003e event.ts);\nconst speedIndex \u003d calculateSpeedIndex(screenshotColorHistograms, timestamps);\n\nHowever, the getSnapshotsProgress and calculateSpeedIndex as present is great of testing. You could turn them into private functions (functions with underscore at the end, see [4] for example.): getSnapshotsProgress_ and speedIndexFromSnapshotsProgress_, and have the public calcualteSpeedIndex function combine the two. It\u0027s fine to export the private functions as long as they have the underscore. \n\n(3) nit: Having the timestamp in the same object as opposed to separate array (which has the risk of accidentally not being the same length etc) is cleaner. So I\u0027m thinking the loading_metric code would look something like this:\nconst timestampedColorHistograms \u003d traceEvents.map(\n  event \u003d\u003e {\n    colorHisogtram: createColorHistogram(jpegDecode(event.args.screenshot)),\n    timestamp: event.ts\n    });\nconst speedIndex \u003d calculateSpeedIndex(timestampedColorHistograms);\n\n----\n[4] https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/extras/chrome/time_to_interactive.html?l\u003d54\u0026rcl\u003d53913cecb11a3ef993f6496b9110964e2e2aeec3",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a169f9f_3fa842df",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "nit: could you do const earthMoversDistance \u003d tr.b.math.earthMoversDistance at the top of the file to make this a little less verbose? Compare with https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/metrics/system_health/loading_metric.html?l\u003d33\u0026rcl\u003d53913cecb11a3ef993f6496b9110964e2e2aeec3",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9ea144d_b268553d",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "nit: url should be one line so it\u0027s easier to copy paste into address bar.",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9312ab6c_29935af5",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "nit (here and elsewhere): Comments should be wrapped at 80 char.",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2880552_423e1a08",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "Don\u0027t you want to exclude white pixels?",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7845bff5_59ba03f9",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "You should not use equality for testing floating points; changing minor implementation detail can lead to floating point error problems like 1.9999999 !\u003d 2.0. Instead, use assert.closeTo. Example: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/model/thread_test.html?type\u003dcs\u0026q\u003dcloseTo+f:catapult\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d168",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd94d6f8_f01999bc",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-22T18:25:54Z",
+      "side": 1,
+      "message": "You should always test (and document if it\u0027s not intuitive) the extreme cases. For example: \n- what happens if the array passed to calculate speed index is empty? (Throwing an error sounds reasonable)\n- what happens if there is only one object in the array? (probably return 0?) \n- What happens if it\u0027s all 0 with 1.0 at the end? (Speed index should be equal to total time)\n- What happens if it\u0027s all 1.0? (Speed index should be 0)",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
