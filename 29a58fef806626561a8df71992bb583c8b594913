@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6cb1a2ee_17921cca",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "298c1a5f_1dc0c774",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61239599_cc5a1209",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f6685270_22671693",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61239599_cc5a1209",
+      "range": {
+        "startLine": 15,
+        "startChar": 38,
+        "endLine": 15,
+        "endChar": 42
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4b65091_782cee27",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -62,6 +110,24 @@
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26548398_8f3cbdb8",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4b65091_782cee27",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "d81ad26a_f7765112",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Array.\u003cnumber[]\u003e would be valid jsdoc.",
+      "parentUuid": "a411d1e3_f7725877",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb8ba833_f20bc308",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -102,6 +192,24 @@
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2f96d6c_c4a82d8a",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb8ba833_f20bc308",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "fd5da9c2_fa7a38a1",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a169f9f_3fa842df",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9ea144d_b268553d",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -139,6 +271,24 @@
       "writtenOn": "2019-07-22T18:25:54Z",
       "side": 1,
       "message": "nit: url should be one line so it\u0027s easier to copy paste into address bar.",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6407a38d_040cb3f5",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "It doesn\u0027t fit to the 80 characters limit that\u0027s why I split it into two lines.",
+      "parentUuid": "b9ea144d_b268553d",
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -159,6 +309,24 @@
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70c1c210_458340d1",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9312ab6c_29935af5",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -185,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "a7317a3e_617c207e",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7799da51_690643bc",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2880552_423e1a08",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -196,6 +388,24 @@
       "writtenOn": "2019-07-22T18:25:54Z",
       "side": 1,
       "message": "Don\u0027t you want to exclude white pixels?",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94d0dbb0_c89a990f",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Excluding white pixels violates the earth mover\u0027s distance rule of having the same amount of dirt in each histogram! It\u0027s not clear to me how necessary it is for histograms to have the same size. EMD seems to work fine also when they don\u0027t.\nIf we exclude white pixels we\u0027ll have to change the EMD code to not crash on different sized histograms.",
+      "parentUuid": "b2880552_423e1a08",
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -225,6 +435,30 @@
     },
     {
       "key": {
+        "uuid": "28435a7f_242127ba",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7845bff5_59ba03f9",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd94d6f8_f01999bc",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
         "patchSetId": 3
@@ -239,6 +473,24 @@
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99711c7f_5eaf11de",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-22T21:40:03Z",
+      "side": 1,
+      "message": "In the second and fourth case, we return the timestamp of the first screenshot which is not necessarily 0.",
+      "parentUuid": "cd94d6f8_f01999bc",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
