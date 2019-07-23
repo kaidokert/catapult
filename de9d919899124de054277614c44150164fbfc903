@@ -151,6 +151,24 @@
       "revId": "de9d919899124de054277614c44150164fbfc903",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "155fd1d6_43e2a8f1",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T19:05:52Z",
+      "side": 1,
+      "message": "Sorry I meant above line 24, where you typedef timestampedColorHistogram and reference colorHistogram.",
+      "parentUuid": "6dc46649_04f9ad10",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
