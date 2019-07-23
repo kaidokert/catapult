@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "412d9ec3_7a5b4b0c",
+        "filename": "dashboard/dashboard/pinpoint/elements/cancel-job-dialog-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-23T01:48:47Z",
+      "side": 1,
+      "message": "Is this removal meant to be part of this CL?",
+      "revId": "bad00f2c004aa5f06b876f4940d7210e8d660384",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
