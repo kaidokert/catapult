@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bf1baf6_f196960f",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "nit: Delete extra line?",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed00254c_8d70c871",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "nit: The tab alignment (here and elsewhere in this file) is strange. The stars should be assigned with the first star. See comments elsewhere in the codebase. Maybe your editor is messing up tab width?",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "072f0479_fdee903e",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "Should this function be private?",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23ddfb5e_193c86ff",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "nit: Move this above the definition of colorHistogram.",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

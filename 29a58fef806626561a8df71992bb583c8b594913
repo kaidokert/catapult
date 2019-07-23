@@ -295,6 +295,24 @@
     },
     {
       "key": {
+        "uuid": "6ae071be_ba6f373f",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "Ah I see. You can use a url shortener like https://bitly.com. I noticed you used \u003ca\u003e tag in the latest patchset; I don\u0027t think we use that in the catapult code base (and have no tools to auto extract the links) so a short url would be best.",
+      "parentUuid": "6407a38d_040cb3f5",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9312ab6c_29935af5",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -412,6 +430,24 @@
     },
     {
       "key": {
+        "uuid": "a4bcccec_722020fb",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "Hmm very interesting! It makes me uncomfortable to use earth movers distance when the distributions are not of the same size, since a lot of the math seems to be based on that assumption (let me know if you feel otherwise). I think it\u0027s probably best to not exclude white pixels for now, so leave the code as it is.\n\nTangentially, I find the choice of excluding white pixels to be arbitrary (as opposed to the background color of the page) - is it because the about:black is all white? Do you know if the first screenshot is always all white? Another option we can consider (perhaps later, in a follow up CL) is to normalize these histograms by dividing each bin by the total.",
+      "parentUuid": "94d0dbb0_c89a990f",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7845bff5_59ba03f9",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
         "patchSetId": 3
@@ -488,6 +524,24 @@
       "side": 1,
       "message": "In the second and fourth case, we return the timestamp of the first screenshot which is not necessarily 0.",
       "parentUuid": "cd94d6f8_f01999bc",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bcda97de_0100605a",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index_test.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-23T16:46:31Z",
+      "side": 1,
+      "message": "Ah right. Thanks!",
+      "parentUuid": "99711c7f_5eaf11de",
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
