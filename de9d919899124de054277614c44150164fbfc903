@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dc8fd8d4_a1ade2bb",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T18:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bf1baf6_f196960f",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed00254c_8d70c871",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "de9d919899124de054277614c44150164fbfc903",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d285f83a_7eb7e9fa",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T18:24:51Z",
+      "side": 1,
+      "message": "yup for some reason it was messed up. fixed it.",
+      "parentUuid": "ed00254c_8d70c871",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "ac03ca0d_5310c35d",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T18:24:51Z",
+      "side": 1,
+      "message": "yeah missed fixing this before",
+      "parentUuid": "072f0479_fdee903e",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23ddfb5e_193c86ff",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 4
@@ -70,6 +130,24 @@
       "writtenOn": "2019-07-23T16:46:31Z",
       "side": 1,
       "message": "nit: Move this above the definition of colorHistogram.",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dc46649_04f9ad10",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T18:24:51Z",
+      "side": 1,
+      "message": "It\u0027s already above the definition?",
+      "parentUuid": "23ddfb5e_193c86ff",
       "revId": "de9d919899124de054277614c44150164fbfc903",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

@@ -313,6 +313,24 @@
     },
     {
       "key": {
+        "uuid": "221e32fd_c88acc46",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T18:24:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ae071be_ba6f373f",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9312ab6c_29935af5",
         "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
         "patchSetId": 3
@@ -445,6 +463,24 @@
       "revId": "29a58fef806626561a8df71992bb583c8b594913",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86be1b01_21ae7ea6",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T18:24:51Z",
+      "side": 1,
+      "message": "Normalization is an option and you\u0027re right ignoring white pixels is kind of arbitrary.\nBecause I\u0027m not sure whether first screenshot is always white. Probably not.",
+      "parentUuid": "a4bcccec_722020fb",
+      "revId": "29a58fef806626561a8df71992bb583c8b594913",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
