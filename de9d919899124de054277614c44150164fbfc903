@@ -169,6 +169,24 @@
       "revId": "de9d919899124de054277614c44150164fbfc903",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "181a7402_10da7d15",
+        "filename": "tracing/tracing/extras/chrome/screenshots_based_speed_index.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-23T19:21:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "155fd1d6_43e2a8f1",
+      "revId": "de9d919899124de054277614c44150164fbfc903",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
