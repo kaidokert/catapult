@@ -70,9 +70,6 @@ class FakePlatform(object):
   def GetOSVersionName(self):
     return 'win10'
 
-  def GetOSVersionDetailString(self):
-    return '10.0.16299'
-
   def GetSystemTotalPhysicalMemory(self):
     return 8 * (1024 ** 3)
 
@@ -724,7 +721,7 @@ class StoryRunnerTest(unittest.TestCase):
         list(diagnostic) for diagnostic in generic_diagnostics]
 
     self.assertGreater(len(generic_diagnostics), 2)
-    self.assertIn(['10.0.16299'], generic_diagnostics_values)
+    self.assertIn(['win10'], generic_diagnostics_values)
     self.assertIn(['win'], generic_diagnostics_values)
     self.assertIn(['amd64'], generic_diagnostics_values)
 
@@ -762,7 +759,7 @@ class StoryRunnerTest(unittest.TestCase):
         list(diagnostic) for diagnostic in generic_diagnostics]
 
     self.assertGreater(len(generic_diagnostics), 2)
-    self.assertIn(['10.0.16299'], generic_diagnostics_values)
+    self.assertIn(['win10'], generic_diagnostics_values)
     self.assertIn(['win'], generic_diagnostics_values)
     self.assertIn(['amd64'], generic_diagnostics_values)
 
@@ -794,7 +791,7 @@ class StoryRunnerTest(unittest.TestCase):
         list(diagnostic) for diagnostic in generic_diagnostics]
 
     self.assertGreater(len(generic_diagnostics), 2)
-    self.assertIn(['10.0.16299'], generic_diagnostics_values)
+    self.assertIn(['win10'], generic_diagnostics_values)
     self.assertIn(['win'], generic_diagnostics_values)
     self.assertIn(['amd64'], generic_diagnostics_values)
 
