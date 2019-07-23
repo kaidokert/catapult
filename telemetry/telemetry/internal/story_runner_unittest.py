@@ -210,17 +210,6 @@ class FakeBenchmark(benchmark.Benchmark):
     return story_module.expectations.StoryExpectations()
 
 
-def _GetOptionForUnittest():
-  options = options_for_unittests.GetCopy()
-  options.output_formats = ['none']
-  options.output_dir = tempfile.mkdtemp(prefix='story_runner_test')
-  parser = options.CreateParser()
-  story_runner.AddCommandLineArgs(parser)
-  options.MergeDefaultValues(parser.get_default_values())
-  story_runner.ProcessCommandLineArgs(parser, options)
-  return options
-
-
 class FakeExceptionFormatterModule(object):
   @staticmethod
   def PrintFormattedException(
@@ -255,37 +244,14 @@ class _Measurement(legacy_page_test.LegacyPageTest):
         improvement_direction=improvement_direction.UP))
 
 
-def _GenerateFakeBrowserOptions(output_dir, options_callback=None):
-  options = fakes.CreateBrowserFinderOptions()
-  options.upload_results = False
-  options.upload_bucket = None
-  options.results_label = None
-  options.reset_results = False
-  options.use_live_sites = False
-  options.max_failures = 100
-  options.pause = None
-  options.pageset_repeat = 1
-  options.output_dir = output_dir
-  options.output_formats = ['chartjson']
-  options.run_disabled_tests = False
-
-  if options_callback:
-    options_callback(options)
-
-  parser = options.CreateParser()
-  story_runner.AddCommandLineArgs(parser)
-  options.MergeDefaultValues(parser.get_default_values())
-  story_runner.ProcessCommandLineArgs(parser, options)
-  return options
-
-
 class StoryRunnerTest(unittest.TestCase):
   def setUp(self):
+    self.options = options_for_unittests.GetRunOptions(
+        output_dir=tempfile.mkdtemp())
+    self.results = results_options.CreateResults(self.options)
     self.fake_stdout = StringIO.StringIO()
     self.actual_stdout = sys.stdout
     sys.stdout = self.fake_stdout
-    self.options = _GetOptionForUnittest()
-    self.results = results_options.CreateResults(self.options)
     self._story_runner_logging_stub = None
 
   def tearDown(self):
@@ -293,9 +259,13 @@ class StoryRunnerTest(unittest.TestCase):
     self.RestoreExceptionFormatter()
     shutil.rmtree(self.options.output_dir)
 
-  def GetFakeBrowserOptions(self, options_callback=None):
-    return _GenerateFakeBrowserOptions(
-        self.options.output_dir, options_callback)
+  def GetFakeBrowserOptions(self, overrides=None):
+    options = options_for_unittests.GetRunOptions(
+        output_dir=self.options.output_dir,
+        fake_browser=True,
+        overrides=overrides)
+    options.output_formats = ['chartjson']
+    return options
 
   def StubOutExceptionFormatting(self):
     """Fake out exception formatter to avoid spamming the unittest stdout."""
@@ -1552,11 +1522,8 @@ class StoryRunnerTest(unittest.TestCase):
         story_set.AddStory(bar_page)
         return story_set
 
-    def options_callback(options):
-      options.story_tag_filter = 'foo'
-
     test_benchmark = TestBenchmark()
-    options = self.GetFakeBrowserOptions(options_callback)
+    options = self.GetFakeBrowserOptions(overrides={'story_tag_filter': 'foo'})
     options.output_formats = ['none']
     patch_method = 'py_utils.cloud_storage.GetFilesInDirectoryIfChanged'
     with mock.patch(patch_method) as cloud_patch:
@@ -1588,7 +1555,8 @@ class AbridgeableStorySetTest(unittest.TestCase):
 
   def setUp(self):
     self.benchmark = BenchmarkWithAbridgeableStorySet()
-    self.options = _GenerateFakeBrowserOptions(output_dir=tempfile.mkdtemp())
+    self.options = options_for_unittests.GetRunOptions(
+        output_dir=tempfile.mkdtemp(), fake_browser=True)
     self.options.output_formats = ['none']
 
   def tearDown(self):
@@ -1613,15 +1581,18 @@ class AbridgeableStorySetTest(unittest.TestCase):
 class BenchmarkJsonResultsTest(unittest.TestCase):
 
   def setUp(self):
-    self._options = _GenerateFakeBrowserOptions(output_dir=tempfile.mkdtemp())
+    self.options = options_for_unittests.GetRunOptions(
+        output_dir=tempfile.mkdtemp(), fake_browser=True)
     self._options.output_formats = ['json-test-results']
 
   def tearDown(self):
     shutil.rmtree(self._options.output_dir)
 
-  def GetFakeBrowserOptions(self, options_callback=None):
-    return _GenerateFakeBrowserOptions(
-        self._options.output_dir, options_callback)
+  def GetFakeBrowserOptions(self, overrides=None):
+    return options_for_unittests.GetRunOptions(
+        output_dir=self._options.output_dir,
+        fake_browser=True,
+        overrides=overrides)
 
   def testArtifactLogsContainHandleableException(self):
 
@@ -1753,11 +1724,9 @@ class BenchmarkJsonResultsTest(unittest.TestCase):
     # Also set the filtering to only run from story 10 --> story 40
     stories_to_crash = set('story_%s' % i for i in range(30, 50))
 
-    def options_callback(options):
-      options.story_shard_begin_index = 10
-      options.story_shard_end_index = 41
-
-    options = self.GetFakeBrowserOptions(options_callback)
+    options = self.GetFakeBrowserOptions({
+        'story_shard_begin_index': 10,
+        'story_shard_end_index': 41})
     options.output_formats = ['json-test-results']
 
     unhandled_failure_benchmark = TestBenchmark()
