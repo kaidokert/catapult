@@ -16,6 +16,24 @@
       "revId": "bad00f2c004aa5f06b876f4940d7210e8d660384",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "478ba4bb_6aa55fc7",
+        "filename": "dashboard/dashboard/pinpoint/elements/cancel-job-dialog-test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-23T01:51:59Z",
+      "side": 1,
+      "message": "Nope, git is hard. :(",
+      "parentUuid": "412d9ec3_7a5b4b0c",
+      "revId": "bad00f2c004aa5f06b876f4940d7210e8d660384",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
