@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45fd9db1_8784bf10",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-24T23:16:58Z",
+      "side": 1,
+      "message": "Nit: update the comment, since \"not equal to each other\" might not always be the criteria, now.",
+      "revId": "bc90916e36c9c3e39c7240a2c0d49c788b286d1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
