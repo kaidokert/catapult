@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
 import StringIO
 import unittest
 
@@ -11,6 +12,7 @@ import mock
 from telemetry import story
 from telemetry.internal.results import base_test_results_unittest
 from telemetry.internal.results import chart_json_output_formatter
+from telemetry.internal.results import histogram_set_json_output_formatter
 from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import page_test_results
 from telemetry.internal.results import results_processor
@@ -218,22 +220,39 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
       self.assertEquals(1, len(runs))
 
   def testPrintSummaryDisabledResults(self):
-    output_stream = StringIO.StringIO()
+    class StringIOWithName(StringIO.StringIO):
+      @property
+      def name(self):
+        return 'name_of_file'
+    chartjson_output_stream = StringIOWithName()
+    html_output_stream = StringIOWithName()
+    histograms_output_stream = StringIOWithName()
     output_formatters = []
+
     output_formatters.append(
-        chart_json_output_formatter.ChartJsonOutputFormatter(output_stream))
+        chart_json_output_formatter.ChartJsonOutputFormatter(
+            chartjson_output_stream))
     output_formatters.append(html_output_formatter.HtmlOutputFormatter(
-        output_stream, reset_results=True))
+        html_output_stream, reset_results=True))
+    output_formatters.append(
+        histogram_set_json_output_formatter.HistogramSetJsonOutputFormatter(
+            histograms_output_stream, reset_results=False))
+
     results = page_test_results.PageTestResults(
         output_formatters=output_formatters,
-        benchmark_name='benchmark_name',
-        benchmark_description='benchmark_description',
-        benchmark_enabled=False)
+        benchmark_name='fake_benchmark_name',
+        benchmark_description='benchmark_description')
     results.PrintSummary()
-    self.assertEquals(
-        output_stream.getvalue(),
-        '{\n  \"enabled\": false,\n  ' +
-        '\"benchmark_name\": \"benchmark_name\"\n}\n')
+
+    chartjson_output = json.loads(chartjson_output_stream.getvalue())
+    self.assertFalse(chartjson_output['enabled'])
+    self.assertEqual(chartjson_output['benchmark_name'], 'fake_benchmark_name')
+
+    html_output = html_output_stream.getvalue()
+    self.assertGreater(len(html_output), 0)
+
+    histograms_output = histograms_output_stream.getvalue()
+    self.assertEqual(histograms_output, '[]')
 
   def testImportHistogramDicts(self):
     hs = histogram_set.HistogramSet()
