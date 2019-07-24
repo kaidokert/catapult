@@ -16,6 +16,24 @@
       "revId": "0b198ff0ae631a4f845573d0f0935bfe298f624d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4ce15cd_0e3df236",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-24T22:41:59Z",
+      "side": 1,
+      "message": "You can move this line below 435.",
+      "parentUuid": "1a716067_426092d0",
+      "revId": "0b198ff0ae631a4f845573d0f0935bfe298f624d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
