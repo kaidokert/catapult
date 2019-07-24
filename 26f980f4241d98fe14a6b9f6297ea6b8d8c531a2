@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28c6d785_74be017b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-07-24T16:50:45Z",
+      "side": 1,
+      "message": "I feel like this isn\u0027t going to work 100%, if a job is currently running, it loads v0 of the entity, then you call cancel, load v0, write it back as v1, and the currently running one finishes writing back v0.",
+      "range": {
+        "startLine": 497,
+        "startChar": 4,
+        "endLine": 497,
+        "endChar": 8
+      },
+      "revId": "26f980f4241d98fe14a6b9f6297ea6b8d8c531a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
