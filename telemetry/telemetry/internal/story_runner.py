@@ -388,12 +388,8 @@ def _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
         finder_options.browser_options.browser_type, benchmark.Name()))
     return False
 
-  benchmark.expectations.SetTags(
-      possible_browser.GetTypExpectationsTags())
-
   # In other cases, if there is a browser, we exit early if we determine
   # that the benchmark should be run.
-
   if finder_options.print_only:
     return True  # Should always run on print-only mode.
 
@@ -413,16 +409,6 @@ def _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
     print ('Benchmark "%s" is not supported on the current platform. If this '
            "is in error please add it to the benchmark's SUPPORTED_PLATFORMS."
            % benchmark.Name())
-
-  # If we reach this point the benchmark should not be run; but we still need
-  # to report the disabled state of the benchmark with an empty set of results.
-  with results_options.CreateResults(
-      finder_options,
-      benchmark_name=benchmark.Name(),
-      benchmark_description=benchmark.Description(),
-      report_progress=not finder_options.suppress_gtest_report,
-      should_add_value=benchmark.ShouldAddValue) as results:
-    results.PrintSummary()
   return False
 
 
@@ -436,27 +422,28 @@ def RunBenchmark(benchmark, finder_options):
     2 if there was an uncaught exception.
   """
   benchmark.CustomizeOptions(finder_options)
-  possible_browser = browser_finder.FindBrowser(finder_options)
-  if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
-    return -1
-
-  pt = benchmark.CreatePageTest(finder_options)
-  pt.__name__ = benchmark.__class__.__name__
-
-  story_set = benchmark.CreateStorySet(finder_options)
-
-  if isinstance(pt, legacy_page_test.LegacyPageTest):
-    if any(not isinstance(p, page.Page) for p in story_set.stories):
-      raise Exception(
-          'PageTest must be used with StorySet containing only '
-          'telemetry.page.Page stories.')
-
   with results_options.CreateResults(
       finder_options,
       benchmark_name=benchmark.Name(),
       benchmark_description=benchmark.Description(),
       report_progress=not finder_options.suppress_gtest_report,
       should_add_value=benchmark.ShouldAddValue) as results:
+    possible_browser = browser_finder.FindBrowser(finder_options)
+    benchmark.expectations.SetTags(
+        possible_browser.GetTypExpectationsTags())
+    if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
+      return -1
+
+    pt = benchmark.CreatePageTest(finder_options)
+    pt.__name__ = benchmark.__class__.__name__
+
+    story_set = benchmark.CreateStorySet(finder_options)
+
+    if isinstance(pt, legacy_page_test.LegacyPageTest):
+      if any(not isinstance(p, page.Page) for p in story_set.stories):
+        raise Exception(
+            'PageTest must be used with StorySet containing only '
+            'telemetry.page.Page stories.')
     try:
       Run(pt, story_set, finder_options, results, benchmark.max_failures,
           expectations=benchmark.expectations,
