@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a716067_426092d0",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-24T22:40:57Z",
+      "side": 1,
+      "message": "You need to make sure possible_browser is not None before calling GetTypExpectationsTags.",
+      "revId": "0b198ff0ae631a4f845573d0f0935bfe298f624d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
