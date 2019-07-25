@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import collections
 import optparse
 import sys
 
@@ -142,6 +143,20 @@ class Benchmark(command_line.Command):
 
   def CustomizeOptions(self, finder_options):
     """Add options that are required by this benchmark."""
+
+  def GetMetadata(self):
+    """Create a object containing metadata about the benchmark.
+
+    It is preferred to pass around this metadata object instead of
+    a full Benchmark object because this object has more constrained
+    capabilities, so it is easier to reason about code that uses it.
+    """
+    return BenchmarkMetadata(
+        self.Name(),
+        self.Description(),
+        self.GetOwners(),
+        self.GetBugComponents(),
+        self.GetDocumentationLink())
 
   def GetBugComponents(self):
     """Returns a GenericSet Diagnostic containing the benchmark's Monorail
@@ -292,6 +307,16 @@ class Benchmark(command_line.Command):
   @property
   def expectations(self):
     return self._expectations
+
+
+class BenchmarkMetadata(object):
+  def __init__(self, name=None, description=None, owners=None, components=None,
+               documentation_url=None):
+    self.name = name
+    self.description = description
+    self.owners = owners
+    self.components = components
+    self.documentation_url = documentation_url
 
 
 def AddCommandLineArgs(parser):

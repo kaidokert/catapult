@@ -99,17 +99,13 @@ def _GetOutputStream(output_format, output_dir):
     return open(output_file, mode='w+')
 
 
-def CreateResults(options, benchmark_name=None, benchmark_description=None,
+def CreateResults(options, benchmark_metadata,
                   report_progress=False, should_add_value=None):
   """
   Args:
     options: Contains the options specified in AddResultsOptions.
-    benchmark_name: A string with the name of the currently running benchmark.
-    benchmark_description: A string with a description of the currently
-        running benchmark.
-    benchmark_enabled: A boolean indicating whether the benchmark to run
-        is enabled. (Some output formats need to produce special output for
-        disabled benchmarks).
+    benchmark_metadata: A BenchmarkMetadata object providing information
+        such as name, owner, documentation_urls, etc.
     report_progress: A boolean indicating whether to emit gtest style
         report of progress as story runs are being recorded.
     should_add_value: A function that takes two arguments: a value name and
@@ -161,7 +157,6 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
       progress_stream=sys.stdout if report_progress else None,
       output_dir=options.output_dir,
       should_add_value=should_add_value,
-      benchmark_name=benchmark_name,
-      benchmark_description=benchmark_description,
+      benchmark_metadata=benchmark_metadata,
       upload_bucket=upload_bucket,
       results_label=options.results_label)
