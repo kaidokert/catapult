@@ -11,6 +11,8 @@ import tempfile
 import time
 import traceback
 
+from py_utils import memory_debug  # pylint: disable=import-error
+
 from telemetry import value as value_module
 from telemetry.internal.results import chart_json_output_formatter
 from telemetry.internal.results import html_output_formatter
@@ -227,6 +229,11 @@ class PageTestResults(object):
     return self
 
   def __exit__(self, _, __, ___):
+    # Log memory usage to make sure results object is not taking up
+    # too much space.
+    memory_debug.LogHostMemoryUsage()
+
+    self.PrintSummary()
     self.CloseOutputFormatters()
 
   def WillRunPage(self, page, story_run_index=0):
