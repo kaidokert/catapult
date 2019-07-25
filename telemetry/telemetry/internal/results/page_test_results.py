@@ -28,8 +28,8 @@ from tracing.value.diagnostics import reserved_infos
 
 class PageTestResults(object):
   def __init__(self, output_formatters=None, progress_stream=None,
-               output_dir=None, should_add_value=None, benchmark_name=None,
-               benchmark_description=None,
+               output_dir=None, should_add_value=None,
+               benchmark_metadata=None,
                upload_bucket=None, results_label=None):
     """
     Args:
@@ -44,9 +44,8 @@ class PageTestResults(object):
           a boolean (True when the value belongs to the first run of the
           corresponding story). It returns True if the value should be added
           to the test results and False otherwise.
-      benchmark_name: A string with the name of the currently running benchmark.
-      benchmark_description: A string with a description of the currently
-          running benchmark.
+      benchmark_metadata: A BenchmarkMetadata object providing information
+          such as name, owner, documentation_urls, etc.
       upload_bucket: A string identifting a cloud storage bucket where to
           upload artifacts.
       results_label: A string that serves as an identifier for the current
@@ -72,8 +71,7 @@ class PageTestResults(object):
 
     self._histograms = histogram_set.HistogramSet()
 
-    self._benchmark_name = benchmark_name or '(unknown benchmark)'
-    self._benchmark_description = benchmark_description or ''
+    self._benchmark_metadata = benchmark_metadata
     self._benchmark_start_us = time.time() * 1e6
     # |_interruption| is None if the benchmark has not been interrupted.
     # Otherwise it is a string explaining the reason for the interruption.
@@ -84,11 +82,17 @@ class PageTestResults(object):
 
   @property
   def benchmark_name(self):
-    return self._benchmark_name
+    try:
+      return self._benchmark_metadata.name
+    except AttributeError:
+      return '(unknown benchmark)'
 
   @property
   def benchmark_description(self):
-    return self._benchmark_description
+    try:
+      return self._benchmark_metadata.description
+    except AttributeError:
+      return ''
 
   @property
   def benchmark_start_us(self):
@@ -295,10 +299,14 @@ class PageTestResults(object):
 
   def _GetDiagnostics(self):
     """Get benchmark and current story details as histogram diagnostics."""
+    metadata = self._benchmark_metadata
     diag_values = [
-        (reserved_infos.BENCHMARKS, self.benchmark_name),
+        (reserved_infos.BENCHMARKS, metadata.name),
         (reserved_infos.BENCHMARK_START, self.benchmark_start_us),
-        (reserved_infos.BENCHMARK_DESCRIPTIONS, self.benchmark_description),
+        (reserved_infos.BENCHMARK_DESCRIPTIONS, metadata.description),
+        (reserved_infos.BUG_COMPONENTS, metadata.components),
+        (reserved_infos.OWNERS, metadata.owners),
+        (reserved_infos.DOCUMENTATION_URLS, metadata.documentation_url),
         (reserved_infos.LABELS, self.label),
         (reserved_infos.HAD_FAILURES, self.current_story_run.failed),
         (reserved_infos.STORIES, self.current_story.name),
