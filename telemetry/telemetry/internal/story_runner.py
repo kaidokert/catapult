@@ -416,8 +416,7 @@ def RunBenchmark(benchmark, finder_options):
   benchmark.CustomizeOptions(finder_options)
   with results_options.CreateResults(
       finder_options,
-      benchmark_name=benchmark.Name(),
-      benchmark_description=benchmark.Description(),
+      benchmark.GetMetadata(),
       report_progress=not finder_options.suppress_gtest_report,
       should_add_value=benchmark.ShouldAddValue) as results:
 
@@ -461,22 +460,6 @@ def RunBenchmark(benchmark, finder_options):
       results.InterruptBenchmark(interruption)
       exception_formatter.PrintFormattedException()
       return_code = 2
-
-    benchmark_owners = benchmark.GetOwners()
-    benchmark_component = benchmark.GetBugComponents()
-    benchmark_documentation_url = benchmark.GetDocumentationLink()
-
-    if benchmark_owners:
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.OWNERS.name, benchmark_owners)
-
-    if benchmark_component:
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.BUG_COMPONENTS.name, benchmark_component)
-
-    if benchmark_documentation_url:
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.DOCUMENTATION_URLS.name, benchmark_documentation_url)
 
     if finder_options.upload_results:
       results_processor.UploadArtifactsToCloud(results)

@@ -9,6 +9,7 @@ import unittest
 from py_utils import tempfile_ext
 import mock
 
+from telemetry import benchmark
 from telemetry import story
 from telemetry.internal.results import base_test_results_unittest
 from telemetry.internal.results import chart_json_output_formatter
@@ -31,6 +32,11 @@ class StringIOWithName(StringIO.StringIO):
   @property
   def name(self):
     return 'name_of_file'
+
+
+FAKE_BENCHMARK_METADATA = benchmark.BenchmarkMetadata(
+    name='fake_benchmark_name',
+    description='fake_benchmark_description')
 
 
 class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
@@ -231,8 +237,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         chartjson_output_stream)
     results = page_test_results.PageTestResults(
         output_formatters=[formatter],
-        benchmark_name='fake_benchmark_name',
-        benchmark_description='benchmark_description')
+        benchmark_metadata=FAKE_BENCHMARK_METADATA)
     results.PrintSummary()
     chartjson_output = json.loads(chartjson_output_stream.getvalue())
     self.assertFalse(chartjson_output['enabled'])
@@ -244,8 +249,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
         html_output_stream, reset_results=True)
     results = page_test_results.PageTestResults(
         output_formatters=[formatter],
-        benchmark_name='fake_benchmark_name',
-        benchmark_description='benchmark_description')
+        benchmark_metadata=FAKE_BENCHMARK_METADATA)
     results.PrintSummary()
     html_output = html_output_stream.getvalue()
     self.assertGreater(len(html_output), 0)
@@ -257,8 +261,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
             histograms_output_stream, reset_results=False)
     results = page_test_results.PageTestResults(
         output_formatters=[formatter],
-        benchmark_name='fake_benchmark_name',
-        benchmark_description='benchmark_description')
+        benchmark_metadata=FAKE_BENCHMARK_METADATA)
     results.PrintSummary()
     histograms_output = histograms_output_stream.getvalue()
     self.assertEqual(histograms_output, '[]')
@@ -291,7 +294,7 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
 
   def testAddSharedDiagnosticToAllHistograms(self):
     results = page_test_results.PageTestResults(
-        benchmark_name='benchmark_name')
+        benchmark_metadata=benchmark.BenchmarkMetadata(name='benchmark_name'))
     results.WillRunPage(self.pages[0])
     results.DidRunPage(self.pages[0])
     results.AddSharedDiagnosticToAllHistograms(
@@ -323,14 +326,14 @@ class PageTestResultsTest(base_test_results_unittest.BaseTestResultsUnittest):
 
   def testPopulateHistogramSet_UsesHistogramSetData(self):
     results = page_test_results.PageTestResults(
-        benchmark_name='benchmark_name')
+        benchmark_metadata=benchmark.BenchmarkMetadata(name='benchmark_name'))
     results.WillRunPage(self.pages[0])
     results.AddHistogram(histogram_module.Histogram('foo', 'count'))
     results.DidRunPage(self.pages[0])
     results.PopulateHistogramSet()
 
     histogram_dicts = results.AsHistogramDicts()
-    self.assertEquals(8, len(histogram_dicts))
+    self.assertTrue(histogram_dicts)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(histogram_dicts)
