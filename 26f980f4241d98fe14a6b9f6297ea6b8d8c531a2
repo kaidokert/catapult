@@ -70,6 +70,30 @@
       "revId": "26f980f4241d98fe14a6b9f6297ea6b8d8c531a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7995dd33_70fc56a4",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-25T03:04:30Z",
+      "side": 1,
+      "message": "Yeah, once the job is cancelled it\u0027s removed from the list in the queue, so future attempts to cancel it will fail.",
+      "parentUuid": "63b2ae55_734f774e",
+      "range": {
+        "startLine": 497,
+        "startChar": 4,
+        "endLine": 497,
+        "endChar": 8
+      },
+      "revId": "26f980f4241d98fe14a6b9f6297ea6b8d8c531a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
