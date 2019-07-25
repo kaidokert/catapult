@@ -22,6 +22,30 @@
       "revId": "26f980f4241d98fe14a6b9f6297ea6b8d8c531a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84bd296b_7ebfc205",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-07-25T00:08:08Z",
+      "side": 1,
+      "message": "Good point.\n\nFiled a bug to audit job updates to ensure transactional semantics: https://crbug.com/987481",
+      "parentUuid": "28c6d785_74be017b",
+      "range": {
+        "startLine": 497,
+        "startChar": 4,
+        "endLine": 497,
+        "endChar": 8
+      },
+      "revId": "26f980f4241d98fe14a6b9f6297ea6b8d8c531a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
