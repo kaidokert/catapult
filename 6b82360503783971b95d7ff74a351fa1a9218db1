@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d13d19b_941963e2",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-25T22:21:36Z",
+      "side": 1,
+      "message": "I think you forgot to remove this :)",
+      "revId": "6b82360503783971b95d7ff74a351fa1a9218db1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
