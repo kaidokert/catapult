@@ -5,11 +5,13 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/tracing/base/base64.html">
 <link rel="import" href="/tracing/base/category_util.html">
 <link rel="import" href="/tracing/base/math/statistics.html">
 <link rel="import" href="/tracing/extras/chrome/cc/display_item_list.html">
 <link rel="import" href="/tracing/extras/chrome/event_finder_utils.html">
 <link rel="import" href="/tracing/extras/chrome/largest_contentful_paint.html">
+<link rel="import" href="/tracing/extras/chrome/screenshots_based_speed_index.html">
 <link rel="import" href="/tracing/extras/chrome/time_to_interactive.html">
 <link rel="import" href="/tracing/metrics/metric_registry.html">
 <link rel="import" href="/tracing/metrics/system_health/breakdown_tree_helpers.html">
@@ -19,6 +21,7 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/model/timed_event.html">
 <link rel="import" href="/tracing/value/diagnostics/diagnostic_map.html">
 <link rel="import" href="/tracing/value/histogram.html">
+<script src="/jpeg-js-decoder.js"></script>
 
 <script>
 'use strict';
@@ -32,6 +35,7 @@ tr.exportTo('tr.metrics.sh', function() {
   const RelatedEventSet = tr.v.d.RelatedEventSet;
   const hasCategoryAndName = tr.metrics.sh.hasCategoryAndName;
   const EventFinderUtils = tr.e.chrome.EventFinderUtils;
+  const SpeedIndex = tr.e.chrome.SpeedIndex;
 
   /**
    * @param {!Object.<string, Object>} breakdownTree
@@ -404,6 +408,45 @@ tr.exportTo('tr.metrics.sh', function() {
     samples.push({value: pixelsLastUpdatedBeforeSomeTime});
   }
 
+  /**
+   * Adds a speed index sample.
+   *
+   * @param {tr.model.helpers.ChromeBrowserrHelper} browserHelper
+   * @param {number[]} samples
+   */
+  function addSpeedIndexScreenshotsBasedSample(samples, browserHelper) {
+    const screenshotObjects = browserHelper.process.objects
+        .getAllInstancesNamed('Screenshot');
+    if (!screenshotObjects) return;
+    for (let i = 0; i < screenshotObjects.length; i++) {
+      const snapshots = screenshotObjects[i].snapshots;
+      const timestampedColorHistograms = snapshots.map(
+          snapshot => {
+            return {colorHistogram:
+            SpeedIndex.createColorHistogram(getPixelData(snapshot.args)),
+            ts: snapshot.ts};
+          });
+      samples.push(
+          {value: SpeedIndex.calculateSpeedIndex(timestampedColorHistograms)});
+    }
+  }
+
+  /**
+   * Extract RGBA pixel values from a base64 JPEG.
+   *
+   * @param {string} base64JpegImage - base64 jpeg image
+   * @return {number[]} - a flat array of rgba values for each pixel
+   */
+  function getPixelData(base64JpegImage) {
+    const binaryString = atob(base64JpegImage);
+    const len = base64JpegImage.length;
+    const bytes = new DataView(new ArrayBuffer(len));
+    tr.b.Base64.DecodeToTypedArray(base64JpegImage, bytes);
+    const rawImageData = jpegDecode(bytes.buffer, {useTArray: true});
+    return rawImageData.data;
+  }
+
+
   function addSpeedIndexSample(rendererHelper) {
     const rects = [];
     let totalArea = 0;
@@ -685,6 +728,7 @@ tr.exportTo('tr.metrics.sh', function() {
     const firstMeaningfulPaintSamples = [];
     const firstMeaningfulPaintCpuTimeSamples = [];
     const visuallyCompleteBeforeSomeTimeSamples = [];
+    const speedIndexScreenshotsBasedSamples = [];
     for (const expectation of model.userModel.expectations) {
       if (!(expectation instanceof tr.model.um.LoadExpectation)) continue;
       if (tr.e.chrome.CHROME_INTERNAL_URLS.includes(expectation.url)) {
@@ -696,6 +740,8 @@ tr.exportTo('tr.metrics.sh', function() {
           visuallyCompleteBeforeSomeTimeSamples,
           rendererHelper, expectation.navigationStart.start,
           expectation.duration, expectation.navigationStart.args.frame);
+      addSpeedIndexScreenshotsBasedSample(speedIndexScreenshotsBasedSamples,
+          chromeHelper.browserHelper);
       if (expectation.fmpEvent !== undefined) {
         addFirstMeaningfulPaintSample(firstMeaningfulPaintSamples,
             rendererHelper, expectation.navigationStart, expectation.fmpEvent,
@@ -726,6 +772,7 @@ tr.exportTo('tr.metrics.sh', function() {
       firstCpuIdleSamples,
       interactiveSamples,
       visuallyCompleteBeforeSomeTimeSamples,
+      speedIndexScreenshotsBasedSamples,
     };
   }
 
@@ -864,6 +911,14 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
         });
 
+    const speedIndexScreenshotsBasedHistogram = histograms.createHistogram(
+        'speedIndexScreenshotsBased', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'The average time at which visible parts of the' +
+          ' page are displayed.',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+
     const speedIndexHistogram = histograms.createHistogram(
         'speedIndex', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
@@ -940,6 +995,10 @@ tr.exportTo('tr.metrics.sh', function() {
     addSamplesToHistogram(
         samplesSet.visuallyCompleteBeforeSomeTimeSamples,
         visuallyCompleteBeforeSomeTimeHistogram,
+        histograms);
+    addSamplesToHistogram(
+        samplesSet.speedIndexScreenshotsBasedSamples,
+        speedIndexScreenshotsBasedHistogram,
         histograms);
   }
 
