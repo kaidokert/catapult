@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a21d453e_a8877c35",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-25T18:08:29Z",
+      "side": 1,
+      "message": "Juan, you wrote this for https://bugs.chromium.org/p/chromium/issues/detail?id\u003d780477 . Is it still needed?",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 37
+      },
+      "revId": "dac8d3d7c556c27fff9e236207e9905c7d16b637",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
