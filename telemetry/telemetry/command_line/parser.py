@@ -107,6 +107,8 @@ def ParseArgs(environment, args=None, results_arg_parser=None):
 
   command = _COMMANDS[parsed_args.command]
   opt_parser = command.CreateParser()
+  opt_parser.set_default(
+      'external_results_processor', results_arg_parser is not None)
   command.AddCommandLineArgs(opt_parser, environment)
 
   # Set the default chrome root variable.
