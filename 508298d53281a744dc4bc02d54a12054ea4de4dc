@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f96f05d6_d76b0e10",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-25T16:24:56Z",
+      "side": 1,
+      "message": "All our loading metric values are reported relative to navigation start for each navigation as opposed to the raw timestamp. We should do the same here. See addFirstMeaningfulPaintSample for an example. So we want something along the lines of \nsamples.push(\n          {value: SpeedIndex.calculateSpeedIndex(timestampedColorHistograms) - navigationStart.start});",
+      "revId": "508298d53281a744dc4bc02d54a12054ea4de4dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df0b521d_2aa1125a",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-25T16:24:56Z",
+      "side": 1,
+      "message": "nit: looks like len is just used once. It would be cleaner to inline it (new ArrayBuffer(base64JpegImage.length)).",
+      "range": {
+        "startLine": 443,
+        "startChar": 47,
+        "endLine": 443,
+        "endChar": 50
+      },
+      "revId": "508298d53281a744dc4bc02d54a12054ea4de4dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "812f5c11_418688ea",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-25T16:24:56Z",
+      "side": 1,
+      "message": "nit: delete extra blank line here.",
+      "revId": "508298d53281a744dc4bc02d54a12054ea4de4dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59daed30_0f74ce5a",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-25T16:24:56Z",
+      "side": 1,
+      "message": "Could you add a comment about what each data variable is? Something like\n// Base64 jpeg of a a 2 x 2 image with all black pixels.",
+      "revId": "508298d53281a744dc4bc02d54a12054ea4de4dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
