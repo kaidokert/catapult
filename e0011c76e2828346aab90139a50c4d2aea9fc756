@@ -180,6 +180,24 @@
     },
     {
       "key": {
+        "uuid": "3a197741_c556bf51",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-26T20:45:35Z",
+      "side": 1,
+      "message": "pylint, when run in Python 3 mode, complains |unicode| is undefined.  the dynamic sys.version_info checking isn\u0027t sufficient to handle it.\n\nso if we use the suggested code snippet:\n\n assert isinstance(reason, str) or sys.version_info.major \u003d\u003d 2 and isinstance(reason, unicode)\n\nwe see:\n\n $ pylint3 --rcfile\u003dpylintrc typ/expectations_parser.py\n ************* Module typ.expectations_parser\n E: 62,93: Undefined variable \u0027unicode\u0027 (undefined-variable)\n\ni\u0027ll note the new python_2_3_compat.py has the same problem:\n\n $ pylint3 --rcfile\u003dpylintrc typ/python_2_3_compat.py \n ************* Module typ.python_2_3_compat\n E: 28,58: Undefined variable \u0027unicode\u0027 (undefined-variable)\n\ni see \"# pragma: python2\" lines sprinkled in the typ code base, but i don\u0027t know what\u0027s actually checking those as it doesn\u0027t seem to help when using `pylint3`.",
+      "parentUuid": "dbbb623d_f4a63ebb",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2edc6036_1a8546cf",
         "filename": "third_party/typ/typ/python_2_3_compat.py",
         "patchSetId": 3

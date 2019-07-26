@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8a823f4_9e1c7ffe",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-26T20:45:35Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be The Chromium Authors ?",
+      "revId": "572296c6382dfda9fdd8c0ce5a5ecf4acaea03bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59907108_e66306b8",
+        "filename": "third_party/typ/typ/python_2_3_compat.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000768
+      },
+      "writtenOn": "2019-07-26T20:45:35Z",
+      "side": 1,
+      "message": "bad indentation -- Typ uses 4 space indents",
+      "revId": "572296c6382dfda9fdd8c0ce5a5ecf4acaea03bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
