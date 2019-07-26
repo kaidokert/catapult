@@ -123,9 +123,9 @@ def ParseArgs(environment, args=None, results_arg_parser=None):
 
   command = _COMMANDS[parsed_args.command]
   opt_parser = legacy_parsers[parsed_args.command]
-
-  # Set the default chrome root variable.
-  opt_parser.set_defaults(chrome_root=environment.default_chrome_root)
+  opt_parser.set_defaults(
+      chrome_root=environment.default_chrome_root,
+      external_results_processor=results_arg_parser is not None)
 
   options, positional_args = opt_parser.parse_args(unknown_args)
   options.positional_args = positional_args
