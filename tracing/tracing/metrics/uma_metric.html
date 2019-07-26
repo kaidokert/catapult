@@ -32,10 +32,12 @@ found in the LICENSE file.
  */
 tr.exportTo('tr.metrics', function() {
   function parseBuckets_(event, processName) {
-    const len = tr.b.Base64.getDecodedBufferLength(event.args.buckets);
+    const buckets = event.args.histogram ? event.args.histogram.buckets :
+      event.args.buckets;
+    const len = tr.b.Base64.getDecodedBufferLength(buckets);
     const buffer = new ArrayBuffer(len);
     const dataView = new DataView(buffer);
-    tr.b.Base64.DecodeToTypedArray(event.args.buckets, dataView);
+    tr.b.Base64.DecodeToTypedArray(buckets, dataView);
     // Negative numbers are not supported, for now.
     const decoded = new Uint32Array(buffer);
     const sum = decoded[1] + decoded[2] * 0x100000000;
@@ -130,7 +132,8 @@ tr.exportTo('tr.metrics', function() {
       const histogramEvents = new Map();
       for (const event of process.instantEvents) {
         if (event.title !== 'UMAHistogramSamples') continue;
-        const name = event.args.name;
+        const name = event.args.histogram ? event.args.histogram.name :
+          event.args.name;
         const events = histogramEvents.get(name) || [];
         if (!histogramEvents.has(name)) histogramEvents.set(name, events);
         events.push(event);
