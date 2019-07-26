@@ -267,6 +267,7 @@ class AndroidPlatformBackend(
         ['android-' + self.GetDeviceTypeName()])
     if self.IsSvelte():
       tags.append('android-svelte')
+    tags.append('mobile')
     return tags
 
   @decorators.Cache

@@ -73,6 +73,7 @@ class AndroidPlatformBackendTest(unittest.TestCase):
       with mock.patch.object(backend, 'GetDeviceTypeName',
                              return_value='AOSP on Shamu'):
         self.assertIn('android-AOSP-on-Shamu', backend.GetTypExpectationsTags())
+        self.assertIn('mobile', backend.GetTypExpectationsTags())
 
   @decorators.Disabled('chromeos', 'mac', 'win')
   def testIsSvelte(self):
