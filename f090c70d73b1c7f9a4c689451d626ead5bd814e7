@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cf84031_f8a00e2b",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-26T09:42:47Z",
+      "side": 1,
+      "message": "I think this is going in the right direction. Just a couple of comments:\n\n1. There already is a BenchmarkMetadata class in tools/perf [1], but I do think the right place for this is here in the telemetry.benchmark module. Let\u0027s just make sure that this new class can replace the other one and also help to clean up all that code over there.\n\n2. Maybe we should use a namedtuple for this?\n\n[1]: https://cs.chromium.org/chromium/src/tools/perf/core/perf_data_generator.py?rcl\u003d9eecb7a9f652bbf84f6437b49c70922b65b38bf3\u0026l\u003d829",
+      "revId": "f090c70d73b1c7f9a4c689451d626ead5bd814e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1292c522_6e5a5b1c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-26T09:42:47Z",
+      "side": 1,
+      "message": "Note this function is just called in a few cases, I believe, mainly on a code path for the implementation of DualMetricMeasurement [1]. So it\u0027s not really a replacement for the code you removed in story runner.\n\nIn most cases the histograms from TBMv2 metrics are added via the ImportHistogramDicts below.\n\nAnyway, I think the safest thing now would be to just add some code similar to the one you removed from story runner, and put it here e.g. in PrintSummary or in a new function to be called during __exit__ before actually calling PrintSummary.\n\nAt least for a while, until results_processor comes and makes all of this better and easier to understand. :)\n\n[1]: https://cs.chromium.org/chromium/src/tools/perf/measurements/dual_metric_measurement.py?rcl\u003da9bab00daf4c2c797dbfb152f2c2128e2042d73f\u0026l\u003d44",
+      "revId": "f090c70d73b1c7f9a4c689451d626ead5bd814e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
