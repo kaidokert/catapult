@@ -22,6 +22,30 @@
       "revId": "74655c1f8360749625ccaa212200d22d4d7b10e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ffd3169_5686f642",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1345381
+      },
+      "writtenOn": "2019-07-26T17:34:32Z",
+      "side": 1,
+      "message": "Hi Caleb, correct! I moved the code to its own file.\nThanks.",
+      "parentUuid": "fba70a7f_63df20f3",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "74655c1f8360749625ccaa212200d22d4d7b10e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
