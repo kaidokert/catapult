@@ -198,6 +198,24 @@
     },
     {
       "key": {
+        "uuid": "c23c4c79_adf0697c",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-07-26T20:51:03Z",
+      "side": 1,
+      "message": "I think we need a pylint disable pragma ...",
+      "parentUuid": "3a197741_c556bf51",
+      "revId": "e0011c76e2828346aab90139a50c4d2aea9fc756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2edc6036_1a8546cf",
         "filename": "third_party/typ/typ/python_2_3_compat.py",
         "patchSetId": 3
