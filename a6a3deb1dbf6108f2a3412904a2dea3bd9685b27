@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1669ed28_6fcfb554",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-26T08:59:37Z",
+      "side": 1,
+      "message": "I worry a bit about the function being called twice accidentally, once explicitly and once by exiting the with-statement. I think we should add something here so that the second call either raises an error or, at least, is dismissed.",
+      "revId": "a6a3deb1dbf6108f2a3412904a2dea3bd9685b27",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
