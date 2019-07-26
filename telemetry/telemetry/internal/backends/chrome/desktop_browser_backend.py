@@ -520,13 +520,23 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     assert timeout_s > 0
     assert oldest_ts >= 0
     start_time = time.time()
-    while time.time() - start_time < timeout_s:
-      dump_path = self.GetMostRecentMinidumpPath()
-      if not dump_path:
-        continue
-      if os.path.getmtime(dump_path) < oldest_ts:
-        continue
-      return dump_path
+    # We don't want to spam the logs with the same info lines every time we
+    # poll, so temporarily set the log level to be less verbose.
+    log_level = logging.getLogger().getEffectiveLevel()
+    logging.getLogger().setLevel(logging.WARNING)
+    try:
+      while time.time() - start_time < timeout_s:
+        dump_path = self.GetMostRecentMinidumpPath()
+        if not dump_path:
+          continue
+        if os.path.getmtime(dump_path) < oldest_ts:
+          continue
+        return dump_path
+    finally:
+      logging.getLogger().setLevel(log_level)
+      # Run one more time so that we actually log the information we would
+      # normally be getting with the more verbose logging level.
+      _ = self.GetMostRecentMinidumpPath()
     return None
 
   def GetAllMinidumpPaths(self):
