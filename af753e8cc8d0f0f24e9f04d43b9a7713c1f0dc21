@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d791f83d_e1288aa6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-29T14:33:29Z",
+      "side": 1,
+      "message": "nit: wondering whether this should be \u0027webview\u0027 in self.browser_type",
+      "revId": "af753e8cc8d0f0f24e9f04d43b9a7713c1f0dc21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f854bd87_e041cc36",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-29T14:33:29Z",
+      "side": 1,
+      "message": "This is probably work for another CL (or a few more), but I would prefer if we:\n- rename IsSvelte to IsLowEnd; and include this \"direct device type name\" check in there.\n- get rid of android-svelte entirely,\n- use android-low-end tag everywhere.",
+      "revId": "af753e8cc8d0f0f24e9f04d43b9a7713c1f0dc21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
