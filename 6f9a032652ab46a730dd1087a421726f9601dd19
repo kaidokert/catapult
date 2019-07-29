@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36ecdab4_422e9885",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-29T20:31:31Z",
+      "side": 1,
+      "message": "I don\u0027t think this is a good idea because \n1. This is a global setting, so with multiple threads or other complexity this will cause strange things to happen.\n2. This is not respecting the user\u0027s wishes.\n3. Readers of code called by subroutines of GetMostRecentMinidumpPath() will have trouble understanding why various logs do not get printed.",
+      "range": {
+        "startLine": 525,
+        "startChar": 4,
+        "endLine": 526,
+        "endChar": 49
+      },
+      "revId": "6f9a032652ab46a730dd1087a421726f9601dd19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67dc123a_9c7597fe",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-29T20:31:31Z",
+      "side": 1,
+      "message": "There\u0027s a race condition here.",
+      "range": {
+        "startLine": 537,
+        "startChar": 6,
+        "endLine": 539,
+        "endChar": 42
+      },
+      "revId": "6f9a032652ab46a730dd1087a421726f9601dd19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
