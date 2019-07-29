@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "feecde7d_77643b33",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "The `proto_input_path` appears to be nested inside this output path.  That seems confusing, or at least messy.",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 70
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3d2e132_f2400da6",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "What\u0027s the benefit of compiling the exact same set of proto input files twice (with two slightly different output paths)?  Why can\u0027t the same pb2 files be used in both cases?",
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f084f4c_fedc95ba",
+        "filename": "dashboard/dashboard/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "Maybe call this var PY_PROTOS?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 6
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7d01966_9ac1e65f",
+        "filename": "dashboard/dashboard/edit_sheriffs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "Nit: add trailing comma.\n\n(It reduces diff noise for future CLs that add or remove items in the dict literal.)",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f858a81d_1d0b40a4",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "Just `for v in actual.values()`",
+      "range": {
+        "startLine": 246,
+        "startChar": 42,
+        "endLine": 246,
+        "endChar": 68
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76ecbf5f_09b75def",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "Ideally this would guard against the possibility that there are not exactly two subscriptions (i.e. fail cleanly rather than error out with an unhandled exception):\n\n    actual_subs \u003d …\n    self.assertEqual(len(actual_subs), 2)\n\n    sub0 \u003d sheriff_pb2.Subscription()\n    text_format.Merge(actual_subs[0], sub0)\n\n    sub1 \u003d sheriff_pb2.Subscription()\n    text_format.Merge(actual_subs[1], sub0)",
+      "range": {
+        "startLine": 246,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 22
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "733cbf60_b7e63a22",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-07-29T07:00:32Z",
+      "side": 1,
+      "message": "Hmm.  I think it\u0027d be clearer to just store the actual subscriptions in a dict keyed by the name field:\n\n  def SubFromTextFormat(text):\n    sub \u003d sheriff_pb2.Subscription()\n    text_format.Merge(text, sub)\n    return sub\n  actual_subs_text \u003d [v[\u0027subscription\u0027] for v in actual.values()]\n  actual_subs \u003d {sub.name: SubFromTextFormat(sub) for sub in actual_subs_text}\n\nThen you can use “actual_subs[\u0027foo\u0027]” like you use “actual_foo” now.  You might even be able to collapse those complex assertions down to a single assertion like line 271 does?\n\n  expected_subs \u003d {\n    \u0027Foo Sheriff\u0027: SubFromTextFormat(\"\"\"\n        name: \u0027Foo Sheriff\u0027\n        email: \u0027foo@x.org\u0027\n        patterns \u003c glob: \u0027*/*/*/*\u0027 \u003e\"\"\"),\n    \u0027Bar Sheriff\u0027: SubFromTextFormat(\"\"\"\n        name: \u0027Bar Sheriff\u0027\n        email: \u0027\u0027\n        patterns \u003c glob: \u0027a/b/c\u0027 \u003e patterns \u003c glob: \u0027x/y/z\u0027 \u003e\n        bug_labels: \u0027hello\u0027 bug_labels: \u0027world\u0027\"\"\"),\n  }\n  self.assertEqual(actual_subs, expected_subs)",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 61
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
