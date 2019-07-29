@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23447c2c_7ece9305",
+        "filename": "web_page_replay_go/src/webpagereplay/proxy.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-07-29T20:54:33Z",
+      "side": 1,
+      "message": "If you use neither parameter you could omit their names.\n(string, ...interface{})",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 17
+      },
+      "revId": "6d819aea4f115263aa55f95cbc6e8aec49f14827",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
