@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "678236e9_722ea16d",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-29T23:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb15e56_0e677cf7",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 53
+      },
+      "revId": "0459004ab66aecb9d9944363729b4b87caf92af0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcecbeac_e0e7c5e7",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-29T23:37:38Z",
       "side": 1,
       "message": "W6210 is not user friendly. Why are we doing it this way?",
+      "range": {
+        "startLine": 438,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 42
+      },
+      "revId": "0459004ab66aecb9d9944363729b4b87caf92af0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93e9edd1_67fa914d",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-29T23:51:03Z",
+      "side": 1,
+      "message": "I changed tags for android go and one to user friendly tags android-one and android-go. PTAL",
+      "parentUuid": "dcecbeac_e0e7c5e7",
       "range": {
         "startLine": 438,
         "startChar": 0,
