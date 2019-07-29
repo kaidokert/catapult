@@ -122,6 +122,93 @@ tr.exportTo('tr.e.chrome', function() {
       SpeedIndex.getSnapshotsProgress_(timestampedColorHistograms);
       return SpeedIndex.speedIndexFromSnapshotsProgress_(snapshotsProgress);
     }
+
+    static lineSweep(lineSweepRects, viewport) {
+      const verticalSweepRects = [];
+      const horizontalSweepRects = [];
+      for (let i = 0; i < lineSweepRects.length; i++) {
+        const rect = lineSweepRects[i];
+        let left = rect.left;
+        let right = rect.right;
+        let top = rect.top;
+        let bottom = rect.bottom;
+        if (left > viewport.x + viewport.width) continue;
+        if (right < viewport.x) continue;
+        if (top > viewport.y + viewport.height) continue;
+        if (bottom < viewport.y) continue;
+
+        left = Math.max(left, viewport.y);
+        right = Math.min(right, viewport.y + viewport.width);
+        top = Math.max(top, viewport.y);
+        bottom = Math.min(bottom, viewport.y + viewport.height);
+
+        verticalSweepRects.push({id: i, value: left, type: 'left'},
+            {id: i, value: right, type: 'right'});
+        horizontalSweepRects.push({id: i, value: top, type: 'top'},
+            {id: i, value: bottom, type: 'bottom'});
+      }
+
+      verticalSweepRects.sort((a, b) => a.value - b.value);
+      horizontalSweepRects.sort((a, b) => a.value - b.value);
+
+      // A rectangle becomes active once we enter
+      // it (encounter its left edge). And goes back to being
+      // inactive once we leave it (encounter its right edge).
+      const active = new Array(lineSweepRects.length).fill(0);
+      let area = 0;
+      // Begin vertical sweep from left to right.
+      active[verticalSweepRects[0].id] = true;
+      for (let i = 1; i < verticalSweepRects.length; i++) {
+        const currentLine = verticalSweepRects[i];
+        const previousLine = verticalSweepRects[i - 1];
+        const deltaX = currentLine.value - previousLine.value;
+        // We could encounter this case if two rectangles start at
+        // the same x value.
+        if (deltaX === 0) continue;
+        let count = 0;
+        let firstRect;
+        // Begin horizontal sweep from top to bottom.
+        for (let j = 0; j < horizontalSweepRects.length; j++) {
+        // Check whether the current rectangle is active.
+          if (active[horizontalSweepRects[j].id] === true) {
+            if (horizontalSweepRects[j].type === 'top') {
+            // If we just entered the rectangle and it's the first
+            // rectangle we enter then record its index.
+              if (count === 0) {
+                firstRect = j;
+              }
+              count++;
+            } else {
+            // If we are leaving a rectangle and it happens to
+            // be the last rectangle at this point (i.e: there's
+            // a gap before we get to the next recatngle)
+            // then calculate length (deltaY) and use it to
+            // calucate area so far.
+              if (count === 1) {
+                const deltaY = horizontalSweepRects[j].value -
+                horizontalSweepRects[firstRect].value;
+                area += deltaX * deltaY;
+              }
+              count--;
+            }
+          }
+        }
+        active[currentLine.id] = (currentLine.type === 'left');
+      }
+      return area;
+    }
+
+    static quadToRect(quad) {
+      const left = Math.min(quad[0], quad[2], quad[4]);
+      const right = Math.max(quad[0], quad[2], quad[4]);
+      const top = Math.min(quad[1], quad[3], quad[5]);
+      const bottom = Math.max(quad[1], quad[3], quad[5]);
+      return {left, right, top, bottom};
+    }
+
+    static calculateRectsBasedSpeedIndex(progress) {
+      return SpeedIndex.speedIndexFromSnapshotsProgress_(progress);
+    }
   }
   return {
     SpeedIndex,
