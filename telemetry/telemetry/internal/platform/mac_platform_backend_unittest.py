@@ -34,7 +34,7 @@ class MacPlatformBackendTest(unittest.TestCase):
         backend, 'GetOSVersionName', return_value='snowleopard'):
       with mock.patch.object(
           backend, 'GetOSVersionDetailString', return_value='10.11'):
-        self.assertIn('snowleopard-10.11', backend.GetTypExpectationsTags())
+        self.assertIn('mac-10.11', backend.GetTypExpectationsTags())
 
   def testTypExpectationsTagsIncludesSnowLeopard12Tag(self):
     backend = mac_platform_backend.MacPlatformBackend()
@@ -42,4 +42,4 @@ class MacPlatformBackendTest(unittest.TestCase):
         backend, 'GetOSVersionName', return_value='snowleopard'):
       with mock.patch.object(
           backend, 'GetOSVersionDetailString', return_value='10.12'):
-        self.assertIn('snowleopard-10.12', backend.GetTypExpectationsTags())
+        self.assertIn('mac-10.12', backend.GetTypExpectationsTags())
