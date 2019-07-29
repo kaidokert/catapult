@@ -16,11 +16,13 @@ from google.appengine.api import users
 from dashboard import edit_config_handler
 from dashboard import edit_sheriffs
 from dashboard import put_entities_task
+from dashboard import sheriff_pb2
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.common import xsrf
 from dashboard.models import graph_data
 from dashboard.models import sheriff
+from google.protobuf import text_format
 
 
 class EditSheriffsTest(testing_common.TestCase):
@@ -238,6 +240,34 @@ class EditSheriffsTest(testing_common.TestCase):
         },
     }
     actual = self.GetEmbeddedVariable(response, 'SHERIFF_DATA')
+
+    # We want to just make sure that the 'subscription' field is a valid
+    # subscription.
+    actual0, actual1 = (v['subscription'] for _, v in actual.items())
+    sub0 = sheriff_pb2.Subscription()
+    text_format.Merge(actual0, sub0)
+
+    sub1 = sheriff_pb2.Subscription()
+    text_format.Merge(actual1, sub1)
+
+    # And that we can get the fields appropriately.
+    expected_foo = expected['Foo Sheriff']
+    expected_bar = expected['Bar Sheriff']
+
+    actual_foo = sub0 if sub0.name == 'Foo Sheriff' else sub1
+    actual_bar = sub1 if sub1.name == 'Bar Sheriff' else sub0
+
+    self.assertEqual(expected_foo['email'], actual_foo.notification_email)
+    self.assertEqual(expected_foo['patterns'],
+                     '\n'.join([p.glob for p in actual_foo.patterns]))
+
+    self.assertEqual(expected_bar['email'], actual_bar.notification_email)
+    self.assertEqual(expected_bar['patterns'],
+                     '\n'.join([p.glob for p in actual_bar.patterns]))
+    self.assertEqual(expected_bar['labels'], ','.join(actual_bar.bug_labels))
+
+    for _, v in actual.items():
+      del v['subscription']
     self.assertEqual(expected, actual)
 
   def testPost_SendsNotificationEmail(self):
