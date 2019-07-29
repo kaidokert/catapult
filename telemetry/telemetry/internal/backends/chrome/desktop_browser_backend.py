@@ -27,6 +27,7 @@ from telemetry.core import exceptions
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.util import format_for_logging
 from telemetry.internal.util import path
+from telemetry.util import deduplicating_logger
 
 
 DEVTOOLS_ACTIVE_PORT_FILE = 'DevToolsActivePort'
@@ -120,6 +121,8 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._executable = executable
     self._flash_path = flash_path
     self._is_content_shell = is_content_shell
+    # Used to cut down on log spam from GetRecentMinidumpPathWithTimeout()
+    self._dedup_log = deduplicating_logger.DeduplicatingLogger()
 
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._proc = None
@@ -320,7 +323,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _GetAllCrashpadMinidumps(self):
     if not self._tmp_minidump_dir:
-      logging.warning('No _tmp_minidump_dir; browser already closed?')
+      self._dedup_log.warning('No _tmp_minidump_dir; browser already closed?')
       return None
     os_name = self.browser.platform.GetOSName()
     arch_name = self.browser.platform.GetArchName()
@@ -328,13 +331,13 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       crashpad_database_util = binary_manager.FetchPath(
           'crashpad_database_util', arch_name, os_name)
       if not crashpad_database_util:
-        logging.warning('No crashpad_database_util found')
+        self._dedup_log.warning('No crashpad_database_util found')
         return None
     except dependency_manager.NoPathFoundError:
-      logging.warning('No path to crashpad_database_util found')
+      self._dedup_log.warning('No path to crashpad_database_util found')
       return None
 
-    logging.info('Found crashpad_database_util')
+    self._dedup_log.info('Found crashpad_database_util')
 
     report_output = subprocess.check_output([
         crashpad_database_util, '--database=' + self._tmp_minidump_dir,
@@ -363,8 +366,8 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           report_path = report_dict['Path'].strip()
           reports_list.append((report_time, report_path))
         except (ValueError, KeyError) as e:
-          logging.warning('Crashpad report expected valid keys'
-                          ' "Path" and "Creation time": %s', e)
+          self._dedup_log.warning('Crashpad report expected valid keys'
+                                  ' "Path" and "Creation time": %s', e)
         finally:
           report_dict = {}
 
@@ -377,7 +380,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         report_path = report_dict['Path'].strip()
         reports_list.append((report_time, report_path))
       except (ValueError, KeyError) as e:
-        logging.warning(
+        self._dedup_log.warning(
             'Crashpad report expected valid keys'
             ' "Path" and "Creation time": %s', e)
 
@@ -393,7 +396,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _GetBreakPadMinidumpPaths(self):
     if not self._tmp_minidump_dir:
-      logging.warning('No _tmp_minidump_dir; browser already closed?')
+      self._dedup_log.warning('No _tmp_minidump_dir; browser already closed?')
       return None
     return glob.glob(os.path.join(self._tmp_minidump_dir, '*.dmp'))
 
@@ -405,17 +408,18 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     # Typical breakpad format is simply dump files in a folder.
     if not most_recent_dump:
       crashpad_dump = False
-      logging.info('No minidump found via crashpad_database_util')
+      self._dedup_log.info('No minidump found via crashpad_database_util')
       dumps = self._GetBreakPadMinidumpPaths()
       if dumps:
         most_recent_dump = heapq.nlargest(1, dumps, os.path.getmtime)[0]
         if most_recent_dump:
-          logging.info('Found minidump via globbing in minidump dir')
+          self._dedup_log.info('Found minidump via globbing in minidump dir')
 
     # As a sanity check, make sure the crash dump is recent.
     if (most_recent_dump and
         os.path.getmtime(most_recent_dump) < (time.time() - (5 * 60))):
-      logging.warning('Crash dump is older than 5 minutes. May not be correct.')
+      self._dedup_log.warning(
+          'Crash dump is older than 5 minutes. May not be correct.')
 
     self._minidump_path_crashpad_retrieval[most_recent_dump] = crashpad_dump
     return most_recent_dump
@@ -519,15 +523,18 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def GetRecentMinidumpPathWithTimeout(self, timeout_s, oldest_ts):
     assert timeout_s > 0
     assert oldest_ts >= 0
-    start_time = time.time()
-    while time.time() - start_time < timeout_s:
-      dump_path = self.GetMostRecentMinidumpPath()
-      if not dump_path:
-        continue
-      if os.path.getmtime(dump_path) < oldest_ts:
-        continue
-      return dump_path
-    return None
+    # This can potentially run for multiple seconds, leading to a lot of log
+    # spam. So, deduplicate any logs produced in this class during this period.
+    with self._dedup_log.DeduplicateLogs():
+      start_time = time.time()
+      while time.time() - start_time < timeout_s:
+        dump_path = self.GetMostRecentMinidumpPath()
+        if not dump_path:
+          continue
+        if os.path.getmtime(dump_path) < oldest_ts:
+          continue
+        return dump_path
+      return None
 
   def GetAllMinidumpPaths(self):
     reports_list = self._GetAllCrashpadMinidumps()
