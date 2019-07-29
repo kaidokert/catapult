@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cc78d3f_43d95b23",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-29T22:55:52Z",
+      "side": 1,
+      "message": "1. \"snowleopard\" and \"10.11\" are redundant.\n2. \"snowleopard\" and \"10.11\" are contradictory (snowleopard \u003d\u003e 10.6 per https://www.apple.com/shop/product/MC573Z/A/mac-os-x-106-snow-leopard )\n\nI prefer we in general try to keep the OS name, i.e. \"mac\", in the expectation when possible.",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 458,
+        "endChar": 44
+      },
+      "revId": "74fb2e98333306c6b0eeaabc137dc96ebd1ecd40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
