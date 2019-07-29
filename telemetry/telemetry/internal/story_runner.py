@@ -113,7 +113,7 @@ def ProcessCommandLineArgs(parser, args):
 
 @contextlib.contextmanager
 def CaptureLogsAsArtifacts(results):
-  with results.CreateArtifact('logs') as log_file:
+  with results.CreateArtifact('logs.txt') as log_file:
     with logging_util.CaptureLogs(log_file):
       yield
 
