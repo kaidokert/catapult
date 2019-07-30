@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3062c2f2_a3c5fedc",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T20:34:25Z",
+      "side": 1,
+      "message": "Why did we switch from underscores to dashes?\n\nWhy did we switch from consistent \"Uppercase_Words\" to \"lowercase-Except-sometimes\"?",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 40
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
