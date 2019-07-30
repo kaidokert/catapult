@@ -25,6 +25,7 @@ tr.exportTo('tr.b.unittest', function() {
     this.tests_ = [];
     this.testNames_ = {}; // For dupe checking.
 
+    console.log("Running test");
     global.flakyTest = function(testCaseOrName, opt_testFn, opt_options) {
       if (testCaseOrName instanceof TestCase) {
         testCaseOrName.options.flaky = true;
@@ -81,11 +82,11 @@ tr.exportTo('tr.b.unittest', function() {
         }
 
         this.addTest(new TestCase(newName,
-            testWrapper, options || {}));
+                                  testWrapper, options || {}));
       }
 
       this.addTest(new TestCase(testName,
-          testFn, options || {}));
+                                testFn, options || {}));
     }.bind(this);
 
     global.timedPerfTest = function(name, testFn, options) {
@@ -96,6 +97,7 @@ tr.exportTo('tr.b.unittest', function() {
     }.bind(this);
 
     try {
+      console.log("Running test " + name);
       suiteConstructor.call();
     } finally {
       global.test = undefined;
@@ -128,10 +130,11 @@ tr.exportTo('tr.b.unittest', function() {
   };
 
   function testSuite(suiteConstructor) {
-    if (!global._currentSuiteLoader) {
-      throw new Error('testSuites can only be defined during suite loading');
-    }
-    global._currentSuiteLoader.constructAndRegisterTestSuite(suiteConstructor);
+    // if (!global._currentSuiteLoader) {
+    //   throw new Error('testSuites can only be defined during suite loading');
+    // }
+    // global._currentSuiteLoader.constructAndRegisterTestSuite(suiteConstructor);
+    global.allSuiteConstructors.push(suiteConstructor);
   }
 
   return {

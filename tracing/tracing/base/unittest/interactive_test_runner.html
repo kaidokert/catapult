@@ -11,6 +11,10 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/base/unittest/suite_loader.html">
 <link rel="import" href="/tracing/base/unittest/test_runner.html">
 <link rel="import" href="/tracing/ui/base/utils.html">
+<script>
+  global.allSuiteConstructors = [];
+</script>
+<link rel="import" href="/tracing/base/all_the_tests.html">
 
 <style>
   x-base-interactive-test-runner {
@@ -605,13 +609,13 @@ tr.exportTo('tr.b.unittest', function() {
           function() {
             hideLoadingOverlay();
             // FIXME
-            window.addEventListener('WebComponentsReady', function() {
-              runTests(loader, state);
-            });
+            // window.addEventListener('WebComponentsReady', function() {
+            //   runTests(loader, state);
+            // });
             runTests(loader, state);
-          // Polymer.whenReady(function() {
-          //   runTests(loader, state);
-          // });
+            // Polymer.whenReady(function() {
+            //   runTests(loader, state);
+            // });
           },
           function(err) {
             hideLoadingOverlay();
