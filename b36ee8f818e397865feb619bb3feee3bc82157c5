@@ -46,6 +46,53 @@
       "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1d51693_e9e0cb5c",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T20:54:35Z",
+      "side": 1,
+      "message": "In priority order for most important to least important.\n\n1. Most important thing is to be consistent. \"android-Nexus-6P\" is super confusing in terms of casing. Prefer either \"Android-Nexus-6P\" or \"android-nexus-6p\"\n\n2. I prefer if the underlying system is case insensitive that we use lowercase so that people don\u0027t have to remember casing rules (and so that they don\u0027t think they have to remember those rules.)\n\n3. If we can\u0027t think of a reason to change something, then it\u0027s better to keep it the same to reduce the mental load on sheriffs. Maybe you have some vague reason why you changed to dashes? If so, please explain and maybe it\u0027s worth changing them to dashes. Otherwise let\u0027s stay with underscores.",
+      "parentUuid": "ae80320d_e7a089dd",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 40
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73081ff3_469e5be8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T20:54:35Z",
+      "side": 1,
+      "message": "1. this is \"and\"ed, right? so if someone wants to skip nexus 5x webview tests for benchmark blah, then it would look something like this:\n\ncrbug.com/1234 [ android-Nexus-5X android-webview ] blah/* [ Skip ]\n\n?\n\nI think that\u0027s a bit more challenging to sheriffs. \n\n\n2. We may need to be able to disable something without disabling it on webview, for example, in the current format, would \n\nbuglink [ Nexus_5X ] blah/* [ Skip ]\n\ndisable blah on nexus 5x webview configuration? If not, then we need to think about what we are going to do for this translation since it seems like typ doesn\u0027t support things exactly the same way.",
+      "range": {
+        "startLine": 461,
+        "startChar": 27,
+        "endLine": 461,
+        "endChar": 66
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
