@@ -609,9 +609,9 @@ tr.exportTo('tr.b.unittest', function() {
               runTests(loader, state);
             });
             runTests(loader, state);
-          // Polymer.whenReady(function() {
-          //   runTests(loader, state);
-          // });
+            Polymer.whenReady(function() {
+              runTests(loader, state);
+            });
           },
           function(err) {
             hideLoadingOverlay();
