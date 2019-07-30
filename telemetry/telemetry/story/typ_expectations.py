@@ -34,13 +34,8 @@ class StoryExpectations(object):
   def SetTags(self, tags):
     self._typ_expectations.set_tags(tags)
 
-  def AsDict(self):
-    # TODO(crbug.com/973936): Implement function in
-    # typ.expectations_parser.TestExpectations to serialize its data
-    # then transform that information into a dictionary of disabled
-    # platforms for the benchmark and disabled stories with in the
-    # benchmark.
-    raise NotImplementedError
+  def serialize(self):
+    return self._typ_expectations.serialize()
 
   def GetBrokenExpectations(self, story_set):
     # TODO(crbug.com/973936):  Implement function in

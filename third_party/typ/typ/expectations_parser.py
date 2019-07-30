@@ -92,6 +92,14 @@ class Expectation(object):
     def lineno(self):
         return self._lineno
 
+    def serialize(self):
+        return {'reason':  (self.reason or ''),
+                'conditions': sorted(self.tags),
+                'pattern': self.test,
+                'results': sorted(self.results),
+                'should_retry_on_failure': self.should_retry_on_failure,
+                'line_number': self.lineno}
+
 class TaggedTestListParser(object):
     """Parses lists of tests and expectations for them.
 
@@ -287,6 +295,15 @@ class TestExpectations(object):
 
     def set_tags(self, tags):
         self.tags = [tag.lower() for tag in tags]
+
+    def serialize(self):
+        patterns_to_exps = dict(self.individual_exps)
+        patterns_to_exps.update(self.glob_exps)
+        return {'tags': sorted(self.tags),
+                'expectations': {
+                    pattern: [{k:v for k,v in exp.serialize().items()
+                               if k!='pattern'} for exp in exps]
+                    for pattern, exps in patterns_to_exps.items()}}
 
     def parse_tagged_list(self, raw_data, file_name='',
                           tags_conflict=_default_tags_conflict):

@@ -498,3 +498,42 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         broken_expectations = expectations.check_for_broken_expectations(
             ['a/b/c'])
         self.assertFalse(broken_expectations)
+
+    def testSerializeExpectationInstance(self):
+        test_expectations = '''# tags: [ debug release ]
+        # tags: [ intel ]
+        # results: [ Failure ]
+        [ intel debug ] a/b/c/d [ Failure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        expectations.parse_tagged_list(test_expectations)
+        expectation = expectations.individual_exps['a/b/c/d'][0]
+        self.assertEqual(expectation.serialize(),
+                        {'conditions': ['debug', 'intel'], 'line_number': 4,
+                         'pattern': 'a/b/c/d', 'reason': '',
+                         'results': ['FAIL'],
+                         'should_retry_on_failure': False})
+
+    def testSerializeTestExpectationsInstance(self):
+        test_expectations = '''# tags: [ debug release ]
+        # tags: [ amd intel ]
+        # results: [ Failure Skip ]
+        crbug.com/123 [ intel debug ] a/b/c/d [ Failure ]
+        [ amd release ] a/b/* [ Skip ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        expectations.set_tags(['amd', 'debug'])
+        expectations.parse_tagged_list(test_expectations)
+        self.assertEqual(expectations.serialize(),
+                         {'tags': ['amd', 'debug'],
+                          'expectations': {
+                                'a/b/*': [{'conditions': ['amd', 'release'],
+                                           'line_number': 5, 'reason': '',
+                                           'results': ['SKIP'],
+                                           'should_retry_on_failure': False}],
+                                'a/b/c/d': [{'conditions': ['debug', 'intel'],
+                                             'line_number': 4,
+                                             'reason': 'crbug.com/123',
+                                             'results': ['FAIL'],
+                                             'should_retry_on_failure':
+                                             False}]}})
