@@ -22,6 +22,30 @@
       "revId": "e58d4031d5c040d62b12c55a70847d86ecc9a2b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b426a3de_066d608e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-07-30T06:48:15Z",
+      "side": 1,
+      "message": "No. I\u0027m intentionally separating use cases that really need iteration over results, from these bool/counter properties that should be fine to call at any time. I\u0027ve updated the CL description with a better explanation.",
+      "parentUuid": "ffe4f5d5_87023819",
+      "range": {
+        "startLine": 191,
+        "startChar": 43,
+        "endLine": 191,
+        "endChar": 58
+      },
+      "revId": "e58d4031d5c040d62b12c55a70847d86ecc9a2b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
