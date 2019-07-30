@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fa5718b_20741b15",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T22:52:08Z",
+      "side": 0,
+      "message": "So nice! Great to see this removed.",
+      "range": {
+        "startLine": 297,
+        "startChar": 12,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "ce4a26a406d32309d4b037e356cd4ebe4fa83d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
