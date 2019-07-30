@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffe4f5d5_87023819",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T00:17:20Z",
+      "side": 1,
+      "message": "Should you use IterStoryRuns here so that that assertion is called?",
+      "range": {
+        "startLine": 191,
+        "startChar": 43,
+        "endLine": 191,
+        "endChar": 58
+      },
+      "revId": "e58d4031d5c040d62b12c55a70847d86ecc9a2b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
