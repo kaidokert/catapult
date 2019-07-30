@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d54de3f_72d0477c",
+        "filename": "tracing/tracing/metrics/system_health/rects_based_speed_index_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:21:16Z",
+      "side": 1,
+      "message": "nit, let\u0027s just call it \"BIN_BOUNDARIES\".",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "388a3cce5c9b315846c69e14e48d2f82a0fdb553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e2a3686_a0a4b7a4",
+        "filename": "tracing/tracing/metrics/system_health/rects_based_speed_index_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:21:16Z",
+      "side": 1,
+      "message": "nit: This function is a bit too long, and it\u0027s doing two different things: finding all the right events and calculating the progress from them. Could we factor out the calculating progress part into its own function? You could move it to speed index module if that\u0027s easier/nicer.",
+      "revId": "388a3cce5c9b315846c69e14e48d2f82a0fdb553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4afed13_9e3f6c2e",
+        "filename": "tracing/tracing/metrics/system_health/rects_based_speed_index_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:21:16Z",
+      "side": 1,
+      "message": "nit: adding some blank lines after lines like this helps with readability of code.",
+      "revId": "388a3cce5c9b315846c69e14e48d2f82a0fdb553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
