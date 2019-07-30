@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc83a271_1ddd6f74",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T00:45:43Z",
+      "side": 0,
+      "message": "This could instead:\n\nreturn most_recent_dump, explanation\n\nwhere explanation could contain the info that was logged above.",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 27
+      },
+      "revId": "ce4a26a406d32309d4b037e356cd4ebe4fa83d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

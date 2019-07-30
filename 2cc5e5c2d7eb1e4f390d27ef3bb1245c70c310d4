@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c64d5c13_836bb619",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T00:45:43Z",
+      "side": 1,
+      "message": "I think users actually want something like this as a log output:\n\n\"\nBrowser is not responding to our requests, so we suspect that it has crashed. We will search for crash dump files to surface:\nFirst we check for crashpad dumps. We could not find a crashpad_database_util so we cannot symbolize a crashpad dump.\nNext we check for breakpad dumps. We could not blah blah blah so we cannot symbolize a breakpad dump.\nWe were unable to symbolize the dump. The reason for this could be either that Chrome did not produce a dump or that we are misconfigured and looking for the dump in the wrong places.\n\"\n\nThat requires refactoring the existing code to output detailed reason and explanation strings that you can fit into a format. As a byproduct of that refactor, you will additionally be able to not output those reason and explanation strings until the final run within GetRecentMinidumpPathWithTimeout.\n\nI hear your concern about hitting exceptions and then not being able to output anything. I think that you can surmount this by being careful about your code. For example, exceptions can be anticipated and caught. Or otherwise, generic exception handling can be implemented in such a way that it has access to some in progress logs store.\n\nThink about this creatively. Could we do some interesting things for example if we put the minidump-finding code into a class? etc etc.",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "2cc5e5c2d7eb1e4f390d27ef3bb1245c70c310d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3daeb917_1e4228ed",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T00:45:43Z",
+      "side": 1,
+      "message": "This also seems like something that could be part of \"explanation\" from my other comment.",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 399,
+        "endChar": 78
+      },
+      "revId": "2cc5e5c2d7eb1e4f390d27ef3bb1245c70c310d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62bfb007_78164520",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-30T00:45:43Z",
+      "side": 1,
+      "message": "Honestly this feels like debug logs, not info logs. Maybe you could check the blame layer for the person who added these and see what whether we could simply reduce this to debug.",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 77
+      },
+      "revId": "2cc5e5c2d7eb1e4f390d27ef3bb1245c70c310d4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
