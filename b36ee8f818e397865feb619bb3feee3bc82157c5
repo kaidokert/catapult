@@ -22,6 +22,30 @@
       "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae80320d_e7a089dd",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-30T20:39:29Z",
+      "side": 1,
+      "message": "Typ tags are case insensitive, I can change it to all uppercase if you like. There is no reason why I changed underscores to dashes. I can make it back to underscores.",
+      "parentUuid": "3062c2f2_a3c5fedc",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 40
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
