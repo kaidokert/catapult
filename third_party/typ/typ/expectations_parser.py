@@ -92,6 +92,7 @@ class Expectation(object):
     def lineno(self):
         return self._lineno
 
+
 class TaggedTestListParser(object):
     """Parses lists of tests and expectations for them.
 
