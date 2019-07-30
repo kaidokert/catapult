@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa8986ba_212aad38",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think you typedef-ed rect anywhere. You can just remove the type here and that\u0027s fine since doc is clear enough about the shape. We don\u0027t really do automatic type checking anywhere, but in case we ever want to do that I\u0027d rather have no types in the param than incorrect types.",
+      "range": {
+        "startLine": 127,
+        "startChar": 13,
+        "endLine": 127,
+        "endChar": 21
+      },
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "372fc416_fa557dff",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "nit: a list -\u003e an array.",
+      "range": {
+        "startLine": 127,
+        "startChar": 41,
+        "endLine": 127,
+        "endChar": 45
+      },
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eba1524_b0b1ad4b",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "nit: same comment as above.",
+      "range": {
+        "startLine": 129,
+        "startChar": 14,
+        "endLine": 129,
+        "endChar": 22
+      },
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2da2436_6bd3f767",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "nit: space before paren, and it should be on the next line.",
+      "range": {
+        "startLine": 216,
+        "startChar": 75,
+        "endLine": 216,
+        "endChar": 76
+      },
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8178e65d_3aa939d6",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "nit: Again, rect has never been defined. I\u0027d either typedef it or omit the @return all together",
+      "range": {
+        "startLine": 221,
+        "startChar": 15,
+        "endLine": 221,
+        "endChar": 19
+      },
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae49212f_0fe8c24b",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "What happens if length is 0?",
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23a3832e_51a38b6f",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T20:48:27Z",
+      "side": 1,
+      "message": "Add a test for calculateRectBasedSpeedIndex?",
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
