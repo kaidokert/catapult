@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4a263f7_a7f239e7",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "Should definitely add some jsdoc here.",
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5f49a1e_5f64fb4b",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "nit: rects -\u003e edges, as discussed offline.",
+      "range": {
+        "startLine": 127,
+        "startChar": 12,
+        "endLine": 127,
+        "endChar": 30
+      },
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6f6d6f7_ebe28ab2",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "Might be worth a comment saying that y coordinate increases towards the bottom, otherwise it\u0027s a bit unintuitive.",
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be519207_e2a8b752",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "nit: comment has weird wrapping here.",
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e6f9e35_e9152cb7",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "should you be using false and true instead of 0 and true?",
+      "range": {
+        "startLine": 157,
+        "startChar": 59,
+        "endLine": 157,
+        "endChar": 60
+      },
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8554df9b_2190066f",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "nit (here and elsewhere in this function) this comment should be indented two spaces to the right to align with the code inside the block.",
+      "range": {
+        "startLine": 172,
+        "startChar": 8,
+        "endLine": 172,
+        "endChar": 9
+      },
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "530947d5_95329839",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "Is it more precise to say this? \"if we just entered a new rectangle that is not overlapping with any other rectangle between current and previous vertical line...\". From the code it doesn\u0027t look like it has to be the first rect, just that count must be zero.",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 66
+      },
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fad37101_6bc51256",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-30T19:03:28Z",
+      "side": 1,
+      "message": "jsodc? What\u0027s a quad?",
+      "revId": "1d6c18de3cbc21236cc3fd66f17ef775227a4e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
