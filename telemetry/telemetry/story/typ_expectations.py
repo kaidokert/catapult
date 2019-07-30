@@ -43,10 +43,11 @@ class StoryExpectations(object):
     raise NotImplementedError
 
   def GetBrokenExpectations(self, story_set):
-    # TODO(crbug.com/973936):  Implement function in
-    # typ.expectations_parser.TestExpectations to get broken expectations
-    del story_set
-    return []
+    story_names = [self._benchmark_name + '/' + story.name
+                   for story in story_set.stories]
+    broken_expectations = self._typ_expectations.check_for_broken_expectations(
+        story_names)
+    return set([e.test for e in broken_expectations])
 
   def SetExpectations(self):
     raise NotImplementedError
