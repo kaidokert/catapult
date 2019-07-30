@@ -605,13 +605,13 @@ tr.exportTo('tr.b.unittest', function() {
           function() {
             hideLoadingOverlay();
             // FIXME
-            window.addEventListener('WebComponentsReady', function() {
-              runTests(loader, state);
-            });
+            // window.addEventListener('WebComponentsReady', function() {
+            //   runTests(loader, state);
+            // });
             runTests(loader, state);
-          // Polymer.whenReady(function() {
-          //   runTests(loader, state);
-          // });
+            // Polymer.whenReady(function() {
+            //   runTests(loader, state);
+            // });
           },
           function(err) {
             hideLoadingOverlay();
