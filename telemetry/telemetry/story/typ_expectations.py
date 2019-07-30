@@ -22,7 +22,6 @@ ResultType = json_results.ResultType
 class StoryExpectations(object):
 
   def __init__(self, benchmark_name):
-    self._tags = []
     self._benchmark_name = benchmark_name
     self._typ_expectations = (
         expectations_parser.TestExpectations())
@@ -34,13 +33,17 @@ class StoryExpectations(object):
   def SetTags(self, tags):
     self._typ_expectations.set_tags(tags)
 
-  def AsDict(self):
-    # TODO(crbug.com/973936): Implement function in
-    # typ.expectations_parser.TestExpectations to serialize its data
-    # then transform that information into a dictionary of disabled
-    # platforms for the benchmark and disabled stories with in the
-    # benchmark.
-    raise NotImplementedError
+  def serialize(self):
+    def _serialize_expectation(exp):
+      return {'reason':  (exp.reason or ''),
+              'conditions': sorted(exp.tags),
+              'line_number': exp.lineno}
+    patterns_to_exps = dict(self._typ_expectations.individual_exps)
+    patterns_to_exps.update(self._typ_expectations.glob_exps)
+    return {'tags': sorted(self._typ_expectations.tags),
+            'expectations': {
+                pattern: [_serialize_expectation(exp) for exp in expectations]
+                for pattern, expectations in patterns_to_exps.items()}}
 
   def GetBrokenExpectations(self, story_set):
     # TODO(crbug.com/973936):  Implement function in
