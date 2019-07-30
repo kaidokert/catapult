@@ -264,9 +264,11 @@ class AndroidPlatformBackend(
     # and if it is a svelte (low memory) build
     device_type_name = self.GetDeviceTypeName()
     is_svelte = self.IsSvelte()
+    user_friendly_names = {'gobo': 'go', 'W6210': 'one'}
     tags = super(AndroidPlatformBackend, self).GetTypExpectationsTags()
     tags += test_utils.sanitizeTypExpectationsTags(
-        ['android-' + device_type_name])
+        ['android-' + user_friendly_names.get(
+            device_type_name, device_type_name)])
     if is_svelte:
       tags.append('android-svelte')
     if device_type_name in ['gobo', 'W6210'] or is_svelte:
