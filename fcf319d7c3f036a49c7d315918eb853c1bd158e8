@@ -272,6 +272,24 @@
     },
     {
       "key": {
+        "uuid": "f4aa6cc6_40654f7d",
+        "filename": "tracing/tracing/extras/chrome/speed_index_utils.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-07-31T20:01:13Z",
+      "side": 1,
+      "message": "We should still make it explicit what will happen in this function. Maybe just throw an error since there\u0027s no way to calculate speed index without a single paint rect? Sometimes edge case checks like this get forgotten during refactoring, and it\u0027s frustrating to debug if a function does something strange silently vs failing loudly with clear explanation.",
+      "parentUuid": "0a2029a6_4d18d2c9",
+      "revId": "fcf319d7c3f036a49c7d315918eb853c1bd158e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "23a3832e_51a38b6f",
         "filename": "tracing/tracing/extras/chrome/speed_index_utils_test.html",
         "patchSetId": 5
