@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "28be5afd_e5481d10",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-31T00:23:02Z",
+      "side": 1,
+      "message": "1. But see point 2.\n2. ?. Since it is case insensitive, then I think it\u0027s better to keep things lowercase, as I mentioned.\n3. In that case, dashes SGTM.",
+      "parentUuid": "0420249e_2679a282",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 40
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "73081ff3_469e5be8",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 6
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "1, Correct, Android-Nexus-5X and Android-Webview are \"and\"ed and the expectation would look like that. I much rather keep Android-Webview and Android-Nexus-5X as separate tags instead of combining them. Luckily there are only 2 classes of tags. One class for tags that describe webview and non webview configurations. And another class for device type. You would only have at most two tags in an expectation tag list. I would update the documentation to explain that you  could use an android device type tag, android-webview or android-not-webview tag, or combination of android-webview and android device tag to write an expectation condition list for an android platform. \n\n2, \"buglink [ Android-Nexus-5X ] blah/* [ Skip ]\" would disable blah on all nexus 5x configurations which would include the webview configurations as  well as the non-webview configurations.",
       "parentUuid": "73081ff3_469e5be8",
+      "range": {
+        "startLine": 461,
+        "startChar": 27,
+        "endLine": 461,
+        "endChar": 66
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4175fd1b_5daecbe0",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-31T00:23:02Z",
+      "side": 1,
+      "message": "2. Is this true in the current format?",
+      "parentUuid": "83bff272_17f01202",
       "range": {
         "startLine": 461,
         "startChar": 27,
