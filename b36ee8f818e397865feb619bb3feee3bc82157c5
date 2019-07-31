@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "f15e8328_75e41473",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-31T00:27:08Z",
+      "side": 1,
+      "message": "1, I moved typ tags back to being lowercase.",
+      "parentUuid": "28be5afd_e5481d10",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 40
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "73081ff3_469e5be8",
         "filename": "telemetry/telemetry/story/expectations.py",
         "patchSetId": 6
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "2. Is this true in the current format?",
       "parentUuid": "83bff272_17f01202",
+      "range": {
+        "startLine": 461,
+        "startChar": 27,
+        "endLine": 461,
+        "endChar": 66
+      },
+      "revId": "b36ee8f818e397865feb619bb3feee3bc82157c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f51b48_80009107",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-07-31T00:27:08Z",
+      "side": 1,
+      "message": "2, This is true in the current format.",
+      "parentUuid": "4175fd1b_5daecbe0",
       "range": {
         "startLine": 461,
         "startChar": 27,
