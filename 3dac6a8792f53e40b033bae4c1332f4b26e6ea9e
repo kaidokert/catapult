@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70c711ca_f93504d5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-31T20:38:32Z",
+      "side": 1,
+      "message": "nit: default this to [\"no explanation returned\"] to future-proof it. (I know that it\u0027s almost impossible for it to hit the finally without the GetMostRecentMinidump being called, but it\u0027s worth adding this in case that becomes possible in the future).",
+      "range": {
+        "startLine": 411,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 20
+      },
+      "revId": "3dac6a8792f53e40b033bae4c1332f4b26e6ea9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecfded37_8c309c17",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_minidump_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-31T20:38:32Z",
+      "side": 1,
+      "message": "Could this function be private to the module? \"_ParseCrashpadDateTime\"?",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 25
+      },
+      "revId": "3dac6a8792f53e40b033bae4c1332f4b26e6ea9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "560cb4cc_faf3a34a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_minidump_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-31T20:38:32Z",
+      "side": 1,
+      "message": "A simple overview explanation line like the below may make this easier for someone to follow:\n\nself._explanation.append(\u0027Attempting to find a minidump file for a suspected Chrome crash.\u0027\n                         \u0027Searching for both crashpad and breakpad minidumps.\u0027)",
+      "revId": "3dac6a8792f53e40b033bae4c1332f4b26e6ea9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bede23c_c744e6ca",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_minidump_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-07-31T20:38:32Z",
+      "side": 1,
+      "message": "nit:\nself._explanation.append(\u0027blah\u0027) \nI think is better since we don\u0027t have to construct an additional list object. I know python is slow anyways, but this seems a bit wasteful. Maybe you had a reason for this that I am not seeing here?",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 76
+      },
+      "revId": "3dac6a8792f53e40b033bae4c1332f4b26e6ea9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
