@@ -7,7 +7,7 @@ import mock
 
 from telemetry import benchmark
 from telemetry import story as story_module
-
+from telemetry.story import typ_expectations
 
 class NewStoryExpectationsTest(unittest.TestCase):
 
@@ -46,3 +46,24 @@ class NewStoryExpectationsTest(unittest.TestCase):
           self.assertEqual(reason, 'No reason given')
         else:
           self.assertEqual(reason, 'crbug.com/123')
+
+  def testSerializeStoryExpectations(self):
+    test_expectations = '''# tags: [ debug release ]
+    # tags: [ amd intel ]
+    # results: [ Skip ]
+    crbug.com/123 [ intel debug ] fake/* [ Skip ]
+    [ amd release ] fake/one [ Skip ]
+    [ amd ] fake1/one [ Skip ]
+    '''
+    expectations = typ_expectations.StoryExpectations('fake')
+    expectations.SetTags(['amd', 'debug'])
+    expectations.GetBenchmarkExpectationsFromParser(test_expectations)
+    self.assertEqual(expectations.serialize(),
+                     {'tags': ['amd', 'debug'],
+                      'expectations': {
+                          'fake/*': [{'conditions': ['debug', 'intel'],
+                                      'line_number': 4,
+                                      'reason': 'crbug.com/123'}],
+                          'fake/one': [{'conditions': ['amd', 'release'],
+                                        'line_number': 5,
+                                        'reason': ''}]}})
