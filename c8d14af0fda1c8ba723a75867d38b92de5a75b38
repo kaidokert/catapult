@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baca63f9_4752a7dd",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-01T10:49:18Z",
+      "side": 1,
+      "message": "Before reviewing in more detail: I understand this method is intended to replace the one here https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/expectations.py?rcl\u003d2bd4cf346e0680aaaef13de71210803b2eaee6c9\u0026l\u003d78\n\nHowever it seems to be returning a quite different structure. What is the plan, and why do we need this? Do you know if this is used anywhere other than https://cs.chromium.org/chromium/src/tools/perf/core/story_expectation_validator.py?rcl\u003dbb90821880828945823dbcfa9b6698e730b477ce\u0026l\u003d56 ? I might be mistaken, but I don\u0027t believe we make much use of that --list option.",
+      "revId": "c8d14af0fda1c8ba723a75867d38b92de5a75b38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
