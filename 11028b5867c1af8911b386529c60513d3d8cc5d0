@@ -70,6 +70,30 @@
       "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4240ca8_f0585c42",
+        "filename": "dashboard/dashboard/pinpoint/models/timing_record.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-01T01:26:18Z",
+      "side": 1,
+      "message": "Exactly, recalling the task vs completed change that had subleties that broke all try jobs for a while.",
+      "parentUuid": "d883fbd2_968ddc27",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
