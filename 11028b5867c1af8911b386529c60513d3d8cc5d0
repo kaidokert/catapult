@@ -22,6 +22,30 @@
       "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "639b9706_a5e84b1d",
+        "filename": "dashboard/dashboard/pinpoint/models/timing_record.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-01T01:16:39Z",
+      "side": 1,
+      "message": "Yeah it bugged me here, how about as a follow-up I change that, will use the same keyword and then this if-statement becomes a no-op.",
+      "parentUuid": "aeb58b8e_57f6f04d",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
