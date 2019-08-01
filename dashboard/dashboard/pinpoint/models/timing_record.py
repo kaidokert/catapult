@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import datetime
+import logging
 
 from google.appengine.ext import ndb
 from dashboard.common import math_utils
@@ -66,7 +67,10 @@ def _ComparisonMode(job):
 
 
 def _Estimate(tags):
+  logging.debug('_Estimate(): tags: %s' % tags)
+
   records = _QueryTimingRecords(tags)
+  logging.debug('_Estimate(): records: %s' % records)
 
   if not records:
     if tags:
