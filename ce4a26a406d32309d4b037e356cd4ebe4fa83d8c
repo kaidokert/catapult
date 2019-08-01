@@ -22,6 +22,30 @@
       "revId": "ce4a26a406d32309d4b037e356cd4ebe4fa83d8c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11e40b5f_2b69e9f1",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-01T13:30:16Z",
+      "side": 0,
+      "message": "Indeed! :)",
+      "parentUuid": "0fa5718b_20741b15",
+      "range": {
+        "startLine": 297,
+        "startChar": 12,
+        "endLine": 302,
+        "endChar": 29
+      },
+      "revId": "ce4a26a406d32309d4b037e356cd4ebe4fa83d8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
