@@ -47,6 +47,7 @@ _MAX_RECOVERABLE_RETRIES = 3
 
 OPTION_STATE = 'STATE'
 OPTION_TAGS = 'TAGS'
+OPTION_ESTIMATE = 'ESTIMATE'
 
 
 COMPARISON_MODES = job_state.COMPARISON_MODES
@@ -487,6 +488,13 @@ class Job(ndb.Model):
 
     if OPTION_STATE in options:
       d.update(self.state.AsDict())
+      result = timing_record.GetSimilarHistoricalTimings(self)
+      d['estimate'] = 'foo'
+      if result:
+        timings, tags = result
+        timings = [t.total_seconds() for t in timings]
+        d['estimate'] = (timings, tags)
+        d['queue_stats'] = scheduler.QueueStats(self.configuration)
     if OPTION_TAGS in options:
       d['tags'] = {'tags': self.tags}
     return d

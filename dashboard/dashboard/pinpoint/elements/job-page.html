@@ -141,6 +141,15 @@ found in the LICENSE file.
 
             <exception-details exception="[[job.exception]]"></exception-details>
           </template>
+          <template is="dom-if" if="[[hasEstimate(job)]]">
+            <h2>Estimated Job Time</h2>
+            <h3>
+              Similar jobs in the past have taken approximately [[historicMedian(job)]] +- [[historicStdDev(job)]] and [[historicP90(job)]] at the 90th percentile.
+            </h3>
+            <h3>
+              Currently there are [[queueAhead(job)]] jobs ahead of this one in the <a href="[[formatQueueUrl(job.configuration)]]">[[job.configuration]]</a> queue.
+            </h3>
+          </template>
           <template is="dom-if" if="[[shouldShowChart(job)]]">
             <job-chart job="[[job]]" change-index="{{changeIndex}}"></job-chart>
           </template>
@@ -213,6 +222,51 @@ found in the LICENSE file.
 
       start(job) {
         return new Date(job.created + 'Z').toLocaleString();
+      },
+
+      formatQueueUrl(configuration) {
+        return '/queue-stats/' + configuration;
+      },
+
+      queueAhead(job) {
+        let ahead = 0;
+        for (const s of job.queue_stats.job_id_with_status) {
+          if (s.job_id == job.job_id) {
+            break;
+          }
+          ahead += 1;
+        }
+        return ahead;
+      },
+
+      formatTimedelta(seconds) {
+        const d = new Date(seconds * 1000);
+        let h = d.getUTCHours();
+        let m = d.getUTCMinutes();
+
+        if (h < 10) {
+          h = '0' + h;
+        }
+        if (m < 10) {
+          m = '0' + m;
+        }
+        return h + ':' + m + ' hours';
+      },
+
+      hasEstimate(job) {
+        return 'estimate' in job;
+      },
+
+      historicMedian(job) {
+        return this.formatTimedelta(job.estimate[0][0]);
+      },
+
+      historicStdDev(job) {
+        return this.formatTimedelta(job.estimate[0][1]);
+      },
+
+      historicP90(job) {
+        return this.formatTimedelta(job.estimate[0][2]);
       },
 
       duration(job) {
