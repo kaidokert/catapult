@@ -46,6 +46,30 @@
       "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d883fbd2_968ddc27",
+        "filename": "dashboard/dashboard/pinpoint/models/timing_record.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-01T01:19:32Z",
+      "side": 1,
+      "message": "Yep -- though I think there\u0027s a few places where this logic is sprinkled around that it\u0027s worth doing a clean-up in more places. It\u0027s not high priority though so I\u0027m fine landing as-is.",
+      "parentUuid": "639b9706_a5e84b1d",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
