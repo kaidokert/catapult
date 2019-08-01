@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeb58b8e_57f6f04d",
+        "filename": "dashboard/dashboard/pinpoint/models/timing_record.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-01T01:04:04Z",
+      "side": 1,
+      "message": "Yeah, this bothered me quite a bit in a recent CL -- does it make sense for us to change the comparison_mode in the Job model to have a default value instead?",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "11028b5867c1af8911b386529c60513d3d8cc5d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
