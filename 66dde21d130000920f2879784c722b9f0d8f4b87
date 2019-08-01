@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d763df2_bb9a4972",
+        "filename": "telemetry/telemetry/story/typ_expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-01T10:30:27Z",
+      "side": 1,
+      "message": "nit: can you also disable story \"three\" so the test checks that this disable would not be broken?",
+      "revId": "66dde21d130000920f2879784c722b9f0d8f4b87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
