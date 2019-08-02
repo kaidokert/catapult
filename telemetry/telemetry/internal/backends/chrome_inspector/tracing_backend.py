@@ -104,11 +104,14 @@ class TracingBackend(object):
 
   _TRACING_DOMAIN = 'Tracing'
 
-  def __init__(self, inspector_socket, is_tracing_running=False):
+  def __init__(self, inspector_socket, config=None):
     self._inspector_websocket = inspector_socket
     self._inspector_websocket.RegisterDomain(
         self._TRACING_DOMAIN, self._NotificationHandler)
-    self._is_tracing_running = is_tracing_running
+    self._is_tracing_running = bool(config)
+    self._stream_format = None
+    if self._is_tracing_running:
+      self._stream_format = config.chrome_trace_config.trace_format
     self._start_issued = False
     self._can_collect_data = False
     self._has_received_all_tracing_data = False
@@ -143,6 +146,9 @@ class TracingBackend(object):
     req = {'method': 'Tracing.start', 'params': {
         'transferMode': 'ReturnAsStream', 'streamCompression': 'gzip',
         'traceConfig': chrome_trace_config.GetChromeTraceConfigForDevTools()}}
+    self._stream_format = chrome_trace_config.trace_format
+    if self._stream_format is not None:
+      req['params']['traceFormat'] = self._stream_format
     logging.info('Start Tracing Request: %r', req)
     response = self._inspector_websocket.SyncRequest(req, timeout)
 
@@ -179,9 +185,10 @@ class TracingBackend(object):
       if not self._start_issued:
         # Tracing is running but start was not issued so, startup tracing must
         # be in effect. Issue another Tracing.start to update the transfer mode.
-        # TODO(caseq): get rid of it when streaming is the default.
         params = {'transferMode': 'ReturnAsStream', 'streamCompression': 'gzip',
                   'traceConfig': {}}
+        if self._stream_format is not None:
+          params['streamFormat'] = self._stream_format
         req = {'method': 'Tracing.start', 'params': params}
         self._inspector_websocket.SendAndIgnoreResponse(req)
 
@@ -324,9 +331,10 @@ class TracingBackend(object):
       if not stream_handle:
         self._has_received_all_tracing_data = True
         return
-      compressed = params.get('streamCompression') == 'gzip'
+      print('==>', params, '<==')
       trace_handle = self._trace_data_builder.OpenTraceHandleFor(
-          trace_data_module.CHROME_TRACE_PART, compressed=compressed)
+          trace_data_module.CHROME_TRACE_PART,
+          suffix=_GetTraceFileSuffix(params))
       reader = _DevToolsStreamReader(
           self._inspector_websocket, stream_handle, trace_handle)
       reader.Read(self._ReceivedAllTraceDataFromStream)
@@ -343,3 +351,11 @@ class TracingBackend(object):
     req = {'method': 'Tracing.hasCompleted'}
     res = self._inspector_websocket.SyncRequest(req, timeout=10)
     return not res.get('response')
+
+
+def _GetTraceFileSuffix(params):
+  trace_format = params.get('traceFormat', 'json')
+  suffix = '.pb' if trace_format == 'proto' else '.' + trace_format
+  if params.get('streamCompression') == 'gzip':
+    suffix += '.gz'
+  return suffix

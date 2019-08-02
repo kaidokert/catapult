@@ -197,31 +197,34 @@ class Benchmark(command_line.Command):
     --extra-atrace-categories.
     """
     tbm_options = self.CreateCoreTimelineBasedMeasurementOptions()
-    if options and options.extra_chrome_categories:
-      # If Chrome tracing categories for this benchmark are not already
-      # enabled, there is probably a good reason why. Don't change whether
-      # Chrome tracing is enabled.
-      assert tbm_options.config.enable_chrome_trace, (
-          'This benchmark does not support Chrome tracing.')
-      tbm_options.config.chrome_trace_config.category_filter.AddFilterString(
-          options.extra_chrome_categories)
-    if options and options.extra_atrace_categories:
-      # Many benchmarks on Android run without atrace by default. Hopefully the
-      # user understands that atrace is only supported on Android when setting
-      # this option.
-      tbm_options.config.enable_atrace_trace = True
+    if options:
+      if options.extra_chrome_categories:
+        # If Chrome tracing categories for this benchmark are not already
+        # enabled, there is probably a good reason why. Don't change whether
+        # Chrome tracing is enabled.
+        assert tbm_options.config.enable_chrome_trace, (
+            'This benchmark does not support Chrome tracing.')
+        tbm_options.config.chrome_trace_config.category_filter.AddFilterString(
+            options.extra_chrome_categories)
+      if options.extra_atrace_categories:
+        # Many benchmarks on Android run without atrace by default. Hopefully
+        # the user understands that atrace is only supported on Android when
+        # setting this option.
+        tbm_options.config.enable_atrace_trace = True
 
-      categories = tbm_options.config.atrace_config.categories
-      if isinstance(categories, basestring):
-        # Categories can either be a list or comma-separated string.
-        # https://github.com/catapult-project/catapult/issues/3712
-        categories = categories.split(',')
-      for category in options.extra_atrace_categories.split(','):
-        if category not in categories:
-          categories.append(category)
-      tbm_options.config.atrace_config.categories = categories
-    if options and options.enable_systrace:
-      tbm_options.config.chrome_trace_config.SetEnableSystrace()
+        categories = tbm_options.config.atrace_config.categories
+        if isinstance(categories, basestring):
+          # Categories can either be a list or comma-separated string.
+          # https://github.com/catapult-project/catapult/issues/3712
+          categories = categories.split(',')
+        for category in options.extra_atrace_categories.split(','):
+          if category not in categories:
+            categories.append(category)
+        tbm_options.config.atrace_config.categories = categories
+      if options.enable_systrace:
+        tbm_options.config.chrome_trace_config.SetEnableSystrace()
+      if options.experimental_proto_trace_format:
+        tbm_options.config.chrome_trace_config.SetProtoTraceFormat()
     return tbm_options
 
   def CreatePageTest(self, options):  # pylint: disable=unused-argument
