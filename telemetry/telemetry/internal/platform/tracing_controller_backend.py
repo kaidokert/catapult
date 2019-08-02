@@ -50,9 +50,9 @@ class _TraceDataDiscarder(object):
   TODO(crbug.com/928278): This should be moved as a "discarding mode" in
   TraceDataBuilder itself.
   """
-  def OpenTraceHandleFor(self, part, compressed=False):
+  def OpenTraceHandleFor(self, part, suffix):
     del part  # Unused.
-    del compressed  # Unused.
+    del suffix  # Unused.
     return open(os.devnull, 'wb')
 
   def AddTraceFor(self, part, data, allow_unstructured=False):
