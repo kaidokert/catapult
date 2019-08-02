@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1df9374c_81082e50",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-02T22:10:29Z",
+      "side": 1,
+      "message": "nit: I think this variable should be called \"_CONTENT_TYPES\" since usually a map is named for the values, not the keys.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 10
+      },
+      "revId": "07a495e2df3909917097b395043231d0a68090bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caaa6d8b_ec6a4b8b",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-02T22:10:29Z",
+      "side": 1,
+      "message": "this (and below) should be \"info\". Normally this isn\u0027t going to become a big problem (it won\u0027t cause the test to fail or anything), so it shouldn\u0027t be a warning. The reason is that I think having this as a warning will be a red herring for other bugs.",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "07a495e2df3909917097b395043231d0a68090bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "facc71bc_d7cfa104",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-02T22:10:29Z",
+      "side": 1,
+      "message": "omitted",
+      "range": {
+        "startLine": 241,
+        "startChar": 13,
+        "endLine": 241,
+        "endChar": 20
+      },
+      "revId": "07a495e2df3909917097b395043231d0a68090bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "305f142e_55d99942",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-02T22:10:29Z",
+      "side": 1,
+      "message": "omitted",
+      "range": {
+        "startLine": 276,
+        "startChar": 13,
+        "endLine": 276,
+        "endChar": 20
+      },
+      "revId": "07a495e2df3909917097b395043231d0a68090bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
