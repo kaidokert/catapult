@@ -24,7 +24,7 @@ _COMMANDS = {
 }
 
 
-def _ArgumentParsers(environment, results_arg_parser):
+def _ArgumentParsers(environment, args, results_arg_parser):
   """Build the top level argument parser.
 
   Currently this only defines two (mostly) empty parsers for 'run' and 'list'
@@ -53,7 +53,7 @@ def _ArgumentParsers(environment, results_arg_parser):
     opt_parser = command.CreateParser()
     opt_parser.set_defaults(
         external_results_processor=results_arg_parser is not None)
-    command.AddCommandLineArgs(opt_parser, environment)
+    command.AddCommandLineArgs(opt_parser, args, environment)
     legacy_parsers[name] = opt_parser
 
   # Build the top level argument parser.
@@ -109,7 +109,8 @@ def ParseArgs(environment, args=None, results_arg_parser=None):
   # TODO(crbug.com/981349): When optparse is gone, this should just call
   # parse_args on the fully formed top level parser. For now we still need
   # to allow unknown args, which are then passed below to the legacy parsers.
-  parser, legacy_parsers = _ArgumentParsers(environment, results_arg_parser)
+  parser, legacy_parsers = _ArgumentParsers(environment, args,
+                                            results_arg_parser)
   parsed_args, unknown_args = parser.parse_known_args(args)
 
   # TODO(crbug.com/981349): Ideally, most of the following should be moved
