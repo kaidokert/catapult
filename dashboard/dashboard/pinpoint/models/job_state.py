@@ -5,7 +5,6 @@
 from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
-from future_builtins import map # pylint: disable=redefined-builtin
 
 import collections
 import functools
@@ -101,43 +100,83 @@ class JobState(object):
     """Compare Changes and bisect by adding additional Changes as needed.
 
     For every pair of adjacent Changes, compare their results as probability
-    distributions. If the results are different, find the midpoint of the
-    Changes and add it to the Job. If the results are the same, do nothing.
-    If the results are inconclusive, add more Attempts to the Change with fewer
-    Attempts until we decide they are the same or different.
+    distributions. If the results are different, find surrounding Changes and
+    add it to the Job. If the results are the same, do nothing.  If the results
+    are inconclusive, add more Attempts to the Change with fewer Attempts until
+    we decide they are the same or different.
 
     The midpoint can only be added if the second Change represents a commit that
     comes after the first Change. Otherwise, this method won't explore further.
     For example, if Change A is repo@abc, and Change B is repo@abc + patch,
     there's no way to pick additional Changes to try.
     """
-    # This loop adds Changes to the _changes list while looping through it.
-    # The Change insertion simultaneously uses and modifies the list indices.
-    # However, the loop index goes in reverse order and Changes are only added
-    # after the loop index, so the loop never encounters the modified items.
-    # TODO: consider using `reduce(...)` here to implement a fold?
-    for index in range(len(self._changes) - 1, 0, -1):
-      change_a = self._changes[index - 1]
-      change_b = self._changes[index]
-      comparison = self._Compare(change_a, change_b)
+    if not self._changes:
+      return
 
+    additional_changes = []
+
+    def Speculate(change_a_index, change_b_index):
+      _, change_a = change_a_index
+      index_b, change_b = change_b_index
+      logging.debug('change_a = %r ; change_b = %r', change_a, change_b)
+      comparison = self._Compare(change_a, change_b)
       if comparison == compare.DIFFERENT:
         try:
-          midpoint = change_module.Change.Midpoint(change_a, change_b)
+          midpoint_0 = change_module.Change.Midpoint(change_a, change_b)
         except change_module.NonLinearError:
-          continue
-        except (httplib.HTTPException,
-                urlfetch_errors.DeadlineExceededError):
+          return change_b_index
+        except (httplib.HTTPException, urlfetch_errors.DeadlineExceededError):
           raise errors.RecoverableError()
 
-        logging.info('Adding Change %s.', midpoint)
-        self.AddChange(midpoint, index)
+        try:
+          midpoint_0_left = change_module.Change.Midpoint(change_a, midpoint_0)
+        except change_module.NonLinearError:
+          return change_b_index
+        except (httplib.HTTPException, urlfetch_errors.DeadlineExceededError):
+          raise errors.RecoverableError()
 
+        try:
+          midpoint_0_right = change_module.Change.Midpoint(midpoint_0, change_b)
+        except change_module.NonLinearError:
+          return change_b_index
+        except (httplib.HTTPException, urlfetch_errors.DeadlineExceededError):
+          raise errors.RecoverableError()
+
+        # Generate a two-level-deep bisection tree by adding the change and an
+        # insertion index in order.
+        disambiguation_set = set()
+        accumulated_changes = [midpoint_0_left]
+        disambiguation_set.add(midpoint_0_left)
+        if midpoint_0 not in accumulated_changes:
+          accumulated_changes.append(midpoint_0)
+          disambiguation_set.add(midpoint_0)
+        if midpoint_0_right not in accumulated_changes:
+          accumulated_changes.append(midpoint_0_right)
+          disambiguation_set.add(midpoint_0_right)
+
+        # Add the index of index_b as the insertion point for the changes in the
+        # exploration. This allows us to do the update to the list independent
+        # of the traversal.
+        additional_changes.extend([(index_b, c) for c in accumulated_changes])
       elif comparison == compare.UNKNOWN:
         if len(self._attempts[change_a]) <= len(self._attempts[change_b]):
           self.AddAttempts(change_a)
         else:
           self.AddAttempts(change_b)
+
+      return change_b_index
+
+    # Apply Speculate on each adjacent change to handle the cases where we need
+    # to add more changes/commits to explore.
+    functools.reduce(Speculate, enumerate(self._changes))
+
+    logging.info('Adding Changes: %s',
+                 [change for _, change in additional_changes])
+
+    # Insert the changes in reverse order, so that we extend the list from the
+    # end, using valid indices as we go along.
+    for index, change in reversed(additional_changes):
+      self.AddChange(change, index)
 
   def ScheduleWork(self):
     work_left = False
