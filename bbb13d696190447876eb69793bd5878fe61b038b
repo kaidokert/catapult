@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b42b0d6_ef1ec705",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-05T10:26:06Z",
+      "side": 1,
+      "message": "Not exactly sure what is the future plan here. But can we have just one way of naming things? FWIW I prefer the typ tags shown here. Could we use those same names elsewhere in Telemetry too?\n\n(maybe that _is_ the plan?)",
+      "revId": "bbb13d696190447876eb69793bd5878fe61b038b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
