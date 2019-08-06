@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "18a47993_d8f790cc",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T15:46:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c7b4304_297b3804",
+      "range": {
+        "startLine": 340,
+        "startChar": 4,
+        "endLine": 340,
+        "endChar": 24
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd6a1b1d_0c860727",
         "filename": "tracing/tracing/trace_data/trace_data.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cb26918a_68eefe60",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T15:46:52Z",
+      "side": 1,
+      "message": "I think this is only used for atrace and systrace data. Possibly both are text, but I\u0027m not sure. Would you happen to know?\n\nI also thought \u0027.dat\u0027 was more appropriate, even if they are text, simply to indicate the contents are some sort of semi-structured data.\n\nAlternatively, maybe there are some common file name extensions for atrace/systrace data? What would be your preference?",
+      "parentUuid": "bd6a1b1d_0c860727",
+      "range": {
+        "startLine": 179,
+        "startChar": 17,
+        "endLine": 179,
+        "endChar": 20
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d46c1c7e_18f1d89a",
         "filename": "tracing/tracing/trace_data/trace_data.py",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-06T14:10:17Z",
       "side": 1,
       "message": "s/info/warning/?",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 20
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a1ed3b7_2f47006d",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T15:46:52Z",
+      "side": 1,
+      "message": "I think warnings are for when something is \"not ok\", we may continue to run, but also an error may occur later because of this warning.\n\nIn this case nothing should fail. It\u0027s fine, from the trace_builder point of view, to contain traces in mixed formats; and the documentation of this method makes it clear that only JSON traces are converted.\n\nAlso note this is only here for few remaining legacy TBMv1(-ish) clients, which load the json trace into Python.",
+      "parentUuid": "d46c1c7e_18f1d89a",
       "range": {
         "startLine": 241,
         "startChar": 16,
