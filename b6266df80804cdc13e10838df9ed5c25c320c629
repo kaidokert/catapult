@@ -22,6 +22,30 @@
       "revId": "b6266df80804cdc13e10838df9ed5c25c320c629",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07603f24_8098eaa7",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T14:55:31Z",
+      "side": 1,
+      "message": "I don\u0027t think they are conflicting. The \"trace_config\" is the inner part of the config with settings on *what* to trace and looks like: {\u0027recordMode\u0027: \u0027recordUntilFull\u0027, \u0027includedCategories\u0027: [\u0027x\u0027, \u0027y\u0027], ...}\n\nThe \"trace_format\" is on the outer part with settings on *how* to encode the transfer data back to the client, e.g.: {\u0027streamCompression\u0027: \u0027gzip\u0027, \u0027traceFormat\u0027: \u0027json\u0027, ...}\n\nOr maybe I\u0027m missing something?",
+      "parentUuid": "ad114937_714ffab0",
+      "range": {
+        "startLine": 355,
+        "startChar": 5,
+        "endLine": 355,
+        "endChar": 17
+      },
+      "revId": "b6266df80804cdc13e10838df9ed5c25c320c629",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
