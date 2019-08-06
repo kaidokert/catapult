@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "36b8238b_7f3aee98",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-08-06T16:58:53Z",
+      "side": 1,
+      "message": "Both atrace and systrace are structured text[1], so I think .txt would work there. Ideally they\u0027d have a real file extension but they do not.\n\n[1] https://www.kernel.org/doc/Documentation/trace/ftrace.txt",
+      "parentUuid": "cb26918a_68eefe60",
+      "range": {
+        "startLine": 179,
+        "startChar": 17,
+        "endLine": 179,
+        "endChar": 20
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d46c1c7e_18f1d89a",
         "filename": "tracing/tracing/trace_data/trace_data.py",
         "patchSetId": 2
@@ -140,6 +164,30 @@
       "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aa59d9b_2141bbb8",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-08-06T16:58:53Z",
+      "side": 1,
+      "message": "Fair enough, I think either works here fine.",
+      "parentUuid": "9a1ed3b7_2f47006d",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 20
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
