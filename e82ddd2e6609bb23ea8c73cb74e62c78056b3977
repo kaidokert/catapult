@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d98c2dcc_b5e4ac7f",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T08:54:22Z",
+      "side": 1,
+      "message": "The trie building bit looks like a pretty general algorithm. I guess all callers of get_broken_expectations will need something like it? Could it be possible to either (in my order of preference):\n1) Have get_broken_expectations accept a list of strings and build the trie itself?\n2) Have a helper BuildTrie(values) function defined somewhere so it can be reused?\n3) At least factor out this code into a _BuildTrie module level function.",
+      "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7cef2ee_fdf74c87",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T08:54:22Z",
+      "side": 1,
+      "message": "nit: `k:v` -\u003e `k: v`",
+      "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "170173cc_be47de0e",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T08:54:22Z",
+      "side": 1,
+      "message": "I think these can be a bit more concise if you merge the two dicts first and then do the filtering (so you don\u0027t have to repeat the \"startswith\" bit). E.g.:\n\n  patterns_to_exps \u003d self._typ_expectations.individual_exps.copy()\n  patterns_to_exps.update(self._typ_expectations.glob_exps)\n  patterns_to_exps \u003d {\n    k: v for k, v in patterns_to_exps if k.statswith(...)}\n\nEven better if you can define, either in _typ_expectations or in self, something that returns the union of the two dicts (or iterates over the union of the two dicts).",
+      "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
