@@ -70,6 +70,30 @@
       "revId": "b6266df80804cdc13e10838df9ed5c25c320c629",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9547e08a_dd3890a8",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-06T15:59:29Z",
+      "side": 1,
+      "message": "Good idea. Done.",
+      "parentUuid": "e83a8bed_8be83f1c",
+      "range": {
+        "startLine": 355,
+        "startChar": 5,
+        "endLine": 355,
+        "endChar": 17
+      },
+      "revId": "b6266df80804cdc13e10838df9ed5c25c320c629",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
