@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d0eb4b27_2c091f18",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-06T21:20:25Z",
+      "side": 1,
+      "message": "I did number 1 in a separate crrev.com/c/1738331",
+      "parentUuid": "d98c2dcc_b5e4ac7f",
+      "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7cef2ee_fdf74c87",
         "filename": "telemetry/telemetry/story/typ_expectations.py",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "09d15bdd_11342b15",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-06T21:20:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7cef2ee_fdf74c87",
+      "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "170173cc_be47de0e",
         "filename": "telemetry/telemetry/story/typ_expectations.py",
         "patchSetId": 6
@@ -50,6 +86,24 @@
       "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8d267d7_fbf36002",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-06T21:20:25Z",
+      "side": 1,
+      "message": "I created a method that makes a union of typ\u0027s dictionaries for self.",
+      "parentUuid": "170173cc_be47de0e",
+      "revId": "e82ddd2e6609bb23ea8c73cb74e62c78056b3977",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
