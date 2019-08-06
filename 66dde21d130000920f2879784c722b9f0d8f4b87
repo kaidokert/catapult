@@ -16,6 +16,24 @@
       "revId": "66dde21d130000920f2879784c722b9f0d8f4b87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0795501f_568eb1d4",
+        "filename": "telemetry/telemetry/story/typ_expectations_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-06T02:26:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d763df2_bb9a4972",
+      "revId": "66dde21d130000920f2879784c722b9f0d8f4b87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
