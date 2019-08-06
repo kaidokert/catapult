@@ -16,6 +16,24 @@
       "revId": "bbb13d696190447876eb69793bd5878fe61b038b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed16e9d3_28eb2635",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-06T03:10:20Z",
+      "side": 1,
+      "message": "Yes we can make telemetry do one way of naming things. We can make it use the same names as the typ tags. I will work on CL\u0027s to do this.",
+      "parentUuid": "3b42b0d6_ef1ec705",
+      "revId": "bbb13d696190447876eb69793bd5878fe61b038b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
