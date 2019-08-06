@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c7b4304_297b3804",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-08-06T14:10:17Z",
+      "side": 1,
+      "message": "nit: _Get/MakeTracingStartRequest to turn this into a verb since it\u0027s not a class?",
+      "range": {
+        "startLine": 340,
+        "startChar": 4,
+        "endLine": 340,
+        "endChar": 24
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd6a1b1d_0c860727",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-08-06T14:10:17Z",
+      "side": 1,
+      "message": "Would .txt work, or is this binary?",
+      "range": {
+        "startLine": 179,
+        "startChar": 17,
+        "endLine": 179,
+        "endChar": 20
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d46c1c7e_18f1d89a",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-08-06T14:10:17Z",
+      "side": 1,
+      "message": "s/info/warning/?",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 20
+      },
+      "revId": "687c936b694580d5673ab9a97952f6cc139134e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
