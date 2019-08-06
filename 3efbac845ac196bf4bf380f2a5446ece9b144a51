@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ff7d2ee_0c7a2c60",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-06T02:22:10Z",
+      "side": 1,
+      "message": "nit: consider \u0027\u003d\u003d\u003d\u0027 instead?",
+      "range": {
+        "startLine": 199,
+        "startChar": 59,
+        "endLine": 199,
+        "endChar": 61
+      },
+      "revId": "3efbac845ac196bf4bf380f2a5446ece9b144a51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5c6c7ec_7bee240c",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-06T02:22:10Z",
+      "side": 1,
+      "message": "nit: same here; \u0027\u003d\u003d\u003d\u0027?",
+      "range": {
+        "startLine": 242,
+        "startChar": 56,
+        "endLine": 242,
+        "endChar": 58
+      },
+      "revId": "3efbac845ac196bf4bf380f2a5446ece9b144a51",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
