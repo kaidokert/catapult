@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "560647ee_c5b346b9",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-06T04:19:41Z",
+      "side": 1,
+      "message": "The CL description is great, but it\u0027s not trivially discoverable by someone reading the code.  The comments in the code (like this one) are considerably terser.\n\nSo it\u0027d be good to find somewhere inside the codebase to put that description of the speculative bisection this implements, but I realize that just plonking it in as a code comment would be a lot of clutter.  Perhaps add a short markdown file in this directory, and have this docstring and/or a comment on the Speculate function refer to that?\n\n(Perhaps this is an argument for extracting this speculative bisection logic into its own module — after all the `reduce` with the side-effect of mutating the `additional_changes` variable in the outer scope is already close to complex enough to deserve an explicit class with explicit state, and would give a natural home for a comment with a detailed description of the speculative bisection behaviour.)",
+      "range": {
+        "startLine": 103,
+        "startChar": 54,
+        "endLine": 103,
+        "endChar": 65
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "291e4c1c_47599093",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-06T04:19:41Z",
+      "side": 1,
+      "message": "I guess in future this might be extended to also cancel speculative midpoints once that branch of the bisection tree has been found to be the same (or at least, probably the same)?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 50
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f08571b7_7482e3a8",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-06T04:19:41Z",
+      "side": 1,
+      "message": "But why do we expect these? :)\n\nHow about:\n\n  # The midpoint has been added (5), and the next level of midpoints too (3, 7).",
+      "range": {
+        "startLine": 46,
+        "startChar": 41,
+        "endLine": 46,
+        "endChar": 58
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "286a386d_dea09ac5",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-06T04:19:41Z",
+      "side": 1,
+      "message": "What is this?  Is this a remnant of an earlier revision?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 55
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
