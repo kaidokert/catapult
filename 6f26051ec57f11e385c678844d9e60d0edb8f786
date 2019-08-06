@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "49a1eeb7_b87a0369",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-06T08:30:23Z",
+      "side": 1,
+      "message": "Thanks -- I like the idea of having the documentation somewhere. I also like the idea of moving the logic into a different module. I\u0027ve done this to move the speculation logic to a different module (models.exploration) where we document the algorithm and the interfaces better.",
+      "parentUuid": "560647ee_c5b346b9",
+      "range": {
+        "startLine": 103,
+        "startChar": 54,
+        "endLine": 103,
+        "endChar": 65
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291e4c1c_47599093",
         "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2dad5b4_257b5c1f",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-06T08:30:23Z",
+      "side": 1,
+      "message": "Yes, but that happens in the feedback cycle later on -- because this sets up the data model to allow the job running part of the codebase to actually perform the requests to Swarming need to handle the job cancellation and model updates to invalidate/prune the tasks. We need to fix that other part first to be able to even think about supporting tree pruning.",
+      "parentUuid": "291e4c1c_47599093",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 50
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "45d1fbd2_9d68a928",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-06T08:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f08571b7_7482e3a8",
+      "range": {
+        "startLine": 46,
+        "startChar": 41,
+        "endLine": 46,
+        "endChar": 58
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "286a386d_dea09ac5",
         "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27a9ef27_7ba7acef",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-06T08:30:23Z",
+      "side": 1,
+      "message": "It\u0027s an option to make the standard Python unittest diff output not be limited by the size of the difference (makes debugging the test much easier in case of failures).",
+      "parentUuid": "286a386d_dea09ac5",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 55
+      },
+      "revId": "6f26051ec57f11e385c678844d9e60d0edb8f786",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
