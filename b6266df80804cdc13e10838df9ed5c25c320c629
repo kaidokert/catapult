@@ -46,6 +46,30 @@
       "revId": "b6266df80804cdc13e10838df9ed5c25c320c629",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e83a8bed_8be83f1c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-08-06T15:25:22Z",
+      "side": 1,
+      "message": "I think I was confused because in tracing_backend.py we pull the trace format out of the Chrome trace config. Maybe it would help to add doc comments on this function.",
+      "parentUuid": "07603f24_8098eaa7",
+      "range": {
+        "startLine": 355,
+        "startChar": 5,
+        "endLine": 355,
+        "endChar": 17
+      },
+      "revId": "b6266df80804cdc13e10838df9ed5c25c320c629",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
