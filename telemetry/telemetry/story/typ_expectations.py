@@ -12,6 +12,8 @@ Example:
   disabled_story = expectations.IsStoryDisabled('story1', None, None)
 '''
 
+import logging
+
 from typ import expectations_parser
 from typ import json_results
 
@@ -43,10 +45,28 @@ class StoryExpectations(object):
     raise NotImplementedError
 
   def GetBrokenExpectations(self, story_set):
-    # TODO(crbug.com/973936):  Implement function in
-    # typ.expectations_parser.TestExpectations to get broken expectations
-    del story_set
-    return []
+    story_names = [self._benchmark_name + '/' + story.name
+                   for story in story_set.stories]
+    trie = {}
+    for story_name in story_names:
+      _trie = trie.setdefault(story_name[0], {})
+      for l in story_name[1:]:
+        _trie = _trie.setdefault(l, {})
+      _trie.setdefault('$', {})
+    patterns_to_exps = {
+        k:v for k, v in self._typ_expectations.individual_exps.items()
+        if k.startswith(self._benchmark_name + '/')}
+    patterns_to_exps.update({
+        k:v for k, v in self._typ_expectations.glob_exps.items()
+        if k.startswith(self._benchmark_name + '/')})
+    broken_expectations = self._typ_expectations.get_broken_expectations(
+        patterns_to_exps, trie)
+    unused_patterns = set([e.test for e in broken_expectations])
+    for pattern in unused_patterns:
+      logging.error('Expectation pattern %s does not match any '
+                    'story in the story set for benchmark %s' %
+                    (pattern, self._benchmark_name))
+    return unused_patterns
 
   def SetExpectations(self):
     raise NotImplementedError
