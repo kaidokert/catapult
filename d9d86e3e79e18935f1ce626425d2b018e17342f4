@@ -308,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "33d04396_882f8ee3",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:34:44Z",
+      "side": 1,
+      "message": "Wow. Yeah, good point. Changed to [1, 6] instead, which checks out. :)",
+      "parentUuid": "1c062500_e15b6f34",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f291168c_561e15e1",
         "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
         "patchSetId": 5
