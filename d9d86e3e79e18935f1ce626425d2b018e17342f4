@@ -203,6 +203,29 @@
     },
     {
       "key": {
+        "uuid": "fd845cf0_44441d78",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-07T01:56:09Z",
+      "side": 1,
+      "message": "The pattern in exploration.Speculate function as it is now has a side effect of modifying this job_state on on_unknown, but then has you add the changes manually after which feels a bit weird.",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 24
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aff14c33_3b9714ca",
         "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
         "patchSetId": 5
