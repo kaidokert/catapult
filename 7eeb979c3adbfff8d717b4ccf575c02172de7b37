@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "785dafe3_2da35841",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-07T20:45:35Z",
+      "side": 1,
+      "message": "parser",
+      "range": {
+        "startLine": 61,
+        "startChar": 69,
+        "endLine": 61,
+        "endChar": 74
+      },
+      "revId": "7eeb979c3adbfff8d717b4ccf575c02172de7b37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
