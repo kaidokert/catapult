@@ -47,7 +47,6 @@ tr.exportTo('tr.metrics.sh', function() {
       if (event.args.data.frameID === frameID &&
         event.start < (navigationStart + loadDuration)) {
         viewport = event.args.data;
-        break;
       }
     }
     if (!viewport) return;
