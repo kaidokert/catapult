@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a30d8e6_6169f830",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e622ad97_35f97bda",
+      "range": {
+        "startLine": 18,
+        "startChar": 18,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e0954ba_08994827",
         "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07de16cd_6a0910a2",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e0954ba_08994827",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 75
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b5d7023d_c59d4200",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "I like \u0027callable\u0027 since it\u0027s more Pythonic. :)\n\nDone.",
+      "parentUuid": "47a3070d_9bdce699",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6f17eeb_10cbfa9d",
         "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97cb245a_d2d28cfc",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6f17eeb_10cbfa9d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "142614da_f23aaabb",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d342d55_3b425988",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 27
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1bd96698_6b6bff8d",
         "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
         "patchSetId": 5
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "03183bfd_7b091eab",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Yes, I wanted to check that we can bisect into odd-distanced bisections. Changed to [1, 5] instead, thanks for catching this!",
+      "parentUuid": "1bd96698_6b6bff8d",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f291168c_561e15e1",
         "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
         "patchSetId": 5
@@ -151,6 +295,30 @@
       "writtenOn": "2019-08-07T01:15:35Z",
       "side": 1,
       "message": "[optional]\n\nThis seems tangential to the intent of this unit test so should probably be omitted?\n\nBut it also seems a bit indirect to use a mock for this — it seems like you could do this more simply (and get more immediate and thus more helpful failures) without MagicMock:\n\n  results \u003d exploration.Speculate(\n      …\n      on_unknown\u003dlambda *_: self.fail(\"on_unknown called\"),\n      …)\n\nOr use\n\n      on_unknown\u003dlambda *args: self.fail(\"on_unknown called with %r\" % (args,)),",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d56f6f1_e980ea38",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f291168c_561e15e1",
       "range": {
         "startLine": 84,
         "startChar": 0,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "0732818d_34cc3627",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Thanks, good point!\n\nDone, though with slight modifications -- because the change_detected predicate is given on existing pairwise elements in the array, I had to seed the array to be [0, 5, 10] and change the conditional to be `if a \u003e\u003d 5` to make it do the right thing.",
+      "parentUuid": "5661de06_89b414a4",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 39
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5994aab_33d41c41",
         "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
         "patchSetId": 5
@@ -200,6 +392,24 @@
       "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621c8d89_465807ea",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5994aab_33d41c41",
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -223,6 +433,30 @@
       "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "437f358e_8a689e0c",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T04:11:30Z",
+      "side": 1,
+      "message": "Good point!\n\nI\u0027ve changed this so that we collect the changes we\u0027re going to refine instead of modifying the state directly.",
+      "parentUuid": "fd845cf0_44441d78",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 24
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
