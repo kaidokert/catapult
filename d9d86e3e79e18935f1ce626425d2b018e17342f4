@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "1c062500_e15b6f34",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T04:27:10Z",
+      "side": 1,
+      "message": "[1,5] still has even-sized gaps: size 4 at level 1, and size 2 and level 2.",
+      "parentUuid": "03183bfd_7b091eab",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f291168c_561e15e1",
         "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
         "patchSetId": 5
