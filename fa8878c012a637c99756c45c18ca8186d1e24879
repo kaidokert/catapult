@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e60b0e9a_ad5056a2",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-07T23:24:03Z",
+      "side": 1,
+      "message": "We probably need to update the queue stats UI to understand this new structure. Right now it\u0027s assuming that the elements in the array are all floating point values when building the histograms. This change makes it so that elements in the list are now lists as well (in JSON).",
+      "revId": "fa8878c012a637c99756c45c18ca8186d1e24879",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
