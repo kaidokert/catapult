@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cb349c77_5f10e40e",
+        "filename": "tracing/tracing/extras/chrome_config.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-07T23:38:18Z",
+      "side": 1,
+      "message": "We want it to be included in chrome://tracing, which means it has to be included in the chrome_config. I don\u0027t think there are any other good options here.",
+      "parentUuid": "62778176_b6d77f32",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46adb3e9_70b417e0",
         "filename": "tracing/tracing/extras/fuchsia/image.html",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2019-08-07T21:49:22Z",
       "side": 1,
       "message": "Where is this used?",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69528b04_ef7f7c06",
+        "filename": "tracing/tracing/extras/fuchsia/image.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-07T23:38:18Z",
+      "side": 1,
+      "message": "It\u0027s not used. I went ahead and removed it.",
+      "parentUuid": "46adb3e9_70b417e0",
       "revId": "97880e26638f3470231e3e84e74807736bfc0643",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ec0c6b17_9e5380e8",
+        "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-07T23:38:18Z",
+      "side": 1,
+      "message": "You\u0027re right. I\u0027ve switched to using a template, which also allows for setting styles within a \u003cstyle\u003e tag.",
+      "parentUuid": "cd11977f_e8d9cfe4",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f91aa6ca_679f5936",
         "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
         "patchSetId": 10
@@ -67,6 +121,24 @@
       "revId": "97880e26638f3470231e3e84e74807736bfc0643",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575d3b86_cb04d497",
+        "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-07T23:38:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f91aa6ca_679f5936",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
