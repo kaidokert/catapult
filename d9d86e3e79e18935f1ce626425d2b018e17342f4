@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e622ad97_35f97bda",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "Typo: “range”",
+      "range": {
+        "startLine": 18,
+        "startChar": 18,
+        "endLine": 18,
+        "endChar": 22
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e0954ba_08994827",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "Say “a callback function” rather than just a “function”, to clearly indicate that Speculate\u0027s behaviour isn\u0027t influenced by anything on_unknown returns.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 75
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47a3070d_9bdce699",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "Similarly, say something like:\n\n  “a function to find the midpoint of two changes, with \n  a signature midpoint(change_a, change_b) -\u003e midpoint_change”\n\nor explicitly refer to the likely value:\n\n  ”a function returning the midpoint between two changes. Must have \n  the same signature as pinpoint.models.change.Change.Midpoint, i.e. \n  midpoint(change_a, change_b) -\u003e change_mid”\n\nEspecially as the other callable-typed parameter is only a callback I think it\u0027s worth being clear that this is not merely a callback, it is a hook that provides behaviour to the Speculate function.\n\n(Also, if you want a super nitpick: s/function/callable/ — this can be any compatible callable object, not just objects of type function)",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6f17eeb_10cbfa9d",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "I don\u0027t think this case is ever triggered, because this only occurs when “b - a in (0, 1)” [assuming integral a, b; and assuming b \u003e\u003d a].\n\nSo it\u0027d be clearer and I think equivalent to your current implementation to rewrite as:\n\ndef FindMidpoint(a, b):\n  offset \u003d (b - a) // 2\n  if offset \u003d\u003d 0:\n    return None\n  return a + offset",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d342d55_3b425988",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "Rather than fight the linter, why not call these `change_detected_mock` etc?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 27
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bd96698_6b6bff8d",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "The absolute numbers are odd — but the gap sizes are all even (8, 4, 2), which seems more relevant.  So this test seems misnamed to me, or perhaps it isn\u0027t really exercising the case you intend?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 29
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f291168c_561e15e1",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "[optional]\n\nThis seems tangential to the intent of this unit test so should probably be omitted?\n\nBut it also seems a bit indirect to use a mock for this — it seems like you could do this more simply (and get more immediate and thus more helpful failures) without MagicMock:\n\n  results \u003d exploration.Speculate(\n      …\n      on_unknown\u003dlambda *_: self.fail(\"on_unknown called\"),\n      …)\n\nOr use\n\n      on_unknown\u003dlambda *args: self.fail(\"on_unknown called with %r\" % (args,)),",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5661de06_89b414a4",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "This test would also pass if Speculate returns early on the first unknown.\n\nPerhaps use a test change detected function like:\n\n  def ChangeDetected(a, b):\n     # The top half of the change range is unknown\n     if a \u003e\u003d 6: return None\n     return True\n\nTo verify that exploration continues in the rest of the search space.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 39
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5994aab_33d41c41",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "You\u0027re missing a unit test for change_detected returning False.",
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff14c33_3b9714ca",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-08-07T01:15:35Z",
+      "side": 1,
+      "message": "This is nice! — I didn\u0027t really get the intent of the logic invoking add attempts before, but this make the intent super clear.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 38
+      },
+      "revId": "d9d86e3e79e18935f1ce626425d2b018e17342f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
