@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62778176_b6d77f32",
+        "filename": "tracing/tracing/extras/chrome_config.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-08-07T21:49:22Z",
+      "side": 1,
+      "message": "I\u0027m a little sad we have to include this fuchsia dependency in chrome_config, but I\u0027m guessing it\u0027s impossible to make this work in trace viewer otherwise?",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46adb3e9_70b417e0",
+        "filename": "tracing/tracing/extras/fuchsia/image.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-08-07T21:49:22Z",
+      "side": 1,
+      "message": "Where is this used?",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd11977f_e8d9cfe4",
+        "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-08-07T21:49:22Z",
+      "side": 1,
+      "message": "Is there any reason you\u0027re setting styles in JS instead of CSS? I don\u0027t know polymer very well but I see other polymer files do styles in a style tag in the same file: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/ui/base/mouse_mode_selector.html?l\u003d40\u0026rcl\u003dcad35e22dcad126c6a20663ded101565e6326d82",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91aa6ca_679f5936",
+        "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-08-07T21:49:22Z",
+      "side": 1,
+      "message": "The fact that zoom works by dragging was unintuitive to me (I tried scroll wheel with ctrl/alt/shift and then ctrl+/-, because trying dragging). Could you add a little text somwhere saying \"drag with mouse to zoom\"?",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
