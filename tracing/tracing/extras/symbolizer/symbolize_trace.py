@@ -544,22 +544,67 @@ class TypeNameMap(NodeWrapper):
   For simplicity string ids are translated into strings during parsing,
   and then translated back to ids in ApplyModifications().
   """
+  class Type(object):
+    def __init__(self, type_id, name):
+      self._modified = False
+      self._id = type_id
+      self._pc = self._ParsePC(name)
+      self._name = name
+
+    @property
+    def modified(self):
+      """Returns True if the type was modified."""
+      return self._modified
+
+    @property
+    def id(self):
+      """Type id (integer)."""
+      return self._id
+
+    @property
+    def name(self):
+      """Name of the type."""
+      return self._name
+
+    @name.setter
+    def name(self, value):
+      """Changes the name."""
+      self._modified = True
+      self._name = value
+
+    @property
+    def pc(self):
+      """Parsed (integer) PC of the type node if pc_as_object_type is enabled, or None."""
+      return self._pc
+
+    _PC_TAG = 'pc:'
+
+    def _ParsePC(self, name):
+      if not name.startswith(self._PC_TAG):
+        return None
+      return int(name[len(self._PC_TAG):], 16)
+
+    def _ClearModified(self):
+      self._modified = False
+
   def __init__(self):
     self._modified = False
     self._type_name_nodes = []
-    self._name_by_id = {}
+    self._type_by_id = {}
     self._id_by_name = {}
     self._max_type_id = 0
 
   @property
   def modified(self):
-    """Returns True if the wrapper was modified (see NodeWrapper)."""
-    return self._modified
+    """Returns True if the wrapper was modified (see NodeWrapper) or any type
+       was modified."""
+    return (self._modified or
+            any(t.modified for t in self._type_by_id.values()))
 
   @property
-  def name_by_id(self):
+  def type_by_id(self):
     """Returns {id -> name} dict (must not be changed directly)."""
-    return self._name_by_id
+    return self._type_by_id
 
   def ParseNext(self, heap_dump_version, type_name_node, string_map):
     """Parses and interns next node (see NodeWrapper).
@@ -600,16 +645,18 @@ class TypeNameMap(NodeWrapper):
     for types_node in self._type_name_nodes:
       del types_node[:]
     types_node = self._type_name_nodes[0]
-    for type_id, type_name in self._name_by_id.items():
+    for type_node in self._type_by_id.values():
       types_node.append({
-          'id': type_id,
-          'name_sid': string_map.AddString(type_name)})
+          'id': type_node.id,
+          'name_sid': string_map.AddString(type_node.name)})
+      type_node._ClearModified()
 
     self._modified = False
 
   def _Insert(self, type_id, type_name):
+    type_node = self.Type(type_id, type_name)
     self._id_by_name[type_name] = type_id
-    self._name_by_id[type_id] = type_name
+    self._type_by_id[type_id] = type_node
     self._max_type_id = max(self._max_type_id, type_id)
 
 
@@ -866,6 +913,7 @@ class Trace(NodeWrapper):
     self._is_cros = False
     self._is_android = False
     self._is_cast = False
+    self._pc_as_object_type = False
 
     # Misc per-process information needed only during parsing.
     class ProcessExt(object):
@@ -899,16 +947,16 @@ class Trace(NodeWrapper):
     # just list of events.
     events = trace_node if isinstance(trace_node, list) \
              else trace_node['traceEvents']
+    process_count = 0
     for event in events:
       name = event.get('name')
       if not name:
         continue
 
       pid = event['pid']
-      process_ext = process_ext_by_pid.get(pid)
-      if process_ext is None:
-        process_ext = ProcessExt(pid)
-        process_ext_by_pid[pid] = process_ext
+      process_ext = ProcessExt(pid)
+      process_ext_by_pid[process_count] = process_ext
+      process_count += 1
       process = process_ext.process
 
       phase = event['ph']
@@ -1029,6 +1077,14 @@ class Trace(NodeWrapper):
     self._is_cast = new_value
 
   @property
+  def pc_as_object_type(self):
+    return self._pc_as_object_type
+
+  @pc_as_object_type.setter
+  def pc_as_object_type(self, new_value):
+    self._pc_as_object_type = new_value
+
+  @property
   def is_64bit(self):
     return self._is_64bit
 
@@ -1060,11 +1116,11 @@ class Trace(NodeWrapper):
 
 
 class SymbolizableFile(object):
-  """Holds file path, addresses to symbolize and stack frames to update.
+  """Holds file path, addresses to symbolize and nodes to update.
 
   This class is a link between ELFSymbolizer and a trace file: it specifies
   what to symbolize (addresses) and what to update with the symbolization
-  result (frames).
+  result (nodes).
   """
   def __init__(self, file_path, code_id, trace_from_win):
     self.path = file_path
@@ -1074,17 +1130,17 @@ class SymbolizableFile(object):
       self.module_name = os.path.basename(file_path)
     self.symbolizable_path = file_path # path to use for symbolization
     self.code_id = code_id
-    self.frames_by_address = collections.defaultdict(list)
+    self.nodes_by_address = collections.defaultdict(list)
     self.skip_symbolization = False
     self.has_breakpad_symbols = False
 
 
-def ResolveSymbolizableFiles(processes, trace_from_win):
+def ResolveSymbolizableFiles(processes, trace_from_win, pc_as_object_type):
   """Resolves and groups PCs into list of SymbolizableFiles.
 
   As part of the grouping process, this function resolves PC from each stack
-  frame to the corresponding mmap region. Stack frames that failed to resolve
-  are symbolized with '<unresolved>'.
+  frame and each type node to the corresponding mmap region. Stack frames 
+  and type nodes that failed to resolve are symbolized with '<unresolved>'.
   """
   symfile_by_path = {}
   for process in processes:
@@ -1105,7 +1161,25 @@ def ResolveSymbolizableFiles(processes, trace_from_win):
         symfile_by_path[symfile.path] = symfile
 
       relative_pc = frame.pc - region.start_address + region.file_offset
-      symfile.frames_by_address[relative_pc].append(frame)
+      symfile.nodes_by_address[relative_pc].append(frame)
+
+    if pc_as_object_type:
+      for type_node in process.type_name_map.type_by_id.values():
+        if type_node.pc is None:
+          continue
+        region = process.memory_map.FindRegion(type_node.pc)
+        if region is None:
+          type_node.name = '<unresolved>'
+          continue
+
+        symfile = symfile_by_path.get(region.file_path)
+        if symfile is None:
+          file_path = region.file_path
+          symfile = SymbolizableFile(file_path, region.code_id, trace_from_win)
+          symfile_by_path[symfile.path] = symfile
+
+        relative_pc = type_node.pc - region.start_address + region.file_offset
+        symfile.nodes_by_address[relative_pc].append(type_node)
 
   return list(symfile_by_path.values())
 
@@ -1178,27 +1252,27 @@ class Symbolizer(object):
     self.breakpad_modules = {}
 
   def _SymbolizeLinuxAndAndroid(self, symfile):
-    def _SymbolizerCallback(sym_info, frames):
+    def _SymbolizerCallback(sym_info, nodes):
       # Unwind inline chain to the top.
       while sym_info.inlined_by:
         sym_info = sym_info.inlined_by
 
       symbolized_name = (sym_info.name if sym_info.name else
                          '<{}>'.format(symfile.path))
-      for frame in frames:
-        frame.name = symbolized_name
+      for node in nodes:
+        node.name = symbolized_name
 
     symbolizer = elf_symbolizer.ELFSymbolizer(symfile.symbolizable_path,
                                               self.symbolizer_path,
                                               _SymbolizerCallback,
                                               inlines=True)
 
-    for address, frames in symfile.frames_by_address.items():
+    for address, nodes in symfile.nodes_by_address.items():
       # SymbolizeAsync() asserts that the type of address is int. We operate
       # on longs (since they are raw pointers possibly from 64-bit processes).
       # It's OK to cast here because we're passing relative PC, which should
       # always fit into int.
-      symbolizer.SymbolizeAsync(int(address), frames)
+      symbolizer.SymbolizeAsync(int(address), nodes)
 
     symbolizer.Join()
 
@@ -1210,7 +1284,7 @@ class Symbolizer(object):
     address_os_file, address_file_path = tempfile.mkstemp()
     try:
       with os.fdopen(address_os_file, 'w') as address_file:
-        for address in symfile.frames_by_address.keys():
+        for address in symfile.nodes_by_address.keys():
           address_file.write('{:x} '.format(address + load_address))
 
       cmd = [self.symbolizer_path, '-arch', 'x86_64', '-l',
@@ -1218,10 +1292,10 @@ class Symbolizer(object):
              '-f', address_file_path]
       output_array = subprocess.check_output(cmd).split('\n')
 
-      for i, frames in enumerate(symfile.frames_by_address.values()):
+      for i, nodes in enumerate(symfile.nodes_by_address.values()):
         symbolized_name = self._matcher.Match(output_array[i])
-        for frame in frames:
-          frame.name = symbolized_name
+        for node in nodes:
+          node.name = symbolized_name
     finally:
       os.remove(address_file_path)
 
@@ -1245,7 +1319,7 @@ class Symbolizer(object):
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
                             stderr=None)
     addrs = ["%x" % relative_pc for relative_pc in
-             symfile.frames_by_address.keys()]
+             symfile.nodes_by_address.keys()]
     (stdout_data, _) = proc.communicate('\n'.join(addrs))
     # On windows, lines may contain '\r' character: e.g. "RtlUserThreadStart\r".
     stdout_data.replace('\r', '')
@@ -1253,11 +1327,11 @@ class Symbolizer(object):
 
     # This is known to be in the same order as stderr_data.
     for i, addr in enumerate(addrs):
-      for frame in  symfile.frames_by_address[int(addr, 16)]:
+      for node in  symfile.nodes_by_address[int(addr, 16)]:
         # Output of addr2line with --functions is always 2 outputs per
         # symbol, function name followed by source line number. Only grab
         # the function name as line info is not always available.
-        frame.name = stdout_data[i * 2]
+        node.name = stdout_data[i * 2]
 
   def _SymbolizeBreakpad(self, symfile):
     module_filename = symfile.symbolizable_path
@@ -1270,7 +1344,7 @@ class Symbolizer(object):
       print("  from debug file: %s" % module.code_id)
       return
 
-    addresses = list(symfile.frames_by_address.keys())
+    addresses = list(symfile.nodes_by_address.keys())
     addresses.sort()
 
     symbols_addresses = list(module.symbols.keys())
@@ -1286,8 +1360,8 @@ class Symbolizer(object):
       while (offset < len(addresses) and
              addresses[offset] < symbol_address_end):
         if addresses[offset] >= symbol_address_start:
-          for frame in symfile.frames_by_address[addresses[offset]]:
-            frame.name = resolved_symbol
+          for node in symfile.nodes_by_address[addresses[offset]]:
+            node.name = resolved_symbol
         else:
           skipped_addresses = skipped_addresses + 1
         offset = offset + 1
@@ -1297,14 +1371,14 @@ class Symbolizer(object):
 
   def SymbolizeSymfile(self, symfile):
     if symfile.skip_symbolization:
-      for address, frames in symfile.frames_by_address.items():
+      for address, nodes in symfile.nodes_by_address.items():
         unsymbolized_name = ('<' + symfile.module_name + '>')
         # Only append the address if there's a library.
         if symfile.symbolizable_path != _UNNAMED_FILE:
           unsymbolized_name += ' + ' + str(hex(address))
 
-        for frame in frames:
-          frame.name = unsymbolized_name
+        for node in nodes:
+          node.name = unsymbolized_name
       return
 
     if symfile.has_breakpad_symbols:
@@ -1329,7 +1403,7 @@ class Symbolizer(object):
 
 def SymbolizeFiles(symfiles, symbolizer):
   """Symbolizes each file in the given list of SymbolizableFiles
-     and updates stack frames with symbolization results."""
+     and updates nodes with symbolization results."""
 
   if not symfiles:
     print('Nothing to symbolize.')
@@ -1361,7 +1435,7 @@ def SymbolizeFiles(symfiles, symbolizer):
       symfile.skip_symbolization = True
 
     _SubPrintf('Symbolizing {} PCs from {}...',
-               len(symfile.frames_by_address),
+               len(symfile.nodes_by_address),
                symfile.symbolizable_path)
 
     symbolizer.SymbolizeSymfile(symfile)
@@ -1441,7 +1515,8 @@ def RemapBreakpadModules(symfiles, symbolizer, only_symbolize_chrome_symbols):
 
 
 def SymbolizeTrace(options, trace, symbolizer):
-  symfiles = ResolveSymbolizableFiles(trace.processes, trace.is_win)
+  symfiles = ResolveSymbolizableFiles(trace.processes, trace.is_win,
+                                      trace.pc_as_object_type)
 
   if options.use_breakpad_symbols:
     RemapBreakpadModules(symfiles, symbolizer,
@@ -1637,6 +1712,11 @@ def main(args):
       help="Indicate that the memlog trace is from cast devices.")
 
   parser.add_argument(
+      '--pc-as-object-type', action='store_true',
+      help="Indicate that the object types of memlog trace is named after "
+           "program counters of processes.")
+
+  parser.add_argument(
       '--output-directory',
       help='The path to the build output directory, such as out/Debug.')
 
@@ -1689,6 +1769,8 @@ def main(args):
   trace.is_chromium = options.is_local_build
 
   trace.is_cast = options.is_cast
+
+  trace.pc_as_object_type = options.pc_as_object_type
 
   # Perform some sanity checks.
   if (trace.is_win and sys.platform != 'win32' and
