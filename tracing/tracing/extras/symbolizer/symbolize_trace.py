@@ -644,12 +644,13 @@ class StackFrameMap(NodeWrapper):
   if it's there.
   """
   class Frame(object):
-    def __init__(self, frame_id, name, parent_frame_id):
+    def __init__(self, frame_id, name, parent_frame_id, name_sid):
       self._modified = False
       self._id = frame_id
       self._name = name
       self._pc = self._ParsePC(name)
       self._parent_id = parent_frame_id
+      self._name_sid = name_sid
       self._ext = None
 
     @property
@@ -675,6 +676,11 @@ class StackFrameMap(NodeWrapper):
     def name(self):
       """Name of the frame (see above)."""
       return self._name
+
+    @property
+    def name_sid(self):
+      """ID of the name of the frame (see above)."""
+      return self._name_sid
 
     @name.setter
     def name(self, value):
@@ -728,7 +734,8 @@ class StackFrameMap(NodeWrapper):
       for frame_id, frame_node in stack_frames_node.items():
         frame = self.Frame(frame_id,
                            frame_node['name'],
-                           frame_node.get('parent'))
+                           frame_node.get('parent'),
+                           frame_node['name_sid'])
         frame_by_id[frame.id] = frame
     else:
       if heap_dump_version != Trace.HEAP_DUMP_VERSION_1:
@@ -736,7 +743,8 @@ class StackFrameMap(NodeWrapper):
       for frame_node in stack_frames_node:
         frame = self.Frame(frame_node['id'],
                            string_map.string_by_id[frame_node['name_sid']],
-                           frame_node.get('parent'))
+                           frame_node.get('parent'),
+                           frame_node['name_sid'])
         frame_by_id[frame.id] = frame
 
     self._heap_dump_version = heap_dump_version
@@ -899,16 +907,16 @@ class Trace(NodeWrapper):
     # just list of events.
     events = trace_node if isinstance(trace_node, list) \
              else trace_node['traceEvents']
+    process_count = 0
     for event in events:
       name = event.get('name')
       if not name:
         continue
 
       pid = event['pid']
-      process_ext = process_ext_by_pid.get(pid)
-      if process_ext is None:
-        process_ext = ProcessExt(pid)
-        process_ext_by_pid[pid] = process_ext
+      process_ext = ProcessExt(pid)
+      process_ext_by_pid[process_count] = process_ext
+      process_count += 1
       process = process_ext.process
 
       phase = event['ph']
@@ -1615,6 +1623,23 @@ def FetchAndExtractSymbolsWin(symbol_base_directory, version, is64bit,
 
   return True
 
+def IsPcFormat(pc):
+  if (pc.find('pc:') == 0):
+    return True
+
+  return False
+
+def ReplacePcWithFunctionName(process):
+  for frame in process.stack_frame_map.frame_by_id.values():
+    if frame.pc is None:
+      continue
+
+    pc = process._string_map.string_by_id[frame.name_sid]
+    if IsPcFormat(pc):
+      for type_id, type_name in process.type_name_map._name_by_id.items():
+        if type_name == pc:
+          process.type_name_map._Insert(type_id, frame.name)
+
 # Suffix used for backup files.
 BACKUP_FILE_TAG = '.BACKUP'
 
@@ -1735,6 +1760,11 @@ def main(args):
       return False
 
   SymbolizeTrace(options, trace, symbolizer)
+
+  for process in trace.processes:
+    if not process.memory_map:
+      continue
+    ReplacePcWithFunctionName(process)
 
   if trace.modified:
     trace.ApplyModifications()
