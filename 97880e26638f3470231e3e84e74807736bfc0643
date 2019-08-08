@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "661f1621_58bbd1ce",
+        "filename": "tracing/tracing/extras/chrome_config.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-08T23:13:36Z",
+      "side": 1,
+      "message": "The only files in /tracing/extras right now are these config files, so it may not make sense to move image.html there.\n\nAdditionally, the location of the image.html file will regardless require the HTML import in /tracing/extras/chrome_config.html.",
+      "parentUuid": "bf72b7b3_9bfb8f74",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46adb3e9_70b417e0",
         "filename": "tracing/tracing/extras/fuchsia/image.html",
         "patchSetId": 10
@@ -90,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "e62efc4d_8045e330",
+        "filename": "tracing/tracing/extras/fuchsia/image.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-08T23:13:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69528b04_ef7f7c06",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd11977f_e8d9cfe4",
         "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
         "patchSetId": 10
@@ -122,6 +158,24 @@
       "revId": "97880e26638f3470231e3e84e74807736bfc0643",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33cd6087_89c5dbaa",
+        "filename": "tracing/tracing/ui/extras/fuchsia/image_view.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-08T23:13:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec0c6b17_9e5380e8",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
