@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "bf72b7b3_9bfb8f74",
+        "filename": "tracing/tracing/extras/chrome_config.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-08T19:47:33Z",
+      "side": 1,
+      "message": "Instead, just move this image.html file to /tracing/extras/image.html. Any reason why that doesn\u0027t work?",
+      "parentUuid": "cb349c77_5f10e40e",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46adb3e9_70b417e0",
         "filename": "tracing/tracing/extras/fuchsia/image.html",
         "patchSetId": 10
