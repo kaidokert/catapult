@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0a2dd38_e03afdfc",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1627,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-09T01:52:18Z",
+      "side": 1,
+      "message": "Can we use \"startswith\"?",
+      "range": {
+        "startLine": 1627,
+        "startChar": 9,
+        "endLine": 1627,
+        "endChar": 13
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec8c6ed0_f8524a2e",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-09T01:52:18Z",
+      "side": 1,
+      "message": "Remove empty line here",
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3011e1fc_f189b0cc",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-09T01:52:18Z",
+      "side": 1,
+      "message": "This name is not clear for its purpose. \"SymbolizePCInTypeName\" or something like that will be better",
+      "range": {
+        "startLine": 1632,
+        "startChar": 4,
+        "endLine": 1632,
+        "endChar": 29
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bd50742_fafae01a",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-09T01:52:18Z",
+      "side": 1,
+      "message": "It will be better put this inside SymbolizeTrace",
+      "range": {
+        "startLine": 1763,
+        "startChar": 0,
+        "endLine": 1768,
+        "endChar": 0
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
