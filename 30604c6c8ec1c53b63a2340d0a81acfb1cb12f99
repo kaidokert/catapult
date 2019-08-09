@@ -16,6 +16,24 @@
       "revId": "30604c6c8ec1c53b63a2340d0a81acfb1cb12f99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "397731fa_dbb39f2e",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-09T17:08:01Z",
+      "side": 0,
+      "message": "Yes there are still used in the SUPPORTED_PLATFORMS list for the Benchmark class. We talked about using the typ tags everywhere, so I plan on changing the SUPPORTED_PLATFORMS to contain typ tags, and then we can get rid of the _TestCondition class and all its subclasses.",
+      "parentUuid": "cbe83f69_c766135a",
+      "revId": "30604c6c8ec1c53b63a2340d0a81acfb1cb12f99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
