@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/system_health/breakdown_tree_helpers.html">
+<link rel="import" href="/tracing/metrics/system_health/loading_metric.html">
+<link rel="import" href="/tracing/metrics/system_health/rects_based_speed_index_metric.html">
+<link rel="import" href="/tracing/metrics/system_health/screenshots_based_speed_index_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.sh', function() {
+  function speedMetric(histograms, model) {
+    tr.metrics.sh.screenshotsBasedSpeedIndexMetric(histograms, model);
+    tr.metrics.sh.rectsBasedSpeedIndexMetric(histograms, model);
+    tr.metrics.sh.loadingMetric(histograms, model);
+  }
+
+  tr.metrics.MetricRegistry.register(speedMetric);
+
+  return {
+    speedMetric
+  };
+});
+</script>
