@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97c52605_28ba0fa2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-09T22:31:50Z",
+      "side": 1,
+      "message": "This needs functional tests in Telemetry since the implementation is in Telemetry.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "83f8d26d20b12a718defbab1338e205823927379",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd80f472_12ae9491",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-09T22:31:50Z",
+      "side": 1,
+      "message": "add documentation for new promise argument.",
+      "range": {
+        "startLine": 247,
+        "startChar": 7,
+        "endLine": 248,
+        "endChar": 15
+      },
+      "revId": "83f8d26d20b12a718defbab1338e205823927379",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
