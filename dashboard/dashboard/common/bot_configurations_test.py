@@ -31,6 +31,11 @@ class ConfigTest(testing_common.TestCase):
     expected = {'arg': 'value'}
     self.assertEqual(actual, expected)
 
+  def testGet_DoesntExist(self):
+    actual = bot_configurations.Get('foop')
+    expected = None
+    self.assertEqual(actual, expected)
+
   def testList(self):
     actual = bot_configurations.List()
     expected = ['mac-11-perf']

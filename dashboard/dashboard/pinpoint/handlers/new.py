@@ -84,6 +84,8 @@ def _ArgumentsWithConfiguration(original_arguments):
   configuration = original_arguments.get('configuration')
   if configuration:
     default_arguments = bot_configurations.Get(configuration)
+    if not default_arguments:
+      raise ValueError("Bot Config: %s doesn't exist." % configuration)
     logging.info('Bot Config: %s', default_arguments)
 
     if default_arguments:
