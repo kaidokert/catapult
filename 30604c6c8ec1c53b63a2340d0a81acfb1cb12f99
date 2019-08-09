@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbe83f69_c766135a",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-09T06:41:32Z",
+      "side": 0,
+      "message": "Is this still used somewhere? Should it be moved or removed on a follow up?",
+      "revId": "30604c6c8ec1c53b63a2340d0a81acfb1cb12f99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
