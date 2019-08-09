@@ -34,6 +34,24 @@
       "revId": "30604c6c8ec1c53b63a2340d0a81acfb1cb12f99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66dcda77_fbaff58d",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-09T17:48:17Z",
+      "side": 0,
+      "message": "Thanks! That sounds perfect.",
+      "parentUuid": "397731fa_dbb39f2e",
+      "revId": "30604c6c8ec1c53b63a2340d0a81acfb1cb12f99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
