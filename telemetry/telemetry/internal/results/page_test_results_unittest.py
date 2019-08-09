@@ -542,3 +542,40 @@ class PageTestResultsFilterTest(_PageTestResultsTestBase):
     log1_path = all_story_runs[1].GetArtifact('log.txt').local_path
     with open(log1_path) as f:
       self.assertEqual(f.read(), 'page1\n')
+
+  @mock.patch('telemetry.internal.results.page_test_results.time')
+  def testAsDict(self, time_module):
+    time_module.time.side_effect = [1234567890.987, 1234567900.987]
+    with self.CreateResults() as results:
+      self.assertEqual(results.AsDict(), {
+          'invocation': {
+              'incomplete': False,
+              'isFinal': False,
+              'createTime': '2009-02-13T23:31:30.987000Z',
+              'finalizeTime': None,
+          }
+      })
+
+    self.assertEqual(results.AsDict(), {
+        'invocation': {
+            'incomplete': False,
+            'isFinal': True,
+            'createTime': '2009-02-13T23:31:30.987000Z',
+            'finalizeTime': '2009-02-13T23:31:40.987000Z',
+        }
+    })
+
+  @mock.patch('telemetry.internal.results.page_test_results.time')
+  def testAsDict_interrupted(self, time_module):
+    time_module.time.side_effect = [1234567890.987, 1234567900.987]
+    with self.CreateResults() as results:
+      results.InterruptBenchmark('interrupt reason')
+
+    self.assertEqual(results.AsDict(), {
+        'invocation': {
+            'incomplete': True,
+            'isFinal': True,
+            'createTime': '2009-02-13T23:31:30.987000Z',
+            'finalizeTime': '2009-02-13T23:31:40.987000Z',
+        }
+    })
