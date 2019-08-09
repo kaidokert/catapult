@@ -37,14 +37,6 @@ class StoryExpectations(object):
   def SetTags(self, tags):
     self._typ_expectations.set_tags(tags)
 
-  def AsDict(self):
-    # TODO(crbug.com/973936): Implement function in
-    # typ.expectations_parser.TestExpectations to serialize its data
-    # then transform that information into a dictionary of disabled
-    # platforms for the benchmark and disabled stories with in the
-    # benchmark.
-    raise NotImplementedError
-
   def GetExpectationsThatApplyToBenchmark(self):
     if self._benchmark_expectations:
       return self._benchmark_expectations
@@ -67,22 +59,6 @@ class StoryExpectations(object):
                     'story in the story set for benchmark %s' %
                     (pattern, self._benchmark_name))
     return unused_patterns
-
-  def SetExpectations(self):
-    raise NotImplementedError
-
-  def _Freeze(self):
-    raise NotImplementedError
-
-  @property
-  def disabled_platforms(self):
-    raise NotImplementedError
-
-  def DisableBenchmark(self, conditions, reason):
-    raise NotImplementedError
-
-  def DisableStory(self, story_name, conditions, reason):
-    raise NotImplementedError
 
   def _IsStoryOrBenchmarkDisabled(self, pattern):
     expected_results, _, reasons = self._typ_expectations.expectations_for(
