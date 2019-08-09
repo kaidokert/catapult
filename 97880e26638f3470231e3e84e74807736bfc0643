@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "2b05830c_c2cbde54",
+        "filename": "tracing/tracing/extras/chrome_config.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1361792
+      },
+      "writtenOn": "2019-08-09T21:57:32Z",
+      "side": 1,
+      "message": "Renamed to image_viewing for clarity.",
+      "parentUuid": "00ad0389_7f1e5e31",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46adb3e9_70b417e0",
         "filename": "tracing/tracing/extras/fuchsia/image.html",
         "patchSetId": 10
