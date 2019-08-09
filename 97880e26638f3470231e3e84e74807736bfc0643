@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "00ad0389_7f1e5e31",
+        "filename": "tracing/tracing/extras/chrome_config.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-09T21:32:42Z",
+      "side": 1,
+      "message": "I guess I just don\u0027t understand what any of this has to do with fuchsia? could you just rename the directory to something else?",
+      "parentUuid": "661f1621_58bbd1ce",
+      "revId": "97880e26638f3470231e3e84e74807736bfc0643",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "46adb3e9_70b417e0",
         "filename": "tracing/tracing/extras/fuchsia/image.html",
         "patchSetId": 10
