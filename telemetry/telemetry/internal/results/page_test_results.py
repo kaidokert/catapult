@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import datetime
 import json
 import logging
 import os
@@ -72,15 +73,15 @@ class PageTestResults(object):
 
     self._benchmark_name = benchmark_name or '(unknown benchmark)'
     self._benchmark_description = benchmark_description or ''
-    self._benchmark_start_us = time.time() * 1e6
+
+    self._create_time = time.time()
+    self._finalize_time = None
+
     # |_interruption| is None if the benchmark has not been interrupted.
     # Otherwise it is a string explaining the reason for the interruption.
     # Interruptions occur for unrecoverable exceptions.
     self._interruption = None
     self._results_label = results_label
-    # Tracks whether results have already been outputted to prevent them from
-    # being outputted again.
-    self._results_outputted = False
 
   @property
   def benchmark_name(self):
@@ -92,7 +93,7 @@ class PageTestResults(object):
 
   @property
   def benchmark_start_us(self):
-    return self._benchmark_start_us
+    return self._create_time * 1e6
 
   @property
   def benchmark_interrupted(self):
@@ -114,6 +115,10 @@ class PageTestResults(object):
   @property
   def upload_bucket(self):
     return self._upload_bucket
+
+  @property
+  def finalized(self):
+    return self._finalize_time is not None
 
   def AsHistogramDicts(self):
     return self._histograms.AsDicts()
@@ -217,19 +222,11 @@ class PageTestResults(object):
       for value in run.values:
         yield value
 
-  def CloseOutputFormatters(self):
-    """
-    Clean up any open output formatters contained within this results object
-    """
-    for output_formatter in self._output_formatters:
-      output_formatter.output_stream.close()
-
   def __enter__(self):
     return self
 
   def __exit__(self, _, __, ___):
-    self.PrintSummary()
-    self.CloseOutputFormatters()
+    self.Finalize()
 
   def WillRunPage(self, page, story_run_index=0):
     assert not self._current_story_run, 'Did not call DidRunPage.'
@@ -412,11 +409,11 @@ class PageTestResults(object):
         value.name]
     assert value.IsMergableWith(representative_value)
 
-  def PrintSummary(self):
-    if self._results_outputted:
-      raise RuntimeError('Test results should only be outputted once.')
-    self._results_outputted = True
+  def Finalize(self):
+    if self.finalized:
+      return
 
+    self._finalize_time = time.time()
     self._progress_reporter.DidFinishAllStories(self)
 
     # Only serialize the trace if output_format is json or html.
@@ -429,6 +426,17 @@ class PageTestResults(object):
     for output_formatter in self._output_formatters:
       output_formatter.Format(self)
       output_formatter.PrintViewResults()
+      output_formatter.output_stream.close()
+
+  def AsDict(self):
+    return {
+        'invocation': {
+            'incomplete': self.benchmark_interrupted,
+            'isFinal': self.finalized,
+            'createTime': _FormatTime(self._create_time),
+            'finalizeTime': _FormatTime(self._finalize_time),
+        }
+    }
 
   def FindAllPageSpecificValuesNamed(self, value_name):
     """DEPRECATED: New benchmarks should not use legacy values."""
@@ -438,3 +446,10 @@ class PageTestResults(object):
     for run in self._IterAllStoryRuns():
       if run.HasArtifactsInDir('trace/'):
         yield run
+
+
+def _FormatTime(timestamp):
+  if timestamp is not None:
+    return datetime.datetime.utcfromtimestamp(timestamp).isoformat() + 'Z'
+  else:
+    return None
