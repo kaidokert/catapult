@@ -18,6 +18,7 @@ FETCH_LIMIT = 500
 class TimingRecord(ndb.Model):
   started = ndb.DateTimeProperty(indexed=False, required=True)
   completed = ndb.DateTimeProperty(indexed=True, required=True)
+  estimate = ndb.FloatProperty(indexed=False)
   tags = ndb.StringProperty(indexed=True, repeated=True)
 
 
@@ -41,8 +42,15 @@ def GetSimilarHistoricalTimings(job):
 def RecordJobTiming(job):
   tags = _JobTags(job)
 
+  # Calculate the estimated completion using data before the job's starting
+  # time. Can use this later to get an idea of how accurate the estimates are.
+  estimate = _Estimate(tags, job.started_time)
+  if estimate:
+    estimate = float(estimate[0][0].total_seconds())
+
   e = TimingRecord(
-      id=job.job_id, started=job.started_time, completed=job.updated, tags=tags)
+      id=job.job_id, started=job.started_time, completed=job.updated,
+      estimate=estimate, tags=tags)
   e.put()
 
 
@@ -65,8 +73,8 @@ def _ComparisonMode(job):
   return cmp_mode
 
 
-def _Estimate(tags):
-  records = _QueryTimingRecords(tags)
+def _Estimate(tags, completed_before=None):
+  records = _QueryTimingRecords(tags, completed_before)
 
   if not records:
     if tags:
@@ -86,10 +94,13 @@ def _Estimate(tags):
   return (timings, tags)
 
 
-def _QueryTimingRecords(tags):
+def _QueryTimingRecords(tags, completed_before):
   q = TimingRecord.query()
   for t in tags:
     q = q.filter(TimingRecord.tags == t)
   q = q.order(-TimingRecord.completed)
+
+  if completed_before:
+    q = q.filter(TimingRecord.completed < completed_before)
 
   return q.fetch(limit=FETCH_LIMIT)
