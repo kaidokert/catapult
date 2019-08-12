@@ -18,7 +18,7 @@ BOT_CONFIGURATIONS_KEY = 'bot_configurations'
 
 def Get(name):
   configurations = namespaced_stored_object.Get(BOT_CONFIGURATIONS_KEY)
-  configuration = configurations[name]
+  configuration = configurations.get(name)
   if 'alias' in configuration:
     return configurations[configuration['alias']]
   return configuration
