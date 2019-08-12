@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "16c575bf_8915e457",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-12T03:00:56Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 76
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48683bea_0d0efdc5",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-12T03:00:56Z",
+      "side": 1,
+      "message": "If we are not going to address the \"merge problem\", this can be removed, right?",
+      "range": {
+        "startLine": 917,
+        "startChar": 0,
+        "endLine": 919,
+        "endChar": 24
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0a2dd38_e03afdfc",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
@@ -58,6 +104,29 @@
         "startChar": 4,
         "endLine": 1632,
         "endChar": 29
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1d3a52c_30dfdb97",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1638,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-12T03:00:56Z",
+      "side": 1,
+      "message": "I\u0027m thinking if we can have a command line flag for this, which likes \"--symbolize-type\"",
+      "range": {
+        "startLine": 1638,
+        "startChar": 4,
+        "endLine": 1638,
+        "endChar": 22
       },
       "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
