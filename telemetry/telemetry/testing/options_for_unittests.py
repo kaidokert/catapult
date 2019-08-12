@@ -78,9 +78,13 @@ def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
   if benchmark_cls is not None:
     benchmark_cls.ProcessCommandLineArgs(parser, options)
   story_runner.ProcessCommandLineArgs(parser, options)
-  options.output_dir = output_dir
-  options.output_formats = ['none']
   options.suppress_gtest_report = True
-  options.upload_bucket = None
+  options.output_dir = output_dir
+  # TODO(crbug.com/928275): Remove these when Telemetry tests no longer
+  # depend on any result processing options.
+  options.output_formats = ['none']
+  options.reset_results = True
+  options.results_label = 'test_run'
   options.upload_results = False
+  options.upload_bucket = None
   return options
