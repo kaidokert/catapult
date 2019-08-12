@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10315838_a5c84645",
+        "filename": "dashboard/dashboard/pinpoint/models/timing_record.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-12T04:12:12Z",
+      "side": 1,
+      "message": "After reading this a couple of times now, I think using a collections.namedtuple() for the data would be really helpful for readability here. _Estimate(...) could return a collections.namedtuple() as well so that we can index the members with a name (like `estimate.timings` instead of `estimate[0]`). So if we returned a namedtuple(...) this can read like:\n\n```\nestimate \u003d _Estimate(tags, job.started_time)\nif estimate:\n  estimate \u003d job.started_time + estimates.timings.median\n```",
+      "range": {
+        "startLine": 49,
+        "startChar": 34,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "6098483b88b8df20a839369ad2565d2ab16a51b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
