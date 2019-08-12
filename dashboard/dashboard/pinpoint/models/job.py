@@ -502,10 +502,10 @@ class Job(ndb.Model):
     if not result:
       return {}
 
-    timings, tags = result
-    timings = [t.total_seconds() for t in timings]
+    print(result)
+    timings = [t.total_seconds() for t in result.timings]
     return {
-        'estimate': {'timings': timings, 'tags': tags},
+        'estimate': {'timings': timings, 'tags': result.tags},
         'queue_stats': scheduler.QueueStats(self.configuration)
     }
 
