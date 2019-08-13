@@ -898,16 +898,22 @@ class Trace(NodeWrapper):
     # just list of events.
     events = trace_node if isinstance(trace_node, list) \
              else trace_node['traceEvents']
+    process_count = 0
     for event in events:
       name = event.get('name')
       if not name:
         continue
 
       pid = event['pid']
+      """
       process_ext = process_ext_by_pid.get(pid)
       if process_ext is None:
         process_ext = ProcessExt(pid)
         process_ext_by_pid[pid] = process_ext
+      """
+      process_ext = ProcessExt(pid)
+      process_ext_by_pid[process_count] = process_ext
+      process_count += 1
       process = process_ext.process
 
       phase = event['ph']
@@ -955,6 +961,7 @@ class Trace(NodeWrapper):
             if stack_frames:
               process._stack_frame_map.ParseNext(
                   version, stack_frames, process._string_map)
+              process._stack_frame_map._modified = True
 
     self._processes = []
     for pe in process_ext_by_pid.values():
@@ -1732,7 +1739,7 @@ def main(args):
       print('Cannot fetch symbols from GCS')
       return False
 
-  SymbolizeTrace(options, trace, symbolizer)
+  # SymbolizeTrace(options, trace, symbolizer)
 
   if trace.modified:
     trace.ApplyModifications()
