@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80477f0b_ba97888b",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-13T11:07:29Z",
+      "side": 1,
+      "message": "I thought I could take LUCI invocation\u0027s as inspiration, but you are right, these aren\u0027t really the same thing. We only really need these to communicate info about the benchmark run from Telemetry to the new results processor code.\n\nI renamed things to reduce the chances of confusion, and adapted it more to our actual needs. Thanks for the pointers!\n\nI guess I won\u0027t really need a review from you. But feel free to share any comments/thoughts. :)",
+      "parentUuid": "7df861f2_2c86c69c",
+      "range": {
+        "startLine": 445,
+        "startChar": 9,
+        "endLine": 445,
+        "endChar": 19
+      },
+      "revId": "fcfb00f5eb077890d64a36af57514844ac6c8e0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94a6394f_6e63fcff",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 9
@@ -54,6 +78,24 @@
       "side": 1,
       "message": "if this is for luci, this must match more general proto JSON rules. Absence of the key will definitely work correctly. null *might* work\n\nbut again, the server won\u0027t accept finalizeTime from the client, unless there is a strong reason to do so",
       "parentUuid": "94a6394f_6e63fcff",
+      "revId": "fcfb00f5eb077890d64a36af57514844ac6c8e0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eef4fefa_b873cce1",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-13T11:07:29Z",
+      "side": 1,
+      "message": "Ack. Thanks for the info!",
+      "parentUuid": "23ee7177_85a39b51",
       "revId": "fcfb00f5eb077890d64a36af57514844ac6c8e0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
