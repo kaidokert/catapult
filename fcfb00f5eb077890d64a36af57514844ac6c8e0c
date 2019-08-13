@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7df861f2_2c86c69c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-08-13T01:03:33Z",
+      "side": 1,
+      "message": "this isn\u0027t LUCI\u0027s invocation, is it? because this isn\u0027t how it is expected to be defined. A client is expected to make CreateInvocation RPC, and finalization is done by making UpdateInvocation RPC. The server will decide the finalization time.\n\nif this isn\u0027t LUCI invocation, then consider using a different term, otherwise it may get confusing later",
+      "range": {
+        "startLine": 445,
+        "startChar": 9,
+        "endLine": 445,
+        "endChar": 19
+      },
+      "revId": "fcfb00f5eb077890d64a36af57514844ac6c8e0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94a6394f_6e63fcff",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 9
@@ -13,6 +36,24 @@
       "writtenOn": "2019-08-12T13:31:30Z",
       "side": 1,
       "message": "not sure if there is a preference for this value being \"null\" if the invocation hasn\u0027t finalized, or to not include the key at all in such a case?",
+      "revId": "fcfb00f5eb077890d64a36af57514844ac6c8e0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23ee7177_85a39b51",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-08-13T01:03:33Z",
+      "side": 1,
+      "message": "if this is for luci, this must match more general proto JSON rules. Absence of the key will definitely work correctly. null *might* work\n\nbut again, the server won\u0027t accept finalizeTime from the client, unless there is a strong reason to do so",
+      "parentUuid": "94a6394f_6e63fcff",
       "revId": "fcfb00f5eb077890d64a36af57514844ac6c8e0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
