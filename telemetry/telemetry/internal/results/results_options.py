@@ -60,6 +60,9 @@ def AddResultsOptions(parser):
       default=util.GetBaseDir(),
       help='Where to save output data after the run.')
   group.add_option(
+      '--intermediate-dir',
+      help='Where to save intermediate results for the results_processor.')
+  group.add_option(
       '--reset-results', action='store_true', help='Delete all stored results.')
   group.add_option(
       '--upload-results',
@@ -167,6 +170,7 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
       output_formatters=output_formatters,
       progress_stream=sys.stdout if report_progress else None,
       output_dir=options.output_dir,
+      intermediate_dir=options.intermediate_dir,
       should_add_value=should_add_value,
       benchmark_name=benchmark_name,
       benchmark_description=benchmark_description,
