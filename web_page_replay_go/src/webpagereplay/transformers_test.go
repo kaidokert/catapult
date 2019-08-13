@@ -162,6 +162,34 @@ func TestInjectScriptToResponseWithCspNonce(t *testing.T) {
 	}
 }
 
+func TestInjectScriptToResponseWithCspNonceAndBothDefaultAndScript(t *testing.T) {
+	script := []byte("var foo = 1;")
+	transformer := NewScriptInjector(script, nil)
+	req := http.Request{}
+	responseHeader := http.Header{
+		"Content-Type": []string{"text/html"},
+		"Content-Security-Policy": []string{
+			"default-src 'self' https://foo.com;script-src 'strict-dynamic' 'nonce-2726c7f26c'"}}
+	resp := http.Response{
+		StatusCode: 200,
+		Header:     responseHeader,
+		Body: ioutil.NopCloser(bytes.NewReader([]byte("<html><head><script>" +
+			"document.write('<head></head>');</script></head></html>")))}
+	transformer.Transform(&req, &resp)
+	body, err := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
+	if err != nil {
+		t.Fatal(err)
+	}
+	expectedContent := []byte(fmt.Sprintf(
+		"<html><head><script nonce=\"2726c7f26c\">var foo = 1;</script>" +
+			"<script>document.write('<head></head>');</script></head></html>"))
+	if !bytes.Equal(expectedContent, body) {
+		t.Fatal(
+			fmt.Errorf("expected : %s \n actual: %s \n", expectedContent, body))
+	}
+}
+
 func TestInjectScriptToResponseWithCspHash(t *testing.T) {
 	script := []byte("var foo = 1;")
 	transformer := NewScriptInjector(script, nil)
@@ -191,7 +219,7 @@ func TestTransformCsp(t *testing.T) {
 
 	assertEquals(t,
 		responseHeader.Get("Content-Security-Policy"),
-		"script-src 'self' https://foo.com 'unsafe-inline'; ")
+		"script-src 'self' https://foo.com 'unsafe-inline';")
 }
 
 func TestTransformCspDefaultSrc(t *testing.T) {
@@ -201,15 +229,25 @@ func TestTransformCspDefaultSrc(t *testing.T) {
 
 	assertEquals(t,
 		responseHeader.Get("Content-Security-Policy"),
-		"default-src 'self' https://foo.com 'unsafe-inline'; ")
+		"default-src 'self' https://foo.com 'unsafe-inline';")
 }
 
 func TestTransformCspBothScriptAndDefaultSrc(t *testing.T) {
 	responseHeader := http.Header{"Content-Security-Policy": {
-		"default-src 'self' https://foo.com;script-src 'self' 'nonce-2726c7f26c'"}}
+		"default-src 'self' https://foo.com ; script-src 'self' 'nonce-2726c7f26c'"}}
 	transformCSPHeader(responseHeader, "")
 
 	assertEquals(t,
 		responseHeader.Get("Content-Security-Policy"),
-		"default-src 'self' https://foo.com 'unsafe-inline'; script-src 'self' 'nonce-2726c7f26c'")
+		"default-src 'self' https://foo.com ; script-src 'self' 'nonce-2726c7f26c'")
+}
+
+func TestTransformCspBothScriptAndDefaultSrcNoNonce(t *testing.T) {
+	responseHeader := http.Header{"Content-Security-Policy": {
+		"default-src 'self' https://foo.com ; script-src 'self'"}}
+	transformCSPHeader(responseHeader, "")
+
+	assertEquals(t,
+		responseHeader.Get("Content-Security-Policy"),
+		"default-src 'self' https://foo.com ; script-src 'self' 'unsafe-inline'")
 }
