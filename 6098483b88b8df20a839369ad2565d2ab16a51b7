@@ -22,6 +22,30 @@
       "revId": "6098483b88b8df20a839369ad2565d2ab16a51b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5ff8276_e0747868",
+        "filename": "dashboard/dashboard/pinpoint/models/timing_record.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-13T19:47:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10315838_a5c84645",
+      "range": {
+        "startLine": 49,
+        "startChar": 34,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "6098483b88b8df20a839369ad2565d2ab16a51b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
