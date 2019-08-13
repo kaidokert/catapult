@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f6e9d269_e78495e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1313390
+      },
+      "writtenOn": "2019-08-13T17:04:14Z",
+      "side": 1,
+      "message": "Added in Rev4",
+      "parentUuid": "97c52605_28ba0fa2",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "83f8d26d20b12a718defbab1338e205823927379",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd80f472_12ae9491",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "83f8d26d20b12a718defbab1338e205823927379",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a3c89c0_cec89fe6",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1313390
+      },
+      "writtenOn": "2019-08-13T17:04:14Z",
+      "side": 1,
+      "message": "Good call. Added",
+      "parentUuid": "bd80f472_12ae9491",
+      "range": {
+        "startLine": 247,
+        "startChar": 7,
+        "endLine": 248,
+        "endChar": 15
+      },
+      "revId": "83f8d26d20b12a718defbab1338e205823927379",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
