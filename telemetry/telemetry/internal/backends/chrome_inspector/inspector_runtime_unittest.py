@@ -36,6 +36,19 @@ class InspectorRuntimeTest(tab_test_case.TabTestCase):
   def testRuntimeExecuteOfSomethingThatCantJSONize(self):
     self._tab.ExecuteJavaScript('window')
 
+  def testPromise(self):
+    promiseCommand = """
+        var promise1 = Promise.resolve(123);
+        promise1.then(function(value) {
+          return(value);
+          // expected output: 123
+        });"""
+    withPromise = self._tab.EvaluateJavaScript(promiseCommand, promise=True)
+
+    withoutPromise = self._tab.EvaluateJavaScript(promiseCommand, promise=False)
+    self.assertEqual(withPromise, 123)
+    self.assertEqual(withoutPromise, {})
+
   def testIFrame(self):
 
     self.Navigate('host.html')
