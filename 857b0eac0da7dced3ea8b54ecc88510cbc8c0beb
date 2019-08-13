@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ae6cd66_e622ce8a",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-13T23:34:47Z",
+      "side": 1,
+      "message": "it should just be \"none\", and several other places above. what does the tokens look like?\n\nalso, might be a good idea to do strings.ToLower(token)",
+      "range": {
+        "startLine": 280,
+        "startChar": 16,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccdab87d_0c25ad8e",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-13T23:34:47Z",
+      "side": 1,
+      "message": "if body, err :\u003d ioutil.ReadAll(resp.Body); err !\u003d nil {\n    t.Fatal(err)\n}\ndefer resp.Body.Close()",
+      "range": {
+        "startLine": 179,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 2
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35b80e1_6f21cc47",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-13T23:34:47Z",
+      "side": 1,
+      "message": "use pretty.Compare https://g3doc.corp.google.com/go/g3doc/readability/review-test-comments.md?cl\u003dhead#print-diffs",
+      "range": {
+        "startLine": 187,
+        "startChar": 5,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6095d62_11036700",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-13T23:34:47Z",
+      "side": 1,
+      "message": "typically we do go unit test in this way:\nhttps://g3doc.corp.google.com/go/g3doc/unittests-worked-examples.md?cl\u003dhead\n\nso multiple test cases under one test fun. You could refer to this way, or stick with your curretn approach.",
+      "range": {
+        "startLine": 245,
+        "startChar": 5,
+        "endLine": 245,
+        "endChar": 51
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
