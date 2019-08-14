@@ -6,6 +6,7 @@
 import logging
 import os
 import posixpath
+import tempfile
 
 from telemetry.core import cros_interface
 from telemetry.core import platform as platform_module
@@ -23,9 +24,17 @@ import py_utils
 class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   """A launchable CrOS browser instance."""
 
+  _CHROME_ENV_FILEPATH = '/etc/chrome_dev.conf'
+
+  _CROS_MINIDUMP_DIR = cros_interface.CrOSInterface.CROS_MINIDUMP_DIR
+
+  _DEFAULT_CHROME_ENV = [
+      'CHROME_HEADLESS=1',
+      'BREAKPAD_DUMP_LOCATION=%s' % _CROS_MINIDUMP_DIR,
+  ]
+
   def __init__(self, browser_type, finder_options, cros_platform, is_guest):
     super(PossibleCrOSBrowser, self).__init__(browser_type, 'cros', True)
-    del finder_options
     assert browser_type in FindAllBrowserTypes(), (
         'Please add %s to cros_browser_finder.FindAllBrowserTypes()' %
         browser_type)
@@ -33,6 +42,9 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     self._platform_backend = (
         cros_platform._platform_backend)  # pylint: disable=protected-access
     self._is_guest = is_guest
+    self._prev_chrome_env = None
+
+    self._build_dir = finder_options.chromium_output_dir
 
   def __repr__(self):
     return 'PossibleCrOSBrowser(browser_type=%s)' % self.browser_type
@@ -71,6 +83,13 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
       cri.PushFile(extension.path, extension_dir)
       cri.Chown(extension_dir)
 
+    if not cri.FileExistsOnDevice(self._CROS_MINIDUMP_DIR):
+      cri.RunCmdOnDevice(['mkdir', '-p', self._CROS_MINIDUMP_DIR])
+      cri.RunCmdOnDevice(['chgrp', 'chronos', self._CROS_MINIDUMP_DIR])
+      cri.RunCmdOnDevice(['chown', 'chronos', self._CROS_MINIDUMP_DIR])
+
+    self._SetChromeEnvironment()
+
     def browser_ready():
       return cri.GetChromePid() is not None
 
@@ -86,13 +105,16 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     for extension in self._browser_options.extensions_to_load:
       self._platform_backend.cri.RmRF(posixpath.dirname(extension.local_path))
 
+    self._platform_backend.cri.RmRF(self._CROS_MINIDUMP_DIR)
+    self._RestoreChromeEnvironment()
+
   def Create(self):
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
     browser_backend = cros_browser_backend.CrOSBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
-        self._is_guest)
+        self._is_guest, self._build_dir)
 
     if self._browser_options.create_browser_with_oobe:
       return cros_browser_with_oobe.CrOSBrowserWithOOBE(
@@ -124,6 +146,8 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
         '--oobe-skip-postlogin',
         # Debug logging.
         '--vmodule=%s' % vmodule,
+        # Enable crash dumping.
+        '--enable-crash-reporter-for-testing',
     ])
 
     if browser_options.mute_audio:
@@ -151,6 +175,34 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
   def UpdateExecutableIfNeeded(self):
     pass
+
+  def _SetChromeEnvironment(self, env=None):
+    """Sets environment variables, command line flags, etc. for Chrome.
+
+    RestartUI() must be called sometime afterwards for the changes to actually
+    take effect.
+    """
+    assert self._prev_chrome_env is None
+    if env is None:
+      env = self._DEFAULT_CHROME_ENV
+    assert isinstance(env, list)
+
+    cri = self._platform_backend.cri
+    self._prev_chrome_env = tempfile.NamedTemporaryFile(delete=False)
+    cri.GetFile(self._CHROME_ENV_FILEPATH, self._prev_chrome_env.name)
+
+    env_string = '\n'.join(env)
+    cri.PushContents(env_string, self._CHROME_ENV_FILEPATH)
+
+  def _RestoreChromeEnvironment(self):
+    """Restores the Chrome environment to state before the test started."""
+    if self._prev_chrome_env is None:
+      return
+
+    cri = self._platform_backend.cri
+    cri.PushFile(self._prev_chrome_env.name, self._CHROME_ENV_FILEPATH)
+    os.remove(self._prev_chrome_env.name)
+    self._prev_chrome_env = None
 
 
 def SelectDefaultBrowser(possible_browsers):
