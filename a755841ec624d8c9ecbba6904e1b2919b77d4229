@@ -611,6 +611,24 @@
     },
     {
       "key": {
+        "uuid": "2f60771f_122a424e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T22:38:38Z",
+      "side": 1,
+      "message": "Oh, that\u0027s too bad.\n\nThe dbus-send command to session_manager allows you to specify test arguments. Seems like we need something similar for environment variables. Do you know why chrome doesn\u0027t also take these as arguments? It seems silly to pass one argument and 2 environment vars.\n\nWhat happens if you drop CHROME_HEADLESS? I think it should still work?\n\nAnd you can use the default Crash location on chromeos instead of setting it to /tmp/telemetry_minidumps",
+      "parentUuid": "5480e4fb_cef2fa84",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99f1217f_4783d572",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
