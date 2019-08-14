@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "38a4ff72_06b8142d",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-14T01:16:51Z",
+      "side": 1,
+      "message": "the tokens are a mix of keywords and urls. The keywords are actually single-quote wrapped, while the urls are not, here is an example string:\n \"script-src \u0027self\u0027 \u0027unsafe-eval\u0027 https://a0.muscache.com https://cdn.siftscience.com\" \nso when we split by space, we still have the single quotes around when comparing keywords",
+      "parentUuid": "5ae6cd66_e622ce8a",
+      "range": {
+        "startLine": 280,
+        "startChar": 16,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ccdab87d_0c25ad8e",
         "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
         "patchSetId": 1
