@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "87fc642d_522e1503",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "I was thinking of moving the minidump logic from both here and DesktopBrowserBackend into a separate file since they\u0027re largely the same. However, I\u0027d prefer to not make this CL any larger, so I\u0027d prefer to file a bug tracking that work clean it up in a follow-up CL. WDYT?",
+      "parentUuid": "56106594_7beadd34",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08e77bba_9582630f",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "030a78f1_7d90c385",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Moved this and _PullDumps to cros_interface.",
+      "parentUuid": "08e77bba_9582630f",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6d34de4_baafcc2d",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2019-08-14T19:45:44Z",
       "side": 1,
       "message": "This comment feels like an implementation note. Is it necessary?",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5977e43e_62a8e6fa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Not necessary, but it otherwise might be confusing to see a \"Desktop*\" class (which is normally only ever used for tests on Linux/Mac/Windows) being used in a ChromeOS test.",
+      "parentUuid": "f6d34de4_baafcc2d",
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "21c07b43_190e40ae",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33df94ad_468009de",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99404920_53c7f935",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -84,6 +156,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a1a36ed_7e1e60ac",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "This is overridden from BrowserBackend. Convention within Telemetry seems to be to not add docstrings for overridden methods, instead deferring to whatever docstring is available in the base class. However, it looks like docstrings for this and other methods were never added to BrowserBackend, so I\u0027ve gone ahead and added them there.\n\nNote that the reason GetStackTrace() had one to begin with is that GetStackTrace() had it in DesktopBrowserBackend when I copied it - I\u0027ve moved it to BrowserBackend.",
+      "parentUuid": "99404920_53c7f935",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "9ff12ac4_b55ccabe",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Ditto.",
+      "parentUuid": "599698ae_2b4826f3",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96af6f5e_b9072dbd",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -118,6 +226,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4aa38e5_aae2ec6c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Could be combined, but on the off-chance either of these gets hit, having them be separate makes it a bit easier for the user since they\u0027ll know exactly what went wrong instead of having to figure out which part of the assert failed.",
+      "parentUuid": "96af6f5e_b9072dbd",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "804b7425_47f342c1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0e8eb64_54fbac5c",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d56d35c_bcf670bf",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -152,6 +296,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "247d3870_b5df3b03",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Ditto.",
+      "parentUuid": "9d56d35c_bcf670bf",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "f74e733d_f6c7e0d7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Ditto.",
+      "parentUuid": "24313813_ddf4e6ca",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7c7f539_2260406b",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -186,6 +366,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f779e399_21a8cffc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7c7f539_2260406b",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -283,6 +481,30 @@
     },
     {
       "key": {
+        "uuid": "365ff78d_f6408a76",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Will run the tests on Kevin and report back.",
+      "parentUuid": "85e4ae13_f62570fc",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 364,
+        "endChar": 54
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6bfc34eb_048a1329",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
@@ -297,6 +519,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9428a35_60ef516e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bfc34eb_048a1329",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -317,6 +557,24 @@
     },
     {
       "key": {
+        "uuid": "5480e4fb_cef2fa84",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "We need to set CHROME_HEADLESS and BREAKPAD_DUMP_LOCATION via environment variables, as for whatever reason that\u0027s what Chrome uses for those instead of command line flags.\n\nhttps://chromium.googlesource.com/chromiumos/docs/+/master/simple_chrome_workflow.md#command_line-flags-and-environment-variables says that the way to do that is by setting them in that file.",
+      "parentUuid": "72c005fc_d5ca8776",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99f1217f_4783d572",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
@@ -328,6 +586,24 @@
       "writtenOn": "2019-08-14T19:45:44Z",
       "side": 1,
       "message": "You shouldn\u0027t need this",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "626a0dad_facfe2b2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T21:17:17Z",
+      "side": 1,
+      "message": "It\u0027s not strictly necessary, but we want to leave the device in the same state as we found it. AFAIK if we don\u0027t do this, we\u0027ll leave those environment variables that are set above permanently set.",
+      "parentUuid": "99f1217f_4783d572",
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
