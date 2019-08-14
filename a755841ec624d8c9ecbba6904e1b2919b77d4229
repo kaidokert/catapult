@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f0825987_a96a4a5e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T22:27:45Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "87fc642d_522e1503",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "08e77bba_9582630f",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "Not necessary, but it otherwise might be confusing to see a \"Desktop*\" class (which is normally only ever used for tests on Linux/Mac/Windows) being used in a ChromeOS test.",
       "parentUuid": "f6d34de4_baafcc2d",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cacf6dcc_0973d78d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T22:27:45Z",
+      "side": 1,
+      "message": "Perhaps a TODO to rename it?",
+      "parentUuid": "5977e43e_62a8e6fa",
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
