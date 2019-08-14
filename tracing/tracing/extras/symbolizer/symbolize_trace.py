@@ -955,6 +955,7 @@ class Trace(NodeWrapper):
             if stack_frames:
               process._stack_frame_map.ParseNext(
                   version, stack_frames, process._string_map)
+              process._stack_frame_map._modified = True
 
     self._processes = []
     for pe in process_ext_by_pid.values():
@@ -1732,7 +1733,7 @@ def main(args):
       print('Cannot fetch symbols from GCS')
       return False
 
-  SymbolizeTrace(options, trace, symbolizer)
+  # SymbolizeTrace(options, trace, symbolizer)
 
   if trace.modified:
     trace.ApplyModifications()
