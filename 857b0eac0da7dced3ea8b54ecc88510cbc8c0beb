@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "0167242b_9e450cc0",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-14T17:45:18Z",
+      "side": 1,
+      "message": "strings.HasPrefix(directive, \"script-src\") is good enough\n\nditto for below \"default-src\"",
+      "range": {
+        "startLine": 184,
+        "startChar": 35,
+        "endLine": 184,
+        "endChar": 46
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a179694_00f56e7c",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-14T17:45:18Z",
+      "side": 1,
+      "message": "ditto here and below for \"default-src\"",
+      "range": {
+        "startLine": 237,
+        "startChar": 35,
+        "endLine": 237,
+        "endChar": 41
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ae6cd66_e622ce8a",
         "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
         "patchSetId": 1
@@ -37,6 +83,30 @@
       "side": 1,
       "message": "the tokens are a mix of keywords and urls. The keywords are actually single-quote wrapped, while the urls are not, here is an example string:\n \"script-src \u0027self\u0027 \u0027unsafe-eval\u0027 https://a0.muscache.com https://cdn.siftscience.com\" \nso when we split by space, we still have the single quotes around when comparing keywords",
       "parentUuid": "5ae6cd66_e622ce8a",
+      "range": {
+        "startLine": 280,
+        "startChar": 16,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08096c7c_7738bff5",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1322968
+      },
+      "writtenOn": "2019-08-14T17:45:18Z",
+      "side": 1,
+      "message": "in that case, please add comments to explain that",
+      "parentUuid": "38a4ff72_06b8142d",
       "range": {
         "startLine": 280,
         "startChar": 16,
