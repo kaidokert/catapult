@@ -629,6 +629,24 @@
     },
     {
       "key": {
+        "uuid": "d6489dcd_cdafb21d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T23:11:52Z",
+      "side": 1,
+      "message": "I have no idea why it was originally done via environment variables, although it looks like that code has been around for a while.\n\nWithout CHROME_HEADLESS, Chrome ends up dumping to /tmp, uploading the dump somewhere, then deleting the local copy. For whatever reason, setting CHROME_HEADLESS is the only way to disable the upload and dump to a known location https://cs.chromium.org/chromium/src/chrome/browser/chrome_content_browser_client.cc?dr\u003dC\u0026g\u003d0\u0026l\u003d807.\n\nWe can use the default location, but we need to clear the dumps between tests so that we don\u0027t end up using dumps from an old test if the current one crashes. The easiest way to do that is to just clear the directory after every test, but then we\u0027ll end up removing any dumps that existed before the tests started. We could instead copy any existing dumps to a temporary location and copy them back after everything is done, but using a different directory seems simpler.",
+      "parentUuid": "2f60771f_122a424e",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99f1217f_4783d572",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
