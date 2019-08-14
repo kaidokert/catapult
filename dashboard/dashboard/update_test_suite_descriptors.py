@@ -133,9 +133,11 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
       if desc.measurement:
         measurements.add(desc.measurement)
       if desc.test_case:
-        if desc.test_case not in cases:
-          cases.add(desc.test_case)
-          tags_futures.append(_QueryCaseTags(test_path, desc.test_case))
+        test_entity = key.get()
+        unescaped_story_name = test_entity.unescaped_story_name
+        if unescaped_story_name not in cases:
+          cases.add(unescaped_story_name)
+          tags_futures.append(_QueryCaseTags(test_path, unescaped_story_name))
       if time.time() > deadline:
         break
   except db.BadRequestError:
