@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24cf899c_db2a543c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T18:32:52Z",
+      "side": 1,
+      "message": "Do you think it\u0027s worth doing this?",
+      "range": {
+        "startLine": 335,
+        "startChar": 4,
+        "endLine": 335,
+        "endChar": 52
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb1f24de_54296335",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-14T18:32:52Z",
+      "side": 1,
+      "message": "Any idea if the names returned by platform.machine() play nice with the binary manager?",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 364,
+        "endChar": 54
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
