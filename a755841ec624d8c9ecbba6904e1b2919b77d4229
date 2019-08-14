@@ -647,6 +647,24 @@
     },
     {
       "key": {
+        "uuid": "5cede1cf_a8ff4099",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T23:28:05Z",
+      "side": 1,
+      "message": "You can rename the directory and rename it back at the end, and I think I\u0027d prefer that to using BREAKPAD_DUMP_LOCATION.\n\nIt shouldn\u0027t be difficult to add a content switch to replicate the CHROME_HEADLESS behavior, but we can worry about that later I suppose.",
+      "parentUuid": "d6489dcd_cdafb21d",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99f1217f_4783d572",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
