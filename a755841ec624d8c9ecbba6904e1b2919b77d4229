@@ -2,6 +2,193 @@
   "comments": [
     {
       "key": {
+        "uuid": "56106594_7beadd34",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Does it make sense to pull the minidump logic into a separate class/file. This file is already quite large.",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08e77bba_9582630f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Perhaps cros_interface might be a better place to put this, since that file deals more directly with the device:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/cros_interface.py",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6d34de4_baafcc2d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "This comment feels like an implementation note. Is it necessary?",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33df94ad_468009de",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "This should probably go here:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py?l\u003d114",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99404920_53c7f935",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Add fn comment",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "599698ae_2b4826f3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Add fn comment",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96af6f5e_b9072dbd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Do we need two asserts or can we combine them?",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0e8eb64_54fbac5c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Why not combine these:\nif not dump_path or os.path.getmtime(dump_path) \u003c oldest_ts:",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d56d35c_bcf670bf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Add fn comment",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24313813_ddf4e6ca",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Add fn comment",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7c7f539_2260406b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Add fn comment",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "24cf899c_db2a543c",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -13,6 +200,30 @@
       "writtenOn": "2019-08-14T18:32:52Z",
       "side": 1,
       "message": "Do you think it\u0027s worth doing this?",
+      "range": {
+        "startLine": 335,
+        "startChar": 4,
+        "endLine": 335,
+        "endChar": 52
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab0dcc1a_5b88a277",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Another option is to store the dump in a file on the device. The bot running the telemetry test extracts various log files from the device and makes them viewable.",
+      "parentUuid": "24cf899c_db2a543c",
       "range": {
         "startLine": 335,
         "startChar": 4,
@@ -42,6 +253,81 @@
         "endLine": 364,
         "endChar": 54
       },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85e4ae13_f62570fc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "We may be missing binaries. You should run this against an ARM device (like kevin) to verify.",
+      "parentUuid": "cb1f24de_54296335",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 364,
+        "endChar": 54
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bfc34eb_048a1329",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "You should add --enable-crash-reporter-for-testing here instead?",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72c005fc_d5ca8776",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "Why are you doing this?",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99f1217f_4783d572",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-14T19:45:44Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need this",
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
