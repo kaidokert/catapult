@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53514341_da87fd36",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T16:01:52Z",
+      "side": 1,
+      "message": "could we move the call to realpath somewhere higher up?",
+      "revId": "6de6081d5e9bd2be136014725df296c485783537",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7258581e_bef70586",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T16:01:52Z",
+      "side": 1,
+      "message": "nit: index + 1, plz :)",
+      "revId": "6de6081d5e9bd2be136014725df296c485783537",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
