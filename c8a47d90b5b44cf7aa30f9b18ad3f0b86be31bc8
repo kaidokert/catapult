@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dac3c0d7_e856b6c3",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-15T05:41:21Z",
+      "side": 1,
+      "message": "Do we need this?",
+      "range": {
+        "startLine": 950,
+        "startChar": 0,
+        "endLine": 959,
+        "endChar": 24
+      },
+      "revId": "c8a47d90b5b44cf7aa30f9b18ad3f0b86be31bc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f666f25_ae3acd31",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-15T05:41:21Z",
+      "side": 1,
+      "message": "It looks like it pretty similar to above. Can we have a lambda or something like that to handle it?",
+      "range": {
+        "startLine": 1166,
+        "startChar": 0,
+        "endLine": 1182,
+        "endChar": 63
+      },
+      "revId": "c8a47d90b5b44cf7aa30f9b18ad3f0b86be31bc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
