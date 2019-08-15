@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "68bfbcd0_d42f6bbf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-15T20:39:58Z",
+      "side": 1,
+      "message": "https://crbug.com/994274",
+      "parentUuid": "f0825987_a96a4a5e",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08e77bba_9582630f",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -140,6 +158,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a58a4473_d64d7ad4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-15T20:39:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cacf6dcc_0973d78d",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -541,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "286f3ff3_7695d2e1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-15T20:39:58Z",
+      "side": 1,
+      "message": "This code runs fine on kevin, although I did discover an issue caused by using mixed bitness devices and hosts.\n\nTL;DR we have to pass \"--platform\u003dandroid\" to generate_breakpad_symbols until we add proper ChromeOS support to it.\n\nIf we don\u0027t pass anything, then generate_breakpad_symbols defaults to using the host\u0027s platform. In the case of Linux, this causes it to use ldd to get shared library dependencies [1], and ldd is well-known [2] to have issues when given a 32-bit binary on a 64-bit system or vice-versa.\n\nSpecifying the platform to be Android forces generate_breakpad_symbols to use readelf instead [3], which works correctly regardless of bitness.\n\nSpecifying Android still works on x86-based binaries, so I think the correct solution is to add support for ChromeOS to the script, but just make it do the same thing as Android. I\u0027ve added a TODO to do so and change the usage in Catapult afterwards.\n\n[1] https://cs.chromium.org/chromium/src/components/crash/content/tools/generate_breakpad_symbols.py?q\u003dgenerate_breakpad_symbols\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d67\n[2] https://stackoverflow.com/a/26516273\n[3] https://cs.chromium.org/chromium/src/components/crash/content/tools/generate_breakpad_symbols.py?q\u003dgenerate_breakpad_symbols\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d82",
+      "parentUuid": "365ff78d_f6408a76",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 364,
+        "endChar": 54
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6bfc34eb_048a1329",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
@@ -665,6 +725,24 @@
     },
     {
       "key": {
+        "uuid": "a0c46d99_1a7c7564",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-15T20:39:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cede1cf_a8ff4099",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99f1217f_4783d572",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
@@ -697,6 +775,24 @@
       "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8b33445_c7724fb5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-15T20:39:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "626a0dad_facfe2b2",
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
