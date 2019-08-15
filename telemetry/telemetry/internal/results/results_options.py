@@ -104,10 +104,16 @@ def CreateResults(options, benchmark_name=None, benchmark_description=None,
       # Should never be reached. The parser enforces the choices.
       raise NotImplementedError(output_format)
 
+  if hasattr(options, 'intermediate_dir'):
+    intermediate_dir = options.intermediate_dir
+  else:
+    intermediate_dir = None
+
   return page_test_results.PageTestResults(
       output_formatters=output_formatters,
       progress_stream=sys.stdout if report_progress else None,
       output_dir=options.output_dir,
+      intermediate_dir=intermediate_dir,
       should_add_value=should_add_value,
       benchmark_name=benchmark_name,
       benchmark_description=benchmark_description,
