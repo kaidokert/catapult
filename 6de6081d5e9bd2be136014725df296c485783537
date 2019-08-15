@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f43946a8_a5ab8504",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-08-15T16:26:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure why we need it at all. Maybe just leave all paths as they are?",
+      "parentUuid": "53514341_da87fd36",
+      "revId": "6de6081d5e9bd2be136014725df296c485783537",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7258581e_bef70586",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "6de6081d5e9bd2be136014725df296c485783537",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c345a41_e48bc636",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-08-15T16:26:52Z",
+      "side": 1,
+      "message": "Forgot about that, sorry :-)",
+      "parentUuid": "7258581e_bef70586",
+      "revId": "6de6081d5e9bd2be136014725df296c485783537",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
