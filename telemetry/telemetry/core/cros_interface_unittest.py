@@ -6,6 +6,8 @@
 # actually talking to the device. This would improve our coverage quite
 # a bit.
 
+import os
+import shutil
 import socket
 import tempfile
 import unittest
@@ -48,6 +50,53 @@ class CrOSInterfaceTest(unittest.TestCase):
     with self._GetCRI() as cri:
       hosts = cri.GetFileContents('/etc/lsb-release')
       self.assertTrue('CHROMEOS' in hosts)
+
+  @decorators.Enabled('chromeos')
+  def testPullDumps(self):
+    tempdir = tempfile.mkdtemp()
+    try:
+      with self._GetCRI() as cri:
+        remote_path = '/tmp/dumps/'
+        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
+        # Set the mtime to one second after the epoch
+        cri.RunCmdOnDevice(
+            ['touch', '-d', '@1', remote_path + 'foo'])
+        cri.PullDumps(tempdir)
+        cri.RmRF(remote_path)
+        local_path = os.path.join(tempdir, 'foo')
+        self.assertTrue(os.path.exists(local_path))
+        self.assertEqual(os.path.getmtime(local_path), 1)
+    finally:
+      shutil.rmtree(tempdir)
+
+  @decorators.Enabled('chromeos')
+  def testPullDumpsOnlyNew(self):
+    tempdir = tempfile.mkdtemp()
+    with open(os.path.join(tempdir, 'foo'), 'w'):
+      pass
+    try:
+      with self._GetCRI() as cri:
+        remote_path = '/tmp/dumps/'
+        cri.CROS_MINIDUMP_DIR = remote_path
+        cri.RunCmdOnDevice(['mkdir', '-p', remote_path])
+        # Set the mtime to one second after the epoch
+        cri.RunCmdOnDevice(
+            ['touch', '-d', '@1', remote_path + 'foo'])
+        cri.RunCmdOnDevice(
+            ['touch', '-d', '@1', remote_path + 'bar'])
+        cri.PullDumps(tempdir)
+        cri.RmRF(remote_path)
+        # Only the file that didn't already exist locally should have been
+        # pulled.
+        local_path = os.path.join(tempdir, 'foo')
+        self.assertTrue(os.path.exists(local_path))
+        self.assertNotEqual(os.path.getmtime(local_path), 1)
+        local_path = os.path.join(tempdir, 'bar')
+        self.assertTrue(os.path.exists(local_path))
+        self.assertEqual(os.path.getmtime(local_path), 1)
+    finally:
+      shutil.rmtree(tempdir)
 
   @decorators.Enabled('chromeos')
   def testGetFile(self):  # pylint: disable=no-self-use
