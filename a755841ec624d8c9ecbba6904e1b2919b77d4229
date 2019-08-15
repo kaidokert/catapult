@@ -601,6 +601,30 @@
     },
     {
       "key": {
+        "uuid": "22314f12_726e97f9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-15T21:14:23Z",
+      "side": 1,
+      "message": "Please file a bug for fixing this.",
+      "parentUuid": "286f3ff3_7695d2e1",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 364,
+        "endChar": 54
+      },
+      "revId": "a755841ec624d8c9ecbba6904e1b2919b77d4229",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6bfc34eb_048a1329",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 2
