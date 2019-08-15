@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87197619_5ebea14a",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T13:09:18Z",
+      "side": 1,
+      "message": "style nit: \u0027/var/log/chrome/Crash Reports/\u0027",
+      "revId": "b71152dfb7aeba74f32d8b9f004bff15a3298aff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fd2024f_fbdb7376",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T13:09:18Z",
+      "side": 1,
+      "message": "nit: d --\u003e dump_filename ?",
+      "revId": "b71152dfb7aeba74f32d8b9f004bff15a3298aff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "223990f3_73221629",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T13:09:18Z",
+      "side": 1,
+      "message": "nit: can you break the line on the previous line after \"other:\", so all column names are in the same row (and they are easier to count).",
+      "revId": "b71152dfb7aeba74f32d8b9f004bff15a3298aff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3bde60b_c6073c24",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T13:09:18Z",
+      "side": 1,
+      "message": "nit: Returns\n\nThanks for adding these docstrings btw!",
+      "revId": "b71152dfb7aeba74f32d8b9f004bff15a3298aff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5565323b_fd2c52e3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T13:09:18Z",
+      "side": 1,
+      "message": "Nope. Ideally these should be recorded as \"artifacts\", which can be then recorded/uploaded in a uniform way. The real thing to do here is to store all minidumps as artifacts; but that is a larger refactor for all platforms, independent of this CL.",
+      "revId": "b71152dfb7aeba74f32d8b9f004bff15a3298aff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc8ccb2b_43f93b88",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-15T13:09:18Z",
+      "side": 1,
+      "message": "can you add a bug number here?",
+      "revId": "b71152dfb7aeba74f32d8b9f004bff15a3298aff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
