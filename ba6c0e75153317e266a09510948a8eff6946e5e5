@@ -16,6 +16,24 @@
       "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c13cc40f_9347a8ef",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-16T18:49:04Z",
+      "side": 1,
+      "message": "Not sure about running in local mode, but when run remotely, it ended up failing because it ended up using \"/var/log/chrome/Crash\" as the directory until I added the extra slash in. I think that it\u0027s because even though it\u0027s being fed into Popen, the device ends up evaluating it through a shell since it\u0027s being run over SSH.\n\nSingleQuoting all the given args when forming the SSH command doesn\u0027t work, as that ends up breaking some variables like this https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/cros_interface.py?rcl\u003d4eafd3bf8da0d61828310afff96c7b7044d1b178\u0026l\u003d271.\n\nDoubleQuoting also doesn\u0027t work because the semicolons here end up getting quoted and no longer working https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/cros_interface.py?rcl\u003d4eafd3bf8da0d61828310afff96c7b7044d1b178\u0026l\u003d301",
+      "parentUuid": "370dfb07_bf271a51",
+      "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
