@@ -17,6 +17,24 @@ with devil_env.SysPath(devil_env.PYMOCK_PATH):
   import mock  # pylint: disable=import-error
 
 
+class _FakeZipFile(object):
+
+  def extractall(self, directory):
+    pass
+
+
+class _FakeContextManager(object):
+
+  def __init__(self, obj):
+    self._obj = obj
+
+  def __enter__(self):
+    return self._obj
+
+  def __exit__(self, type_, value, traceback):
+    pass
+
+
 # pylint: disable=line-too-long
 _MANIFEST_DUMP = """N: android=http://schemas.android.com/apk/res/android
   E: manifest (line=1)
@@ -148,7 +166,48 @@ def _MockListApkPaths(files):
       'devil.android.apk_helper.ApkHelper._ListApkPaths',
       mock.Mock(side_effect=None, return_value=files))
 
+
+class _MockDeviceUtils(object):
+
+  def __init__(self):
+    self.product_cpu_abi = abis.ARM_64
+    self.product_cpu_abis = [abis.ARM_64, abis.ARM]
+    self.pixel_density = 500
+    self.build_version_sdk = 28
+
+  def GetLocale(self):
+    # pylint: disable=no-self-use
+    return ('en', 'US')
+
+  def GetFeatures(self):
+    # pylint: disable=no-self-use
+    return [
+        'android.hardware.wifi',
+        'android.hardware.nfc',
+    ]
+
+
 class ApkHelperTest(mock_calls.TestCase):
+
+  def testToHelperApk(self):
+    apk = apk_helper.ToHelper('abc.apk')
+    self.assertTrue(isinstance(apk, apk_helper.ApkHelper))
+
+  def testToHelperApks(self):
+    apk = apk_helper.ToHelper('abc.apks')
+    self.assertTrue(isinstance(apk, apk_helper.ApksHelper))
+
+  def testToHelperBundleScript(self):
+    apk = apk_helper.ToHelper('abc_bundle')
+    self.assertTrue(isinstance(apk, apk_helper.BundleScriptHelper))
+
+  def testToHelperSplitApk(self):
+    apk = apk_helper.ToHelper('abc.apk', ['a.apk', 'b.apk'])
+    self.assertTrue(isinstance(apk, apk_helper.SplitApkHelper))
+
+  def testToHelperSplitException(self):
+    with self.assertRaises(Exception):
+      apk_helper.ToHelper(apk_helper.ToHelper('abc.apk'), ['a.apk', 'b.apk'])
 
   def testGetInstrumentationName(self):
     with _MockAaptDump(_MANIFEST_DUMP):
@@ -376,6 +435,89 @@ class ApkHelperTest(mock_calls.TestCase):
         </activity>
       </application>
     </manifest>"""))
+
+  def testGetSplitsApk(self):
+    apk = apk_helper.ToHelper('abc.apk')
+    self.assertEquals(apk.GetSplits(_MockDeviceUtils()), ['abc.apk'])
+
+  def testGetSplitsApkModulesException(self):
+    apk = apk_helper.ToHelper('abc.apk')
+    with self.assertRaises(Exception):
+      apk.GetSplits(None, modules=['a'])
+
+  def testGetSplitsApks(self):
+    apk = apk_helper.ToHelper('abc.apks')
+    with self.assertCalls(
+        (mock.call.py_utils.tempfile_ext.NamedTemporaryDirectory(),
+         _FakeContextManager('/tmp')),
+        (mock.call.devil.android.sdk.bundletool.ExtractApks(
+            '/tmp', 'abc.apks', ['arm64-v8a', 'armeabi-v7a'], [('en', 'US')],
+            ['android.hardware.wifi', 'android.hardware.nfc'], 500, 28, None)),
+        (mock.call.os.listdir('/tmp'), ['base-master.apk', 'foo-master.apk']),
+        (mock.call.tempfile.mkdtemp(), '/tmp2'),
+        (mock.call.zipfile.ZipFile('abc.apks', 'r'),
+         _FakeContextManager(_FakeZipFile())),
+    ):
+      self.assertEquals(
+          apk.GetSplits(_MockDeviceUtils()),
+          ['/tmp2/splits/base-master.apk', '/tmp2/splits/foo-master.apk'])
+
+  def testGetSplitsApksWithModules(self):
+    apk = apk_helper.ToHelper('abc.apks')
+    with self.assertCalls(
+        (mock.call.py_utils.tempfile_ext.NamedTemporaryDirectory(),
+         _FakeContextManager('/tmp')),
+        (mock.call.devil.android.sdk.bundletool.ExtractApks(
+            '/tmp', 'abc.apks', ['arm64-v8a', 'armeabi-v7a'], [('en', 'US')],
+            ['android.hardware.wifi', 'android.hardware.nfc'], 500, 28,
+            ['bar'])),
+        (mock.call.os.listdir('/tmp'),
+         ['base-master.apk', 'foo-master.apk', 'bar-master.apk']),
+        (mock.call.tempfile.mkdtemp(), '/tmp2'),
+        (mock.call.zipfile.ZipFile('abc.apks', 'r'),
+         _FakeContextManager(_FakeZipFile())),
+    ):
+      self.assertEquals(
+          apk.GetSplits(_MockDeviceUtils(), ['bar']), [
+              '/tmp2/splits/base-master.apk', '/tmp2/splits/foo-master.apk',
+              '/tmp2/splits/bar-master.apk'
+          ])
+
+  def testGetSplitsSplitApk(self):
+    apk = apk_helper.ToHelper('base.apk',
+                              ['split1.apk', 'split2.apk', 'split3.apk'])
+    device = _MockDeviceUtils()
+    with self.assertCalls(
+        (mock.call.devil.android.sdk.split_select.SelectSplits(
+            device,
+            'base.apk', ['split1.apk', 'split2.apk', 'split3.apk'],
+            allow_cached_props=False), ['split2.apk'])):
+      self.assertEquals(apk.GetSplits(device), ['base.apk', 'split2.apk'])
+
+  def testGetSplitsBundleScript(self):
+    apk = apk_helper.ToHelper('abc_bundle')
+    device = _MockDeviceUtils()
+    with self.assertCalls(
+        (mock.call.tempfile.mkstemp(), '/tmp/abc.apks'),
+        (mock.call.devil.utils.cmd_helper.GetCmdStatusOutputAndError([
+            'abc_bundle', 'build-bundle-apks', '--output-apks', '/tmp/abc.apks'
+        ]), (0, '', '')),
+        (mock.call.py_utils.tempfile_ext.NamedTemporaryDirectory(),
+         _FakeContextManager('/tmp2')),
+        (mock.call.devil.android.sdk.bundletool.ExtractApks(
+            '/tmp2', '/tmp/abc.apks', ['arm64-v8a', 'armeabi-v7a'],
+            [('en', 'US')], ['android.hardware.wifi', 'android.hardware.nfc'],
+            500, 28, ['bar'])),
+        (mock.call.os.listdir('/tmp2'), ['base-master.apk', 'bar-master.apk']),
+        (mock.call.tempfile.mkdtemp(), '/tmp3'),
+        (mock.call.zipfile.ZipFile('/tmp/abc.apks', 'r'),
+         _FakeContextManager(_FakeZipFile())),
+    ):
+      self.assertEquals(
+          apk.GetSplits(device, modules=['bar']),
+          ['/tmp3/splits/base-master.apk', '/tmp3/splits/bar-master.apk'])
+
+
 
 
 if __name__ == '__main__':
