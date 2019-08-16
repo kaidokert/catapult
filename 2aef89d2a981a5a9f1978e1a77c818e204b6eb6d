@@ -34,6 +34,24 @@
       "revId": "2aef89d2a981a5a9f1978e1a77c818e204b6eb6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689c16f8_00d65777",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-16T14:10:27Z",
+      "side": 1,
+      "message": "Don\u0027t have a strong preference either.\n\nLeaning a bit *slightly* towards making them dicts, because that seems a bit more \"semantically accurate\", and there is no \"parsing\" involved to later extract the values.\n\nBut the amount of parsing is trivial anyway, and I can also see the case being made for a more compact representation.\n\nSo, don\u0027t know. Happy to go either way. :)\n\nAny thoughts Mikhail?",
+      "parentUuid": "bed0873b_16c5b1b9",
+      "revId": "2aef89d2a981a5a9f1978e1a77c818e204b6eb6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
