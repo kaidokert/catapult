@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "370dfb07_bf271a51",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-16T08:37:56Z",
+      "side": 1,
+      "message": "I really think this should just be \u0027/var/log/chrome/Crash Reports/\u0027, then use a function (possibly [1]) to quote any special chars at the point where the arg is actually fed to a shell command.\n\nActually, I might be wrong, but looking at the implementation of FormSSHCommandLine, sounds like in local mode you need to quote args, i.e. replace \" \".join(args) with something like:\n\n    \u0027 \u0027.join(SingleQuote(str(c)) for c in args)\n\nbut otherwise there should be *no* quoting in the source string, because the args will be eventually fed back to Popen, with no shell involved at all. In your case, if you passed the string with the escape, it would literally try to find a directory called \"/var/log/chrome/Crash\\ Reports\" (with a slash before the space).\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper.py?rcl\u003d4eafd3bf8da0d61828310afff96c7b7044d1b178\u0026l\u003d30\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/cros_interface.py?rcl\u003d4eafd3bf8da0d61828310afff96c7b7044d1b178\u0026l\u003d167",
+      "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
