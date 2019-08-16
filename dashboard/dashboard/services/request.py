@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import httplib
 import httplib2
 import json
+import logging
 import socket
 import urllib
 
@@ -90,6 +91,7 @@ def Request(url,
     if content is not None:
       return content
 
+  logging.debug('HTTP Request: %s %s', method, url)
   try:
     content = _RequestAndProcessHttpErrors(url, use_auth, scope, **kwargs)
   except NotFoundError:
