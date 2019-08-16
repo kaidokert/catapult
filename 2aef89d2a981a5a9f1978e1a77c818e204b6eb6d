@@ -70,6 +70,24 @@
       "revId": "2aef89d2a981a5a9f1978e1a77c818e204b6eb6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "651a8eea_76169893",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-16T14:20:10Z",
+      "side": 1,
+      "message": "sgtm\n\nI guess they can also be translated to dict (or proto) at the last minute before being uploaded to LUCI services.",
+      "parentUuid": "8376d336_6a7eef4e",
+      "revId": "2aef89d2a981a5a9f1978e1a77c818e204b6eb6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
