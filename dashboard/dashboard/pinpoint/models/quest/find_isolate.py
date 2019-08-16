@@ -30,6 +30,7 @@ class FindIsolate(quest.Quest):
     self._bucket = bucket
 
     self._previous_builds = {}
+    self._build_tags = []
 
   def __eq__(self, other):
     return (isinstance(other, type(self)) and
@@ -41,7 +42,15 @@ class FindIsolate(quest.Quest):
 
   def Start(self, change):
     return _FindIsolateExecution(self._builder_name, self._target, self._bucket,
-                                 change, self._previous_builds)
+                                 change, self._previous_builds,
+                                 self._build_tags)
+
+  def PropagateJob(self, job):
+    self._build_tags = [
+        ('pinpoint_job_id', job.job_id),
+        ('pinpoint_user', job.user),
+        ('pinpoint_url', job.url),
+    ]
 
   @classmethod
   def FromDict(cls, arguments):
@@ -54,7 +63,8 @@ class FindIsolate(quest.Quest):
 
 class _FindIsolateExecution(execution.Execution):
 
-  def __init__(self, builder_name, target, bucket, change, previous_builds):
+  def __init__(self, builder_name, target, bucket, change, previous_builds,
+               build_tags):
     super(_FindIsolateExecution, self).__init__()
     self._builder_name = builder_name
     self._target = target
@@ -65,6 +75,9 @@ class _FindIsolateExecution(execution.Execution):
 
     self._build = None
     self._build_url = None
+
+    # key-value tuples for tags to add to builds, identifying the Pinpoint job.
+    self._build_tags = build_tags
 
   def _AsDict(self):
     details = []
@@ -133,7 +146,6 @@ class _FindIsolateExecution(execution.Execution):
 
     if build['status'] != 'COMPLETED':
       return
-
     if build['result'] == 'FAILURE':
       raise errors.BuildFailed(build['failure_reason'])
     if build['result'] == 'CANCELED':
@@ -177,13 +189,13 @@ class _FindIsolateExecution(execution.Execution):
       logging.debug('Requesting a build')
       # Request a build!
       buildbucket_info = _RequestBuild(
-          self._builder_name, self._change, self.bucket)
+          self._builder_name, self._change, self.bucket, self._build_tags)
 
       self._build = buildbucket_info['build']['id']
       self._previous_builds[self._change] = self._build
 
 
-def _RequestBuild(builder_name, change, bucket):
+def _RequestBuild(builder_name, change, bucket, build_tags):
   base_as_dict = change.base_commit.AsDict()
   review_url = base_as_dict.get('review_url')
   if not review_url:
@@ -204,12 +216,10 @@ def _RequestBuild(builder_name, change, bucket):
   builder_tags = []
   if change.patch:
     builder_tags.append(change.patch.BuildsetTags())
-  builder_tags.append(
-      'buildset:commit/gitiles/%s/%s/+/%s' % (
-          commit_url_parts.netloc,
-          change_info['project'],
-          change.base_commit.git_hash)
-  )
+  builder_tags.append('buildset:commit/gitiles/%s/%s/+/%s' %
+                      (commit_url_parts.netloc, change_info['project'],
+                       change.base_commit.git_hash))
+  builder_tags.extend(['%s:%s' % (k, v) for k, v in build_tags])
 
   deps_overrides = {dep.repository_url: dep.git_hash for dep in change.deps}
   parameters = {
