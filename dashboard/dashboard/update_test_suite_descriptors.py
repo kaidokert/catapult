@@ -7,9 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import logging
-import time
 
-from google.appengine.ext import db
 from google.appengine.ext import deferred
 from google.appengine.ext import ndb
 
@@ -89,71 +87,58 @@ def _CollectCaseTags(futures, case_tags):
       case_tags.setdefault(tag, []).append(case)
 
 
-DEADLINE_SECONDS = 60 * 9.5
+TESTS_TO_FETCH = 5000
 
 
 def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
                       measurements=(), bots=(), cases=(), case_tags=None):
   logging.info('%s %s %d %d %d', test_suite, namespace,
                len(measurements), len(bots), len(cases))
-
   # This function always runs in the taskqueue as an anonymous user.
   if namespace == datastore_hooks.INTERNAL:
     datastore_hooks.SetPrivilegedRequest()
 
-  start = time.time()
-  deadline = start + DEADLINE_SECONDS
-  key_count = 0
   measurements = set(measurements)
   bots = set(bots)
   cases = set(cases)
   case_tags = case_tags or {}
+  tags_futures = []
 
   # Some test suites have more keys than can fit in memory or can be processed
   # in 10 minutes, so use an iterator instead of a page limit.
-  query_iter = _QueryTestSuite(test_suite).iter(
-      keys_only=True, produce_cursors=True, start_cursor=start_cursor,
+  tests, next_cursor, more = _QueryTestSuite(test_suite).fetch_page(
+      TESTS_TO_FETCH, start_cursor=start_cursor,
       use_cache=False, use_memcache=False)
-  tags_futures = []
-  parse_error = None
 
-  try:
-    for key in query_iter:
-      test_path = utils.TestPath(key)
-      key_count += 1
+  for test in tests:
+    tir_label, measurement, story = utils.ParseTelemetryMetricParts(
+        test.test_path)
+    if not any((tir_label, measurement, story)):
+      logging.error('Parsing error encounted: %s', test.test_path)
 
-      try:
-        desc = descriptor.Descriptor.FromTestPathSync(test_path)
-      except ValueError:
-        parse_error = test_path
-        logging.error('DescriptorValueError %s', test_path)
-        break
+    bots.add(test.bot_name)
 
-      bots.add(desc.bot)
-      if desc.measurement:
-        measurements.add(desc.measurement)
-      if desc.test_case:
-        if desc.test_case not in cases:
-          cases.add(desc.test_case)
-          tags_futures.append(_QueryCaseTags(test_path, desc.test_case))
-      if time.time() > deadline:
-        break
-  except db.BadRequestError:
-    pass
+    if test.unescaped_story_name:
+      story = test.unescaped_story_name
+
+    if measurement:
+      measurements.add(measurement)
+
+    if story:
+      if story not in cases:
+        cases.add(story)
+        tags_futures.append(_QueryCaseTags(test.test_path, story))
 
   _CollectCaseTags(tags_futures, case_tags)
 
   logging.info('%d keys, %d measurements, %d bots, %d cases, %d tags',
-               key_count, len(measurements), len(bots), len(cases),
+               len(tests), len(measurements), len(bots), len(cases),
                len(case_tags))
-  if key_count:
-    logging.info('per_key:wall_us=%f',
-                 round(1e6 * (time.time() - start) / key_count))
 
-  if query_iter.probably_has_next():
+  if more:
     logging.info('continuing')
     deferred.defer(_UpdateDescriptor, test_suite, namespace,
-                   query_iter.cursor_before(), measurements, bots, cases,
+                   next_cursor, measurements, bots, cases,
                    case_tags)
     return
 
@@ -163,8 +148,6 @@ def _UpdateDescriptor(test_suite, namespace, start_cursor=None,
       'cases': list(sorted(cases)),
       'caseTags': {tag: sorted(cases) for tag, cases in list(case_tags.items())}
   }
-  if parse_error:
-    desc = {'parseError': parse_error}
 
   key = namespaced_stored_object.NamespaceKey(
       CacheKey(test_suite), namespace)
