@@ -2,6 +2,125 @@
   "comments": [
     {
       "key": {
+        "uuid": "a0442541_488d7fd9",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "Please separate the split_apks logic into a separate function, maybe something like ToSplitHelper",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ef57e12_deef38ba",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "throughout, please update the exception types you\u0027re raising. devil exceptions should generally inherit from base_error.BaseError: https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/base_error.py?rcl\u003d97d3ec761eb6e3b605d952af5a3e52a1e5e8086c\u0026l\u003d6\n\n(here, either directly or via one of the existing exceptions in device_errors.)",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09d92ae6_6c11314d",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "Please remove this. It\u0027s going to be noise to the vast majority of people who would see it.",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6123a62e_7d690f28",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "while you\u0027re here, same comment as above re exception type",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "665318f5_2b4fed22",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "I think this should be renamed; having non-split APKs w/ a \"GetSplits\" method seems misleading.",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b165e07e_4276f07f",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "please raise a https://docs.python.org/3/library/exceptions.html#NotImplementedError",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2aa9d261_eaf7ca22",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "same",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae726972_e91435eb",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -19,6 +138,115 @@
         "endLine": 474,
         "endChar": 38
       },
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8d5e86f_3d1478ac",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "We don\u0027t have a single such directory. For a case like this, we would typically wind up having the class implement __enter__ and __exit__. Not immediately sure whether that\u0027s practical here.",
+      "parentUuid": "ae726972_e91435eb",
+      "range": {
+        "startLine": 474,
+        "startChar": 6,
+        "endLine": 474,
+        "endChar": 38
+      },
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "842ea96a_037cfcd4",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "re my earlier comment about path vs GetBaseApkPath -- could we call this logic at initialization and keep .path?",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4767d802_7c6c77e7",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "I\u0027m confused by this, _GetSplitsDir, and _ExtractSplits. Can you elaborate a bit more on what you\u0027re trying to do?",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f09a4a81_d80a3fe9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2552,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "This seems possibly brittle. Could we instead just return the contents of any feature: lines in the output and ignore other lines?",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c917522_dd798905",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2553,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "Same comment re exceptions. This should be a CommandFailedError.",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75b6ab6e_65ab0dab",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2554,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 1,
+      "message": "nit: prefer to use double-quotes for strings containing single quotes over escaping",
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad9698ad_a3ae301a",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-16T15:53:06Z",
+      "side": 0,
+      "message": "please update the telemetry callsite for this",
+      "revId": "e00548aa79c77afbe796d78ab7b97576b49d8159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
