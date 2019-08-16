@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae726972_e91435eb",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-16T15:13:05Z",
+      "side": 1,
+      "message": "jbudorick@, this will bloat the machine pretty quickly. Is there a temp folder that persists throughout the whole test (or whatever session catapult is running in) and gets cleaned up after?",
+      "range": {
+        "startLine": 474,
+        "startChar": 6,
+        "endLine": 474,
+        "endChar": 38
+      },
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
