@@ -88,6 +88,24 @@
       "revId": "2aef89d2a981a5a9f1978e1a77c818e204b6eb6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70709208_7e05b046",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-08-16T18:18:10Z",
+      "side": 1,
+      "message": "Mikhail: note that dicts here are [{\"key\": key, \"value\": value}, {\"key\": key2, \"value\": value2}], not {key: value, key2: value2}, so the key uniqueness is irrelevant for this decision.\n\nsplitting a string \":\" is easy in Python, but not SQL. Swarming BQ uses strings, I have to extract values like this:\n\n  (SELECT REPLACE(t, \u0027my_key:\u0027, \u0027\u0027) FROM tags t WHERE t LIKE \u0027my_key:%\u0027) as my_key\n\nThis is error prone. In contrast, in buildbucket BQ uses {\"key\": key, \"value\": value} dicts, so SQL looks like this\n\n  (SELECT value FROM tags WHERE key \u003d \u0027my_key\u0027) as my_key\n\npresence check with strings\n\n  \"my_key:my_value\" in UNNEST(tags)\n\nwith dicts:\n\n  STRUCT(\"my_key\", \"my_value\") IN UNNEST(tags)\n\n--\n\ni think my personal preference stays with dicts",
+      "parentUuid": "651a8eea_76169893",
+      "revId": "2aef89d2a981a5a9f1978e1a77c818e204b6eb6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
