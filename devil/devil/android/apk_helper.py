@@ -4,14 +4,23 @@
 
 """Module containing utilities for apk packages."""
 
+import glob
+import logging
+import os
 import re
+import tempfile
 import xml.etree.ElementTree
 import zipfile
 
 from devil import base_error
 from devil.android.ndk import abis
 from devil.android.sdk import aapt
+from devil.android.sdk import bundletool
+from devil.android.sdk import split_select
 from devil.utils import cmd_helper
+from py_utils import tempfile_ext
+
+_logger = logging.getLogger(__name__)
 
 
 _MANIFEST_ATTRIBUTE_RE = re.compile(
@@ -32,11 +41,23 @@ def GetInstrumentationName(apk_path):
   return ApkHelper(apk_path).GetInstrumentationName()
 
 
-def ToHelper(path_or_helper):
+def ToHelper(path_or_helper, split_apks=None):
   """Creates an ApkHelper unless one is already given."""
-  if isinstance(path_or_helper, basestring):
-    return ApkHelper(path_or_helper)
-  return path_or_helper
+  if not split_apks:
+    if not isinstance(path_or_helper, basestring):
+      return path_or_helper
+    elif path_or_helper.endswith('.apk'):
+      return ApkHelper(path_or_helper)
+    elif path_or_helper.endswith('.apks'):
+      return ApksHelper(path_or_helper)
+    elif path_or_helper.endswith('_bundle'):
+      return BundleScriptHelper(path_or_helper)
+  elif isinstance(path_or_helper,
+                  basestring) and path_or_helper.endswith('.apk'):
+    return SplitApkHelper(path_or_helper, split_apks)
+
+  raise Exception(
+      'Unrecognized APK format %s, %s' % (path_or_helper, split_apks))
 
 
 # To parse the manifest, the function uses a node stack where at each level of
@@ -48,8 +69,8 @@ def ToHelper(path_or_helper):
 # matches the height of the stack). Each line parsed (either an attribute or an
 # element) is added to the node at the top of the stack (after the stack has
 # been popped/pushed due to indentation).
-def _ParseManifestFromApk(apk):
-  aapt_output = aapt.Dump('xmltree', apk.path, 'AndroidManifest.xml')
+def _ParseManifestFromApk(apk_path):
+  aapt_output = aapt.Dump('xmltree', apk_path, 'AndroidManifest.xml')
   parsed_manifest = {}
   node_stack = [parsed_manifest]
   indent = '  '
@@ -105,15 +126,6 @@ def _ParseManifestFromApk(apk):
       continue
 
   return parsed_manifest
-
-
-def _ParseManifestFromBundle(bundle):
-  cmd = [bundle.path, 'dump-manifest']
-  status, stdout, stderr = cmd_helper.GetCmdStatusOutputAndError(cmd)
-  if status != 0:
-    raise Exception('Failed running {} with output\n{}\n{}'.format(
-        ' '.join(cmd), stdout, stderr))
-  return ParseManifestFromXml(stdout)
 
 
 def ParseManifestFromXml(xml_str):
@@ -186,19 +198,19 @@ def _IterateExportedActivities(manifest_info):
     yield activity
 
 
-class ApkHelper(object):
+class BaseApkHelper(object):
+  """Abstract base class representing an installable Android app."""
 
-  def __init__(self, path):
-    self._apk_path = path
+  def __init__(self):
     self._manifest = None
 
+  # TODO(tiborg): Remove. We should use GetBaseApkPath instead to indicate that
+  # getting the APK path may require some work.
   @property
   def path(self):
-    return self._apk_path
-
-  @property
-  def is_bundle(self):
-    return self._apk_path.endswith('_bundle')
+    _logger.warning('BaseApkHelper.path is deprecated. '
+                    'Use BaseApkHelper.GetBaseApkPath() instead.')
+    return self.GetBaseApkPath()
 
   def GetActivityName(self):
     """Returns the name of the first launcher Activity in the apk."""
@@ -242,7 +254,8 @@ class ApkHelper(object):
     try:
       return manifest_info['manifest'][0]['package']
     except KeyError:
-      raise Exception('Failed to determine package name of %s' % self._apk_path)
+      raise Exception(
+          'Failed to determine package name of %s' % self.GetBaseApkPath())
 
   def GetPermissions(self):
     manifest_info = self._GetManifest()
@@ -343,11 +356,7 @@ class ApkHelper(object):
 
   def _GetManifest(self):
     if not self._manifest:
-      app = ToHelper(self._apk_path)
-      if app.is_bundle:
-        self._manifest = _ParseManifestFromBundle(app)
-      else:
-        self._manifest = _ParseManifestFromApk(app)
+      self._manifest = _ParseManifestFromApk(self.GetBaseApkPath())
     return self._manifest
 
   def _ResolveName(self, name):
@@ -357,7 +366,7 @@ class ApkHelper(object):
     return name
 
   def _ListApkPaths(self):
-    with zipfile.ZipFile(self._apk_path) as z:
+    with zipfile.ZipFile(self.GetBaseApkPath()) as z:
       return z.namelist()
 
   def GetAbis(self):
@@ -382,3 +391,151 @@ class ApkHelper(object):
       return sorted(output)
     except KeyError:
       raise base_error.BaseError('Unexpected ABI in lib/* folder.')
+
+  def GetSplits(self, device, modules=None, allow_cached_props=False):
+    """Returns list of split APK paths to installed on |device|.
+
+    Must be implemented by subclasses.
+
+    args:
+      device: The device for which to return split APKs.
+      modules: Extra feature modules to install.
+      allow_cached_props: Allow using cache when querying propery values from
+        |device|.
+    """
+    # pylint: disable=unused-argument
+    raise Exception('Not implemented for %s' % type(self).__name__)
+
+  def GetBaseApkPath(self):
+    """Returns path to this app's base APK.
+
+    Must be implemented by subclasses.
+    """
+    raise Exception('Not implemented for %s' % type(self).__name__)
+
+
+class ApkHelper(BaseApkHelper):
+  """Represents a single APK Android app."""
+
+  def __init__(self, apk_path):
+    super(ApkHelper, self).__init__()
+    self._apk_path = apk_path
+
+  def GetBaseApkPath(self):
+    return self._apk_path
+
+  def GetSplits(self, device, modules=None, allow_cached_props=False):
+    if modules:
+      raise Exception('Cannot install modules when installing single APK')
+    return [self._apk_path]
+
+
+class SplitApkHelper(BaseApkHelper):
+  """Represents a multi APK Android app."""
+
+  def __init__(self, base_apk_path, split_apk_paths):
+    super(SplitApkHelper, self).__init__()
+    self._base_apk_path = base_apk_path
+    self._split_apk_paths = split_apk_paths
+
+  def GetBaseApkPath(self):
+    return self._base_apk_path
+
+  def GetSplits(self, device, modules=None, allow_cached_props=False):
+    if modules:
+      raise Exception('Cannot install modules when installing single APK')
+    splits = split_select.SelectSplits(
+        device,
+        self.GetBaseApkPath(),
+        self._split_apk_paths,
+        allow_cached_props=allow_cached_props)
+    if len(splits) == 1:
+      _logger.warning('split-select did not select any from %s', splits)
+    return [self.GetBaseApkPath()] + splits
+
+
+class BaseBundleHelper(BaseApkHelper):
+  """Abstract base class representing an Android app bundle."""
+
+  def __init__(self):
+    super(BaseBundleHelper, self).__init__()
+    self._splits_dir = None
+    self._base_apk_path = None
+
+  def _GetApksPath(self):
+    """Returns path the bundle's APKS archive.
+
+    Must be implemented by subclasses.
+    """
+    raise Exception('Not implemented for %s' % type(self).__name__)
+
+  def _GetSplitsDir(self):
+    if not self._splits_dir:
+      extract_dir = tempfile.mkdtemp()
+      with zipfile.ZipFile(self._GetApksPath(), 'r') as zip_file:
+        zip_file.extractall(extract_dir)
+      self._splits_dir = os.path.join(extract_dir, 'splits')
+    return self._splits_dir
+
+  def _ExtractSplits(self, apks_path, all_abis, locales, features,
+                     pixel_density, sdk_version, modules):
+    # pylint: disable=no-self-use
+    # TODO(crbug.com/993345): Don't extract splits every time.
+    with tempfile_ext.NamedTemporaryDirectory() as output_dir:
+      bundletool.ExtractApks(output_dir, apks_path, all_abis, locales, features,
+                             pixel_density, sdk_version, modules)
+      return os.listdir(output_dir)
+
+  def GetBaseApkPath(self):
+    if not self._base_apk_path:
+      base_apks = glob.glob(
+          os.path.join(self._GetSplitsDir(), 'base-master*.apk'))
+      if len(base_apks) < 1:
+        raise Exception('Cannot find base APK in %s' % self._GetApksPath())
+      self._base_apk_path = base_apks[0]
+    return self._base_apk_path
+
+  def GetSplits(self, device, modules=None, allow_cached_props=False):
+    # TODO(tiborg): Support all locales.
+    splits = self._ExtractSplits(self._GetApksPath(),
+                                 device.product_cpu_abis, [device.GetLocale()],
+                                 device.GetFeatures(), device.pixel_density,
+                                 device.build_version_sdk, modules)
+    return [
+        os.path.join(self._GetSplitsDir(), os.path.basename(s)) for s in splits
+    ]
+
+
+class ApksHelper(BaseBundleHelper):
+  """Represents a bundle's APKS archive."""
+
+  def __init__(self, apks_path):
+    super(ApksHelper, self).__init__()
+    self._apks_path = apks_path
+
+  def _GetApksPath(self):
+    return self._apks_path
+
+
+class BundleScriptHelper(BaseBundleHelper):
+  """Represents a bundle install script."""
+
+  def __init__(self, bundle_script_path):
+    super(BundleScriptHelper, self).__init__()
+    self._bundle_script_path = bundle_script_path
+    self._apks_path = None
+
+  def _GetApksPath(self):
+    if not self._apks_path:
+      self._apks_path = tempfile.mkstemp()
+      cmd = [
+          self._bundle_script_path,
+          'build-bundle-apks',
+          '--output-apks',
+          self._apks_path,
+      ]
+      status, stdout, stderr = cmd_helper.GetCmdStatusOutputAndError(cmd)
+      if status != 0:
+        raise Exception('Failed running {} with output\n{}\n{}'.format(
+            ' '.join(cmd), stdout, stderr))
+    return self._apks_path
