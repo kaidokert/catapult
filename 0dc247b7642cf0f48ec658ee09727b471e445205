@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8cb437a_ea051985",
+        "filename": "dashboard/dashboard/elements/autocomplete-box.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-16T02:23:44Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003d instead?",
+      "range": {
+        "startLine": 329,
+        "startChar": 52,
+        "endLine": 329,
+        "endChar": 54
+      },
+      "revId": "0dc247b7642cf0f48ec658ee09727b471e445205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f53cc190_d8643692",
+        "filename": "dashboard/dashboard/elements/autocomplete-box.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-16T02:23:44Z",
+      "side": 1,
+      "message": "Maybe `!!i` instead for testing truthiness?",
+      "range": {
+        "startLine": 333,
+        "startChar": 8,
+        "endLine": 333,
+        "endChar": 9
+      },
+      "revId": "0dc247b7642cf0f48ec658ee09727b471e445205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0154c794_bb4aeaa3",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-menu-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-16T02:23:44Z",
+      "side": 1,
+      "message": "Is this still the way we represent the comparison mode for the job page? I thought we changed this to have the comparison_mode provided explicitly as a string already?",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 83,
+        "endChar": 35
+      },
+      "revId": "0dc247b7642cf0f48ec658ee09727b471e445205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "464fa48e_61db399f",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-16T02:23:44Z",
+      "side": 1,
+      "message": "I think I understand why we\u0027re doing this now, but does it make sense to have this be editable too? I think that might be more work to introduce a control that will help provide a list of valid revisions, but a TODO somewhere here would be good as well.",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 76,
+        "endChar": 84
+      },
+      "revId": "0dc247b7642cf0f48ec658ee09727b471e445205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
