@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfda8562_9cdf60c7",
+        "filename": "telemetry/telemetry/internal/results/json_3_output_formatter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-08-16T09:13:29Z",
+      "side": 1,
+      "message": "While we\u0027re still here, could you wrap the local path too please?\n\nJust to be sure that nothing will break again if assumptions about paths change.\n\n(Thanks for the test, BTW).",
+      "revId": "608241f3df338ef99f221f91b44d5fd631c1e719",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
