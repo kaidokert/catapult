@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d7da8e5_35caab30",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-16T23:20:00Z",
+      "side": 1,
+      "message": "nit: order",
+      "range": {
+        "startLine": 12,
+        "startChar": 7,
+        "endLine": 12,
+        "endChar": 13
+      },
+      "revId": "75b99da9f527b1d508ae8c61aed098fa8ca879f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e449723_13b5c887",
+        "filename": "dashboard/pinpoint.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-16T23:20:00Z",
+      "side": 1,
+      "message": "Are you supposed to register this in dispatcher.py?",
+      "range": {
+        "startLine": 85,
+        "startChar": 17,
+        "endLine": 85,
+        "endChar": 25
+      },
+      "revId": "75b99da9f527b1d508ae8c61aed098fa8ca879f8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
