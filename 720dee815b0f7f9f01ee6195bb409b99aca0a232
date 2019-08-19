@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "fb26f4fc_ead4995b",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:25:48Z",
+      "side": 1,
+      "message": "Actually, I guess it doesn\u0027t matter whether symbolizing actually works or not - it doesn\u0027t hurt to try. We shouldn\u0027t skip this in local mode, as Telemetry expects the dumps to be in the directory it creates in order to symbolize them.\n\nI\u0027ll see about confirming that the tests work in local mode.",
+      "parentUuid": "d022b06f_cffaf0db",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fa2c681a_5d8c1f8a",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
