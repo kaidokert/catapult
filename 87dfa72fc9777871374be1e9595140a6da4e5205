@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "942c3ee8_ad2c0a98",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-19T23:18:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b94f56e5_de78f283",
+      "range": {
+        "startLine": 318,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 31
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b31a2c8_1e56cf19",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d35805e3_390dc123",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-19T23:18:52Z",
+      "side": 1,
+      "message": "Nope, gone.",
+      "parentUuid": "7b31a2c8_1e56cf19",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 62
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cd4ef4eb_2544078f",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-19T22:10:55Z",
       "side": 1,
       "message": "Did you want to `continue` after logging, so that this particular test is skipped?",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0aaa12a_de4208f3",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-19T23:18:52Z",
+      "side": 1,
+      "message": "Have a strong opinion on this? I was going to let them slide, and hopefully we\u0027d see the errors in the error console. We could also abort the entire suite, which has the downside of suites could disappear from the UI if someone uploads a weird path anywhere, on any bot, even if they\u0027re off the main chromium waterfall.",
+      "parentUuid": "cd4ef4eb_2544078f",
       "range": {
         "startLine": 108,
         "startChar": 4,
