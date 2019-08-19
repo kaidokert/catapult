@@ -48,17 +48,36 @@ class _PageTestResultsTestBase(unittest.TestCase):
                                         name='http://www.baz.com/'))
     self.story_set = story_set
     self._output_dir = tempfile.mkdtemp()
+    self._time_module = mock.patch(
+        'telemetry.internal.results.page_test_results.time').start()
+    self._time_module.time.return_value = 0
 
   def tearDown(self):
     shutil.rmtree(self._output_dir)
+    mock.patch.stopall()
 
   @property
   def pages(self):
     return self.story_set.stories
 
+  @property
+  def mock_time(self):
+    return self._time_module.time
+
+  @property
+  def intermediate_dir(self):
+    return os.path.join(self._output_dir, 'artifacts', 'test_run')
+
   def CreateResults(self, **kwargs):
     kwargs.setdefault('output_dir', self._output_dir)
+    kwargs.setdefault('intermediate_dir', self.intermediate_dir)
     return page_test_results.PageTestResults(**kwargs)
+
+  def GetResultRecords(self):
+    results_file = os.path.join(
+        self.intermediate_dir, page_test_results.TELEMETRY_RESULTS)
+    with open(results_file) as f:
+      return [json.loads(line) for line in f]
 
 
 class PageTestResultsTest(_PageTestResultsTestBase):
@@ -146,6 +165,7 @@ class PageTestResultsTest(_PageTestResultsTestBase):
         results.AddValue(scalar.ScalarValue(
             self.pages[0], name='url', units='string', value='foo',
             improvement_direction=improvement_direction.UP))
+      results.DidRunPage(self.pages[0])
 
   def testAddSummaryValueWithPageSpecified(self):
     with self.CreateResults() as results:
@@ -155,6 +175,7 @@ class PageTestResultsTest(_PageTestResultsTestBase):
         results.AddSummaryValue(scalar.ScalarValue(
             self.pages[0], 'a', 'units', 3,
             improvement_direction=improvement_direction.UP))
+      results.DidRunPage(self.pages[0])
 
   def testUnitChange(self):
     with self.CreateResults() as results:
@@ -169,6 +190,7 @@ class PageTestResultsTest(_PageTestResultsTestBase):
         results.AddValue(scalar.ScalarValue(
             self.pages[1], 'a', 'foobgrobbers', 3,
             improvement_direction=improvement_direction.UP))
+      results.DidRunPage(self.pages[1])
 
   def testNoSuccessesWhenAllPagesFailOrSkip(self):
     with self.CreateResults() as results:
@@ -329,6 +351,55 @@ class PageTestResultsTest(_PageTestResultsTestBase):
     self.assertItemsEqual(hist.diagnostics[reserved_infos.BENCHMARKS.name],
                           ['benchmark_name'])
 
+  def testBeginFinishBenchmarkRecords(self):
+    self.mock_time.side_effect = [1234567890.987]
+    with self.CreateResults() as results:
+      results.WillRunPage(self.pages[0])
+      results.DidRunPage(self.pages[0])
+      results.WillRunPage(self.pages[1])
+      results.DidRunPage(self.pages[1])
+
+    records = self.GetResultRecords()
+    self.assertEqual(len(records), 4)  # Start, Result, Result, Finish.
+    self.assertEqual(records[0], {
+        'benchmarkRun': {
+            'startTime': '2009-02-13T23:31:30.987000Z',
+            'diagnostics': {},
+        }
+    })
+    self.assertEqual(records[1]['testResult']['status'], 'PASS')
+    self.assertEqual(records[2]['testResult']['status'], 'PASS')
+    self.assertEqual(records[3], {
+        'benchmarkRun': {
+            'finalized': True,
+            'interrupted': False
+        }
+    })
+
+  def testBeginFinishBenchmarkRecords_interrupted(self):
+    self.mock_time.side_effect = [1234567890.987]
+    with self.CreateResults() as results:
+      results.WillRunPage(self.pages[0])
+      results.Fail('fatal error')
+      results.DidRunPage(self.pages[0])
+      results.InterruptBenchmark('some reason')
+
+    records = self.GetResultRecords()
+    self.assertEqual(len(records), 3)  # Start, Result, Finish.
+    self.assertEqual(records[0], {
+        'benchmarkRun': {
+            'startTime': '2009-02-13T23:31:30.987000Z',
+            'diagnostics': {},
+        }
+    })
+    self.assertEqual(records[1]['testResult']['status'], 'FAIL')
+    self.assertEqual(records[2], {
+        'benchmarkRun': {
+            'finalized': True,
+            'interrupted': True
+        }
+    })
+
 
 class PageTestResultsFilterTest(_PageTestResultsTestBase):
   def testFilterValue(self):
@@ -439,6 +510,7 @@ class PageTestResultsFilterTest(_PageTestResultsTestBase):
       hist1 = histogram_module.Histogram('b', 'count')
       hist1.AddSample(0)
       results.AddHistogram(hist1)
+      results.DidRunPage(self.pages[0])
 
     # Filter out the diagnostics
     dicts = results.AsHistogramDicts()
@@ -464,6 +536,7 @@ class PageTestResultsFilterTest(_PageTestResultsTestBase):
       # Necessary to make sure avg is added
       hist1.AddSample(0)
       results.AddHistogram(hist1)
+      results.DidRunPage(self.pages[0])
 
     # Filter out the diagnostics
     dicts = results.AsHistogramDicts()
