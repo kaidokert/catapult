@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "20debdbe_6a201113",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-19T23:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0167242b_9e450cc0",
+      "range": {
+        "startLine": 184,
+        "startChar": 35,
+        "endLine": 184,
+        "endChar": 46
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a179694_00f56e7c",
         "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d500c62_635e10fb",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-19T23:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a179694_00f56e7c",
+      "range": {
+        "startLine": 237,
+        "startChar": 35,
+        "endLine": 237,
+        "endChar": 41
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -119,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "4c40880c_c947a4f3",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-19T23:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08096c7c_7738bff5",
+      "range": {
+        "startLine": 280,
+        "startChar": 16,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccdab87d_0c25ad8e",
         "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
         "patchSetId": 1
@@ -139,6 +211,30 @@
       "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6562a9b5_593b4e36",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-19T23:01:40Z",
+      "side": 1,
+      "message": "body is used in the comparison below, so can\u0027t inline here as it won\u0027t be available later",
+      "parentUuid": "ccdab87d_0c25ad8e",
+      "range": {
+        "startLine": 179,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 2
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -165,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "64e91ce4_5c2fe4f2",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-19T23:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a35b80e1_6f21cc47",
+      "range": {
+        "startLine": 187,
+        "startChar": 5,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6095d62_11036700",
         "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
         "patchSetId": 1
@@ -185,6 +305,30 @@
       "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9323b893_e7ccaa16",
+        "filename": "web_page_replay_go/src/webpagereplay/transformers_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2019-08-19T23:01:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6095d62_11036700",
+      "range": {
+        "startLine": 245,
+        "startChar": 5,
+        "endLine": 245,
+        "endChar": 51
+      },
+      "revId": "857b0eac0da7dced3ea8b54ecc88510cbc8c0beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
