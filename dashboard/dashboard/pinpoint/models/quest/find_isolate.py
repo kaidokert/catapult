@@ -42,9 +42,10 @@ class FindIsolate(quest.Quest):
     return 'Build'
 
   def Start(self, change):
-    return _FindIsolateExecution(self._builder_name, self._target, self._bucket,
-                                 change, self._previous_builds,
-                                 self._build_tags)
+    return _FindIsolateExecution(
+        self._builder_name, self._target, self._bucket,
+        change, self._previous_builds, self._build_tags if hasattr(
+            self, '_build_tags') else collections.OrderedDict())
 
   def PropagateJob(self, job):
     self._build_tags = collections.OrderedDict([
@@ -190,7 +191,8 @@ class _FindIsolateExecution(execution.Execution):
       logging.debug('Requesting a build')
       # Request a build!
       buildbucket_info = _RequestBuild(
-          self._builder_name, self._change, self.bucket, self._build_tags)
+          self._builder_name, self._change, self.bucket, self._build_tags
+          if hasattr(self, '_build_tags') else collections.OrderedDict())
 
       self._build = buildbucket_info['build']['id']
       self._previous_builds[self._change] = self._build
