@@ -52,6 +52,24 @@
       "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef128821_0e2a75fd",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T17:34:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b728e5fb_1213d585",
+      "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
