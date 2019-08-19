@@ -34,6 +34,24 @@
       "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b728e5fb_1213d585",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-19T08:58:52Z",
+      "side": 1,
+      "message": "Yeah, I worried that a change at FormSSHCommandLine at this point would be difficult as clients probably depend on its current behavior.\n\nI would suggest then, at least, keep CROS_MINIDUMP_DIR \u003d \u0027/var/log/chrome/Crash Reports/\u0027, and apply SingleQuote on just that arg when you use it on PullDumps.",
+      "parentUuid": "c13cc40f_9347a8ef",
+      "revId": "ba6c0e75153317e266a09510948a8eff6946e5e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
