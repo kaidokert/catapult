@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7ca5b2cb_94e92689",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0442541_488d7fd9",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ef57e12_deef38ba",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b06782_4dab6c15",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Added ApkHelperError subclassing base_error.BaseError and used that in this file.",
+      "parentUuid": "3ef57e12_deef38ba",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "dab9d289_3ee80d79",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09d92ae6_6c11314d",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6123a62e_7d690f28",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -67,6 +121,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91d596b0_c170d5cf",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6123a62e_7d690f28",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "98e3609b_d5a7f510",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Makes sense. Renamed to GetApkPaths.",
+      "parentUuid": "665318f5_2b4fed22",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b165e07e_4276f07f",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "9931e6ea_c0d80ba7",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b165e07e_4276f07f",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2aa9d261_eaf7ca22",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -118,6 +226,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86928e8e_a431ddf4",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aa9d261_eaf7ca22",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -168,6 +294,30 @@
     },
     {
       "key": {
+        "uuid": "a64ac1ac_b37042af",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "I think that could work for GetSplits (now GetApkPaths). But for path / GetBaseApkPath we would need some more refactor at the calling sites outside this repository. We could change the semantics of path so that it returns the path to base install artifact (APKS archive or install script for bundles).",
+      "parentUuid": "e8d5e86f_3d1478ac",
+      "range": {
+        "startLine": 474,
+        "startChar": 6,
+        "endLine": 474,
+        "endChar": 38
+      },
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "842ea96a_037cfcd4",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -179,6 +329,24 @@
       "writtenOn": "2019-08-16T15:53:06Z",
       "side": 1,
       "message": "re my earlier comment about path vs GetBaseApkPath -- could we call this logic at initialization and keep .path?",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24042300_c7f5013f",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "I didn\u0027t want to do a lot of work in the constructor as this is kind of an anti-pattern. I\u0027m happy to make this change though if you think it\u0027s better.",
+      "parentUuid": "842ea96a_037cfcd4",
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -202,6 +370,24 @@
     },
     {
       "key": {
+        "uuid": "3b228e1f_cb40e34b",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "In the case of bundles we will get an APKS archive, which is a zip of APKs. To make this compatible with the rest of devil I want to unzip the APKS archive and return the paths to the unzipped APKs that should be installed. To figure out what APKs to install we will invoke bundletool that extracts the required APKs from an APKS archive. To that end:\n\n- _GetSplitsDir unzips the APKS archive and stores the path to the unzipped directory.\n- _ExtractSplits invokes bundletool to extract the subset of APKs to install into a temp folder and returns the extracted paths.\n- GetSplits translates the extracted paths from _ExtractSplits to the folder created in _GetSplitsDir.\n\nI want to cache the APKs extracted from _GetSplitsDir so that we don\u0027t have to re-unzip every time we want to look at an APK.",
+      "parentUuid": "4767d802_7c6c77e7",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09a4a81_d80a3fe9",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -216,6 +402,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e886a1a_4ddd132b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2552,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f09a4a81_d80a3fe9",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -236,6 +440,24 @@
     },
     {
       "key": {
+        "uuid": "7309c560_b86173b7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2553,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "Exception gone.",
+      "parentUuid": "3c917522_dd798905",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75b6ab6e_65ab0dab",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -250,6 +472,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88e4d183_8a4626c7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2554,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-19T16:06:04Z",
+      "side": 1,
+      "message": "String gone.",
+      "parentUuid": "75b6ab6e_65ab0dab",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
