@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b94f56e5_de78f283",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-19T22:10:55Z",
+      "side": 1,
+      "message": "For better debugging friendliness, I would suggest either: a) raising an exception with the input value or b) having a non-zero exit for a hard failure but having a log message that contains the bad input value.",
+      "range": {
+        "startLine": 318,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 31
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b31a2c8_1e56cf19",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-19T22:10:55Z",
+      "side": 1,
+      "message": "Is this comment still accurate?",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 62
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd4ef4eb_2544078f",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-19T22:10:55Z",
+      "side": 1,
+      "message": "Did you want to `continue` after logging, so that this particular test is skipped?",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
