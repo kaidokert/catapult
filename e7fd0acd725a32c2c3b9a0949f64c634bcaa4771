@@ -22,6 +22,30 @@
       "revId": "e7fd0acd725a32c2c3b9a0949f64c634bcaa4771",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91df42e1_50df54f3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-19T22:41:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b936b35_a3db412f",
+      "range": {
+        "startLine": 47,
+        "startChar": 39,
+        "endLine": 47,
+        "endChar": 43
+      },
+      "revId": "e7fd0acd725a32c2c3b9a0949f64c634bcaa4771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
