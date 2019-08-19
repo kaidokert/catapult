@@ -165,9 +165,15 @@ class StoryRun(object):
             'artifacts': {
                 name: artifact.AsDict()
                 for name, artifact in self._artifacts.items()},
-            'tags': ['tbmv2:' + m for m in self._tbm_metrics],
+            'tags': self._GetTags(),
         }
     }
+
+  def _GetTags(self):
+    tags = []
+    tags.extend({'key': 'tbmv2', 'value': metric}
+                for metric in self._tbm_metrics)
+    return tags
 
   @property
   def story(self):
