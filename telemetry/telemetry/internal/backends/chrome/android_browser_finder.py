@@ -294,10 +294,12 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
   def GetTypExpectationsTags(self):
     tags = super(PossibleAndroidBrowser, self).GetTypExpectationsTags()
+    logging.info(self.browser_type)
     if 'webview' in self.browser_type:
       tags.append('android-webview')
     else:
       tags.append('android-not-webview')
+    logging.info(tags)
     return tags
 
 
