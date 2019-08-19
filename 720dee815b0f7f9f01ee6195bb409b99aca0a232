@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d022b06f_cffaf0db",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Assuming local mode means being run on the CrOS device directly instead of over SSH, this *should* be skipped since the pulling of dumps is just to get it off the device and onto the host.\n\nActually, does minidump symbolization make sense when running in local mode at all? Will there ever be a case where the build artifacts will be present in that case? If not, we won\u0027t be able to symbolize the minidump.",
+      "parentUuid": "4d071eb4_e0e150a8",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fa2c681a_5d8c1f8a",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fa6c223_04007b7e",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2c681a_5d8c1f8a",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "10d6e492_39f01cc5",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a340c8ed_91580881",
+      "range": {
+        "startLine": 64,
+        "startChar": 49,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f54bd228_fdf11d80",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "ecae8e56_a7d2e006",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "We can\u0027t have it in the existing finally block since we need to be in the scope of _GetCRI(). I\u0027ve added a second try/finally block inside to handle this.",
+      "parentUuid": "f54bd228_fdf11d80",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "186626ba_8769c5af",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
@@ -87,6 +165,24 @@
       "writtenOn": "2019-08-19T21:35:00Z",
       "side": 1,
       "message": "Add test comment.\n\nWere you able to verify that these tests runs remotely and on the device?",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43b364f6_73eabd79",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "See earlier comment about symbolizing in local mode - I\u0027ll modify the tests depending on what we decide about that.",
+      "parentUuid": "186626ba_8769c5af",
       "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -116,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "b988cbd9_ec077dc7",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d2229e9_ce7ecf16",
+      "range": {
+        "startLine": 76,
+        "startChar": 37,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04648d77_0c4a23b7",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
@@ -139,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "202d45ad_a2d76710",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04648d77_0c4a23b7",
+      "range": {
+        "startLine": 87,
+        "startChar": 49,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b90a2729_c4bff8bd",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
@@ -153,6 +297,24 @@
       "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "424cada4_ed50a350",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b90a2729_c4bff8bd",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -179,6 +341,30 @@
     },
     {
       "key": {
+        "uuid": "e6a5850b_c8e2c6cf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c3faa5a_f683378a",
+      "range": {
+        "startLine": 202,
+        "startChar": 6,
+        "endLine": 202,
+        "endChar": 62
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "764dbb30_2fd6dc87",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 6
@@ -193,6 +379,24 @@
       "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82747a40_d1a9178e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "764dbb30_2fd6dc87",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -219,6 +423,30 @@
     },
     {
       "key": {
+        "uuid": "f46b76e1_d6a9fc37",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f62da1b9_0be38ced",
+      "range": {
+        "startLine": 340,
+        "startChar": 28,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9de6a8cd_78b1de83",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
         "patchSetId": 6
@@ -239,6 +467,30 @@
       "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce27fe8e_bdeb7949",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-19T23:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9de6a8cd_78b1de83",
+      "range": {
+        "startLine": 118,
+        "startChar": 57,
+        "endLine": 118,
+        "endChar": 60
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
