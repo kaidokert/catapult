@@ -1,0 +1,244 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d071eb4_e0e150a8",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "I assume we don\u0027t want to skip this in local mode, right?",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa2c681a_5d8c1f8a",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Add test comment",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a340c8ed_91580881",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "test_dump?",
+      "range": {
+        "startLine": 64,
+        "startChar": 49,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f54bd228_fdf11d80",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Should this be in the finally block?",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "186626ba_8769c5af",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Add test comment.\n\nWere you able to verify that these tests runs remotely and on the device?",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d2229e9_ce7ecf16",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "old_dump",
+      "range": {
+        "startLine": 76,
+        "startChar": 37,
+        "endLine": 76,
+        "endChar": 40
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04648d77_0c4a23b7",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "new_dump or recent_dump",
+      "range": {
+        "startLine": 87,
+        "startChar": 49,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90a2729_c4bff8bd",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Ditto",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c3faa5a_f683378a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Not sure this is unlikely, especially if the host and device aren\u0027t in the same lab",
+      "range": {
+        "startLine": 202,
+        "startChar": 6,
+        "endLine": 202,
+        "endChar": 62
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "764dbb30_2fd6dc87",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Is it possible to move this logic into PullDumps, so the timestamps on the local files are properly offset?",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f62da1b9_0be38ced",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "Should this just be posix? Doesn\u0027t this work from a Mac?",
+      "range": {
+        "startLine": 340,
+        "startChar": 28,
+        "endLine": 340,
+        "endChar": 35
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9de6a8cd_78b1de83",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-19T21:35:00Z",
+      "side": 1,
+      "message": "test_dump",
+      "range": {
+        "startLine": 118,
+        "startChar": 57,
+        "endLine": 118,
+        "endChar": 60
+      },
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
