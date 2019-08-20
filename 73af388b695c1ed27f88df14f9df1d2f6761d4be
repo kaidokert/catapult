@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "724cff48_836074cf",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-20T00:44:21Z",
+      "side": 0,
+      "message": "This optimization ended up causing different behaviors between local and remote runs (e.g. FileExistsOnDevice(\"\u0027/var/log/chrome/Crash Reports\u0027\") returns True remotely, but False locally), so I removed it.",
+      "range": {
+        "startLine": 296,
+        "startChar": 4,
+        "endLine": 297,
+        "endChar": 38
+      },
+      "revId": "73af388b695c1ed27f88df14f9df1d2f6761d4be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

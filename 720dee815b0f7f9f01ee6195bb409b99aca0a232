@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "c718960a_bc2449e4",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-20T00:44:21Z",
+      "side": 1,
+      "message": "This, as well as the added tests, confirmed to work both remotely and locally in the latest patch set.",
+      "parentUuid": "fb26f4fc_ead4995b",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa2c681a_5d8c1f8a",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6
