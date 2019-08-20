@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d50e3204_f88a5a6a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-20T09:23:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5efe79a3_ceb25b0e",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 9
+      },
+      "revId": "15a69bb5089d8da252af4feb3b24a792c49cda26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bbda714_3ccbe68a",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-19T16:40:39Z",
       "side": 1,
       "message": "simpler:\n\n  return [\n    {\u0027key\u0027: \u0027tbmv2\u0027, \u0027value\u0027: metric}\n    for metric in self._tbm_metrics\n  ]\n\nso, maybe inline? we already have a comprehension in L165",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 176,
+        "endChar": 15
+      },
+      "revId": "15a69bb5089d8da252af4feb3b24a792c49cda26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6464c68_9e9c45a8",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-20T09:23:36Z",
+      "side": 1,
+      "message": "Sure. Done.\n\nI was thinking ahead as later we will probably want to add things other than metrics as tags. But let\u0027s wait until that is actually needed.",
+      "parentUuid": "3bbda714_3ccbe68a",
       "range": {
         "startLine": 173,
         "startChar": 5,
