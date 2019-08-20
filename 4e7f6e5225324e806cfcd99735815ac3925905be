@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a77fdcb_ddd54fa2",
+        "filename": "web_page_replay_go/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-20T23:10:39Z",
+      "side": 1,
+      "message": "In a followup changelist, you should remove Yiming from the owners.\n\nYou should also check if tombergan is still owning this and otherwise remove him as well.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 8
+      },
+      "revId": "4e7f6e5225324e806cfcd99735815ac3925905be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
