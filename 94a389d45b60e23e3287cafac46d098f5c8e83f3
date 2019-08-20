@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46149cde_3d0d332a",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-20T00:10:25Z",
+      "side": 1,
+      "message": "This could be done even before we enter the try block, no?",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 27
+      },
+      "revId": "94a389d45b60e23e3287cafac46d098f5c8e83f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5ff3c2d_d5528f17",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-20T00:10:25Z",
+      "side": 1,
+      "message": "nit: this could be `if story and story not in cases:` as a single conditional. :)",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 66
+      },
+      "revId": "94a389d45b60e23e3287cafac46d098f5c8e83f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

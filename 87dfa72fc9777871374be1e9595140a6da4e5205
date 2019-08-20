@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "8260b264_e0b81593",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-20T00:10:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d35805e3_390dc123",
+      "range": {
+        "startLine": 99,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 62
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd4ef4eb_2544078f",
         "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
         "patchSetId": 2
@@ -140,6 +164,30 @@
       "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2da35932_1915e47b",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-20T00:10:25Z",
+      "side": 1,
+      "message": "No strong opinion. I have a different suggestion in the newer version of the code, but it\u0027s not critical.",
+      "parentUuid": "b0aaa12a_de4208f3",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
