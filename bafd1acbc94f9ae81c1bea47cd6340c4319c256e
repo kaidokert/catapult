@@ -22,6 +22,30 @@
       "revId": "bafd1acbc94f9ae81c1bea47cd6340c4319c256e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2833f3f1_fbdf61da",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-20T18:46:15Z",
+      "side": 1,
+      "message": "_USER_FRIENDLY_NAMES isn\u0027t a set its a dictionary. I made this dictionary  a module-level constant and renamed it to _MAP_TO_USER_FRIENDLY_NAMES to better convey that it is a dictionary. I don\u0027t know of any way to make it immutable though.",
+      "parentUuid": "1dfd457f_3a8ca51e",
+      "range": {
+        "startLine": 273,
+        "startChar": 4,
+        "endLine": 273,
+        "endChar": 23
+      },
+      "revId": "bafd1acbc94f9ae81c1bea47cd6340c4319c256e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
