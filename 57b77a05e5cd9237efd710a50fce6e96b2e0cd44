@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "724156bd_66c1714c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-20T22:14:19Z",
+      "side": 1,
+      "message": "Could you please re-file this bug in crbug.com? We don\u0027t use github bug tracker anymore. (I\u0027ll go see if I can disable it or add a note somewhere for it)",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "57b77a05e5cd9237efd710a50fce6e96b2e0cd44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
