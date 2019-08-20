@@ -270,7 +270,9 @@ class AndroidPlatformBackend(
     # and if it is a low end device
     tags = super(AndroidPlatformBackend, self).GetTypExpectationsTags()
     device_type_name = self.GetDeviceTypeName()
-    user_friendly_names = {'gobo': 'go', 'W6210': 'one'}
+    user_friendly_names = {
+        'gobo': 'go', 'W6210': 'one', 'AOSP on Shamu':'nexus 6',
+        'AOSP on BullHead':'nexus 5x'}
     tags += test_utils.sanitizeTypExpectationsTags(
         ['android-' + user_friendly_names.get(
             device_type_name, device_type_name)])
