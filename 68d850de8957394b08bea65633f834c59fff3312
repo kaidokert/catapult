@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04e354df_0b9a66a5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-20T18:50:04Z",
+      "side": 1,
+      "message": "nit: prefer formatting like above, with new lines between each key/value.",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 54,
+        "endChar": 34
+      },
+      "revId": "68d850de8957394b08bea65633f834c59fff3312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
