@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "893c2eff_10f9ca2e",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-20T17:33:25Z",
+      "side": 1,
+      "message": "FYI: Also added a continue here, since failure to parse would mean nothing else needs to be done (also measurement/story aren\u0027t defined).",
+      "range": {
+        "startLine": 112,
+        "startChar": 6,
+        "endLine": 112,
+        "endChar": 14
+      },
+      "revId": "f9b7662bfef73b7b9565bac345a228da137cf16b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

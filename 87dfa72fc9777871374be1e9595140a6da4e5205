@@ -188,6 +188,30 @@
       "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "397a306a_e8a890a9",
+        "filename": "dashboard/dashboard/update_test_suite_descriptors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-20T17:33:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2da35932_1915e47b",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "87dfa72fc9777871374be1e9595140a6da4e5205",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
