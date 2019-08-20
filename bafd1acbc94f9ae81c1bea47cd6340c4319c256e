@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dfd457f_3a8ca51e",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-20T18:34:32Z",
+      "side": 1,
+      "message": "Make this an internal module-level constant. Also make it a frozenset\n\n_USER_FRIENDLY_NAMES \u003d frozenset({...",
+      "range": {
+        "startLine": 273,
+        "startChar": 4,
+        "endLine": 273,
+        "endChar": 23
+      },
+      "revId": "bafd1acbc94f9ae81c1bea47cd6340c4319c256e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
