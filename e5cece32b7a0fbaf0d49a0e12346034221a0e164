@@ -22,6 +22,64 @@
       "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b62be591_05828810",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-21T23:46:39Z",
+      "side": 1,
+      "message": "my only quibble for now is with the use of TypeError; this seems more like a ValueError.",
+      "parentUuid": "2c22410c_49625508",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 72
+      },
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b7bc5ff_246aba7c",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-21T23:46:39Z",
+      "side": 1,
+      "message": "Is your intent to track device state (bootloader vs not) via self._device? If so, should this set self._device to None after rebooting to the bootloader? If not, could we just create self._device in __init__ if it wasn\u0027t provided?",
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b49b9b_6e78e226",
+        "filename": "devil/devil/android/sdk/fastboot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-21T23:46:39Z",
+      "side": 1,
+      "message": "What happens if the line doesn\u0027t match \u0027%s:\u0027? This should fail gracefully w/ some kind of devil error (CommandFailedError? FastbootCommandFailedError?), not w/ an IndexError.",
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
