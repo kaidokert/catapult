@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8540f58_d9b903c1",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-21T21:19:15Z",
+      "side": 1,
+      "message": "device_time?",
+      "range": {
+        "startLine": 419,
+        "startChar": 4,
+        "endLine": 419,
+        "endChar": 10
+      },
+      "revId": "efbe99222d7aca8beae6a3f1f8862ecadae01629",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

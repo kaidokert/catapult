@@ -225,6 +225,24 @@
     },
     {
       "key": {
+        "uuid": "948ad813_33a36aed",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-21T21:19:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "43b364f6_73eabd79",
+      "revId": "720dee815b0f7f9f01ee6195bb409b99aca0a232",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d2229e9_ce7ecf16",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 6

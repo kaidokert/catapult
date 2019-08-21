@@ -22,6 +22,30 @@
       "revId": "73af388b695c1ed27f88df14f9df1d2f6761d4be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65453aa8_8a292378",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-21T21:19:15Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "724cff48_836074cf",
+      "range": {
+        "startLine": 296,
+        "startChar": 4,
+        "endLine": 297,
+        "endChar": 38
+      },
+      "revId": "73af388b695c1ed27f88df14f9df1d2f6761d4be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
