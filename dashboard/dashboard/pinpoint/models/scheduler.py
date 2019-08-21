@@ -20,6 +20,8 @@ from __future__ import absolute_import
 import datetime
 import functools
 import logging
+import random
+
 from google.appengine.ext import ndb
 
 SECS_PER_HOUR = datetime.timedelta(hours=1).total_seconds()
@@ -86,11 +88,15 @@ class ConfigurationQueue(ndb.Model):
     # persist the data.
     self.jobs = [j for j in self.jobs if j.status not in {'Done', 'Cancelled'}]
 
-    # We also only persist samples that are < 7 days old.
+    # We also only persist samples that are < 7 days old, and capping the number
+    # of samples. This prevents us from growing the entries too large dominated
+    # by the samples.
     self.samples = [
         s for s in self.samples if s.enqueue_timestamp -
         datetime.datetime.utcnow() < datetime.timedelta(days=7)
     ]
+    if len(self.samples) > 50:
+      self.samples = random.sample(self.samples, 50)
     super(ConfigurationQueue, self).put()
 
 
