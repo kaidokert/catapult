@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5626198_52e7d9c8",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1000487
+      },
+      "writtenOn": "2019-08-21T12:53:27Z",
+      "side": 1,
+      "message": "As per the doc, you need to move this too, otherwise the request will be denied.\n\nhttps://cs.chromium.org/chromium/infra/luci/appengine/swarming/swarming_rpcs.py?l\u003d443",
+      "revId": "5817e13649bed1cad026562ff223309c3f6d46f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
