@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "061c68a6_d7ef160b",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-22T22:20:24Z",
+      "side": 1,
+      "message": "Where did these choices come from? Can we grab them from somewhere else rather than redefining them?",
+      "range": {
+        "startLine": 185,
+        "startChar": 17,
+        "endLine": 185,
+        "endChar": 68
+      },
+      "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d48152f_4818141e",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-22T22:20:24Z",
+      "side": 1,
+      "message": "I think this is not very precise. Perhaps it should say \"Specify which platforms we should try to find a browser to run on.\"\n\nAlso add somewhere an explanation of how this is used to prevent Telemetry from doing extra work and running into that error.",
+      "range": {
+        "startLine": 186,
+        "startChar": 14,
+        "endLine": 187,
+        "endChar": 16
+      },
+      "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56fcbd47_20d0208b",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-22T22:20:24Z",
+      "side": 1,
+      "message": "help docstring should explain what happens if this is left blank. Does it try to run on all platforms?",
+      "range": {
+        "startLine": 186,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 71
+      },
+      "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
