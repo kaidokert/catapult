@@ -25,8 +25,20 @@ from telemetry.internal.util import global_hooks
 from telemetry.util import wpr_modes
 
 
+class _BrowserPlatforms(object):
+  MAC = 'mac'
+  LINUX = 'linux'
+  WIN = 'win'
+  ANDROID = 'android'
+  CHROMEOS = 'chromeos'
+  ALL_PLATFORMS = 'all'
+
+
 class BrowserFinderOptions(optparse.Values):
   """Options to be used for discovering a browser."""
+
+  platforms = _BrowserPlatforms()
+  REMOTE_PLATFORMS = (platforms.CHROMEOS, platforms.ANDROID)
 
   def __init__(self, browser_type=None):
     optparse.Values.__init__(self)
@@ -179,6 +191,21 @@ class BrowserFinderOptions(optparse.Values):
         '--webview-embedder-apk',
         help='When running tests on android webview, more than one apk needs to'
         ' be installed. The apk running the test is said to embed webview.')
+    group.add_option(
+        '--target-platforms', dest='target_platforms', default=[],
+        type='choice', action='append',
+        choices=[self.platforms.MAC, self.platforms.LINUX, self.platforms.WIN,
+                 self.platforms.ANDROID, self.platforms.CHROMEOS,
+                 self.platforms.ALL_PLATFORMS],
+        help='Specify which platforms we should try to find a browser to run '
+        'on. This argument will be used to narrow down which devices Telemetry '
+        'should look for a browser on. If this argument is not used then it '
+        'will look for browsers on all available devices. The only values this '
+        'argument will accept are {0}, {1}, {2}, {3}, {4} and {5}. The input '
+        'must be lowercase.'.format(
+            self.platforms.MAC, self.platforms.LINUX, self.platforms.WIN,
+            self.platforms.ANDROID, self.platforms.CHROMEOS,
+            self.platforms.ALL_PLATFORMS))
     parser.add_option_group(group)
 
     # Remote platform options
