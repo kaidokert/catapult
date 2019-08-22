@@ -5,6 +5,9 @@
 import logging
 
 from telemetry.core import os_version as os_version_module
+from telemetry.internal.browser.browser_options import BrowserFinderOptions
+
+browser_platforms = BrowserFinderOptions.platforms
 
 
 class StoryExpectations(object):
@@ -232,7 +235,7 @@ class _AllTestCondition(_TestCondition):
     return 'All'
 
   def GetSupportedPlatformNames(self):
-    return set(['all'])
+    return set([browser_platforms.ALL_PLATFORMS])
 
 
 class _TestConditionAndroidSvelte(_TestCondition):
@@ -245,7 +248,7 @@ class _TestConditionAndroidSvelte(_TestCondition):
     return 'Android Svelte'
 
   def GetSupportedPlatformNames(self):
-    return set(['android'])
+    return set([browser_platforms.ANDROID])
 
 class _TestConditionByAndroidModel(_TestCondition):
   def __init__(self, model, name=None):
@@ -260,7 +263,7 @@ class _TestConditionByAndroidModel(_TestCondition):
     return self._name
 
   def GetSupportedPlatformNames(self):
-    return set(['android'])
+    return set([browser_platforms.ANDROID])
 
 class _TestConditionAndroidWebview(_TestCondition):
   def ShouldDisable(self, platform, finder_options):
@@ -271,7 +274,7 @@ class _TestConditionAndroidWebview(_TestCondition):
     return 'Android Webview'
 
   def GetSupportedPlatformNames(self):
-    return set(['android'])
+    return set([browser_platforms.ANDROID])
 
 class _TestConditionAndroidNotWebview(_TestCondition):
   def ShouldDisable(self, platform, finder_options):
@@ -282,7 +285,7 @@ class _TestConditionAndroidNotWebview(_TestCondition):
     return 'Android but not webview'
 
   def GetSupportedPlatformNames(self):
-    return set(['android'])
+    return set([browser_platforms.ANDROID])
 
 class _TestConditionByMacVersion(_TestCondition):
   def __init__(self, version, name=None):
@@ -293,7 +296,7 @@ class _TestConditionByMacVersion(_TestCondition):
     return self._name
 
   def GetSupportedPlatformNames(self):
-    return set(['mac'])
+    return set([browser_platforms.MAC])
 
   def ShouldDisable(self, platform, finder_options):
     if platform.GetOSName() != 'mac':
@@ -310,7 +313,7 @@ class _TestConditionByWinVersion(_TestCondition):
     return self._name
 
   def GetSupportedPlatformNames(self):
-    return set(['win'])
+    return set([browser_platforms.WIN])
 
   def ShouldDisable(self, platform, finder_options):
     if platform.GetOSName() != 'win':

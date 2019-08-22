@@ -15,15 +15,18 @@ DEVICES = [
 ]
 
 
-def _GetDeviceFinders(supported_platforms):
-  if not supported_platforms or 'all' in supported_platforms:
+def _GetDeviceFinders(options):
+  supported_platforms = options.target_platforms
+  if (not supported_platforms or
+      options.platforms.ALL_PLATFORMS in supported_platforms):
     return DEVICES
   device_finders = []
-  if any(p in supported_platforms for p in ['mac', 'linux', 'win']):
+  if any(p for p in supported_platforms
+         if p not in options.platforms.REMOTE_PLATFORMS):
     device_finders.append(desktop_device)
-  if 'android' in supported_platforms:
+  if options.platforms.ANDROID in supported_platforms:
     device_finders.append(android_device)
-  if 'chromeos' in supported_platforms:
+  if options.platforms.CHROMEOS in supported_platforms:
     device_finders.append(cros_device)
   return device_finders
 
@@ -31,7 +34,7 @@ def _GetDeviceFinders(supported_platforms):
 def _GetAllAvailableDevices(options):
   """Returns a list of all available devices."""
   devices = []
-  for finder in _GetDeviceFinders(options.target_platforms):
+  for finder in _GetDeviceFinders(options):
     devices.extend(finder.FindAllAvailableDevices(options))
   return devices
 
