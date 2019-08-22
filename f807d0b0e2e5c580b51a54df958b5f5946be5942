@@ -353,6 +353,24 @@
     },
     {
       "key": {
+        "uuid": "0c454d0f_eb253809",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:14:15Z",
+      "side": 1,
+      "message": "Yeah, I\u0027d prefer doing that at __init__ time than at .path time.",
+      "parentUuid": "24042300_c7f5013f",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4767d802_7c6c77e7",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -382,6 +400,24 @@
       "side": 1,
       "message": "In the case of bundles we will get an APKS archive, which is a zip of APKs. To make this compatible with the rest of devil I want to unzip the APKS archive and return the paths to the unzipped APKs that should be installed. To figure out what APKs to install we will invoke bundletool that extracts the required APKs from an APKS archive. To that end:\n\n- _GetSplitsDir unzips the APKS archive and stores the path to the unzipped directory.\n- _ExtractSplits invokes bundletool to extract the subset of APKs to install into a temp folder and returns the extracted paths.\n- GetSplits translates the extracted paths from _ExtractSplits to the folder created in _GetSplitsDir.\n\nI want to cache the APKs extracted from _GetSplitsDir so that we don\u0027t have to re-unzip every time we want to look at an APK.",
       "parentUuid": "4767d802_7c6c77e7",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db19df5e_6a3dcac8",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:14:15Z",
+      "side": 1,
+      "message": "Alright, I think I\u0027ve wrapped my head around what you\u0027re doing, but I\u0027m skeptical that this is the right way to go about it -- it seems like you\u0027re extracting the APKs twice per call. Following my question above, if we don\u0027t need the single APK path, I\u0027m wondering if we need GetSplitsDir at all. If we do, I\u0027d just as soon not involve GetSplitsDir in this function \u0026 just return _ExtractSplits (% reworking the directory into which we extract the splits).",
+      "parentUuid": "3b228e1f_cb40e34b",
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

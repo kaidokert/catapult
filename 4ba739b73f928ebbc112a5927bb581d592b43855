@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1503ae6_b482a74c",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:14:15Z",
+      "side": 1,
+      "message": "I\u0027m wondering if we want this as part of BaseApkHelper at all (vs ApkHelper). Does having a single APK path make sense for the bundle? When would we want to operate on that vs the entire set of APKs (or the entire set of applicable APKs for a given device)?",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d55d735e_5d009f1c",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:14:15Z",
+      "side": 1,
+      "message": "Is bundletool in build-tools? I\u0027m not seeing it locally, and https://developer.android.com/studio/command-line/bundletool suggests downloading it from github...",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75ac4659_238eac54",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:14:15Z",
+      "side": 1,
+      "message": "These two lines are basically tempfile_ext.TemporaryFileName.",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37ecb566_780d2175",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:14:15Z",
+      "side": 1,
+      "message": "Same comment as before re exception types.",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
