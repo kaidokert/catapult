@@ -22,6 +22,23 @@
       "revId": "360fc3243c57b86a5207987bc99cbfbed832e1e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cbde061_ed751d71",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2019-08-22T18:23:10Z",
+      "side": 1,
+      "message": "Can there be a test where promise\u003dTrue but no promise is returned - `return 456;` or something simple like that.",
+      "revId": "360fc3243c57b86a5207987bc99cbfbed832e1e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
