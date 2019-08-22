@@ -9,6 +9,16 @@ PackageInfo = collections.namedtuple(
     ['package', 'activity', 'cmdline_file', 'devtools_socket'])
 
 PACKAGE_INFO = {
+    'android_webview': PackageInfo(
+        'com.android.webview',
+        None,
+        'webview-command-line',
+        None),
+    'android_webview_google': PackageInfo(
+        'com.google.android.webview',
+        None,
+        'webview-command-line',
+        None),
     'chrome_document': PackageInfo(
         'com.google.android.apps.chrome.document',
         'com.google.android.apps.chrome.document.ChromeLauncherActivity',
