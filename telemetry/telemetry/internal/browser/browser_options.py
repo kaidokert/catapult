@@ -179,6 +179,13 @@ class BrowserFinderOptions(optparse.Values):
         '--webview-embedder-apk',
         help='When running tests on android webview, more than one apk needs to'
         ' be installed. The apk running the test is said to embed webview.')
+    group.add_option(
+        '--target-platforms', dest='target_platforms', default=[],
+        type='choice', action='append',
+        choices=['mac', 'linux', 'win', 'android', 'chromeos', 'all'],
+        help='Specify the platforms which the browser should '
+        'run on. The only values this argument will accept are mac, linux, '
+        'win, android, chromeos and all. The values must be lowercase.')
     parser.add_option_group(group)
 
     # Remote platform options
