@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f4fa4d6_3efcbaa7",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-22T23:42:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "061c68a6_d7ef160b",
+      "range": {
+        "startLine": 185,
+        "startChar": 17,
+        "endLine": 185,
+        "endChar": 68
+      },
+      "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7d48152f_4818141e",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a89c8b4b_71e6b15d",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-22T23:42:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d48152f_4818141e",
+      "range": {
+        "startLine": 186,
+        "startChar": 14,
+        "endLine": 187,
+        "endChar": 16
+      },
+      "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56fcbd47_20d0208b",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa0e1921_52262931",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-22T23:42:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56fcbd47_20d0208b",
+      "range": {
+        "startLine": 186,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 71
+      },
+      "revId": "936bf1c89a09f5600c3ef56fad4838f7da760905",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
