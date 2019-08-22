@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a82e197_83899fcb",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-22T18:13:04Z",
+      "side": 1,
+      "message": "fix grammar",
+      "range": {
+        "startLine": 250,
+        "startChar": 36,
+        "endLine": 250,
+        "endChar": 69
+      },
+      "revId": "360fc3243c57b86a5207987bc99cbfbed832e1e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
