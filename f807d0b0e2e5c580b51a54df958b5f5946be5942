@@ -424,6 +424,24 @@
     },
     {
       "key": {
+        "uuid": "e64cc1f7_5d21ec07",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-22T19:25:24Z",
+      "side": 1,
+      "message": "er, \"question above\" -\u003e the question about path in ApkHelper vs BaseApkHelper",
+      "parentUuid": "db19df5e_6a3dcac8",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f09a4a81_d80a3fe9",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
