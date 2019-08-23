@@ -141,16 +141,8 @@ class CrOSInterface(object):
       self._ssh_identity = os.path.abspath(os.path.expanduser(ssh_identity))
       os.chmod(self._ssh_identity, stat.S_IREAD)
 
-    # Establish master SSH connection using ControlPersist.
-    # Since only one test will be run on a remote host at a time,
-    # the control socket filename can be telemetry@hostname.
-    self._ssh_control_file = '/tmp/' + 'telemetry' + '@' + hostname
-    with open(os.devnull, 'w') as devnull:
-      subprocess.call(
-          self.FormSSHCommandLine(['-M', '-o ControlPersist=yes']),
-          stdin=devnull,
-          stdout=devnull,
-          stderr=devnull)
+    self._ssh_control_file = None
+    self.OpenConnection()
 
   def __enter__(self):
     return self
@@ -169,6 +161,20 @@ class CrOSInterface(object):
   @property
   def ssh_port(self):
     return self._ssh_port
+
+  def OpenConnection(self):
+    """Opens a master connection to the device."""
+    assert not self._ssh_control_file
+    # Establish master SSH connection using ControlPersist.
+    # Since only one test will be run on a remote host at a time,
+    # the control socket filename can be telemetry@hostname.
+    self._ssh_control_file = '/tmp/' + 'telemetry' + '@' + self._hostname
+    with open(os.devnull, 'w') as devnull:
+      subprocess.call(
+          self.FormSSHCommandLine(['-M', '-o ControlPersist=yes']),
+          stdin=devnull,
+          stdout=devnull,
+          stderr=devnull)
 
   def FormSSHCommandLine(self, args, extra_ssh_args=None, port_forward=False,
                          connect_timeout=None):
@@ -252,9 +258,11 @@ class CrOSInterface(object):
         r'Warning: Permanently added [^\n]* to the list of known hosts.\s\n',
         '', to_clean)
 
-  def RunCmdOnDevice(self, args, cwd=None, quiet=False, connect_timeout=None):
+  def RunCmdOnDevice(self, args, cwd=None, quiet=False, connect_timeout=None,
+                     port_forward=False):
     stdout, stderr = GetAllCmdOutput(
-        self.FormSSHCommandLine(args, connect_timeout=connect_timeout),
+        self.FormSSHCommandLine(
+            args, connect_timeout=connect_timeout, port_forward=port_forward),
         cwd=cwd,
         quiet=quiet)
     # The initial login will add the host to the hosts file but will also print
@@ -666,3 +674,38 @@ class CrOSInterface(object):
             self.FormSSHCommandLine(['-O', 'exit', self._hostname]),
             stdout=devnull,
             stderr=devnull)
+      self._ssh_control_file = None
+
+  def MakeRootReadWriteIfNecessary(self):
+    """Remounts / as read-write if it is currently read-only."""
+    logging.error('ASDF MakeRootReadWriteIfNecessary()')
+    _, stderr = self.RunCmdOnDevice(['touch', '/testfile'])
+    if stderr == '':
+      self.RunCmdOnDevice(['rm', '/testfile'])
+      return
+    logging.warning('Root is currently read-only. Attempting to remount as '
+                    'read-write, which will disable rootfs verification and '
+                    'require a reboot.')
+    self._DisableRootFsVerification()
+    self._RemountRootAsReadWrite()
+
+  def _DisableRootFsVerification(self):
+    """Disables rootfs verification on the device, requiring a reboot."""
+    # 2 and 4 are the kernel partitions.
+    for partition in [2, 4]:
+      self.RunCmdOnDevice(['/usr/share/vboot/bin/make_dev_ssd.sh',
+                           '--partitions', str(partition),
+                           '--remove_rootfs_verification', '--force'])
+
+    # Restart, wait a bit, and re-establish the SSH master connection.
+    # We need to close the connection gracefully, then run the shutdown command
+    # without using a master connection. port_forward=True bypasses the master
+    # connection.
+    self.CloseConnection()
+    self.RunCmdOnDevice(['shutdown', '-r', 'now'], port_forward=True)
+    time.sleep(30)
+    self.OpenConnection()
+
+  def _RemountRootAsReadWrite(self):
+    """Remounts / as a read-write partition."""
+    self.RunCmdOnDevice(['mount', '-o', 'remount,rw', '/'])
