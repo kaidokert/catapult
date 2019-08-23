@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f94da366_bee949f8",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-23T17:04:17Z",
+      "side": 1,
+      "message": "I\u0027d prefer to avoid this, but at least on my emulator, shutdown can take a while and I\u0027m not aware of a good way of waiting for it to reboot before attempting to re-establish the SSH connection.",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 18
+      },
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
