@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9022d40_65a014b1",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "Consider implementing this w/ contextlib.contextmanager:\n\n  @contextlib.contextmanager\n  def _DeleteHelper(files, to_delete):\n    try:\n      yield files\n    finally:\n      for path in to_delete:\n        ...",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe4504e6_95d1c937",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "I would be inclined to split this into two context managers; the\n\n  _DeleteHelper(list_of_files, [])\n\ncase is a bit misleading since nothing\u0027s being deleted. Maybe a second context manager along the lines of\n\n  @contextlib.contextmanager\n  def _NoopFileHelper(files):\n    yield files",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43ac7e8c_1c9a0005",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "I\u0027d be inclined to restrict delete_paths to iterables.\n\nalso, nit if you keep this: splitting in the isinstance call reads a little funny, consider\n\n  paths \u003d (self._delete_paths\n           if isinstance(self._delete_paths, list)\n           else [self._delete_paths])",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d90347fc_2e74547d",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "nit: as above, w/ compound statements like this, I\u0027d prefer enclosing parentheses for multiple lines vs splitting across the existing parentheses, i.e.\n\n  elif (isinstance(path_or_helper, basestring)\n        and path_or_helper.endswith(\u0027.apk\u0027)):",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15f24225_3ab22025",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "nit: s/contetx/context/",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b5898c5_178f30ff",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "I think this would be better as a try/except given how you\u0027re using it; you could (w/ a similar change below) avoid the need for Release.",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07001c42_038d1164",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dcaf21a_c08fb63f",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:15:49Z",
+      "side": 1,
+      "message": "Similar thing here re try/except.",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
