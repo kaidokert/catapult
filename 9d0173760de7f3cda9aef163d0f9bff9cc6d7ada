@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c780c549_384ca404",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-23T20:54:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "762b7b68_fcd737c3",
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "345dfef3_6cb05b5b",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f85c77a3_246d0f04",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-23T20:54:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "345dfef3_6cb05b5b",
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +131,30 @@
       "side": 1,
       "message": "You could also increase the ssh connection timeout to 60 sec here. That might be better?",
       "parentUuid": "08479604_c8124883",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 18
+      },
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19d66ad4_c3fd1d2c",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-08-23T20:54:51Z",
+      "side": 1,
+      "message": "The issue isn\u0027t necessarily the timeout, it\u0027s that the emulator seems to take a fairly lengthy amount of time (~15 seconds for me locally) to actually shut down. If we don\u0027t wait until that\u0027s done before continuing, then we\u0027ll re-open the SSH connection too early and lose it again when the emulator fully shuts down.",
+      "parentUuid": "7c5a76ea_c035a3e9",
       "range": {
         "startLine": 705,
         "startChar": 4,
