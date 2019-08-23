@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1f6c58d1_53dc20b5",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-08-23T23:23:31Z",
+      "side": 1,
+      "message": "Ah, prob not. Removed.",
+      "parentUuid": "ba4ac76d_3611da09",
+      "revId": "7e30d2acfc62b18cc8c83c1bdaf64c3ac6491c62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e655a115_3c82e709",
         "filename": "devil/devil/android/tools/flash_device.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "7e30d2acfc62b18cc8c83c1bdaf64c3ac6491c62",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ab6793e_7e345fa4",
+        "filename": "devil/devil/android/tools/flash_device.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-08-23T23:23:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e655a115_3c82e709",
+      "revId": "7e30d2acfc62b18cc8c83c1bdaf64c3ac6491c62",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
