@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1b2f2775_cf8d9451",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "That is a lot nicer! Done.",
+      "parentUuid": "d9022d40_65a014b1",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe4504e6_95d1c937",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "232a9044_e0086a97",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe4504e6_95d1c937",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9d66179a_0cdf4b79",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Let\u0027s keep this. Fortunately, with your suggestions, it fits on a single line now :)",
+      "parentUuid": "43ac7e8c_1c9a0005",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d90347fc_2e74547d",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 7
@@ -67,6 +121,24 @@
       "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "485d04d1_6338dbb4",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d90347fc_2e74547d",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "7b71201d_b97093cb",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15f24225_3ab22025",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b5898c5_178f30ff",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 7
@@ -101,6 +191,24 @@
       "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43e3179f_210aef00",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Good idea! Done.",
+      "parentUuid": "3b5898c5_178f30ff",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "d59e7d8d_ed4ef5cb",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07001c42_038d1164",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8dcaf21a_c08fb63f",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 7
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "fe52ab90_6777a182",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dcaf21a_c08fb63f",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bcebcff_1aa7c491",
         "filename": "devil/devil/android/sdk/bundletool.py",
         "patchSetId": 7
@@ -152,6 +296,24 @@
       "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a580cd2_cb14d1b9",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T22:12:40Z",
+      "side": 1,
+      "message": "Will change chromium CL put the bundletool jar instead as you suggested.",
+      "parentUuid": "9bcebcff_1aa7c491",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
