@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "762b7b68_fcd737c3",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-23T19:52:31Z",
+      "side": 1,
+      "message": "You can use \u0026\u0026 here to touch and rm:\nhttps://cs.corp.google.com/chromeos_public/chromite/lib/remote_access.py?l\u003d911",
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "345dfef3_6cb05b5b",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-23T19:52:31Z",
+      "side": 1,
+      "message": "Why not reboot?",
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f94da366_bee949f8",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 5
@@ -37,6 +71,30 @@
       "side": 1,
       "message": "Here\u0027s the reboot logic we use in chromite:\nhttps://cs.corp.google.com/chromeos_public/chromite/lib/remote_access.py?l\u003d455\n\nThis code duplication between chromite and telemetry is really unfortunate",
       "parentUuid": "f94da366_bee949f8",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 18
+      },
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c5a76ea_c035a3e9",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-23T19:52:31Z",
+      "side": 1,
+      "message": "You could also increase the ssh connection timeout to 60 sec here. That might be better?",
+      "parentUuid": "08479604_c8124883",
       "range": {
         "startLine": 705,
         "startChar": 4,
