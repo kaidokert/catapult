@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d6053d83_ede1321d",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-08-23T21:35:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b62be591_05828810",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 72
+      },
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b7bc5ff_246aba7c",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 4
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "76368242_8584fd95",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-08-23T21:35:36Z",
+      "side": 1,
+      "message": "Not sure what the intent was. I\u0027m about as much as stranger to this code as you are now.\n\nUnconditionally inited self._device since it was easier and replaced this branch w/ a check",
+      "parentUuid": "2b7bc5ff_246aba7c",
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3b49b9b_6e78e226",
         "filename": "devil/devil/android/sdk/fastboot.py",
         "patchSetId": 4
@@ -80,6 +122,24 @@
       "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2ff5c6c_4a11282e",
+        "filename": "devil/devil/android/sdk/fastboot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-08-23T21:35:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3b49b9b_6e78e226",
+      "revId": "e5cece32b7a0fbaf0d49a0e12346034221a0e164",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
