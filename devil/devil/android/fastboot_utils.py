@@ -14,6 +14,7 @@ import re
 
 from devil.android import decorators
 from devil.android import device_errors
+from devil.android import device_utils
 from devil.android.sdk import fastboot
 from devil.utils import timeout_retry
 
@@ -74,7 +75,8 @@ class FastbootUtils(object):
   _FASTBOOT_WAIT_TIME = 1
   _BOARD_VERIFICATION_FILE = 'android-info.txt'
 
-  def __init__(self, device, fastbooter=None, default_timeout=_DEFAULT_TIMEOUT,
+  def __init__(self, device=None, fastbooter=None,
+               default_timeout=_DEFAULT_TIMEOUT,
                default_retries=_DEFAULT_RETRIES):
     """FastbootUtils constructor.
 
@@ -83,23 +85,31 @@ class FastbootUtils(object):
       fastboot.FlashDevice('/path/to/build/directory')
 
     Args:
-      device: A DeviceUtils instance.
-      fastbooter: Optional fastboot object. If none is passed, one will
-        be created.
+      device: A DeviceUtils instance. Optional if a Fastboot instance was
+        passed.
+      fastbooter: A fastboot.Fastboot instance. Optional if a DeviceUtils
+        instance was passed.
       default_timeout: An integer containing the default number of seconds to
         wait for an operation to complete if no explicit value is provided.
       default_retries: An integer containing the default number or times an
         operation should be retried on failure if no explicit value is provided.
     """
-    self._device = device
-    self._board = device.product_board
-    self._serial = str(device)
+    if bool(device) == bool(fastbooter):
+      raise ValueError("Only one of 'device' or 'fastbooter' must be passed.")
+
+    if device:
+      self._device = device
+      self._serial = str(device)
+      self.fastboot = None
+      self._board = device.product_board
+    elif fastbooter:
+      self._device = None
+      self._serial = str(fastbooter)
+      self.fastboot = fastbooter
+      self._board = fastbooter.GetVar('product')
+
     self._default_timeout = default_timeout
     self._default_retries = default_retries
-    if fastbooter:
-      self.fastboot = fastbooter
-    else:
-      self.fastboot = fastboot.Fastboot(self._serial)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def WaitForFastbootMode(self, timeout=None, retries=None):
@@ -119,9 +129,13 @@ class FastbootUtils(object):
 
     Roots phone if needed, then reboots phone into fastboot mode and waits.
     """
-    self._device.EnableRoot()
-    self._device.adb.Reboot(to_bootloader=True)
+    if self._device:
+      self._device.EnableRoot()
+      self._device.adb.Reboot(to_bootloader=True)
+      self._device = None
     self.WaitForFastbootMode()
+    if not self.fastboot:
+      self.fastboot = fastboot.Fastboot(self._serial)
 
   @decorators.WithTimeoutAndRetriesFromInstance(
       min_default_timeout=_FASTBOOT_REBOOT_TIMEOUT)
@@ -140,8 +154,11 @@ class FastbootUtils(object):
       self.WaitForFastbootMode()
     else:
       self.fastboot.Reboot()
+      if not self._device:
+        self._device = device_utils.DeviceUtils(self._serial)
       if wait_for_reboot:
         self._device.WaitUntilFullyBooted(timeout=_FASTBOOT_REBOOT_TIMEOUT)
+      self.fastboot = None
 
   def _VerifyBoard(self, directory):
     """Validate as best as possible that the android build matches the device.
