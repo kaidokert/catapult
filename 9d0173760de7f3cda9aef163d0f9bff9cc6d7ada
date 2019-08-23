@@ -22,6 +22,30 @@
       "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08479604_c8124883",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-08-23T19:45:06Z",
+      "side": 1,
+      "message": "Here\u0027s the reboot logic we use in chromite:\nhttps://cs.corp.google.com/chromeos_public/chromite/lib/remote_access.py?l\u003d455\n\nThis code duplication between chromite and telemetry is really unfortunate",
+      "parentUuid": "f94da366_bee949f8",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 18
+      },
+      "revId": "9d0173760de7f3cda9aef163d0f9bff9cc6d7ada",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
