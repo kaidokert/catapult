@@ -135,6 +135,23 @@
       "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bcebcff_1aa7c491",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-23T21:31:27Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be grabbing a script out of chromium/src; if devil needs to know how to invoke bundletool, it should have a copy (probably the only copy?) of build/android/gyp/bundletool.py",
+      "revId": "3ac3ccd18b2fa85059c4a1a2ea68bb21a24becb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
