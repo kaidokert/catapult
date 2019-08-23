@@ -197,6 +197,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     assert isinstance(env, list)
 
     cri = self._platform_backend.cri
+    cri.MakeRootReadWriteIfNecessary()
     cri.RunCmdOnDevice(
         ['mv', self._CHROME_ENV_FILEPATH, self._EXISTING_ENV_FILEPATH])
 

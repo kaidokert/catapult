@@ -114,8 +114,10 @@ class CrOSBrowserEnvironmentTest(unittest.TestCase):
         not IsRemote())
     plat = cros_platform_backend.CrosPlatformBackend.CreatePlatformForDevice(
         device, options_for_unittests.GetCopy())
-    return cros_browser_finder.PossibleCrOSBrowser(
+    browser = cros_browser_finder.PossibleCrOSBrowser(
         'cros-chrome', options_for_unittests.GetCopy(), plat, False)
+    browser._platform_backend.cri.MakeRootReadWriteIfNecessary()
+    return browser
 
   @decorators.Enabled('chromeos')
   def testExistingMinidumpsMoved(self):
