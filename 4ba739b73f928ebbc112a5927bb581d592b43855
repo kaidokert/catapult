@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "61bfb04d_cfa906d1",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "As discussed internally, returning APKS archive path now.",
+      "parentUuid": "e1503ae6_b482a74c",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d55d735e_5d009f1c",
         "filename": "devil/devil/android/sdk/bundletool.py",
         "patchSetId": 6
@@ -33,6 +51,24 @@
       "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6744bcb_85ff18d5",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "It\u0027s not in buildtool but chromium/src has a DEPS on it. I\u0027m planning to make it available via //build/android/devil_chromium.json.",
+      "parentUuid": "d55d735e_5d009f1c",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "e1d14ebf_517d01b4",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "Neat, changed.",
+      "parentUuid": "75ac4659_238eac54",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37ecb566_780d2175",
         "filename": "devil/devil/android/sdk/bundletool.py",
         "patchSetId": 6
@@ -67,6 +121,24 @@
       "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12e915f2_1d14068e",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37ecb566_780d2175",
+      "revId": "4ba739b73f928ebbc112a5927bb581d592b43855",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

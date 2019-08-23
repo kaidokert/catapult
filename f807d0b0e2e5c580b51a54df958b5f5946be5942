@@ -318,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "69ea1194_70b6cda2",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "Changed as discussed internally.",
+      "parentUuid": "a64ac1ac_b37042af",
+      "range": {
+        "startLine": 474,
+        "startChar": 6,
+        "endLine": 474,
+        "endChar": 38
+      },
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "842ea96a_037cfcd4",
         "filename": "devil/devil/android/apk_helper.py",
         "patchSetId": 2
@@ -368,6 +392,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef0e7ed1_b6d9f02a",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "Unzipping on-demand only now.",
+      "parentUuid": "0c454d0f_eb253809",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +481,24 @@
       "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f701c8a_aa693a9d",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-08-23T14:36:13Z",
+      "side": 1,
+      "message": "Changed as discussed internally.",
+      "parentUuid": "e64cc1f7_5d21ec07",
+      "revId": "f807d0b0e2e5c580b51a54df958b5f5946be5942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
