@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d26021dc_6e376fbb",
+        "filename": "devil/devil/android/fastboot_utils_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-08-26T16:06:55Z",
+      "side": 0,
+      "message": "Didn\u0027t think this test was adding much value, so I nixed it. LMK if you want it back.",
+      "revId": "1078fdda6aea72aac670e606809de1bbd77c4744",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
