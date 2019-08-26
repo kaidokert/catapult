@@ -16,6 +16,24 @@
       "revId": "1078fdda6aea72aac670e606809de1bbd77c4744",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49f135e9_4e273cfa",
+        "filename": "devil/devil/android/fastboot_utils_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-08-26T16:30:10Z",
+      "side": 0,
+      "message": "Nope, fine w/ you removing it.",
+      "parentUuid": "d26021dc_6e376fbb",
+      "revId": "1078fdda6aea72aac670e606809de1bbd77c4744",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
