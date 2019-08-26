@@ -91,6 +91,10 @@ property 'group' sets to the header item name.
         visibility: hidden;
       }
 
+      .name {
+        text-overflow: ellipsis;
+      }
+
       .tag {
         color: gray;
         font-size: 90%;
@@ -176,7 +180,7 @@ property 'group' sets to the header item name.
                   head$="[[item.head]]"
                   hidden$="[[!showDropdown]]"
                   class$="layout horizontal [[locusClassIfLocus(locusItem, item)]]">
-              <div class="flex">[[item.name]]</div>
+              <div class="flex name">[[item.name]]</div>
               <div class="tag">[[item.tag]]</div>
             </paper-item>
           </template>
