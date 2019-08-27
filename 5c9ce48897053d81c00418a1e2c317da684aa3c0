@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f3649276_5880b068",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-27T21:25:05Z",
+      "side": 1,
+      "message": "That seems fragile. What if someone wants to reorganize things such that _run_one_test is called before StartBrowser? Will a unit test failure or assertion somewhere tell them not to do this?",
+      "parentUuid": "e2fbf9fa_d0214575",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 79
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c4bd319_b675a95b",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 9
@@ -140,6 +164,30 @@
       "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3936f0b3_81f55e72",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-27T21:25:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d0bb8ab2_ee868aa9",
+      "range": {
+        "startLine": 1013,
+        "startChar": 0,
+        "endLine": 1013,
+        "endChar": 49
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
