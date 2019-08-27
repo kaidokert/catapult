@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2aaa8874_942cf19f",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-27T00:32:36Z",
+      "side": 1,
+      "message": "nit: re-add new line here per lint",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 372,
+        "endChar": 0
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97568087_46ecb4d6",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-27T00:32:36Z",
+      "side": 1,
+      "message": "How can we be sure that StartBrowser is called before we check if the test should be skipped?",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 79
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c4bd319_b675a95b",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-27T00:32:36Z",
+      "side": 1,
+      "message": "I don\u0027t understand this code. How does it relate to the rest of the changelist? \n\nMaybe Dirk would understand it better?",
+      "range": {
+        "startLine": 1013,
+        "startChar": 0,
+        "endLine": 1013,
+        "endChar": 49
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
