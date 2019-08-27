@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "efecfc80_c43ea242",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-27T22:21:45Z",
+      "side": 1,
+      "message": "The StartBrowser function does not need to be called for every browser test case. There are several example browser test cases in telemetry/examples/browser_tests that do not call StartBrowser. I should add the platform tags only if a browser instance is created and that only happens in StartBrowser. I will move getting platform tags from possible browser instances into where the instance is first created which is in SetBrowserOptions function. If StartBrowser and SetBrowserOptions are called then we will get browser and possible browser platform tags. If they are not then we won\u0027t get those tags.",
+      "parentUuid": "f3649276_5880b068",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 79
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c4bd319_b675a95b",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 9
