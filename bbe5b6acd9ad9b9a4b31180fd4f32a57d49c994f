@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3da4564e_ee849377",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-08-27T08:10:54Z",
+      "side": 1,
+      "message": "Can we use default dict?",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 51
+      },
+      "revId": "bbe5b6acd9ad9b9a4b31180fd4f32a57d49c994f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
