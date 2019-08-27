@@ -41,7 +41,6 @@ class MockArgs(object):
 
 class MockTestCase(
     serially_executed_browser_test_case.SeriallyExecutedBrowserTestCase):
-  _expectations_file = None
 
   @classmethod
   def GenerateTags(cls, finder_options, possible_browser):
@@ -100,7 +99,6 @@ class BrowserTestRunnerTest(unittest.TestCase):
     temp_file.close()
     temp_file_name = temp_file.name
     if expectations:
-      assert tags
       expectations_file = tempfile.NamedTemporaryFile(delete=False)
       expectations_file.write(expectations)
       expectations_file.close()
@@ -142,11 +140,11 @@ class BrowserTestRunnerTest(unittest.TestCase):
     self._RunTest(
         test_filter='', expected_failures=[],
         expected_successes=['FailingTest'],
-        test_name='ImplementsGenerateTagsFunction',
-        tags=['foo'], expectations=_MakeTestExpectations(
+        test_name='ImplementsGetPlatformTags',
+        expectations=_MakeTestExpectations(
             'FailingTest', ['foo'], 'Failure'),
         extra_args=['--test-name-prefix=browser_tests.browser_test.'
-                    'ImplementsGenerateTagsFunction.'])
+                    'ImplementsGetPlatformTags.'])
     test_result = (
         self._test_result['tests']['FailingTest'])
     self.assertEqual(test_result['expected'], 'FAIL')
@@ -166,12 +164,11 @@ class BrowserTestRunnerTest(unittest.TestCase):
   def testShortenTestFilterGlobsUsingTestNamePrefixCommandLineArg(self):
     self._RunTest(
         'FailingTest', [], ['FailingTest'],
-        test_name='ImplementsGenerateTagsFunction',
+        test_name='ImplementsGetPlatformTags',
         expectations=_MakeTestExpectations('FailingTest', ['foo'], 'Failure'),
-        tags=['foo'],
         extra_args=[
-            '-x=foo', '--test-name-prefix='
-            'browser_tests.browser_test.ImplementsGenerateTagsFunction.'])
+            '--test-name-prefix='
+            'browser_tests.browser_test.ImplementsGetPlatformTags.'])
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
   def testGetExpectationsFromTypWithoutExpectationsFile(self):
@@ -312,34 +309,33 @@ class BrowserTestRunnerTest(unittest.TestCase):
     self.assertNotIn('is_regression', test_result)
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
-  def testOverrideGenerateTagsFunctionForFailureExpectations(self):
+  def testOverrideGetPlatformTagsFunctionForFailureExpectations(self):
     test_name = ('browser_tests.browser_test'
-                 '.ImplementsGenerateTagsFunction.FailingTest')
+                 '.ImplementsGetPlatformTags.FailingTest')
     self._RunTest(
         test_filter=test_name, expected_failures=[],
         expected_successes=[test_name],
-        test_name='ImplementsGenerateTagsFunction',
-        expectations=_MakeTestExpectations(test_name, ['foo'], 'Failure'),
-        tags=['foo'])
+        test_name='ImplementsGetPlatformTags',
+        expectations=_MakeTestExpectations(test_name, ['foo'], 'Failure'))
     test_result = (
         self._test_result['tests']['browser_tests']['browser_test']
-        ['ImplementsGenerateTagsFunction']['FailingTest'])
+        ['ImplementsGetPlatformTags']['FailingTest'])
     self.assertEqual(test_result['expected'], 'FAIL')
     self.assertEqual(test_result['actual'], 'FAIL')
 
   @decorators.Disabled('chromeos')  # crbug.com/696553
-  def testOverrideGenerateTagsFunctionForSkipExpectations(self):
+  def testOverrideGetPlatformTagsFunctionForSkipExpectations(self):
     test_name = ('browser_tests.browser_test'
-                 '.ImplementsGenerateTagsFunction.FailingTest')
+                 '.ImplementsGetPlatformTags.FailingTest')
     self._RunTest(
         test_filter=test_name, expected_failures=[], expected_successes=[],
         expected_skips=[test_name],
-        test_name='ImplementsGenerateTagsFunction',
-        tags=['foo'], expectations=_MakeTestExpectations(
+        test_name='ImplementsGetPlatformTags',
+        expectations=_MakeTestExpectations(
             test_name, ['foo'], 'Skip'))
     test_result = (
         self._test_result['tests']['browser_tests']['browser_test']
-        ['ImplementsGenerateTagsFunction']['FailingTest'])
+        ['ImplementsGetPlatformTags']['FailingTest'])
     self.assertEqual(test_result['expected'], 'SKIP')
     self.assertEqual(test_result['actual'], 'SKIP')
 
