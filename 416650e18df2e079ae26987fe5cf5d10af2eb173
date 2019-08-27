@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d830dab_4af2935c",
+        "filename": "telemetry/OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-08-27T16:19:15Z",
+      "side": 1,
+      "message": "Nit: normally we sort these entries.",
+      "revId": "416650e18df2e079ae26987fe5cf5d10af2eb173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
