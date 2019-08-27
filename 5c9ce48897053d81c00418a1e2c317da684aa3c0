@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b7074057_361ae371",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-27T01:02:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aaa8874_942cf19f",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 372,
+        "endChar": 0
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97568087_46ecb4d6",
         "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "e2fbf9fa_d0214575",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-27T01:02:37Z",
+      "side": 1,
+      "message": "The StartBrowser function is called in the run_browser_tests._SetUpProcess function which gets called before every test is run. The _run_one_test function within typ\u0027s runner.py will check if the test is disabled and will run immediately after the run_browser_tests._SetupProcess method is called.",
+      "parentUuid": "97568087_46ecb4d6",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 79
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4c4bd319_b675a95b",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 9
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-27T00:32:36Z",
       "side": 1,
       "message": "I don\u0027t understand this code. How does it relate to the rest of the changelist? \n\nMaybe Dirk would understand it better?",
+      "range": {
+        "startLine": 1013,
+        "startChar": 0,
+        "endLine": 1013,
+        "endChar": 49
+      },
+      "revId": "5c9ce48897053d81c00418a1e2c317da684aa3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0bb8ab2_ee868aa9",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-27T01:02:37Z",
+      "side": 1,
+      "message": "This function is the actual function within typ that runs tests. Before running a test, the run_browser_tests._SetupProcess function will be called, and it will add browser system condition tags to the TestExpectations instance. This function needs to use those new tags to find the expected results which could include Skip. If it contains the Skip expectation then it should skip the test and return a skip result.",
+      "parentUuid": "4c4bd319_b675a95b",
       "range": {
         "startLine": 1013,
         "startChar": 0,
