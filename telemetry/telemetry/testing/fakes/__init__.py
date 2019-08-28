@@ -258,8 +258,7 @@ class FakePossibleBrowser(object):
     return self.returned_browser
 
   def GetTypExpectationsTags(self):
-    tags = self.platform.GetTypExpectationsTags()
-    return tags + test_utils.sanitizeTypExpectationsTags([self.browser_type])
+    return self.platform.GetTypExpectationsTags()
 
 
 class FakeSharedPageState(shared_page_state.SharedPageState):
@@ -409,8 +408,7 @@ class FakeBrowser(FakeApp):
     del log_level  # unused
 
   def GetTypExpectationsTags(self):
-    tags = self.platform.GetTypExpectationsTags()
-    return tags + test_utils.sanitizeTypExpectationsTags([self.browser_type])
+    return test_utils.sanitizeTypExpectationsTags([self.browser_type])
 
   def __enter__(self):
     return self
