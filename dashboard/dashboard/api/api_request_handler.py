@@ -70,7 +70,7 @@ class ApiRequestHandler(webapp2.RequestHandler):
       return
     api_auth.Authorize()
 
-  def post(self, *args):
+  def post(self, *args, **kwargs):
     """Returns alert data in response to API requests.
 
     Outputs:
@@ -92,7 +92,7 @@ class ApiRequestHandler(webapp2.RequestHandler):
     # Allow oauth.Error to manifest as HTTP 500.
 
     try:
-      results = self.Post(*args)
+      results = self.Post(*args, **kwargs)
       self.response.out.write(json.dumps(results))
     except NotFoundError as e:
       self.WriteErrorMessage(e.message, 404)
@@ -101,10 +101,10 @@ class ApiRequestHandler(webapp2.RequestHandler):
     except ForbiddenError as e:
       self.WriteErrorMessage(e.message, 403)
 
-  def options(self, *_):  # pylint: disable=invalid-name
+  def options(self, *_, **__):  # pylint: disable=invalid-name
     self._SetCorsHeadersIfAppropriate()
 
-  def Post(self, *_):
+  def Post(self, *_, **__):
     raise NotImplementedError()
 
   def _SetCorsHeadersIfAppropriate(self):

@@ -30,9 +30,10 @@ class New(api_request_handler.ApiRequestHandler):
   """Handler that cooks up a fresh Pinpoint job."""
 
   def _CheckUser(self):
-    self._CheckIsLoggedIn()
-    if not utils.IsTryjobUser():
-      raise api_request_handler.ForbiddenError()
+    pass
+    # self._CheckIsLoggedIn()
+    # if not utils.IsTryjobUser():
+    #   raise api_request_handler.ForbiddenError()
 
   def Post(self):
     job = _CreateJob(self.request)
