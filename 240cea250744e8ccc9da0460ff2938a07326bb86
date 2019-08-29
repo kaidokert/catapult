@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "0fa3de4b_8ffa98de",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-29T00:51:34Z",
+      "side": 1,
+      "message": "Consider using one of the paper colour variables instead of a hard-coded hex value?",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2eab6d7_a40abc48",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-29T00:51:34Z",
+      "side": 1,
+      "message": "the \u0027By \u0027 becomes distracting after a while, I think we can leave that out or say \u0027Author: \u0027 instead?",
+      "range": {
+        "startLine": 162,
+        "startChar": 41,
+        "endLine": 162,
+        "endChar": 43
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6320335e_8f51a297",
         "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
         "patchSetId": 7
