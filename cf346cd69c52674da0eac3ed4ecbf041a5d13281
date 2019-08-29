@@ -22,6 +22,81 @@
       "revId": "cf346cd69c52674da0eac3ed4ecbf041a5d13281",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3fe8ff1_34a43986",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-29T09:28:51Z",
+      "side": 1,
+      "message": "I actually think it\u0027s strange to have these as attributes of the options object. They would make more sense as module level constants in https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/__init__.py",
+      "parentUuid": "5edab2a0_b953c5f7",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "cf346cd69c52674da0eac3ed4ecbf041a5d13281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f86b4886_2db172f4",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-29T09:28:51Z",
+      "side": 1,
+      "message": "should there be a \"desktop\" option? Also chromeos is tricky, because it has remote and local modes, but this does not seem to distinguish them?",
+      "revId": "cf346cd69c52674da0eac3ed4ecbf041a5d13281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9d1501f_c032038f",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-29T09:28:51Z",
+      "side": 1,
+      "message": "Not sure if that would be easier or harder. But maybe the problem from https://crbug.com/992260 could be solved by allowing to pass something like \"--device host\" to switch off looking for devices?",
+      "revId": "cf346cd69c52674da0eac3ed4ecbf041a5d13281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "371ea634_6a5aedbe",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-08-29T09:28:51Z",
+      "side": 1,
+      "message": "only import modules, not classes.",
+      "revId": "cf346cd69c52674da0eac3ed4ecbf041a5d13281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
