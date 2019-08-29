@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c1faea1_60267b0a",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-08-29T23:41:57Z",
+      "side": 0,
+      "message": "If the --run_disabled_tests flag is set, then you should run the benchmark correct?",
+      "revId": "8fe3e6ac1d7ae3776f2eb18b7a037b3c4c520e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
