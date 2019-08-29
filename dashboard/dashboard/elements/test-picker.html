@@ -88,6 +88,20 @@ found in the LICENSE file.
 tr.exportTo('d', function() {
   class Subtests extends d.AsyncMap {
     async process_(path) {
+      const splits = path.split('/');
+      if (splits.length === 3) {
+        // Looking to get the list of available metrics for a benchmark. Use the
+        // /api/describe API, instead of /list_tests, since it is much faster.
+        const benchmark = splits[2];
+        const params = {
+          test_suite: benchmark,
+        };
+        const fullSubtests = await simple_xhr.asPromise(
+            '/api/describe', params);
+        return fullSubtests.measurements.reduce(
+            (list, name) => { list.push({name}); return list; }, []);
+      }
+
       const params = {
         type: 'pattern',
         p: path + '/*',
