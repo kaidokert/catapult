@@ -58,7 +58,7 @@ found in the LICENSE file.
         <p><span class="commit">[[commitDetails.commit_position]]</span> By [[commitDetails.author]]</p>
         <p class="byline"><a href="[[url(change)]]" target="_blank">[[commitDetails.subject]]</a></p>
       </template>
-      <template is="dom-if" if="[[error]]">
+      <template is="dom-if" if="[[hasError(error, value)]]">
         <p class="error">[[error.error]]</p>
       </template>
     </div>
@@ -92,11 +92,16 @@ found in the LICENSE file.
       },
 
       observers: [
+        'loadingChanged(loading)',
         'valueChanged(value)',
       ],
 
       commitParams(value) {
         return {git_hash: value};
+      },
+
+      hasError(error, value) {
+        return this.hasGitHash(value) && !!error;
       },
 
       hasGitHash(value) {
@@ -105,6 +110,12 @@ found in the LICENSE file.
 
       hasCommitDetails(commitDetails) {
         return commitDetails !== null;
+      },
+
+      loadingChanged(loading) {
+        if (loading) {
+          this.error = null;
+        }
       },
 
       valueChanged(value) {

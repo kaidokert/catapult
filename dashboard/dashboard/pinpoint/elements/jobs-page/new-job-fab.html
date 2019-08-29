@@ -251,10 +251,11 @@ found in the LICENSE file.
         const vals = [];
         for (const cur of commitsList) {
           vals.push({
-            message: cur.message.split('\n')[0],
-            name: cur.commit,
-            author: cur.author.email,
-            date: cur.author.time,
+            message: cur.subject,
+            name: cur.git_hash,
+            author: cur.author,
+            date: cur.created,
+            commit_position: cur.commit_position,
           });
         }
         return vals;
