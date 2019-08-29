@@ -26,6 +26,7 @@ class Commits(api_request_handler.ApiRequestHandler):
           'repository': 'chromium',
           'git_hash': self.request.get('end_git_hash'),
       })
-      return change.Commit.CommitRange(c1, c2)
+      commits = change.Commit.CommitRange(c1, c2)
+      return [change.Commit('chromium', c['commit']).AsDict() for c in commits]
     except request.RequestError as e:
       raise api_request_handler.BadRequestError(e.message)
