@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbf3a749_e2bc2026",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-details.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-29T00:27:59Z",
+      "side": 1,
+      "message": "I don\u0027t know the exact git convention for abbreviated SHA1 hash length, but a single character might not be great to query git for. Maybe require at least 3 before we issue a request?",
+      "range": {
+        "startLine": 92,
+        "startChar": 15,
+        "endLine": 92,
+        "endChar": 32
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6320335e_8f51a297",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-29T00:27:59Z",
+      "side": 1,
+      "message": "One of these \"down\" comments may be wrong. :)",
+      "range": {
+        "startLine": 252,
+        "startChar": 34,
+        "endLine": 252,
+        "endChar": 38
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92dc2bc9_cf21df10",
+        "filename": "dashboard/dashboard/pinpoint/handlers/commit.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-29T00:27:59Z",
+      "side": 1,
+      "message": "No error handling?",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c31b5417_309022a7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/commits.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-08-29T00:27:59Z",
+      "side": 1,
+      "message": "No error handling either?",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
