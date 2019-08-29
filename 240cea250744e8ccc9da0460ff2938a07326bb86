@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "796fdfcd_de194df6",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-details.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-29T19:44:42Z",
+      "side": 1,
+      "message": "Me either, lets go with 3 and change it if its a problem.",
+      "parentUuid": "fbf3a749_e2bc2026",
+      "range": {
+        "startLine": 92,
+        "startChar": 15,
+        "endLine": 92,
+        "endChar": 32
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fa3de4b_8ffa98de",
         "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30908523_9a3741cc",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-29T19:44:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fa3de4b_8ffa98de",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 73,
+        "endChar": 33
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "db074a49_fd17cb1f",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-29T19:44:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2eab6d7_a40abc48",
+      "range": {
+        "startLine": 162,
+        "startChar": 41,
+        "endLine": 162,
+        "endChar": 43
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6320335e_8f51a297",
         "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
         "patchSetId": 7
@@ -91,6 +163,30 @@
       "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb65a1fc_67499fd3",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/commit-input.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-29T19:44:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6320335e_8f51a297",
+      "range": {
+        "startLine": 252,
+        "startChar": 34,
+        "endLine": 252,
+        "endChar": 38
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "92e78853_4516a87d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/commit.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-29T19:44:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92dc2bc9_cf21df10",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c31b5417_309022a7",
         "filename": "dashboard/dashboard/pinpoint/handlers/commits.py",
         "patchSetId": 7
@@ -128,6 +248,30 @@
       "writtenOn": "2019-08-29T00:27:59Z",
       "side": 1,
       "message": "No error handling either?",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 44
+      },
+      "revId": "240cea250744e8ccc9da0460ff2938a07326bb86",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5f1aadc_cf28b725",
+        "filename": "dashboard/dashboard/pinpoint/handlers/commits.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-08-29T19:44:42Z",
+      "side": 1,
+      "message": "api_request_handler should handle it, added 2 tests to confirm, and display support in UI.",
+      "parentUuid": "c31b5417_309022a7",
       "range": {
         "startLine": 27,
         "startChar": 11,
