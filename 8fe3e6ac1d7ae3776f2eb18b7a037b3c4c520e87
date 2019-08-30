@@ -16,6 +16,24 @@
       "revId": "8fe3e6ac1d7ae3776f2eb18b7a037b3c4c520e87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42312c96_c438ecdf",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-08-30T17:17:18Z",
+      "side": 0,
+      "message": "yes, that is true both before and after this code change.\n\nIf we can\u0027t run on the platform, then we don\u0027t run even if --also-run-disabled-tests is passed in. However, if expectations.config disables us, then we handle that later on in the Run() function. :)",
+      "parentUuid": "8c1faea1_60267b0a",
+      "revId": "8fe3e6ac1d7ae3776f2eb18b7a037b3c4c520e87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
