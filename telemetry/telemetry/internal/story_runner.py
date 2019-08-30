@@ -101,8 +101,8 @@ def AddCommandLineArgs(parser):
                     'then this argument will have no impact.')
 
 
-def ProcessCommandLineArgs(parser, args):
-  story_module.StoryFilter.ProcessCommandLineArgs(parser, args)
+def ProcessCommandLineArgs(parser, args, environment):
+  story_module.StoryFilter.ProcessCommandLineArgs(parser, args, environment)
 
   if args.pageset_repeat < 1:
     parser.error('--pageset-repeat must be a positive integer.')

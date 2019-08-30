@@ -13,6 +13,7 @@ from telemetry import benchmark
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_options
 from telemetry.internal import story_runner
+from telemetry.internal import story_filter
 from telemetry.util import matching
 
 
@@ -234,11 +235,6 @@ class Run(object):
   @classmethod
   def ProcessCommandLineArgs(cls, parser, options, environment):
     all_benchmarks = environment.GetBenchmarks()
-    if environment.expectations_files:
-      assert len(environment.expectations_files) == 1
-      expectations_file = environment.expectations_files[0]
-    else:
-      expectations_file = None
     if not options.positional_args:
       possible_browser = (browser_finder.FindBrowser(options)
                           if options.browser_type else None)
@@ -264,15 +260,13 @@ class Run(object):
     assert issubclass(benchmark_class,
                       benchmark.Benchmark), ('Trying to run a non-Benchmark?!')
 
-    story_runner.ProcessCommandLineArgs(parser, options)
+    story_runner.ProcessCommandLineArgs(parser, options, environment)
     benchmark_class.ProcessCommandLineArgs(parser, options)
 
     cls._benchmark = benchmark_class
-    cls._expectations_path = expectations_file
 
   def Run(self, options):
     b = self._benchmark()
-    _SetExpectations(b, self._expectations_path)
     return min(255, b.Run(options))
 
 
