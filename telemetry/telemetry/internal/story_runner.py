@@ -378,7 +378,7 @@ def ValidateStory(story):
         story.name)
 
 
-def _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
+def _ShouldRunBenchmark(benchmark, expectations, possible_browser, finder_options):
   if finder_options.print_only:
     return True  # Should always run on print-only mode.
   if benchmark._CanRunOnPlatform(possible_browser.platform, finder_options):
@@ -414,8 +414,9 @@ def RunBenchmark(benchmark, finder_options):
     typ_expectation_tags = possible_browser.GetTypExpectationsTags()
     logging.info('The following expectations condition tags were generated %s',
                  str(typ_expectation_tags))
-    benchmark.expectations.SetTags(typ_expectation_tags)
-    if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
+    expectations = typ_expectations.StoryExpectations(benchmark.Name())
+    expectations.SetTags(typ_expectation_tags)
+    if not _ShouldRunBenchmark(benchmark, expectations, possible_browser, finder_options):
       return -1
 
     pt = benchmark.CreatePageTest(finder_options)
@@ -430,7 +431,7 @@ def RunBenchmark(benchmark, finder_options):
             'telemetry.page.Page stories.')
     try:
       Run(pt, story_set, finder_options, results, benchmark.max_failures,
-          expectations=benchmark.expectations,
+          expectations=expectations,
           max_num_values=benchmark.MAX_NUM_VALUES)
       if results.benchmark_interrupted:
         return_code = 2
