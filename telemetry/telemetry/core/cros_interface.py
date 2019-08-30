@@ -127,11 +127,11 @@ class CrOSInterface(object):
 
     # List of ports generated from GetRemotePort() that may not be in use yet.
     self._reserved_ports = []
+    self._device_host_clock_offset = None
 
     if self.local:
       return
 
-    self._device_host_clock_offset = None
     self._ssh_identity = None
     self._ssh_args = ['-o StrictHostKeyChecking=no',
                       '-o KbdInteractiveAuthentication=no',
@@ -168,7 +168,7 @@ class CrOSInterface(object):
 
   def OpenConnection(self):
     """Opens a master connection to the device."""
-    if self._master_connection_open:
+    if self._master_connection_open or self.local:
       return
     # Establish master SSH connection using ControlPersist.
     with open(os.devnull, 'w') as devnull:
@@ -673,7 +673,7 @@ class CrOSInterface(object):
       self.RunCmdOnDevice(start_cmd)
 
   def CloseConnection(self):
-    if not self.local:
+    if not self.local and self._master_connection_open:
       with open(os.devnull, 'w') as devnull:
         subprocess.call(
             self.FormSSHCommandLine(['-O', 'exit', self._hostname]),
