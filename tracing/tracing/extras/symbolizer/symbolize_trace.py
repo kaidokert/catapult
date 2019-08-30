@@ -544,22 +544,67 @@ class TypeNameMap(NodeWrapper):
   For simplicity string ids are translated into strings during parsing,
   and then translated back to ids in ApplyModifications().
   """
+  class Type(object):
+    def __init__(self, type_id, name):
+      self._modified = False
+      self._id = type_id
+      self._pc = self._ParsePC(name)
+      self._name = name
+
+    @property
+    def modified(self):
+      """Returns True if the type was modified."""
+      return self._modified
+
+    @property
+    def id(self):
+      """Type id (integer)."""
+      return self._id
+
+    @property
+    def name(self):
+      """Name of the type."""
+      return self._name
+
+    @name.setter
+    def name(self, value):
+      """Changes the name."""
+      self._modified = True
+      self._name = value
+
+    @property
+    def pc(self):
+      """Parsed (integer) PC of the type node if pc_as_object_type is enabled, or None."""
+      return self._pc
+
+    _PC_TAG = 'pc:'
+
+    def _ParsePC(self, name):
+      if not name.startswith(self._PC_TAG):
+        return None
+      return int(name[len(self._PC_TAG):], 16)
+
+    def _ClearModified(self):
+      self._modified = False
+
   def __init__(self):
     self._modified = False
     self._type_name_nodes = []
-    self._name_by_id = {}
+    self._type_by_id = {}
     self._id_by_name = {}
     self._max_type_id = 0
 
   @property
   def modified(self):
-    """Returns True if the wrapper was modified (see NodeWrapper)."""
-    return self._modified
+    """Returns True if the wrapper was modified (see NodeWrapper) or any type
+       was modified."""
+    return (self._modified or
+            any(t.modified for t in self._type_by_id.values()))
 
   @property
-  def name_by_id(self):
+  def type_by_id(self):
     """Returns {id -> name} dict (must not be changed directly)."""
-    return self._name_by_id
+    return self._type_by_id
 
   def ParseNext(self, heap_dump_version, type_name_node, string_map):
     """Parses and interns next node (see NodeWrapper).
@@ -600,16 +645,18 @@ class TypeNameMap(NodeWrapper):
     for types_node in self._type_name_nodes:
       del types_node[:]
     types_node = self._type_name_nodes[0]
-    for type_id, type_name in self._name_by_id.items():
+    for type_node in self._type_by_id.values():
       types_node.append({
-          'id': type_id,
-          'name_sid': string_map.AddString(type_name)})
+          'id': type_node.id,
+          'name_sid': string_map.AddString(type_node.name)})
+      type_node._ClearModified()
 
     self._modified = False
 
   def _Insert(self, type_id, type_name):
+    type_node = self.Type(type_id, type_name)
     self._id_by_name[type_name] = type_id
-    self._name_by_id[type_id] = type_name
+    self._type_by_id[type_id] = type_node
     self._max_type_id = max(self._max_type_id, type_id)
 
 
@@ -781,6 +828,40 @@ class StackFrameMap(NodeWrapper):
     self._modified = False
 
 
+def GetOrAddTypeId(id_by_parent, parent):
+  type_id = id_by_parent.get(parent)
+  if type_id is None:
+    type_id = len(id_by_parent)
+    id_by_parent[parent] = type_id
+  return type_id
+
+
+def ReInsertTypeWithPC(process, allocation):
+  types = allocation["types"]
+  nodes = allocation["nodes"]
+  if types:
+    if not process._type_name_map.modified:
+      process._type_name_map._id_by_name = {}
+      process._type_name_map._type_by_id = {}
+      process._type_name_map._max_type_id = 0
+
+    process._type_name_map._modified = True
+    shift = process._type_name_map._max_type_id
+    type_size = len(types)
+    id_by_parent = {}
+    del types[:]
+
+    for i in range(type_size):
+      # Skip two frames to get more useful information
+      parent = nodes[i]
+      parent = process._stack_frame_map._frame_by_id[parent].parent_id
+      parent = process._stack_frame_map._frame_by_id[parent].parent_id
+      type_id = GetOrAddTypeId(id_by_parent, parent)
+      process._type_name_map._Insert(type_id + shift,
+          process._stack_frame_map._frame_by_id[parent].name)
+      types.append(type_id + shift)
+
+
 class Trace(NodeWrapper):
   """Wrapper for the root trace node (i.e. the trace JSON itself).
 
@@ -852,7 +933,7 @@ class Trace(NodeWrapper):
           self._type_name_map.ApplyModifications(self._string_map, force=True)
           self._string_map.ApplyModifications()
 
-  def __init__(self, trace_node):
+  def __init__(self, trace_node, pc_as_object_type):
     self._trace_node = trace_node
     self._processes = []
     self._heap_dump_version = None
@@ -866,6 +947,7 @@ class Trace(NodeWrapper):
     self._is_cros = False
     self._is_android = False
     self._is_cast = False
+    self._pc_as_object_type = pc_as_object_type
 
     # Misc per-process information needed only during parsing.
     class ProcessExt(object):
@@ -956,6 +1038,18 @@ class Trace(NodeWrapper):
             if stack_frames:
               process._stack_frame_map.ParseNext(
                   version, stack_frames, process._string_map)
+            allocators = heaps.get('allocators')
+            if self._pc_as_object_type and allocators:
+              malloc = allocators.get('malloc')
+              if malloc:
+                ReInsertTypeWithPC(process, malloc)
+              partition_alloc = allocators.get('partition_alloc')
+              if partition_alloc:
+                ReInsertTypeWithPC(process, partition_alloc)
+              blink_gc = allocators.get('blink_gc')
+              if blink_gc:
+                ReInsertTypeWithPC(process, blink_gc)
+
 
     self._processes = []
     for pe in process_ext_by_pid.values():
@@ -1029,6 +1123,14 @@ class Trace(NodeWrapper):
     self._is_cast = new_value
 
   @property
+  def pc_as_object_type(self):
+    return self._pc_as_object_type
+
+  @pc_as_object_type.setter
+  def pc_as_object_type(self, new_value):
+    self._pc_as_object_type = new_value
+
+  @property
   def is_64bit(self):
     return self._is_64bit
 
@@ -1079,7 +1181,27 @@ class SymbolizableFile(object):
     self.has_breakpad_symbols = False
 
 
-def ResolveSymbolizableFiles(processes, trace_from_win):
+def ResolveSymbolizableFilesByNodes(symfile_by_path, memory_map, nodes,
+        trace_from_win):
+  for node in nodes:
+    if node.pc is None:
+      continue
+    region = memory_map.FindRegion(node.pc)
+    if region is None:
+      node.name = '<unresolved>'
+      continue
+
+    symfile = symfile_by_path.get(region.file_path)
+    if symfile is None:
+      file_path = region.file_path
+      symfile = SymbolizableFile(file_path, region.code_id, trace_from_win)
+      symfile_by_path[symfile.path] = symfile
+
+    relative_pc = node.pc - region.start_address + region.file_offset
+    symfile.frames_by_address[relative_pc].append(node)
+
+
+def ResolveSymbolizableFiles(processes, trace_from_win, pc_as_object_type):
   """Resolves and groups PCs into list of SymbolizableFiles.
 
   As part of the grouping process, this function resolves PC from each stack
@@ -1090,22 +1212,12 @@ def ResolveSymbolizableFiles(processes, trace_from_win):
   for process in processes:
     if not process.memory_map:
       continue
-    for frame in process.stack_frame_map.frame_by_id.values():
-      if frame.pc is None:
-        continue
-      region = process.memory_map.FindRegion(frame.pc)
-      if region is None:
-        frame.name = '<unresolved>'
-        continue
+    ResolveSymbolizableFilesByNodes(symfile_by_path, process.memory_map,
+        process.stack_frame_map.frame_by_id.values(), trace_from_win)
 
-      symfile = symfile_by_path.get(region.file_path)
-      if symfile is None:
-        file_path = region.file_path
-        symfile = SymbolizableFile(file_path, region.code_id, trace_from_win)
-        symfile_by_path[symfile.path] = symfile
-
-      relative_pc = frame.pc - region.start_address + region.file_offset
-      symfile.frames_by_address[relative_pc].append(frame)
+    if pc_as_object_type:
+      ResolveSymbolizableFilesByNodes(symfile_by_path, process.memory_map,
+          process.type_name_map.type_by_id.values(), trace_from_win)
 
   return list(symfile_by_path.values())
 
@@ -1441,7 +1553,8 @@ def RemapBreakpadModules(symfiles, symbolizer, only_symbolize_chrome_symbols):
 
 
 def SymbolizeTrace(options, trace, symbolizer):
-  symfiles = ResolveSymbolizableFiles(trace.processes, trace.is_win)
+  symfiles = ResolveSymbolizableFiles(trace.processes, trace.is_win,
+                                      trace.pc_as_object_type)
 
   if options.use_breakpad_symbols:
     RemapBreakpadModules(symfiles, symbolizer,
@@ -1637,6 +1750,11 @@ def main(args):
       help="Indicate that the memlog trace is from cast devices.")
 
   parser.add_argument(
+      '--pc-as-object-type', action='store_true',
+      help="Indicate that the object types of memlog trace is named after "
+           "program counters of processes.")
+
+  parser.add_argument(
       '--output-directory',
       help='The path to the build output directory, such as out/Debug.')
 
@@ -1683,12 +1801,14 @@ def main(args):
 
   print('Reading trace file...')
   with OpenTraceFile(trace_file_path, 'r') as trace_file:
-    trace = Trace(json.load(trace_file))
+    trace = Trace(json.load(trace_file), options.pc_as_object_type)
   print('Trace loaded for %s/%s' % (trace.os, trace.version))
 
   trace.is_chromium = options.is_local_build
 
   trace.is_cast = options.is_cast
+
+  trace.pc_as_object_type = options.pc_as_object_type
 
   # Perform some sanity checks.
   if (trace.is_win and sys.platform != 'win32' and
