@@ -6,7 +6,6 @@
 import json
 import logging
 import optparse
-import os
 import sys
 
 from telemetry import benchmark
@@ -16,23 +15,9 @@ from telemetry.internal import story_runner
 from telemetry.util import matching
 
 
-def _SetExpectations(bench, path):
-  if path and os.path.exists(path):
-    with open(path) as fp:
-      bench.AugmentExpectationsWithFile(fp.read())
-  return bench.expectations
-
-
-def _IsBenchmarkEnabled(bench, possible_browser, expectations_file):
-  b = bench()
-  expectations = _SetExpectations(b, expectations_file)
-  expectations.SetTags(possible_browser.GetTypExpectationsTags())
-  return (
-      # Test that the current platform is supported.
-      any(t.ShouldDisable(possible_browser.platform, possible_browser)
-          for t in b.SUPPORTED_PLATFORMS) and
-      # Test that expectations say it is enabled.
-      not expectations.IsBenchmarkDisabled())
+def _IsBenchmarkSupported(benchmark_, possible_browser):
+  return benchmark_().CanRunOnPlatform(
+      possible_browser.platform, possible_browser)
 
 
 def _GetStoriesWithTags(b):
@@ -72,7 +57,7 @@ def _GetStoriesWithTags(b):
 
 
 def PrintBenchmarkList(
-    benchmarks, possible_browser, expectations_file, output_pipe=None,
+    benchmarks, possible_browser, output_pipe=None,
     json_pipe=None):
   """ Print benchmarks that are not filtered in the same order of benchmarks in
   the |benchmarks| list.
@@ -84,6 +69,7 @@ def PrintBenchmarkList(
           "name": <string>,
           "description": <string>,
           "enabled": <boolean>,
+          "supported": <boolean>,
           "story_tags": [
               <string>,
               ...
@@ -93,11 +79,16 @@ def PrintBenchmarkList(
       ...
   ]
 
+  Note that "enabled" and "supported" carry the same value. "enabled" is
+  deprecated since it is misleading since a benchmark could be theoretically
+  supported but have all of its stories disabled with expectations.config file.
+  "supported" simply checks the benchmark's SUPPORTED_PLATFORMS member.
+
   Args:
     benchmarks: the list of benchmarks to be printed (in the same order of the
       list).
     possible_browser: the possible_browser instance that's used for checking
-      which benchmarks are enabled.
+      which benchmarks are supported.
     output_pipe: the stream in which benchmarks are printed on.
     json_pipe: if available, also serialize the list into json_pipe.
   """
@@ -118,9 +109,9 @@ def PrintBenchmarkList(
   all_benchmark_info = []
   for b in benchmarks:
     benchmark_info = {'name': b.Name(), 'description': b.Description()}
-    benchmark_info['enabled'] = (
+    benchmark_info['supported'] = (
         not possible_browser or
-        _IsBenchmarkEnabled(b, possible_browser, expectations_file))
+        _IsBenchmarkSupported(b, possible_browser))
     benchmark_info['stories'] = _GetStoriesWithTags(b)
     all_benchmark_info.append(benchmark_info)
 
@@ -131,19 +122,19 @@ def PrintBenchmarkList(
   # Sort the benchmarks by benchmark name.
   all_benchmark_info.sort(key=lambda b: b['name'])
 
-  enabled = [b for b in all_benchmark_info if b['enabled']]
-  if enabled:
+  supported = [b for b in all_benchmark_info if b['supported']]
+  if supported:
     print >> output_pipe, 'Available benchmarks %sare:' % (
         'for %s ' % possible_browser.browser_type if possible_browser else '')
-    for b in enabled:
+    for b in supported:
       print >> output_pipe, format_string % (b['name'], b['description'])
 
-  disabled = [b for b in all_benchmark_info if not b['enabled']]
-  if disabled:
+  not_supported = [b for b in all_benchmark_info if not b['supported']]
+  if not_supported:
     print >> output_pipe, (
-        '\nDisabled benchmarks for %s are (force run with -d):' %
+        '\nNot supported benchmarks for %s are (force run with -d):' %
         possible_browser.browser_type)
-    for b in disabled:
+    for b in not_supported:
       print >> output_pipe, format_string % (b['name'], b['description'])
 
   print >> output_pipe, (
@@ -171,11 +162,6 @@ class List(object):
 
   @classmethod
   def ProcessCommandLineArgs(cls, parser, options, environment):
-    if environment.expectations_files:
-      assert len(environment.expectations_files) == 1
-      expectations_file = environment.expectations_files[0]
-    else:
-      expectations_file = None
     if not options.positional_args:
       options.benchmarks = environment.GetBenchmarks()
     elif len(options.positional_args) == 1:
@@ -183,7 +169,6 @@ class List(object):
           options.positional_args[0], environment.GetBenchmarks())
     else:
       parser.error('Must provide at most one benchmark name.')
-    cls._expectations_file = expectations_file
 
   def Run(self, options):
     # Set at least log info level for List command.
@@ -194,11 +179,9 @@ class List(object):
     if options.json_filename:
       with open(options.json_filename, 'w') as json_out:
         PrintBenchmarkList(options.benchmarks, possible_browser,
-                           self._expectations_file,
                            json_pipe=json_out)
     else:
-      PrintBenchmarkList(options.benchmarks, possible_browser,
-                         self._expectations_file)
+      PrintBenchmarkList(options.benchmarks, possible_browser)
     return 0
 
 
@@ -234,16 +217,10 @@ class Run(object):
   @classmethod
   def ProcessCommandLineArgs(cls, parser, options, environment):
     all_benchmarks = environment.GetBenchmarks()
-    if environment.expectations_files:
-      assert len(environment.expectations_files) == 1
-      expectations_file = environment.expectations_files[0]
-    else:
-      expectations_file = None
     if not options.positional_args:
       possible_browser = (browser_finder.FindBrowser(options)
                           if options.browser_type else None)
-      PrintBenchmarkList(
-          all_benchmarks, possible_browser, expectations_file)
+      PrintBenchmarkList(all_benchmarks, possible_browser)
       parser.error('missing required argument: benchmark_name')
 
     benchmark_name = options.positional_args[0]
@@ -254,7 +231,7 @@ class Run(object):
       if most_likely_matched_benchmarks:
         print >> sys.stderr, 'Do you mean any of those benchmarks below?'
         PrintBenchmarkList(most_likely_matched_benchmarks, None,
-                           expectations_file, sys.stderr)
+                           sys.stderr)
       parser.error('no such benchmark: %s' % benchmark_name)
 
     if len(options.positional_args) > 1:
@@ -268,11 +245,9 @@ class Run(object):
     benchmark_class.ProcessCommandLineArgs(parser, options)
 
     cls._benchmark = benchmark_class
-    cls._expectations_path = expectations_file
 
   def Run(self, options):
     b = self._benchmark()
-    _SetExpectations(b, self._expectations_path)
     return min(255, b.Run(options))
 
 
