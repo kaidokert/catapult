@@ -476,7 +476,7 @@ class StringMap(NodeWrapper):
   def string_by_id(self):
     return self._string_by_id
 
-  def ParseNext(self, heap_dump_version, strings_node):
+  def ParseNext(self, heap_dump_version, strings_node, map_string_by_id):
     """Parses and interns next node (see NodeWrapper)."""
 
     if heap_dump_version != Trace.HEAP_DUMP_VERSION_1:
@@ -484,7 +484,8 @@ class StringMap(NodeWrapper):
 
     self._strings_nodes.append(strings_node)
     for string_node in strings_node:
-      self._Insert(string_node['id'], string_node['string'])
+      string_id = self.AddString(string_node['string'])
+      map_string_by_id[string_node['id']] = string_id
 
   def Clear(self):
     """Clears all string mappings."""
@@ -561,7 +562,8 @@ class TypeNameMap(NodeWrapper):
     """Returns {id -> name} dict (must not be changed directly)."""
     return self._name_by_id
 
-  def ParseNext(self, heap_dump_version, type_name_node, string_map):
+  def ParseNext(self, heap_dump_version, type_name_node, string_map,
+                map_string_by_id, map_type_by_id):
     """Parses and interns next node (see NodeWrapper).
 
     |string_map| - A StringMap object to use to translate string ids
@@ -572,8 +574,9 @@ class TypeNameMap(NodeWrapper):
 
     self._type_name_nodes.append(type_name_node)
     for type_node in type_name_node:
-      self._Insert(type_node['id'],
-                   string_map.string_by_id[type_node['name_sid']])
+      type_id = self.AddType(
+          string_map.string_by_id[map_string_by_id[type_node['name_sid']]])
+      map_type_by_id[type_node['id']] = type_id
 
   def AddType(self, type_name):
     """Adds a type name (if it doesn't exist) and returns its id."""
@@ -581,7 +584,6 @@ class TypeNameMap(NodeWrapper):
     if type_id is None:
       type_id = self._max_type_id + 1
       self._Insert(type_id, type_name)
-      self._modified = True
     return type_id
 
   def ApplyModifications(self, string_map, force=False):
@@ -714,7 +716,8 @@ class StackFrameMap(NodeWrapper):
     """Returns {id -> frame} dict (must not be modified directly)."""
     return self._frame_by_id
 
-  def ParseNext(self, heap_dump_version, stack_frames_node, string_map):
+  def ParseNext(self, heap_dump_version, stack_frames_node, string_map,
+                map_string_by_id = None):
     """Parses the next stack frames node (see NodeWrapper).
 
     For the modern format |string_map| is used to translate string ids
@@ -734,9 +737,10 @@ class StackFrameMap(NodeWrapper):
       if heap_dump_version != Trace.HEAP_DUMP_VERSION_1:
         raise UnsupportedHeapDumpVersionError(heap_dump_version)
       for frame_node in stack_frames_node:
-        frame = self.Frame(frame_node['id'],
-                           string_map.string_by_id[frame_node['name_sid']],
-                           frame_node.get('parent'))
+        frame = self.Frame(
+            frame_node['id'],
+            string_map.string_by_id[map_string_by_id[frame_node['name_sid']]],
+            frame_node.get('parent'))
         frame_by_id[frame.id] = frame
 
     self._heap_dump_version = heap_dump_version
@@ -939,6 +943,13 @@ class Trace(NodeWrapper):
             types = maps.get('types')
             stack_frames = maps.get('nodes')
             strings = maps.get('strings')
+
+            # Multiple trace points will be merged in wrong way, we need to
+            # reassign strings and types
+            map_string_by_id = {}
+            map_type_by_id = {}
+
+            alloc_types = ['malloc', 'partition_alloc', 'blink_gc']
             if (strings is None and (types or stack_frames)
                 and not process_ext.seen_strings_node):
               # ApplyModifications() for TypeNameMap and StackFrameMap puts
@@ -949,13 +960,18 @@ class Trace(NodeWrapper):
               maps['strings'] = strings
             if strings is not None:
               process_ext.seen_strings_node = True
-              process._string_map.ParseNext(version, strings)
+              process._string_map.ParseNext(version, strings, map_string_by_id)
             if types:
               process._type_name_map.ParseNext(
-                  version, types, process._string_map)
+                  version, types, process._string_map, map_string_by_id,
+                  map_type_by_id)
             if stack_frames:
               process._stack_frame_map.ParseNext(
-                  version, stack_frames, process._string_map)
+                  version, stack_frames, process._string_map, map_string_by_id)
+              for alloc_type in alloc_types:
+                types = heaps.get('allocators').get(alloc_type).get('types')
+                for count in range(len(types)):
+                  types[count] = map_type_by_id[types[count]]
 
     self._processes = []
     for pe in process_ext_by_pid.values():
