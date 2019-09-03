@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b80ad71e_65a14b8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15f28ace_f41cf9e9",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "797c009c_a3ef4cbf",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-02T06:54:26Z",
       "side": 1,
       "message": "Do we still need this?",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 587,
+        "endChar": 0
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b730a7a_fe9ddce4",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Since frame name may not always in pc type, we have to make sure the object type will not raise error.\nWe need this to get the program counter(int).",
+      "parentUuid": "797c009c_a3ef4cbf",
       "range": {
         "startLine": 582,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e6dcb383_f22bf4f8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "c786893f_0d67ec24",
+      "range": {
+        "startLine": 832,
+        "startChar": 0,
+        "endLine": 839,
+        "endChar": 0
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff45ae15_d11ef8f1",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "01e92728_c1e8cd80",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Actually, we insert types with new names but not replace them. I\u0027ll change the function name in the next version.",
+      "parentUuid": "ff45ae15_d11ef8f1",
+      "range": {
+        "startLine": 840,
+        "startChar": 4,
+        "endLine": 840,
+        "endChar": 22
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3663f23_e7928ac6",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2019-09-02T06:54:26Z",
       "side": 1,
       "message": "Why don\u0027t we always do this?",
+      "range": {
+        "startLine": 844,
+        "startChar": 0,
+        "endLine": 848,
+        "endChar": 0
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f04b0f9b_3e9b86fb",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Since a process may meet this function more than once, we can only clean the old memory once.",
+      "parentUuid": "a3663f23_e7928ac6",
       "range": {
         "startLine": 844,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "5fc4595f_4b5ede1d",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36e6c7ab_73d204a9",
+      "range": {
+        "startLine": 855,
+        "startChar": 0,
+        "endLine": 857,
+        "endChar": 46
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "403f63ff_19f38c9c",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 2
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "afdc6d9a_b33d30f0",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 860,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "403f63ff_19f38c9c",
+      "range": {
+        "startLine": 860,
+        "startChar": 6,
+        "endLine": 860,
+        "endChar": 22
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96657861_57f83dcf",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f693262_b5d2f8dd",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-03T01:40:37Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "96657861_57f83dcf",
+      "range": {
+        "startLine": 1045,
+        "startChar": 15,
+        "endLine": 1045,
+        "endChar": 50
+      },
+      "revId": "cf7d8574633099ddb7aac6fdf37f3e090dd1b57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
