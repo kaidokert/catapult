@@ -90,6 +90,8 @@ class PageTestResults(object):
     self._interruption = None
     self._results_label = results_label
 
+    self._diagnostics = {}
+
     # If the object has been finalized, no more results can be added to it.
     self._finalized = False
     self._start_time = time.time()
@@ -250,9 +252,9 @@ class PageTestResults(object):
     self._WriteJsonLine({
         'benchmarkRun': {
             'startTime': self.start_datetime.isoformat() + 'Z',
-            # TODO(crbug.com/981349): Fill this in with benchmark and platform
-            # diagnostics info.
-            'diagnostics': {}
+            'benchmarkName': self.benchmark_name,
+            'benchmarkDescription': self.benchmark_description,
+            'label': self.label,
         }
     })
 
@@ -261,6 +263,7 @@ class PageTestResults(object):
         'benchmarkRun': {
             'finalized': self.finalized,
             'interrupted': self.benchmark_interrupted,
+            'diagnostics': self._diagnostics,
         }
     }, close=True)
 
@@ -422,6 +425,7 @@ class PageTestResults(object):
 
   def AddSharedDiagnosticToAllHistograms(self, name, diagnostic):
     self._histograms.AddSharedDiagnosticToAllHistograms(name, diagnostic)
+    self._diagnostics[name] = diagnostic
 
   def Fail(self, failure):
     """Mark the current story run as failed.

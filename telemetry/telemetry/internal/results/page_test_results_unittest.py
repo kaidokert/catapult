@@ -322,8 +322,7 @@ class PageTestResultsTest(_PageTestResultsTestBase):
       results.WillRunPage(self.pages[0])
       results.DidRunPage(self.pages[0])
       results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.BENCHMARKS.name,
-          generic_set.GenericSet(['benchmark_name']))
+          reserved_infos.BENCHMARKS.name, 'benchmark_name')
       results.PopulateHistogramSet()
 
     histogram_dicts = results.AsHistogramDicts()
@@ -399,14 +398,17 @@ class PageTestResultsTest(_PageTestResultsTestBase):
     self.assertEqual(records[0], {
         'benchmarkRun': {
             'startTime': '2009-02-13T23:31:30.987000Z',
-            'diagnostics': {},
+            'benchmarkDescription': '',
+            'benchmarkName': '(unknown benchmark)',
+            'label': None,
         }
     })
     self.assertEqual(records[1]['testResult']['status'], 'FAIL')
     self.assertEqual(records[2], {
         'benchmarkRun': {
             'finalized': True,
-            'interrupted': True
+            'interrupted': True,
+            'diagnostics': {},
         }
     })
 
