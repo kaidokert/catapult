@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4697b9d4_3d821397",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-03T15:30:51Z",
+      "side": 1,
+      "message": "should we include these in the diagnostics dict instead?",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0058e9a_b13b888c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-03T15:30:51Z",
+      "side": 1,
+      "message": "Do we really need label? I think in regular mode (i.e. via run_benchmark) the label is available through options.results_label; and in standalone mode it makes sense that you can choose a different label to whichever was used while running Telemetry (so also we just read it from options.results_label).\n\nIn fact, after we finish the results processor work (I believe) Telemetry would not need to know or deal any more with the results_label; it will be a results-processor concept only.",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f88a9481_1da07743",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-03T15:30:51Z",
+      "side": 1,
+      "message": "I guess this is needed because now diagnostics need to be json serializable and GenericSet is not. Can we add a check (at least a shallow one) to make sure values passed to AddSharedDiagnosticToAllHistograms are json serializable *and* valid arguments for the corresponding function in HistogramSet (i.e. maybe just list, or other scalar value)?",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c330741_711d3a48",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-03T15:30:51Z",
+      "side": 1,
+      "message": "Do add necessary method calls in the test so that some diagnostics are recorded here.",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
