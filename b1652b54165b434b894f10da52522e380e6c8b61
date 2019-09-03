@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "196eed08_720e3b57",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-03T15:34:43Z",
+      "side": 1,
+      "message": "nit: remove -\u003e Remove",
+      "revId": "b1652b54165b434b894f10da52522e380e6c8b61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
