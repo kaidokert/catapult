@@ -56,6 +56,12 @@ tr.exportTo('tr.metrics.blink', function() {
     return BLINK_TOP_GC_EVENTS[event.title];
   }
 
+  function blinkGarbageCollectionEventNames() {
+    // TODO(ulan): Change to Object.values() once metric runner on Windows
+    // is updated to newer version.
+    return Object.keys(BLINK_TOP_GC_EVENTS).map(e => BLINK_TOP_GC_EVENTS[e]);
+  }
+
   function isNonForcedEvent(event) {
     return (!event.args || !event.args.forced) &&
            !tr.metrics.v8.utils.isForcedGarbageCollectionEvent(event);
@@ -160,7 +166,8 @@ tr.exportTo('tr.metrics.blink', function() {
             cpuDuration.addSample(event.cpuDuration);
           }
           histograms.addHistogram(cpuDuration);
-        }
+        },
+        blinkGarbageCollectionEventNames(),
     );
   }
 
@@ -196,7 +203,8 @@ tr.exportTo('tr.metrics.blink', function() {
             cpuDuration.addSample(event.cpuDuration);
           }
           histograms.addHistogram(cpuDuration);
-        }
+        },
+        ['blink-gc-total']
     );
   }
 
@@ -214,7 +222,8 @@ tr.exportTo('tr.metrics.blink', function() {
             cpuDuration.addSample(event.cpuDuration);
           }
           histograms.addHistogram(cpuDuration);
-        }
+        },
+        ['blink-gc-sweep-foreground']
     );
   }
 
@@ -232,7 +241,8 @@ tr.exportTo('tr.metrics.blink', function() {
             cpuDuration.addSample(event.cpuDuration);
           }
           histograms.addHistogram(cpuDuration);
-        }
+        },
+        ['blink-gc-sweep-background']
     );
   }
 
@@ -257,7 +267,8 @@ tr.exportTo('tr.metrics.blink', function() {
             cpuDuration.addSample(event.cpuDuration);
           }
           histograms.addHistogram(cpuDuration);
-        }
+        },
+        ['unified-gc-total']
     );
   }
 
