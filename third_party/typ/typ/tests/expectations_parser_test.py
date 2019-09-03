@@ -243,38 +243,38 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                     '# tags: [ Mac BMW ]')
         with self.assertRaises(expectations_parser.ParseError) as context:
             expectations_parser.TaggedTestListParser(raw_data)
-        self.assertEqual(
-            '1: The tag mac was found in multiple tag sets',
-            str(context.exception))
+            self.assertEqual(
+                '1: The tag mac was found in multiple tag sets',
+                str(context.exception))
 
     def testTwoTagsinMultipleTagsets(self):
         raw_data = ('\n# tags: [ Mac Linux ]\n# tags: [ Mac BMW Win ]\n'
                     '# tags: [ Win Android ]\n# tags: [ iOS ]')
         with self.assertRaises(expectations_parser.ParseError) as context:
             expectations_parser.TaggedTestListParser(raw_data)
-        self.assertEqual(
-            '2: The tags mac and win were found in multiple tag sets',
-            str(context.exception))
+            self.assertEqual(
+                '2: The tags mac and win were found in multiple tag sets',
+                str(context.exception))
 
     def testTwoPlusTagsinMultipleTagsets(self):
         raw_data = ('\n\n# tags: [ Mac Linux ]\n# tags: [ Mac BMW Win ]\n'
                     '# tags: [ Win Android ]\n# tags: [ IOS bmw ]')
         with self.assertRaises(expectations_parser.ParseError) as context:
             expectations_parser.TaggedTestListParser(raw_data)
-        self.assertEqual(
-            '3: The tags bmw, mac and win'
-            ' were found in multiple tag sets',
-            str(context.exception))
+            self.assertEqual(
+                '3: The tags bmw, mac and win'
+                ' were found in multiple tag sets',
+                str(context.exception))
 
     def testTwoTagsetPairsSharingTags(self):
         raw_data = ('\n\n\n# tags: [ Mac Linux Win ]\n# tags: [ mac BMW Win ]\n'
                     '# tags: [ android ]\n# tags: [ IOS Android ]')
         with self.assertRaises(expectations_parser.ParseError) as context:
             expectations_parser.TaggedTestListParser(raw_data)
-        self.assertEqual(
-            '4: The tags android, mac and win'
-            ' were found in multiple tag sets',
-            str(context.exception))
+            self.assertEqual(
+                '4: The tags android, mac and win'
+                ' were found in multiple tag sets',
+                str(context.exception))
 
     def testDisjoinTagsets(self):
         raw_data = ('# tags: [ Mac Win Linux ]\n'
@@ -289,15 +289,15 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'crbug.com/23456 [ mac Win Amd robin Linux ] b1/s1 [ Pass ]\n')
         with self.assertRaises(expectations_parser.ParseError) as context:
             expectations_parser.TaggedTestListParser(raw_data)
-        self.assertIn(
-            '4: The tag group contains tags '
-            'that are part of the same tag set\n',
-            str(context.exception))
-        self.assertIn('  - Tags linux and robin are part of the same tag set',
-                      str(context.exception))
-        self.assertIn('  - Tags amd, mac and win are part of the same tag set',
-                      str(context.exception))
-        self.assertNotIn('  - Tags webgl-version-1', str(context.exception))
+            self.assertIn(
+                '4: The tag group contains tags '
+                'that are part of the same tag set\n',
+                str(context.exception))
+            self.assertIn('  - Tags linux and robin are part of the same tag set',
+                          str(context.exception))
+            self.assertIn('  - Tags amd, mac and win are part of the same tag set',
+                          str(context.exception))
+            self.assertNotIn('  - Tags webgl-version-1', str(context.exception))
 
 
     def testEachTagInGroupIsFromDisjointTagSets(self):
@@ -320,11 +320,11 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'crbug.com/23456 [ Batman Batman Batman ] b1/s1 [ Failure ]\n')
         with self.assertRaises(expectations_parser.ParseError) as context:
             expectations_parser.TaggedTestListParser(raw_data)
-        self.assertIn('4: The tag group contains '
-                      'tags that are part of the same tag set\n',
-                      str(context.exception))
-        self.assertIn('  - Tags batman, batman and batman are'
-                      ' part of the same tag set', str(context.exception))
+            self.assertIn('4: The tag group contains '
+                          'tags that are part of the same tag set\n',
+                          str(context.exception))
+            self.assertIn('  - Tags batman, batman and batman are'
+                          ' part of the same tag set', str(context.exception))
 
     def testRetryOnFailureExpectation(self):
         raw_data = (
@@ -521,3 +521,45 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         broken_expectations = expectations.check_for_broken_expectations(
             ['a/b/c'])
         self.assertFalse(broken_expectations)
+
+    def testNonDeclaredSystemConditionTagRaisesException(self):
+        test_expectations = '''# tags: [ InTel AMD nvidia ]
+        # tags: [ win ]
+        # results: [ Failure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, msg = expectations.parse_tagged_list(
+            test_expectations, 'test.txt')
+        self.assertFalse(msg)
+        with self.assertRaises(Exception) as context:
+            expectations.set_tags(['Unknown'], validate_tags=True)
+            self.assertEqual(str(context.exception),
+                'Tag unknown is not declared in any expectations file.')
+
+    def testNonDeclaredSystemConditionTagsRaisesException_PluralCase(self):
+        test_expectations = '''# tags: [ InTel AMD nvidia ]
+        # tags: [ win ]
+        # results: [ Failure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, msg = expectations.parse_tagged_list(
+            test_expectations, 'test.txt')
+        self.assertFalse(msg)
+        with self.assertRaises(Exception) as context:
+            expectations.set_tags(['Unknown', 'linux', 'nVidia', 'nvidia-0x1010'],
+                                  validate_tags=True)
+            self.assertEqual(str(context.exception),
+                'Tags linux, nvidia-0x1010 and unknown are not declared '
+                'in any expectations file.')
+
+    def testDeclaredSystemConditionTagsDontRaiseAnException(self):
+        test_expectations = '''# tags: [ InTel AMD nvidia nvidia-0x1010 ]
+        # tags: [ win ]
+        # results: [ Failure ]
+        '''
+        expectations = expectations_parser.TestExpectations()
+        _, msg = expectations.parse_tagged_list(
+            test_expectations, 'test.txt')
+        self.assertFalse(msg)
+        expectations.set_tags(['win', 'nVidia', 'nvidia-0x1010'],
+                              validate_tags=True)
