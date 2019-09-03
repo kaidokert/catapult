@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2bcb0deb_99cc365b",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Good point. The intent here was to limit the exposure of the NDB models to only be useful in this module (treat them as internal models, implementation details). We use the `__all__` special module member to define which names are actually exported by this module, so it becomes self-contained.\n\nRenamed to InMemoryTask and added a member function in Task to do the conversion.",
+      "parentUuid": "c4933f83_9cef2a7c",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 78
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5def737_6ef0070f",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "736cb24c_6714a940",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "I like the more explicit names, and since these are internal anyway, self-documenting code wins. :)",
+      "parentUuid": "e5def737_6ef0070f",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 30
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "513a77a9_c9411353",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbfaad36_b7c0a967",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 11
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f008e898_53ca7583",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7de7d15_b3f81428",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Unfortunately, we need the key instances from the values, not just the id\u0027s as keys in the dictionary. It\u0027s not obvious due to naming, so I\u0027ve fixed the naming. :)",
+      "parentUuid": "f008e898_53ca7583",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 63
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "ea667ed2_bf925bae",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d058d1c_591f4a83",
+      "range": {
+        "startLine": 164,
+        "startChar": 8,
+        "endLine": 164,
+        "endChar": 44
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccd81de1_7a86d626",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
@@ -137,6 +257,30 @@
       "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a559557d_4eaf5c68",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccd81de1_7a86d626",
+      "range": {
+        "startLine": 166,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 46
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "6c975a33_0f39b603",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48f06b7f_ba5bba03",
+      "range": {
+        "startLine": 186,
+        "startChar": 69,
+        "endLine": 192,
+        "endChar": 21
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bdc08262_e713383d",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "b14fa8be_63e46263",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc08262_e713383d",
+      "range": {
+        "startLine": 194,
+        "startChar": 2,
+        "endLine": 194,
+        "endChar": 6
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "33aae3d2_c3f25a94",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
@@ -206,6 +398,30 @@
       "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61211a00_b2951c10",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33aae3d2_c3f25a94",
+      "range": {
+        "startLine": 240,
+        "startChar": 22,
+        "endLine": 240,
+        "endChar": 59
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +471,54 @@
     },
     {
       "key": {
+        "uuid": "cf7bbe3a_143216dd",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8a1e3fc_cf95cc07",
+      "range": {
+        "startLine": 247,
+        "startChar": 25,
+        "endLine": 247,
+        "endChar": 34
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d55cf107_3a160cd2",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccbde65d_c3b755d9",
+      "range": {
+        "startLine": 247,
+        "startChar": 18,
+        "endLine": 247,
+        "endChar": 23
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65863cec_0be2437f",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
@@ -266,6 +530,30 @@
       "writtenOn": "2019-09-02T05:50:30Z",
       "side": 1,
       "message": "Perhaps `actions \u003d [lambda _: None]` instead of needing a special case for `first`?",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 14
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c7dd5c0_b6c597ad",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Cool trick, thanks!",
+      "parentUuid": "65863cec_0be2437f",
       "range": {
         "startLine": 253,
         "startChar": 0,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "c9abe1a8_d695f26e",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Yeah, I had this code that way in the past, but in various stages of debugging I\u0027ve forgotten to put it back in the appropriate state (which is that this branch should pop).",
+      "parentUuid": "1a4134f0_3d90026b",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 30
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6595eb8c_8039713e",
         "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
         "patchSetId": 1
@@ -321,6 +633,30 @@
       "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "803dc367_69a5aded",
+        "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6595eb8c_8039713e",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 123,
+        "endChar": 17
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "3f325f65_d8c103e1",
+        "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Yeah, I redid this test to focus on the key features of the execution engine using more abstract terms (save for one which embeds the bisection/speculation logic and ties it into the test, to show how we could be using that logic in an implementation that uses this engine).",
+      "parentUuid": "70e76e1a_2caf3471",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 417,
+        "endChar": 55
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d00b6a12_ee24cbff",
         "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
         "patchSetId": 1
@@ -370,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "fca14860_c86b53ca",
+        "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Indeed. I\u0027ve done two things here:\n\n- I\u0027ve greatly simplified how the \u0027event\u0027 is used in this test. It shows the coupling more between the evaluator and the event, rather than something being intrinsic to the execution engine.\n\n- I\u0027ve documented what that interaction is between what the \u0027event\u0027 is and how it relates to the evaluator.\n\nThat should demystify how these things interact and make this file more focused on exercising the semantics we intend to support from the execution engine core.",
+      "parentUuid": "d00b6a12_ee24cbff",
+      "range": {
+        "startLine": 420,
+        "startChar": 0,
+        "endLine": 420,
+        "endChar": 49
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f540667a_c5ed13d1",
         "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
         "patchSetId": 1
@@ -390,6 +774,30 @@
       "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc3a32d_76c4363b",
+        "filename": "dashboard/dashboard/pinpoint/models/task_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-03T09:55:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f540667a_c5ed13d1",
+      "range": {
+        "startLine": 463,
+        "startChar": 1,
+        "endLine": 464,
+        "endChar": 48
+      },
+      "revId": "312a67e2cd555313b5a045edbf3f21d5689d63ec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
