@@ -11,6 +11,7 @@
 import fnmatch
 import itertools
 import re
+import logging
 
 from collections import OrderedDict
 from collections import defaultdict
@@ -281,6 +282,7 @@ class TaggedTestListParser(object):
 class TestExpectations(object):
 
     def __init__(self, tags=None):
+        self.tag_sets = []
         self.set_tags(tags or [])
         # Expectations may either refer to individual tests, or globs of
         # tests. Each test (or glob) may have multiple sets of tags and
@@ -290,12 +292,33 @@ class TestExpectations(object):
         self.individual_exps = {}
         self.glob_exps = OrderedDict()
 
-    def set_tags(self, tags):
-        self.tags = [tag.lower() for tag in tags]
+    def set_tags(self, tags, validate_tags=False):
+        self._validate_condition_tags(tags, validate_tags)
+        self._tags = [tag.lower() for tag in tags]
 
-    def add_tags(self, new_tags):
-        self.tags = list(
-            set(self.tags) | set([tag.lower() for tag in new_tags]))
+    def add_tags(self, new_tags, validate_tags=False):
+        self._validate_condition_tags(new_tags, validate_tags)
+        self._tags = list(
+            set(self._tags) | set([tag.lower() for tag in new_tags]))
+
+    def _validate_condition_tags(self, tags, validate_tags):
+        def _pluralize_missing(missing):
+            if len(missing) > 1:
+                return ('s %s' % ', '.join(missing[:-1]) + ' and %s' % missing[-1], 'are')
+            else:
+                return (' %s' % missing[0], 'is')
+
+        tags = [t.lower() for t in tags]
+        missing_tags = sorted([
+            t for t in tags
+            if self.tag_sets and all(t not in tag_set for tag_set in self.tag_sets)])
+        if missing_tags:
+            msg = ('Tag%s %s not declared in any expectations file.' %
+                   _pluralize_missing(missing_tags))
+            if validate_tags:
+                raise Exception(msg)
+            else:
+                logging.warning(msg)
 
     def parse_tagged_list(self, raw_data, file_name='',
                           tags_conflict=_default_tags_conflict):
@@ -360,7 +383,7 @@ class TestExpectations(object):
         should_retry_on_failure = False
         # First, check for an exact match on the test name.
         for exp in self.individual_exps.get(test, []):
-            if exp.tags.issubset(self.tags):
+            if exp.tags.issubset(self._tags):
                 results.update(exp.results)
                 should_retry_on_failure |= exp.should_retry_on_failure
                 if exp.reason:
@@ -374,7 +397,7 @@ class TestExpectations(object):
         for glob, exps in self.glob_exps.items():
             if fnmatch.fnmatch(test, glob):
                 for exp in exps:
-                    if exp.tags.issubset(self.tags):
+                    if exp.tags.issubset(self._tags):
                         results.update(exp.results)
                         should_retry_on_failure |= exp.should_retry_on_failure
                         if exp.reason:
