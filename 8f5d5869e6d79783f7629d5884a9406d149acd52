@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4e5c9d3_e463a896",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "Please add a class comment describing how this class is used\n\n[holds information used to populate the \"object type\" field, can either be etc. etc.]",
+      "range": {
+        "startLine": 547,
+        "startChar": 13,
+        "endLine": 547,
+        "endChar": 19
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc2b062f_3ec58122",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "or if the object type was overwritten",
+      "range": {
+        "startLine": 600,
+        "startChar": 69,
+        "endLine": 600,
+        "endChar": 72
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04345960_c4059de8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "id -\u003e Type dict",
+      "range": {
+        "startLine": 607,
+        "startChar": 21,
+        "endLine": 607,
+        "endChar": 22
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5aaad41_8c4314b6",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "document what this function does and what the args do. It looks like alloc_types is modified by this function, whereas other args are read-only inputs?",
+      "range": {
+        "startLine": 625,
+        "startChar": 36,
+        "endLine": 625,
+        "endChar": 47
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6375db14_50f75ec4",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "Use parenthese to avoid need for backslashes",
+      "range": {
+        "startLine": 634,
+        "startChar": 39,
+        "endLine": 634,
+        "endChar": 47
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20eb01d0_ec9fefa1",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "doesn\u0027t this depend on the OS version? e.g. on macOS there are more frames for hooking due to the libmalloc re-entrancy [which itself is dynamic]",
+      "range": {
+        "startLine": 639,
+        "startChar": 38,
+        "endLine": 639,
+        "endChar": 47
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2007dbb1_1d1c656c",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "document what this function does",
+      "range": {
+        "startLine": 1168,
+        "startChar": 44,
+        "endLine": 1168,
+        "endChar": 58
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd070b3b_e6b6a54f",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "document this input parameter",
+      "range": {
+        "startLine": 1187,
+        "startChar": 56,
+        "endLine": 1187,
+        "endChar": 76
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ff3e9f4_66afde34",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1737,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-03T23:18:49Z",
+      "side": 1,
+      "message": "should use frame name",
+      "range": {
+        "startLine": 1737,
+        "startChar": 58,
+        "endLine": 1737,
+        "endChar": 59
+      },
+      "revId": "8f5d5869e6d79783f7629d5884a9406d149acd52",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
