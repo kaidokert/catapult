@@ -22,6 +22,30 @@
       "revId": "35915e9081d107df5fc528c7bc2efc4801eaca75",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16fb3810_4dd55691",
+        "filename": "tracing/tracing/extras/symbolizer/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2019-09-04T23:09:13Z",
+      "side": 1,
+      "message": "we can add her back when/if she becomes full time. :)",
+      "parentUuid": "190ad96b_0d54c919",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "35915e9081d107df5fc528c7bc2efc4801eaca75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
