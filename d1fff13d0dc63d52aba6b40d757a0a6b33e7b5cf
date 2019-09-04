@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6edee8ab_84c181a9",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T18:33:24Z",
+      "side": 1,
+      "message": "You need to be a lot more user friendly than this. You need to give instructions for how to fix things. Otherwise people are going to be confused when they try to add a new device or new operating system.",
+      "range": {
+        "startLine": 324,
+        "startChar": 21,
+        "endLine": 325,
+        "endChar": 48
+      },
+      "revId": "d1fff13d0dc63d52aba6b40d757a0a6b33e7b5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

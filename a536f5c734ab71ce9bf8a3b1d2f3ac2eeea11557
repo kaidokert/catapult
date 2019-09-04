@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "4c1e84b4_806331db",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T18:33:24Z",
+      "side": 1,
+      "message": "This is worse now since the rewriting of the set is work that needs to be done for every call to _validate_condition_tags. I guess I\u0027m really just wondering why we need self.tags_set to be stored in the object\u0027s memory rather than converting it right away? It just feels like it\u0027s needlessly complicated for someone to read this code. What is the point of the tags_set concept?",
+      "parentUuid": "e55d8aad_1c28dd52",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 85
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff6d3d77_a8cf6be7",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 5
