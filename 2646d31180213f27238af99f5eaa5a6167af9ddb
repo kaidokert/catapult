@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60b5dbd0_8e438258",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-09-04T18:21:54Z",
+      "side": 1,
+      "message": "Maybe a newline before this line since the comment on line 129 is not relevant to these vars.",
+      "revId": "2646d31180213f27238af99f5eaa5a6167af9ddb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
