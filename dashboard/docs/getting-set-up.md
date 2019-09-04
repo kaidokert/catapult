@@ -19,7 +19,7 @@
 
 ## Running the tests
 
-To run the Python unit tests, use `bin/run_py_tests`. To run the front-end
+To run the Python unit tests, use `bin/run_tests`. To run the front-end
 component tests, use `bin/run_dev_server_tests`.
 
 ## Running a local instance
