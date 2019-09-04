@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "517dbf51_2b452d95",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T00:18:28Z",
+      "side": 1,
+      "message": "I don\u0027t see where anything is added to this list?",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 26
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b800c47a_10c7a570",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T00:18:28Z",
+      "side": 1,
+      "message": "Can you add a description for exactly what this is doing? Feel free to grab stuff from the description of https://bugs.chromium.org/p/chromium/issues/detail?id\u003d999335",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 308,
+        "endChar": 32
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfb132a2_0798d17d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T00:18:28Z",
+      "side": 1,
+      "message": "this is convoluted. why do we need tag_sets instead of tags_set? then this would be\n\nunknown_tags \u003d sorted([\n    t for t in tags if self.tags_set and t not in self.tags_set])\n\n(I also like unknown_tags better than missing tags since the issue is that the tags aren\u0027t in our known tags list that we will have hardcoded in typ_expectations.py.",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 85
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff6d3d77_a8cf6be7",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T00:18:28Z",
+      "side": 1,
+      "message": "It would be simpler for this to just return a straight string instead of a tuple\n\n        def _pluralize_missing(missing):\n            if len(missing) \u003e 1:\n                return \u0027s %s\u0027 % \u0027, \u0027.join(missing[:-1]) + \u0027 and %s are\u0027 % missing[-1]\n            else:\n                return \u0027 %s is\u0027 % missing[0]\n\n\u0027Tag%s not declared in any expectations file.\u0027",
+      "range": {
+        "startLine": 321,
+        "startChar": 19,
+        "endLine": 321,
+        "endChar": 37
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62a53838_6d821e09",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-04T00:18:28Z",
+      "side": 1,
+      "message": "I don\u0027t understand how this change is related or why it is needed.",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 39
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
