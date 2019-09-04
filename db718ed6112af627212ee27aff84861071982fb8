@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24372b07_82cad506",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-04T13:32:32Z",
+      "side": 1,
+      "message": "To avoid complex parsing on the results processor side, I suggest limiting this method to GenericSet diagnostics only.",
+      "revId": "db718ed6112af627212ee27aff84861071982fb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
