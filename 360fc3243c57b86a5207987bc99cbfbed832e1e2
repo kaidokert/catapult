@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "55f9fd15_2dde6685",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1313390
+      },
+      "writtenOn": "2019-09-04T19:32:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a82e197_83899fcb",
+      "range": {
+        "startLine": 250,
+        "startChar": 36,
+        "endLine": 250,
+        "endChar": 69
+      },
+      "revId": "360fc3243c57b86a5207987bc99cbfbed832e1e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7cbde061_ed751d71",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime_unittest.py",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "360fc3243c57b86a5207987bc99cbfbed832e1e2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1850b665_30075c2a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1313390
+      },
+      "writtenOn": "2019-09-04T19:32:34Z",
+      "side": 1,
+      "message": "\"awaitPromise\" will only wait if there is a promise. A non-promise function can be called and expected to work like normal. I will add a test for this scenario",
+      "parentUuid": "7cbde061_ed751d71",
+      "revId": "360fc3243c57b86a5207987bc99cbfbed832e1e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
