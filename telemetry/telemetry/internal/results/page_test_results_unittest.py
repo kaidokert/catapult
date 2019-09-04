@@ -368,13 +368,14 @@ class PageTestResultsTest(_PageTestResultsTestBase):
       results.DidRunPage(self.pages[0])
       results.WillRunPage(self.pages[1])
       results.DidRunPage(self.pages[1])
+      results.AddSharedDiagnosticToAllHistograms(
+          'foo', generic_set.GenericSet(['bar']))
 
     records = self.GetResultRecords()
     self.assertEqual(len(records), 4)  # Start, Result, Result, Finish.
     self.assertEqual(records[0], {
         'benchmarkRun': {
             'startTime': '2009-02-13T23:31:30.987000Z',
-            'diagnostics': {},
         }
     })
     self.assertEqual(records[1]['testResult']['status'], 'PASS')
@@ -382,7 +383,12 @@ class PageTestResultsTest(_PageTestResultsTestBase):
     self.assertEqual(records[3], {
         'benchmarkRun': {
             'finalized': True,
-            'interrupted': False
+            'interrupted': False,
+            'diagnostics': {
+                'benchmarks': ['(unknown benchmark)'],
+                'benchmarkDescriptions': [''],
+                'foo': ['bar'],
+            },
         }
     })
 
@@ -399,14 +405,17 @@ class PageTestResultsTest(_PageTestResultsTestBase):
     self.assertEqual(records[0], {
         'benchmarkRun': {
             'startTime': '2009-02-13T23:31:30.987000Z',
-            'diagnostics': {},
         }
     })
     self.assertEqual(records[1]['testResult']['status'], 'FAIL')
     self.assertEqual(records[2], {
         'benchmarkRun': {
             'finalized': True,
-            'interrupted': True
+            'interrupted': True,
+            'diagnostics': {
+                'benchmarks': ['(unknown benchmark)'],
+                'benchmarkDescriptions': [''],
+            },
         }
     })
 
