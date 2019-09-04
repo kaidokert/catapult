@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cb393135_4eb916d0",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-09-04T19:57:37Z",
+      "side": 1,
+      "message": "Can you use `return self._tags[:]` instead and avoid the dependency on copy.copy()? copy.copy() to me implies either that you have a complex data structure or that you don\u0027t actually know the type, neither of which I think is true?",
+      "revId": "d1fff13d0dc63d52aba6b40d757a0a6b33e7b5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6edee8ab_84c181a9",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 8
@@ -13,6 +30,30 @@
       "writtenOn": "2019-09-04T18:33:24Z",
       "side": 1,
       "message": "You need to be a lot more user friendly than this. You need to give instructions for how to fix things. Otherwise people are going to be confused when they try to add a new device or new operating system.",
+      "range": {
+        "startLine": 324,
+        "startChar": 21,
+        "endLine": 325,
+        "endChar": 48
+      },
+      "revId": "d1fff13d0dc63d52aba6b40d757a0a6b33e7b5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01eab0bd_07aa2393",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-09-04T19:57:37Z",
+      "side": 1,
+      "message": "I\u0027m actually okay with this error message, as it shouldn\u0027t come up often, and I\u0027d guess it would come up only in contexts where it\u0027s pretty clear what\u0027s going on. However, being clearer would still be an improvement.",
+      "parentUuid": "6edee8ab_84c181a9",
       "range": {
         "startLine": 324,
         "startChar": 21,
