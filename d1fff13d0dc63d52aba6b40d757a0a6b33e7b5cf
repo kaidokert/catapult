@@ -63,6 +63,30 @@
       "revId": "d1fff13d0dc63d52aba6b40d757a0a6b33e7b5cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47ae0e39_445b32aa",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-09-04T20:54:51Z",
+      "side": 1,
+      "message": "I made the message warn users that there may be a typo in the expectations file and that they should add the unknown tags to the expectations file.",
+      "parentUuid": "01eab0bd_07aa2393",
+      "range": {
+        "startLine": 324,
+        "startChar": 21,
+        "endLine": 325,
+        "endChar": 48
+      },
+      "revId": "d1fff13d0dc63d52aba6b40d757a0a6b33e7b5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
