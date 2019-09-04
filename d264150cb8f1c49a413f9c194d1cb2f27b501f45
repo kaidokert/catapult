@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e88fcd64_afe6fb71",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-04T10:22:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4697b9d4_3d821397",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0058e9a_b13b888c",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c54dfa1_3fd9c979",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-04T10:22:46Z",
+      "side": 1,
+      "message": "I\u0027m not quite sure how the label is used by our users, so I don\u0027t have a strong opinion on this.\n\nBut anyway, the label is present in intermediate-dir name, so we don\u0027t lose anything if we remove it from here.",
+      "parentUuid": "c0058e9a_b13b888c",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "89a1d987_e7d4cb5c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-04T10:22:46Z",
+      "side": 1,
+      "message": "Actually, this test still failed, I just didn\u0027t notice it.\n\nSo I returned a GenericSet here and added a small conversion to a json-serializable form in page_test_results.AddSharedDiagnosticToAllHistograms.",
+      "parentUuid": "f88a9481_1da07743",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c330741_711d3a48",
         "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63a209b9_cf5d65f0",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-04T10:22:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c330741_711d3a48",
+      "revId": "d264150cb8f1c49a413f9c194d1cb2f27b501f45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
