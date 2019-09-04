@@ -23,6 +23,7 @@ from telemetry.value import scalar
 
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import reserved_infos
 
@@ -90,6 +91,12 @@ class PageTestResults(object):
     # Interruptions occur for unrecoverable exceptions.
     self._interruption = None
     self._results_label = results_label
+
+    self._diagnostics = {
+        reserved_infos.BENCHMARKS.name: [self.benchmark_name],
+        reserved_infos.BENCHMARK_DESCRIPTIONS.name:
+            [self.benchmark_description],
+    }
 
     # If the object has been finalized, no more results can be added to it.
     self._finalized = False
@@ -251,9 +258,6 @@ class PageTestResults(object):
     self._WriteJsonLine({
         'benchmarkRun': {
             'startTime': self.start_datetime.isoformat() + 'Z',
-            # TODO(crbug.com/981349): Fill this in with benchmark and platform
-            # diagnostics info.
-            'diagnostics': {}
         }
     })
 
@@ -262,6 +266,7 @@ class PageTestResults(object):
         'benchmarkRun': {
             'finalized': self.finalized,
             'interrupted': self.benchmark_interrupted,
+            'diagnostics': self._diagnostics,
         }
     }, close=True)
 
@@ -428,7 +433,13 @@ class PageTestResults(object):
     self._current_story_run.AddLegacyValue(value)
 
   def AddSharedDiagnosticToAllHistograms(self, name, diagnostic):
+    """Add the diagnostic to histograms and save it to intermediate results.
+
+    The diagnostic should be an instance of GenericSet.
+    """
+    assert isinstance(diagnostic, generic_set.GenericSet)
     self._histograms.AddSharedDiagnosticToAllHistograms(name, diagnostic)
+    self._diagnostics[name] = list(diagnostic)
 
   def Fail(self, failure):
     """Mark the current story run as failed.
