@@ -14,6 +14,8 @@ import urlparse
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import isolate
+from dashboard.pinpoint.models import task as task_module
+from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.quest import execution
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import buildbucket_service
@@ -58,12 +60,7 @@ class FindIsolate(quest.Quest):
                                  change, self._previous_builds, self.build_tags)
 
   def PropagateJob(self, job):
-    self._build_tags = collections.OrderedDict([
-        ('pinpoint_job_id', job.job_id),
-        ('pinpoint_user', job.user),
-        ('pinpoint_url', job.url),
-    ])
-
+    self._build_tags = _BuildTagsFromJob(job)
   @classmethod
   def FromDict(cls, arguments):
     for arg in ('builder', 'target', 'bucket'):
@@ -218,7 +215,7 @@ class _FindIsolateExecution(execution.Execution):
       self._previous_builds[self._change] = self._build
 
 
-def _RequestBuild(builder_name, change, bucket, build_tags):
+def _RequestBuild(builder_name, change, bucket, build_tags, task=None):
   base_as_dict = change.base_commit.AsDict()
   review_url = base_as_dict.get('review_url')
   if not review_url:
@@ -267,18 +264,172 @@ def _RequestBuild(builder_name, change, bucket, build_tags):
     # information to the attempts to build.
     pubsub_callback = {
         # TODO(dberris): Consolidate constants in environment vars?
-        'topic': 'projects/chromeperf/topics/pinpoint-swarming-updates',
-        'auth_token': 'UNUSED',
-        'user_data': json.dumps({
-            'job_id': build_tags.get('pinpoint_job_id'),
-            'task': {
-                'type': 'build',
-                'id': build_tags.get('pinpoint_task_id'),
-            }
-        })
+        'topic':
+            'projects/chromeperf/topics/pinpoint-swarming-updates',
+        'auth_token':
+            'UNUSED',
+        'user_data':
+            json.dumps({
+                'job_id': build_tags.get('pinpoint_job_id'),
+                'task': {
+                    'type':
+                        'build',
+                    'id':
+                        build_tags.get('pinpoint_task_id')
+                        if not task else task.id,
+                }
+            })
     }
     logging.debug('pubsub_callback: %s', pubsub_callback)
 
   # TODO: Look up Buildbucket bucket from builder_name.
   return buildbucket_service.Put(bucket, builder_tags, parameters,
                                  pubsub_callback)
+
+
+def _BuildTagsFromJob(job):
+  return collections.OrderedDict([
+      ('pinpoint_job_id', job.job_id),
+      ('pinpoint_user', job.user),
+      ('pinpoint_url', job.url),
+  ])
+
+# Everything beyond this point aims to define an evaluator for 'find_isolate'
+# tasks.
+BuildEvent = collections.namedtuple('BuildEvent',
+                                    ('type', 'target_task', 'payload'))
+
+class ScheduleBuildAction(object):
+  def __init__(self, job, task, change):
+    self.job = job
+    self.task = task
+    self.change = change
+
+  def __call__(self, accumulator):
+    # This will actually schedule a build, and set it up to ensure we're able to
+    # receive an update as PubSub messages via Buildbucket. We can re-use the
+    # code in the Quest that does this.
+    # TODO(dberris): Maybe use a value in the accumulator to check whether we
+    # should bail?
+    self.task.payload.update({'tries': self.task.payload.get('tries', 0) + 1})
+    try:
+      task_module.UpdateTask(
+          self.job,
+          self.task.id,
+          new_state='ongoing',
+          payload=self.task.payload)
+      result = _RequestBuild(
+          self.task.payload.get('builder'), self.change,
+          self.task.payload.get('bucket'), _BuildTagsFromJob(self.job),
+          self.task)
+      self.task.payload.update({'buildbucket_result': result})
+      task_module.UpdateTask(self.job, self.task.id, payload=self.task.payload)
+    except task_module.InvalidTransition as e:
+      logging.debug(
+          'Attempting to build on an ongoing task; task = %s , error = %s',
+          self.task, e)
+      # TODO(dberris): Poll the ongoing build, if we have the data in payload.
+
+  def __str__(self):
+    return 'Build Action <job = %s, task = %s>' % (self.job.job_id, self.task)
+
+
+class Evaluator(object):
+
+  def __init__(self, job):
+    self.job = job
+
+  def __call__(self, task, event, accumulator):
+    # Only apply to 'find_isolate' tasks.
+    if task.task_type != 'find_isolate':
+      return None
+
+    # Only handle BuildEvent messages.
+    if not isinstance(event, BuildEvent):
+      return None
+
+    # If this is a directed update, then only evaluate if we're at the targeted
+    # task.
+    if event.target_task and event.target_task != task.id:
+      return None
+
+    # Dispatch into specific handlers.
+    if event.type == 'initiate':
+      return self.HandleInitiate(task, event, accumulator)
+    elif event.type == 'update':
+      return self.HandleUpdate(task, event, accumulator)
+    else:
+      logging.error('Unsupported event type "%s"; event = %s', event.type,
+                    event)
+      return None
+
+  def HandleInitiate(self, task, event, accumulator):
+    accumulator.update({
+        task.id: {
+            'isolate_server': task.payload.get('isolate_server'),
+            'isolate_hash': task.payload.get('isolate_hash'),
+            'buildbucket_result': task.payload.get('buildbucket_result'),
+        }
+    })
+    if task.status in {'completed', 'failed', 'cancelled'}:
+      logging.info('Ignoring event "%s" on a terminal task; task = %s', event,
+                   task)
+      return None
+
+    if task.status == 'ongoing':
+      logging.warning(
+          'Ignoring an initiate event on an ongoing task; task = %s', task)
+      return None
+
+    change = change_module.Change(
+        commits=[
+            commit_module.Commit(c['repository'], c['git_hash'])
+            for c in task.payload.get('change', {}).get('commits', [])
+        ],
+        patch=task.payload.get('patch'))
+
+    # Outline:
+    #   - Check if we can find the isolate for this revision.
+    #     - If found, update the payload of the task and update accumulator with
+    #       result for this task.
+    #     - If not found, schedule a build for this revision, update the task
+    #       payload with the build details, wait for updates.
+    try:
+      logging.debug('Looking up isolate for change = %s', change)
+      isolate_server, isolate_hash = isolate.Get(
+          task.payload.get('builder'), change, task.payload.get('target'))
+      accumulator.update({
+          task.id: {
+              'isolate_server': isolate_server,
+              'isolate_hash': isolate_hash,
+          }
+      })
+      task.payload.update({
+          'isolate_server': isolate_server,
+          'isolate_hash': isolate_hash,
+      })
+      return [
+          lambda _: task_module.UpdateTask(
+              self.job, task.id, new_state='completed', payload=task.payload)
+      ]
+    except KeyError as e:
+      logging.error('Failed to find isolate for task = %s;\nError: %s', task, e)
+      return [ScheduleBuildAction(self.job, task, change)]
+    return None
+
+  def HandleUpdate(self, task, event, _):
+    if task.status != 'ongoing':
+      logging.error(
+          'Handling an update on non-ongoing task! task = %s ; event = %s',
+          task, event)
+      return None
+
+    # Outline:
+    #   - Check build status payload.
+    #     - If successful, update the task payload with status and relevant
+    #       information, propagate information into the accumulator.
+    #     - If unsuccessful:
+    #       - Retry if the failure is a retryable error (update payload with
+    #         retry information)
+    #       - Fail if failure is non-retryable or we've exceeded retries.
+    return None
