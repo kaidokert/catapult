@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "190ad96b_0d54c919",
+        "filename": "tracing/tracing/extras/symbolizer/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-09-04T14:21:51Z",
+      "side": 1,
+      "message": "Erik thanks for having us. In fact, Tsai-Yun is our intern and is supposed to back to school soon. I\u0027m not sure if it\u0027s ok to keep her name even after her leaving. Or we can have her in the future. Thanks again for all the helps.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 21
+      },
+      "revId": "35915e9081d107df5fc528c7bc2efc4801eaca75",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
