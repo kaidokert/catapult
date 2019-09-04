@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d07ae25a_a4d212be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c575bf_8915e457",
+      "range": {
+        "startLine": 7,
+        "startChar": 44,
+        "endLine": 7,
+        "endChar": 76
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48683bea_0d0efdc5",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-12T03:00:56Z",
       "side": 1,
       "message": "If we are not going to address the \"merge problem\", this can be removed, right?",
+      "range": {
+        "startLine": 917,
+        "startChar": 0,
+        "endLine": 919,
+        "endChar": 24
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d428e2b_c8766261",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "If not solving this probelm, the trace after symbolizing will still be wrong.",
+      "parentUuid": "48683bea_0d0efdc5",
       "range": {
         "startLine": 917,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ff25e29d_cf96add7",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1627,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0a2dd38_e03afdfc",
+      "range": {
+        "startLine": 1627,
+        "startChar": 9,
+        "endLine": 1627,
+        "endChar": 13
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec8c6ed0_f8524a2e",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
@@ -85,6 +157,24 @@
       "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63267d97_a47b00b8",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec8c6ed0_f8524a2e",
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "ae75fb23_08b1005f",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3011e1fc_f189b0cc",
+      "range": {
+        "startLine": 1632,
+        "startChar": 4,
+        "endLine": 1632,
+        "endChar": 29
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1d3a52c_30dfdb97",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "5b757f30_bb9cb7a5",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1638,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1d3a52c_30dfdb97",
+      "range": {
+        "startLine": 1638,
+        "startChar": 4,
+        "endLine": 1638,
+        "endChar": 22
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1bd50742_fafae01a",
         "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
         "patchSetId": 1
@@ -154,6 +292,30 @@
       "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df469c8b_b5ffed9f",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bd50742_fafae01a",
+      "range": {
+        "startLine": 1763,
+        "startChar": 0,
+        "endLine": 1768,
+        "endChar": 0
+      },
+      "revId": "db8592067bf209ed8e1384b45c97c608cfff24ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

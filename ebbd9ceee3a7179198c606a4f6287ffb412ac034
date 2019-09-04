@@ -22,6 +22,30 @@
       "revId": "ebbd9ceee3a7179198c606a4f6287ffb412ac034",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34c90bbe_23257560",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1362758
+      },
+      "writtenOn": "2019-09-04T06:24:26Z",
+      "side": 1,
+      "message": "If we rename the type, it will be True.",
+      "parentUuid": "5089b7df_7c60d8a4",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 32
+      },
+      "revId": "ebbd9ceee3a7179198c606a4f6287ffb412ac034",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
