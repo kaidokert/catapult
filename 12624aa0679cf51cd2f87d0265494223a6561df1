@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63c0b9d5_857ac662",
+        "filename": "devil/devil/android/sdk/version_codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-09-04T01:26:13Z",
+      "side": 1,
+      "message": "I feel like `TEN \u003d 29` is too weird... let me know if you\u0027ve got a better alternative",
+      "revId": "12624aa0679cf51cd2f87d0265494223a6561df1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
