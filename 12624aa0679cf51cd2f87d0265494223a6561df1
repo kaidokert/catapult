@@ -16,6 +16,24 @@
       "revId": "12624aa0679cf51cd2f87d0265494223a6561df1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3d8839c_85d1be60",
+        "filename": "devil/devil/android/sdk/version_codes.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-09-04T14:31:29Z",
+      "side": 1,
+      "message": "TEN does seem weird, but I think that\u0027s where we\u0027ll end up once we have \u003e1 such release.",
+      "parentUuid": "63c0b9d5_857ac662",
+      "revId": "12624aa0679cf51cd2f87d0265494223a6561df1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
