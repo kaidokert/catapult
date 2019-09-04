@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "2e14d948_970169ca",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-09-04T19:36:38Z",
+      "side": 1,
+      "message": "We need to maintain each tag declaration list for finding expectation conflicts is implemented on line 419. For finding conflicts we need to know which tag declaration list each tag was declared in.",
+      "parentUuid": "4c1e84b4_806331db",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 85
+      },
+      "revId": "a536f5c734ab71ce9bf8a3b1d2f3ac2eeea11557",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ff6d3d77_a8cf6be7",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 5
