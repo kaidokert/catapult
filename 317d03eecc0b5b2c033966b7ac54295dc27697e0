@@ -46,6 +46,30 @@
       "revId": "317d03eecc0b5b2c033966b7ac54295dc27697e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "756a5863_c07e9858",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-05T20:00:41Z",
+      "side": 1,
+      "message": "That\u0027s okay for now, but I think you should take a work item to standardize the naming for expectation files. They should all be called expectations.config or maybe they should all be called something else, but we don\u0027t want them to be inconsistent.",
+      "parentUuid": "b070a435_5831ef73",
+      "range": {
+        "startLine": 327,
+        "startChar": 16,
+        "endLine": 327,
+        "endChar": 37
+      },
+      "revId": "317d03eecc0b5b2c033966b7ac54295dc27697e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
