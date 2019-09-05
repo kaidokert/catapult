@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e2e0d4a_b5921cca",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T10:09:21Z",
+      "side": 1,
+      "message": "Perhaps we don\u0027t need an intermediate variable anymore? Now we can import dicts directly into self._histograms.",
+      "revId": "6a7c125cf755ce91e0a903b7704750ccf032800e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
