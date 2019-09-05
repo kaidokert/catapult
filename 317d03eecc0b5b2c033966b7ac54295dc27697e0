@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "640ff660_e2774aa6",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-05T19:47:42Z",
+      "side": 1,
+      "message": "\"declared at the top of the expectations.config file\"",
+      "range": {
+        "startLine": 327,
+        "startChar": 16,
+        "endLine": 327,
+        "endChar": 37
+      },
+      "revId": "317d03eecc0b5b2c033966b7ac54295dc27697e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
