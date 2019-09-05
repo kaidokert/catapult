@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aabb2d76_bf070744",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-09-05T08:27:14Z",
+      "side": 1,
+      "message": "By default, the \"Object type\" tab may contain [unknown] or other less informative data on Cast platform, which will add additional efforts to demystify the content.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 43
+      },
+      "revId": "fa3dff642b8ba9ac804dc16af22c4704a21df49b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
