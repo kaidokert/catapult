@@ -125,6 +125,16 @@ class PageTestResultsTest(_PageTestResultsTestBase):
     self.assertEqual(results.benchmark_interruption, reason)
     self.assertTrue(results.benchmark_interrupted)
 
+  def testUncaughtExceptionInterruptsBenchmark(self):
+    with self.assertRaises(ValueError):
+      with self.CreateResults() as results:
+        results.WillRunPage(self.pages[0])
+        raise ValueError('intended error')
+
+    self.assertTrue(results.benchmark_interrupted)
+    self.assertEqual(results.benchmark_interruption,
+                     "ValueError('intended error',)")
+
   def testPassesNoSkips(self):
     with self.CreateResults() as results:
       results.WillRunPage(self.pages[0])
