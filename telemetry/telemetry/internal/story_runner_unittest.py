@@ -315,7 +315,7 @@ class StoryRunnerTest(unittest.TestCase):
     for i in xrange(number_stories):
       story_set.AddStory(DummyLocalStory(FooStoryState, name='story_%d' % i))
     test = DummyTest()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
     self.assertFalse(self.results.had_failures)
     self.assertEquals(number_stories,
                       GetNumberOfSuccessfulPageRuns(self.results))
@@ -327,25 +327,25 @@ class StoryRunnerTest(unittest.TestCase):
         'http://www.testurl.com', story_set, story_set.base_dir,
         name='http://www.testurl.com'))
     test = DummyTest()
-    self.assertRaises(story_runner.ArchiveError, story_runner.Run, test,
-                      story_set, self.options, self.results)
+    with self.assertRaises(story_runner.ArchiveError):
+      story_runner.RunStorySet(test, story_set, self.options, self.results)
 
   def testRunStoryWithLongName(self):
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(FooStoryState, name='l' * 182))
     test = DummyTest()
-    self.assertRaises(ValueError, story_runner.Run, test, story_set,
-                      self.options, self.results)
+    with self.assertRaises(ValueError):
+      story_runner.RunStorySet(test, story_set, self.options, self.results)
 
   def testRunStoryWithLongURLPage(self):
     story_set = story_module.StorySet()
     story_set.AddStory(page_module.Page('file://long' + 'g' * 180,
                                         story_set, name='test'))
     test = DummyTest()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
 
   def testSuccessfulTimelineBasedMeasurementTest(self):
-    """Check that PageTest is not required for story_runner.Run.
+    """Check that PageTest is not required for story_runner.RunStorySet.
 
     Any PageTest related calls or attributes need to only be called
     for PageTest tests.
@@ -377,7 +377,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(TestSharedTbmState, name='foo'))
     story_set.AddStory(DummyLocalStory(TestSharedTbmState, name='bar'))
     story_set.AddStory(DummyLocalStory(TestSharedTbmState, name='baz'))
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
     self.assertFalse(self.results.had_failures)
     self.assertEquals(3, GetNumberOfSuccessfulPageRuns(self.results))
 
@@ -434,7 +434,7 @@ class StoryRunnerTest(unittest.TestCase):
       test = TestStoryTest()
       story_set = story_module.StorySet()
       story_set.AddStory(DummyLocalStory(TestSharedStateForStoryTest))
-      story_runner.Run(test, story_set, self.options, self.results)
+      story_runner.RunStorySet(test, story_set, self.options, self.results)
       return [call[0] for call in manager.mock_calls]
 
     calls_in_order = GetCallsInOrder() # pylint: disable=no-value-for-parameter
@@ -447,9 +447,8 @@ class StoryRunnerTest(unittest.TestCase):
       def WillRunStory(self, story):
         raise exceptions.AppCrashException(msg='App Foo crashes')
 
-    story_set.AddStory(DummyLocalStory(
-        SharedStoryThatCausesAppCrash))
-    story_runner.Run(DummyTest(), story_set, self.options, self.results)
+    story_set.AddStory(DummyLocalStory(SharedStoryThatCausesAppCrash))
+    story_runner.RunStorySet(DummyTest(), story_set, self.options, self.results)
     self.assertTrue(self.results.had_failures)
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertIn('App Foo crashes', self.fake_stdout.getvalue())
@@ -464,7 +463,8 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(
         SharedStoryThatCausesAppCrash))
     with self.assertRaises(TestOnlyException):
-      story_runner.Run(DummyTest(), story_set, self.options, self.results)
+      story_runner.RunStorySet(
+          DummyTest(), story_set, self.options, self.results)
 
   def testUnknownExceptionIsNotFatal(self):
     self.StubOutExceptionFormatting()
@@ -494,7 +494,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(s1)
     story_set.AddStory(s2)
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
     all_story_runs = list(self.results.IterStoryRuns())
     self.assertEqual(2, len(all_story_runs))
     self.assertTrue(all_story_runs[0].failed)
@@ -523,7 +523,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(TestSharedPageState, name='foo'))
     story_set.AddStory(DummyLocalStory(TestSharedPageState, name='bar'))
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
     self.assertEquals(2, test.run_count)
     self.assertTrue(self.results.had_failures)
     self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
@@ -563,7 +563,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(DummyLocalStory(TestTearDownSharedState, name='foo'))
     story_set.AddStory(DummyLocalStory(TestTearDownSharedState, name='bar'))
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
     self.assertEqual([
         'app-crash', 'dump-state',
         # This event happens because of the app crash.
@@ -600,7 +600,8 @@ class StoryRunnerTest(unittest.TestCase):
 
     self.options.pageset_repeat = 2
     self.options.output_formats = []
-    story_runner.Run(_Measurement(), story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        _Measurement(), story_set, self.options, self.results)
     summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -631,7 +632,8 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(green_story)
 
     self.options.pageset_repeat = 1
-    story_runner.Run(_Measurement(), story_set, self.options, self.results)
+    story_runner.RunStorySet(
+        _Measurement(), story_set, self.options, self.results)
     summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -645,8 +647,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_one = DummyLocalStory(TestSharedPageState, name='one')
     story_set.AddStory(story_one)
 
-    story_runner.Run(_Measurement(), story_set, self.options, self.results,
-                     expectations=_DisableStoryExpectations('fake', 'one'))
+    story_runner.RunStorySet(
+        _Measurement(), story_set, self.options, self.results,
+        expectations=_DisableStoryExpectations('fake', 'one'))
     summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -662,8 +665,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(story_one)
     story_set.AddStory(story_two)
 
-    story_runner.Run(_Measurement(), story_set, self.options, self.results,
-                     expectations=_DisableStoryExpectations('fake', 'one'))
+    story_runner.RunStorySet(
+        _Measurement(), story_set, self.options, self.results,
+        expectations=_DisableStoryExpectations('fake', 'one'))
     summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -678,8 +682,9 @@ class StoryRunnerTest(unittest.TestCase):
     story_set.AddStory(story_one)
     self.options.run_disabled_tests = True
 
-    story_runner.Run(_Measurement(), story_set, self.options, self.results,
-                     expectations=_DisableStoryExpectations('fake', 'one'))
+    story_runner.RunStorySet(
+        _Measurement(), story_set, self.options, self.results,
+        expectations=_DisableStoryExpectations('fake', 'one'))
     summary = summary_module.Summary(self.results)
     values = summary.interleaved_computed_per_page_values_and_summaries
 
@@ -699,8 +704,9 @@ class StoryRunnerTest(unittest.TestCase):
     fake = FakeBenchmark()
     fake.AugmentExpectationsWithFile(expectations)
     fake._expectations.SetTags(['all'])
-    story_runner.Run(_Measurement(), story_set, self.options, self.results,
-                     expectations=fake._expectations)
+    story_runner.RunStorySet(
+        _Measurement(), story_set, self.options, self.results,
+        expectations=fake._expectations)
     self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertEquals(1, GetNumberOfSkippedPageRuns(self.results))
 
@@ -719,7 +725,7 @@ class StoryRunnerTest(unittest.TestCase):
     s1 = DummyLocalStory(TestSharedPageState, name='foo')
     story_set.AddStory(s1)
     test = Test()
-    story_runner.Run(test, story_set, self.options, self.results)
+    story_runner.RunStorySet(test, story_set, self.options, self.results)
 
     dicts = self.results.AsHistogramDicts()
     hs = histogram_set.HistogramSet()
@@ -731,7 +737,7 @@ class StoryRunnerTest(unittest.TestCase):
   def testRunStoryAddsDeviceInfo(self):
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(FooStoryState, 'foo', ['bar']))
-    story_runner.Run(DummyTest(), story_set, self.options, self.results)
+    story_runner.RunStorySet(DummyTest(), story_set, self.options, self.results)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(self.results.AsHistogramDicts())
@@ -769,7 +775,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
     story_set.AddStory(ErrorRaisingDummyLocalStory(
         FooStoryState, 'foo', ['bar']))
-    story_runner.Run(DummyTest(), story_set, self.options, self.results)
+    story_runner.RunStorySet(DummyTest(), story_set, self.options, self.results)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(self.results.AsHistogramDicts())
@@ -797,7 +803,7 @@ class StoryRunnerTest(unittest.TestCase):
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(FooStoryState, 'foo', ['bar']))
     story_set.AddStory(DummyLocalStory(FooStoryState, 'abc', ['def']))
-    story_runner.Run(Test(), story_set, self.options, self.results)
+    story_runner.RunStorySet(Test(), story_set, self.options, self.results)
 
     hs = histogram_set.HistogramSet()
     hs.ImportDicts(self.results.AsHistogramDicts())
@@ -953,7 +959,7 @@ class StoryRunnerTest(unittest.TestCase):
     if options_max_failures:
       self.options.max_failures = options_max_failures
 
-    story_runner.Run(
+    story_runner.RunStorySet(
         DummyTest(), story_set, self.options,
         self.results, max_failures=runner_max_failures)
     self.assertEquals(expected_num_skips,
@@ -1442,7 +1448,7 @@ class StoryRunnerTest(unittest.TestCase):
     self.StubOutExceptionFormatting()
     story_set = story_module.StorySet()
     story_set.AddStory(DummyLocalStory(TestSharedPageState, name='story'))
-    story_runner.Run(
+    story_runner.RunStorySet(
         _Measurement(), story_set, self.options, self.results, max_num_values=0)
     self.assertTrue(self.results.had_failures)
     self.assertEquals(0, GetNumberOfSuccessfulPageRuns(self.results))

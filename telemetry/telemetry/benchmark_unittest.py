@@ -5,6 +5,7 @@
 import shutil
 import tempfile
 import unittest
+
 import mock
 
 from telemetry import android
@@ -79,21 +80,12 @@ class BenchmarkTest(unittest.TestCase):
         Exception, 'containing only telemetry.page.Page stories'):
       b.Run(self.options)
 
-  def testPageTestWithCompatibleStory(self):
-    original_run_fn = story_runner.Run
-    was_run = [False]
-    def RunStub(*arg, **kwargs):
-      del arg, kwargs
-      was_run[0] = True
-    story_runner.Run = RunStub
+  @mock.patch('telemetry.internal.story_runner.RunStorySet')
+  def testPageTestWithCompatibleStory(self, mock_run_story_set):
+    b = TestBenchmark(page.Page(url='about:blank', name='about:blank'))
+    b.Run(self.options)
 
-    try:
-      b = TestBenchmark(page.Page(url='about:blank', name='about:blank'))
-      b.Run(self.options)
-    finally:
-      story_runner.Run = original_run_fn
-
-    self.assertTrue(was_run[0])
+    self.assertTrue(mock_run_story_set.called)
 
   def testBenchmarkMakesTbmTestByDefault(self):
     class DefaultTbmBenchmark(benchmark.Benchmark):
@@ -114,32 +106,24 @@ class BenchmarkTest(unittest.TestCase):
     with self.assertRaisesRegexp(TypeError, type_error_regex):
       UnknownTestTypeBenchmark().CreatePageTest(options=None)
 
-  def testBenchmarkWithOverridenShouldAddValue(self):
+  @mock.patch('telemetry.internal.story_runner.RunStorySet')
+  def testBenchmarkWithOverridenShouldAddValue(self, mock_run_story_set):
     class ShouldNotAddValueBenchmark(TestBenchmark):
-
       @classmethod
       def ShouldAddValue(cls, unused_value, unused_is_first_result):
         return False
 
-    original_run_fn = story_runner.Run
-    valid_should_add_value = [False]
+    b = ShouldNotAddValueBenchmark(
+        page.Page(url='about:blank', name='about:blank'))
+    b.Run(self.options)
 
-    def RunStub(test, story_set_module, finder_options, results,
-                *args, **kwargs): # pylint: disable=unused-argument
-      should_add_value = results._should_add_value
-      valid = should_add_value == ShouldNotAddValueBenchmark.ShouldAddValue
-      valid_should_add_value[0] = valid
+    # Check that the results arg passed to our RunStorySet mock points to the
+    # right value filter. TODO(crbug.com/)
+    results_arg = mock_run_story_set.mock_calls[0][1][3]
+    self.assertEqual(results_arg._should_add_value,
+                     ShouldNotAddValueBenchmark.ShouldAddValue)
 
-    story_runner.Run = RunStub
-
-    try:
-      b = ShouldNotAddValueBenchmark(
-          page.Page(url='about:blank', name='about:blank'))
-      b.Run(self.options)
-    finally:
-      story_runner.Run = original_run_fn
-
-    self.assertTrue(valid_should_add_value[0])
+    self.assertTrue(mock_run_story_set.called)
 
   def testGetOwners(self):
     @benchmark.Owner(emails=['alice@chromium.org'])
