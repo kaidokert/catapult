@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaf37d98_3b0e860e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-05T18:25:24Z",
+      "side": 1,
+      "message": "We already do this here:\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?q\u003dstory_runner.py\u0026sq\u003dpackage:chromium\u0026dr\u0026l\u003d322\n\nI think we should only have one method to interrupt the benchmark if possible, not multiple.",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
