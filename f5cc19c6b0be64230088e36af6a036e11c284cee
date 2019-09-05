@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5053cd82_2ad5c2db",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "nit: update, returns a list, not a GenericSet.",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "582d5102_87e55d36",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "nit: ditto",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deda56a2_8ce20f29",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "Similar here, this is no longer a diagnostic. I suggest you can rename the method to GetDocumentationLinks and here say it results a list of [title, url] pairs. This also allows in the future to return more than one url if there is a need.",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d06a3d6_0ca6a8ef",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "Add docstring.",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bffce4f_567fbd5e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "nit: I would try to make sure that no client is passing empty strings here; so just filter out None and empty list.",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c30cf2ca_fd71772c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "Since callers already mostly do, I think it would be better if callers pass the \"reserved_info\" object as key instead of just the name. So this is not limited to GenericSet\u0027s, and you can use that info to cast values to their right entry_type (e.g. bool, int, str).\n\nYou could either tweak the definition of _Info class (e.g. make it a namedtuple to it works as a dict key), or let clients pass as list of pairs rather than a dict.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/value/diagnostics/reserved_infos.py?rcl\u003df2c3c6a6ada75dc003def70c7e0e2cc2d289002f\u0026l\u003d83",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8908f6d_6ab1d939",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T10:59:09Z",
+      "side": 1,
+      "message": "Can you leave a TODO to merge this and the call above into a single one?\n\nI believe there is no reason for them to be separate, and it should be cleaner if we add all of them here. But I\u0027m not sure, so let\u0027s leave this for a follow up CL.",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
