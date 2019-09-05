@@ -13,7 +13,6 @@ from telemetry.story import expectations as expectations_module
 from telemetry.story import typ_expectations
 from telemetry.web_perf import story_test
 from telemetry.web_perf import timeline_based_measurement
-from tracing.value.diagnostics import generic_set
 
 Info = decorators.Info
 
@@ -148,10 +147,7 @@ class Benchmark(command_line.Command):
     Returns:
       GenericSet Diagnostic with the benchmark's bug component name
     """
-    benchmark_component = decorators.GetComponent(self)
-    component_diagnostic_value = (
-        [benchmark_component] if benchmark_component else [])
-    return generic_set.GenericSet(component_diagnostic_value)
+    return decorators.GetComponent(self)
 
   def GetOwners(self):
     """Returns a Generic Diagnostic containing the benchmark's owners' emails
@@ -160,7 +156,7 @@ class Benchmark(command_line.Command):
     Returns:
       Diagnostic with a list of the benchmark's owners' emails
     """
-    return generic_set.GenericSet(decorators.GetEmails(self) or [])
+    return decorators.GetEmails(self)
 
   def GetDocumentationLink(self):
     """Returns a Generic Diagnostic containing the benchmark's documentation
@@ -168,10 +164,11 @@ class Benchmark(command_line.Command):
 
     Returns:
       Diagnostic with the link (string) to the benchmark documentation.
+      Diagnostic is in the form of 'URL tuple' that allows Dashboard to
+      display it properly.
     """
-    pair = ['Benchmark documentation link',
-            decorators.GetDocumentationLink(self)]
-    return generic_set.GenericSet([pair])
+    return [['Benchmark documentation link',
+             decorators.GetDocumentationLink(self)]]
 
   def CreateCoreTimelineBasedMeasurementOptions(self):
     """Return the base TimelineBasedMeasurementOptions for this Benchmark.
