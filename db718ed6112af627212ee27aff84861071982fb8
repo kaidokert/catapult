@@ -16,6 +16,24 @@
       "revId": "db718ed6112af627212ee27aff84861071982fb8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd432939_7c840b82",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T08:52:07Z",
+      "side": 1,
+      "message": "I\u0027m thinking we should simplify things even more for the clients. Provide a new method results.AddSharedDiagnostics() which expects the dict with simple key value pairs, e.g. like the one in [1] *before* turning the values into GenericSet\u0027s.\n\nThen we can use code similar to the one in [2] to filter out empty values and turn the non-empty ones into the right kind of diagnostic type. (And results processor would do a similar thing too.)\n\nYou may need to split this in two CLs, one adding the new API and switching clients [3], then another one recording the diagnostics into intermediate results.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?rcl\u003d06605b01450fa49b11c721d83a835212cc7b1910\u0026l\u003d559\n[2]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003d06605b01450fa49b11c721d83a835212cc7b1910\u0026l\u003d364\n[3]: https://cs.chromium.org/search/?q\u003dresults%5C.AddSharedDiagnosticToAllHistograms\u0026type\u003dcs",
+      "parentUuid": "24372b07_82cad506",
+      "revId": "db718ed6112af627212ee27aff84861071982fb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
