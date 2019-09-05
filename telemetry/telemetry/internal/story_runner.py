@@ -27,7 +27,6 @@ from telemetry.page import legacy_page_test
 from telemetry import story as story_module
 from telemetry.util import wpr_modes
 from telemetry.web_perf import story_test
-from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 
@@ -355,9 +354,7 @@ def Run(test, story_set, finder_options, results, max_failures=None,
   finally:
     results_processor.ComputeTimelineBasedMetrics(results)
     results.PopulateHistogramSet()
-
-    for name, diag in device_info_diags.iteritems():
-      results.AddSharedDiagnosticToAllHistograms(name, diag)
+    results.AddSharedDiagnostics(device_info_diags)
 
     if state:
       has_existing_exception = sys.exc_info() != (None, None, None)
@@ -446,21 +443,14 @@ def RunBenchmark(benchmark, finder_options):
       exception_formatter.PrintFormattedException()
       return_code = 2
 
-    benchmark_owners = benchmark.GetOwners()
-    benchmark_component = benchmark.GetBugComponents()
-    benchmark_documentation_url = benchmark.GetDocumentationLink()
-
-    if benchmark_owners:
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.OWNERS.name, benchmark_owners)
-
-    if benchmark_component:
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.BUG_COMPONENTS.name, benchmark_component)
-
-    if benchmark_documentation_url:
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.DOCUMENTATION_URLS.name, benchmark_documentation_url)
+    # TODO(crbug.com/981349): merge two calls to AddSharedDiagnostics
+    # (see Run() method for the second one).
+    results.AddSharedDiagnostics({
+        reserved_infos.OWNERS.name: benchmark.GetOwners(),
+        reserved_infos.BUG_COMPONENTS.name: benchmark.GetBugComponents(),
+        reserved_infos.DOCUMENTATION_URLS.name:
+            benchmark.GetDocumentationLinks(),
+    })
 
     if finder_options.upload_results:
       results_processor.UploadArtifactsToCloud(results)
@@ -556,7 +546,7 @@ def _MakeDeviceInfoDiagnostics(state):
   if not state or not state.platform:
     return {}
 
-  device_info_data = {
+  return {
       reserved_infos.ARCHITECTURES.name: state.platform.GetArchName(),
       reserved_infos.DEVICE_IDS.name: state.platform.GetDeviceId(),
       # This is not consistent and caused dashboard upload failure
@@ -567,11 +557,3 @@ def _MakeDeviceInfoDiagnostics(state):
       reserved_infos.OS_NAMES.name: state.platform.GetOSName(),
       reserved_infos.OS_VERSIONS.name: state.platform.GetOSVersionName(),
   }
-
-  device_info_diangostics = {}
-
-  for name, value in device_info_data.iteritems():
-    if not value:
-      continue
-    device_info_diangostics[name] = generic_set.GenericSet([value])
-  return device_info_diangostics

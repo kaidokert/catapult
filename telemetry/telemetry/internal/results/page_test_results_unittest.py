@@ -317,13 +317,12 @@ class PageTestResultsTest(_PageTestResultsTestBase):
 
     self.assertEqual(results.AsHistogramDicts(), histogram_dicts)
 
-  def testAddSharedDiagnosticToAllHistograms(self):
+  def testAddSharedDiagnostics(self):
     with self.CreateResults(benchmark_name='benchmark_name') as results:
       results.WillRunPage(self.pages[0])
       results.DidRunPage(self.pages[0])
-      results.AddSharedDiagnosticToAllHistograms(
-          reserved_infos.BENCHMARKS.name,
-          generic_set.GenericSet(['benchmark_name']))
+      results.AddSharedDiagnostics(
+          {reserved_infos.BENCHMARKS.name: 'benchmark_name'})
       results.PopulateHistogramSet()
 
     histogram_dicts = results.AsHistogramDicts()

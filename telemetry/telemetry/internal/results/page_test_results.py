@@ -24,6 +24,7 @@ from telemetry.value import scalar
 from tracing.value import convert_chart_json
 from tracing.value import histogram_set
 from tracing.value.diagnostics import all_diagnostics
+from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
 
@@ -427,8 +428,19 @@ class PageTestResults(object):
       return
     self._current_story_run.AddLegacyValue(value)
 
-  def AddSharedDiagnosticToAllHistograms(self, name, diagnostic):
-    self._histograms.AddSharedDiagnosticToAllHistograms(name, diagnostic)
+  def AddSharedDiagnostics(self, diagnostics):
+    """Add diagnostics to all histograms.
+
+    Args:
+      diagnostics: a dict with names and values.
+    """
+    for name, value in diagnostics.items():
+      if value is None or value == []:
+        continue
+      if not isinstance(value, list):
+        value = [value]
+      diagnostic = generic_set.GenericSet(value)
+      self._histograms.AddSharedDiagnosticToAllHistograms(name, diagnostic)
 
   def Fail(self, failure):
     """Mark the current story run as failed.
