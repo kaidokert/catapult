@@ -230,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "305577c9_ed81746b",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T14:27:26Z",
+      "side": 1,
+      "message": "If we don\u0027t want out clients to write arbitrary stuff, we should make that explicit in the interface:\n\n  def AddSharedDiagnostics(owners\u003dNone,\n                           bug_components\u003dNone,\n                           os_name\u003dNone\n                           os_version\u003dNone,\n                           ...\n\nIt\u0027s both safe and straightforward.",
+      "parentUuid": "aa48d9b0_b9cf427e",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8908f6d_6ab1d939",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 1
