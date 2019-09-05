@@ -43,6 +43,28 @@ _CATAPULT_TESTS = [
         'disabled': ['android'],
     },
     {
+        'name': 'Dashboard Dev Server Tests Stable',
+        'path': 'dashboard/bin/run_dev_server_tests',
+        'additional_args': [
+            '--no-install-hooks',
+            '--no-use-local-chrome',
+            '--channel=stable'
+        ],
+        'outputs_presentation_json': True,
+        'disabled': ['android'],
+    },
+    {
+        'name': 'Dashboard Dev Server Tests Canary',
+        'path': 'dashboard/bin/run_dev_server_tests',
+        'additional_args': [
+            '--no-install-hooks',
+            '--no-use-local-chrome',
+            '--channel=canary'
+        ],
+        'outputs_presentation_json': True,
+        'disabled': ['android'],
+    },
+    {
         'name': 'Dashboard Python Tests',
         'path': 'dashboard/bin/run_py_tests',
         'additional_args': ['--no-install-hooks'],
