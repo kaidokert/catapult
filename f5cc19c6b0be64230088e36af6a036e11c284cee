@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "aa48d9b0_b9cf427e",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-05T14:08:49Z",
+      "side": 1,
+      "message": "I think I don\u0027t agree 100% with this. On the one hand it\u0027s true that we want to keep Telemetry independent of the tracing\u0027s module _implementation details_, but not necessarily independent of its interface/specification.\n\nIt should not be possible for clients to record arbitrary \"stuff\" as diagnostics, as the ones that we record have very specific semantic attached to them. That is a good property that we should not lose. [Note this is also similar to the way Telemetry writes benchmark metadata with fields having a strict proto-defined semantics.]\n\nAlso it\u0027s better for developers to get an early error message e.g. if they mistype the name of diagnostic, at the point where the diagnostic is added; and not have to wait until results processor finds the mistake.",
+      "parentUuid": "8938f1d3_98d4f65a",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8908f6d_6ab1d939",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 1
