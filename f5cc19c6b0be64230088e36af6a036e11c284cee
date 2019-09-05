@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3e21ea78_69a587fc",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5053cd82_2ad5c2db",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "582d5102_87e55d36",
         "filename": "telemetry/telemetry/benchmark.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aea2b74a_fe2d6400",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "582d5102_87e55d36",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "f203227d_46a91b1a",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deda56a2_8ce20f29",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d06a3d6_0ca6a8ef",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7c70030_56ac95f8",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d06a3d6_0ca6a8ef",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "5345f402_3b8e3bed",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bffce4f_567fbd5e",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c30cf2ca_fd71772c",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2019-09-05T10:59:09Z",
       "side": 1,
       "message": "Since callers already mostly do, I think it would be better if callers pass the \"reserved_info\" object as key instead of just the name. So this is not limited to GenericSet\u0027s, and you can use that info to cast values to their right entry_type (e.g. bool, int, str).\n\nYou could either tweak the definition of _Info class (e.g. make it a namedtuple to it works as a dict key), or let clients pass as list of pairs rather than a dict.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/value/diagnostics/reserved_infos.py?rcl\u003df2c3c6a6ada75dc003def70c7e0e2cc2d289002f\u0026l\u003d83",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8938f1d3_98d4f65a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "If I understand correctly, diagnostic is a feature of a specific output format (HistogramSet), so it makes more sense to me to move all the conversions to ResultsProcessor.\n\nI would prefer having Telemetry accept arbitrary key-values as diagnostics, and store them as-is in intermediate results. And it will be ResultsProcessor\u0027s job to convert them to the corresponding diagnostic types before storing them in HistogramSet format.\n\nThat way we make the interface simpler and more transparent to clients. Moreover, I think it will be reasonable at some point to make Telemetry totally independent from the tracing module, since the module is focused on processing traces, which is a ResultsProcessor\u0027s responsibility.",
+      "parentUuid": "c30cf2ca_fd71772c",
       "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -118,6 +226,24 @@
       "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f310aa19_3407db4b",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-05T12:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8908f6d_6ab1d939",
+      "revId": "f5cc19c6b0be64230088e36af6a036e11c284cee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
