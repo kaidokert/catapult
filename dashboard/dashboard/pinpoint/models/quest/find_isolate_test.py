@@ -11,11 +11,15 @@ import unittest
 
 import mock
 
+from dashboard.pinpoint import test
+from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import isolate
+from dashboard.pinpoint.models import job as job_module
+from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.change import change_test
+from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.quest import find_isolate
-from dashboard.pinpoint import test
 
 
 FakeJob = collections.namedtuple('Job',
@@ -406,3 +410,154 @@ class BuildTest(_FindIsolateExecutionTest):
     }
     with self.assertRaises(errors.BuildIsolateNotFound):
       execution.Poll()
+
+
+# The find_isolate Evaluator is special because it's meant to handle a "leaf"
+# task in a graph, so we can test the evaluator on its own without setting up
+# dependencies.
+@mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
+@mock.patch('dashboard.services.buildbucket_service.Put')
+class FindIsolateEvaluatorTest(test.TestCase):
+
+  def setUp(self):
+    super(FindIsolateEvaluatorTest, self).setUp()
+    self.maxDiff = None  # pylint: disable=invalid-name
+    self.job = job_module.Job.New((), ())
+    task_module.PopulateTaskGraph(
+        self.job,
+        task_module.TaskGraph(
+            vertices=[
+                task_module.TaskVertex(
+                    id='build_7c7e90be',
+                    vertex_type='find_isolate',
+                    payload={
+                        'builder': 'Mac Builder',
+                        'target': 'telemetry_perf_tests',
+                        'bucket': 'luci.bucket',
+                        'change': {
+                            'commits': [{
+                                'repository': 'chromium',
+                                'git_hash': '7c7e90be',
+                            }],
+                        },
+                    })
+            ],
+            edges=[]))
+
+  def testInitiate_FoundIsolate(self, *_):
+    # Seed the isolate for this change.
+    change = change_module.Change(
+        commits=[commit_module.Commit('chromium', '7c7e90be')])
+    isolate.Put((('Mac Builder', change, 'telemetry_perf_tests',
+                  'https://isolate.server', '7c7e90be'),))
+
+    # Then ensure that we can find the seeded isolate for the specified
+    # revision.
+    self.assertDictEqual(
+        {
+            'build_7c7e90be': {
+                'isolate_server': 'https://isolate.server',
+                'isolate_hash': '7c7e90be',
+                'buildbucket_result': None,
+                'buildbucket_job_status': None,
+            },
+        },
+        task_module.Evaluate(
+            self.job,
+            find_isolate.BuildEvent(
+                type='initiate', target_task='build_7c7e90be', payload={}),
+            find_isolate.Evaluator(self.job)))
+
+  def testInitiate_ScheduleBuild(self, put, _):
+    # We then need to make sure that the buildbucket put was called.
+    put.return_value = {'build': {'id': '345982437987234'}}
+    put.assert_called_once()
+
+    # This time we don't seed the isolate for the change to force the build.
+    self.assertDictEqual(
+        {
+            'build_7c7e90be': {
+                'isolate_server': None,
+                'isolate_hash': None,
+                'buildbucket_result': {
+                    'build': {
+                        'id': '345982437987234'
+                    },
+                },
+                'buildbucket_job_status': None,
+            },
+        },
+        task_module.Evaluate(
+            self.job,
+            find_isolate.BuildEvent(
+                type='initiate', target_task='build_7c7e90be', payload={}),
+            find_isolate.Evaluator(self.job)))
+
+  def testUpdate_BuildSuccessful(self, put, get_build_status):
+    # First we're going to initiate so we have a build scheduled.
+    put.return_value = {'build': {'id': '345982437987234'}}
+    put.assert_called_once()
+    self.assertDictEqual(
+        {
+            'build_7c7e90be': {
+                'isolate_server': None,
+                'isolate_hash': None,
+                'buildbucket_result': {
+                    'build': {
+                        'id': '345982437987234'
+                    }
+                },
+                'buildbucket_job_status': None,
+            },
+        },
+        task_module.Evaluate(
+            self.job,
+            find_isolate.BuildEvent(
+                type='initiate', target_task='build_7c7e90be', payload={}),
+            find_isolate.Evaluator(self.job)))
+
+    # Now we send an update event which should cause us to poll the status of
+    # the build on demand.
+    json = """
+    {
+      "properties": {
+          "got_revision_cp": "refs/heads/master@7c7e90be",
+          "isolate_server": "https://isolate.server",
+          "swarm_hashes_refs/heads/master(at)7c7e90be_without_patch":
+              {"telemetry_perf_tests": "192923affe212adf"}
+      }
+    }"""
+    get_build_status.return_value = {
+        'build': {
+            'status': 'COMPLETED',
+            'result': 'SUCCESS',
+            'result_details_json': json,
+        }
+    }
+    get_build_status.assert_called_once()
+    self.assertDictEqual(
+        {
+            'build_7c7e90be': {
+                'isolate_server': 'https://isolate.server',
+                'isolate_hash': '192923affe212adf',
+                'buildbucket_result': {
+                    'build': {
+                        'id': '345982437987234'
+                    }
+                },
+                'buildbucket_job_status': mock.ANY,
+            },
+        },
+        task_module.Evaluate(
+            self.job,
+            find_isolate.BuildEvent(
+                type='update',
+                target_task='build_7c7e90be',
+                payload={'status': 'build_completed'}),
+            find_isolate.Evaluator(self.job)))
+
+  def testUpdate_BuildFailed_ScheduleRetry(self, *_):
+    self.skipTest('Not implemented yet.')
+
+  def testUpdate_BuildFailed_HardFailure(self, *_):
+    self.skipTest('Not implemented yet.')
