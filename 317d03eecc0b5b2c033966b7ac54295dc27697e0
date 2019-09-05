@@ -70,6 +70,30 @@
       "revId": "317d03eecc0b5b2c033966b7ac54295dc27697e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14254a87_0f411682",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-09-05T20:04:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "756a5863_c07e9858",
+      "range": {
+        "startLine": 327,
+        "startChar": 16,
+        "endLine": 327,
+        "endChar": 37
+      },
+      "revId": "317d03eecc0b5b2c033966b7ac54295dc27697e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
