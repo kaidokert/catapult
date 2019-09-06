@@ -22,6 +22,30 @@
       "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9474b1d2_765e7d6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-06T08:10:39Z",
+      "side": 1,
+      "message": "I know. That\u0027s what the rest of the commit message explains.",
+      "parentUuid": "aaf37d98_3b0e860e",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
