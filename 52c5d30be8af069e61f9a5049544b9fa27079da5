@@ -22,6 +22,30 @@
       "revId": "52c5d30be8af069e61f9a5049544b9fa27079da5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d40d886c_0aac7457",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1116071
+      },
+      "writtenOn": "2019-09-06T20:51:24Z",
+      "side": 0,
+      "message": "Nice catch! I\u0027ve copied the name from the comment above and couldn\u0027t think there were two very similarly named exceptions. Thanks for the fix!",
+      "parentUuid": "73bec019_1c56119b",
+      "range": {
+        "startLine": 305,
+        "startChar": 24,
+        "endLine": 305,
+        "endChar": 43
+      },
+      "revId": "52c5d30be8af069e61f9a5049544b9fa27079da5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
