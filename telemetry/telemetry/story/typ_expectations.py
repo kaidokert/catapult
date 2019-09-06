@@ -19,6 +19,17 @@ from typ import json_results
 ResultType = json_results.ResultType
 
 
+SYSTEM_CONDITION_TAGS = frozenset([
+    'android', 'android-go', 'android-low-end', 'android-nexus-5',
+    'android-nexus-5x', 'android-nexus-6', 'android-pixel-2',
+    'chromeos', 'desktop', 'linux', 'mac', 'mac-10.12', 'win',
+    'win10', 'win7', 'android-not-webview', 'android-webview',
+    'mobile', 'android-marshmallow', 'android-lollipop', 'android-nougat',
+    'android-oreo', 'android-pie', 'android-10', 'android-webview-google',
+    'reference', 'android-chromium', 'ubuntu', 'android-kitkat'
+])
+
+
 class StoryExpectations(object):
 
   def __init__(self, benchmark_name):
