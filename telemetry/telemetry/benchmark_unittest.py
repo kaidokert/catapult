@@ -5,6 +5,7 @@
 import shutil
 import tempfile
 import unittest
+
 import mock
 
 from telemetry import android
@@ -79,21 +80,12 @@ class BenchmarkTest(unittest.TestCase):
         Exception, 'containing only telemetry.page.Page stories'):
       b.Run(self.options)
 
-  def testPageTestWithCompatibleStory(self):
-    original_run_fn = story_runner.Run
-    was_run = [False]
-    def RunStub(*arg, **kwargs):
-      del arg, kwargs
-      was_run[0] = True
-    story_runner.Run = RunStub
+  @mock.patch('telemetry.internal.story_runner.RunStorySet')
+  def testPageTestWithCompatibleStory(self, mock_run_story_set):
+    b = TestBenchmark(page.Page(url='about:blank', name='about:blank'))
+    b.Run(self.options)
 
-    try:
-      b = TestBenchmark(page.Page(url='about:blank', name='about:blank'))
-      b.Run(self.options)
-    finally:
-      story_runner.Run = original_run_fn
-
-    self.assertTrue(was_run[0])
+    self.assertTrue(mock_run_story_set.called)
 
   def testBenchmarkMakesTbmTestByDefault(self):
     class DefaultTbmBenchmark(benchmark.Benchmark):
