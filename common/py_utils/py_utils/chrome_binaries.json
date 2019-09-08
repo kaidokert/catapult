@@ -121,6 +121,36 @@
           "version_in_cs": "72.0.3626.119"
         }
       }
+    },
+    "chrome_chromium_stable": {
+      "cloud_storage_base_folder": "binary_dependencies",
+      "cloud_storage_bucket": "chrome-telemetry",
+      "file_info": {
+        "linux_x86_64": {
+          "cloud_storage_hash": "linux665006",
+          "download_path": "bin/reference_build/chromium-linux.zip",
+          "path_within_archive": "chrome-linux/chrome",
+          "version_in_cs": "76.0.3809.0"
+        },
+        "mac_x86_64": {
+          "cloud_storage_hash": "mac665002",
+          "download_path": "bin/reference_builds/chromium-mac64.zip",
+          "path_within_archive": "chrome-mac/Google Chrome.app/Contents/MacOS/Google Chrome",
+          "version_in_cs": "76.0.3809.132"
+        },
+        "win_AMD64": {
+          "cloud_storage_hash": "win-64-665006",
+          "download_path": "bin\\reference_build\\chromium-win64.zip",
+          "path_within_archive": "chrome-win\\chrome.exe",
+          "version_in_cs": "72.0.3626.119"
+        },
+        "win_x86": {
+          "cloud_storage_hash": "win-32-665006",
+          "download_path": "bin\\reference_build\\chromium-win32.zip",
+          "path_within_archive": "chrome-win\\chrome.exe",
+          "version_in_cs": "76.0.3809.100	"
+        }
+      }
     }
   }
 }

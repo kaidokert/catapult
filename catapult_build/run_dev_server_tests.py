@@ -167,7 +167,8 @@ def Main(argv):
       if sys.platform == 'linux2' and channel == 'canary':
         channel = 'dev'
       # TODO(crbug.com/973847): chrome_m72 is needed as a hack here.
-      assert channel in ['stable', 'beta', 'dev', 'canary', 'm72']
+      assert channel in ['stable', 'beta', 'dev', 'canary', 'm72',
+                         'chromium_stable']
 
       print 'Fetching the %s chrome binary via the binary_manager.' % channel
       chrome_manager = binary_manager.BinaryManager([CHROME_BINARIES_CONFIG])
