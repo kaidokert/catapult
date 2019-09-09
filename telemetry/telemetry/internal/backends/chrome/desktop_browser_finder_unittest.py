@@ -183,6 +183,13 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     self._finder_options = browser_options.BrowserFinderOptions()
     self._finder_options.chrome_root = '/src/'
 
+    self._util_stubs = system_stub.Override(util, ['os'])
+    self._util_stubs.os.environ = os.environ.copy()
+    self._util_stubs.os.environ.pop('CHROMIUM_OUTPUT_DIR', None)
+
+  def tearDown(self):
+    self._util_stubs.Restore()
+
   def CreateBrowser(self, path):
     self.fs.CreateFile(path)
     os.chmod(path, stat.S_IXUSR)
