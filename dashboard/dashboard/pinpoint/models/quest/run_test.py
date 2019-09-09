@@ -18,11 +18,14 @@ import re
 import shlex
 
 from dashboard.pinpoint.models import errors
+from dashboard.pinpoint.models import evaluators
+from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.quest import execution as execution_module
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
 
 
+# TODO(dberris): Move these into configuration instead of being in code.
 _CIPD_VERSION = 'git_revision:66410e06ff82b4e79e849977e4e58c0a261d9953'
 _CPYTHON_VERSION = 'version:2.7.14.chromium14'
 _LOGDOG_BUTLER_VERSION = 'git_revision:e1abc57be62d198b5c2f487bfb2fa2d2eb0e867c'
@@ -364,3 +367,88 @@ def _ParseException(log):
 
     # Skip the line containing the code at the stack frame location.
     next(log_iterator)
+
+
+# Everything after this point aims to define an evaluator for the 'run_test'
+# tasks.
+class HandleInitiate(object):
+
+  def __init__(self, job):
+    self.job = job
+
+  def __call__(self, task, event, accumulator):
+    if task.status == 'ongoing':
+      return None
+
+    # Outline:
+    #   - Check dependencies to see if they're 'completed', looking for:
+    #     - Isolate server
+    #     - Isolate hash
+    dep_map = {
+        dep: {
+            'isolate_server': accumulator.get(dep, {}).get('isolate_server'),
+            'isolate_hash': accumulator.get(dep, {}).get('isolate_hash'),
+            'status': accumulator.get(dep, {}).get('status'),
+        } for dep in task.dependencies
+    }
+
+    if not dep_map:
+      logging.error(
+          'No dependencies for "run_test" task, unlikely to proceed; task = %s',
+          task)
+      return None
+
+    dep_value = {}
+    if len(dep_map) > 1:
+      # TODO(dberris): Figure out whether it's a valid use-case to have multiple
+      # isolate inputs to Swarming.
+      logging.error(('Found multiple dependencies for run_test; '
+                     'picking a random input; task = %s'), task)
+    dep_value.update(dep_map.values()[0])
+
+    if dep_value.get('status') == 'failed':
+      return [
+          lambda _: task_module.UpdateTask(
+              self.job, task.id, new_state='failed', payload=task.payload)
+      ]
+
+    if dep_value.get('status') == 'completed':
+      # TODO(dberris): Schedule a test run here!
+      return [
+          lambda _: task_module.UpdateTask(
+              self.job, task.id, new_state='ongoing', payload=task.payload)
+      ]
+
+
+class HandleUpdate(object):
+
+  def __init__(self, job):
+    self.job = job
+
+  def __call__(self, task, event, accumulator):
+    # FIXME: Make this work!
+    return None
+
+
+class Evaluator(evaluators.DispatchEvaluator):
+
+  def __init__(self, job):
+    super(Evaluator, self).__init__(
+        evaluator_map={
+            'initiate':
+                evaluators.SequenceEvaluator(
+                    evaluators=(
+                        evaluators.PayloadLiftingEvaluator(),
+                        evaluators.FilteringEvaluator(
+                            predicate=evaluators.TaskTypeFilter('run_test'),
+                            delegate=HandleInitiate(job)),
+                    )),
+            'update':
+                evaluators.SequenceEvaluator(
+                    evaluators=(
+                        evaluators.PayloadLiftingEvaluator(),
+                        evaluators.FilteringEvaluator(
+                            predicate=evaluators.TaskTypeFilter('run_test'),
+                            delegate=HandleUpdate(job)))),
+        },
+        default_evaluator=evaluators.PayloadLiftingEvaluator())

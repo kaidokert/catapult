@@ -7,12 +7,17 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
+import functools
 import json
+import mock
 import unittest
 
-import mock
-
+from dashboard.pinpoint import test
 from dashboard.pinpoint.models import errors
+from dashboard.pinpoint.models import evaluators
+from dashboard.pinpoint.models import event as event_module
+from dashboard.pinpoint.models import job as job_module
+from dashboard.pinpoint.models import task as task_module
 from dashboard.pinpoint.models.quest import run_test
 
 
@@ -433,3 +438,86 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     execution_2.Poll()
 
     self.assertEqual(swarming_tasks_new.call_count, 2)
+
+
+@mock.patch('dashboard.services.swarming.Tasks.New')
+@mock.patch('dashboard.services.swarming.Task.Result')
+class EvaluatorTest(test.TestCase):
+
+  def setUp(self):
+    super(EvaluatorTest, self).setUp()
+    self.maxDiff = None  # pylint: disable=invalid-name
+    self.job = job_module.Job.New((), ())
+    task_module.PopulateTaskGraph(
+        self.job,
+        task_module.TaskGraph(
+            vertices=[
+                task_module.TaskVertex(
+                    id='build_aaaaaaa',
+                    vertex_type='find_isolate',
+                    payload={
+                        'builder': 'Some Builder',
+                        'target': 'telemetry_perf_tests',
+                        'bucket': 'luci.bucket',
+                        'change': {
+                            'commits': [{
+                                'repository': 'chromium',
+                                'git_hash': 'aaaaaaa',
+                            }]
+                        }
+                    })
+            ] + [
+                task_module.TaskVertex(
+                    id='run_test_aaaaaaa_%s' % (attempt,),
+                    vertex_type='run_test',
+                    payload={
+                        'swarming_server': 'some_server',
+                        'dimensions': DIMENSIONS,
+                        'extra_args': [],
+                    }) for attempt in range(11)
+            ],
+            edges=[
+                task_module.Dependency(
+                    from_='run_test_aaaaaaa_%s' % (attempt,),
+                    to='build_aaaaaaa') for attempt in range(11)
+            ],
+        ))
+
+  def testEvaluateToCompletion(self, *_):
+    # FIXME: Test that we're sending the Swarming requests!
+    self.assertNotEqual(
+        {},
+        task_module.Evaluate(
+            self.job,
+            event_module.Event(type='initiate', target_task=None, payload={}),
+            evaluators.SequenceEvaluator(
+                evaluators=(
+                    evaluators.FilteringEvaluator(
+                        predicate=evaluators.TaskTypeFilter('find_isolate'),
+                        delegate=evaluators.SequenceEvaluator(
+                            evaluators=(
+                                functools.partial(FoundIsolate, self.job),
+                                evaluators.PayloadLiftingEvaluator()))),
+                    run_test.Evaluator(self.job),
+                )),
+        ))
+
+  def testEvaluateHandleFailures_Hard(self, *_):
+    self.skipTest('Not implemented yet')
+
+  def testEvaluateHandleFailures_Retry(self, *_):
+    self.skipTest('Not implemented yet')
+
+
+def FoundIsolate(job, task, *_):
+  if task.status == 'completed':
+    return None
+
+  task.payload.update({
+      'isolate_server': 'https://isolate.server',
+      'isolate_hash': '12049adfa129339482234098',
+  })
+  return [
+      lambda _: task_module.UpdateTask(
+          job, task.id, new_state='completed', payload=task.payload)
+  ]
