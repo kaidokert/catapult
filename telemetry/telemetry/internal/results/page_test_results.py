@@ -427,8 +427,33 @@ class PageTestResults(object):
       return
     self._current_story_run.AddLegacyValue(value)
 
-  def AddSharedDiagnosticToAllHistograms(self, name, diagnostic):
-    self._histograms.AddSharedDiagnosticToAllHistograms(name, diagnostic)
+  def AddSharedDiagnostics(self,
+                           owners=None,
+                           bug_components=None,
+                           documentation_urls=None,
+                           architecture=None,
+                           device_id=None,
+                           os_name=None,
+                           os_version=None):
+    """Add diagnostics to all histograms."""
+    diag_values = [
+        (reserved_infos.OWNERS, owners),
+        (reserved_infos.BUG_COMPONENTS, bug_components),
+        (reserved_infos.DOCUMENTATION_URLS, documentation_urls),
+        (reserved_infos.ARCHITECTURES, architecture),
+        (reserved_infos.DEVICE_IDS, device_id),
+        (reserved_infos.OS_NAMES, os_name),
+        (reserved_infos.OS_VERSIONS, os_version),
+    ]
+
+    for diag, value in diag_values:
+      if value is None or value == []:
+        continue
+      if diag.type == 'GenericSet' and not isinstance(value, list):
+        value = [value]
+      diag_class = all_diagnostics.GetDiagnosticClassForName(diag.type)
+      self._histograms.AddSharedDiagnosticToAllHistograms(diag.name,
+                                                          diag_class(value))
 
   def Fail(self, failure):
     """Mark the current story run as failed.
