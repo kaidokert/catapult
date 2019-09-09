@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e7a9251_d50e6cd5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-09T20:41:57Z",
+      "side": 1,
+      "message": "In what way does it affect the outcome?\n\nIt seems like environment variables are meant to be used to impact tests program running. I would prefer we dig into exactly what is being affected and remove undesirable behavior at its source.\n\nWe could even completely stop Telemetry from reading in this environment variable and entirely depend on command line arguments to reduce Telemetry complexity. If cros_tests need this, then they can have a wrapper script that reads the environment variable and passes the appropriate arguments.\n\nThe other thing we can try is to have the test that needs this environment variable set to set it explicitly rather than doing this in setUp and tearDown.",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "026c1d38dd2d11e721ff27f713eb074de8487e2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
