@@ -183,6 +183,14 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     self._finder_options = browser_options.BrowserFinderOptions()
     self._finder_options.chrome_root = '/src/'
 
+    # CHROMIUM_OUTPUT_DIR affects the outcome of the tests, so temporarily
+    # remove it from the environment.
+    self._output_dir_env = os.environ.pop('CHROMIUM_OUTPUT_DIR', None)
+
+  def tearDown(self):
+    if self._output_dir_env:
+      os.environ['CHROMIUM_OUTPUT_DIR'] = self._output_dir_env
+
   def CreateBrowser(self, path):
     self.fs.CreateFile(path)
     os.chmod(path, stat.S_IXUSR)
