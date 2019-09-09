@@ -46,6 +46,30 @@
       "revId": "026c1d38dd2d11e721ff27f713eb074de8487e2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a19573a1_7dc0e67e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-09T21:08:52Z",
+      "side": 1,
+      "message": "This isn\u0027t a unit test of util.py, this is a unit test of desktop_browser_finder.py.\n\nLooks like only telemetry.internal.backends.chrome.desktop_browser_finder_unittest.LinuxFindTest.testFindAllWithCheckout is failing. Can we just make changes to fix the test that is failing rather than making unspecific changes to setUp and tearDown?",
+      "parentUuid": "9050c257_7e06769b",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "026c1d38dd2d11e721ff27f713eb074de8487e2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
