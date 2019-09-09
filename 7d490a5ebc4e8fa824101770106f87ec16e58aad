@@ -22,6 +22,30 @@
       "revId": "7d490a5ebc4e8fa824101770106f87ec16e58aad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb941ca5_3582dbe9",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_runtime.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2019-09-09T08:52:01Z",
+      "side": 1,
+      "message": "Thank you!",
+      "parentUuid": "5daed78e_839875ef",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 38
+      },
+      "revId": "7d490a5ebc4e8fa824101770106f87ec16e58aad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
