@@ -22,6 +22,30 @@
       "revId": "026c1d38dd2d11e721ff27f713eb074de8487e2a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9050c257_7e06769b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-09T21:00:40Z",
+      "side": 1,
+      "message": "\u003e In what way does it affect the outcome?\n\nhttps://ci.chromium.org/p/chromium/builders/try/chromeos-amd64-generic-rel/353426\n\n\u003e It seems like environment variables are meant to be used to impact tests program running. I would prefer we dig into exactly what is being affected and remove undesirable behavior at its source.\n\nTests, sure. Unittests of the test framework? I wouldn\u0027t think so.\n\nThe unittest here depends on this branch being covered:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/util.py?rcl\u003d884c81e1703f23320657fab45aaeca226f64de25\u0026l\u003d92\n\nWith the env var set (or the cmd line passed in: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?rcl\u003d884c81e1703f23320657fab45aaeca226f64de25\u0026l\u003d269) it gets skipped.\n\n\u003e We could even completely stop Telemetry from reading in this environment variable and entirely depend on command line arguments to reduce Telemetry complexity. If cros_tests need this, then they can have a wrapper script that reads the environment variable and passes the appropriate arguments.\n\nCHROMIUM_OUTPUT_DIR is a pretty standard env (https://cs.chromium.org/search/?q\u003dcase:yes+%22CHROMIUM_OUTPUT_DIR%22\u0026type\u003dcs) so just ignoring it doesn\u0027t help things. \n\n\u003e The other thing we can try is to have the test that needs this environment variable set to set it explicitly rather than doing this in setUp and tearDown.\n\nIf there\u0027s a chromium output dir available, there should be no harm in pointing the env var to it. The proper fix is correcting these unittests to properly account for things in the environment that can affect them.",
+      "parentUuid": "3e7a9251_d50e6cd5",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "026c1d38dd2d11e721ff27f713eb074de8487e2a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
