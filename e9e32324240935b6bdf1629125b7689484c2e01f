@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19e92232_9b6db1cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-10T18:02:53Z",
+      "side": 1,
+      "message": "Link that CL\u0027s same bugnum here?",
+      "revId": "e9e32324240935b6bdf1629125b7689484c2e01f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

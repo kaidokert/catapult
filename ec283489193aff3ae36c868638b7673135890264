@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "beffb07d_ebd263ac",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-10T18:02:53Z",
+      "side": 0,
+      "message": "Why clip the docstring short?",
+      "revId": "ec283489193aff3ae36c868638b7673135890264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
