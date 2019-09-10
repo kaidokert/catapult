@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e7f688e_37cd4afe",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T15:47:00Z",
+      "side": 0,
+      "message": "Sadly this needs to be here because some stories use information about the browser to determine whether they should be allowed or to not to run. See: [1], [2].\n\nI\u0027ve always been annoyed by this, because I agree launching the browser to just skip a story seems really silly. But looking at [2] it looks like we still need to keep supporting something like this for a while.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/page/shared_page_state.py?rcl\u003d884c81e1703f23320657fab45aaeca226f64de25\u0026l\u003d234\n[2]: https://cs.chromium.org/search/?q\u003dCanRunOnBrowser",
+      "revId": "884c81e1703f23320657fab45aaeca226f64de25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
