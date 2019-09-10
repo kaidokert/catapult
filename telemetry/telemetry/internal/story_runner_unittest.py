@@ -1008,10 +1008,10 @@ class StoryRunnerTest(unittest.TestCase):
         root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.test.Measure(root_mock.state.platform, root_mock.results),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
@@ -1025,9 +1025,9 @@ class StoryRunnerTest(unittest.TestCase):
         root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.test.DidRunPage(root_mock.state.platform),
         mock.call.state.DidRunStory(root_mock.results),
@@ -1042,6 +1042,7 @@ class StoryRunnerTest(unittest.TestCase):
         root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
@@ -1071,6 +1072,7 @@ class StoryRunnerTest(unittest.TestCase):
             root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
       self.assertListEqual(root_mock.method_calls, [
+          mock.call.state.CanRunStory(root_mock.story),
           mock.call.results.CreateArtifact('logs.txt'),
           mock.call.test.WillRunStory(root_mock.state.platform),
           mock.call.state.WillRunStory(root_mock.story),
@@ -1095,15 +1097,7 @@ class StoryRunnerTest(unittest.TestCase):
           root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
-        mock.call.results.CreateArtifact('logs.txt'),
-        mock.call.test.WillRunStory(root_mock.state.platform),
-        mock.call.state.WillRunStory(root_mock.story),
         mock.call.state.CanRunStory(root_mock.story),
-        mock.call.state.DumpStateUponStoryRunFailure(root_mock.results),
-        mock.call.results.Fail(
-            'Exception raised running %s' % root_mock.story.name),
-        mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
-        mock.call.state.DidRunStory(root_mock.results),
     ])
 
   def testRunStoryAndProcessErrorIfNeeded_tryUnsupportedAction(self):
@@ -1114,10 +1108,10 @@ class StoryRunnerTest(unittest.TestCase):
     story_runner._RunStoryAndProcessErrorIfNeeded(
         root_mock.story, root_mock.results, root_mock.state, root_mock.test)
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.results.Skip('Unsupported page action: foo'),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
@@ -1134,6 +1128,7 @@ class StoryRunnerTest(unittest.TestCase):
           root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.DumpStateUponStoryRunFailure(root_mock.results),
@@ -1154,10 +1149,10 @@ class StoryRunnerTest(unittest.TestCase):
           root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.test.Measure(root_mock.state.platform, root_mock.results),
         mock.call.test.DidRunStory(root_mock.state.platform, root_mock.results),
@@ -1175,10 +1170,10 @@ class StoryRunnerTest(unittest.TestCase):
         root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.state.DumpStateUponStoryRunFailure(root_mock.results),
         mock.call.results.Fail(
@@ -1198,6 +1193,7 @@ class StoryRunnerTest(unittest.TestCase):
           root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
@@ -1218,6 +1214,7 @@ class StoryRunnerTest(unittest.TestCase):
         root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.results.Skip('Unsupported page action: foo'),
@@ -1237,10 +1234,10 @@ class StoryRunnerTest(unittest.TestCase):
           root_mock.story, root_mock.results, root_mock.state, root_mock.test)
 
     self.assertEquals(root_mock.method_calls, [
+        mock.call.state.CanRunStory(root_mock.story),
         mock.call.results.CreateArtifact('logs.txt'),
         mock.call.test.WillRunStory(root_mock.state.platform),
         mock.call.state.WillRunStory(root_mock.story),
-        mock.call.state.CanRunStory(root_mock.story),
         mock.call.state.RunStory(root_mock.results),
         mock.call.test.Measure(root_mock.state.platform, root_mock.results),
         mock.call.state.DumpStateUponStoryRunFailure(root_mock.results),

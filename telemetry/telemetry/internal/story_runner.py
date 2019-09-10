@@ -132,17 +132,18 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
     # progress_reporter to log it in the output.
     results.Fail('Exception raised running %s' % story.name)
 
+  if not state.CanRunStory(story):
+    results.Skip(
+        'Skipped because story is not supported '
+        '(SharedState.CanRunStory() returns False).')
+    return
+
   with CaptureLogsAsArtifacts(results):
     try:
       if isinstance(test, story_test.StoryTest):
         test.WillRunStory(state.platform)
       state.WillRunStory(story)
 
-      if not state.CanRunStory(story):
-        results.Skip(
-            'Skipped because story is not supported '
-            '(SharedState.CanRunStory() returns False).')
-        return
       story.wpr_mode = state.wpr_mode
       state.RunStory(results)
       if isinstance(test, story_test.StoryTest):
