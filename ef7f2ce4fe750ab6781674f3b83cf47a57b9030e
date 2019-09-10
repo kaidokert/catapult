@@ -70,6 +70,30 @@
       "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c08db76_10fbebdf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-10T17:28:09Z",
+      "side": 1,
+      "message": "ah, I see.\n\nIn that case could we remove the existing InterruptBenchmark call? Otherwise still LGTM.",
+      "parentUuid": "0c3e3ff8_e8a05702",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
