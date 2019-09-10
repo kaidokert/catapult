@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c0be2d6_826ff65d",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T15:58:15Z",
+      "side": 1,
+      "message": "Ok, this looks good. Thanks!\n\nCould you just factor out the common code between this and _GetDiagnostics, maybe move that to a separate private method/function?",
+      "revId": "a91ecf1e9adfc6d016665737ff2219d529591f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d3664c_9746f4e2",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T15:58:15Z",
+      "side": 1,
+      "message": "I\u0027m now landing https://chromium-review.googlesource.com/c/catapult/+/1786440 which renames Run -\u003e RunStorySet.\n\nAfter it lands, please rebase and update this comment too.",
+      "revId": "a91ecf1e9adfc6d016665737ff2219d529591f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f5f037a_c06cc24e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T15:58:15Z",
+      "side": 1,
+      "message": "nit: move the comment out of the dict, probably before the return. Mention this also used to include data for \"reserved_infos.MEMORY_AMOUNTS\" but it was found that platform.GetSystemTotalPhysicalMemory() does not give consistent results. Keep the reference to crbug.com/854676.",
+      "revId": "a91ecf1e9adfc6d016665737ff2219d529591f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
