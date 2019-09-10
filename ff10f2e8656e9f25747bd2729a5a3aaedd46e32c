@@ -16,6 +16,24 @@
       "revId": "ff10f2e8656e9f25747bd2729a5a3aaedd46e32c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71e70520_85c864a0",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-09-10T15:47:06Z",
+      "side": 1,
+      "message": "If output_dir is None, then there are no artifacts and SerializeAndUploadHtmlTraces() will do nothing.\n\nRephrased the comment as you suggested.",
+      "parentUuid": "55a2b231_0cbade22",
+      "revId": "ff10f2e8656e9f25747bd2729a5a3aaedd46e32c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
