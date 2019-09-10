@@ -94,6 +94,30 @@
       "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3dd9e27f_e274bcda",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T17:56:29Z",
+      "side": 1,
+      "message": "You mean to remove all of the calls to InterruptBenchmark in story_runner.py [1] and let exceptions do the benchmark interrupting?\n\nThat would certainly be cleaner, and probably help simplify the very obscure control flow that currently plagues the story runner loop. But that needs to be thought out very carefully and certainly needs another or few other CLs. I could keep track of that as part of crbug.com/866458.\n\n[1]: https://cs.chromium.org/search/?q\u003dInterruptBenchmark+f:story_runner.py",
+      "parentUuid": "5c08db76_10fbebdf",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
