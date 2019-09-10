@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d37e80ae_d714355b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-10T19:26:54Z",
+      "side": 1,
+      "message": "Maybe we want to make a new directory or at least new files in pinpoint with the execution engine analogs to the pinpoint quests?",
+      "range": {
+        "startLine": 304,
+        "startChar": 6,
+        "endLine": 304,
+        "endChar": 25
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8fddf7a_a945ebcb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-10T19:26:54Z",
+      "side": 1,
+      "message": "Having a bit of trouble understanding why some of these have the try/except around them, what states are the task in that these updates are potentially invalid?",
+      "range": {
+        "startLine": 385,
+        "startChar": 25,
+        "endLine": 385,
+        "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b37983f8_471c1769",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-10T19:26:54Z",
+      "side": 1,
+      "message": "should these be FromDict\u0027s?",
+      "range": {
+        "startLine": 539,
+        "startChar": 26,
+        "endLine": 539,
+        "endChar": 32
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8723d0a_7517cc51",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-10T19:26:54Z",
+      "side": 1,
+      "message": "Feels like the testing is a little light compared to all the new logic introduced.",
+      "range": {
+        "startLine": 420,
+        "startChar": 6,
+        "endLine": 420,
+        "endChar": 30
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ab9f43c_c94a7508",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-10T19:26:54Z",
+      "side": 1,
+      "message": "nit: Doesn\u0027t change_module pull in Change/Commit/other stuff (change/__init__.py ?), at least they way it is now.",
+      "range": {
+        "startLine": 450,
+        "startChar": 17,
+        "endLine": 450,
+        "endChar": 30
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c14c679b_f029d27e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-10T19:26:54Z",
+      "side": 1,
+      "message": "Aren\u0027t these mocks, not actual functions?\n\nAlso, what\u0027s the point of calling them before any logic has actually run?",
+      "range": {
+        "startLine": 475,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 26
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
