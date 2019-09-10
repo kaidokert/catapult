@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55a2b231_0cbade22",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T15:36:28Z",
+      "side": 1,
+      "message": "do we still need to check that output_dir is not None?\n\nI know we wanted to make output_dir always required, but I\u0027m not sure if we finished that work.\n\nAlso nit: Maybe rephrase the comment \"Make sure that html traces are recorded as artifacts\", also add a TODO indicating that this work should eventually be moved to results processor and removed from here.",
+      "revId": "ff10f2e8656e9f25747bd2729a5a3aaedd46e32c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
