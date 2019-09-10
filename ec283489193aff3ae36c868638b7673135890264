@@ -16,6 +16,24 @@
       "revId": "ec283489193aff3ae36c868638b7673135890264",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c85ae844_769baf0a",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-09-10T18:07:15Z",
+      "side": 0,
+      "message": "erp, leftover from when I was considering switching this to just **kwargs.",
+      "parentUuid": "beffb07d_ebd263ac",
+      "revId": "ec283489193aff3ae36c868638b7673135890264",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
