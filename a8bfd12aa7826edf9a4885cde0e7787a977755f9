@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37d3eadc_58ea8cbe",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-09-10T03:09:20Z",
+      "side": 1,
+      "message": "I\u0027m assuming we\u0027re ending up with an extra item in this list when CHROMIUM_OUTPUT_DIR is set? Why not add that item here instead?",
+      "revId": "a8bfd12aa7826edf9a4885cde0e7787a977755f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
