@@ -46,6 +46,30 @@
       "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c3e3ff8_e8a05702",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-10T17:20:22Z",
+      "side": 1,
+      "message": "Let me try to explain this again. When developing changes to the results object I often run tests (either locally or on tryjobs) to see if my changes so far are correct. And currently, if I make a mistake and a test fails, what I get to see is:\n\n    $ ./bin/run_tests page_test_results_unittest\n    [...]\n    [4/26] telemetry.internal.results.page_test_results_unittest.PageTestResultsTest.testAddScalarValueSameAsMeasurement failed unexpectedly 0.0115s:\n    Traceback (most recent call last):\n      File \"/usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results_unittest.py\", line 152, in testAddScalarValueSameAsMeasurement\n        results.DidRunPage(self.pages[0])\n      File \"/usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py\", line 270, in __exit__\n        self.Finalize()\n      File \"/usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py\", line 474, in Finalize\n        \u0027Cannot finalize while stories are still running.\u0027)\n    AssertionError: Cannot finalize while stories are still running.\n\nMy mistake caused the test to fail before DidRunPage was called, so the assert complains about the missing call to DidRunPage but the root reason for the error (whatever my mistake was) is now lost. [And the exception handling code in story_runner.py is irrelevant here.]\n\nAfter this CL, if I rerun the tests now I get the much more useful:\n\n    $ ./bin/run_tests page_test_results_unittest\n    [...]\n    [25/32] telemetry.internal.results.page_test_results_unittest.PageTestResultsTest.testAddScalarValueSameAsMeasurement failed unexpectedly 0.0136s:\n      AttributeError(\"\u0027PageTestResults\u0027 object has no attribute \u0027AddMeasurment\u0027\",)\n      Traceback (most recent call last):\n        File \"/usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results_unittest.py\", line 163, in testAddScalarValueSameAsMeasurement\n          results.AddMeasurment(\u0027a\u0027, \u0027seconds\u0027, 3)\n      AttributeError: \u0027PageTestResults\u0027 object has no attribute \u0027AddMeasurment\u0027\n\n\"Oh! I had a typo.\"\n\nHappy to hear if you have other suggestions for how to achieve this.",
+      "parentUuid": "9474b1d2_765e7d6c",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "ef7f2ce4fe750ab6781674f3b83cf47a57b9030e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
