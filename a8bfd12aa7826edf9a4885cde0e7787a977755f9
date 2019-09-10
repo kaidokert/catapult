@@ -16,6 +16,24 @@
       "revId": "a8bfd12aa7826edf9a4885cde0e7787a977755f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8fdb171_954424b1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-10T17:11:15Z",
+      "side": 1,
+      "message": "The list\u0027s actually empty when the env var is set:\n\n  Traceback (most recent call last):\n    File \"/b/s/w/ir/third_party/catapult/telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py\", line 205, in testFindAllWithCheckout\n  AssertionError: Items in the second set but not the first:\n  \u0027debug\u0027\n  \u0027release\u0027\n  \u0027content-shell-debug\u0027\n  \u0027content-shell-release\u0027\n\nThe test does some filesystem lookup, and the presence of the env var short-circuits all that.",
+      "parentUuid": "37d3eadc_58ea8cbe",
+      "revId": "a8bfd12aa7826edf9a4885cde0e7787a977755f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
