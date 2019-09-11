@@ -34,6 +34,24 @@
       "revId": "a8bfd12aa7826edf9a4885cde0e7787a977755f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a23837e9_37a8f3ff",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-09-11T09:19:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e8fdb171_954424b1",
+      "revId": "a8bfd12aa7826edf9a4885cde0e7787a977755f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
