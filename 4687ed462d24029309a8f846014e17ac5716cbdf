@@ -22,6 +22,30 @@
       "revId": "4687ed462d24029309a8f846014e17ac5716cbdf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26ccad4c_b24e9d9e",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-09-11T18:41:32Z",
+      "side": 1,
+      "message": "Okay, I removed this message. I will print typ\u0027s error message to the log instead.",
+      "parentUuid": "e0083cf8_7932bea3",
+      "range": {
+        "startLine": 431,
+        "startChar": 1,
+        "endLine": 436,
+        "endChar": 47
+      },
+      "revId": "4687ed462d24029309a8f846014e17ac5716cbdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
