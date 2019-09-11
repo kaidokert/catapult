@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c9f8f1cf_86265f9b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-11T07:02:51Z",
+      "side": 1,
+      "message": "I\u0027m ambivalent about whether a new directory would be a good idea to do now, or later -- my intent was to further refactor this so we\u0027re sharing code between the Quest/Execution implementations and the the Task implementations. I think it might be a good idea to isolate them from each other though given how much different the structure is now...\n\nLet me do another round without the split -- any suggestions on good subdirectory naming? `pinpoint/models/tasks/` perhaps?",
+      "parentUuid": "d37e80ae_d714355b",
+      "range": {
+        "startLine": 304,
+        "startChar": 6,
+        "endLine": 304,
+        "endChar": 25
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b8fddf7a_a945ebcb",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
