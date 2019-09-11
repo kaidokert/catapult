@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0083cf8_7932bea3",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-11T18:32:04Z",
+      "side": 1,
+      "message": "This warning is going to be printed constantly. Why do people want it? Instead you need to print this instruction when people get the error, not beforehand.",
+      "range": {
+        "startLine": 431,
+        "startChar": 1,
+        "endLine": 436,
+        "endChar": 47
+      },
+      "revId": "4687ed462d24029309a8f846014e17ac5716cbdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
