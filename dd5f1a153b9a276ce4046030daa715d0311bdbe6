@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "f16c212f_628aa7cc",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-11T06:59:34Z",
+      "side": 1,
+      "message": "The execution engine can potentially run in multiple processes/threads/instances on the same task due to the nature of PubSub message retries and things like that, and it could be operating on the same event+task concurrently. The UpdateTask function runs in a transaction, where we enforce that a transition be in a set of transitions that are defined.\n\nNow, it could be that these two concurrent updates would be identical -- attempting to transition for example from \u0027ongoing\u0027 to \u0027cancelled\u0027 or \u0027failed\u0027. Because the transactions are scoped in the UpdateTask function, it can throw an InvalidTransition when the task is already in the \u0027cancelled\u0027 state and we\u0027re attempting to transition to \u0027cancelled\u0027 (or \u0027failed\u0027 to \u0027failed\u0027). This way we use it as a barrier to only let the process/thread/instance that successfully got the state transition to succeed to proceed with the rest of the work.\n\nThis should be documented in the UpdateTask(...) API, which mentions this.\n\nI think we can be more explicit about what the semantics are for that API in documentation?",
+      "parentUuid": "b8fddf7a_a945ebcb",
+      "range": {
+        "startLine": 385,
+        "startChar": 25,
+        "endLine": 385,
+        "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b37983f8_471c1769",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
@@ -68,6 +92,30 @@
       "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc98bab3_df7593c0",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-11T06:59:34Z",
+      "side": 1,
+      "message": "Good call -- Done.",
+      "parentUuid": "b37983f8_471c1769",
+      "range": {
+        "startLine": 539,
+        "startChar": 26,
+        "endLine": 539,
+        "endChar": 32
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "9beb28d0_df9642bf",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-11T06:59:34Z",
+      "side": 1,
+      "message": "Ah, right -- that wasn\u0027t clear to me. I\u0027ve gotten used to the habit of importing the actual module where these were defined (instead of where they\u0027re transitively imported). :)\n\nFixed.",
+      "parentUuid": "2ab9f43c_c94a7508",
+      "range": {
+        "startLine": 450,
+        "startChar": 17,
+        "endLine": 450,
+        "endChar": 30
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c14c679b_f029d27e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
         "patchSetId": 7
@@ -137,6 +209,30 @@
       "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b66ffb53_6c94e1c1",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-11T06:59:34Z",
+      "side": 1,
+      "message": "Setting the assertion that it will only be called once means if it\u0027s called more than once the second call will cause the mock to raise an exception (induce a failure). It\u0027s configuring the mock before it\u0027s used, so that misuse is flagged at the point where it happens.",
+      "parentUuid": "c14c679b_f029d27e",
+      "range": {
+        "startLine": 475,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 26
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
