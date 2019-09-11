@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2a9a081_177a4a23",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1297549
+      },
+      "writtenOn": "2019-09-11T03:08:10Z",
+      "side": 1,
+      "message": "This is used to suppress the additional nested conditional branch in line 1048",
+      "range": {
+        "startLine": 991,
+        "startChar": 24,
+        "endLine": 991,
+        "endChar": 65
+      },
+      "revId": "b5718c796cc976e0c94edb2a3b88ea0a8c4f93ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
