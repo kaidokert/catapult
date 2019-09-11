@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "971b00bb_ac67c316",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-11T12:38:34Z",
+      "side": 1,
+      "message": "pinpoint/models/tasks sgtm, and can totally wait til a later cl",
+      "parentUuid": "c9f8f1cf_86265f9b",
+      "range": {
+        "startLine": 304,
+        "startChar": 6,
+        "endLine": 304,
+        "endChar": 25
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b8fddf7a_a945ebcb",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
@@ -89,6 +113,53 @@
         "startChar": 25,
         "endLine": 385,
         "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d295d038_58c816f1",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-11T12:38:34Z",
+      "side": 1,
+      "message": "Right, that makes sense. I guess what I was wondering if that can happen to pretty much any of these UpdateTask calls, and then would it make sense to just have a general try/except InvalidTransition at a higher level.",
+      "parentUuid": "f16c212f_628aa7cc",
+      "range": {
+        "startLine": 385,
+        "startChar": 25,
+        "endLine": 385,
+        "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d28f0af_a7ad7f5e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-11T12:38:34Z",
+      "side": 1,
+      "message": "nit: return None here and below for consistency?",
+      "range": {
+        "startLine": 388,
+        "startChar": 6,
+        "endLine": 388,
+        "endChar": 12
       },
       "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
@@ -248,6 +319,30 @@
       "side": 1,
       "message": "Setting the assertion that it will only be called once means if it\u0027s called more than once the second call will cause the mock to raise an exception (induce a failure). It\u0027s configuring the mock before it\u0027s used, so that misuse is flagged at the point where it happens.",
       "parentUuid": "c14c679b_f029d27e",
+      "range": {
+        "startLine": 475,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 26
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7abc9431_f34e347f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-11T12:38:34Z",
+      "side": 1,
+      "message": "My point was that this function only exists in later python versions, so these calls through run_py_tests are only mocks and not actual functions. And my understanding is that, if these worked, these should be used after the mock has been called, not before, they\u0027re not a setup step.\n\nie. this passes:\n\nmock_process_test.assert_called_once()\nmock_process_test.assert_moon_made_of_cheese()\nprint (mock_process_test.assert_called_once)\n\n# \u003cMagicMock name\u003d\u0027ProcessTestsAsync.assert_called_once\u0027 id\u003d\u00274479749136\u0027\u003e",
+      "parentUuid": "b66ffb53_6c94e1c1",
       "range": {
         "startLine": 475,
         "startChar": 8,
