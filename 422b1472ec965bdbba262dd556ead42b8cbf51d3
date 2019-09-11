@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47a9534f_ce88075c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-11T15:49:14Z",
+      "side": 1,
+      "message": "nit: inline the diag_values list into the _WrapDiagnostics call.",
+      "revId": "422b1472ec965bdbba262dd556ead42b8cbf51d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3331ff93_cbd8645c",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-11T15:49:14Z",
+      "side": 1,
+      "message": "Neat! Thanks.",
+      "revId": "422b1472ec965bdbba262dd556ead42b8cbf51d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a556a72d_d9732fb1",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-11T15:49:14Z",
+      "side": 1,
+      "message": "nit suggestion: I would move the micro to milli conversion to the caller. Then you also avoid this \"redefined variable\" warning.",
+      "revId": "422b1472ec965bdbba262dd556ead42b8cbf51d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
