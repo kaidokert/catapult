@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c105d4ad_3f840788",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-09-12T13:59:52Z",
+      "side": 1,
+      "message": "Oh, this is interesting. I was thinking a story would be able to explicitly list the actual metrics that are relevant (including the UMA), and catapult/telemetry would use that filter to exclude the ones not in the story\u0027s whitelist. But this is an interesting approach too.",
+      "revId": "6465396a4ec7ce854c8ae47324d0f697f7057f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
