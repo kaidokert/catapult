@@ -16,6 +16,24 @@
       "revId": "6465396a4ec7ce854c8ae47324d0f697f7057f0c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7ba1306_244464fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-12T17:22:26Z",
+      "side": 1,
+      "message": "Yeah, I didn\u0027t want the story to be able to override the benchmark, since that sometimes leads to some strange behavior (for example, wouldn\u0027t it be confusing if you specified a metric in a benchmark and then that metric wasn\u0027t calculated?)\n\nI think that the best longterm case for this is that metrics are entirely specified by stories since we really want stories to be independent from each other as much as possible.",
+      "parentUuid": "c105d4ad_3f840788",
+      "revId": "6465396a4ec7ce854c8ae47324d0f697f7057f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
