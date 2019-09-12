@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a454875_f776f7fd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-09-12T01:27:28Z",
+      "side": 1,
+      "message": "I could also swap this out for:\n\n    return bool(self.GetApplicationPaths(package))\n\nI implemented it this way because I\u0027m not super familiar with the caching logic, and wasn\u0027t sure if this was a case we should skip the cache (although existing callsites seem OK with the caching logic, so maybe it\u0027s fine).",
+      "range": {
+        "startLine": 667,
+        "startChar": 4,
+        "endLine": 672,
+        "endChar": 44
+      },
+      "revId": "e67c95371db34276355aa2f83996b09fe8844f7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
