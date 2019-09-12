@@ -16,6 +16,24 @@
       "revId": "a8f04a8fcef55e304a80af82459a86a025851b34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e9121fc_5d452e4a",
+        "filename": "devil/devil/utils/zip_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-09-12T20:06:39Z",
+      "side": 1,
+      "message": "it is, and in presubmit it gets added by https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/PRESUBMIT.py?q\u003ddevil/PRESUBMIT.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d26",
+      "parentUuid": "f969f527_fee0ea07",
+      "revId": "a8f04a8fcef55e304a80af82459a86a025851b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
