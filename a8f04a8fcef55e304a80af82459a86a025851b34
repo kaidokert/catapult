@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f969f527_fee0ea07",
+        "filename": "devil/devil/utils/zip_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2019-09-12T19:47:48Z",
+      "side": 1,
+      "message": "I\u0027m confused as to how this import would succeed, since it depends on _DEVIL_ROOT_DIR being added to the sys.path. Is something else adding that?",
+      "revId": "a8f04a8fcef55e304a80af82459a86a025851b34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
