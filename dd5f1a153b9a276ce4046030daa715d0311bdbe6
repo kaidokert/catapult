@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c75f6368_f769f0db",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-12T00:36:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "971b00bb_ac67c316",
+      "range": {
+        "startLine": 304,
+        "startChar": 6,
+        "endLine": 304,
+        "endChar": 25
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8fddf7a_a945ebcb",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
@@ -144,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "c97525d8_48fc7cb2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-12T00:36:47Z",
+      "side": 1,
+      "message": "That\u0027s an interesting thought. In this particular case though the failure is not fatal and no particular action needs to be done if there was an update conflict detected (we\u0027re just using it as a barrier). In other cases, we may perform alternative actions (like scheduling retries, etc.).\n\nOne thing I\u0027m considering is making a set of function decorators that might make this cleaner and even define context managers to show nesting/dependency. So something like:\n\n```\n@LogStateTransitionFailures\ndef SomeAction(...):\n  with UpdateSuccessful(...):\n    # Do some things dependent on the update being good.\n    with UpdateSuccessful(...):\n      # Do more things dependent on the update being good.\n```\n\nNow that I think about it, that would greatly help with readability of these implementations, and I think I have enough examples just in this evaluator/action implementation that it\u0027s worth factoring some out already.\n\nThoughts before I go too far down this road?",
+      "parentUuid": "d295d038_58c816f1",
+      "range": {
+        "startLine": 385,
+        "startChar": 25,
+        "endLine": 385,
+        "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d28f0af_a7ad7f5e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
@@ -164,6 +212,30 @@
       "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "341fce4e_05cfcfa6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-12T00:36:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d28f0af_a7ad7f5e",
+      "range": {
+        "startLine": 388,
+        "startChar": 6,
+        "endLine": 388,
+        "endChar": 12
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -225,6 +297,30 @@
       "writtenOn": "2019-09-10T19:26:54Z",
       "side": 1,
       "message": "Feels like the testing is a little light compared to all the new logic introduced.",
+      "range": {
+        "startLine": 420,
+        "startChar": 6,
+        "endLine": 420,
+        "endChar": 30
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ca67ad_ded9c686",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-12T00:36:47Z",
+      "side": 1,
+      "message": "Right. I\u0027ve increased testing on the failure cases, and we\u0027re currently at 87% when I do:\n\n./bin/run_py_tests --coverage\n\nfor find_isolate.py.\n\nPTAL?\n\nPS. Example script I\u0027ve run that might be helpful in the future:\n\n```\n$ ./bin/run_py_tests --coverage --test-filter \u0027pinpoint.*\u0027 --coverage-source dashboard/pinpoint --coverage-omit \u0027*_test.py\u0027 | grep \u0027^dashboard/pinpoint\u0027\n...\ndashboard/pinpoint/models/quest/find_isolate.py                 280     36    87%\n...\n```",
+      "parentUuid": "e8723d0a_7517cc51",
       "range": {
         "startLine": 420,
         "startChar": 6,
