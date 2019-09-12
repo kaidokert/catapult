@@ -2,12 +2,19 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import print_function
+
 import os
+import sys
 import unittest
 import zipfile
 
-from devil.utils import zip_utils
-from py_utils import tempfile_ext
+try:
+  from devil.utils import zip_utils
+  from py_utils import tempfile_ext
+except ImportError:
+  print('Current sys.path: %s' % sys.path)
+  raise
 
 
 class WriteZipFileTest(unittest.TestCase):
