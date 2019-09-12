@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import collections
+import contextlib
 import functools
 import itertools
 import logging
@@ -223,14 +224,48 @@ def UpdateTask(job, task_id, new_state=None, payload=None):
     valid_transitions = VALID_TRANSITIONS.get(task.status)
     if new_state not in valid_transitions:
       raise InvalidTransition(
-          'Attempting transition from "%s" to "%s" not in {%s}.' %
-          (task.status, new_state, valid_transitions))
+          'Attempting transition from "%s" to "%s" not in %s; task = %s' %
+          (task.status, new_state, valid_transitions, task))
     task.status = new_state
 
   if payload:
     task.payload = payload
 
   task.put()
+
+
+@contextlib.contextmanager
+def UpdateTaskSuccess(job, task_id, new_state=None, payload=None):
+  """Convenience context manager for UpdateTask.
+
+  This allows callers of UpdateTask(...) to establish a causal dependency
+  between an UpdateTask call succeeding and code within the context executing.
+
+  Example:
+
+    with UpdateTaskSuccess(job, task.id, new_state='failed'):
+      # Do some dependent work here.
+  """
+  UpdateTask(job, task_id, new_state=new_state, payload=payload)
+  yield None
+
+
+def LogStateTransitionFailures(wrapped_action):
+  """Decorator to log state transition failures.
+
+  This is a convenience decorator to handle state transition failures, and
+  suppress further exception propagation of the transition failure.
+  """
+
+  @functools.wraps(wrapped_action)
+  def ActionWrapper(*args, **kwargs):
+    try:
+      return wrapped_action(*args, **kwargs)
+    except InvalidTransition as e:
+      logging.error('State transition failed: %s', e)
+    return None
+
+  return ActionWrapper
 
 
 @ndb.transactional
