@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47b01455_6c26b6cb",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-13T21:05:15Z",
+      "side": 1,
+      "message": "nit: Might as well cover this with a test",
+      "range": {
+        "startLine": 236,
+        "startChar": 4,
+        "endLine": 236,
+        "endChar": 30
+      },
+      "revId": "a6fa064c3b2c7204913b3ab5f0642b6dddc5a7b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -216,6 +216,30 @@
     },
     {
       "key": {
+        "uuid": "bdf5cc7e_3aea76f4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-13T21:05:15Z",
+      "side": 1,
+      "message": "Nice, like the decorator approach and the code comes off cleaner for it.",
+      "parentUuid": "249e3deb_109f6834",
+      "range": {
+        "startLine": 385,
+        "startChar": 25,
+        "endLine": 385,
+        "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d28f0af_a7ad7f5e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
@@ -354,6 +378,30 @@
       "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8ed1609_b74e7f8b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-09-13T21:05:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a7ca67ad_ded9c686",
+      "range": {
+        "startLine": 420,
+        "startChar": 6,
+        "endLine": 420,
+        "endChar": 30
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
