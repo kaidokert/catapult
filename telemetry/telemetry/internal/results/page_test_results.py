@@ -80,6 +80,11 @@ class PageTestResults(object):
     self._interruption = None
     self._results_label = results_label
 
+    self._diagnostics = {
+        'benchmark': self.benchmark_name,
+        'benchmark_description': self.benchmark_description,
+    }
+
     # If the object has been finalized, no more results can be added to it.
     self._finalized = False
     self._start_time = time.time()
@@ -240,9 +245,6 @@ class PageTestResults(object):
     self._WriteJsonLine({
         'benchmarkRun': {
             'startTime': self.start_datetime.isoformat() + 'Z',
-            # TODO(crbug.com/981349): Fill this in with benchmark and platform
-            # diagnostics info.
-            'diagnostics': {}
         }
     })
 
@@ -251,6 +253,7 @@ class PageTestResults(object):
         'benchmarkRun': {
             'finalized': self.finalized,
             'interrupted': self.benchmark_interrupted,
+            'diagnostics': self._diagnostics,
         }
     }, close=True)
 
@@ -391,7 +394,7 @@ class PageTestResults(object):
                            device_id=None,
                            os_name=None,
                            os_version=None):
-    """Add diagnostics to all histograms."""
+    """Add diagnostics to all histograms and save it to intermediate results."""
     diag_values = [
         (reserved_infos.OWNERS, owners),
         (reserved_infos.BUG_COMPONENTS, bug_components),
@@ -404,6 +407,21 @@ class PageTestResults(object):
 
     for name, value in _WrapDiagnostics(diag_values):
       self._histograms.AddSharedDiagnosticToAllHistograms(name, value)
+
+    if owners is not None:
+      self._diagnostics['owners'] = owners
+    if bug_components is not None:
+      self._diagnostics['bug_components'] = bug_components
+    if documentation_urls is not None:
+      self._diagnostics['documentation_urls'] = documentation_urls
+    if architecture is not None:
+      self._diagnostics['architecture'] = architecture
+    if device_id is not None:
+      self._diagnostics['device_id'] = device_id
+    if os_name is not None:
+      self._diagnostics['os_name'] = os_name
+    if os_version is not None:
+      self._diagnostics['os_version'] = os_version
 
   def Fail(self, failure):
     """Mark the current story run as failed.
