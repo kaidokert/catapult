@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "677d87d4_37349633",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "Perhaps some or all of these __call__ comments should be in the class docstring?",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 39
+      },
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcc21f07_324bc37e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "The \u0026 operator is redundant.\n\nJust:\n\n    missing_keys \u003d required_keys - set(properties)\n\nOr use difference_update (and use one variable rather than two):\n\n    required_keys.difference_update(properties)\n    if required_keys:",
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e50d1036_d143647b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "[Nit][opinion] I think this simpler to read:\n\n    suffix \u003d (\u0027without_patch\u0027 if \u0027patch_storage\u0027 not in properties \n              else \u0027with_patch\u0027)",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 77
+      },
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1166c4c_818d0e1e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "This doesn\u0027t look right — this is an assert, intended to be called *after* to verify that the mocked callable _was_ (past tense!) called exactly once.  “Assert that the mock was called exactly once” says the documentation (note the past tense).\n\nI note that the unittest.mock docs say `assert_called_once` is “New in version 3.6” — perhaps whatever version of \u0027mock\u0027 we have here is too old for this?\n\nPerhaps replace with `self.assertEqual(1, put.call_count)` later on in the test?",
+      "range": {
+        "startLine": 477,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 28
+      },
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51523d5f_3b56feaa",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "FYI only, not sure there\u0027s much we can/should do about this, but thought you\u0027d find this useful to know anyway:\n\nI found it a bit confusing that the previous test that has a mocked buildbucket_service that does nothing produces a \u0027completed\u0027 build, but this test where \u0027put\u0027 does something produces a status that\u0027s merely \u0027ongoing\u0027.  My intuition is that doing more should not result in being further from complete! :)",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 491,
+        "endChar": 36
+      },
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a24d1358_0f7d33b3",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "I don\u0027t understand the benefit of this context manager.  E.g. in this example how is this context manager an improvement over this simpler code?\n\n  UpdateTask(job, task.id, new_state\u003d\u0027failed\u0027)\n  # Do some dependent work here.",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 36
+      },
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8530ec4f_ca5135d3",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-13T05:38:12Z",
+      "side": 1,
+      "message": "[opinion] I think it\u0027s marginally clearer to have the `return None` in the except block here.",
+      "revId": "f5f78f427095da33ea36d8fe0a4412277d097a1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
