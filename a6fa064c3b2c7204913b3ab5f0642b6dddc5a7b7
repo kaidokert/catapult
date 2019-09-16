@@ -22,6 +22,30 @@
       "revId": "a6fa064c3b2c7204913b3ab5f0642b6dddc5a7b7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aee5c320_ff4b860b",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-16T05:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47b01455_6c26b6cb",
+      "range": {
+        "startLine": 236,
+        "startChar": 4,
+        "endLine": 236,
+        "endChar": 30
+      },
+      "revId": "a6fa064c3b2c7204913b3ab5f0642b6dddc5a7b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

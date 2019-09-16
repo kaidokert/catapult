@@ -240,6 +240,30 @@
     },
     {
       "key": {
+        "uuid": "14a0ee4a_81ffb1c0",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-16T05:18:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bdf5cc7e_3aea76f4",
+      "range": {
+        "startLine": 385,
+        "startChar": 25,
+        "endLine": 385,
+        "endChar": 42
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d28f0af_a7ad7f5e",
         "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
         "patchSetId": 7
@@ -511,6 +535,30 @@
       "side": 1,
       "message": "My point was that this function only exists in later python versions, so these calls through run_py_tests are only mocks and not actual functions. And my understanding is that, if these worked, these should be used after the mock has been called, not before, they\u0027re not a setup step.\n\nie. this passes:\n\nmock_process_test.assert_called_once()\nmock_process_test.assert_moon_made_of_cheese()\nprint (mock_process_test.assert_called_once)\n\n# \u003cMagicMock name\u003d\u0027ProcessTestsAsync.assert_called_once\u0027 id\u003d\u00274479749136\u0027\u003e",
       "parentUuid": "b66ffb53_6c94e1c1",
+      "range": {
+        "startLine": 475,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 26
+      },
+      "revId": "dd5f1a153b9a276ce4046030daa715d0311bdbe6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ad89567_8d119179",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-16T05:18:28Z",
+      "side": 1,
+      "message": "Oh, yes, thanks!",
+      "parentUuid": "7abc9431_f34e347f",
       "range": {
         "startLine": 475,
         "startChar": 8,
