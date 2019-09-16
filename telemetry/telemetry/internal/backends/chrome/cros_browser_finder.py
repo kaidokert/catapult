@@ -43,12 +43,15 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     assert browser_type in FindAllBrowserTypes(), (
         'Please add %s to cros_browser_finder.FindAllBrowserTypes()' %
         browser_type)
+    del finder_options
     self._platform = cros_platform
     self._platform_backend = (
         cros_platform._platform_backend)  # pylint: disable=protected-access
     self._is_guest = is_guest
 
-    self._build_dir = finder_options.chromium_output_dir
+    # Also works with --chromium-output-dir since CHROMIUM_OUTPUT_DIR is set to
+    # its value in browser_options.py if passed.
+    self._build_dir = os.environ.get('CHROMIUM_OUTPUT_DIR')
 
   def __repr__(self):
     return 'PossibleCrOSBrowser(browser_type=%s)' % self.browser_type
