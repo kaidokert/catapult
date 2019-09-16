@@ -70,6 +70,30 @@
       "revId": "e67c95371db34276355aa2f83996b09fe8844f7e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65e54cf7_bd1bb482",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-16T20:57:12Z",
+      "side": 1,
+      "message": "https://media.giphy.com/media/YHYmMLkOmqoo/giphy.gif",
+      "parentUuid": "1206b11f_fd05d56f",
+      "range": {
+        "startLine": 667,
+        "startChar": 4,
+        "endLine": 672,
+        "endChar": 44
+      },
+      "revId": "e67c95371db34276355aa2f83996b09fe8844f7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
