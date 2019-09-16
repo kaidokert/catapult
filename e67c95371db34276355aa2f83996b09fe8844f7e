@@ -22,6 +22,30 @@
       "revId": "e67c95371db34276355aa2f83996b09fe8844f7e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72c0e527_2a1ef5a4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-16T20:09:28Z",
+      "side": 1,
+      "message": "Seems fine to me, but given the behavior of the filter what happens if you\u0027re looking for something like \"com.google.android.webview\" which isn\u0027t installed, but something like \"com.google.android.webview_plus_plus\" *is* installed?\n\nIs the fact that the former\u0027s a prefix of the latter going to throw up false positives if only the latter is installed?",
+      "parentUuid": "1a454875_f776f7fd",
+      "range": {
+        "startLine": 667,
+        "startChar": 4,
+        "endLine": 672,
+        "endChar": 44
+      },
+      "revId": "e67c95371db34276355aa2f83996b09fe8844f7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
