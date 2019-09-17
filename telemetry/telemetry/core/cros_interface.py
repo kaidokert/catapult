@@ -373,10 +373,23 @@ class CrOSInterface(object):
 
     if destfile is None:
       destfile = os.path.basename(filename)
-    args = self._FormSCPFromRemote(filename, os.path.abspath(destfile))
+    destfile = os.path.abspath(destfile)
+    args = self._FormSCPFromRemote(filename, destfile)
 
     _, stderr = GetAllCmdOutput(args, quiet=True)
     stderr = self._RemoveSSHWarnings(stderr)
+    # This is a workaround for a bug in SCP that was added ~January 2019, where
+    # strict filename checking can erroneously reject valid filenames. Passing
+    # -T goes back to the older behavior, but scp doesn't have a good way of
+    # checking the version, so we can't pass -T the first time based on that.
+    # Instead, try without -T and retry with -T if the error message is
+    # appropriate. See
+    # https://unix.stackexchange.com/questions/499958/why-does-scps-strict-filename-checking-reject-quoted-last-component-but-not-oth
+    # for more information.
+    if 'filename does not match request' in stderr:
+      args = self._FormSCPFromRemote(filename, destfile, extra_scp_args=['-T'])
+      _, stderr = GetAllCmdOutput(args, quiet=True)
+      stderr = self._RemoveSSHWarnings(stderr)
     if stderr != '':
       raise OSError('No such file or directory %s' % stderr)
 
