@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93e43a5d_f606af7a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-09-17T08:39:52Z",
+      "side": 1,
+      "message": "Why is this necessary?",
+      "revId": "1cc67e9d2a005b81c98adc2fccf1cd91ecc11a21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67911c01_a537d0f3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-09-17T08:39:52Z",
+      "side": 1,
+      "message": "how about:\n--chromium-output-dir also sets CHROMIUM_OUTPUT_DIR in browser_options.",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 48
+      },
+      "revId": "1cc67e9d2a005b81c98adc2fccf1cd91ecc11a21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
