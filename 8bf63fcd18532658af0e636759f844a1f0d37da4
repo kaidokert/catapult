@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bba726d3_048ff0b6",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-09-17T23:28:15Z",
+      "side": 1,
+      "message": "You should be catching a specific exception here so that we know that the issue is an issue with the tags, not something else.",
+      "range": {
+        "startLine": 432,
+        "startChar": 11,
+        "endLine": 432,
+        "endChar": 20
+      },
+      "revId": "8bf63fcd18532658af0e636759f844a1f0d37da4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
