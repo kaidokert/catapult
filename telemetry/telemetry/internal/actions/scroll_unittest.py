@@ -86,7 +86,7 @@ class ScrollActionTest(tab_test_case.TabTestCase):
     # Scrolling distance for touch will have some error from the excess delta
     # of the event that crosses the slop threshold but isn't applied.
     self._RunScrollDistanceTest(
-        500000, 200000, page_action.GESTURE_SOURCE_TOUCH, 50)
+        500000, 200000, page_action.GESTURE_SOURCE_TOUCH, 200)
 
   @decorators.Disabled('android')  # crbug.com/934649
   def testScrollDistanceFastWheel(self):
