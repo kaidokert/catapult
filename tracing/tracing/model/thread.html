@@ -265,6 +265,14 @@ tr.exportTo('tr.model', function() {
     },
 
     /**
+     * Returns the total cpu time consumed within |range| by this thread.
+     */
+    getWallTimeForRange(range) {
+      return this.sumOverToplevelSlicesInRange(
+          range, slice => slice.duration || 0);
+    },
+
+    /**
      * Returns the total number of top-level slices within |range| in this
      * thread. If a slice overlaps with |range| and is not completely inside it,
      * then we attribute the portion that is inside the range only. For example,
