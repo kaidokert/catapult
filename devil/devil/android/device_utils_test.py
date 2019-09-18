@@ -792,6 +792,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
   def testInstall_noPriorInstall(self):
     with self.patch_call(self.call.device.build_version_sdk, return_value=23):
       with self.assertCalls(
+          (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+           set()),
           (mock.call.os.path.exists('/fake/test/app.apk'), True),
           (self.call.device._GetApplicationPathsInternal('test.package'), []),
           self.call.adb.Install('/fake/test/app.apk', reinstall=False,
@@ -802,6 +804,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
   def testInstall_permissionsPreM(self):
     with self.patch_call(self.call.device.build_version_sdk, return_value=20):
       with self.assertCalls(
+          (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+           set()),
           (mock.call.os.path.exists('/fake/test/app.apk'), True),
           (self.call.device._GetApplicationPathsInternal('test.package'), []),
           (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
@@ -811,6 +815,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
   def testInstall_findPermissions(self):
     with self.patch_call(self.call.device.build_version_sdk, return_value=23):
       with self.assertCalls(
+          (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+           set()),
           (mock.call.os.path.exists('/fake/test/app.apk'), True),
           (self.call.device._GetApplicationPathsInternal('test.package'), []),
           (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
@@ -820,6 +826,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_passPermissions(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'), []),
         (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
@@ -830,6 +838,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_identicalPriorInstall(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'),
          ['/fake/data/app/test.package.apk']),
@@ -842,6 +852,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_differentPriorInstall(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'),
          ['/fake/data/app/test.package.apk']),
@@ -856,6 +868,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_differentPriorInstallSplitApk(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'),
          ['/fake/data/app/test.package.apk',
@@ -868,6 +882,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_differentPriorInstall_reinstall(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'),
          ['/fake/data/app/test.package.apk']),
@@ -881,6 +897,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_identicalPriorInstall_reinstall(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'),
          ['/fake/data/app/test.package.apk']),
@@ -893,12 +911,16 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_missingApk(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), False)):
       with self.assertRaises(device_errors.CommandFailedError):
         self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0)
 
   def testInstall_fails(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'), []),
         (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
@@ -909,6 +931,8 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_downgrade(self):
     with self.assertCalls(
+        (self.call.device._PerformFakeInstall(['/fake/test/app.apk'], None),
+         set()),
         (mock.call.os.path.exists('/fake/test/app.apk'), True),
         (self.call.device._GetApplicationPathsInternal('test.package'),
          ['/fake/data/app/test.package.apk']),

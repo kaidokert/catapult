@@ -904,11 +904,13 @@ class DeviceUtils(object):
       self.WaitUntilFullyBooted(wifi=wifi)
 
   INSTALL_DEFAULT_TIMEOUT = 8 * _DEFAULT_TIMEOUT
+  MODULES_SRC_DIRECTORY_PATH = '/data/local/tmp/modules'
 
   @decorators.WithTimeoutAndRetriesFromInstance(
       min_default_timeout=INSTALL_DEFAULT_TIMEOUT)
   def Install(self, apk, allow_downgrade=False, reinstall=False,
-              permissions=None, timeout=None, retries=None, modules=None):
+              permissions=None, timeout=None, retries=None, modules=None,
+              fake_modules=None):
     """Install an APK or app bundle.
 
     Noop if an identical APK is already installed. If installing a bundle, the
@@ -927,6 +929,9 @@ class DeviceUtils(object):
       retries: number of retries
       modules: An iterable containing specific bundle modules to install.
           Error if set and |apk| points to an APK instead of a bundle.
+      fake_modules: Similar to |modules| but contains specific modules that
+          should have their apks copied to |MODULES_SRC_DIRECTORY_PATH| rather
+          than installed. Thus the app can emulate split compat while running.
 
     Raises:
       CommandFailedError if the installation fails.
@@ -934,13 +939,61 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
     apk = apk_helper.ToHelper(apk)
-    with apk.GetApkPaths(self, modules=modules) as apk_paths:
+    all_modules = (modules or []) + (fake_modules or [])
+    with apk.GetApkPaths(self, modules=all_modules) as apk_paths:
+      fake_apk_paths = self._PerformFakeInstall(apk_paths, fake_modules)
+      apk_paths_to_install = [p for p in apk_paths if p not in fake_apk_paths]
       self._InstallInternal(
           apk,
-          apk_paths,
+          apk_paths_to_install,
           allow_downgrade=allow_downgrade,
           reinstall=reinstall,
           permissions=permissions)
+
+  def _PerformFakeInstall(self, apk_paths, fake_modules):
+    try:
+      fake_module_dir = tempfile.mkdtemp()
+      fake_apk_paths = set()
+
+      if not fake_modules:
+        # Push empty temp_path to clear folder on device and update the cache.
+        self.PushChangedFiles(
+            [(fake_module_dir, self.MODULES_SRC_DIRECTORY_PATH)],
+            delete_device_stale=True)
+        return fake_apk_paths
+
+      for fake_module in fake_modules:
+        found_master = False
+
+        for apk_path in apk_paths:
+          filename = os.path.basename(apk_path)
+          # If file matches expected format, rename it to follow conventions
+          # required by splitcompatting.
+          match = re.match(r'%s-([a-z_0-9]+)\.apk' % fake_module, filename)
+
+          if not match:
+            continue
+
+          module_suffix = match.group(1)
+          new_filename = '%s.config.%s.apk' % (fake_module, module_suffix)
+          # Check if filename matches a master apk.
+          if 'master' in module_suffix:
+            if found_master:
+              raise Exception('Expect 1 master apk file for %s' % fake_module)
+            found_master = True
+            new_filename = '%s.apk' % fake_module
+
+          new_path = os.path.join(fake_module_dir, new_filename)
+          print(apk_path, new_path)
+          os.rename(apk_path, new_path)
+          fake_apk_paths.add(apk_path)
+
+      self.PushChangedFiles(
+          [(fake_module_dir, self.MODULES_SRC_DIRECTORY_PATH)],
+          delete_device_stale=True)
+    finally:
+      shutil.rmtree(fake_module_dir, ignore_errors=True)
+    return fake_apk_paths
 
   @decorators.WithTimeoutAndRetriesFromInstance(
       min_default_timeout=INSTALL_DEFAULT_TIMEOUT)
@@ -1000,7 +1053,6 @@ class DeviceUtils(object):
     package_name = apk.GetPackageName()
     device_apk_paths = self._GetApplicationPathsInternal(package_name)
 
-    apks_to_install = None
     host_checksums = None
     if not device_apk_paths:
       apks_to_install = apk_paths
