@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eb889d86_13c9695b",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-18T06:32:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ec3d345_804646aa",
+      "range": {
+        "startLine": 4,
+        "startChar": 17,
+        "endLine": 4,
+        "endChar": 26
+      },
+      "revId": "085c61b1d78ae7b023aa3c4bd8e12029594d8d85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "882ac1da_aab449ad",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
         "patchSetId": 4
@@ -83,6 +107,30 @@
       "writtenOn": "2019-09-10T19:55:04Z",
       "side": 1,
       "message": "nit: tests covering expiry, failure, etc.",
+      "range": {
+        "startLine": 462,
+        "startChar": 6,
+        "endLine": 462,
+        "endChar": 19
+      },
+      "revId": "085c61b1d78ae7b023aa3c4bd8e12029594d8d85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02e52220_e15307c1",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-18T06:32:09Z",
+      "side": 1,
+      "message": "Yes, working on these next.",
+      "parentUuid": "ce4cf4a3_3107fb3b",
       "range": {
         "startLine": 462,
         "startChar": 6,
