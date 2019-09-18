@@ -4,6 +4,7 @@
 
 from telemetry.internal.actions import action_runner
 from telemetry.internal.browser import web_contents
+from telemetry.internal.browser.devtools import DevTools
 
 DEFAULT_TAB_TIMEOUT = 60
 
@@ -24,6 +25,7 @@ class Tab(web_contents.WebContents):
     self._tab_list_backend = tab_list_backend
     self._browser = browser
     self._action_runner = action_runner.ActionRunner(self)
+    self._devtools = None
 
   @property
   def browser(self):
@@ -188,3 +190,33 @@ class Tab(web_contents.WebContents):
       exceptions.StoryActionError
     """
     return self._inspector_backend.StopAllServiceWorkers(timeout)
+
+  def OpenDevTools(self, timeout=60):
+    """Opens the developer tools on this tab.
+    """
+    assert self.browser.supports_devtools_frontend
+
+    if not self._devtools:
+      self.Activate()
+      self.WaitForFrameToBeDisplayed()
+      self.action_runner.PressKey(key='F12', use_native_key=True)
+      self._devtools = DevTools(self._inspector_backend, self.url)
+      self._devtools.WaitForConnectionState(connection_state=True,
+                                            timeout=timeout)
+
+  def CloseDevTools(self, timeout=60):
+    """Closes the developer tools on this tab.
+    """
+    if self._devtools:
+      self.Activate()
+      self.WaitForFrameToBeDisplayed()
+      self.action_runner.PressKey(key='F12', use_native_key=True)
+      self._devtools.WaitForConnectionState(connection_state=False,
+                                            timeout=timeout)
+      self._devtools = None
+
+  @property
+  def devtools(self):
+    """Returns the devtools instance for this tab if it is opened.
+    """
+    return self._devtools

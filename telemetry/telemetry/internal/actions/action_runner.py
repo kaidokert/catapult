@@ -665,7 +665,7 @@ class ActionRunner(object):
         timeout=timeout))
 
   def PressKey(self, key, repeat_count=1, repeat_delay_ms=100,
-               timeout=page_action.DEFAULT_TIMEOUT):
+               timeout=page_action.DEFAULT_TIMEOUT, use_native_key=False):
     """Perform a key press.
 
     Args:
@@ -676,7 +676,8 @@ class ActionRunner(object):
           milliseconds.
     """
     for _ in xrange(repeat_count):
-      self._RunAction(KeyPressAction(key, timeout=timeout))
+      self._RunAction(KeyPressAction(key, timeout=timeout,
+                                     use_native_key=use_native_key))
       self.Wait(repeat_delay_ms / 1000.0)
 
   def EnterText(self, text, character_delay_ms=100,

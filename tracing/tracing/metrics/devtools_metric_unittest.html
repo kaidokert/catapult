@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/extras/chrome/chrome_test_utils.html">
+<link rel="import" href="/tracing/metrics/devtools_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  function newDevToolsLoadEndEvent(startTime, endMarker) {
+    return tr.c.TestUtils.newAsyncSliceEx({
+      cat: 'blink.user_timing',
+      title: endMarker,
+      start: startTime,
+      duration: 1
+    });
+  }
+
+  // creates a model with 1 browser process and any number of renderer processes
+  // to simulate multiple DevTools launches
+  function newDevToolsChromeModel(customizeModelCallback, rendererProcCount) {
+    return tr.c.TestUtils.newModel(function(model) {
+      model.browserProcess = model.getOrCreateProcess(0);
+      model.browserMain = model.browserProcess.getOrCreateThread(2);
+      model.browserMain.name = 'CrBrowserMain';
+
+      model.rendererThreads = [];
+      for (let i = 0; i < rendererProcCount; ++i) {
+        const rendererProc = model.getOrCreateProcess(i + 1);
+        const rendererMainThread = rendererProc.getOrCreateThread(0);
+        rendererMainThread.name = 'CrRendererMain';
+        rendererMainThread.sliceGroup.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+          cat: 'blink.user_timing',
+          title: 'navigationStart',
+          start: 0,
+          duration: 1
+        }));
+        model.rendererThreads.push(rendererMainThread);
+      }
+
+      customizeModelCallback(model);
+    });
+  }
+
+
+  // test that devtoolsMetric can populate a histogram given a full data set
+  test('launchMetric_fullData', function() {
+    const launchEndEvent = 'DevTools.Launch.Elements';
+    const launchDurations = [10, 20, 30];
+    const devToolsLaunchCount = launchDurations.length;
+    const averageDuration = launchDurations
+        .reduce((sum, val) => sum + val) / devToolsLaunchCount;
+
+
+    const model = newDevToolsChromeModel(model => {
+      launchDurations.forEach((duration, index) => {
+        model.rendererThreads[index].sliceGroup.pushSlice(
+            newDevToolsLoadEndEvent(duration, launchEndEvent));
+      });
+    }, devToolsLaunchCount);
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.devtoolsMetric(histograms, model);
+
+    assert.strictEqual(1, histograms.length);
+    const hist = histograms.getHistogramNamed(`${launchEndEvent}_duration`);
+    assert.strictEqual(devToolsLaunchCount, hist.numValues);
+    assert.strictEqual(averageDuration, hist.average);
+  });
+
+
+  // test that devtoolsMetric does nothing when the data has no launch events
+  test('launchMetric_noLaunchData', function() {
+    const model = newDevToolsChromeModel(model => {
+      model.rendererThreads[0].sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'FrontendEvent',
+        start: 0,
+        duration: 1
+      }));
+
+      model.rendererThreads[0].sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink.user_timing',
+        title: 'FrontendEvent',
+        start: 0,
+        duration: 1
+      }));
+    }, /* rendererProcCount= */ 1);
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.devtoolsMetric(histograms, model);
+
+    assert.isTrue(histograms.length === 0);
+  });
+
+
+  // test that devtoolsMetric creates a histogram only for the panel being
+  // launched and ignores panels loaded after launch
+  test('launchMetric_multipleLoadEvents', function() {
+    const launchEndEvent = 'DevTools.Launch.Elements';
+    const launchDuration = 10;
+
+    const model = newDevToolsChromeModel(model => {
+      const rendererEvents = model.rendererThreads[0].sliceGroup;
+
+      // launch to the active panel
+      rendererEvents.pushSlice(newDevToolsLoadEndEvent(launchDuration,
+          launchEndEvent));
+
+      // switch panels to cause extra load events
+      rendererEvents.pushSlice(newDevToolsLoadEndEvent(15,
+          'DevTools.Launch.Console'));
+      rendererEvents.pushSlice(newDevToolsLoadEndEvent(20,
+          'DevTools.Launch.Sources'));
+      rendererEvents.pushSlice(newDevToolsLoadEndEvent(50,
+          'DevTools.Launch.Sources'));
+    }, /* rendererProcCount= */ 1);
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.devtoolsMetric(histograms, model);
+
+    assert.strictEqual(1, histograms.length);
+    const hist = histograms.getHistogramNamed(`${launchEndEvent}_duration`);
+
+    assert.strictEqual(1, hist.numValues);
+    assert.strictEqual(launchDuration, hist.average);
+  });
+
+  // test that the editStyle metric can pair up start and end editStyle events
+  // when given a full set of data
+  // a valid pair of start and end events is the first occuring start event
+  // paired with the first end event to occur after the start event
+  test('editStyleMetric_fullData', function() {
+    const cat = 'blink.user_timing';
+    const editStyleStart = 'StylePropertyTreeElement.applyStyleText';
+    const editStyleEnd = 'StylesSidebarPane.onCSSModelChanged';
+
+    const model = newDevToolsChromeModel(model => {
+      const rendererEvents = model.rendererThreads[0].sliceGroup;
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: editStyleEnd,
+        start: 10,
+        duration: 1
+      }));
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: editStyleStart,
+        start: 20,
+        duration: 1
+      }));
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: editStyleStart,
+        start: 25,
+        duration: 1
+      }));
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: editStyleEnd,
+        start: 30,
+        duration: 1
+      }));
+    }, /* rendererProcCount= */ 1);
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.devtoolsMetric(histograms, model);
+
+    assert.strictEqual(1, histograms.length);
+    const hist = histograms.getHistogramNamed('editStyle_duration');
+
+    assert.strictEqual(1, hist.numValues);
+    assert.strictEqual(10, hist.average);
+  });
+
+  // test that editStyle metric does nothing when the data has no style events
+  test('editStyleMetric_noEditStyleData', function() {
+    const cat = 'blink.user_timing';
+
+    const model = newDevToolsChromeModel(model => {
+      const rendererEvents = model.rendererThreads[0].sliceGroup;
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: 'frontendEvent',
+        start: 25,
+        duration: 1
+      }));
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: 'frontendEvent',
+        start: 30,
+        duration: 1
+      }));
+    }, /* rendererProcCount= */ 1);
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.devtoolsMetric(histograms, model);
+
+    assert.isTrue(histograms.length === 0);
+  });
+
+  test('eventListenersPanelMetric', function() {
+    const cat = 'blink.user_timing';
+
+    const model = newDevToolsChromeModel(model => {
+      const rendererEvents = model.rendererThreads[0].sliceGroup;
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: 'EventListenersView.constructor',
+        start: 25,
+        duration: 1
+      }));
+
+      rendererEvents.pushSlice(tr.c.TestUtils.newAsyncSliceEx({
+        cat,
+        title: 'EventListenersView.objectsAdded',
+        start: 35,
+        duration: 1
+      }));
+    }, /* rendererProcCount= */ 1);
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.devtoolsMetric(histograms, model);
+
+    assert.strictEqual(1, histograms.length);
+    const hist = histograms.getHistogramNamed(
+        'eventListenersPanelLoaded_duration');
+    assert.strictEqual(1, hist.numValues);
+    assert.strictEqual(10, hist.average);
+  });
+});
+
+</script>
