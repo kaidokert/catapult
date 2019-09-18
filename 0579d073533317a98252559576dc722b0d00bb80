@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "57a0cde5_c9fecf72",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "NIT: Is this splitcompat or SplitCompat?",
+      "range": {
+        "startLine": 934,
+        "startChar": 51,
+        "endLine": 934,
+        "endChar": 63
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2f25bed_e5bdcf78",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -18,6 +41,76 @@
         "startChar": 18,
         "endLine": 942,
         "endChar": 56
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e424ff40_1ceb06c6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "Also, in Args it\u0027s stated that |modules| is an \"iterable\", not a \"list\". For the more general case then, operator + would not work. So either:\n1. Update comment to state that it takes an (optional?) list, or\n2. Explicit convert to list: list(modules or []) + list(fake_modules or [])",
+      "range": {
+        "startLine": 942,
+        "startChar": 19,
+        "endLine": 942,
+        "endChar": 26
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a65fa52_54d0aa3c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "+1. Please see CL comment for\nhttps://chromium-review.googlesource.com/c/chromium/src/+/1435515\n\nIf overlap is allowed then it should be explicitly stated.",
+      "parentUuid": "b2f25bed_e5bdcf78",
+      "range": {
+        "startLine": 942,
+        "startChar": 18,
+        "endLine": 942,
+        "endChar": 56
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0ca9a12_bf5c1379",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "NIT: This is O(len(apk_paths) * len(fake_apk_paths)) -- though these sets are small.\nMaybe it\u0027s more Pythonic to use:\n  apk_paths_to_install \u003d list(set(apk_paths).difference(fake_apk_paths))",
+      "range": {
+        "startLine": 945,
+        "startChar": 29,
+        "endLine": 945,
+        "endChar": 78
       },
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
@@ -94,6 +187,75 @@
     },
     {
       "key": {
+        "uuid": "50c57c96_609d0659",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "NIT: splitcompatting or SplitCompatting (up to you, but should be consistent throughout)?",
+      "range": {
+        "startLine": 971,
+        "startChar": 24,
+        "endLine": 971,
+        "endChar": 39
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5774e69e_039b84bc",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "NIT: I\u0027m nervous with sticking non-const string into RegEx. Maybe extract as prefix and then compare? E.g.:\n\n  match \u003d re.match(r\u0027(.*)-([a-z_0-9]+)\\.apk\u0027, filename)\n  if not match or match.group(1) !\u003d fake_module:\n    continue\n  module_suffix \u003d match.group(2)\n  ...\n    \nAlso, is it possible for module_suffix to have uppercase letters?",
+      "range": {
+        "startLine": 972,
+        "startChar": 53,
+        "endLine": 972,
+        "endChar": 64
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70b96734_3c1f9c41",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "Intended?",
+      "range": {
+        "startLine": 987,
+        "startChar": 10,
+        "endLine": 987,
+        "endChar": 35
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3878e2a9_b93cac60",
         "filename": "devil/devil/android/device_utils_test.py",
         "patchSetId": 1
@@ -105,6 +267,29 @@
       "writtenOn": "2019-09-18T21:38:30Z",
       "side": 1,
       "message": "Can we add a test that does fake install?",
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d2d218c_100182ba",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-18T22:10:30Z",
+      "side": 1,
+      "message": "Can this be defined as class-local const variable and be used throughout? Okay to do this as follow-up.",
+      "range": {
+        "startLine": 795,
+        "startChar": 50,
+        "endLine": 795,
+        "endChar": 68
+      },
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
