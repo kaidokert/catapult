@@ -631,9 +631,11 @@ tr.exportTo('tr.e.importer', function() {
         process.name = event.args.name;
       } else if (event.name === 'process_labels') {
         const process = this.model_.getOrCreateProcess(event.pid);
-        const labels = event.args.labels.split(',');
-        for (let i = 0; i < labels.length; i++) {
-          process.addLabelIfNeeded(labels[i]);
+        if (event.args.labels) {
+          const labels = event.args.labels.split(',');
+          for (let i = 0; i < labels.length; i++) {
+            process.addLabelIfNeeded(labels[i]);
+          }
         }
       } else if (event.name === 'process_uptime_seconds') {
         const process = this.model_.getOrCreateProcess(event.pid);
