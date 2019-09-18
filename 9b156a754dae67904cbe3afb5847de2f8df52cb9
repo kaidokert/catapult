@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "311e8df4_a519f2b6",
+        "filename": "telemetry/telemetry/internal/actions/scroll_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002681
+      },
+      "writtenOn": "2019-09-18T18:10:48Z",
+      "side": 1,
+      "message": "Update the comment that the error also comes from resampling.",
+      "range": {
+        "startLine": 87,
+        "startChar": 36,
+        "endLine": 87,
+        "endChar": 50
+      },
+      "revId": "9b156a754dae67904cbe3afb5847de2f8df52cb9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
