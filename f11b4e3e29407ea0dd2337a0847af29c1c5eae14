@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cab41a0_46cf73f3",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2019-09-18T12:53:06Z",
+      "side": 1,
+      "message": "Should we memoize this so we don\u0027t fail and redo each time we need to get a file?",
+      "revId": "f11b4e3e29407ea0dd2337a0847af29c1c5eae14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
