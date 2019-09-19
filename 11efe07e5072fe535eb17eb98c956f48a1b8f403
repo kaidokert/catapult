@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cfa42a97_5ad7ac02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-09-19T20:52:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "728d4e09_38592a71",
+      "revId": "11efe07e5072fe535eb17eb98c956f48a1b8f403",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baaf7177_8a45ef73",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-09-19T20:37:20Z",
       "side": 1,
       "message": "Why call this \u0027raise_exception\u0027 here when you called it \u0027validate_tags\u0027 elsewhere? It seems like it\u0027d be better to be consistent.",
+      "revId": "11efe07e5072fe535eb17eb98c956f48a1b8f403",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c59aefeb_a2cb0ea9",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-09-19T20:52:41Z",
+      "side": 1,
+      "message": "I created a new variable, raise_ex_for_bad_tags and use it in both getters and as a argument for this function. PTAL",
+      "parentUuid": "baaf7177_8a45ef73",
       "revId": "11efe07e5072fe535eb17eb98c956f48a1b8f403",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
