@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02036533_3ea2e5b9",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1213279
+      },
+      "writtenOn": "2019-09-19T17:43:49Z",
+      "side": 1,
+      "message": "Can we test the fake install code, too? E.g. we could assert and mock the calls to PushChangedFiles here.",
+      "range": {
+        "startLine": 947,
+        "startChar": 10,
+        "endLine": 948,
+        "endChar": 56
+      },
+      "revId": "4c6a4c10c72462c4dd0f2297419814bf858b6ca5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
