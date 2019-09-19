@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "294ed657_2aa345b4",
+        "filename": "tracing/tracing/extras/chrome/cc/input_latency_async_slice.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1002242
+      },
+      "writtenOn": "2019-09-19T18:54:52Z",
+      "side": 0,
+      "message": "I don\u0027t understand exactly why this is not needed anymore. Try job failures also seem related to this?",
+      "revId": "cbc960899a68fecd002e96a520dbd5c3cb3367da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
