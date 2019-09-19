@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "950d4bad_e4875d01",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "Possibly `TaskTypeEq`?  And similarly rename TaskStatusFilter to `TaskStatusIn`?\n\nI\u0027m concerned that having “FooFilter” and “BarFilter” where Foo is an equality check but bar is a contains check will be confusing and error prone.",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5720bfd_c66300dc",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "The ternary if-else is less clear to me than:\n\n  return (event.target_task is None) or (event.target_task \u003d\u003d task.id)",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 78
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "495f8b3b_e9344734",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "Filters and Evaluators both appear to be callable objects.  It takes some careful reading to spot the conventions that appear to distinguish them.  At first glance they appear to take different arguments but on closer inspection they all appear designed to accept (task, event, accumulator).  So the key differences appear to be:\n\n1. Filters always return a bool, and\n2. Evaluators return a list of actions or None.\n\nIt would be good to have comments or module docstrings that make these conventions (or contracts?) explicit.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de785509_dceb5ee7",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "Definitely deserves a docstring :)\n\nAt the very least it needs to explain that it “lifts” the task\u0027s payload into the accumulator — rather than e.g. the event\u0027s payload, which is untouched.  And that “lift” here means copying items, rather than moving them.\n\nIt also needs to call out the special handling of “status”, which is treated as if it is an item in the payload.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 38
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2edcec36_996837a9",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "Why not just `return actions`?  Is there a meaningful difference between returning None and [] from an evaluator?",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 39
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a095751_3c73c765",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "The name and/or argument names should at least hint about how this chooses which way to dispatch.  E.g.:\n\n  class DispatchByEventTypeEvaluator(object):",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 60
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bac3aedd_7ab80cc7",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "This test doesn\u0027t really care that PayloadLiftingEvaluator returns None, does it?  Checking this in the _Default test method seems sufficient (or perhaps better in its own method).",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 26
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43ef5036_880550c8",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "“0” is a bit opaque.  Also your evaluator names count from one, but return stub actions counting from 0, which is unnecessarily confusing :)\n\nHow about:\n\n  return [\u0027First action\u0027]",
+      "range": {
+        "startLine": 79,
+        "startChar": 14,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37fd681_393ceb5a",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "Rather than args[2] I think it\u0027d be clearer as:\n\n  def FirstEvaluator(_1, _2, accumulator):\n    accumulator.update({\u0027value\u0027: 1})\n    return [0]\n\nAlso, which updating just one key setitem syntax is clearer I think:\n\n  def FirstEvaluator(_1, _2, accumulator):\n    accumulator[\u0027value\u0027] \u003d 1\n    return [0]",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 16
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccec1b0d_36dd55a6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-19T05:17:44Z",
+      "side": 1,
+      "message": "Seems a bit surprising that this is a test-only code.  It seems more general purpose.  Maybe it will graduate to non-test code later?",
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
