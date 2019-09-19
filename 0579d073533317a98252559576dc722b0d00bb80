@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "628e128f_8216954b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-19T19:22:25Z",
+      "side": 1,
+      "message": "Oh, I just meant alternative spelling for the same thing.",
+      "parentUuid": "b2b9c947_199edce0",
+      "range": {
+        "startLine": 934,
+        "startChar": 51,
+        "endLine": 934,
+        "endChar": 63
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2f25bed_e5bdcf78",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -211,6 +235,30 @@
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81a8ec46_b98cc523",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-19T19:22:25Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "330fdb95_05a3bf1e",
+      "range": {
+        "startLine": 945,
+        "startChar": 29,
+        "endLine": 945,
+        "endChar": 78
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
