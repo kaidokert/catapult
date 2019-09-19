@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e4b9bd48_17ebdfa7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T17:45:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "704fd269_242c529d",
+      "range": {
+        "startLine": 958,
+        "startChar": 14,
+        "endLine": 958,
+        "endChar": 56
+      },
+      "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31c627c0_52fa1dac",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea5f06e2_cb948824",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T17:45:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31c627c0_52fa1dac",
+      "range": {
+        "startLine": 959,
+        "startChar": 4,
+        "endLine": 959,
+        "endChar": 10
+      },
+      "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a3d272df_b1a67d1a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T17:45:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7abc581_e2d9fa1e",
+      "range": {
+        "startLine": 960,
+        "startChar": 11,
+        "endLine": 960,
+        "endChar": 46
+      },
+      "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87f5cfb5_8b988428",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "2e96d3ad_20294e59",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T17:45:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f5cfb5_8b988428",
+      "range": {
+        "startLine": 974,
+        "startChar": 6,
+        "endLine": 974,
+        "endChar": 25
+      },
+      "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e851bd93_d1682ffb",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c80f1868_2c798d55",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T17:45:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e851bd93_d1682ffb",
+      "range": {
+        "startLine": 985,
+        "startChar": 58,
+        "endLine": 985,
+        "endChar": 59
+      },
+      "revId": "a21c2251c75f26b519cb285f1e919def29aa7cd2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
