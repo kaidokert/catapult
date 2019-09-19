@@ -30,8 +30,14 @@ from devil.android.sdk import version_codes
 from devil.utils import cmd_helper
 from devil.utils import mock_calls
 
+
 with devil_env.SysPath(devil_env.PYMOCK_PATH):
   import mock  # pylint: disable=import-error
+
+
+TEST_APK_PATH = '/fake/test/app.apk'
+TEST_PACKAGE = 'test.package'
+
 
 def Process(name, pid, ppid='1'):
   return device_utils.ProcessInfo(name=name, pid=pid, ppid=ppid)
@@ -787,121 +793,132 @@ class DeviceUtilsRebootTest(DeviceUtilsTest):
 
 class DeviceUtilsInstallTest(DeviceUtilsTest):
 
-  mock_apk = _MockApkHelper('/fake/test/app.apk', 'test.package', ['p1'])
+  mock_apk = _MockApkHelper(TEST_APK_PATH, TEST_PACKAGE, ['p1'])
 
   def testInstall_noPriorInstall(self):
     with self.patch_call(self.call.device.build_version_sdk, return_value=23):
       with self.assertCalls(
-          (mock.call.os.path.exists('/fake/test/app.apk'), True),
-          (self.call.device._GetApplicationPathsInternal('test.package'), []),
-          self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+          (self.call.device._FakeInstall(set(), None)),
+          (mock.call.os.path.exists(TEST_APK_PATH), True),
+          (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+          self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                                 allow_downgrade=False),
-          (self.call.device.GrantPermissions('test.package', ['p1']), [])):
+          (self.call.device.GrantPermissions(TEST_PACKAGE, ['p1']), [])):
         self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0)
 
   def testInstall_permissionsPreM(self):
     with self.patch_call(self.call.device.build_version_sdk, return_value=20):
       with self.assertCalls(
-          (mock.call.os.path.exists('/fake/test/app.apk'), True),
-          (self.call.device._GetApplicationPathsInternal('test.package'), []),
-          (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+          (self.call.device._FakeInstall(set(), None)),
+          (mock.call.os.path.exists(TEST_APK_PATH), True),
+          (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+          (self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                                  allow_downgrade=False))):
         self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0)
 
   def testInstall_findPermissions(self):
     with self.patch_call(self.call.device.build_version_sdk, return_value=23):
       with self.assertCalls(
-          (mock.call.os.path.exists('/fake/test/app.apk'), True),
-          (self.call.device._GetApplicationPathsInternal('test.package'), []),
-          (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+          (self.call.device._FakeInstall(set(), None)),
+          (mock.call.os.path.exists(TEST_APK_PATH), True),
+          (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+          (self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                                  allow_downgrade=False)),
-          (self.call.device.GrantPermissions('test.package', ['p1']), [])):
+          (self.call.device.GrantPermissions(TEST_PACKAGE, ['p1']), [])):
         self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0)
 
   def testInstall_passPermissions(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'), []),
-        (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+        (self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                                allow_downgrade=False)),
-        (self.call.device.GrantPermissions('test.package', ['p1', 'p2']), [])):
+        (self.call.device.GrantPermissions(TEST_PACKAGE, ['p1', 'p2']), [])):
       self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0,
                           permissions=['p1', 'p2'])
 
   def testInstall_identicalPriorInstall(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk']),
-        (self.call.device._ComputeStaleApks('test.package',
-            ['/fake/test/app.apk']),
+        (self.call.device._ComputeStaleApks(TEST_PACKAGE,
+            [TEST_APK_PATH]),
          ([], None)),
-        (self.call.device.ForceStop('test.package'))):
+        (self.call.device.ForceStop(TEST_PACKAGE))):
       self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0,
                           permissions=[])
 
   def testInstall_differentPriorInstall(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk']),
-        (self.call.device._ComputeStaleApks('test.package',
-            ['/fake/test/app.apk']),
-         (['/fake/test/app.apk'], None)),
-        self.call.device.Uninstall('test.package'),
-        self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+        (self.call.device._ComputeStaleApks(TEST_PACKAGE,
+            [TEST_APK_PATH]),
+         ([TEST_APK_PATH], None)),
+        self.call.device.Uninstall(TEST_PACKAGE),
+        self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                               allow_downgrade=False)):
       self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0,
                           permissions=[])
 
   def testInstall_differentPriorInstallSplitApk(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk',
           '/fake/data/app/test.package2.apk']),
-        self.call.device.Uninstall('test.package'),
-        self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+        self.call.device.Uninstall(TEST_PACKAGE),
+        self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                               allow_downgrade=False)):
       self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0,
                           permissions=[])
 
   def testInstall_differentPriorInstall_reinstall(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk']),
-        (self.call.device._ComputeStaleApks('test.package',
-            ['/fake/test/app.apk']),
-         (['/fake/test/app.apk'], None)),
-        self.call.adb.Install('/fake/test/app.apk', reinstall=True,
+        (self.call.device._ComputeStaleApks(TEST_PACKAGE,
+            [TEST_APK_PATH]),
+         ([TEST_APK_PATH], None)),
+        self.call.adb.Install(TEST_APK_PATH, reinstall=True,
                               allow_downgrade=False)):
       self.device.Install(DeviceUtilsInstallTest.mock_apk,
           reinstall=True, retries=0, permissions=[])
 
   def testInstall_identicalPriorInstall_reinstall(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk']),
-        (self.call.device._ComputeStaleApks('test.package',
-            ['/fake/test/app.apk']),
+        (self.call.device._ComputeStaleApks(TEST_PACKAGE,
+            [TEST_APK_PATH]),
          ([], None)),
-        (self.call.device.ForceStop('test.package'))):
+        (self.call.device.ForceStop(TEST_PACKAGE))):
       self.device.Install(DeviceUtilsInstallTest.mock_apk,
           reinstall=True, retries=0, permissions=[])
 
   def testInstall_missingApk(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), False)):
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), False)):
       with self.assertRaises(device_errors.CommandFailedError):
         self.device.Install(DeviceUtilsInstallTest.mock_apk, retries=0)
 
   def testInstall_fails(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'), []),
-        (self.call.adb.Install('/fake/test/app.apk', reinstall=False,
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+        (self.call.adb.Install(TEST_APK_PATH, reinstall=False,
                                allow_downgrade=False),
          self.CommandError('Failure\r\n'))):
       with self.assertRaises(device_errors.CommandFailedError):
@@ -909,21 +926,46 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
 
   def testInstall_downgrade(self):
     with self.assertCalls(
-        (mock.call.os.path.exists('/fake/test/app.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._FakeInstall(set(), None)),
+        (mock.call.os.path.exists(TEST_APK_PATH), True),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk']),
-        (self.call.device._ComputeStaleApks('test.package',
-            ['/fake/test/app.apk']),
-         (['/fake/test/app.apk'], None)),
-        self.call.adb.Install('/fake/test/app.apk', reinstall=True,
+        (self.call.device._ComputeStaleApks(TEST_PACKAGE,
+            [TEST_APK_PATH]),
+         ([TEST_APK_PATH], None)),
+        self.call.adb.Install(TEST_APK_PATH, reinstall=True,
                               allow_downgrade=True)):
       self.device.Install(DeviceUtilsInstallTest.mock_apk,
           reinstall=True, retries=0, permissions=[], allow_downgrade=True)
 
+  def testInstall_pushesFakeModulesToDevice(self):
+    @contextlib.contextmanager
+    def mock_zip_temp_dir():
+      yield '/test/tmp/dir'
+
+    mock_apk_with_fake = _MockApkHelper(TEST_APK_PATH, TEST_PACKAGE,
+                                        splits=['fake1-master.apk'])
+    fake_modules = ['fake1']
+    with self.patch_call(self.call.device.build_version_sdk, return_value=23):
+      with self.assertCalls(
+          (mock.call.py_utils.tempfile_ext.NamedTemporaryDirectory(),
+           mock_zip_temp_dir),
+          (mock.call.os.rename('fake1-master.apk', '/test/tmp/dir/fake1.apk')),
+          (self.call.device.PushChangedFiles(
+              [('/test/tmp/dir', '/data/local/tmp/modules')],
+              delete_device_stale=True)),
+          (mock.call.os.path.exists(TEST_APK_PATH), True),
+          (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+          self.call.adb.Install(TEST_APK_PATH, reinstall=False,
+                                allow_downgrade=False),
+          (self.call.device.GrantPermissions(TEST_PACKAGE, None), [])):
+        self.device.Install(mock_apk_with_fake, fake_modules=fake_modules,
+                            retries=0)
+
 
 class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
 
-  mock_apk = _MockApkHelper('base.apk', 'test.package', ['p1'],
+  mock_apk = _MockApkHelper('base.apk', TEST_PACKAGE, ['p1'],
                             ['split1.apk', 'split2.apk'])
 
   def testInstallSplitApk_noPriorInstall(self):
@@ -935,7 +977,7 @@ class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
         (mock.call.os.path.exists('base.apk'), True),
         (mock.call.os.path.exists('split1.apk'), True),
         (mock.call.os.path.exists('split2.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'), []),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
         (self.call.adb.InstallMultiple(['base.apk', 'split1.apk', 'split2.apk'],
                                        partial=None,
                                        reinstall=False,
@@ -953,13 +995,13 @@ class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
         (mock.call.os.path.exists('base.apk'), True),
         (mock.call.os.path.exists('split1.apk'), True),
         (mock.call.os.path.exists('split2.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['base-on-device.apk', 'split2-on-device.apk']),
         (self.call.device._ComputeStaleApks(
-            'test.package', ['base.apk', 'split1.apk', 'split2.apk']),
+            TEST_PACKAGE, ['base.apk', 'split1.apk', 'split2.apk']),
          (['split2.apk'], None)),
         (self.call.adb.InstallMultiple(['split2.apk'],
-                                       partial='test.package',
+                                       partial=TEST_PACKAGE,
                                        reinstall=True,
                                        allow_downgrade=False))):
       self.device.InstallSplitApk(
@@ -978,13 +1020,13 @@ class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
         (mock.call.os.path.exists('base.apk'), True),
         (mock.call.os.path.exists('split1.apk'), True),
         (mock.call.os.path.exists('split2.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['base-on-device.apk', 'split2-on-device.apk']),
         (self.call.device._ComputeStaleApks(
-            'test.package', ['base.apk', 'split1.apk', 'split2.apk']),
+            TEST_PACKAGE, ['base.apk', 'split1.apk', 'split2.apk']),
          (['split2.apk'], None)),
         (self.call.adb.InstallMultiple(['split2.apk'],
-                                       partial='test.package',
+                                       partial=TEST_PACKAGE,
                                        reinstall=True,
                                        allow_downgrade=True))):
       self.device.InstallSplitApk(
@@ -1020,9 +1062,9 @@ class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
         (mock.call.os.path.exists('base.apk'), True),
         (mock.call.os.path.exists('split1.apk'), True),
         (mock.call.os.path.exists('split2.apk'), True),
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/fake/data/app/test.package.apk']),
-        self.call.device.Uninstall('test.package'),
+        self.call.device.Uninstall(TEST_PACKAGE),
         (self.call.adb.InstallMultiple(['base.apk', 'split1.apk', 'split2.apk'],
                                        partial=None,
                                        reinstall=False,
@@ -1037,15 +1079,15 @@ class DeviceUtilsUninstallTest(DeviceUtilsTest):
 
   def testUninstall_callsThrough(self):
     with self.assertCalls(
-        (self.call.device._GetApplicationPathsInternal('test.package'),
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE),
          ['/path.apk']),
-        self.call.adb.Uninstall('test.package', True)):
-      self.device.Uninstall('test.package', True)
+        self.call.adb.Uninstall(TEST_PACKAGE, True)):
+      self.device.Uninstall(TEST_PACKAGE, True)
 
   def testUninstall_noop(self):
     with self.assertCalls(
-        (self.call.device._GetApplicationPathsInternal('test.package'), [])):
-      self.device.Uninstall('test.package', True)
+        (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), [])):
+      self.device.Uninstall(TEST_PACKAGE, True)
 
 
 class DeviceUtilsSuTest(DeviceUtilsTest):
@@ -1427,7 +1469,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_success(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.assertCall(
         self.call.adb.Shell('am start '
@@ -1438,7 +1480,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_failure(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.assertCall(
         self.call.adb.Shell('am start '
@@ -1450,7 +1492,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_blocking(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.assertCall(
         self.call.adb.Shell('am start '
@@ -1462,7 +1504,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withCategory(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 category='android.intent.category.HOME')
     with self.assertCall(
@@ -1475,7 +1517,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withMultipleCategories(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 category=['android.intent.category.HOME',
                                           'android.intent.category.BROWSABLE'])
@@ -1490,7 +1532,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withData(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 data='http://www.google.com/')
     with self.assertCall(
@@ -1503,7 +1545,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withStringExtra(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 extras={'foo': 'test'})
     with self.assertCall(
@@ -1516,7 +1558,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withBoolExtra(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 extras={'foo': True})
     with self.assertCall(
@@ -1529,7 +1571,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withIntExtra(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 extras={'foo': 123})
     with self.assertCall(
@@ -1542,7 +1584,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withTraceFile(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.assertCall(
         self.call.adb.Shell('am start '
@@ -1555,7 +1597,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withForceStop(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.assertCall(
         self.call.adb.Shell('am start '
@@ -1567,7 +1609,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 
   def testStartActivity_withFlags(self):
     test_intent = intent.Intent(action='android.intent.action.VIEW',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main',
                                 flags=[
                                   intent.FLAG_ACTIVITY_NEW_TASK,
@@ -1585,7 +1627,7 @@ class DeviceUtilsStartActivityTest(DeviceUtilsTest):
 class DeviceUtilsStartServiceTest(DeviceUtilsTest):
   def testStartService_success(self):
     test_intent = intent.Intent(action='android.intent.action.START',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.patch_call(self.call.device.build_version_sdk,
                          return_value=version_codes.NOUGAT):
@@ -1598,7 +1640,7 @@ class DeviceUtilsStartServiceTest(DeviceUtilsTest):
 
   def testStartService_failure(self):
     test_intent = intent.Intent(action='android.intent.action.START',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.patch_call(self.call.device.build_version_sdk,
                          return_value=version_codes.NOUGAT):
@@ -1612,7 +1654,7 @@ class DeviceUtilsStartServiceTest(DeviceUtilsTest):
 
   def testStartService_withUser(self):
     test_intent = intent.Intent(action='android.intent.action.START',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.patch_call(self.call.device.build_version_sdk,
                          return_value=version_codes.NOUGAT):
@@ -1626,7 +1668,7 @@ class DeviceUtilsStartServiceTest(DeviceUtilsTest):
 
   def testStartService_onOreo(self):
     test_intent = intent.Intent(action='android.intent.action.START',
-                                package='test.package',
+                                package=TEST_PACKAGE,
                                 activity='.Main')
     with self.patch_call(self.call.device.build_version_sdk,
                          return_value=version_codes.OREO):
@@ -1799,17 +1841,17 @@ class DeviceUtilsForceStopTest(DeviceUtilsTest):
 
   def testForceStop(self):
     with self.assertCalls(
-        (self.call.device.GetApplicationPids('test.package'), [1111]),
+        (self.call.device.GetApplicationPids(TEST_PACKAGE), [1111]),
         (self.call.device.RunShellCommand(
-            ['am', 'force-stop', 'test.package'],
+            ['am', 'force-stop', TEST_PACKAGE],
             check_return=True),
          ['Success'])):
-      self.device.ForceStop('test.package')
+      self.device.ForceStop(TEST_PACKAGE)
 
   def testForceStop_NoProcessFound(self):
     with self.assertCall(
-        self.call.device.GetApplicationPids('test.package'), []):
-      self.device.ForceStop('test.package')
+        self.call.device.GetApplicationPids(TEST_PACKAGE), []):
+      self.device.ForceStop(TEST_PACKAGE)
 
 
 class DeviceUtilsClearApplicationStateTest(DeviceUtilsTest):
