@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b2b9c947_199edce0",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "SplitCompat, fixed. What is splitcompat? Are there two things?",
+      "parentUuid": "57a0cde5_c9fecf72",
+      "range": {
+        "startLine": 934,
+        "startChar": 51,
+        "endLine": 934,
+        "endChar": 63
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2f25bed_e5bdcf78",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -95,6 +119,54 @@
     },
     {
       "key": {
+        "uuid": "3d732fb6_b49c4f8d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Explicit conversion sgtm. Done.",
+      "parentUuid": "e424ff40_1ceb06c6",
+      "range": {
+        "startLine": 942,
+        "startChar": 19,
+        "endLine": 942,
+        "endChar": 26
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "158ae63e_bc346ac9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Added check.",
+      "parentUuid": "2a65fa52_54d0aa3c",
+      "range": {
+        "startLine": 942,
+        "startChar": 18,
+        "endLine": 942,
+        "endChar": 56
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0ca9a12_bf5c1379",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -106,6 +178,30 @@
       "writtenOn": "2019-09-18T22:10:30Z",
       "side": 1,
       "message": "NIT: This is O(len(apk_paths) * len(fake_apk_paths)) -- though these sets are small.\nMaybe it\u0027s more Pythonic to use:\n  apk_paths_to_install \u003d list(set(apk_paths).difference(fake_apk_paths))",
+      "range": {
+        "startLine": 945,
+        "startChar": 29,
+        "endLine": 945,
+        "endChar": 78
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "330fdb95_05a3bf1e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "fake_apk_paths is a set (hash table), so it should be O(len(apk_paths)), which should already be optimal. I think the current code is slightly more readable given the intent is to filter out any paths that is in fake_apk_paths.\n\nWDYT?",
+      "parentUuid": "f0ca9a12_bf5c1379",
       "range": {
         "startLine": 945,
         "startChar": 29,
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "5f993e03_6e48cbdb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d1e1359_a13705e0",
+      "range": {
+        "startLine": 953,
+        "startChar": 6,
+        "endLine": 953,
+        "endChar": 25
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ecbf710_132676a3",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -161,6 +281,30 @@
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54db04ea_da66b979",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Thanks! Much nicer.",
+      "parentUuid": "1ecbf710_132676a3",
+      "range": {
+        "startLine": 955,
+        "startChar": 6,
+        "endLine": 955,
+        "endChar": 42
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "48a253f0_c71f5fcc",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "I think so, done.",
+      "parentUuid": "94a2dbac_237b533c",
+      "range": {
+        "startLine": 966,
+        "startChar": 8,
+        "endLine": 966,
+        "endChar": 20
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50c57c96_609d0659",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -207,6 +375,30 @@
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd86ff67_6be7ee80",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50c57c96_609d0659",
+      "range": {
+        "startLine": 971,
+        "startChar": 24,
+        "endLine": 971,
+        "endChar": 39
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -233,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "9e188b10_844af155",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Removed regex and just split based on dash.",
+      "parentUuid": "5774e69e_039b84bc",
+      "range": {
+        "startLine": 972,
+        "startChar": 53,
+        "endLine": 972,
+        "endChar": 64
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70b96734_3c1f9c41",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -253,6 +469,30 @@
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53372dbc_38738db7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "Opps, missed this one. Removed, thanks!",
+      "parentUuid": "70b96734_3c1f9c41",
+      "range": {
+        "startLine": 987,
+        "startChar": 10,
+        "endLine": 987,
+        "endChar": 35
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -293,6 +533,30 @@
       "revId": "0579d073533317a98252559576dc722b0d00bb80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a50f640_d8ef175c",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-19T16:39:23Z",
+      "side": 1,
+      "message": "That\u0027s a great idea! I\u0027ll include it in this CL since I add a ton of usages.",
+      "parentUuid": "4d2d218c_100182ba",
+      "range": {
+        "startLine": 795,
+        "startChar": 50,
+        "endLine": 795,
+        "endChar": 68
+      },
+      "revId": "0579d073533317a98252559576dc722b0d00bb80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
