@@ -293,11 +293,11 @@ class TestExpectations(object):
         self.glob_exps = OrderedDict()
 
     def set_tags(self, tags, validate_tags=False):
-        self._validate_condition_tags(tags, validate_tags)
+        self.validate_condition_tags(tags, validate_tags)
         self._tags = [tag.lower() for tag in tags]
 
     def add_tags(self, new_tags, validate_tags=False):
-        self._validate_condition_tags(new_tags, validate_tags)
+        self.validate_condition_tags(new_tags, validate_tags)
         self._tags = list(
             set(self._tags) | set([tag.lower() for tag in new_tags]))
 
@@ -305,7 +305,7 @@ class TestExpectations(object):
     def tags(self):
         return self._tags[:]
 
-    def _validate_condition_tags(self, tags, validate_tags):
+    def validate_condition_tags(self, tags, raise_exception):
         # This function will be used to validate if each tag in the tags list
         # is declared in a test expectations file. This validation will make
         # sure that the tags written in the test expectations files match tags
@@ -326,7 +326,7 @@ class TestExpectations(object):
                 'There may have been a typo in the expectations file. '
                 'Please make sure the aforementioned tag%s declared at '
                 'the top of the expectations file.' % _pluralize_unknown(unknown_tags))
-            if validate_tags:
+            if raise_exception:
                 raise ValueError(msg)
             else:
                 logging.warning(msg)
