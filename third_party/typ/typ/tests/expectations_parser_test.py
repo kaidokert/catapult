@@ -557,7 +557,7 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'the expectations file. Please make sure the aforementioned '
             'tags are declared at the top of the expectations file.')
 
-    def testDeclaredSystemConditionTagsDontRaiseAnException(self):
+    def testDeclaredSystemConditionTagsDoesntRaiseException(self):
         test_expectations = '''# tags: [ InTel AMD nvidia nvidia-0x1010 ]
         # tags: [ win ]
         # results: [ Failure ]
