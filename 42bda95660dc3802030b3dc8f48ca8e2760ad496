@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e3a57509_ae12650f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-20T17:21:13Z",
+      "side": 1,
+      "message": "This is just sanity checking inputs to Install(), so I\u0027d prefer if we keep its logic in Install() itself.",
+      "range": {
+        "startLine": 956,
+        "startChar": 6,
+        "endLine": 956,
+        "endChar": 20
+      },
+      "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7c67063_37bcebfc",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 5
@@ -46,6 +69,47 @@
       "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2ffac1b_9468a58a",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-20T17:21:13Z",
+      "side": 1,
+      "message": "You responded \u0027Done\u0027 to this comment + others, but haven\u0027t uploaded a new patch set?",
+      "parentUuid": "22f2b1e8_16e11b21",
+      "range": {
+        "startLine": 960,
+        "startChar": 53,
+        "endLine": 960,
+        "endChar": 54
+      },
+      "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c47c968_bf1b5cd7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-20T17:21:13Z",
+      "side": 1,
+      "message": "Can we make this even more strict, and enforce \"modules xor fake_modules\"? That is, would we ever realistically call Install() with both \u0027real\u0027 modules and fake ones? If not, this check becomes much simpler.\n\nFTR, I\u0027m asking that with essentially zero idea of what a \u0027bundle module\u0027 even is ;)",
+      "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
