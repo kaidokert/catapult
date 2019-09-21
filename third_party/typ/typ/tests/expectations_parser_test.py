@@ -557,7 +557,7 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
             'the expectations file. Please make sure the aforementioned '
             'tags are declared at the top of the expectations file.')
 
-    def testDeclaredSystemConditionTagsDontRaiseAnException(self):
+    def testDeclaredSystemConditionTagsDoesntRaiseException(self):
         test_expectations = '''# tags: [ InTel AMD nvidia nvidia-0x1010 ]
         # tags: [ win ]
         # results: [ Failure ]
@@ -568,3 +568,37 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         self.assertFalse(msg)
         expectations.set_tags(['win', 'nVidia', 'nvidia-0x1010'],
                               raise_ex_for_bad_tags=True)
+
+    def testConditionTagsInExpectationsFileAreFromValidSet(self):
+        test_expectations = '''# tags: [ InTel AMD nvidia nvidia-0x1010 ]
+        # tags: [ win ]
+        # results: [ Failure ]'''
+        reference_set = set(['intel', 'amd', 'nvidia'])
+        expectations = expectations_parser.TestExpectations()
+        ret, _ = expectations.parse_tagged_list(
+            test_expectations, 'test.txt')
+        self.assertTrue(not ret)
+        with self.assertRaises(ValueError) as context:
+            expectations.validate_condition_tags(
+                reference_set, check_file_tags_against_reference=True)
+        self.assertEqual(str(context.exception),
+            'Tags nvidia-0x1010 and win are in the expectations file but not in '
+            'the reference set. Please make sure the aforementioned tags are '
+            'added to the reference set.')
+
+    def testConditionTagsInReferenceSetAreNotInExpectationsFile(self):
+        test_expectations = '''# tags: [ InTel AMD ]
+        # tags: [ win ]
+        # results: [ Failure ]'''
+        reference_set = set(['intel', 'amd', 'win', 'linux'])
+        expectations = expectations_parser.TestExpectations()
+        ret, _ = expectations.parse_tagged_list(
+            test_expectations, 'test.txt')
+        self.assertTrue(not ret)
+        with self.assertRaises(ValueError) as context:
+            expectations.validate_condition_tags(
+                reference_set,  check_file_tags_against_reference=True,
+                 check_reference_tags_in_file=True)
+        self.assertEqual(str(context.exception),
+            'Tag linux is in the reference set but not in the expectations file. '
+            'Please make sure the aforementioned tag is are added to the expectations file.')
