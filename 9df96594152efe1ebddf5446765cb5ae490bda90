@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66b25426_a3eca068",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-09-23T20:56:04Z",
+      "side": 1,
+      "message": "I\u0027m not entirely sure I\u0027m following what these checks are doing, and I feel like doing\nboth things in a single function is contributing to the confusion.\n\nIf I have this straight: \u0027check_file_tags_against_reference\u0027 ensures that you\u0027ve declared all of the tags that are actually used? And \u0027check_tags_in_file\u0027 ensures that you actually use every tag you declared?\n\nIf I have the latter one right, that makes me a bit nervous as a check, because I would expect it to be somewhat common that you\u0027d declare some tags but not always use them.\n\nI might change the names to be \u0027require_all_tags_to_be_declared\u0027 and \u0027require_all_tags_to_be_used\u0027 or something like that. \n\nI\u0027m not also not sure why you\u0027d ever want check_file_tags_against_reference to be False?",
+      "revId": "9df96594152efe1ebddf5446765cb5ae490bda90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
