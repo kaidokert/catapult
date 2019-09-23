@@ -382,13 +382,21 @@ class PageTestResultsTest(unittest.TestCase):
       results.DidRunPage(self.pages[0])
       results.WillRunPage(self.pages[1])
       results.DidRunPage(self.pages[1])
+      results.AddSharedDiagnostics(
+          owners=['test'],
+          bug_components=['1', '2'],
+          documentation_urls=[['documentation', 'url']],
+          architecture='arch',
+          device_id='id',
+          os_name='os',
+          os_version='ver',
+      )
 
     records = self.GetResultRecords()
     self.assertEqual(len(records), 4)  # Start, Result, Result, Finish.
     self.assertEqual(records[0], {
         'benchmarkRun': {
             'startTime': '2009-02-13T23:31:30.987000Z',
-            'diagnostics': {},
         }
     })
     self.assertEqual(records[1]['testResult']['status'], 'PASS')
@@ -396,8 +404,19 @@ class PageTestResultsTest(unittest.TestCase):
     self.assertEqual(records[3], {
         'benchmarkRun': {
             'finalized': True,
-            'interrupted': False
-        }
+            'interrupted': False,
+            'diagnostics': {
+                'benchmarks': ['(unknown benchmark)'],
+                'benchmarkDescriptions': [''],
+                'owners': ['test'],
+                'bugComponents': ['1', '2'],
+                'documentationLinks': [['documentation', 'url']],
+                'architectures': ['arch'],
+                'deviceIds': ['id'],
+                'osNames': ['os'],
+                'osVersions': ['ver'],
+            },
+        },
     })
 
   def testBeginFinishBenchmarkRecords_interrupted(self):
@@ -413,14 +432,17 @@ class PageTestResultsTest(unittest.TestCase):
     self.assertEqual(records[0], {
         'benchmarkRun': {
             'startTime': '2009-02-13T23:31:30.987000Z',
-            'diagnostics': {},
         }
     })
     self.assertEqual(records[1]['testResult']['status'], 'FAIL')
     self.assertEqual(records[2], {
         'benchmarkRun': {
             'finalized': True,
-            'interrupted': True
+            'interrupted': True,
+            'diagnostics': {
+                'benchmarks': ['(unknown benchmark)'],
+                'benchmarkDescriptions': [''],
+            },
         }
     })
 
