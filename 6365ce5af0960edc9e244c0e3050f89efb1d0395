@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a24e3369_77a93b30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-23T23:58:03Z",
+      "side": 1,
+      "message": "That\u0027s what the current `fastboot --version` prints out. *shrug*",
+      "range": {
+        "startLine": 7,
+        "startChar": 48,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "6365ce5af0960edc9e244c0e3050f89efb1d0395",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
