@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce12ea75_16e57333",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2019-09-23T15:48:44Z",
+      "side": 1,
+      "message": "Maybe it will be more robust to do:\n\n  if filename.startswith(fake_module + \u0027-\u0027):\n    return True\n\n?",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 967,
+        "endChar": 21
+      },
+      "revId": "a4d999d752eca8987394b01009db8feda13c104d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
