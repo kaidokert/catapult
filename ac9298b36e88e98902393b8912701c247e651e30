@@ -497,6 +497,30 @@
     },
     {
       "key": {
+        "uuid": "50657a73_b545730a",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-23T06:12:58Z",
+      "side": 1,
+      "message": "Ah, I was looking at the wrong config.  https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/pylintrc?l\u003d80\u0026rcl\u003dfa002e6324b816d9d3052e64fa8074ae88bb2cfd\n\nLooks like it allows names prefixed with “unused_” like “unused_1”, or a “_”, and nothing else.\n\nUnfortunately \"def f(_, _, arg):” is invalid syntax, so if you need more than one unused arg you have to use the verbose naming (or change our pylintrc…).\n\nSo perhaps try\n\n    def FirstEvaluator(unused_, unused_2, accumulator):\n\nBut feel free to spend no more time on this too :)",
+      "parentUuid": "c152d631_364cda3f",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 16
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccec1b0d_36dd55a6",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
         "patchSetId": 11
