@@ -16,6 +16,24 @@
       "revId": "cbc960899a68fecd002e96a520dbd5c3cb3367da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "844d4e5d_28a3863b",
+        "filename": "tracing/tracing/extras/chrome/cc/input_latency_async_slice.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-09-23T20:02:36Z",
+      "side": 0,
+      "message": "We will no longer be reporting Latency::ScrollUpdate trace events (see [1]). So addScrollUpdateEvents() will not actually do anything any longer. I have updated the relevant test accordingly.\n\n[1] https://chromium-review.googlesource.com/c/chromium/src/+/1800727/4/ui/latency/latency_info.cc#b275",
+      "parentUuid": "294ed657_2aa345b4",
+      "revId": "cbc960899a68fecd002e96a520dbd5c3cb3367da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
