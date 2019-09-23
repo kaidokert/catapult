@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d24432a4_69980e5d",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-23T05:46:00Z",
+      "side": 1,
+      "message": "Renamed to `TaskIsEventTarget` to reflect the behaviour more.\n\nIt\u0027s a little weird because if there is no event target then this would return true... which I suspect is a potentially different reading of \"if there is no target\" to mean \"everything is a target\". :)",
+      "parentUuid": "a5357abd_4ef31e95",
+      "range": {
+        "startLine": 72,
+        "startChar": 6,
+        "endLine": 72,
+        "endChar": 23
+      },
+      "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2df33151_ad15182c",
         "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8d2a8a1_a5c5f24a",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-23T05:46:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2df33151_ad15182c",
+      "range": {
+        "startLine": 92,
+        "startChar": 57,
+        "endLine": 92,
+        "endChar": 60
+      },
+      "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "df71fa3b_ba10b97d",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-23T05:46:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d9aec8_4b5e749e",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 19
+      },
+      "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1a09ba1_8eb80a41",
         "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
         "patchSetId": 13
@@ -82,6 +154,30 @@
       "writtenOn": "2019-09-23T05:10:55Z",
       "side": 1,
       "message": "Cute use of operator.iadd.  Here\u0027s another spelling you might like (but your spelling is fine too), especially if you feel a bit icky relying on a side-effect of a reducer (using functional-style idioms in a non-functional way).\n\n    def Flatten(seqs): return list(itertools.chain(*seqs))\n    return Flatten(\n        [evaluator(task, event, accumulator) or []\n         for evaluator in self._evaluators])",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 10
+      },
+      "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04ea5020_7049c096",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-23T05:46:00Z",
+      "side": 1,
+      "message": "Ooh, this spelling looks better, thanks! :)",
+      "parentUuid": "b1a09ba1_8eb80a41",
       "range": {
         "startLine": 134,
         "startChar": 0,
@@ -114,6 +210,30 @@
       "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e273461c_d636813e",
+        "filename": "dashboard/dashboard/pinpoint/models/event.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-09-23T05:46:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea29fc44_6ea8c3f6",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "193dc1de2549d036bce7f37451646c9b5473f332",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
