@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56610454_bbfce8c1",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-23T11:39:36Z",
+      "side": 1,
+      "message": "nit: append \"for now.\"",
+      "revId": "9d1a93b225c17105771e14f2178ff7b30bf4305f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef3cf45_57d03272",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-23T11:39:36Z",
+      "side": 1,
+      "message": "nit: add some benchmark name and description.",
+      "revId": "9d1a93b225c17105771e14f2178ff7b30bf4305f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e2ab1f0_53b7a6ac",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-23T11:39:36Z",
+      "side": 1,
+      "message": "nit: ditto",
+      "revId": "9d1a93b225c17105771e14f2178ff7b30bf4305f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
