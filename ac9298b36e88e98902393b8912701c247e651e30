@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "4db85e18_59b095eb",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-23T05:10:55Z",
+      "side": 1,
+      "message": "Yeah I think allowing evaluators to return None rather than an empty list is false economy: the cost of adding “if actions is None” checks everywhere that consumes these outweighs the slight convenience.",
+      "parentUuid": "c3a199f0_1f1248b3",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 39
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a095751_3c73c765",
         "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
         "patchSetId": 11
@@ -418,6 +442,30 @@
         "startChar": 14,
         "endLine": 79,
         "endChar": 15
+      },
+      "revId": "ac9298b36e88e98902393b8912701c247e651e30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b87faed_6bbd4d65",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-23T05:10:55Z",
+      "side": 1,
+      "message": "Oh how annoying.  I wonder where the relevant pylint config is?  I thought pylint\u0027s default config allowed variables and arguments to be unused if they starting with underscore, and at a glance it appears that\u0027s true in our config: https://cs.chromium.org/chromium/tools/depot_tools/pylintrc?l\u003d281\u0026rcl\u003d7cb60e812f165c2d6eaa1646b2a672a5ecb4ef9f\n\nWhich lint warning was it?",
+      "parentUuid": "19900da5_b981ce88",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 79,
+        "endChar": 16
       },
       "revId": "ac9298b36e88e98902393b8912701c247e651e30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
