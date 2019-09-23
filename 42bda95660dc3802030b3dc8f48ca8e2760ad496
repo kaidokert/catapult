@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ddbc3f12_640907e1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-23T12:51:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a57509_ae12650f",
+      "range": {
+        "startLine": 956,
+        "startChar": 6,
+        "endLine": 956,
+        "endChar": 20
+      },
+      "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7c67063_37bcebfc",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 5
@@ -110,6 +134,48 @@
       "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a4aa107_75f7d213",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-23T12:51:45Z",
+      "side": 1,
+      "message": "Yep, updated to make it clear there should be zero intersection between the sets.",
+      "parentUuid": "4c47c968_bf1b5cd7",
+      "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "099785f6_732c31e1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2019-09-23T12:51:45Z",
+      "side": 1,
+      "message": "Opps, uploaded now. Thanks for the reminder!",
+      "parentUuid": "e2ffac1b_9468a58a",
+      "range": {
+        "startLine": 960,
+        "startChar": 53,
+        "endLine": 960,
+        "endChar": 54
+      },
+      "revId": "42bda95660dc3802030b3dc8f48ca8e2760ad496",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
