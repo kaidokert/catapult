@@ -14,7 +14,8 @@ from dashboard.pinpoint.models.quest import run_performance_test
 
 
 _DEFAULT_EXTRA_ARGS = [
-    '-v', '--upload-results', '--output-format', 'histograms']
+    '-v', '--upload-results', '--output-format', 'histograms',
+    '--skip-typ-expectations-tags-validation']
 
 _STORY_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
