@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efa20ed3_2cd56ac3",
+        "filename": "tracing/tracing/metrics/reported_by_page_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-09-24T17:38:58Z",
+      "side": 1,
+      "message": "Unused import?",
+      "revId": "5b0e548afc6f20cc38600d51d4c8779b497e8df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b926c2a_97bbf6fd",
+        "filename": "tracing/tracing/metrics/reported_by_page_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-09-24T17:38:58Z",
+      "side": 1,
+      "message": "Unused import?",
+      "revId": "5b0e548afc6f20cc38600d51d4c8779b497e8df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a478e520_bd91492c",
+        "filename": "tracing/tracing/metrics/reported_by_page_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-09-24T17:38:58Z",
+      "side": 1,
+      "message": "Unused import?",
+      "revId": "5b0e548afc6f20cc38600d51d4c8779b497e8df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7949b3d0_aed9dadb",
+        "filename": "tracing/tracing/metrics/reported_by_page_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-09-24T17:38:58Z",
+      "side": 1,
+      "message": "Can we do a check for navId existing in the map? It will be helpful for debugging if on the trace producer side we somehow drop the navigation start event.",
+      "revId": "5b0e548afc6f20cc38600d51d4c8779b497e8df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3277a68f_2c1715ce",
+        "filename": "tracing/tracing/metrics/reported_by_page_metric_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-09-24T17:38:58Z",
+      "side": 1,
+      "message": "Unused imports?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 73
+      },
+      "revId": "5b0e548afc6f20cc38600d51d4c8779b497e8df4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
