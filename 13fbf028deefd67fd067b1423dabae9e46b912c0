@@ -22,6 +22,69 @@
       "revId": "13fbf028deefd67fd067b1423dabae9e46b912c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9340a0db_713ec5cd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-24T00:39:02Z",
+      "side": 1,
+      "message": "Like the other CL, perhaps instead of relying on side-effects of a reduce function use itertools.chain(*…)?\n\n    dependency_keys \u003d set(itertools.chain(\n        *[accumulator.get(dep, []) for dep in task.dependencies]))",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 76
+      },
+      "revId": "13fbf028deefd67fd067b1423dabae9e46b912c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3db46de_300cbfbe",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-24T00:39:02Z",
+      "side": 1,
+      "message": "We should update our pylintrc to allow this…\n\nSee https://chromium-review.googlesource.com/c/catapult/+/1819090 :)",
+      "range": {
+        "startLine": 835,
+        "startChar": 0,
+        "endLine": 835,
+        "endChar": 55
+      },
+      "revId": "13fbf028deefd67fd067b1423dabae9e46b912c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "278facf1_d8056cc8",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-09-24T00:39:02Z",
+      "side": 1,
+      "message": "Nit: Just two blank lines between top-level classes/defs/etc IIRC.",
+      "revId": "13fbf028deefd67fd067b1423dabae9e46b912c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
