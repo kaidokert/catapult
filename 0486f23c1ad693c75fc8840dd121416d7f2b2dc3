@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e24b0ef_557849bf",
+        "filename": "tracing/bin/run_metric",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-24T11:01:45Z",
+      "side": 1,
+      "message": "Just wondering, would there be a way to pass the results_label to RunMetricOnTraces so the histogram dicts we get back already have the right diagnostic attached?\n\nIt would be great if we can avoid going from histo dicts, to histo set, and then back to dicts again.\n\nAlso wondering (whether the above is possible or not), where we might add options for other diagnostics too, so we don\u0027t need to duplicate this code both in run_metric and in results processor.",
+      "revId": "0486f23c1ad693c75fc8840dd121416d7f2b2dc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
