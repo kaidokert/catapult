@@ -511,6 +511,10 @@ class AndroidPlatformBackend(
     else:
       return '/data/local/tmp/%s/' % package
 
+  def GetDumpLocation(self):
+    """Returns the location where crash dumps should be written to."""
+    return '/sdcard/telemetry_crashpad_dumps'
+
   def SetDebugApp(self, package):
     """Set application to debugging.
 
@@ -609,10 +613,7 @@ class AndroidPlatformBackend(
           '--adb-path', self._device.adb.GetAdbPath(),
           '--build-path', build_path,
           '--chrome-cache-path',
-          os.path.join(
-              self.GetProfileDir(
-                  self._ExtractLastNativeCrashPackageFromLogcat(logcat)),
-              'cache'),
+          self.GetDumpLocation(),
       ]
       ret += Decorate('Crashpad stackwalk',
                       subprocess.Popen(crashpad_cmd,
