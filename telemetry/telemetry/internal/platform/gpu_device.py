@@ -16,10 +16,12 @@ class GPUDevice(object):
       0x10de: 'Nvidia',
   }
 
-  def __init__(self, vendor_id, device_id, vendor_string, device_string,
-               driver_vendor, driver_version):
+  def __init__(self, vendor_id, device_id, sub_sys_id, revision, vendor_string,
+               device_string, driver_vendor, driver_version):
     self._vendor_id = vendor_id
     self._device_id = device_id
+    self._sub_sys_id = sub_sys_id
+    self._revision = revision
     self._vendor_string = vendor_string
     self._device_string = device_string
     self._driver_vendor = driver_vendor
@@ -35,8 +37,12 @@ class GPUDevice(object):
     device = 'DEVICE = 0x%x' % self._device_id
     if self._device_string:
       device += ' (%s)' % self._device_string
-    return '%s, %s, DRIVER_VENDOR = %s, DRIVER_VERSION = %s' % (
-        vendor, device, self._driver_vendor, self._driver_version)
+    rt = '%s, %s' % (vendor, device)
+    if self._sub_sys_id != 0 or self._revision != 0:
+      rt = '%s, SUBSYS = 0x%x, REV = %u' % (
+          rt, self._sub_sys_id, self._revision)
+    return '%s, DRIVER_VENDOR = %s, DRIVER_VERSION = %s' % (
+        rt, self._driver_vendor, self._driver_version)
 
   @classmethod
   def FromDict(cls, attrs):
@@ -45,6 +51,8 @@ class GPUDevice(object):
 
          vendor_id
          device_id
+         sub_sys_id
+         revision
          vendor_string
          device_string
          driver_vendor
@@ -53,12 +61,13 @@ class GPUDevice(object):
        Raises an exception if any attributes are missing.
     """
     return cls(attrs['vendor_id'], attrs['device_id'],
+               # --browser=reference may use an old build of Chrome
+               # where sub_sys_id, revision, driver_vendor or driver_version
+               # aren't part of the dict.
+               # sub_sys_id and revision are available on Windows only.
+               attrs.get('sub_sys_id', 0), attrs.get('revision', 0),
                attrs['vendor_string'], attrs['device_string'],
-               # --browser=reference will use a very old build of Chrome
-               # where driver_vendor and driver_version aren't part of
-               # the dict.
-               attrs.get('driver_vendor', ''),
-               attrs.get('driver_version', ''))
+               attrs.get('driver_vendor', ''), attrs.get('driver_version', ''))
 
   @property
   def vendor_id(self):
@@ -75,6 +84,20 @@ class GPUDevice(object):
        Most desktop machines supply this information rather than the
        vendor and device strings."""
     return self._device_id
+
+  @property
+  def sub_sys_id(self):
+    """The GPU device's sub sys ID as a number, or 0 if not available.
+
+       Only available on Windows platforms."""
+    return self._sub_sys_id
+
+  @property
+  def revision(self):
+    """The GPU device's revision as a number, or 0 if not available.
+
+       Only available on Windows platforms."""
+    return self._revision
 
   @property
   def vendor_string(self):
