@@ -192,10 +192,15 @@ def IsNetworkIOEnabled():
   return disable_cloud_storage_env_val != '1'
 
 
-def List(bucket):
-  query = 'gs://%s/' % bucket
-  stdout = _RunCommand(['ls', query])
-  return [url[len(query):] for url in stdout.splitlines()]
+def List(bucket, subquery="", dir_only=False):
+  bucket_path = 'gs://%s' % bucket
+  query = '%s/%s' % (bucket_path, subquery)
+  command = ['ls']
+  if dir_only:
+    command.append('-d')
+  command.append(query)
+  stdout = _RunCommand(command)
+  return [url[len(bucket_path):] for url in stdout.splitlines()]
 
 
 def Exists(bucket, remote_path):
