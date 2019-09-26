@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6c73def_e81a4960",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:21:05Z",
+      "side": 1,
+      "message": "As you\u0027re doing -r -f, maybe no need to check if the directory exists first?",
+      "revId": "1a46265a825c421513ec84d95741917e9695dd50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a785ef0_71464b75",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:21:05Z",
+      "side": 1,
+      "message": "nit: move this next to the flag on the line above.",
+      "revId": "1a46265a825c421513ec84d95741917e9695dd50",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
