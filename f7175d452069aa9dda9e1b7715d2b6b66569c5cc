@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b6ea324_60a99cbd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-26T01:07:52Z",
+      "side": 1,
+      "message": "return any(filename.startswith(f + \u0027-\u0027) for f in fake_modules)",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 965,
+        "endChar": 21
+      },
+      "revId": "f7175d452069aa9dda9e1b7715d2b6b66569c5cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16abe9f0_66ffbd80",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-26T01:07:52Z",
+      "side": 1,
+      "message": "nit: for oneline strings like this, pls just do\n\u0027%s.apk\u0027 % (module_name)\n\nThis module uses a lot more of those types of formats.",
+      "range": {
+        "startLine": 989,
+        "startChar": 25,
+        "endLine": 989,
+        "endChar": 28
+      },
+      "revId": "f7175d452069aa9dda9e1b7715d2b6b66569c5cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d966b0fe_35caf8c4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-26T01:07:52Z",
+      "side": 1,
+      "message": "I\u0027d suspect that we\u0027d want to avoid doing any file moves until we\u0027re sure we won\u0027t hit the assert at line 996 below. (Might be wrong though.. it could be totally safe.) But if isn\u0027t, could we make sure everything has a \"master\" apk before doing file moves?",
+      "range": {
+        "startLine": 994,
+        "startChar": 8,
+        "endLine": 994,
+        "endChar": 17
+      },
+      "revId": "f7175d452069aa9dda9e1b7715d2b6b66569c5cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e635ff61_b557a01f",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-26T01:07:52Z",
+      "side": 1,
+      "message": "nice cleanup!",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 29
+      },
+      "revId": "f7175d452069aa9dda9e1b7715d2b6b66569c5cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
