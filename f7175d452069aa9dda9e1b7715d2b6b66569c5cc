@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "011ba951_1528d63c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-09-26T15:39:42Z",
+      "side": 1,
+      "message": "Ah ok, sgtm.",
+      "parentUuid": "c3af79e3_747fb97b",
+      "range": {
+        "startLine": 994,
+        "startChar": 8,
+        "endLine": 994,
+        "endChar": 17
+      },
+      "revId": "f7175d452069aa9dda9e1b7715d2b6b66569c5cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e635ff61_b557a01f",
         "filename": "devil/devil/android/device_utils_test.py",
         "patchSetId": 7
