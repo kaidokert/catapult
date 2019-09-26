@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc84a84e_7718380f",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "Should we make these argparse options?",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ae5a88b_e2ca55f8",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 11
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "nit: two blank lines between top level functions.",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3982b757_7243f3a4",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 11
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "nit: Docstring title should fit in one line. You could rephrase to just\n\n    Returns the closest chromium snapshot available in cloud storage.\n\nThen spell out the details in the rest of the docstring.",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11ffbc8b_b671b9c5",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 11
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "would it be too terrible if we get just 1234* ?",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "672c5814_c65fd688",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 11
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "nit: space after \u003d",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9a30c4a_6612a36a",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "nit: \" -\u003e \u0027",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d181db87_0290bb36",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-26T13:15:30Z",
+      "side": 1,
+      "message": "this simple parsing of the results does not seem to work if you don\u0027t pass the \"-d\". Maybe always pass the -d is a subquery (call it sub_dir) is provided?",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
