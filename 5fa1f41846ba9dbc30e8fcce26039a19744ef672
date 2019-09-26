@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6effbb35_3afa1180",
+        "filename": "infra/config/commit-queue.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1114919
+      },
+      "writtenOn": "2019-09-26T02:03:24Z",
+      "side": 1,
+      "message": "this is, in fact, default and so redundant, but if it helps you be calm -- keep it.\nalso, ptal go/lucicfg -- it allows saner config management, I strongly recommend.\n(it actually explicitly sets this field to .+)",
+      "revId": "5fa1f41846ba9dbc30e8fcce26039a19744ef672",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
