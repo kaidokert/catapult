@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ae566a6_3579a2a8",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-27T09:00:44Z",
+      "side": 1,
+      "message": "Can you add a docstring documenting each of the args?",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d5fe92c_a43b49c5",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-27T09:00:44Z",
+      "side": 1,
+      "message": "what is `rt`? can you expand the variable name to something more readable?",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03bb5ccc_13c3b79d",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-27T09:00:44Z",
+      "side": 1,
+      "message": "nit: this can just be `if self._sub_sys_id or self._revision:`",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e63baeb_2ab8af68",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-09-27T09:00:44Z",
+      "side": 1,
+      "message": "nit: can you update the comment? From the code it looks like these aren\u0027t really required.",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
