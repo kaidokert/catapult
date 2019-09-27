@@ -39,7 +39,6 @@ from telemetry.value import summary as summary_module
 from telemetry.web_perf import story_test
 from telemetry.web_perf import timeline_based_measurement
 from telemetry.wpr import archive_info
-
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import generic_set
@@ -212,7 +211,7 @@ class FakeBenchmark(benchmark.Benchmark):
       return _DisableStoryExpectations('fake', 'one')
     if self.disabled:
       return _DisableBenchmarkExpectations('fake')
-    return typ_expectations.StoryExpectations('fake')
+    return self._expectations
 
 
 class FakeBenchmarkWithAStory(FakeBenchmark):
@@ -234,7 +233,7 @@ class FakeBenchmarkWithAStory(FakeBenchmark):
       return _DisableStoryExpectations('fake_with_a_story', 'story')
     if self.disabled:
       return _DisableBenchmarkExpectations('fake_with_a_story')
-    return typ_expectations.StoryExpectations('fake_with_a_story')
+    return self._expectations
 
 
 class FakeExceptionFormatterModule(object):
@@ -702,6 +701,21 @@ class StoryRunnerTest(unittest.TestCase):
         expectations=fake._expectations)
     self.assertEquals(1, GetNumberOfSuccessfulPageRuns(self.results))
     self.assertEquals(1, GetNumberOfSkippedPageRuns(self.results))
+
+  def testEnableTagValidation(self):
+    expectations = '# tags: [ all ]\n'
+    options = self.GetFakeBrowserOptions()
+    options.enable_tag_validation = True
+    fake = FakeBenchmarkWithAStory()
+    fake.AugmentExpectationsWithFile(expectations)
+    with mock.patch.object(
+        fakes.FakePossibleBrowser, 'GetTypExpectationsTags',
+        return_value=['intel']):
+      self.assertEqual(story_runner.RunBenchmark(fake, options), -1)
+    with mock.patch.object(
+        fakes.FakePossibleBrowser, 'GetTypExpectationsTags',
+        return_value=['all']):
+      self.assertEqual(story_runner.RunBenchmark(fake, options), 0)
 
   def testRunStoryPopulatesHistograms(self):
     self.StubOutExceptionFormatting()
