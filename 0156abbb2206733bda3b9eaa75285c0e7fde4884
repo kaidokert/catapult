@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7e650449_c836a43c",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-09-27T19:55:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ae566a6_3579a2a8",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d5fe92c_a43b49c5",
         "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b7eb550_6fe3ac65",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-09-27T19:55:06Z",
+      "side": 1,
+      "message": "Use summary instead",
+      "parentUuid": "1d5fe92c_a43b49c5",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ef901c33_6a541c94",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-09-27T19:55:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03bb5ccc_13c3b79d",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e63baeb_2ab8af68",
         "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
         "patchSetId": 1
@@ -67,6 +121,24 @@
       "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00e8815d_0791bbd3",
+        "filename": "telemetry/telemetry/internal/platform/gpu_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2019-09-27T19:55:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e63baeb_2ab8af68",
+      "revId": "0156abbb2206733bda3b9eaa75285c0e7fde4884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
