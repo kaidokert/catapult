@@ -6,14 +6,23 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import functools
+import itertools
 import json
+import mock
 import unittest
 
-import mock
-
+from dashboard.pinpoint import test
+from dashboard.pinpoint.models import change as change_module
+from dashboard.pinpoint.models import evaluators
+from dashboard.pinpoint.models import event as event_module
+from dashboard.pinpoint.models import job as job_module
+from dashboard.pinpoint.models import task as task_module
+from dashboard.pinpoint.models.quest import find_isolate
 from dashboard.pinpoint.models.quest import read_value
-from tracing.value import histogram_set
+from dashboard.pinpoint.models.quest import run_test
 from tracing.value import histogram as histogram_module
+from tracing.value import histogram_set
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
@@ -102,7 +111,9 @@ class _ReadValueExecutionTest(unittest.TestCase):
     self.assertTrue(execution.failed)
     self.assertIsInstance(execution.exception['traceback'], basestring)
     last_exception_line = execution.exception['traceback'].splitlines()[-1]
-    self.assertTrue(last_exception_line.startswith(exception))
+    self.assertTrue(
+        last_exception_line.startswith(exception),
+        'exception: %s' % (execution.exception,))
 
   def assertReadValueSuccess(self, execution):
     self.assertTrue(execution.completed)
@@ -601,3 +612,158 @@ class ReadGraphJsonValueTest(_ReadValueExecutionTest):
     execution.Poll()
 
     self.assertReadValueError(execution, 'ReadValueTraceNotFound')
+
+
+@mock.patch('dashboard.services.isolate.Retrieve')
+class EvaluatorTest(test.TestCase):
+
+  def setUp(self):
+    super(EvaluatorTest, self).setUp()
+    self.maxDiff = None
+    self.job = job_module.Job.New((), ())
+    task_module.PopulateTaskGraph(
+        self.job,
+        read_value.CreateTasks(
+            read_value.TaskOptions(
+                test_options=run_test.TaskOptions(
+                    build_options=find_isolate.TaskOptions(
+                        builder='Some Builder',
+                        target='telemetry_perf_tests',
+                        bucket='luci.bucket',
+                        change=change_module.Change.FromDict({
+                            'commits': [{
+                                'repository': 'chromium',
+                                'git_hash': 'aaaaaaa',
+                            }]
+                        })),
+                    swarming_server='some_server',
+                    dimensions=[],
+                    extra_args=[],
+                    attempts=10),
+                benchmark='some_benchmark',
+                chart='some_chart',
+                histogram_options=read_value.HistogramOptions(
+                    tir_label='tir_label',
+                    story='story',
+                    statistic=None,
+                ),
+                graph_json_options=read_value.GraphJsonOptions(
+                    trace='some_trace',),
+                mode='histogram_sets',
+            )))
+
+  def testEvaluateSuccess_WithData(self, isolate_retrieve):
+    # Seed the response to the call to the isolate service.
+    histogram = histogram_module.Histogram('some_benchmark', 'count')
+    histogram.AddSample(0)
+    histogram.AddSample(1)
+    histogram.AddSample(2)
+    histograms = histogram_set.HistogramSet([histogram])
+    histograms.AddSharedDiagnosticToAllHistograms(
+        reserved_infos.STORY_TAGS.name,
+        generic_set.GenericSet(['group:tir_label']))
+    histograms.AddSharedDiagnosticToAllHistograms(
+        reserved_infos.STORIES.name, generic_set.GenericSet(['story']))
+    isolate_retrieve.side_effect = itertools.chain(
+        *itertools.repeat([('{"files": {"some_benchmark/perf_results.json": '
+                            '{"h": "394890891823812873798734a"}}}'),
+                           json.dumps(histograms.AsDicts())], 10))
+
+    evaluator = evaluators.SequenceEvaluator(
+        evaluators=(
+            evaluators.FilteringEvaluator(
+                predicate=evaluators.TaskTypeEq('find_isolate'),
+                delegate=evaluators.SequenceEvaluator(
+                    evaluators=(functools.partial(FakeFoundIsolate, self.job),
+                                evaluators.TaskPayloadLiftingEvaluator()))),
+            evaluators.FilteringEvaluator(
+                predicate=evaluators.TaskTypeEq('run_test'),
+                delegate=evaluators.SequenceEvaluator(
+                    evaluators=(
+                        functools.partial(FakeSuccessfulRunTest, self.job),
+                        evaluators.TaskPayloadLiftingEvaluator()))),
+            read_value.Evaluator(self.job),
+        ))
+    self.assertNotEqual({},
+                        task_module.Evaluate(
+                            self.job,
+                            event_module.Event(
+                                type='initiate', target_task=None, payload={}),
+                            evaluator))
+
+    # Ensure we find the find a value, and the histogram (?) associated with the
+    # data we're looking for.
+    task_module.Evaluate(
+        self.job,
+        event_module.Event(type='select', target_task=None, payload={}),
+        evaluators.Selector(task_type='read_value'))
+
+    self.assertEqual(
+        {
+            'read_value_chromium@aaaaaaa_%s' % (attempt,): {
+                'benchmark': 'some_benchmark',
+                'chart': 'some_chart',
+                'mode': 'histogram_sets',
+                'results_filename': 'some_benchmark/perf_results.json',
+                'histogram_options': {
+                    'tir_label': 'tir_label',
+                    'story': 'story',
+                    'statistic': None,
+                },
+                'graph_json_options': {
+                    'trace': 'some_trace'
+                },
+                'status': 'completed',
+                'result_values': [0, 1, 2],
+                'tries': 1,
+            } for attempt in range(10)
+        },
+        task_module.Evaluate(
+            self.job,
+            event_module.Event(type='select', target_task=None, payload={}),
+            evaluators.Selector(task_type='read_value')))
+
+
+  def testEvaluateFail_FileNotFound(self, *_):
+    self.fail('Implement this!')
+
+  def testEvaluateSuccess_HistogramSummary(self, *_):
+    self.fail('Implement this!')
+
+  def testEvaluateSuccess_HistogramSpecific(self, *_):
+    self.fail('Implement this!')
+
+  def testEvaluateFail_HistogramUnkonwnStat(self, *_):
+    self.fail('Implement this!')
+
+  def testEvaluateFail_GraphJsonChartNotFound(self, *_):
+    self.fail('Implement this!')
+
+  def testEvaluateFail_GraphJsonTraceNotFound(self, *_):
+    self.fail('Implement this!')
+
+def FakeFoundIsolate(job, task, *_):
+  if task.status == 'completed':
+    return None
+
+  task.payload.update({
+      'isolate_server': 'https://isolate.server',
+      'isolate_hash': '12049adfa129339482234098',
+  })
+  return [
+      lambda _: task_module.UpdateTask(
+          job, task.id, new_state='completed', payload=task.payload)
+  ]
+
+def FakeSuccessfulRunTest(job, task, *_):
+  if task.status == 'completed':
+    return None
+
+  task.payload.update({
+      'isolate_server': 'https://isolate.server',
+      'isolate_hash': '12334981aad2304ff1243458',
+  })
+  return [
+      lambda _: task_module.UpdateTask(
+          job, task.id, new_state='completed', payload=task.payload)
+  ]
