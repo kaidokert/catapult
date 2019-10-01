@@ -7,13 +7,12 @@ from __future__ import division
 from __future__ import absolute_import
 
 import json
+import mock
 import unittest
 
-import mock
-
 from dashboard.pinpoint.models.quest import read_value
-from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
+from tracing.value import histogram_set
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
@@ -102,7 +101,9 @@ class _ReadValueExecutionTest(unittest.TestCase):
     self.assertTrue(execution.failed)
     self.assertIsInstance(execution.exception['traceback'], basestring)
     last_exception_line = execution.exception['traceback'].splitlines()[-1]
-    self.assertTrue(last_exception_line.startswith(exception))
+    self.assertTrue(
+        last_exception_line.startswith(exception),
+        'exception: %s' % (execution.exception,))
 
   def assertReadValueSuccess(self, execution):
     self.assertTrue(execution.completed)
