@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99fc559d_a0f1903b",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-01T19:15:18Z",
+      "side": 1,
+      "message": "It seems like you\u0027re using \u0027test_base_dir\u0027 the same way you were using \u0027test_name + test_basename\u0027 before. The name \u0027test_base_dir\u0027 suggested to me that it\u0027s independent of the actual test name, so this is a bit confusing. Also, it\u0027s confusing because I don\u0027t know why you would want that to be optional if it\u0027s supposed to reflect a per-test thing, but I suppose maybe if you\u0027re using content-addressed paths it might be shared?\n\nIn retrospect, this feels awkward and we should probably keep working on the API, but we can go with this for now.",
+      "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc0d1e1c_aa1faf0f",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-01T19:15:18Z",
+      "side": 1,
+      "message": "Can you include the path for the initial artifact as well (iteration\u003d0)?",
+      "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbee7835_72f2e9c7",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-01T19:15:18Z",
+      "side": 1,
+      "message": "I think this is mostly duplicating lines 37-38?",
+      "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
