@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da308c94_1998898f",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-01T22:00:49Z",
+      "side": 1,
+      "message": "I included it as a way to segregate test artifacts by test name in the output directory for python unit tests.  I can change the variable to test_name, so that it is more obvious that test name should be passed for this argument. Also, I want it to be optional so that I can use this class to create and track artifacts for web tests.",
+      "parentUuid": "99fc559d_a0f1903b",
+      "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fc0d1e1c_aa1faf0f",
         "filename": "third_party/typ/typ/artifacts.py",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9a29da3e_d5eeb852",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-01T22:00:49Z",
+      "side": 1,
+      "message": "I will make an option to include an initial results directory that defaults to not making one. web tests artifacts only have the retry ones not the initial ones.",
+      "parentUuid": "fc0d1e1c_aa1faf0f",
+      "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbee7835_72f2e9c7",
         "filename": "third_party/typ/typ/artifacts.py",
         "patchSetId": 8
@@ -50,6 +86,24 @@
       "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d92f29f3_1c14da28",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-01T22:00:49Z",
+      "side": 1,
+      "message": "Yes, I will get rid of it. Everything is explained above well enough.",
+      "parentUuid": "bbee7835_72f2e9c7",
+      "revId": "6be1ed6f30d80f9ac9f64af3bbded3afae37635b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
