@@ -192,10 +192,25 @@ def IsNetworkIOEnabled():
   return disable_cloud_storage_env_val != '1'
 
 
-def List(bucket):
-  query = 'gs://%s/' % bucket
-  stdout = _RunCommand(['ls', query])
-  return [url[len(query):] for url in stdout.splitlines()]
+def List(bucket, path='', dir_only=False):
+  """Lists files in bucket at provided path.
+
+  All returned path are relative to the bucket root directory. For example,
+  List('my-bucket', path='foo/') will returns results of the form
+  ['/foo/123', '/foo/124', ...], as opposed to ['123', '124', ...].
+
+  Path can include wildcards. path='foo/12*' will return ['/foo/123',
+  '/foo/124', ...].
+  """
+  bucket_prefix = 'gs://%s' % bucket
+  query = '%s/%s' % (bucket_prefix, path)
+  command = ['ls']
+  if dir_only:
+    command.append('-d')
+  command.append(query)
+  stdout = _RunCommand(command)
+  non_empty_lines = [line for line in stdout.splitlines() if len(line) > 0]
+  return [url[len(bucket_prefix):] for url in non_empty_lines]
 
 
 def Exists(bucket, remote_path):
