@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee4dc9be_ddf88112",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-01T19:06:21Z",
+      "side": 1,
+      "message": "nit: cover w/ test",
+      "range": {
+        "startLine": 176,
+        "startChar": 6,
+        "endLine": 176,
+        "endChar": 14
+      },
+      "revId": "3797026ff27cc51b6489455c168074e8a69efdfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2623a6c_1c46a0f3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-01T19:06:21Z",
+      "side": 1,
+      "message": "nit: Was this originally meant to be a list or something? The naming is plural, but you only create a single TaskVertex",
+      "range": {
+        "startLine": 606,
+        "startChar": 16,
+        "endLine": 606,
+        "endChar": 23
+      },
+      "revId": "3797026ff27cc51b6489455c168074e8a69efdfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6bbc99_d530c834",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-01T19:06:21Z",
+      "side": 1,
+      "message": "nit: same pattern in 3 places, (tries + 1, \"error\"), put in a function?",
+      "range": {
+        "startLine": 371,
+        "startChar": 6,
+        "endLine": 371,
+        "endChar": 10
+      },
+      "revId": "3797026ff27cc51b6489455c168074e8a69efdfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
