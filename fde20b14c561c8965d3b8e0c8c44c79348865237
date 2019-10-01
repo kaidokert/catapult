@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9acbc033_ed7c30a4",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 1,
+      "message": "fixing a small bug here where, if not provided, we would add a \"null\" documentation URL, instead of not adding any URLs at all.",
+      "revId": "fde20b14c561c8965d3b8e0c8c44c79348865237",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2280dea_6d3de49b",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 1,
+      "message": "This test for RunStorySet above moved now in here.",
+      "revId": "fde20b14c561c8965d3b8e0c8c44c79348865237",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9564a8e2_3485055f",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 1,
+      "message": "There wasn\u0027t really any benefit to having tests for each emails, component, documentation_url; so replaced those with a single one here.",
+      "revId": "fde20b14c561c8965d3b8e0c8c44c79348865237",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21ca3ab2_50a6aff9",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 1,
+      "message": "Did add a new test, though, for the case where no URL is defined. Checks for the bug caught and fixed in benchmark.py",
+      "revId": "fde20b14c561c8965d3b8e0c8c44c79348865237",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

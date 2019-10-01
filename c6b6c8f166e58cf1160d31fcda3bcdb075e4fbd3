@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e6730ab_b4af5e42",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 0,
+      "message": "Replacing these with more succinct but also customizable classes defined below.",
+      "revId": "c6b6c8f166e58cf1160d31fcda3bcdb075e4fbd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4c6230a_9f902bee",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 0,
+      "message": "These tests made more sense at the RunBenchmark (as opposed to RunStorySet) level. In fact many of these cases were already tested there (below).\n\nSo I removed them from here, and added an extra test for the case when only one of two stories is disabled.",
+      "revId": "c6b6c8f166e58cf1160d31fcda3bcdb075e4fbd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5ec8fd5_aeba3d7a",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-01T13:11:11Z",
+      "side": 0,
+      "message": "Story time durations are now handled (and tested) at the PageTestResults object level. This test wasn\u0027t validating anything useful.",
+      "revId": "c6b6c8f166e58cf1160d31fcda3bcdb075e4fbd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
