@@ -79,13 +79,13 @@ class EvaluatorTest(test.TestCase):
                     extra_args=[],
                     attempts=10),
                 benchmark=benchmark,
-                chart=chart,
                 histogram_options=read_value.HistogramOptions(
                     tir_label=tir_label,
                     story=story,
                     statistic=statistic,
                 ),
-                graph_json_options=read_value.GraphJsonOptions(trace=trace),
+                graph_json_options=read_value.GraphJsonOptions(
+                    chart=chart, trace=trace),
                 mode=mode,
             )))
 
