@@ -16,6 +16,24 @@
       "revId": "5740a8e034135959b4cd0f8288976394537382e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "290274bb_127fafee",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-02T13:54:07Z",
+      "side": 0,
+      "message": "I gave that a try but it doesn\u0027t work (yet). These are still called somewhere from shared page state. Maybe after other cleanups I have planned it will be possible.",
+      "parentUuid": "2954805c_37438bf1",
+      "revId": "5740a8e034135959b4cd0f8288976394537382e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
