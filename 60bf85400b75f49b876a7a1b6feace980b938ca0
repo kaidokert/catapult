@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "7ffb789e_c4fb7bbd",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 11
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-02T08:53:47Z",
+      "side": 1,
+      "message": "Ack. I see, that is fine then.",
+      "parentUuid": "a2313c62_b90c7019",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "672c5814_c65fd688",
         "filename": "common/bin/update_chrome_reference_binaries",
         "patchSetId": 11
@@ -223,6 +241,24 @@
       "side": 1,
       "message": "Hm good catch. Currently it doesn\u0027t work because there are empty lines in the output. I\u0027m filtering them out now. \n\nCalling it a sub_dir may be confusing because we can do prefix search like foo/123*. I\u0027m changed it to \u0027path\u0027 now, which should be more obvious. Added some comments that the returned results are always relative to the bucket root directory.",
       "parentUuid": "d181db87_0290bb36",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf3c378e_e9c66a9c",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-02T08:53:47Z",
+      "side": 1,
+      "message": "Even if you strip empty lines, it looks like some of the paths have a trailing \u0027:\u0027 that you would need to strip. E.g. I get:\n\n$ gsutil ls gs://chromium-browser-snapshots/Linux_x64/1234*\ngs://chromium-browser-snapshots/Linux_x64/123403/:\ngs://chromium-browser-snapshots/Linux_x64/123403/REVISIONS\ngs://chromium-browser-snapshots/Linux_x64/123403/changelog.xml\ngs://chromium-browser-snapshots/Linux_x64/123403/chrome-linux.zip\ngs://chromium-browser-snapshots/Linux_x64/123403/devtools_frontend.zip\ngs://chromium-browser-snapshots/Linux_x64/123403/remoting-webapp.zip\ngs://chromium-browser-snapshots/Linux_x64/123403/chrome-linux.test/\n\ngs://chromium-browser-snapshots/Linux_x64/123407/:\ngs://chromium-browser-snapshots/Linux_x64/123407/REVISIONS\ngs://chromium-browser-snapshots/Linux_x64/123407/changelog.xml\ngs://chromium-browser-snapshots/Linux_x64/123407/chrome-linux.zip\n[...]\n\nMaybe just stripping a trailing \u0027:\u0027 from the strings would be fine? Anyway, also please add some tests for these new behaviors (possibly using mock gsutil outputs).",
+      "parentUuid": "4729fc5b_b975f1ed",
       "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
