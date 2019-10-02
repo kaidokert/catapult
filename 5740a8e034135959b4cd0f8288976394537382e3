@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2954805c_37438bf1",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-02T12:32:03Z",
+      "side": 0,
+      "message": "Perhaps we can delete these methods since no one is calling them now (not only on this line, there are several of them in this file).",
+      "revId": "5740a8e034135959b4cd0f8288976394537382e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
