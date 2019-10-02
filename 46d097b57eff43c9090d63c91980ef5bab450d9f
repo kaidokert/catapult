@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d8b3d1a_1a4f59b4",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "Probably a test helper is called for here, something like:\n\n  def MakePendingTestTask(task_id):\n    \"\"\"Returns a task with task_type \u0027test\u0027 and status \u0027pending\u0027.\"\"\"\n    return task_module.InMemoryTask(\n        id\u003dtask_id,\n        task_type\u003d\u0027test\u0027,\n        payload\u003d{},\n        status\u003d\u0027pending\u0027,\n        dependencies\u003d[])\n\nAt a glance it seems that mostly these tests don\u0027t care much about the details (certainly not the empty payload and dependencies), so eliding these details with a factory will help keep these tests concise and focused on the details relevant to each test.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 24
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e9fc0e2_647dbdb9",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "I wonder if a custom assertion method would be helpful?\n\n  def assertFilteringEvaluatorMatches(self, filtering_evaluator, task, event):\n    accumulator \u003d {}\n    filtering_evaluator(task, event, accumulator)\n    self.assertEqual({\u0027test_id\u0027: mock.ANY}, accumulator)\n\n\nCallsite would look like:\n\n  self.assertFilteringEvaluatorMatches(\n      evaluators.Selector(task_type\u003d\u0027test\u0027), task,\n      event_module.Event(type\u003d\u0027undefined\u0027, target_task\u003dNone, payload\u003d{}))",
+      "range": {
+        "startLine": 227,
+        "startChar": 1,
+        "endLine": 233,
+        "endChar": 56
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf8ee94c_d5813302",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "This test looks like it really wants to be written using https://github.com/abseil/abseil-py/blob/master/absl/testing/parameterized.py.  I wonder if we have access to that (or one of the many other versions of the same concept in the python community) here?\n\nI think you\u0027re aiming for a table-driven testing approach here?  I find it hard to follow though, and parts of this just look weird, like writing:\n\n    for task_type in [t for t in matching_task_types if t is not None]:\n       ...\n\nEven though matching_task_types has only one non-None element!\n\nEven without absl\u0027s parameterized I think an ad hoc version of that approach would be clearer:\n\n  def testSelector_Combinations(self):\n    # Tuples of description, task_type, event_type.\n    matching_scenarios \u003d [\n       (\u0027Both task and event types\u0027, \u0027test\u0027, \u0027select\u0027),\n       (\u0027Task type only\u0027, \u0027test\u0027, None),\n       (\u0027Event type only\u0027, None, \u0027select\u0027),\n       (\u0027Both set, only task type matches\u0027, \u0027test\u0027, \u0027unmatched\u0027),\n       (\u0027Both set, only event type matches\u0027, \u0027unmatched\u0027, \u0027select\u0027),\n    ]\n    nonmatching_scenarios \u003d [\n       (\u0027Both set, neither match\u0027, \u0027unmatched\u0027, \u0027unmatched\u0027),\n       (\u0027Task type only\u0027, \u0027unmatched\u0027, None),\n       (\u0027Event type only\u0027, None, \u0027unmatched\u0027),\n    ]\n    task \u003d ...\n    event \u003d ...\n    for (description, task_type, event_type) in matching_scenarios:\n      self.assertFilteringEvaluatorMatches(\n          evaluators.Selector(task_type\u003dtask_type, event_type\u003devent_type),\n          task, event)\n\n    for (description, task_type, event_type) in non_matching_scenarios:\n      self.assertNotFilteringEvaluatorMatches(\n          evaluators.Selector(task_type\u003dtask_type, event_type\u003devent_type),\n          task, event)",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 38
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0d69bd6_22929db6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "You can do this more simply:\n\n  return change.id_string.replace(\u0027 \u0027, \u0027_\u0027)",
+      "range": {
+        "startLine": 603,
+        "startChar": 0,
+        "endLine": 603,
+        "endChar": 46
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de9782a3_9865168e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "Perhaps use iteritems() here?  I see you\u0027re using __slots__ \u003d () below, so maybe you care about the slight reduction in memory here too?",
+      "range": {
+        "startLine": 138,
+        "startChar": 66,
+        "endLine": 138,
+        "endChar": 71
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c38fdfd1_19088d47",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "No need to call `list` here.\n\n  \u0027, \u0027.join(\u0027:\u0027.join(i) for i in conditions.items())\n\nshould work just fine without the intermediate list.  (str.join takes any iterable, including generators from generator expressions.)",
+      "range": {
+        "startLine": 160,
+        "startChar": 25,
+        "endLine": 160,
+        "endChar": 30
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fd6715d_6ffceb7e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_evaluators_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "Does our style guide allow us to import the names directly?\n\n  from dashboard.pinpoint.models.evaluators import (\n      SequenceEvaluator, FilteringEvaluator, ...)\n\nIn our test code at least I feel like these module prefixes are more clutter than benefit, especially as we\u0027ve given the classes in this module pretty clear standalone names.\n\nIn a line like\n\n  self.evaluator \u003d evaluators.SequenceEvaluator(\n\nI feel that the word “evaluator” appears at least once more than is at all useful.",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c00d4e2_49024ad2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_evaluators_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "(?)?",
+      "range": {
+        "startLine": 122,
+        "startChar": 57,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d97e7cea_c07b1852",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value_evaluators_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-02T07:05:19Z",
+      "side": 1,
+      "message": "A really big shame that these key details are buried in boilerplate.\n\nI think it is worth exploring some sort of helper(s) for this.  I know assertDictContainsSubset is out, but absltest has assertContainsSubset and other helpers, perhaps we should look into those?\n\nAlternatively what about:\n\n  eval_results \u003d task_module.Evaluate(self.job, ...)\n  self.assertEqual(\n      set(eval_results.keys()),\n      {\u0027read_value_chromium@aaaaaaa_%s\u0027 % (attempt,) for attempt in range(10)})\n  _, eval_result \u003d eval_results.popitem()\n  for r in eval_results.values():\n    self.assertEqual(eval_result, r)  # All results identical\n\n  self.assertEqual(eval_result[\u0027histogram_options\u0027][\u0027statistic\u0027], \u0027avg\u0027)\n  self.assertEqual(eval_result[\u0027result_values\u0027], [1.0])",
+      "range": {
+        "startLine": 185,
+        "startChar": 20,
+        "endLine": 185,
+        "endChar": 39
+      },
+      "revId": "46d097b57eff43c9090d63c91980ef5bab450d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
