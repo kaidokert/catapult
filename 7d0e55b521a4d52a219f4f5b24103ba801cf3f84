@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40d1b4cd_9b68fb10",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2019-10-03T21:07:11Z",
+      "side": 1,
+      "message": "To match the List does, we may need [] here.",
+      "range": {
+        "startLine": 211,
+        "startChar": 45,
+        "endLine": 211,
+        "endChar": 59
+      },
+      "revId": "7d0e55b521a4d52a219f4f5b24103ba801cf3f84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
