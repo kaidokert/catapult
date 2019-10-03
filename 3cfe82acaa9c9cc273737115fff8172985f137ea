@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "30f8b909_2fb7b991",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-03T02:46:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a02cc6ac_3337a735",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 54
+      },
+      "revId": "3cfe82acaa9c9cc273737115fff8172985f137ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1f5bcb6_e5eebf40",
         "filename": "common/bin/update_chrome_reference_binaries",
         "patchSetId": 13
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2e47b49f_eea64882",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 13
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-03T02:46:23Z",
+      "side": 1,
+      "message": "Whoops - thanks! Done.",
+      "parentUuid": "d1f5bcb6_e5eebf40",
+      "range": {
+        "startLine": 218,
+        "startChar": 4,
+        "endLine": 218,
+        "endChar": 32
+      },
+      "revId": "3cfe82acaa9c9cc273737115fff8172985f137ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "026c6e2d_a0671916",
         "filename": "common/py_utils/py_utils/cloud_storage.py",
         "patchSetId": 13
@@ -59,6 +107,30 @@
       "writtenOn": "2019-10-02T21:18:54Z",
       "side": 1,
       "message": "It\u0027s unclear what dir_only does. Perhaps fix up the docstring to explain it?\n\nIt would be nice to follow this formatting for docstrings as well for new docstrings: http://go/pystyle#function-docs",
+      "range": {
+        "startLine": 195,
+        "startChar": 26,
+        "endLine": 195,
+        "endChar": 40
+      },
+      "revId": "3cfe82acaa9c9cc273737115fff8172985f137ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2b5abf0_ad3a461b",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-03T02:46:23Z",
+      "side": 1,
+      "message": "Broke up function into List and ListDirs to make things more clear (see other reply to Juan.) Fixed formatting.",
+      "parentUuid": "026c6e2d_a0671916",
       "range": {
         "startLine": 195,
         "startChar": 26,

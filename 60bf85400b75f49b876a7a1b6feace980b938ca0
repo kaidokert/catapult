@@ -262,6 +262,24 @@
       "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811824cd_64c389ec",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-03T02:46:23Z",
+      "side": 1,
+      "message": "I did not notice the last \u0027:\u0027. Thanks so much for pointing this out! \n\nI think we should not try to parse the output of ls foo* without -d: the grouping is too weird and people might be surprised. I left the old List command as it is (which doesn\u0027t accept a path argument so will never perform a query with a wildcard) and added a separate ListDirs command instead (which always adds \u0027-d\u0027, so only has to deal with flat lists and therefore no strange parsing necessary.)\n\nI also misunderstood how \u0027-d\u0027 works. The \u0027-d\u0027 argument prevents ls for recursing into directories but it still lists all non-directory files in the current directory (i.e. ls -d foo* will include foo-file.txt, so -d doesn\u0027t mean directory only). I\u0027m now checking for trailing slash for directory.\n\nAdded a test for the new ListDirs.",
+      "parentUuid": "cf3c378e_e9c66a9c",
+      "revId": "60bf85400b75f49b876a7a1b6feace980b938ca0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
