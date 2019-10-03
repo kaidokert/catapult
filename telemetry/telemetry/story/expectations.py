@@ -48,6 +48,18 @@ class _AllTestCondition(_TestCondition):
     return set(['all'])
 
 
+class _NoneTestCondition(_TestCondition):
+  def ShouldDisable(self, platform, finder_options):
+    del platform, finder_options  # Unused.
+    return False
+
+  def __str__(self):
+    return 'None'
+
+  def GetSupportedPlatformNames(self):
+    return set([])
+
+
 class _TestConditionAndroidSvelte(_TestCondition):
   """Matches android devices with a svelte (low-memory) build."""
   def ShouldDisable(self, platform, finder_options):
@@ -170,6 +182,7 @@ class _TestConditionLogicalOrConditions(_TestCondition):
 
 
 ALL = _AllTestCondition()
+NONE = _NoneTestCondition()
 ALL_MAC = _TestConditionByPlatformList(['mac'], 'Mac')
 ALL_WIN = _TestConditionByPlatformList(['win'], 'Win')
 WIN_7 = _TestConditionByWinVersion(os_version_module.WIN7, 'Win 7')
