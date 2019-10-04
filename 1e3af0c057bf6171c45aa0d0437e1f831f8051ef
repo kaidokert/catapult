@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcb5a3f7_b2fe61d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-04T22:51:44Z",
+      "side": 1,
+      "message": "One concern I have with this is that I expect a function called \"ConfirmX\" to not have side effects, but actually this function is sending a Tracing.start command that does some important stuff. Maybe call this something like _TakeOwnershipOfTracingSession()?",
+      "range": {
+        "startLine": 117,
+        "startChar": 11,
+        "endLine": 117,
+        "endChar": 33
+      },
+      "revId": "1e3af0c057bf6171c45aa0d0437e1f831f8051ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
