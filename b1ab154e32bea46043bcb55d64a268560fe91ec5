@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03ce69c0_ca172167",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-04T12:36:27Z",
+      "side": 1,
+      "message": "Eric, can you help we check this description makes sense? Or if it can be improved? (I guess the CL description too.)",
+      "revId": "b1ab154e32bea46043bcb55d64a268560fe91ec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
