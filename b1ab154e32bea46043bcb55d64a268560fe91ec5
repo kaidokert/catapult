@@ -16,6 +16,24 @@
       "revId": "b1ab154e32bea46043bcb55d64a268560fe91ec5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "832aa1d3_4c18bceb",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2019-10-04T13:01:24Z",
+      "side": 1,
+      "message": "Makes sense. I\u0027d add something like: \"This also ensures that tracing data from early startup is flushed to the tracing service before the thread-local buffers for startup tracing are exhausted (crbug.com/914092).\"",
+      "parentUuid": "03ce69c0_ca172167",
+      "revId": "b1ab154e32bea46043bcb55d64a268560fe91ec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
