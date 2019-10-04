@@ -34,6 +34,24 @@
       "revId": "b1ab154e32bea46043bcb55d64a268560fe91ec5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63414ff0_0dbe9e43",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-04T13:18:28Z",
+      "side": 1,
+      "message": "Thanks! Done.",
+      "parentUuid": "832aa1d3_4c18bceb",
+      "revId": "b1ab154e32bea46043bcb55d64a268560fe91ec5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
