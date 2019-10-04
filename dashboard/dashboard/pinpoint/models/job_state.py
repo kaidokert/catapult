@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import collections
 import functools
 import httplib
+import itertools
 import logging
 
 from google.appengine.api import urlfetch_errors
@@ -302,10 +303,27 @@ class JobState(object):
           any_unknowns = True
 
       # Compare result values.
-      values_a = tuple(Mean(execution.result_values)
-                       for execution in executions_a if execution.result_values)
-      values_b = tuple(Mean(execution.result_values)
-                       for execution in executions_b if execution.result_values)
+      # NOTE: Here we're computing the means of the results from each execution
+      # assuming that the mean will be representative of central tendency for
+      # potentially small sample sizes. We're implementing an alternative
+      # calculation which doesn't use the mean, and counting the number of times
+      # the comparison does not agree with this existing approach.
+      values_a = tuple(
+          Mean(execution.result_values)
+          for execution in executions_a
+          if execution.result_values)
+      values_b = tuple(
+          Mean(execution.result_values)
+          for execution in executions_b
+          if execution.result_values)
+      all_a_values = tuple(
+          v for results in itertools.chain(e.result_values
+                                           for e in executions_a
+                                           if e.result_values) for v in results)
+      all_b_values = tuple(
+          v for results in itertools.chain(e.result_values
+                                           for e in executions_b
+                                           if e.result_values) for v in results)
       if values_a and values_b:
         if (hasattr(self, '_comparison_magnitude') and
             self._comparison_magnitude):
@@ -314,10 +332,33 @@ class JobState(object):
             comparison_magnitude = abs(self._comparison_magnitude / max_iqr)
           else:
             comparison_magnitude = 1000.0  # Something very large.
+
+          alternative_max_iqr = max(
+              math_utils.Iqr(all_a_values), math_utils.Iqr(all_b_values))
+          alternative_comparison_magnitude = abs(
+              self._comparison_magnitude
+          ) / alternative_max_iqr if alternative_max_iqr > 0 else 1000.0
         else:
+          alternative_comparison_magnitude = 1.0
           comparison_magnitude = 1.0
+
+        # TODO(dberris): Change this if we find that the consolidated result
+        # values comparison yield different / more plausible difference
+        # detection.
         comparison = compare.Compare(values_a, values_b, attempt_count,
                                      PERFORMANCE, comparison_magnitude)
+
+        # NOTE: This is the alternative calculation which doesn't use the means
+        # of the underlying result values, and consolidates all the samples
+        # instead.
+        alternative_attempt_count = (len(all_a_values) + len(all_b_values)) // 2
+        alternative_comparison = compare.Compare(
+            all_a_values, all_b_values, alternative_attempt_count, PERFORMANCE,
+            alternative_comparison_magnitude)
+        if comparison != alternative_comparison:
+          logging.error(
+              'Difference Found: alternative says "%s" while current says "%s"',
+              alternative_comparison, comparison)
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
         elif comparison == compare.UNKNOWN:
