@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd4114c7_adb418bd",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1336025
+      },
+      "writtenOn": "2019-10-05T02:57:53Z",
+      "side": 1,
+      "message": "Comment that it may use an alternative file manager,\nand what the returned object should support.",
+      "revId": "30298aa5cf017fa1b19d3acdeade64c8f9dd9571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "269c1ca1_45bb60d8",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1336025
+      },
+      "writtenOn": "2019-10-05T02:57:53Z",
+      "side": 1,
+      "message": "nit\n\nMaybe stay consistent with open and exist,\neither use if statements or function variable for both",
+      "revId": "30298aa5cf017fa1b19d3acdeade64c8f9dd9571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b4ecd92_46120cea",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1336025
+      },
+      "writtenOn": "2019-10-05T02:57:53Z",
+      "side": 1,
+      "message": "Prefix underscore to unused parameters.",
+      "revId": "30298aa5cf017fa1b19d3acdeade64c8f9dd9571",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
