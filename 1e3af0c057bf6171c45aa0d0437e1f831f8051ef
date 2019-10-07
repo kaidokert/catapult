@@ -22,6 +22,30 @@
       "revId": "1e3af0c057bf6171c45aa0d0437e1f831f8051ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38c15a5e_fc250ad5",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-07T09:53:18Z",
+      "side": 1,
+      "message": "Good point. Yeah, I struggled to find a good name, thanks for the suggestion.",
+      "parentUuid": "bcb5a3f7_b2fe61d4",
+      "range": {
+        "startLine": 117,
+        "startChar": 11,
+        "endLine": 117,
+        "endChar": 33
+      },
+      "revId": "1e3af0c057bf6171c45aa0d0437e1f831f8051ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
