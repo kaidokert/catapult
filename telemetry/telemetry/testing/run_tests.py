@@ -68,6 +68,8 @@ class RunTestsCommand(command_line.OptparseCommand):
                       action='append', default=[])
     parser.add_option('--disable-logging-config', action='store_true',
                       default=False, help='Configure logging (default on)')
+    parser.add_option('-v', '--verbose', action='count', dest='verbosity',
+                      help='Increase verbosity level (repeat as needed)')
 
     typ.ArgumentParser.add_option_group(parser,
                                         "Options for running the tests",
