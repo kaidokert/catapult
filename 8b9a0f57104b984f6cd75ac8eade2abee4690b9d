@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2a5e5fa9_d5ee7b47",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-07T20:59:20Z",
+      "side": 1,
+      "message": "You would expect that, yes, but I\u0027m actually just copying the current behavior here. The current behavior is to call expectations.py\u0027s ShouldDisable(), which actually only uses the browser_type member. Since PossibleBrowser and BrowserFinderOptions both have the browser_type member defined, it works for both of them. Obviously this is terrible coding practice, but this changelist isn\u0027t making it any worse.\n\nI added documentation on the CanRunOnPlatform method to explain this.",
+      "parentUuid": "38652559_10cbe0c4",
+      "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36703f38_fd3d2427",
         "filename": "telemetry/telemetry/command_line/commands.py",
         "patchSetId": 9
@@ -33,6 +51,24 @@
       "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8794ca2_771211a6",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-07T20:59:20Z",
+      "side": 1,
+      "message": "Seems like a reasonable change, but that\u0027s beyond the scope of this changelist: to do this, you would first need to figure out everyone that is using this JSON and switch them over to the new thing. I am not even sure anyone is using this. Also, SUPPORTED_PLATFORMS is just a list of conditions: you still need to compute whether the condition matches, which means running the ShouldDisable() code on the DUT anyways.",
+      "parentUuid": "36703f38_fd3d2427",
+      "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "cdd38da5_744b96b3",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-07T20:59:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0056f842_ba8fcfba",
+      "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d945d39_42741887",
         "filename": "telemetry/telemetry/command_line/commands_unittest.py",
         "patchSetId": 9
@@ -67,6 +121,24 @@
       "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36f7cfb8_28f5d32f",
+        "filename": "telemetry/telemetry/command_line/commands_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-07T20:59:20Z",
+      "side": 1,
+      "message": "Nice catch! Thank you!",
+      "parentUuid": "1d945d39_42741887",
+      "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
