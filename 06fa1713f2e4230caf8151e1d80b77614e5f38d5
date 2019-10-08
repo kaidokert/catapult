@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "645b54b1_aef8c4ff",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-08T02:46:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "decb629b_e15a328a",
+      "range": {
+        "startLine": 319,
+        "startChar": 6,
+        "endLine": 319,
+        "endChar": 18
+      },
+      "revId": "06fa1713f2e4230caf8151e1d80b77614e5f38d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15da55f4_31f6ce57",
         "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "06fa1713f2e4230caf8151e1d80b77614e5f38d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b877c01a_e9f7005d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-08T02:46:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15da55f4_31f6ce57",
+      "range": {
+        "startLine": 338,
+        "startChar": 45,
+        "endLine": 338,
+        "endChar": 48
+      },
+      "revId": "06fa1713f2e4230caf8151e1d80b77614e5f38d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
