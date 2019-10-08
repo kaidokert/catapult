@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9987a8ab_bc7bff3f",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-08T03:20:29Z",
+      "side": 1,
+      "message": "Those nested generator expressions are hard to follow.  This is the same number of lines\nbut but the statements are all simple and I find it much easier to follow:\n\n  def AllValues(execution):\n    for e in exectuions_a:\n      if not e.result_values: continue\n      for result_values in e.result_values:\n        for v in result_values:\n          yield v\n  all_a_values \u003d tuple(AllValues(execution_a))\n  all_b_values \u003d tuple(AllValues(execution_b))\n\n(Also I suspect this is faster due to involving a single generator rather than two, but I doubt we care much here…)",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 25
+      },
+      "revId": "ffa9ae1d9d3264d8629b7f01ff480b152f06dc61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1feaaf1b_4236e5dd",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-08T03:20:29Z",
+      "side": 1,
+      "message": "Nit: 3-arg getattr is usually better than hasattr(obj, attr) and obj.attr.\n\n  if getattr(self, \u0027_comparison_magnitude\u0027, None):\n\nAside from avoiding a redundant lookup, it also avoids weird edge cases where hasattr succeeds but getattr raises (due to classes that have careless implementations of properties or the like).\n\nhttps://medium.com/@k.wahome/python-2-vs-3-hasattr-behaviour-f1bed48b068 claims 3-arg getattr also behaves more consistently in Python 2 vs. 3, but I haven\u0027t read it closely.",
+      "range": {
+        "startLine": 360,
+        "startChar": 0,
+        "endLine": 360,
+        "endChar": 77
+      },
+      "revId": "ffa9ae1d9d3264d8629b7f01ff480b152f06dc61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
