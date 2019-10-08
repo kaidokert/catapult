@@ -20,7 +20,7 @@ import unittest
 from typ import artifacts
 
 
-class _FakeFileManager(object):
+class _FakeFileManager(artifacts.FileManager):
     def __init__(self, disc):
         self.disc = disc
 
