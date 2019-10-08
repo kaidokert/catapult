@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c8c1843_d0707a0d",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-08T13:32:26Z",
+      "side": 1,
+      "message": "Doesn\u0027t the gitiles_service have a use_cache parameter, that eventually resolves to a memcache get/set? If that already does memcache, and now commit_cache only does memcache (and in-process), they\u0027re not doing a lot different. Maybe we should even consider merging the commit_cache into that, instead of separately managing these two.\n\nAll these different layers of caching is a bit confusing.",
+      "range": {
+        "startLine": 236,
+        "startChar": 33,
+        "endLine": 236,
+        "endChar": 43
+      },
+      "revId": "2d30369ce6b1a45b4aeafb7399a1e2da6db0f97e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
