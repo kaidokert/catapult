@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a2f8810_d0acd41b",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-08T08:37:07Z",
+      "side": 1,
+      "message": "nit nit: actually is used twice in a row; you can probably remove either of the two.",
+      "revId": "faf9cbd40dc2e00ee65604988ebef5f4ff245bcf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "24f4258e_b86c1f29",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-08T08:37:07Z",
+      "side": 1,
+      "message": "Wow. That\u0027s terrible! Thanks for adding the comment explaining this.",
+      "parentUuid": "2a5e5fa9_d5ee7b47",
+      "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36703f38_fd3d2427",
         "filename": "telemetry/telemetry/command_line/commands.py",
         "patchSetId": 9
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Seems like a reasonable change, but that\u0027s beyond the scope of this changelist: to do this, you would first need to figure out everyone that is using this JSON and switch them over to the new thing. I am not even sure anyone is using this. Also, SUPPORTED_PLATFORMS is just a list of conditions: you still need to compute whether the condition matches, which means running the ShouldDisable() code on the DUT anyways.",
       "parentUuid": "36703f38_fd3d2427",
+      "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84156063_4388b88e",
+        "filename": "telemetry/telemetry/command_line/commands.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-08T08:37:07Z",
+      "side": 1,
+      "message": "Ack.\n\nI could guess that for people reading the JSON just getting a list with the condition names is more useful that checking whether the conditions match the platform where the script is being run (often *not* the DUT). [I know because one of those people was me in the past.]\n\nBut also agree 100% we don\u0027t really know who is using this today, and such a change would be out of scope of this CL.",
+      "parentUuid": "d8794ca2_771211a6",
       "revId": "8b9a0f57104b984f6cd75ac8eade2abee4690b9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
