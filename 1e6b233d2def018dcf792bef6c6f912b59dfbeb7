@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7408e386_b1e6e997",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-08T17:24:32Z",
+      "side": 0,
+      "message": "nit: I think the style guide and most linters require two new lines between toplevel function definitions.",
+      "revId": "1e6b233d2def018dcf792bef6c6f912b59dfbeb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
