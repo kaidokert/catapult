@@ -32,8 +32,14 @@ class _FakeFileManager(object):
     def exists(self, path):
         return  path in self.disc
 
+    def join(self, *parts):
+        return os.path.join(*parts)
+
     def write(self, content):
         self.disc[self.path] += content
+
+    def maybe_make_directory(self, *path):
+      pass
 
     def __enter__(self):
         return self
