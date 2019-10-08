@@ -38,6 +38,9 @@ class FileManager(object):
     if not self.exists(self.join(*parts)):
         os.makedirs(*parts)
 
+  def dirname(self, path):
+    return os.path.dirname(path)
+
 
 class Artifacts(object):
   def __init__(self, output_dir, iteration=0, test_name='',
@@ -100,6 +103,8 @@ class Artifacts(object):
     return sub_dir
 
   def AddArtifact(self, artifact_name, path):
+    if path in self.artifacts.get(artifact_name, []):
+      raise ValueError('%s already exists' % path)
     self.artifacts.setdefault(artifact_name, []).append(path)
 
   @contextlib.contextmanager
@@ -119,7 +124,7 @@ class Artifacts(object):
             not force_overwrite and self._file_manager.exists(abs_artifact_path)):
         raise ValueError('%s already exists.' % abs_artifact_path)
 
-    self._file_manager.maybe_make_directory(os.path.dirname(abs_artifact_path))
+    self._file_manager.maybe_make_directory(self._file_manager.dirname(abs_artifact_path))
 
     if file_relative_path not in self.artifacts.get(artifact_name, []):
         self.AddArtifact(artifact_name, file_relative_path)
