@@ -17,12 +17,7 @@ class PostDataHandler(request_handler.RequestHandler):
   """Helper class to handle common functionality for dealing with slaves."""
 
   def post(self):
-    """Checks the IP of the request against the white list.
-
-    Real sub-class handlers should override this and use
-    _CheckIpAgainstWhitelist; this is provided here for convenience in tests.
-    """
-    self._CheckIpAgainstWhitelist()
+    raise NotImplementedError('Handlers must implement this method!')
 
   def _CheckIpAgainstWhitelist(self):
     """Checks the remote address of the request against the IP whitelist.
@@ -44,6 +39,4 @@ class PostDataHandler(request_handler.RequestHandler):
         logging.warn('Received data: %s...', data_param[:200])
     except Exception:  # pylint: disable=broad-except
       pass
-    self.ReportError(
-        'IP address %s not in IP whitelist!' % self.request.remote_addr, 403)
     return False
