@@ -3,9 +3,11 @@
 # found in the LICENSE file.
 
 import optparse
+import os
+import logging
 import re
 
-from telemetry.internal.util import command_line
+from telemetry.story import typ_expectations
 
 
 class _StoryMatcher(object):
@@ -36,8 +38,15 @@ class _StoryTagMatcher(object):
     return self and bool(story.tags.intersection(self._tags))
 
 
-class StoryFilter(command_line.ArgumentHandlerMixIn):
+class StoryFilter(object):
   """Filters stories in the story set based on command-line flags."""
+
+  def __init__(self, benchmark_name, platform_tags):
+    self._expectations = typ_expectations.StoryExpectations(benchmark_name)
+    self._expectations.SetTags(platform_tags)
+    if self._expectations_file and os.path.exists(self._expectations_file):
+      with open(self._expectations_file) as fh:
+        self._expectations.GetBenchmarkExpectationsFromParser(fh.read())
 
   @classmethod
   def AddCommandLineArgs(cls, parser):
@@ -68,11 +77,16 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
               'rounded down to the number of stories. Negative values not'
               'allowed. If this is ommited, the end index is the final story'
               'of the benchmark. '+ common_story_shard_help))
+    # This should be renamed to --also-run-disabled-stories.
+    group.add_option('-d', '--also-run-disabled-tests',
+                     dest='run_disabled_stories',
+                     action='store_true', default=False,
+                     help='Ignore expectations.config disabling.')
 
     parser.add_option_group(group)
 
   @classmethod
-  def ProcessCommandLineArgs(cls, parser, args):
+  def ProcessCommandLineArgs(cls, parser, args, environment):
     cls._include_regex = _StoryMatcher(args.story_filter)
     cls._exclude_regex = _StoryMatcher(args.story_filter_exclude)
 
@@ -96,9 +110,19 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
     if cls._exclude_regex.has_compile_error:
       raise parser.error('--story-filter-exclude: Invalid regex.')
 
+    if environment.expectations_files:
+      assert len(environment.expectations_files) == 1
+      cls._expectations_file = environment.expectations_files[0]
+    else:
+      cls._expectations_file = None
+    cls._run_disabled_stories = args.run_disabled_stories
+
   @classmethod
   def FilterStories(cls, stories):
     """Filters the given stories, using filters provided in the command line.
+
+    This filter causes stories to become completely ignored, and therefore
+    they will not show up in test results output.
 
     Story sharding is done before exclusion and inclusion is done.
 
@@ -108,6 +132,8 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
     Returns:
       A list of remaining stories.
     """
+    # TODO(crbug.com/982027): Support for --story=<exact story name>
+    # should be implemented here.
     if cls._begin_index < 0:
       cls._begin_index = 0
     if cls._end_index is None:
@@ -131,3 +157,27 @@ class StoryFilter(command_line.ArgumentHandlerMixIn):
       final_stories.append(story)
 
     return final_stories
+
+  def ShouldSkip(self, story):
+    """Decides whether a story should be marked skipped.
+
+    The difference between marking a story skipped and simply not running
+    it is important for tracking purposes. Officially skipped stories show
+    up in test results outputs.
+
+    Args:
+      story: A story.Story object.
+
+    Returns:
+      A skip reason string if the story should be skipped, otherwise an
+      empty string.
+    """
+    # TODO(crbug.com/982027): Support for --story=<exact story name>
+    # should be implemented here.
+    disabled = self._expectations.IsStoryDisabled(story)
+    if disabled and self._run_disabled_stories:
+      logging.warning(
+          'Force running a disabled story %s even though it was disabled with '
+          'the following reason: %s' % (story.name, disabled))
+      return ''
+    return disabled

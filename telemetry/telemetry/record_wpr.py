@@ -125,8 +125,9 @@ def _PrintPairs(pairs, output_stream, prefix=''):
 
 class WprRecorder(object):
 
-  def __init__(self, base_dir, target, args=None):
+  def __init__(self, base_dir, target, environment, args=None):
     self._base_dir = base_dir
+    self._environment = environment
     self._output_dir = tempfile.mkdtemp()
     try:
       self._options = self._CreateOptions()
@@ -203,7 +204,8 @@ class WprRecorder(object):
     self._parser.parse_args(args_to_parse)
 
   def _ProcessCommandLineArgs(self):
-    story_runner.ProcessCommandLineArgs(self._parser, self._options)
+    story_runner.ProcessCommandLineArgs(
+        self._parser, self._options, self._environment)
 
     if self._options.use_live_sites:
       self._parser.error("Can't --use-live-sites while recording")
@@ -314,7 +316,7 @@ def Main(environment, **log_config_kwargs):
   # between recording a benchmark vs recording a story better based on
   # the distinction between args.benchmark & args.story
   with WprRecorder(environment.top_level_dir,
-                   target, extra_args) as wpr_recorder:
+                   target, environment, extra_args) as wpr_recorder:
     results = wpr_recorder.CreateResults()
     wpr_recorder.Record(results)
     wpr_recorder.HandleResults(results, args.upload)
