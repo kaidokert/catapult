@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bc844f1_95ca4634",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-09T23:57:57Z",
+      "side": 1,
+      "message": "Don\u0027t allocate objects for the default value of arguments, that has the effect that there is only one host object ever allocated and it gets shared by all callers (i.e., weird bugs arise). This is a misfeature of Python to be aware of.\n\nYou need to do \n\ndef ...(..., file_manager\u003dNone):\n  file_manager \u003d file_manager or Host()\n\ninstead.\n\nThough, in this case, there\u0027s probably no real case where the caller shouldn\u0027t already have a host, so I\u0027d expect you could make this just be a required argument.\n\nAlso, call the argument `host` instead of `file_manager`, and update the comments below.",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd656db0_82956abf",
+        "filename": "third_party/typ/typ/fakes/host_fake.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-09T23:57:57Z",
+      "side": 1,
+      "message": "The point of the host_fake implementation is to avoid actually reading and writing from the underlying machine (it\u0027s faster and less flaky).\n\nIs it possible to implement open() et al purely in-memory, or do you need it to be a real os-level file handle?",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e4faf89_455d8e32",
+        "filename": "third_party/typ/typ/fakes/host_fake.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-09T23:57:57Z",
+      "side": 1,
+      "message": "Do you really need seek()? I don\u0027t see anything in typ calling it currently ...",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56f80c48_2e0d8160",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-09T23:57:57Z",
+      "side": 1,
+      "message": "The functions in this file tend to be sorted alphabetically. There\u0027s already a maybe_mkdir() on line 132.",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec145e28_614fd390",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-09T23:57:57Z",
+      "side": 1,
+      "message": "In addition to sorting, it would probably be good to document why we need this as well as read_{text,binary}_file(), above. Normally the preferred thing to do is to call one of those instead, but IIRC, you need the actual file handle to be handed back so that the caller can write output to it, right?\n\nAlso, if we\u0027re going to support an open(), it would probably be good to re-implement read_{text,binary}_file() on top of it, and then re-implement the host_fake things to match. That may require a bunch more work in reworking tests, though, because I expect the fake code expects to just be able to return a string and you\u0027d have to pass it through StringIO or some such.",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d73e69_d9012024",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-09T23:57:57Z",
+      "side": 1,
+      "message": "As elsewhere, call this `host`, not `file_manager`.",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
