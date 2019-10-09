@@ -22,6 +22,30 @@
       "revId": "4ca069722b2a84195282a449b8ef5fc4c47f138e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dd2d080_d5878085",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-09T17:39:20Z",
+      "side": 1,
+      "message": "Done. Thanks!",
+      "parentUuid": "075e9787_ed4e4ab4",
+      "range": {
+        "startLine": 152,
+        "startChar": 17,
+        "endLine": 152,
+        "endChar": 39
+      },
+      "revId": "4ca069722b2a84195282a449b8ef5fc4c47f138e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

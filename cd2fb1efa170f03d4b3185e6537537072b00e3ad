@@ -22,6 +22,30 @@
       "revId": "cd2fb1efa170f03d4b3185e6537537072b00e3ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63481724_0fd393e0",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-09T17:39:20Z",
+      "side": 0,
+      "message": "Haha I was surprised as well :)",
+      "parentUuid": "a6fd51e3_de001830",
+      "range": {
+        "startLine": 31,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "cd2fb1efa170f03d4b3185e6537537072b00e3ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
