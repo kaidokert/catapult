@@ -177,11 +177,18 @@ class Host(object):
     def time(self):
         return time.time()
 
+    def maybe_make_directory(self, *comps):
+        self.maybe_mkdir(*comps)
+
     def write_text_file(self, path, contents):
         return self._write(path, contents, mode='w')
 
     def write_binary_file(self, path, contents):
         return self._write(path, contents, mode='wb')
+
+    def open(self, path, mode):
+        self.maybe_make_directory(self.dirname(path))
+        return file(path, mode)
 
     def _write(self, path, contents, mode):
         with open(path, mode) as f:
