@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6fd51e3_de001830",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-09T17:36:13Z",
+      "side": 0,
+      "message": "Wow, this is some strange code you\u0027re removing here. Can\u0027t say I\u0027ll miss it :)",
+      "range": {
+        "startLine": 31,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "cd2fb1efa170f03d4b3185e6537537072b00e3ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
