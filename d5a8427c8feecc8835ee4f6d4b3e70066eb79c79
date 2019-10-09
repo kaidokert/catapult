@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "937a65d2_f1d0a311",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bdcfecf_ad7fef57",
+      "range": {
+        "startLine": 127,
+        "startChar": 48,
+        "endLine": 127,
+        "endChar": 52
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5050adae_158ea534",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb2ef68e_5e7ee023",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 53
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87f912fe_223198b1",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8acf9d4a_6f5d3c16",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f912fe_223198b1",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 52
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "de69968f_0a77120f",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dde651fa_ba71b0eb",
+      "range": {
+        "startLine": 127,
+        "startChar": 1,
+        "endLine": 128,
+        "endChar": 52
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f8a8d61_35a65857",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c66451f3_5b84e7ca",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f8a8d61_35a65857",
+      "range": {
+        "startLine": 129,
+        "startChar": 6,
+        "endLine": 129,
+        "endChar": 28
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "7e48c937_872891b7",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd81bf9b_afbac257",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b15e67fa_e687bbfa",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -151,6 +295,30 @@
       "writtenOn": "2019-10-08T17:05:08Z",
       "side": 1,
       "message": "FYI: All those AsDict/FromDict\u0027s also touch gitiles_service/repository_module unfortunately.",
+      "range": {
+        "startLine": 151,
+        "startChar": 37,
+        "endLine": 151,
+        "endChar": 48
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3d7ed12_ef5fff02",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Yikes. Yes, thanks for pointing that out. Do you have a recommendation on how to avoid this? I\u0027m considering just using the repository name and the hash, so we can delay the calls until we actually need them (i.e. when expanding deps).",
+      "parentUuid": "b15e67fa_e687bbfa",
       "range": {
         "startLine": 151,
         "startChar": 37,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "95a0aeb9_af68539b",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Yeah, this is no longer used in this implementation. Removed instead.",
+      "parentUuid": "03264a3d_d488b474",
+      "range": {
+        "startLine": 293,
+        "startChar": 4,
+        "endLine": 293,
+        "endChar": 8
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75e65530_2ab54417",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -206,6 +398,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0734631_807f943e",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Yeah, this is no longer used in this implementation. Removed instead.",
+      "parentUuid": "75e65530_2ab54417",
+      "range": {
+        "startLine": 294,
+        "startChar": 48,
+        "endLine": 294,
+        "endChar": 51
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "16c8915a_626cab25",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4adc535c_20efd331",
+      "range": {
+        "startLine": 337,
+        "startChar": 13,
+        "endLine": 337,
+        "endChar": 50
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92753da0_bc076bce",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -275,6 +515,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "881d5abb_9ba91c6d",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92753da0_bc076bce",
+      "range": {
+        "startLine": 341,
+        "startChar": 6,
+        "endLine": 341,
+        "endChar": 9
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +565,30 @@
     },
     {
       "key": {
+        "uuid": "31d4b7b1_8453b042",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Cool stuff, #TIL!",
+      "parentUuid": "e650bc2e_149ba404",
+      "range": {
+        "startLine": 347,
+        "startChar": 26,
+        "endLine": 347,
+        "endChar": 36
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53a25c67_0834a616",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -324,6 +612,30 @@
     },
     {
       "key": {
+        "uuid": "12ced9cd_50890507",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Good point. I\u0027ve chosen the first form with a collections.defaultdict(...) instead. :)",
+      "parentUuid": "53a25c67_0834a616",
+      "range": {
+        "startLine": 351,
+        "startChar": 36,
+        "endLine": 351,
+        "endChar": 48
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ec0c9bb_71793a4a",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -335,6 +647,30 @@
       "writtenOn": "2019-10-08T05:11:16Z",
       "side": 1,
       "message": "FYI, for this sort of statement I think golang\u0027s preference for brief identifiers makes a lot of sense:\n\n      ordered_changes \u003d [c for c in all_changes if c in changes_with_data]",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 73
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de94f4ce_accb5dcc",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "I agree. This was where I stopped when this was much more complex, where the longer name made sense... I like the shorter names now too, this now fits in a single line.",
+      "parentUuid": "4ec0c9bb_71793a4a",
       "range": {
         "startLine": 365,
         "startChar": 0,
@@ -393,6 +729,30 @@
     },
     {
       "key": {
+        "uuid": "cbbc6577_e1797316",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65b21a92_8c04d5ea",
+      "range": {
+        "startLine": 413,
+        "startChar": 43,
+        "endLine": 413,
+        "endChar": 52
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ecef40d6_9bc1036c",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -413,6 +773,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31597fb0_7ba31358",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Yeah, I keep equating \"reduce\" to an \"foldl\" which really is what I want here. The concept is pretty core to functional programming where you have a fold which is a \"pure\" function that returns the result of an associative function.\n\nhttps://en.wikipedia.org/wiki/Fold_(higher-order_function)\n\nAn alternative that I\u0027ve toyed with in the past is having the list being accumulated as the first argument, and that\u0027s more \"pure\" but is more complicated. To my eyes the pairwise approach could also be a list comprehension instead, so I used one instead. :)\n\nThanks!",
+      "parentUuid": "ecef40d6_9bc1036c",
+      "range": {
+        "startLine": 475,
+        "startChar": 0,
+        "endLine": 475,
+        "endChar": 65
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +823,30 @@
     },
     {
       "key": {
+        "uuid": "4c5e5b9d_9875fea4",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7a71fa7_11f764a4",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "695f766b_a865e37e",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection_test.py",
         "patchSetId": 4
@@ -459,6 +867,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39c31efb_38ebc1f9",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-09T15:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "695f766b_a865e37e",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 36
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
