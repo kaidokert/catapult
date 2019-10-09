@@ -21,28 +21,12 @@ if sys.version_info.major == 2:
 else:
   import urllib.parse as urlparse
 
-class FileManager(object):
-
-  def open(self, abspath, mode):
-    if not os.path.exists(os.path.dirname(abspath)):
-      os.makedirs(os.path.dirname(abspath))
-    return file(abspath, mode)
-
-  def exists(self, abspath):
-    return os.path.exists(abspath)
-
-  def join(self, *parts):
-    return os.path.join(*parts)
-
-  def maybe_make_directory(self, *parts):
-    if not self.exists(self.join(*parts)):
-        os.makedirs(*parts)
-
+from typ.host import Host
 
 class Artifacts(object):
   def __init__(self, output_dir, iteration=0, test_name='',
                intial_results_base_dir=False, repeat_tests=False,
-               file_manager=FileManager()):
+               file_manager=Host()):
     """Creates an artifact results object.
 
     This provides a way for tests to write arbitrary files to disk, either to
@@ -78,7 +62,7 @@ class Artifacts(object):
       repeat_tests: Flag to signal that tests are repeated and therefore the verification to prevent
           overwriting of artifacts should be skipped
       file_manager: File manager object which is supplied by the test runner. The object needs to support
-          the exists, open, maybe_make_directory and join member functions.
+          the exists, open, maybe_make_directory, dirname and join member functions.
     """
     self._output_dir = output_dir
     self._iteration = iteration
@@ -100,6 +84,10 @@ class Artifacts(object):
     return sub_dir
 
   def AddArtifact(self, artifact_name, path):
+    if path in self.artifacts.get(artifact_name, []):
+        if not self._repeat_tests:
+            raise ValueError('%s already exists in artifacts list for %s.' % (
+                path, artifact_name))
     self.artifacts.setdefault(artifact_name, []).append(path)
 
   @contextlib.contextmanager
@@ -119,7 +107,7 @@ class Artifacts(object):
             not force_overwrite and self._file_manager.exists(abs_artifact_path)):
         raise ValueError('%s already exists.' % abs_artifact_path)
 
-    self._file_manager.maybe_make_directory(os.path.dirname(abs_artifact_path))
+    self._file_manager.maybe_make_directory(self._file_manager.dirname(abs_artifact_path))
 
     if file_relative_path not in self.artifacts.get(artifact_name, []):
         self.AddArtifact(artifact_name, file_relative_path)

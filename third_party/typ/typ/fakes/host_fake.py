@@ -16,6 +16,7 @@ import copy
 import io
 import logging
 import sys
+import os
 
 from typ import python_2_3_compat
 from typ.host import _TeedStream
@@ -162,6 +163,16 @@ class FakeHost(object):
             p = '/'.join(comps)
         return p
 
+    def open(self, path, mode):
+        self.maybe_make_directory(self.dirname(path))
+        if 'r' in mode:
+            return ReadableBinaryFileObject(self, path, self.files[path])
+        else:
+            return WritableBinaryFileObject(self, path)
+
+    def maybe_make_directory(self, *comps):
+        self.maybe_mkdir(*comps)
+
     def maybe_mkdir(self, *comps):
         path = self.abspath(self.join(*comps))
         if path not in self.dirs:
@@ -293,3 +304,61 @@ class FakeResponse(io.StringIO):
 
     def getcode(self):
         return self.code
+
+
+class ReadableBinaryFileObject(object):
+
+    def __init__(self, fs, path, data):
+        self.fs = fs
+        self.path = path
+        self.closed = False
+        self.data = data
+        self.offset = 0
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        self.close()
+
+    def close(self):
+        self.closed = True
+
+    def read(self, num_bytes=None):
+        if not num_bytes:
+            return self.data[self.offset:]
+        start = self.offset
+        self.offset += num_bytes
+        return self.data[start:self.offset]
+
+    def seek(self, offset, whence=os.SEEK_SET):
+        if whence == os.SEEK_SET:
+            self.offset = offset
+        elif whence == os.SEEK_CUR:
+            self.offset += offset
+        elif whence == os.SEEK_END:
+            self.offset = len(self.data) + offset
+        else:
+            assert False, "Unknown seek mode %s" % whence
+
+
+class WritableBinaryFileObject(object):
+
+    def __init__(self, fs, path):
+        self.fs = fs
+        self.path = path
+        self.closed = False
+        self.fs.files[path] = ''
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        self.close()
+
+    def close(self):
+        self.closed = True
+
+    def write(self, string):
+        self.fs.files[self.path] += string
+        self.fs.written_files[self.path] = self.fs.files[self.path]
