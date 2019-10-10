@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ad3432c_27cb8f0c",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T18:17:59Z",
+      "side": 1,
+      "message": "Instead of creating these Story Module classes. You can create expectation files. For\neverything disabled you can have the following expectations content.\n\n# tags: [ All ]\n# results: [ Skip ]\n[ All ] * [ Skip ]\n\nYou can pass it in by creating a temporary file, and passing its path through the environment.\nAlso you would need to pass [\u0027All\u0027] to the the StoryFilter constructor.\n\nFor everything enabled, you don\u0027t need to do anything. You can remove the mock.patch call for FakeExpectationsEverythingEnabled.",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6a5ac61_c294b63b",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T18:17:59Z",
+      "side": 1,
+      "message": "Instead of using this story class, you can create a MagicMock object, and then set the name member variable to the story name.\n\nstory \u003d mock.MagicMock()\nstory.name \u003d \u0027fake_story_name\u0027",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5156616c_1b06d6d9",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T18:17:59Z",
+      "side": 1,
+      "message": "This seems to be only used for story filter command line arguments. Can you move this into story filter unit tests script?",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
