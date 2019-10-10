@@ -54,7 +54,7 @@ tr.exportTo('tr.v', function() {
     }
 
     buildHeader_() {
-      const header = ['name', 'unit'];
+      const header = ['name', 'unit', 'sampleValues'];
       for (const name of this.statisticsNames_) {
         header.push(name);
       }
@@ -66,7 +66,7 @@ tr.exportTo('tr.v', function() {
 
     buildTable_() {
       for (const hist of this.histograms_) {
-        const row = [hist.name, hist.unit.unitString];
+        const row = [hist.name, hist.unit.unitString, hist.sampleValues];
         this.table_.push(row);
 
         for (const name of this.statisticsNames_) {
