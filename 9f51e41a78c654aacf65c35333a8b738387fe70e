@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "071719e5_45fa1b6b",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-10T22:03:00Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "d431687c_85418cd7",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a89673d5_4ffcbefb",
         "filename": "third_party/typ/typ/artifacts.py",
         "patchSetId": 11
@@ -69,6 +87,24 @@
       "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb25a57d_65dac251",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-10T22:03:00Z",
+      "side": 1,
+      "message": "interesting that blinkpy was broken in the same way. I\u0027m a bit surprised this didn\u0027t cause problems on windows.",
+      "parentUuid": "a1af771c_383d4caf",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
