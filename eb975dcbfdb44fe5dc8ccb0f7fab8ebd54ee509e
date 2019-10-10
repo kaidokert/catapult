@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "75575e1c_239a46ba",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T01:57:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bc844f1_95ca4634",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd656db0_82956abf",
         "filename": "third_party/typ/typ/fakes/host_fake.py",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2019-10-09T23:57:57Z",
       "side": 1,
       "message": "The point of the host_fake implementation is to avoid actually reading and writing from the underlying machine (it\u0027s faster and less flaky).\n\nIs it possible to implement open() et al purely in-memory, or do you need it to be a real os-level file handle?",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0ed65a0_9da33ef8",
+        "filename": "third_party/typ/typ/fakes/host_fake.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T01:57:54Z",
+      "side": 1,
+      "message": "The open implementation in this script is purely in-memory. open returns either a ReadableBinaryFileObject or WritableBinaryFileObject which only interacts with a dictionary of strings. The os module is only used for seek implementation below. I will remove the seek function since typ is not using it and also the importing of the os module.",
+      "parentUuid": "dd656db0_82956abf",
       "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "f315aaed_dcd7fa44",
+        "filename": "third_party/typ/typ/fakes/host_fake.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T01:57:54Z",
+      "side": 1,
+      "message": "I will remove it.",
+      "parentUuid": "4e4faf89_455d8e32",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56f80c48_2e0d8160",
         "filename": "third_party/typ/typ/host.py",
         "patchSetId": 6
@@ -67,6 +121,24 @@
       "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63b5e6ef_29913ad8",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T01:57:54Z",
+      "side": 1,
+      "message": "I replaced maybe_mkdir with maybe_make_directory since that is what the function is called in blinkpy. I moved it to the correct location also.",
+      "parentUuid": "56f80c48_2e0d8160",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "fd90c413_6daefcc3",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T01:57:54Z",
+      "side": 1,
+      "message": "Its actually not necessary to add open. I changed the Artifacts class to use host.write_binary_file instead.",
+      "parentUuid": "ec145e28_614fd390",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56d73e69_d9012024",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 6
@@ -101,6 +191,24 @@
       "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13f2199c_d43662e2",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T01:57:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56d73e69_d9012024",
+      "revId": "eb975dcbfdb44fe5dc8ccb0f7fab8ebd54ee509e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
