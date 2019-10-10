@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6312ab9e_52679d9c",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T18:43:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6874f1a5_dc43a1e7",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6a5ac61_c294b63b",
         "filename": "telemetry/telemetry/story/story_filter_unittest.py",
         "patchSetId": 9
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "c8c517d2_4b294a9b",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T18:43:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "61b1c962_9073bf97",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5156616c_1b06d6d9",
         "filename": "telemetry/telemetry/testing/fakes/__init__.py",
         "patchSetId": 9
@@ -101,6 +137,24 @@
       "side": 1,
       "message": "it is also used by story_runner_unittest.py",
       "parentUuid": "5156616c_1b06d6d9",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "731b2fa1_3fba3c71",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T18:43:21Z",
+      "side": 1,
+      "message": "Took a look in the script, it only seems to get passed to the story filter module. Can you rename it to FakeStoryFilterArgs then.",
+      "parentUuid": "10b7c9ae_4273adb2",
       "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
