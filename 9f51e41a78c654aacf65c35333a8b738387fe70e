@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d431687c_85418cd7",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T20:50:52Z",
+      "side": 1,
+      "message": "Correct, we don\u0027t need it at this moment.",
+      "parentUuid": "81d885aa_fb0090e8",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a89673d5_4ffcbefb",
         "filename": "third_party/typ/typ/artifacts.py",
         "patchSetId": 11
@@ -30,6 +48,24 @@
       "writtenOn": "2019-10-10T19:57:30Z",
       "side": 1,
       "message": "How do you know the artifact is binary and not text?",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1af771c_383d4caf",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T20:50:52Z",
+      "side": 1,
+      "message": "I don\u0027t pass that information. It should be fine for all types of artifacts. For all web tests we write all the artifacts using write_binary_file, which can be seen in the following link, https://cs.chromium.org/chromium/src/third_party/blink/tools/blinkpy/web_tests/controllers/test_result_writer.py?rcl\u003d6e2d1fe24b9178dae6551c57d41674d1d07407c7\u0026l\u003d128. \n\nI added an optional argument, when set to True makes CreateArtifacts write the file using write_text_file.",
+      "parentUuid": "a89673d5_4ffcbefb",
       "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "d675a327_a829a773",
+        "filename": "third_party/typ/typ/fakes/host_fake.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T20:50:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c2ba626_c37aee03",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27e22e31_e03dbd73",
         "filename": "third_party/typ/typ/tests/artifacts_test.py",
         "patchSetId": 11
@@ -64,6 +118,24 @@
       "writtenOn": "2019-10-10T19:57:30Z",
       "side": 1,
       "message": "Shouldn\u0027t this be read_text_file()? I.e., you have the same issue of text vs. binary ...",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b16634c8_995388b2",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T20:50:52Z",
+      "side": 1,
+      "message": "By default CreateArtifact writes as binary to a file. If it writes in binary then the test should read it in binary, if it writes in text then the test should read it in text. I made some changes to this script to reflect that. PTAL.",
+      "parentUuid": "27e22e31_e03dbd73",
       "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
