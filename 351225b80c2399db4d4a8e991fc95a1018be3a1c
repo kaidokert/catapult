@@ -176,6 +176,24 @@
       "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2e21ed4_43e8d247",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-10T19:54:12Z",
+      "side": 1,
+      "message": "Yes Please name it to that.",
+      "parentUuid": "775a5863_9e14cc4a",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
