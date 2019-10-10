@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "915bfe3b_03ba6c72",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-10T20:03:17Z",
+      "side": 0,
+      "message": "I just noticed that this change would break benchmark_smoke_unittest.py and system_health_smoke_test.py https://cs.chromium.org/search/?q\u003dAugmentExpectationsWithFile+file:%5Esrc/tools/perf/+package:%5Echromium$\u0026type\u003dcs\n\nI\u0027ll dig into that and see what I can do.",
+      "range": {
+        "startLine": 249,
+        "startChar": 11,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "df24b8a3609962fa2f491d52b8d68ece5a585715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
