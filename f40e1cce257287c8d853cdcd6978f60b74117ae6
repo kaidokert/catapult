@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e85bcf6c_5140eeb6",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-10T17:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e6e4c3f_d7520b1a",
+      "range": {
+        "startLine": 117,
+        "startChar": 23,
+        "endLine": 118,
+        "endChar": 53
+      },
+      "revId": "f40e1cce257287c8d853cdcd6978f60b74117ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a15d5cca_ad02a372",
         "filename": "common/bin/update_chrome_reference_binaries",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2019-10-10T17:33:07Z",
       "side": 1,
       "message": "I know this isn\u0027t really in the scope of this CL, but I want to mention that I think we should consider giving this file a .py extension. It makes reviewing a lot easier since it enables text highlighting in Gerrit.",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "f40e1cce257287c8d853cdcd6978f60b74117ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f09ad599_4aff7e15",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-10T17:55:05Z",
+      "side": 1,
+      "message": "Ack. Will send another CL for it otherwise the current CL diff becomes hard to read.",
+      "parentUuid": "a15d5cca_ad02a372",
       "range": {
         "startLine": 1,
         "startChar": 7,
@@ -68,6 +116,30 @@
       "revId": "f40e1cce257287c8d853cdcd6978f60b74117ae6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea7c82cb_32baae6f",
+        "filename": "common/bin/update_chrome_reference_binaries",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-10T17:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "037c4f7e_9c098281",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "f40e1cce257287c8d853cdcd6978f60b74117ae6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
