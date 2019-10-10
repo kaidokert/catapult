@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81d885aa_fb0090e8",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-10T19:57:30Z",
+      "side": 1,
+      "message": "So, we don\u0027t need to hand a file handle back to the caller? I thought you wanted that, but maybe we really didn\u0027t need it (yet)?",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a89673d5_4ffcbefb",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-10T19:57:30Z",
+      "side": 1,
+      "message": "How do you know the artifact is binary and not text?",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c2ba626_c37aee03",
+        "filename": "third_party/typ/typ/fakes/host_fake.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-10T19:57:30Z",
+      "side": 1,
+      "message": "No longer needed?",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27e22e31_e03dbd73",
+        "filename": "third_party/typ/typ/tests/artifacts_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-10-10T19:57:30Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be read_text_file()? I.e., you have the same issue of text vs. binary ...",
+      "revId": "9f51e41a78c654aacf65c35333a8b738387fe70e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
