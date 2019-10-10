@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6874f1a5_dc43a1e7",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-10T18:25:33Z",
+      "side": 1,
+      "message": "Yes, I saw that this is how things used to work in a lot of places. This was actually a conscious decision. This is for a unit test, so the point is to try to test the module without depending on things outside of the module. That way I am only testing the logic in this module. Then you can change expectations stuff without having to touch these unit tests. Currently Telemetry has a lot of tests that do not work this way, and I see that as a problem because it makes it difficult to change code in Telemetry because you need to edit unit tests all over the place.\n\nNote that there is still a place for end to end and integration tests, but ideally we want to add those on top and instead focus full unit test coverage first.",
+      "parentUuid": "5ad3432c_27cb8f0c",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c6a5ac61_c294b63b",
         "filename": "telemetry/telemetry/story/story_filter_unittest.py",
         "patchSetId": 9
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "61b1c962_9073bf97",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-10T18:25:33Z",
+      "side": 1,
+      "message": "Agreed, that would work. I think this is cleaner.",
+      "parentUuid": "c6a5ac61_c294b63b",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5156616c_1b06d6d9",
         "filename": "telemetry/telemetry/testing/fakes/__init__.py",
         "patchSetId": 9
@@ -47,6 +83,24 @@
       "writtenOn": "2019-10-10T18:17:59Z",
       "side": 1,
       "message": "This seems to be only used for story filter command line arguments. Can you move this into story filter unit tests script?",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10b7c9ae_4273adb2",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-10T18:25:33Z",
+      "side": 1,
+      "message": "it is also used by story_runner_unittest.py",
+      "parentUuid": "5156616c_1b06d6d9",
       "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
