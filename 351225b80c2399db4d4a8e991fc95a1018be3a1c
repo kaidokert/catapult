@@ -158,6 +158,24 @@
       "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "775a5863_9e14cc4a",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-10T19:50:15Z",
+      "side": 1,
+      "message": "These actually represent the parsed arguments of running optparse on the commandline flags. The args object itself is shared by everything that parses commandline flags, including commands.py, story_runner.py, story_filter.py, and more. Maybe \"FakeParsedArgsForStoryFilter\" would make this clearer?",
+      "parentUuid": "731b2fa1_3fba3c71",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
