@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "bdf04f8b_bceb0698",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-11T15:43:23Z",
+      "side": 1,
+      "message": "We should probably restructure them to move caching and whatever else out, and make these straightforward in the sense that they dump out or instantiate a new class without doing a bunch of unexpected work. Not sure how much work that is though, in the short term at the very least the FromDict doesn\u0027t *need* to resolve everything, just things that aren\u0027t git hashes, which will skip most of the work in there, something like: https://chromium-review.googlesource.com/c/catapult/+/1855682",
+      "parentUuid": "f3d7ed12_ef5fff02",
+      "range": {
+        "startLine": 151,
+        "startChar": 37,
+        "endLine": 151,
+        "endChar": 48
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03264a3d_d488b474",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
