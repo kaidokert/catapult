@@ -16,6 +16,24 @@
       "revId": "1e6b233d2def018dcf792bef6c6f912b59dfbeb7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b0738cf_caa4c1bb",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:51:21Z",
+      "side": 0,
+      "message": "Yup, thanks! Must have been a mistype.",
+      "parentUuid": "7408e386_b1e6e997",
+      "revId": "1e6b233d2def018dcf792bef6c6f912b59dfbeb7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
