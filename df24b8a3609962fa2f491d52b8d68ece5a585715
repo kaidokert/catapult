@@ -22,6 +22,30 @@
       "revId": "df24b8a3609962fa2f491d52b8d68ece5a585715",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bd59069_e01b8e58",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-11T01:17:01Z",
+      "side": 0,
+      "message": "I wrote https://chromium-review.googlesource.com/c/chromium/src/+/1854794 to fix this.",
+      "parentUuid": "915bfe3b_03ba6c72",
+      "range": {
+        "startLine": 249,
+        "startChar": 11,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "df24b8a3609962fa2f491d52b8d68ece5a585715",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
