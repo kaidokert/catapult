@@ -16,6 +16,24 @@
       "revId": "1e2e0f89447347bf323f9079d9e4f2c382464781",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8171faf6_e55b526a",
+        "filename": "telemetry/telemetry/testing/test_stories.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:14:25Z",
+      "side": 1,
+      "message": "Yes. Because of the default base_dir it opens:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/testing/blank.html\n\nI tweaked the docstring above a bit to make this clearer.",
+      "parentUuid": "3bef25e4_d1f56a5d",
+      "revId": "1e2e0f89447347bf323f9079d9e4f2c382464781",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
