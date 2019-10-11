@@ -219,24 +219,26 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     """
     repository = data['repository']
     git_hash = data['git_hash']
+    repository_url = None
 
     # Translate repository if it's a URL.
     if repository.startswith('https://'):
       repository = repository_module.RepositoryName(repository)
 
-    try:
-      # If they send in something like HEAD, resolve to a hash.
-      repository_url = repository_module.RepositoryUrl(repository)
-
+    if not gitiles_service.IsHash(git_hash):
       try:
-        # If it's already in the hash, then we've resolved this recently, and we
-        # don't go resolving the data from the gitiles service.
-        result = commit_cache.Get(git_hash)
-      except KeyError:
-        result = gitiles_service.CommitInfo(repository_url, git_hash)
-        git_hash = result['commit']
-    except gitiles_service.NotFoundError as e:
-      raise KeyError(str(e))
+        # If they send in something like HEAD, resolve to a hash.
+        repository_url = repository_module.RepositoryUrl(repository)
+
+        try:
+          # If it's already in the hash, then we've resolved this recently, and
+          # we don't go resolving the data from the gitiles service.
+          result = commit_cache.Get(git_hash)
+        except KeyError:
+          result = gitiles_service.CommitInfo(repository_url, git_hash)
+          git_hash = result['commit']
+      except gitiles_service.NotFoundError as e:
+        raise KeyError(str(e))
 
     commit = cls(repository, git_hash)
     commit._repository_url = repository_url
