@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d97c54c_b5a86c16",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:05:23Z",
+      "side": 1,
+      "message": "can you file a bug and link to it here?",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d335e53f_9d44e86b",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:05:23Z",
+      "side": 1,
+      "message": "I have to say I also didn\u0027t like this mocking that much, and preferred the version where we pass a snippet of the expectation file contents.\n\nBut I also see your point regarding making these tests more \"unit\" and less \"integration\", which seems fair as the tests are already using a fake benchmark and a fake browser.\n\nStill, I think things would be clearer and concise if instead of creating ad hoc \"StoryFilter\" classes for each test, you have a single customizable \"TestStoryFilter\" class (which maybe just takes a list of story names to disable) to be reused by all.\n\nThis same class (or class factory), could probably be reused by story_filter_unittest.py below.",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f44f852_e7a14ede",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:05:23Z",
+      "side": 1,
+      "message": "Maybe not something to fix in this CL. But it would be great if we make this no longer a @classmethod. If we create many instances (specially during testing), it\u0027s really strange that calling this will method would suddenly change what existing instances would filter out or not (e.g. they may now point to a different expectations file.)\n\nThe fact that FilterStories is a class method, while ShouldSkip is not is also pretty confusing.\n\nAnyway, if not easily doable in this CL, could you leave a TODO?",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5629b7f9_4118cb6c",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:05:23Z",
+      "side": 1,
+      "message": "I\u0027m wondering if, instead of passing the entire environment it would be enough to pass just the (single) path to an expectations file. Will also make things simpler for GetRunOptions and testing in general.",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c499696_fe9b4c29",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:05:23Z",
+      "side": 1,
+      "message": "Instead of having all these classes, I think it\u0027s more concise and often more readable if you have a single \"customizable\" class (or a function returning the customized class) which can be reused by multiple tests.\n\nFor example one such a class can be implemented by passing a list of story names to disable.",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a496e50f_b2eff6f3",
+        "filename": "telemetry/telemetry/testing/options_for_unittests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-11T12:05:23Z",
+      "side": 1,
+      "message": "As noted above, I think this would be better if callers just need to pass the path to the expectations file.",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
