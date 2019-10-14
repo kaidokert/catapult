@@ -20,8 +20,6 @@ from telemetry.internal.results import html_output_formatter
 from telemetry.internal.results import page_test_results
 from telemetry.internal.results import results_processor
 from telemetry import page as page_module
-from telemetry.value import list_of_scalar_values
-from telemetry.value import scalar
 from tracing.trace_data import trace_data
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
@@ -150,33 +148,6 @@ class PageTestResultsTest(unittest.TestCase):
     self.assertTrue(all_story_runs[0].failed)
     self.assertTrue(all_story_runs[1].ok)
     self.assertTrue(all_story_runs[2].skipped)
-
-  def testAddScalarValueSameAsMeasurement(self):
-    # Test that AddValue for legacy scalar values still works, and is
-    # equivalent to adding measurements.
-    with self.CreateResults() as results:
-      results.WillRunPage(self.pages[0])
-      results.AddValue(scalar.ScalarValue(self.pages[0], 'a', 'seconds', 3))
-      results.AddMeasurement('a', 'seconds', 3)
-      results.DidRunPage(self.pages[0])
-
-    values = list(results.IterAllLegacyValues())
-    self.assertEqual(len(values), 2)
-    self.assertEqual(values[0], values[1])
-
-  def testAddListOfScalarValuesSameAsMeasurement(self):
-    # Test that AddValue for legacy lists of scalar values still works, and is
-    # equivalent to adding measurements.
-    with self.CreateResults() as results:
-      results.WillRunPage(self.pages[0])
-      results.AddValue(list_of_scalar_values.ListOfScalarValues(
-          self.pages[0], 'a', 'seconds', [1, 2, 3]))
-      results.AddMeasurement('a', 'seconds', [1, 2, 3])
-      results.DidRunPage(self.pages[0])
-
-    values = list(results.IterAllLegacyValues())
-    self.assertEqual(len(values), 2)
-    self.assertEqual(values[0], values[1])
 
   def testAddMeasurementWithStoryGroupingKeys(self):
     with self.CreateResults() as results:
