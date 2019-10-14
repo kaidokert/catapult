@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dbce334_95c7a0a9",
+        "filename": "telemetry/telemetry/value/summary_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-14T10:05:58Z",
+      "side": 1,
+      "message": "I could have tried to migrate these tests to AddMeasurement instead. But all of telemetry/value/* is going away soon, so I thought this wasn\u0027t really worth the effort.",
+      "revId": "fb21d959ec79dc1befe3e8a7c50c34e74007c553",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
