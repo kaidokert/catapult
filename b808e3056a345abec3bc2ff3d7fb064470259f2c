@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6d9752f_61a53803",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-14T10:53:42Z",
+      "side": 1,
+      "message": "Made https://chromium-review.googlesource.com/c/chromium/src/+/1859774 to unblock landing this.",
+      "revId": "b808e3056a345abec3bc2ff3d7fb064470259f2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cd1ef42_71aa8978",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-14T10:53:42Z",
+      "side": 1,
+      "message": "nit: maybe swap these two checks? first check if right type, then check if not a duplicate.",
+      "revId": "b808e3056a345abec3bc2ff3d7fb064470259f2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
