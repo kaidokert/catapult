@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3d2334d_e1e33122",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-14T03:26:52Z",
+      "side": 1,
+      "message": "[optional suggestion]\n\nTypically inlining the expected value makes for slightly more useful failure messages (because the source line appears in the failure) and slightly more concise code:\n\n  self.assertEqual(c, Change(chromium\u003d123, catapult\u003d456, patch\u003dFalse))",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 33
+      },
+      "revId": "bb6ebe9c773ac155800b1be2378d7be6acecc907",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b035bdf7_b8c8fe61",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-14T03:26:52Z",
+      "side": 1,
+      "message": "13 of these 14 lines are boilerplate that seems to be common to many tests in this file, and it\u0027s complex boilerplate with several levels of nested expressions.  It took me some time to find where the failed dependency (that the test name refers to) is.\n\nPlease refactor this to make the signal/boilerplate ratio in these test methods a bit higher.  Perhaps a helper factory function used like MakeFooEvaluator(FakeReadValueFails(self.job)), but with a more useful name?",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 10
+      },
+      "revId": "bb6ebe9c773ac155800b1be2378d7be6acecc907",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
