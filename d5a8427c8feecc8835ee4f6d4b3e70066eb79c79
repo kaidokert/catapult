@@ -355,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "1ff3fe55_a3d739f3",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-14T08:08:49Z",
+      "side": 1,
+      "message": "I like it. Though I think we should make that change in isolation to see whether we\u0027re going to cause other issues. I\u0027m not quite prepared to make that change right now, but I\u0027m happy to review that change later.",
+      "parentUuid": "bdf04f8b_bceb0698",
+      "range": {
+        "startLine": 151,
+        "startChar": 37,
+        "endLine": 151,
+        "endChar": 48
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03264a3d_d488b474",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -469,6 +493,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "382f1a4b_dfb32bd6",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-14T08:08:49Z",
+      "side": 1,
+      "message": "Yeah, this one\u0027s not an ideal case -- I\u0027ll resolve the associated TODO to validate better once we\u0027re wiring this up with the UI and the PubSub message handling.",
+      "parentUuid": "7f59cd9c_bea3a942",
+      "range": {
+        "startLine": 329,
+        "startChar": 1,
+        "endLine": 330,
+        "endChar": 12
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -727,6 +775,30 @@
       "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b4b1d8c_8719cea4",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-14T08:08:49Z",
+      "side": 1,
+      "message": "Yeah, unfortunately since we\u0027re using the state local to the function\u0027s scope (all the pre-computed data structures we need), breaking this up into external and even member functions actually make it harder to reason about the computation compared to having this all in-line. I tried to add more comments to delineate the parts of the functions, but other versions of this might require reasoning about member states instead of local state, which for this code seems riskier.\n\nLet\u0027s iterate on this post-landing, in case we find a better way of decomposing this once we have the A/B testing workflow implemented as well.",
+      "parentUuid": "a038d18d_2e254721",
+      "range": {
+        "startLine": 378,
+        "startChar": 10,
+        "endLine": 378,
+        "endChar": 17
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
