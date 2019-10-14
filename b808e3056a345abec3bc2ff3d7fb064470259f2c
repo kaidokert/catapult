@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "47dfbccc_b7312d84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-14T11:08:08Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "f6d9752f_61a53803",
+      "revId": "b808e3056a345abec3bc2ff3d7fb064470259f2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cd1ef42_71aa8978",
         "filename": "telemetry/telemetry/internal/results/story_run.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "b808e3056a345abec3bc2ff3d7fb064470259f2c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdf817ca_88763823",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-14T11:08:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cd1ef42_71aa8978",
+      "revId": "b808e3056a345abec3bc2ff3d7fb064470259f2c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
