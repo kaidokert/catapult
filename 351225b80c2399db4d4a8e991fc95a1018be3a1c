@@ -212,6 +212,24 @@
       "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5de0d1d4_0b6b902f",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb7679bb_ae458148",
+      "revId": "351225b80c2399db4d4a8e991fc95a1018be3a1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "207e9804_40b82939",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d97c54c_b5a86c16",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d335e53f_9d44e86b",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 12
@@ -33,6 +51,24 @@
       "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b707ad13_455c50b6",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "Done.\n\nI refactored StoryFilter such that we could have decoupling between what a StoryFilter does and the fact that our current system likes to gather all the configuration for them when it parses arguments. This means that in the future we can create story filters any way we want. This also allowed me to mock the StoryFilterFactory and have it provide a fake story filter. It also made it easy to write a new testOneStoryFilteredOneNot() test.",
+      "parentUuid": "d335e53f_9d44e86b",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "2ef80062_f75b1d2b",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "Done.\n\nStoryFilter before this changelist is being mostly configured when flags and other static configuration is passed in. It is beyond this changelist to change the fact that that is how we pull in configuration, and honestly it seems like a reasonable way for things to work.\n\nHowever, it is possible to pull the logic of StoryFilter out from the code that parses flags. That makes it more straightforward to test StoryFilter and means that two tests will not interact (so long as you configure them to skip the problematic global state storage that I moved to StoryFilterFactory).\n\nSo I did that.",
+      "parentUuid": "0f44f852_e7a14ede",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5629b7f9_4118cb6c",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 12
@@ -67,6 +121,24 @@
       "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0079be99_9e2b36e7",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "I see environment as similar to the parsed flags in that it is global configuration. There is some benefit to being able to mindlessly pass this configuration forward to the next class. So long as the configuration stays constant (none of the classes mutate it), we don\u0027t really run into any issues that I can think of. The benefit is that if we decide that we need some new configuration to be passes from Chromium to Telemetry classes, we can easily just add that configuration to ProjectConfig and then any of the classes down the line can access it without a ton of plumbing.",
+      "parentUuid": "5629b7f9_4118cb6c",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "798f4513_d84a389c",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c499696_fe9b4c29",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a496e50f_b2eff6f3",
         "filename": "telemetry/telemetry/testing/options_for_unittests.py",
         "patchSetId": 12
@@ -101,6 +191,24 @@
       "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c4736be_b477db0e",
+        "filename": "telemetry/telemetry/testing/options_for_unittests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-14T22:24:32Z",
+      "side": 1,
+      "message": "I disagree, and I explained in my response to the other comment.",
+      "parentUuid": "a496e50f_b2eff6f3",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
