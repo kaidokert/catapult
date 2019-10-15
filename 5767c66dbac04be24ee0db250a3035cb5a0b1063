@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "06c4e969_cbe2bf0d",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "You\u0027re right. The flags actually work the opposite way and filter in rather than filter out, so this is particularly confusing. Thanks! Done.",
+      "parentUuid": "6d5500e3_12652e09",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c42b0eb3_44e720bd",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 15
@@ -33,6 +51,24 @@
       "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e8e5395_c9e072eb",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "ShouldSkip returns what typ_expectations returns, which is always a string. It returns the empty string to indicate that you should run the story. https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/typ_expectations.py?sq\u003dpackage:chromium\u0026dr\u003dCSs\u0026g\u003d0\u0026l\u003d57",
+      "parentUuid": "c42b0eb3_44e720bd",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "3bee53a1_999756c4",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "Nice catch! Done.",
+      "parentUuid": "07240531_761252ef",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f87b612c_69fc764a",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 15
@@ -67,6 +121,24 @@
       "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49158035_bf96497b",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f87b612c_69fc764a",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "102f2c2e_5eb952a6",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "Good idea. Done.",
+      "parentUuid": "740700e8_dfe2831c",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b74210df_d015970e",
         "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
         "patchSetId": 15
@@ -101,6 +191,24 @@
       "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f19d3df6_9db203a2",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b74210df_d015970e",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "e77dc5f1_807fa623",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "Thank you!",
+      "parentUuid": "791761a4_af8b4dbe",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c692518f_da7bc72a",
         "filename": "telemetry/telemetry/story/story_filter_unittest.py",
         "patchSetId": 15
@@ -135,6 +261,24 @@
       "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58ef1627_df88c247",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T18:57:38Z",
+      "side": 1,
+      "message": "Done. I agree now that I tried it. Thank you!",
+      "parentUuid": "c692518f_da7bc72a",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
