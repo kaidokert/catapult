@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6756904c_a675f5ef",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T21:31:50Z",
+      "side": 1,
+      "message": "...browser type, OS name, OS version, or Chrome OS run mode.",
+      "range": {
+        "startLine": 109,
+        "startChar": 2,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f2c3fb2_7461c19f",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T21:31:50Z",
+      "side": 1,
+      "message": "nit: I added a suggestion above for merging this into the above comment.",
+      "range": {
+        "startLine": 116,
+        "startChar": 9,
+        "endLine": 117,
+        "endChar": 25
+      },
+      "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4b93f70_f13cea84",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T21:31:50Z",
+      "side": 1,
+      "message": "decorators.py is a place for generic code. We should not be adding specific special cases here for some platforms.",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 346,
+        "endChar": 65
+      },
+      "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a37206af_fcf066bd",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T21:31:50Z",
+      "side": 1,
+      "message": "Instead, you can add a platform attribute for ChromeOS here. You could potentially do it by adding a new API to possible browser for it. Something kinda like adding a new line here:\nattributes.extend(possible_browser.GetAdditionalPlatformAttributes())\n(Or maybe GetPlatformAttributes() which would by default grab browser_type, os name, and os version name)\n\nNote that you should discuss with Rakib. He is working on the new version of expectations. This is the old version of expectations. We should make sure that they do things as similarly to each other as possible.",
+      "range": {
+        "startLine": 380,
+        "startChar": 5,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
