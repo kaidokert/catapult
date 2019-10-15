@@ -277,6 +277,52 @@ class TestShouldSkip(unittest.TestCase):
                              'another_os_version_name-reference'])
     self.assertFalse(decorators.ShouldSkip(test, self.possible_browser)[0])
 
+  def testDisabledCrosStrings(self):
+    def make_fake_cri(is_local):
+      class fake_cri(object):
+        def __init__(self, local):
+          self.local = local
+      return fake_cri(is_local)
+
+    def make_fake_backend(is_local):
+      class fake_backend(object):
+        def __init__(self, local):
+          self.cri = make_fake_cri(local)
+      return fake_backend(is_local)
+
+    # Using mock.Mock doesn't seem to allow us to set _platform_backend, so make
+    # our own simple mock.
+    def make_fake_platform(is_local):
+      class fake_platform(object):
+        def __init__(self, local):
+          self._platform_backend = make_fake_backend(local)
+        def GetOSName(self):
+          return 'os_name'
+        def GetOSVersionName(self):
+          return 'os_version_name'
+      return fake_platform(is_local)
+
+    test = FakeTest()
+    self.possible_browser.platform = make_fake_platform(True)
+
+    self.assertFalse(decorators.ShouldSkip(test, self.possible_browser)[0])
+    test.SetDisabledStrings(['cros_remote'])
+    self.assertFalse(decorators.ShouldSkip(test, self.possible_browser)[0])
+    test.SetDisabledStrings(['cros_local'])
+    self.assertTrue(decorators.ShouldSkip(test, self.possible_browser)[0])
+    test.SetDisabledStrings(['cros_remote', 'cros_local'])
+    self.assertTrue(decorators.ShouldSkip(test, self.possible_browser)[0])
+
+    self.possible_browser.platform = make_fake_platform(False)
+    test.SetDisabledStrings([])
+    self.assertFalse(decorators.ShouldSkip(test, self.possible_browser)[0])
+    test.SetDisabledStrings(['cros_local'])
+    self.assertFalse(decorators.ShouldSkip(test, self.possible_browser)[0])
+    test.SetDisabledStrings(['cros_remote'])
+    self.assertTrue(decorators.ShouldSkip(test, self.possible_browser)[0])
+    test.SetDisabledStrings(['cros_local', 'cros_remote'])
+    self.assertTrue(decorators.ShouldSkip(test, self.possible_browser)[0])
+
   def testReferenceEnabledStrings(self):
     self.possible_browser.browser_type = 'reference'
     test = FakeTest()

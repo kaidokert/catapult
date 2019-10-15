@@ -112,6 +112,11 @@ def Disabled(*args):
     @Disabled('win', 'linux')  # Disabled on both Windows and Linux.
     @Disabled('mavericks')     # Disabled on Mac Mavericks (10.9) only.
     @Disabled('all')  # Unconditionally disabled.
+
+  Additionally, the test will be disabled under certain conditions on CrOS if
+  the following values are used:
+    @Disabled('cros_local')   # Disabled if running in CrOS local mode
+    @Disabled('cros_remote')  # Disabled if running in CrOS remote mode
   """
 
   def _Disabled(func):
@@ -332,6 +337,13 @@ def ShouldSkip(test, possible_browser):
     if set(disabled_strings) & set(platform_attributes):
       return (True, '%s it is disabled for %s. %s' %
               (skip, ' and '.join(disabled_strings), running))
+    # Check if we're on CrOS
+    if hasattr(possible_browser.platform._platform_backend, 'cri'):
+      is_local = possible_browser.platform._platform_backend.cri.local
+      if is_local and 'cros_local' in disabled_strings:
+        return (True, '%s it is disabled for local CrOS tests.')
+      elif not is_local and 'cros_remote' in disabled_strings:
+        return (True, '%s it is disabled for remote CrOS tests.')
 
   enabled_attr_name = EnabledAttributeName(test)
   if hasattr(test, enabled_attr_name):
