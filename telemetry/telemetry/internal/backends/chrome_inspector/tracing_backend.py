@@ -194,7 +194,7 @@ class TracingBackend(object):
     self._start_issued = False
     self._can_collect_data = True
 
-  def DumpMemory(self, timeout=None):
+  def DumpMemory(self, deterministic_mode, timeout=None):
     """Dumps memory.
 
     Args:
@@ -210,7 +210,12 @@ class TracingBackend(object):
       TracingUnexpectedResponseException: If the response contains an error
       or does not contain the expected result.
     """
-    request = {'method': 'Tracing.requestMemoryDump'}
+    request = {
+        'method': 'Tracing.requestMemoryDump',
+        'params': {
+            'deterministic' : deterministic_mode
+        }
+    }
     if timeout is None:
       timeout = 1200  # 20 minutes.
     try:

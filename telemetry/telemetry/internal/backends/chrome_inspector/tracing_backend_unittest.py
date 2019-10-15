@@ -98,7 +98,7 @@ class TracingBackendUnittest(unittest.TestCase):
         lambda req: {'result': {'success': True, 'dumpGuid': '42abc'}})
     backend = tracing_backend.TracingBackend(self._inspector_socket)
 
-    self.assertEqual(backend.DumpMemory(), '42abc')
+    self.assertEqual(backend.DumpMemory(deterministic_mode=False), '42abc')
 
   def testDumpMemoryFailure(self):
     self._inspector_socket.AddResponseHandler(
@@ -106,7 +106,28 @@ class TracingBackendUnittest(unittest.TestCase):
         lambda req: {'result': {'success': False, 'dumpGuid': '42abc'}})
     backend = tracing_backend.TracingBackend(self._inspector_socket)
 
-    self.assertIsNone(backend.DumpMemory())
+    self.assertIsNone(backend.DumpMemory(deterministic_mode=False))
+
+  def testDumpMemoryDeterministic(self):
+    def checkDeterministicOption(req):
+      self.assertTrue(req['params']['deterministic'])
+      return {'result': {'success': True, 'dumpGuid': '42abc'}}
+    self._inspector_socket.AddResponseHandler(
+        'Tracing.requestMemoryDump', checkDeterministicOption)
+    backend = tracing_backend.TracingBackend(self._inspector_socket)
+
+    self.assertEqual(backend.DumpMemory(deterministic_mode=True), '42abc')
+
+  def testDumpMemoryNotDeterministic(self):
+    def checkDeterministicOption(req):
+      self.assertFalse(req['params']['deterministic'])
+      return {'result': {'success': True, 'dumpGuid': '42abc'}}
+    self._inspector_socket.AddResponseHandler(
+        'Tracing.requestMemoryDump', checkDeterministicOption)
+    backend = tracing_backend.TracingBackend(self._inspector_socket)
+
+    self.assertEqual(backend.DumpMemory(deterministic_mode=False), '42abc')
+
 
   def testStartTracingFailure(self):
     self._inspector_socket.AddResponseHandler(
