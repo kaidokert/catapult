@@ -31,7 +31,7 @@ class BasicTestPage(page_module.Page):
 
 
 class PageTestTestCase(unittest.TestCase):
-  """A base class to simplify writing unit tests for PageTest subclasses."""
+  """DEPRECATED: Clients should migrate to LegacyPageTestCase instead."""
 
   def CreateStorySetFromFileInUnittestDataDir(self, test_filename):
     ps = self.CreateEmptyPageSet()
