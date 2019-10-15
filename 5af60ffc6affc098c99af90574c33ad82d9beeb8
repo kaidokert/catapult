@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66b1101c_e21fae2c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-15T16:48:20Z",
+      "side": 1,
+      "message": "I worry that this is liable to swallow real file-sync errors that we\u0027d normally want bubbled up. (My days w/ python-adb have taught me to never trust adb\u0027s file syncing protocol.)\n\nCan you raise the version mismatch as a different exception, or check it prior to calling Push()?",
+      "range": {
+        "startLine": 1612,
+        "startChar": 6,
+        "endLine": 1614,
+        "endChar": 12
+      },
+      "revId": "5af60ffc6affc098c99af90574c33ad82d9beeb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "512c569c_b5f03511",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-15T16:48:20Z",
+      "side": 1,
+      "message": "This comment\u0027s throwing me for a loop.\n\nThe flag is new? \"but\" it\u0027s also old? ¿Que?",
+      "range": {
+        "startLine": 510,
+        "startChar": 74,
+        "endLine": 510,
+        "endChar": 77
+      },
+      "revId": "5af60ffc6affc098c99af90574c33ad82d9beeb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
