@@ -22,6 +22,30 @@
       "revId": "dd6f66826702026415365135745be0501182759f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c36ce722_6f51999d",
+        "filename": "telemetry/telemetry/internal/results/results_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T06:43:44Z",
+      "side": 0,
+      "message": "Soon. It\u0027s still used in some weird code path in page_test_results [1], but that is also going away soon as we move things to results processor side.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003d8ea4f73b725e4846bcda63c9b02a2b11e1d53a77\u0026l\u003d151",
+      "parentUuid": "3519b940_06f5e4a9",
+      "range": {
+        "startLine": 90,
+        "startChar": 10,
+        "endLine": 90,
+        "endChar": 37
+      },
+      "revId": "dd6f66826702026415365135745be0501182759f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
