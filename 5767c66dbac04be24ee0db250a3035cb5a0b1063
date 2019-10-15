@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d5500e3_12652e09",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "nit: I always find \"filter\" confusing, are these the ones kept or discarded? I think you can make this clearer by just calling the arg \"stories_to_filter_out\".",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c42b0eb3_44e720bd",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "nit: should be \"None\" instead of empty string if no reason to skip?",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07240531_761252ef",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "nit: should be stories_to_skip\u003d[\u0027story1\u0027]; works by accident :)\n\nmaybe should add some asserts on FakeStoryFilter to make sure the args are lists?",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f87b612c_69fc764a",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "740700e8_dfe2831c",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "could you also check that story2 is the one that ran?\n\ninstead assert that len(results[\u0027testResults\u0027]) \u003d\u003d 1, and e.g. results[\u0027testResults\u0027][0][\u0027testPath\u0027].endswith(\u0027/story2\u0027)",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b74210df_d015970e",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "arg should be list",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "791761a4_af8b4dbe",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "So nice! Thanks for this.",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c692518f_da7bc72a",
+        "filename": "telemetry/telemetry/story/story_filter_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "nit: Do these really help that much? I think the code below could be more readable and self contained by just inlining these in.",
+      "revId": "5767c66dbac04be24ee0db250a3035cb5a0b1063",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

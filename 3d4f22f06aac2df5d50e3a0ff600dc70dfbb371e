@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "c139bcf0_c0a47a52",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "Nice!",
+      "parentUuid": "b707ad13_455c50b6",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f44f852_e7a14ede",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 12
@@ -107,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "5bf658c3_9e060253",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "Neat. Thanks!",
+      "parentUuid": "2ef80062_f75b1d2b",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5629b7f9_4118cb6c",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 12
@@ -136,6 +172,24 @@
       "side": 1,
       "message": "I see environment as similar to the parsed flags in that it is global configuration. There is some benefit to being able to mindlessly pass this configuration forward to the next class. So long as the configuration stays constant (none of the classes mutate it), we don\u0027t really run into any issues that I can think of. The benefit is that if we decide that we need some new configuration to be passes from Chromium to Telemetry classes, we can easily just add that configuration to ProjectConfig and then any of the classes down the line can access it without a ton of plumbing.",
       "parentUuid": "5629b7f9_4118cb6c",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b87d305_ea56224e",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "I also worry a bit about passing blobs of stuff around, it makes it harder to figure out what depends on what (i.e. why are we passing this? which bits of information are needed by which parts of the code?).\n\nBut also not a deal breaker. And as you say as long as the environment is not mutated, that should be reasonably fine.",
+      "parentUuid": "0079be99_9e2b36e7",
       "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -206,6 +260,24 @@
       "side": 1,
       "message": "I disagree, and I explained in my response to the other comment.",
       "parentUuid": "a496e50f_b2eff6f3",
+      "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10402897_7266046c",
+        "filename": "telemetry/telemetry/testing/options_for_unittests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-15T10:57:21Z",
+      "side": 1,
+      "message": "Ack. Can you just add a comment to state that we need this for the story filter to get info about expectations?",
+      "parentUuid": "7c4736be_b477db0e",
       "revId": "3d4f22f06aac2df5d50e3a0ff600dc70dfbb371e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
