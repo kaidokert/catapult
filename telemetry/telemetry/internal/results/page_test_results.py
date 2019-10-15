@@ -523,6 +523,22 @@ class PageTestResults(object):
         yield run
 
 
+def ReadIntermediateResults(intermediate_dir):
+  """Read results from an intermediate_dir into a single dict.
+
+  Used by some tests.
+  """
+  results = {'benchmarkRun': {}, 'testResults': []}
+  with open(os.path.join(intermediate_dir, TELEMETRY_RESULTS)) as f:
+    for line in f:
+      record = json.loads(line)
+      if 'benchmarkRun' in record:
+        results['benchmarkRun'].update(record['benchmarkRun'])
+      if 'testResult' in record:
+        results['testResults'].append(record['testResult'])
+  return results
+
+
 def _MeasurementToValue(story, name, unit, samples, description):
   if isinstance(samples, list):
     return list_of_scalar_values.ListOfScalarValues(
