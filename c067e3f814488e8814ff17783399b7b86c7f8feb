@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47d05664_d3c902fd",
+        "filename": "telemetry/telemetry/testing/legacy_page_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T20:28:21Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think this blank line or the other one below is necessary/useful.",
+      "revId": "c067e3f814488e8814ff17783399b7b86c7f8feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ec1b439_26a2b315",
+        "filename": "telemetry/telemetry/testing/legacy_page_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T20:28:21Z",
+      "side": 1,
+      "message": "I\u0027m not thrilled about doing file IO here, but I guess since there are only a couple clients left it is okay.",
+      "range": {
+        "startLine": 55,
+        "startChar": 35,
+        "endLine": 55,
+        "endChar": 58
+      },
+      "revId": "c067e3f814488e8814ff17783399b7b86c7f8feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a49b6d8_8e1aca9e",
+        "filename": "telemetry/telemetry/testing/page_test_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-15T20:28:21Z",
+      "side": 1,
+      "message": "Might be nice to add a TODO to remove this once you migrate clients away.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 73
+      },
+      "revId": "c067e3f814488e8814ff17783399b7b86c7f8feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
