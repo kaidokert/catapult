@@ -172,6 +172,10 @@ class Job(ndb.Model):
   # top-level, so that we can analyse these in a structured manner.
   benchmark_arguments = ndb.StructuredProperty(BenchmarkArguments)
 
+  # Indicates whether we should evaluate this job's tasks through the execution
+  # engine.
+  use_execution_engine = ndb.BooleanProperty(default=False, indexed=False)
+
   # TODO(simonhatch): After migrating all Pinpoint entities, this can be
   # removed.
   # crbug.com/971370
@@ -202,9 +206,20 @@ class Job(ndb.Model):
 
 
   @classmethod
-  def New(cls, quests, changes, arguments=None, bug_id=None,
-          comparison_mode=None, comparison_magnitude=None, gerrit_server=None,
-          gerrit_change_id=None, name=None, pin=None, tags=None, user=None):
+  def New(cls,
+          quests,
+          changes,
+          arguments=None,
+          bug_id=None,
+          comparison_mode=None,
+          comparison_magnitude=None,
+          gerrit_server=None,
+          gerrit_change_id=None,
+          name=None,
+          pin=None,
+          tags=None,
+          user=None,
+          use_execution_engine=False):
     """Creates a new Job, adds Changes to it, and puts it in the Datstore.
 
     Args:
@@ -230,13 +245,24 @@ class Job(ndb.Model):
       A Job object.
     """
     state = job_state.JobState(
-        quests, comparison_mode=comparison_mode,
-        comparison_magnitude=comparison_magnitude, pin=pin)
+        quests,
+        comparison_mode=comparison_mode,
+        comparison_magnitude=comparison_magnitude,
+        pin=pin)
     args = arguments or {}
-    job = cls(state=state, arguments=args, bug_id=bug_id,
-              comparison_mode=comparison_mode, gerrit_server=gerrit_server,
-              gerrit_change_id=gerrit_change_id,
-              name=name, tags=tags, user=user, started=False, cancelled=False)
+    job = cls(
+        state=state,
+        arguments=args,
+        bug_id=bug_id,
+        comparison_mode=comparison_mode,
+        gerrit_server=gerrit_server,
+        gerrit_change_id=gerrit_change_id,
+        name=name,
+        tags=tags,
+        user=user,
+        started=False,
+        cancelled=False,
+        use_execution_engine=use_execution_engine)
 
     for c in changes:
       job.AddChange(c)
@@ -361,6 +387,7 @@ class Job(ndb.Model):
       self.difference_count = len(self.state.Differences())
 
     try:
+      # TODO(dberris): Migrate results2 generation to tasks and evaluators.
       results2.ScheduleResults2Generation(self)
     except taskqueue.Error as e:
       logging.debug('Failed ScheduleResults2Generation: %s', str(e))
@@ -557,6 +584,9 @@ class Job(ndb.Model):
     if not options:
       return d
 
+    # FIXME: DO NOT SUBMIT -- we need to implement an evaluator which can turn
+    # the TaskGraph in to a conforming dict of the representation of a Job, so
+    # that the current UI can display the same status information.
     if OPTION_STATE in options:
       d.update(self.state.AsDict())
     if OPTION_ESTIMATE in options and not self.started:
