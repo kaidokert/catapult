@@ -321,7 +321,7 @@ class JobState(object):
           comparison_magnitude = 1.0
 
         sample_count = (len(all_a_values) + len(all_b_values)) // 2
-        comparison = compare.Compare(values_a, values_b, sample_count,
+        comparison = compare.Compare(all_a_values, all_b_values, sample_count,
                                      PERFORMANCE, comparison_magnitude)
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
