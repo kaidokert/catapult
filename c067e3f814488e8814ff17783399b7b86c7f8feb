@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aac90df7_c54667c7",
+        "filename": "telemetry/telemetry/testing/legacy_page_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-16T09:28:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47d05664_d3c902fd",
+      "revId": "c067e3f814488e8814ff17783399b7b86c7f8feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ec1b439_26a2b315",
         "filename": "telemetry/telemetry/testing/legacy_page_test_case.py",
         "patchSetId": 4
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "e7a0ec79_959379f6",
+        "filename": "telemetry/telemetry/testing/legacy_page_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-16T09:28:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0ec1b439_26a2b315",
+      "range": {
+        "startLine": 55,
+        "startChar": 35,
+        "endLine": 55,
+        "endChar": 58
+      },
+      "revId": "c067e3f814488e8814ff17783399b7b86c7f8feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a49b6d8_8e1aca9e",
         "filename": "telemetry/telemetry/testing/page_test_test_case.py",
         "patchSetId": 4
@@ -53,6 +95,30 @@
       "writtenOn": "2019-10-15T20:28:21Z",
       "side": 1,
       "message": "Might be nice to add a TODO to remove this once you migrate clients away.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 73
+      },
+      "revId": "c067e3f814488e8814ff17783399b7b86c7f8feb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b834925c_fbf3e06a",
+        "filename": "telemetry/telemetry/testing/page_test_test_case.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-16T09:28:25Z",
+      "side": 1,
+      "message": "Done. Added a TODO to remove the entire file.",
+      "parentUuid": "3a49b6d8_8e1aca9e",
       "range": {
         "startLine": 34,
         "startChar": 0,
