@@ -379,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "eafe5155_f108888c",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-16T18:27:41Z",
+      "side": 1,
+      "message": "sg feel free to just review that one then, doubt there\u0027s much I want to add to it",
+      "parentUuid": "1ff3fe55_a3d739f3",
+      "range": {
+        "startLine": 151,
+        "startChar": 37,
+        "endLine": 151,
+        "endChar": 48
+      },
+      "revId": "d5a8427c8feecc8835ee4f6d4b3e70066eb79c79",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03264a3d_d488b474",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
