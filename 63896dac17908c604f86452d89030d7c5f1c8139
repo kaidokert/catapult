@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "f666ea41_b6f1864b",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-16T21:58:37Z",
+      "side": 1,
+      "message": "By returning the cros-local or cros-remote tag through the chromeos platform backend\u0027s GetTypExpectationsTags method, and then adding these tags in the _PlatformAttributes instance, this should allow us to skip the test without adding this block of code.",
+      "parentUuid": "b4b93f70_f13cea84",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 346,
+        "endChar": 65
+      },
+      "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a37206af_fcf066bd",
         "filename": "telemetry/telemetry/decorators.py",
         "patchSetId": 1
