@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "08baf2eb_db6d0f00",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-16T00:37:44Z",
+      "side": 1,
+      "message": "Sure. Switched to a new exception type.",
+      "parentUuid": "66b1101c_e21fae2c",
+      "range": {
+        "startLine": 1612,
+        "startChar": 6,
+        "endLine": 1614,
+        "endChar": 12
+      },
+      "revId": "5af60ffc6affc098c99af90574c33ad82d9beeb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "512c569c_b5f03511",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-10-15T16:48:20Z",
       "side": 1,
       "message": "This comment\u0027s throwing me for a loop.\n\nThe flag is new? \"but\" it\u0027s also old? ¿Que?",
+      "range": {
+        "startLine": 510,
+        "startChar": 74,
+        "endLine": 510,
+        "endChar": 77
+      },
+      "revId": "5af60ffc6affc098c99af90574c33ad82d9beeb8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dc4cd0a_06474a31",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-16T00:37:44Z",
+      "side": 1,
+      "message": "It\u0027s recent -- looks like support landed in 2017 -- and I\u0027m not exactly sure how far back it goes, but I verified that it exists at least as far back as 1.0.39.\n\nRephrasing the comment accordingly.",
+      "parentUuid": "512c569c_b5f03511",
       "range": {
         "startLine": 510,
         "startChar": 74,
