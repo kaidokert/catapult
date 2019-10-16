@@ -91,6 +91,30 @@
       "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b0652ed_ee1036e9",
+        "filename": "telemetry/telemetry/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-16T21:51:03Z",
+      "side": 1,
+      "message": "There is a method in the possible browser API which I created which gets tags for browser_type, OS name and OS Version Name at the very least. This function is called GetTypExpectationsTags, which can be found at the following link.\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/possible_browser.py?rcl\u003dc9f13b8d903d5e9c704209980bfd8fa85b4b226b\u0026l\u003d128\n\nUsing this function sounds like the right way to go, I am planning on standardizing the specifiers used in telemetry by using specifiers from a predefined set of specifiers. The set of specifiers that I want telemetry to only understand can be found in typ_expectations.SYSTEM_CONDITION_TAGS, which can be found in the link below. \nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/typ_expectations.py?rcl\u003dc9f13b8d903d5e9c704209980bfd8fa85b4b226b\u0026l\u003d25\n\nCan you use the specifiers from the set I mentioned above for the decorator specifiers.\n\nAlso note that in ChromeOS\u0027s implementation of GetTypExpectationsTags, which you can find at https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/cros_platform_backend.py?rcl\u003dc9f13b8d903d5e9c704209980bfd8fa85b4b226b\u0026l\u003d132, you can add the chromeos-remote or chromeos-local tag. Also after adding any new tags please add them to the set I mention above.",
+      "parentUuid": "a37206af_fcf066bd",
+      "range": {
+        "startLine": 380,
+        "startChar": 5,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "63896dac17908c604f86452d89030d7c5f1c8139",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
