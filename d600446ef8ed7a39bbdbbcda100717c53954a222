@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3263ac23_5d54f5c5",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-16T00:46:44Z",
+      "side": 1,
+      "message": "s/AdbCommandFailedError/AdbVersionError/",
+      "range": {
+        "startLine": 463,
+        "startChar": 6,
+        "endLine": 463,
+        "endChar": 27
+      },
+      "revId": "d600446ef8ed7a39bbdbbcda100717c53954a222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
