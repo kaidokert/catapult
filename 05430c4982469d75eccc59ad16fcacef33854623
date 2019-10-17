@@ -22,6 +22,30 @@
       "revId": "05430c4982469d75eccc59ad16fcacef33854623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa8916ec_09b8c3ef",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-10-17T18:21:25Z",
+      "side": 1,
+      "message": "There is no expectations.config in Telemetry itself. It\u0027s in tools/perf. Additionally, I don\u0027t know if keeping it in sync is applicable since we\u0027re using the decorators instead of the expectations file for this.",
+      "parentUuid": "ab12fb7c_bc7b64aa",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "05430c4982469d75eccc59ad16fcacef33854623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
