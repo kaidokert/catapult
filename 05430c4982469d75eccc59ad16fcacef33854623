@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab12fb7c_bc7b64aa",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-17T18:10:49Z",
+      "side": 1,
+      "message": "this should have been added to expectations.config",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "05430c4982469d75eccc59ad16fcacef33854623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
