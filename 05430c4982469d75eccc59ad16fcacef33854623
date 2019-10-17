@@ -70,6 +70,30 @@
       "revId": "05430c4982469d75eccc59ad16fcacef33854623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a1096f4_3e39756f",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-10-17T20:00:08Z",
+      "side": 1,
+      "message": "@bsheedy They should be added to expectations.config. We try to keep to keep this list in sync with the specifiers in the heading of expectations.config. I will add them.",
+      "parentUuid": "b6948648_cf84772f",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "05430c4982469d75eccc59ad16fcacef33854623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
