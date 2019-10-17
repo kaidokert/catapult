@@ -46,6 +46,30 @@
       "revId": "05430c4982469d75eccc59ad16fcacef33854623",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6948648_cf84772f",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-17T18:24:43Z",
+      "side": 1,
+      "message": "Ah yeah, forgot it\u0027s in a different repo now.\n\nWe should still add them to src/tools/perf/expectations.config\u0027s header as now they are available for use in expectations.config. But obviously it can be done in a separate CL.",
+      "parentUuid": "fa8916ec_09b8c3ef",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 24,
+        "endChar": 35
+      },
+      "revId": "05430c4982469d75eccc59ad16fcacef33854623",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
