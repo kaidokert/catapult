@@ -29,6 +29,10 @@ class StoryTest(unittest.TestCase):
     s = StoryFoo('Bar')
     self.assertEquals('Bar', s.name)
 
+  def testStoryName_NoCommas(self):
+    with self.assertRaises(AssertionError):
+      StoryFoo('B,ar')
+
   def testStoryFileSafeName(self):
     s = StoryFoo('Foo Bar:Baz~0')
     self.assertEquals('Foo_Bar_Baz_0', s.file_safe_name)
