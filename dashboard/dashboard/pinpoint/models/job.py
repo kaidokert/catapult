@@ -27,6 +27,9 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
 from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import timing_record
+from dashboard.pinpoint.models import task as task_module
+from dashboard.pinpoint.models import event as event_module
+from dashboard.pinpoint.models.evaluators import job_serializer
 from dashboard.services import gerrit_service
 from dashboard.services import issue_tracker_service
 
@@ -558,7 +561,15 @@ class Job(ndb.Model):
       return d
 
     if OPTION_STATE in options:
+      # TODO(dberris): Avoid doing this if the job was executed with the
+      # execution engine.
       d.update(self.state.AsDict())
+      d.update(
+          task_module.Evaluate(
+              self,
+              event_module.Event(
+                  type='serialize', target_task=None, payload={}),
+              job_serializer.Evaluator()) or {})
     if OPTION_ESTIMATE in options and not self.started:
       d.update(self._GetRunTimeEstimate())
     if OPTION_TAGS in options:
