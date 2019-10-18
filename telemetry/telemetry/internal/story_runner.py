@@ -287,7 +287,6 @@ def RunStorySet(test, story_set, finder_options, results, max_failures=None,
       stories = [story for story in stories if tag_filter in story.tags]
 
   state = None
-  device_info_diags = {}
   # TODO(crbug.com/866458): unwind the nested blocks
   # pylint: disable=too-many-nested-blocks
   try:
@@ -329,8 +328,6 @@ def RunStorySet(test, story_set, finder_options, results, max_failures=None,
             msg = 'Too many values: %d > %d' % (num_values, max_num_values)
             logging.error(msg)
             results.Fail(msg)
-
-          device_info_diags = _MakeDeviceInfoDiagnostics(state)
         except _UNHANDLEABLE_ERRORS as exc:
           interruption = (
               'Benchmark execution interrupted by a fatal exception: %r' % exc)
@@ -367,7 +364,6 @@ def RunStorySet(test, story_set, finder_options, results, max_failures=None,
   finally:
     results_processor.ComputeTimelineBasedMetrics(results)
     results.PopulateHistogramSet()
-    results.AddSharedDiagnostics(**device_info_diags)
 
     if state:
       has_existing_exception = sys.exc_info() != (None, None, None)
@@ -433,6 +429,19 @@ def RunBenchmark(benchmark, finder_options):
         raise Exception(
             'PageTest must be used with StorySet containing only '
             'telemetry.page.Page stories.')
+
+    state = story_set.shared_state_class(
+        test, finder_options.Copy(), story_set, possible_browser)
+    results.AddSharedDiagnostics(
+        architecture=state.platform.GetArchName(),
+        device_id=state.platform.GetDeviceId(),
+        os_name=state.platform.GetOSName(),
+        os_version=state.platform.GetOSVersionName(),
+        owners=benchmark.GetOwners(),
+        bug_components=benchmark.GetBugComponents(),
+        documentation_urls=benchmark.GetDocumentationLinks(),
+    )
+
     try:
       RunStorySet(
           test, story_set, finder_options, results, benchmark.max_failures,
@@ -450,14 +459,6 @@ def RunBenchmark(benchmark, finder_options):
       results.InterruptBenchmark(interruption)
       exception_formatter.PrintFormattedException()
       return_code = 2
-
-    # TODO(crbug.com/981349): merge two calls to AddSharedDiagnostics
-    # (see RunStorySet() method for the second one).
-    results.AddSharedDiagnostics(
-        owners=benchmark.GetOwners(),
-        bug_components=benchmark.GetBugComponents(),
-        documentation_urls=benchmark.GetDocumentationLinks(),
-    )
 
     if finder_options.upload_results:
       results_processor.UploadArtifactsToCloud(results)
@@ -548,17 +549,3 @@ def _CheckThermalThrottling(platform):
   if platform.HasBeenThermallyThrottled():
     logging.warning('Device has been thermally throttled during '
                     'performance tests, results will vary.')
-
-def _MakeDeviceInfoDiagnostics(state):
-  if not state or not state.platform:
-    return {}
-
-  # This used to include data for reserved_infos.MEMORY_AMOUNTS, but it was
-  # found that platform.GetSystemTotalPhysicalMemory() does not give
-  # consistent results. See crbug.com/854676 for details.
-  return {
-      'architecture': state.platform.GetArchName(),
-      'device_id': state.platform.GetDeviceId(),
-      'os_name': state.platform.GetOSName(),
-      'os_version': state.platform.GetOSVersionName(),
-  }

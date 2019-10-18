@@ -27,8 +27,12 @@ from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import generic_set
 
 
+# TODO(crbug.com/981349): Stop writing telemetry results when Results Processor
+# switches to reading intermediate results file.
 TELEMETRY_RESULTS = '_telemetry_results.jsonl'
+TEST_RESULTS = '_test_results.jsonl'
 HISTOGRAM_DICTS_NAME = 'histogram_dicts.json'
+DIAGNOSTICS_NAME = 'diagnostics.json'
 
 
 class PageTestResults(object):
@@ -89,12 +93,15 @@ class PageTestResults(object):
     # If the object has been finalized, no more results can be added to it.
     self._finalized = False
     self._start_time = time.time()
+    self._telemetry_results_stream = None
     self._results_stream = None
     if self._intermediate_dir is not None:
       if not os.path.exists(self._intermediate_dir):
         os.makedirs(self._intermediate_dir)
-      self._results_stream = open(
+      self._telemetry_results_stream = open(
           os.path.join(self._intermediate_dir, TELEMETRY_RESULTS), 'w')
+      self._results_stream = open(
+          os.path.join(self._intermediate_dir, TEST_RESULTS), 'w')
       self._RecordBenchmarkStart()
 
   @property
@@ -228,15 +235,20 @@ class PageTestResults(object):
     """Whether there were any story runs."""
     return not self._all_story_runs
 
-  def _WriteJsonLine(self, data, close=False):
-    if self._results_stream is not None:
+  def _WriteJsonLine(self, data, close=False, new_format=False):
+    if new_format:
+      stream = self._results_stream
+    else:
+      stream = self._telemetry_results_stream
+
+    if stream is not None:
       # Use a compact encoding and sort keys to get deterministic outputs.
-      self._results_stream.write(
+      stream.write(
           json.dumps(data, sort_keys=True, separators=(',', ':')) + '\n')
       if close:
-        self._results_stream.close()
+        stream.close()
       else:
-        self._results_stream.flush()
+        stream.flush()
 
   def _RecordBenchmarkStart(self):
     self._WriteJsonLine({
@@ -274,6 +286,8 @@ class PageTestResults(object):
     self._current_story_run = story_run.StoryRun(
         page, test_prefix=self.benchmark_name, index=story_run_index,
         intermediate_dir=self._intermediate_dir)
+    with self.CreateArtifact(DIAGNOSTICS_NAME) as f:
+      json.dump({'diagnostics': self._diagnostics}, f, indent=4)
     self._progress_reporter.WillRunStory(self)
 
   def DidRunPage(self, page):  # pylint: disable=unused-argument
@@ -410,7 +424,6 @@ class PageTestResults(object):
     ]
 
     for name, value in _WrapDiagnostics(diag_values):
-      self._histograms.AddSharedDiagnosticToAllHistograms(name, value)
       # Results Processor supports only GenericSet diagnostics for now.
       assert isinstance(value, generic_set.GenericSet)
       self._diagnostics[name] = list(value)
@@ -505,6 +518,9 @@ class PageTestResults(object):
     # upload are handled by results_processor, remove the for-loop from here
     # and write results instead at the end of each story run.
     for run in self._all_story_runs:
+      self._WriteJsonLine(run.AsDict(), new_format=True)
+      # TODO(crbug.com/981349): Remove the old format after Results Processor
+      # reads the new one.
       self._WriteJsonLine(run.AsDict())
     self._RecordBenchmarkFinish()
 
