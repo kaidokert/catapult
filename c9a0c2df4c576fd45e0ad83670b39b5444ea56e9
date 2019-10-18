@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2870fb1_5cbf46f4",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-18T23:03:51Z",
+      "side": 1,
+      "message": "I think you need *_ and **__ so that you catch kwargs as well. I think the style guide prefers this way though:\n\ndef RunPage(self, *args, **kwargs):\n  del args, kwargs",
+      "range": {
+        "startLine": 313,
+        "startChar": 20,
+        "endLine": 313,
+        "endChar": 22
+      },
+      "revId": "c9a0c2df4c576fd45e0ad83670b39b5444ea56e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
