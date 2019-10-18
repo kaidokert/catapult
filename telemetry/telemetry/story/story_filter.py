@@ -63,7 +63,8 @@ class StoryFilterFactory(object):
         expectations, abridged_story_set_tag, cls._story_filter,
         cls._story_filter_exclude,
         cls._story_tag_filter, cls._story_tag_filter_exclude,
-        cls._shard_begin_index, cls._shard_end_index, cls._run_disabled_stories)
+        cls._shard_begin_index, cls._shard_end_index, cls._run_disabled_stories,
+        stories=cls._stories)
 
   @classmethod
   def AddCommandLineArgs(cls, parser):
@@ -105,6 +106,13 @@ class StoryFilterFactory(object):
         'of an abridged version. Note that if the story set '
         'does not provide the information required to abridge it, '
         'then this argument will have no impact.')
+    group.add_option(
+        '--stories',
+        help='A list of names of stories to run. These strings should be '
+        'the exact values as stored in the name attribute of a story object. '
+        'These names do not include the benchmark name. These names are '
+        'delimited using commas. The stories flag overrides other story '
+        'selection flags.')
     parser.add_option_group(group)
 
   @classmethod
@@ -114,6 +122,21 @@ class StoryFilterFactory(object):
     cls._story_filter_exclude = args.story_filter_exclude
     cls._story_tag_filter = args.story_tag_filter
     cls._story_tag_filter_exclude = args.story_tag_filter_exclude
+    cls._stories = None
+    if args.stories:
+      cls._stories = args.stories.split(',')
+      assert args.story_shard_begin_index is None, (
+          '--stories and --story-shard-begin-index are mutually exclusive.')
+      assert args.story_shard_end_index is None, (
+          '--stories and --story-shard-end-index are mutually exclusive.')
+      assert args.story_filter is None, (
+          '--stories and --story-filter are mutually exclusive.')
+      assert args.story_filter_exclude is None, (
+          '--stories and --story-filter-exclude are mutually exclusive.')
+      assert args.story_tag_filter is None, (
+          '--stories and --story-tag-filter are mutually exclusive.')
+      assert args.story_tag_filter_exclude is None, (
+          '--stories and --story-tag-filter-exclude are mutually exclusive.')
     cls._shard_begin_index = args.story_shard_begin_index or 0
     cls._shard_end_index = args.story_shard_end_index
     if environment and environment.expectations_files:
@@ -132,7 +155,8 @@ class StoryFilter(object):
       self, expectations=None, abridged_story_set_tag=None, story_filter=None,
       story_filter_exclude=None,
       story_tag_filter=None, story_tag_filter_exclude=None,
-      shard_begin_index=0, shard_end_index=None, run_disabled_stories=False):
+      shard_begin_index=0, shard_end_index=None, run_disabled_stories=False,
+      stories=None):
     self._expectations = expectations
     self._include_regex = _StoryMatcher(story_filter)
     self._exclude_regex = _StoryMatcher(story_filter_exclude)
@@ -151,6 +175,9 @@ class StoryFilter(object):
             'shard end index cannot be less than or equal to shard begin index')
     self._run_disabled_stories = run_disabled_stories
     self._abridged_story_set_tag = abridged_story_set_tag
+    if stories:
+      assert isinstance(stories, list)
+    self._stories = stories
 
   def FilterStories(self, stories):
     """Filters the given stories, using filters provided in the command line.
@@ -166,8 +193,13 @@ class StoryFilter(object):
     Returns:
       A list of remaining stories.
     """
-    # TODO(crbug.com/982027): Support for --story=<exact story name>
-    # should be implemented here.
+    if self._stories:
+      output_stories = []
+      for story in stories:
+        if story.name in self._stories:
+          output_stories.append(story)
+      return output_stories
+
     if self._shard_begin_index < 0:
       self._shard_begin_index = 0
     if self._shard_end_index is None:
@@ -209,9 +241,13 @@ class StoryFilter(object):
       A skip reason string if the story should be skipped, otherwise an
       empty string.
     """
-    # TODO(crbug.com/982027): Support for --story=<exact story name>
-    # should be implemented here.
     disabled = self._expectations.IsStoryDisabled(story)
+    if self._stories:
+      if story.name in self._stories:
+        logging.warn('Running story %s even though it is disabled because '
+                     'it was specifically asked for by name in the --stories '
+                     'flag.', story.name)
+        return ''
     if disabled and self._run_disabled_stories:
       logging.warning(
           'Force running a disabled story %s even though it was disabled with '
