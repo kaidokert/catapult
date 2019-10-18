@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5deaaa57_c803c255",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-18T14:41:42Z",
+      "side": 1,
+      "message": "nit: maybe \u0027_test_results.jsonl\u0027 ?\n\nAlso, instead of writing the two files, we can make results processor read from the new name if found, otherwise read from the old name. And just make the format compatible throughout the transition period:\n\n1. Add extra metadata/diagnostics per test result, keep writing benchmarkRun records.\n2. On results processor, start reading the data per test result, ignore benchmarkRun records.\n3. Stop emitting the benchmarkRun records.",
+      "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "922ce571_9fbf90a3",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-18T14:41:42Z",
+      "side": 1,
+      "message": "Can we fix this first? Doesn\u0027t sound too hard, and we could also take the chance to finally fix\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?rcl\u003dc98b1ee7e410b2fb2f7dc9e2eb01804cf7c94fcb\u0026l\u003d454",
+      "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9041ee91_02989527",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-18T14:41:42Z",
+      "side": 1,
+      "message": "I have some thoughts about these:\n- startTime: not needed; just report the time from the first story run. Not exactly the same, but shouldn\u0027t matter much either.\n- benchmarkInterrupted: not needed; just report True if there were any unexpected SKIPs.\n\nSo really all we need are diagnostics. And we can put those in a diagnostics.json artifact. What do think?",
+      "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
