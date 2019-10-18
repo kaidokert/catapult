@@ -27,8 +27,12 @@ from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import generic_set
 
 
+# TODO(crbug.com/981349): Stop writing telemetry results when Results Processor
+# switches to reading intermediate results file.
 TELEMETRY_RESULTS = '_telemetry_results.jsonl'
+INTERMEDIATE_RESULTS = '_intermediate_results.jsonl'
 HISTOGRAM_DICTS_NAME = 'histogram_dicts.json'
+METADATA_NAME = 'metadata.json'
 
 
 class PageTestResults(object):
@@ -89,12 +93,15 @@ class PageTestResults(object):
     # If the object has been finalized, no more results can be added to it.
     self._finalized = False
     self._start_time = time.time()
+    self._telemetry_results_stream = None
     self._results_stream = None
     if self._intermediate_dir is not None:
       if not os.path.exists(self._intermediate_dir):
         os.makedirs(self._intermediate_dir)
-      self._results_stream = open(
+      self._telemetry_results_stream = open(
           os.path.join(self._intermediate_dir, TELEMETRY_RESULTS), 'w')
+      self._results_stream = open(
+          os.path.join(self._intermediate_dir, INTERMEDIATE_RESULTS), 'w')
       self._RecordBenchmarkStart()
 
   @property
@@ -228,15 +235,20 @@ class PageTestResults(object):
     """Whether there were any story runs."""
     return not self._all_story_runs
 
-  def _WriteJsonLine(self, data, close=False):
-    if self._results_stream is not None:
+  def _WriteJsonLine(self, data, close=False, new_format=False):
+    if new_format:
+      stream = self._results_stream
+    else:
+      stream = self._telemetry_results_stream
+
+    if stream is not None:
       # Use a compact encoding and sort keys to get deterministic outputs.
-      self._results_stream.write(
+      stream.write(
           json.dumps(data, sort_keys=True, separators=(',', ':')) + '\n')
       if close:
-        self._results_stream.close()
+        stream.close()
       else:
-        self._results_stream.flush()
+        stream.flush()
 
   def _RecordBenchmarkStart(self):
     self._WriteJsonLine({
@@ -497,16 +509,33 @@ class PageTestResults(object):
     # implemented in Results Processor.
     results_processor.SerializeAndUploadHtmlTraces(self)
 
-    # TODO(crbug.com/981349): Ideally we want to write results for each story
-    # run individually at DidRunPage when the story finished executing. For
-    # now, however, we need to wait until this point after html traces have
-    # been serialized, uploaded, and recorded as artifacts for them to show up
-    # in intermediate results. When both trace serialization and artifact
-    # upload are handled by results_processor, remove the for-loop from here
-    # and write results instead at the end of each story run.
+    # TODO(crbug.com/981349): Remove the old format after Results Processor
+    # reads the new one.
     for run in self._all_story_runs:
       self._WriteJsonLine(run.AsDict())
     self._RecordBenchmarkFinish()
+
+    # We have to write all test results in the end, because of 2 reasons:
+    # 1) We wait until html traces are serialized and recorded as artifacts.
+    # 2) We wait until all diagnostics are recorded.
+    # When both trace serialization and artifact upload are handled by
+    # results_processor, (1) will no longer be an issue.
+    # (2) is trickier though. Diagnostics are set by story_runner after all
+    # measurements have been done in order to propagate them to all histograms.
+    # So when Telemetry doesn't produce histograms anymore we'll be able to
+    # set diagnostics in the beginning. And then we can start writing test
+    # results one by one.
+    # TODO(crbug.com/981349): Don't forget about it.
+    for run in self._all_story_runs:
+      with run.CreateArtifact(METADATA_NAME) as f:
+        json.dump({'metadata': {
+            'startTime': self.start_datetime.isoformat() + 'Z',
+            'benchmarkInterrupted': self.benchmark_interrupted,
+            'diagnostics': self._diagnostics,
+        }}, f, indent=4)
+    for run in self._all_story_runs:
+      self._WriteJsonLine(run.AsDict(), new_format=True)
+
 
     for output_formatter in self._output_formatters:
       output_formatter.Format(self)
