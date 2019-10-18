@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "210d3049_fe596260",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-18T16:26:02Z",
+      "side": 1,
+      "message": "chatted offline, let\u0027s try to avoid writing the two files",
+      "revId": "2e95624e4549d4f56c64bfa20edda7a2d124c0a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50361d0c_8ab2374f",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-18T16:26:02Z",
+      "side": 1,
+      "message": "I think here you should be able to do possible_browser.platform and avoid creating the state.",
+      "revId": "2e95624e4549d4f56c64bfa20edda7a2d124c0a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
