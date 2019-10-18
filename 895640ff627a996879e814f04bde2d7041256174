@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3411db7d_78b01c7a",
+        "filename": "telemetry/telemetry/internal/story_runner_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-18T08:54:26Z",
+      "side": 1,
+      "message": "nit: can you use keyword args so we know what that \"None\" is passes as the value for?",
+      "revId": "895640ff627a996879e814f04bde2d7041256174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
