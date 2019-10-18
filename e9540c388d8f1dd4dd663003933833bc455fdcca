@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4cf7a5ec_cf5fd626",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-18T16:01:08Z",
+      "side": 1,
+      "message": "Agree on file renaming.\n\nAs for the keeping of format compatibility, I think the best general approach is to keep different formats separate in different files from the start, to avoid problems reading test results recorded during the transition period.",
+      "parentUuid": "5deaaa57_c803c255",
+      "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "922ce571_9fbf90a3",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "33ec4ebe_e780aaea",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-18T16:01:08Z",
+      "side": 1,
+      "message": "Yeah, thank you!\n\nI didn\u0027t realize it\u0027s actually possible to fix this right now.",
+      "parentUuid": "922ce571_9fbf90a3",
+      "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9041ee91_02989527",
         "filename": "telemetry/telemetry/internal/results/page_test_results.py",
         "patchSetId": 4
@@ -50,6 +86,24 @@
       "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04e65629_e6e218ac",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-18T16:01:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9041ee91_02989527",
+      "revId": "e9540c388d8f1dd4dd663003933833bc455fdcca",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
