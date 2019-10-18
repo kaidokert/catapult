@@ -74,7 +74,7 @@ class PageTestResultsTest(unittest.TestCase):
 
   def GetResultRecords(self):
     results_file = os.path.join(
-        self.intermediate_dir, page_test_results.TELEMETRY_RESULTS)
+        self.intermediate_dir, page_test_results.INTERMEDIATE_RESULTS)
     with open(results_file) as f:
       return [json.loads(line) for line in f]
 
@@ -377,7 +377,7 @@ class PageTestResultsTest(unittest.TestCase):
     self.assertItemsEqual(hist.diagnostics[reserved_infos.BENCHMARKS.name],
                           ['benchmark_name'])
 
-  def testBeginFinishBenchmarkRecords(self):
+  def testMetadataAsArtifact(self):
     self.mock_time.side_effect = [1234567890.987]
     with self.CreateResults(benchmark_name='some benchmark',
                             benchmark_description='a description') as results:
@@ -396,33 +396,32 @@ class PageTestResultsTest(unittest.TestCase):
       )
 
     records = self.GetResultRecords()
-    self.assertEqual(len(records), 4)  # Start, Result, Result, Finish.
-    self.assertEqual(records[0], {
-        'benchmarkRun': {
-            'startTime': '2009-02-13T23:31:30.987000Z',
-        }
-    })
-    self.assertEqual(records[1]['testResult']['status'], 'PASS')
-    self.assertEqual(records[2]['testResult']['status'], 'PASS')
-    self.assertEqual(records[3], {
-        'benchmarkRun': {
-            'finalized': True,
-            'interrupted': False,
-            'diagnostics': {
-                'benchmarks': ['some benchmark'],
-                'benchmarkDescriptions': ['a description'],
-                'owners': ['test'],
-                'bugComponents': ['1', '2'],
-                'documentationLinks': [['documentation', 'url']],
-                'architectures': ['arch'],
-                'deviceIds': ['id'],
-                'osNames': ['os'],
-                'osVersions': ['ver'],
-            },
-        },
-    })
+    self.assertEqual(len(records), 2)
+    for record in records:
+      self.assertEqual(record['testResult']['status'], 'PASS')
+      artifacts = record['testResult']['outputArtifacts']
+      self.assertIn(page_test_results.METADATA_NAME, artifacts)
+      with open(artifacts[page_test_results.METADATA_NAME]['filePath']) as f:
+        metadata = json.load(f)
+      self.assertEqual(metadata, {
+          'metadata': {
+              'startTime': '2009-02-13T23:31:30.987000Z',
+              'benchmarkInterrupted': False,
+              'diagnostics': {
+                  'benchmarks': ['some benchmark'],
+                  'benchmarkDescriptions': ['a description'],
+                  'owners': ['test'],
+                  'bugComponents': ['1', '2'],
+                  'documentationLinks': [['documentation', 'url']],
+                  'architectures': ['arch'],
+                  'deviceIds': ['id'],
+                  'osNames': ['os'],
+                  'osVersions': ['ver'],
+              },
+          },
+      })
 
-  def testBeginFinishBenchmarkRecords_interrupted(self):
+  def testMetadataAsArtifact_interrupted(self):
     self.mock_time.side_effect = [1234567890.987]
     with self.CreateResults(benchmark_name='some benchmark',
                             benchmark_description='a description') as results:
@@ -432,17 +431,16 @@ class PageTestResultsTest(unittest.TestCase):
       results.InterruptBenchmark('some reason')
 
     records = self.GetResultRecords()
-    self.assertEqual(len(records), 3)  # Start, Result, Finish.
-    self.assertEqual(records[0], {
-        'benchmarkRun': {
+    self.assertEqual(len(records), 1)  # Start, Result, Finish.
+    self.assertEqual(records[0]['testResult']['status'], 'FAIL')
+    artifacts = records[0]['testResult']['outputArtifacts']
+    self.assertIn(page_test_results.METADATA_NAME, artifacts)
+    with open(artifacts[page_test_results.METADATA_NAME]['filePath']) as f:
+      metadata = json.load(f)
+    self.assertEqual(metadata, {
+        'metadata': {
             'startTime': '2009-02-13T23:31:30.987000Z',
-        }
-    })
-    self.assertEqual(records[1]['testResult']['status'], 'FAIL')
-    self.assertEqual(records[2], {
-        'benchmarkRun': {
-            'finalized': True,
-            'interrupted': True,
+            'benchmarkInterrupted': True,
             'diagnostics': {
                 'benchmarks': ['some benchmark'],
                 'benchmarkDescriptions': ['a description'],
@@ -473,9 +471,9 @@ class PageTestResultsTest(unittest.TestCase):
         any_order=True)
 
     # Assert that the path is now the cloud storage path
-    for run in results.IterStoryRuns():
-      for artifact in run.IterArtifacts():
-        self.assertEqual(cs_path_name, artifact.url)
+    runs = list(results.IterStoryRuns())
+    self.assertEqual(cs_path_name, runs[0].GetArtifact('screenshot.png').url)
+    self.assertEqual(cs_path_name, runs[1].GetArtifact('log.txt').url)
 
   @mock.patch('py_utils.cloud_storage.Insert')
   def testUploadArtifactsToCloud_withNoOpArtifact(self, _):
