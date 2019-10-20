@@ -6,7 +6,10 @@ import argparse
 import json
 import os
 import sys
-import urlparse
+if (sys.version[0] == '2'):
+  import urlparse
+else:
+  from urllib.parse import urljoin
 
 from hooks import install
 
@@ -246,14 +249,20 @@ class DevServerApp(webapp2.WSGIApplication):
         continue
       rel = os.path.relpath(filename, source_path)
       unix_rel = _RelPathToUnixPath(rel)
-      url = urlparse.urljoin(mapped_path, unix_rel)
+      if (sys.version[0] == '2'):
+        url = urlparse.urljoin(mapped_path, unix_rel)
+      else:
+        url = urljoin(mapped_path, unix_rel)
       return url
 
     path = SourcePathsHandler.GetServingPathForAbsFilename(
         self._all_source_paths, filename)
     if path is None:
       return None
-    return urlparse.urljoin('/', path)
+    if (sys.version[0] == '2'):
+      return urlparse.urljoin('/', path)
+    else:
+      return urljoin('/', path)
 
 
 def _AddPleaseExitMixinToServer(server):

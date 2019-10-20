@@ -18,12 +18,25 @@ import re
 import sys
 import threading
 import traceback
-import urllib
-import urlparse
+
+if (sys.version[0] == '2'):
+  import urllib
+  import urlparse
+else:
+  from urllib.parse import urljoin
+  from urllib.parse import urlencode
+  from urllib.parse import quote
+  from urllib.parse import unquote
+  from urllib.parse import urlunsplit
 from wsgiref import handlers
 
 import webob
 from webob import exc
+
+## Python 3 compatibilit tool
+if (sys.version[0] == '3'):
+    from past.builtins import basestring
+    from past.builtins import long
 
 _webapp = _webapp_util = _local = None
 
@@ -105,11 +118,17 @@ _webapp_status_reasons = {
     505: 'HTTP Version not supported',
 }
 status_reasons.update(_webapp_status_reasons)
-for code, message in _webapp_status_reasons.iteritems():
-    cls = exc.status_map.get(code)
-    if cls:
-        cls.title = message
-
+if (sys.version[0] == '2'):
+    for code, message in _webapp_status_reasons.items():
+        cls = exc.status_map.get(code)
+        if cls:
+            cls.title = message
+else:
+    #compatible with Py2 but inefficient
+    for code, message in _webapp_status_reasons.items():
+        cls = exc.status_map.get(code)
+        if cls:
+            cls.title = message
 
 class Request(webob.Request):
     """Abstraction for an HTTP request.
@@ -278,7 +297,10 @@ class Request(webob.Request):
             if hasattr(data, 'items'):
                 data = data.items()
             if not isinstance(data, str):
-                data = urllib.urlencode(data)
+                if (sys.version[0] == '2'):
+                    data = urllib.urlencode(data)
+                else:
+                    data = urlencode(data)
             environ['wsgi.input'] = StringIO(data)
             environ['webob.is_body_seekable'] = True
             environ['CONTENT_LENGTH'] = str(len(data))
@@ -458,7 +480,7 @@ class Response(webob.Response):
 
     def clear(self):
         """Clears all data written to the output stream so that it is empty."""
-        self.body = ''
+        self.body = b''
 
     def wsgi_write(self, start_response):
         """Writes this response using using the given WSGI function.
@@ -568,7 +590,7 @@ class RequestHandler(object):
 
         try:
             return method(*args, **kwargs)
-        except Exception, e:
+        except Exception as e:
             return self.handle_exception(e, self.app.debug)
 
     def error(self, code):
@@ -847,7 +869,10 @@ class SimpleRoute(BaseRoute):
 
         .. seealso:: :meth:`BaseRoute.match`.
         """
-        match = self.regex.match(urllib.unquote(request.path))
+        if (sys.version[0] == '2'):
+            match = self.regex.match(urllib.unquote(request.path))
+        else:
+            match = self.regex.match(unquote(request.path))
         if match:
             return self, match.groups(), {}
 
@@ -974,7 +999,11 @@ class Route(BaseRoute):
 
         .. seealso:: :meth:`BaseRoute.match`.
         """
-        match = self.regex.match(urllib.unquote(request.path))
+        if (sys.version[0] == '2'):
+            match = self.regex.match(urllib.unquote(request.path))
+        else:
+            match = self.regex.match(unquote(request.path))
+        
         if not match or self.schemes and request.scheme not in self.schemes:
             return None
 
@@ -1020,7 +1049,7 @@ class Route(BaseRoute):
                     kwargs[key] = value
 
         values = {}
-        for name, regex in variables.iteritems():
+        for name, regex in variables.items():
             value = kwargs.pop(name, self.defaults.get(name))
             if value is None:
                 raise KeyError('Missing argument "%s" to build URI.' % \
@@ -1087,7 +1116,7 @@ class WebappHandlerAdapter(BaseHandlerAdapter):
 
         try:
             method(*args, **kwargs)
-        except Exception, e:
+        except Exception as e:
             handler.handle_exception(e, request.app.debug)
 
 
@@ -1307,7 +1336,7 @@ class Router(object):
 
     def __repr__(self):
         routes = self.match_routes + [v for k, v in \
-            self.build_routes.iteritems() if v not in self.match_routes]
+            self.build_routes.items() if v not in self.match_routes]
 
         return '<Router(%r)>' % routes
 
@@ -1530,22 +1559,22 @@ class WSGIApplication(object):
                 rv = self.router.dispatch(request, response)
                 if rv is not None:
                     response = rv
-            except Exception, e:
+            except Exception as e:
                 try:
                     # Try to handle it with a custom error handler.
                     rv = self.handle_exception(request, response, e)
                     if rv is not None:
                         response = rv
-                except HTTPException, e:
+                except HTTPException as e:
                     # Use the HTTP exception as response.
                     response = e
-                except Exception, e:
+                except Exception as e:
                     # Error wasn't handled so we have nothing else to do.
                     response = self._internal_error(e)
 
             try:
                 return response(environ, start_response)
-            except Exception, e:
+            except Exception as e:
                 return self._internal_error(e)(environ, start_response)
 
     def _internal_error(self, exception):
@@ -1762,9 +1791,13 @@ def redirect(uri, permanent=False, abort=False, code=None, body=None,
     :returns:
         A :class:`Response` instance.
     """
+    
     if uri.startswith(('.', '/')):
         request = request or get_request()
-        uri = str(urlparse.urljoin(request.url, uri))
+        if (sys.version[0] == '2'):
+            uri = str(urlparse.urljoin(request.url, uri))
+        else:
+            uri = str(urljoin(request.url, uri))
 
     if code is None:
         if permanent:
@@ -1851,9 +1884,11 @@ def import_string(import_name, silent=False):
             return getattr(__import__(module, None, None, [obj]), obj)
         else:
             return __import__(import_name)
-    except (ImportError, AttributeError), e:
+    except (ImportError, AttributeError) as e:
         if not silent:
-            raise ImportStringError(import_name, e), None, sys.exc_info()[2]
+            #python3 modification 2.7 compatible
+            #raise ImportStringError(import_name, e), None, sys.exc_info()[2]
+            raise_(ImportStringError(import_name, e), None, sys.exc_info()[2])
 
 
 def _urlunsplit(scheme=None, netloc=None, path=None, query=None,
@@ -1880,19 +1915,30 @@ def _urlunsplit(scheme=None, netloc=None, path=None, query=None,
         netloc = None
 
     if path:
-        path = urllib.quote(_to_utf8(path))
+        if (sys.version[0] == '2'):
+            path = urllib.quote(_to_utf8(path))
+        else:
+            path = quote(_to_utf8(path))
 
     if query and not isinstance(query, basestring):
         if isinstance(query, dict):
-            query = query.iteritems()
+            query = query.items()
 
         # Sort args: commonly needed to build signatures for services.
-        query = urllib.urlencode(sorted(query))
+        if (sys.version[0] == '2'):
+            query = urllib.urlencode(sorted(query))
+        else:
+            query = urlencode(sorted(query))
 
     if fragment:
-        fragment = urllib.quote(_to_utf8(fragment))
+        if (sys.version[0] == '2'):
+            fragment = urllib.quote(_to_utf8(fragment))
+            return urlparse.urlunsplit((scheme, netloc, path, query, fragment))
+        else:
+            fragment = quote(_to_utf8(fragment))
+            return urlunsplit((scheme, netloc, path, query, fragment))
 
-    return urlparse.urlunsplit((scheme, netloc, path, query, fragment))
+    
 
 
 def _get_handler_methods(handler):
