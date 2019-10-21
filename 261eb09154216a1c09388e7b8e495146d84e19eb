@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e52f87d_dc9f6803",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-21T20:51:13Z",
+      "side": 1,
+      "message": "nit: remove extra blank lines since they don\u0027t convey meaning here.",
+      "revId": "261eb09154216a1c09388e7b8e495146d84e19eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
