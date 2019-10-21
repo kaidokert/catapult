@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34cf5b5a_c93f9ee7",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-21T09:15:39Z",
+      "side": 1,
+      "message": "Like I mentioned in the bug, I would prefer to have --story with append action.",
+      "revId": "c041b74871dcf36e8b91edb7a30ab7ac340f8cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
