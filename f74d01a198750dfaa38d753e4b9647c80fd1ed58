@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40202e47_cf958fe0",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-10-21T05:14:38Z",
+      "side": 1,
+      "message": "This is stretching the meaning of the verb “implement” ;)\n\nDid you forget to ‘git commit’ before ‘git cl upload’, or am I misunderstanding the intent of this CL?",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 6
+      },
+      "revId": "f74d01a198750dfaa38d753e4b9647c80fd1ed58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
