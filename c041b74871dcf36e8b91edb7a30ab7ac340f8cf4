@@ -16,6 +16,24 @@
       "revId": "c041b74871dcf36e8b91edb7a30ab7ac340f8cf4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33cead16_68ccc809",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-22T00:10:27Z",
+      "side": 1,
+      "message": "Done. I switched to --story\u003d\u003cexact story name\u003e\n\nI think we could potentially remove --story-filter flag later\nand replace it with globs, but for now I think we can avoid that complexity:\nI don\u0027t think this will feature will cause us pain later. It would be great to get Pinpoint off of using those regexes first.",
+      "parentUuid": "34cf5b5a_c93f9ee7",
+      "revId": "c041b74871dcf36e8b91edb7a30ab7ac340f8cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
