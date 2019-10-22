@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5b7b18a_86d40ad2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-22T21:57:38Z",
+      "side": 1,
+      "message": "Is this still true? \n\nThese comments suggest that it is no longer true:\nhttps://bugs.chromium.org/p/chromium/issues/detail?id\u003d982027#c5\nhttps://bugs.chromium.org/p/chromium/issues/detail?id\u003d982027#c7",
+      "range": {
+        "startLine": 24,
+        "startChar": 47,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3444e760_45e3a972",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-22T21:57:38Z",
+      "side": 1,
+      "message": "Seems like an open question whether we should also add the --run-full-story-set flag if someone provides a story tag.",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 26
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
