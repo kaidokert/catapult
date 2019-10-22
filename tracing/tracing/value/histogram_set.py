@@ -58,6 +58,10 @@ class HistogramSet(object):
     for hist in self:
       hist.diagnostics[name] = diag
 
+  def Merge(self, other):
+    self._shared_diagnostics_by_guid.update(other._shared_diagnostics_by_guid)
+    self._histograms.update(other._histograms)
+
   def GetFirstHistogram(self):
     for hist in self._histograms:
       return hist
