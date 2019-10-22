@@ -38,7 +38,7 @@ def AreSet():
 
 
 def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
-                  overrides=None, environment=None):
+                  overrides=None, environment=None, run_full_story_set=True):
   """Get an options object filled in necessary defaults for the Run command.
 
   Args:
@@ -90,4 +90,5 @@ def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
   options.output_formats = ['none']
   options.upload_results = False
   options.upload_bucket = None
+  options.run_full_story_set = run_full_story_set
   return options
