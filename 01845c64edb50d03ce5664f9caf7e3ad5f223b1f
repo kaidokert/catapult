@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16121498_b373d155",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-22T09:29:16Z",
+      "side": 1,
+      "message": "should this be a hard error rather than a warning?",
+      "revId": "01845c64edb50d03ce5664f9caf7e3ad5f223b1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
