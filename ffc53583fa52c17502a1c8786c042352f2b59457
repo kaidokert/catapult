@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "559e6d51_a4e6c69e",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-22T15:42:32Z",
+      "side": 1,
+      "message": "This is the one where I\u0027m not sure. Clicking \"rerun job\" on the pinpoint UI should replace \u0027tir_label\u0027 in old jobs with \u0027grouping_label\u0027 in requests for new jobs.\n\nBut couldn\u0027t find the right point where arguments are passed to this template.\n\nThe other alternative would be to always write both \u0027tir_label\u0027 and \u0027grouping_label\u0027?",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d192c4be_1812fd60",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-22T15:42:32Z",
+      "side": 1,
+      "message": "I believe this is the only point where we read tir_label (or will read grouping_label) from the job arguments.",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5654e375_266dc83c",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-22T15:42:32Z",
+      "side": 1,
+      "message": "Also wanted to check here. Is there a way that old tasks that were written using tir_label may suddenly be read by a new pinpoint instance which is expecting grouping_label? I hope not.",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa9c92d6_14618aba",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-22T15:42:32Z",
+      "side": 1,
+      "message": "If I understand things right, the plan would be to:\n1) Land this CL.\n2) Deploy a new version of pinpoint (which will read from either tir_label or grouping_label).\n3) Land a follow up CL making this start writing \u0027grouping_label\u0027 in the request.",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
