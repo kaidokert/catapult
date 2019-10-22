@@ -546,7 +546,7 @@ class PinpointNewBisectRequestHandlerTest(testing_common.TestCase):
 
   @mock.patch.object(
       utils, 'IsValidSheriffUser', mock.MagicMock(return_value=True))
-  def testPinpointParams_Metric_TIRLabelChartAndTrace(self):
+  def testPinpointParams_Metric_GroupingLabelChartAndTrace(self):
     params = {
         'test_path': 'ChromiumPerf/mac/blink_perf/foo/label/bar.html',
         'start_commit': 'abcd1234',
@@ -561,6 +561,7 @@ class PinpointNewBisectRequestHandlerTest(testing_common.TestCase):
     t.put()
     results = pinpoint_request.PinpointParamsFromBisectParams(params)
 
+    # TODO(crbug.com/974237): Swtich from 'tir_label' to 'group_label'.
     self.assertEqual('label', results['tir_label'])
     self.assertEqual('foo', results['chart'])
     self.assertEqual('bar.html', results['trace'])
@@ -695,6 +696,7 @@ class PinpointNewBisectRequestHandlerTest(testing_common.TestCase):
     }
     results = pinpoint_request.PinpointParamsFromBisectParams(params)
 
+    # TODO(crbug.com/974237): Swtich from 'tir_label' to 'group_label'.
     self.assertNotIn('tir_label', results)
     self.assertNotIn('trace', results)
     self.assertEqual('', results['chart'])
