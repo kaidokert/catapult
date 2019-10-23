@@ -22,6 +22,30 @@
       "revId": "6add2c3dddb9ad3420a259c67016c8649ffc4dd3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "624cd249_7e8f3f65",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T20:28:01Z",
+      "side": 1,
+      "message": "I implemented it. PTAL.",
+      "parentUuid": "38833513_585a19a5",
+      "range": {
+        "startLine": 66,
+        "startChar": 30,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "6add2c3dddb9ad3420a259c67016c8649ffc4dd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
