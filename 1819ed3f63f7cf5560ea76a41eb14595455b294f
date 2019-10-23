@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e0b8301_b4adefee",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-23T18:57:53Z",
+      "side": 1,
+      "message": "gotta keep the element of surprise. linking issuetracker directly doesn\u0027t let me sneak in a rickroll now and then.\n\n(also consistency; i\u0027m trying to limit the links I add to crbug + bitly)",
+      "parentUuid": "9db28fd4_66232507",
+      "range": {
+        "startLine": 362,
+        "startChar": 12,
+        "endLine": 362,
+        "endChar": 33
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "369448ba_18c02455",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "929f6ba1_ccbb46df",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-23T18:57:53Z",
+      "side": 1,
+      "message": "correct, it is.",
+      "parentUuid": "369448ba_18c02455",
+      "range": {
+        "startLine": 364,
+        "startChar": 35,
+        "endLine": 364,
+        "endChar": 60
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8e51c4a_951a6eb7",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f0df272_7e3f7e68",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-23T18:57:53Z",
+      "side": 1,
+      "message": "the parent needs permission from all children; this is just saying that this particular child has granted that permission. clarified.",
+      "parentUuid": "e8e51c4a_951a6eb7",
+      "range": {
+        "startLine": 381,
+        "startChar": 23,
+        "endLine": 382,
+        "endChar": 23
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -108,6 +180,24 @@
       "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3ef5445_56d4759e",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3621,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-23T18:57:53Z",
+      "side": 1,
+      "message": "right, good call.",
+      "parentUuid": "0d2c20f3_ed244db8",
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
