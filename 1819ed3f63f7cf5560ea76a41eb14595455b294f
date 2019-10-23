@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9db28fd4_66232507",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-23T16:13:51Z",
+      "side": 1,
+      "message": "any reason not to go with \"https://issuetracker.google.com/120171523\" ?\nI think it\u0027d fit on the line",
+      "range": {
+        "startLine": 362,
+        "startChar": 12,
+        "endLine": 362,
+        "endChar": 33
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "369448ba_18c02455",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-23T16:13:51Z",
+      "side": 1,
+      "message": "I\u0027m assuming that\u0027s for performance reasons? I\u0027d think it make this code simpler if we just use os.walk and only look at real files \u0026 dont push entire directories (ie: no collapsing).\n\nBut that may make adb ungodly slow, so collapsing in that case does make sense.",
+      "range": {
+        "startLine": 364,
+        "startChar": 35,
+        "endLine": 364,
+        "endChar": 60
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8e51c4a_951a6eb7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-23T16:13:51Z",
+      "side": 1,
+      "message": "Is that strictly true? Kindofa nit, but even if this component is collapsable, a sibling may not be. And that sibling would prevent the parent from being pushed in its entirety.\n\nHow bout something like:\n\"whether this entity doesn\u0027t prevent its parent from being pushed in its entirety\"\nOr you know... something with gooder words.",
+      "range": {
+        "startLine": 381,
+        "startChar": 23,
+        "endLine": 382,
+        "endChar": 23
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e46726dc_51fc1003",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-23T16:13:51Z",
+      "side": 1,
+      "message": "this guy windows",
+      "range": {
+        "startLine": 397,
+        "startChar": 14,
+        "endLine": 397,
+        "endChar": 28
+      },
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d2c20f3_ed244db8",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3621,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-23T16:13:51Z",
+      "side": 1,
+      "message": "Mind also adding a symlink that points to a directory, then calling _IterPushableComponents() on that symlink? I think it\u0027d be prudent to get that covered in the tests. (Nice tests btw.)",
+      "revId": "1819ed3f63f7cf5560ea76a41eb14595455b294f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
