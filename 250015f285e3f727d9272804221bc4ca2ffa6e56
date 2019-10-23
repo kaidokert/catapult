@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fd46fe8_06ec6474",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T00:14:16Z",
+      "side": 1,
+      "message": "maybe this part of the comment can be updated or deleted?",
+      "range": {
+        "startLine": 101,
+        "startChar": 29,
+        "endLine": 101,
+        "endChar": 76
+      },
+      "revId": "250015f285e3f727d9272804221bc4ca2ffa6e56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
