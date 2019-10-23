@@ -74,6 +74,9 @@ found in the LICENSE file.
     <tr-ui-b-toolbar-button on-click="findNext">
       &rarr;
     </tr-ui-b-toolbar-button>
+    <tr-ui-b-toolbar-button on-click="focusSelection">
+      Focus
+    </tr-ui-b-toolbar-button>
     <div id="hitCount">0 of 0</div>
   </template>
 </dom-module>
@@ -157,6 +160,12 @@ Polymer({
       this.controller.findPrevious();
     }
     this.updateHitCountEl();
+  },
+
+  focusSelection() {
+    if (this.controller) {
+      this.controller.focusSelection();
+    }
   },
 
   updateHitCountEl() {

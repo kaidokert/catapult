@@ -24,6 +24,7 @@ tr.exportTo('tr.ui', function() {
     this.currentHitIndex_ = -1;
     this.activePromise_ = Promise.resolve();
     this.activeTask_ = undefined;
+    this.trackView_ = undefined;
   }
 
   FindController.prototype = {
@@ -35,6 +36,10 @@ tr.exportTo('tr.ui', function() {
 
     get brushingStateController() {
       return this.brushingStateController_;
+    },
+
+    set trackView(value) {
+      this.trackView_ = value;
     },
 
     enqueueOperation_(operation) {
@@ -144,6 +149,12 @@ tr.exportTo('tr.ui', function() {
 
     findPrevious() {
       this.find_(-1);
+    },
+
+    focusSelection() {
+      if (this.trackView_) {
+        this.trackView_.zoomToSelection();
+      }
     }
   };
 
