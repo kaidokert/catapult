@@ -37,7 +37,9 @@ _CATAPULT_TESTS = [
         'additional_args': [
             '--no-install-hooks',
             '--no-use-local-chrome',
-            '--channel=stable'
+            '--channel=stable',
+            '--timeout=120',
+            '--timeout-retries=2'
         ],
         'outputs_presentation_json': True,
         'disabled': ['android'],
@@ -48,7 +50,9 @@ _CATAPULT_TESTS = [
         'additional_args': [
             '--no-install-hooks',
             '--no-use-local-chrome',
-            '--channel=canary'
+            '--channel=canary',
+            '--timeout=120',
+            '--timeout-retries=2'
         ],
         'outputs_presentation_json': True,
         'disabled': ['android'],
