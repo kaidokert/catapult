@@ -38,7 +38,8 @@ def AreSet():
 
 
 def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
-                  overrides=None, environment=None):
+                  overrides=None, environment=None,
+                  story_shard_begin_index=None, story_shard_end_index=None):
   """Get an options object filled in necessary defaults for the Run command.
 
   Args:
@@ -58,6 +59,9 @@ def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
       not be required, ideally the processing of options should not change the
       internal state of Telemetry objects.
     environment: The ProjectConfig to run within.
+    story_shard_begin_index: Pre-filter the storyset to only run stories between
+      this and story_shard_end_index.
+    story_shard_end_index: See above.
 
   Returns:
     An options object with default values for all command line arguments.
@@ -80,6 +84,8 @@ def GetRunOptions(output_dir=None, fake_browser=False, benchmark_cls=None,
       setattr(options, name, value)
   if benchmark_cls is not None:
     benchmark_cls.ProcessCommandLineArgs(parser, options)
+  options.story_shard_begin_index = story_shard_begin_index
+  options.story_shard_end_index = story_shard_end_index
   story_runner.ProcessCommandLineArgs(parser, options, environment)
   options.suppress_gtest_report = True
   options.output_dir = output_dir
