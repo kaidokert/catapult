@@ -16,6 +16,24 @@
       "revId": "5dce4a12c9882d4d4346d9b622e957aec7d4ee85",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3933ba65_a59faaaf",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3624,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-10-23T19:19:39Z",
+      "side": 1,
+      "message": "not really, it just came to mind as a counterpart to \"hello world\"",
+      "parentUuid": "9cad0301_4adfa1a3",
+      "revId": "5dce4a12c9882d4d4346d9b622e957aec7d4ee85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
