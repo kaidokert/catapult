@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80d5bab0_953a0955",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-23T00:41:11Z",
+      "side": 1,
+      "message": "Yeah feel free to update this comment. That function was just lifted wholesale from the dashboard, and the comment is ancient. Pinpoint does know the original story name now (as does the dashboard).",
+      "parentUuid": "c5b7b18a_86d40ad2",
+      "range": {
+        "startLine": 24,
+        "startChar": 47,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3444e760_45e3a972",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-10-22T21:57:38Z",
       "side": 1,
       "message": "Seems like an open question whether we should also add the --run-full-story-set flag if someone provides a story tag.",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 26
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f8c7281_8ed83384",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-23T00:41:11Z",
+      "side": 1,
+      "message": "What happens if we don\u0027t add the flag?",
+      "parentUuid": "3444e760_45e3a972",
       "range": {
         "startLine": 71,
         "startChar": 17,
