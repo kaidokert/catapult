@@ -24,7 +24,8 @@ _EXPECTATION_MAP = {
     'failure': ResultType.Failure,
     'pass': ResultType.Pass,
     'timeout': ResultType.Timeout,
-    'skip': ResultType.Skip
+    'skip': ResultType.Skip,
+    'leak': ResultType.Leak
 }
 
 
