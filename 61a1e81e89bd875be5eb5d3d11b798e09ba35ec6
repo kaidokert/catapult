@@ -22,6 +22,30 @@
       "revId": "61a1e81e89bd875be5eb5d3d11b798e09ba35ec6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7330d0ac_008d21f1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-10-23T16:54:52Z",
+      "side": 1,
+      "message": "Will do in a follow-up today.",
+      "parentUuid": "91b7d721_e2c149c8",
+      "range": {
+        "startLine": 104,
+        "startChar": 37,
+        "endLine": 104,
+        "endChar": 49
+      },
+      "revId": "61a1e81e89bd875be5eb5d3d11b798e09ba35ec6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
