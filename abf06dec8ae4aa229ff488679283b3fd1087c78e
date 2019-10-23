@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecc574ca_7b489e7a",
+        "filename": "tracing/tracing/base/unittest/interactive_test_runner.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-23T21:20:55Z",
+      "side": 1,
+      "message": "Check headless to conform to convention here: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/base/unittest/html_test_results.html?l\u003d490-492\u0026rcl\u003d577977ad233c62f9150425ec63fc02de4d598b9d\n\nWe don\u0027t want to kill the dev server if we\u0027re manually reloading the test page.",
+      "revId": "abf06dec8ae4aa229ff488679283b3fd1087c78e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
