@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a20f895_538f86ed",
+        "filename": "telemetry/telemetry/testing/options_for_unittests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-23T06:52:27Z",
+      "side": 1,
+      "message": "could you pass these as overrides\u003d{\u0027story_shard_begin_index\u0027: ..., } instead?",
+      "revId": "2cc13c63442eaebf212ccc835fb6b07ed61fbcb6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
