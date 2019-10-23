@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cad0301_4adfa1a3",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3624,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2019-10-23T19:14:37Z",
+      "side": 1,
+      "message": "I feel like there\u0027s a joke here that I\u0027m just not getting...",
+      "revId": "5dce4a12c9882d4d4346d9b622e957aec7d4ee85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
