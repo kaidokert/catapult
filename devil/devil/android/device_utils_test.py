@@ -10,14 +10,17 @@ Unit tests for the contents of device_utils.py (mostly DeviceUtils).
 # pylint: disable=protected-access
 # pylint: disable=unused-argument
 
+import collections
 import contextlib
 import json
 import logging
 import os
+import posixpath
 import stat
 import sys
 import unittest
 
+from py_utils import tempfile_ext
 from devil import devil_env
 from devil.android import device_errors
 from devil.android import device_signal
@@ -3591,6 +3594,106 @@ class DeviceUtilsLocale(DeviceUtilsTest):
         (self.call.device.GetProp('persist.sys.locale', cache=False), 'en-US')):
       self.assertEquals(self.device.GetLanguage(), 'en')
       self.assertEquals(self.device.GetCountry(), 'US')
+
+
+class IterPushableComponentsTest(unittest.TestCase):
+
+  @classmethod
+  @contextlib.contextmanager
+  def sampleLayout(cls):
+    Layout = collections.namedtuple(
+        'Layout',
+        ['root', 'basic_file', 'symlink', 'dir_with_symlinks',
+         'dir_without_symlinks'])
+
+    with tempfile_ext.NamedTemporaryDirectory() as layout_root:
+      dir1 = os.path.join(layout_root, 'dir1')
+      os.makedirs(dir1)
+
+      basic_file = os.path.join(dir1, 'file1.txt')
+      with open(basic_file, 'w') as f:
+        f.write('hello world')
+
+      symlink = os.path.join(dir1, 'symlink.txt')
+      os.symlink(basic_file, symlink)
+
+      dir2 = os.path.join(layout_root, 'dir2')
+      os.makedirs(dir2)
+
+      yield Layout(layout_root, basic_file, symlink, dir1, dir2)
+
+  def testFile(self):
+    with self.sampleLayout() as layout:
+      device_path = '/sdcard/basic_file'
+
+      expected = [(layout.basic_file, device_path, True)]
+      actual = list(
+          device_utils._IterPushableComponents(
+              layout.basic_file, device_path))
+      self.assertItemsEqual(expected, actual)
+
+  def testSymlink(self):
+    with self.sampleLayout() as layout:
+      device_path = '/sdcard/basic_symlink'
+
+      expected = [(os.path.realpath(layout.symlink), device_path, False)]
+      actual = list(
+          device_utils._IterPushableComponents(
+              layout.symlink, device_path))
+      self.assertItemsEqual(expected, actual)
+
+  def testDirectoryWithNoSymlink(self):
+    with self.sampleLayout() as layout:
+      device_path = '/sdcard/basic_directory'
+
+      expected = [(layout.dir_without_symlinks, device_path, True)]
+      actual = list(
+          device_utils._IterPushableComponents(
+              layout.dir_without_symlinks, device_path))
+      self.assertItemsEqual(expected, actual)
+
+  def testDirectoryWithSymlink(self):
+    with self.sampleLayout() as layout:
+      device_path = '/sdcard/directory'
+
+      expected = [
+          (layout.basic_file,
+           posixpath.join(device_path, os.path.basename(layout.basic_file)),
+           True),
+          (os.path.realpath(layout.symlink),
+           posixpath.join(device_path, os.path.basename(layout.symlink)),
+           False),
+      ]
+      actual = list(
+          device_utils._IterPushableComponents(
+              layout.dir_with_symlinks, device_path))
+      self.assertItemsEqual(expected, actual)
+
+  def testDirectoryWithNestedSymlink(self):
+    with self.sampleLayout() as layout:
+      device_path = '/sdcard/directory'
+
+      expected = [
+          (layout.dir_without_symlinks,
+           posixpath.join(
+               device_path,
+               os.path.basename(layout.dir_without_symlinks)),
+           True),
+          (layout.basic_file,
+           posixpath.join(
+               device_path,
+               *os.path.split(os.path.relpath(layout.basic_file, layout.root))),
+           True),
+          (os.path.realpath(layout.symlink),
+           posixpath.join(
+               device_path,
+               *os.path.split(os.path.relpath(layout.symlink, layout.root))),
+           False),
+      ]
+      actual = list(
+          device_utils._IterPushableComponents(
+              layout.root, device_path))
+      self.assertItemsEqual(expected, actual)
 
 
 if __name__ == '__main__':
