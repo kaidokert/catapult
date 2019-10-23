@@ -20,11 +20,10 @@ _STORY_REGEX = re.compile(r'[^a-zA-Z0-9]')
 
 
 def _StoryToRegex(story_name):
-  # During import, some chars in story names got replaced by "_" so they
-  # could be safely included in the test_path. At this point we don't know
-  # what the original characters were. Additionally, some special characters
-  # and argument quoting are not interpreted correctly, e.g. by bisect
-  # scripts (crbug.com/662472). We thus keep only a small set of "safe chars"
+  # Telemetry's --story-filter argument takes in a regex, not a
+  # plain string. Stories can have all sorts of special characters
+  # in their names (see crbug.com/983993) which would confuse a
+  # regex. We thus keep only a small set of "safe chars"
   # and replace all others with match-any-character regex dots.
   return '^%s$' % _STORY_REGEX.sub('.', story_name)
 
@@ -52,7 +51,19 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
 
     story = arguments.get('story')
     if story:
+      # TODO(crbug.com/982027): Note that the following two arguments
+      # may be replaced with --story=<story> (no regex needed). Support
+      # for --story flag landed in
+      # https://chromium-review.googlesource.com/c/catapult/+/1869800
+      # so we cannot turn this on by default until we no longer need to
+      # be able to run revisions older than that. In the meantime, the
+      # following arguments accomplish the same thing.
       extra_test_args += ('--story-filter', _StoryToRegex(story))
+      # Since benchmarks are run in abridged form by default, we need to
+      # add the argument --run-full-story-set to make sure that if someone
+      # chooses to run a specific story we will run it even if it is not
+      # in the abridged version of the story set.
+      extra_test_args.append('--run-full-story-set')
 
     story_tags = arguments.get('story_tags')
     if story_tags:

@@ -92,7 +92,8 @@ class FromDictTest(unittest.TestCase):
 
     extra_args = [
         '--benchmarks', 'speedometer', '--story-filter',
-        '^http...www.fifa.com.$', '--story-tag-filter', 'tag1,tag2',
+        '^http...www.fifa.com.$', '--run-full-story-set',
+        '--story-tag-filter', 'tag1,tag2',
         '--pageset-repeat', '1', '--browser', 'release',
     ] + _COMBINED_DEFAULT_EXTRA_ARGS
     expected = run_telemetry_test.RunTelemetryTest(
