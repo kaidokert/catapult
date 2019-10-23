@@ -297,28 +297,6 @@ class PageTestResultsTest(unittest.TestCase):
     with open(output_file) as f:
       self.assertEqual(f.read(), '[]')
 
-  def testAddMetricPageResults(self):
-    hs = histogram_set.HistogramSet()
-    hs.AddHistogram(histogram_module.Histogram('foo', 'count'))
-    hs.AddSharedDiagnosticToAllHistograms(
-        'bar', generic_set.GenericSet(['baz']))
-    histogram_dicts = hs.AsDicts()
-
-    with self.CreateResults() as results:
-      results.WillRunPage(self.pages[0])
-      run = results.current_story_run
-      results.DidRunPage(self.pages[0])
-
-      # Pretend we got some results by running metrics.
-      results.AddMetricPageResults({
-          'run': run,
-          'fail': [],
-          'histogram_dicts': histogram_dicts,
-          'scalars': []
-      })
-
-    self.assertEqual(results.AsHistogramDicts(), histogram_dicts)
-
   def testAddSharedDiagnostics(self):
     with self.CreateResults(benchmark_name='benchmark_name') as results:
       results.WillRunPage(self.pages[0])

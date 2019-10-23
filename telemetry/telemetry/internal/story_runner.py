@@ -352,7 +352,6 @@ def RunStorySet(test, story_set, finder_options, results, max_failures=None,
               'Too many stories failed. Aborting the rest of the stories.')
           results.InterruptBenchmark(interruption)
   finally:
-    results_processor.ComputeTimelineBasedMetrics(results)
     results.PopulateHistogramSet()
     results.AddSharedDiagnostics(**device_info_diags)
 
