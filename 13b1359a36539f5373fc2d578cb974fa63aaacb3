@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "829688bf_2cb76125",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T00:42:27Z",
+      "side": 1,
+      "message": "will do. Thanks!",
+      "parentUuid": "80d5bab0_953a0955",
+      "range": {
+        "startLine": 24,
+        "startChar": 47,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3444e760_45e3a972",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "What happens if we don\u0027t add the flag?",
       "parentUuid": "3444e760_45e3a972",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 26
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35941e05_e2afb3b5",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T00:42:27Z",
+      "side": 1,
+      "message": "If you don\u0027t add the flag then you will be grabbing all stories that have that tag AND are in the abridged story set.",
+      "parentUuid": "1f8c7281_8ed83384",
       "range": {
         "startLine": 71,
         "startChar": 17,
