@@ -190,6 +190,9 @@ Polymer({
     this.findCtl_ = this.$.view_find_control;
     this.findCtl_.controller = new tr.ui.FindController(
         this.brushingStateController_);
+    if (this.trackView_) {
+      this.findCtl_.controller.trackView = this.trackView_;
+    }
 
     this.scriptingCtl_ = document.createElement('tr-ui-scripting-control');
     this.scriptingCtl_.controller = new tr.c.ScriptingController(
@@ -484,6 +487,9 @@ Polymer({
     if (modelValid && !this.trackView_) {
       this.trackView_ = document.createElement('tr-ui-timeline-track-view');
       this.trackView_.timelineView = this;
+      if (this.findCtl_.controller) {
+        this.findCtl_.controller.trackView = this.trackView_;
+      }
 
       this.trackView.brushingStateController = this.brushingStateController_;
 
