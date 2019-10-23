@@ -170,6 +170,20 @@ Polymer({
           }
         }.bind(this)));
     this.cancelFunctions_.push(this.createEventsLinkIfNeeded_(
+        'Events in the same flow',
+        'Add all events that are part of the same flow sequence.',
+        eventSet,
+        function* (event) {
+          yield* getEventInFlowEvents(event);
+          yield* getEventOutFlowEvents(event);
+          if (event.startSlice) {
+            yield event.startSlice;
+          }
+          if (event.endSlice) {
+            yield event.endSlice;
+          }
+        }.bind(this)));
+    this.cancelFunctions_.push(this.createEventsLinkIfNeeded_(
         'All connected events',
         'Add all events connected to the selected one(s) by flow arrows or ' +
             'by call stack.',
