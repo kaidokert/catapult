@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09c4d56e_2cb1ef0a",
+        "filename": "telemetry/telemetry/command_line/parser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T23:16:35Z",
+      "side": 1,
+      "message": "I thought this doesn\u0027t actually work in some cases. There was a long bug about this. I think we are better off with\n\ndef setUp(self):\n  self.blah_patch \u003d mock.patch(\u0027blah\u0027)\n  self.blah_patch.start()\n  ...\n\ndef tearDown(self):\n  self.blah_patch.stop()\n  ...",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "40f5051edb913816a28c34badb12a0698a56e8f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
