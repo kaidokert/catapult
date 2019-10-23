@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "bcb67412_0dff2eda",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T01:22:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "829688bf_2cb76125",
+      "range": {
+        "startLine": 24,
+        "startChar": 47,
+        "endLine": 25,
+        "endChar": 38
+      },
+      "revId": "13b1359a36539f5373fc2d578cb974fa63aaacb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3444e760_45e3a972",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
         "patchSetId": 2
