@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e960f74_65a8b202",
+        "filename": "telemetry/telemetry/internal/results/csv_output_formatter_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-23T06:46:48Z",
+      "side": 0,
+      "message": "For now I\u0027m just removing these tests that relied on PopulateHistogramSet. A follow up CL will remove all output formats entirely.",
+      "revId": "61a1e81e89bd875be5eb5d3d11b798e09ba35ec6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
