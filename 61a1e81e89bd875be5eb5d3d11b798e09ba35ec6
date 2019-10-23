@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91b7d721_e2c149c8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-23T01:26:18Z",
+      "side": 1,
+      "message": "I wonder if it would be good to add a comment linking to the bug here somewhere so that we don\u0027t change this back later?",
+      "range": {
+        "startLine": 104,
+        "startChar": 37,
+        "endLine": 104,
+        "endChar": 49
+      },
+      "revId": "61a1e81e89bd875be5eb5d3d11b798e09ba35ec6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
