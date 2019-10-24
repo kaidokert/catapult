@@ -349,6 +349,9 @@ tr.exportTo('tr.ui.tracks', function() {
             events[i].selectionState !== SelectionState.HIGHLIGHTED) {
           continue;
         }
+        if (!this.viewport.selectedFlowEvents.has(events[i].title)) {
+          continue;
+        }
         this.drawFlowArrow_(ctx, events[i], canvasBounds);
       }
     },
