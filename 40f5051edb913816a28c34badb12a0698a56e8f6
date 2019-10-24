@@ -22,6 +22,30 @@
       "revId": "40f5051edb913816a28c34badb12a0698a56e8f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed7ee94d_e3d3627d",
+        "filename": "telemetry/telemetry/command_line/parser_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-24T10:10:35Z",
+      "side": 1,
+      "message": "The bug with that discussion was https://crbug.com/938487\n\nThe main takeaways, I believe, were:\n1. Non-decorator or non-context-managed versions of mock.patch are not allowed outside of setUp. This was the root cause of that bug.\n2. There is some risk of patches not being properly cleaned up if an error is raised *during* setUp. This risk exists always and has nothing to do with patching. An error in SetUp will always cause all clean-up in tearDown to be skipped.\n\nYou did suggest explicitly calling .stop during tearDown on each individual patch that has been created during setUp. But neither sergiyb nor me were convinced that this would accomplish anything: it wouldn\u0027t prevent bugs like those in (1) nor alleviate the risks of (2) in any way.\n\nFeel free to re-open or file a new bug if you disagree and we can revisit this.",
+      "parentUuid": "09c4d56e_2cb1ef0a",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "40f5051edb913816a28c34badb12a0698a56e8f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
