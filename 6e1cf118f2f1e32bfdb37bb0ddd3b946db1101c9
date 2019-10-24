@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "192bc789_7958860c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-24T12:04:09Z",
+      "side": 1,
+      "message": "Hey, it does look like in startup tracing mode Chrome does respond here with:\n\n    {u\u0027id\u0027: 0, u\u0027error\u0027: {u\u0027message\u0027: u\u0027Tracing is already started\u0027, u\u0027code\u0027: -32000}}\n\nIs that expected? If we *need* to make the call for tracing to work, it\u0027s strange that Chrome responds with an error?",
+      "revId": "6e1cf118f2f1e32bfdb37bb0ddd3b946db1101c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
