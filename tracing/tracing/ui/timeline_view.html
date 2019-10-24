@@ -100,7 +100,7 @@ found in the LICENSE file.
     tr-ui-b-drag-handle { flex: 0 0 auto; }
     tr-ui-a-analysis-view { flex: 0 0 auto; }
 
-    #view_options_dropdown, #process_filter_dropdown {
+    #view_options_dropdown, #process_filter_dropdown, #flow_event_filter_dropdown {
       --dropdown-button: {
         -webkit-appearance: none;
         align-items: normal;
@@ -121,6 +121,7 @@ found in the LICENSE file.
         <div id="left_controls"></div>
         <div id="title">^_^</div>
         <div id="right_controls">
+          <tr-ui-b-dropdown id="flow_event_filter_dropdown" label="Flow events"></tr-ui-b-dropdown>
           <tr-ui-b-dropdown id="process_filter_dropdown" label="Processes"></tr-ui-b-dropdown>
           <tr-ui-b-toolbar-button id="view_metadata_button">
             M
@@ -210,11 +211,13 @@ Polymer({
       this.railScoreSpan_ = undefined;
     }
 
+    this.flowEventsFilter_ = this.$.flow_event_filter_dropdown;
     this.processFilter_ = this.$.process_filter_dropdown;
 
     this.optionsDropdown_ = this.$.view_options_dropdown;
     Polymer.dom(this.optionsDropdown_.iconElement).textContent = 'View Options';
 
+    this.selectedFlowEvents_ = new Set();
     this.showFlowEvents_ = false;
     Polymer.dom(this.optionsDropdown_).appendChild(tr.ui.b.createCheckBox(
         this, 'showFlowEvents',
@@ -289,6 +292,18 @@ Polymer({
       Polymer.dom(document.head).appendChild(link);
     }
     link.href = faviconData;
+  },
+
+
+  get selectedFlowEvents() {
+    return this.selectedFlowEvents_;
+  },
+
+  set selectedFlowEvents(selectedFlowEvents) {
+    this.selectedFlowEvents_ = selectedFlowEvents;
+    if (!this.trackView_) return;
+
+    this.trackView_.viewport.selectedFlowEvents = selectedFlowEvents;
   },
 
   get showFlowEvents() {
@@ -368,6 +383,43 @@ Polymer({
     const showEl = this.$.view_metadata_button;
     showEl.style.display =
         (this.model && this.model.metadata.length) ? '' : 'none';
+  },
+
+  updateFlowEventsList_() {
+    const dropdown = Polymer.dom(this.flowEventsFilter_);
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+    if (!this.model) return;
+
+    const cboxes = [];
+    const updateAll = (checked) => {
+      for (const cbox of cboxes) {
+        cbox.checked = checked;
+      }
+    };
+
+    dropdown.appendChild(tr.ui.b.createButton('All', () => updateAll(true)));
+    dropdown.appendChild(tr.ui.b.createButton('None', () => updateAll(false)));
+    const st = new Set();
+    for (const x of this.model.flowEvents) {
+      st.add(x.category);
+    }
+
+    for (const x of st) {
+      const cbox = tr.ui.b.createCheckBox(undefined, undefined, undefined,
+          true, x,
+          () => {
+            if (cbox.checked) {
+              this.selectedFlowEvents.add(x);
+            } else {
+              this.selectedFlowEvents.delete(x);
+            }
+            this.trackView_.viewport.dispatchChangeEvent();
+          });
+      cboxes.push(cbox);
+      dropdown.appendChild(cbox);
+    }
   },
 
   updateProcessList_() {
@@ -498,6 +550,7 @@ Polymer({
     // Set the model.
     if (modelValid) {
       this.trackView_.model = model;
+      this.trackView_.viewport.selectedFlowEvents = this.selectedFlowEvents;
       this.trackView_.viewport.showFlowEvents = this.showFlowEvents;
       this.trackView_.viewport.highlightVSync = this.highlightVSync;
       if (this.railScoreSpan_) {
@@ -521,6 +574,7 @@ Polymer({
 
     // Do things that are selection specific
     if (modelInstanceChanged) {
+      this.updateFlowEventsList_();
       this.updateProcessList_();
       this.updateMetadataButtonVisibility_();
       this.brushingStateController_.modelDidChange();

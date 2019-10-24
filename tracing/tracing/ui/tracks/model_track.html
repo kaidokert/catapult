@@ -340,11 +340,10 @@ tr.exportTo('tr.ui.tracks', function() {
       const events =
           this.model_.flowIntervalTree.findIntersection(viewLWorld, viewRWorld);
 
-      // When not showing flow events, show only highlighted/selected ones.
-      const onlyHighlighted = !this.viewport.showFlowEvents;
       const canvasBounds = ctx.canvas.getBoundingClientRect();
       for (let i = 0; i < events.length; ++i) {
-        if (onlyHighlighted &&
+        // When not showing flow events, show only highlighted/selected ones.
+        if (!this.viewport.selectedFlowEvents.has(events[i].category) &&
             events[i].selectionState !== SelectionState.SELECTED &&
             events[i].selectionState !== SelectionState.HIGHLIGHTED) {
           continue;
