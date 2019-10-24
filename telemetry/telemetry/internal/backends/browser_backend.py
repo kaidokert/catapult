@@ -173,7 +173,7 @@ class BrowserBackend(app_backend.AppBackend):
   def supports_memory_dumping(self):
     return False
 
-  def DumpMemory(self, timeout=None):
+  def DumpMemory(self, deterministic_mode, timeout=None):
     raise NotImplementedError()
 
 # pylint: disable=invalid-name
