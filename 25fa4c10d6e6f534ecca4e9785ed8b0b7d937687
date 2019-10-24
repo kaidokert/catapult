@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "862aca25_5b4a5cfb",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-24T18:10:40Z",
+      "side": 1,
+      "message": "Maybe edit this summary line rather than just the detailed comment. Words like DEPRECATED or WORK IN PROGRESS would help people realize that this function is extremely misleading in its current state. (I realize that you will soon fix this, but I don\u0027t want it to be confusing in the interim.)",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 18
+      },
+      "revId": "25fa4c10d6e6f534ecca4e9785ed8b0b7d937687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0016bc49_93c280ab",
+        "filename": "telemetry/telemetry/internal/results/results_processor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-24T18:10:40Z",
+      "side": 1,
+      "message": "Fix this message since it isn\u0027t calculating the metric anymore.",
+      "range": {
+        "startLine": 123,
+        "startChar": 40,
+        "endLine": 123,
+        "endChar": 61
+      },
+      "revId": "25fa4c10d6e6f534ecca4e9785ed8b0b7d937687",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
