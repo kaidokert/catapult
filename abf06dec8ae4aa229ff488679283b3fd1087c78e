@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "4b1b7b42_7f5c3602",
+        "filename": "catapult_build/dev_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-24T00:05:21Z",
+      "side": 1,
+      "message": "nit: Instead of disabling the lint, do\n\ndef port(self, *args, **kwargs):\n  del args, kwargs\n\nThis follows suggestions in go/pythonstyle.",
+      "range": {
+        "startLine": 86,
+        "startChar": 35,
+        "endLine": 86,
+        "endChar": 69
+      },
+      "revId": "abf06dec8ae4aa229ff488679283b3fd1087c78e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53f9c9cd_df5a3bee",
+        "filename": "catapult_build/dev_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-24T00:05:21Z",
+      "side": 1,
+      "message": "Weird that we do this instead of using logging module, but I guess this is fine.",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 32
+      },
+      "revId": "abf06dec8ae4aa229ff488679283b3fd1087c78e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecc574ca_7b489e7a",
         "filename": "tracing/tracing/base/unittest/interactive_test_runner.html",
         "patchSetId": 1
