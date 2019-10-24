@@ -114,23 +114,18 @@ class TracingBackend(object):
     self._trace_data_builder = None
     self._data_loss_occurred = False
     if startup_tracing_config is not None:
-      self._TakeOwnershipOfTracingSession(startup_tracing_config)
+      # Startup tracing should already be running, but we still need to send a
+      # Tracing.start command for DevTools to become owner of the tracing
+      # session and to update the transfer settings.
+      # This also ensures that tracing data from early startup is flushed to
+      # the tracing service before the thread-local buffers for startup tracing
+      # are exhausted (crbug.com/914092).
+      self._StartTracing(
+          trace_format=startup_tracing_config.chrome_trace_config.trace_format)
 
   @property
   def is_tracing_running(self):
     return self._is_tracing_running
-
-  def _TakeOwnershipOfTracingSession(self, config):
-    # Startup tracing should already be running, but we still need to send a
-    # Tracing.start command for DevTools to become owner of the tracing session
-    # and to update the transfer settings.
-    # This also ensures that tracing data from early startup is flushed to the
-    # tracing service before the thread-local buffers for startup tracing are
-    # exhausted (crbug.com/914092).
-    req = _MakeTracingStartRequest(
-        trace_format=config.chrome_trace_config.trace_format)
-    self._inspector_websocket.SendAndIgnoreResponse(req)
-    self._is_tracing_running = True
 
   def StartTracing(self, chrome_trace_config, timeout=20):
     """When first called, starts tracing, and returns True.
@@ -149,19 +144,45 @@ class TracingBackend(object):
       raise TracingUnsupportedException(
           'Chrome tracing not supported for this app.')
 
-    req = _MakeTracingStartRequest(
+    self._StartTracing(
         trace_config=chrome_trace_config.GetChromeTraceConfigForDevTools(),
-        trace_format=chrome_trace_config.trace_format)
-    logging.info('Start Tracing Request: %r', req)
-    response = self._inspector_websocket.SyncRequest(req, timeout)
+        trace_format=chrome_trace_config.trace_format, timeout=timeout)
+    return True
 
+  def _StartTracing(self, trace_config=None, trace_format=None, timeout=20):
+    """Send a Tracing.start request and validate its response.
+
+    Args:
+      trace_config: A dictionary speficying to Chrome what should be traced.
+        For example: {'recordMode': 'recordUntilFull', 'includedCategories':
+        ['x', 'y'], ...}. It is required to start tracing via DevTools, and
+        should be omitted if startup tracing was already started.
+      trace_format: An optional string identifying the requested format in which
+        to stream the recorded trace back to the client. Chrome currently
+        defaults to JSON if omitted.
+      timeout: Number of seconds to wait for a response.
+
+    Raises:
+      TracingUnexpectedResponseException if failed to start tracing.
+    """
+    # Using 'gzip' compression reduces the amount of data transferred over
+    # websocket. This reduces the time waiting for all data to be received,
+    # especially when the test is running on an android device. Using
+    # compression can save upto 10 seconds (or more) for each story.
+    params = {
+        'transferMode': 'ReturnAsStream',
+        'streamCompression': 'gzip',
+        'traceConfig': trace_config or {}}
+    if trace_format is not None:
+      params['streamFormat'] = trace_format
+    request = {'method': 'Tracing.start', 'params': params}
+    logging.info('Sending Tracing.start request: %r', request)
+    response = self._inspector_websocket.SyncRequest(request, timeout)
+    logging.info('Tracing.start response: %r', response)
     if 'error' in response:
       raise TracingUnexpectedResponseException(
-          'Inspector returned unexpected response for '
-          'Tracing.start:\n' + json.dumps(response, indent=2))
-
+          'Inspector returned unexpected response for Tracing.start.')
     self._is_tracing_running = True
-    return True
 
   def RecordClockSyncMarker(self, sync_id):
     assert self.is_tracing_running, 'Tracing must be running to clock sync.'
@@ -340,34 +361,6 @@ class TracingBackend(object):
     req = {'method': 'Tracing.hasCompleted'}
     res = self._inspector_websocket.SyncRequest(req, timeout=10)
     return not res.get('response')
-
-
-def _MakeTracingStartRequest(trace_config=None, trace_format=None):
-  """Build a Tracing.start request with suitable parameters.
-
-  Args:
-    trace_config: A dictionary speficying to Chrome what should be traced.
-      For example: {'recordMode': 'recordUntilFull', 'includedCategories':
-      ['x', 'y'], ...}. It is required to start tracing via DevTools, and
-      should be omitted if startup tracing was already started.
-    trace_format: An optional string identifying the requested format in which
-      to stream the recorded trace back to the client. Chrome currently
-      defaults to JSON if omitted.
-
-  Returns:
-    A dictionary suitable to pass as a DevTools request.
-  """
-  # Using 'gzip' compression reduces the amount of data transferred over
-  # websocket. This reduces the time waiting for all data to be received,
-  # especially when the test is running on an android device. Using
-  # compression can save upto 10 seconds (or more) for each story.
-  params = {
-      'transferMode': 'ReturnAsStream',
-      'streamCompression': 'gzip',
-      'traceConfig': trace_config or {}}
-  if trace_format is not None:
-    params['streamFormat'] = trace_format
-  return  {'method': 'Tracing.start', 'params': params}
 
 
 def _GetTraceFileSuffix(params):
