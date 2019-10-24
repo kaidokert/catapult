@@ -210,9 +210,9 @@ class Browser(app.App):
   def supports_memory_dumping(self):
     return self._browser_backend.supports_memory_dumping
 
-  def DumpMemory(self, timeout=None):
+  def DumpMemory(self, deterministic_mode, timeout=None):
     try:
-      return self._browser_backend.DumpMemory(timeout=timeout)
+      return self._browser_backend.DumpMemory(deterministic_mode, timeout)
     except tracing_backend.TracingUnrecoverableException:
       logging.exception('Failed to record memory dump due to exception:')
       # Re-raise as an AppCrashException to obtain further debug information
