@@ -46,6 +46,30 @@
       "revId": "26ac93fc9565597d124303b1109b1bf27018f765",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb3847da_1baaf33d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-25T17:31:42Z",
+      "side": 1,
+      "message": "I\u0027m sorry, but I still don\u0027t understand. How did you enable snapshots? Could you provide a step-by-step process for this so that someone else can do this in the future? Did you just run\n\n$ cd third_party/vinn/bin\n$ ./update_v8\n\n?\n\nOr maybe\n\n$ cd third_party/vinn/bin\n$ ./update_v8 canary\n\n?\n\nI still don\u0027t understand where the snapshots came from.",
+      "parentUuid": "eaeb9b6d_e2bf954d",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "26ac93fc9565597d124303b1109b1bf27018f765",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
