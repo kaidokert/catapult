@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e06dd68f_c33fda23",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-10-25T20:41:03Z",
+      "side": 1,
+      "message": "You can also use ..., e.g.:\n  [...categories].sort((a, b) \u003d\u003e a.locale\u003cthe rest\u003e",
+      "range": {
+        "startLine": 394,
+        "startChar": 29,
+        "endLine": 394,
+        "endChar": 51
+      },
+      "revId": "0cdf28dad377afa0fc7c41df74301979e7569d00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d35950f_2d35e434",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-10-25T20:41:03Z",
+      "side": 1,
+      "message": "I think you can specify a name here so this is stored in settings and remembered across sessions.",
+      "range": {
+        "startLine": 397,
+        "startChar": 64,
+        "endLine": 397,
+        "endChar": 73
+      },
+      "revId": "0cdf28dad377afa0fc7c41df74301979e7569d00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "064d2ca1_753e58e7",
+        "filename": "tracing/tracing/ui/tracks/model_track.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-10-25T20:41:03Z",
+      "side": 1,
+      "message": "I don\u0027t really know what this does ... should this just check if selectedFlowEvents is empty or not?",
+      "revId": "0cdf28dad377afa0fc7c41df74301979e7569d00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

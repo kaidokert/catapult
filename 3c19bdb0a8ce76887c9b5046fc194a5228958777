@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe9ed6dc_5b2adcdc",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-10-25T20:41:03Z",
+      "side": 0,
+      "message": "The createCheckBox() API creates a tr.b.Settings that I believe persists across sessions [1]. I suspect something similar would work for the new UI too. I think it makes sense to look into that separately though.\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/ui/base/dom_helpers.html?l\u003d274",
+      "revId": "3c19bdb0a8ce76887c9b5046fc194a5228958777",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
