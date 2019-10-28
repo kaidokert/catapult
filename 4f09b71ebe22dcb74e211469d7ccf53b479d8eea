@@ -16,6 +16,24 @@
       "revId": "4f09b71ebe22dcb74e211469d7ccf53b479d8eea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dc28ef1_8828bfd4",
+        "filename": "dashboard/dashboard/cron_update_sheriff.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1116018
+      },
+      "writtenOn": "2019-10-28T13:56:30Z",
+      "side": 1,
+      "message": "Not super necessary, but the cron job typically takes a few hours to run, and ordering it forces similar keys to get updated together.",
+      "parentUuid": "a261a5f1_bf1e6fe9",
+      "revId": "4f09b71ebe22dcb74e211469d7ccf53b479d8eea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
