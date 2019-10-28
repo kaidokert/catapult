@@ -16,6 +16,24 @@
       "revId": "249be99bab73347c1ac655e0928d8c7ec4a73900",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "120d69d7_7f4063e9",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-28T12:57:18Z",
+      "side": 1,
+      "message": "Ack. Thanks!",
+      "parentUuid": "450c6db9_2aa7f36c",
+      "revId": "249be99bab73347c1ac655e0928d8c7ec4a73900",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
