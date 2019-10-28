@@ -187,6 +187,30 @@
       "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a07b2efd_afe2bb33",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-28T23:26:04Z",
+      "side": 1,
+      "message": "ah nah, I looked this up and I think I was wrong. Sorry about that. Carry on!",
+      "parentUuid": "74ca81c7_c11cabaf",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
