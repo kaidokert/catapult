@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "efd03b87_90e3ba02",
+        "filename": "telemetry/telemetry/internal/backends/chrome/crashpad_breakpad_minidump_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-10-28T23:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca71eb86_9617de15",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d8ba7b1_96752255",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b3753fc_fc0b269a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-10-28T23:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d8ba7b1_96752255",
+      "range": {
+        "startLine": 328,
+        "startChar": 11,
+        "endLine": 328,
+        "endChar": 36
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "7788d39b_c68a1f23",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-10-28T23:24:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fba0c530_89f5e18f",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 25
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11f1fe8f_ae0b271c",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-10-28T21:32:18Z",
       "side": 1,
       "message": "\"Abstract class\" usually means that the class does not have any functionality but is just a template. This class actually has a lot of functionality in it.",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74ca81c7_c11cabaf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-10-28T23:24:07Z",
+      "side": 1,
+      "message": "I might be mixing in too much Java, but I\u0027ve always treated \"abstract\" as meaning that you can\u0027t   or shouldn\u0027t create an instance of that class, instead using a child. It\u0027s orthogonal to how much functionality is actually in the class. In this case, the NotImplemented in GetSymbolBinaries is what makes you unable to use this class directly.\n\nIf there\u0027s a different term you\u0027d prefer, I could switch to that.",
+      "parentUuid": "11f1fe8f_ae0b271c",
       "range": {
         "startLine": 18,
         "startChar": 7,
