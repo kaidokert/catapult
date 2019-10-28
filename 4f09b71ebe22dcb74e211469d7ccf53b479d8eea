@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a261a5f1_bf1e6fe9",
+        "filename": "dashboard/dashboard/cron_update_sheriff.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-28T00:52:05Z",
+      "side": 1,
+      "message": "Is this order necessary?",
+      "revId": "4f09b71ebe22dcb74e211469d7ccf53b479d8eea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
