@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "579fef9a_8c0f39a9",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-28T00:48:13Z",
+      "side": 1,
+      "message": "I prefer adding both \u0027tir_label\u0027 and \u0027grouping_label\u0027 for a time, and leaving breadcrumbs to allow us to remove the deprecated input later.\n\nUnfortunately the way these values are set up is through the \u0027arguments\u0027 member of the job object, but that\u0027s just a dictionary (or object in JS). We store and serve whatever the previous arguments were. So if you want to translate the tir_label into grouping_label, you\u0027d have to write a special function that does the translation somewhere. My Polymer-fu is not strong enough to give you a hint as to how to make that happen.",
+      "parentUuid": "559e6d51_a4e6c69e",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d192c4be_1812fd60",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-10-22T15:42:32Z",
       "side": 1,
       "message": "I believe this is the only point where we read tir_label (or will read grouping_label) from the job arguments.",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f0e548a_ec92bf4b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-28T00:48:13Z",
+      "side": 1,
+      "message": "For now, yes -- but there are evaluators that use the tir_label as well, that aren\u0027t yet part of the normal course of Pinpoint job execution, but will be soon-ish.\n\nnit: Maybe something like this instead?\n\ngrouping_label \u003d arguments.get(\u0027grouping_label\u0027) or arguments.get(\u0027tir_label\u0027)",
+      "parentUuid": "d192c4be_1812fd60",
       "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "beaa2ff7_923e1c64",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-28T00:48:13Z",
+      "side": 1,
+      "message": "Yes, that\u0027s possible (and is a constant source of pain for us when changing these state-dependent codepaths). In this case however, we don\u0027t run this code yet so the risk of non-backwards-compatible changes is low to none.",
+      "parentUuid": "5654e375_266dc83c",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa9c92d6_14618aba",
         "filename": "dashboard/dashboard/pinpoint_request.py",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2019-10-22T15:42:32Z",
       "side": 1,
       "message": "If I understand things right, the plan would be to:\n1) Land this CL.\n2) Deploy a new version of pinpoint (which will read from either tir_label or grouping_label).\n3) Land a follow up CL making this start writing \u0027grouping_label\u0027 in the request.",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7844628_b84facf5",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-10-28T00:48:13Z",
+      "side": 1,
+      "message": "You can make this easier by adding both the tir_label and grouping_label arguments to the request. This makes it so that we can deploy and/or roll-back the Dashboard independently of Pinpoint.",
+      "parentUuid": "fa9c92d6_14618aba",
       "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
