@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9c6025d1_5d63da93",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-28T11:40:51Z",
+      "side": 1,
+      "message": "Got it. Will keep both for now.",
+      "parentUuid": "579fef9a_8c0f39a9",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d192c4be_1812fd60",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 2
@@ -107,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "ebd61330_d0c2d487",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-28T11:40:51Z",
+      "side": 1,
+      "message": "Sounds good. Thanks for the explanation!",
+      "parentUuid": "beaa2ff7_923e1c64",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa9c92d6_14618aba",
         "filename": "dashboard/dashboard/pinpoint_request.py",
         "patchSetId": 2
@@ -136,6 +172,24 @@
       "side": 1,
       "message": "You can make this easier by adding both the tir_label and grouping_label arguments to the request. This makes it so that we can deploy and/or roll-back the Dashboard independently of Pinpoint.",
       "parentUuid": "fa9c92d6_14618aba",
+      "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f85ef552_14fb23ea",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-28T11:40:51Z",
+      "side": 1,
+      "message": "Good idea. Done.",
+      "parentUuid": "b7844628_b84facf5",
       "revId": "ffc53583fa52c17502a1c8786c042352f2b59457",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
