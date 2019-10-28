@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca71eb86_9617de15",
+        "filename": "telemetry/telemetry/internal/backends/chrome/crashpad_breakpad_minidump_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-28T21:32:18Z",
+      "side": 1,
+      "message": "Why not just \"MinidumpFinder\"?",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d8ba7b1_96752255",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-28T21:32:18Z",
+      "side": 1,
+      "message": "Why not just construct and use this all in one place and then we don\u0027t need a new member variable?",
+      "range": {
+        "startLine": 328,
+        "startChar": 11,
+        "endLine": 328,
+        "endChar": 36
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fba0c530_89f5e18f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-28T21:32:18Z",
+      "side": 1,
+      "message": "same as above: why do we need a member variable? Why not just construct this class and then use it all at once?",
+      "range": {
+        "startLine": 55,
+        "startChar": 9,
+        "endLine": 55,
+        "endChar": 25
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11f1fe8f_ae0b271c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-28T21:32:18Z",
+      "side": 1,
+      "message": "\"Abstract class\" usually means that the class does not have any functionality but is just a template. This class actually has a lot of functionality in it.",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "069805169cde9de8300c149d6b8c1fc2559a38e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
