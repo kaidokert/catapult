@@ -16,6 +16,24 @@
       "revId": "674c4e8dbb58813f23b9d2027bbb24fb3ab9ba28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3780fda4_d631b98b",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1174470
+      },
+      "writtenOn": "2019-10-28T17:33:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99ddb1e0_91782c84",
+      "revId": "674c4e8dbb58813f23b9d2027bbb24fb3ab9ba28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
