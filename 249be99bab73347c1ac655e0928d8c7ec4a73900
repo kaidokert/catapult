@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "450c6db9_2aa7f36c",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-10-28T12:55:36Z",
+      "side": 1,
+      "message": "In the previous version I added the arch_name argument before the os_name, which broke clients that called this constructor using positional arguments.",
+      "revId": "249be99bab73347c1ac655e0928d8c7ec4a73900",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
