@@ -16,6 +16,24 @@
       "revId": "5e538c79b40af281abb9b615b32d93b93c9f7e9d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2375d72_57d1a453",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2019-10-29T13:58:49Z",
+      "side": 1,
+      "message": "the spec is now in version control and documented: https://osscs.corp.google.com/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/resultdb/proto/rpc/v1/test_result.proto;l\u003d63?q\u003dtest_result.proto\u0026ss\u003dchromium\n\nit is a string",
+      "parentUuid": "bc96cc76_d30caa85",
+      "revId": "5e538c79b40af281abb9b615b32d93b93c9f7e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
