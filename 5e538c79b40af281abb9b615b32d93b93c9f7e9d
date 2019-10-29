@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc96cc76_d30caa85",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-10-29T11:57:17Z",
+      "side": 1,
+      "message": "Not sure what the LUCI spec says. Is it fine for this to be an int? Or should it be a str?",
+      "revId": "5e538c79b40af281abb9b615b32d93b93c9f7e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
