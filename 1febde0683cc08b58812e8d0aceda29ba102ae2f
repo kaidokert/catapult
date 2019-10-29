@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ac76b6f_3f532e1f",
+        "filename": "common/bin/update_chrome_reference_binaries.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-29T20:07:37Z",
+      "side": 1,
+      "message": "This is just because the linter was complaining about long line.",
+      "revId": "1febde0683cc08b58812e8d0aceda29ba102ae2f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
