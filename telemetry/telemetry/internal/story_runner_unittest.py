@@ -277,7 +277,7 @@ class RunStorySetTest(unittest.TestCase):
     self.assertFalse(test_results[0]['isExpected'])
     # Second story unexpectedly skipped due to exception during tear down.
     self.assertEqual(test_results[1]['status'], 'SKIP')
-    self.assertFalse(test_results[1]['isExpected'])
+    self.assertFalse(test_results[1]['expected'])
 
   def testPagesetRepeat(self):
     self.options.pageset_repeat = 2
