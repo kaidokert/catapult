@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05e6bc3d_6d838c35",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-10-30T17:20:11Z",
+      "side": 0,
+      "message": "tmpdir was not being used anywhere, and I was collecting a bunch of user_data_dirs in my /tmp/ directory.",
+      "revId": "762db8a1501292e89ccade941d75515f18a6c75c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
