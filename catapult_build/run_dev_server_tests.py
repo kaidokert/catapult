@@ -14,6 +14,9 @@ import sys
 import tempfile
 import time
 
+from collections import namedtuple
+from threading import Timer
+
 from hooks import install
 
 from py_utils import binary_manager
@@ -57,6 +60,10 @@ PLATFORM_MAPPING = {
         ],
     },
 }
+
+
+class ChromeNotFound(Exception):
+  pass
 
 
 def IsDepotToolsPath(path):
@@ -108,35 +115,51 @@ def GetLocalChromePath(path_from_command_line):
   return None
 
 
-def Main(argv):
+ChromeInfo = namedtuple('ChromeInfo', 'path, version')
+
+
+def GetChromeInfo(args):
+  """Finds chrome either locally or remotely and returns path and version info.
+
+  Version is not reported if local chrome is used.
+  """
+  if args.use_local_chrome:
+    chrome_path = GetLocalChromePath(args.chrome_path)
+    if not chrome_path:
+      raise ChromeNotFound('Could not find chrome locally. You can supply it '
+                           'manually using --chrome_path')
+    return ChromeInfo(path=chrome_path, version=None)
+  else:
+    channel = args.channel
+    if sys.platform == 'linux2' and channel == 'canary':
+      channel = 'dev'
+    assert channel in ['stable', 'beta', 'dev', 'canary']
+
+    binary = 'chrome'
+    print ('Fetching the %s %s binary via ' % (channel, binary) +
+           'the binary_manager.')
+    chrome_manager = binary_manager.BinaryManager([CHROME_BINARIES_CONFIG])
+    arch, os_name = dependency_util.GetOSAndArchForCurrentDesktopPlatform()
+    chrome_path, version = chrome_manager.FetchPathWithVersion(
+        '%s_%s' % (binary, channel), arch, os_name)
+    print 'Finished fetching the %s binary to %s' % (binary, chrome_path)
+    return ChromeInfo(path=chrome_path, version=version)
+
+
+
+def RunTests(args, chrome_path):
+  """Runs tests and returns dev server return code.
+
+  Returns 124 if tests exceed args.timeout_sec.
+  """
   user_data_dir = None
   xvfb_process = None
+  chrome_process = None
+  server_process = None
+  timer = None
+  test_start_time = time.time()
   try:
-    parser = argparse.ArgumentParser(
-        description='Run dev_server tests for a project.')
-    parser.add_argument('--chrome_path', type=str,
-                        help='Path to Chrome browser binary.')
-    parser.add_argument('--no-use-local-chrome',
-                        dest='use_local_chrome', action='store_false',
-                        help='Use chrome binary fetched from cloud storage '
-                        'instead of chrome available on the system.')
-    parser.add_argument(
-        '--no-install-hooks', dest='install_hooks', action='store_false')
-    parser.add_argument('--tests', type=str,
-                        help='Set of tests to run (tracing or perf_insights)')
-    parser.add_argument('--channel', type=str, default='stable',
-                        help='Chrome channel to run (stable or canary)')
-    parser.add_argument('--presentation-json', type=str,
-                        help='Recipe presentation-json output file path')
-    parser.set_defaults(install_hooks=True)
-    parser.set_defaults(use_local_chrome=True)
-    args = parser.parse_args(argv[1:])
-
-    if args.install_hooks:
-      install.InstallHooks()
-
     user_data_dir = tempfile.mkdtemp()
-
     server_path = os.path.join(os.path.dirname(
         os.path.abspath(__file__)), os.pardir, 'bin', 'run_dev_server')
     # TODO(anniesullie): Make OS selection of port work on Windows. See #1235.
@@ -147,7 +170,7 @@ def Main(argv):
     server_command = [server_path, '--no-install-hooks', '--port', port]
     if sys.platform.startswith('win'):
       server_command = ['python.exe'] + server_command
-    print "Starting dev_server..."
+    print 'Starting dev_server...'
     server_process = subprocess.Popen(
         server_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
         bufsize=1)
@@ -156,32 +179,9 @@ def Main(argv):
       output = server_process.stderr.readline()
       port = re.search(
           r'Now running on http://127.0.0.1:([\d]+)', output).group(1)
-
-    chrome_info = None
-    if args.use_local_chrome:
-      chrome_path = GetLocalChromePath(args.chrome_path)
-      if not chrome_path:
-        logging.error('Could not find path to chrome.')
-        sys.exit(1)
-      chrome_info = 'with command `%s`' % chrome_path
-    else:
-      channel = args.channel
-      if sys.platform == 'linux2' and channel == 'canary':
-        channel = 'dev'
-      assert channel in ['stable', 'beta', 'dev', 'canary']
-
-      binary = 'chrome'
-      print ('Fetching the %s %s binary via ' % (channel, binary) +
-             'the binary_manager.')
-      chrome_manager = binary_manager.BinaryManager([CHROME_BINARIES_CONFIG])
-      arch, os_name = dependency_util.GetOSAndArchForCurrentDesktopPlatform()
-      chrome_path, version = chrome_manager.FetchPathWithVersion(
-          '%s_%s' % (binary, channel), arch, os_name)
-      print 'Finished fetching the %s binary to %s' % (binary, chrome_path)
-      if xvfb.ShouldStartXvfb():
-        print 'Starting xvfb...'
-        xvfb_process = xvfb.StartXvfb()
-      chrome_info = 'version %s from channel %s' % (version, channel)
+    if xvfb.ShouldStartXvfb():
+      print 'Starting xvfb...'
+      xvfb_process = xvfb.StartXvfb()
     chrome_command = [
         chrome_path,
         '--user-data-dir=%s' % user_data_dir,
@@ -195,34 +195,56 @@ def Main(argv):
         ('http://localhost:%s/%s/tests.html?' % (port, args.tests)) +
         'headless=true&testTypeToRun=all',
     ]
-    print "Starting Chrome %s..." % chrome_info
+    print 'Starting Chrome at path %s...' % chrome_path
     chrome_process = subprocess.Popen(
         chrome_command, stdout=sys.stdout, stderr=sys.stderr)
     print 'chrome process command: %s' % ' '.join(chrome_command)
-    print "Waiting for tests to finish..."
+    print 'Waiting for tests to finish...'
+
+    def KillServer():
+      print 'Timeout reached. Killing dev server...'
+      server_process.kill()
+
+    timer = Timer(args.timeout_sec, KillServer)
+    timer.start()
     server_out, server_err = server_process.communicate()
-    print "Killing Chrome..."
-    if sys.platform == 'win32':
-      # Use taskkill on Windows to make sure Chrome and all subprocesses are
-      # killed.
-      subprocess.call(['taskkill', '/F', '/T', '/PID', str(chrome_process.pid)])
+    timed_out = not timer.is_alive()
+    timer.cancel()
+
+    logging.error('Server stdout:\n%s', server_out)
+    logging.error('Server stderr:\n%s', server_err)
+
+    if timed_out:
+      print 'Tests did not finish before %d seconds' % args.timeout_sec
+      return 124
     else:
-      chrome_process.kill()
-    if server_process.returncode != 0:
-      logging.error('Tests failed!')
-      logging.error('Server stdout:\n%s', server_out)
-      logging.error('Server stderr:\n%s', server_err)
-    else:
-      print server_out
-    if args.presentation_json:
-      with open(args.presentation_json, 'w') as recipe_out:
-        # Add a link to the buildbot status for the step saying which version
-        # of Chrome the test ran on. The actual linking feature is not used,
-        # but there isn't a way to just add text.
-        link_name = 'Chrome Version %s' % version
-        presentation_info = {'links': {link_name: CHROME_CONFIG_URL}}
-        json.dump(presentation_info, recipe_out)
+      if server_process.returncode != 0:
+        logging.error('Tests failed!')
+        print server_process.returncode
+      else:
+        print "Tests passed in %.2f seconds." % (time.time() - test_start_time)
+      return server_process.returncode
+
   finally:
+    if timer:
+      timer.cancel()
+    if server_process and server_process.poll is None:
+      # Dev server is still running. Kill it.
+      print 'Killing dev server...'
+      if sys.platform == 'win32':
+        subprocess.call(['taskkill', '/F', '/T', '/PID',
+                         str(server_process.pid)])
+      else:
+        server_process.kill()
+    if chrome_process:
+      print 'Killing Chrome...'
+      if sys.platform == 'win32':
+        # Use taskkill on Windows to make sure Chrome and all subprocesses are
+        # killed.
+        subprocess.call(['taskkill', '/F', '/T', '/PID',
+                         str(chrome_process.pid)])
+      else:
+        chrome_process.kill()
     # Wait for Chrome to be killed before deleting temp Chrome dir. Only have
     # this timing issue on Windows.
     if sys.platform == 'win32':
@@ -242,4 +264,61 @@ def Main(argv):
     if xvfb_process:
       xvfb_process.kill()
 
-  sys.exit(server_process.returncode)
+
+def Main(argv):
+  parser = argparse.ArgumentParser(
+      description='Run dev_server tests for a project.')
+  parser.add_argument('--chrome_path', type=str,
+                      help='Path to Chrome browser binary.')
+  parser.add_argument('--no-use-local-chrome',
+                      dest='use_local_chrome', action='store_false',
+                      help='Use chrome binary fetched from cloud storage '
+                      'instead of chrome available on the system.')
+  parser.add_argument(
+      '--no-install-hooks', dest='install_hooks', action='store_false')
+  parser.add_argument('--tests', type=str,
+                      help='Set of tests to run (tracing or perf_insights)')
+  parser.add_argument('--channel', type=str, default='stable',
+                      help='Chrome channel to run (stable or canary)')
+  parser.add_argument('--presentation-json', type=str,
+                      help='Recipe presentation-json output file path')
+  parser.add_argument('--timeout-sec', type=float, default=float('inf'),
+                      help='Timeout for running all tests, in seconds')
+  parser.add_argument('--timeout-retries', type=int, default=0,
+                      help='Number of times to retry if tests time out.'
+                      'Default 0 (no retries)')
+  parser.set_defaults(install_hooks=True)
+  parser.set_defaults(use_local_chrome=True)
+  args = parser.parse_args(argv[1:])
+
+  if args.install_hooks:
+    install.InstallHooks()
+
+  chrome_info = GetChromeInfo(args)
+  print('Using chrome at path %s', chrome_info.path)
+  if not args.use_local_chrome:
+    print ('Chrome version %s, channel %s' % (chrome_info.version,
+                                              args.channel))
+  attemps_left = max(0, args.timeout_retries) + 1
+  return_code = None
+  while attemps_left:
+    print '%d attempts left. Running tests...' % attemps_left
+    return_code = RunTests(args, chrome_info.path)
+    if return_code == 124:  # This is a timeout.
+      attemps_left -= 1
+      continue
+    else:
+      break
+  else:
+    logging.error('Tests timed out every time. Retried %d times.',
+                  args.timeout_retries)
+    return_code = 1
+  if args.presentation_json:
+    with open(args.presentation_json, 'w') as recipe_out:
+      # Add a link to the buildbot status for the step saying which version
+      # of Chrome the test ran on. The actual linking feature is not used,
+      # but there isn't a way to just add text.
+      link_name = 'Chrome Version %s' % chrome_info.version
+      presentation_info = {'links': {link_name: CHROME_CONFIG_URL}}
+      json.dump(presentation_info, recipe_out)
+  sys.exit(return_code)
