@@ -19,7 +19,7 @@ from hooks import install
 from py_utils import binary_manager
 from py_utils import dependency_util
 from py_utils import xvfb
-
+from threading import Timer
 
 # Path to dependency manager config containing chrome binary data.
 CHROME_BINARIES_CONFIG = dependency_util.ChromeBinariesConfigPath()
@@ -109,7 +109,7 @@ def GetLocalChromePath(path_from_command_line):
 
 
 def Main(argv):
-  tmpdir = None
+  user_data_dir = None
   xvfb_process = None
   try:
     parser = argparse.ArgumentParser(
@@ -189,6 +189,7 @@ def Main(argv):
         '--no-first-run',
         '--noerrdialogs',
         '--window-size=1280,1024',
+        '--enable-logging', '--v=1',
         ('http://localhost:%s/%s/tests.html?' % (port, args.tests)) +
         'headless=true&testTypeToRun=all',
     ]
@@ -197,7 +198,10 @@ def Main(argv):
         chrome_command, stdout=sys.stdout, stderr=sys.stderr)
     print 'chrome process command: %s' % ' '.join(chrome_command)
     print "Waiting for tests to finish..."
+    timer = Timer(5.0, server_process.kill)
+    timer.start()
     server_out, server_err = server_process.communicate()
+    timer.cancel()
     print "Killing Chrome..."
     if sys.platform == 'win32':
       # Use taskkill on Windows to make sure Chrome and all subprocesses are
@@ -224,13 +228,18 @@ def Main(argv):
     # this timing issue on Windows.
     if sys.platform == 'win32':
       time.sleep(5)
-    if tmpdir:
+    if user_data_dir:
+      chrome_debug_logs = os.path.join(user_data_dir, 'chrome_debug.log')
+      if os.path.exists(chrome_debug_logs):
+        with open(chrome_debug_logs) as f:
+          print "-------- chrome_debug.log --------"
+          sys.stdout.write(f.read())
+          print "-------- ---------------- --------"
+          print "Logs printed from %s" % chrome_debug_logs
       try:
-        shutil.rmtree(tmpdir)
         shutil.rmtree(user_data_dir)
       except OSError as e:
-        logging.error('Error cleaning up temp dirs %s and %s: %s',
-                      tmpdir, user_data_dir, e)
+        logging.error('Error cleaning up temp dirs %s: %s', user_data_dir, e)
     if xvfb_process:
       xvfb_process.kill()
 
