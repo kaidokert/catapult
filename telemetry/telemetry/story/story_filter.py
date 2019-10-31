@@ -205,28 +205,69 @@ class StoryFilter(object):
           frozenset(self._stories) - frozenset(output_stories_names))
       for story in unmatched_stories:
         raise ValueError('story %s was asked for but does not exist.' % story)
+      logging.info('Running %s output stories that match the --story flag.' %
+                   len(output_stories))
       return output_stories
 
     if self._abridged_story_set_tag:
+      length_before = len(stories)
       stories = [story for story in stories
                  if self._abridged_story_set_tag in story.tags]
+      # pylint: disable=logging-format-interpolation
+      logging.warn(
+          'Running the benchmark with an abridged story set. This means that '
+          'only stories with the tag {tag} will be run. This story set '
+          'contains {total} stories total, but only {abridged} of them are in '
+          'the abridged set. Use --run-full-story-set to run the whole '
+          'benchmark (note that this may take a long time.)'.format(
+              tag=self._abridged_story_set_tag,
+              total=length_before,
+              abridged=len(stories)))
+      # pylint: enable=logging-format-interpolation
     if self._shard_begin_index < 0:
       self._shard_begin_index = 0
     if self._shard_end_index is None:
       self._shard_end_index = len(stories)
     stories = stories[self._shard_begin_index:self._shard_end_index]
     final_stories = []
+    excluded_by_exclude_tag = 0
+    excluded_by_exclude_regex = 0
+    excluded_by_include_tag = 0
+    excluded_by_include_regex = 0
     for story in stories:
       # Exclude filters take priority.
       if self._exclude_tags.HasLabelIn(story):
+        excluded_by_exclude_tag += 1
         continue
       if self._exclude_regex.HasMatch(story):
+        excluded_by_exclude_regex += 1
         continue
       if self._include_tags and not self._include_tags.HasLabelIn(story):
+        excluded_by_include_tag += 1
         continue
       if self._include_regex and not self._include_regex.HasMatch(story):
+        excluded_by_include_regex += 1
         continue
       final_stories.append(story)
+    if excluded_by_exclude_tag:
+      logging.info('%s stories were filtered out because they had tags '
+                   'matching the --story-tag-filter-exclude flag value.',
+                   excluded_by_exclude_tag)
+    if excluded_by_exclude_regex:
+      logging.info('%s stories were filtered out because their names matched '
+                   'the --story-filter-exclude flag regex.',
+                   excluded_by_exclude_regex)
+    if excluded_by_include_tag:
+      logging.info('%s stories were filtered out because they had tags that '
+                   'did not match the --story-tag-filter flag value.',
+                   excluded_by_include_tag)
+    if excluded_by_include_regex:
+      logging.info('%s stories were filtered out because they had tags that '
+                   'did not match the --story-filter flag regex.',
+                   excluded_by_include_regex)
+    if (excluded_by_exclude_tag or excluded_by_exclude_regex or
+        excluded_by_include_tag or excluded_by_include_regex):
+      logging.info('%s stories to run remain.' % len(final_stories))
     return final_stories
 
   def ShouldSkip(self, story):
