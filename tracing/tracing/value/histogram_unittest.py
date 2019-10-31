@@ -625,6 +625,22 @@ class HistogramUnittest(unittest.TestCase):
     self.assertEqual(3, hist.GetApproximatePercentile(0.9))
     self.assertEqual(4, hist.GetApproximatePercentile(1))
 
+  def testFromDictMultithreaded(self):
+    hdict = {
+        "allBins": {"23": [1]},
+        "binBoundaries": [0.001, [1, 100000, 30]],
+        "name": "foo",
+        "running": [1, 1, 1, 1, 1, 1, 0],
+        "sampleValues": [1],
+        "unit": "ms",
+    }
+
+    from multiprocessing.dummy import Pool as ThreadPool
+    pool = ThreadPool(10)
+    histograms = pool.map(histogram.Histogram.FromDict, [hdict] * 10)
+    self.assertEqual(len(histograms), 10)
+    for h in histograms:
+      self.assertEqual(h.name, 'foo')
 
 class DiagnosticMapUnittest(unittest.TestCase):
   def testDisallowReservedNames(self):
