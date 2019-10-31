@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc24be80_40e32563",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2019-10-31T14:02:31Z",
+      "side": 1,
+      "message": "This seems to be breaking manual execution of benchmarks with the --story-filter argument for me. When I try to run: \n\nrun_benchmark run  v8.browsing_desktop --story-filter\u003dnytimes\n\nNo benchmarks are run. When I manually instrument the code it seem like stories initially has all the stories, but after this line it only contains the cnn story, so there is no nytimes story left for the actual filter to operate on and the benchmark skips everything.\n\nIf I comment out this line everything works correctly.",
+      "revId": "93a25d65600fde1f83daaf9ac75c13dc1f980618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
