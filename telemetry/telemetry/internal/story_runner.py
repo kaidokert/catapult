@@ -375,9 +375,9 @@ def RunBenchmark(benchmark, finder_options):
   """Run this test with the given options.
 
   Returns:
-    -1 if the benchmark was skipped,
-    0 for success
-    1 if there was a failure
+    111 if the benchmark was skipped (crbug.com/1019139#c8 for history),
+    0 for success,
+    1 if there was a failure, and
     2 if there was an uncaught exception.
   """
   benchmark.CustomizeOptions(finder_options)
@@ -391,9 +391,9 @@ def RunBenchmark(benchmark, finder_options):
     if not possible_browser:
       print ('No browser of type "%s" found for running benchmark "%s".' % (
           finder_options.browser_options.browser_type, benchmark.Name()))
-      return -1
+      return 111
     if not _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
-      return -1
+      return 111
 
     test = benchmark.CreatePageTest(finder_options)
     test.__name__ = benchmark.__class__.__name__
@@ -426,7 +426,7 @@ def RunBenchmark(benchmark, finder_options):
       elif results.had_successes:
         return_code = 0
       else:
-        return_code = -1  # All stories were skipped.
+        return_code = 111  # All stories were skipped.
     except Exception as exc: # pylint: disable=broad-except
       interruption = 'Benchmark execution interrupted: %r' % exc
       results.InterruptBenchmark(interruption)
