@@ -16,6 +16,24 @@
       "revId": "93a25d65600fde1f83daaf9ac75c13dc1f980618",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e8fd40b_c29e1cf1",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-10-31T16:48:04Z",
+      "side": 1,
+      "message": "You can add flag --run-full-story-set to disable this behavior.\n\nHowever, I agree that this is unexpected behavior. I will revert https://chromium-review.googlesource.com/c/chromium/src/+/1687783 for you while I figure out the best way to fix this.",
+      "parentUuid": "cc24be80_40e32563",
+      "revId": "93a25d65600fde1f83daaf9ac75c13dc1f980618",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
