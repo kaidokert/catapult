@@ -9,6 +9,9 @@ import platform
 import time
 
 
+_DISPLAY = ':99'
+
+
 def ShouldStartXvfb():
   # TODO(crbug.com/973847): Note that you can locally change this to return
   # False to diagnose timeouts for dev server tests.
@@ -16,14 +19,13 @@ def ShouldStartXvfb():
 
 
 def StartXvfb():
-  display = ':99'
-  xvfb_command = ['Xvfb', display, '-screen', '0', '1024x769x24', '-ac']
+  xvfb_command = ['Xvfb', _DISPLAY, '-screen', '0', '1280x1024x24', '-ac']
   xvfb_process = subprocess.Popen(
       xvfb_command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
   time.sleep(0.2)
   returncode = xvfb_process.poll()
   if returncode is None:
-    os.environ['DISPLAY'] = display
+    os.environ['DISPLAY'] = _DISPLAY
   else:
     logging.error('Xvfb did not start, returncode: %s, stdout:\n%s',
                   returncode, xvfb_process.stdout.read())
