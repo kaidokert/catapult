@@ -22,6 +22,30 @@
       "revId": "f74d01a198750dfaa38d753e4b9647c80fd1ed58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d255c7a_53c2477f",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-01T07:03:12Z",
+      "side": 1,
+      "message": "Yep, it was a stretch. This is filled out now, but still working on getting this done.",
+      "parentUuid": "40202e47_cf958fe0",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 6
+      },
+      "revId": "f74d01a198750dfaa38d753e4b9647c80fd1ed58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
