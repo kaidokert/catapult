@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29cbb9d1_96543cd7",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T17:39:56Z",
+      "side": 1,
+      "message": "Just wondering, why not have retries on this and the other tracing test as well? (Not a suggestion, just a question.)",
+      "range": {
+        "startLine": 155,
+        "startChar": 14,
+        "endLine": 155,
+        "endChar": 27
+      },
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8d2f35d_88c74653",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T17:39:56Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 314,
+        "startChar": 6,
+        "endLine": 314,
+        "endChar": 18
+      },
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
