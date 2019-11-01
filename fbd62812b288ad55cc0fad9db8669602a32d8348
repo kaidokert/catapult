@@ -34,6 +34,24 @@
       "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb087a80_13386f7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T23:53:56Z",
+      "side": 1,
+      "message": "Here\u0027s what I\u0027m thinking: https://chromium-review.googlesource.com/c/catapult/+/1896356\n\nthat changelist would be in addition to adding better logging as part of this changelist. PTAL.",
+      "parentUuid": "264a5357_8774aae6",
+      "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
