@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c48a4984_4fca9e8c",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-01T21:57:17Z",
+      "side": 1,
+      "message": "Is there an existing bug for unifying artifact implementations?",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add07c19_23476e28",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-01T21:57:17Z",
+      "side": 1,
+      "message": "This ends up failing if --write-full-results-to is not passed. I don\u0027t think it\u0027s a major issue, though, since the bots handle this already and the error message explicitly tells local users to set --write-full-results-to to fix it.",
+      "range": {
+        "startLine": 59,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 30
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28f9abe1_582fe1c0",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-01T21:57:17Z",
+      "side": 1,
+      "message": "The alternative would be a no-op wrapper, but I think that has the chance to lose information.",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 34
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bec3bf6_8bfaca26",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-01T21:57:17Z",
+      "side": 1,
+      "message": "Instead of a global variable, we could instead move everything into a class and use class-level methods. It\u0027ll make the importing slightly clunkier, but we end up avoiding globals. No strong preference from me.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 74
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
