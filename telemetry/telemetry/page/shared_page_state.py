@@ -11,6 +11,7 @@ from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import gpu_compositing_checker
 from telemetry.internal.browser import browser_info as browser_info_module
 from telemetry.internal.browser import browser_interval_profiling_controller
+from telemetry.internal.results import artifact_logger
 from telemetry.page import cache_temperature
 from telemetry.page import legacy_page_test
 from telemetry.page import traffic_setting
@@ -284,6 +285,7 @@ class SharedPageState(story_module.SharedState):
       self._page_test.DidNavigateToPage(page, action_runner.tab)
 
   def RunStory(self, results):
+    artifact_logger.RegisterArtifactImplementation(results.current_story_run)
     self._PreparePage()
     self._current_page.Run(self)
     if self._page_test:

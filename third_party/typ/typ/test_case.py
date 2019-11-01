@@ -30,6 +30,10 @@ class TestCase(unittest.TestCase):
     maxDiff = 80 * 66
     artifacts = None
 
+    @classmethod
+    def set_artifacts(cls, artifacts):
+        cls.artifacts = artifacts
+
 
 class MainTestCase(TestCase):
     prog = None
