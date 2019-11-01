@@ -16,6 +16,24 @@
       "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "264a5357_8774aae6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T21:30:29Z",
+      "side": 1,
+      "message": "I think that makes sense. I was originally not doing that because I think it would be a bit confusing to add a story filter and then run *more* tests.\n\nThere is one more case. If someone wants to run a subset of the existing abridged story set, how do they do that? Maybe something like --run-abridged --story-filter\u003d\u003cblah\u003e ?",
+      "parentUuid": "d5844af7_7e73065b",
+      "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
