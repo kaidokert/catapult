@@ -91,6 +91,30 @@
       "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0e68f70_a6b605a9",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T22:01:23Z",
+      "side": 1,
+      "message": "Isn\u0027t a classlevel variable just a global variable with extra steps? It doesn\u0027t solve the inherent issues with global variables. I don\u0027t have a problem with using class-level methods, but the reason for doing so should not be to avoid global variables.",
+      "parentUuid": "9bec3bf6_8bfaca26",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 74
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
