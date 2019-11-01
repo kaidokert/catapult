@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0885a93_140b5bf2",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-01T09:44:26Z",
+      "side": 1,
+      "message": "Wondering if we should define some constants for these and have them in a common place (e.g. py_utils) to be reused by all scripts?",
+      "revId": "20e3c370583dbe208836068a67732038fc9f0c2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
