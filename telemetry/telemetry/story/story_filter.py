@@ -107,6 +107,14 @@ class StoryFilterFactory(object):
         'does not provide the information required to abridge it, '
         'then this argument will have no impact.')
     group.add_option(
+        '--run-abridged-story-set', action='store_true', default=False,
+        help='Whether to run the abridged set of stories from the benchmark. '
+        'Note that running abridged is default unless one of the story filter '
+        'options is turned on (including --story, --story-filter, '
+        '--story-filter-exclude, --story-tag-filter, and '
+        '--story-tag-filter-exclude). This flag conflicts with the '
+        '--run-full-story-set flag.')
+    group.add_option(
         '--story', action='append', dest='stories',
         help='An exact name of a story to run. These strings should be '
         'the exact values as stored in the name attribute of a story object. '
@@ -146,7 +154,38 @@ class StoryFilterFactory(object):
     else:
       cls._expectations_file = None
     cls._run_disabled_stories = args.run_disabled_stories
-    cls._run_full_story_set = args.run_full_story_set
+
+    if not args.run_abridged_story_set and not args.run_full_story_set:
+      # User hasn't expressed an opinion, so we can do what we think is best.
+      story_filtering_enabled = bool(
+          args.story_filter or args.story_filter_exclude or
+          args.story_tag_filter or args.story_tag_filter_exclude or
+          args.stories)
+      if story_filtering_enabled:
+        # If the user has filtered to a small set of stories already, then we
+        # should give them all all the stories that match. This fits the use
+        # case ./run_benchmark v8.browsing_desktop --story-filter=nytimes
+        # where the user simply wants to run all the nytimes stories and doesn't
+        # care if they are part of the abridged set.
+        cls._run_full_story_set = True
+      else:
+        # If the user provides just the instruction to run the benchmark, then
+        # it is helpful for us to reduce the runtime of the benchmark (if the
+        # benchmark has an abridgement option). They can always provide the
+        # --run-full-story-set flag if they really want to run the whole thing.
+        # This is useful because some benchmarks can become 9+ hours long for
+        # example.
+        cls._run_full_story_set = False
+    elif args.run_abridged_story_set and args.run_full_story_set:
+      raise ValueError('--run-full-story-set and --run-abridged-story-set are '
+                       'exclusive.')
+    else:
+      if args.run_abridged_story_set:
+        cls._run_full_story_set = not args.run_abridged_story_set
+      elif args.run_full_story_set:
+        cls._run_full_story_set = args.run_full_story_set
+      else:
+        raise AssertionError('This should never happen.')
 
 
 class StoryFilter(object):
