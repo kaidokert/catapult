@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5844af7_7e73065b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-01T09:24:10Z",
+      "side": 1,
+      "message": "Hmm, looking at this I have to agree with Ross that this behavior is confusing and, worst, not very efficient for developers having to type this on the command line.\n\nFiltering to only run one or two stories is a pretty common thing, so having to always write --story-filter\u003dnytimes --run-full-story-set is not a great UX and also not very intuitive.\n\nCould we make it so filtering options always apply to the full set (e.g. like --story already does)? Namely:\n\n- (no filtering options) -\u003e runs abridged set [with a warning, as in this CL]\n- Any --story-* filtering -\u003e runs selected stories from entire set\n- --run-full-story-set -\u003e runs entire set\n\nwdyt?",
+      "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
