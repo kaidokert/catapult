@@ -500,6 +500,20 @@ class AdbWrapper(object):
         # The target directory doesn't exist on the device, so we can use it
         # without modification.
         pass
+    elif (du_version.LooseVersion(self.Version()) >=
+          du_version.LooseVersion('1.0.41')):
+      # If |remote| is a directory and already exists, and the basenames match,
+      # then drop the basename. To do otherwise results in an extra directory.
+      # For example, if local=foo/bar and remote=foo/bar this prevents
+      # foo/bar/bar from being created.
+      try:
+        self.Shell('test -d %s' % remote, timeout=timeout, retries=retries)
+        if posixpath.basename(local) == posixpath.basename(remote):
+          remote = posixpath.split(remote)[0]
+      except device_errors.AdbShellCommandFailedError:
+        # The target directory doesn't exist on the device, so we can use it
+        # without modification.
+        pass
 
     push_cmd = ['push']
 
