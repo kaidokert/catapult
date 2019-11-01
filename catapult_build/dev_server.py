@@ -287,6 +287,7 @@ def _AddPleaseExitMixinToServer(server):
       # allow CTRL+C to shutdown
       return 255
 
+    print "Exiting dev server"
     if len(exit_code_attempt) == 1:
       return exit_code_attempt[0]
     # The serve_forever returned for some reason separate from
