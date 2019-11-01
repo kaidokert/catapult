@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31ca7b16_61d258f0",
+        "filename": "common/py_utils/py_utils/constants/exit_codes.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T21:28:46Z",
+      "side": 1,
+      "message": "I went with \"TESTS\" instead of stories because this module theoretically can apply to anything in catapult, and Telemetry is the only system that uses \"stories\" verbiage.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "20f694594eed2b6301aab950d0ef563a090b24bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

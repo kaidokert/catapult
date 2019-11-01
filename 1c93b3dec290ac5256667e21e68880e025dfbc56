@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73f3f271_0617719e",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-01T21:28:46Z",
+      "side": 0,
+      "message": "It looks like this could have been what was helping us to keep marking the waterfall as successful when no stories were run. Seems like the root cause of crbug.com/1019139 was the move to have the results_processor return code get returned directly per https://cs.chromium.org/chromium/src/tools/perf/core/benchmark_runner.py?l\u003d25 instead of in the past it got filtered and changed to 0 in this code.",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 12
+      },
+      "revId": "1c93b3dec290ac5256667e21e68880e025dfbc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
