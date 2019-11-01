@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbd0fa13_a28eaea2",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1259,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-01T10:15:35Z",
+      "side": 1,
+      "message": "nit: bounds -\u003e bin_boundaries (?)",
+      "revId": "27557fd5b62eb9a62f373bd2ce22d49915901d41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52b5c423_9fddf48e",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-01T10:15:35Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "27557fd5b62eb9a62f373bd2ce22d49915901d41",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
