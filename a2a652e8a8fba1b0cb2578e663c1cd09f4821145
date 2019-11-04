@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "71e89206_db24ad19",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-04T18:31:50Z",
+      "side": 1,
+      "message": "Nodir recently added some comments to the design doc for the typ artifacts implementation https://docs.google.com/document/d/1gChmrnkHT8_MuSCKlGo-hGPmkEzg425E8DASX57ODB0/edit?ts\u003d5dbf59b5\n\nIt sounds like we\u0027ll need to update it anyways in order to be compatible with LUCI test results. Perhaps we should just go through the work to unify the two implementations now?",
+      "parentUuid": "79a26caf_14ad1a16",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c48a4984_4fca9e8c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 1
