@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77e831bb_6a485936",
+        "filename": "common/py_utils/py_utils/constants/exit_codes.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:07:16Z",
+      "side": 1,
+      "message": "What is this note about? I think it raises more questions than answers.\n\nInstead of this, maybe it would be better on places where we return SUCCESS instead of ALL_TESTS_SKIPPED to document why?",
+      "revId": "06d9bb0d1116b6af9eac8d8018d302d364712e5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
