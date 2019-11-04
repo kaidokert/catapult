@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "79a26caf_14ad1a16",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "The differences between typ and Telemetry implementations worry me a bit.\n\nFor example in the Telemetry implementation the \"artifact_type\" is unused, while the \"artifact_path\" (which we call just \"name\") is expected to have platform independent path separators (i.e. always \u0027/\u0027 as opposed to os.path.join as used above).\n\nI\u0027m wondering if this would have surprising/confusing effects for the clients, and instead we should try to stick with exposing a \"lower common\" API instead. (Which should also help unify the two implementations in the future.)\n\nFor example, always expect a single platform independent path as the first argument, e.g. \u0027symbolize_attempts/{minidump_name}\u0027 in this case. The Telemetry API can use that as-is for the artifact \u0027name\u0027; while then the typ wrapper can extract the \"top level dir\" of that path as the artifact_type (namely \u0027symbolize_attempts\u0027) and for the artifact_path translate the platform independent to platform specific separators if needed.\n\nwdyt?",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c48a4984_4fca9e8c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 1
@@ -19,6 +36,47 @@
         "endLine": 7,
         "endChar": 19
       },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12afd71_c36daaa3",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "I don\u0027t think there is. Could you please file one?",
+      "parentUuid": "c48a4984_4fca9e8c",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33f5be8f_4175365f",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "nit: Extra blank line here",
       "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -59,6 +117,30 @@
       "writtenOn": "2019-11-01T21:57:17Z",
       "side": 1,
       "message": "The alternative would be a no-op wrapper, but I think that has the chance to lose information.",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 34
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c297f858_d7169ed5",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "I think this is fine. But have a suggestion below to avoid the \"WillLogArtifacts\" method.",
+      "parentUuid": "28f9abe1_582fe1c0",
       "range": {
         "startLine": 65,
         "startChar": 6,
@@ -112,6 +194,64 @@
         "endLine": 8,
         "endChar": 74
       },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a7ec760_2c2724bf",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "Agree with Caleb\u0027s points.",
+      "parentUuid": "f0e68f70_a6b605a9",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 74
+      },
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f9579a3_68a40542",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "I have to say I don\u0027t like function too much. The whole idea of this module is that users can just import artifact_logger and dump stuff to it without having to worry about the implementation details. While this seems to almost provide clients with a way to ask: is this using the LoggingArtifactCompatWrapper implementation? And if so then do something different in the client code.\n\nInstead, maybe the fall back implementation should, say, just log the first 100 chars of the content to stdout, and instruct developers to run the code in another context (e.g. a typ test or telemetry benchmark) if they really need the full artifact?\n\nThen client code shouldn\u0027t need to worry about what happens with artifacts or exactly how are they being recorded.",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19a7da33_65821260",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T11:56:09Z",
+      "side": 1,
+      "message": "I would move this to https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003d5321943693c5f1a75b06ea3d123d5c34823e955c\u0026l\u003d201 instead.",
       "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
