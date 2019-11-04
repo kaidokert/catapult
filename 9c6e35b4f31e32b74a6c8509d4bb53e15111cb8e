@@ -25,6 +25,91 @@
     },
     {
       "key": {
+        "uuid": "be4dfcfb_8c32dcdb",
+        "filename": "catapult_build/dev_server.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:34:30Z",
+      "side": 1,
+      "message": "nit: Add from __future__ import print_function at the top, and use function here.",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31793742_65adacd6",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:34:30Z",
+      "side": 1,
+      "message": "nit: import modules not classes.",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d71ce3c0_d8ce4c3d",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:34:30Z",
+      "side": 1,
+      "message": "As you\u0027re touching most of the print\u0027s anyway, please also add from __future__ import print_function to this file.\n\nIn a few places, like this, you can avoid string formatting and let print do the format for you, e.g.\n\n    print(\u0027Fetching the\u0027, channel, binary, \u0027via ..\u0027)",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb793f25_be4302ca",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:34:30Z",
+      "side": 1,
+      "message": "should we use a named constant for this?",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd56e431_091550ba",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:34:30Z",
+      "side": 1,
+      "message": "just for consistency, maybe call your KillProcess anyway?",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8d2f35d_88c74653",
         "filename": "catapult_build/run_dev_server_tests.py",
         "patchSetId": 22
@@ -42,6 +127,23 @@
         "endLine": 314,
         "endChar": 18
       },
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4d57bce_ff5ccb4a",
+        "filename": "common/py_utils/py_utils/xvfb.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:34:30Z",
+      "side": 1,
+      "message": "is there a reason for the change here? just wondering whether this might affect some of the tests (and if so maybe land as a separate CL?)",
       "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
