@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0f46f5a2_a2dadf2b",
+        "filename": "common/py_utils/py_utils/constants/exit_codes.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T14:38:58Z",
+      "side": 1,
+      "message": "nit: Also maybe this one should be \"FATAL_ERROR\", as in something in the framework failed, other than errors while running a test.\n\nExample where I would use this:\nhttps://chromium-review.googlesource.com/c/catapult/+/1897786",
+      "revId": "06d9bb0d1116b6af9eac8d8018d302d364712e5b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77e831bb_6a485936",
         "filename": "common/py_utils/py_utils/constants/exit_codes.py",
         "patchSetId": 6
