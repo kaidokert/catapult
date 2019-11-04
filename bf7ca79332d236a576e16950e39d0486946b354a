@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecb2f41f_9e3961b6",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2019-11-04T10:27:27Z",
+      "side": 1,
+      "message": "I\u0027m still not clear why running the abridged is the default? If I\u0027m running a benchmark manually I\u0027d want the default to be to run all the pages in the story set, and would be confused if it didn\u0027t do so.",
+      "range": {
+        "startLine": 112,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 47
+      },
+      "revId": "bf7ca79332d236a576e16950e39d0486946b354a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
