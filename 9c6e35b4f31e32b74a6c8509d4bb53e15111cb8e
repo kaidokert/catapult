@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "23a063a0_e2685bdf",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "I was thinking that the tracing tests take much longer, and if they time out we should really fix the root cause instead of accepting that retries just fix the test sometime. I may change my mind about this later if fixing the root cause is too hard.",
+      "parentUuid": "29cbb9d1_96543cd7",
+      "range": {
+        "startLine": 155,
+        "startChar": 14,
+        "endLine": 155,
+        "endChar": 27
+      },
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be4dfcfb_8c32dcdb",
         "filename": "catapult_build/dev_server.py",
         "patchSetId": 22
@@ -39,6 +63,24 @@
       "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ef574ed_a185c4ef",
+        "filename": "catapult_build/dev_server.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be4dfcfb_8c32dcdb",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "26955cf7_2e63d599",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31793742_65adacd6",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d71ce3c0_d8ce4c3d",
         "filename": "catapult_build/run_dev_server_tests.py",
         "patchSetId": 22
@@ -73,6 +133,24 @@
       "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90b2456e_7ae3335f",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d71ce3c0_d8ce4c3d",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "3f055136_3fa60fb3",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb793f25_be4302ca",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd56e431_091550ba",
         "filename": "catapult_build/run_dev_server_tests.py",
         "patchSetId": 22
@@ -107,6 +203,24 @@
       "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd109399_d39e1afc",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd56e431_091550ba",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -133,6 +247,30 @@
     },
     {
       "key": {
+        "uuid": "b2d78ac4_aa3211f5",
+        "filename": "catapult_build/run_dev_server_tests.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8d2f35d_88c74653",
+      "range": {
+        "startLine": 314,
+        "startChar": 6,
+        "endLine": 314,
+        "endChar": 18
+      },
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4d57bce_ff5ccb4a",
         "filename": "common/py_utils/py_utils/xvfb.py",
         "patchSetId": 22
@@ -144,6 +282,24 @@
       "writtenOn": "2019-11-04T10:34:30Z",
       "side": 1,
       "message": "is there a reason for the change here? just wondering whether this might affect some of the tests (and if so maybe land as a separate CL?)",
+      "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f869def3_b0b7c958",
+        "filename": "common/py_utils/py_utils/xvfb.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-11-04T14:39:31Z",
+      "side": 1,
+      "message": "Nope no real reason, just remnants of code I didn\u0027t end up including in this CL. I\u0027ll move this off this CL as well.",
+      "parentUuid": "d4d57bce_ff5ccb4a",
       "revId": "9c6e35b4f31e32b74a6c8509d4bb53e15111cb8e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
