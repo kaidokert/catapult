@@ -22,6 +22,64 @@
       "revId": "bf7ca79332d236a576e16950e39d0486946b354a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c659755_cf9417dc",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:55:03Z",
+      "side": 1,
+      "message": "When someone runs a large benchmark manually, rarely they do want to wait e.g. 9 hours for the thing to finish. So running a smaller representative sample is more appropriate. This is specially true for pinpoint, where we don\u0027t want to waste resources without much though when users don\u0027t specify some sort of story filtering but they just \"wanted to check\" that their CL doesn\u0027t break something.\n\nIf someone really needs to run the full story set, then --run-full-story-set is there for that use case.\n\n\u003d\u003d\u003d\n\nNow, on top of that, I don\u0027t think there is a need for --run-abridged-story-set option. It just makes things more confusing to explain. Since the default would already print \"this is only running stories with tag X\", developers can use that information to write --story-tag-filter X to get the same effect that this flag would produce.",
+      "parentUuid": "ecb2f41f_9e3961b6",
+      "range": {
+        "startLine": 112,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 47
+      },
+      "revId": "bf7ca79332d236a576e16950e39d0486946b354a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "364ab8eb_4912a6e8",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:55:03Z",
+      "side": 1,
+      "message": "+1, yes this aligns with what I was thinking.\n\nI guess you could just write:\n\n  cls._run_full_story_set \u003d args.run_full_story_set or story_filtering_enabled\n\nThen it\u0027s easy to explain the logic.",
+      "revId": "bf7ca79332d236a576e16950e39d0486946b354a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fae2bef6_830ad687",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T10:55:03Z",
+      "side": 1,
+      "message": "nit: all all (typo)",
+      "revId": "bf7ca79332d236a576e16950e39d0486946b354a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
