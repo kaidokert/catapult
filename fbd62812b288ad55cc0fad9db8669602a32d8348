@@ -52,6 +52,24 @@
       "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7b2d041_81efdd41",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-04T12:21:23Z",
+      "side": 1,
+      "message": "Answered in more detail on the new CL. But specifically about this:\n\n\u003e If someone wants to run a subset of the existing abridged story set\n\nI would say: --story-tag-filter \u003cabridge-tag\u003e --story-filter ...\n\nAlso I wouldn\u0027t worry too much about this being a common use case.",
+      "parentUuid": "bb087a80_13386f7a",
+      "revId": "fbd62812b288ad55cc0fad9db8669602a32d8348",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
