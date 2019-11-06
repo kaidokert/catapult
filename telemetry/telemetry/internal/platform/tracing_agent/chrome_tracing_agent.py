@@ -25,6 +25,7 @@ _DESKTOP_OS_NAMES = ['linux', 'mac', 'win']
 # The trace config file path should be the same as specified in
 # src/components/tracing/trace_config_file.[h|cc]
 _CHROME_TRACE_CONFIG_DIR_ANDROID = '/data/local/'
+_CHROME_TRACE_CONFIG_DIR_ANDROID_NON_ROOTED = '/data/local/tmp/'
 _CHROME_TRACE_CONFIG_DIR_CROS = '/tmp/'
 _CHROME_TRACE_CONFIG_FILE_NAME = 'chrome-trace-config.json'
 
@@ -32,10 +33,21 @@ _CHROME_TRACE_CONFIG_FILE_NAME = 'chrome-trace-config.json'
 def ClearStarupTracingStateIfNeeded(platform_backend):
   # Trace config file has fixed path on Android and temporary path on desktop.
   if platform_backend.GetOSName() == 'android':
-    trace_config_file = os.path.join(_CHROME_TRACE_CONFIG_DIR_ANDROID,
+    trace_config_file = os.path.join(TraceConfigDirAndroid(platform_backend),
                                      _CHROME_TRACE_CONFIG_FILE_NAME)
     platform_backend.device.RunShellCommand(
         ['rm', '-f', trace_config_file], check_return=True, as_root=True)
+
+
+def TraceConfigDirAndroid(platform_backend):
+  # We chose a different path on non-rooted devices. Using this path requires a
+  # custom build of Chrome.
+  if platform_backend.CanAccessPrivateFilesystem():
+    return _CHROME_TRACE_CONFIG_DIR_ANDROID
+  else:
+    logging.warning('Using non-rooted trace config dir. Please ensure GN args '
+                    'include \'non_rooted_benchmarking = "true"\'')
+    return _CHROME_TRACE_CONFIG_DIR_ANDROID_NON_ROOTED
 
 
 class ChromeTracingStartedError(exceptions.Error):
@@ -214,8 +226,9 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     assert not self._trace_config_file
     os_name = self._platform_backend.GetOSName()
     if os_name == 'android':
-      self._trace_config_file = os.path.join(_CHROME_TRACE_CONFIG_DIR_ANDROID,
-                                             _CHROME_TRACE_CONFIG_FILE_NAME)
+      self._trace_config_file = os.path.join(
+          TraceConfigDirAndroid(self._platform_backend),
+          _CHROME_TRACE_CONFIG_FILE_NAME)
       self._platform_backend.device.WriteFile(
           self._trace_config_file,
           self._CreateTraceConfigFileString(config), as_root=True)

@@ -92,11 +92,13 @@ class AndroidPlatformBackend(
       assert self._can_elevate_privilege, (
           'Android device must have root access to run Telemetry')
       self._enable_performance_mode = device.enable_performance_mode
+      self._perf_tests_setup = perf_control.PerfControl(self._device)
     else:
+      self._can_elevate_privilege = False
       self._enable_performance_mode = False
+      self._perf_tests_setup = None
     self._battery = battery_utils.BatteryUtils(self._device)
     self._surface_stats_collector = None
-    self._perf_tests_setup = perf_control.PerfControl(self._device)
     self._thermal_throttle = thermal_throttle.ThermalThrottle(self._device)
     self._raw_display_frame_rate_measurements = []
     self._device_copy_script = None
@@ -248,6 +250,9 @@ class AndroidPlatformBackend(
     return self._thermal_throttle.HasBeenThrottled()
 
   def SetGraphicsMemoryTrackingEnabled(self, enabled):
+    if not self._can_elevate_privilege:
+      logging.warning('Will not use memtrack_helper on non-rooted device')
+      return
     if not enabled:
       self.KillApplication('memtrack_helper')
       return
@@ -322,6 +327,9 @@ class AndroidPlatformBackend(
         as_root=True, check_return=True)
 
   def FlushDnsCache(self):
+    if not self._can_elevate_privilege:
+      logging.warning('Will not flush DNS cache on non-rooted device')
+      return
     self._device.RunShellCommand(
         ['ndc', 'resolver', 'flushdefaultif'], as_root=True, check_return=True)
 
@@ -716,6 +724,9 @@ class AndroidPlatformBackend(
                    'CPU temperature cannot be read: Either the current '
                    'device is not supported or the specified temperature '
                    'zones do not exist.')
+
+  def CanAccessPrivateFilesystem(self):
+    return self._can_elevate_privilege
 
 
 def _FixPossibleAdbInstability():
