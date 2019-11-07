@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "8f3c8a72_91f91247",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-07T21:06:44Z",
+      "side": 1,
+      "message": "typ doesn\u0027t have an artifact_type at this point (it was never landed in the original CL).\n\nTelemetry\u0027s content_type is basically the same thing, though. Whether or not the new LUCI system really ends up needing it remains to be seen :).",
+      "parentUuid": "dfdf0fe7_cf3c3470",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c48a4984_4fca9e8c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 1
