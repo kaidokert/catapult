@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "dfdf0fe7_cf3c3470",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-07T11:23:12Z",
+      "side": 1,
+      "message": "Just to clarify. Telemetry doesn\u0027t have an \"artifact_type\". That\u0027s a typ only feature which I suggested to either remove or infer from the \"artifact_path\" (called just \"name\" by LUCI/Telemetry).\n\nTelemetry does have a \"content_type\", which I understand will be needed by the new LUCI systems to decide how to display the artifacts recorded. Telemetry\u0027s implementation also provides reasonable defaults (e.g. \u0027{name}.png\u0027 -\u003e \u0027image/png\u0027), so most of the times clients don\u0027t need to specify anything extra.",
+      "parentUuid": "7f299d49_8b32b589",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c48a4984_4fca9e8c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 1
