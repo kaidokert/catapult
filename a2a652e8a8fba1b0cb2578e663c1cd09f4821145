@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7f299d49_8b32b589",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-07T00:56:06Z",
+      "side": 1,
+      "message": "I would be inclined to remove artifact_type from telemetry for now, to make it consistent with typ. And, if we add it (back) to typ, we can add it back to telemetry as well.\n\nI think we\u0027ll have to work out w/ nodir@ whether or not we actually need it for integration w/ the new system.",
+      "parentUuid": "dd5dfcfc_495f24f0",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c48a4984_4fca9e8c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 1
@@ -288,6 +306,23 @@
       "writtenOn": "2019-11-04T11:56:09Z",
       "side": 1,
       "message": "I would move this to https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/page_test_results.py?rcl\u003d5321943693c5f1a75b06ea3d123d5c34823e955c\u0026l\u003d201 instead.",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a111dcb_dcc75c89",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-07T00:56:06Z",
+      "side": 1,
+      "message": "Why is this a classmethod? That seems wrong ...",
       "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
