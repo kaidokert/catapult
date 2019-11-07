@@ -300,6 +300,19 @@ class Validator(evaluators.FilteringEvaluator):
         predicate=evaluators.TaskTypeEq('run_test'), delegate=ReportError)
 
 
+class Serializer(evaluators.FilteringEvaluator):
+
+  def __init__(self):
+    super(Serializer, self).__init__(
+        predicate=evaluators.All(
+            evaluators.TaskTypeEq('run_test'),
+            evaluators.TaskStatusIn(
+                {'ongoing', 'failed', 'completed', 'cancelled'}),
+        ),
+        # FIXME
+        delegate=evaluators.NoopEvaluator())
+
+
 def TaskId(change, attempt):
   return 'run_test_%s_%s' % (change, attempt)
 
@@ -327,6 +340,7 @@ def CreateGraph(options):
               'swarming_server': options.swarming_server,
               'dimensions': options.dimensions,
               'extra_args': options.extra_args,
+              'index': attempt,
           }) for attempt in range(options.attempts)
   ])
   subgraph.edges.extend([

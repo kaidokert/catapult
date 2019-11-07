@@ -83,6 +83,9 @@ class NoopEvaluator(object):
   def __call__(self, *_):
     return None
 
+  def __str__(self):
+    return 'NoopEvaluator()'
+
 
 class TaskPayloadLiftingEvaluator(object):
   """An evaluator that copies task payload and status to the accumulator.
@@ -158,19 +161,47 @@ class FilteringEvaluator(object):
     return self._alternative(*args)
 
 
-class DispatchByEventTypeEvaluator(object):
+class DispatchEvaluatorBase(object):
 
-  def __init__(self, evaluator_map, default_evaluator=None):
+  def __init__(self, evaluator_map, default_evaluator=None, key=None):
+    if not key:
+      raise ValueError(
+          'key must be provided by the derived evaluator type: %s' %
+          (type(self),))
+
     if not evaluator_map and not default_evaluator:
       raise ValueError(
           'Either one of evaluator_map or default_evaluator must be provided.')
 
     self._evaluator_map = evaluator_map
     self._default_evaluator = default_evaluator or NoopEvaluator
+    self._key = key
 
   def __call__(self, task, event, accumulator):
-    handler = self._evaluator_map.get(event.type, self._default_evaluator)
+    handler = self._evaluator_map.get(
+        self._key(task, event), self._default_evaluator)
     return handler(task, event, accumulator)
+
+
+class DispatchByEventTypeEvaluator(DispatchEvaluatorBase):
+
+  def __init__(self, evaluator_map, default_evaluator=None):
+    super(DispatchByEventTypeEvaluator,
+          self).__init__(evaluator_map, default_evaluator, lambda _, e: e.type)
+
+
+class DispatchByTaskStatus(DispatchEvaluatorBase):
+
+  def __init__(self, evaluator_map, default_evaluator=None):
+    super(DispatchByTaskStatus, self).__init__(evaluator_map, default_evaluator,
+                                               lambda t, _: t.status)
+
+
+class DispatchByTaskType(DispatchEvaluatorBase):
+
+  def __init__(self, evaluator_map, default_evaluator=None):
+    super(DispatchByTaskType, self).__init__(evaluator_map, default_evaluator,
+                                             lambda t, _: t.task_type)
 
 
 class Selector(FilteringEvaluator):
