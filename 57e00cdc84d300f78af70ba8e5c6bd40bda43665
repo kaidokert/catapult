@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62e2a18a_eea35de2",
+        "filename": "tracing/tracing/ui/base/polymer_preload.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1298221
+      },
+      "writtenOn": "2019-11-08T20:15:40Z",
+      "side": 1,
+      "message": "Drive-by comment: You\u0027re only checking for custom elements v0 here - would it be a good idea to check for any V0 features that you\u0027re using? E.g.\n\n !document.registerElement || !(\u0027createShadowRoot\u0027 in\n      document.createElement(\u0027div\u0027))",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "57e00cdc84d300f78af70ba8e5c6bd40bda43665",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
