@@ -109,6 +109,24 @@
     },
     {
       "key": {
+        "uuid": "20be7f70_a301de1f",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-08T07:41:58Z",
+      "side": 1,
+      "message": "Ah, I got confused because the TypArtifactCompatWrapper defined in this CL gets an \"artifact_type\" as its first arg, although it\u0027s actually passed as the \"artifact_name\" arg of the typ.Artifact constructor.\n\nAnyway, the \"content_type\" in Telemetry is optional, so I wouldn\u0027t mind too much about it. Still typ.Artifact does receive two args: artifact_name, file_relative_path; I believe it should be possible to get rid of one of those and keep just a \"name\" (with possible \u0027/\u0027 separators) from which we derive other things if needed.",
+      "parentUuid": "8f3c8a72_91f91247",
+      "revId": "a2a652e8a8fba1b0cb2578e663c1cd09f4821145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c48a4984_4fca9e8c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 1
