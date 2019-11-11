@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fe6cd1f_7c7e246b",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T12:48:36Z",
+      "side": 1,
+      "message": "nit: remove this, is overwritten below.",
+      "revId": "d5cc64699470b168e7c5e2172fadbad160528a8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa81103f_37ed7f69",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T12:48:36Z",
+      "side": 1,
+      "message": "I believe this one has to be Monochrome.apk, as that is what bots try to test (closer to the version actually shipped to users).",
+      "revId": "d5cc64699470b168e7c5e2172fadbad160528a8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1a4cfe3_fbaece58",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T12:48:36Z",
+      "side": 1,
+      "message": "maybe can you subclass from WebViewBackendSettings and avoid writing these two? Might also allow you to remove some of the kwarg defaults above.",
+      "revId": "d5cc64699470b168e7c5e2172fadbad160528a8e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
