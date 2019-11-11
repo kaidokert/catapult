@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87013db9_533db72c",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-11T21:15:46Z",
+      "side": 1,
+      "message": "Why not just \"Compatibility\"? I think this shortening could cause confusion in the future.",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 20
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ba6312d_78dab07c",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-11T21:15:46Z",
+      "side": 1,
+      "message": "Seems strange to have this platform-dependent \u0027/\u0027. Why not have name optionally be a list that is a path to the artifact name to save to?",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ee23eb5_f51e6bbb",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-11T21:15:46Z",
+      "side": 1,
+      "message": "This seems unexpected. Are we sure we need this?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 52
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78548783_998f558a",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-11T21:15:46Z",
+      "side": 1,
+      "message": "finish this sentence.",
+      "range": {
+        "startLine": 65,
+        "startChar": 65,
+        "endLine": 65,
+        "endChar": 79
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63e37168_3979d43f",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-11T21:15:46Z",
+      "side": 1,
+      "message": "remove extra spaces.",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 4
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
