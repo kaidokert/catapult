@@ -137,6 +137,92 @@
       "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49d3af11_7c5c200d",
+        "filename": "telemetry/telemetry/internal/platform/device_finder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T20:15:25Z",
+      "side": 1,
+      "message": "Nit: Leave the original \"if\" statement as-is and add the fuchsia logic in an \"elif\" below.",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a9e9d2_20e325e4",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T20:15:25Z",
+      "side": 1,
+      "message": "This is what\u0027s causing the tests to fail. You can\u0027t assume that you have access to Chromium src when you\u0027re working in Telemetry.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 8
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a76fcfd_976f3964",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T20:15:25Z",
+      "side": 1,
+      "message": "Nit: Extra line (two blank lines between top-level blocks)",
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e679ae02_331c8d79",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T20:15:25Z",
+      "side": 1,
+      "message": "Nit: You don\u0027t need all these NotImplemented methods atm. You\u0027ll inherit the NotImplemented version from PlatformBackend.",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
