@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87579b73_86a3ec20",
+        "filename": "telemetry/telemetry/record_wpr.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-11-11T11:22:47Z",
+      "side": 1,
+      "message": "No need to set options.output_dir here anymore?",
+      "revId": "82843702a7b162eb81a89582a79a575fed7edbc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
