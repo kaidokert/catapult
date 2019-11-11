@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b28d3be1_047277df",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T19:42:00Z",
+      "side": 1,
+      "message": "Nit: If this is only ever used in CommandRunner, move it into there?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a47d0f1b_b0699242",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T19:42:00Z",
+      "side": 1,
+      "message": "Nit: Unused?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 38
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58d7fa29_ac2a8b9c",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T19:42:00Z",
+      "side": 1,
+      "message": "Nit: I believe Telemetry prefixes the args with \"Args:\" and indents the arguments, e.g. https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/story/story.py?q\u003d%22Args:%22+file:telemetry\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d23.",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2550256f_69ac168e",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T19:42:00Z",
+      "side": 1,
+      "message": "I think this should be handled by properly decorating tests.",
+      "range": {
+        "startLine": 205,
+        "startChar": 9,
+        "endLine": 205,
+        "endChar": 18
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7e1edde_fc1dd821",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T19:42:00Z",
+      "side": 1,
+      "message": "I think there are already ways to figure this out like --chromium-output-dir",
+      "range": {
+        "startLine": 210,
+        "startChar": 9,
+        "endLine": 210,
+        "endChar": 21
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92f7e752_a1f95d8a",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T19:42:00Z",
+      "side": 1,
+      "message": "Nit: I think Telemetry typically imports the entire module instead of individual classes and methods. So, \"from telemetry.internal.forwarders import forwarder_utils\" and then \"forwarder_utils.ForwardingArgs(...)\" to use it.",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "b30a1919449776a6e0b25c4fa7c9164432d77837",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
