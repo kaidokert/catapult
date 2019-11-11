@@ -16,6 +16,24 @@
       "revId": "9bd90d5adb9cf835ede38fefda1e045fe1c4a5be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa2250aa_e4456562",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-11T20:20:00Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I\u0027m just not correctly understanding your comment - we need this function so that subclasses can override it in order to know when the artifacts are set.",
+      "parentUuid": "06a0d05e_bcdc8fcd",
+      "revId": "9bd90d5adb9cf835ede38fefda1e045fe1c4a5be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
