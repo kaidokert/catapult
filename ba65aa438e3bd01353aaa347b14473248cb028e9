@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6cfc718_49239f38",
+        "filename": "tracing/tracing_examples/trace_viewer.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-11T18:38:06Z",
+      "side": 1,
+      "message": "Please link to the related bug for this so we can track it easily (even if we move code around and thereby break the blame layer!)",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 82
+      },
+      "revId": "ba65aa438e3bd01353aaa347b14473248cb028e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
