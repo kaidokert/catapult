@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import contextlib
 import json
 import logging
 import os
@@ -21,33 +22,29 @@ DIAGNOSTICS_NAME = 'diagnostics.json'
 
 
 class PageTestResults(object):
-  def __init__(self, progress_stream=None, output_dir=None,
-               intermediate_dir=None, benchmark_name=None,
-               benchmark_description=None, upload_bucket=None,
+  def __init__(self, progress_stream=None, intermediate_dir=None,
+               benchmark_name=None, benchmark_description=None,
                results_label=None):
     """Object to hold story run results while a benchmark is executed.
 
     Args:
       progress_stream: A file-like object where to write progress reports as
           stories are being run. Can be None to suppress progress reporting.
-      output_dir: A string specifying the directory where to store the test
-          artifacts, e.g: trace, videos, etc.
+      intermediate_dir: A string specifying the directory where to store the
+          test artifacts, e.g: traces, videos, etc.
       benchmark_name: A string with the name of the currently running benchmark.
       benchmark_description: A string with a description of the currently
           running benchmark.
-      upload_bucket: A string identifting a cloud storage bucket where to
-          upload artifacts.
       results_label: A string that serves as an identifier for the current
           benchmark run.
     """
     super(PageTestResults, self).__init__()
     self._progress_reporter = gtest_progress_reporter.GTestProgressReporter(
         progress_stream)
-    self._output_dir = output_dir
     self._intermediate_dir = intermediate_dir
-    if intermediate_dir is None and output_dir is not None:
-      self._intermediate_dir = os.path.join(output_dir, 'artifacts')
-    self._upload_bucket = upload_bucket
+    self._benchmark_name = benchmark_name or '(unknown benchmark)'
+    self._benchmark_description = benchmark_description or ''
+    self._results_label = results_label
 
     self._current_story_run = None
     self._all_story_runs = []
@@ -56,14 +53,10 @@ class PageTestResults(object):
     # consistently.
     self._measurement_units = {}
 
-    self._benchmark_name = benchmark_name or '(unknown benchmark)'
-    self._benchmark_description = benchmark_description or ''
-
     # |_interruption| is None if the benchmark has not been interrupted.
     # Otherwise it is a string explaining the reason for the interruption.
     # Interruptions occur for unrecoverable exceptions.
     self._interruption = None
-    self._results_label = results_label
 
     self._diagnostics = {
         reserved_infos.BENCHMARKS.name: [self.benchmark_name],
@@ -105,14 +98,6 @@ class PageTestResults(object):
   @property
   def label(self):
     return self._results_label
-
-  @property
-  def output_dir(self):
-    return self._output_dir
-
-  @property
-  def upload_bucket(self):
-    return self._upload_bucket
 
   @property
   def finalized(self):
@@ -191,26 +176,30 @@ class PageTestResults(object):
   def __exit__(self, _, exc_value, __):
     self.Finalize(exc_value)
 
-  def WillRunPage(self, page, story_run_index=0):
-    assert not self.finalized, 'Results are finalized, cannot run more stories.'
-    assert not self._current_story_run, 'Did not call DidRunPage.'
-    self._current_story_run = story_run.StoryRun(
-        page, test_prefix=self.benchmark_name, index=story_run_index,
-        intermediate_dir=self._intermediate_dir)
-    with self.CreateArtifact(DIAGNOSTICS_NAME) as f:
-      json.dump({'diagnostics': self._diagnostics}, f, indent=4)
-    self._progress_reporter.WillRunStory(self)
+  @contextlib.contextmanager
+  def CreateStoryRun(self, story, story_run_index=0):
+    """A context manager to delimit the capture of results for a new story run.
 
-  def DidRunPage(self, page):  # pylint: disable=unused-argument
-    """
     Args:
-      page: The current page under test.
+      story: The story to be run.
+      story_run_index: An optional integer indicating the number of times this
+        same story has been already run as part of the same benchmark run.
     """
-    assert self._current_story_run, 'Did not call WillRunPage.'
-    self._current_story_run.Finish()
-    self._progress_reporter.DidRunStory(self)
-    self._all_story_runs.append(self._current_story_run)
-    self._current_story_run = None
+    assert not self.finalized, 'Results are finalized, cannot run more stories.'
+    assert not self._current_story_run, 'Already running a story'
+    self._current_story_run = story_run.StoryRun(
+        story, test_prefix=self.benchmark_name, index=story_run_index,
+        intermediate_dir=self._intermediate_dir)
+    try:
+      with self.CreateArtifact(DIAGNOSTICS_NAME) as f:
+        json.dump({'diagnostics': self._diagnostics}, f, indent=4)
+      self._progress_reporter.WillRunStory(self)
+      yield self._current_story_run
+    finally:
+      self._current_story_run.Finish()
+      self._progress_reporter.DidRunStory(self)
+      self._all_story_runs.append(self._current_story_run)
+      self._current_story_run = None
 
   def InterruptBenchmark(self, reason):
     """Mark the benchmark as interrupted.
@@ -295,7 +284,7 @@ class PageTestResults(object):
     # TODO(#4258): Relax this assertion.
     assert self._current_story_run, 'Not currently running test.'
     if isinstance(failure, basestring):
-      failure_str = 'Failure recorded for page %s: %s' % (
+      failure_str = 'Failure recorded for story %s: %s' % (
           self._current_story_run.story.name, failure)
     else:
       failure_str = ''.join(traceback.format_exception(*failure))
@@ -353,8 +342,8 @@ class PageTestResults(object):
     self._progress_reporter.DidFinishAllStories(self)
 
     # TODO(crbug.com/981349): Ideally we want to write results for each story
-    # run individually at DidRunPage when the story finished executing. For
-    # now, however, we need to wait until this point after html traces have
+    # run individually at CreateStoryRun when exiting the context managed code.
+    # For now, however, we need to wait until this point after html traces have
     # been serialized, uploaded, and recorded as artifacts for them to show up
     # in intermediate results. When both trace serialization and artifact
     # upload are handled by results_processor, remove the for-loop from here
