@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06a0d05e_bcdc8fcd",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-11T19:35:05Z",
+      "side": 1,
+      "message": "Generally, in typ code (and in all python code I write), as per PEP-8 guidelines, I don\u0027t use accessor functions like this one, so I\u0027d recommend you just use `self.artifacts \u003d art` instead in the caller.",
+      "revId": "9bd90d5adb9cf835ede38fefda1e045fe1c4a5be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
