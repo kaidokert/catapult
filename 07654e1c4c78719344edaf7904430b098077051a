@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07e4bb50_811aa9cf",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T09:57:23Z",
+      "side": 1,
+      "message": "nit: This is the domain [from which] traces ... are served.\n\n(maybe?)",
+      "revId": "07654e1c4c78719344edaf7904430b098077051a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3140579_b18f515d",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T09:57:23Z",
+      "side": 1,
+      "message": "nit: Add \\n ?",
+      "revId": "07654e1c4c78719344edaf7904430b098077051a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81e5d70f_e16b615e",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T09:57:23Z",
+      "side": 1,
+      "message": "nit: maybe the bug reference should go above next to the token?",
+      "revId": "07654e1c4c78719344edaf7904430b098077051a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
