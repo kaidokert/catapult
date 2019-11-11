@@ -494,6 +494,8 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         return itertools.izip(a, b)
 
       task.payload.update({
+          'changes':
+              ordered_changes,
           'culprits': [(a.AsDict(), b.AsDict())
                        for a, b in Pairwise(ordered_changes)
                        if DetectChange(a, b)]
@@ -512,3 +514,16 @@ class Evaluator(evaluators.FilteringEvaluator):
             evaluators.TaskTypeEq('find_culprit'),
             evaluators.Not(evaluators.TaskStatusIn({'completed', 'failed'}))),
         delegate=FindCulprit(job))
+
+
+class Serializer(evaluators.FilteringEvaluator):
+
+  def __init__(self):
+    super(Serializer, self).__init__(
+        predicate=evaluators.All(
+            evaluators.TaskTypeEq('run_test'),
+            evaluators.TaskStatusIn(
+                {'ongoing', 'failed', 'completed', 'cancelled'}),
+        ),
+        # FIXME
+        delegate=evaluators.NoopEvaluator())
