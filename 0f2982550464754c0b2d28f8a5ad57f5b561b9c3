@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "373f22a0_0b2b9f6f",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-11T16:46:18Z",
+      "side": 1,
+      "message": "ah, since this is now a constant, you should be able to add above:\n\n    kwargs.setdefault(\u0027apk_name\u0027, \u0027Monochrome.apk\u0027)\n\nand remove this method entirely.",
+      "revId": "0f2982550464754c0b2d28f8a5ad57f5b561b9c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
