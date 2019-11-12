@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ae1a73b_12188cb0",
+        "filename": "telemetry/telemetry/internal/results/artifact_compatibility_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-12T22:18:31Z",
+      "side": 1,
+      "message": "spelling typo: \"Compatibility\"",
+      "range": {
+        "startLine": 18,
+        "startChar": 12,
+        "endLine": 18,
+        "endChar": 25
+      },
+      "revId": "5e4bac0d4e29d9f79cb7f9d39fa8d449014a2bb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4ae6fa6_59edc88b",
+        "filename": "telemetry/telemetry/internal/results/artifact_compatibility_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-12T22:18:31Z",
+      "side": 1,
+      "message": "spelling typo: \"Compatibility\"",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "5e4bac0d4e29d9f79cb7f9d39fa8d449014a2bb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4102a551_d84370bc",
+        "filename": "telemetry/telemetry/internal/results/artifact_compatibility_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-12T22:18:31Z",
+      "side": 1,
+      "message": "spelling typo: \"Compatibility\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 23,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "5e4bac0d4e29d9f79cb7f9d39fa8d449014a2bb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d27e43d3_e501e34e",
+        "filename": "telemetry/telemetry/internal/results/artifact_compatibility_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-12T22:18:31Z",
+      "side": 1,
+      "message": "spelling typo: \"Compatibility\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 30
+      },
+      "revId": "5e4bac0d4e29d9f79cb7f9d39fa8d449014a2bb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58b43d54_0fd87482",
+        "filename": "telemetry/telemetry/internal/results/artifact_compatibility_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-12T22:18:31Z",
+      "side": 1,
+      "message": "spelling typo: \"Compatibility\"",
+      "range": {
+        "startLine": 58,
+        "startChar": 21,
+        "endLine": 58,
+        "endChar": 34
+      },
+      "revId": "5e4bac0d4e29d9f79cb7f9d39fa8d449014a2bb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
