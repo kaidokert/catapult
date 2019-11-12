@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "605944d1_53a625a8",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2019-11-12T13:58:22Z",
+      "side": 1,
+      "message": "\u003e When someone runs a large benchmark manually, rarely they do want to wait e.g. 9 hours for the thing to finish. So running a smaller representative sample is more appropriate. \n\nFor something like v8.browsing_mobile I do want to run the whole story set when I run this (it takes maybe an hour or two to run locally). Since often times the performance changes improve something and regress something else and I want to see on-average over a wide set of pages whether the pros outweigh the cons. Personally I think it\u0027s confusing for folks who run the page manually without a filter to not get the whole story set. If I didn\u0027t know about this I can imagine myself running the benchmark, waiting ~1 hour for the abridged version to run, then wondering why a page I expected to see isn\u0027t there, and not having any clear indication that only an abridge set of the pages was run and so not knowing to pass the --run-full-story-set flag. \n\n\u003e This is specially true for pinpoint, where we don\u0027t want to waste resources without much though when users don\u0027t specify some sort of story filtering but they just \"wanted to check\" that their CL doesn\u0027t break something.\n\nI agree for pinpoint the default should be the abridged set to avoid wasting resources, this makes perfect sense. However, I think there should still be an option to run the full set, for the same reasons as above, often the whole set of pages is needed to provide some reasonable representation of how a change impacted overall performance.",
+      "parentUuid": "9c659755_cf9417dc",
+      "range": {
+        "startLine": 112,
+        "startChar": 9,
+        "endLine": 112,
+        "endChar": 47
+      },
+      "revId": "bf7ca79332d236a576e16950e39d0486946b354a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "364ab8eb_4912a6e8",
         "filename": "telemetry/telemetry/story/story_filter.py",
         "patchSetId": 2
