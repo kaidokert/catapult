@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "90a7c6c2_424cf400",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-12T01:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87013db9_533db72c",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 20
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ba6312d_78dab07c",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-11T21:15:46Z",
       "side": 1,
       "message": "Seems strange to have this platform-dependent \u0027/\u0027. Why not have name optionally be a list that is a path to the artifact name to save to?",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e72289fa_517563b4",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-12T01:19:21Z",
+      "side": 1,
+      "message": "This is the same as Telemetry\u0027s implementation. Juan, thoughts on accepting a list instead, and then using posixpath.join() in the Telemetry compatibility wrapper?",
+      "parentUuid": "9ba6312d_78dab07c",
       "range": {
         "startLine": 36,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "17348e3f_57cc1559",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-12T01:19:21Z",
+      "side": 1,
+      "message": "I think we can just pass the path in as-is and it\u0027ll work. There might be some benefit of grouping stuff together (besides slightly shorter JSON) that I\u0027m not aware of, though? Juan, do you have any input since you\u0027re more familiar with how artifacts are handled than I am?",
+      "parentUuid": "9ee23eb5_f51e6bbb",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 52
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78548783_998f558a",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "415b5b03_7eee0c7e",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-12T01:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78548783_998f558a",
+      "range": {
+        "startLine": 65,
+        "startChar": 65,
+        "endLine": 65,
+        "endChar": 79
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "63e37168_3979d43f",
         "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
         "patchSetId": 3
@@ -114,6 +210,30 @@
       "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fb277d9_08d6f0bc",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-12T01:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63e37168_3979d43f",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 4
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
