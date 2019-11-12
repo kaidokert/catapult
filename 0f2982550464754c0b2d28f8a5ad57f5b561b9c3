@@ -34,6 +34,24 @@
       "revId": "0f2982550464754c0b2d28f8a5ad57f5b561b9c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cd27d0e_a61cf694",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-12T13:20:06Z",
+      "side": 1,
+      "message": "😞 you are right.\n\nThen keep as is, just add a `del device  # Unused.` before the assert.",
+      "parentUuid": "c81cfa83_71c78e4c",
+      "revId": "0f2982550464754c0b2d28f8a5ad57f5b561b9c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
