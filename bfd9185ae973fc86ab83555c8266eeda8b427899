@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "b5f16a6c_6b43c537",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-12T18:44:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "927327ec_8c6efe73",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 52
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78548783_998f558a",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 3
