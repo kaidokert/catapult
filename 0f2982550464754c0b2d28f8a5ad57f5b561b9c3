@@ -16,6 +16,24 @@
       "revId": "0f2982550464754c0b2d28f8a5ad57f5b561b9c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c81cfa83_71c78e4c",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1119250
+      },
+      "writtenOn": "2019-11-12T13:07:53Z",
+      "side": 1,
+      "message": "Can\u0027t do that due to this error:\n\n\nTraceback (most recent call last):\n  \u003cmodule\u003e at /usr/local/google/code/clankium/src/tools/perf/run_benchmark:17\n    sys.exit(main())\n  main at /usr/local/google/code/clankium/src/tools/perf/run_benchmark:13\n    return benchmark_runner.main(chromium_config.GetDefaultChromiumConfig())\n  main at /usr/local/google/code/clankium/src/tools/perf/core/benchmark_runner.py:22\n    run_return_code \u003d command_line.RunCommand(options)\n  RunCommand at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/command_line/parser.py:169\n    return_code \u003d _COMMANDS[options.command]().Run(options)\n  Run at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/command_line/commands.py:251\n    return min(255, b.Run(options))\n  Run at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/benchmark.py:84\n    return story_runner.RunBenchmark(self, finder_options)\n  RunBenchmark at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py:388\n    benchmark.CustomizeOptions(finder_options)\n  CustomizeOptions at /usr/local/google/code/clankium/src/tools/perf/core/perf_benchmark.py:98\n    variations \u003d self._GetVariationsBrowserArgs(finder_options)\n  _GetVariationsBrowserArgs at /usr/local/google/code/clankium/src/tools/perf/core/perf_benchmark.py:139\n    possible_browser \u003d browser_finder.FindBrowser(finder_options)\n  Cacher at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/decorators.py:35\n    cacher.__cache[key] \u003d obj(*args, **kwargs)\n  FindBrowser at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_finder.py:87\n    curr_browsers \u003d finder.FindAllAvailableBrowsers(options, device)\n  FindAllAvailableBrowsers at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder.py:419\n    return _FindAllPossibleBrowsers(finder_options, android_platform)\n  _FindAllPossibleBrowsers at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder.py:402\n    settings.browser_type, finder_options, android_platform, settings)\n  __init__ at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder.py:92\n    self._platform_backend.device, finder_options.chrome_root)\n  FindLocalApk at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/backends/android_browser_backend_settings.py:74\n    apk_name \u003d self.GetApkName(device)\n  GetApkName at /usr/local/google/code/clankium/src/third_party/catapult/telemetry/telemetry/internal/backends/android_browser_backend_settings.py:150\n    assert self.apk_name is None",
+      "parentUuid": "373f22a0_0b2b9f6f",
+      "revId": "0f2982550464754c0b2d28f8a5ad57f5b561b9c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
