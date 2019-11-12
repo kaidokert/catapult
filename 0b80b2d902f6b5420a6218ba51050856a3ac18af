@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca3a207d_864f95b4",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-12T10:12:41Z",
+      "side": 1,
+      "message": "I assume all of the minidump_name\u0027s are different? Note the artifact_name must be unique within each test result.",
+      "revId": "0b80b2d902f6b5420a6218ba51050856a3ac18af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dbe6f6d_53f7e839",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-12T10:12:41Z",
+      "side": 1,
+      "message": "Maybe add some module level docstring here? e.g. explaining usage is meant to be similar to logging module and an example of usage.\n\nFor the same reason, I would move CreateArtifact closer to the top, as that is the API most clients want to use; leaving RegisterArtifactImplementation closer to the bottom, that will only be used by people defining some new kind of \"test runner\" system.",
+      "revId": "0b80b2d902f6b5420a6218ba51050856a3ac18af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a486ebcc_9d9c0af2",
+        "filename": "telemetry/telemetry/internal/results/artifact_logger.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-12T10:12:41Z",
+      "side": 1,
+      "message": "I would rephrase this a bit, the \u0027/\u0027 is not to specify subdirectories where to save; but to allow you to logically organize artifacts for a test result within a hierarchy.\n\nAs in my other example above, we use this in telemetry to write all \u0027trace/from_chrome.json\u0027, \u0027trace/from_atrace.json\u0027, etc; in a way which allows to easily find all traces e.g. to later process them and extract metrics.",
+      "revId": "0b80b2d902f6b5420a6218ba51050856a3ac18af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

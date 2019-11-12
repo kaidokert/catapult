@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f4f6d363_4bcf20f9",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-12T10:12:41Z",
+      "side": 1,
+      "message": "Yes, this is part of the LUCI spec (or at least how I understand it). This \"name\" is the thing one would use to find a given artifact among test results posted to LUCI systems (e.g. imagine a bq database), and it\u0027s easier if you can query for \u0027trace/from_chrome.json\u0027 to find a all chrome traces, or just for names starting with \u0027trace/\u0027 for all traces, regardless of the platform where they were collected.\n\nThe path where the file is stored in the local host doesn\u0027t really matter; it could be a tempfile really anywhere and with any name (although of course we do something a bit more sensible, reusing info from the artifact name so developers can explore them easily among files left in the artifacts dir).",
+      "parentUuid": "e72289fa_517563b4",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9ee23eb5_f51e6bbb",
         "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
         "patchSetId": 3
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "I think we can just pass the path in as-is and it\u0027ll work. There might be some benefit of grouping stuff together (besides slightly shorter JSON) that I\u0027m not aware of, though? Juan, do you have any input since you\u0027re more familiar with how artifacts are handled than I am?",
       "parentUuid": "9ee23eb5_f51e6bbb",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 52
+      },
+      "revId": "bfd9185ae973fc86ab83555c8266eeda8b427899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927327ec_8c6efe73",
+        "filename": "telemetry/telemetry/internal/results/artifact_compat_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-12T10:12:41Z",
+      "side": 1,
+      "message": "I think you are right. We should pass the full name as \"artifact_type\", and for \"file_relative_path\" you would need to pass that same value but with \u0027/\u0027 replaced by os.sep.",
+      "parentUuid": "17348e3f_57cc1559",
       "range": {
         "startLine": 53,
         "startChar": 0,
