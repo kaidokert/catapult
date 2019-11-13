@@ -69,10 +69,15 @@ class ReadHistogramsJsonValue(quest.Quest):
     # has passed and clients no longer write the 'tir_label' only.
     grouping_label = (arguments.get('grouping_label') or
                       arguments.get('tir_label'))
-    trace = arguments.get('trace')
+
+    # Some benchmarks do not have a 'trace' associated with them, but do have a
+    # 'story' which the Dashboard can sometimes provide. Let's support getting
+    # the story in case the 'trace' is not provided. See crbug.com/1023408 for
+    # more details in the investigation.
+    story = (arguments.get('trace') or arguments.get('story'))
     statistic = arguments.get('statistic')
 
-    return cls(results_filename, chart, grouping_label, trace, statistic)
+    return cls(results_filename, chart, grouping_label, story, statistic)
 
 
 class _ReadHistogramsJsonValueExecution(execution.Execution):
