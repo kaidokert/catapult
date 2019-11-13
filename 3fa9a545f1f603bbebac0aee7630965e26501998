@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1d88da7_29fee596",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-13T02:35:44Z",
+      "side": 1,
+      "message": "[suggestion only]\n\nWould it be clearer to rename this instance variable `_trace_or_story` as well?  Although I guess to do that fully we\u0027d also need to update the corresponding instance var in _ReadHistogramsJsonValueExecution etc too.",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "3fa9a545f1f603bbebac0aee7630965e26501998",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
