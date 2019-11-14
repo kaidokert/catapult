@@ -177,8 +177,11 @@ class BrowserFinderOptions(optparse.Values):
         'This option prevents Telemetry from tweaking such platform settings.')
     group.add_option(
         '--webview-embedder-apk',
+        action="append",
+        default=[],
         help='When running tests on android webview, more than one apk needs to'
-        ' be installed. The apk running the test is said to embed webview.')
+        ' be installed. The apk running the test is said to embed webview. More'
+        ' than one apk may be specified if needed.')
     parser.add_option_group(group)
 
     # Remote platform options
