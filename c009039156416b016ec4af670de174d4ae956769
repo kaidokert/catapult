@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d84f9fc0_06aa2856",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-14T02:56:09Z",
+      "side": 1,
+      "message": "I am now using _default_tags_conflict.",
+      "parentUuid": "05ec5aa7_4cce40bd",
+      "revId": "c009039156416b016ec4af670de174d4ae956769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86ec1df5_1c2167d0",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 8
@@ -33,6 +51,24 @@
       "revId": "c009039156416b016ec4af670de174d4ae956769",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "510ec4b3_13cdfb17",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-14T02:56:09Z",
+      "side": 1,
+      "message": "Yes that is correct. If the expectations have the conflict_resolution member variable set to ConflictResolutionTypes.OVERRIDE then the earlier expectations will be overriden.",
+      "parentUuid": "86ec1df5_1c2167d0",
+      "revId": "c009039156416b016ec4af670de174d4ae956769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "85675533_1f5bb66e",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-14T02:56:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c749fdb_59252d77",
+      "revId": "c009039156416b016ec4af670de174d4ae956769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0548cf24_3eede694",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 8
@@ -67,6 +121,24 @@
       "revId": "c009039156416b016ec4af670de174d4ae956769",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7ca670e_cabe2cee",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-14T02:56:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0548cf24_3eede694",
+      "revId": "c009039156416b016ec4af670de174d4ae956769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
