@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "213a2dc1_867025bd",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T01:31:25Z",
+      "side": 1,
+      "message": "Is there still a desire to not have any dependency on Chromium?",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c9a9175_413116ad",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T01:31:25Z",
+      "side": 1,
+      "message": "I\u0027d like to make GetStackTrace effectively the same as LogSymbolizedUnsymbolizedMinidumps, just returning a string instead of logging immediately, but that can be done in a separate CL.",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 19
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5909332f_db9d109a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T01:31:25Z",
+      "side": 1,
+      "message": "These methods are pretty much all duplicated across desktop, CrOS, and now Android. The only real difference between them is that CrOS and Android need to pull the dumps to the host. WDYT about adding a PullDumps() method to BrowserBackend that is a no-op by default, but overridden by CrOS/Android implementations, and then move the logic into BrowserBackend?",
+      "range": {
+        "startLine": 225,
+        "startChar": 4,
+        "endLine": 229,
+        "endChar": 20
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "347b7058_a4ea602b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T01:31:25Z",
+      "side": 1,
+      "message": "The desire is to set the pulled dumps\u0027 mtimes to the same point in time as when it was on the device, but using the host\u0027s clock. I don\u0027t think the current logic does this, as we\u0027re adding the offset (which is device_time - host_time), when I think we should be subtracting it.\n\nConcrete example:\n\nThe device is 1 second ahead of the host, so the offset is 1.\n\nWe create two files at the same time (we\u0027ll use 10 as an example), one on the host, and one on the device. This means that the host\u0027s file has an mtime of 10, while the device\u0027s has an mtime of 11.\n\nIf we were to pull the file onto the host, we\u0027d want its mtime to be 10, which is (device_mtime - offset). However, with the current logic, we\u0027d get 12 from (device_mtime + offset).\n\nJust want to be sure everyone agrees that the current logic is wrong before changing it here + in CrOS\u0027 implementation.",
+      "range": {
+        "startLine": 295,
+        "startChar": 6,
+        "endLine": 296,
+        "endChar": 44
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a40bfc4_97230497",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T01:31:25Z",
+      "side": 1,
+      "message": "Will be removed in favor of a more standard approach.",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 0
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
