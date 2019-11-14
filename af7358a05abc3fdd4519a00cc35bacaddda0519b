@@ -25,6 +25,64 @@
     },
     {
       "key": {
+        "uuid": "8f55825b_0a7e9a71",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "If I remember things right, the idea here is that new code shouldn\u0027t be calling GetChromiumSrcDir directly, instead inspecting the value of e.g. options.chromium_output_dir",
+      "parentUuid": "213a2dc1_867025bd",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69cd3bdd_f063890d",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "Do we really want to dump the symbolization to the logs? Maybe the artifact is enough?",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45be15df_0a9f2e8a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "The name seems fairly specific, and the implementation seems to be doing a lot more than what the name suggests. Maybe we should switch to something more generic? Maybe \"CollectDebugData\"or something along those lines?",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c9a9175_413116ad",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 1
@@ -45,6 +103,30 @@
       "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87966138_6c1a64a0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "Ack. Depending on how clients use it, it might also make sense to remove this method entirely as long as all of them are calling the other one to collect the artifacts.",
+      "parentUuid": "6c9a9175_413116ad",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 19
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +153,47 @@
     },
     {
       "key": {
+        "uuid": "dfec6a4c_113a7e7f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "5909332f_db9d109a",
+      "range": {
+        "startLine": 225,
+        "startChar": 4,
+        "endLine": 229,
+        "endChar": 20
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f616052_a9e64561",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "Would StatDirectory work for you here?\nhttps://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils.py?rcl\u003d00fc2231f697e2ecd45898772ca937094649a4f9\u0026l\u003d2275",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "347b7058_a4ea602b",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 1
@@ -82,6 +205,30 @@
       "writtenOn": "2019-11-14T01:31:25Z",
       "side": 1,
       "message": "The desire is to set the pulled dumps\u0027 mtimes to the same point in time as when it was on the device, but using the host\u0027s clock. I don\u0027t think the current logic does this, as we\u0027re adding the offset (which is device_time - host_time), when I think we should be subtracting it.\n\nConcrete example:\n\nThe device is 1 second ahead of the host, so the offset is 1.\n\nWe create two files at the same time (we\u0027ll use 10 as an example), one on the host, and one on the device. This means that the host\u0027s file has an mtime of 10, while the device\u0027s has an mtime of 11.\n\nIf we were to pull the file onto the host, we\u0027d want its mtime to be 10, which is (device_mtime - offset). However, with the current logic, we\u0027d get 12 from (device_mtime + offset).\n\nJust want to be sure everyone agrees that the current logic is wrong before changing it here + in CrOS\u0027 implementation.",
+      "range": {
+        "startLine": 295,
+        "startChar": 6,
+        "endLine": 296,
+        "endChar": 44
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2726fec_e2dc5132",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "Yup. I think your math is right.\n\nAlso I would write the line below as:\n\n    host_mtime \u003d int(device_mtime.strip()) - time_offset\n\ni.e. use a new variable for host time, so it\u0027s a bit clearer what\u0027s going on.\n\nAnd add a comment above that time_offset is device_time - host_time, so it\u0027s easier to check the math without having to look up the implementation of GetDeviceHostClockOffset",
+      "parentUuid": "347b7058_a4ea602b",
       "range": {
         "startLine": 295,
         "startChar": 6,
@@ -114,6 +261,30 @@
       "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04377bde_42fd0e32",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T10:42:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5a40bfc4_97230497",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 0
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
