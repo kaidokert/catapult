@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "dd01f8c3_40414bee",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "Hm, IIRC, options.chromium_output_dir isn\u0027t guaranteed to be set, but I\u0027ll play around with things to see if I can avoid using GetChromiumSrcDir.",
+      "parentUuid": "8f55825b_0a7e9a71",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69cd3bdd_f063890d",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 1
@@ -66,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "75b386c7_1e30ca00",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69cd3bdd_f063890d",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45be15df_0a9f2e8a",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 1
@@ -80,6 +122,24 @@
       "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3782cfb6_f31a5614",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "Done. I\u0027ve left LogSymbolizedUnsymbolizedMinidumps() around since it\u0027s used in places outside of Catapult. I\u0027ve filed https://crbug.com/1025034 to track the switch.",
+      "parentUuid": "45be15df_0a9f2e8a",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +178,30 @@
       "side": 1,
       "message": "Ack. Depending on how clients use it, it might also make sense to remove this method entirely as long as all of them are calling the other one to collect the artifacts.",
       "parentUuid": "6c9a9175_413116ad",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 19
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51ce3f80_9d975a7d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "Maybe - currently, AppCrashException needs GetStackTrace since it stores the result for use later https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/core/exceptions.py?q\u003dgetstacktrace+file:telemetry\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d72. Might be okay to not do that, though.",
+      "parentUuid": "87966138_6c1a64a0",
       "range": {
         "startLine": 221,
         "startChar": 6,
@@ -177,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "a7e602d5_3cf07b08",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfec6a4c_113a7e7f",
+      "range": {
+        "startLine": 225,
+        "startChar": 4,
+        "endLine": 229,
+        "endChar": 20
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f616052_a9e64561",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 1
@@ -188,6 +296,24 @@
       "writtenOn": "2019-11-14T10:42:45Z",
       "side": 1,
       "message": "Would StatDirectory work for you here?\nhttps://cs.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_utils.py?rcl\u003d00fc2231f697e2ecd45898772ca937094649a4f9\u0026l\u003d2275",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "551fc46c_8902b034",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "StatPath/StatDirectory aren\u0027t suitable for this since they have minute resolution for the mtime, as specified in their docstrings + the comment above this line.",
+      "parentUuid": "8f616052_a9e64561",
       "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -238,6 +364,30 @@
       "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a39ca3bd_1ff09f31",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-14T23:56:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2726fec_e2dc5132",
+      "range": {
+        "startLine": 295,
+        "startChar": 6,
+        "endLine": 296,
+        "endChar": 44
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
