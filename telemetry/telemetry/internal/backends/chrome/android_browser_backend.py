@@ -2,15 +2,25 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import datetime
 import logging
+import os
+import posixpath
+import shutil
+import tempfile
+import time
 
 from py_utils import exc_util
 
 from telemetry.core import exceptions
+from telemetry.core import util
 from telemetry.internal.platform import android_platform_backend as \
   android_platform_backend_module
+from telemetry.internal.backends.chrome import android_minidump_symbolizer
 from telemetry.internal.backends.chrome import chrome_browser_backend
+from telemetry.internal.backends.chrome import minidump_finder
 from telemetry.internal.browser import user_agent
+from telemetry.internal.results import artifact_logger
 
 from devil.android import app_ui
 from devil.android import device_signal
@@ -19,6 +29,8 @@ from devil.android.sdk import intent
 
 class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   """The backend for controlling a browser instance running on Android."""
+  DEBUG_ARTIFACT_PREFIX = 'android_debug_info/'
+
   def __init__(self, android_platform_backend, browser_options,
                browser_directory, profile_directory, backend_settings):
     assert isinstance(android_platform_backend,
@@ -38,6 +50,10 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
     # Set the debug app if needed.
     self.platform_backend.SetDebugApp(self._backend_settings.package)
+
+    self._dump_finder = None
+    self._tmp_minidump_dir = tempfile.mkdtemp()
+    self._most_recent_symbolized_minidump_paths = set([])
 
   @property
   def log_file_path(self):
@@ -65,6 +81,8 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     assert not startup_args, (
         'Startup arguments for Android should be set during '
         'possible_browser.SetUpEnvironment')
+    self._dump_finder = minidump_finder.MinidumpFinder(
+        self.browser.platform.GetOSName(), self.browser.platform.GetArchName())
     user_agent_dict = user_agent.GetChromeUserAgentDictFromType(
         self.browser_options.browser_user_agent_type)
     self.device.StartActivity(
@@ -177,6 +195,9 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def Close(self):
     super(AndroidBrowserBackend, self).Close()
     self._StopBrowser()
+    if self._tmp_minidump_dir:
+      shutil.rmtree(self._tmp_minidump_dir, ignore_errors=True)
+      self._tmp_minidump_dir = None
 
   def IsBrowserRunning(self):
     return len(self._GetBrowserProcesses()) > 0
@@ -184,21 +205,128 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def GetStandardOutput(self):
     return self.platform_backend.GetStandardOutput()
 
+  def LogSymbolizedUnsymbolizedMinidumps(self, log_level):
+    # Store additional debug information as artifacts.
+    # Include the time in the name to guarantee uniqueness if this happens to be
+    # called multiple times in a single test. Formatted as
+    # year-month-day-hour-minute-second
+    now = datetime.datetime.now()
+    suffix = now.strftime('%Y-%m-%d-%H-%M-%S')
+    self._StoreUiDumpAsArtifact(suffix)
+    self._StoreLogcatAsArtifact(suffix)
+    self._StoreTombstonesAsArtifact(suffix)
+    super(AndroidBrowserBackend, self).LogSymbolizedUnsymbolizedMinidumps(
+        log_level)
+
   def GetStackTrace(self):
     return self.platform_backend.GetStackTrace()
 
   def GetMostRecentMinidumpPath(self):
-    return None
+    self._PullDumps()
+    dump_path, explanation = self._dump_finder.GetMostRecentMinidump(
+        self._tmp_minidump_dir)
+    logging.info('\n'.join(explanation))
+    return dump_path
 
   def GetRecentMinidumpPathWithTimeout(self, timeout_s, oldest_ts):
-    del timeout_s, oldest_ts
-    return None
+    assert timeout_s > 0
+    assert oldest_ts >= 0
+    explanation = ['No explanation returned.']
+    start_time = time.time()
+    try:
+      while time.time() - start_time < timeout_s:
+        self._PullDumps()
+        dump_path, explanation = self._dump_finder.GetMostRecentMinidump(
+            self._tmp_minidump_dir)
+        if not dump_path or os.path.getmtime(dump_path) < oldest_ts:
+          continue
+        return dump_path
+      return None
+    finally:
+      logging.info('\n'.join(explanation))
 
   def GetAllMinidumpPaths(self):
-    return None
+    self._PullDumps()
+    paths, explanation = self._dump_finder.GetAllMinidumpPaths(
+        self._tmp_minidump_dir)
+    logging.info('\n'.join(explanation))
+    return paths
 
   def GetAllUnsymbolizedMinidumpPaths(self):
-    return None
+    minidump_paths = set(self.GetAllMinidumpPaths())
+    # If we have already symbolized paths remove them from the list
+    unsymbolized_paths = (
+        minidump_paths - self._most_recent_symbolized_minidump_paths)
+    return list(unsymbolized_paths)
 
   def SymbolizeMinidump(self, minidump_path):
-    return None
+    dump_symbolizer = android_minidump_symbolizer.AndroidMinidumpSymbolizer(
+        self._dump_finder, _GetBuildPath())
+    stack = dump_symbolizer.SymbolizeMinidump(minidump_path)
+    if not stack:
+      return (False, 'Failed to symbolize minidump.')
+    self._most_recent_symbolized_minidump_paths.add(minidump_path)
+    return (True, stack)
+
+  def _PullDumps(self):
+    """Pulls any minidumps from the device to the host.
+
+    Skips pulling any dumps that have already been pulled. The modification time
+    of any pulled dumps will be set to the modification time of the dump on the
+    device, offset by any difference in clocks between the device and host.
+    """
+    time_offset = self.platform_backend.GetDeviceHostClockOffset()
+    device = self.platform_backend.device
+
+    device_dump_path = posixpath.join(
+        self.platform_backend.GetDumpLocation(), 'Crashpad', 'pending')
+    device_dumps = device.ListDirectory(device_dump_path)
+    for dump_filename in device_dumps:
+      host_path = os.path.join(self._tmp_minidump_dir, dump_filename)
+      if os.path.exists(host_path):
+        continue
+      device_path = posixpath.join(device_dump_path, dump_filename)
+      device.PullFile(device_path, host_path)
+      # Set the local version's modification time to the device's
+      # The mtime returned by device_utils.StatPath only has a resolution down
+      # to the minute, so we can't use that.
+      device_mtime = device.RunShellCommand(
+          ['stat', '-c', '%Y', device_path], single_line=True)
+      # TODO: Double check this math. This is the same as the CrOS logic, but
+      # I'm having doubts that it's correct.
+      device_mtime = int(device_mtime.strip()) + time_offset
+      os.utime(host_path, (device_mtime, device_mtime))
+
+  def _StoreUiDumpAsArtifact(self, suffix):
+    ui_dump = self.platform_backend.GetSystemUi().ScreenDump()
+    artifact_name = '%sui_dump-%s.txt' % (self.DEBUG_ARTIFACT_PREFIX, suffix)
+    artifact_logger.CreateArtifact(artifact_name, '\n'.join(ui_dump))
+
+  def _StoreLogcatAsArtifact(self, suffix):
+    logcat = self.platform_backend.GetLogCat()
+    artifact_name = '%slogcat-%s.txt' % (self.DEBUG_ARTIFACT_PREFIX, suffix)
+    artifact_logger.CreateArtifact(artifact_name, logcat)
+
+    symbolized_logcat = self.platform_backend.SymbolizeLogCat(logcat)
+    if symbolized_logcat is None:
+      symbolized_logcat = 'Failed to symbolize logcat. Is the script available?'
+    artifact_name = '%ssymbolized_logcat-%s.txt' % (
+        self.DEBUG_ARTIFACT_PREFIX, suffix)
+    artifact_logger.CreateArtifact(artifact_name, symbolized_logcat)
+
+  def _StoreTombstonesAsArtifact(self, suffix):
+    tombstones = self.platform_backend.GetTombstones()
+    if tombstones is None:
+      tombstones = 'Failed to get tombstones. Is the script available?'
+    artifact_name = '%stombstones-%s.txt' % (self.DEBUG_ARTIFACT_PREFIX, suffix)
+    artifact_logger.CreateArtifact(artifact_name, tombstones)
+
+
+# TODO: Handle --chromium-output-directory
+def _GetBuildPath():
+  build_path = '.'
+  for b in util.GetBuildDirectories():
+    if os.path.exists(b):
+      build_path = b
+      break
+  return build_path

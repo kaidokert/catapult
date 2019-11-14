@@ -1,6 +1,10 @@
 # Copyright 2013 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+
+import logging
+import os
+import posixpath
 import uuid
 import sys
 
@@ -10,6 +14,7 @@ from telemetry import decorators
 from telemetry.core import exceptions
 from telemetry.internal.backends import app_backend
 from telemetry.internal.browser import web_contents
+from telemetry.internal.results import artifact_logger
 
 
 class ExtensionsNotSupportedException(Exception):
@@ -98,6 +103,34 @@ class BrowserBackend(app_backend.AppBackend):
 
   def GetStandardOutput(self):
     raise NotImplementedError()
+
+  def LogSymbolizedUnsymbolizedMinidumps(self, log_level):
+    """Attempts to symbolize all currently unsymbolized minidumps and log them.
+
+    Platforms may override this to provide other crash information in addition
+    to the symbolized minidumps.
+
+    Args:
+      log_level: The logging level to use from the logging module, e.g.
+          logging.ERROR.
+    """
+    paths = self.GetAllUnsymbolizedMinidumpPaths()
+    if not paths:
+      logging.log(log_level, 'No unsymbolized minidump paths')
+      return
+    logging.log(log_level, 'Unsymbolized minidump paths: ' + str(paths))
+    for unsymbolized_path in paths:
+      valid, output = self.SymbolizeMinidump(unsymbolized_path)
+      # Store the symbolization attempt as an artifact.
+      minidump_name = os.path.basename(unsymbolized_path)
+      artifact_name = posixpath.join('symbolize_attempts', minidump_name)
+      logging.log(log_level, 'Saving symbolization attempt as artifact %s',
+                  artifact_name)
+      artifact_logger.CreateArtifact(artifact_name, output)
+      if valid:
+        logging.log(log_level, 'Symbolized minidump:\n%s', output)
+      else:
+        logging.log(log_level, 'Minidump symbolization failed:%s\n', output)
 
   def GetStackTrace(self):
     """Gets a stack trace if a valid minidump is found.
