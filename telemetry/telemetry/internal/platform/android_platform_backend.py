@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import time
 
 from telemetry.core import android_platform
 from telemetry.core import exceptions
@@ -101,6 +102,7 @@ class AndroidPlatformBackend(
     self._raw_display_frame_rate_measurements = []
     self._device_copy_script = None
     self._system_ui = None
+    self._device_host_clock_offset = None
 
     _FixPossibleAdbInstability()
 
@@ -302,6 +304,16 @@ class AndroidPlatformBackend(
 
   def GetOSVersionDetailString(self):
     return ''  # TODO(kbr): Implement this.
+
+  def GetDeviceHostClockOffset(self):
+    """Returns the difference between the device and host clocks."""
+    if self._device_host_clock_offset is None:
+      # Get the current time in seconds since the epoch.
+      device_time = self.device.RunShellCommand(
+          ['date', '+%s'], single_line=True)
+      host_time = time.time()
+      self._device_host_clock_offset = int(int(device_time.strip()) - host_time)
+    return self._device_host_clock_offset
 
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
@@ -546,6 +558,52 @@ class AndroidPlatformBackend(
         check_return=True, large_output=True)
     return '\n'.join(decode_line(l) for l in logcat_output)
 
+  def SymbolizeLogCat(self, logcat):
+    """Attempts to symbolize any crash stacks in the given logcat data.
+
+    Args:
+      logcat: A string containing the logcat data to be symbolized.
+
+    Returns:
+      A string containing the symbolized logcat data, or None if the symbolize
+      script was not found.
+    """
+    stack = os.path.join(util.GetChromiumSrcDir(), 'third_party',
+                         'android_platform', 'development', 'scripts', 'stack')
+    if _ExecutableExists(stack):
+      cmd = [stack]
+      arch = self.GetArchName()
+      arch = _ARCH_TO_STACK_TOOL_ARCH.get(arch, arch)
+      cmd.append('--arch=%s' % arch)
+      cmd.append('--output-directory=%s' % _GetBuildPath())
+      p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+      return p.communicate(input=logcat)[0]
+
+    return None
+
+  def GetTombstones(self):
+    """Attempts to get any tombstones currently on the device.
+
+    Returns:
+      A string containing any tombstones found on the device, or None if the
+      tombstones script was not found or failed.
+    """
+    tombstones = os.path.join(util.GetChromiumSrcDir(), 'build', 'android',
+                              'tombstones.py')
+    if _ExecutableExists(tombstones):
+      tombstones_cmd = [
+          tombstones, '-w',
+          '--device', self._device.adb.GetDeviceSerial(),
+          '--adb-path', self._device.adb.GetAdbPath(),
+          '--output-directory=%s' % _GetBuildPath(),
+      ]
+      try:
+        return subprocess.check_output(tombstones_cmd)
+      except subprocess.CalledProcessError:
+        return None
+
+    return None
+
   def GetStandardOutput(self):
     return 'Cannot get standard output on Android'
 
@@ -755,3 +813,13 @@ def _BuildEvent(cat, name, ph, pid, ts, args):
 
 def _ExecutableExists(file_name):
   return os.access(file_name, os.X_OK)
+
+
+# TODO: Handle --chromium-output-directory
+def _GetBuildPath():
+  build_path = '.'
+  for b in util.GetBuildDirectories():
+    if os.path.exists(b):
+      build_path = b
+      break
+  return build_path
