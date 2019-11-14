@@ -16,6 +16,24 @@
       "revId": "c5bc2b17220b04bd339ec5080cd3989f79f544e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dd56b81_715e34b6",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-14T23:35:16Z",
+      "side": 1,
+      "message": "Yeah, I learned though that the test path shenanigans is required for now because the Dashboard uses these identifiers as *keys* in Datastore. This is why there\u0027s a funny matching algorithm being used for consistency\u0027s sake between what the Dashboard uses in alerting and what the histograms contain.\n\nA lot of this is actually legacy -- chart-json and graph-json have some interesting terminology and overlaps, and Pinpoint in this implementation is doing its best to support those terminologies.\n\nWhat also complicates this is that we need to maintain backwards-compatibility for now until we know with a fair bit of certainty that the legacy use-cases are no longer critical to our customers. We still have folks uploading data in chart-json format that also want to be able to use Pinpoint.\n\nI like the exact histogram name matching, but until the Dashboard can retain the exact names to be used when sending the bisection requests through then we do still need all this complexity. The funny part here is that we can define this with more fidelity in the task-based execution engine implementation, but we also need to change that for now to match current functionality.\n\nSo for now, I think what I\u0027m reading is:\n\n- It\u0027s safe to ignore the grouping label in the histograms when matching those in Pinpoint.\n- We can revisit this roundabout way of doing so later when we know more effectively what the Dashboard and Pinpoint\u0027s interactions are with regard to grouping labels.\n\nIs that fair?",
+      "parentUuid": "e447b5bd_53614a88",
+      "revId": "c5bc2b17220b04bd339ec5080cd3989f79f544e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
