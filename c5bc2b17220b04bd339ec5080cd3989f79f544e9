@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e447b5bd_53614a88",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-14T11:42:57Z",
+      "side": 1,
+      "message": "Yeah, I had a look at this code when writing the CL to change tir_label with grouping_label. And I think it\u0027s a lot more complicated than it needs to be; but also I was scared of making any changes in case of some edge cases that really depend on this.\n\nAs far as I understand (at least for Telemetry benchmarks), when making bisect requests from the dashboard (e.g. [1]) we do include the histogram name (for some reason called \"chart\"), the story name and the grouping_label. There is also a \"trace\" provided but I don\u0027t know what that means (on some jobs I\u0027ve seen it\u0027s the same as the story name; I guess it has nothing to do with tracing despite the misleading name).\n\n[1]: https://pinpoint-dot-chromeperf.appspot.com/job/1506c598220000\n\nAnyway, I believe in most cases it should be enough to just iterate over all histograms and keep the ones with matching (exact) histogram name and story name. I\u0027m also like 90% confident that it should be safe to ignore grouping_label (as benchmark + story uniquely defines a grouping_label, but I might be wrong about this in some edge cases).\n\nThe implementation here seems to go in a roundabout way building \"test paths\" in quirky ways both out of the histograms on one side and out of the pinpoint job args on the other; and then finding the histograms with matching test paths (with even more quirky rules and exceptions).\n\nMy suggestion would be to try finding values in the following order:\n\na) Match exact histogram name (\"chart\"), story name and group_label  (in case I\u0027m wrong about group_labels not being important).\nb) If no histograms are found, match exact histogram name and story name only. This should achieve your intended effect of this CL.\nc) If still no histograms are found, then fall back to the existing roundabouty match-by-test-path implementation (in case some of those quirky rules were actually needed for some edge cases).\n\nIn the future we might even be able to get rid of \"c\" entirely, if we can confirm that in all tests either \"a\" or \"b\" are enough to identify histograms.",
+      "revId": "c5bc2b17220b04bd339ec5080cd3989f79f544e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
