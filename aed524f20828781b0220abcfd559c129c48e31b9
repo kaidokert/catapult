@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "067f2820_ae63ed9f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-14T01:01:32Z",
+      "side": 1,
+      "message": "I think you meant to use the 3-arg version?  The 2-arg getattr will raise AttributeError the attribute is not present.\n\nAlso, using a literal for the attribute name in setattr (and 2-arg getattr) doesn\u0027t really make sense, just use regular dot syntax.\n\n  if getattr(self, \u0027_trace_or_story\u0027, None) is None:\n    self._trace_or_story \u003d getattr(self, \u0027_trace\u0027, None)\n  return self._trace_or_story\n\n\n(Btw, paranoid pedants will use `sentinel \u003d object(); if getattr(obj, attr, sentinel) is sentinel: …` rather than None, but most of the time the distinction between “value is absent” and “value is None” is insignificant.)",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "aed524f20828781b0220abcfd559c129c48e31b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3531a0d3_5c563a6d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-14T01:01:32Z",
+      "side": 1,
+      "message": "As above.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 53
+      },
+      "revId": "aed524f20828781b0220abcfd559c129c48e31b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
