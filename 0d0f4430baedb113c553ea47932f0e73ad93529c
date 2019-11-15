@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9010fa7d_efbcedac",
+        "filename": "tracing/tracing/metrics/uma_metric_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2019-11-15T16:49:37Z",
+      "side": 1,
+      "message": "This is a 64-bit encoding of:\n28, 5, 0, 1, 1, 3, 0, 1\n\numa_metrics.parseBuckets_ handles the decoding.\nOf this values [0] \u0026 [3] are taken from decoding  |BROWSER_BUCKETS2| and I\u0027m not 100% certain what values are expected here. They are unused values in uma_metric.html itself.\n\nI will check with chiniforooshan@ offline to see.",
+      "revId": "0d0f4430baedb113c553ea47932f0e73ad93529c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
