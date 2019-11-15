@@ -108,11 +108,9 @@ def write_event(output, ph, category, name, ts, args, tid):
     category: category of event.
     name: event name.
     ts: timestamp in microseconds.
-    args: this argument is currently ignored.
+    args: dict of arbitrary key-values to be stored as DebugAnnotations.
     tid: thread ID.
   """
-  del args  # TODO(khokhlov): Encode args as DebugAnnotations.
-
   global _last_timestamps
   ts_us = int(ts)
   delta_ts = ts_us - _last_timestamps[tid]
@@ -132,6 +130,35 @@ def write_event(output, ph, category, name, ts, args, tid):
   legacy_event.phase = ord(ph)
   legacy_event.name_iid = _intern_event_name(name, packet, tid)
   packet.track_event.legacy_event = legacy_event
+
+  for name, value in args.iteritems():
+    debug_annotation = proto.DebugAnnotation()
+    debug_annotation.name = name
+    if isinstance(value, int):
+      debug_annotation.int_value = value
+    elif isinstance(value, float):
+      debug_annotation.double_value = value
+    else:
+      debug_annotation.string_value = str(value)
+    packet.track_event.debug_annotations.append(debug_annotation)
+
+  proto.write_trace_packet(output, packet)
+
+
+def write_chrome_metadata(output, clock_domain):
+  """ Write a chrome trace event with metadata.
+
+  Args:
+    output: a file-like object to write events into.
+    clock_domain: a string representing the trace clock domain.
+  """
+  chrome_metadata = proto.ChromeMetadata()
+  chrome_metadata.name = 'clock-domain'
+  chrome_metadata.string_value = clock_domain
+  chrome_event = proto.ChromeEventBundle()
+  chrome_event.metadata.append(chrome_metadata)
+  packet = proto.TracePacket()
+  packet.chrome_event = chrome_event
   proto.write_trace_packet(output, packet)
 
 
@@ -146,6 +173,7 @@ def write_metadata(
     story_run_index,
     label=None,
 ):
+  """ Write a ChromeBenchmarkMetadata message."""
   metadata = proto.ChromeBenchmarkMetadata()
   metadata.benchmark_start_time_us = int(benchmark_start_time_us)
   metadata.story_run_time_us = int(story_run_time_us)
@@ -160,4 +188,3 @@ def write_metadata(
   packet = proto.TracePacket()
   packet.chrome_benchmark_metadata = metadata
   proto.write_trace_packet(output, packet)
-
