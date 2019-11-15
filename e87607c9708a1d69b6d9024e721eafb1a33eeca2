@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "385ad512_09da57be",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-15T19:28:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b2f248b_d57694c5",
+      "range": {
+        "startLine": 205,
+        "startChar": 11,
+        "endLine": 205,
+        "endChar": 21
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88769108_a9881439",
         "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc679a1f_2a2b0862",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-15T19:28:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88769108_a9881439",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +130,30 @@
       "writtenOn": "2019-11-15T19:01:18Z",
       "side": 1,
       "message": "Probably worth checking to see if the Chromium version exists first so that you can avoid downloading unnecessary data.",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fedb909e_f8a878dd",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-15T19:28:25Z",
+      "side": 1,
+      "message": "I think the os.path.exists below does the same thing? I was wondering whether it\u0027d be good practice to check if the browser we specify is for Fuchsia here as that would allow us to know before-hands whether we actually need to download the sdk at all.",
+      "parentUuid": "12f1d720_2d5f5d00",
       "range": {
         "startLine": 64,
         "startChar": 2,
