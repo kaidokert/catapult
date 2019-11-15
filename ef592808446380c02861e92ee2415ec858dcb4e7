@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24317af2_68f270bb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-15T10:13:20Z",
+      "side": 1,
+      "message": "I think it shouldn\u0027t be too much work, so it would be great if you can rename these e.g. to _support_apk_list, and backend_settings.FindSupportApks() which should already return a list.\n\nIt\u0027s fine to keep the option named --webview-embedder-apk at the moment, but leave a TODO to rename those later too.",
+      "revId": "ef592808446380c02861e92ee2415ec858dcb4e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14c62c18_8325148f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-15T10:13:20Z",
+      "side": 1,
+      "message": "nit: don\u0027t forget to remove these debug print\u0027s",
+      "revId": "ef592808446380c02861e92ee2415ec858dcb4e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
