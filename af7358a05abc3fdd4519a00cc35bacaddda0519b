@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "8369019e_c45dcd29",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-15T22:27:16Z",
+      "side": 1,
+      "message": "I think it still makes the most sense to use GetChromiumSrcDir. The other alternative I see is to base it off the new GetUsedBuildDirectory and assume that Chromium src is two directories above that, but that seems more roundabout since that ends up calling GetChromiumSrcDir under the hood anyways.",
+      "parentUuid": "dd01f8c3_40414bee",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69cd3bdd_f063890d",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 1
@@ -426,6 +450,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "5a40bfc4_97230497",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 0
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8fde25d6_c29d75ce",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-15T22:27:16Z",
+      "side": 1,
+      "message": "Moved to a new GetUsedBuildDirectory in core/util.",
+      "parentUuid": "04377bde_42fd0e32",
       "range": {
         "startLine": 325,
         "startChar": 0,
