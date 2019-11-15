@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d71103ad_5ebbdd5d",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-15T01:02:14Z",
+      "side": 1,
+      "message": "A four-tuple starts to become unwieldy; maybe we need a separate data-only class for the return values from expectations_for()?",
+      "revId": "4e9cc305df8675fc0fef21b78861c5b46458e33f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
