@@ -34,6 +34,24 @@
       "revId": "c5bc2b17220b04bd339ec5080cd3989f79f544e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47a2e709_4681b1a3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-15T10:17:18Z",
+      "side": 1,
+      "message": "Sure that sounds fair.",
+      "parentUuid": "5dd56b81_715e34b6",
+      "revId": "c5bc2b17220b04bd339ec5080cd3989f79f544e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
