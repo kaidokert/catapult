@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b2f248b_d57694c5",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-15T19:01:18Z",
+      "side": 1,
+      "message": "Might want to call it \"--fuchsia-output-dir\" so it can\u0027t be confused with the Chromium output directory at all, particularly when you actually end up using this since arguments aren\u0027t split up by group when you\u0027re actually using them.",
+      "range": {
+        "startLine": 205,
+        "startChar": 11,
+        "endLine": 205,
+        "endChar": 21
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88769108_a9881439",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-15T19:01:18Z",
+      "side": 1,
+      "message": "Nit: I think Telemetry prefers separate import statements for each module instead of having multiple like this.",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b21aae7_c3e3b1cd",
+        "filename": "telemetry/telemetry/internal/forwarders/cros_forwarder_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-15T19:01:18Z",
+      "side": 1,
+      "message": "I think this should be forwarder_utils.ReadRemotePort.",
+      "range": {
+        "startLine": 16,
+        "startChar": 39,
+        "endLine": 16,
+        "endChar": 53
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12f1d720_2d5f5d00",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-15T19:01:18Z",
+      "side": 1,
+      "message": "Probably worth checking to see if the Chromium version exists first so that you can avoid downloading unnecessary data.",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "e87607c9708a1d69b6d9024e721eafb1a33eeca2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
