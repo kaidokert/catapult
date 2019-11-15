@@ -39,7 +39,7 @@ if dir_above_typ not in sys.path:  # pragma: no cover
 from typ import artifacts
 from typ import json_results
 from typ.arg_parser import ArgumentParser
-from typ.expectations_parser import TestExpectations
+from typ.expectations_parser import TestExpectations, Expectation
 from typ.host import Host
 from typ.pool import make_pool
 from typ.stats import Stats
@@ -851,7 +851,7 @@ class Runner(object):
           return self.expectations.expectations_for(
               test_case.id()[len(self.args.test_name_prefix):])
       else:
-          return (set([ResultType.Pass]), False, False, set())
+          return Expectation()
 
     def default_classifier(self, test_set, test):
         if self.matches_filter(test):
@@ -890,7 +890,7 @@ class Runner(object):
           return False
         test_name = test_case.id()[len(self.args.test_name_prefix):]
         if self.has_expectations:
-            expected_results = self.expectations.expectations_for(test_name)[0]
+            expected_results = self.expectations.expectations_for(test_name).results
         else:
             expected_results = set([ResultType.Pass])
         return (
@@ -999,7 +999,9 @@ def _run_one_test(child, test_input):
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
     if child.has_expectations:
-      expected_results, should_retry_on_failure = child.expectations.expectations_for(test_name)[:2]
+      expectation = child.expectations.expectations_for(test_name)
+      expected_results, should_retry_on_failure = (
+          expectation.results, expectation.should_retry_on_failure)
     else:
       expected_results, should_retry_on_failure = {ResultType.Pass}, False
     ex_str = ''
