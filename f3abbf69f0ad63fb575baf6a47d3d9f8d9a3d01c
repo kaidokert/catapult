@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdd679e4_d5e5f07f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-15T02:30:16Z",
+      "side": 1,
+      "message": "Typo: “scroll”",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "f3abbf69f0ad63fb575baf6a47d3d9f8d9a3d01c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
