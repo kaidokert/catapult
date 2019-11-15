@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fb22f669_405ade7c",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1119250
+      },
+      "writtenOn": "2019-11-15T13:40:52Z",
+      "side": 1,
+      "message": "First bit done. Re WebLayer version I\u0027ll do that in a follow on patch.",
+      "parentUuid": "6678a91a_b5e9a547",
+      "revId": "bd45220492705c45d472934e4a5b2f0c9ebc40b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e489ded5_2f29bbd7",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "bd45220492705c45d472934e4a5b2f0c9ebc40b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e38992b2_b8f2497c",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1119250
+      },
+      "writtenOn": "2019-11-15T13:40:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e489ded5_2f29bbd7",
+      "revId": "bd45220492705c45d472934e4a5b2f0c9ebc40b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
