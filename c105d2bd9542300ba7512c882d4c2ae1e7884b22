@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bc948c7_4eb9ff4c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2497,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-11-15T00:39:34Z",
+      "side": 1,
+      "message": "WDYT about also guarding this on self.adb.is_emulator?",
+      "revId": "c105d2bd9542300ba7512c882d4c2ae1e7884b22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
