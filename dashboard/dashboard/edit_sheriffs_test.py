@@ -16,11 +16,13 @@ from google.appengine.api import users
 from dashboard import edit_config_handler
 from dashboard import edit_sheriffs
 from dashboard import put_entities_task
+from dashboard import sheriff_pb2
 from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.common import xsrf
 from dashboard.models import graph_data
 from dashboard.models import sheriff
+from google.protobuf import text_format
 
 
 class EditSheriffsTest(testing_common.TestCase):
@@ -238,6 +240,38 @@ class EditSheriffsTest(testing_common.TestCase):
         },
     }
     actual = self.GetEmbeddedVariable(response, 'SHERIFF_DATA')
+
+    expected_subs = [
+        """
+        name: "Foo Sheriff"
+        notification_email: "foo@x.org"
+        visibility: PUBLIC
+        patterns [
+          { glob: "*/*/*/*" }
+        ]
+        """,
+        """
+        name: "Bar Sheriff"
+        bug_labels: ["hello", "world"]
+        visibility: PUBLIC
+        patterns [
+          { glob: "a/b/c" },
+          { glob: "x/y/z" }
+        ]
+        """,
+    ]
+    def parse(text):
+      sub = sheriff_pb2.Subscription()
+      text_format.Merge(text, sub)
+      return sub
+
+    self.assertEqual(
+        map(parse, expected_subs),
+        map(parse, [v['subscription'] for v in actual.values()])
+    )
+
+    for _, v in actual.items():
+      del v['subscription']
     self.assertEqual(expected, actual)
 
   def testPost_SendsNotificationEmail(self):
