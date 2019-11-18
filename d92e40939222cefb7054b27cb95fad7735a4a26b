@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89e4addc_7180ee28",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-18T04:01:32Z",
+      "side": 1,
+      "message": "Use results\u003dNone here, not a set object; the latter won\u0027t work right.",
+      "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8566211f_0df33b1b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-18T04:01:32Z",
+      "side": 1,
+      "message": "This should probably be `results \u003d results or {ResultType.Pass}`.",
+      "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44bfb4f5_62e3e41d",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-11-18T04:01:32Z",
+      "side": 1,
+      "message": "Nit: maybe change this from `set([ResultType.Pass])` to `{ResultType.Pass}` while you\u0027re at it?",
+      "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
