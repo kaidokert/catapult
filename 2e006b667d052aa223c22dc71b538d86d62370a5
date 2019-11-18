@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a3f8126b_9dc3eaff",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "feecde7d_77643b33",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 70
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3d2e132_f2400da6",
         "filename": "catapult_build/build_steps.py",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8098b1b2_2131055c",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "sheriff_config does not have code dependencies on other part of the system. So just generate the proto file twice to keep it independent. Add comment to explain why.",
+      "parentUuid": "f3d2e132_f2400da6",
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "2bb6dfe0_a59022a8",
+        "filename": "dashboard/dashboard/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f084f4c_fedc95ba",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 6
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7d01966_9ac1e65f",
         "filename": "dashboard/dashboard/edit_sheriffs.py",
         "patchSetId": 1
@@ -85,6 +151,30 @@
       "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8854700_e37c68db",
+        "filename": "dashboard/dashboard/edit_sheriffs.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d01966_9ac1e65f",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 67
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +224,54 @@
     },
     {
       "key": {
+        "uuid": "20bb8fd7_40d44197",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76ecbf5f_09b75def",
+      "range": {
+        "startLine": 246,
+        "startChar": 4,
+        "endLine": 246,
+        "endChar": 22
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "686764f4_2c29ee90",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f858a81d_1d0b40a4",
+      "range": {
+        "startLine": 246,
+        "startChar": 42,
+        "endLine": 246,
+        "endChar": 68
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "733cbf60_b7e63a22",
         "filename": "dashboard/dashboard/edit_sheriffs_test.py",
         "patchSetId": 1
@@ -154,6 +292,30 @@
       "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff185421_f5195831",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-18T06:00:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "733cbf60_b7e63a22",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 61
+      },
+      "revId": "2e006b667d052aa223c22dc71b538d86d62370a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
