@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4b204783_575da79f",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-18T18:30:09Z",
+      "side": 1,
+      "message": "I think so - I at least expect the symbolized stack to be in stdout since it\u0027s typically very relevant information when debugging an issue.",
+      "parentUuid": "d1db50e7_9f7f2060",
+      "revId": "db449152213a91b6273b871fd91d5131de791cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be5ab709_f9a1b52a",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "cc57cfd6_6c3369c9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-18T18:30:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be5ab709_f9a1b52a",
+      "revId": "db449152213a91b6273b871fd91d5131de791cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f051ba0_256daea0",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2019-11-18T10:56:45Z",
       "side": 1,
       "message": "Is there a way to get options.chromium_output_dir here? It would be better if we can move the \"guessing\" of this directory to a single place (e.g. maybe to provide a default value for the relveant command line option if not given), and then use that value elsewhere where it\u0027s needed.\n\nI know this was broken already on the platform backend, but now we\u0027re spreading the issue to the browser backend too. 😞",
+      "revId": "db449152213a91b6273b871fd91d5131de791cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e9c2cf9_b1841cc6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-18T18:30:09Z",
+      "side": 1,
+      "message": "We can easily use the value of options.chromium_output_dir here since all setting that does is set CHROMIUM_OUTPUT_DIR https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?type\u003dcs\u0026q\u003dCHROMIUM_OUTPUT_DIR+case:yes+file:telemetry\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d262\n\nHowever, adding a default value might have some unexpected side effects that might be beyond the scope of this CL. For example, won\u0027t this affect the browser finding code?",
+      "parentUuid": "2f051ba0_256daea0",
       "revId": "db449152213a91b6273b871fd91d5131de791cba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true

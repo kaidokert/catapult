@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "985b9b9a_d69dd082",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-18T18:30:09Z",
+      "side": 1,
+      "message": "Looks like it\u0027s also not guaranteed to be set https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder.py?q\u003doptions.chrome_root+file:telemetry\u0026sq\u003dpackage:chromium\u0026dr\u003dC\u0026l\u003d90.",
+      "parentUuid": "30510abd_07f12dbc",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69cd3bdd_f063890d",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 1
