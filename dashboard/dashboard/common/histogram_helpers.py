@@ -122,7 +122,7 @@ def ComputeTestPath(hist):
 def ComputeTestPathFromComponents(
     hist_name, grouping_label=None, story_name=None, is_summary=None,
     is_ref=False):
-  path = hist_name
+  path = hist_name or ''
 
   if grouping_label and (
       not is_summary or reserved_infos.STORY_TAGS.name in is_summary):
