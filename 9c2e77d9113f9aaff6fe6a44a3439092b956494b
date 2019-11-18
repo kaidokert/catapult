@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f5a3ca2_f0b65cd4",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T17:11:41Z",
+      "side": 0,
+      "message": "This method wasn\u0027t used anywhere. So most of these \"exception formatter capture\" was pointless. Replaced these with asserts on whether the benchmark run was interrupted or not.",
+      "revId": "9c2e77d9113f9aaff6fe6a44a3439092b956494b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
