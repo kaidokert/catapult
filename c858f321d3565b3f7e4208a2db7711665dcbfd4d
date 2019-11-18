@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6376817_7a2eea0c",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:31:01Z",
+      "side": 1,
+      "message": "Please add some docstrings explaining what these functions do.",
+      "revId": "c858f321d3565b3f7e4208a2db7711665dcbfd4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1490c0c_896a4552",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:31:01Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c858f321d3565b3f7e4208a2db7711665dcbfd4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56933cec_d69a12f0",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:31:01Z",
+      "side": 1,
+      "message": "nit: extra blank line here",
+      "revId": "c858f321d3565b3f7e4208a2db7711665dcbfd4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa678f92_6950b985",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:31:01Z",
+      "side": 1,
+      "message": "add docstring, and explain what each of the args are.",
+      "revId": "c858f321d3565b3f7e4208a2db7711665dcbfd4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24357ec9_d0cc133f",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:31:01Z",
+      "side": 1,
+      "message": "I\u0027m not sure I follow, how does data make it to the stderr_file?",
+      "revId": "c858f321d3565b3f7e4208a2db7711665dcbfd4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
