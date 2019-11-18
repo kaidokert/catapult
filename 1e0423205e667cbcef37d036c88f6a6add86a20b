@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f18315d2_4de5421c",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T16:43:30Z",
+      "side": 1,
+      "message": "Actually, I\u0027ve just re-read this comment. Which I think we should still strive for?\n\nInteresting thing is, we already have a more unit test which (sort of) tests the same thing for Screenshots in:\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/page/shared_page_state_unittest.py?rcl\u003d9c2e77d9113f9aaff6fe6a44a3439092b956494b\u0026l\u003d160\n\nSo maybe just remove the one in this file? What do you think?",
+      "revId": "1e0423205e667cbcef37d036c88f6a6add86a20b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
