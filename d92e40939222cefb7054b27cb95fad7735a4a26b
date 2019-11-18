@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da4a7de0_ac31ee92",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-18T07:55:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89e4addc_7180ee28",
+      "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8566211f_0df33b1b",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2eebb311_280f4b9d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-18T07:55:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8566211f_0df33b1b",
+      "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44bfb4f5_62e3e41d",
         "filename": "third_party/typ/typ/runner.py",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e38de8d_edda3c91",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-11-18T07:55:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44bfb4f5_62e3e41d",
+      "revId": "d92e40939222cefb7054b27cb95fad7735a4a26b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
