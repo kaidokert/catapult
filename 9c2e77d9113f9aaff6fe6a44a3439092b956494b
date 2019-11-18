@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6b06cb0_c7440e33",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T16:16:54Z",
+      "side": 0,
+      "message": "Note: this is missing the method call to CanTakeScreenshot, then we just have the method reference and \"not \u003cbound method ...\u003e\" evaluates to \"False\". So the meat of the test below was always skipped.\n\nThe thing is, if platform screenshots are supported, those are used instead of browser screenshots in case of failures and then the image equality test below would fail. So it looks like this was introduced at some point as a lazy way to \"fix\" the test.\n\nNow, instead, I just assume that the screenshot should always be taken, and check that we can find the relevant artifact with a non-empty image stored in it.",
+      "revId": "9c2e77d9113f9aaff6fe6a44a3439092b956494b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
