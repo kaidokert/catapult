@@ -294,7 +294,6 @@ const AutocompleteBoxBehavior = {
     this.fire('dropdownselect');
     if (this.selectedItem) this.set('query', this.selectedItem.name);
     if (!this.$) return;
-    this.$.textbox.readonly = true;
   },
 
   computeSuggestedItems(query, _itemsChange) {
@@ -320,6 +319,7 @@ const AutocompleteBoxBehavior = {
     if (item.head) return;
     this.set('dropdownOpen', false);
     this.set('selectedItem', item);
+    this.$.textbox.readonly = true;
   },
 
   tryReselectQuery() {
