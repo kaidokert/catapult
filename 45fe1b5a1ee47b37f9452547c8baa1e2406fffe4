@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22b2bd11_66d13d9e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T09:48:41Z",
+      "side": 1,
+      "message": "nit: remove extra whitespace: \"\"\"Write ...",
+      "revId": "45fe1b5a1ee47b37f9452547c8baa1e2406fffe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc24bbf9_6383c7ff",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T09:48:41Z",
+      "side": 1,
+      "message": "The fact that we depend on this looks scary. I am guessing we need this to clear the interning dicts?\n\nA short term solution is to expose a \"clear\" or \"reset\" module level function to call on the perfetto_trace_writter module. Then call that on a setUp method for this TestCase class.\n\nThe other more complicated but also cleaner one would be to refactor that perfetto_trace_writter module into a Factory/Builder object, so you keep the interning state in instance objects instead of global vars.\n\nWdyt?",
+      "revId": "45fe1b5a1ee47b37f9452547c8baa1e2406fffe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
