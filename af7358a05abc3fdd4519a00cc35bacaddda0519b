@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "30510abd_07f12dbc",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:56:45Z",
+      "side": 1,
+      "message": "Ah, note there is also an options.chrome_root [1] which ought to be pointing to the root of the chromium repository.\n\n[1]: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?rcl\u003d473984fca427a384fe9f037db299ea1be636e83d\u0026l\u003d98",
+      "parentUuid": "8369019e_c45dcd29",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69cd3bdd_f063890d",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 1
@@ -238,6 +262,30 @@
     },
     {
       "key": {
+        "uuid": "3394f607_0b958192",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:56:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51ce3f80_9d975a7d",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 19
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5909332f_db9d109a",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 1
@@ -338,6 +386,24 @@
       "side": 1,
       "message": "StatPath/StatDirectory aren\u0027t suitable for this since they have minute resolution for the mtime, as specified in their docstrings + the comment above this line.",
       "parentUuid": "8f616052_a9e64561",
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22b3381e_2550fe18",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-18T10:56:45Z",
+      "side": 1,
+      "message": "Ack. Sorry about that, I missed the comment. Too bad for StatPath :( - not for this CL, but would be great if you could think of a general way to improve the StatPath implementation.",
+      "parentUuid": "551fc46c_8902b034",
       "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
