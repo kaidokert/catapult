@@ -22,6 +22,30 @@
       "revId": "a3d4653611d78cfccb3e039f48b85c261bb02ab8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9fd9b01_9c2366b9",
+        "filename": "dashboard/dashboard/edit_sheriffs.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-19T04:04:23Z",
+      "side": 1,
+      "message": "Good point -- @fancl: it should be easy to add a unittest for ensuring that the sheriff configuration shows up as a valid text proto at the very least, in https://cs.chromium.org/chromium/src/third_party/catapult/dashboard/dashboard/edit_sheriffs_test.py",
+      "parentUuid": "efdf6ce8_ff767679",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 76
+      },
+      "revId": "a3d4653611d78cfccb3e039f48b85c261bb02ab8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
