@@ -16,6 +16,24 @@
       "revId": "1e0423205e667cbcef37d036c88f6a6add86a20b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "711065d2_4c8c52c9",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-19T00:20:39Z",
+      "side": 1,
+      "message": "I prefer to have some integration tests. I agree that we don\u0027t want a lot of them, but at least one test that makes sure we can take a screenshot on a platform sounds good to me.",
+      "parentUuid": "f18315d2_4de5421c",
+      "revId": "1e0423205e667cbcef37d036c88f6a6add86a20b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
