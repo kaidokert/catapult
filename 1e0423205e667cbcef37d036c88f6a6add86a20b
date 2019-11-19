@@ -34,6 +34,24 @@
       "revId": "1e0423205e667cbcef37d036c88f6a6add86a20b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "764b8cff_a0217cc8",
+        "filename": "telemetry/telemetry/page/page_run_end_to_end_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-19T11:29:15Z",
+      "side": 1,
+      "message": "sgtm, I\u0027ll land this fix for now. Then maybe make a plan for the rest of the tests to decide which ones we keep or replace with more \"unit\" versions of the tests.",
+      "parentUuid": "711065d2_4c8c52c9",
+      "revId": "1e0423205e667cbcef37d036c88f6a6add86a20b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
