@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics', function() {
+  const launchMarkers = [
+    'DevTools.Launch.Elements'
+  ];
+
+  function computeLaunchMetric(histograms, model) {
+    const rendererThreads = model.getAllThreads()
+        .filter(thread => thread.name === 'CrRendererMain');
+
+    // maps launch marker name to durations
+    const launchDurationsByMarker = {};
+
+    for (const thread of rendererThreads) {
+      // the thread launch event is the first occuring launch marker
+      const launchSlice = thread.sliceGroup.slices
+          .sort((a, b) => a.start - b.start)
+          .find(slice => launchMarkers.includes(slice.title));
+
+      if (launchSlice) {
+        if (!launchDurationsByMarker[launchSlice.title]) {
+          launchDurationsByMarker[launchSlice.title] = [];
+        }
+
+        launchDurationsByMarker[launchSlice.title]
+            .push(launchSlice.start - thread.bounds.min);
+      }
+    }
+
+    for (const launchMarker in launchDurationsByMarker) {
+      const myRegex = /DevTools\.(\w+)\.(\w+)/;
+      const histogramName = launchMarker.replace(myRegex, '$2$1');
+      const launchHistogram = new tr.v.Histogram(
+          `${histogramName}_duration`,
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          tr.v.HistogramBinBoundaries.createLinear(/* min */ 0, /* max */ 10000,
+              /* numBins */ 50));
+
+      // populate histrogram with launch durations
+      launchDurationsByMarker[launchMarker]
+          .forEach(duration => launchHistogram.addSample(duration));
+      histograms.addHistogram(launchHistogram);
+    }
+  }
+
+  function devtoolsMetric(histograms, model) {
+    computeLaunchMetric(histograms, model);
+  }
+
+  tr.metrics.MetricRegistry.register(devtoolsMetric);
+
+  return {
+    devtoolsMetric
+  };
+});
+</script>

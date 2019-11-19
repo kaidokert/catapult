@@ -5,6 +5,7 @@
 import functools
 import logging
 import socket
+import re
 import sys
 import time
 
@@ -135,6 +136,27 @@ class InspectorBackend(object):
         inspector_backends.append(
             devtools_context_map.GetInspectorBackend(context['id']))
     return inspector_backends
+
+  def GetDevToolsInspectorBackend(self, url):
+    """Returns an InspectorBackend instance associated with the devtools or
+       None.
+
+    Args:
+      url: The tab url that the devtools are open against.
+
+    Raises:
+      devtools_http.DevToolsClientConnectionError
+    """
+    title = re.sub(r'^(?:(ht|f)tp(s?)\:\/\/)?', '', url)
+    devtools_title = 'DevTools - %s' % title
+    inspector_backend = None
+    devtools_context_map = self._devtools_client.GetUpdatedInspectableContexts()
+    for context in devtools_context_map.contexts:
+      if context['type'] == 'other' and context['title'] == devtools_title:
+        inspector_backend = devtools_context_map.GetInspectorBackend(
+            context['id'])
+        break
+    return inspector_backend
 
   def IsInspectable(self):
     """Whether the tab is inspectable, as reported by devtools."""

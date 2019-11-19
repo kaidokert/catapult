@@ -87,6 +87,10 @@ class BrowserBackend(app_backend.AppBackend):
   def supports_app_ui_interactions(self):
     return False
 
+  @property
+  def supports_devtools_frontend(self):
+    return False
+
   def Start(self, startup_args):
     raise NotImplementedError()
 
