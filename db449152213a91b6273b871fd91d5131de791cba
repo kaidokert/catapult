@@ -140,6 +140,24 @@
       "revId": "db449152213a91b6273b871fd91d5131de791cba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb77fb05_07bfe487",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-19T18:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "958c4fb6_d9d11887",
+      "revId": "db449152213a91b6273b871fd91d5131de791cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
