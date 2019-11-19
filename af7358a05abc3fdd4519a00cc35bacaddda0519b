@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "1815d5b5_ba49c071",
+        "filename": "telemetry/PRESUBMIT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-19T11:39:28Z",
+      "side": 1,
+      "message": "Similar thing as for the --chromium-output-directory; it\u0027s fine to make things work for your CL; but leave a TODO and try to make it easier for someone to later fix this in the future.\n\nSpecifically here, it may be fine to land this CL with the check commented out, so you can add that one extra usage of GetChromiumSrcDir(); then, on a follow up, do add the check back.",
+      "parentUuid": "985b9b9a_d69dd082",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "af7358a05abc3fdd4519a00cc35bacaddda0519b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69cd3bdd_f063890d",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 1
