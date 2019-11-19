@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4faa9fb3_8a47ab3f",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2019-11-19T02:39:16Z",
+      "side": 1,
+      "message": "From the comments on line 28:\n\n\"\n * If there are two snapshots of the same histogram in the same process, we\n * assume that the first snapshot is taken when tracing started and the second\n * snapshot is taken when tracing is stopped. So, we compute the difference to\n * show the samples added during the tracing session.\n\"\n\nIt sounds like how the test runner invokes tracing leads to a snapshot occurring at each end of the tracing.",
+      "parentUuid": "11891603_86fef2fa",
+      "range": {
+        "startLine": 90,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 44
+      },
+      "revId": "0d0f4430baedb113c553ea47932f0e73ad93529c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9010fa7d_efbcedac",
         "filename": "tracing/tracing/metrics/uma_metric_test.html",
         "patchSetId": 6
@@ -76,6 +100,24 @@
       "writtenOn": "2019-11-19T01:43:53Z",
       "side": 1,
       "message": "Looking at the test \u0027twoUMASnapshots\u0027, we have a somewhat similar issue, where one sample has two buckets, and another has a single bucket. But we do get proper average out of that. This is similar to that. So this should also have a proper average?",
+      "revId": "0d0f4430baedb113c553ea47932f0e73ad93529c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d53d63c2_abb32c57",
+        "filename": "tracing/tracing/metrics/uma_metric_test.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2019-11-19T02:39:16Z",
+      "side": 1,
+      "message": "This is due to how the bin subtraction is setup. In \u0027twoUMASnapshots\u0027\n\nThe histograms are actually parsed in reverse order of the declarations that you see.\n\nThe first histogram:\n1 sample in [1, 3) and 2 samples in [3, 7).\n\nThe second histogram:\n1 sample in [3, 7).\n\nSince it subtracts out the first buckets this leads to the merged samples of\n1 sample in [1, 3) and 1 sample in [3, 7).\nSo it can calculate an average.\n\nThe case I built was:\n\nThe first histogram:\n1 sample in [1, 3)\n\nThe second histogram:\n1 sample in [1, 3) and 2 samples in [3, 7).\n\nThe subtraction of the buckets leads to:\n0 samples in [1, 3) and no further bins.\n\nThe bins only in the second histogram are ignored. And we currently always subtract the bins, even if it\u0027s just the same reported value. (Not sure if that is what we actually want.)\n\nThis test case is based on the rendering.mobile traces that I was seeing when the error was being hit.",
+      "parentUuid": "d3a70d3c_3e22c67f",
       "revId": "0d0f4430baedb113c553ea47932f0e73ad93529c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
