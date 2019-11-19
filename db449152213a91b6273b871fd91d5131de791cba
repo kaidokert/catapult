@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "b1e1868d_5507c94a",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-19T11:36:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4b204783_575da79f",
+      "revId": "db449152213a91b6273b871fd91d5131de791cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be5ab709_f9a1b52a",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
         "patchSetId": 3
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "We can easily use the value of options.chromium_output_dir here since all setting that does is set CHROMIUM_OUTPUT_DIR https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/browser/browser_options.py?type\u003dcs\u0026q\u003dCHROMIUM_OUTPUT_DIR+case:yes+file:telemetry\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d262\n\nHowever, adding a default value might have some unexpected side effects that might be beyond the scope of this CL. For example, won\u0027t this affect the browser finding code?",
       "parentUuid": "2f051ba0_256daea0",
+      "revId": "db449152213a91b6273b871fd91d5131de791cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958c4fb6_d9d11887",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-19T11:36:24Z",
+      "side": 1,
+      "message": "Ok. I agree doing all of the work to fix the usage of chromium_output_dir is out of the scope for this CL. But could you make it so it\u0027s a bit easier to fix in the future? For example, in the constructor of this class define a private variable to hold the value of util.GetUsedBuildDirectory(), and use that variable here. Also leave a TODO next to the variable definition to change that to pick up the value from --chromium-output-directory instead.",
+      "parentUuid": "5e9c2cf9_b1841cc6",
       "revId": "db449152213a91b6273b871fd91d5131de791cba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
