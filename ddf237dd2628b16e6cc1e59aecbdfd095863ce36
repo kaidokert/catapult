@@ -22,6 +22,30 @@
       "revId": "ddf237dd2628b16e6cc1e59aecbdfd095863ce36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83c1162a_da387f69",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-20T01:27:43Z",
+      "side": 1,
+      "message": "It\u0027s tangentially related since Android is implementing this same logic.",
+      "parentUuid": "6de905f7_13c5e562",
+      "range": {
+        "startLine": 451,
+        "startChar": 16,
+        "endLine": 453,
+        "endChar": 52
+      },
+      "revId": "ddf237dd2628b16e6cc1e59aecbdfd095863ce36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
