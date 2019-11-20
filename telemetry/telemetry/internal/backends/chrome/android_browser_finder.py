@@ -86,6 +86,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._local_apk = local_apk
     self._flag_changer = None
     self._modules_to_install = None
+    self._build_path = finder_options.chromium_output_dir
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -241,7 +242,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     browser_backend = android_browser_backend.AndroidBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
-        self._backend_settings)
+        self._backend_settings, self._build_path)
     try:
       return browser.Browser(
           browser_backend, self._platform_backend, startup_args=(),
