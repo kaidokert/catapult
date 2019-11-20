@@ -100,12 +100,6 @@ class BrowserFinderOptions(optparse.Values):
         help='Where to look for chrome builds. '
              'Defaults to searching parent dirs by default.')
     group.add_option(
-        '--chromium-output-directory',
-        dest='chromium_output_dir',
-        help='Where to look for build artifacts. '
-        'Can also be specified by setting environment variable '
-        'CHROMIUM_OUTPUT_DIR.')
-    group.add_option(
         '--remote',
         dest='cros_remote',
         help='The hostname of a remote ChromeOS device to use.')
@@ -257,9 +251,6 @@ class BrowserFinderOptions(optparse.Values):
           continue
         self.__dict__[k] = v
       ret = real_parse(args, self)  # pylint: disable=E1121
-
-      if self.chromium_output_dir:
-        os.environ['CHROMIUM_OUTPUT_DIR'] = self.chromium_output_dir
 
       # Parse remote platform options.
       self.BuildRemotePlatformOptions()
