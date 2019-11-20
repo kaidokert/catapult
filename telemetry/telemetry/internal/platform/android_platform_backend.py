@@ -549,7 +549,7 @@ class AndroidPlatformBackend(
   def GetStandardOutput(self):
     return 'Cannot get standard output on Android'
 
-  def GetStackTrace(self):
+  def GetStackTrace(self, build_path):
     """Returns a recent stack trace from a crash.
 
     The stack trace consists of raw logcat dump, logcat dump with symbols,
@@ -569,11 +569,8 @@ class AndroidPlatformBackend(
     ret += Decorate('Logcat', logcat)
 
     # Determine the build directory.
-    build_path = '.'
-    for b in util.GetBuildDirectories():
-      if os.path.exists(b):
-        build_path = b
-        break
+    if build_path is None:
+      build_path = '.'
 
     # Try to symbolize logcat.
     chromium_src_dir = util.GetChromiumSrcDir()

@@ -77,56 +77,12 @@ def GetUnreservedAvailableLocalPort():
   return port
 
 
-def GetBuildDirectories(chrome_root=None):
-  """Yields all combination of Chromium build output directories."""
-  # chrome_root can be set to something else via --chrome-root.
-  if not chrome_root:
-    chrome_root = GetChromiumSrcDir()
-
-  # CHROMIUM_OUTPUT_DIR can be set by --chromium-output-directory.
-  output_dir = os.environ.get('CHROMIUM_OUTPUT_DIR')
-  if output_dir:
-    yield os.path.join(chrome_root, output_dir)
-  elif os.path.exists('build.ninja'):
-    yield os.getcwd()
-  else:
-    out_dir = os.environ.get('CHROMIUM_OUT_DIR')
-    if out_dir:
-      build_dirs = [out_dir]
-    else:
-      build_dirs = ['build',
-                    'out',
-                    'xcodebuild']
-
-    build_types = ['Debug', 'Debug_x64', 'Release', 'Release_x64', 'Default']
-
-    for build_dir in build_dirs:
-      for build_type in build_types:
-        yield os.path.join(chrome_root, build_dir, build_type)
-
-
-def FindLatestApkOnHost(chrome_root, apk_name):
-  """Chooses the path to the APK that was updated latest.
-
-  If CHROMIUM_OUTPUT_DIR environment variable is set, the search is limited to
-  checking one APK file in that directory.
-
-  Args:
-    chrome_root: Path to chrome src/.
-    apk_name: The name of the APK file to find (example: 'MapsWebApk.apk').
-  Returns:
-    The absolute path to the latest APK found.
-  """
-  found_apk_path = None
-  latest_mtime = 0
-  for build_path in GetBuildDirectories(chrome_root):
-    apk_path = os.path.join(build_path, 'apks', apk_name)
-    if os.path.exists(apk_path):
-      mtime = os.path.getmtime(apk_path)
-      if mtime > latest_mtime:
-        latest_mtime = mtime
-        found_apk_path = apk_path
-  return found_apk_path
+def FindApkOnHost(chromium_build_dir, apk_name):
+  """Returns the path to the APK if it exists."""
+  if not chromium_build_dir:
+    return None
+  apk_path = os.path.join(chromium_build_dir, 'apks', apk_name)
+  return apk_path if os.path.isfile(apk_path) else None
 
 
 def GetSequentialFileName(base_name):

@@ -1,7 +1,9 @@
 # Copyright 2013 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+import ntpath
 import os
+import posixpath
 import stat
 import unittest
 
@@ -103,27 +105,17 @@ class FindLocalBuildsTest(FindTestBase):
     if not self.CanFindAvailableBrowsers():
       return
 
+    self._finder_options.chromium_output_dir = '..\\..\\..\\build\\Release'
     self._files.append('..\\..\\..\\build\\Release\\chrome.exe')
-    self.assertIn('release', self.DoFindAllTypes())
-
-  def testFindOut(self):
-    if not self.CanFindAvailableBrowsers():
-      return
-
-    self._files.append('..\\..\\..\\out\\Release\\chrome.exe')
-    self.assertIn('release', self.DoFindAllTypes())
-
-  def testFindXcodebuild(self):
-    if not self.CanFindAvailableBrowsers():
-      return
-
-    self._files.append('..\\..\\..\\xcodebuild\\Release\\chrome.exe')
     self.assertIn('release', self.DoFindAllTypes())
 
 
 class OSXFindTest(FindTestBase):
   def setUp(self):
     super(OSXFindTest, self).setUp()
+    self._finder_options.chromium_output_dir = '../../../out/Debug/'
+    self._finder_stubs.os.sep = '/'
+    self._finder_stubs.os.path = posixpath
     self._finder_stubs.sys.platform = 'darwin'
     self._path_stubs.sys.platform = 'darwin'
     self._util_stubs.sys.platform = 'darwin'
@@ -132,11 +124,7 @@ class OSXFindTest(FindTestBase):
     self._files.append('/Applications/Google Chrome.app/' +
                        'Contents/MacOS/Google Chrome')
     self._files.append(
-        '../../../out/Release/Chromium.app/Contents/MacOS/Chromium')
-    self._files.append(
         '../../../out/Debug/Chromium.app/Contents/MacOS/Chromium')
-    self._files.append(
-        '../../../out/Release/Content Shell.app/Contents/MacOS/Content Shell')
     self._files.append(
         '../../../out/Debug/Content Shell.app/Contents/MacOS/Content Shell')
 
@@ -148,8 +136,7 @@ class OSXFindTest(FindTestBase):
     self.assertEquals(
         set(types),
         set([
-            'debug', 'release', 'content-shell-debug', 'content-shell-release',
-            'canary', 'system'
+            'debug', 'content-shell-debug', 'canary', 'system',
         ]))
 
   def testFindExact(self):
@@ -179,9 +166,9 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     if not platform.GetHostPlatform().GetOSName() == 'linux':
       self.skipTest('Not running on Linux')
     self.setUpPyfakefs()
-
     self._finder_options = browser_options.BrowserFinderOptions()
     self._finder_options.chrome_root = '/src/'
+    self._finder_options.chromium_output_dir = '/src/out/Release/'
 
   def CreateBrowser(self, path):
     self.fs.CreateFile(path)
@@ -201,13 +188,12 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     output_dir_env = os.environ.pop('CHROMIUM_OUTPUT_DIR', None)
 
     try:
-      for target in ['Release', 'Debug']:
-        for browser in ['chrome', 'content_shell']:
-          self.CreateBrowser('/src/out/%s/%s' % (target, browser))
+      for browser in ['chrome', 'content_shell']:
+        self.CreateBrowser('/src/out/Release/%s' % browser)
 
       self.assertEquals(
           set(self.DoFindAllTypes()),
-          {'debug', 'release', 'content-shell-debug', 'content-shell-release'})
+          {'release', 'content-shell-release'})
     finally:
       if output_dir_env is not None:
         os.environ['CHROMIUM_OUTPUT_DIR'] = output_dir_env
@@ -268,14 +254,15 @@ class WinFindTest(FindTestBase):
   def setUp(self):
     super(WinFindTest, self).setUp()
 
+    self._finder_options.chromium_output_dir = '..\\..\\..\\build\\Debug\\'
+    self._finder_stubs.os.sep = '\\'
+    self._finder_stubs.os.path = ntpath
     self._finder_stubs.sys.platform = 'win32'
     self._path_stubs.sys.platform = 'win32'
     self._util_stubs.sys.platform = 'win32'
     self._path_stubs.os.local_app_data = 'c:\\Users\\Someone\\AppData\\Local'
     self._files.append('c:\\tmp\\chrome.exe')
-    self._files.append('..\\..\\..\\build\\Release\\chrome.exe')
     self._files.append('..\\..\\..\\build\\Debug\\chrome.exe')
-    self._files.append('..\\..\\..\\build\\Release\\content_shell.exe')
     self._files.append('..\\..\\..\\build\\Debug\\content_shell.exe')
     self._files.append(self._path_stubs.os.local_app_data + '\\' +
                        'Google\\Chrome\\Application\\chrome.exe')
@@ -288,9 +275,7 @@ class WinFindTest(FindTestBase):
 
     types = self.DoFindAllTypes()
     self.assertEquals(set(types),
-                      set(['debug', 'release',
-                           'content-shell-debug', 'content-shell-release',
-                           'system', 'canary']))
+                      set(['debug', 'content-shell-debug', 'system', 'canary']))
 
   def testFindAllWithExact(self):
     if not self.CanFindAvailableBrowsers():
@@ -300,10 +285,7 @@ class WinFindTest(FindTestBase):
     types = self.DoFindAllTypes()
     self.assertEquals(
         set(types),
-        set(['exact',
-             'debug', 'release',
-             'content-shell-debug', 'content-shell-release',
-             'system', 'canary']))
+        set(['exact', 'debug', 'content-shell-debug', 'system', 'canary']))
 
   def testNoErrorWithUnrecognizedExecutableName(self):
     if not self.CanFindAvailableBrowsers():

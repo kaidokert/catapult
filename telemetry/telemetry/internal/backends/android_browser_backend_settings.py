@@ -70,14 +70,14 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
     del device  # Unused.
     return self.apk_name
 
-  def FindLocalApk(self, device, chrome_root):
+  def FindLocalApk(self, device, chromium_build_dir):
     apk_name = self.GetApkName(device)
     logging.info('Picked apk name %s for browser_type %s',
                  apk_name, self.browser_type)
     if apk_name is None:
       return None
     else:
-      return util.FindLatestApkOnHost(chrome_root, apk_name)
+      return util.FindApkOnHost(chromium_build_dir, apk_name)
 
 
 class GenericChromeBackendSettings(AndroidBrowserBackendSettings):
@@ -154,7 +154,7 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
     else:
       return 'SystemWebView.apk'
 
-  def FindSupportApks(self, apk_path, chrome_root):
+  def FindSupportApks(self, apk_path, chromium_build_dir):
     # Try to find the WebView embedder next to the local APK found.
     if apk_path is not None:
       embedder_apk_path = os.path.join(
@@ -162,7 +162,7 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
       if os.path.exists(embedder_apk_path):
         return [embedder_apk_path]
     # Otherwise fall back to an APK found among possible build directories.
-    apk = util.FindLatestApkOnHost(chrome_root, self.embedder_apk_name)
+    apk = util.FindApkOnHost(chromium_build_dir, self.embedder_apk_name)
     return [apk] if apk else []
 
 
