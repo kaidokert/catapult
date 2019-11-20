@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f829a71_f6205212",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/bisection_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "Despite the file name, this doesn\u0027t contain any tests, it just contains test helpers.\n\nI suggest renaming this to something like bisection_test_util, so that *_test.py is reserved for tests (except for run_test.py, of course, but I\u0027d like to fix that some day…).  Especially because this does define classes named *Test, like a module of unit tests does!  So initially I really did think this was defining tests.",
+      "revId": "71c2ce427879b4fc244bf02dcb9028d82d11d1f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93b10ff5_d26faab8",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/find_isolate_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "My immediate reaction to a comment saying “Also test \u003canother property\u003e” is “create a separate test for it.”",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 36
+      },
+      "revId": "71c2ce427879b4fc244bf02dcb9028d82d11d1f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

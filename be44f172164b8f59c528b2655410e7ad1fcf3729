@@ -331,6 +331,122 @@
     },
     {
       "key": {
+        "uuid": "ef9bf543_05a75d20",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "A discussed offline, I don\u0027t find the analogy to CPU registers particularly helpful in this context.\n\nTo bikeshed this name a little:\n\n“scratch pad“ to me implies throwaway state internal to an implementation and not part of the contract of an API.\n\nSomething like “context”, “state”, “data” or “payload” would make more sense to me.",
+      "parentUuid": "d4ce7c95_2ce22cff",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 28
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78b845f6_98c69fe3",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "If this final accumulator value is unused why assign it to any variable?  Does pylint complain if you don\u0027t explicitly assign this return value to something?",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a57e3bfc_8c434c60",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "I don\u0027t love the line break in these key-value pairs, but if pyformat or whatever automated tool prefers it then I won\u0027t argue.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19944736_de72b914",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/bisection_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "It\u0027s not immediately obvious to me what sort of compound (or compounding procedure) this name refers to, so this method needs a docstring.",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 23
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "872e9d2d_d467f589",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/bisection_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-20T06:01:55Z",
+      "side": 1,
+      "message": "This is almost too cute, even for test code.\n\nIf the tuple-ness of this object isn\u0027t important, then probably better to write this with nested functions, which is more typical Python:\n\n  def UpdateWrapper(job, task, new_state, payload):\n    def UpdateWrapperInner(_):\n      return task_module.UpdateTask(\n        job, task.id, new_state\u003dnew_state, payload\u003dpayload)\n    return UpdateWrapperInner\n\nIf the tuple-ness is significant, please leave a brief comment about it.\n\n(Same applies to the other namedtuple subclasses that only define __call__).\n\n(Edited to add: I belated realize much of this was pre-existing code moved from another file.  So while I still think the namedtuple-with-__call__ style is not justified, I\u0027m happy for you to defer that change to a later CL.)",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92ef6368_c3215c3f",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 6
