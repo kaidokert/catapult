@@ -13,7 +13,6 @@ GetBaseDir = util.GetBaseDir
 GetTelemetryDir = util.GetTelemetryDir
 GetUnittestDataDir = util.GetUnittestDataDir
 GetChromiumSrcDir = util.GetChromiumSrcDir
-GetBuildDirectories = util.GetBuildDirectories
 
 IsExecutable = catapult_util.IsExecutable
 
