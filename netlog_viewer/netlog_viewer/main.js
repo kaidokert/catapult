@@ -179,9 +179,7 @@ const MainView = (function() {
       addTab(ReportingView);
       addTab(HttpCacheView);
       addTab(ModulesView);
-      addTab(BandwidthView);
       addTab(PrerenderView);
-      addTab(CrosView);
 
       // Tab links start off hidden (besides import) since a log file has not
       // been loaded yet. This must be done after all the tabs are added so
@@ -191,8 +189,6 @@ const MainView = (function() {
           this.tabSwitcher_.showTabLink(tabId, false);
         }
       }
-
-      this.tabSwitcher_.showTabLink(CrosView.TAB_ID, cr.isChromeOS);
     },
 
     /**
