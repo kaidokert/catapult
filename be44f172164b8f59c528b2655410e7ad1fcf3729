@@ -355,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "f9f75336_56197caa",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-21T02:51:50Z",
+      "side": 1,
+      "message": "I like \u0027context\u0027 the best in this module, and I think it makes a lot of sense to use throughout. I\u0027ve started the change to using \u0027context\u0027 here and will follow-up to change everywhere else.\n\nThanks!",
+      "parentUuid": "ef9bf543_05a75d20",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 28
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78b845f6_98c69fe3",
         "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer_test.py",
         "patchSetId": 6
@@ -378,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "d1e29440_9e6e115f",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-21T02:51:50Z",
+      "side": 1,
+      "message": "Actually, there\u0027s no reason to do this. Good catch. 😊",
+      "parentUuid": "78b845f6_98c69fe3",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a57e3bfc_8c434c60",
         "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer_test.py",
         "patchSetId": 6
@@ -389,6 +437,30 @@
       "writtenOn": "2019-11-20T06:01:55Z",
       "side": 1,
       "message": "I don\u0027t love the line break in these key-value pairs, but if pyformat or whatever automated tool prefers it then I won\u0027t argue.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 21
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "900f3e31_e6bcfc2b",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-21T02:51:50Z",
+      "side": 1,
+      "message": "Yeah, pyformat did this one for me... and I\u0027m not inclined to fight it or configure it to do what I want better either.",
+      "parentUuid": "a57e3bfc_8c434c60",
       "range": {
         "startLine": 53,
         "startChar": 0,
@@ -424,6 +496,30 @@
     },
     {
       "key": {
+        "uuid": "73ea26a0_08a477fd",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/bisection_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-21T02:51:50Z",
+      "side": 1,
+      "message": "Good point. I added a docstring and renamed to `BisectionEvaluatorForTesting(...)`.",
+      "parentUuid": "19944736_de72b914",
+      "range": {
+        "startLine": 101,
+        "startChar": 6,
+        "endLine": 101,
+        "endChar": 23
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "872e9d2d_d467f589",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/bisection_test.py",
         "patchSetId": 6
@@ -444,6 +540,30 @@
       "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828c592a_109743fc",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/bisection_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-21T02:51:50Z",
+      "side": 1,
+      "message": "I added a comment explaining that the default string serialisation of the named tuple helps in debugging when the action is printed in the log before it is executed. Not having to re-write that `__str__(self)` function makes it very convenient when debugging.",
+      "parentUuid": "872e9d2d_d467f589",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "be44f172164b8f59c528b2655410e7ad1fcf3729",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
