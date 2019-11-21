@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9b229105_f0266ea0",
+        "filename": "netlog_viewer/CONTRIBUTING.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2019-11-21T21:44:48Z",
+      "side": 1,
+      "message": "What doesn\u0027t work on Windows?\n\nLaunching a localhost server to load the files as described in lines 5-8 works on Linux.",
+      "parentUuid": "83a3c7a0_8b333ea9",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 54
+      },
+      "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1139c87c_5868f0f5",
         "filename": "netlog_viewer/CONTRIBUTING.md",
         "patchSetId": 4
@@ -42,6 +66,47 @@
         "endLine": 26,
         "endChar": 18
       },
+      "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab8125f4_713ffa43",
+        "filename": "netlog_viewer/CONTRIBUTING.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2019-11-21T21:44:48Z",
+      "side": 1,
+      "message": "This works on Linux.\nThe path is catapult/bin/run_dev_server (i.e. this is not under netlog_viewer dir)",
+      "parentUuid": "1139c87c_5868f0f5",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6d1fe30_71b8214a",
+        "filename": "netlog_viewer/netlog_viewer/cr.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2019-11-21T21:44:48Z",
+      "side": 1,
+      "message": "We probably don\u0027t need any of these anymore either.\nLoading log files should only depend on the platform that generated them, not the one viewing them.",
       "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
