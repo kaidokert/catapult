@@ -16,6 +16,24 @@
       "revId": "1d79c9d1d7ef119aab55fdf618756f3af9b75d3a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb160534_dd135478",
+        "filename": "telemetry/telemetry/core/util_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-21T18:05:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8c30b2f_16554235",
+      "revId": "1d79c9d1d7ef119aab55fdf618756f3af9b75d3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
