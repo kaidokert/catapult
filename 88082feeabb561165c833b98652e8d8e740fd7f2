@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6edcda34_4eb2dac4",
+        "filename": "netlog_viewer/netlog_viewer/browser_bridge.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2019-11-21T22:20:58Z",
+      "side": 1,
+      "message": "I agree entirely.",
+      "parentUuid": "5a7f962e_cc73792d",
+      "range": {
+        "startLine": 353,
+        "startChar": 6,
+        "endLine": 353,
+        "endChar": 11
+      },
+      "revId": "88082feeabb561165c833b98652e8d8e740fd7f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8b2fb6b_145a0965",
         "filename": "netlog_viewer/netlog_viewer/browser_bridge.js",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "88082feeabb561165c833b98652e8d8e740fd7f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95b51a2f_6b33fb0f",
+        "filename": "netlog_viewer/netlog_viewer/browser_bridge.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2019-11-21T22:20:58Z",
+      "side": 1,
+      "message": "Thanks for the warning!  I\u0027ll try to be careful about these (And I\u0027ll double-check these changes in my other CLs).",
+      "parentUuid": "d8b2fb6b_145a0965",
+      "range": {
+        "startLine": 358,
+        "startChar": 48,
+        "endLine": 358,
+        "endChar": 51
+      },
+      "revId": "88082feeabb561165c833b98652e8d8e740fd7f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
