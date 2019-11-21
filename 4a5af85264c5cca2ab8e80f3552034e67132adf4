@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3199b23d_fc5b1ec0",
+        "filename": "netlog_viewer/CONTRIBUTING.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2019-11-21T21:52:22Z",
+      "side": 1,
+      "message": "\u003e What doesn\u0027t work on Windows?\n\u003e \n\u003e Launching a localhost server to load the files as described in lines 5-8 works on Linux.\n\nPresubmit checks.  ES lint doesn\u0027t work.  :(",
+      "parentUuid": "9b229105_f0266ea0",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 54
+      },
+      "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1139c87c_5868f0f5",
         "filename": "netlog_viewer/CONTRIBUTING.md",
         "patchSetId": 4
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "00202cc5_67a09c23",
+        "filename": "netlog_viewer/CONTRIBUTING.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2019-11-21T21:52:22Z",
+      "side": 1,
+      "message": "Ah...  That\u0027s not exactly clear.  I may update the text at some point.",
+      "parentUuid": "ab8125f4_713ffa43",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6d1fe30_71b8214a",
         "filename": "netlog_viewer/netlog_viewer/cr.js",
         "patchSetId": 4
@@ -107,6 +155,24 @@
       "writtenOn": "2019-11-21T21:44:48Z",
       "side": 1,
       "message": "We probably don\u0027t need any of these anymore either.\nLoading log files should only depend on the platform that generated them, not the one viewing them.",
+      "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f482ba00_0c6065f1",
+        "filename": "netlog_viewer/netlog_viewer/cr.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2019-11-21T21:52:22Z",
+      "side": 1,
+      "message": "\u003e We probably don\u0027t need any of these anymore either.\n\u003e Loading log files should only depend on the platform that generated them, not the one viewing them.\n\nGood point - a couple things do call them, though.  I\u0027ll remove them in another CL.",
+      "parentUuid": "a6d1fe30_71b8214a",
       "revId": "4a5af85264c5cca2ab8e80f3552034e67132adf4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
