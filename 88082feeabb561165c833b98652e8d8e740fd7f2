@@ -93,6 +93,30 @@
       "revId": "88082feeabb561165c833b98652e8d8e740fd7f2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3cc7ac4b_7bece97a",
+        "filename": "netlog_viewer/netlog_viewer/browser_bridge.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2019-11-21T22:28:00Z",
+      "side": 1,
+      "message": "The risky ones are especially comparisons of a value against |null| or undefined |undefined|, since:\n\nlet a \u003d null;\n\nassertTrue(a \u003d\u003d undefined);\nassertFalse(a \u003d\u003d\u003d undefined);\n\nWHY JAVASCRIPT?!\n\nI think one of the things I had regressed was a property check that was (incorrectly) checking equality to null, however in one case it could be populated by undefined due to a different property access failure.",
+      "parentUuid": "95b51a2f_6b33fb0f",
+      "range": {
+        "startLine": 358,
+        "startChar": 48,
+        "endLine": 358,
+        "endChar": 51
+      },
+      "revId": "88082feeabb561165c833b98652e8d8e740fd7f2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
