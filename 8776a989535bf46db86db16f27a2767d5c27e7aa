@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4dff11d8_f78c2419",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-22T10:30:08Z",
+      "side": 1,
+      "message": "Fixed this one for you.",
+      "parentUuid": "cee2402d_8fd9b660",
+      "revId": "8776a989535bf46db86db16f27a2767d5c27e7aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "beff5da7_61a01d2a",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-11-22T09:27:42Z",
       "side": 1,
       "message": "can you link to a bug instead?",
+      "revId": "8776a989535bf46db86db16f27a2767d5c27e7aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d38e38_68045c4e",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-22T10:30:08Z",
+      "side": 1,
+      "message": "Please fix on follow up CL.",
+      "parentUuid": "beff5da7_61a01d2a",
       "revId": "8776a989535bf46db86db16f27a2767d5c27e7aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
