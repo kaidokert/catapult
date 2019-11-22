@@ -16,6 +16,24 @@
       "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52b3fa7b_24ef1c4f",
+        "filename": "telemetry/telemetry/core/util_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-22T20:28:46Z",
+      "side": 1,
+      "message": "Hm, \"@mock.patch.dict(\u0027os.environ\u0027, {})\", \"@mock.patch.dict(os.environ, {})\", \"with mock.patch.dict(\u0027os.environ\u0027, {})\", and \"with mock.patch.dict(os.environ, {})\" all seem to not do anything - os.environ is still returning the actual environment in util.py.",
+      "parentUuid": "2ad6da7d_887055aa",
+      "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
