@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ee8cf28_6c409c6d",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "Out of date comment?",
+      "range": {
+        "startLine": 4,
+        "startChar": 49,
+        "endLine": 4,
+        "endChar": 68
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "068cd289_3c1a6868",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "nit: add \"fuchsia\" somewhere to this docstring for clarity",
+      "range": {
+        "startLine": 10,
+        "startChar": 55,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90bec581_1e863e7b",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "remove unnecessary newline.",
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad10898_76f1e6b8",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "nit: remove unnecessary new line here and below.",
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c094a0c_b0027f76",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "This should be debug level. I could hear an argument for info level, but warning level is way too high and is going to cause log spam.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d718d820_ecc28928",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "Follow comment style from go/pythonstyle",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d4102d6_bb9019ee",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "go/pythonstyle",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 12
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ade2a3da_a8898538",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "Do you really mean that this class sets up port forwarding between *multiple* fuchsia devices and a host? That is surprising. I think maybe you mean instead:\n\n\"\"\"Sets up ssh port forwarding between a Fuchsia device and the host.",
+      "range": {
+        "startLine": 27,
+        "startChar": 46,
+        "endLine": 27,
+        "endChar": 61
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b12305c_fd4fb28d",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T18:59:35Z",
+      "side": 1,
+      "message": "go/pythonstyle.\n\nIt should be done like this:\n\nArgs:\n  local_port: Port on the host.\n  ...",
+      "range": {
+        "startLine": 29,
+        "startChar": 3,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
