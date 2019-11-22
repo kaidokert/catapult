@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "208a7924_4988c0a9",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-22T02:46:01Z",
+      "side": 1,
+      "message": "Nit: You can just iterate over .values():\n\n  for v in actual.values():\n    del v[\u0027subscription\u0027]",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 31
+      },
+      "revId": "0b2bde6be27258baeb4f7c4a1b8406cadf49ec8c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
