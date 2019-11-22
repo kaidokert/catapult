@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "46d9fa3b_7a72542b",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-22T02:36:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f60df5ad_69e8d096",
+      "range": {
+        "startLine": 271,
+        "startChar": 8,
+        "endLine": 271,
+        "endChar": 34
+      },
+      "revId": "8413806b20807daf9d941912a844a5e718a7c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2f92555_a0a106a3",
         "filename": "dashboard/dashboard/edit_sheriffs_test.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "8413806b20807daf9d941912a844a5e718a7c258",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f74abff1_3c3960db",
+        "filename": "dashboard/dashboard/edit_sheriffs_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-22T02:36:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2f92555_a0a106a3",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 64
+      },
+      "revId": "8413806b20807daf9d941912a844a5e718a7c258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
