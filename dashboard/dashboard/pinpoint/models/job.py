@@ -390,6 +390,7 @@ class Job(ndb.Model):
       self.difference_count = len(self.state.Differences())
 
     try:
+      # TODO(dberris): Migrate results2 generation to tasks and evaluators.
       results2.ScheduleResults2Generation(self)
     except taskqueue.Error as e:
       logging.debug('Failed ScheduleResults2Generation: %s', str(e))
