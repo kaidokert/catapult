@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "741cd612_dd5e42d0",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2019-11-22T15:52:40Z",
+      "side": 1,
+      "message": "Can you link to a trace with the error we are seeing? I seem to remember from the traces I have seen, the two trace-events for the same histogram were both at the end of the test (rather than one at the beginning and one at the end, as this comment implies).\n\nDo we even need to do this subtraction? What happens if we don\u0027t? If we run a pinpoint after removing subtractBins_(), would we see any particular differences in the results?",
+      "parentUuid": "4faa9fb3_8a47ab3f",
+      "range": {
+        "startLine": 90,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 44
+      },
+      "revId": "0d0f4430baedb113c553ea47932f0e73ad93529c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9010fa7d_efbcedac",
         "filename": "tracing/tracing/metrics/uma_metric_test.html",
         "patchSetId": 6
