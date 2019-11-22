@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ad6da7d_887055aa",
+        "filename": "telemetry/telemetry/core/util_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-22T10:19:19Z",
+      "side": 1,
+      "message": "I think instead you could do mock.patch.dict(os.environ, {}).\n\nSee e.g.: https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/story_run_unittest.py?rcl\u003d5deec8db6886452d22a94eb83db02c23e4d8adcc\u0026l\u003d73",
+      "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
