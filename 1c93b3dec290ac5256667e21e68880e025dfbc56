@@ -46,6 +46,30 @@
       "revId": "1c93b3dec290ac5256667e21e68880e025dfbc56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e97194d8_d6901993",
+        "filename": "telemetry/telemetry/command_line/parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-22T23:26:02Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "de1957a3_c08dca75",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 12
+      },
+      "revId": "1c93b3dec290ac5256667e21e68880e025dfbc56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
