@@ -49,10 +49,8 @@ const BrowserBridge = (function() {
         'httpCacheInfo', 'onHttpCacheInfoChanged');
 
     // Add other PollableDataHelpers.
-    if (cr.isWindows) {
-      this.pollableDataHelpers_.serviceProviders = new PollableDataHelper(
-          'onServiceProvidersChanged');
-    }
+    this.pollableDataHelpers_.serviceProviders = new PollableDataHelper(
+        'onServiceProvidersChanged');
     this.pollableDataHelpers_.prerenderInfo = new PollableDataHelper(
         'onPrerenderInfoChanged');
     this.pollableDataHelpers_.extensionInfo = new PollableDataHelper(

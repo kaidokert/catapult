@@ -38,36 +38,7 @@ const cr = function() {
 
   return {
     addSingletonGetter,
-    dispatchSimpleEvent,
-
-    get doc() {
-      return document;
-    },
-
-    /** Whether we are using a Mac or not. */
-    get isMac() {
-      return /Mac/.test(navigator.platform);
-    },
-
-    /** Whether this is on the Windows platform or not. */
-    get isWindows() {
-      return /Win/.test(navigator.platform);
-    },
-
-    /** Whether this is on chromeOS or not. */
-    get isChromeOS() {
-      return /CrOS/.test(navigator.userAgent);
-    },
-
-    /** Whether this is on vanilla Linux (not chromeOS). */
-    get isLinux() {
-      return /Linux/.test(navigator.userAgent);
-    },
-
-    /** Whether this is on Android. */
-    get isAndroid() {
-      return /Android/.test(navigator.userAgent);
-    }
+    dispatchSimpleEvent
   };
 }();
 
