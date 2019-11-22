@@ -34,6 +34,24 @@
       "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc0b2458_779adf08",
+        "filename": "telemetry/telemetry/core/util_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-22T23:08:56Z",
+      "side": 1,
+      "message": "Turns out you need to set clear\u003dTrue if you want it to actually wipe the target dict before adding the new keys/values.",
+      "parentUuid": "52b3fa7b_24ef1c4f",
+      "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
