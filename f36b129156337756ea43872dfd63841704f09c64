@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eca445eb_7d7f42e1",
+        "filename": "dashboard/dockerfiles/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-25T02:47:56Z",
+      "side": 1,
+      "message": "Add documentation on why we need the libcprotoc17 dependency explicitly here, so we don\u0027t forget. 😊",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "f36b129156337756ea43872dfd63841704f09c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0631724b_d644f079",
+        "filename": "dashboard/dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-25T02:47:56Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "f36b129156337756ea43872dfd63841704f09c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "521c2238_e87824b6",
+        "filename": "dashboard/dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-25T02:47:56Z",
+      "side": 1,
+      "message": "docker-compose run auth?",
+      "range": {
+        "startLine": 27,
+        "startChar": 19,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "f36b129156337756ea43872dfd63841704f09c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
