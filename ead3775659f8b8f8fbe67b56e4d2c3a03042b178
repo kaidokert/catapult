@@ -52,6 +52,24 @@
       "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b53bf6c7_85149367",
+        "filename": "telemetry/telemetry/core/util_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-25T10:01:47Z",
+      "side": 1,
+      "message": "Ah, neat! Forgot about that option, but I\u0027m glad you found it.",
+      "parentUuid": "cc0b2458_779adf08",
+      "revId": "ead3775659f8b8f8fbe67b56e4d2c3a03042b178",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
