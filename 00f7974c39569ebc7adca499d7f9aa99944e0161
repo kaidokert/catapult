@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9887d4c0_e39af13c",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T23:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13a6c7d7_b65a1dae",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "00f7974c39569ebc7adca499d7f9aa99944e0161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "854e5561_83b13891",
         "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
         "patchSetId": 22
@@ -45,6 +69,30 @@
       "revId": "00f7974c39569ebc7adca499d7f9aa99944e0161",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "faf21e8f_ff5aa005",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T23:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "854e5561_83b13891",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "00f7974c39569ebc7adca499d7f9aa99944e0161",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
