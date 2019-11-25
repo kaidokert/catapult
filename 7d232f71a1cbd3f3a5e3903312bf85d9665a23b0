@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5640b27b_cb577cbc",
+        "filename": "telemetry/telemetry/story/story_filter.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-11-25T10:07:50Z",
+      "side": 1,
+      "message": "nit: \"thing\" -\u003e \"set of stories\"",
+      "revId": "7d232f71a1cbd3f3a5e3903312bf85d9665a23b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
