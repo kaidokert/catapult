@@ -6,11 +6,11 @@
 
 We follow the [Chromium code of conduct](
 https://chromium.googlesource.com/chromium/src/+/master/CODE_OF_CONDUCT.md) in
-our our repos and organizations, mailing lists, and other communications.
+our repos and organizations, mailing lists, and other communications.
 
 # Issues
 
-Please use crbug.com issue tracker. Relevant components to file bugs to include
+Please use the [Chromium bug tracker](https://bugs.chromium.org/p/chromium/issues/). Relevant components to file bugs to include
 "Speed", "Test>Telemetry", "Speed>Dashboard", "Speed>Tracing", and "Speed>Bisection".
 
 Do not use the github issue tracker.
