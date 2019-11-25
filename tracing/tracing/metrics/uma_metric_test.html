@@ -19,6 +19,8 @@ tr.b.unittest.testSuite(function() {
       'LAAAAAwAAAAAAAAAAwAAAAEAAAADAAAAAAAAAAEAAAADAAAABwAAAAAAAAACAAAA';
   // 1 sample in [3, 7).
   const BROWSER_BUCKETS2 = 'HAAAAAUAAAAAAAAAAQAAAAMAAAAHAAAAAAAAAAEAAAA=';
+  // 1 sample in [1, 3).
+  const BROWSER_BUCKETS3 = 'HAAAAAUAAAAAAAAAAQAAAAEAAAADAAAAAAAAAAEAAAA=';
   // 2 samples in [7, 9).
   const RENDERER_BUCKETS = 'HAAAABAAAAAAAAAAAgAAAAcAAAAJAAAAAAAAAAIAAAA=';
   // 1 sample in [8, 10).
@@ -209,6 +211,35 @@ tr.b.unittest.testSuite(function() {
     assert.throws(function() {
       tr.metrics.umaMetric(histograms, model);
     }, 'Cannot subtract');
+  });
+
+  // When there are two events, the later is considered to have been produced
+  // after tracing. It's values are removed from the initial histogram. However
+  // it may contain additional bins. This should not cause the calculation to
+  // throw an error.
+  test('additionalBinsPostTracingDoesNotCrash', function() {
+    const model = tr.c.TestUtils.newModel((model) => {
+      const browserProcess = model.getOrCreateProcess(0);
+      browserProcess.getOrCreateThread(0).name = 'CrBrowserMain';
+      browserProcess.instantEvents.push(tr.c.TestUtils.newInstantEvent({
+        title: 'UMAHistogramSamples', start: 1,
+        args: {
+          name: 'metric1',
+          buckets: BROWSER_BUCKETS1}}));
+      browserProcess.instantEvents.push(tr.c.TestUtils.newInstantEvent({
+        title: 'UMAHistogramSamples', start: 2,
+        args: {
+          name: 'metric1',
+          buckets: BROWSER_BUCKETS3}}));
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.umaMetric(histograms, model);
+    const hist = histograms.getHistogramNamed('metric1');
+
+    // The histogram for |metric1| should have no counts, and unset average. As
+    // its results are overridden by the post-tracing events.
+    assert.isUndefined(hist.average);
+    assert.closeTo(0, hist.sum, 1e-6);
   });
 });
 </script>
