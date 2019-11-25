@@ -1,0 +1,21 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(dirname "$0")
+
+# Set CWD to the static files root (where index.html lives).
+cd "$SCRIPT_DIR"
+cd "../netlog_viewer"
+
+# Make sure components/ exists, as it is needed to load Polymer files when
+# serving.
+if [[ ! -d "components" ]]; then
+    echo "Creating symlink to components"
+    ln -s ../../third_party/polymer/components/
+
+    # NOTE: On Windows the equivalent is 
+    # mklink components ..\..\third_party\polymer\components
+fi
+
+# Start a static HTTP server
+echo "Starting server at http://localhost:8080"
+python -m SimpleHTTPServer 8080
