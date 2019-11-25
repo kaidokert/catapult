@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "17245550_5b5085ba",
+        "filename": "dashboard/dockerfiles/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-25T03:12:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eca445eb_7d7f42e1",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "f36b129156337756ea43872dfd63841704f09c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0631724b_d644f079",
         "filename": "dashboard/dockerfiles/README.md",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "bf2e9e91_6d1ae24c",
+        "filename": "dashboard/dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-25T03:12:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0631724b_d644f079",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "f36b129156337756ea43872dfd63841704f09c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "521c2238_e87824b6",
         "filename": "dashboard/dockerfiles/README.md",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "f36b129156337756ea43872dfd63841704f09c64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56863d7f_126959eb",
+        "filename": "dashboard/dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-25T03:12:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "521c2238_e87824b6",
+      "range": {
+        "startLine": 27,
+        "startChar": 19,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "f36b129156337756ea43872dfd63841704f09c64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
