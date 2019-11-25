@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a08ee7cd_a79202a1",
+        "filename": "netlog_viewer/netlog_viewer_build/build_for_appengine.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2019-11-25T23:12:48Z",
+      "side": 1,
+      "message": "I guess it\u0027s not critical with how the script currently works, but instead of continuing might want to re-throw the exception with \"raise\" or just call \"sys.exit(1)\".",
+      "revId": "cb268f42e2d5850258c518e5f0256c5497c3994d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
