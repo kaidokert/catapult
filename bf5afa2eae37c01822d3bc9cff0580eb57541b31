@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0e4c3e40_5dc03c7c",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ee8cf28_6c409c6d",
+      "range": {
+        "startLine": 4,
+        "startChar": 49,
+        "endLine": 4,
+        "endChar": 68
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "068cd289_3c1a6868",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 21
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9889131b_d7d9e7c1",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "068cd289_3c1a6868",
+      "range": {
+        "startLine": 10,
+        "startChar": 55,
+        "endLine": 10,
+        "endChar": 59
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90bec581_1e863e7b",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 21
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "65cd75dd_3a163bc5",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90bec581_1e863e7b",
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bad10898_76f1e6b8",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 21
@@ -79,6 +145,24 @@
       "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c973a98_c7b9c94f",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bad10898_76f1e6b8",
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "b22b3c93_56184e44",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c094a0c_b0027f76",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d718d820_ecc28928",
         "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
         "patchSetId": 21
@@ -125,6 +233,30 @@
       "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1155e45_d79ff8ec",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d718d820_ecc28928",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 71
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "1c51e7b8_8e8f35c1",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d4102d6_bb9019ee",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 12
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ade2a3da_a8898538",
         "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
         "patchSetId": 21
@@ -174,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "cb60b58c_d95e7adc",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ade2a3da_a8898538",
+      "range": {
+        "startLine": 27,
+        "startChar": 46,
+        "endLine": 27,
+        "endChar": 61
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b12305c_fd4fb28d",
         "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
         "patchSetId": 21
@@ -194,6 +374,30 @@
       "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9149563b_b3c8c68c",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-11-25T22:44:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b12305c_fd4fb28d",
+      "range": {
+        "startLine": 29,
+        "startChar": 3,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "bf5afa2eae37c01822d3bc9cff0580eb57541b31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
