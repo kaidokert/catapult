@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2197bbbf_046d28b9",
+        "filename": "catapult_build/appengine_dev_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90e49e8d_36d4797a",
+      "range": {
+        "startLine": 15,
+        "startChar": 30,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22257413_bf2b113d",
         "filename": "catapult_build/temp_deployment_dir.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-11-26T01:25:10Z",
       "side": 1,
       "message": "The pendant in me wants to refactor this to fully decouple the “manage acquire \u0026 release of a temporary directory” and “populate a directory with copies/symlinks” parts.  But we don\u0027t need to be side-tracked by this right now… 😊",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 21
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "782a533e_dc4eb1ad",
+        "filename": "catapult_build/temp_deployment_dir.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "22257413_bf2b113d",
       "range": {
         "startLine": 14,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b9d517b5_6c4d1b93",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Actually, it looks like we can take one of these temporary directories away.",
+      "parentUuid": "f4006354_a24c1fe7",
+      "range": {
+        "startLine": 53,
+        "startChar": 37,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a41e038_21b267e9",
         "filename": "dashboard/bin/deploy",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "128759e5_33c8f073",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a41e038_21b267e9",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a5a3fd38_6b4becfa",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Fixed by removing the unnecessary intermediate temporary directory.",
+      "parentUuid": "48d2e7d6_610cda3f",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 58
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4d608a0_1b86d211",
         "filename": "dashboard/dashboard_build/preprocess.py",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "5b85fafe_2017e077",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4d608a0_1b86d211",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88514350_11c2c7e5",
         "filename": "dashboard/dashboard_build/preprocess.py",
         "patchSetId": 2
@@ -160,6 +304,30 @@
       "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc3e0590_719ea45b",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T03:07:05Z",
+      "side": 1,
+      "message": "Both -- it\u0027s emulating the URL handlers from the pinpoint.yaml file, for the benefit of the bundler to be able to find these absolute paths in the HTML.\n\nIdeally we\u0027ll be able to re-structure that later so we don\u0027t need these symlinks (maybe have a deps directory, or a more straight-forward layout for all the components we\u0027re developing and/or depending on).",
+      "parentUuid": "88514350_11c2c7e5",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 51
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
