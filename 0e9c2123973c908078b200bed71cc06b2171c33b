@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa48c4a5_82c1a75b",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-11-26T01:04:16Z",
+      "side": 1,
+      "message": "Nit: Needs a space.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 10
+      },
+      "revId": "0e9c2123973c908078b200bed71cc06b2171c33b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
