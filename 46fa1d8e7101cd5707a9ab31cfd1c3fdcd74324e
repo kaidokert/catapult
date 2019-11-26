@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90e49e8d_36d4797a",
+        "filename": "catapult_build/appengine_dev_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "Document this arg.",
+      "range": {
+        "startLine": 15,
+        "startChar": 30,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22257413_bf2b113d",
+        "filename": "catapult_build/temp_deployment_dir.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "The pendant in me wants to refactor this to fully decouple the “manage acquire \u0026 release of a temporary directory” and “populate a directory with copies/symlinks” parts.  But we don\u0027t need to be side-tracked by this right now… 😊",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 21
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4006354_a24c1fe7",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "This is confusingly similar to `temp_dir` from line 36.\n\nMore generally, it would be good to add some comments outlining what the process this Main function is implementing, particularly what the two different temporary directories are used for.",
+      "range": {
+        "startLine": 53,
+        "startChar": 37,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a41e038_21b267e9",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "Typo: “Deployment”",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48d2e7d6_610cda3f",
+        "filename": "dashboard/bin/deploy",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "The logging in the `except OSError` branch calls this a “temp dir”, as does the variable name, but this message calls it a “scratch directory”.  Please use consistent terminology.\n\n\n(Similar comment applies to `tempdir`/“Deployment dir” earlier in this function.)",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 58
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4d608a0_1b86d211",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "It\u0027d be good to have a finally (or contextmanager) that ensures we chdir back to cwd before we return.  It tends to be surprising that have global state like the cwd changed by a function call like this.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88514350_11c2c7e5",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T01:25:10Z",
+      "side": 1,
+      "message": "Is this because our disk layout doesn\u0027t match our serving layout, i.e. these symlinks are basically emulating some of the URL handlers from pinpoint.yaml?",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 51
+      },
+      "revId": "46fa1d8e7101cd5707a9ab31cfd1c3fdcd74324e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
