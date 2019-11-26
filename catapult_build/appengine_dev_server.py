@@ -12,15 +12,16 @@ import sys
 from catapult_build import temp_deployment_dir
 
 
-def DevAppserver(paths, args):
+def DevAppserver(paths, args, reuse_path=None):
   """Starts a dev server for an App Engine app.
 
   Args:
-    paths: List of paths to files and directories that should be linked
-        (or copied) in the deployment directory.
+    paths: List of paths to files and directories that should be linked (or
+      copied) in the deployment directory.
     args: List of additional arguments to pass to the dev server.
   """
-  with temp_deployment_dir.TempDeploymentDir(paths) as temp_dir:
+  with temp_deployment_dir.TempDeploymentDir(
+      paths, reuse_path=reuse_path) as temp_dir:
     print 'Running dev server on "%s".' % temp_dir
 
     script_path = _FindScriptInPath('dev_appserver.py')
