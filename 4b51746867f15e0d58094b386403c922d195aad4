@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffb51394_3106277e",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-26T00:08:55Z",
+      "side": 1,
+      "message": "I think that it is confusing to have methods that don\u0027t start with verbs. \"DoThing()\" is better than \"Thing()\", etc.\n\nMaybe this should be\nGetForwardingArgs\ninstead?",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "4b51746867f15e0d58094b386403c922d195aad4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "985d472a_513cfc6a",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-11-26T00:08:55Z",
+      "side": 1,
+      "message": "I think that the type of the return value is important:\n\n\"List of strings, the command arguments for handling port forwarding.\"",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "4b51746867f15e0d58094b386403c922d195aad4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
