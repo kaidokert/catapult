@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import itertools
 import logging
 import os
 import subprocess
@@ -23,6 +24,12 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
   _AddToPathIfNeeded(os.path.join(catapult_path, 'common', 'node_runner'))
   from node_runner import node_util
   node_modules = node_util.GetNodeModulesPath()
+
+  def PinpointRelativePath(*components):
+    return os.path.join('dashboard', 'pinpoint', *components)
+
+  def DashboardRelativePath(*components):
+    return os.path.join('dashboard', *components)
 
   # When packing Pinpoint, we need some extra symlinks in the temporary
   # directory, so we can find the correct elements.
@@ -51,7 +58,8 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
       # Then set up the rest of the options for the bundler.
       '--out-dir',
       os.path.join(temp_dir, 'bundled'),
-      '--root', temp_dir,
+      '--root',
+      temp_dir,
       '--treeshake',
   ]
 
@@ -59,26 +67,19 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
   os.chdir(temp_dir)
 
   # Input all the html files we care about from the elements directory.
-  def PinpointRelativePath(*components):
-    return os.path.join('dashboard', 'pinpoint', *components)
-
-  bundler_cmd.extend([
-      '--in-file',
-      PinpointRelativePath('index', 'index.html'),
-  ])
-  for element in os.listdir(PinpointRelativePath('elements')):
-    if not os.path.isdir(element):
-      bundler_cmd.extend(
-          ['--in-file', PinpointRelativePath('elements', element)])
-
-  # Also, just in case it helps, we do the same for the Dashboard elements.
-  def DashboardRelativePath(*components):
-    return os.path.join('dashboard', *components)
-
-  for element in os.listdir(DashboardRelativePath('elements')):
-    if not os.path.isdir(element):
-      bundler_cmd.extend(
-          ['--in-file', DashboardRelativePath('elements', element)])
+  component_files = list(
+      itertools.chain(
+          [PinpointRelativePath('index', 'index.html')],
+          (PinpointRelativePath('elements', element)
+           for element in os.listdir(PinpointRelativePath('elements'))
+           if not os.path.isdir(os.path.join(catapult_path, element)) and
+           '-test' not in element and element.endswith('.html')),
+          (DashboardRelativePath('elements', element)
+           for element in os.listdir(DashboardRelativePath('elements'))
+           if not os.path.isdir(os.path.join(catapult_path, element)) and
+           '-test' not in element and element.endswith('.html'))))
+  for element in component_files:
+    bundler_cmd.extend(['--in-file', element])
 
   logging.info('Bundler Command:\n%s', ' '.join(bundler_cmd))
 
@@ -90,9 +91,14 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
     print(bundler_err)
     raise RuntimeError('Vulcanize failed with exit code', proc.returncode)
 
-  # Minify the html.
-  # minify = os.path.join(node_modules, '..', 'minify')
-  # subprocess.check_output([minify, bundlerd_index])
+  # Minify the html and the bundled shared libraries.
+  minify = os.path.join(node_modules, '..', 'minify')
+  for element in itertools.chain(component_files, ['shared_bundle_1.html']):
+    bundled_element = os.path.join('bundled', element)
+    minify_command = [minify, bundled_element]
+    subprocess.check_output(minify_command)
+    logging.info('Minifying %s - Command: %s', bundled_element,
+                 ' '.join(minify_command))
   deployment_paths.append('bundled')
 
 
@@ -182,8 +188,8 @@ def AddTimestamp(js_name):
   # V2SPA displays its version as this timestamp in this format to make it easy
   # to check whether a change is visible.
   now = time.time()
-  print('vulcanized', time.strftime('%Y-%m-%d %H:%M:%S',
-                                    time.gmtime(now - (60 * 60 * 7))))
+  print('vulcanized',
+        time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(now - (60 * 60 * 7))))
 
   js = open(js_name).read()
   with open(js_name, 'w') as fp:
