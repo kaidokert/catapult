@@ -57,6 +57,7 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
         '//fonts.googleapis.com/*',
         '--exclude',
         '//apis.google.com/*',
+        '--sourcemaps',
         # Then set up the rest of the options for the bundler.
         '--out-dir',
         os.path.join(temp_dir, 'bundled'),
@@ -91,6 +92,9 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
         print(bundler_err)
         raise RuntimeError('Vulcanize failed with exit code', proc.returncode)
 
+      # Minify the html.
+      # minify = os.path.join(node_modules, '..', 'minify')
+      # subprocess.check_output([minify, bundlerd_index])
       deployment_paths.append(os.path.join(temp_dir, 'bundled'))
 
 
