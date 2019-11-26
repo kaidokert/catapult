@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d36483f_2fad98e9",
+        "filename": "dashboard/dev_dockerfiles/docker-compose.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-26T06:20:15Z",
+      "side": 1,
+      "message": "Probably need \u0027app.yaml\u0027, \u0027api.yaml\u0027, and \u0027upload.yaml\u0027 together when deploying the Dashboard and all the services.",
+      "range": {
+        "startLine": 14,
+        "startChar": 57,
+        "endLine": 14,
+        "endChar": 65
+      },
+      "revId": "1ffa743196a0954acc3b28d3b0e0acad397f2058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
