@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b138b23_2680d9eb",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T04:40:36Z",
+      "side": 1,
+      "message": "Nit: itertools.chain and generator expressions seem slightly excessive here.\n\n      component_files \u003d (\n          [PinpointRelativePath(\u0027index\u0027, \u0027index.html\u0027)] +\n          [PinpointRelativePath(\u0027elements\u0027, element)\n           for element in os.listdir(PinpointRelativePath(\u0027elements\u0027))\n           if not os.path.isdir(os.path.join(catapult_path, element)) and\n           \u0027-test\u0027 not in element and element.endswith(\u0027.html\u0027)] +\n          [DashboardRelativePath(\u0027elements\u0027, element)\n           for element in os.listdir(DashboardRelativePath(\u0027elements\u0027))\n           if not os.path.isdir(os.path.join(catapult_path, element)) and\n           \u0027-test\u0027 not in element and element.endswith(\u0027.html\u0027))])\n\nI\u0027d perhaps think “well, I guess itertools.chain with generator expressions allows lazy evaluation so that we don\u0027t have to materialize a full list of all the files in memory at once, which is hypothetically nice” — but you immediately pass this to the `list` constructor, so you get all of the complexity of lazy eval with none of the memory saving. 🙃",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 70
+      },
+      "revId": "1d5f358a0883ee2d6178c1bec9df906fdde50dbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02e529bb_48346220",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-26T04:40:36Z",
+      "side": 1,
+      "message": "How much does this save the client in practice?\n\nThe developer tools in Chrome tells me today that the transferred bytes are about 1/3rd of the resource bytes (with caching disabled), i.e. that the content transfer encoding is automatically compressing away 2/3rds of the bytes (702kB transferred total for the entire page for 2.3MB of resources, no caching).  With caching on (and primed) the total transferred for a logged in front page is more like ~30kB.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 57
+      },
+      "revId": "1d5f358a0883ee2d6178c1bec9df906fdde50dbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
