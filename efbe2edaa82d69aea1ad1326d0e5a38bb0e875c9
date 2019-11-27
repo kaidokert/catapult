@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65ff9a60_dba421d8",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-27T04:06:14Z",
+      "side": 1,
+      "message": "Where is `run_dashboard_tests` defined?  Should this be `not args.dashboard_only`?",
+      "range": {
+        "startLine": 252,
+        "startChar": 5,
+        "endLine": 252,
+        "endChar": 29
+      },
+      "revId": "efbe2edaa82d69aea1ad1326d0e5a38bb0e875c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
