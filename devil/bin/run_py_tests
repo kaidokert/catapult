@@ -22,7 +22,11 @@ def main():
   if 'ANDROID_SERIAL' in os.environ:
     del os.environ['ANDROID_SERIAL']
 
-  return run_with_typ.Run(top_level_dir=_DEVIL_PATH)
+  try:
+    return run_with_typ.Run(top_level_dir=_DEVIL_PATH)
+  except Exception:
+    print(sys.path)
+    raise
 
 if __name__ == '__main__':
   sys.exit(main())
