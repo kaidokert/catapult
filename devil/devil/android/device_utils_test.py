@@ -20,7 +20,9 @@ import stat
 import sys
 import unittest
 
+raise Exception('Failed to import py_utils. sys.path: %s' % str(sys.path))
 from py_utils import tempfile_ext
+
 from devil import devil_env
 from devil.android import device_errors
 from devil.android import device_signal
