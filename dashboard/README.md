@@ -38,7 +38,7 @@ subprojects which are also hosted in that directory:
 -   `static`: Directory containing all the static assets used in the user
     interface. This is deprecated in favor of `spa`.
 -   `templates`: HTML files representing the templates for views served through
-    the App Engine user interface. This is deprecated in favor of `spa`.
+    the App Engine user interface.
 
 ## Ongoing Projects
 
