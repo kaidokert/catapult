@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f563eb34_5eb1dd4a",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-27T02:27:05Z",
+      "side": 1,
+      "message": "Yeah, fixed -- needed to remove the dashboard relative paths and use a list comprehension instead.",
+      "parentUuid": "7b138b23_2680d9eb",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 70
+      },
+      "revId": "1d5f358a0883ee2d6178c1bec9df906fdde50dbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02e529bb_48346220",
         "filename": "dashboard/dashboard_build/preprocess.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "1d5f358a0883ee2d6178c1bec9df906fdde50dbc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e69f1655_8edb6424",
+        "filename": "dashboard/dashboard_build/preprocess.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-27T02:27:05Z",
+      "side": 1,
+      "message": "There\u0027s a 50% relative improvement in the reduction of the bytes, but as discussed offline we don\u0027t really need the added complication of debugging minified js/html.",
+      "parentUuid": "02e529bb_48346220",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 57
+      },
+      "revId": "1d5f358a0883ee2d6178c1bec9df906fdde50dbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
