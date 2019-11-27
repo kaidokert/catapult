@@ -124,6 +124,7 @@ group("telemetry_chrome_test_support") {
     "tracing/skp_data/",
     "tracing/third_party/",
     "tracing/tracing/",
+    "tracing/tracing-c++/",
     "tracing/tracing_build/",
     "tracing/tracing_examples/",
   ]
