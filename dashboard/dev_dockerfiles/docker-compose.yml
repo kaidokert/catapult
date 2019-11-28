@@ -12,12 +12,14 @@ services:
       - ../..:/image/catapult:ro
       - gcloud-config:/root/.config/gcloud
     command: [/catapult/dashboard/bin/deploy, --promote, app.yaml]
+    working_dir: /catapult
   deploy-pinpoint:
     build: .
     volumes:
       - ../..:/image/catapult:ro
       - gcloud-config:/root/.config/gcloud
     command: [/catapult/dashboard/bin/deploy, --promote, pinpoint.yaml]
+    working_dir: /catapult
   auth:
     build: .
     volumes:
