@@ -34,6 +34,24 @@
       "revId": "0d90bde7d06a0b543d6120bbaf6467d41cb4e630",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9373f67a_e09d4ddc",
+        "filename": "common/node_runner/node_runner/node_binaries.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-28T04:16:25Z",
+      "side": 1,
+      "message": "Yep, looks like that tryjob is happy now.  For the record the command I ran was:\n\n$ gsutil cp gs://chromium-telemetry/binary_dependencies/node_1af7c221e530165af8a6ab8ff7ccb1f2dd54036d gs://chromium-telemetry/binary_dependencies/npm_1af7c221e530165af8a6ab8ff7ccb1f2dd54036d\nCopying gs://chromium-telemetry/binary_dependencies/node_1af7c221e530165af8a6ab8ff7ccb1f2dd54036d [Content-Type\u003dapplication/zip]...\n- [1 files][ 13.4 MiB/ 13.4 MiB]\nOperation completed over 1 objects/13.4 MiB.",
+      "parentUuid": "d0dcaae5_44a3dc00",
+      "revId": "0d90bde7d06a0b543d6120bbaf6467d41cb4e630",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
