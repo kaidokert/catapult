@@ -51,6 +51,7 @@ EXCLUDED_PATHS = {
   'docs/',
   'experimental/',
   'generate_telemetry_build.py',
+  'tracing/tracing-cpp/',
   'third_party/Paste/',
   'third_party/google-endpoints/',
   'third_party/polymer2/',
