@@ -1,0 +1,40 @@
+// Copyright 2019 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto2";
+package catapult;
+
+enum Unit {
+    ms = 0;
+    msBestFitFormat = 1;
+    tsMs = 2;
+    nPercent = 3;
+    sizeInBytes = 4;
+    bytesPerSecond = 5;
+    J = 6;
+    W = 7;
+    A = 8;
+    V = 9;
+    Hz = 10;
+    Unitless = 11;
+    Count = 12;
+    Sigma = 13;
+}
+
+message BinBoundarySpec {
+  repeated int32 spec = 1;
+}
+
+message BinBoundary {
+  oneof boundary_oneof {
+    int32 bin_boundary = 1;
+    BinBoundarySpec bin_spec = 2;
+  }
+}
+
+message Histogram {
+  optional string name = 1;
+  optional Unit unit = 2;
+  repeated BinBoundary bin_boundaries = 3;
+}
