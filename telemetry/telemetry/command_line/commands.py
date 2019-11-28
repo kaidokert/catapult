@@ -3,152 +3,20 @@
 # found in the LICENSE file.
 """Defines the commands provided by Telemetry: Run, List."""
 
-import json
-import logging
-import optparse
+from __future__ import print_function
+
 import sys
 
 from telemetry import benchmark
+from telemetry import benchmark_list
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_options
 from telemetry.internal import story_runner
 from telemetry.util import matching
 
 
-def _IsBenchmarkSupported(benchmark_, possible_browser):
-  return benchmark_().CanRunOnPlatform(
-      possible_browser.platform, possible_browser)
-
-
-def _GetStoriesWithTags(b):
-  """Finds all stories and their tags given a benchmark.
-
-  Args:
-    b: a subclass of benchmark.Benchmark
-  Returns:
-    A list of dicts for the stories, each of the form:
-    {
-      'name' : story.name
-      'tags': list(story.tags)
-    }
-  """
-  # Create a options object which hold default values that are expected
-  # by Benchmark.CreateStoriesWithTags(options) method.
-  parser = optparse.OptionParser()
-  b.AddBenchmarkCommandLineArgs(parser)
-  options, _ = parser.parse_args([])
-
-  # Some benchmarks require special options, such as *.cluster_telemetry.
-  # Just ignore them for now.
-  try:
-    story_set = b().CreateStorySet(options)
-  # pylint: disable=broad-except
-  except Exception as e:
-    logging.warning('Unable to get stories for %s due to "%s"', b.Name(), e)
-    story_set = []
-
-  stories_info = []
-  for s in story_set:
-    stories_info.append({
-        'name': s.name,
-        'tags': list(s.tags)
-    })
-  return sorted(stories_info)
-
-
-def PrintBenchmarkList(
-    benchmarks, possible_browser, output_pipe=None,
-    json_pipe=None):
-  """Print benchmarks that are not filtered in the same order of benchmarks in
-  the |benchmarks| list.
-
-  If json_pipe is available, a json file with the following contents will be
-  written:
-  [
-      {
-          "name": <string>,
-          "description": <string>,
-          "enabled": <boolean>,
-          "supported": <boolean>,
-          "story_tags": [
-              <string>,
-              ...
-          ]
-          ...
-      },
-      ...
-  ]
-
-  Note that "enabled" and "supported" carry the same value. "enabled" is
-  deprecated since it is misleading since a benchmark could be theoretically
-  supported but have all of its stories disabled with expectations.config file.
-  "supported" simply checks the benchmark's SUPPORTED_PLATFORMS member.
-
-  Args:
-    benchmarks: the list of benchmarks to be printed (in the same order of the
-      list).
-    possible_browser: the possible_browser instance that's used for checking
-      which benchmarks are supported.
-    output_pipe: the stream in which benchmarks are printed on.
-    json_pipe: if available, also serialize the list into json_pipe.
-  """
-  if output_pipe is None:
-    output_pipe = sys.stdout
-
-  if not benchmarks:
-    print >> output_pipe, 'No benchmarks found!'
-    if json_pipe:
-      print >> json_pipe, '[]'
-    return
-
-  bad_benchmark = next((b for b in benchmarks
-                        if not issubclass(b, benchmark.Benchmark)), None)
-  assert bad_benchmark is None, (
-      '|benchmarks| param contains non benchmark class: %s' % bad_benchmark)
-
-  all_benchmark_info = []
-  for b in benchmarks:
-    benchmark_info = {'name': b.Name(), 'description': b.Description()}
-    benchmark_info['supported'] = (
-        not possible_browser or
-        _IsBenchmarkSupported(b, possible_browser))
-    benchmark_info['enabled'] = benchmark_info['supported']
-    benchmark_info['stories'] = _GetStoriesWithTags(b)
-    all_benchmark_info.append(benchmark_info)
-
-  # Align the benchmark names to the longest one.
-  format_string = '  %%-%ds %%s' % max(len(b['name'])
-                                       for b in all_benchmark_info)
-
-  # Sort the benchmarks by benchmark name.
-  all_benchmark_info.sort(key=lambda b: b['name'])
-
-  supported = [b for b in all_benchmark_info if b['supported']]
-  if supported:
-    print >> output_pipe, 'Available benchmarks %sare:' % (
-        'for %s ' % possible_browser.browser_type if possible_browser else '')
-    for b in supported:
-      print >> output_pipe, format_string % (b['name'], b['description'])
-
-  not_supported = [b for b in all_benchmark_info if not b['supported']]
-  if not_supported:
-    print >> output_pipe, (
-        '\nNot supported benchmarks for %s are (force run with -d):' %
-        possible_browser.browser_type)
-    for b in not_supported:
-      print >> output_pipe, format_string % (b['name'], b['description'])
-
-  print >> output_pipe, (
-      'Pass --browser to list benchmarks for another browser.\n')
-
-  if json_pipe:
-    print >> json_pipe, json.dumps(all_benchmark_info, indent=4,
-                                   sort_keys=True, separators=(',', ': ')),
-
-
 class List(object):
   """Lists the available benchmarks"""
-
   @classmethod
   def AddCommandLineArgs(cls, parser, args, environment):
     del args, environment  # Unused.
@@ -172,17 +40,13 @@ class List(object):
       parser.error('Must provide at most one benchmark name.')
 
   def Run(self, options):
-    # Set at least log info level for List command.
-    # TODO(nedn): remove this once crbug.com/656224 is resolved. The recipe
-    # should be change to use verbose logging instead.
-    logging.getLogger().setLevel(logging.INFO)
-    possible_browser = browser_finder.FindBrowser(options)
-    if options.json_filename:
-      with open(options.json_filename, 'w') as json_out:
-        PrintBenchmarkList(options.benchmarks, possible_browser,
-                           json_pipe=json_out)
+    if options.browser_type is not None:
+      possible_browser = browser_finder.FindBrowser(options)
     else:
-      PrintBenchmarkList(options.benchmarks, possible_browser)
+      possible_browser = None
+    benchmark_list.PrintBenchmarkList(
+        options.benchmarks, possible_browser,
+        output_json_file=options.json_filename)
     return 0
 
 
@@ -221,7 +85,7 @@ class Run(object):
     if not options.positional_args:
       possible_browser = (browser_finder.FindBrowser(options)
                           if options.browser_type else None)
-      PrintBenchmarkList(all_benchmarks, possible_browser)
+      benchmark_list.PrintBenchmarkList(all_benchmarks, possible_browser)
       parser.error('missing required argument: benchmark_name')
 
     benchmark_name = options.positional_args[0]
@@ -230,8 +94,10 @@ class Run(object):
       most_likely_matched_benchmarks = matching.GetMostLikelyMatchedObject(
           all_benchmarks, benchmark_name, lambda x: x.Name())
       if most_likely_matched_benchmarks:
-        print >> sys.stderr, 'Do you mean any of those benchmarks below?'
-        PrintBenchmarkList(most_likely_matched_benchmarks, None, sys.stderr)
+        print('Do you mean any of those benchmarks below?', file=sys.stderr)
+        benchmark_list.PrintBenchmarkList(
+            most_likely_matched_benchmarks,
+            possible_browser=None, stream=sys.stderr)
       parser.error('no such benchmark: %s' % benchmark_name)
 
     if len(options.positional_args) > 1:
