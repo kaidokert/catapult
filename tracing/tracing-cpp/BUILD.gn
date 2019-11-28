@@ -1,0 +1,30 @@
+# Copyright 2019 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//third_party/protobuf/proto_library.gni")
+
+# C++ include dirs will start from the project root dir, e.g. catapult/.
+config("common_config") {
+  include_dirs = [
+    "../.."
+  ]
+}
+
+executable("histogram") {
+  configs += [":common_config"]
+  sources = [
+    "value/histogram.cc",
+  ]
+  deps = [
+    ":histogram_proto",
+    "//third_party/protobuf:protobuf_full",
+  ]
+}
+
+proto_library("histogram_proto") {
+  sources = [
+     "value/histogram.proto",
+  ]
+  proto_out_dir="tracing/tracing-cpp/value"
+}
