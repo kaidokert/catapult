@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0954568d_10a9c214",
+        "filename": "dashboard/dev_dockerfiles/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-28T22:36:17Z",
+      "side": 1,
+      "message": "Probably not in this CL but maybe in another one, can we make this include `api.yaml`, `upload.yaml` as well?",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e41be595_6aa636af",
+        "filename": "dashboard/dev_dockerfiles/run",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-28T22:36:17Z",
+      "side": 1,
+      "message": "I feel like it might be good to force this to be explicit and print all the commands before they get executed (maybe `set -x` somewhere) so that it\u0027s not hiding what it\u0027s doing.",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49123138_6ee6e7b0",
+        "filename": "dashboard/dev_dockerfiles/run",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-28T22:36:17Z",
+      "side": 1,
+      "message": "If you\u0027re setting this here, you probably want to reset this to where the working directory was before you changed it after running the `docker-compose` command?",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
