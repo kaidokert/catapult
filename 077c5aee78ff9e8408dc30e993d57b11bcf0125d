@@ -139,6 +139,24 @@
       "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfeaf784_c33d324a",
+        "filename": "dashboard/dev_dockerfiles/run",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-28T23:52:23Z",
+      "side": 1,
+      "message": "No, it\u0027s a new shell process.  You execute the script, the executable named in the #! line is launched, etc.  (Unless you\u0027re invoking it as “. dev_dockerfiles/run”, i.e. sourcing it into your current shell, but that\u0027d be very weird.)\n\nTry it:\n\n/tmp$ echo \u0027#!/bin/bash\u0027 \u003e foo.sh\n/tmp$ echo \u0027cd /etc\u0027 \u003e\u003e foo.sh\n/tmp$ chmod +x foo.sh\n/tmp$ ./foo.sh\n/tmp$ # Not /etc",
+      "parentUuid": "f6266ebb_e2b500fb",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
