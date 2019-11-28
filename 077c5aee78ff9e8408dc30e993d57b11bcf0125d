@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "91230b51_f3ab3b42",
+        "filename": "dashboard/dev_dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-28T23:47:16Z",
+      "side": 1,
+      "message": "I think this explanation could be better. How about:\n\nWe provide a convenience wrapper script called `run` which sets up the environment in the invocation of `docker-compose`. This script can also be used as an entry point in the docker-compose invocation. See examples below on how to accomplish some common tasks.",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0954568d_10a9c214",
         "filename": "dashboard/dev_dockerfiles/docker-compose.yml",
         "patchSetId": 1
@@ -104,6 +121,24 @@
       "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6266ebb_e2b500fb",
+        "filename": "dashboard/dev_dockerfiles/run",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-28T23:47:16Z",
+      "side": 1,
+      "message": "The `cd` command is being executed in the shell running this script. When you do:\n\n`dev_dockerfiles/run ...`\n\nfrom outside this directory, then this script will move into the dev_dockerfiles directory.",
+      "parentUuid": "3adec781_6398d883",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
