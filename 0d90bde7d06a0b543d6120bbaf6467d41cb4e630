@@ -16,6 +16,24 @@
       "revId": "0d90bde7d06a0b543d6120bbaf6467d41cb4e630",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0dcaae5_44a3dc00",
+        "filename": "common/node_runner/node_runner/node_binaries.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-11-28T04:00:25Z",
+      "side": 1,
+      "message": "This is weird.  AFAICT this doesn\u0027t change the gs:// URL we download from, just the local path the download is written to.  So this only makes sense if somehow earlier in the build process something else was somehow writing a bin/node/node-mac64.zip with the the 1af7c2… hash, thus causing the download specified here to be attempted.\n\nAnyway, the correct file appears to exist with the node_ prefix in that bucket, so I copied it to the correct name with gsutil, so hopefully this will Just Work now.",
+      "parentUuid": "f09f9f18_f7750707",
+      "revId": "0d90bde7d06a0b543d6120bbaf6467d41cb4e630",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
