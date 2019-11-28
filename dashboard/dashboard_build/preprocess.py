@@ -54,6 +54,7 @@ def PackPinpoint(catapult_path, temp_dir, deployment_paths):
     # We don't yet use any webpack in Pinpoint, so let's use the polymer bundler
     # for now.
     bundler_cmd = [
+        node_util.GetNodePath(),
         os.path.join(node_modules, 'polymer-bundler', 'lib', 'bin',
                      'polymer-bundler.js'),
         '--inline-scripts',
