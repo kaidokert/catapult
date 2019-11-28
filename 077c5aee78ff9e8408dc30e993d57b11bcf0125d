@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f6b4e335_9ba8de7c",
+        "filename": "dashboard/dev_dockerfiles/docker-compose.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-28T23:36:34Z",
+      "side": 1,
+      "message": "This is a part of the fixing. `deploy` script using git command to generate version, which requires you excuting it in the catapult git directory. Maybe I can add some comment here.",
+      "parentUuid": "0954568d_10a9c214",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e41be595_6aa636af",
         "filename": "dashboard/dev_dockerfiles/run",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b787369b_c9f60d7f",
+        "filename": "dashboard/dev_dockerfiles/run",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-28T23:36:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e41be595_6aa636af",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49123138_6ee6e7b0",
         "filename": "dashboard/dev_dockerfiles/run",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3adec781_6398d883",
+        "filename": "dashboard/dev_dockerfiles/run",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-11-28T23:36:34Z",
+      "side": 1,
+      "message": "It won\u0027t affect you outside shell because it\u0027s in another process. So what\u0027s the reason of switching back?",
+      "parentUuid": "49123138_6ee6e7b0",
+      "revId": "077c5aee78ff9e8408dc30e993d57b11bcf0125d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
