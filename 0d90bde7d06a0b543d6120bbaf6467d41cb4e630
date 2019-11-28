@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f09f9f18_f7750707",
+        "filename": "common/node_runner/node_runner/node_binaries.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-11-28T03:32:38Z",
+      "side": 1,
+      "message": "It may be that we need to change the hash if the contents are different. I\u0027m not sure how to look that up, if there\u0027s a registry or a tool to see what is needed here.",
+      "revId": "0d90bde7d06a0b543d6120bbaf6467d41cb4e630",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
