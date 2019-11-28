@@ -65,10 +65,16 @@ found in the LICENSE file.
       },
 
       exceptionMessage(exception) {
+        if (!exception) {
+          return '';
+        }
         return exception.message;
       },
 
       exceptionTraceback(exception) {
+        if (!exception) {
+          return '';
+        }
         return exception.traceback;
       },
 
