@@ -32,7 +32,7 @@ found in the LICENSE file.
     </template>
 
     <template is="dom-if" if="[[getComplete(status)]]">
-      <iframe src="[[status.url]]"></iframe>
+      <iframe src="[[getStatusURL(status)]]"></iframe>
     </template>
   </template>
 
@@ -52,6 +52,13 @@ found in the LICENSE file.
         },
       },
 
+      getStatusURL(status) {
+        if (!status || !status.url) {
+          return 'about:blank';
+        }
+        return status.url;
+      },
+
       getStarted(status) {
         return this.status.status == 'pending';
       },
@@ -69,8 +76,11 @@ found in the LICENSE file.
       },
 
       _statusChanged() {
-        if (!this.getComplete(this.status)) {
-          this.async(() => this.$.ajax.generateRequest(), 1000);
+        const visible = !!(this.offsetWidth ||
+                          this.offsetHeight ||
+                          this.getClientRects().length);
+        if (!this.getComplete(this.status) && visible) {
+          this.async(() => this.$.ajax.generateRequest(), 5000);
         }
       },
     });
