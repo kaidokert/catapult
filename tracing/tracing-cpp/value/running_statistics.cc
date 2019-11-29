@@ -1,0 +1,46 @@
+// Copyright 2019 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#include "tracing/tracing-cpp/value/running_statistics.h"
+
+#include <algorithm>
+
+namespace catapult {
+
+void RunningStatistics::Add(float value) {
+  count_++;
+
+  max_ = std::max(max_, value);
+  min_ = std::min(min_, value);
+  sum_ += value;
+
+  if (value < 0.0) {
+    meanlogs_valid_ = false;
+  } else if (meanlogs_valid_) {
+    meanlogs_ += (std::log(std::abs(value)) - meanlogs_) / count_;
+  }
+
+  // The following uses Welford's algorithm for computing running mean and
+  // variance. See http://www.johndcook.com/blog/standard_deviation.
+  if (count_ == 1) {
+    mean_ = value;
+    variance_ = 0.0;
+  } else {
+    float old_mean = mean_;
+    float old_variance = variance_;
+
+    // Using the 2nd formula for updating the mean yields better precision but
+    // it doesn't work for the case old_mean is Infinity. Hence we handle that
+    // case separately.
+    if (std::isinf(old_mean)) {
+      mean_ = sum_ / count_;
+    } else {
+      mean_ = old_mean + (value - old_mean) / count_;
+    }
+
+    variance_ = old_variance + (value - old_mean) * (value - mean_);
+  }
+}
+
+}  // namespace catapult
