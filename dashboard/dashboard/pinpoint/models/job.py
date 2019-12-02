@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import datetime
+import functools
 import logging
 import os
 import sys
@@ -23,23 +24,22 @@ from dashboard import update_bug_with_results
 from dashboard.common import utils
 from dashboard.models import histogram
 from dashboard.pinpoint.models import errors
+from dashboard.pinpoint.models import event as event_module
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
 from dashboard.pinpoint.models import scheduler
-from dashboard.pinpoint.models import timing_record
 from dashboard.pinpoint.models import task as task_module
-from dashboard.pinpoint.models import event as event_module
+from dashboard.pinpoint.models import timing_record
 from dashboard.pinpoint.models.evaluators import job_serializer
+from dashboard.pinpoint.models.tasks import evaluator as task_evaluator
 from dashboard.services import gerrit_service
 from dashboard.services import issue_tracker_service
 
 from tracing.value.diagnostics import reserved_infos
 
-
 # We want this to be fast to minimize overhead while waiting for tasks to
 # finish, but don't want to consume too many resources.
 _TASK_INTERVAL = 60
-
 
 _CRYING_CAT_FACE = u'\U0001f63f'
 _INFINITY = u'\u221e'
@@ -52,22 +52,23 @@ OPTION_STATE = 'STATE'
 OPTION_TAGS = 'TAGS'
 OPTION_ESTIMATE = 'ESTIMATE'
 
-
 COMPARISON_MODES = job_state.COMPARISON_MODES
 
-RETRY_OPTIONS = taskqueue.TaskRetryOptions(task_retry_limit=8,
-                                           min_backoff_seconds=2)
+RETRY_OPTIONS = taskqueue.TaskRetryOptions(
+    task_retry_limit=8, min_backoff_seconds=2)
 
-CREATED_COMMENT_FORMAT = u'''{title}
+CREATED_COMMENT_FORMAT = u"""{title}
 {url}
 
 The job has been scheduled on the "{configuration}" queue which currently has
 {pending} pending jobs.
-'''
+"""
 
 
 def JobFromId(job_id):
-  """Get a Job object from its ID. Its ID is just its key as a hex string.
+  """Get a Job object from its ID.
+
+  Its ID is just its key as a hex string.
 
   Users of Job should not have to import ndb. This function maintains an
   abstraction layer that separates users from the Datastore details.
@@ -98,7 +99,6 @@ class BenchmarkArguments(ndb.Model):
         chart=args.get('chart'),
         statistic=args.get('statistic'),
     )
-
 
 
 class Job(ndb.Model):
@@ -207,7 +207,6 @@ class Job(ndb.Model):
 
     return None
 
-
   @classmethod
   def New(cls,
           quests,
@@ -231,14 +230,14 @@ class Job(ndb.Model):
       arguments: A dict with the original arguments used to start the Job.
       bug_id: A monorail issue id number to post Job updates to.
       comparison_mode: Either 'functional' or 'performance', which the Job uses
-          to figure out whether to perform a functional or performance bisect.
-          If None, the Job will not automatically add any Attempts or Changes.
+        to figure out whether to perform a functional or performance bisect. If
+        None, the Job will not automatically add any Attempts or Changes.
       comparison_magnitude: The estimated size of the regression or improvement
-          to look for. Smaller magnitudes require more repeats.
+        to look for. Smaller magnitudes require more repeats.
       gerrit_server: Server of the Gerrit code review to update with job
-          results.
+        results.
       gerrit_change_id: Change id of the Gerrit code review to update with job
-          results.
+        results.
       name: The user-provided name of the Job.
       pin: A Change (Commits + Patch) to apply to every Change in this Job.
       tags: A dict of key-value pairs used to filter the Jobs listings.
@@ -370,7 +369,17 @@ class Job(ndb.Model):
     to the user. It schedules the Job on the task queue without running
     anything. It also posts a bug comment, and updates the Datastore.
     """
-    self._Schedule()
+    if self.use_execution_engine:
+      # Treat this as if it's a poll, and run the handler here.
+      ndb.transaction(
+          functools.partial(
+              task_module.Evaluate, self,
+              event_module.Event(type='initiate', target_task=None, payload={}),
+              task_evaluator.ExecutionEngine(self)),
+          propagation=ndb.TransactionOptions.INDEPENDENT)
+      self.started = True
+    else:
+      self._Schedule()
     self.started = True
     self.started_time = datetime.datetime.now()
     self.put()
@@ -378,7 +387,10 @@ class Job(ndb.Model):
     title = _ROUND_PUSHPIN + ' Pinpoint job started.'
     comment = '\n'.join((title, self.url))
     deferred.defer(
-        _PostBugCommentDeferred, self.bug_id, comment, send_email=True,
+        _PostBugCommentDeferred,
+        self.bug_id,
+        comment,
+        send_email=True,
         _retry_options=RETRY_OPTIONS)
 
   def _IsTryJob(self):
@@ -390,6 +402,7 @@ class Job(ndb.Model):
       self.difference_count = len(self.state.Differences())
 
     try:
+      # TODO(dberris): Migrate results2 generation to tasks and evaluators.
       results2.ScheduleResults2Generation(self)
     except taskqueue.Error as e:
       logging.debug('Failed ScheduleResults2Generation: %s', str(e))
@@ -401,9 +414,11 @@ class Job(ndb.Model):
   def _FormatAndPostBugCommentOnComplete(self):
     if self._IsTryJob():
       # There is no comparison metric.
-      title = "<b>%s Job complete. See results below.</b>" % _ROUND_PUSHPIN
+      title = '<b>%s Job complete. See results below.</b>' % _ROUND_PUSHPIN
       deferred.defer(
-          _PostBugCommentDeferred, self.bug_id, '\n'.join((title, self.url)),
+          _PostBugCommentDeferred,
+          self.bug_id,
+          '\n'.join((title, self.url)),
           _retry_options=RETRY_OPTIONS)
       return
 
@@ -413,7 +428,9 @@ class Job(ndb.Model):
     if not differences:
       title = "<b>%s Couldn't reproduce a difference.</b>" % _ROUND_PUSHPIN
       deferred.defer(
-          _PostBugCommentDeferred, self.bug_id, '\n'.join((title, self.url)),
+          _PostBugCommentDeferred,
+          self.bug_id,
+          '\n'.join((title, self.url)),
           _retry_options=RETRY_OPTIONS)
       return
 
@@ -438,8 +455,13 @@ class Job(ndb.Model):
 
     deferred.defer(
         _UpdatePostAndMergeDeferred,
-        difference_details, commit_infos, authors_with_deltas, self.bug_id,
-        self.tags, self.url, _retry_options=RETRY_OPTIONS)
+        difference_details,
+        commit_infos,
+        authors_with_deltas,
+        self.bug_id,
+        self.tags,
+        self.url,
+        _retry_options=RETRY_OPTIONS)
 
   def _UpdateGerritIfNeeded(self):
     if self.gerrit_server and self.gerrit_change_id:
@@ -468,7 +490,9 @@ class Job(ndb.Model):
 
     comment = '\n'.join((title, self.url, '', exc_message))
     deferred.defer(
-        _PostBugCommentDeferred, self.bug_id, comment,
+        _PostBugCommentDeferred,
+        self.bug_id,
+        comment,
         _retry_options=RETRY_OPTIONS)
     scheduler.Complete(self)
 
@@ -480,8 +504,10 @@ class Job(ndb.Model):
     task_name = str(uuid.uuid4())
     try:
       task = taskqueue.add(
-          queue_name='job-queue', url='/api/run/' + self.job_id,
-          name=task_name, countdown=countdown)
+          queue_name='job-queue',
+          url='/api/run/' + self.job_id,
+          name=task_name,
+          countdown=countdown)
     except (apiproxy_errors.DeadlineExceededError, taskqueue.TransientError):
       raise errors.RecoverableError()
 
@@ -497,7 +523,7 @@ class Job(ndb.Model):
     self.retry_count += 1
 
     # Back off exponentially
-    self._Schedule(countdown=_TASK_INTERVAL * (2 ** self.retry_count))
+    self._Schedule(countdown=_TASK_INTERVAL * (2**self.retry_count))
 
     return True
 
@@ -510,8 +536,21 @@ class Job(ndb.Model):
     Changes as needed. If there are any incomplete tasks, schedules another
     Run() call on the task queue.
     """
-    self.exception_details = None # In case the Job succeeds on retry.
+    self.exception_details = None  # In case the Job succeeds on retry.
     self.task = None  # In case an exception is thrown.
+
+    if self.use_execution_engine:
+      # Treat this as if it's a poll, and run the handler here.
+      context = task_module.Evaluate(
+          self,
+          event_module.Event(type='initiate', target_task=None, payload={}),
+          task_evaluator.ExecutionEngine(self))
+      result_status = context['find_culprit']['status']
+      if result_status in {'failed', 'completed'}:
+        if result_status == 'failed':
+          self.exception_details = context['find_culprit']['errors'][0]
+        self._Complete()
+      return
 
     try:
       if not self._IsTryJob():
@@ -568,13 +607,11 @@ class Job(ndb.Model):
         'job_id': self.job_id,
         'configuration': self.configuration,
         'results_url': self.results_url,
-
         'arguments': self.arguments,
         'bug_id': self.bug_id,
         'comparison_mode': self.comparison_mode,
         'name': self.auto_name,
         'user': self.user,
-
         'created': self.created.isoformat(),
         'updated': self.updated.isoformat(),
         'difference_count': self.difference_count,
@@ -586,6 +623,9 @@ class Job(ndb.Model):
     if not options:
       return d
 
+    # FIXME: DO NOT SUBMIT -- we need to implement an evaluator which can turn
+    # the TaskGraph in to a conforming dict of the representation of a Job, so
+    # that the current UI can display the same status information.
     if OPTION_STATE in options:
       if self.use_execution_engine:
         d.update(
@@ -609,7 +649,10 @@ class Job(ndb.Model):
 
     timings = [t.total_seconds() for t in result.timings]
     return {
-        'estimate': {'timings': timings, 'tags': result.tags},
+        'estimate': {
+            'timings': timings,
+            'tags': result.tags
+        },
         'queue_stats': scheduler.QueueStats(self.configuration)
     }
 
@@ -634,8 +677,12 @@ class Job(ndb.Model):
     title = _ROUND_PUSHPIN + ' Pinpoint job cancelled.'
     comment = u'{}\n{}\n\nCancelled by {}, reason given: {}'.format(
         title, self.url, user, reason)
-    deferred.defer(_PostBugCommentDeferred, self.bug_id, comment,
-                   send_email=True, _retry_options=RETRY_OPTIONS)
+    deferred.defer(
+        _PostBugCommentDeferred,
+        self.bug_id,
+        comment,
+        send_email=True,
+        _retry_options=RETRY_OPTIONS)
 
 
 def _GetBugStatus(issue_tracker, bug_id):
@@ -694,23 +741,23 @@ def _ComputePostOwnerSheriffCCList(commit_infos, authors_with_deltas):
   return owner, sheriff, cc_list
 
 
-def _UpdatePostAndMergeDeferred(
-    difference_details, commit_infos, authors_deltas, bug_id, tags, url):
+def _UpdatePostAndMergeDeferred(difference_details, commit_infos,
+                                authors_deltas, bug_id, tags, url):
   if not bug_id:
     return
 
   commit_cache_key = _GenerateCommitCacheKey(commit_infos)
 
   # Bring it all together.
-  owner, sheriff, cc_list = _ComputePostOwnerSheriffCCList(commit_infos,
-                                                           authors_deltas)
+  owner, sheriff, cc_list = _ComputePostOwnerSheriffCCList(
+      commit_infos, authors_deltas)
   comment = _FormatComment(difference_details, commit_infos, sheriff, tags, url)
 
   issue_tracker = issue_tracker_service.IssueTrackerService(
       utils.ServiceAccountHttp())
 
-  merge_details, cc_list = _ComputePostMergeDetails(
-      issue_tracker, commit_cache_key, cc_list)
+  merge_details, cc_list = _ComputePostMergeDetails(issue_tracker,
+                                                    commit_cache_key, cc_list)
 
   current_bug_status = _GetBugStatus(issue_tracker, bug_id)
   if not current_bug_status:
@@ -723,12 +770,16 @@ def _UpdatePostAndMergeDeferred(
     status = 'Assigned'
     bug_owner = owner
 
-  issue_tracker.AddBugComment(bug_id, comment, status=status,
-                              cc_list=sorted(cc_list), owner=bug_owner,
-                              merge_issue=merge_details.get('id'))
+  issue_tracker.AddBugComment(
+      bug_id,
+      comment,
+      status=status,
+      cc_list=sorted(cc_list),
+      owner=bug_owner,
+      merge_issue=merge_details.get('id'))
 
-  update_bug_with_results.UpdateMergeIssue(
-      commit_cache_key, merge_details, bug_id)
+  update_bug_with_results.UpdateMergeIssue(commit_cache_key, merge_details,
+                                           bug_id)
 
 
 def _UpdateGerritDeferred(*args, **kwargs):
