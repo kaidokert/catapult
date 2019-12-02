@@ -63,7 +63,7 @@ _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
 
 # A sentinel object for default values
-# TODO(jbudorick,perezju): revisit how default values are handled by
+# TODO(jbudorick): revisit how default values are handled by
 # the timeout_retry decorators.
 DEFAULT = object()
 
@@ -1220,8 +1220,8 @@ class DeviceUtils(object):
     This behaviour is consistent with that of command runners in cmd_helper as
     well as Python's own subprocess.Popen.
 
-    TODO(perezju) Change the default of |check_return| to True when callers
-      have switched to the new behaviour.
+    TODO(crbug.com/1029769) Change the default of |check_return| to True when
+    callers have switched to the new behaviour.
 
     Args:
       cmd: A sequence containing the command to run and its arguments, or a
@@ -1313,6 +1313,7 @@ class DeviceUtils(object):
 
     if isinstance(cmd, basestring):
       if not shell:
+        # TODO(crbug.com/1029769): Make this an error instead.
         logger.warning(
             'The command to run should preferably be passed as a sequence of'
             ' args. If shell features are needed (pipes, wildcards, variables)'
@@ -2672,8 +2673,8 @@ class DeviceUtils(object):
     prop_cache = self._cache['getprop']
     if property_name in prop_cache:
       del prop_cache[property_name]
-    # TODO(perezju) remove the option and make the check mandatory, but using a
-    # single shell script to both set- and getprop.
+    # TODO(crbug.com/1029772) remove the option and make the check mandatory,
+    # but using a single shell script to both set- and getprop.
     if check and value != self.GetProp(property_name, cache=False):
       raise device_errors.CommandFailedError(
           'Unable to set property %r on the device to %r'
