@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1965bd58_6dc54a09",
+        "filename": "tracing/tracing/proto/histogram.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-02T12:58:10Z",
+      "side": 1,
+      "message": "Note: would have been nice to name this \"ms\" so it translates to the right string right away in the JSON, but the proto style guide says constants are uppercase.",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "8d6df121d40373325743a41da852b1de3e539ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
