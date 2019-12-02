@@ -1,0 +1,46 @@
+# Copyright 2019 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//testing/test.gni")
+import("//third_party/protobuf/proto_library.gni")
+
+# C++ include dirs will start from the project root dir, e.g. catapult/.
+config("common_config") {
+  include_dirs = [ "../.." ]
+}
+
+source_set("histogram") {
+  configs += [ ":common_config" ]
+  sources = [
+    "value/histogram.cc",
+    "value/histogram.h",
+    "value/running_statistics.h",
+    "value/running_statistics.cc",
+  ]
+  deps = [
+    "//third_party/jsoncpp",
+    "//third_party/protobuf:protobuf_full",
+  ]
+}
+
+test("histogram_unittests") {
+  configs += [ ":common_config"]
+  sources = [
+    "value/histogram_unittest.cc",
+    "value/running_statistics_unittest.cc",
+  ]
+  deps = [
+    ":histogram",
+    ":histogram_proto",
+    "//testing/gtest",
+    "//third_party/jsoncpp",
+  ]
+}
+
+proto_library("histogram_proto") {
+  sources = [
+     "proto/histogram.proto",
+  ]
+  proto_out_dir="tracing/tracing/proto"
+}
