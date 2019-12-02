@@ -12,7 +12,7 @@ can always use this script as the entrypoint.
 ### Install Docker and `docker-compose`.
 
 This process requires that you have Docker installed locally. Googlers, see
-go/install-docker.
+[go/install-docker](http://go/install-docker).
 
 E.g. `sudo apt install docker-ce docker-compose`.
 
@@ -24,6 +24,14 @@ cd dev_dockerfiles
 ```
 
 ## Usage
+
+### Build Images
+
+**You need to manually rebuild the images every time Dockerfile have updated currently.** This process can be automated in `run` script later.
+
+```
+docker-compose build --no-cache
+```
 
 ### Run Python Unit Tests
 
