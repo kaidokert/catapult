@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c93d8f7a_93dfc943",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-02T21:01:48Z",
+      "side": 1,
+      "message": "Just for my curiosity, can you explain why this limitation exists? I personally would have thought that the Dashboard would have just accepted data with additional dimensions without assuming the data will always be \"new\" in some given order.",
+      "revId": "5686b020a78b1ce0a57f169162ca7351a48633e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
