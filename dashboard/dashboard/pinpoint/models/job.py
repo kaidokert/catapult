@@ -390,6 +390,7 @@ class Job(ndb.Model):
       self.difference_count = len(self.state.Differences())
 
     try:
+      # TODO(dberris): Migrate results2 generation to tasks and evaluators.
       results2.ScheduleResults2Generation(self)
     except taskqueue.Error as e:
       logging.debug('Failed ScheduleResults2Generation: %s', str(e))
@@ -586,6 +587,9 @@ class Job(ndb.Model):
     if not options:
       return d
 
+    # FIXME: DO NOT SUBMIT -- we need to implement an evaluator which can turn
+    # the TaskGraph in to a conforming dict of the representation of a Job, so
+    # that the current UI can display the same status information.
     if OPTION_STATE in options:
       if self.use_execution_engine:
         d.update(
