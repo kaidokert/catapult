@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9657229d_449e193c",
+        "filename": "dashboard/dev_dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-02T05:55:40Z",
+      "side": 1,
+      "message": "Suggestion: In hindsight “Initial setup” would be a clearer name.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "58f62606578998f648e99c990058b7072147026e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "889967a1_e37795ae",
+        "filename": "dashboard/dev_dockerfiles/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-02T05:55:40Z",
+      "side": 1,
+      "message": "Should this be mentioned in the “One-time Set Up” section?  IIUC it is necessary to do this at least once.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "58f62606578998f648e99c990058b7072147026e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c06db53d_11a3e655",
+        "filename": "dashboard/dev_dockerfiles/docker-entrypoint.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-02T05:55:40Z",
+      "side": 1,
+      "message": "Perhaps use `set -e` rather than chaining with \u0026\u0026?",
+      "range": {
+        "startLine": 28,
+        "startChar": 43,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "58f62606578998f648e99c990058b7072147026e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
