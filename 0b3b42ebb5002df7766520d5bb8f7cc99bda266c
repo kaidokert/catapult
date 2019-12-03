@@ -16,6 +16,24 @@
       "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a436b40_4ca708b5",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-03T15:46:19Z",
+      "side": 1,
+      "message": "That was my first idea, but then I thought it would look pretty redundant in the future to have the \"TBM\" both in the method name and all the values e.g.:\n\n  options.SetTimelineBasedMetrics([\n    \u0027tbmv3:some_metric\u0027,\n    \u0027tbmv3:another_metric\u0027,\n    ...\n  ])\n\nBut maybe that\u0027s not too bad and more clear? Happy to go with what everyone thinks it\u0027s best.",
+      "parentUuid": "d889f920_8e53c73f",
+      "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
