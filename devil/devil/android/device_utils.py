@@ -1263,7 +1263,10 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
-      return self.adb.Shell(cmd)
+      (output_ar, ret_code) = self.adb.persistent_shell.RunCommand(cmd)
+      if ret_code != 0:
+        raise device_errors.AdbShellCommandFailedError(cmd, output_ar, ret_code)
+      return '\n'.join(output_ar)
 
     def handle_check_return(cmd):
       try:

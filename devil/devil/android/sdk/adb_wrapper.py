@@ -17,6 +17,7 @@ import logging
 import os
 import posixpath
 import re
+import select
 import subprocess
 
 from devil import base_error
@@ -144,6 +145,7 @@ class AdbWrapper(object):
     if not device_serial:
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
+    self._persistent_shell = None
 
   class PersistentShell(object):
     '''Class to use persistent shell for ADB.
@@ -180,6 +182,7 @@ class AdbWrapper(object):
         raise RuntimeError('Persistent shell already running.')
       # pylint: disable=protected-access
       self._process = subprocess.Popen(self._cmd,
+                                       bufsize=0, # Explciitly be unbuffered for clarity
                                        stdin=subprocess.PIPE,
                                        stdout=subprocess.PIPE,
                                        shell=False,
@@ -219,14 +222,48 @@ class AdbWrapper(object):
 
       else:
         def run_cmd(cmd):
-          send_cmd = '( %s ); echo DONE:$?;\n' % cmd.rstrip()
-          self._process.stdin.write(send_cmd)
+          # Ensure there's a newline before DONE as not all commands send a
+          # newline.
+          send_cmd = '( %s ); echo \\\\nDONE:$?\n' % cmd.rstrip()
+
+          # State for the write buffer.
+          amt_written = 0
+
+          # Enter select loop for subprocess to avoid deadlock problems
+          # when reading/writing to children via pipes.
           while True:
-            output_line = self._process.stdout.readline().rstrip()
-            if output_line[:5] == 'DONE:':
-              yield output_line[5:]
+            # Only wake on stdin availability if the full command has not been
+            # sent yet.
+            write_list = []
+            if amt_written < len(send_cmd):
+              write_list = [ self._process.stdin ]
+
+            (rlist, wlist, xlist) = select.select(
+                [self._process.stdout],
+                write_list,
+                [self._process.stdin, self._process.stdout])
+
+            # Non-blocking write to the device. If select returns, then any
+            # write smaller than select.PIPE_BUF is guaranteed not to block.
+            if wlist:
+              bytes_to_write = min(select.PIPE_BUF, len(send_cmd) - amt_written)
+              wrote = send_cmd[amt_written : amt_written + bytes_to_write]
+              self._process.stdin.write(wrote)
+              self._process.stdin.flush()  # Ensure underlying stdio flushes.
+              amt_written += bytes_to_write
+
+            if rlist:
+              # Read pipes until DONE
+              output_line = self._process.stdout.readline().rstrip()
+              if output_line[:5] == 'DONE:':
+                yield output_line[5:]
+                break
+              yield output_line
+
+            if xlist:
+              yield "ADB shell crashed"
+              yield self._process.returncode
               break
-            yield output_line
 
       result = [line for line in run_cmd(command)
                 if not _IsExtraneousLine(line, command)]
@@ -1013,6 +1050,14 @@ class AdbWrapper(object):
       raise device_errors.AdbCommandFailedError(
           ['enable-verity'], output, device_serial=self._device_serial)
     return output
+
+  @property
+  def persistent_shell(self):
+    if self._persistent_shell is None:
+      self._persistent_shell = self.PersistentShell(self._device_serial)
+      self._persistent_shell.Start()
+      self._persistent_shell.WaitForReady()
+    return self._persistent_shell
 
   @property
   def is_emulator(self):
