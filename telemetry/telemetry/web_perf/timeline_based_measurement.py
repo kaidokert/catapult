@@ -56,7 +56,8 @@ class Options(object):
                       "object or valid overhead level string. Given overhead "
                       "level: %s" % overhead_level)
 
-    self._timeline_based_metrics = None
+    self._timeline_based_metrics_v2 = None
+    self._timeline_based_metrics_v3 = None
 
 
   def ExtendTraceCategoryFilter(self, filters):
@@ -80,12 +81,12 @@ class Options(object):
 
   def AddTimelineBasedMetric(self, metric):
     assert isinstance(metric, basestring)
-    if self._timeline_based_metrics is None:
-      self._timeline_based_metrics = []
-    self._timeline_based_metrics.append(metric)
+    if self._timeline_based_metrics_v2 is None:
+      self._timeline_based_metrics_v2 = []
+    self._timeline_based_metrics_v2.append(metric)
 
   def SetTimelineBasedMetrics(self, metrics):
-    """Sets the new-style (TBMv2) metrics to run.
+    """Sets TBMv2 metrics to run.
 
     Metrics are assumed to live in //tracing/tracing/metrics, so the path you
     pass in should be relative to that. For example, to specify
@@ -98,10 +99,26 @@ class Options(object):
     assert isinstance(metrics, list)
     for metric in metrics:
       assert isinstance(metric, basestring)
-    self._timeline_based_metrics = metrics
+    self._timeline_based_metrics_v2 = metrics
+
+  def SetTBMv3Metrics(self, metrics):
+    """Sets TBMv3 metrics to run.
+
+    Metrics are assumed to live in src/tools/perf/core/tbmv3/metrics.
+
+    Args:
+      metrics: A list of metric names.
+    """
+    assert isinstance(metrics, list)
+    for metric in metrics:
+      assert isinstance(metric, basestring)
+    self._timeline_based_metrics_v3 = metrics
 
   def GetTimelineBasedMetrics(self):
-    return self._timeline_based_metrics or []
+    return self._timeline_based_metrics_v2 or []
+
+  def GetTBMv3Metrics(self):
+    return self._timeline_based_metrics_v3
 
 
 class TimelineBasedMeasurement(story_test.StoryTest):
@@ -146,13 +163,13 @@ class TimelineBasedMeasurement(story_test.StoryTest):
     """Collect all possible metrics and added them to results."""
     platform.tracing_controller.RecordBenchmarkMetadata(results)
     traces = platform.tracing_controller.StopTracing()
-    tbm_metrics = self._tbm_options.GetTimelineBasedMetrics()
-    tbm_metrics = (
+    tbmv2_metrics = (
         self._tbm_options.GetTimelineBasedMetrics() +
         results.current_story.GetExtraTracingMetrics())
-    assert tbm_metrics, (
+    assert tbmv2_metrics, (
         'Please specify required metrics using SetTimelineBasedMetrics')
-    results.AddTraces(traces, tbm_metrics=tbm_metrics)
+    results.AddTraces(traces, tbm_metrics=tbmv2_metrics,
+                      tbmv3_metrics=self._tbm_options.GetTBMv3Metrics())
 
   def DidRunStory(self, platform, results):
     """Clean up after running the story."""

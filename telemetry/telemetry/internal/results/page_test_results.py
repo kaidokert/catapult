@@ -306,13 +306,15 @@ class PageTestResults(object):
     assert self._current_story_run, 'Not currently running test.'
     return self._current_story_run.CaptureArtifact(name)
 
-  def AddTraces(self, traces, tbm_metrics=None):
+  def AddTraces(self, traces, tbm_metrics=None, tbmv3_metrics=None):
     """Associate some recorded traces with the current story run.
 
     Args:
       traces: A TraceDataBuilder object with traces recorded from all
         tracing agents.
       tbm_metrics: Optional list of TBMv2 metrics to be computed from the
+        input traces.
+      tbmv3_metrics: Optional list of TBMv3 metrics to be computed from the
         input traces.
     """
     assert self._current_story_run, 'Not currently running test.'
@@ -321,7 +323,9 @@ class PageTestResults(object):
       with self.CaptureArtifact(artifact_name) as artifact_path:
         shutil.copy(filename, artifact_path)
     if tbm_metrics:
-      self._current_story_run.SetTbmMetrics(tbm_metrics)
+      self._current_story_run.SetTbmv2Metrics(tbm_metrics)
+    if tbmv3_metrics:
+      self._current_story_run.SetTbmv3Metrics(tbmv3_metrics)
 
   def Finalize(self, exc_value=None):
     """Finalize this object to prevent more results from being recorded.

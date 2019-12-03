@@ -86,7 +86,8 @@ class StoryRun(object):
     self._story = story
     self._test_prefix = test_prefix
     self._index = index
-    self._tbm_metrics = []
+    self._tbmv2_metrics = []
+    self._tbmv3_metrics = []
     self._skip_reason = None
     self._skip_expected = False
     self._failed = False
@@ -122,10 +123,15 @@ class StoryRun(object):
     # It's an error to record more measurements after this point.
     self._measurements = None
 
-  def SetTbmMetrics(self, metrics):
-    assert not self._tbm_metrics, 'Metrics have already been set'
+  def SetTbmv2Metrics(self, metrics):
+    assert not self._tbmv2_metrics, 'Metrics have already been set'
     assert len(metrics) > 0, 'Metrics should not be empty'
-    self._tbm_metrics = metrics
+    self._tbmv2_metrics = metrics
+
+  def SetTbmv3Metrics(self, metrics):
+    assert not self._tbmv3_metrics, 'Metrics have already been set'
+    assert len(metrics) > 0, 'Metrics should not be empty'
+    self._tbmv3_metrics = metrics
 
   def SetFailed(self, failure_str):
     self._failed = True
@@ -172,8 +178,10 @@ class StoryRun(object):
     }
 
   def _IterTags(self):
-    for metric in self._tbm_metrics:
+    for metric in self._tbmv2_metrics:
       yield 'tbmv2', metric
+    for metric in self._tbmv3_metrics:
+      yield 'tbmv3', metric
     if 'GTEST_SHARD_INDEX' in os.environ:
       yield 'shard', os.environ['GTEST_SHARD_INDEX']
     for tag in self.story.GetStoryTagsList():
@@ -198,6 +206,11 @@ class StoryRun(object):
   def tbm_metrics(self):
     """The TBMv2 metrics that will computed on this story run."""
     return self._tbm_metrics
+
+  @property
+  def tbmv3_metrics(self):
+    """The TBMv3 metrics that will computed on this story run."""
+    return self._tbmv3_metrics
 
   @property
   def status(self):

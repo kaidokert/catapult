@@ -83,7 +83,8 @@ class StoryRunTest(unittest.TestCase):
           intermediate_dir=tempdir)
       with run.CreateArtifact('logs.txt') as log_file:
         log_file.write('hello\n')
-      run.SetTbmMetrics(['metric1', 'metric2'])
+      run.SetTbmv2Metrics(['metric1', 'metric2'])
+      run.SetTbmv3Metrics(['metric3', 'metric4'])
       run.Finish()
       entry = run.AsDict()
       self.assertEqual(
@@ -105,6 +106,8 @@ class StoryRunTest(unittest.TestCase):
                   'tags': [
                       {'key': 'tbmv2', 'value': 'metric1'},
                       {'key': 'tbmv2', 'value': 'metric2'},
+                      {'key': 'tbmv3', 'value': 'metric3'},
+                      {'key': 'tbmv3', 'value': 'metric4'},
                       {'key': 'shard', 'value': '7'},
                       {'key': 'story_tag', 'value': 'tag1'},
                       {'key': 'story_tag', 'value': 'tag2'},
