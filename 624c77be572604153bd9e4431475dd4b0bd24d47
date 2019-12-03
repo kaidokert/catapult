@@ -16,6 +16,24 @@
       "revId": "624c77be572604153bd9e4431475dd4b0bd24d47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958cca18_2eaac0df",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-12-03T10:12:41Z",
+      "side": 1,
+      "message": "I thought about this, but checking for the correct interned data would require parsing protobufs, which is not implemented so far.\n\nThe other option is to mock all proto-writing out and test for the correct methods to be called. But I feel doubtful about mock-tests in general, in my experience they never help to prevent errors, just make it harder to refactor anything.",
+      "parentUuid": "414bdea3_8f580ddf",
+      "revId": "624c77be572604153bd9e4431475dd4b0bd24d47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
