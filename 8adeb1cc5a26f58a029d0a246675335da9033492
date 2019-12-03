@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5a67184_2ef5b66c",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-03T12:55:16Z",
+      "side": 0,
+      "message": "I guess this TODO isn\u0027t adding much info; if someone needs this later it\u0027s clear what to do. So removing it completely.",
+      "revId": "8adeb1cc5a26f58a029d0a246675335da9033492",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
