@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d889f920_8e53c73f",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2019-12-03T15:39:02Z",
+      "side": 1,
+      "message": "Maybe use \"tbmv2\"/\"tbmv3\" prefixes to be consistent with how metrics are represented in test results?",
+      "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
