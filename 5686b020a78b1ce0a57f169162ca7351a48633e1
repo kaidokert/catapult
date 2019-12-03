@@ -16,6 +16,24 @@
       "revId": "5686b020a78b1ce0a57f169162ca7351a48633e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5db256a8_7551da3c",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-03T09:58:44Z",
+      "side": 1,
+      "message": "I think the idea was that sometimes when changing the configuration of a bot it would start sending some very different \"point ids\" to the same time series, causing a lot of confusion. For example possibly in the past some bots used the \"build number\" as a point id; but those might restart from 0 if the builder somehow got restarted. It was better to fail hard in such case, instead of silently poluting a timeseries with data in the wrong order. The docstring in _IsAcceptableRowId explains a bit more of this.\n\nI believe almost all bots today use the chromium commit position as point id, so this is less of a concern. Also this only applies to add_point as far as I can tell, don\u0027t know if there is anything similar for add_histogram.",
+      "parentUuid": "c93d8f7a_93dfc943",
+      "revId": "5686b020a78b1ce0a57f169162ca7351a48633e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
