@@ -321,6 +321,10 @@ class BrowserFinderOptions(optparse.Values):
     parser.parse_args = ParseArgs
     return parser
 
+  def IsBrowserTypeRelevant(self, browser_type):
+    return (browser_type == self.browser_type or
+            self.browser_type in ('list', 'any',))
+
   # TODO(eakuefner): Factor this out into OptionBuilder pattern
   def BuildRemotePlatformOptions(self):
     if self.device or self.android_blacklist_file:
