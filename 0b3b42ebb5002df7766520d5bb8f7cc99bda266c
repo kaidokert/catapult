@@ -34,6 +34,24 @@
       "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b54736b4_ffdb7c8d",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-12-03T15:51:31Z",
+      "side": 1,
+      "message": "Either is fine with me.",
+      "parentUuid": "4a436b40_4ca708b5",
+      "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
