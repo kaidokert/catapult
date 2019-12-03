@@ -52,6 +52,47 @@
       "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b328e3fe_96b1b6a6",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-03T19:36:58Z",
+      "side": 1,
+      "message": "I prefer \"tbmv3\"/\"tbmv2\" since it makes it clear which thing is being versioned.",
+      "parentUuid": "b54736b4_ffdb7c8d",
+      "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c17358_b28346af",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-03T19:36:58Z",
+      "side": 1,
+      "message": "Can we add a multiline WARNING message that gets printed if you run tbmv3 metrics that explains that TBMv3 is WIP and could break at any time so you should not depend on it? something like\n\nlogging.warn(\"\"\"\nYou are running TBMv3 metric %s. Please note that\nTBMv3 is WIP and may or may not be supported longterm.\nNothing critical should be done in TBMv3 yet. \u003clink to bug with details\u003e\"\"\" % metric)",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 16
+      },
+      "revId": "0b3b42ebb5002df7766520d5bb8f7cc99bda266c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
