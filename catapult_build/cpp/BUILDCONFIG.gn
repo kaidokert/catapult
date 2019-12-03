@@ -1,0 +1,118 @@
+# Copyright 2019 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# Implementation note: this stripped-down config was copied from Skia.
+# See https://cs.chromium.org/chromium/src/third_party/skia/gn/.
+is_catapult_standalone = true
+
+# It's best to keep the names and defaults of is_foo flags consistent with Chrome.
+declare_args() {
+  is_official_build = false
+  is_component_build = false
+
+  sanitize = ""
+
+  ar = "ar"
+  cc = "cc"
+  cxx = "c++"
+
+  werror = false
+}
+
+declare_args() {
+  is_debug = !is_official_build
+}
+
+assert(!(is_debug && is_official_build))
+
+# Platform detection
+if (target_os == "") {
+  target_os = host_os
+}
+if (current_os == "") {
+  current_os = target_os
+}
+
+is_android = current_os == "android"
+is_fuchsia = current_os == "fuchsia"
+is_ios = current_os == "ios" || current_os == "tvos"
+is_tvos = current_os == "tvos"
+is_linux = current_os == "linux"
+is_mac = current_os == "mac"
+is_win = current_os == "win"
+
+# Only Linux supported for now.
+assert(is_linux)
+
+if (target_cpu == "") {
+  target_cpu = host_cpu
+}
+if (target_cpu == "x86_64") {
+  target_cpu = "x64"
+}
+if (current_cpu == "") {
+  current_cpu = target_cpu
+}
+
+is_clang = is_android || is_ios || is_mac || is_fuchsia ||
+           (cc == "clang" && cxx == "clang++")
+if (!is_clang && !is_win) {
+  is_clang = exec_script("//catapult_build/cpp/is_clang.py",
+                         [
+                           cc,
+                           cxx,
+                         ],
+                         "value")
+}
+
+# Default configs
+default_configs = [
+  "//catapult_build/cpp:default",
+  "//catapult_build/cpp:no_exceptions",
+  "//catapult_build/cpp:no_rtti",
+]
+if (!is_debug) {
+  default_configs += [
+    "//catapult_build/cpp:optimize",
+    "//catapult_build/cpp:NDEBUG",
+  ]
+}
+if (!is_official_build) {
+  default_configs += [
+    "//catapult_build/cpp:debug_symbols",
+    "//catapult_build/cpp:warnings",
+  ]
+}
+default_configs += [
+  "//catapult_build/cpp:warnings_except_public_headers",
+  "//catapult_build/cpp:extra_flags",
+]
+
+set_defaults("executable") {
+  configs = [ "//catapult_build/cpp:executable" ] + default_configs
+}
+
+set_defaults("source_set") {
+  configs = default_configs
+}
+
+set_defaults("static_library") {
+  configs = default_configs
+}
+
+set_defaults("shared_library") {
+  configs = default_configs
+}
+
+set_defaults("component") {
+  configs = default_configs
+  if (!is_component_build) {
+    complete_static_lib = true
+  }
+}
+
+# GCC-like toolchains, including Clang.
+set_default_toolchain("//catapult_build/cpp/toolchain:gcc_like")
+default_toolchain_name = "gcc_like"
+host_toolchain = "gcc_like_host"
