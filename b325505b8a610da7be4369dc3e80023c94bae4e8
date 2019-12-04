@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc02350b_95e604b9",
+        "filename": "devil/bin/generate_md_docs",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-04T14:08:19Z",
+      "side": 1,
+      "message": "This failed because of the missing import.",
+      "revId": "b325505b8a610da7be4369dc3e80023c94bae4e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6814979_12be7f70",
+        "filename": "devil/devil/utils/markdown.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-04T14:08:19Z",
+      "side": 1,
+      "message": "These were sorting \"by obj\" which is not stable.",
+      "revId": "b325505b8a610da7be4369dc3e80023c94bae4e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "220d0cdb_8258bb59",
+        "filename": "devil/devil/utils/markdown.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-04T14:08:19Z",
+      "side": 1,
+      "message": "It took me a while before I stumbled with this script. I think it\u0027s more useful to mention that rather than the individual command used to render this file.",
+      "revId": "b325505b8a610da7be4369dc3e80023c94bae4e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
