@@ -16,6 +16,24 @@
       "revId": "150afd0aa5e93cbcacba7de3a7fff72033aa0335",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8d87d37_86c85ca0",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T23:58:10Z",
+      "side": 1,
+      "message": "I think whether or not this is `job.exception_category` or `job.exception_details[\u0027category\u0027]` in NDB is largely orthogonal to how we export this information to BigQuery.",
+      "parentUuid": "59ad6ef4_4ccc3858",
+      "revId": "150afd0aa5e93cbcacba7de3a7fff72033aa0335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
