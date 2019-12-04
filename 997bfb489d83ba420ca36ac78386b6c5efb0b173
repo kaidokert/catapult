@@ -19,6 +19,47 @@
     },
     {
       "key": {
+        "uuid": "59d8325c_c9bfd085",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 3322,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "Agreed...I just couldn\u0027t figure out how to flag it yesterday. New code is hopefully better 😊",
+      "parentUuid": "6ea3e2bc_1ff3afe5",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd972d1_68e08408",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "I\u0027ve been puzzling over this piece of code for a long while. It just didn\u0027t seem possible given how shells work and the adb protocol. Maybe we were seeing this behavior because multiple threads were using a PersistentShell?\n\nAs such, I just decided to delete it. It returns a modest amount of time since all that extra string processing ads up fast, especially in python where each rstrip(), etc., would cause string allocation and/or string pooling shenanigans.\n\nThoughts on removing?",
+      "range": {
+        "startLine": 114,
+        "startChar": 38,
+        "endLine": 114,
+        "endChar": 0
+      },
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9a9fef7b_b87c5d6e",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -33,6 +74,24 @@
       "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65b02412_69451412",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a9fef7b_b87c5d6e",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +112,24 @@
     },
     {
       "key": {
+        "uuid": "b4489826_aea322ab",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "061c7b28_6964a444",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1c8c020_756b1696",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -64,6 +141,24 @@
       "writtenOn": "2019-12-04T19:28:33Z",
       "side": 1,
       "message": "Does start_found / StArT serve a purpose? If it does, it\u0027s not apparent from the code; please add a clarifying comment. If not, please remove it.",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aca3511c_46be01a7",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "I did this initially because of the spurious lines comment. However, you\u0027re right...it shouldn\u0027t be needed. Deleted.",
+      "parentUuid": "a1c8c020_756b1696",
       "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -87,6 +182,24 @@
     },
     {
       "key": {
+        "uuid": "48aa5ce9_89c45211",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93efce76_13ab5613",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "651aa1cc_e9de50ef",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -104,6 +217,24 @@
     },
     {
       "key": {
+        "uuid": "6224d8c3_a6e75183",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "651aa1cc_e9de50ef",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80169134_9f25c577",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -115,6 +246,24 @@
       "writtenOn": "2019-12-04T19:28:33Z",
       "side": 1,
       "message": "If this isn\u0027t going to be a context manager, I\u0027d lean toward it being a constant that we set at initialization. Failing that, I would prefer that this either follow the Enable/Disable pattern that we use elsewhere or just be something like \"SetPersistent\".\n\nAlso, do you envision a scenario where we would disable persistent shell after enabling it?",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5001ccd_b6fe3d89",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-04T23:58:30Z",
+      "side": 1,
+      "message": "So looking at the way the client code is currently written, I don\u0027t think a context manager ends up making sense. It seems like a bunch of adb wrappers are minted in a thread pool and then passed to various other functions to run commands on.  There isn\u0027t a real \"scope\" under which we could easily bucket things.\n\nOf these options, I also agree that something set at initialization is probably cleanest.\n\nI can\u0027t imagine you wanting to switch between using a streaming-mode of sending command back to sending direct commands. From the caller perspective, especially since each command is in a subshell on the device, this should be transparent on normal usage. Sure, someone could accidentally mangle the input comamndline such that they can affect the global environment, butbut not sure it\u0027s worth defending against that?",
+      "parentUuid": "80169134_9f25c577",
       "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
