@@ -34,6 +34,24 @@
       "revId": "3c68278f4bdd42ae32e47ff11119dc5d89f4dd38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbed89a9_a0443bac",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-12-04T19:07:11Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "2f001f84_655de31d",
+      "revId": "3c68278f4bdd42ae32e47ff11119dc5d89f4dd38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
