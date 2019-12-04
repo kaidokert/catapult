@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "be3a1914_515f73c0",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-04T06:41:25Z",
+      "side": 1,
+      "message": "Yes, that\u0027s an oversight -- I just realised that we need to handle the telemetry flags especially first, so I\u0027m refactoring that a bit more so we can share some logic between the quest(s) and the graph creation.",
+      "parentUuid": "a3ca9956_db361d62",
+      "range": {
+        "startLine": 125,
+        "startChar": 38,
+        "endLine": 126,
+        "endChar": 29
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "469f6cac_79a054a8",
         "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0db629f3_7de2487b",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-04T06:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "469f6cac_79a054a8",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 69
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "c3737240_3ab74cd4",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-04T06:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5a66c07_33c6594b",
+      "range": {
+        "startLine": 223,
+        "startChar": 10,
+        "endLine": 223,
+        "endChar": 30
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "845f257a_a84159aa",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 12
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "bcc5fa25_b0471364",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-04T06:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "845f257a_a84159aa",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 16
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22929caa_1a0a5639",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 12
@@ -160,6 +256,30 @@
       "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3064205b_4ae02683",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-04T06:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22929caa_1a0a5639",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 78
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
