@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7580c5e7_c7786a28",
+        "filename": "tracing/tracing/proto/histogram.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1275653
+      },
+      "writtenOn": "2019-12-04T00:19:55Z",
+      "side": 1,
+      "message": "If we are doing a new format, maybe we can name this things shorter?)",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "8d6df121d40373325743a41da852b1de3e539ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1965bd58_6dc54a09",
         "filename": "tracing/tracing/proto/histogram.proto",
         "patchSetId": 5
