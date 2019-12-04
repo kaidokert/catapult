@@ -1,6 +1,8 @@
 # Copyright 2014 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+import logging
+
 from telemetry.timeline import chrome_trace_category_filter
 from telemetry.timeline import tracing_config
 from telemetry.web_perf import story_test
@@ -85,19 +87,38 @@ class Options(object):
     self._timeline_based_metrics.append(metric)
 
   def SetTimelineBasedMetrics(self, metrics):
-    """Sets the new-style (TBMv2) metrics to run.
+    """Sets the Timeline Based Metrics (TBM) to run.
 
-    Metrics are assumed to live in //tracing/tracing/metrics, so the path you
-    pass in should be relative to that. For example, to specify
-    sample_metric.html, you should pass in ['sample_metric.html'].
+    TBMv2 metrics are assumed to live in catapult //tracing/tracing/metrics;
+    for a metric defined e.g. in 'sample_metric.html' you should pass
+    'tbmv2:sampleMetric' or just 'sampleMetric' (note camel cased names).
+
+    TBMv3 metrics live in chromium //tools/perf/core/tbmv3/metrics, for a
+    metric defined e.g. in a 'dummy_metric.sql' file you should pass the
+    name 'tbmv3:dummy_metric'.
 
     Args:
-      metrics: A list of strings giving metric paths under
-          //tracing/tracing/metrics.
+      metrics: A list of strings with metric names as described above.
     """
     assert isinstance(metrics, list)
     for metric in metrics:
       assert isinstance(metric, basestring)
+    tbmv3_metrics = [m[6:] for m in metrics if m.startswith('tbmv3:')]
+    if tbmv3_metrics:
+      if self._config.chrome_trace_config.trace_format == 'proto':
+        logging.warning(
+            'The following TBMv3 metrics have been selected to run: %s. '
+            'Please note that TBMv3 is an experimental feature in active '
+            'development, and may not be supported in the future in its '
+            'current form. Follow crbug.com/1012687 for updates and to '
+            'discuss your use case before deciding to rely on this feature.',
+            ', '.join(tbmv3_metrics))
+      else:
+        logging.warning(
+            'Selected TBMv3 metrics will not be computed because they are not '
+            "supported in Chrome's default trace format. "
+            'Use --experimental-proto-trace-format if you want these metrics '
+            'to be computed.')
     self._timeline_based_metrics = metrics
 
   def GetTimelineBasedMetrics(self):
