@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a8d1cb2_22a4cd90",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-12-04T18:57:00Z",
+      "side": 1,
+      "message": "nits: You could also append \u0027android-not-weblayer\u0027 tag if the browser is not the weblayer type.",
+      "revId": "3c68278f4bdd42ae32e47ff11119dc5d89f4dd38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
