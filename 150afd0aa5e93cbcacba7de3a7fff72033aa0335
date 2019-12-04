@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59ad6ef4_4ccc3858",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-04T06:40:19Z",
+      "side": 1,
+      "message": "I like this approach, but wonder whether we can make this a top-level Job property as well (the category) so that we can export that information in BigQuery and track this over time?",
+      "revId": "150afd0aa5e93cbcacba7de3a7fff72033aa0335",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
