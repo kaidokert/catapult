@@ -17,7 +17,9 @@ import logging
 import os
 import posixpath
 import re
+import select
 import subprocess
+import threading
 
 from devil import base_error
 from devil import devil_env
@@ -144,6 +146,7 @@ class AdbWrapper(object):
     if not device_serial:
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
+    self._persistent_shell = None
 
   class PersistentShell(object):
     '''Class to use persistent shell for ADB.
@@ -219,14 +222,59 @@ class AdbWrapper(object):
 
       else:
         def run_cmd(cmd):
-          send_cmd = '( %s ); echo DONE:$?;\n' % cmd.rstrip()
-          self._process.stdin.write(send_cmd)
+          # Ensure there's a newline before DONE as not all commands send a
+          # newline.
+          send_cmd = 'echo StArT;( %s ); echo \\\\nDoNe:$?\n' % cmd.rstrip()
+
+          # State for the write buffer.
+          amt_written = 0
+
+          found_start = False
+
+          # Enter select loop for subprocess to avoid deadlock problems
+          # when reading/writing to children via pipes.
           while True:
-            output_line = self._process.stdout.readline().rstrip()
-            if output_line[:5] == 'DONE:':
-              yield output_line[5:]
+            # Only wake on stdin availability if the full command has not been
+            # sent yet.
+            write_list = []
+            if amt_written < len(send_cmd):
+              write_list = [self._process.stdin]
+
+            (rlist, wlist, xlist) = select.select(
+                [self._process.stdout],
+                write_list,
+                [self._process.stdin, self._process.stdout])
+
+            # Non-blocking write to the device. If select returns, then any
+            # write smaller than select.PIPE_BUF is guaranteed not to block.
+            if wlist:
+              bytes_to_write = min(select.PIPE_BUF, len(send_cmd) - amt_written)
+              wrote = send_cmd[amt_written : amt_written + bytes_to_write]
+              self._process.stdin.write(wrote)
+              self._process.stdin.flush()  # Ensure underlying stdio flushes.
+              amt_written += bytes_to_write
+
+            # Read pipe extracting between StArT and DoNe
+            if rlist:
+              output_line = self._process.stdout.readline().rstrip()
+              if not found_start:
+                if output_line == 'StArT':
+                  print ">> %d %r" % (threading.current_thread().ident, output_line)
+                  found_start = True
+                else:
+                  print "useless line %r" % output_line
+              else:
+                print "content line %r" % output_line
+                if output_line[:5] == 'DoNe:':
+                  yield output_line[5:]
+                  print "breaking\n"
+                  break
+                yield output_line
+
+            if xlist:
+              yield "ADB shell crashed"
+              yield self._process.returncode
               break
-            yield output_line
 
       result = [line for line in run_cmd(command)
                 if not _IsExtraneousLine(line, command)]
@@ -341,6 +389,30 @@ class AdbWrapper(object):
         timeout=timeout,
         env=self._ADB_ENV,
         check_status=check_error)
+
+
+  def _Shell(self, command, timeout, retries):
+    """Runs a command on the device by executing the "adb shell".
+
+    This is a low-level wrapper for adb shell.
+
+    Returns:
+      (output, status)
+
+    Raises:
+      device_errors.AdbCommandFailedError: If the shell iteself crashes
+    """
+    args = ['shell', '( %s );echo %%$?' % command.rstrip()]
+    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
+    output_end = output.rfind('%')
+
+    try:
+      return (output[:output_end], int(output[output_end + 1:]))
+    except ValueError:
+      logger.error('exit status of shell command %r missing.', command)
+      raise device_errors.AdbShellCommandFailedError(
+        command, output, status=None, device_serial=self._device_serial)
+
 
   def __eq__(self, other):
     """Consider instances equal if they refer to the same device.
@@ -570,25 +642,13 @@ class AdbWrapper(object):
       device_errors.AdbCommandFailedError: If the exit status doesn't match
         |expect_status|.
     """
-    if expect_status is None:
-      args = ['shell', command]
+    if self._persistent_shell:
+      (output, status) = self._persistent_shell.RunCommand(command)
+      output = '\n'.join(output)
     else:
-      args = ['shell', '( %s );echo %%$?' % command.rstrip()]
-    output = self._RunDeviceAdbCmd(args, timeout, retries, check_error=False)
-    if expect_status is not None:
-      output_end = output.rfind('%')
-      if output_end < 0:
-        # causes the status string to become empty and raise a ValueError
-        output_end = len(output)
+      (output, status) = self._Shell(command, timeout, retries)
 
-      try:
-        status = int(output[output_end + 1:])
-      except ValueError:
-        logger.warning('exit status of shell command %r missing.', command)
-        raise device_errors.AdbShellCommandFailedError(
-            command, output, status=None, device_serial=self._device_serial)
-      output = output[:output_end]
-      if status != expect_status:
+    if expect_status is not None and status != expect_status:
         raise device_errors.AdbShellCommandFailedError(
             command, output, status=status, device_serial=self._device_serial)
     return output
@@ -1013,6 +1073,22 @@ class AdbWrapper(object):
       raise device_errors.AdbCommandFailedError(
           ['enable-verity'], output, device_serial=self._device_serial)
     return output
+
+  def UsePersistentShell(self, is_persistent=True):
+    """Creates a PersistentShell that will service all calls to self.Shell()
+
+    Args:
+        is_persistent: True if a PersistentShell should be used. False will
+            disable and destroy an existing PersistentShell.
+    """
+    if not is_persistent:
+      if self._persistent_shell:
+        self._persistent_shell.stop()
+      self._persistent_shell = none
+    elif self._persistent_shell is None:
+      self._persistent_shell = self.PersistentShell(self._device_serial)
+      self._persistent_shell.Start()
+      self._persistent_shell.WaitForReady()
 
   @property
   def is_emulator(self):
