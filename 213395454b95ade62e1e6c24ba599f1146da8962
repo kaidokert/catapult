@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3ca9956_db361d62",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "Isn\u0027t `arguments` a dict?  I don\u0027t think `set() \u0026 dict()` is valid: “TypeError: unsupported operand type(s) for \u0026: \u0027set\u0027 and \u0027dict\u0027”.\n\n(Does this indicate a gap in test coverage?)",
+      "range": {
+        "startLine": 125,
+        "startChar": 38,
+        "endLine": 126,
+        "endChar": 29
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "469f6cac_79a054a8",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this is validating.  If it\u0027s got this far it\u0027s parseable JSON, so presumably it\u0027s invalid as a swarming request, but the more swarming-specific checks like “if not message” will diagnose that more clearly.\n\nThis is a very narrow check that would trip for the request.body being `{}` or `[]` or `0`, but not e.g. `1` or `[\"foo\"]`.  But all the possible inputs that would fail this would also fail the subsequent “if not message” check, for instance.  The checks like “if not message” more clearly express what the requirements are, so I suggest removing this redundant check.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 69
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1db826fc_8ae9b72e",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "Gotta love a payload of JSON containing base64-encoded JSON.  We must go deeper!",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1092a58f_738b8d96",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "…Oh look, it\u0027s actually JSON containing base64-encoded JSON, which contains more base64-encoded JSON.  We went deeper.\n\n(Nice twist that _this_ one uses the urlsafe variant of base64 though.  Just to keep you on your toes.)",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5a66c07_33c6594b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "This arg is missing from the docstring.",
+      "range": {
+        "startLine": 223,
+        "startChar": 10,
+        "endLine": 223,
+        "endChar": 30
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "845f257a_a84159aa",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "This probably deserves a comment?",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 16
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22929caa_1a0a5639",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-04T03:49:40Z",
+      "side": 1,
+      "message": "Please fix ;)",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 78
+      },
+      "revId": "213395454b95ade62e1e6c24ba599f1146da8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
