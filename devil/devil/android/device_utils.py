@@ -3319,6 +3319,7 @@ class DeviceUtils(object):
       else:
         devices = []
         for adb in adb_wrapper.AdbWrapper.Devices():
+          adb.UsePersistentShell()
           serial = adb.GetDeviceSerial()
           if not blacklisted(serial):
             device = cls(_CreateAdbWrapper(adb), **kwargs)
