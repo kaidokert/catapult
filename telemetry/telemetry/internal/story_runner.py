@@ -21,6 +21,7 @@ from telemetry.core import exceptions
 from telemetry.internal.actions import page_action
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import browser_finder_exceptions
+from telemetry.internal.platform import perfetto_service
 from telemetry.internal.results import results_options
 from telemetry.internal.util import exception_formatter
 from telemetry import page
@@ -275,6 +276,16 @@ def RunStorySet(test, story_set, finder_options, results, max_failures=None):
   effective_max_failures = finder_options.max_failures
   if effective_max_failures is None:
     effective_max_failures = max_failures
+
+  PERFETTO_DIR = '/usr/local/google/code/perfetto/out/android'
+  platform_backend = possible_browser.platform._platform_backend
+  perfetto = perfetto_service.PerfettoService(platform_backend, PERFETTO_DIR)
+  perfetto.StartTracing(test._tbm_options.config)
+  raw_input('Press enter!')
+  perfetto.StopTracing(None)
+  return
+  perfetto.SetUp()
+  return
 
   state = None
   # TODO(crbug.com/866458): unwind the nested blocks
