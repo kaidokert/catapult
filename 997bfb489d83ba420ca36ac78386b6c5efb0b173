@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ea3e2bc_1ff3afe5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 3322,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "Please start this behind a flag. Default-on everywhere is very risky.",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a9fef7b_b87c5d6e",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "exceptions raised from devil should be subclasses of https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/base_error.py; for something like this, you\u0027d probably want a subclass of https://codesearch.chromium.org/chromium/src/third_party/catapult/devil/devil/android/device_errors.py?rcl\u003d7ff7c98ede3eb80e653aa6237338a5869d209778\u0026l\u003d31. Maybe just AdbShellCommandFailedError?",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "061c7b28_6964a444",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "`wrote` makes it sounds like this is a slice containing what has already been written; please rename it to something like `to_write`.",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c8c020_756b1696",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "Does start_found / StArT serve a purpose? If it does, it\u0027s not apparent from the code; please add a clarifying comment. If not, please remove it.",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93efce76_13ab5613",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "nit: parens around (output, status) here are unnecessary",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "651aa1cc_e9de50ef",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "nit: same",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80169134_9f25c577",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-04T19:28:33Z",
+      "side": 1,
+      "message": "If this isn\u0027t going to be a context manager, I\u0027d lean toward it being a constant that we set at initialization. Failing that, I would prefer that this either follow the Enable/Disable pattern that we use elsewhere or just be something like \"SetPersistent\".\n\nAlso, do you envision a scenario where we would disable persistent shell after enabling it?",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
