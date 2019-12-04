@@ -200,7 +200,11 @@ class Benchmark(command_line.Command):
       tbm_options.config.atrace_config.categories = categories
     if options and options.enable_systrace:
       tbm_options.config.chrome_trace_config.SetEnableSystrace()
-    enable_proto_format = options and options.experimental_proto_trace_format
+    if options and options.experimental_system_tracing:
+      enable_proto_format = True
+      tbm_options.config.EnableExperimentalSystemTracing()
+    else:
+      enable_proto_format = options and options.experimental_proto_trace_format
     if enable_proto_format:
       tbm_options.config.chrome_trace_config.SetProtoTraceFormat()
     # TODO(crbug.com/1012687): Remove or adjust the following warnings as the
