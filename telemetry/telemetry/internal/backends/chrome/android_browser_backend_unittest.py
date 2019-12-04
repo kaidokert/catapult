@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import logging
 import os
 import posixpath
 
@@ -16,7 +17,7 @@ class AndroidBrowserBackendTest(
   def testProfileDir(self):
     self.assertIsNotNone(self._browser_backend.profile_directory)
 
-  @decorators.Disabled('all')  # crbug.com/1030208
+  @decorators.Enabled('android')
   def testPullMinidumps(self):
     """Test that minidumps can be pulled off the device and their mtimes set."""
     def GetDumpLocation():
@@ -26,7 +27,8 @@ class AndroidBrowserBackendTest(
     time_offset = platform_backend.GetDeviceHostClockOffset()
     platform_backend.GetDumpLocation = GetDumpLocation
     remote_path = posixpath.join(GetDumpLocation(), 'Crashpad', 'pending')
-    self._browser_backend.device.RunShellCommand(['mkdir', '-p', remote_path])
+    logging.error(self._browser_backend.device.RunShellCommand(
+        ['mkdir', '-p', remote_path], check_return=True))
     # Android's implementation of "touch" doesn't support setting time via
     # Unix timestamps, only via dates, which are affected by timezones. So,
     # figure out what the device's timestamp for January 2nd, 1970 is and use
@@ -49,7 +51,7 @@ class AndroidBrowserBackendTest(
     self.assertTrue(os.path.exists(local_path))
     self.assertEqual(os.path.getmtime(local_path), device_mtime - time_offset)
 
-  @decorators.Disabled('all')  # crbug.com/1030208
+  @decorators.Enabled('android')
   def testPullMinidumpsOnlyNew(self):
     """Tests that a minidump is not pulled to the host if it already exists."""
     def GetDumpLocation():
