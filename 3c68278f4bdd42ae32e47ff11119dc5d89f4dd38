@@ -16,6 +16,24 @@
       "revId": "3c68278f4bdd42ae32e47ff11119dc5d89f4dd38",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f001f84_655de31d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-04T19:01:39Z",
+      "side": 1,
+      "message": "I think that instead we should have something like\nandroid-clank\nI think that these \u0027android-not-X\u0027 tags are confusing.\n\nI\u0027ll wait until there is need before I do that though.",
+      "parentUuid": "1a8d1cb2_22a4cd90",
+      "revId": "3c68278f4bdd42ae32e47ff11119dc5d89f4dd38",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
