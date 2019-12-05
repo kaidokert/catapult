@@ -15,19 +15,27 @@ def GetFromBrowserOptions(browser_options):
       '--no-proxy-server flag is disallowed as Chrome needs to be route to '
       'ts_proxy_server')
 
-  # Merge multiple instances of --enable-features and --disable-features since
-  # Chrome ends up using whatever switch it finds last instead of merging
-  # multiple instances.
+  # Merge multiple instances of --enable-features, --disable-features,
+  # --force-fieldtrials and --force-fieldtrial-params since Chrome ends up using
+  # whatever switch it finds last instead of merging multiple instances.
   # TODO(crbug.com/799411): Remove this once the smarter ChromeArgsBuilder is
   # implemented.
   args = []
   disable_features = set()
   enable_features = set()
+  force_fieldtrials = set()
+  force_fieldtrial_params = set()
   for arg in browser_options.extra_browser_args:
     if arg.startswith('--disable-features='):
       disable_features.update(arg.split('=', 1)[1].split(','))
     elif arg.startswith('--enable-features='):
       enable_features.update(arg.split('=', 1)[1].split(','))
+    elif arg.startswith('--force-fieldtrials='):
+      # A trailing '/' is optional. Do not split by '/' as that would separate
+      # associated specifiers.
+      force_fieldtrials.update(arg.split('=', 1)[1].rstrip('/'))
+    elif arg.startswith('--force-fieldtrial-params='):
+      force_fieldtrial_params.update(arg.split('=', 1)[1].split(','))
     else:
       args.append(arg)
 
@@ -35,6 +43,11 @@ def GetFromBrowserOptions(browser_options):
     args.append('--disable-features=%s' % ','.join(disable_features))
   if enable_features:
     args.append('--enable-features=%s' % ','.join(enable_features))
+  if force_fieldtrials:
+    args.append('--force-fieldtrials=%s' % '/'.join(force_fieldtrials))
+  if force_fieldtrial_params:
+    args.append('--force-fieldtrial-params=%s' % '/'.join(
+        force_fieldtrial_params))
 
   args.append('--enable-net-benchmarking')
   args.append('--metrics-recording-only')
