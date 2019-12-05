@@ -234,6 +234,30 @@
     },
     {
       "key": {
+        "uuid": "788c0378_efdb8609",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T06:04:17Z",
+      "side": 1,
+      "message": "Okay, but you\u0027re already having to decide to not support regular expressions which is a little weird. I\u0027m not convinced yet that this is going to be useful, but I\u0027ll suspend disbelief for now so that we can gather data in the meantime.",
+      "parentUuid": "2f410ad6_4ebd2d21",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e12c020a_8a22f653",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
