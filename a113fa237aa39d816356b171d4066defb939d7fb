@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a5ed676_a08f919b",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2019-12-05T10:59:25Z",
+      "side": 1,
+      "message": "Remove duration_ms since we\u0027ll use a trigger config instead.\n\ntrigger_config: {\n  trigger_mode: STOP_TRACING\n  triggers: {\n    name: \"stop_chrome_trace_any_string_you_want\"\n    stop_delay_ms: 0\n  }\n  trigger_timeout_ms: \u003cmaximum time you are willing to have a trace go for\u003e\n}\n\nThen add a new \"trace config\" that only has the exact trigger string you defined above. I.E.\n\n_TRIGGER_CONFIG \u003d \"\"\"\nactivate_triggers \u003d \"stop_chrome_trace_any_string_you_want\"\n\"\"\"\n\nThen rather then SIGINT send\n\ncmd \u003d [self.PERFETTO_BIN, \u0027--config\u0027, _TRIGGER_CONFIG]\n\nThough you\u0027ll need to convert _TRIGGER_CONFIG the same way you do _TRACE_CONFIG.",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a81a1c69_9f47bf2f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2019-12-05T10:59:25Z",
+      "side": 1,
+      "message": "Is this trying to kill any previous running binaries?\n\nWhat about the system? won\u0027t this not work for anything P+ pixel device and R+ device with it enabled by default?",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
