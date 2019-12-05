@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32c1ff7d_aefcab82",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1290431
+      },
+      "writtenOn": "2019-12-05T18:58:59Z",
+      "side": 1,
+      "message": "In this case I think that doing the split is kind of weird, because is separates pieces of information that are generally associated in the command line param. Maybe just no split is fine in this case?\n\nAnd then we could declare this as a set?",
+      "revId": "4503d7f325c227428642f8ff092a6270b780adfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
