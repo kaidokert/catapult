@@ -1055,7 +1055,8 @@ QuicError.QUIC_NETWORK_IDLE_TIMEOUT + ' (QUIC_NETWORK_IDLE_TIMEOUT)';
           'certificates': [
             '-----BEGIN CERTIFICATE-----\n1\n-----END CERTIFICATE-----\n',
             '-----BEGIN CERTIFICATE-----\n2\n-----END CERTIFICATE-----\n',
-          ]
+          ],
+          'verifier_flags': 1
         },
         'phase': EventPhase.PHASE_BEGIN,
         'source': {'id': 752, 'type': EventSourceType.CERT_VERIFIER_JOB},
@@ -1079,7 +1080,10 @@ QuicError.QUIC_NETWORK_IDLE_TIMEOUT + ' (QUIC_NETWORK_IDLE_TIMEOUT)';
         '                               \n' +
         '                               -----BEGIN CERTIFICATE-----\n' +
         '                               2\n' +
-        '                               -----END CERTIFICATE-----';
+        '                               -----END CERTIFICATE-----\n' +
+        '                               \n' +
+        '                        --> verifier_flags = 1 (' +
+	'VERIFY_DISABLE_NETWORK_FETCHES)';
     return testCase;
   }
 
