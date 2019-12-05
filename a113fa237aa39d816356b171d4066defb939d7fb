@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29cc26a6_bcdd33f0",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2019-12-05T11:01:58Z",
+      "side": 1,
+      "message": "Actually I think they added a helper binary that is simpler to use \n\nhttps://cs.corp.google.com/aosp-android10/external/perfetto/src/perfetto_cmd/trigger_perfetto.cc?g\u003d0\n\nSo you should be able to install the \"trigger_perfetto\" binary and then just do\n\ncmd \u003d [self.TRIGGER_PERFETTO_BIN, \u0027stop_chrome_any_string_you_want\"]",
+      "parentUuid": "3a5ed676_a08f919b",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81a1c69_9f47bf2f",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 7
