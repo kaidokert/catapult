@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "775b79cc_4ef7c817",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-05T06:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fecf26cf_0cc44147",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37005a75_6a711535",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2019-12-05T00:39:23Z",
       "side": 1,
       "message": "I\u0027m wondering what\u0027ll happen when we go through the device recovery flow w/ a persistent shell open... I\u0027m guessing we\u0027ll hit this.\n\nNot necessarily a blocker for this CL, but I suspect we\u0027ll want to be able to recover ~invisibly if the shell gets interrupted between commands.",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e27ee72_405cff76",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-05T06:14:38Z",
+      "side": 1,
+      "message": "We could code up AdbWrapper to EnsurePersistentShell() or something. That\u0027ll handle the lazy init thing too.\n\nI did it via a @property. On a crash, the next command will restart the shell.",
+      "parentUuid": "37005a75_6a711535",
       "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "08381b3d_cdf20575",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-05T06:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9fd15b1_007c8d79",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "01ae8421_8aa36aec",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 8
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "2b2955f0_b66b519f",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-05T06:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01ae8421_8aa36aec",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3bc1aaf_65a11015",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 8
@@ -84,6 +156,24 @@
       "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad8a5147_ca4c2547",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-05T06:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3bc1aaf_65a11015",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -119,6 +209,24 @@
       "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1199a80c_af8c1ed2",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2019-12-05T06:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ff8bffd_4f06d7dc",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
