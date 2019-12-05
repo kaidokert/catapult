@@ -24,21 +24,28 @@ class FakeBrowserOptions(browser_options_module.BrowserOptions):
 class StartupArgsTest(unittest.TestCase):
   """Test expected inputs for GetBrowserStartupArgs."""
 
-  def testFeaturesMerged(self):
+  def testFlagsMerged(self):
     browser_options = FakeBrowserOptions()
     browser_options.AppendExtraBrowserArgs([
         '--disable-features=Feature1,Feature2',
         '--disable-features=Feature2,Feature3',
         '--enable-features=Feature4,Feature5',
         '--enable-features=Feature5,Feature6',
+        '--force-fieldtrials=Group1/Exp1/Group2/Exp2',
+        '--force-fieldtrials=Group3/Exp3/Group4/Exp4',
+        '--force-fieldtrial-params=Group1.Exp1:id/abc,Group2.Exp2:id/bcd',
+        '--force-fieldtrial-params=Group4.Exp4:id/cde',
         '--foo'])
 
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
     self.assertTrue('--foo' in startup_args)
-    # Make sure there's only once instance of --enable/disable-features and it
-    # contains all values
+    # Make sure there's only once instance each of --enable-features,
+    # --disable-features, --force-fieldtrials and --force-fieldtrial-params, and
+    # they contain all values
     disable_count = 0
     enable_count = 0
+    force_fieldtrials_count = 0
+    force_fieldtrial_params_count = 0
     # Merging is done using using sets, so any order is correct
     for arg in startup_args:
       if arg.startswith('--disable-features='):
@@ -49,8 +56,22 @@ class StartupArgsTest(unittest.TestCase):
         split_arg = arg.split('=', 1)[1].split(',')
         self.assertEquals({'Feature4', 'Feature5', 'Feature6'}, set(split_arg))
         enable_count += 1
+      elif arg.startswith('--force-fieldtrials='):
+        arg_val = arg.split('=', 1)[1]
+        self.assertTrue(
+            arg_val == "Group1/Exp1/Group2/Exp2/Group3/Exp3/Group4/Exp4"
+            or arg_val == "Group3/Exp3/Group4/Exp4/Group1/Exp1/Group2/Exp2")
+        force_fieldtrials_count += 1
+      elif arg.startswith('--force-fieldtrial-params='):
+        split_arg = arg.split('=', 1)[1].split(',')
+        self.assertEquals(
+            {'Group1.Exp1:id/abc', 'Group2.Exp2:id/bcd', 'Group4.Exp4:id/cde'},
+            set(split_arg))
+        force_fieldtrial_params_count += 1
     self.assertEqual(1, disable_count)
     self.assertEqual(1, enable_count)
+    self.assertEqual(1, force_fieldtrials_count)
+    self.assertEqual(1, force_fieldtrial_params_count)
 
 
 class ReplayStartupArgsTest(unittest.TestCase):
