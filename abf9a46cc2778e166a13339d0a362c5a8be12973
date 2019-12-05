@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fecf26cf_0cc44147",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "nit: this could probably just forward **kwargs",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37005a75_6a711535",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "I\u0027m wondering what\u0027ll happen when we go through the device recovery flow w/ a persistent shell open... I\u0027m guessing we\u0027ll hit this.\n\nNot necessarily a blocker for this CL, but I suspect we\u0027ll want to be able to recover ~invisibly if the shell gets interrupted between commands.",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9fd15b1_007c8d79",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "nit: comment for persistent_shell",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01ae8421_8aa36aec",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "nit: I would consider being lazy about starting the persistent shell.",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3bc1aaf_65a11015",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "nit: please keep timeout and retries as the last two kwargs",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9741c153_097024c0",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "I think this will iterate over the (output, status) tuple rather than each line in the output?",
+      "revId": "abf9a46cc2778e166a13339d0a362c5a8be12973",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7891a14c_a1b26a0e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 3322,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "59d8325c_c9bfd085",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bd972d1_68e08408",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -57,6 +75,30 @@
       "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dd7d290_95433436",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "Fine with it given that this is starting behind a flag. I\u0027m curious whether the older devices will be ok with it.",
+      "parentUuid": "3bd972d1_68e08408",
+      "range": {
+        "startLine": 114,
+        "startChar": 38,
+        "endLine": 114,
+        "endChar": 0
+      },
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -165,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "f206695d_c671737d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aca3511c_46be01a7",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93efce76_13ab5613",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -267,6 +327,24 @@
       "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bdab0f2_7bfa294e",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2019-12-05T00:39:23Z",
+      "side": 1,
+      "message": "ack. fine w/ setting at initialization.",
+      "parentUuid": "e5001ccd_b6fe3d89",
+      "revId": "997bfb489d83ba420ca36ac78386b6c5efb0b173",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
