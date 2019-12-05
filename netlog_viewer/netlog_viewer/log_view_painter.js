@@ -314,8 +314,17 @@ let proxySettingsToString;
         return writeParamsForProxyConfigChanged;
 
       case EventType.CERT_VERIFIER_JOB:
+      case EventType.CERT_VERIFY_PROC:
       case EventType.SSL_CERTIFICATES_RECEIVED:
         return writeParamsForCertificates;
+      case EventType.CERT_VERIFY_PROC_TARGET_CERT:
+      case EventType.CERT_VERIFY_PROC_INPUT_CERT:
+      case EventType.CERT_VERIFY_PROC_ADDITIONAL_CERT:
+        return writeParamsForInputCert;
+      case EventType.CERT_VERIFY_PROC_PATH_BUILD_ATTEMPT:
+        return writeParamsForPathBuildAttempt;
+      case EventType.CERT_VERIFY_PROC_PATH_BUILT:
+        return writeParamsForPathBuilt;
       case EventType.CERT_CT_COMPLIANCE_CHECKED:
       case EventType.EV_CERT_CT_COMPLIANCE_CHECKED:
         return writeParamsForCheckedCertificates;
@@ -465,6 +474,28 @@ let proxySettingsToString;
   }
 
   /**
+   * Returns the set of CertVerifyFlags that make up the integer
+   * |certVerifyFlags|
+   */
+  function getCertVerifyFlagsSymbolicString(certVerifyFlags) {
+    return getSymbolicString(certVerifyFlags, CertVerifyFlags, '');
+  }
+
+  /**
+   * Returns the symbolic name of the |trustFlags| enum.
+   */
+  function getCertificateTrustTypeSymbolicString(trustFlags) {
+    return getKeyWithValue(CertificateTrustType, trustFlags);
+  }
+
+  /**
+   * Returns the symbolic name of the |digestPolicy| enum.
+   */
+  function getCertPathBuilderDigestPolicySymbolicString(digestPolicy) {
+    return getKeyWithValue(CertPathBuilderDigestPolicy, digestPolicy);
+  }
+
+  /**
    * Returns a string representing the flags composing the given bitmask.
    */
   function getSymbolicString(bitmask, valueToName, zeroName) {
@@ -602,6 +633,50 @@ let proxySettingsToString;
           getCertVerifierFlagsSymbolicString(entry.params.verifier_flags) + ')';
       out.writeArrowKeyValue('verifier_flags', valueStr);
       consumedParams.verifier_flags = true;
+    }
+
+    if (typeof(entry.params.verify_flags) === 'number') {
+      const valueStr = entry.params.verify_flags + ' (' +
+          getCertVerifyFlagsSymbolicString(entry.params.verify_flags) + ')';
+      out.writeArrowKeyValue('verify_flags', valueStr);
+      consumedParams.verify_flags = true;
+    }
+  }
+
+  function writeParamsForInputCert(entry, out, consumedParams) {
+    writeIndentedMultiLineParam(
+        entry.params.certificate.split('\n'), out, consumedParams,
+        'certificate');
+    if (typeof(entry.params.errors) === 'string') {
+      writeIndentedMultiLineParam(
+          entry.params.errors.split('\n'), out, consumedParams,
+          'errors');
+    }
+  }
+
+  function writeParamsForPathBuildAttempt(entry, out, consumedParams) {
+    if (typeof(entry.params.digest_policy) === 'number') {
+      const valueStr = entry.params.digest_policy + ' (' +
+          getCertPathBuilderDigestPolicySymbolicString(
+              entry.params.digest_policy) + ')';
+      out.writeArrowKeyValue('digest_policy', valueStr);
+      consumedParams.digest_policy = true;
+    }
+  }
+
+  function writeParamsForPathBuilt(entry, out, consumedParams) {
+    writeCertificateParam(entry.params, out, consumedParams, 'certificates');
+    if (typeof(entry.params.errors) === 'string') {
+      writeIndentedMultiLineParam(
+          entry.params.errors.split('\n'), out, consumedParams,
+          'errors');
+    }
+    if (typeof(entry.params.last_cert_trust) === 'number') {
+      const valueStr = entry.params.last_cert_trust + ' (' +
+          getCertificateTrustTypeSymbolicString(entry.params.last_cert_trust) +
+          ')';
+      out.writeArrowKeyValue('last_cert_trust', valueStr);
+      consumedParams.last_cert_trust = true;
     }
   }
 

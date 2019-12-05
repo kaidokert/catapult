@@ -21,6 +21,9 @@ let QuicRstStreamError = null;
 let LoadFlag = null;
 let CertStatusFlag = null;
 let CertVerifierFlags = null;
+let CertVerifyFlags = null;
+let CertPathBuilderDigestPolicy = null;
+let CertificateTrustType = null;
 let LoadState = null;
 let AddressFamily = null;
 let DataReductionProxyBypassEventType = null;
@@ -298,6 +301,9 @@ ConstantsObserver.prototype.onReceivedConstants = function(receivedConstants) {
     CertStatusFlag = {};
   }
   CertVerifierFlags = Constants.certVerifierFlags;
+  CertVerifyFlags = Constants.certVerifyFlags;
+  CertPathBuilderDigestPolicy = Constants.certPathBuilderDigestPolicy;
+  CertificateTrustType = Constants.certificateTrustType;
 
   timeutil.setTimeTickOffset(Constants.timeTickOffset);
 };
