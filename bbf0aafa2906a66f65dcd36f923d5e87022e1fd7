@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b0ef1b0_f108b412",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T01:18:16Z",
+      "side": 1,
+      "message": "You can add an assertion to check that `SheriffConfigClient.Match` is called at least once.",
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a736eb39_3b8ac0da",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T01:18:16Z",
+      "side": 1,
+      "message": "Why do you need to do this, instead of `subscription.visibility \u003d\u003d sheriff_pb2.Subscription.INTERNAL_ONLY` ?",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
