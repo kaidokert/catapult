@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "27052665_49227c22",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-05T17:44:15Z",
+      "side": 1,
+      "message": "Yeah, I\u0027m not setting up any sockets anywhere. Where do I do that?\n\nHere I pasted logs and the proto file I\u0027m getting out:\nhttps://perezju.users.x20web.corp.google.com/www/system_tracing/\n\nThe logs show the trace config written, as well as the loooong command line passed to Chrome. Do I have to tweak either of those?",
+      "parentUuid": "d7183de7_e1064dde",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81a1c69_9f47bf2f",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 7
