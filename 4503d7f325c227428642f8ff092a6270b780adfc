@@ -16,6 +16,24 @@
       "revId": "4503d7f325c227428642f8ff092a6270b780adfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccd5c3ae_f44c2470",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1363998
+      },
+      "writtenOn": "2019-12-05T19:52:38Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s weird because the slash has two different meanings. Not splitting by slashes and instead joining the complete arguments is sufficient.",
+      "parentUuid": "32c1ff7d_aefcab82",
+      "revId": "4503d7f325c227428642f8ff092a6270b780adfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
