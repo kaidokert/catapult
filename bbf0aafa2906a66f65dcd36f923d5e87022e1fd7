@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "0036f522_a5ffe8ea",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-05T03:22:01Z",
+      "side": 1,
+      "message": "Yes, I understant I can do that. The problem is that I can\u0027t audit which test will touch the `_GetSheriffForTest` (maybe 11 tests). What I can do is either mocking the client and passing a instance in every test or mocking the client globally which will bypass the client (these tests originally is not to test the client) and adding a seperate test.",
+      "parentUuid": "90584454_a5bfcdf8",
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a736eb39_3b8ac0da",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -126,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "45af861c_158d65e9",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-05T03:22:01Z",
+      "side": 1,
+      "message": "Using the ndb model and adding some glue code can make minimal changes to the code base. Because current ndb model is so widely used in the code base, it\u0027s more confusing if some part of code uses proto, some part uses ndb model. Especially it\u0027s not divided by some sort of hirearchy but spreaded because the proto interface touches this part (and you don\u0027t want to convert between them).\n\nWe can rewrite all of the ndb model sheriff code after all changes landed.",
+      "parentUuid": "87115008_a2bf6153",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e12c020a_8a22f653",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -146,6 +188,30 @@
       "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01dea0bf_be377dfb",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-05T03:22:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e12c020a_8a22f653",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 77
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
