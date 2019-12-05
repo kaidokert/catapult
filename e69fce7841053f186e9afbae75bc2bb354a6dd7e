@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b71f9b0f_bd27ce7e",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T22:12:11Z",
+      "side": 1,
+      "message": "So, this is where I\u0027m not convinced that the Sheriff conversion is actually useful.\n\nIn the (single) part of the code where you call `Match(...)`, the Subscription object is actually the only place where it will be used. If we change the places where currently a `Sheriff` object is being used to instead learn to use the `Subscription` proto\u0027s directly, then we will reduce all the dependencies on the `Sheriff` type.",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "e69fce7841053f186e9afbae75bc2bb354a6dd7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
