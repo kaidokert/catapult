@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "26d0c990_5fb45b67",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-05T13:35:30Z",
+      "side": 1,
+      "message": "Thanks! Done.\n\nAlthough somehow the trace still comes out empty when I load it into Perfetto UI :(\n\nMaybe I\u0027m missing something else?",
+      "parentUuid": "29cc26a6_bcdd33f0",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81a1c69_9f47bf2f",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2019-12-05T10:59:25Z",
       "side": 1,
       "message": "Is this trying to kill any previous running binaries?\n\nWhat about the system? won\u0027t this not work for anything P+ pixel device and R+ device with it enabled by default?",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb030ef0_f7a3b4ca",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123010
+      },
+      "writtenOn": "2019-12-05T13:35:30Z",
+      "side": 1,
+      "message": "I\u0027ve added a version check to skip this on newer versions. We can also later tweak it as needed.",
+      "parentUuid": "a81a1c69_9f47bf2f",
       "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
