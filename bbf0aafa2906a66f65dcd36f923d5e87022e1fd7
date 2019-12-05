@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "90584454_a5bfcdf8",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T02:15:16Z",
+      "side": 1,
+      "message": "Try this instead:\n\n(from https://docs.python.org/3/library/unittest.mock.html#patch)\n\n`@mock.patch(\u0027dashboard.sheriff_config.SheriffConfigClient\u0027)`\n\nThen in the test case, you can take an additional argument for the instance of that class being instantiated, so you can set the expectations and side-effects. Something like:\n\n```\n  def testSomeTest(self, mock_client):\n    # Set up the behaviour of mock_client in here.\n    ...\n    self.assertEqual(mock_client.Match.call_count, 1)\n```\n\nYou can see examples of this in the Pinpoint tests if you look for `mock.patch`.",
+      "parentUuid": "c3fecbdb_7c8c4c4d",
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a736eb39_3b8ac0da",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -77,6 +95,53 @@
         "startChar": 23,
         "endLine": 37,
         "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87115008_a2bf6153",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T02:15:16Z",
+      "side": 1,
+      "message": "Well, if we added a separate case that was `ACL_CONTROLLED` then \u0027internal_only\u0027 will be true which doesn\u0027t make sense.\n\nAt any rate, there isn\u0027t really much reason for us to create a `Sheriff` object at all -- so if we just made the Match function return the subscriptions, then it should work just fine, no?",
+      "parentUuid": "5f1c7ec4_1b22952d",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12c020a_8a22f653",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T02:15:16Z",
+      "side": 1,
+      "message": "Thinking about this more, we should just return the subscription protos directly and not even use the Sheriff ndb model (because we really don\u0027t need it anymore).",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 77
       },
       "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
