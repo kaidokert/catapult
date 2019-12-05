@@ -258,6 +258,30 @@
     },
     {
       "key": {
+        "uuid": "698abcd8_1c7df4e5",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-05T13:22:21Z",
+      "side": 1,
+      "message": "Yes, user uses regex before sheriff_config become stable at their own risk. In case we may rollback the sheriff_config, regex won\u0027t work anyway.",
+      "parentUuid": "788c0378_efdb8609",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e12c020a_8a22f653",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
