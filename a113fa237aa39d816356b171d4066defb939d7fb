@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "d7183de7_e1064dde",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2019-12-05T14:45:27Z",
+      "side": 1,
+      "message": "Do you have the final trace config sent to the device in any logs somewhere?\n\nWhere are you setting up the sockets? are they at /dev/socket/traced_producer ? or somewhere else?\n\nI think the default is /dev/socket/traced_producer unless you provide a different location which I don\u0027t see here.\n\nDo you have a trace file? Is it actually empty? or are there some packets? but nothing shows in the UI?",
+      "parentUuid": "26d0c990_5fb45b67",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81a1c69_9f47bf2f",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 7
