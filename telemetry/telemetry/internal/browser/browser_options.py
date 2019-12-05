@@ -134,6 +134,10 @@ class BrowserFinderOptions(optparse.Values):
         '--experimental-proto-trace-format',
         action='store_true',
         help='Request traces from Chrome in protobuf file format.')
+    parser.add_option(
+        '--experimental-system-tracing',
+        action='store_true',
+        help='Use system tracing from perfetto to trace Chrome.')
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
