@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "a921538b_c562450a",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T03:56:55Z",
+      "side": 1,
+      "message": "11 tests sounds small, I\u0027d encourage you to just fix those cases -- it leaves a pointer into the dependencies involved, so that when we clean those up we know exactly where the dependency to the sheriff config service is.",
+      "parentUuid": "0036f522_a5ffe8ea",
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a736eb39_3b8ac0da",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -165,6 +183,30 @@
       "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "627cd391_ec1728e5",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-05T03:56:55Z",
+      "side": 1,
+      "message": "Hmmm... I\u0027m not sure that\u0027s what I would have expected with this change.\n\nBecause we\u0027re not using this particular sheriff information yet, I don\u0027t see the need to convert it to the Sheriff NDB model at all. When we make the rest of the dashboard aware of the Subscription protos, we can introduce a set of convenience functions/classes to do that. Repurposing the Sheriff NDB model sounds like an unnecessary step to the migration.",
+      "parentUuid": "45af861c_158d65e9",
+      "range": {
+        "startLine": 36,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "bbf0aafa2906a66f65dcd36f923d5e87022e1fd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
