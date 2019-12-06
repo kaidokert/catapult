@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "576eaebf_86d8fece",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-12-06T08:19:53Z",
+      "side": 1,
+      "message": "Looks like no data source is targeting this second buffer -- remove it?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 7
+      },
+      "revId": "79c2cdfa3ad88590dc4d91ebff39af7fc1db025d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78800f64_11fa85b7",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-12-06T08:19:53Z",
+      "side": 1,
+      "message": "I don\u0027t think trigger_config is supported in P yet, so better make this Q.",
+      "range": {
+        "startLine": 81,
+        "startChar": 49,
+        "endLine": 81,
+        "endChar": 52
+      },
+      "revId": "79c2cdfa3ad88590dc4d91ebff39af7fc1db025d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d7ef949_d34533ee",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-12-06T08:19:53Z",
+      "side": 1,
+      "message": "nit: Perfetto\u0027s file extension is .pftrace",
+      "range": {
+        "startLine": 111,
+        "startChar": 59,
+        "endLine": 111,
+        "endChar": 61
+      },
+      "revId": "79c2cdfa3ad88590dc4d91ebff39af7fc1db025d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b282e8d_fda46fc8",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-12-06T08:19:53Z",
+      "side": 1,
+      "message": "I\u0027d need to double check this, but do we guarantee the trace file is fully written by the time this returns?",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 126,
+        "endChar": 33
+      },
+      "revId": "79c2cdfa3ad88590dc4d91ebff39af7fc1db025d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
