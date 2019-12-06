@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "97d72b92_07a1e669",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-06T22:22:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6759301e_e2b463e6",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa99c058_1ef1929e",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cc454ee1_53d4c8b2",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-06T22:22:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa99c058_1ef1929e",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 19
+      },
+      "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d82b5a4a_ff9bba84",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd0a661c_6f2d53eb",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-06T22:22:09Z",
+      "side": 1,
+      "message": "The Fuchsia build directory is where the Fuchsia OS is build and contains the ssh config we need. I also need the --chromium-output-dir for installing the latest version of web_engine_shell onto the device.",
+      "parentUuid": "d82b5a4a_ff9bba84",
+      "range": {
+        "startLine": 209,
+        "startChar": 10,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
