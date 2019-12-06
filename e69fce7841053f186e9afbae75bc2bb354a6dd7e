@@ -46,6 +46,30 @@
       "revId": "e69fce7841053f186e9afbae75bc2bb354a6dd7e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c7eaea6_18c5e4e6",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-06T00:31:27Z",
+      "side": 1,
+      "message": "Yes, that\u0027s exacly why this conversion exist. Because `Match` is the only part use the proto, I\u0027m trying to limit the influence (Including future change to actually use the `Match` result). It\u0027s a 2 phase change. First to migration to the sheriff_config (feature change). Then replace all of the `Sheriff` with `Subscription` (code cleanup).",
+      "parentUuid": "70028da3_8ff1d4e8",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "e69fce7841053f186e9afbae75bc2bb354a6dd7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
