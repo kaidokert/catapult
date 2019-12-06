@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49cd1561_080665ee",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-06T21:11:28Z",
+      "side": 1,
+      "message": "could you just do\n\nself.assertEqual(\u0027--force-fieldtrials\u003dGroup1/Exp1/Group2/Exp2/Group3/Exp3/Group4/Exp4\u0027, arg)\n\ninstead?\n\nThat\u0027s less logic so it is more readable. I think it\u0027s fine that it repeats the arg name.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "badae6e94b25b12e07d8388a9fe50462fe40276c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26df95c4_16608995",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-06T21:11:28Z",
+      "side": 1,
+      "message": "Let\u0027t not do splitting anymore. try to make the tests DAMP.",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 67,
+        "endChar": 56
+      },
+      "revId": "badae6e94b25b12e07d8388a9fe50462fe40276c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
