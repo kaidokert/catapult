@@ -6,6 +6,14 @@
 import logging
 import subprocess
 
+from telemetry.core import cros_interface
+
+def RunCmd(args, cwd=None, quiet=False):
+  return cros_interface.RunCmd(args, cwd, quiet)
+
+def GetAllCmdOutput(args, cwd=None, quiet=False):
+  return cros_interface.GetAllCmdOutput(args, cwd, quiet)
+
 class CommandRunner(object):
   """Helper class used to execute commands on Fuchsia devices on a remote host
   over SSH."""
@@ -24,6 +32,11 @@ class CommandRunner(object):
 
   def _GetSshCommandLinePrefix(self):
     return ['ssh', '-F', self._config_path, self._host, '-p', str(self._port)]
+
+  def RunSshForward(self, command=None, **kwargs):
+    ssh_command = self._GetSshCommandLinePrefix() + command
+    logging.warning('forwarding command: %s', ssh_command)
+    return subprocess.Popen(ssh_command, **kwargs)
 
   def RunCommandPiped(self, command=None, ssh_args=None, **kwargs):
     """Executes an SSH command on the remote host and returns a process object
