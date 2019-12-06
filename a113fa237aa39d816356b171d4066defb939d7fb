@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "cadad17d_bf0a3b0f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2019-12-06T10:19:29Z",
+      "side": 1,
+      "message": "I believe be default if you aren\u0027t doing anything then it should be there at /dev/socket. here is the logic for setting up sockets [1]. There are some environment variables but I doubt they are being set in our test so we need the device logcat to see if the service is properly starting.\n\nSo the trace you linked only has 3 packets that aren\u0027t from the service in it. So doesn\u0027t look like Chrome ever connected.\n\nHere is the full trace fed through trace_to_text [2] https://paste.googleplex.com/4869990056460288\n\nThe trace config looks a bit weird because it has new lines in it but seems to work fine. Also duration_ms is still in the example trace config there the trace won\u0027t start if duration_ms is also there because it will error off (but not sure how you got a trace with packets at all?). You should only set on of |duration_ms| and |trigger_timeout_ms|.\n\nThose logs are of the telemetry run. Do you have the logcat of the device?\n\nAfter running this trace config [3] manually (minus duration_ms) on my R device this worked with Chrome Canary.\n\n[1] https://cs.chromium.org/chromium/src/third_party/perfetto/src/traced/service/service.cc?l\u003d66\u0026rcl\u003d9cec36038932a51e3c547f813fd37cb8c3cce6f9\n[2] out/linux_clang_debug/trace_to_text text ~/Downloads/tmpUCHcM6.pb | less\n[3] https://paste.googleplex.com/6340889746079744",
+      "parentUuid": "27052665_49227c22",
+      "revId": "a113fa237aa39d816356b171d4066defb939d7fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81a1c69_9f47bf2f",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 7
