@@ -142,6 +142,30 @@
       "revId": "de24b27c003caea40c9c93da1c5930e91b98dbe2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f47cc2ed_c20e9d92",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1363998
+      },
+      "writtenOn": "2019-12-06T16:33:32Z",
+      "side": 1,
+      "message": "Yes, sorting would work perfectly. I\u0027ve added that logic to the most recent patchset.",
+      "parentUuid": "c3da7157_53699312",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 79
+      },
+      "revId": "de24b27c003caea40c9c93da1c5930e91b98dbe2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
