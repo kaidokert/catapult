@@ -22,6 +22,30 @@
       "revId": "e69fce7841053f186e9afbae75bc2bb354a6dd7e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70028da3_8ff1d4e8",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-06T00:10:27Z",
+      "side": 1,
+      "message": "Forgot to mention this is optional. 😊",
+      "parentUuid": "b71f9b0f_bd27ce7e",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "e69fce7841053f186e9afbae75bc2bb354a6dd7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
