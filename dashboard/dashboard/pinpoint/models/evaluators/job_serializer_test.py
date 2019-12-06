@@ -44,7 +44,9 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
             'created': mock.ANY,
             'arguments': {},
             'difference_count': None
-        }, self.job.AsDict())
+        },
+        self.job.AsDict(
+            options=[job_module.OPTION_STATE, job_module.OPTION_ESTIMATE]))
 
   def testSerializeJob(self):
     self.PopulateSimpleBisectionGraph(self.job)
