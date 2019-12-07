@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "428ef2e5_cbc55465",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "Hashes are typically stored as strings instead of storing as an integer and converting to a string when used. For one, the int approach won\u0027t work with most hashes since they\u0027ll generally contain at least one alphabet character.",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e527932_fbc8bf87",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "Nit: _SDK_SHA1 to make it clear what the hash is meant to be used for.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ed21d84_52f9c8d9",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "If this isn\u0027t used anywhere else, might be better storing this as milliseconds and not multiplying here.",
+      "range": {
+        "startLine": 82,
+        "startChar": 32,
+        "endLine": 82,
+        "endChar": 58
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8f30c48_836a0f9d",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "Format should be \"TODO(https://crbug.com/1031763): Figure out how to use the dependency manager\"",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 29
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b595011_3b561152",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "In order to better facilitate testing, might be worth breaking this out into its own function, e.g. _DownloadFuchsiaSdkIfNecessary. This will make it easier to test this code, and also make it easier for you to test the rest of FindAllAvailableDevices by making _DownloadFuchsiaSdkIfNecessary be a no-op.",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "679d8811_ca41a97a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "Nit: Use \"device_list.splitlines()\" instead of \"device_list.split(\u0027\\n\u0027)\". It *shouldn\u0027t* really matter since the tool should be using \\n for newlines, but splitlines() will handle newlines from other OSes, as well.",
+      "range": {
+        "startLine": 116,
+        "startChar": 17,
+        "endLine": 116,
+        "endChar": 40
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82ac26ac_72f95f72",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "Nit: \"host, target_name \u003d first_device.split(\u0027 \u0027)\" since there should only be two elements returned by split(\u0027 \u0027).",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 118,
+        "endChar": 35
+      },
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4763514_36788d6a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "Some other possible tests:\n\n1. _DecompressFuchsiaSDK, probably by using the tarfile module to create a simple .tar and make sure _DecompressFuchsiaSDK works as expected when given that file https://docs.python.org/2/library/tarfile.html\n2. _FindFuchsiaDevice, one each for is_emulator \u003d True/False. I think you\u0027ll have to use the mock module to mock out subprocess so that you return a known string when finder_cmd is run.\n3. A number of tests for FindAllAvailableDevices:\n3a. when browser_type is not in FUCHSIA_BROWSERS\n3b. when the system isn\u0027t Linux\n3c. When the system is Linux, but not x86-64\n3d. When the Chromium version of the SDK exists\n3e. When the Chromium version doesn\u0027t exist, but the Catapult one does\n3f. When neither SDK version exists\n3g. When _FindFuchsiaDevice returns nothing\n3h. When _FindFuchsiaDevice returns a single line\n3i. When _FindFuchsiaDevice returns multiple lines\n\nIn general, look at all possible outcomes for code you\u0027re adding and try to add test cases for all of them.",
+      "revId": "5c414c24b02a0d1eef15bdeffa72bb78262db1f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

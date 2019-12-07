@@ -1131,6 +1131,30 @@
     },
     {
       "key": {
+        "uuid": "a57558f6_7d1400c0",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-07T01:14:00Z",
+      "side": 1,
+      "message": "I think you forgot to add in the deletion code.",
+      "parentUuid": "ff887157_34c1dd67",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bc91709_78702382",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 4
