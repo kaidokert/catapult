@@ -6,6 +6,9 @@
 import logging
 import subprocess
 
+FUCHSIA_BROWSERS = ['web-engine-shell']
+
+
 class CommandRunner(object):
   """Helper class used to execute commands on Fuchsia devices on a remote host
   over SSH."""
