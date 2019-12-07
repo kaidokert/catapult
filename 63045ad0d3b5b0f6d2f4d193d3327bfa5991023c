@@ -331,6 +331,29 @@
     },
     {
       "key": {
+        "uuid": "d46ec200_cd96e925",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-07T00:19:11Z",
+      "side": 1,
+      "message": "I don\u0027t understand what the work \"pave\" means here.",
+      "range": {
+        "startLine": 211,
+        "startChar": 62,
+        "endLine": 211,
+        "endChar": 66
+      },
+      "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0209ae1e_6696313c",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 4
