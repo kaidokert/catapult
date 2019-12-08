@@ -38,7 +38,7 @@ class LocalServerBackend(object):
 class LocalServer(object):
 
   def __init__(self, server_backend_class):
-    assert LocalServerBackend in server_backend_class.__bases__
+    assert issubclass(server_backend_class, LocalServerBackend)
     server_module_name = server_backend_class.__module__
     assert server_module_name in sys.modules, \
         'The server class\' module must be findable via sys.modules'

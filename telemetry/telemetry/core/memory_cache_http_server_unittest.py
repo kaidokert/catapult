@@ -5,6 +5,7 @@
 import os
 
 from telemetry.core import util
+from telemetry.core.memory_cache_http_server import RequestHandlerForTest
 from telemetry.testing import tab_test_case
 
 
@@ -79,3 +80,8 @@ class MemoryCacheHTTPServerTest(tab_test_case.TabTestCase):
     self.assertEquals(
         self._platform.http_server.UrlOf(test_file_rel_path),
         self._platform.http_server.UrlOf(test_file_abs_path))
+
+  def testDynamicHTTPServer(self):
+    self.Navigate('test.html', handler_class=RequestHandlerForTest)
+    x = self._tab.EvaluateJavaScript('document.body.innerHTML')
+    self.assertEquals(x, 'Hello from handler')
