@@ -163,6 +163,30 @@
       "revId": "79c2cdfa3ad88590dc4d91ebff39af7fc1db025d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dbae109_ec246918",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2019-12-09T16:47:52Z",
+      "side": 1,
+      "message": "IIRC there was a way to get the service to tell you when the file has been finalized? Maybe that requires a persistent perfetto process waiting for the trigger like with dropbox? Should we do something similar here? I think anything based on inotify will be too flaky in practice.",
+      "parentUuid": "fc5489ac_347d0661",
+      "range": {
+        "startLine": 126,
+        "startChar": 9,
+        "endLine": 126,
+        "endChar": 33
+      },
+      "revId": "79c2cdfa3ad88590dc4d91ebff39af7fc1db025d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
