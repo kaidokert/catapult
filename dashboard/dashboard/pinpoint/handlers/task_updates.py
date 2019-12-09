@@ -35,8 +35,17 @@ class TaskUpdates(webapp2.RequestHandler):
       #   - job id
       #   - task id
       #   - additional task-specific details
-      swarming_data = json.loads(
-          base64.urlsafe_b64encode(message.get('data', '')))
+      data = message.get('data')
+      if not data:
+        raise ValueError('Missing data field in `messge`: %s' % (message,))
+
+      try:
+        decoded_data = base64.urlsafe_b64decode(data)
+      except TypeError as error:
+        raise ValueError('`data` field in `message` is not base64 encoded: %s' %
+                         (data))
+
+      swarming_data = json.loads(decoded_data)
       logging.debug('Received: %s', swarming_data)
 
       # From the swarming data, we can determine the job id and task id (if
@@ -100,17 +109,17 @@ class TaskUpdates(webapp2.RequestHandler):
         if result_status in {'failed', 'completed'}:
           # TODO(dberris): Formalise the error collection/propagation mechanism
           # for exposing all errors in the UX, when we need it.
-          job.exception_details = accumulator['find_culprit']['errors'][0]
+          execution_errors = accumulator['find_culprit'].get('errors', [])
+          if execution_errors:
+            job.exception_details = execution_errors[0]
           job._Complete()
       except task_module.Error as error:
         logging.error('Failed: %s', error)
         job.Fail()
         job.put()
-        raise
 
     except (ValueError, binascii.Error) as error:
       logging.error('Failed: %s', error)
-
 
     self.response.status = 204
     self.response.write('')
