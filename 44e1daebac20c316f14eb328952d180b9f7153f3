@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f3365ac_d6ce3b0e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1103654
+      },
+      "writtenOn": "2019-12-09T22:53:06Z",
+      "side": 1,
+      "message": "Please make it a separate function that\u0027s called from GetFromBrowserOptions(), since GetFromBrowserOptions() is doing a bunch of other things.",
+      "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b07a8fdf_80a624dd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1103654
+      },
+      "writtenOn": "2019-12-09T22:53:06Z",
+      "side": 1,
+      "message": "Nit: Give more context in the second sentence - even as someone familiar with this flag, it was not very easy to understand what is meant.",
+      "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d76d76a_ee76298e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1103654
+      },
+      "writtenOn": "2019-12-09T22:53:06Z",
+      "side": 1,
+      "message": "This test logic seems more complicated than it needs to be.\nWhy not:\n\nself.assertIn(\u0027--enable-features\u003dFeature4,Feature5,Feature6\u0027, args)\n\nAnd similar for the other ones.\n\nYou\u0027re also testing that each appears once, but seems you can test that separately with something like:\n\nself.assertLen([arg in args if arg.startswith(\u0027--enable-features\u003d\u0027)], 1)\n\nGiven the above can be expressed as 2 lines for each arg type (modulo wrapping), I think it\u0027s much cleaner than the loop you have right now.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
