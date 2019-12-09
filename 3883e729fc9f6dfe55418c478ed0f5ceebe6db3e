@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b65e116c_06d54ca5",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-09T05:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "240e63b2_da51f527",
+      "range": {
+        "startLine": 40,
+        "startChar": 49,
+        "endLine": 40,
+        "endChar": 55
+      },
+      "revId": "3883e729fc9f6dfe55418c478ed0f5ceebe6db3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e595c57f_000bf951",
         "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "3883e729fc9f6dfe55418c478ed0f5ceebe6db3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "677ae295_203f71da",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-09T05:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e595c57f_000bf951",
+      "range": {
+        "startLine": 44,
+        "startChar": 26,
+        "endLine": 44,
+        "endChar": 31
+      },
+      "revId": "3883e729fc9f6dfe55418c478ed0f5ceebe6db3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a5d995be_e7be8942",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-09T05:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e80c5e1_b9d32ed7",
+      "range": {
+        "startLine": 46,
+        "startChar": 26,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "3883e729fc9f6dfe55418c478ed0f5ceebe6db3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b1257c92_20d92229",
         "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "3883e729fc9f6dfe55418c478ed0f5ceebe6db3e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "666c167f_f2b63a44",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-09T05:56:50Z",
+      "side": 1,
+      "message": "Good point. Refactored the implementation a little bit to make testing the core logic easier, rather than going through the post handler (and only being able to test the 204 status response).",
+      "parentUuid": "b1257c92_20d92229",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "3883e729fc9f6dfe55418c478ed0f5ceebe6db3e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
