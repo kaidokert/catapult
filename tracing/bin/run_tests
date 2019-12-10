@@ -10,10 +10,10 @@ import sys
 _THIS_PATH = os.path.dirname(os.path.realpath(__file__))
 _TESTS = [
     {'path': os.path.join(_THIS_PATH, 'run_py_tests')},
-    {'path': os.path.join(_THIS_PATH, 'run_vinn_tests'),
-     'disabled': {'win32'}},
-    {'path': os.path.join(_THIS_PATH, 'run_dev_server_tests'),
-     'chrome_path_arg': True}
+#    {'path': os.path.join(_THIS_PATH, 'run_vinn_tests'),
+#     'disabled': {'win32'}},
+#    {'path': os.path.join(_THIS_PATH, 'run_dev_server_tests'),
+#     'chrome_path_arg': True}
 ]
 
 

@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import collections
+import logging
 
 from tracing.value import histogram as histogram
 from tracing.value import histogram_deserializer
@@ -98,8 +99,127 @@ class HistogramSet(object):
       self.Deserialize(dicts)
       return
 
+    # The even newer proto-backed JSON format (see histogram.proto) is a dict
+    # with histograms and shared diagnostics.
+    if isinstance(dicts, dict) and dicts and 'histograms' in dicts:
+      for h in dicts["histograms"]:
+        self.ImportProtoBackedHistogram(h)
+      if "sharedDiagnostics" in dicts:
+        self.ImportProtoBackedSharedDiagnostic(dicts["sharedDiagnostics"])
+      return
+
     # The original HistogramSet JSON format was a flat array of objects.
     for d in dicts:
+      self.ImportLegacyDict(d)
+
+  def ImportProtoBackedHistogram(self, data):
+    hist = {
+      'name': data['name'],
+      'description': data['description'],
+    }
+
+    UNIT_MAP = {
+      'MS' : 'ms',
+      'MS_BEST_FIT_FORMAT' : 'msBestFitFormat',
+      'TS_MS' : 'tsMs',
+      'N_PERCENT' : 'n%',
+      'SIZE_IN_BYTES' : 'sizeInBytes',
+      'BYTES_PER_SECOND' : 'bytesPerSecond',
+      'J' : 'J',
+      'W' : 'W',
+      'A' : 'A',
+      'V' : 'V',
+      'HERTZ' : 'hz',
+      'UNITLESS' : 'unitless',
+      'COUNT' : 'count',
+      'SIGMA' : 'sigma',
+    }
+    # TODO: unit test instead, the /5 is because the list is extended.
+    assert len(histogram.UNIT_NAMES) / 5 == len(UNIT_MAP)
+    improvement_direction = data['unit'].get('improvement_direction')
+    unit = UNIT_MAP[data['unit']['unit']]
+    hist['unit'] = unit
+    if improvement_direction:
+      hist['unit'] += ' ' + improvement_direction
+
+    bin_bounds = data.get('binBoundaries')
+    if bin_bounds:
+      first = bin_bounds['firstBinBoundary']
+      binSpecs = bin_bounds['binSpecs']
+      hist['binBoundaries'] = []
+      for spec in binSpecs:
+        if 'binBoundary' in spec:
+          value = int(spec['binBoundary'])
+          hist['binBoundaries'].append(value)
+        elif 'binSpec' in spec:
+          detailed_spec = spec['binSpec']
+          BOUNDARY_TYPE_MAP = {
+            'LINEAR': 0,
+            'EXPONENTIAL' : 1,
+          }
+          boundary_type = BOUNDARY_TYPE_MAP[detailed_spec['boundaryType']]
+          maximum = int(detailed_spec['maximumBinBoundary'])
+          num_boundaries = int(detailed_spec['numBinBoundaries'])
+          hist['binBoundaries'].append([boundary_type, maximum, num_boundaries])
+
+    diagnostics = data.get('diagnostics')
+    if diagnostics:
+      hist['diagnostics'] = {}
+      for name, diag_json in diagnostics['diagnosticMap'].items():
+        diagnostic = self._DiagnosticProtoBackedJsonToLegacyJson(diag_json)
+        hist['diagnostics'][name] = diagnostic
+
+    sampleValues = data.get('sampleValues')
+    if sampleValues:
+      hist['sampleValues'] = data['sampleValues']
+
+    maxNumSampleValues = data.get('maxNumSampleValues')
+    if maxNumSampleValues:
+      hist['maxNumSampleValues'] = data['maxNumSampleValues']
+
+    numNans = data.get('numNans')
+    if numNans:
+      hist['numNans'] = data['numNans']
+
+    nanDiagnostics = data.get('nanDiagnostics')
+    if nanDiagnostics:
+      hist['nanDiagnostics'] = []
+      for diag_map in nanDiagnostics:
+        nan_diag_map = {}
+        for name, diag_json in diag_map.items():
+          diagnostic = self._DiagnosticProtoBackedJsonToLegacyJson(diag_json)
+          nan_diag_map[name] = diagnostic
+
+        hist['nanDiagnostics'].append(nan_diag_map)
+
+    running = data.get('running')
+    if running:
+      hist['running'] = [running['count'], running['max'], running['meanlogs'],
+                         running['mean'], running['min'], running['sum'],
+                         running['variance']]
+
+  def _DiagnosticProtoBackedJsonToLegacyJson(self, dct):
+    def get_type(d):
+      diag_type = next(iter(d))
+      # genericSet -> GenericSet, for instance.
+      return diag_type[0].capitalize() + diag_type[1:]
+
+    diag_type = get_type(dct)
+    if diag_type == 'GenericSet':
+      return {
+        'type': diag_type,
+        'values': dct['genericSet']['values']
+      }
+    elif diag_type == 'SharedDiagnosticGuid':
+      return dct['sharedDiagnosticGuid']
+    else:
+      raise ValueError('%s not yet supported by proto-JSON' % diag_type)
+
+  def ImportProtoBackedSharedDiagnostic(self, shared_diagnostics):
+    for guid, body in shared_diagnostics.items():
+      d = self._DiagnosticProtoBackedJsonToLegacyJson(body)
+      d['guid'] = guid
+
       self.ImportLegacyDict(d)
 
   def ImportLegacyDict(self, d):
