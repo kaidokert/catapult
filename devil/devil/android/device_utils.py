@@ -8,6 +8,7 @@ Eventually, this will be based on adb_wrapper.
 """
 # pylint: disable=unused-argument
 
+from datetime import datetime
 import calendar
 import collections
 import contextlib
@@ -336,11 +337,11 @@ def _JoinLines(lines):
   return ''.join(s for line in lines for s in (line, '\n'))
 
 
-def _CreateAdbWrapper(device):
+def _CreateAdbWrapper(device, **kwargs):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
   else:
-    return adb_wrapper.AdbWrapper(device)
+    return adb_wrapper.AdbWrapper(device, **kwargs)
 
 
 def _FormatPartialOutputError(output):
@@ -1195,6 +1196,7 @@ class DeviceUtils(object):
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def RunShellCommand(self, cmd, shell=False, check_return=False, cwd=None,
+                      timeme=False,
                       env=None, run_as=None, as_root=False, single_line=False,
                       large_output=False, raw_output=False, timeout=None,
                       retries=None):
@@ -1263,7 +1265,7 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
-      return self.adb.Shell(cmd)
+      return self.adb.Shell(cmd, timeme=timeme)
 
     def handle_check_return(cmd):
       try:
@@ -2221,12 +2223,15 @@ class DeviceUtils(object):
   def _ParseLongLsOutput(self, device_path, as_root=False, **kwargs):
     """Run and scrape the output of 'ls -a -l' on a device directory."""
     device_path = posixpath.join(device_path, '')  # Force trailing '/'.
+    print ">> %s LS Output start" % (datetime.now())
     output = self.RunShellCommand(
-        ['ls', '-a', '-l', device_path], as_root=as_root,
+        ['ls', '-a', '-l', device_path], as_root=as_root, timeme=True,
         check_return=True, env={'TZ': 'utc'}, **kwargs)
+    print ">> %s LS Output done" % (datetime.now())
     if output and output[0].startswith('total '):
       output.pop(0) # pylint: disable=maybe-no-member
 
+    print ">> %s LS entry processing" % (datetime.now())
     entries = []
     for line in output:
       m = _LONG_LS_OUTPUT_RE.match(line)
@@ -2243,6 +2248,7 @@ class DeviceUtils(object):
       else:
         logger.info('Skipping: %s', line)
 
+    print ">> %s LS returning" % (datetime.now())
     return entries
 
   def ListDirectory(self, device_path, as_root=False, **kwargs):
@@ -3242,7 +3248,8 @@ class DeviceUtils(object):
 
   @classmethod
   def HealthyDevices(cls, blacklist=None, device_arg='default', retries=1,
-                     enable_usb_resets=False, abis=None, **kwargs):
+                     enable_usb_resets=False, abis=None,
+                     persistent_shell=False, **kwargs):
     """Returns a list of DeviceUtils instances.
 
     Returns a list of DeviceUtils instances that are attached, not blacklisted,
@@ -3272,6 +3279,9 @@ class DeviceUtils(object):
           those that appear to be android devices.
       abis: A list of ABIs for which the device needs to support at least one of
           (optional). See devil.android.ndk.abis for valid values.
+      persistent_shell: Makes AdbWrapper pipe commands through a single
+          "adb shell" instead of spawning a new shell each invocation. Can
+          save a lot of time as adb shell startup can be nearly 100ms.
       A device serial, or a list of device serials (optional).
 
     Returns:
@@ -3318,10 +3328,13 @@ class DeviceUtils(object):
         devices = [cls(x, **kwargs) for x in device_arg if not blacklisted(x)]
       else:
         devices = []
-        for adb in adb_wrapper.AdbWrapper.Devices():
+        for adb in adb_wrapper.AdbWrapper.Devices(
+            persistent_shell=persistent_shell):
           serial = adb.GetDeviceSerial()
           if not blacklisted(serial):
-            device = cls(_CreateAdbWrapper(adb), **kwargs)
+            device = cls(_CreateAdbWrapper(adb,
+                                           persistent_shell=persistent_shell),
+                         **kwargs)
             if supports_abi(device.GetABI(), serial):
               devices.append(device)
 
