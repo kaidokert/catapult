@@ -145,7 +145,7 @@ class Host(object):
 
     def print_(self, msg='', end='\n', stream=None):
         stream = stream or self.stdout
-        stream.write(str(msg) + end)
+        stream.write(msg.encode('ascii', 'ignore') + end)
         stream.flush()
 
     def read_text_file(self, *comps):
