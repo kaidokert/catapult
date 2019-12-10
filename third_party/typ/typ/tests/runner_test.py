@@ -221,6 +221,7 @@ class TestWinMultiprocessing(TestCase):
             self.assertEqual(out, '0 tests passed, 0 skipped, 0 failures.\n')
             self.assertEqual(err, '')
 
+    @unittest.skipIf(True, 'Test is leaking state to other tests')
     def test_real_unimportable_main(self):
         h = self.make_host()
         tmpdir = None
