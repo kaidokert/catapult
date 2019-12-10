@@ -1155,6 +1155,30 @@
     },
     {
       "key": {
+        "uuid": "f532e3a4_8a5f9a78",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-10T02:13:58Z",
+      "side": 1,
+      "message": "oh I added it in the _DecompressFuchsiaSDK method",
+      "parentUuid": "a57558f6_7d1400c0",
+      "range": {
+        "startLine": 105,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 27
+      },
+      "revId": "63045ad0d3b5b0f6d2f4d193d3327bfa5991023c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bc91709_78702382",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 4
