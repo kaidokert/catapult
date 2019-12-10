@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c59584e_78f39f3a",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-10T19:44:51Z",
+      "side": 1,
+      "message": "add docstring documentation for this argument. follow go/python-style for docstring style.",
+      "range": {
+        "startLine": 26,
+        "startChar": 38,
+        "endLine": 26,
+        "endChar": 58
+      },
+      "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "035d8ba0_0a815ffb",
+        "filename": "telemetry/telemetry/core/local_server_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-10T19:44:51Z",
+      "side": 1,
+      "message": "Add a docstring for this function and document this argument in the docstring. see go/python-style for docstring style.",
+      "range": {
+        "startLine": 41,
+        "startChar": 39,
+        "endLine": 41,
+        "endChar": 59
+      },
+      "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74e7a4fa_7c0d9c90",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-10T19:44:51Z",
+      "side": 1,
+      "message": "Instead do\n\ndel path\n\ninside the function so that you don\u0027t need the pylint disable. go/python-style recommends this.",
+      "range": {
+        "startLine": 321,
+        "startChar": 39,
+        "endLine": 321,
+        "endChar": 73
+      },
+      "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
