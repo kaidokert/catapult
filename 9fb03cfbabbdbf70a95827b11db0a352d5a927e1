@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41d9041f_b0e4098a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T22:13:44Z",
+      "side": 1,
+      "message": "Single _",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0dcecec_d6e9cbc9",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T22:13:44Z",
+      "side": 1,
+      "message": "Still missing a test for this. Easiest way is probably to mock out RunCmd to have the side effect of creating a tar file with the necessary files inside. You\u0027ll also probably want to change _SDK_ROOT_IN_CATAPULT to some temporary directory for the duration of the test so that you don\u0027t dirty the actual Catapult directory.",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aa78365_d12bbf04",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T22:13:44Z",
+      "side": 1,
+      "message": "This should be swapped with testFindFuchsiaDeviceFailsEmulator.",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

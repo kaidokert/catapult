@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "c14cd47d_03b6111b",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T22:13:44Z",
+      "side": 1,
+      "message": "Yes, at least that\u0027s the case with both Android and ChromeOS.",
+      "parentUuid": "743b7a4f_df951dd8",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 27
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "81c38a98_212e0d83",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 14
