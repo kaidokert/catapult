@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df183d52_43236fc3",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Use os.remove() instead.",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 25
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f18b542_70ecef02",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "One additional test you might want to add is less of a unittest and more of an integration test to make sure that this finds a device when actually run on Fuchsia. You\u0027ll have to restrict it using @decorators.Enabled(\u0027fuchsia\u0027).",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 27
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81c38a98_212e0d83",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "One thing that occurred to me is to make sure that web-engine-shell shows up properly when you ask Telemetry to list all available browsers - this check *might* interfere with that?",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a65920f_f7248edd",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "There are still a few suggested tests that can be added, copied from PS10:\n\n_DecompressFuchsiaSDK, probably by using the tarfile module to create a simple .tar and make sure _DecompressFuchsiaSDK works as expected when given that file https://docs.python.org/2/library/tarfile.html\n\nWhen the Chromium version doesn\u0027t exist, but the Catapult one does\n\nWhen neither SDK version exists",
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfb68520_2ddc0ce1",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Nit: Split into testFindFuchsiaDevice and testFindFuchsiaDeviceFailsEmulator or similar.",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea6d50da_9c2dc521",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "I think this is unnecessary since I *think* patches should automatically be torn down after a test ends.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "315f2d6c_7efe0bc3",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Nit: Append \"InChromium\" to be clear that this is testing the case where the SDK already exists in Chromium.",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 33
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f3bbc1_54616b60",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Probably want to raise an error if given something that isn\u0027t one of the two expected directories. I think that this would end up automatically returning None if given something that\u0027s not either of the two expected paths, which is falsy and thus could be interpreted the same as being given _SDK_ROOT_IN_CATAPULT.",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 19
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784a5adb_ff8e0d98",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Belongs in FuchsiaDeviceTest, not FuchsiaSDKUsageTest?",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 32
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65ec9b44_a08bd7c5",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 84,
+        "startChar": 6,
+        "endLine": 84,
+        "endChar": 31
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "532b162a_ab1c83cb",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-10T18:48:54Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 94,
+        "endChar": 37
+      },
+      "revId": "17503ea3e872a31bb4794a2837955abafac8bf22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
