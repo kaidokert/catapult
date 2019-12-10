@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "653f588f_0773864f",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Yes, more info is needed here, what about:\n\"Inherite this class and register the sub-class to the story set (through StorySet.SetRequestHandlerClass() or the constructor).\"",
+      "parentUuid": "36ece63d_7651f9a1",
+      "range": {
+        "startLine": 312,
+        "startChar": 24,
+        "endLine": 312,
+        "endChar": 54
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a057f34f_82321bc8",
         "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3422963a_54b53924",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Done\nYes, thanks.",
+      "parentUuid": "a057f34f_82321bc8",
+      "range": {
+        "startLine": 316,
+        "startChar": 15,
+        "endLine": 316,
+        "endChar": 16
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b35b7ab_5a9c3592",
         "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2019-12-09T23:38:07Z",
       "side": 1,
       "message": "Do we need to duplicate this particular code? Could we instead call\n\nsuper(self, MemoryCacheDynamicHTTPServerBackend).StartAndGetNamedPorts(args, handler_class\n\nWe could add an optional argument to MemoryCacheHTTPServerBackend\u0027s StartAndGetNamedPorts to do dependency injection of the handler_class",
+      "range": {
+        "startLine": 350,
+        "startChar": 4,
+        "endLine": 355,
+        "endChar": 0
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "489451f9_5e244a43",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Right, after change to this, MemoryCacheDynamicHTTPServerBackend is the same as MemoryCacheHTTPServerBackend, thus can be removed.",
+      "parentUuid": "6b35b7ab_5a9c3592",
       "range": {
         "startLine": 350,
         "startChar": 4,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "7996fa6f_a1ed531c",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Yes, pass the handler_class through this method and move the import logic into local_server.py can also solve a strange problem I met with before (described in the next comment reply).",
+      "parentUuid": "c3140ec3_bb6db0d0",
+      "range": {
+        "startLine": 356,
+        "startChar": 4,
+        "endLine": 356,
+        "endChar": 23
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e8938de0_799b2c75",
         "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2019-12-09T23:38:07Z",
       "side": 1,
       "message": "You can actually move this code to the unit test module.",
+      "range": {
+        "startLine": 394,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 57
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5c280d7_27bd0e00",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Yes, it can be moved.\n\nAt first I did defined RequestHandlerTest in memory_cache_http_server_unittest.py. but met with a strange problem saying failed to import module \"telemetry.core.memory_cache_http_server_unittest\" in StartAndGetNamedPorts(). Then, I found if we change to import the class in _LocalServerBackendMain() in local_server.py and then pass the loaded class to backend through MemoryCacheHTTPServerBackend.StartAndGetNamedPorts(self, args, handler_class) just as your above comment, the problem is solved.\n\nSo, I will move it in the new patch.",
+      "parentUuid": "e8938de0_799b2c75",
       "range": {
         "startLine": 394,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "15a554cb_5f614f26",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2eb2b560_060cdc37",
+      "range": {
+        "startLine": 8,
+        "startChar": 38,
+        "endLine": 8,
+        "endChar": 73
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ad47843_045b6ccc",
         "filename": "telemetry/telemetry/core/memory_cache_http_server_unittest.py",
         "patchSetId": 1
@@ -160,6 +304,30 @@
       "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d64c954_e09c42b2",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-10T08:49:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ad47843_045b6ccc",
+      "range": {
+        "startLine": 85,
+        "startChar": 45,
+        "endLine": 85,
+        "endChar": 66
+      },
+      "revId": "bffb5b237b396a7427d112baeb3e0c69f0eb295f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
