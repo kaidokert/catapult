@@ -57,6 +57,13 @@ _DASHBOARD_TESTS = [
 
 _CATAPULT_TESTS = [
     {
+        'name': 'Typ unittest',
+        'path': 'third_party/typ/run',
+        'additional_args': ['tests'],
+        'disabled': ['android', 'win'
+                    ],  # TODO(crbug.com/851498): enable typ unittests on Win
+    },
+    {
         'name': 'Build Python Tests',
         'path': 'catapult_build/bin/run_py_tests',
         'disabled': ['android'],
@@ -174,13 +181,6 @@ _CATAPULT_TESTS = [
         'path': 'tracing/bin/run_py_tests',
         'additional_args': ['--no-install-hooks'],
         'disabled': ['android'],
-    },
-    {
-        'name': 'Typ unittest',
-        'path': 'third_party/typ/run',
-        'additional_args': ['tests'],
-        'disabled': ['android', 'win'
-                    ],  # TODO(crbug.com/851498): enable typ unittests on Win
     },
     {
         'name': 'Vinn Tests',
