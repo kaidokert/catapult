@@ -515,10 +515,10 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
 
       logging.debug('Updating with changes and culprits: %s', ordered_changes)
       task.payload.update({
-          'changes': [change.AsDict() for change in ordered_changes],
+          'changes': [change.AsDict() for change in all_changes],
           'culprits': [(a.AsDict(), b.AsDict())
                        for a, b in Pairwise(ordered_changes)
-                       if DetectChange(a, b)]
+                       if DetectChange(a, b)],
       })
       if not actions:
         # Mark this operation complete, storing the differences we can compute.
@@ -555,6 +555,7 @@ def AnalysisSerializer(task, _, accumulator):
           for change in task.payload.get('changes', [])
       ]
   })
+
 
 class Serializer(evaluators.FilteringEvaluator):
 
