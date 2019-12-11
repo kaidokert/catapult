@@ -68,6 +68,30 @@
       "revId": "3dfc6f0bfca8339dc75d0dc073c3f09635cab769",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8088fca7_e5e749c0",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-11T02:22:45Z",
+      "side": 1,
+      "message": "Wow, good catch -- yes, done.",
+      "parentUuid": "0a917520_526b2ec1",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 36
+      },
+      "revId": "3dfc6f0bfca8339dc75d0dc073c3f09635cab769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
