@@ -205,9 +205,11 @@ class TestWinMultiprocessing(TestCase):
 
         return ret, out, err
 
+    @unittest.skipIf(sys.platform == 'darwin', 'Test maybe causing typ unittests to hang')
     def test_bad_value(self):
         self.assertRaises(ValueError, self.call, [], win_multiprocessing='foo')
 
+    @unittest.skipIf(sys.platform == 'darwin', 'Test maybe causing typ unittests to hang')
     def test_ignore(self):
         h = self.make_host()
         if h.platform == 'win32':  # pragma: win32
@@ -221,6 +223,7 @@ class TestWinMultiprocessing(TestCase):
             self.assertEqual(out, '0 tests passed, 0 skipped, 0 failures.\n')
             self.assertEqual(err, '')
 
+    @unittest.skipIf(sys.platform == 'darwin', 'Test maybe causing typ unittests to hang')
     def test_real_unimportable_main(self):
         h = self.make_host()
         tmpdir = None
@@ -273,12 +276,14 @@ class TestWinMultiprocessing(TestCase):
         self.assertIn('ValueError: The __main__ module ',
                       err_str)
 
+    @unittest.skipIf(sys.platform == 'darwin', 'Test maybe causing typ unittests to hang')
     def test_single_job(self):
         ret, out, err = self.call(['-j', '1'], platform='win32')
         self.assertEqual(ret, 0)
         self.assertEqual('0 tests passed, 0 skipped, 0 failures.\n', out )
         self.assertEqual(err, '')
 
+    @unittest.skipIf(sys.platform == 'darwin', 'Test maybe causing typ unittests to hang')
     def test_spawn(self):
         ret, out, err = self.call([])
         self.assertEqual(ret, 0)

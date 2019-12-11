@@ -184,10 +184,8 @@ class Runner(object):
         self.host.print_(msg, end, stream=stream)
 
     def run(self, test_set=None):
-
         ret = 0
         h = self.host
-
         if self.args.version:
             self.print_(VERSION)
             return ret, None, None
