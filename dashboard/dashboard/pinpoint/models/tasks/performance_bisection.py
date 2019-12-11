@@ -10,6 +10,7 @@ import collections
 import itertools
 import logging
 import math
+import pprint
 
 from dashboard.common import math_utils
 from dashboard.pinpoint.models import change as change_module
@@ -374,14 +375,16 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
 
       # If the dependencies have converged into a single status, we can make
       # decisions on the terminal state of the bisection.
+      logging.debug('Changes by Status:\n%s',
+                    pprint.pformat(dict(changes_by_status)))
       if len(changes_by_status) == 1 and changes_with_data:
 
         # Check whether all dependencies are completed and if we do
         # not have data in any of the dependencies.
-        if changes_by_status['completed'] == changes_with_data:
+        if changes_by_status.get('completed') == changes_with_data:
           changes_with_empty_results = [
               change for change in changes_with_data
-              if not results_by_change[change]
+              if not results_by_change.get(change)
           ]
           if changes_with_empty_results:
             task.payload.update({
@@ -394,9 +397,8 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
                     }]
             })
             return [CompleteExplorationAction(self.job, task, 'failed')]
-
         # Check whether all the dependencies had the tests fail consistently.
-        if changes_by_status['failed'] == changes_with_data:
+        elif changes_by_status.get('failed') == changes_with_data:
           task.payload.update({
               'errors':
                   task.payload.get('errors', []) + [{
@@ -405,6 +407,9 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
                   }]
           })
           return [CompleteExplorationAction(self.job, task, 'failed')]
+        # If they're all pending or ongoing, then we don't do anything yet.
+        else:
+          return None
 
       # We want to reduce the list of ordered changes to only the ones that have
       # data available.
@@ -489,12 +494,17 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         subrange = all_changes[a_index:b_index + 1]
         return None if len(subrange) <= 2 else subrange[len(subrange) // 2]
 
-      additional_changes = exploration.Speculate(
-          ordered_changes,
-          change_detected=DetectChange,
-          on_unknown=CollectChangesToRefine,
-          midpoint=FindMidpoint,
-          levels=_DEFAULT_SPECULATION_LEVELS)
+      additional_changes = list(
+          exploration.Speculate(
+              ordered_changes,
+              change_detected=DetectChange,
+              on_unknown=CollectChangesToRefine,
+              midpoint=FindMidpoint,
+              levels=_DEFAULT_SPECULATION_LEVELS))
+
+      logging.debug('Additional Changes to explore: %s',
+                    pprint.pformat(additional_changes))
+      logging.debug('Changes to Refine: %s', pprint.pformat(changes_to_refine))
 
       # At this point we can collect the actions to extend the task graph based
       # on the results of the speculation.
@@ -520,7 +530,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
                        for a, b in Pairwise(ordered_changes)
                        if DetectChange(a, b)]
       })
-      if not actions:
+      if not actions and 'pending' not in changes_by_status:
         # Mark this operation complete, storing the differences we can compute.
         actions = [CompleteExplorationAction(self.job, task, 'completed')]
       return actions
@@ -555,6 +565,7 @@ def AnalysisSerializer(task, _, accumulator):
           for change in task.payload.get('changes', [])
       ]
   })
+
 
 class Serializer(evaluators.FilteringEvaluator):
 
