@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "686e015f_3468687c",
+        "filename": "dashboard/dashboard/sheriff_config/requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-11T09:29:37Z",
+      "side": 1,
+      "message": "Have you considered pinning the version of this dependency?",
+      "revId": "9502a825bd70d8295ed96e0c80dbf4e27d301659",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
