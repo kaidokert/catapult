@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92e897f3_70d3ec17",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1103654
+      },
+      "writtenOn": "2019-12-11T17:57:00Z",
+      "side": 1,
+      "message": "Nit: \"if browser_options.environment:\" is sufficient. No need to test \"is not None\" explicitly.",
+      "revId": "4536c3e3a4637d49da93fa04c82fe23a12099399",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

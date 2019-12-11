@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9a500e4_bdf8d28f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1103654
+      },
+      "writtenOn": "2019-12-11T17:57:00Z",
+      "side": 0,
+      "message": "Nit: be consistent between 2 lines between classes or 1.",
+      "revId": "989b6154e4ff3bc97ff85fc3c5620236bcb2d631",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
