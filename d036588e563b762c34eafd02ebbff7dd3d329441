@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a6eaa3cc_3426c7dd",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-11T07:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c59584e_78f39f3a",
+      "range": {
+        "startLine": 26,
+        "startChar": 38,
+        "endLine": 26,
+        "endChar": 58
+      },
+      "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "035d8ba0_0a815ffb",
         "filename": "telemetry/telemetry/core/local_server_unittest.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d14d48d0_1b207a6d",
+        "filename": "telemetry/telemetry/core/local_server_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-11T07:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "035d8ba0_0a815ffb",
+      "range": {
+        "startLine": 41,
+        "startChar": 39,
+        "endLine": 41,
+        "endChar": 59
+      },
+      "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74e7a4fa_7c0d9c90",
         "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a807e223_30442dcf",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2019-12-11T07:00:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74e7a4fa_7c0d9c90",
+      "range": {
+        "startLine": 321,
+        "startChar": 39,
+        "endLine": 321,
+        "endChar": 73
+      },
+      "revId": "d036588e563b762c34eafd02ebbff7dd3d329441",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
