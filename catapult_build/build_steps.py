@@ -178,7 +178,7 @@ _CATAPULT_TESTS = [
     {
         'name': 'Typ unittest',
         'path': 'third_party/typ/run',
-        'additional_args': ['tests'],
+        'additional_args': ['-vvvvvvv', 'tests'],
         'disabled': ['android', 'win'
                     ],  # TODO(crbug.com/851498): enable typ unittests on Win
     },
