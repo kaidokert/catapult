@@ -19,6 +19,8 @@ from typ import Host
 
 
 class TestResultServerFakeTest(unittest.TestCase):
+
+    @unittest.skipIf(True, 'hanging on mac')
     def test_basic_upload(self):
         host = Host()
         server = None
