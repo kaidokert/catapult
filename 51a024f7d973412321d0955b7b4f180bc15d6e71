@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3d565f3_abb0279c",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T00:23:44Z",
+      "side": 0,
+      "message": "I have a hazy memory that this may be meaningful somehow.  Is there something about a RequestHandler.get/post/etc method is expected to do one of a) return a Response, or b) invoke self.response.write?\n\nI guess something to keep in mind if weird errors happen upon deployment :)\n\nI guess if nothing else it is an explicit way to declare that this method doesn\u0027t return a separate Response to self.response.",
+      "revId": "51a024f7d973412321d0955b7b4f180bc15d6e71",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
