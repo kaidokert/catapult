@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68c179a3_5cb1779f",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "Nit: You don\u0027t need this __init__ override.  This is basically just the inherited __init__.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 51
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebb319a8_32c3acaf",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "This line is unused.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 37
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f0587c3_73f491b1",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "I think this function needs some tests.",
+      "range": {
+        "startLine": 221,
+        "startChar": 4,
+        "endLine": 221,
+        "endChar": 24
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e9e3b88_a1100f42",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "As discussed in person:\n\nI think the guts of this function would be better as a separate module so that the nested functions here can be module-global functions, and thus accessible for direct unit testing.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 51
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "825766a6_1d298555",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "Nit: I think sentence this reads more clearly without this second “first”.",
+      "range": {
+        "startLine": 231,
+        "startChar": 11,
+        "endLine": 231,
+        "endChar": 16
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9c178db_a69212c6",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure itertools is gaining you much over the traditional style:\n\n  i \u003d 0\n  while i \u003c count:\n    i +\u003d 1\n    …\n\nWhat I think you actually want is:\n\n  for _ in xrange(count):\n    …",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 14
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc4d3b70_02d9ba67",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-11T01:17:38Z",
+      "side": 1,
+      "message": "Rather than using the process-global random, I wonder if it would be useful for this function to instantiate its own random.Random (and maybe log the seed) so that results are deterministic?\n\nPossibly even by adding a parameter to allow tests to inject their own random?\n\n  def _ClusterAndFindSplit(values, min_segment_size, rand\u003dNone):\n    \"\"\"…docstring…\"\"\"\n    if rand is None:\n     rand \u003d random.Random()\n    …\n\n(Or perhaps to inject a higher-level “Permuter” object rather than a generic Random interface.)",
+      "range": {
+        "startLine": 260,
+        "startChar": 18,
+        "endLine": 260,
+        "endChar": 24
+      },
+      "revId": "fcd9426c8f43b50a53f2a0b335b0721161c734e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
