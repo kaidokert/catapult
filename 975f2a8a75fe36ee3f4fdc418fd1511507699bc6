@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d650935_2d0cf892",
+        "filename": "third_party/typ/run",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1336025
+      },
+      "writtenOn": "2019-12-11T02:37:46Z",
+      "side": 1,
+      "message": "Is this change temporary? add a bug if it is.",
+      "revId": "975f2a8a75fe36ee3f4fdc418fd1511507699bc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
