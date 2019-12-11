@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e73dabba_33da652f",
+        "filename": "third_party/typ/typ/host.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2019-12-11T01:19:40Z",
+      "side": 1,
+      "message": "I don\u0027t think this\u0027ll work in python3.\n\nDidn\u0027t we hit an issue like this before where you had to use sys.stdout.buffer or something like that?",
+      "revId": "9a19e4050ce2767a20ee4e8b99fa1324355d685e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
