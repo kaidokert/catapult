@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "94f6c11c_848251c4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1363998
+      },
+      "writtenOn": "2019-12-11T17:46:27Z",
+      "side": 1,
+      "message": "Done (see broad comment).",
+      "parentUuid": "3f3365ac_d6ce3b0e",
+      "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b07a8fdf_80a624dd",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
         "patchSetId": 11
@@ -33,6 +51,24 @@
       "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d941c6de_7eaaacce",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1363998
+      },
+      "writtenOn": "2019-12-11T17:46:27Z",
+      "side": 1,
+      "message": "Done, but moved back to crrev.com/c/1902532.",
+      "parentUuid": "b07a8fdf_80a624dd",
+      "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -56,6 +92,30 @@
       "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58ff233d_63e9b320",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args_unittest.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1363998
+      },
+      "writtenOn": "2019-12-11T17:46:27Z",
+      "side": 1,
+      "message": "Moved to crrev.com/c/1902532. The test should be much simpler to read now.",
+      "parentUuid": "1d76d76a_ee76298e",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "44e1daebac20c316f14eb328952d180b9f7153f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
