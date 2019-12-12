@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0046fe9a_74cfa16e",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-12T12:24:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e0f7377_730b2737",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 65
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1164bcf6_6ad51006",
         "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f00c57ef_fc79b28e",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-12T12:24:10Z",
+      "side": 1,
+      "message": "Yeah, I struggled with this one a bit. But I think I found a way with a loop generating the attempt number and the commit id\u0027s (those are the ones that are different in this loop).",
+      "parentUuid": "1164bcf6_6ad51006",
+      "range": {
+        "startLine": 208,
+        "startChar": 1,
+        "endLine": 209,
+        "endChar": 47
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2a56ce77_db5d2dd7",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-12T12:24:10Z",
+      "side": 1,
+      "message": "Yeah, this one\u0027s weird. I just removed the unnecessary spaces.",
+      "parentUuid": "5c0bc7ee_19a29ebb",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 67
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e68d2f27_05425188",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -85,6 +157,24 @@
       "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28291831_7946a166",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-12T12:24:10Z",
+      "side": 1,
+      "message": "Great catch! Yeah, this is unnecessarily complicated. 😊\n\nFixed.",
+      "parentUuid": "e68d2f27_05425188",
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "d10717cd_d7dadb93",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-12T12:24:10Z",
+      "side": 1,
+      "message": "I chose static methods because it will work whether it\u0027s called on the class or an instance. Doing either works, by design. 😊\n\nThis is a case where the \"confusion\" is a feature, rather than a bug. 😜",
+      "parentUuid": "58027144_d44f633f",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 15
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8323d9aa_54801e70",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 1
@@ -131,6 +245,30 @@
       "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08350c61_4d1f51cc",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-12T12:24:10Z",
+      "side": 1,
+      "message": "Actually this is an oversight -- it\u0027s very chatty and was useful while I was iterating on this, but will be a huge distraction in production that I rather remove it. 😊",
+      "parentUuid": "8323d9aa_54801e70",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 60
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
