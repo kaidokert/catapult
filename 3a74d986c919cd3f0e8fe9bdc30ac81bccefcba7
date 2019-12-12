@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "713c7979_36549c6f",
+        "filename": "tracing/tracing/extras/chrome/largest_contentful_paint.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-12-12T22:39:23Z",
+      "side": 1,
+      "message": "Yup leaving it there sg, although once the other one lands (and the catapult roll happens) you will likely have to rebase this CL. Cluster telemetry gives up if there\u0027s a merge conflict.",
+      "parentUuid": "58293c7f_54259727",
+      "revId": "3a74d986c919cd3f0e8fe9bdc30ac81bccefcba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b02a09dd_a3011b52",
         "filename": "tracing/tracing/extras/chrome/largest_contentful_paint_no_invalidation.html",
         "patchSetId": 1
