@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dece6808_6bb539f6",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-12T00:02:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41d9041f_b0e4098a",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0dcecec_d6e9cbc9",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 15
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "25f66530_34986bb7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-12T00:02:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0dcecec_d6e9cbc9",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7aa78365_d12bbf04",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
         "patchSetId": 15
@@ -68,6 +116,30 @@
       "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca31c032_a97cb27d",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-12T00:02:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aa78365_d12bbf04",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "9fb03cfbabbdbf70a95827b11db0a352d5a927e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
