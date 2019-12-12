@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3822c432_e26d08e3",
+        "filename": "tracing/tracing/extras/chrome/largest_contentful_paint.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2019-12-12T22:24:50Z",
+      "side": 1,
+      "message": "(for lcpEventList of lcpEventsGroupedByNavigation.values()) {\n... \n} would be clearer (the convention in the codebase was to avoid forEach, and also it makes it clear that we\u0027re iterating over the values of map and not the keys) but otherwise looks good to me.",
+      "revId": "228aec2b47bf83fcc8aeb5bb57dda0b8065bb2bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6501daa3_02a874bd",
         "filename": "tracing/tracing/extras/chrome/largest_contentful_paint.html",
         "patchSetId": 2
