@@ -483,6 +483,24 @@
     },
     {
       "key": {
+        "uuid": "e71c1821_658e855e",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T23:20:51Z",
+      "side": 1,
+      "message": "you didn\u0027t fix this though.",
+      "parentUuid": "f63785e2_da0a5d05",
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fa1d03c1_8f3a309d",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 22
