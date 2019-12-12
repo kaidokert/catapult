@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58293c7f_54259727",
+        "filename": "tracing/tracing/extras/chrome/largest_contentful_paint.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-12-12T21:50:26Z",
+      "side": 1,
+      "message": "This has been pulled out to https://chromium-review.googlesource.com/c/catapult/+/1965638\n\nBut if I\u0027m going to do a cluster telemetry run where I compare metrics, is it best to leave it in, since it\u0027s more correct?",
+      "revId": "3a74d986c919cd3f0e8fe9bdc30ac81bccefcba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b02a09dd_a3011b52",
+        "filename": "tracing/tracing/extras/chrome/largest_contentful_paint_no_invalidation.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-12-12T21:50:26Z",
+      "side": 1,
+      "message": "This is the main difference from the main largest contentful paint metric.",
+      "revId": "3a74d986c919cd3f0e8fe9bdc30ac81bccefcba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9efeac13_a06e791b",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2019-12-12T21:50:26Z",
+      "side": 1,
+      "message": "What tests should I add to make sure I\u0027m checking the right things in a cluster telemetry test where we try to understand what would happen without invalidation of removed elements/images?",
+      "revId": "3a74d986c919cd3f0e8fe9bdc30ac81bccefcba7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
