@@ -706,6 +706,30 @@
     },
     {
       "key": {
+        "uuid": "b330ed27_34c7b7d5",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-12T23:48:23Z",
+      "side": 1,
+      "message": "Reverted to using open since mknod is not supported on Windows.",
+      "parentUuid": "1145c592_35cfc5d0",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 66
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5f808b9_5087e6e3",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
         "patchSetId": 22
