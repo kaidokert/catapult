@@ -2,6 +2,236 @@
   "comments": [
     {
       "key": {
+        "uuid": "1e453555_3c519183",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "typo here",
+      "range": {
+        "startLine": 34,
+        "startChar": 18,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e36183f_a6aed591",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "just wondering: why put this in fuchsia_interface.py instead of fuchsia_device.py?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 39
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcd01967_c29ffddb",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "+achuith added this in https://codereview.chromium.org/27045006/diff/24002/tools/telemetry/telemetry/core/browser_options.py\nmaybe he has opinions on the best way to do this?",
+      "range": {
+        "startLine": 452,
+        "startChar": 6,
+        "endLine": 452,
+        "endChar": 75
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33243883_f961a7f9",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "Maybe fuchsia should follow this pattern? +achuith may know.",
+      "range": {
+        "startLine": 586,
+        "startChar": 2,
+        "endLine": 588,
+        "endChar": 41
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c233f2b2_ddd4fbf4",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "nit: does this pass pylint? I thought it normally looks like \n\n_SDK_TOOLS \u003d [\n    os.path.join(\u0027tools\u0027, \u0027dev_finder\u0027),\n    os.path.join(\u0027tools\u0027, \u0027symbolize\u0027),\n]",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 4
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89b58d65_f62f3043",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "This should be \"DownloadFuchsiaSDK\" for clarity.",
+      "range": {
+        "startLine": 67,
+        "startChar": 5,
+        "endLine": 67,
+        "endChar": 8
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4368c7c_2bd775ac",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "does this check if the command passed or failed? What guidance is needed for a user if this failed? Probably they would need access to that bucket somehow, right?",
+      "range": {
+        "startLine": 74,
+        "startChar": 2,
+        "endLine": 74,
+        "endChar": 31
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcb918a0_5ad36a81",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "maybe provide some tips for debugging. What command could a user run to figure out why this happened?",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 45
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac59540_3be9d05b",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "add period.",
+      "range": {
+        "startLine": 97,
+        "startChar": 70,
+        "endLine": 97,
+        "endChar": 73
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "779d7a97_bc907c9a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "Rewrite this to reduce nesting and \u0027not\u0027s:\n\nif os.path.exists(_SDK_ROOT_IN_CHROMIUM):\n  return _SDK_ROOT_IN_CHROMIUM\nif os.path.exists(_SDK_ROOT_IN_CATAPULT):\n  return _SDK_ROOT_IN_CATAPULT\ntar_file \u003d os.path.join(_SDK_ROOT_IN_CATAPULT,\n                        \u0027fuchsia-sdk-%s.tar\u0027 % _SDK_SHA1)\n_DownloadFuchsiaSDK(tar_file)\nreturn _SDK_ROOT_IN_CATAPULT\n\nOR\n\nif os.path.exists(_SDK_ROOT_IN_CHROMIUM):\n  return _SDK_ROOT_IN_CHROMIUM\nif not os.path.exists(_SDK_ROOT_IN_CATAPULT):\n  tar_file \u003d os.path.join(_SDK_ROOT_IN_CATAPULT,\n                          \u0027fuchsia-sdk-%s.tar\u0027 % _SDK_SHA1)\n  _DownloadFuchsiaSDK(tar_file)\nreturn _SDK_ROOT_IN_CATAPULT\n\nAlso, instead of tar_file, you can communicate more to your reader by calling it\n\u0027sdk_destination\u0027\n\nAlso, I do wonder if the user might get into a bad state where the folder _SDK_ROOT_IN_CATAPULT exists, but there is no usable tar file in it. That could be a problem.",
+      "range": {
+        "startLine": 102,
+        "startChar": 1,
+        "endLine": 108,
+        "endChar": 30
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b52158e5_3899246f",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 22
@@ -36,6 +266,23 @@
     },
     {
       "key": {
+        "uuid": "07592655_f5c0f2cf",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "nit: remove unnecessary newline",
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9afe34b4_5616fd2e",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 22
@@ -47,6 +294,23 @@
       "writtenOn": "2019-12-12T18:52:54Z",
       "side": 1,
       "message": "Ditto.",
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6816ab7b_c9f8b47d",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-12T20:49:35Z",
+      "side": 1,
+      "message": "nit: remove unnecessary newline",
       "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
