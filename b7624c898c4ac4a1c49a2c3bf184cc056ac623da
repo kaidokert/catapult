@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "e68d2f27_05425188",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-12T05:19:20Z",
+      "side": 1,
+      "message": "What\u0027s the difference between `all_completed |\u003d True` and `all_completed \u003d True`? I guess it works because if there is any task not completed, they will directly `return False`.\n\nUsing `|\u003d` on `all_completed` actually means `any_completed`. Then only case it will be used is that the `context` is empty. Maybe just handle that case?",
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58027144_d44f633f",
         "filename": "dashboard/dashboard/pinpoint/models/task.py",
         "patchSetId": 1
