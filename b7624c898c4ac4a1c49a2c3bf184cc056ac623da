@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e0f7377_730b2737",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-12T03:46:40Z",
+      "side": 1,
+      "message": "Isn\u0027t this the same as:\n\n    isolate_retrieve.side_effect \u003d [\n       (\u0027{\"files\": {\"some_benchmark/perf_results.json\": \u0027\n        \u0027{\"h\": \"394890891823812873798734a\"}}}\u0027),\n       json.dumps(histograms.AsDicts())] * swarming_test_count\n\ni.e. the itertools usage is unnecessary complexity.",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 65
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1164bcf6_6ad51006",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-12T03:46:40Z",
+      "side": 1,
+      "message": "A loop that repeatedly assigns the same literal to some_mock.return_value doesn\u0027t seem to make sense.\n\nIf you want a mock to return a value N times assign an iterable to some_mock.side_effect:\n\n  buildbucket_getjobstatus.side_effect \u003d [{…}] * (swarming_test_count // 2)\n\nOr:\n\n  buildbucket_getjobstatus.side_effect \u003d itertools.repeat(\n      {…},\n      swarming_test_count // 2)\n\nOh, I guess there\u0027s a bunch of other code nested in this loop block!  It\u0027s hard to notice that the following statements are also inside the for-loop because of the long literals with multiple levels of internal indentation :/\n\nI don\u0027t have a great idea for that problem off the top of my head.  Maybe you can think of a way to make this easier to follow?",
+      "range": {
+        "startLine": 208,
+        "startChar": 1,
+        "endLine": 209,
+        "endChar": 47
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c0bc7ee_19a29ebb",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-12T03:46:40Z",
+      "side": 1,
+      "message": "Both the before and after whitespace looks weird to me!  But I\u0027ll assume some automated formatter is happier this way…\n\n(Perhaps getting rid of the unnecessary trailing backspaces would help?)",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 67
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58027144_d44f633f",
+        "filename": "dashboard/dashboard/pinpoint/models/task.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-12T03:46:40Z",
+      "side": 1,
+      "message": "Why staticmethods?  That seems to enable confusion about whether this is supposed to be used as a singleton or a class.\n\nIf you want to allow it be to used without (), perhaps just explicitly provide a single global instance:\n\n  class _NoopAction(object):\n  \n    def __str__(self):\n      return \u0027NoopAction\u0027 \n  \n    def __call__(self, _):\n      pass\n  \n  NoopAction \u003d _NoopAction()",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 15
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8323d9aa_54801e70",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2019-12-12T03:46:40Z",
+      "side": 1,
+      "message": "As pprint is relatively expensive to call unconditionally, you might want to guard these logging.debug statements with isEnabledFor:\n\n  if logging.isEnabledFor(logging.DEBUG):\n    logging.debug(…)",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 60
+      },
+      "revId": "b7624c898c4ac4a1c49a2c3bf184cc056ac623da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
