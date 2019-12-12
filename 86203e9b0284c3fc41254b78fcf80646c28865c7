@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b52158e5_3899246f",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-12T18:52:54Z",
+      "side": 1,
+      "message": "Nit: End with a period.",
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa1d03c1_8f3a309d",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-12T18:52:54Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9afe34b4_5616fd2e",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-12T18:52:54Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b7ef017_039223b3",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-12T18:52:54Z",
+      "side": 1,
+      "message": "Nit: Use os.mknod() instead of opening the file.",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 66
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5f808b9_5087e6e3",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-12T18:52:54Z",
+      "side": 1,
+      "message": "Put this in a try/finally block with the rmtree() call in the finally portion so that the directory is always cleaned up even if one of the asserts fails.",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 0
+      },
+      "revId": "86203e9b0284c3fc41254b78fcf80646c28865c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
