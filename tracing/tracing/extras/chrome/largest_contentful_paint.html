@@ -115,17 +115,17 @@ tr.exportTo('tr.e.chrome', function() {
       for (const e of lcpEvents) {
         const key = e.mainFrameTreeNodeId;
         if (!lcpEventsGroupedByNavigation.has(key)) {
-          lcpEventsGroupedByNavigation[key] = [];
+          lcpEventsGroupedByNavigation.set(key, []);
         }
-        lcpEventsGroupedByNavigation[key].push(e);
+        lcpEventsGroupedByNavigation.get(key).push(e);
       }
 
       const finalLcpEventOfEachNaivgation = [];
-      for (const lcpEventList of Object.values(lcpEventsGroupedByNavigation)) {
+      lcpEventsGroupedByNavigation.forEach(function(lcpEventList) {
         lcpEventList.sort((a, b) => a.start - b.start);
         finalLcpEventOfEachNaivgation.push(
             lcpEventList[lcpEventList.length - 1]);
-      }
+      });
 
       return finalLcpEventOfEachNaivgation;
     }
