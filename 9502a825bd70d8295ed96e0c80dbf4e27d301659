@@ -16,6 +16,24 @@
       "revId": "9502a825bd70d8295ed96e0c80dbf4e27d301659",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60c63e94_eed2ba88",
+        "filename": "dashboard/dashboard/sheriff_config/requirements.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-12T01:25:03Z",
+      "side": 1,
+      "message": "The documents doesn\u0027t provide any version advised to pin. Maybe just on head? Because it won\u0027t affect your code unless you start debugging and pin an old version may breaks the cloud debugger.",
+      "parentUuid": "686e015f_3468687c",
+      "revId": "9502a825bd70d8295ed96e0c80dbf4e27d301659",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
