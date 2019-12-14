@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc1710e8_ecd50a8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-14T01:21:49Z",
+      "side": 1,
+      "message": "It\u0027s good to explain why you\u0027re making the change, not just what the change includes.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 42
+      },
+      "revId": "d7e85ae2e1e2db74756f311b227f5045e2d83fdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
