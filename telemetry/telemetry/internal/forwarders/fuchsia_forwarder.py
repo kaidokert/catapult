@@ -1,7 +1,6 @@
 # Copyright 2019 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
-
 import tempfile
 
 from telemetry.core import util
@@ -42,17 +41,16 @@ class FuchsiaSshForwarder(forwarders.Forwarder):
         # Choose an available port on the host.
         local_port = util.GetUnreservedAvailableLocalPort()
 
-    forward_cmd = [
-        '-O', 'forward',  # Send SSH mux control signal.
+    ssh_args = [
         '-N',  # Don't execute command
         '-T'  # Don't allocate terminal.
     ]
-
-    forward_cmd.append(forwarder_utils.GetForwardingArgs(
-        local_port, remote_port, self.host_ip, port_forward))
+    ssh_args.extend(forwarder_utils.GetForwardingArgs(
+        local_port, remote_port, self.host_ip,
+        port_forward, log_level='VERBOSE'))
 
     with tempfile.NamedTemporaryFile() as stderr_file:
-      self._proc = command_runner.RunCommandPiped(forward_cmd,
+      self._proc = command_runner.RunCommandPiped(ssh_args=ssh_args,
                                                   stderr=stderr_file)
       if not remote_port:
         remote_port = forwarder_utils.ReadRemotePort(stderr_file.name)

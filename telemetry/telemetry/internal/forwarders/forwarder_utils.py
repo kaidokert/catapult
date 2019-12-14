@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 """A helper for common operations in ssh forwarding"""
 import re
+import logging
 
 import py_utils
 
@@ -23,13 +24,15 @@ def ReadRemotePort(filename):
   """
   def TryReadingPort(f):
     line = f.readline()
+    logging.warning(line)
     tokens = re.search(r'port (\d+) for remote forward to', line)
     return int(tokens.group(1)) if tokens else None
 
   with open(filename, 'r') as f:
     return py_utils.WaitFor(lambda: TryReadingPort(f), timeout=60)
 
-def GetForwardingArgs(local_port, remote_port, host_ip, port_forward):
+def GetForwardingArgs(local_port, remote_port, host_ip,
+                      port_forward, log_level=None):
   """Prepare the forwarding arguments to execute for devices that connect with
   the host via ssh.
 
@@ -38,18 +41,20 @@ def GetForwardingArgs(local_port, remote_port, host_ip, port_forward):
     remote_port: Port on the remote device.
     host_ip: ip of the host.
     port_forward: Direction of the connection. True if forwarding from the host.
+    log_level: Determines verbosity of ssh.
 
   Returns:
     List of strings, the command arguments for handling port forwarding.
   """
+  if not log_level:
+    log_level = 'INFO'
   if port_forward:
     arg_format = '-R{remote_port}:{host_ip}:{local_port}'
   else:
     arg_format = '-L{local_port}:{host_ip}:{remote_port}'
   return [
-      # SSH only prints the allocated port at LogLevel=INFO, so ensure SSH is
-      # at least that verbose.
-      '-o', 'LogLevel=INFO',
+      # Ensure SSH is at least verbose enough to print the allocated port
+      '-o', 'LogLevel=%s' % log_level,
       arg_format.format(host_ip=host_ip,
                         local_port=local_port,
                         remote_port=remote_port or 0)
