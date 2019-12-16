@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60bdb5b3_3fac9d61",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-16T04:29:32Z",
+      "side": 1,
+      "message": "```\ndef SlidingTriple(iterable):\n  \"\"\"s -\u003e (None, s0, s1), (s0, s1, s2), (s1, s2, s3), ...\"\"\"\n  p, c, n \u003d itertools.tee(iterable, 3)\n  p \u003d itertools.chain([None], p)\n  n \u003d itertools.chain(itertools.islice(n, 1, None), [None])\n  return itertools.izip(p, c, n)\n```\n\nInstead of tee twice, this may be easier for understanding (I don\u0027t need to maintain the iterators\u0027 state in my mind).",
+      "revId": "c26e6df4f404f158519233bd0fcfb516f06be087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fe789cc_3f7f59d3",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-16T04:29:32Z",
+      "side": 1,
+      "message": "if `\u0027comparisons\u0027 not in task.payload`, the `task.payload.get` will return None, which still meets the condition. Is there any case that the first one return True but the seconed one return False? Or you can just remove `\u0027comparisons\u0027 not in task.payload`.",
+      "revId": "c26e6df4f404f158519233bd0fcfb516f06be087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17169a39_f3b9b7ce",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-16T04:29:32Z",
+      "side": 1,
+      "message": "Another way to test subset is `bool(dependent_states - {\u0027failed\u0027, \u0027completed\u0027})`",
+      "revId": "c26e6df4f404f158519233bd0fcfb516f06be087",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
