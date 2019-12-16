@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2e5766f7_2903ac4e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-16T23:29:32Z",
+      "side": 1,
+      "message": "When I tested this locally, it seems like web-engine-shell would close, but with a slight delay after the process on the host is killed.",
+      "parentUuid": "12e2e937_95337fa8",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99b26816_6563c134",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "078aeca7_e34d5614",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-16T23:29:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99b26816_6563c134",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 8
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b01a674e_571cbb2a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-16T23:29:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df3e5c08_803000c7",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "971a36ef_ab2db6c9",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2cccc85_662e45cb",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-16T23:29:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "971a36ef_ab2db6c9",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
