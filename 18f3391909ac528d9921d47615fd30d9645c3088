@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "098ab20f_458d82ee",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T23:35:35Z",
+      "side": 1,
+      "message": "I think this will end up failing during actual tests, as calling GetStandardOutput is standard when a test fails. Instead, it should end up returning a string explaining that stdout is not available on Fuchsia devices.",
+      "range": {
+        "startLine": 69,
+        "startChar": 10,
+        "endLine": 69,
+        "endChar": 29
+      },
+      "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e01a9b4b_8a86e5d6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T23:35:35Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 75,
+        "startChar": 10,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca9a93cc_b9457975",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T23:35:35Z",
+      "side": 1,
+      "message": "Again, I think it\u0027s reasonable for most of these to be called as part of a valid test, so they should return reasonable defaults instead of failing. I would think the only ones that should raise NotImplemented (or another exception) are ones like StartActivity (Android-specific, so it should never be called on Fuchsia) or InstallApplication (at least until support for installing/launching other Fuchsia applications is added)",
+      "range": {
+        "startLine": 48,
+        "startChar": 10,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
