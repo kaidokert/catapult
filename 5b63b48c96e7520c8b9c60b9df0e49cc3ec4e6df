@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d0196fc_ef29b456",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-16T05:56:50Z",
+      "side": 1,
+      "message": "You have already ensure the comparisions and result_values is not None, `or []` are not needed.",
+      "revId": "5b63b48c96e7520c8b9c60b9df0e49cc3ec4e6df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
