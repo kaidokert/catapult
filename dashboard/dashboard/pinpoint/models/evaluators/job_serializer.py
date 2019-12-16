@@ -6,6 +6,9 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import logging
+import itertools
+
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import evaluators
 from dashboard.pinpoint.models.tasks import find_isolate
@@ -197,6 +200,9 @@ class Serializer(evaluators.DispatchByTaskType):
         }
         order_changes = local_context.get('order_changes')
         all_changes = order_changes.get('changes')
+        logging.debug('All changes: %s', all_changes)
+        comparisons = order_changes.get('comparisons')
+        logging.debug('Comparisons: %s', comparisons)
         change_index = {
             change: index for index, change in enumerate(
                 known_change for known_change in all_changes
@@ -209,6 +215,10 @@ class Serializer(evaluators.DispatchByTaskType):
               change_module.Change.FromDict(state.get('change')))
           if index is not None:
             ordered_states[index] = state
+
+        # Merge in the comparisons as they appear for the ordered_states.
+        for state, comparison in itertools.izip(ordered_states, comparisons):
+          state['comparisons'] = comparison
         context['state'] = ordered_states
 
     if 'set_parameters' in local_context:
@@ -298,6 +308,8 @@ def AnalysisTransformer(task, _, context):
       },
       'order_changes': {
           'changes': task_data.get('changes'),
+          'comparisons': task_data.get('comparisons'),
+          'culprits': task_data.get('culprits'),
       }
   }
   context.clear()
