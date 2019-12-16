@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa65a4e_c27b0245",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-16T23:34:38Z",
+      "side": 1,
+      "message": "I may lose some context, but why the vertex (btw, mixing using vertice and vertex here) not include all of the edges\u0027 from and to? Or it\u0027s just because `v.vertex_type \u003d\u003d \u0027read_value\u0027`?",
+      "revId": "b1dcf68f3fc4b4e5cdfac959a5c948814d8793da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
