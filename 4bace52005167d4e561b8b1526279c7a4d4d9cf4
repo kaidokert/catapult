@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fee626aa_f204c3cd",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-16T03:17:20Z",
+      "side": 1,
+      "message": "Say \u0027Sheriffs do not match:\u0027 instead?",
+      "range": {
+        "startLine": 74,
+        "startChar": 18,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "4bace52005167d4e561b8b1526279c7a4d4d9cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
