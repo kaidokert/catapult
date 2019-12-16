@@ -16,6 +16,24 @@
       "revId": "5b63b48c96e7520c8b9c60b9df0e49cc3ec4e6df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0182c45_74c9579d",
+        "filename": "dashboard/dashboard/pinpoint/models/evaluators/job_serializer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-16T06:11:41Z",
+      "side": 1,
+      "message": "Actually, I still need this because the data could have been saved to be `None`.",
+      "parentUuid": "9d0196fc_ef29b456",
+      "revId": "5b63b48c96e7520c8b9c60b9df0e49cc3ec4e6df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
