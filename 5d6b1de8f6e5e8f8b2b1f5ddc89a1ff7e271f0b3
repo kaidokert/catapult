@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12e2e937_95337fa8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T20:54:12Z",
+      "side": 1,
+      "message": "Will this actually do anything to web-engine-shell? The process that you\u0027re killing here is the SSH process you used to start web-engine-shell, not the actual process on the device.",
+      "range": {
+        "startLine": 62,
+        "startChar": 6,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99b26816_6563c134",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T20:54:12Z",
+      "side": 1,
+      "message": "Instead of passing, it\u0027s better to return something like \"Getting stdout is not supported yet on Fuchsia\" so that people don\u0027t question why they\u0027re not getting stdout/stack traces.",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 8
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df3e5c08_803000c7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T20:54:12Z",
+      "side": 1,
+      "message": "I believe this is meant for getting the named version of the OS, e.g. \"Nougat\" for Android or \"Xenial\" for Linux.",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "971a36ef_ab2db6c9",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2019-12-16T20:54:12Z",
+      "side": 1,
+      "message": "Instead of passing for all of these, consider what they should be doing. For example, if we have no way of figuring out whether the device is thermally throttled, you might want to always return \"False\" for HasBeenThermallyThrottled/IsThermallyThrottled so Telemetry doesn\u0027t try to do anything weird to compensate. Or, if you don\u0027t expect LaunchApplication to ever be called, because it\u0027s not currently supported, it should be raising an exception.",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "5d6b1de8f6e5e8f8b2b1f5ddc89a1ff7e271f0b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
