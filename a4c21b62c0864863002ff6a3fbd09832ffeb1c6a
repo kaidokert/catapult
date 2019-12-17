@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "448e0f2a_31f183ed",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-17T22:22:32Z",
+      "side": 1,
+      "message": "This API is likely to be accidentally misused. Reading it, it sounds like you can make it DEBUG or whatever you want if you don\u0027t want a lot of noise. But actually if you set it to a certain level then the application will not be able to read in the allocated port, so it won\u0027t work. This is not good software design. Instead, potentially the application should be told whether it is connecting to fuschia or chromeos and react accordingly.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "a4c21b62c0864863002ff6a3fbd09832ffeb1c6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
