@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "96bf4b3b_f324e896",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-17T00:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "098ab20f_458d82ee",
+      "range": {
+        "startLine": 69,
+        "startChar": 10,
+        "endLine": 69,
+        "endChar": 29
+      },
+      "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e01a9b4b_8a86e5d6",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7f185e04_409e2318",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-17T00:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e01a9b4b_8a86e5d6",
+      "range": {
+        "startLine": 75,
+        "startChar": 10,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca9a93cc_b9457975",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dee1e9fd_4ac48c25",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-17T00:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca9a93cc_b9457975",
+      "range": {
+        "startLine": 48,
+        "startChar": 10,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "18f3391909ac528d9921d47615fd30d9645c3088",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
