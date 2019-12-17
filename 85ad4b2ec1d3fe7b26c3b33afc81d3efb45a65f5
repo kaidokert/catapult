@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "62579330_d75962ab",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-17T22:25:00Z",
+      "side": 1,
+      "message": "This is a code smell. This system is impossible to use if some other application on the same system else decides to use the 1234 port number. You need to find the port number programmatically rather than doing this.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 53
+      },
+      "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "812725b0_bb6353b5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-17T22:25:00Z",
+      "side": 1,
+      "message": "I don\u0027t think you know that until after you bind to the devtoolsclient port.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1defcfcb_a42cfe19",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 4
