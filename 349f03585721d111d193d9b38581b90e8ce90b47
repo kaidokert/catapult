@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98d8810f_c4f28f46",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-17T05:34:01Z",
+      "side": 1,
+      "message": "Maybe add a function to reduce duplication?",
+      "revId": "349f03585721d111d193d9b38581b90e8ce90b47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
