@@ -16,6 +16,24 @@
       "revId": "b1dcf68f3fc4b4e5cdfac959a5c948814d8793da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf08acf_af98c6f5",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-17T00:04:07Z",
+      "side": 1,
+      "message": "What this is doing is adding all the sub-edges, but filter out the edges that originate from the nodes already in the graph.",
+      "parentUuid": "9aa65a4e_c27b0245",
+      "revId": "b1dcf68f3fc4b4e5cdfac959a5c948814d8793da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
