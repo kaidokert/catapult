@@ -375,7 +375,14 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
       # We need to reconstitute the Change instances from the dicts we've stored
       # in the payload.
       all_changes = [
-          change_module.Change.FromDict(change)
+          change_module.Change(
+              commits=[
+                  change_module.Commit(
+                      repository=commit.get('repository'),
+                      git_hash=commit.get('git_hash'))
+                  for commit in change.get('commits')
+              ],
+              patch=change.get('patch'))
           for change in task.payload.get('changes')
       ]
 
@@ -394,11 +401,16 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
       changes_with_data = set()
       changes_by_status = collections.defaultdict(set)
 
-      # TODO(dberris): Determine a better way of creating these Change objects
-      # which doesn't involve these .FromDict(...) calls which might force calls
-      # to back-end services.
-      associated_results = [(change_module.Change.FromDict(t.get('change')),
-                             t.get('status'), t.get('result_values'))
+      associated_results = [(change_module.Change(
+          commits=[
+              change_module.Commit(
+                  repository=commit.get('repository'),
+                  git_hash=commit.get('git_hash'),
+              )
+              for commit in t.get('change').get('commits')
+          ],
+          patch=t.get('change').get('patch')), t.get('status'),
+                             t.get('result_values'))
                             for dep, t in accumulator.items()
                             if dep in deps]
       for change, status, result_values in associated_results:
@@ -620,7 +632,14 @@ def AnalysisSerializer(task, _, accumulator):
       'comparison_mode': task.payload.get('comparison_mode'),
       'metric': metric,
       'changes': [
-          change_module.Change.FromDict(change)
+          change_module.Change(
+              commits=[
+                  change_module.Commit(
+                      repository=commit.get('repository'),
+                      git_hash=commit.get('git_hash'))
+                  for commit in change.get('commits')
+              ],
+              patch=change.get('patch'))
           for change in task.payload.get('changes', [])
       ],
       'comparisons': task.payload.get('comparisons', []),
