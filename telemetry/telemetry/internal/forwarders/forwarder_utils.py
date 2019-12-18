@@ -29,7 +29,8 @@ def ReadRemotePort(filename):
   with open(filename, 'r') as f:
     return py_utils.WaitFor(lambda: TryReadingPort(f), timeout=60)
 
-def GetForwardingArgs(local_port, remote_port, host_ip, port_forward):
+def GetForwardingArgs(local_port, remote_port, host_ip,
+                      port_forward):
   """Prepare the forwarding arguments to execute for devices that connect with
   the host via ssh.
 
@@ -47,9 +48,6 @@ def GetForwardingArgs(local_port, remote_port, host_ip, port_forward):
   else:
     arg_format = '-L{local_port}:{host_ip}:{remote_port}'
   return [
-      # SSH only prints the allocated port at LogLevel=INFO, so ensure SSH is
-      # at least that verbose.
-      '-o', 'LogLevel=INFO',
       arg_format.format(host_ip=host_ip,
                         local_port=local_port,
                         remote_port=remote_port or 0)
