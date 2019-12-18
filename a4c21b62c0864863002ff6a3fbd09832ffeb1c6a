@@ -22,6 +22,30 @@
       "revId": "a4c21b62c0864863002ff6a3fbd09832ffeb1c6a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db3a48d_c8b59ed7",
+        "filename": "telemetry/telemetry/internal/forwarders/forwarder_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-18T02:42:38Z",
+      "side": 1,
+      "message": "Decided to move this flag into the individual sshforwarder classes for Fuchsia and Chromeos, removing this variable.",
+      "parentUuid": "448e0f2a_31f183ed",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "a4c21b62c0864863002ff6a3fbd09832ffeb1c6a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
