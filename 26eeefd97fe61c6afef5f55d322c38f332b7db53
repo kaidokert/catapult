@@ -70,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "600acb06_6d655232",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T01:20:44Z",
+      "side": 1,
+      "message": "Actually I think it won\u0027t happen if you always put the partition point in left. Is there any example that cluster_a is 0 and cluster_b is not?",
+      "revId": "26eeefd97fe61c6afef5f55d322c38f332b7db53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aff7c881_30f6d317",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 3
