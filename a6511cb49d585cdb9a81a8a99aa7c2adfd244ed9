@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "261c6cbe_5bfeb9d9",
+        "filename": "telemetry/telemetry/internal/forwarders/fuchsia_forwarder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-18T22:30:10Z",
+      "side": 0,
+      "message": "Nit: I think it\u0027s better to keep this line in.",
+      "revId": "a6511cb49d585cdb9a81a8a99aa7c2adfd244ed9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
