@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fe022152_6676d8cd",
+        "filename": "dashboard/dashboard/proto/histogram.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-18T08:08:55Z",
+      "side": 1,
+      "message": "Yeah. I put this here because a value of 0 means the improvement direction is left out in the generated JSON. The dashboard interprets that as the direction not being set. NOT_SPECIFIED is good therefore.",
+      "parentUuid": "8c7057c6_117b67b9",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 11
+      },
+      "revId": "56b4db205cb93683fa8ed7b1c6a23a023a0182ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b8c9aaf_faeb992a",
         "filename": "dashboard/dashboard/proto/histogram.proto",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "56b4db205cb93683fa8ed7b1c6a23a023a0182ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdfaa386_1a10fc99",
+        "filename": "dashboard/dashboard/proto/histogram.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-18T08:08:55Z",
+      "side": 1,
+      "message": "It\u0027s called that in the spec: https://chromium.googlesource.com/catapult/+/master/docs/histogram-set-json-format.md, so I think it\u0027s appropriate to follow that term.",
+      "parentUuid": "9b8c9aaf_faeb992a",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "56b4db205cb93683fa8ed7b1c6a23a023a0182ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
