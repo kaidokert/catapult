@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc5952e5_ab133a1e",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-18T22:32:51Z",
+      "side": 1,
+      "message": "This is going to spam the logs.",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "61a651b9ef11851f965f43056777ac721d70d1d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
