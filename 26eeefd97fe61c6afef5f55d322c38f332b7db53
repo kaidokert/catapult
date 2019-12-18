@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5643a5a1_5def4b1a",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T00:45:14Z",
+      "side": 1,
+      "message": "The Midpoint should be `(len(sequence) - 1) // 2` if you put it in the left part I think? In case [0, 0, 0, 0], Midpoint should return 1 to get the result [0, 0] and [0, 0]. And you don\u0027t need to handle the special case.",
+      "revId": "26eeefd97fe61c6afef5f55d322c38f332b7db53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "480fe8b6_f604e7b6",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T00:45:14Z",
+      "side": 1,
+      "message": "Maybe `for i in xrange(min_segment_size, len(sequence) - min_segment_size)`?",
+      "revId": "26eeefd97fe61c6afef5f55d322c38f332b7db53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64fe02d3_4383f137",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T00:45:14Z",
+      "side": 1,
+      "message": "In which case it will happen?",
+      "revId": "26eeefd97fe61c6afef5f55d322c38f332b7db53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62d8a88d_e35cf995",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T00:45:14Z",
+      "side": 1,
+      "message": "`max(len(cluster_a) - 1, 0)` is more clear for what you want to avoid.",
+      "revId": "26eeefd97fe61c6afef5f55d322c38f332b7db53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aff7c881_30f6d317",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T00:45:14Z",
+      "side": 1,
+      "message": "This branch is almost the same to the `pinpoint_compare.DIFFERENT` except when `not in_a and not in_b`. Maybe move the check into `not in_a and not in_b` and merge the code?",
+      "revId": "26eeefd97fe61c6afef5f55d322c38f332b7db53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
