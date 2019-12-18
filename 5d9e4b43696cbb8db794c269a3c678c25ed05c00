@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d44cf635_f3cfc95d",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-18T15:44:44Z",
+      "side": 1,
+      "message": "I did consider using an instance of the proto to store things in memory, which makes toProto() trivial, but I think this worked out pretty well too. I can also try out the in-memory proto variant if you strongly prefer that.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
