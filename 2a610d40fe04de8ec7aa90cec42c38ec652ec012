@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fca0f97_af4b13ed",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-18T03:14:15Z",
+      "side": 1,
+      "message": "As I understand, if the instance restart or killed at this point, you will never reach the next state? That\u0027s not a big problem because we use appengine but maybe not a good solution.",
+      "revId": "2a610d40fe04de8ec7aa90cec42c38ec652ec012",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
