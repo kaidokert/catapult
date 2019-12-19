@@ -145,6 +145,24 @@
       "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b36debf6_3309c1f1",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-19T05:16:16Z",
+      "side": 1,
+      "message": "I suppose they works almost same in this context? Using global logger is easier for logging in other part like in luci-config.",
+      "parentUuid": "3d7f5b33_e105c554",
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
