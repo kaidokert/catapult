@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "067823e8_2166e3cc",
+        "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-19T05:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c9bba58_6b88a266",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae29c0d9_e6e8a964",
         "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-12-19T05:01:26Z",
       "side": 1,
       "message": "Consider logging which configurations overlap, instead of the path?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 77
+      },
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63ba43a8_bbb89e30",
+        "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-19T05:12:29Z",
+      "side": 1,
+      "message": "path is more valueable in this case. It\u0027s almost impossible for you to find the overlap between two sheriffs with 100 lines re/glob. But you can easily find both the overlapped sheriff and overlapped pattern using path.",
+      "parentUuid": "ae29c0d9_e6e8a964",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -62,6 +110,24 @@
       "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843e71b1_1619fd8a",
+        "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-19T05:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "296c8261_60a2bfc9",
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
