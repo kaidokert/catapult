@@ -367,11 +367,7 @@ class Serializer(evaluators.FilteringEvaluator):
 
   def __init__(self):
     super(Serializer, self).__init__(
-        predicate=evaluators.All(
-            evaluators.TaskTypeEq('run_test'),
-            evaluators.TaskStatusIn(
-                {'ongoing', 'failed', 'completed', 'cancelled'}),
-        ),
+        predicate=evaluators.TaskTypeEq('run_test'),
         delegate=TestSerializer)
 
 
