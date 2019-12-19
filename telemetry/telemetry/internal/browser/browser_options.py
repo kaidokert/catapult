@@ -183,6 +183,11 @@ class BrowserFinderOptions(optparse.Values):
         help='When running tests on android webview, more than one apk needs to'
         ' be installed. The apk running the test is said to embed webview. More'
         ' than one apk may be specified if needed.')
+    group.add_option(
+        '--aab-mode',
+        action='store_true',
+        default=False,
+        help='Use android application bundles (aab) instead of apk on android')
     parser.add_option_group(group)
 
     # Remote platform options

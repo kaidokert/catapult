@@ -348,9 +348,12 @@ def _GetReferenceAndroidBrowser(android_platform, finder_options):
   os_version = dependency_util.GetChromeApkOsVersion(
       android_platform.GetOSVersionName())
   arch = android_platform.GetArchName()
+  os_name = 'android'
+  if finder_options.aab_mode:
+    os_name += '-aab'
   try:
     reference_build = binary_manager.FetchPath(
-        'chrome_stable', arch, 'android', os_version)
+        'chrome_stable', arch, os_name, os_version)
   except (binary_manager.NoPathFoundError,
           binary_manager.CloudStorageError):
     reference_build = None
