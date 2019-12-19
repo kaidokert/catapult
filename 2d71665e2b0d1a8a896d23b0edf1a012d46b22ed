@@ -205,6 +205,24 @@
       "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a23cb453_be791e55",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2019-12-19T06:35:39Z",
+      "side": 1,
+      "message": "Yes, but because we are in the appengine, Stackdriver will do that for us as pinpoint and dashboard. And there won\u0027t be concurrent request so you don\u0027t need these to differ the log from different request? I\u0027m not sure the best pratice here is to log these duplicated info or not. Just keep same with pinpoint \u0026 dashboard.",
+      "parentUuid": "b909e212_7d8110ce",
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
