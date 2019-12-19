@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "35a6fbe8_43fd57fa",
+        "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-19T06:13:45Z",
+      "side": 1,
+      "message": "You can log the name of the configurations or the subscriptions if you know which ones those are. You\u0027d want both information to be able to trace it down (the path and the (config, subscription)).",
+      "parentUuid": "63ba43a8_bbb89e30",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 77
+      },
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "296c8261_60a2bfc9",
         "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
         "patchSetId": 3
@@ -160,6 +184,24 @@
       "side": 1,
       "message": "I suppose they works almost same in this context? Using global logger is easier for logging in other part like in luci-config.",
       "parentUuid": "3d7f5b33_e105c554",
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b909e212_7d8110ce",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-19T06:13:45Z",
+      "side": 1,
+      "message": "It works differently because flask\u0027s logger will add information about the request that the log is associated with.",
+      "parentUuid": "b36debf6_3309c1f1",
       "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
