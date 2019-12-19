@@ -223,6 +223,24 @@
       "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee88071_a000382a",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-19T06:43:32Z",
+      "side": 1,
+      "message": "We are using the flexible environment, where it\u0027s not the same as Pinpoint and the Dashboard (since they\u0027re using the Standard environment).\n\nWe\u0027re not seeing these logs anyway today because we haven\u0027t integrated the stackdriver logging agent in the application we\u0027re deploying.",
+      "parentUuid": "a23cb453_be791e55",
+      "revId": "2d71665e2b0d1a8a896d23b0edf1a012d46b22ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
