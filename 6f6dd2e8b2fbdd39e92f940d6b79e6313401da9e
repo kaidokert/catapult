@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45d6cc15_712cbf67",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-12-20T18:54:46Z",
+      "side": 1,
+      "message": "A \u0027*\u0027 at position 0 should trigger an error, but this loop doesn\u0027t handle that correctly.",
+      "range": {
+        "startLine": 262,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 80
+      },
+      "revId": "6f6dd2e8b2fbdd39e92f940d6b79e6313401da9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed13170f_b6bb4bf5",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2019-12-20T18:54:46Z",
+      "side": 1,
+      "message": "It seems a little dangerous to remove all \\, regardless of whether it precedes a * or not, but I guess it\u0027s OK. I think it\u0027s a little more readable to use\n\n    exp.test \u003d exp.test.replace(\u0027\\\\\u0027, \u0027\u0027)",
+      "range": {
+        "startLine": 382,
+        "startChar": 12,
+        "endLine": 382,
+        "endChar": 58
+      },
+      "revId": "6f6dd2e8b2fbdd39e92f940d6b79e6313401da9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
