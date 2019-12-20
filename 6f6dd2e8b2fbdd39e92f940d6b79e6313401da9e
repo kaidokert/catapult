@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "83c164da_52fc404d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-12-20T19:44:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45d6cc15_712cbf67",
+      "range": {
+        "startLine": 262,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 80
+      },
+      "revId": "6f6dd2e8b2fbdd39e92f940d6b79e6313401da9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed13170f_b6bb4bf5",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2019-12-20T18:54:46Z",
       "side": 1,
       "message": "It seems a little dangerous to remove all \\, regardless of whether it precedes a * or not, but I guess it\u0027s OK. I think it\u0027s a little more readable to use\n\n    exp.test \u003d exp.test.replace(\u0027\\\\\u0027, \u0027\u0027)",
+      "range": {
+        "startLine": 382,
+        "startChar": 12,
+        "endLine": 382,
+        "endChar": 58
+      },
+      "revId": "6f6dd2e8b2fbdd39e92f940d6b79e6313401da9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3718113d_9015cd1c",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2019-12-20T19:44:16Z",
+      "side": 1,
+      "message": "Your right, I will just replace \u0027\\\\*\u0027 with \u0027*\u0027 for now.",
+      "parentUuid": "ed13170f_b6bb4bf5",
       "range": {
         "startLine": 382,
         "startChar": 12,
