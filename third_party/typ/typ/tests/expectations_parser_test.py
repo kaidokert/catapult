@@ -443,6 +443,20 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                                      retry_on_failure=True, is_slow_test=False,
                                      reason='crbug.com/2431'))
 
+    def testIsNotTestRetryOnFailureUsingEscapedGlob(self):
+        raw_data = (
+            '# tags: [ Linux ]\n'
+            '# results: [ RetryOnFailure ]\n'
+            'crbug.com/23456 [ Linux ] b1/\* [ RetryOnFailure ]\n')
+        test_expectations = expectations_parser.TestExpectations(['Linux'])
+        self.assertEqual(
+            test_expectations.parse_tagged_list(raw_data, 'test.txt'),
+            (0, ''))
+        self.assertIn('b1/*', test_expectations.individual_exps)
+        self.assertEqual(test_expectations.expectations_for('b1/s1'),
+                         Expectation(test='b1/s1', results={ResultType.Pass},
+                                     retry_on_failure=False, is_slow_test=False))
+
     def testIsTestRetryOnFailureUsingGlob(self):
         raw_data = (
             '# tags: [ Linux ]\n'
@@ -456,6 +470,13 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                          Expectation(test='b1/s1', results={ResultType.Pass},
                                      retry_on_failure=True, is_slow_test=False,
                                      reason='crbug.com/23456'))
+
+    def testGlobsCanExistInMiddleofPatternUsingEscapeCharacter(self):
+        raw_data = (
+            '# tags: [ Linux ]\n'
+            '# results: [ RetryOnFailure ]\n'
+            'crbug.com/23456 [ Linux ] b1/\*/c [ RetryOnFailure ]\n')
+        expectations_parser.TaggedTestListParser(raw_data)
 
     def testGlobsCanOnlyHaveStarInEnd(self):
         raw_data = (
@@ -580,12 +601,12 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         self.assertFalse(msg)
 
     def testExpectationPatternIsBroken(self):
-        test_expectations = '# results: [ Failure ]\na/b [ Failure ]'
+        test_expectations = '# results: [ Failure ]\na/\* [ Failure ]'
         expectations = expectations_parser.TestExpectations()
         expectations.parse_tagged_list(test_expectations, 'test.txt')
         broken_expectations = expectations.check_for_broken_expectations(
             ['a/b/c'])
-        self.assertEqual(broken_expectations[0].test, 'a/b')
+        self.assertEqual(broken_expectations[0].test, 'a/*')
 
     def testExpectationPatternIsNotBroken(self):
         test_expectations = '# results: [ Failure ]\na/b/d [ Failure ]'
