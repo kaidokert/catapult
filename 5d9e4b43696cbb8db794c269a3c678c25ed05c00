@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1c78f67b_ae7c9921",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "Passing in a num_samples that is \u003c 0 doesn\u0027t make any sense, and num_samples \u003d\u003d 0 is a degenerate case since samples would always be empty. I can add an assert that protects against that.\n\nIf we get to line 40 we know that stream_length \u003e num_samples \u003e 0, so the assert on num_samples is sufficient.",
+      "parentUuid": "8444cea3_d24c3838",
+      "range": {
+        "startLine": 40,
+        "startChar": 56,
+        "endLine": 40,
+        "endChar": 69
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd3ecf05_29ffd791",
         "filename": "tracing/tracing/value/histogram.cc",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "697f80bc_5bdd4d13",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "I thought\n\nif (random() \u003e prob_keep)\n\nread better than\n\nif (distribution_(generator_) \u003e prob_keep).\n\nThis method should be private however, so I\u0027ll make it that.",
+      "parentUuid": "bd3ecf05_29ffd791",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e80cf87f_60ff2f4a",
         "filename": "tracing/tracing/value/histogram.cc",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14c3b75b_e5dcea4a",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "It actually has to be there because HistogramBuilder::Resampler is a pimpl using an unique pointer. See https://www.fluentcpp.com/2017/09/22/make-pimpl-using-unique_ptr/. I didn\u0027t know this either; first time I\u0027m doing a pimpl with a unique ptr.",
+      "parentUuid": "e80cf87f_60ff2f4a",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "49ab4125_22323bb2",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "Yeah, let\u0027s start like that and we can change that later if necessary. I tried it once and at least the running statistics code got a lot clunkier. count_++ -\u003e proto_-\u003eset_count(proto_-\u003ecount() + 1), for instance. On the other hand there\u0027s a nonzero risk of bugs in the conversio method...",
+      "parentUuid": "2853a039_5299a0b4",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d73bffd9_73b9aa8a",
         "filename": "tracing/tracing/value/histogram_unittest.cc",
         "patchSetId": 2
@@ -132,6 +228,24 @@
       "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f2cf854_560ea42c",
+        "filename": "tracing/tracing/value/histogram_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "Right, that\u0027s much better.",
+      "parentUuid": "d73bffd9_73b9aa8a",
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -158,6 +272,30 @@
     },
     {
       "key": {
+        "uuid": "a0b5aa2e_1f92e2c5",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "Done.\n\nCount can never be 0 if we reach this point. It starts at 0 but there\u0027s a ++ on line 13. It only goes here if count_ is \u003e\u003d 2.\n\nI can add an assert to protect that invariant if you want; it will maybe look slightly nicer than the /0 trap we get otherwise.",
+      "parentUuid": "82f3b2eb_40112676",
+      "range": {
+        "startLine": 40,
+        "startChar": 25,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7290549_6b528625",
         "filename": "tracing/tracing/value/running_statistics.cc",
         "patchSetId": 2
@@ -178,6 +316,30 @@
       "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b47257fa_5c516475",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2019-12-20T09:26:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7290549_6b528625",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
