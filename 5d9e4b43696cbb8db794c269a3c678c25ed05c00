@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "8444cea3_d24c3838",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "What ensures that neither stream_length nor num_samples are not zero?",
+      "range": {
+        "startLine": 40,
+        "startChar": 56,
+        "endLine": 40,
+        "endChar": 69
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd3ecf05_29ffd791",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "Why do we need a `random()` function from the Resampler?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 54
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e80cf87f_60ff2f4a",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "Why isn\u0027t this just in the class definition?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d44cf635_f3cfc95d",
         "filename": "tracing/tracing/value/histogram.h",
         "patchSetId": 2
@@ -22,6 +91,93 @@
       "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2853a039_5299a0b4",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "No strong preference. Since these are implementation details I\u0027m fine with keeping things in C++ first then generating the proto using a transformation function.",
+      "parentUuid": "d44cf635_f3cfc95d",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 20
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d73bffd9_73b9aa8a",
+        "filename": "tracing/tracing/value/histogram_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "FWIW, if it\u0027s possible to use the gtest-provided main function instead of having this in the unittest, that would be great.",
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82f3b2eb_40112676",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "It would help my brain a lot of this were:\n\n`old_mean + ((value - old_mean) / count_)`\n\nAlso, it would also really help if we ensured that `count_` \u003e 0.",
+      "range": {
+        "startLine": 40,
+        "startChar": 25,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7290549_6b528625",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-20T04:43:48Z",
+      "side": 1,
+      "message": "Same here with the explicit parentheses:\n\n`variance_ \u003d old_variance + ((value - old_mean) * (value - mean_));`",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
