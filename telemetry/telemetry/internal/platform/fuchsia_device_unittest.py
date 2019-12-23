@@ -51,6 +51,7 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
   def setUp(self):
     mock.patch('platform.system', return_value='Linux').start()
     mock.patch('platform.machine', return_value='x86_64').start()
+    self.addCleanup(mock.patch.stopall)
     self._options = browser_options.BrowserFinderOptions(
         fuchsia_interface.FUCHSIA_BROWSERS[0])
     self._options.fuchsia_output_dir = 'test/'
