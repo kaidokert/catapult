@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4738e4d_6e046700",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-23T23:19:33Z",
+      "side": 1,
+      "message": "It\u0027s unclear what you changed. It is customary to upload the original change as patchset 1 and then put your fixes as patchset 2.",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 35
+      },
+      "revId": "314980295e9e07f4b391debb57559be0fcf8e9ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
