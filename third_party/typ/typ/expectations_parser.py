@@ -260,7 +260,7 @@ class TaggedTestListParser(object):
         tag_set_ids = set()
 
         for i in range(len(test)-1):
-          if test[i] == '*' and ((i > 0 and test[i-1] != '\\') or i == 0):
+            if test[i] == '*' and ((i > 0 and test[i-1] != '\\') or i == 0):
                 raise ParseError(lineno,
                     'Invalid glob, \'*\' can only be at the end of the pattern')
 
