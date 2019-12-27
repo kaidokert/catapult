@@ -46,6 +46,30 @@
       "revId": "1eedf776ba80ebccfef7ff7bc10e741563f12969",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c696b3e8_6728f59a",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T18:53:25Z",
+      "side": 1,
+      "message": "Yep, that library has a bug that isn\u0027t caught until used at Chromium scale: https://bugs.chromium.org/p/chromium/issues/detail?id\u003d938487#c49",
+      "parentUuid": "8ebf2b90_6562c1da",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "1eedf776ba80ebccfef7ff7bc10e741563f12969",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
