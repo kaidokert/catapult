@@ -49,9 +49,12 @@ class FuchsiaDeviceTest(unittest.TestCase):
 class FuchsiaSDKUsageTest(unittest.TestCase):
 
   def setUp(self):
-    mock.patch('platform.system', return_value='Linux').start()
-    mock.patch('platform.machine', return_value='x86_64').start()
-    self.addCleanup(mock.patch.stopall)
+    system_mock = mock.patch('platform.system', return_value='Linux')
+    system_mock.start()
+    self.addCleanup(system_mock.stop)
+    platform_mock = mock.patch('platform.machine', return_value='x86_64')
+    platform_mock.start()
+    self.addCleanup(platform_mock.stop)
     self._options = browser_options.BrowserFinderOptions(
         fuchsia_interface.FUCHSIA_BROWSERS[0])
     self._options.fuchsia_output_dir = 'test/'
