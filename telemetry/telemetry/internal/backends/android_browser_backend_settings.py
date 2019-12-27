@@ -257,6 +257,10 @@ ANDROID_SYSTEM_CHROME = GenericChromeBackendSettings(
     browser_type='android-system-chrome',
     package='com.android.chrome')
 
+REFERENCE_ANDROID_CHROME_BUNDLE = GenericChromeBackendSettings(
+    browser_type='reference-android-chrome-bundle',
+    package='com.google.android.apps.chrome')
+
 
 ANDROID_BACKEND_SETTINGS = (
     ANDROID_CONTENT_SHELL,
@@ -266,6 +270,7 @@ ANDROID_BACKEND_SETTINGS = (
     ANDROID_WEBVIEW_INSTRUMENTATION,
     ANDROID_CHROMIUM,
     ANDROID_CHROMIUM_BUNDLE,
+    REFERENCE_ANDROID_CHROME_BUNDLE,
     ANDROID_CHROME,
     ANDROID_CHROME_BUNDLE,
     ANDROID_CHROME_BETA,
