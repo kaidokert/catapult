@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a358257_d1c50b4a",
+        "filename": "common/bin/update_chrome_reference_binaries.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "48fbb265_ab2f75c0",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 48,
+        "endChar": 61
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f37c54fa_a137f6d3",
         "filename": "common/bin/update_chrome_reference_binaries.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3562dd_addfe98d",
+        "filename": "common/bin/update_chrome_reference_binaries.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f37c54fa_a137f6d3",
+      "range": {
+        "startLine": 127,
+        "startChar": 22,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "827be73c_92466990",
+        "filename": "common/py_utils/py_utils/chrome_binaries.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d762ee1a_aaab5193",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 77,
+        "endChar": 41
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6f2ef33_b44f0a6b",
         "filename": "common/py_utils/py_utils/chrome_binaries.json",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84289957_d35dfca9",
+        "filename": "common/py_utils/py_utils/chrome_binaries.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Done as in crrev.com/c/1983386",
+      "parentUuid": "f6f2ef33_b44f0a6b",
+      "range": {
+        "startLine": 149,
+        "startChar": 26,
+        "endLine": 149,
+        "endChar": 41
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "cd4e6e21_05d9504e",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Done. Split into crrev.com/c/1983386",
+      "parentUuid": "9b718d56_4fc79607",
+      "range": {
+        "startLine": 260,
+        "startChar": 2,
+        "endLine": 262,
+        "endChar": 45
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17941972_8eeed896",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 5
@@ -137,6 +257,30 @@
       "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dddc56e4_083ca1bd",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17941972_8eeed896",
+      "range": {
+        "startLine": 273,
+        "startChar": 5,
+        "endLine": 273,
+        "endChar": 36
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "2aead347_298036bf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "597f7fcd_95f6bc71",
+      "range": {
+        "startLine": 347,
+        "startChar": 6,
+        "endLine": 347,
+        "endChar": 56
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "56a73307_b9314c53",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 5
@@ -183,6 +351,30 @@
       "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e4f0ee0_4b8e97e7",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-27T23:20:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56a73307_b9314c53",
+      "range": {
+        "startLine": 341,
+        "startChar": 33,
+        "endLine": 341,
+        "endChar": 62
+      },
+      "revId": "4d7021e7d0407faa2b798a70827bb7d00e11d0b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
