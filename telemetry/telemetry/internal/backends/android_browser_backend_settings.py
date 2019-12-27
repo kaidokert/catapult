@@ -195,6 +195,7 @@ class WebLayerBackendSettings(WebViewBackendSettings):
     return 'Monochrome.apk'
 
 
+# TODO(crbug.com/1038137): Add reference setting for android-content-shell
 ANDROID_CONTENT_SHELL = AndroidBrowserBackendSettings(
     browser_type='android-content-shell',
     package='org.chromium.content_shell_apk',
@@ -206,15 +207,20 @@ ANDROID_CONTENT_SHELL = AndroidBrowserBackendSettings(
     supports_tab_control=False,
     supports_spki_list=True)
 
+# TODO(crbug.com/1038137): Add reference setting for android-weblayer
 ANDROID_WEBLAYER = WebLayerBackendSettings(
     browser_type='android-weblayer')
 
+# TODO(crbug.com/1038137): Add reference setting for android-webview
 ANDROID_WEBVIEW = WebViewBackendSettings(
     browser_type='android-webview')
 
+# TODO(crbug.com/1038137): Add reference setting for android-webview-google
 ANDROID_WEBVIEW_GOOGLE = WebViewGoogleBackendSettings(
     browser_type='android-webview-google')
 
+# TODO(crbug.com/1038137): Add reference setting for
+# android-webview-instrumentation
 ANDROID_WEBVIEW_INSTRUMENTATION = WebViewBasedBackendSettings(
     browser_type='android-webview-instrumentation',
     package='org.chromium.android_webview.shell',
@@ -222,16 +228,19 @@ ANDROID_WEBVIEW_INSTRUMENTATION = WebViewBasedBackendSettings(
     command_line_name='android-webview-command-line',
     apk_name='WebViewInstrumentation.apk')
 
+# TODO(crbug.com/1038137): Add reference setting for android-chromium
 ANDROID_CHROMIUM = GenericChromeBackendSettings(
     browser_type='android-chromium',
     package='org.chromium.chrome',
     apk_name='ChromePublic.apk')
 
+# TODO(crbug.com/1038137): Add reference setting for android-chromium-bundle
 ANDROID_CHROMIUM_BUNDLE = GenericChromeBundleBackendSettings(
     browser_type='android-chromium-bundle',
     package='org.chromium.chrome',
     apk_name='chrome_modern_public_bundle')
 
+# TODO(crbug.com/1038137): Add reference setting for android-chrome
 ANDROID_CHROME = ChromeBackendSettings(
     browser_type='android-chrome',
     package='com.google.android.apps.chrome')
@@ -241,18 +250,26 @@ ANDROID_CHROME_BUNDLE = GenericChromeBundleBackendSettings(
     package='com.google.android.apps.chrome',
     apk_name='monochrome_bundle')
 
+REFERENCE_ANDROID_CHROME_BUNDLE = GenericChromeBackendSettings(
+    browser_type='reference-android-chrome-bundle',
+    package='com.google.android.apps.chrome')
+
+# TODO(crbug.com/1038137): Add reference setting for android-chrome-beta'
 ANDROID_CHROME_BETA = GenericChromeBackendSettings(
     browser_type='android-chrome-beta',
     package='com.chrome.beta')
 
+# TODO(crbug.com/1038137): Add reference setting for android-chrome-dev
 ANDROID_CHROME_DEV = GenericChromeBackendSettings(
     browser_type='android-chrome-dev',
     package='com.chrome.dev')
 
+# TODO(crbug.com/1038137): Add reference setting for android-chrome-canary
 ANDROID_CHROME_CANARY = GenericChromeBackendSettings(
     browser_type='android-chrome-canary',
     package='com.chrome.canary')
 
+# TODO(crbug.com/1038137): Add reference setting for android-system-chrome
 ANDROID_SYSTEM_CHROME = GenericChromeBackendSettings(
     browser_type='android-system-chrome',
     package='com.android.chrome')
@@ -266,6 +283,7 @@ ANDROID_BACKEND_SETTINGS = (
     ANDROID_WEBVIEW_INSTRUMENTATION,
     ANDROID_CHROMIUM,
     ANDROID_CHROMIUM_BUNDLE,
+    REFERENCE_ANDROID_CHROME_BUNDLE,
     ANDROID_CHROME,
     ANDROID_CHROME_BUNDLE,
     ANDROID_CHROME_BETA,
