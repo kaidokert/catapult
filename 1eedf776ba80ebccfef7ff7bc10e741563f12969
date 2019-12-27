@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09ae853b_e92c0781",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T00:45:16Z",
+      "side": 1,
+      "message": "I\u0027ve had issues with this in the past. I prefer keeping track of each of the mocks that you make and tearing them down individually.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "1eedf776ba80ebccfef7ff7bc10e741563f12969",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
