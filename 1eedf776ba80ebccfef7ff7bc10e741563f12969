@@ -22,6 +22,30 @@
       "revId": "1eedf776ba80ebccfef7ff7bc10e741563f12969",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ebf2b90_6562c1da",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-27T18:44:42Z",
+      "side": 1,
+      "message": "I used this following instructions in https://engdoc.corp.google.com/eng/doc/devguide/py/testing/mock-cookbook.md?cl\u003dhead. Do you remember what type of issues stopall might cause?",
+      "parentUuid": "09ae853b_e92c0781",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 39
+      },
+      "revId": "1eedf776ba80ebccfef7ff7bc10e741563f12969",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
