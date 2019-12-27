@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89e4be29_104a82bd",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is needed or not.",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 74
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11f3a991_ad129d06",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "honestly I have no idea what android-webview-instrumentation is, so I don\u0027t know if we want a reference browser for it or not.",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 33
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d959db93_a094a549",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "I don\u0027t think we want this for chromium.",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 69
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97f618cf_17517199",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "I don\u0027t think we want this for chromium.",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 76
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75eed959_b204dc26",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "? This doesn\u0027t make sense. android-chrome-beta is already a downloaded browser. Same for dev and canary below.",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 73
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f50d2548_8f9bedd6",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "This is a browser that what already installed I think... I doubt it makes sense to have a reference browser for it.",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 74
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e75496a5_00d51a95",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "Maybe name this function \"FetchReferenceApk\" so that reader can guess that this may be doing a download",
+      "range": {
+        "startLine": 346,
+        "startChar": 5,
+        "endLine": 346,
+        "endChar": 8
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7a97385_2aac53a7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-27T23:28:34Z",
+      "side": 1,
+      "message": "This seems a bit scary since it would silently fail... Maybe we should break these up into separate \u0027except\u0027 blocks and logging.warn for them.",
+      "range": {
+        "startLine": 364,
+        "startChar": 11,
+        "endLine": 364,
+        "endChar": 42
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
