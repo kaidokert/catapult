@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d3da4903_7c3ff9f3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-28T00:32:44Z",
+      "side": 1,
+      "message": "I\u0027ve changed it so that web_engine_shell finds an available port on the device with remote-debugging-port set to 0, but the code to do that hasn\u0027t landed yet in the chromium repo.",
+      "parentUuid": "62579330_d75962ab",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 53
+      },
+      "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "812725b0_bb6353b5",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c2a770f_f8e868d3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-28T00:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "812725b0_bb6353b5",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 34
+      },
+      "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5dd44d12_70e86cf7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-28T00:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1defcfcb_a42cfe19",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a8961b4_1b181c43",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e34c9163_b4fe80ee",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2019-12-28T00:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a8961b4_1b181c43",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "85ad4b2ec1d3fe7b26c3b33afc81d3efb45a65f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
