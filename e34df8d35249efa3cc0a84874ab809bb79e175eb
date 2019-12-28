@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "304d6ef0_8191a317",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Let me remove it for now",
+      "parentUuid": "89e4be29_104a82bd",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 74
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11f3a991_ad129d06",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd704a27_b42c2e4e",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Let me remove it for now",
+      "parentUuid": "11f3a991_ad129d06",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 33
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "de00c6ae_6cedc055",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d959db93_a094a549",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 69
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97f618cf_17517199",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 7
@@ -91,6 +163,30 @@
       "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f926b4d_fd983489",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97f618cf_17517199",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 76
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "bc20aa49_6e073227",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75eed959_b204dc26",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 73
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f50d2548_8f9bedd6",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 7
@@ -137,6 +257,30 @@
       "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5e96424_f3c8c790",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f50d2548_8f9bedd6",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 272,
+        "endChar": 74
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "736b4ffa_754bd517",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e75496a5_00d51a95",
+      "range": {
+        "startLine": 346,
+        "startChar": 5,
+        "endLine": 346,
+        "endChar": 8
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7a97385_2aac53a7",
         "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
         "patchSetId": 7
@@ -183,6 +351,30 @@
       "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4163f8b_0ecce7d2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2019-12-28T00:47:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7a97385_2aac53a7",
+      "range": {
+        "startLine": 364,
+        "startChar": 11,
+        "endLine": 364,
+        "endChar": 42
+      },
+      "revId": "e34df8d35249efa3cc0a84874ab809bb79e175eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
