@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b49a7f9d_da140b49",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-30T21:17:24Z",
+      "side": 1,
+      "message": "This line does not look like something that the author meant for someone to parse. You should consider editing the code that prints the port number to make it clear that automated systems will be using the output.",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 69
+      },
+      "revId": "4c6313021d568845b845b1d7eef55a83303b53e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
