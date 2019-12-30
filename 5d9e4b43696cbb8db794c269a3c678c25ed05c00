@@ -143,6 +143,46 @@
     },
     {
       "key": {
+        "uuid": "730af528_fe7d7e31",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-30T05:48:11Z",
+      "side": 1,
+      "message": "Probably also want to handle infinities?",
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11c09845_3cf36fa3",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2019-12-30T05:48:11Z",
+      "side": 1,
+      "message": "Why a private function instead of a constant in the .cc?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 38
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d44cf635_f3cfc95d",
         "filename": "tracing/tracing/value/histogram.h",
         "patchSetId": 2
