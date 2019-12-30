@@ -46,6 +46,30 @@
       "revId": "4c6313021d568845b845b1d7eef55a83303b53e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "838e328f_598f42a8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2019-12-30T22:28:50Z",
+      "side": 1,
+      "message": "Looks better, but do you mind linking to the code that this depends on so that I can inspect whether it is properly commented to explain to people that we depend on the exact formatting of those log lines?",
+      "parentUuid": "6dd0fe6e_9fa7c5e6",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 69
+      },
+      "revId": "4c6313021d568845b845b1d7eef55a83303b53e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
