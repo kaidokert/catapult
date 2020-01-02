@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "933e6091_665d4a29",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-02T17:45:11Z",
+      "side": 1,
+      "message": "import lines can go over 80 characters. Better not to wrap.",
+      "range": {
+        "startLine": 11,
+        "startChar": 68,
+        "endLine": 12,
+        "endChar": 33
+      },
+      "revId": "6bc0f9a2f776034d185c02dd4e87c31bc9afa049",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
