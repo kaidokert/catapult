@@ -342,6 +342,8 @@ class Platform(object):
     else:
       server = memory_cache_http_server.MemoryCacheHTTPServer(paths)
     self.StartLocalServer(server)
+    if self._platform_backend.GetOSName() == 'fuchsia':
+      self._platform_backend.forwarder_factory.Create(server.port, server.port)
     return True
 
   def StopAllLocalServers(self):
