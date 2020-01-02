@@ -70,6 +70,30 @@
       "revId": "4c6313021d568845b845b1d7eef55a83303b53e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8faee7_2d7a158f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-01-02T18:50:17Z",
+      "side": 1,
+      "message": "The link is https://chromium-review.googlesource.com/c/chromium/src/+/1984626, currently web_engine_shell is a helper executable exclusively used by Telemetry.",
+      "parentUuid": "838e328f_598f42a8",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 69
+      },
+      "revId": "4c6313021d568845b845b1d7eef55a83303b53e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
