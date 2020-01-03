@@ -16,6 +16,70 @@
       "revId": "9e81ff3d6d79b0863d4140ecb7dc3e0dd8d1c3e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d5a0547_03f5291f",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-03T20:22:22Z",
+      "side": 1,
+      "message": "1. People use Telemetry locally as well, so we should support that in addition to perf builders.\n2. We may update or add or remove bots in the future.",
+      "parentUuid": "ce349343_24720d9c",
+      "revId": "9e81ff3d6d79b0863d4140ecb7dc3e0dd8d1c3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76a602a7_cc02be51",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-03T20:22:22Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 29
+      },
+      "revId": "9e81ff3d6d79b0863d4140ecb7dc3e0dd8d1c3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02f09378_9487712e",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-03T20:22:22Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 307,
+        "startChar": 4,
+        "endLine": 307,
+        "endChar": 33
+      },
+      "revId": "9e81ff3d6d79b0863d4140ecb7dc3e0dd8d1c3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
