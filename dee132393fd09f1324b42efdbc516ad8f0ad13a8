@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe2bf7e8_f8319efb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-03T04:58:02Z",
+      "side": 1,
+      "message": "Too many indented levels. Maybe add a function for generating data?",
+      "revId": "dee132393fd09f1324b42efdbc516ad8f0ad13a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c0dbb03_bc1a25a6",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-03T04:58:02Z",
+      "side": 1,
+      "message": "```\n\u003e\u003e\u003e {\u0027a\u0027: a for a in range(10)}\n{\u0027a\u0027: 9}\n\u003e\u003e\u003e {\u0027a\u0027: [a for a in range(10)]}\n{\u0027a\u0027: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}\n```\nNot sure that what you expected but I think python shoudn\u0027t allow the first one run (but actually it\u0027s valid...).",
+      "revId": "dee132393fd09f1324b42efdbc516ad8f0ad13a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
