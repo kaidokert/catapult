@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce349343_24720d9c",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-01-03T00:45:25Z",
+      "side": 1,
+      "message": "I am wondering if this is needed since android-webview seems only be used for M in perf builders, but monochrome_bundle does not support M.\nIf not needed, I think crrev.com/c/1985129 can be reverted as well",
+      "revId": "9e81ff3d6d79b0863d4140ecb7dc3e0dd8d1c3e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
