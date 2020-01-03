@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "34c3ae9d_32be101c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-03T04:42:56Z",
+      "side": 1,
+      "message": "Yes on ChromeOS. Not sure if Fuchsia has extensions",
+      "parentUuid": "4ccbcb46_388ab083",
+      "range": {
+        "startLine": 62,
+        "startChar": 27,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "c5350ebdef957214155557f51df16761cfc88d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4ac27257_e4652e47",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
         "patchSetId": 4
@@ -82,6 +106,30 @@
       "writtenOn": "2020-01-03T00:07:46Z",
       "side": 1,
       "message": "Is 5 milliseconds reliable?",
+      "range": {
+        "startLine": 18,
+        "startChar": 34,
+        "endLine": 18,
+        "endChar": 35
+      },
+      "revId": "c5350ebdef957214155557f51df16761cfc88d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08e2084e_64b772ca",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-03T04:42:56Z",
+      "side": 1,
+      "message": "Is it millisecs or secs?",
+      "parentUuid": "3e4c659f_0a5ae3ed",
       "range": {
         "startLine": 18,
         "startChar": 34,
