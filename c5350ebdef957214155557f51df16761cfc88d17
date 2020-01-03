@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c071a59e_db1c5e45",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-01-03T22:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de7898ca_bb28ca21",
+      "range": {
+        "startLine": 345,
+        "startChar": 58,
+        "endLine": 345,
+        "endChar": 70
+      },
+      "revId": "c5350ebdef957214155557f51df16761cfc88d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ccbcb46_388ab083",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
         "patchSetId": 4
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "17fcbd07_6ff97321",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-01-03T22:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34c3ae9d_32be101c",
+      "range": {
+        "startLine": 62,
+        "startChar": 27,
+        "endLine": 62,
+        "endChar": 45
+      },
+      "revId": "c5350ebdef957214155557f51df16761cfc88d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ac27257_e4652e47",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
         "patchSetId": 4
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "c827e9b4_818905df",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-01-03T22:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ac27257_e4652e47",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "revId": "c5350ebdef957214155557f51df16761cfc88d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec017a31_2d4ac293",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
         "patchSetId": 4
@@ -115,6 +187,30 @@
       "revId": "c5350ebdef957214155557f51df16761cfc88d17",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ada6833_90b91551",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-01-03T22:24:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec017a31_2d4ac293",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 8
+      },
+      "revId": "c5350ebdef957214155557f51df16761cfc88d17",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
