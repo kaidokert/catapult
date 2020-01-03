@@ -197,6 +197,14 @@ class CrOSInterfaceTest(unittest.TestCase):
       self.assertTrue(device_type.isalpha())
 
   @decorators.Enabled('chromeos')
+  def testGetBoardName(self):
+    # All devices, including VMs, should have board names. If this fails, then
+    # that's an indication that the device in question might need to be special
+    # cased somehow.
+    with self._GetCRI() as cri:
+      self.assertIsNotNone(cri.GetBoardName())
+
+  @decorators.Enabled('chromeos')
   def testEscapeCmdArguments(self):
     """Commands and their arguments that are executed through the cros
     interface should follow bash syntax. This test needs to run on remotely
