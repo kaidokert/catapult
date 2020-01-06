@@ -352,32 +352,6 @@ class DeviceUtilsHasRootTest(DeviceUtilsTest):
         self.assertCall(self.call.adb.Shell('ls /root'), 'foo\n')):
       self.assertTrue(self.device.HasRoot())
 
-  def testhasRootSpecial_true(self):
-    with self.patch_call(self.call.device.build_type,
-                         return_value='userdebug'), (
-        self.patch_call(self.call.device.build_system_root_image,
-                        return_value='')), (
-        self.patch_call(self.call.device.build_version_sdk,
-                        return_value=version_codes.PIE)), (
-        self.patch_call(self.call.device.product_name,
-                        return_value='sailfish')), (
-        self.assertCall(self.call.adb.Shell('getprop service.adb.root'),
-                        '1\n')):
-      self.assertTrue(self.device.HasRoot())
-
-  def testhasRootSpecialAosp_true(self):
-    with self.patch_call(self.call.device.build_type,
-                         return_value='userdebug'), (
-        self.patch_call(self.call.device.build_system_root_image,
-                        return_value='')), (
-        self.patch_call(self.call.device.build_version_sdk,
-                        return_value=version_codes.PIE)), (
-        self.patch_call(self.call.device.product_name,
-                        return_value='aosp_sailfish')), (
-        self.assertCall(self.call.adb.Shell('getprop service.adb.root'),
-                        '1\n')):
-      self.assertTrue(self.device.HasRoot())
-
   def testhasRootEngBuild_true(self):
     with self.patch_call(self.call.device.build_type,
                          return_value='eng'):
@@ -394,32 +368,6 @@ class DeviceUtilsHasRootTest(DeviceUtilsTest):
                         return_value='notasailfish')), (
         self.assertCall(self.call.adb.Shell('ls /root'),
                         self.ShellError())):
-      self.assertFalse(self.device.HasRoot())
-
-  def testHasRootSpecial_false(self):
-    with self.patch_call(self.call.device.build_type,
-                         return_value='userdebug'), (
-        self.patch_call(self.call.device.build_system_root_image,
-                        return_value='')), (
-        self.patch_call(self.call.device.build_version_sdk,
-                        return_value=version_codes.PIE)), (
-        self.patch_call(self.call.device.product_name,
-                        return_value='sailfish')), (
-        self.assertCall(self.call.adb.Shell('getprop service.adb.root'),
-                        '\n')):
-      self.assertFalse(self.device.HasRoot())
-
-  def testHasRootSpecialAosp_false(self):
-    with self.patch_call(self.call.device.build_type,
-                         return_value='userdebug'), (
-        self.patch_call(self.call.device.build_system_root_image,
-                        return_value='')), (
-        self.patch_call(self.call.device.build_version_sdk,
-                        return_value=version_codes.PIE)), (
-        self.patch_call(self.call.device.product_name,
-                        return_value='aosp_sailfish')), (
-        self.assertCall(self.call.adb.Shell('getprop service.adb.root'),
-                        '\n')):
       self.assertFalse(self.device.HasRoot())
 
   def testHasRootSystemRootImage(self):

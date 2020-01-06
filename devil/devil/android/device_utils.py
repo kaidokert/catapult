@@ -212,21 +212,6 @@ _SELINUX_MODE = {
     'permissive': False,
     'disabled': None
 }
-# Some devices require different logic for checking if root is necessary
-_SPECIAL_ROOT_DEVICE_LIST = [
-    'marlin', # Pixel XL
-    'sailfish', # Pixel
-    'taimen', # Pixel 2 XL
-    'vega', # Lenovo Mirage Solo
-    'walleye', # Pixel 2
-    'crosshatch', # Pixel 3 XL
-    'blueline', # Pixel 3
-    'sargo', # Pixel 3a
-    'bonito', # Pixel 3a XL
-    'sdk_goog3_x86', # Crow emulator
-]
-_SPECIAL_ROOT_DEVICE_LIST += ['aosp_%s' % _d for _d in
-                              _SPECIAL_ROOT_DEVICE_LIST]
 
 _IMEI_RE = re.compile(r'  Device ID = (.+)$')
 # The following regex is used to match result parcels like:
@@ -547,9 +532,7 @@ class DeviceUtils(object):
       # Devices using the system-as-root partition layout appear to not have
       # a /root directory. See http://bit.ly/37F34sx for more context.
       if (self.build_system_root_image == 'true'
-          or self.build_version_sdk >= version_codes.Q
-          # This may be redundant with the checks above.
-          or self.product_name in _SPECIAL_ROOT_DEVICE_LIST):
+          or self.build_version_sdk >= version_codes.Q):
         return self.GetProp('service.adb.root') == '1'
       self.RunShellCommand(['ls', '/root'], check_return=True)
       return True
@@ -578,9 +561,7 @@ class DeviceUtils(object):
       # Devices using the system-as-root partition layout appear to not have
       # a /root directory. See http://bit.ly/37F34sx for more context.
       if (self.build_system_root_image == 'true'
-          or self.build_version_sdk >= version_codes.Q
-          # This may be redundant with the checks above.
-          or self.product_name in _SPECIAL_ROOT_DEVICE_LIST):
+          or self.build_version_sdk >= version_codes.Q):
         if self.HasRoot():
           self._cache['needs_su'] = False
           return False
