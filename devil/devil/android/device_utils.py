@@ -446,6 +446,9 @@ class DeviceUtils(object):
       self.adb = device
     else:
       raise ValueError('Unsupported device value: %r' % device)
+    logging.info('adb path: %s, version: %s',
+                 self.adb.GetAdbPath(),
+                 self.adb.Version())
     self._commands_installed = None
     self._default_timeout = default_timeout
     self._default_retries = default_retries
