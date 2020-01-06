@@ -45,6 +45,9 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # The sheriff rotation that should handle this alert.
   sheriff = ndb.KeyProperty(kind=sheriff_module.Sheriff, indexed=True)
+  subscriptions = ndb.LocalStructuredProperty(sheriff_module.Sheriff,
+                                              repeated=True)
+  subscription_names = ndb.StringProperty(indexed=True, repeated=True)
 
   # Each Alert is related to one Test.
   test = ndb.KeyProperty(indexed=True)
@@ -326,8 +329,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
       if bug_id != '*':
         inequality_property = None
     elif inequality_property == 'key':
-      if equality_properties == ['sheriff'] and (min_start_revision or
-                                                 max_start_revision):
+      if equality_properties == ['sheriff'] and min_start_revision:
         # Use the composite index (sheriff, start_revision, -timestamp). See
         # index.yaml.
         inequality_property = 'start_revision'
@@ -336,19 +338,11 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
     if inequality_property is None:
       # Compute a default inequality_property.
-      # We prioritise the 'min' filters first because that lets us limit the
-      # amount of data the Datastore instances might handle.
-      if min_start_revision:
+      if min_start_revision or max_start_revision:
         inequality_property = 'start_revision'
-      elif min_end_revision:
+      elif min_end_revision or max_end_revision:
         inequality_property = 'end_revision'
-      elif min_timestamp:
-        inequality_property = 'timestamp'
-      elif max_start_revision:
-        inequality_property = 'start_revision'
-      elif max_end_revision:
-        inequality_property = 'end_revision'
-      elif max_timestamp:
+      elif min_timestamp or max_timestamp:
         inequality_property = 'timestamp'
       elif bug_id == '*':
         inequality_property = 'bug_id'
