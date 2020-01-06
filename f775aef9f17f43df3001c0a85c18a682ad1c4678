@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f1ee40f_d112c0b8",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-06T05:07:00Z",
+      "side": 1,
+      "message": "I think we shouldn\u0027t be re-using the `sheriff_module.Sheriff` model, so that we don\u0027t have any confusion with the new code path(s).\n\nCreating a Subscription model which has exactly the fields we need would be preferable here, so we don\u0027t tie ourselves to any legacy Sheriff code going forward.",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "f775aef9f17f43df3001c0a85c18a682ad1c4678",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
