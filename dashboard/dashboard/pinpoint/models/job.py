@@ -206,8 +206,10 @@ class Job(ndb.Model):
   completed = ndb.ComputedProperty(lambda self: self.done or (
       not self.use_execution_engine and self.started and not self.task))
   failed = ndb.ComputedProperty(lambda self: bool(self.exception_details_dict))
-  running = ndb.ComputedProperty(lambda self: self.started and not self.
-                                 cancelled and self.task and len(self.task) > 0)
+  running = ndb.ComputedProperty(
+      lambda self: (not self.use_execution_engine and self.started and not self.
+                    cancelled and self.task and len(self.task) > 0) or
+      (self.started and not self.completed))
   cancelled = ndb.BooleanProperty(default=False)
   cancel_reason = ndb.TextProperty()
 
