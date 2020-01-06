@@ -34,6 +34,24 @@
       "revId": "622c3858e4a4ce9278e51a0e173c7a93a7dea418",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f73a1637_7a84afbb",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-01-06T23:49:29Z",
+      "side": 1,
+      "message": "Let me remove this for now",
+      "parentUuid": "699f199a_36c50d07",
+      "revId": "622c3858e4a4ce9278e51a0e173c7a93a7dea418",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
