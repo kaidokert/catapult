@@ -60,10 +60,8 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
     # the child process.
     if finder_options.verbosity >= 2:
       logging.getLogger().setLevel(logging.DEBUG)
-    elif finder_options.verbosity:
-      logging.getLogger().setLevel(logging.INFO)
     else:
-      logging.getLogger().setLevel(logging.WARNING)
+      logging.getLogger().setLevel(logging.INFO)
     logging.basicConfig(format=DEFAULT_LOG_FORMAT)
 
     cls.platform = None
@@ -86,9 +84,6 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
               browser_options.browser_options.browser_type,
               '\n'.join(browser_finder.GetAllAvailableBrowserTypes(
                   browser_options))))
-    if cls._typ_runner.has_expectations:
-      cls._typ_runner.expectations.add_tags(
-          cls._browser_to_create.GetTypExpectationsTags())
     if not cls.platform:
       cls.platform = cls._browser_to_create.platform
       cls.platform.SetFullPerformanceModeEnabled(
@@ -135,8 +130,13 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
       cls._browser_to_create.SetUpEnvironment(
           cls._browser_options.browser_options)
       cls.browser = cls._browser_to_create.Create()
-      if cls._typ_runner.has_expectations:
-        cls._typ_runner.expectations.add_tags(cls.GetPlatformTags(cls.browser))
+      specifiers = set(cls.GetPlatformTags(cls.browser) +
+                       cls._browser_to_create.GetTypExpectationsTags())
+      if cls._typ_runner.has_expectations and specifiers:
+        logging.info(
+            'The following expectations condition tags were generated %s' %
+            str(list(specifiers)))
+        cls._typ_runner.expectations.add_tags(specifiers)
     except Exception:
       cls._browser_to_create.CleanUpEnvironment()
       raise
