@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca28cf83_6a9c78c5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-06T22:02:23Z",
+      "side": 1,
+      "message": "I don\u0027t think we want to log this every time we create an instance of DeviceUtils.\n\nWhat are you trying to figure out from this? Could we log this somewhere else -- say, maybe in an exception?",
+      "revId": "622c3858e4a4ce9278e51a0e173c7a93a7dea418",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
