@@ -45,6 +45,9 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # The sheriff rotation that should handle this alert.
   sheriff = ndb.KeyProperty(kind=sheriff_module.Sheriff, indexed=True)
+  subscriptions = ndb.LocalStructuredProperty(sheriff_module.Sheriff,
+                                              repeated=True)
+  subscription_names = ndb.StringProperty(indexed=True, repeated=True)
 
   # Each Alert is related to one Test.
   test = ndb.KeyProperty(indexed=True)
