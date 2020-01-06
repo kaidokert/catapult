@@ -16,6 +16,24 @@
       "revId": "622c3858e4a4ce9278e51a0e173c7a93a7dea418",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "699f199a_36c50d07",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-01-06T22:06:52Z",
+      "side": 1,
+      "message": "I am trying to see if the issue that ChromePublicTest.apk installation timeout is related to old version of adb (crbug.com/1005504).\n\nAdd this to an exception sounds better :)\nAlso if my plan in https://crbug.com/1004322#c35 sounds good, it may not be needed to add this log",
+      "parentUuid": "ca28cf83_6a9c78c5",
+      "revId": "622c3858e4a4ce9278e51a0e173c7a93a7dea418",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
