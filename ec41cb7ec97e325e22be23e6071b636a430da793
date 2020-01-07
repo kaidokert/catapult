@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "edd63539_a87ee398",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-07T06:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c1eb92d_f897f56e",
+      "range": {
+        "startLine": 144,
+        "startChar": 30,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "ec41cb7ec97e325e22be23e6071b636a430da793",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c8b638d_ad2a3a1e",
         "filename": "dashboard/dashboard/models/subscription.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "ec41cb7ec97e325e22be23e6071b636a430da793",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea8f30f_dfb9a958",
+        "filename": "dashboard/dashboard/models/subscription.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-07T06:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c8b638d_ad2a3a1e",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 12
+      },
+      "revId": "ec41cb7ec97e325e22be23e6071b636a430da793",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
