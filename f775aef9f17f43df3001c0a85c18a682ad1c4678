@@ -22,6 +22,30 @@
       "revId": "f775aef9f17f43df3001c0a85c18a682ad1c4678",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be2d042_440f2efe",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-07T05:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1ee40f_d112c0b8",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "f775aef9f17f43df3001c0a85c18a682ad1c4678",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
