@@ -7,6 +7,7 @@ import platform
 import subprocess
 import sys
 
+import py_utils
 from telemetry.core import os_version as os_version_module
 from telemetry import decorators
 from telemetry.internal.platform import posix_platform_backend
@@ -92,7 +93,12 @@ class MacPlatformBackend(posix_platform_backend.PosixPlatformBackend):
     return True
 
   def TakeScreenshot(self, file_path):
-    return subprocess.call(['screencapture', file_path])
+    sp = subprocess.Popen(['screencapture', file_path])
+    py_utils.WaitFor(
+        lambda: sp.poll() is None,
+        timeout=15)
+    return sp.returncode
+    #return subprocess.call(['screencapture', file_path])
 
   def CanFlushIndividualFilesFromSystemCache(self):
     return False
