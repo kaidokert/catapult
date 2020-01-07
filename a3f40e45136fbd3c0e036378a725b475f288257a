@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ac7427a_f41bb013",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-01-07T23:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "827710a6_16aa1e85",
+      "revId": "a3f40e45136fbd3c0e036378a725b475f288257a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fd0efc0_44dbb050",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "a3f40e45136fbd3c0e036378a725b475f288257a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3274193_10202d27",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-01-07T23:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fd0efc0_44dbb050",
+      "revId": "a3f40e45136fbd3c0e036378a725b475f288257a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
