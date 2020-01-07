@@ -22,6 +22,30 @@
       "revId": "d3e728ddbcbd1855c74c9a1d8b5250f0a4c44ec6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "856fc8d2_5355cde7",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-01-07T19:09:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "34a1538c_c73f901c",
+      "range": {
+        "startLine": 134,
+        "startChar": 16,
+        "endLine": 137,
+        "endChar": 25
+      },
+      "revId": "d3e728ddbcbd1855c74c9a1d8b5250f0a4c44ec6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
