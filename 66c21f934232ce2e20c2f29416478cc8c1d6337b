@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fb41e25_94d48588",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-07T01:39:58Z",
+      "side": 1,
+      "message": "It\u0027s a bit hard to read. If it\u0027s `not self.use_execution_engine` and `self.task` is None. You will still fallback to testing `(self.started and not self.completed)`. As I understand\n```\nif not self.use_execution_engine:\n  return self.started and not self.cancelled and self.task # We don\u0027t need len(self.task) \u003e 0) I think?\nreturn self.started and not self.completed\n```\nIs this what you want?",
+      "revId": "66c21f934232ce2e20c2f29416478cc8c1d6337b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
