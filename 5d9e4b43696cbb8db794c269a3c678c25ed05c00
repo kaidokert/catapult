@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "ee512feb_c89056ee",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-07T13:16:16Z",
+      "side": 1,
+      "message": "The python code doesn\u0027t so I think it\u0027s just put into the sample array. running_statistics.cc does deal with it however.",
+      "parentUuid": "730af528_fe7d7e31",
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11c09845_3cf36fa3",
         "filename": "tracing/tracing/value/histogram.h",
         "patchSetId": 2
@@ -180,6 +198,30 @@
       "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4547d58_80ddc020",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-07T13:16:16Z",
+      "side": 1,
+      "message": "I did that because the Python code does that. Yeah, it\u0027s maybe a bit silly.",
+      "parentUuid": "11c09845_3cf36fa3",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 38
+      },
+      "revId": "5d9e4b43696cbb8db794c269a3c678c25ed05c00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
