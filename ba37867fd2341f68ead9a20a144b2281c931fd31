@@ -46,6 +46,30 @@
       "revId": "ba37867fd2341f68ead9a20a144b2281c931fd31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dc46921_40b5b87c",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-07T19:21:12Z",
+      "side": 0,
+      "message": "yep. But you are making it impossible for someone to set the loglevel such that only warning and error are outputted.",
+      "parentUuid": "e916afac_737c2774",
+      "range": {
+        "startLine": 63,
+        "startChar": 17,
+        "endLine": 66,
+        "endChar": 28
+      },
+      "revId": "ba37867fd2341f68ead9a20a144b2281c931fd31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
