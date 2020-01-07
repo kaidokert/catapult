@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8b0bac0_93450028",
+        "filename": "dashboard/dashboard/pinpoint/handlers/task_updates.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-07T01:30:53Z",
+      "side": 1,
+      "message": "Just use `update_data.get(\u0027userdata\u0027) or update_data.get(\u0027user_data\u0027)`?",
+      "revId": "23246f8cd979bbd9654c68356e0ebbe2f6aa8058",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
