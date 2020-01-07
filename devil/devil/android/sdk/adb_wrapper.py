@@ -775,7 +775,7 @@ class AdbWrapper(object):
 
   def Install(self, apk_path, forward_lock=False, allow_downgrade=False,
               reinstall=False, sd_card=False, timeout=60 * 2,
-              retries=DEFAULT_RETRIES):
+              retries=DEFAULT_RETRIES, no_streaming=False):
     """Install an apk on the device.
 
     Args:
@@ -786,6 +786,8 @@ class AdbWrapper(object):
       sd_card: (optional) If set installs on the SD card.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
+      no_streaming: (optional) If set, app is pushed to device and be
+        installed from there.
     """
     VerifyLocalFileExists(apk_path)
     cmd = ['install']
@@ -797,6 +799,8 @@ class AdbWrapper(object):
       cmd.append('-s')
     if allow_downgrade:
       cmd.append('-d')
+    if no_streaming:
+      cmd.append('--no-streaming')
     cmd.append(apk_path)
     output = self._RunDeviceAdbCmd(cmd, timeout, retries)
     if 'Success' not in output:
@@ -805,7 +809,8 @@ class AdbWrapper(object):
 
   def InstallMultiple(self, apk_paths, forward_lock=False, reinstall=False,
                       sd_card=False, allow_downgrade=False, partial=False,
-                      timeout=60 * 2, retries=DEFAULT_RETRIES):
+                      timeout=60 * 2, retries=DEFAULT_RETRIES,
+                      no_streaming=False):
     """Install an apk with splits on the device.
 
     Args:
@@ -817,6 +822,8 @@ class AdbWrapper(object):
       partial: (optional) Package ID if apk_paths doesn't include all .apks.
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
+      no_streaming: (optional) If set, app is pushed to device and be
+        installed from there.
     """
     for path in apk_paths:
       VerifyLocalFileExists(path)
@@ -829,6 +836,8 @@ class AdbWrapper(object):
       cmd.append('-s')
     if allow_downgrade:
       cmd.append('-d')
+    if no_streaming:
+      cmd.append('--no-streaming')
     if partial:
       cmd.extend(('-p', partial))
     cmd.extend(apk_paths)

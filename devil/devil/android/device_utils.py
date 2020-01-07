@@ -228,6 +228,13 @@ _SPECIAL_ROOT_DEVICE_LIST = [
 _SPECIAL_ROOT_DEVICE_LIST += ['aosp_%s' % _d for _d in
                               _SPECIAL_ROOT_DEVICE_LIST]
 
+# Somce devices are slow/timeout when using default install.
+# Devices listed here will perform no_streaming app installation.
+_NO_STREAMING_DEVICE_LIST = [
+    'flounder', # Nexus 9
+    'volantis', # Another product name for Nexus 9
+]
+
 _IMEI_RE = re.compile(r'  Device ID = (.+)$')
 # The following regex is used to match result parcels like:
 """
@@ -1148,14 +1155,17 @@ class DeviceUtils(object):
       self._cache['package_apk_paths'].pop(package_name, 0)
       self._cache['package_apk_checksums'].pop(package_name, 0)
       partial = package_name if len(apks_to_install) < len(apk_paths) else None
+      no_streaming = self.product_name in _NO_STREAMING_DEVICE_LIST
       if len(apks_to_install) > 1 or partial:
         self.adb.InstallMultiple(
             apks_to_install, partial=partial, reinstall=reinstall,
+            no_streaming=no_streaming,
             allow_downgrade=allow_downgrade)
       else:
         self.adb.Install(
             apks_to_install[0],
             reinstall=reinstall,
+            no_streaming=no_streaming,
             allow_downgrade=allow_downgrade)
     else:
       # Running adb install terminates running instances of the app, so to be
