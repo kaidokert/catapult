@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "827710a6_16aa1e85",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-07T23:28:28Z",
+      "side": 1,
+      "message": "timeout and retries should be the last two arguments.",
+      "revId": "a3f40e45136fbd3c0e036378a725b475f288257a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fd0efc0_44dbb050",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-07T23:28:28Z",
+      "side": 1,
+      "message": "The double negative here is a bit hard to read. Given that there\u0027s also a --streaming flag, could we instead have a streaming arg that defaults to None, then have the function do something like...\n\n  if streaming is True:\n    cmd.append(\u0027--streaming\u0027)\n  elif streaming is False:\n    cmd.append(\u0027--no-streaming\u0027)",
+      "revId": "a3f40e45136fbd3c0e036378a725b475f288257a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
