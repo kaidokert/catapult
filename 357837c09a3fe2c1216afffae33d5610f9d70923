@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5639081f_37e1eadf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T20:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a501d9e4_d95d629f",
+      "range": {
+        "startLine": 12,
+        "startChar": 7,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a151fac8_02dca7de",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
@@ -68,6 +92,30 @@
       "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "991b14ea_24f6c8d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T20:57:39Z",
+      "side": 1,
+      "message": "Added a comment better explaining why this is necessary.\n\nIt will technically leak without being reset, but I don\u0027t see any way it could cause issues - literally all it\u0027s doing is increasing the soft cap on open file handles for the process. This change is limited to the current process, so we aren\u0027t leaking it outside of the test.\n\nWe do need this, at least temporarily, as I was running into Mac\u0027s default soft cap of 256 file handles when running locally. Telemetry already has a number of handles open, and each subprocess opens several more for piping data.",
+      "parentUuid": "a151fac8_02dca7de",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "d8cac1a7_d013b6ca",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T20:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce7f886e_16056a9e",
+      "range": {
+        "startLine": 130,
+        "startChar": 50,
+        "endLine": 130,
+        "endChar": 65
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98229fc2_bae64c15",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "3048d299_0a10143e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T20:57:39Z",
+      "side": 1,
+      "message": "N/A since I switched to Popen.",
+      "parentUuid": "98229fc2_bae64c15",
+      "range": {
+        "startLine": 133,
+        "startChar": 6,
+        "endLine": 133,
+        "endChar": 23
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ea8595d_1c5ced41",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
@@ -137,6 +233,30 @@
       "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12b05076_539fad94",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T20:57:39Z",
+      "side": 1,
+      "message": "N/A.",
+      "parentUuid": "0ea8595d_1c5ced41",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
