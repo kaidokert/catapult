@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef2177ec_d881b6b6",
+        "filename": "tracing/tracing/value/diagnostics/generic_set.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-08T15:22:23Z",
+      "side": 1,
+      "message": "This makes GenericSet look a lot nicer in unit test error messages.",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "5c4d339e50426b63edd8c98372aa3d8cb6fc591e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8b92a93_b9815afc",
+        "filename": "tracing/tracing/value/histogram_set.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-08T15:22:23Z",
+      "side": 1,
+      "message": "I think it\u0027s low risk this breaks the dashboard\u0027s current function since the other formats are lists, but this one is a dict.",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 67
+      },
+      "revId": "5c4d339e50426b63edd8c98372aa3d8cb6fc591e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
