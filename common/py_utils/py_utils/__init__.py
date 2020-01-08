@@ -12,6 +12,7 @@ import os
 import sys
 import time
 import platform
+import subprocess
 
 
 def GetCatapultDir():
