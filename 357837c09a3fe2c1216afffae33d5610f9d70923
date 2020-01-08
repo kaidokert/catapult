@@ -215,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "8a69cf4b_23acf3be",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T22:44:54Z",
+      "side": 1,
+      "message": "Using a process pool instead of starting everything at once doesn\u0027t seem to result in much of a speedup. Runtime is down to 345 seconds.\n\nI\u0027m going to guess that this is because there isn\u0027t that much of an actual difference between the two approaches after a short period - most of the calls to generate_breakpad_symbols finish in a few seconds. There\u0027s only a few that actually end up taking a while, and I believe that number is under 12 (the number of logical cores on my system). So, the process pool probably helps a bit early on by making the system thrash less, but once the fast work gets finished, both approaches block on a few slow processes.\n\nUsing the pool does avoid having to mess with file handle limits, though.\n\nAdmittedly, this was a bit of a hacky approach using os.system instead of actually importing generate_breakpad_symbols, but IIRC that should avoid any overhead from creating a subprocess just the same.",
+      "parentUuid": "4f2e6cfc_b1033bf3",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7f886e_16056a9e",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
