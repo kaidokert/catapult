@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "733db78d_c65d54f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T18:30:55Z",
+      "side": 1,
+      "message": "THis is nice, but it\u0027s a bit sad that it isn\u0027t better.",
+      "range": {
+        "startLine": 20,
+        "startChar": 37,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a501d9e4_d95d629f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T18:30:55Z",
+      "side": 1,
+      "message": "ah, I realized that you could just be using a non-blocking subprocess call, and then you won\u0027t need threading at all. I think it would be simpler.\n\nprocesses \u003d []\nfor binary_path in symbol_binaries:\n  processes.append(subprocess.Popen(blah blah blah))\nfor process in processes:\n  output, error \u003d process.communicate()\n  returncode \u003d process.returncode\n  if returncode:\n    logging.error(blah blah)\n\nNote that communicate buffers the data read in memory, so if breakpad generates a ton of output it could hang the program, but I think that subprocess.check_output does the same thing.",
+      "range": {
+        "startLine": 12,
+        "startChar": 7,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a151fac8_02dca7de",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T18:30:55Z",
+      "side": 1,
+      "message": "I\u0027m concerned that this change could leak into the rest of the program. Should we reset the limit after this function completes? Alternatively, do we really need to do this? Maybe you could add comments explaining why this is necessary.",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce7f886e_16056a9e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T18:30:55Z",
+      "side": 1,
+      "message": "I think I weakly prefer just printing out the list. The reason is that sometimes command components have whitespace in them, so the command stops being executable if you print it this way.",
+      "range": {
+        "startLine": 130,
+        "startChar": 50,
+        "endLine": 130,
+        "endChar": 65
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98229fc2_bae64c15",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T18:30:55Z",
+      "side": 1,
+      "message": "I think this thread is a SubprocessManagerThread. It starts a subprocess and watches it until it completes and then reports back on its status. I think \"Manager\" is the right word for that.",
+      "range": {
+        "startLine": 133,
+        "startChar": 6,
+        "endLine": 133,
+        "endChar": 23
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ea8595d_1c5ced41",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T18:30:55Z",
+      "side": 1,
+      "message": "This just looks like extra work to me. why not just do\n\nself.cmd \u003d cmd\nself.output \u003d output\nself.failed \u003d False\n\nLater on if we need to turn these into properties we can do that then.",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
