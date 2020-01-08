@@ -9,7 +9,17 @@ import subprocess
 import sys
 import tempfile
 
+# resource is not available on Windows
+if sys.platform != 'win32':
+  import resource
+
 from telemetry.internal.util import binary_manager
+
+
+# Exact number is arbitrary, but we want to make sure that we don't run into
+# the soft limit for the number of open files in Mac/Linux if symbolizing
+# a minidump from a component build.
+_FILES_PER_BREAKPAD_PROCESS = 10
 
 
 class MinidumpSymbolizer(object):
@@ -88,7 +98,26 @@ class MinidumpSymbolizer(object):
       logging.warning('generate_breakpad_symbols binary not found')
       return
 
-    for binary_path in self.GetSymbolBinaries(minidump):
+    symbol_binaries = self.GetSymbolBinaries(minidump)
+    # POSIX OSes have a soft and hard limit on the number of file handles that
+    # a process can have open. On some OSes, the soft limit is relatively low
+    # (256 for Mac). This becomes problematic when triggering many subprocesses
+    # at once, as each subprocess opens several file handles for piping data.
+    # When dozens of subprocesses are opened like in the case of dumping
+    # symbols from a component build, combined with the file handles that
+    # Python already has open, it's pretty easy to hit this soft cap. So,
+    # increase the limit to avoid this issue.
+    # We don't bother reseting the limit afterwards since it only affects the
+    # current process, and there's no downside to allowing Telemetry to open
+    # more files.
+    if sys.platform != 'win32':
+      soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
+      soft_limit = min(
+          max(soft_limit, len(symbol_binaries * _FILES_PER_BREAKPAD_PROCESS)),
+          hard_limit)
+      resource.setrlimit(resource.RLIMIT_NOFILE, (soft_limit, hard_limit))
+    processes = []
+    for binary_path in symbol_binaries:
       cmd = [
           sys.executable,
           generate_breakpad_symbols_command,
@@ -99,9 +128,11 @@ class MinidumpSymbolizer(object):
       if self.GetBreakpadPlatformOverride():
         cmd.append('--platform=%s' % self.GetBreakpadPlatformOverride())
 
-      try:
-        subprocess.check_output(cmd)
-      except subprocess.CalledProcessError as e:
-        logging.error(e.output)
-        logging.warning('Failed to execute "%s"', ' '.join(cmd))
-        return
+      processes.append(subprocess.Popen(
+          cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT))
+
+    for p in processes:
+      stdout, _ = p.communicate()
+      if p.returncode:
+        logging.error(stdout)
+        logging.warning('Failed to execute %s', cmd)
