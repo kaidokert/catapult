@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "86a3ecb1_a1c0faab",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T21:28:15Z",
+      "side": 1,
+      "message": "What happens when you run into the cap?\n\nHow many processes are you opening?\n\nI\u0027m wondering if we are getting seriously slowed down by all the subprocesses that we are spawning. Sometimes just starting up a new subprocess is very slow. I wonder if we would be better off if we instead tried importing https://cs.chromium.org/chromium/src/components/crash/content/tools/generate_breakpad_symbols.py annd directly calling its functions as a library (within a multiprocessing pool that we make have as many processes in it as we have logical CPUs)\n\nOr otherwise we could make a new version of generate_breakpad_symbols that took multiple input binaries and handled them efficiently.\n\nEither solution would prevent us needing to change these system limits, and I wonder if they could additionally improve our runtime further: 360 seconds is still pretty slow.",
+      "parentUuid": "991b14ea_24f6c8d4",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7f886e_16056a9e",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
