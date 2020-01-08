@@ -4,12 +4,20 @@
 
 import logging
 import os
+import resource
 import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 
 from telemetry.internal.util import binary_manager
+
+
+# Exact number is arbitrary, but we want to make sure that we don't run into
+# the soft limit for the number of open files in Mac/Linux if symbolizing
+# a minidump from a component build.
+_FILES_PER_BREAKPAD_THREAD = 10
 
 
 class MinidumpSymbolizer(object):
@@ -88,7 +96,16 @@ class MinidumpSymbolizer(object):
       logging.warning('generate_breakpad_symbols binary not found')
       return
 
-    for binary_path in self.GetSymbolBinaries(minidump):
+    threads = []
+    symbol_binaries = self.GetSymbolBinaries(minidump)
+    # Make sure we won't run into the soft limit for open files if there are a
+    # lot of paths.
+    soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
+    soft_limit = min(
+        max(soft_limit, len(symbol_binaries * _FILES_PER_BREAKPAD_THREAD)),
+        hard_limit)
+    resource.setrlimit(resource.RLIMIT_NOFILE, (soft_limit, hard_limit))
+    for binary_path in symbol_binaries:
       cmd = [
           sys.executable,
           generate_breakpad_symbols_command,
@@ -99,9 +116,43 @@ class MinidumpSymbolizer(object):
       if self.GetBreakpadPlatformOverride():
         cmd.append('--platform=%s' % self.GetBreakpadPlatformOverride())
 
-      try:
-        subprocess.check_output(cmd)
-      except subprocess.CalledProcessError as e:
-        logging.error(e.output)
-        logging.warning('Failed to execute "%s"', ' '.join(cmd))
-        return
+      # Component builds result in a lot of binaries being found by
+      # GetSymbolBinaries(), which can result in this taking quite a while,
+      # particularly on Mac. So, run everything in parallel.
+      t = _SubprocessThread(cmd)
+      t.start()
+      threads.append(t)
+
+    for t in threads:
+      t.join()
+      if t.failed:
+        logging.error(t.output)
+        logging.warning('Failed to execute "%s"', ' '.join(t.cmd))
+
+
+class _SubprocessThread(threading.Thread):
+  """Class to run subprocess.check_output in a separate thread."""
+  def __init__(self, cmd):
+    super(_SubprocessThread, self).__init__()
+    self._cmd = cmd
+    self._output = None
+    self._failed = False
+
+  @property
+  def output(self):
+    return self._output
+
+  @property
+  def failed(self):
+    return self._failed
+
+  @property
+  def cmd(self):
+    return self._cmd
+
+  def run(self):
+    try:
+      self._output = subprocess.check_output(self._cmd)
+    except subprocess.CalledProcessError as e:
+      self._output = e.output
+      self._failed = True
