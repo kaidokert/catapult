@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "6ffca926_1937a448",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-08T22:05:32Z",
+      "side": 1,
+      "message": "The call to subprocess throws an exception and doesn\u0027t run the given command. In the original patchset, it ended up being non-fatal since it was in a separate thread and it happened to occur for binaries we didn\u0027t actually need data from, but there\u0027s no guarantee that will work out so well all the time.\n\nHitting the cap would be fatal in the current version since all the subprocesses are started from the main thread.\n\nLocally, I was dumping symbols for 281 binaries, so I was starting that many subprocesses. While starting a subprocess isn\u0027t super fast, I don\u0027t think it\u0027s a very large factor when determining runtime in this case. When I was working on this, I had debug logging in place each time it started a new process. That occurred quite quickly, and the remaining time was waiting for those processes to actually finish.\n\nUsing a pool instead of throwing everything at the CPU at once might provide a benefit, but I think it\u0027s going to largely depend on how much CPU time generate_breakpad_symbols takes compared to how much disk I/O it has to do. If it\u0027s spending a lot of time reading from disk, we might end up underutilizing the CPU and actually work slower.\n\nIt\u0027s easy enough to try that out locally, so I\u0027ll do that and report back on the results. One thing to note, though, is that I\u0027m not aware of a way to get the logical core count in Python - the one time I\u0027ve had to get core counts before, I could only find out the physical core count and no way to determine whether the CPU supported SMT (i.e. Hyperthreading on Intel CPUs).",
+      "parentUuid": "86a3ecb1_a1c0faab",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7f886e_16056a9e",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
