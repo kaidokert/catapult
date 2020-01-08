@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "4f2e6cfc_b1033bf3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-08T22:09:16Z",
+      "side": 1,
+      "message": "Sounds good. Note that I have a vague recollection of multiprocessing.cpu_count() on working on certain platforms.",
+      "parentUuid": "e1e525ef_9b7d2a97",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7f886e_16056a9e",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
