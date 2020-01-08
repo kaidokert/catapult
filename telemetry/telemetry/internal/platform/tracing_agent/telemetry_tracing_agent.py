@@ -9,6 +9,7 @@ from telemetry.internal.platform import tracing_agent
 from tracing.trace_data import trace_data
 
 from py_trace_event import trace_event
+from py_trace_event import trace_time
 
 
 def IsAgentEnabled():
@@ -59,6 +60,23 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     super(TelemetryTracingAgent, self).__init__(platform_backend)
     self._trace_file = None
 
+    if platform_backend and platform_backend.GetOSName() == 'android':
+      telemetry_ts = trace_time.Now()
+      device_uptime = platform_backend.device.RunShellCommand(
+          ['cat', '/proc/uptime'], single_line=True)
+      boottime_ts = float(device_uptime.split(' ')[0]) * 1e6
+      trace_event.trace_add_clock_snapshot(
+          telemetry_ts=telemetry_ts,
+          boottime_ts=boottime_ts,
+      )
+    else:
+      telemetry_ts = trace_time.Now()
+      boottime_ts = telemetry_ts
+      trace_event.trace_add_clock_snapshot(
+          telemetry_ts=telemetry_ts,
+          boottime_ts=boottime_ts,
+      )
+
   @classmethod
   def IsSupported(cls, platform_backend):
     del platform_backend  # Unused.
@@ -86,6 +104,7 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     self._trace_file = tempfile.NamedTemporaryFile(delete=False, suffix=suffix)
     trace_event.trace_enable(self._trace_file, format=trace_format)
     assert self.is_tracing, 'Failed to start Telemetry tracing'
+
     return True
 
   def StopAgentTracing(self):
