@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80eb1d8a_04204a0b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1107894
+      },
+      "writtenOn": "2020-01-08T01:08:22Z",
+      "side": 1,
+      "message": "Maybe elaborate a bit more on this, or give very high-level context?\n\nAs someone doesn\u0027t understand *any* of this code, but has a little context about the issue, this doesn\u0027t seem very helpful.  We\u0027re getting Nexus 9 to have a reasonable bot config here, right?  With the goal to get that new bot green-ish or closer to being able to run tests?\n\nOne good rule of thumb that I learned from Tommy is:\nState how it works now, what gets changed, and why the change is being made.\n\nThanks for this work!",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "383c9cdc23002329d07a01d32daba8b27acbf8db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
