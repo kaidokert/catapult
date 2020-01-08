@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18406f51_42acfaba",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-01-08T17:16:52Z",
+      "side": 1,
+      "message": "nit: this loggging might look wonky if host_forwarder_lines is empty",
+      "revId": "f693006dc1aa99b2dc43161a33c7e330d152d6c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
