@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ddf0779_5d9cd1ce",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-09T20:45:48Z",
+      "side": 1,
+      "message": "Can we move them into BLINK_TOP_GC_FOREGROUND_MARKING_EVENTS (like SWEEPING) and define their telemetry name there as well.\n\nThen BLINK_GC_TOP_EVENTS just adds BLINK_TOP_GC_FOREGROUND_MARKING_EVENTS.",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "a1bb1fd0e8700fef60ac357182475dfb3dc19578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e956394c_836e1938",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-09T20:45:48Z",
+      "side": 1,
+      "message": "If you follow above comment this shows up as a separate event in the results file as well. This is interesting to see because it shows how much V8 helps out in marking which should go down.",
+      "range": {
+        "startLine": 64,
+        "startChar": 13,
+        "endLine": 64,
+        "endChar": 31
+      },
+      "revId": "a1bb1fd0e8700fef60ac357182475dfb3dc19578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da096bcb_d2552ccd",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-09T20:45:48Z",
+      "side": 1,
+      "message": "nit: Should we rename to ConcurrentMarkingStep?",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 27
+      },
+      "revId": "a1bb1fd0e8700fef60ac357182475dfb3dc19578",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
