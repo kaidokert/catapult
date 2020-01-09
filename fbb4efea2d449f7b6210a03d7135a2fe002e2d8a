@@ -22,6 +22,30 @@
       "revId": "fbb4efea2d449f7b6210a03d7135a2fe002e2d8a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49384d9a_18ca1d06",
+        "filename": "tracing/tracing/value/histogram_proto_converter.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-09T09:25:18Z",
+      "side": 1,
+      "message": "Hmm, the parantheses here are a mistake. I intended to print value_json rather than (value_json), though both read ok. I think the convention is to just use tuples with the format operator when there is more than one value?",
+      "parentUuid": "8cb8af50_9dc2d53c",
+      "range": {
+        "startLine": 207,
+        "startChar": 37,
+        "endLine": 207,
+        "endChar": 50
+      },
+      "revId": "fbb4efea2d449f7b6210a03d7135a2fe002e2d8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
