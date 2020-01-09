@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import unittest
+import py_utils
 import psutil  # pylint: disable=import-error
 from telemetry import decorators
 from telemetry.internal.util import ps_util
@@ -21,3 +22,26 @@ class PsUtilTest(unittest.TestCase):
     output = ps_util._GetProcessDescription(FakeProcess())
     self.assertIn('ZombieProcess', output)
     self.assertIn('this is an error', output)
+
+  def testWaitForSubProcAndKillFinished(self):
+    args = [
+        'python',
+        '-c',
+        'import time; time.sleep(2)'
+    ]
+    sp = ps_util.RunSubProcWithTimeout(args, 3)
+    self.assertEqual(sp.poll(), 0)
+    self.assertTrue(
+        sp.pid not in ps_util.GetAllSubprocessIDs()
+    )
+
+  def testWaitForSubProcAndKillTimeout(self):
+    args = [
+        'python',
+        '-c',
+        'import time; time.sleep(10)'
+    ]
+    with self.assertRaises(py_utils.TimeoutException):
+      ps_util.RunSubProcWithTimeout(args, 1)
+    subprocess_count = len(ps_util.GetAllSubprocessIDs())
+    self.assertEqual(subprocess_count, 0)
