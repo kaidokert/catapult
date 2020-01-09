@@ -52,6 +52,24 @@ tr.exportTo('tr.metrics.blink', function() {
     'BlinkGC.AtomicPauseSweepAndCompact'
   ];
 
+  // All events that should be summed up to 'blink-gc-marking-foreground'. Note
+  // that this events need to have an epoch counter in args.epoch.
+  const BLINK_GC_MARKING_FOREGROUND_EVENTS = [
+    'BlinkGC.AtomicPauseMarkEpilogue',
+    'BlinkGC.AtomicPauseMarkPrologue',
+    'BlinkGC.AtomicPauseMarkRoots',
+    'BlinkGC.AtomicPauseMarkTransitiveClosure',
+    'BlinkGC.IncrementalMarkingStartMarking',
+    'BlinkGC.IncrementalMarkingStep',
+    'BlinkGC.UnifiedMarkingStep'
+  ];
+
+  // All events that should be summed up to 'blink-gc-marking-background'. Note
+  // that this events need to have an epoch counter in args.epoch.
+  const BLINK_GC_MARKING_BACKGROUND_EVENTS = [
+    'BlinkGC.ConcurrentMark'
+  ];
+
   function blinkGarbageCollectionEventName(event) {
     return BLINK_TOP_GC_EVENTS[event.title];
   }
@@ -83,6 +101,16 @@ tr.exportTo('tr.metrics.blink', function() {
            isNonForcedEvent(event);
   }
 
+  function isNonForcedBlinkGarbageCollectionForegroundMarkingEvent(event) {
+    return BLINK_GC_MARKING_FOREGROUND_EVENTS.includes(event.title) &&
+           isNonForcedEvent(event);
+  }
+
+  function isNonForcedBlinkGarbageCollectionBackgroundMarkingEvent(event) {
+    return BLINK_GC_MARKING_BACKGROUND_EVENTS.includes(event.title) &&
+           isNonForcedEvent(event);
+  }
+
   function isNonNestedNonForcedBlinkGarbageCollectionEvent(event) {
     return isNonForcedBlinkGarbageCollectionEvent(event) &&
            !tr.metrics.v8.utils.findParent(event,
@@ -96,6 +124,8 @@ tr.exportTo('tr.metrics.blink', function() {
     addTotalDurationOfBlinkAndV8TopEvents(histograms, model);
     addTotalDurationOfForegroundSweeping(histograms, model);
     addTotalDurationOfBackgroundSweeping(histograms, model);
+    addTotalDurationOfForegroundMarking(histograms, model);
+    addTotalDurationOfBackgroundMarking(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(blinkGcMetric);
@@ -241,6 +271,44 @@ tr.exportTo('tr.metrics.blink', function() {
           histograms.addHistogram(cpuDuration);
         },
         ['blink-gc-sweep-background']
+    );
+  }
+
+  /**
+   * Example output:
+   * - blink-gc-mark-foreground
+   */
+  function addTotalDurationOfForegroundMarking(histograms, model) {
+    tr.metrics.v8.utils.groupAndProcessEvents(model,
+        isNonForcedBlinkGarbageCollectionForegroundMarkingEvent,
+        event => 'blink-gc-mark-foreground',
+        function(name, events) {
+          const cpuDuration = createNumericForTotalEventTime(name);
+          for (const event of events) {
+            cpuDuration.addSample(event.cpuDuration);
+          }
+          histograms.addHistogram(cpuDuration);
+        },
+        ['blink-gc-mark-foreground']
+    );
+  }
+
+  /**
+   * Example output:
+   * - blink-gc-mark-background
+   */
+  function addTotalDurationOfBackgroundMarking(histograms, model) {
+    tr.metrics.v8.utils.groupAndProcessEvents(model,
+        isNonForcedBlinkGarbageCollectionBackgroundMarkingEvent,
+        event => 'blink-gc-mark-background',
+        function(name, events) {
+          const cpuDuration = createNumericForTotalEventTime(name);
+          for (const event of events) {
+            cpuDuration.addSample(event.cpuDuration);
+          }
+          histograms.addHistogram(cpuDuration);
+        },
+        ['blink-gc-mark-background']
     );
   }
 
