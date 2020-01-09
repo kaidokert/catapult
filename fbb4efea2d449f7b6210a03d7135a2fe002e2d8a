@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cb8af50_9dc2d53c",
+        "filename": "tracing/tracing/value/histogram_proto_converter.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-09T05:22:50Z",
+      "side": 1,
+      "message": "You probably want:\n\n\u0027...\u0027 % (value_json,)\n\ninstead; note the forcing of creating a one-element tuple which the % conversion expects. This applies to a lot of places in this file.",
+      "range": {
+        "startLine": 207,
+        "startChar": 37,
+        "endLine": 207,
+        "endChar": 50
+      },
+      "revId": "fbb4efea2d449f7b6210a03d7135a2fe002e2d8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
