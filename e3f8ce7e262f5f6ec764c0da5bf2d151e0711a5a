@@ -16,6 +16,24 @@
       "revId": "e3f8ce7e262f5f6ec764c0da5bf2d151e0711a5a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dad96b78_00843f9d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-01-09T02:34:11Z",
+      "side": 1,
+      "message": "The change isn\u0027t necessary, I removed it.",
+      "parentUuid": "adcdcbb5_f12c6a78",
+      "revId": "e3f8ce7e262f5f6ec764c0da5bf2d151e0711a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
