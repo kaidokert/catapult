@@ -175,6 +175,30 @@
       "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4fd7939_ea6d4b94",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-09T21:20:20Z",
+      "side": 1,
+      "message": "Looks like there are 338 boards:\nhttps://cs.corp.google.com/chromeos_public/src/overlays/\n\nI don\u0027t think we want to list them all here. So long as it works with a warning, I think it\u0027s ok. Let\u0027s also add eve since that\u0027s also used in the chromium waterfall.",
+      "parentUuid": "7cc9b3fe_b4b10865",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
