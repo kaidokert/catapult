@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f00088a_1f3a3ae1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-09T18:05:38Z",
+      "side": 1,
+      "message": "Please keep commit message lines to 80 characters or less.",
+      "revId": "10a003c462809abf556f8261f77ee05fc32f3888",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
