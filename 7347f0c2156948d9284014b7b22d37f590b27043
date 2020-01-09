@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7943355a_f9fdd78d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-09T23:32:17Z",
+      "side": 1,
+      "message": "This logic really isn\u0027t great. We are depending that the timeout for DispatchNotifications is incredibly accurate. Normally timeouts are implemented in a sort of best-effort basis. It would be much better if we had something like\n1. Before we start downloading tracing data we ask for a length and then when we hit the timeout we can check if we have that length of data\n2. The data has some terminating phrase at the end that we can look for to know that we are done downloading it.\n\nWe\u0027re only hitting this because of a faulty format. The trace should be packaged within some format that tells us whether we have the whole thing yet or not.",
+      "range": {
+        "startLine": 335,
+        "startChar": 10,
+        "endLine": 336,
+        "endChar": 40
+      },
+      "revId": "7347f0c2156948d9284014b7b22d37f590b27043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
