@@ -263,6 +263,30 @@
     },
     {
       "key": {
+        "uuid": "ad483f56_b6710876",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-09T03:03:48Z",
+      "side": 1,
+      "message": "I didn\u0027t upload it since it\u0027s not something we\u0027d want to commit. The code is pretty short though:\n\npool \u003d multiprocessing.Pool()\ncmds \u003d []\nfor binary_path in symbol_binaries:\n  cmd \u003d [\n      sys.executable,\n      generate_breakpad_symbols_command,\n      \u0027--binary\u003d%s\u0027 % binary_path,\n      \u0027--symbols-dir\u003d%s\u0027 % symbols_dir,\n      \u0027--build-dir\u003d%s\u0027 % self._build_dir,\n      ]\n  if self.GetBreakpadPlatformOverride():\n    cmd.append(\u0027--platform\u003d%s\u0027 % self.GetBreakpadPlatformOverride())\n  cmds.append(\u0027 \u0027.join(cmd))\npool.map(os.system, cmds)",
+      "parentUuid": "f54b4cb1_9640009e",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7f886e_16056a9e",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
