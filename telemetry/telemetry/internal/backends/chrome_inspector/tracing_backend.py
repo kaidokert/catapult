@@ -332,7 +332,7 @@ class TracingBackend(object):
           break
 
         elapsed_time = time.time() - start_time
-        if elapsed_time > timeout:
+        if elapsed_time >= timeout:
           raise TracingTimeoutException(
               'Only received partial trace data due to timeout after %s '
               'seconds. If the trace data is big, you may want to increase '
