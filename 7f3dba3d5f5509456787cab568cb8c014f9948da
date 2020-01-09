@@ -199,6 +199,30 @@
       "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6678cc70_3bc71a79",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-09T22:23:53Z",
+      "side": 1,
+      "message": "Added eve.\n\nIf we end up needing a significant number of them listed here, we can list them in a separate file and import them to avoid clutter.",
+      "parentUuid": "c4fd7939_ea6d4b94",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
