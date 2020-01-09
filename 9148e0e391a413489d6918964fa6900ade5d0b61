@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b055bc38_b8015f9b",
+        "filename": "devil/devil/android/battery_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-01-09T18:21:44Z",
+      "side": 1,
+      "message": "Can we file a formatter bug?",
+      "parentUuid": "67681f48_c34145c3",
+      "revId": "9148e0e391a413489d6918964fa6900ade5d0b61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c803b989_9f13833d",
         "filename": "devil/devil/android/battery_utils_test.py",
         "patchSetId": 1
