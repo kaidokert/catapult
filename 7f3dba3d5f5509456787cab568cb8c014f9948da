@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01d19a15_9ff03d1b",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-09T19:54:03Z",
+      "side": 1,
+      "message": "Can we call this board to be consistent with how we do things in cros?",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 20
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd343a3f_d9a9c2e2",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-09T19:54:03Z",
+      "side": 1,
+      "message": "Let\u0027s get rid of this. It shouldn\u0027t fail",
+      "range": {
+        "startLine": 201,
+        "startChar": 59,
+        "endLine": 203,
+        "endChar": 20
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ace2f627_ae98743c",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-09T19:54:03Z",
+      "side": 1,
+      "message": "Why not:\nself.assertIsNotNone(self._GetCRI().GetBoardName())",
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bf2016b_660a63ea",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-09T19:54:03Z",
+      "side": 1,
+      "message": "What\u0027s this? There are a hundred different boards, not just amd64-generic, betty, and kevin.",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
