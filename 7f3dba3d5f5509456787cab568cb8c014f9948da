@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "895988ab_d01c35a8",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-09T20:12:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01d19a15_9ff03d1b",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 20
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd343a3f_d9a9c2e2",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8fd1638a_ac48492a",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-09T20:12:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd343a3f_d9a9c2e2",
+      "range": {
+        "startLine": 201,
+        "startChar": 59,
+        "endLine": 203,
+        "endChar": 20
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ace2f627_ae98743c",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 3
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "6d62d9ad_4f686f47",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-09T20:12:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ace2f627_ae98743c",
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5bf2016b_660a63ea",
         "filename": "telemetry/telemetry/story/typ_expectations.py",
         "patchSetId": 3
@@ -76,6 +142,30 @@
       "writtenOn": "2020-01-09T19:54:03Z",
       "side": 1,
       "message": "What\u0027s this? There are a hundred different boards, not just amd64-generic, betty, and kevin.",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "7f3dba3d5f5509456787cab568cb8c014f9948da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cc9b3fe_b4b10865",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-09T20:12:54Z",
+      "side": 1,
+      "message": "These were just the ones I\u0027m aware of off-hand. I *think* you can still use tags that aren\u0027t in here, it\u0027ll just print a warning.\n\nAlternatively, if there\u0027s a list of current boards available, we could add that to Telemetry and add them here.",
+      "parentUuid": "5bf2016b_660a63ea",
       "range": {
         "startLine": 28,
         "startChar": 17,
