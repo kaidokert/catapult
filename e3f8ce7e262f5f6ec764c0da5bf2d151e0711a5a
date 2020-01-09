@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adcdcbb5_f12c6a78",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1336025
+      },
+      "writtenOn": "2020-01-09T02:33:07Z",
+      "side": 1,
+      "message": "What changed here, is it no longer the case of no matching test expectation?",
+      "revId": "e3f8ce7e262f5f6ec764c0da5bf2d151e0711a5a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
