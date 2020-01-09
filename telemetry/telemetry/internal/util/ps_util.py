@@ -5,7 +5,9 @@
 import inspect
 import logging
 import os
+import subprocess
 
+import py_utils
 from py_utils import atexit_with_log
 
 
@@ -27,7 +29,7 @@ def _GetProcessDescription(process):
         process.pid, e)
 
 
-def ListAllSubprocesses():
+def _GetAllSubprocesses():
   try:
     import psutil
   except ImportError:
@@ -35,20 +37,51 @@ def ListAllSubprocesses():
         'psutil is not installed on the system. Not listing possible '
         'leaked processes. To install psutil, see: '
         'https://pypi.python.org/pypi/psutil')
-    return
+    return []
   telemetry_pid = os.getpid()
   parent = psutil.Process(telemetry_pid)
   if hasattr(parent, 'children'):
     children = parent.children(recursive=True)
   else:  # Some old version of psutil use get_children instead children.
     children = parent.get_children()
+  return children
 
+
+def ListAllSubprocesses():
+  children = _GetAllSubprocesses()
   if children:
     processes_info = []
     for p in children:
       processes_info.append(_GetProcessDescription(p))
     logging.warning('Running sub processes (%i processes):\n%s',
                     len(children), '\n'.join(processes_info))
+
+def GetAllSubprocessIDs():
+  children = _GetAllSubprocesses()
+  processes_id = []
+  if children:
+    for p in children:
+      processes_id.append(p.pid)
+  return processes_id
+
+
+def RunSubProcWithTimeout(args, timeout):
+  # crbug.com/1036447. Added for handle mac screen shot.
+  # TODO: Use built-in timeout after python 3 lands.
+  sp = subprocess.Popen(args)
+  try:
+    # Wait for the process to return
+    py_utils.WaitFor(
+        lambda: sp.poll() is not None,
+        timeout)
+  except py_utils.TimeoutException:
+    sp.kill()
+    # Wait for the process handle to be removed
+    py_utils.WaitFor(
+        lambda: sp.poll() is not None,
+        60)
+    raise
+  return sp
 
 
 def EnableListingStrayProcessesUponExitHook():

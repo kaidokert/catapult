@@ -21,3 +21,27 @@ class PsUtilTest(unittest.TestCase):
     output = ps_util._GetProcessDescription(FakeProcess())
     self.assertIn('ZombieProcess', output)
     self.assertIn('this is an error', output)
+
+  def testWaitForSubProcAndKillFinished(self):
+    args = [
+        'python',
+        '-c',
+        'import time; time.sleep(2)'
+    ]
+    sp = ps_util.RunSubProcWithTimeout(args, 3)
+    self.assertEqual(sp.poll(), 0)
+    self.assertTrue(
+        sp.pid not in ps_util.GetAllSubprocessIDs()
+    )
+
+  def testWaitForSubProcAndKillTimeout(self):
+    args = [
+        'python',
+        '-c',
+        'import time; time.sleep(10)'
+    ]
+    sp = ps_util.RunSubProcWithTimeout(args, 1)
+    self.assertNotEqual(sp.poll(), 0)
+    self.assertTrue(
+        sp.pid not in ps_util.GetAllSubprocessIDs()
+    )
