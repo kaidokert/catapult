@@ -287,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "d99a3202_66d8640d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-10T21:23:40Z",
+      "side": 1,
+      "message": "I think you can instead directly import it:\n\nbreakpad_symbols_path \u003d binary_manager.FetchPath(\n        \u0027generate_breakpad_symbols\u0027, self._arch_name, self._os_name)\nsys.path.append(os.path.dirname(breakpad_symbols_path))\nimport generate_breakpad_symbols\ngenerate_breakpad_symbols.blahblah\n\nI feel pretty strongly that we should avoid starting up a huge number of processes like this so the current code I don\u0027t think is commitable.",
+      "parentUuid": "ad483f56_b6710876",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "357837c09a3fe2c1216afffae33d5610f9d70923",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce7f886e_16056a9e",
         "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
         "patchSetId": 1
