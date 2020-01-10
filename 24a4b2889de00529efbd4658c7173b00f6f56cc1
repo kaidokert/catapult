@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "774fb8fe_22fe76a9",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-01-10T16:16:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "286b5fb8_ec0b8085",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 61
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dd9040ac_8588bff8",
         "filename": "tracing/tracing/metrics/blink/gc_metric.html",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1a0940c_6cbae8ec",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-01-10T16:16:25Z",
+      "side": 1,
+      "message": "Thanks, missed that one.",
+      "parentUuid": "dd9040ac_8588bff8",
+      "range": {
+        "startLine": 50,
+        "startChar": 13,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -107,6 +155,30 @@
       "side": 1,
       "message": "Thanks!\n\nMarkRoots \u003d VisitRoots + VisitNotFullyConstructedObjects, no?\n\nThen I would not care about a separate VisitRoots at all. VisitNotFullyConstructedObjects is for a few objects that are under construction and will not dominate.",
       "parentUuid": "68d46320_0429b92f",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 41
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad7d6104_dd39916e",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-01-10T16:16:25Z",
+      "side": 1,
+      "message": "We don\u0027t currently have a MarkRoots metric (or at least I haven\u0027t found any).\n\nWe have AtomicPauseMarkRoots which is just for the atomic pause and we have IncrementalMarkingStartMarking which also includes scheduling, write barrier activation, some worklist flushing, etc...\nThose are the only relevant events/metrics I could find.",
+      "parentUuid": "027dfeca_f392f31e",
       "range": {
         "startLine": 269,
         "startChar": 11,
