@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0345f41_94400c43",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3111,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-01-10T22:16:03Z",
+      "side": 1,
+      "message": "remove trailing comma?",
+      "range": {
+        "startLine": 3111,
+        "startChar": 73,
+        "endLine": 3111,
+        "endChar": 74
+      },
+      "revId": "6327ea69bf8e5344eb39697720fc76787e2fd566",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
