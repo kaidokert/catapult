@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f28dc871_8c5a1fb4",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-10T08:51:40Z",
+      "side": 1,
+      "message": "nit: \"set\" since you override values here, rather than appending?",
+      "range": {
+        "startLine": 366,
+        "startChar": 10,
+        "endLine": 366,
+        "endChar": 13
+      },
+      "revId": "ec9fee993cfbc8030e493d9426645a0d241fce4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f03d1b62_da9aea9f",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-10T08:51:40Z",
+      "side": 1,
+      "message": "nit: do we usually do trailing commas in function defs? (looks a bit weird, but I don\u0027t know enough about our python style :))",
+      "range": {
+        "startLine": 194,
+        "startChar": 20,
+        "endLine": 194,
+        "endChar": 21
+      },
+      "revId": "ec9fee993cfbc8030e493d9426645a0d241fce4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52431cfd_80a562dc",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-10T08:51:40Z",
+      "side": 1,
+      "message": "should we assert that these are not null / raise an exception if they are? Probably doesn\u0027t make sense to emit a ClockSnapshot without either of these clocks.",
+      "range": {
+        "startLine": 206,
+        "startChar": 18,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "ec9fee993cfbc8030e493d9426645a0d241fce4e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
