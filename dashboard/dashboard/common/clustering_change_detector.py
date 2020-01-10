@@ -184,6 +184,7 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
         (length, min_segment_size))
   partition_point, _ = ChangePointEstimator(values, min_segment_size)
   start = 0
+  first = True
   while True:
     logging.debug('Values for start = %s, length = %s, partition_point = %s',
                   start, length, partition_point)
@@ -206,12 +207,16 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
         logging.debug('Found potential change point @%s', potential_culprit)
         return potential_culprit
     elif compare_result in {pinpoint_compare.SAME, pinpoint_compare.UNKNOWN}:
-      if not in_a and not in_b:
+      if not in_a and not in_b and first:
         raise InsufficientData('Not enough data to suggest a change point.')
+      else:
+        potential_culprit = start + partition_point
+        return potential_culprit
     else:
       potential_culprit = start + partition_point
       return potential_culprit
 
+    first = False
     if in_a:
       length = len(cluster_a)
     elif in_b:
