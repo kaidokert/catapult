@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0451de7d_fcb0288e",
+        "filename": "netlog_viewer/netlog_viewer/events_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2020-01-10T01:02:45Z",
+      "side": 1,
+      "message": "Changing the sort:id to actually sort by source start_time feels a little weird, but otherwise it also feels weird that there is no column header you can click which results in the standard sort order (or the reverse of it). Thoughts?",
+      "revId": "10d3a668da797087c1751d94d53191bd2da425b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
