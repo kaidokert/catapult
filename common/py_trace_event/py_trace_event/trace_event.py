@@ -113,21 +113,8 @@ if trace_event_impl:
   def traced(fn):
     return trace_event_impl.traced(fn)
 
-  def clock_sync(sync_id, issue_ts=None):
-    '''
-    Add a clock sync event to the trace log.
-
-    Args:
-      sync_id: ID of clock sync event.
-      issue_ts: Time at which clock sync was issued, in microseconds.
-    '''
-    time_stamp = trace_time.Now()
-    args_to_log = {'sync_id': sync_id}
-    if issue_ts: # Issuer if issue_ts is set, else reciever.
-      assert issue_ts <= time_stamp
-      args_to_log['issue_ts'] = issue_ts
-    trace_event_impl.add_trace_event(
-        "c", time_stamp, "python", "clock_sync", args_to_log)
+  def clock_sync(*args, **kwargs):
+    return trace_event_impl.clock_sync(*args, **kwargs)
 
   def is_tracing_controllable():
     return trace_event_impl.is_tracing_controllable()
@@ -295,4 +282,8 @@ clock_sync.__doc__ = """
   the issuer of a clock sync event it will also require an issue_ts. The
   issue_ts is a timestamp from when the clocksync was first issued. This is used
   to calculate the time difference between clock domains.
+
+  This function has no effect when proto trace format is selected. For
+  synchronizing different traces in proto format, use trace_set_clock_snapshot
+  instead.
   """
