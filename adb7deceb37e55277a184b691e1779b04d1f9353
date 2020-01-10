@@ -16,6 +16,24 @@
       "revId": "adb7deceb37e55277a184b691e1779b04d1f9353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a917c871_a7c0caf0",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-10T04:40:38Z",
+      "side": 1,
+      "message": "Auth is managed via IAM and we\u0027ve already let the service account used by Cloud Build for the project to perform the deployment actions. This is why we don\u0027t need to do this either with sheriff-config.",
+      "parentUuid": "ec8458cc_044d9d67",
+      "revId": "adb7deceb37e55277a184b691e1779b04d1f9353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
