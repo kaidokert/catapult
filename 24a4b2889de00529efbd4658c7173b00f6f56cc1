@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0aa0b683_8fd895a6",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-10T15:02:23Z",
+      "side": 1,
+      "message": "Why is this one (and following) needed? Anything in BLINK_TOP_GC_EVENTS should get its metric automatically through \"addDurationOfTopEvents\".\n\nIIUC, you should only need the ones that sum up for foreground and background marking.",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 41
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
