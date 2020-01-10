@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0a68131b_faf82a11",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-01-10T22:28:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e41029dd_2fee913c",
+      "range": {
+        "startLine": 99,
+        "startChar": 6,
+        "endLine": 99,
+        "endChar": 11
+      },
+      "revId": "166864108722aef3eb10bc8e9d622d278a22e2a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "effdb83c_eabe2bf1",
         "filename": "telemetry/telemetry/internal/util/ps_util.py",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "166864108722aef3eb10bc8e9d622d278a22e2a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e17b222a_98693036",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-01-10T22:28:42Z",
+      "side": 1,
+      "message": "Thanks! Updated to use threading.",
+      "parentUuid": "effdb83c_eabe2bf1",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 31
+      },
+      "revId": "166864108722aef3eb10bc8e9d622d278a22e2a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
