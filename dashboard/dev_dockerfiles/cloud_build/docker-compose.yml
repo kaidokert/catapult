@@ -1,0 +1,25 @@
+version: "3"
+services:
+  dashboard-tests:
+    build:
+      # We need the whole catapult repository for now.
+      context: ../../..
+      dockerfile: dashboard/dev_dockerfiles/cloud_build/Dockerfile
+      args:
+        SOURCE_DIR: .
+      # TODO(fancl): Add devserver tests.
+    command: [
+      ./bin/run_py_tests, --verbose
+    ]
+  deploy-dashboard:
+    build:
+      context: ../../..
+      dockerfile: dashboard/dev_dockerfiles/cloud_build/Dockerfile
+      args:
+        SOURCE_DIR: .
+    command: [
+      ./bin/deploy, --promote, app.yaml, api.yaml, upload.yaml, upload-processing.yaml, dispatch.yaml,
+      # We need to force the version so that we don't rely on using git in the
+      # container when deploying.
+      --version, 'cloud-build-${SHORT_SHA}'
+    ]
