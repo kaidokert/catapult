@@ -188,6 +188,30 @@
       "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ca806c4_a8ca770c",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-10T17:48:51Z",
+      "side": 1,
+      "message": "Context: I am trying to avoid too many metrics that provide no added value. In the past were bloating the results file with so many metrics that it got unreadable.\n\n\u003e We have AtomicPauseMarkRoots which is just for the atomic pause and we have IncrementalMarkingStartMarking which also includes scheduling, write barrier activation, some worklist flushing, etc...\n\nThose will all be close to 0, so I would have assumed we can infer roots marking speed from AtomicPauseMarkRoots and IncrementalMarkingStartMarking.\n\nGo ahead with the metric if you think it provides additional value.",
+      "parentUuid": "ad7d6104_dd39916e",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 41
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
