@@ -16,6 +16,70 @@
       "revId": "10d3a668da797087c1751d94d53191bd2da425b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6591f1b7_2077c45b",
+        "filename": "netlog_viewer/netlog_viewer/events_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-01-10T16:31:27Z",
+      "side": 1,
+      "message": "\u003e Changing the sort:id to actually sort by source start_time feels a little weird, but otherwise it also feels weird that there is no column header you can click which results in the standard sort order (or the reverse of it). Thoughts?\n\nThink this is fine for now.  We can see ho weird it feels when playing with the UI, and will perhaps then be able to come up with something better.",
+      "parentUuid": "0451de7d_fcb0288e",
+      "revId": "10d3a668da797087c1751d94d53191bd2da425b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48ed6974_79345564",
+        "filename": "netlog_viewer/netlog_viewer/events_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-01-10T16:31:27Z",
+      "side": 1,
+      "message": "nit:  Update comment.",
+      "range": {
+        "startLine": 515,
+        "startChar": 16,
+        "endLine": 515,
+        "endChar": 20
+      },
+      "revId": "10d3a668da797087c1751d94d53191bd2da425b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bbe8e8a_3a937bce",
+        "filename": "netlog_viewer/netlog_viewer/events_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-01-10T16:31:27Z",
+      "side": 1,
+      "message": "Should mention that even in newer logs, this is a good idea, since if start times are the same and they are logged in the same process, the IDs will indicate the creation order.  If they were created in different processes, of course, all bets are off, anyways.",
+      "range": {
+        "startLine": 552,
+        "startChar": 77,
+        "endLine": 554,
+        "endChar": 48
+      },
+      "revId": "10d3a668da797087c1751d94d53191bd2da425b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
