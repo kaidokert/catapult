@@ -22,6 +22,30 @@
       "revId": "7347f0c2156948d9284014b7b22d37f590b27043",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaaa6c4d_d77f4b45",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-10T08:43:08Z",
+      "side": 1,
+      "message": "Wait, don\u0027t you already get that notification via _has_received_all_tracing_data?\n\nThe timeout here seems to be more of a \"if we didn\u0027t hear anything from devtools since X seconds, timeout\". There was supposed to be more data to come if you don\u0027t see the \"Tracing.tracingComplete\" event.\n\nTo detect if there was a timeout, maybe we could instead check if DispatchNotifications() raises a WebSocketTimeoutException?",
+      "parentUuid": "7943355a_f9fdd78d",
+      "range": {
+        "startLine": 335,
+        "startChar": 10,
+        "endLine": 336,
+        "endChar": 40
+      },
+      "revId": "7347f0c2156948d9284014b7b22d37f590b27043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
