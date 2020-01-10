@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "286b5fb8_ec0b8085",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-10T15:29:41Z",
+      "side": 1,
+      "message": "_CLOSURE_",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 61
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9040ac_8588bff8",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-10T15:29:41Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also include BLINK_TOP_UNIFIED_GC_MARKING_EVENTS?\n\nWhether something is in the atomic pause, a blink step, or a unified step (helper step by V8) is  non-deterministic.",
+      "range": {
+        "startLine": 50,
+        "startChar": 13,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0aa0b683_8fd895a6",
         "filename": "tracing/tracing/metrics/blink/gc_metric.html",
         "patchSetId": 4
@@ -37,6 +83,30 @@
       "side": 1,
       "message": "Roots marking is already included in AtomicPauseMarkRoots and IncrementalMarkingStartMarking.\nThus the roots marking shouldn\u0027t be part of BLINK_TOP_GC_EVENTS to avoid counting it twice.\nHowever, the mentioned 2 events cover more than just roots marking, so it made sense to me that we have a metric that tells us specifically how long marking the roots took (I expect it to be useful in the future).\n\nThe ones following the roots marking are various aggregations of events, such as foreground marking (which differs from BLINK_TOP_GC_EVENTS by not including sweeping) and background marking (which isn\u0027t included in BLINK_TOP_GC_EVENTS at all).\n\nMarking transitive closure (for lack for a better name) is an aggregation of only incremental marking steps and atomic pause transitive closure. These 2 metrics are the ones that should be directly influenced by concurrent marking. I don\u0027t expect other metrics to go down when we enable concurrent marking. I added this aggregation for direct comparison with/out concurrent marking.",
       "parentUuid": "0aa0b683_8fd895a6",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 41
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "027dfeca_f392f31e",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-01-10T15:29:41Z",
+      "side": 1,
+      "message": "Thanks!\n\nMarkRoots \u003d VisitRoots + VisitNotFullyConstructedObjects, no?\n\nThen I would not care about a separate VisitRoots at all. VisitNotFullyConstructedObjects is for a few objects that are under construction and will not dominate.",
+      "parentUuid": "68d46320_0429b92f",
       "range": {
         "startLine": 269,
         "startChar": 11,
