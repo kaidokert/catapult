@@ -324,10 +324,6 @@ def trace_add_benchmark_metadata(
         story_run_index=story_run_index,
         label=label,
     )
-    perfetto_trace_writer.write_chrome_metadata(
-        output=_log_file,
-        clock_domain="TELEMETRY",
-    )
   elif _format == JSON_WITH_METADATA:
     # Store metadata to write it in the footer.
     telemetry_metadata_for_json = {
@@ -364,10 +360,39 @@ def trace_add_benchmark_metadata(
     raise TraceException("Unknown format: %s" % _format)
 
 def trace_set_clock_snapshot(telemetry_ts, boottime_ts):
+  """ Set timestamps to be written in a ClockSnapshot message.
+
+  This function must be called before the trace start. When trace starts,
+  a ClockSnapshot message with given timestamps will be written in protobuf
+  format. In json format, nothing will happen. Use clock_sync function
+  for clock synchronization in json format.
+
+  Args:
+    telemetry_ts: BOOTTIME of the device where Telemetry runs.
+    boottime_ts: BOOTTIME of the device where the tested browser runs.
+  """
   global _telemetry_ts
   global _boottime_ts
   _telemetry_ts = telemetry_ts
   _boottime_ts = boottime_ts
+
+def clock_sync(sync_id, issue_ts=None):
+  """ Add a clock sync event to the trace log.
+
+  Adds a clock sync event in json format. Does nothing in protobuf format.
+  Use trace_set_clock_snapshot in proto format instead.
+
+  Args:
+    sync_id: ID of clock sync event.
+    issue_ts: Time at which clock sync was issued, in microseconds.
+  """
+  if _format != PROTOBUF:
+    time_stamp = trace_time.Now()
+    args_to_log = {"sync_id": sync_id}
+    if issue_ts: # Issuer if issue_ts is set, else reciever.
+      assert issue_ts <= time_stamp
+      args_to_log["issue_ts"] = issue_ts
+    add_trace_event("c", time_stamp, "python", "clock_sync", args_to_log)
 
 def _trace_disable_atexit():
   trace_disable()
