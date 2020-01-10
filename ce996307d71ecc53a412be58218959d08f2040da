@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f84132d_9236432a",
+        "filename": "devil/.style.yapf",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-10T00:46:36Z",
+      "side": 1,
+      "message": "Two additions in the latest patchset here:\n\n- allow_multiline_lambdas, because yapf kept choosing \u003e80 character lines otherwise, which our presubmits don\u0027t otherwise like, and\n- indent_dictionary_value, which cleans up some of the dict issues mentioned earlier.",
+      "revId": "ce996307d71ecc53a412be58218959d08f2040da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}

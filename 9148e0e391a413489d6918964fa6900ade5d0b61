@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "f6c60aad_b957dee7",
+        "filename": "devil/devil/android/battery_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-10T00:46:36Z",
+      "side": 1,
+      "message": "turns out there\u0027s a switch for this.",
+      "parentUuid": "b055bc38_b8015f9b",
+      "revId": "9148e0e391a413489d6918964fa6900ade5d0b61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c803b989_9f13833d",
         "filename": "devil/devil/android/battery_utils_test.py",
         "patchSetId": 1
