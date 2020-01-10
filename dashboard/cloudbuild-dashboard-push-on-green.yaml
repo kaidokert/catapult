@@ -1,0 +1,21 @@
+# These are the testing and deploy steps for the performance dashboard
+# services. We re-use the docker-compose files in the dev_dockerfiles directory
+# to ensure we're runing the same test and deploy cycle everytime.
+timeout: 1800s  # Wait for 30 minutes for the whole process to finish.
+steps:
+  - name: 'docker/compose:1.19.0'
+    args: [
+      '-f', 'dev_dockerfiles/docker-compose.yml',
+      'build'
+    ]
+  - name: 'docker/compose:1.19.0'
+    args: [
+      '-f', 'dev_dockerfiles/docker-compose.yml',
+      'run', 'python-unittest'
+    ]
+  # TODO(fancl): Add devserver tests.
+  - name: 'docker/compose:1.19.0'
+    args: [
+      '-f', 'dev_dockerfiles/docker-compose.yml',
+      'run', 'deploy-dashboard'
+    ]
