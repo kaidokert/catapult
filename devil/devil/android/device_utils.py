@@ -235,8 +235,8 @@ _SPECIAL_ROOT_DEVICE_LIST += [
 # Somce devices are slow/timeout when using default install.
 # Devices listed here will perform no_streaming app installation.
 _NO_STREAMING_DEVICE_LIST = [
-    'flounder', # Nexus 9
-    'volantis', # Another product name for Nexus 9
+    'flounder',  # Nexus 9
+    'volantis',  # Another product name for Nexus 9
 ]
 
 _IMEI_RE = re.compile(r'  Device ID = (.+)$')
