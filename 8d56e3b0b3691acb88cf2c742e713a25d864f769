@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "81632582_53506a61",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-13T03:43:33Z",
+      "side": 1,
+      "message": "I\u0027m going to be That Reviewer: can you add a unit test for this?",
+      "revId": "8d56e3b0b3691acb88cf2c742e713a25d864f769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4a2a32cb_95bab75b",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -13,6 +30,24 @@
       "writtenOn": "2020-01-13T03:34:05Z",
       "side": 1,
       "message": "`if compare_result \u003d\u003d pinpoint_compare.DIFFERENT or not first:` # New potential change point or already have one\n\nShould be same?",
+      "revId": "8d56e3b0b3691acb88cf2c742e713a25d864f769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a479a12_8a13a716",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-13T03:43:33Z",
+      "side": 1,
+      "message": "It definitely looks a bit funny to have three different if-branches that all result in “potential_culprit \u003d start + partition_point; return potential_culprit”.",
+      "parentUuid": "4a2a32cb_95bab75b",
       "revId": "8d56e3b0b3691acb88cf2c742e713a25d864f769",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
