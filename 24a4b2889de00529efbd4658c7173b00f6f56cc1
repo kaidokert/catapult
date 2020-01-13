@@ -212,6 +212,30 @@
       "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f32ae468_938204c7",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-01-13T08:53:56Z",
+      "side": 1,
+      "message": "Ack\n(I understand wanting to avoid redundant metrics but I already see a specific use case for this one)",
+      "parentUuid": "5ca806c4_a8ca770c",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 41
+      },
+      "revId": "24a4b2889de00529efbd4658c7173b00f6f56cc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
