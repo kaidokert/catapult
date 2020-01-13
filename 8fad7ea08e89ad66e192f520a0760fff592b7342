@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8593ef49_62a13dfb",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-13T18:25:45Z",
+      "side": 1,
+      "message": "I would only warn here if the caller is passing True or False.",
+      "parentUuid": "20c412e2_78936f80",
+      "range": {
+        "startLine": 859,
+        "startChar": 0,
+        "endLine": 863,
+        "endChar": 42
+      },
+      "revId": "8fad7ea08e89ad66e192f520a0760fff592b7342",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1bdff36f_02b95bb1",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-10T21:56:57Z",
       "side": 1,
       "message": "Additional version checking is added here.",
+      "range": {
+        "startLine": 911,
+        "startChar": 0,
+        "endLine": 915,
+        "endChar": 42
+      },
+      "revId": "8fad7ea08e89ad66e192f520a0760fff592b7342",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c5480dd_0917e6e8",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-13T18:25:45Z",
+      "side": 1,
+      "message": "Same here.",
+      "parentUuid": "1bdff36f_02b95bb1",
       "range": {
         "startLine": 911,
         "startChar": 0,
