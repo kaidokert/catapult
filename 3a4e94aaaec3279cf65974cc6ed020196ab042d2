@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02a764d3_47262a45",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-13T22:18:14Z",
+      "side": 1,
+      "message": "1. nit: 3 seconds feels like a rather long time here. what about 1 second or half a second? perhaps that would fix up the 10 second slowdown.\n2. add a comment explain how you picked 3 seconds. was it randomly chosen? did you run some experiments?",
+      "revId": "3a4e94aaaec3279cf65974cc6ed020196ab042d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
