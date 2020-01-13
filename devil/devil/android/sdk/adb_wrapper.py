@@ -378,6 +378,20 @@ class AdbWrapper(object):
   def __repr__(self):
     return '%s(\'%s\')' % (self.__class__.__name__, self)
 
+  def _AppendAdbOption(self, cmd, option, min_version):
+    """Append given option to cmd when min_version is met.
+
+    Otherwise, a warning message will be logged to indicate the option is not
+    avaiable in current adb version.
+    """
+    if (du_version.LooseVersion(self.Version()) <
+        du_version.LooseVersion(min_version)):
+      logging.warning(
+          'adb: %s option not supported prior to version %s (current: %s)',
+          option, min_version, self.Version())
+    else:
+      cmd.append(option)
+
   # pylint: disable=unused-argument
   @classmethod
   def IsServerOnline(cls):
@@ -828,6 +842,7 @@ class AdbWrapper(object):
               allow_downgrade=False,
               reinstall=False,
               sd_card=False,
+              streaming=None,
               timeout=60 * 2,
               retries=DEFAULT_RETRIES):
     """Install an apk on the device.
@@ -838,6 +853,10 @@ class AdbWrapper(object):
       allow_downgrade: (optional) If set, allows for downgrades.
       reinstall: (optional) If set reinstalls the app, keeping its data.
       sd_card: (optional) If set installs on the SD card.
+      streaming: (optional) If not set, use default way to install.
+        If True, performs streaming install.
+        If False, app is pushed to device and be installed from there.
+        Note this option is not supported prior to adb version 1.0.40
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
     """
@@ -851,6 +870,10 @@ class AdbWrapper(object):
       cmd.append('-s')
     if allow_downgrade:
       cmd.append('-d')
+    if streaming is True:
+      self._AppendAdbOption(cmd, '--streaming', '1.0.40')
+    elif streaming is False:
+      self._AppendAdbOption(cmd, '--no-streaming', '1.0.40')
     cmd.append(apk_path)
     output = self._RunDeviceAdbCmd(cmd, timeout, retries)
     if 'Success' not in output:
@@ -864,6 +887,7 @@ class AdbWrapper(object):
                       sd_card=False,
                       allow_downgrade=False,
                       partial=False,
+                      streaming=None,
                       timeout=60 * 2,
                       retries=DEFAULT_RETRIES):
     """Install an apk with splits on the device.
@@ -875,6 +899,10 @@ class AdbWrapper(object):
       sd_card: (optional) If set installs on the SD card.
       allow_downgrade: (optional) Allow versionCode downgrade.
       partial: (optional) Package ID if apk_paths doesn't include all .apks.
+      streaming: (optional) If not set, use default way to install.
+        If True, performs streaming install.
+        If False, app is pushed to device and be installed from there.
+        Note this option is not supported prior to adb version 1.0.40
       timeout: (optional) Timeout per try in seconds.
       retries: (optional) Number of retries to attempt.
     """
@@ -889,6 +917,10 @@ class AdbWrapper(object):
       cmd.append('-s')
     if allow_downgrade:
       cmd.append('-d')
+    if streaming is True:
+      self._AppendAdbOption(cmd, '--streaming', '1.0.40')
+    elif streaming is False:
+      self._AppendAdbOption(cmd, '--no-streaming', '1.0.40')
     if partial:
       cmd.extend(('-p', partial))
     cmd.extend(apk_paths)
