@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c272f692_e26e3aae",
+        "filename": "dashboard/index.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-13T05:00:34Z",
+      "side": 1,
+      "message": "I think it would be better to add new indices first which include the subscription names, rather than removing the indices that still have the sheriff in them.\n\nThis is so that we can roll-back cleanly in case we need to, and not have to wait for a re-index of the data.\n\nLater, when we don\u0027t need to have the sheriff information anymore, then we can remove the index as necessary.",
+      "revId": "e7f77539dc17b2da360e07581b781495d2fa196b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
