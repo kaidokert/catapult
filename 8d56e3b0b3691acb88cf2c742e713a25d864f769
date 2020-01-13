@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a2a32cb_95bab75b",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-13T03:34:05Z",
+      "side": 1,
+      "message": "`if compare_result \u003d\u003d pinpoint_compare.DIFFERENT or not first:` # New potential change point or already have one\n\nShould be same?",
+      "revId": "8d56e3b0b3691acb88cf2c742e713a25d864f769",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
