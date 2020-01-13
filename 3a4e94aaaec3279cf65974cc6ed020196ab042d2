@@ -16,6 +16,24 @@
       "revId": "3a4e94aaaec3279cf65974cc6ed020196ab042d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8857c269_cd838f59",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-13T22:38:49Z",
+      "side": 1,
+      "message": "1. Reduced to 1 second, although there wasn\u0027t any appreciable difference in runtime.\n2. Added a comment. It\u0027s a fairly arbitrary value that gives reasonable results.",
+      "parentUuid": "02a764d3_47262a45",
+      "revId": "3a4e94aaaec3279cf65974cc6ed020196ab042d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
