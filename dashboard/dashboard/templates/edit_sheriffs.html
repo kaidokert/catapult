@@ -105,7 +105,8 @@ found in the LICENSE file.
 <body>
   <nav-bar></nav-bar>
   <h1>Edit Sheriffs</h1>
-
+  <h2>Edit Sheriffs disabled because of the migration,
+  see go/chromeperf-sheriff-redux</h2>
   <p><b>Note</b>: If the test path patterns of two different sheriffs
   threshold configurations both match some test, then the sheriff whose
   name comes first according to lexicographical sort order will apply.</p>
@@ -159,8 +160,8 @@ found in the LICENSE file.
     </table>
     <p>Patterns:</p>
     <textarea name="patterns" id="patterns-textarea"
-              rows="15" cols="72"></textarea><br>
-            <button type="submit">Submit</button><br><br>
+              rows="15" cols="72" disabled="true"></textarea><br>
+            <button type="submit" disabled="true">Submit</button><br><br>
     <button id="list-tests-button" hidden>List monitored tests</button>
     <div id="matching-list"></div>
     <h2>Subscription Proto</h2>
