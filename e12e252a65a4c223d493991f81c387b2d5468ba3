@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0c04817_f227b282",
+        "filename": "dashboard/dashboard/templates/edit_sheriffs.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-14T04:24:44Z",
+      "side": 1,
+      "message": "Nit: semantically this is not a heading, so this ought to be a \u003cp\u003e or a \u003cdiv\u003e (with an appropriate style/class).  Perhaps \u003cp\u003e\u003cb\u003eNote:\u003c/b\u003e…\u003c/p\u003e (as used below) is sufficient?",
+      "range": {
+        "startLine": 108,
+        "startChar": 2,
+        "endLine": 108,
+        "endChar": 6
+      },
+      "revId": "e12e252a65a4c223d493991f81c387b2d5468ba3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcef6669_6402e88c",
+        "filename": "dashboard/dashboard/templates/edit_sheriffs.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-14T04:24:44Z",
+      "side": 1,
+      "message": "I suggest a slight rewording:\n\n  Note: Sheriff configs are no longer editable via this page.  See go/chromeperf-sheriff-redux.\n\nI think this wording makes it clearer that this is a permanent change.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 33
+      },
+      "revId": "e12e252a65a4c223d493991f81c387b2d5468ba3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a1dc6b5_4dc358e9",
+        "filename": "dashboard/dashboard/templates/edit_sheriffs.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-14T04:24:44Z",
+      "side": 1,
+      "message": "Delete this note.  It no longer applies.",
+      "range": {
+        "startLine": 110,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 74
+      },
+      "revId": "e12e252a65a4c223d493991f81c387b2d5468ba3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
