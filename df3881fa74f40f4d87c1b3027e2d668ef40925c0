@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "687f9adf_ce0d719c",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-14T18:21:24Z",
+      "side": 1,
+      "message": "This seems pretty specific to be split out as a separate function, and modifying one of the parameters in place seems liable to surprise people.",
+      "revId": "df3881fa74f40f4d87c1b3027e2d668ef40925c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
