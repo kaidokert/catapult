@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a67224e_feec23db",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-14T19:11:02Z",
+      "side": 1,
+      "message": "optional nit: I think this could be either \n\n  if streaming in (True, False):\n\nor\n\n  if isinstance(streaming, types.BooleanType):\n\n(from https://docs.python.org/2/library/types.html#types.BooleanType)\n\nup to you, though.",
+      "revId": "8919ba7403411483d9152e2272b7ef765d0e3287",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07e161ac_c25e628a",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-01-14T19:11:02Z",
+      "side": 1,
+      "message": "optional nit: at this point, these could just be\n\n  elif streaming:\n    ...\n  else:\n    ...",
+      "revId": "8919ba7403411483d9152e2272b7ef765d0e3287",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
