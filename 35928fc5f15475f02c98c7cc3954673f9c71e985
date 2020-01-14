@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "481e19c4_d68c97b4",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-14T22:58:30Z",
+      "side": 1,
+      "message": "what does \"p\" stand for? Maybe you should just call it \"thread\"? Or do\n\nthreading.Thread(target\u003d_TerminateOrKillProcess, args\u003d(process,)).start()\n\nand then you don\u0027t need th variable.",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 3
+      },
+      "revId": "35928fc5f15475f02c98c7cc3954673f9c71e985",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e816b6a_4d91e81e",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-14T22:58:30Z",
+      "side": 1,
+      "message": "I prefer you inline this work since the name \"_TryTerminateOrKillProcess\" is actually a bit misleading since a reasonable code reader would assume that a function is synchronous by default. Functions that do async things normally are named as such.",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 11
+      },
+      "revId": "35928fc5f15475f02c98c7cc3954673f9c71e985",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "144c7eda_2f575fb3",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-14T22:58:30Z",
+      "side": 1,
+      "message": "I think this logic is a bit iffy. It would be better to start with `done \u003d False` since that is a correct statement and then undo that. That prevents future code changes from breaking this later:\n  done \u003d False\n  try:\n    process.terminate()\n    py_utils.WaitFor(\n        lambda: process.poll() is not None,\n        10)\n    done \u003d True\n  except py_utils.TimeoutException:\n    try:\n      process.kill()\n      py_utils.WaitFor(\n          lambda: process.poll() is not None,\n          10)\n      done \u003d True\n    except py_utils.TimeoutException:\n      pass\n  if not done:\n    logging.warning(\u0027Failed to terminate/kill the process: %s.\u0027 %\n                    _GetProcessDescription(process))\n  return",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 13
+      },
+      "revId": "35928fc5f15475f02c98c7cc3954673f9c71e985",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b7c19d0_ea4dfd6e",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-14T22:58:30Z",
+      "side": 1,
+      "message": "This is a rather unhelpful log statement in a complicated system like Telemetry there will be lots of processes doing things and this statement coming up 20 seconds after the original action will be confusing. Maybe add a description argument to the _TerminateOrKillProcess method and pass that in and then log that here?",
+      "range": {
+        "startLine": 104,
+        "startChar": 21,
+        "endLine": 104,
+        "endChar": 60
+      },
+      "revId": "35928fc5f15475f02c98c7cc3954673f9c71e985",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
