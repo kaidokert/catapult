@@ -16,6 +16,24 @@
       "revId": "df3881fa74f40f4d87c1b3027e2d668ef40925c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7877236c_f650b831",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-01-14T19:04:34Z",
+      "side": 1,
+      "message": "I have put the logic back into the methods Install and InstallMultiple.\nPlease let me know if you have a different idea.",
+      "parentUuid": "687f9adf_ce0d719c",
+      "revId": "df3881fa74f40f4d87c1b3027e2d668ef40925c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
