@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abd5828e_5c21a25a",
+        "filename": "common/py_trace_event/py_trace_event/trace_event.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "nit: remove the newline that starts this description. That newline will make docstring formatters confused.\n\nclock_sync.__doc__ \u003d \"\"\"Issues a clock sync marker event.",
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2ec7df6_2466ecab",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "because",
+      "range": {
+        "startLine": 47,
+        "startChar": 31,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89352e8d_7549e74e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "nit: remove unnecessary whitespace.",
+      "range": {
+        "startLine": 312,
+        "startChar": 5,
+        "endLine": 312,
+        "endChar": 6
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2455ba3e_b5e988f3",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "nit: indent this line more.",
+      "range": {
+        "startLine": 343,
+        "startChar": 3,
+        "endLine": 343,
+        "endChar": 5
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d03fcd13_97d0f106",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "nit: remove this whitespace",
+      "range": {
+        "startLine": 380,
+        "startChar": 5,
+        "endLine": 380,
+        "endChar": 6
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b63643a9_6675886f",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "nit: remove this whitespace.",
+      "range": {
+        "startLine": 402,
+        "startChar": 5,
+        "endLine": 402,
+        "endChar": 6
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5630560_7012ddfb",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:44:13Z",
+      "side": 1,
+      "message": "please explain in a comment here why we only set these snapshots for Android.",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 70
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
