@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc998900_577e56de",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:58:02Z",
+      "side": 1,
+      "message": "probably a good idea to log both the name and the pid in case someone is searching for a pid.",
+      "range": {
+        "startLine": 80,
+        "startChar": 11,
+        "endLine": 80,
+        "endChar": 22
+      },
+      "revId": "7390a405893d2744150cdb6ac5c3c5ab3fab6263",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9af9530b_590d59f8",
+        "filename": "telemetry/telemetry/internal/util/ps_util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-15T18:58:02Z",
+      "side": 1,
+      "message": "finish",
+      "range": {
+        "startLine": 80,
+        "startChar": 31,
+        "endLine": 80,
+        "endChar": 39
+      },
+      "revId": "7390a405893d2744150cdb6ac5c3c5ab3fab6263",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
