@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "549aa038_1b86c664",
+        "filename": "dashboard/index.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-15T05:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41aab84c_6f33778f",
+      "revId": "f92dc271dfd2e7ee101ffa775fe1504c7e55c383",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cccc62f_df9f8fa9",
         "filename": "dashboard/index.yaml",
         "patchSetId": 5
@@ -39,6 +57,30 @@
       "revId": "f92dc271dfd2e7ee101ffa775fe1504c7e55c383",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be55d070_6b223ee7",
+        "filename": "dashboard/index.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-15T05:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cccc62f_df9f8fa9",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 1
+      },
+      "revId": "f92dc271dfd2e7ee101ffa775fe1504c7e55c383",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
