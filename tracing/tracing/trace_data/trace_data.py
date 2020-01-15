@@ -187,7 +187,7 @@ class TraceData(object):
 
       start_time = time.time()
       cmd = (
-          ['python', _TRACE2HTML_PATH] + trace_files +
+          [_TRACE2HTML_PATH] + trace_files +
           ['--output', file_path] + ['--title', trace_title])
       subprocess.check_output(cmd)
 
