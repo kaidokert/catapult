@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
@@ -28,6 +29,9 @@ class HistogramBuilder {
     description_ = description;
   }
 
+  void AddDiagnostic(const std::string& key,
+                     tracing::tracing::proto::Diagnostic diagnostic);
+
   void AddSample(float value);
 
   std::unique_ptr<tracing::tracing::proto::Histogram> toProto() const;
@@ -42,7 +46,14 @@ class HistogramBuilder {
   std::string description_;
   tracing::tracing::proto::UnitAndDirection unit_;
   std::vector<float> sample_values_;
+  std::map<std::string, tracing::tracing::proto::Diagnostic> diagnostics_;
   int num_nans_;
 };
+
+// Returns the corresponding proto unit if a C++ unit test still uses the old
+// unit strings (see docs/histogram-set-json-format.md for the spec). Note,
+// you need to strip off the _biggerIsBetter or _smallerIsBetter before calling
+// this function.
+tracing::tracing::proto::Unit UnitFromJsonUnit(const std::string& unit);
 
 }  // namespace catapult

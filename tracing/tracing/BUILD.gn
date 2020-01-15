@@ -15,17 +15,15 @@ source_set("histogram") {
   sources = [
     "value/histogram.cc",
     "value/histogram.h",
-    "value/running_statistics.h",
     "value/running_statistics.cc",
+    "value/running_statistics.h",
   ]
-  deps = [
-    "proto:histogram_proto",
-    "//third_party/protobuf:protobuf_full",
-  ]
+  public_deps = [ "//third_party/protobuf:protobuf_full" ]
+  deps = [ "proto:histogram_proto" ]
 }
 
 test("histogram_unittests") {
-  configs += [ ":common_config"]
+  configs += [ ":common_config" ]
   sources = [
     "value/histogram_unittest.cc",
     "value/running_statistics_unittest.cc",
