@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2494da2_d64c7953",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-15T13:25:23Z",
+      "side": 1,
+      "message": "This is because our tests still use the old \"ms\" and PrintResult routines from perf_test.h. The WebRTC perf_test.h is slightly different than Chromium\u0027s in that it has an enum for improvement direction, so we don\u0027t use the ms_biggerIsBetter format. Anyway, I guessed this function would be useful for Chromium later.",
+      "range": {
+        "startLine": 57,
+        "startChar": 30,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "7b8fe5155635e0484e2880679ae54242f1cb3a04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
