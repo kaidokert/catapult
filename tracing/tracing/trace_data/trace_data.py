@@ -291,7 +291,7 @@ def SerializeAsHtml(trace_files, html_file, trace_title=None):
 
   input_size = sum(os.path.getsize(trace_file) for trace_file in trace_files)
 
-  cmd = ['python', _TRACE2HTML_PATH]
+  cmd = [_TRACE2HTML_PATH]
   cmd.extend(trace_files)
   cmd.extend(['--output', html_file])
   if trace_title is not None:
