@@ -6,24 +6,45 @@ options:
   diskSizeGb: 100
   machineType: 'N1_HIGHCPU_8'
 steps:
-  - name: 'docker/compose:1.19.0'
+  - name: 'gcr.io/$PROJECT_ID/docker-compose'
+    dir: '/workspace/dashboard'
     args: [
-      '-f', 'dashboard/dev_dockerfiles/cloud_build/docker-compose.yml',
+      '-f', 'dev_dockerfiles/cloud_build/docker-compose.yml',
       'build'
     ]
-  - name: 'docker/compose:1.19.0'
+  - name: 'gcr.io/$PROJECT_ID/docker-compose'
+    dir: '/workspace/dashboard'
     args: [
-      '-f', 'dashboard/dev_dockerfiles/cloud_build/docker-compose.yml',
+      '-f', 'dev_dockerfiles/cloud_build/docker-compose.yml',
       'run', 'dashboard-tests'
     ]
   # We need to provide the auth token that the service account is using to the
   # container from which we're going to deploy the Dashboard services.
-  - name: 'docker/compose:1.19.0'
+  - name: 'gcr.io/$PROJECT_ID/docker-compose'
+    dir: '/workspace/dashboard'
+    volumes:
+      - name: 'deploy-dashboard'
+        path: '/deploy-dashboard'
     args: [
-      '-f', 'dashboard/dev_dockerfiles/cloud_build/docker-compose.yml',
+      '-f', 'dev_dockerfiles/cloud_build/docker-compose.yml',
       'run',
-      # Pass in the version information from here, so we can use the SHORT_SHA
-      # environment.
-      '-e', 'VERSION=cloud-build-${SHORT_SHA}',
       'deploy-dashboard',
+    ]
+  # Use the temporary directory and manually deploy the configs.
+  - name: 'gcr.io/cloud-builders/gcloud'
+    volumes:
+      - name: 'deploy-dashboard'
+        path: '/deploy-dashboard'
+    dir: '/deploy-dashboard'
+    args: [
+      # DO NOT SUBMIT -- default promote when ready.
+      app, deploy, '--no-promote', '--version', 'cloud-build-testing',
+      # We enumerate the files we need to deploy just for the dashboard.
+      api.yaml,
+      app.yaml,
+      cron.yaml,
+      dispatch.yaml,
+      index.yaml,
+      upload-processing.yaml,
+      upload.yaml,
     ]
