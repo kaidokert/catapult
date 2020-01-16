@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93af5f64_e9ddfbd1",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-16T04:50:44Z",
+      "side": 1,
+      "message": "Please add a test case that ensures we can send emails to multiple subscriptions.",
+      "revId": "64d95e343fcf7a980c9d64c2578f3b9f3e629def",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
