@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f35fab2b_d217b5ee",
+        "filename": "common/py_trace_event/py_trace_event/trace_event.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abd5828e_5c21a25a",
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9624073_6e09273f",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -39,6 +57,30 @@
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1b527b_67e89f07",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9624073_6e09273f",
+      "range": {
+        "startLine": 46,
+        "startChar": 39,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -88,6 +130,54 @@
     },
     {
       "key": {
+        "uuid": "78e39660_255fa0b6",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a5737d6_c2bb5ec5",
+      "range": {
+        "startLine": 47,
+        "startChar": 29,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "706fbb6f_a7126afc",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2ec7df6_2466ecab",
+      "range": {
+        "startLine": 47,
+        "startChar": 31,
+        "endLine": 47,
+        "endChar": 37
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "25c34875_bccb6748",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -108,6 +198,30 @@
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b6f71e8_4161d2d0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25c34875_bccb6748",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "469adafb_be6484e5",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e86b880d_6f7d8ff0",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bcd8e33_df0daff6",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -154,6 +292,30 @@
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8411afc_ac8c2b6c",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bcd8e33_df0daff6",
+      "range": {
+        "startLine": 52,
+        "startChar": 42,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "1d6b8a82_b0bc72a7",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Two clock_sync events are necessary to perform synchronization: one from Chrome and one from Telemetry. If either of them is missing, synchronization will not happen. This flag disables the Telemetry one, which effectively turn synchronization off, although the Chrome one is still there.\n\nAs for the clock domain, then yes, if it\u0027s absent, it\u0027s assumed to be the same as in the other parts of the trace. But simply removing the clock domain from metadata is not enough. If both clock_syncs are present, catapult will still try to perform synchronization and fail with an error \"A clock domain cannot sync with itself.\"",
+      "parentUuid": "f5f24c18_7479f524",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 16
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89352e8d_7549e74e",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -200,6 +386,30 @@
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17c946e8_036817a5",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89352e8d_7549e74e",
+      "range": {
+        "startLine": 312,
+        "startChar": 5,
+        "endLine": 312,
+        "endChar": 6
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -226,6 +436,30 @@
     },
     {
       "key": {
+        "uuid": "5f4bfc84_da14b166",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2455ba3e_b5e988f3",
+      "range": {
+        "startLine": 343,
+        "startChar": 3,
+        "endLine": 343,
+        "endChar": 5
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30e38171_2f4e3417",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -246,6 +480,30 @@
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab963ff5_4faf2f8e",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "We can\u0027t write clock snapshots in json format, so TBMv2-style sync is always used when JSON or JSON_WITH_METADATA is selected.\n\nI can set _emit_clock_sync \u003d True in this case to be more explicit.",
+      "parentUuid": "30e38171_2f4e3417",
+      "range": {
+        "startLine": 371,
+        "startChar": 8,
+        "endLine": 371,
+        "endChar": 36
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -272,6 +530,30 @@
     },
     {
       "key": {
+        "uuid": "2838211b_b5162bfc",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d03fcd13_97d0f106",
+      "range": {
+        "startLine": 380,
+        "startChar": 5,
+        "endLine": 380,
+        "endChar": 6
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b63643a9_6675886f",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "a9bcc577_0ddc9ed9",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b63643a9_6675886f",
+      "range": {
+        "startLine": 402,
+        "startChar": 5,
+        "endLine": 402,
+        "endChar": 6
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d5630560_7012ddfb",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
         "patchSetId": 7
@@ -315,6 +621,30 @@
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b90b37_47b2554a",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T16:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5630560_7012ddfb",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 70
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
