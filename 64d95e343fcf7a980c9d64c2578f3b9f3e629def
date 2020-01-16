@@ -34,6 +34,24 @@
       "revId": "64d95e343fcf7a980c9d64c2578f3b9f3e629def",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e83c252_99517675",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-16T05:19:16Z",
+      "side": 1,
+      "message": "I still don\u0027t see the test case... do we have one with multiple subscriptions?",
+      "parentUuid": "731171f5_ffa92b27",
+      "revId": "64d95e343fcf7a980c9d64c2578f3b9f3e629def",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
