@@ -366,6 +366,30 @@
     },
     {
       "key": {
+        "uuid": "d4e57f00_dcaa0297",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T16:34:48Z",
+      "side": 1,
+      "message": "I\u0027m not sure that\u0027s what we do though - You\u0027re not writing the \"clock_domain\". The sync event itself is written elsewhere I think? [1]\n\nThus why I suggested renaming it, because AFAICT we will still emit the sync marker, just not the domain metadata?\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_controller_backend.py?q\u003dissueclocksync\u0026ss\u003dchromium%2Fchromium%2Fsrc%3Athird_party%2Fcatapult%2Ftelemetry%2Ftelemetry%2F\u0026l\u003d177",
+      "parentUuid": "1d6b8a82_b0bc72a7",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 16
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89352e8d_7549e74e",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
