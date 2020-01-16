@@ -390,6 +390,30 @@
     },
     {
       "key": {
+        "uuid": "e1adf474_f00aa7d5",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-01-16T17:31:33Z",
+      "side": 1,
+      "message": "The code you are pointing to asks Chrome to write its clock_sync event, and then calls this function [1], which in turn calls clock_sync() down here on line 401. Here I prevent it from emitting the clock_sync if _emit_clock_sync is False. So _emit_clock_sync flag controls exactly what it is supposed to control: writing the Telemetry\u0027s clock_sync event.\n\nIt\u0027s true that I also stop writing the \"clock_domain\" metadata when _emit_clock_sync is False. This is to avoid errors when importing the trace: if there\u0027s no clock_sync, but two traces have different domains, the trace import will fail.\n\n[1] https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py?ss\u003dchromium/chromium/src:third_party/catapult/telemetry/telemetry/\u0026q\u003dRecordIssuerClockSyncMarker\u0026g\u003d0\u0026l\u003d37",
+      "parentUuid": "d4e57f00_dcaa0297",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 16
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "89352e8d_7549e74e",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
