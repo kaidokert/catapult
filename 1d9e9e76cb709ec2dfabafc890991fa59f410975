@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "e9624073_6e09273f",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "nit: add \"default\"",
+      "range": {
+        "startLine": 46,
+        "startChar": 39,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2ec7df6_2466ecab",
         "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
         "patchSetId": 7
@@ -35,6 +58,121 @@
         "startChar": 31,
         "endLine": 47,
         "endChar": 37
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a5737d6_c2bb5ec5",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "nit: add \"by trace processor\"",
+      "range": {
+        "startLine": 47,
+        "startChar": 29,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25c34875_bccb6748",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "nit: add \"in catapult\"",
+      "range": {
+        "startLine": 49,
+        "startChar": 23,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e86b880d_6f7d8ff0",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "nit: add \"in trace processor\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bcd8e33_df0daff6",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "nit: add \"In this case, trace processor will translate both Chrome\u0027s and telemetry\u0027s timestamps to the device time (BOOTTIME) during proto-to-json conversion, and catapult\u0027s clock synchronization will not take place because we do not specify a clock domain in telemetry\u0027s benchmark metadata.\"",
+      "range": {
+        "startLine": 52,
+        "startChar": 42,
+        "endLine": 52,
+        "endChar": 1
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5f24c18_7479f524",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "nit: is this really more \"_emit_clock_sync_domain\"? The clock sync event itself seems to be written somewhere else (?) -- I assume that\u0027s OK if we don\u0027t write the domain metadata because telemetry simply assumes that it\u0027s in the same clock domain as chrome\u0027s trace?",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 16
       },
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
@@ -81,6 +219,29 @@
         "startChar": 3,
         "endLine": 343,
         "endChar": 5
+      },
+      "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30e38171_2f4e3417",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/log.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-01-16T11:47:29Z",
+      "side": 1,
+      "message": "should we guard this by _emit_clock_sync, too?\n\n(or is it always true for JSON_WITH_METADATA, and should we assert that here?)",
+      "range": {
+        "startLine": 371,
+        "startChar": 8,
+        "endLine": 371,
+        "endChar": 36
       },
       "revId": "1d9e9e76cb709ec2dfabafc890991fa59f410975",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
