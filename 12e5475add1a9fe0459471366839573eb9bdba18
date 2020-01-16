@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9bad0b5e_784eb2f7",
+        "filename": "tracing/tracing/trace_data/trace_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1115989
+      },
+      "writtenOn": "2020-01-16T23:38:04Z",
+      "side": 1,
+      "message": "nit: trace2html",
+      "range": {
+        "startLine": 301,
+        "startChar": 26,
+        "endLine": 301,
+        "endChar": 37
+      },
+      "revId": "12e5475add1a9fe0459471366839573eb9bdba18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
