@@ -16,6 +16,24 @@
       "revId": "64d95e343fcf7a980c9d64c2578f3b9f3e629def",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "731171f5_ffa92b27",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-16T05:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93af5f64_e9ddfbd1",
+      "revId": "64d95e343fcf7a980c9d64c2578f3b9f3e629def",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
