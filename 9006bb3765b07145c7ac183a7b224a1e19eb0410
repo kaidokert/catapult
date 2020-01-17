@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72db9102_19365770",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-17T00:55:47Z",
+      "side": 1,
+      "message": "if len(missing_binaries) \u003c 5 then maybe just print them all out?",
+      "range": {
+        "startLine": 113,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 61
+      },
+      "revId": "9006bb3765b07145c7ac183a7b224a1e19eb0410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
