@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b1d9a66_156487c4",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-17T08:37:31Z",
+      "side": 1,
+      "message": "Right, much nicer! I personally don\u0027t like modifying input arguments to a function, or changing values or parameters too much (e.g almost everything should be const). I guess it\u0027s OK if you do it very close to where the variable is declared.",
+      "parentUuid": "088c2e35_5da742fa",
+      "range": {
+        "startLine": 148,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 3
+      },
+      "revId": "2638a916731c84f20b9fb9531eb4ab080d240bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "396b127a_d3c5d154",
         "filename": "tracing/tracing/value/histogram.cc",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "2638a916731c84f20b9fb9531eb4ab080d240bc0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d86d9302_b567e153",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-17T08:37:31Z",
+      "side": 1,
+      "message": "That was my first idea too, but AFAIK it isn\u0027t possible to have maps as static variables because they\u0027re not trivially destructible. See https://google.github.io/styleguide/cppguide.html#Static_and_Global_Variables.",
+      "parentUuid": "396b127a_d3c5d154",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 156,
+        "endChar": 3
+      },
+      "revId": "2638a916731c84f20b9fb9531eb4ab080d240bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
