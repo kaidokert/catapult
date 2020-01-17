@@ -215,7 +215,7 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
 
     first = False
     if in_a:
-      length = len(cluster_a)
+      length = max(len(cluster_a) + min_segment_size, len(values))
     elif in_b:
-      length = len(cluster_b)
+      length = max(len(cluster_b) + min_segment_size, len(values))
       start += max(len(cluster_a) - 1, 0)

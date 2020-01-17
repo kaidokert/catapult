@@ -278,8 +278,8 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
     super(TestMetadata, self).__init__(*args, **kwargs)
 
   @ndb.synctasklet
-  def UpdateSheriff(self):
-    r = yield self.UpdateSheriffAsync()
+  def UpdateSheriff(self, sheriffs=None, anomaly_configs=None):
+    r = yield self.UpdateSheriffAsync(sheriffs, anomaly_configs)
     raise ndb.Return(r)
 
   @ndb.tasklet
