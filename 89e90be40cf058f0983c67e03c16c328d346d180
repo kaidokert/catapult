@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2ef48a1_7acf2e8d",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-17T03:27:04Z",
+      "side": 1,
+      "message": "In C++17 we can use `static inline constexpr ...` instead... is Chromium still in C++14?",
+      "revId": "89e90be40cf058f0983c67e03c16c328d346d180",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
