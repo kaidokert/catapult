@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "088c2e35_5da742fa",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-17T08:03:24Z",
+      "side": 1,
+      "message": "Why not:\n\n`sanitized_unit.erase(std::find(sanitized_unit.begin(), sanitized_unit.end(), \u0027_\u0027), sanitized_unit.end())`\n\nOr:\n\n```\nif (underscore !\u003d std::string::npos) {\n  sanitized_unit.erase(underscore)\n}\n```\n\nThis reduces the copies/moves required to just one instead of multiple.\n\nIf you change the API of this to take a string by value instead, then you can sanitise the argument which could be copied into or moved into.\n\n```\ntracing::tracing::proto::Unit UnitFromJsonUnit(std::string unit) {\n  ...\n}\n```",
+      "range": {
+        "startLine": 148,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 3
+      },
+      "revId": "2638a916731c84f20b9fb9531eb4ab080d240bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396b127a_d3c5d154",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-17T08:03:24Z",
+      "side": 1,
+      "message": "Can this mapping not be a constexpr-initialised map to make this lookup more efficient?",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 156,
+        "endChar": 3
+      },
+      "revId": "2638a916731c84f20b9fb9531eb4ab080d240bc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
