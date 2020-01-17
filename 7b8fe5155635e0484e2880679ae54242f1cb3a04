@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "a0d3de44_19ac971d",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-17T03:29:48Z",
+      "side": 1,
+      "message": "Does this have to be an ordered map? Wouldn\u0027t an unordered map be sufficient here?",
+      "revId": "7b8fe5155635e0484e2880679ae54242f1cb3a04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6f5be44_ed3dee9e",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-17T03:29:48Z",
+      "side": 1,
+      "message": "Why doesn\u0027t the function sanitise the input instead?",
+      "range": {
+        "startLine": 54,
+        "startChar": 70,
+        "endLine": 56,
+        "endChar": 17
+      },
+      "revId": "7b8fe5155635e0484e2880679ae54242f1cb3a04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c2494da2_d64c7953",
         "filename": "tracing/tracing/value/histogram.h",
         "patchSetId": 2
