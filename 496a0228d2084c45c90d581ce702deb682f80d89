@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6e99181_af7dc5eb",
+        "filename": "dashboard/dashboard/group_report_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-17T02:10:07Z",
+      "side": 1,
+      "message": "I think it\u0027d be cleaner and less error prone to remove the singular `subscription` parameter entirely, and update the other callsites to pass `[subscription]`.\n\nBut it\u0027s not a big deal, so I\u0027ll leave it up to you if you want to do that.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "496a0228d2084c45c90d581ce702deb682f80d89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
