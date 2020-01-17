@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3bc86fe7_ee581a71",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-17T06:53:55Z",
+      "side": 1,
+      "message": "Sure!",
+      "parentUuid": "a0d3de44_19ac971d",
+      "revId": "7b8fe5155635e0484e2880679ae54242f1cb3a04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6f5be44_ed3dee9e",
         "filename": "tracing/tracing/value/histogram.h",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "7b8fe5155635e0484e2880679ae54242f1cb3a04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aac6f67_6b9b7da8",
+        "filename": "tracing/tracing/value/histogram.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-17T06:53:55Z",
+      "side": 1,
+      "message": "I was just lazy. It will sanitize the input now.",
+      "parentUuid": "e6f5be44_ed3dee9e",
+      "range": {
+        "startLine": 54,
+        "startChar": 70,
+        "endLine": 56,
+        "endChar": 17
+      },
+      "revId": "7b8fe5155635e0484e2880679ae54242f1cb3a04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
