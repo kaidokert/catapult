@@ -16,6 +16,24 @@
       "revId": "89e90be40cf058f0983c67e03c16c328d346d180",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df862598_cd004c59",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-17T08:00:25Z",
+      "side": 1,
+      "message": "It is. I think it\u0027s silly you need a .h and .cc for a named string literal, so I\u0027m looking forward to C++17 :)",
+      "parentUuid": "d2ef48a1_7acf2e8d",
+      "revId": "89e90be40cf058f0983c67e03c16c328d346d180",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
