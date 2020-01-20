@@ -23,6 +23,7 @@ try:
   import win32con  # pylint: disable=import-error
   import win32gui  # pylint: disable=import-error
   import win32process  # pylint: disable=import-error
+  import win32ui
   import winerror  # pylint: disable=import-error
   try:
     import winreg  # pylint: disable=import-error
@@ -136,6 +137,24 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
   @decorators.Cache
   def GetOSVersionDetailString(self):
     return platform.uname()[3]
+
+  def CanTakeScreenshot(self):
+    return True
+
+  def TakeScreenshot(self, file_path):
+    width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
+    height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+    win_dc = win32gui.GetWindowDC(win32gui.GetDesktopWindow())
+    screen_dc = win32ui.CreateDCFromHandle(win_dc)
+    capture_dc = screen_dc.CreateCompatibleDC()
+    capture_bitmap = win32ui.CreateBitmap()
+    capture_bitmap.CreateCompatibleBitmap(screen_dc, width, height)
+    capture_dc.SelectObject(capture_bitmap)
+    capture_dc.BitBlt(
+        (0, 0), (width, height), screen_dc, (0, 0), win32con.SRCCOPY)
+    capture_bitmap.SaveBitmapFile(capture_dc, file_path)
+    return True
+
 
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
