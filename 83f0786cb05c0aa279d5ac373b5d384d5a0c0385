@@ -22,6 +22,30 @@
       "revId": "83f0786cb05c0aa279d5ac373b5d384d5a0c0385",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac758449_c32a7186",
+        "filename": "tracing/tracing/value/histogram_proto_converter.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-20T08:31:44Z",
+      "side": 1,
+      "message": "Good point, done",
+      "parentUuid": "398aa513_7e068b8b",
+      "range": {
+        "startLine": 75,
+        "startChar": 42,
+        "endLine": 75,
+        "endChar": 51
+      },
+      "revId": "83f0786cb05c0aa279d5ac373b5d384d5a0c0385",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
