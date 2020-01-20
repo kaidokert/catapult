@@ -91,7 +91,7 @@ def FindChangePoints(series,
                      min_relative_change=_MIN_RELATIVE_CHANGE,
                      min_steppiness=_MIN_STEPPINESS,
                      multiple_of_std_dev=_MULTIPLE_OF_STD_DEV):
-  """Finds at most one change point in the given series.
+  """Finds change points in the given series.
 
   Only the last |max_window_size| points are examined, regardless of
   how many points are passed in. The reason why it might make sense to
@@ -127,9 +127,28 @@ def FindChangePoints(series,
   # TODO(dberris): Remove this when we're convinced we no longer need this
   # alternate implementation.
   alternate_split_index = _FindSplit(y_values)
+  candidate_indices = []
   try:
     split_index = clustering_change_detector.ClusterAndFindSplit(
         y_values, min_segment_size)
+    candidate_indices.append(split_index)
+
+    # Then from here we need to adjust the index to find a more suitable change
+    # point. What happens sometimes is we find a partition point but the point
+    # we find is "before" the change actually happened.
+    while split_index > min_segment_size and (split_index + min_segment_size <
+                                              len(y_values)):
+      logging.debug('Find later change points with a shorter range.')
+      try:
+        new_split_index = clustering_change_detector.ClusterAndFindSplit(
+            y_values[split_index - (min_segment_size + 1):], min_segment_size)
+        split_index += new_split_index - (min_segment_size - 1)
+        logging.debug('New index: %s', split_index)
+        candidate_indices.append(split_index)
+      except clustering_change_detector.Error as e:
+        logging.debug('Failed to refine the split index: %s', e)
+        break
+
     logging.warning(
         'Alternative found an alternate split at index %s compared to %s (%s)',
         alternate_split_index, split_index,
@@ -144,26 +163,33 @@ def FindChangePoints(series,
 
   alternate_make_change_point = _PassesThresholds(
       y_values,
-      split_index,
-      min_segment_size=min_segment_size,
-      min_absolute_change=min_absolute_change,
-      min_relative_change=min_relative_change,
-      min_steppiness=min_steppiness,
-      multiple_of_std_dev=multiple_of_std_dev)
-  make_change_point = _PassesThresholds(
-      y_values,
       alternate_split_index,
       min_segment_size=min_segment_size,
       min_absolute_change=min_absolute_change,
       min_relative_change=min_relative_change,
       min_steppiness=min_steppiness,
-      multiple_of_std_dev=multiple_of_std_dev
-  ) if split_index is not None else False
+      multiple_of_std_dev=multiple_of_std_dev)
+  make_change_point = False
+  change_points = []
+  for potential_index in reversed(candidate_indices):
+    if _PassesThresholds(
+        y_values,
+        potential_index,
+        min_segment_size=min_segment_size,
+        min_absolute_change=min_absolute_change,
+        min_relative_change=min_relative_change,
+        min_steppiness=min_steppiness,
+        multiple_of_std_dev=multiple_of_std_dev):
+      make_change_point = True
+      change_points.append(potential_index)
   logging.info('Anomaly detection study: current=%s alternate=%s diff=%s',
                'CHANGE_FOUND' if make_change_point else 'NO_CHANGE',
                'CHANGE_FOUND' if alternate_make_change_point else 'NO_CHANGE',
                'SAME' if alternate_split_index == split_index else 'DIFFERENT')
-  return [MakeChangePoint(series, split_index)] if make_change_point else []
+  logging.info('E-Divisive potential change-points: %s', [
+      ('rev:%s' % (series[idx][0],), 'idx:%s' % (idx,)) for idx in change_points
+  ])
+  return [MakeChangePoint(series, index) for index in change_points[0:1]]
 
 
 def MakeChangePoint(series, split_index):
