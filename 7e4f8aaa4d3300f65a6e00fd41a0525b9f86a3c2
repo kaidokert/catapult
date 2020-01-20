@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0f13b18b_18fc1d6b",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "I thought about that and experimented a bit here. The problem with that approach (with overlaps) is the clusterings, unless they\u0027re extended by min_segment_size, will not consider the points for culprits/refinements. Consider this situation:\n\nindices \u003d [0, 1, 2, 3, ..., 50]\nmin_segment_size \u003d 2\npartition index \u003d 3\n\nWhen we cluster without overlaps, we get:\n\ncluster_a \u003d [0, 1, 2]\ncluster_b \u003d [3, 4, 5, ...]\n\nNow, we can no longer cleanly partition cluster_a because we cannot get minimum clusterings of min_segment_size.\n\nIf we do an overlap with the clusters, we need to get at least 2x of min_cluster_size for us to effectively do permutation based testing/refinement. The problem with that approach is that we\u0027re going to start finding subdivisions that will seem to have potential change points, but miss the larger potential changes by looking at the whole range (i.e. the first candidate).\n\nThat\u0027s the long story. The short story is that it\u0027s not as simple as that. 😞",
+      "parentUuid": "2b148ff8_ed8c3a28",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3dbf46cc_aa0389c8",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -59,6 +77,48 @@
     },
     {
       "key": {
+        "uuid": "053a362d_802d6ef5",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "Yeah, I meant \u0027min\u0027 instead of \u0027max\u0027. Need to test this part better.",
+      "parentUuid": "3dbf46cc_aa0389c8",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 66
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39eeae2e_e2b831ec",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "Oops. Yeah. This tells me I need more test cases that will find potential culprits in permutation testing. 😐",
+      "parentUuid": "4038bb07_4ecc9d4b",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b84c9216_e81c814d",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -70,6 +130,24 @@
       "writtenOn": "2020-01-20T05:10:06Z",
       "side": 1,
       "message": "In case the change point is in the right part, we should change the start instead of length? like https://chromeperf.appspot.com/debug_alert?test_path\u003dChromiumPerf/linux-perf/blink_perf.layout/nested-percent-height-tables\u0026rev\u003d729730 this one. It should be `start +\u003d max(len(cluster_a) - (min_segment_size - 1), 0)`. Extend 1 point is enough because first point is already the change point (eg: if min_segment_size is 2, change point is ranging from 2 to len-2. You just need add 1 point to make it work because first point is already the change point used for splitting). Notice the current code has already -1 so the change doesn\u0027t fix the problem.",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e755b8eb_73468d9c",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "This is the one that I can\u0027t reproduce locally, and I think the reason is the post-filtering. In this case we do find a change point, but the post-filtering says we don\u0027t create an alert. Maybe I\u0027m missing the way we can reproduce the alert at that revision locally? I suspect there\u0027s more data here than just the mean that we need to make a decision locally...",
+      "parentUuid": "b84c9216_e81c814d",
       "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "f834318f_40504c5b",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "This is where the original algorithm placed the alert, which is the wrong place.",
+      "parentUuid": "d1a12f1e_ed83e30c",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 60
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c087bfb1_f3674c08",
         "filename": "dashboard/dashboard/find_anomalies_test.py",
         "patchSetId": 1
@@ -119,6 +221,30 @@
       "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82a6cbe4_53393b6d",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "Aha! Great catch. I adjusted the algorithm to catch that.",
+      "parentUuid": "c087bfb1_f3674c08",
+      "range": {
+        "startLine": 613,
+        "startChar": 1,
+        "endLine": 614,
+        "endChar": 59
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -145,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "d8c612ea_1509d514",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "This confuses the formatter. 😞",
+      "parentUuid": "be29ddc2_f5ab1b29",
+      "range": {
+        "startLine": 694,
+        "startChar": 0,
+        "endLine": 694,
+        "endChar": 27
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9b32990_0a1eb6c9",
         "filename": "dashboard/dashboard/models/graph_data.py",
         "patchSetId": 1
@@ -165,6 +315,30 @@
       "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1607ada3_b7610e9d",
+        "filename": "dashboard/dashboard/models/graph_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-20T18:31:55Z",
+      "side": 1,
+      "message": "Ah, right -- I was originally playing around with recreating the anomaly config for some of the other alerts we\u0027re debugging, but didn\u0027t find any luck with that. This is a remnant. Reverted.",
+      "parentUuid": "f9b32990_0a1eb6c9",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 63
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
