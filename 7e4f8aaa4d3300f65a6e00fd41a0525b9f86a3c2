@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2b148ff8_ed8c3a28",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-20T05:10:06Z",
+      "side": 1,
+      "message": "If in the first iteration, the ChangePointEstimator already picked a off-by-one point, in_a and in_b will both be False. So maybe you need to change the partition to extend the range here?",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3dbf46cc_aa0389c8",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -19,6 +36,40 @@
         "endLine": 218,
         "endChar": 66
       },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4038bb07_4ecc9d4b",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-20T05:10:06Z",
+      "side": 1,
+      "message": "I think you mean...`min(len(cluster_a) + min_segment_size, len(values))`?",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b84c9216_e81c814d",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-20T05:10:06Z",
+      "side": 1,
+      "message": "In case the change point is in the right part, we should change the start instead of length? like https://chromeperf.appspot.com/debug_alert?test_path\u003dChromiumPerf/linux-perf/blink_perf.layout/nested-percent-height-tables\u0026rev\u003d729730 this one. It should be `start +\u003d max(len(cluster_a) - (min_segment_size - 1), 0)`. Extend 1 point is enough because first point is already the change point (eg: if min_segment_size is 2, change point is ranging from 2 to len-2. You just need add 1 point to make it work because first point is already the change point used for splitting). Notice the current code has already -1 so the change doesn\u0027t fix the problem.",
       "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
