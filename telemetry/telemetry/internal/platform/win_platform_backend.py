@@ -137,6 +137,25 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
   def GetOSVersionDetailString(self):
     return platform.uname()[3]
 
+  def CanTakeScreenshot(self):
+    return True
+
+  def TakeScreenshot(self, file_path):
+    width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
+    height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+    screenDC = win32gui.GetWindowDC(win32gui.GetDesktopWindow())
+    captureDC = win32gui.CreateCompatibleDC(screenDC)
+    captureBitmap = win32gui.CreateCompatibleBitmap(screenDC, width, height)
+    win32gui.SelectObject(captureDC, captureBitmap)
+    win32gui.BitBlt(
+        captureDC, 0, 0, width, height, screenDC, 0, 0, win32con.SRCCOPY)
+    captureBitmap.SaveBitmapFile(captureDC, file_path)
+    win32gui.DeleteDC(screenDC)
+    win32gui.DeleteDC(captureDC)
+    win32gui.DeleteObject(captureBitmap.GetHandle())
+    return True
+
+
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
 
