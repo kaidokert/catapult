@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dbf46cc_aa0389c8",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-20T05:03:13Z",
+      "side": 1,
+      "message": "I don\u0027t understand this.  `length` is used to calculate indexes/slices into the `values` array, but now length is always going to be _at least_ `len(values)`?",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 66
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1a12f1e_ed83e30c",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-20T05:03:13Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment.  By eye it doesn\u0027t look like this value is significantly different to the predecessors so I don\u0027t understand why this would be a culprit, nor do I understand what “original” means here.",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 60
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c087bfb1_f3674c08",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-20T05:03:13Z",
+      "side": 1,
+      "message": "Eyeballing the sample data I\u0027d have guessed the revision range of the culprit would be 729731–729764 (inclusive).",
+      "range": {
+        "startLine": 613,
+        "startChar": 1,
+        "endLine": 614,
+        "endChar": 59
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be29ddc2_f5ab1b29",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-20T05:03:13Z",
+      "side": 1,
+      "message": "Nit: this dedent appears to be a mistake.",
+      "range": {
+        "startLine": 694,
+        "startChar": 0,
+        "endLine": 694,
+        "endChar": 27
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9b32990_0a1eb6c9",
+        "filename": "dashboard/dashboard/models/graph_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-20T05:03:13Z",
+      "side": 1,
+      "message": "Not sure this is meant to be part of this CL?",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 63
+      },
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
