@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ea744f0_c52941c3",
+        "filename": "tracing/tracing/histogram_pb2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-21T11:38:22Z",
+      "side": 1,
+      "message": "I\u0027m positive there should be a way of generating this on demand via GN. Can we explore that instead of checking in the generated protobuf code? I ask this because we don\u0027t do this for the Dashboard nor Pinpoint (we use Makefiles to generate them on demand), and it would be a shame if we started checking in generated code.\n\nSomething like: https://chromium.googlesource.com/chromium/src/third_party/+/master/protobuf/proto_library.gni#121 ?",
+      "revId": "5d0c260c7227daa1ab2b1ae8866b75bd2b196e3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
