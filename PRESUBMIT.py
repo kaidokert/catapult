@@ -18,6 +18,7 @@ _EXCLUDED_PATHS = (
     r'.+\.gypi$',
     r'.+\.gyp$',
     r'.+\.gn$',
+    r'.+_pb2\.py$',
     r'.*\.gitignore$',
     r'.*codereview.settings$',
     r'.*AUTHOR$',
