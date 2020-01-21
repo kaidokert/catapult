@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "397de1c2_3e0dbda8",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-21T17:29:10Z",
+      "side": 1,
+      "message": "should this be set to None on ImportError like the others?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "d731c9008332a1090ccf6f0c9edbd41068421526",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "163d565e_d6ece7da",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-21T17:29:10Z",
+      "side": 1,
+      "message": "what happens if these resources aren\u0027t release? Should this be inside a \"finally:\" clause?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 15
+      },
+      "revId": "d731c9008332a1090ccf6f0c9edbd41068421526",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
