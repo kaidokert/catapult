@@ -16,6 +16,24 @@
       "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05d42854_a4bc27d1",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-21T10:36:06Z",
+      "side": 1,
+      "message": "\u003e I think it\u0027s (min_segment_size - 1)? In case\n\u003e [1, 1, 1, 2, 8, 10, 10, 10]\n\u003e If we pick 2 as the change point in first iteration, the original partition is\n\u003e [*1, *1, *1]\n\u003e [*2, *8, 10, *10, *10]\n\nIn this case, start \u003d 3 (len(cluster_a)) and length is len(cluster_b).\n\n\u003e So because the limitation of min_segment_size (items with star), we can\u0027t pick 8. And the minimal extendency should be \n\u003e [*1, *1, 1, *2, *8]\n\u003e [*1, *2, 8, 10, *10, *10]\n\nBut this part of the code is only deciding the start of the next \"descent\" into the bisection \"if in_b\". So we\u0027re just deciding what the parameters for the next iteration are.\n\nThe code as written now, if min_segment_size \u003d 2, then this means:\n\nstart \u003d len(cluster_a) - (min_segment_size + 1)\nstart \u003d 3 - (2 + 1)\nstart \u003d 0\n\nSo in the next iteration, if we thought that the partition point is in b, then the next section of the data will be... the whole range. 😂\n\nSo you\u0027re right, but it seems it should be:\n\nstart \u003d len(cluster_a) - min_segment_size\n\nWhich should do what you\u0027re describing, but only for the descent into the \"right\" sub-range which allows the algorithm to pick every element in the sub-range.\n\n\u003e You can see extending min_segment_size for left and (min_segment_size - 1) for right is enough and it prevents choosing any point as a change point in the intersection of left and right or pre-picked change point (Which is important for ensuring algorithm terminated at some point).\n\nRight, except that we\u0027re not extending both ranges at this point in the code, we\u0027re just picking which sub-range to descend into.",
+      "parentUuid": "7a1177d8_f2e76aa4",
+      "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
