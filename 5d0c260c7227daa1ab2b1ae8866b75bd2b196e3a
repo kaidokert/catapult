@@ -16,6 +16,24 @@
       "revId": "5d0c260c7227daa1ab2b1ae8866b75bd2b196e3a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e9ee38f_348c89f3",
+        "filename": "tracing/tracing/histogram_pb2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-01-21T13:34:59Z",
+      "side": 1,
+      "message": "Yes, but there is no such thing as py_binary AFAIK in the GN world, so I need to add some even more creative import hacks to my script to get it to work. It\u0027s doable.",
+      "parentUuid": "0ea744f0_c52941c3",
+      "revId": "5d0c260c7227daa1ab2b1ae8866b75bd2b196e3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
