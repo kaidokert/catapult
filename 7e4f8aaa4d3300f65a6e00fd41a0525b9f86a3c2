@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "3cebf60f_2652b7c6",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-21T10:50:22Z",
+      "side": 1,
+      "message": "Yes, I think I understood what you meant -- adjusting the ranges for permutation testing does funny things because it introduces the likelihood that we\u0027re going to discount a stronger signal (i.e. potential change point using the larger range of data) for a potentially weaker signal (i.e. potential change point using the smaller range of data).\n\nThe thing that\u0027s nagging on me is whether we even need the min_segment_size at all because that\u0027s complicating the implementation.\n\nThere\u0027s future direction here which we can explore where we take the histograms (if they\u0027re available) and treat those as individual data points in the time series, in which case we shouldn\u0027t need the min_sgement_size if we have enough samples recorded in the histogram.",
+      "parentUuid": "0a0443dd_27b85565",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dbf46cc_aa0389c8",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
