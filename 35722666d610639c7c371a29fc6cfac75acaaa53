@@ -34,6 +34,24 @@
       "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "084d85c5_7823e8c7",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-21T10:50:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05d42854_a4bc27d1",
+      "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
