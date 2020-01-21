@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "0a0443dd_27b85565",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-21T01:32:15Z",
+      "side": 1,
+      "message": "Maybe the position of the comment makes some confusion or I just still not getting the point. I mean adjusting the cluster_a and cluster_b after the `ClusterAndCompare`. Which should only affect `PermutationTest`?",
+      "parentUuid": "0f13b18b_18fc1d6b",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3dbf46cc_aa0389c8",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -151,6 +169,24 @@
       "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cb70a9b_f21da3b6",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-21T01:32:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e755b8eb_73468d9c",
+      "revId": "7e4f8aaa4d3300f65a6e00fd41a0525b9f86a3c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {

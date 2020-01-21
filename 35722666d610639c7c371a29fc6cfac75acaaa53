@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1177d8_f2e76aa4",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-21T01:32:15Z",
+      "side": 1,
+      "message": "I think it\u0027s (min_segment_size - 1)? In case\n[1, 1, 1, 2, 8, 10, 10, 10]\nIf we pick 2 as the change point in first iteration, the original partition is\n[*1, *1, *1]\n[*2, *8, 10, *10, *10]\nSo because the limitation of min_segment_size (items with star), we can\u0027t pick 8. And the minimal extendency should be \n[*1, *1, 1, *2, *8]\n[*1, *2, 8, 10, *10, *10]\nYou can see extending min_segment_size for left and (min_segment_size - 1) for right is enough and it prevents choosing any point as a change point in the intersection of left and right or pre-picked change point (Which is important for ensuring algorithm terminated at some point).",
+      "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
