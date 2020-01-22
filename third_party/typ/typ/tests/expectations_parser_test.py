@@ -718,3 +718,24 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         self.assertFalse(msg)
         exp = expectations.expectations_for('test')
         self.assertEqual(exp.reason, 'skbug.com/111 crbug.com/lpz/222 skbug.com/hello/333 crbug.com/444')
+
+    def testExpectationToString(self):
+        exp = Expectation(reason='crbug.com/123', test='test.html?*', tags=['intel'],
+                          results={ResultType.Pass, ResultType.Failure}, is_slow_test=True,
+                          retry_on_failure=True)
+        self.assertEqual(
+            exp.to_string(), 'crbug.com/123 [ intel ] test.html?\* [ Failure Pass Slow RetryOnFailure ]')
+
+    def testExpectationToStringUsingRawSpecifiers(self):
+        exp = Expectation(reason='crbug.com/123', test='test.html?*', tags=['intel'],
+                          results={ResultType.Pass, ResultType.Failure}, raw_tags=['iNteL'],
+                          raw_results=['PasS', 'FailuRe'])
+        self.assertEqual(exp.to_string(), 'crbug.com/123 [ iNteL ] test.html?\* [ PasS FailuRe ]')
+
+    def testExpectationToStringAfterRenamingTest(self):
+        exp = Expectation(reason='crbug.com/123', test='test.html?*', tags=['intel'],
+                          results={ResultType.Pass, ResultType.Failure}, raw_tags=['iNteL'],
+                          raw_results=['FailuRe', 'PasS'])
+        exp.test = 'a/*/test.html?*'
+        self.assertEqual(exp.to_string(), 'crbug.com/123 [ iNteL ] a/\*/test.html?\* [ FailuRe PasS ]')
+
