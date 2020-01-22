@@ -210,6 +210,11 @@ class BrowserFinderOptions(optparse.Values):
         default='out/Release',
         help='Specify the build directory for the Fuchsia OS installed on '
         'the device.')
+    group.add_option(
+        '--fuchsia-ssh-port',
+        help='The port on the host to which the ssh service running on the '
+        'Fuchsia device was forwarded. Will skip using the device-finder tool '
+        'if specified.')
     parser.add_option_group(group)
 
     # CPU profiling on Android/Linux/ChromeOS.

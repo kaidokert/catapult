@@ -59,6 +59,15 @@ class FuchsiaSDKUsageTest(unittest.TestCase):
         fuchsia_interface.FUCHSIA_BROWSERS[0])
     self._options.fuchsia_output_dir = 'test/'
 
+  def testSkipSDKUseIfSshPortExists(self):
+    self._options.fuchsia_ssh_port = '22222'
+    found_devices = fuchsia_device.FindAllAvailableDevices(self._options)
+    self.assertEquals(len(found_devices), 1)
+    device = found_devices[0]
+    self.assertEquals(device.port, '22222')
+    self.assertEquals(device.host, 'localhost')
+
+
   def testDownloadSDKIfNotExists(self):
     with mock.patch('os.path.exists', return_value=False):
       with mock.patch(_FUCHSIA_DEVICE_IMPORT_PATH +
