@@ -70,6 +70,24 @@
       "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16bf9932_0020a030",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-22T12:57:19Z",
+      "side": 1,
+      "message": "Great catch.\n\nI\u0027ve re-thought this function a lot and changed it so that we return a list of candidate indices instead of just one. Because we filter out points anyway, we can bias which index we pick towards later indices.\n\nThe patchset I\u0027ve just uploaded reflects the rework where we store candidate indices instead of picking one, and returning all of them.",
+      "parentUuid": "d3226a53_959557be",
+      "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
