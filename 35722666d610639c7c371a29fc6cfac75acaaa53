@@ -52,6 +52,24 @@
       "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3226a53_959557be",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-22T00:47:09Z",
+      "side": 1,
+      "message": "You don\u0027t need pick the every point in the whole range in right part because the first point has been already picked as change point... hmmmmm, so it seems the change point never updated in the loop 😞\n\nBut anyway, the reason right part only need to extend (min_segment_size - 1) is that the algorithm has already picked the first point as the change point. Pick it one more times doesn\u0027t make any sense and may introduce a infinity loop.",
+      "parentUuid": "084d85c5_7823e8c7",
+      "revId": "35722666d610639c7c371a29fc6cfac75acaaa53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
