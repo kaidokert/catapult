@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79f58f26_bb814e12",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-01-22T19:10:04Z",
+      "side": 1,
+      "message": "I understand the problem is not reproducible.\n\nIdeally we\u0027d inspect e and only do the WAR when we actually see the problem. But we can do that once we have some logs with the error.",
+      "revId": "aab2cf0fb900c06b130fa83db33adc0c971c065e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
