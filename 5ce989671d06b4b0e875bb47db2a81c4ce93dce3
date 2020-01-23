@@ -22,6 +22,30 @@
       "revId": "5ce989671d06b4b0e875bb47db2a81c4ce93dce3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a105cd9_efb5a28d",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-23T06:16:26Z",
+      "side": 1,
+      "message": "So I tried to add some tests and find that case is actually not possible because we ensure the point is (min_segment_size \u003c\u003d partition_point \u003c length - min_segment_size). Maybe we should just add an assert on (partition_point - (min_segment_size - 1) \u003e 0) to make sure algorithm terminated at some point?",
+      "parentUuid": "5e33f234_d90cef71",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 63
+      },
+      "revId": "5ce989671d06b4b0e875bb47db2a81c4ce93dce3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
