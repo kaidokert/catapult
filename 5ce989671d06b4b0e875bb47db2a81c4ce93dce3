@@ -46,6 +46,30 @@
       "revId": "5ce989671d06b4b0e875bb47db2a81c4ce93dce3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d22edb7a_b3d60fb0",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-23T15:12:12Z",
+      "side": 1,
+      "message": "Good catch. The change in line 223 is necessary because it fails in production.",
+      "parentUuid": "8a105cd9_efb5a28d",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 63
+      },
+      "revId": "5ce989671d06b4b0e875bb47db2a81c4ce93dce3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
