@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e33f234_d90cef71",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-23T05:39:02Z",
+      "side": 1,
+      "message": "This looks like a small bug fix.  Can you add tests for these cases?  Hmm, I guess the randomness makes it challenging, so that might require injecting a deterministic random number generator (or injecting a fake implemeneation of ChangePointEstimator)?",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 63
+      },
+      "revId": "5ce989671d06b4b0e875bb47db2a81c4ce93dce3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
