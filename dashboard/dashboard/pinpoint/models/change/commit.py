@@ -16,6 +16,15 @@ from dashboard.pinpoint.models.change import commit_cache
 from dashboard.pinpoint.models.change import repository as repository_module
 from dashboard.services import gitiles_service
 
+# TODO(dberris): Move this to git-hosted configurations later.
+from dashboard.common import namespaced_stored_object
+
+
+_REPO_EXCLUSION_KEY = 'pinpoint_repo_exclusion_map'
+
+# Lazily-initialised global cached object.
+_REPO_EXCLUSION_MAPPING = None
+
 
 class NonLinearError(Exception):
   """Raised when trying to find the midpoint of Changes that are not linear."""
@@ -376,3 +385,10 @@ def _ParseCommitField(field, commit_message):
     if len(match) == 2:
       return match[1]
   return None
+
+
+def RepositoryInclusionFilter(commit):
+  """Returns False for changes in repositories in the exclusion list."""
+  if _REPO_EXCLUSION_MAPPING is None:
+    _REPO_EXCLUSION_MAPPING = namespaced_stored_object.Get(_REPO_EXCLUSION_KEY)
+  return commit.repository in _REPO_EXCLUSION_MAPPING
