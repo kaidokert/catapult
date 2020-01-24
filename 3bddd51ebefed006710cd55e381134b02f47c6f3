@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66f22118_de47f2d3",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T23:33:35Z",
+      "side": 1,
+      "message": "nit: for a function that does two completely unrelated things like this, it\u0027s easier to read if you fully separate the work into helper functions:\n\ndef CollectDebugData(self, log_level):\n  self._CollectScreenshot()\n  self._SymbolizeAndLogMinidumps()",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 7
+      },
+      "revId": "3bddd51ebefed006710cd55e381134b02f47c6f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee2cc7c9_b888eda8",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T23:33:35Z",
+      "side": 1,
+      "message": "nit: I\u0027m not a fan of variable names like these. How about \u0027screenshot_handle\u0027?\n\nKinda confused what this file_handle thing is here https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/util/screenshot.py?q\u003dtelemetry+util+screenshot\u0026sq\u003dpackage:chromium\u0026dr\u003dCSs\u0026l\u003d25 , but I guess that\u0027s a bigger problem that doesn\u0027t need to be dealt with in this changelist.",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 6
+      },
+      "revId": "3bddd51ebefed006710cd55e381134b02f47c6f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
