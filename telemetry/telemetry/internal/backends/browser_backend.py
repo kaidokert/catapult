@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import datetime
 import logging
 import os
 import posixpath
@@ -17,6 +18,7 @@ from telemetry.core import exceptions
 from telemetry.internal.backends import app_backend
 from telemetry.internal.browser import web_contents
 from telemetry.internal.results import artifact_logger
+from telemetry.util import screenshot
 
 
 class ExtensionsNotSupportedException(Exception):
@@ -116,6 +118,8 @@ class BrowserBackend(app_backend.AppBackend):
   def CollectDebugData(self, log_level):
     """Attempts to symbolize all currently unsymbolized minidumps and log them.
 
+    Additionally, attempts to capture a screenshot and save it as an artifact.
+
     Platforms may override this to provide other crash information in addition
     to the symbolized minidumps.
 
@@ -123,6 +127,21 @@ class BrowserBackend(app_backend.AppBackend):
       log_level: The logging level to use from the logging module, e.g.
           logging.ERROR.
     """
+    # Capture screenshot.
+    ss = screenshot.TryCaptureScreenShot(self.browser.platform)
+    if ss:
+      with open(ss.GetAbsPath(), 'rb') as infile:
+        now = datetime.datetime.now()
+        suffix = now.strftime('%Y-%m-%d-%H-%M-%S')
+        artifact_name = posixpath.join(
+            'debug_screenshots', 'screenshot-' + suffix)
+        logging.log(
+            log_level, 'Saving screenshot as artifact %s', artifact_name)
+        artifact_logger.CreateArtifact(artifact_name, infile.read())
+    else:
+      logging.log(log_level, 'Failed to capture screenshot')
+
+    # Symbolize minidumps.
     paths = self.GetAllUnsymbolizedMinidumpPaths()
     if not paths:
       logging.log(log_level, 'No unsymbolized minidump paths')
