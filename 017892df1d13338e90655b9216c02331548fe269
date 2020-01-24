@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9525225_713603df",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T22:30:19Z",
+      "side": 1,
+      "message": "nit: pull this out:\n\nnonzero_min_segment_size \u003d max(min_segment_size, 1)\nestimates \u003d [\n      Estimator(i)\n      for i, _ in enumerate(sequence)\n      if nonzero_min_segment_size \u003c\u003d i \u003c len(sequence) - nonzero_min_segment_size\n]\n\nI think that is a tiny bit less mental load on the code reader. \n\nI think that \n\nlen(sequence) - nonzero_min_segment_size\n\nis always equal to\n\nmin(len(sequence) - min_segment_size, len(sequence) - 1)",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 150,
+        "endChar": 28
+      },
+      "revId": "017892df1d13338e90655b9216c02331548fe269",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
