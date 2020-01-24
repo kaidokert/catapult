@@ -22,6 +22,30 @@
       "revId": "017892df1d13338e90655b9216c02331548fe269",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9037e20_63889839",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T22:34:51Z",
+      "side": 1,
+      "message": "Good point. Named it \u0027margin\u0027 because that\u0027s what I mean by that number anyway. :)",
+      "parentUuid": "f9525225_713603df",
+      "range": {
+        "startLine": 148,
+        "startChar": 6,
+        "endLine": 150,
+        "endChar": 28
+      },
+      "revId": "017892df1d13338e90655b9216c02331548fe269",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
