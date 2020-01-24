@@ -53,11 +53,11 @@ class ChangeDetectorTest(unittest.TestCase):
     self.assertIn(10, splits)
 
   def testClusterAndFindSplit_Spikes(self):
-    # We actually can ignore spikes very well.
+    # We actually can identify spikes very well.
     sequence = ([1] * 100) + [1000] + ([1] * 100)
-    with self.assertRaises(ccd.InsufficientData):
-      splits = ccd.ClusterAndFindSplit(sequence, 6, self.rand)
-      logging.debug('Splits = %s', splits)
+    splits = ccd.ClusterAndFindSplit(sequence, 6, self.rand)
+    logging.debug('Splits = %s', splits)
+    self.assertEqual([101], splits)
 
   def testClusterAndFindSplit_Windowing(self):
     # We contrive a case where we'd like to find change points by doing a

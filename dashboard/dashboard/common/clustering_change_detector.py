@@ -135,10 +135,10 @@ def ChangePointEstimator(sequence, min_segment_size):
     y = sum(abs(a - b)**2 for a, b in itertools.product(cluster_a, cluster_b))
     a_len_combinations = (
         math.factorial(len(cluster_a)) /
-        (math.factorial(2) * math.factorial(len(cluster_a) - 2)))
+        (math.factorial(2) * math.factorial(len(cluster_a) - 1)))
     b_len_combinations = (
         math.factorial(len(cluster_b)) /
-        (math.factorial(2) * math.factorial(len(cluster_b) - 2)))
+        (math.factorial(2) * math.factorial(len(cluster_b) - 1)))
     return (((y * 2.0) / (len(cluster_a) * len(cluster_b))) -
             (x_a / a_len_combinations) - (x_b / b_len_combinations))
 
@@ -185,9 +185,11 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
   start = 0
   candidate_indices = []
   while True:
-    # Find the most possible change point
-    partition_point, _ = ChangePointEstimator(values[start:start + length],
-                                              min_segment_size)
+    # Find the most likely change point in the whole range, only excluding the
+    # first and last elements. We're doing this because we want to still be able
+    # to pick a candidate within the margins (of min_segment_size) if we have
+    # enough confidence that it is a change point.
+    partition_point, _ = ChangePointEstimator(values[start:start + length], 1)
     logging.debug('Values for start = %s, length = %s, partition_point = %s',
                   start, length, partition_point)
 
@@ -199,8 +201,10 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
 
     in_a = False
     in_b = False
-    # Test on each part if there is a change point in it or not
-    logging.debug('Attempting to refine with permutation testing.')
+
+    # Even though we have a likely partiion point, we want to be able to find
+    # other potential change points in the A and B clusters by performing
+    # permutation testing to see potentially hidden change points.
     if len(cluster_a) > min_segment_size and PermutationTest(
         cluster_a, min_segment_size, rand):
       _, in_a = ChangePointEstimator(cluster_a, min_segment_size)
@@ -209,14 +213,18 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
         cluster_b, min_segment_size, rand):
       _, in_b = ChangePointEstimator(cluster_b, min_segment_size)
 
-    # Case 1: Can't look into any of one, terminated.
+    # Case 1: We haven't found alternative likely change points in either
+    # cluster.
     if not in_a and not in_b:
       if not candidate_indices:
         raise InsufficientData('Not enough data to suggest a change point.')
       break
-    # Case 2: Look into the part that may contain change point
-    # Note: Current implementation only consider the left (earlier in timeline)
-    # part when both in_a and in_b.
+
+    # Case 2: We've found a likely change point in one of the clusters. In this
+    # implementation we're biased towards finding the change points in the A
+    # cluster (those earlier in time).
+    # TODO(dberris): Change this to explore both clusters, using an interval
+    # tree traversal algorithm.
     if in_a:
       length = min(len(cluster_a) + min_segment_size, len(values))
     elif in_b:
