@@ -145,7 +145,9 @@ def ChangePointEstimator(sequence, min_segment_size):
   estimates = [
       Estimator(i)
       for i, _ in enumerate(sequence)
-      if min_segment_size <= i < len(sequence) - min_segment_size
+      if max(min_segment_size, 1) <= i < min(
+          len(sequence) - min_segment_size,
+          len(sequence) - 1)
   ]
   if not estimates:
     return (0, False)
