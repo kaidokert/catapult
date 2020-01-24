@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e5b6fada_dcaf570d",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Right. In this computation we\u0027re trying to count the total number of pairs in the a cluster. Because the a cluster can be two elements, this computation will yield issues when computing `len(cluster_a) - 2`. We want this because `2!*1! \u003d\u003d 2!` and `2!/(2!*1!) \u003d\u003d 1`.\n\nSo this was a bug which prevented us from being able to compute the number of combinations in a set of 2 elements taking 2 at a time. :)",
+      "parentUuid": "649d7301_a082c4c3",
+      "range": {
+        "startLine": 138,
+        "startChar": 60,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97892aab_219a9a19",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -68,6 +92,30 @@
       "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fa74ade_b568d141",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97892aab_219a9a19",
+      "range": {
+        "startLine": 161,
+        "startChar": 32,
+        "endLine": 161,
+        "endChar": 48
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "3c3eb25f_7c1b6c22",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Good catch! Fixed.",
+      "parentUuid": "1f2a94e7_543062fa",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 19
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72bc4e54_0e36c8a7",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -114,6 +186,30 @@
       "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37143317_e5847b81",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "72bc4e54_0e36c8a7",
+      "range": {
+        "startLine": 192,
+        "startChar": 51,
+        "endLine": 192,
+        "endChar": 78
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "83c280ac_3fee7cac",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0f1fc97_d478d7e9",
+      "range": {
+        "startLine": 226,
+        "startChar": 21,
+        "endLine": 227,
+        "endChar": 31
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "033d56f7_e5d36aec",
         "filename": "dashboard/dashboard/common/clustering_change_detector_test.py",
         "patchSetId": 1
@@ -160,6 +280,30 @@
       "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f9b346_1f54b872",
+        "filename": "dashboard/dashboard/common/clustering_change_detector_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Interesting. Added a test-case.\n\nIt seems we don\u0027t have enough confidence to find the 1-\u003e2 change point with a minimum of 6, but we can find it with a min_segment_size \u003d 1. 😊\n\nNot only that, we can find 1-\u003e100, 100-\u003e1, and 1-\u003e2 all in the same call to the ClusterAndFindSplit function. 😄",
+      "parentUuid": "033d56f7_e5d36aec",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "da1420b6_f29c4083",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Unfortunately, because split_index starts at 0 (line 131) and we need to have a min_segment_size padding of data before the actual split point to do the clustering and find adjacent points that might be culprits too, we need to fix this here to accomodate the first iteration. 😊",
+      "parentUuid": "566153c8_79fcedd6",
+      "range": {
+        "startLine": 144,
+        "startChar": 23,
+        "endLine": 145,
+        "endChar": 48
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1112bb0_d374d8b3",
         "filename": "dashboard/dashboard/find_change_points.py",
         "patchSetId": 1
@@ -206,6 +374,30 @@
       "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd439446_beff50cc",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Yeah, I was being clever for no good reason here. 😊\n\nI like the three-step process, though that\u0027s 3x the traversals of the original version. It shouldn\u0027t matter though as the runtime is dominated by the permutation testing anyway. 😄",
+      "parentUuid": "a1112bb0_d374d8b3",
+      "range": {
+        "startLine": 141,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 7
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "bc75151c_0f7b37f7",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2abcc5ad_02a116d0",
+      "range": {
+        "startLine": 157,
+        "startChar": 25,
+        "endLine": 157,
+        "endChar": 39
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dff79bdc_93996323",
         "filename": "dashboard/dashboard/find_change_points.py",
         "patchSetId": 1
@@ -252,6 +468,30 @@
       "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df367f13_522a036d",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-24T21:43:33Z",
+      "side": 1,
+      "message": "In iterations after the first (e.g. when we have candidate_indices non-empty) if we encounter this error it\u0027s fine for us to continue with the candidates we already have. This means that the sub-segment we\u0027re trying to find further splits for no longer has enough data to give us high-confidence change-points.\n\nSo we only exit early if we never had enough confidence in the first iteration.",
+      "parentUuid": "dff79bdc_93996323",
+      "range": {
+        "startLine": 159,
+        "startChar": 6,
+        "endLine": 159,
+        "endChar": 11
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
