@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "667b5f65_ff0f9428",
+        "filename": "dashboard/dashboard/proto/sheriff_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-24T06:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61f504ef_fe1ac4ee",
+      "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "edfe570f_23761a1b",
         "filename": "dashboard/dashboard/proto/sheriff_config.proto",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0a30d1f_17165c85",
+        "filename": "dashboard/dashboard/proto/sheriff_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-24T06:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edfe570f_23761a1b",
+      "range": {
+        "startLine": 61,
+        "startChar": 19,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "43dab5d2_c908c75b",
+        "filename": "dashboard/dashboard/proto/sheriff_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-24T06:47:41Z",
+      "side": 1,
+      "message": "Yes. Now removed in response.",
+      "parentUuid": "4599c332_629c6b91",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fb34dd0_d878332c",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 2
@@ -85,6 +151,30 @@
       "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e369f03_2830c25f",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-24T06:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fb34dd0_d878332c",
+      "range": {
+        "startLine": 177,
+        "startChar": 6,
+        "endLine": 184,
+        "endChar": 16
+      },
+      "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "405cd111_4b118676",
+        "filename": "dashboard/dashboard/sheriff_config/match_policy.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-24T06:47:41Z",
+      "side": 1,
+      "message": "It\u0027s just the default value of functools.lru_cache. So because it\u0027s almost impossible to reach the limit (128 users/min)...",
+      "parentUuid": "38da03e6_0219185d",
+      "range": {
+        "startLine": 47,
+        "startChar": 41,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1283a424_c7c45ec3",
         "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
         "patchSetId": 2
@@ -131,6 +245,30 @@
       "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "568a7b67_922c53ea",
+        "filename": "dashboard/dashboard/sheriff_config/service/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-24T06:47:41Z",
+      "side": 1,
+      "message": "Removed for now. We can add a explicitly request later (Maybe for debug usage)",
+      "parentUuid": "1283a424_c7c45ec3",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 63
+      },
+      "revId": "c9e0a9e436e5f8d24e17070eae9f9adcea2858c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
