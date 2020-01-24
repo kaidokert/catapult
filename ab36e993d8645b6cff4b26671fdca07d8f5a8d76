@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f5abfe9_e7434093",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "nit: When possible it\u0027s nice to do refactorings in a separate CL so that its clear to reviewers what exactly you are changing. I understand that isn\u0027t always reasonable however.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 32
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "649d7301_a082c4c3",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand this part. Mind explaining what the change you made here does?",
+      "range": {
+        "startLine": 138,
+        "startChar": 60,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97892aab_219a9a19",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "nit: this docstring doesn\u0027t explain what min_segment_size does. Since this is a public function, it may make sense to explain.",
+      "range": {
+        "startLine": 161,
+        "startChar": 32,
+        "endLine": 161,
+        "endChar": 48
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f2a94e7_543062fa",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "nit: doesn\u0027t this find a list of candidate indexes?",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 19
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72bc4e54_0e36c8a7",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "This makes a lot of sense. This part I understand and LGTM.",
+      "range": {
+        "startLine": 192,
+        "startChar": 51,
+        "endLine": 192,
+        "endChar": 78
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0f1fc97_d478d7e9",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "+1\n\nnit: may want to file a bug to track this work since TODOs frequently get lost.",
+      "range": {
+        "startLine": 226,
+        "startChar": 21,
+        "endLine": 227,
+        "endChar": 31
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "033d56f7_e5d36aec",
+        "filename": "dashboard/dashboard/common/clustering_change_detector_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "just a question: What happens if we have data like this:\n\n1, 1, 1, 1, 1, 1, 100, 1, 2, 2, 2, 2, 2, 2\n\nWill we catch the 1 to 2 changepoint? Maybe we can\u0027t really do that?",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 35
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "566153c8_79fcedd6",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "nit: instead of fixing split_index here by doing \n\nmax(split_index - min_segment_size, 0)\n\nwould it make sense to fix it on line 152 by doing\nsplit_index \u003d max(max(potential_candidates), 0)\n?\n(or would that break the while condition somehow?",
+      "range": {
+        "startLine": 144,
+        "startChar": 23,
+        "endLine": 145,
+        "endChar": 48
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1112bb0_d374d8b3",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "nit: I think this might be clearer written like this:\n\npotential_candidates_unadjusted \u003d [\n          x for x in clustering_change_detector.ClusterAndFindSplit(\n              y_values[max(split_index -\n                           min_segment_size, 0):], min_segment_size)\n]\npotential_candidates_unfiltered \u003d [RelativeIndexAdjuster(split_index, x) for x in potential_candidates_unadjusted]\npotential_candidates \u003d [x for x in potential_candidates_unfiltered\n                        if x not in candidate_indices]\n\nAlso, you could skip the filtering step by adding to candidate_indices like this:\n\nfor x in potential_candidates:\n  if x not in candidate_indices:\n    candidate_indices.append(x)\n\nor you could could even use a set() for candidate_indices to skip the filtering.\nIf you are worried about the non-determinism in a set(), you can use an ordered set.",
+      "range": {
+        "startLine": 141,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 7
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2abcc5ad_02a116d0",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "This is a bit confusing since this is not running pinpoint. it is actually running the e divisive algorithm I think.",
+      "range": {
+        "startLine": 157,
+        "startChar": 25,
+        "endLine": 157,
+        "endChar": 39
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dff79bdc_93996323",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-24T21:08:37Z",
+      "side": 1,
+      "message": "I\u0027m a bit interested in why there is \"break\" here. is it not possible that the error won\u0027t be hit in the next run?",
+      "range": {
+        "startLine": 159,
+        "startChar": 6,
+        "endLine": 159,
+        "endChar": 11
+      },
+      "revId": "ab36e993d8645b6cff4b26671fdca07d8f5a8d76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
