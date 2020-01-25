@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cc6ce7c_92bdebbf",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-01-25T01:27:41Z",
+      "side": 1,
+      "message": "Nit: I would\u0027ve generated _EXPECTATION_MAP from _RESULT_TAGS, e.g.:\n\n  _EXPECTATION_MAP \u003d { s.lower(): val for val, s in _RESULT_TAGS.items() }\n\nor something like that, to reduce the duplication and eliminate risk of typos.",
+      "revId": "68125d90962143a4d502068cd45fef7a98f4fbe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfef4326_f2484e5f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-01-25T01:27:41Z",
+      "side": 1,
+      "message": "Why add is_glob as a parameter when you can derive it from the test name?",
+      "revId": "68125d90962143a4d502068cd45fef7a98f4fbe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b205169_3ad0dd80",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-01-25T01:27:41Z",
+      "side": 1,
+      "message": "i.e., why aren\u0027t these two lines just part of the constructor?",
+      "revId": "68125d90962143a4d502068cd45fef7a98f4fbe4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
