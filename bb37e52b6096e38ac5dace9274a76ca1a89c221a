@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4145c38f_b4187461",
+        "filename": "telemetry/telemetry/timeline/trace_event_importer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-28T07:23:15Z",
+      "side": 1,
+      "message": "weird that event_id is sometimes a tuple and sometimes a number. Is this correct?",
+      "range": {
+        "startLine": 303,
+        "startChar": 21,
+        "endLine": 303,
+        "endChar": 43
+      },
+      "revId": "bb37e52b6096e38ac5dace9274a76ca1a89c221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0584cd18_501d829b",
+        "filename": "telemetry/telemetry/timeline/trace_event_importer_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-28T07:23:15Z",
+      "side": 1,
+      "message": "Should this be a tuple instead of a number?",
+      "range": {
+        "startLine": 624,
+        "startChar": 49,
+        "endLine": 624,
+        "endChar": 51
+      },
+      "revId": "bb37e52b6096e38ac5dace9274a76ca1a89c221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
