@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f9b115e_912542f9",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-28T00:15:41Z",
+      "side": 1,
+      "message": "I don\u0027t think this simple lazy cache is a good idea, as this cache is never invalidated (except by accident, when the process restarts).  I appreciate it\u0027s probably necessary to avoiding repeated NDB lookups for this key in a single request, I\u0027ll see if I can find a less troublesome way to do this.",
+      "range": {
+        "startLine": 393,
+        "startChar": 0,
+        "endLine": 393,
+        "endChar": 79
+      },
+      "revId": "a246664176590493fbdcad3a40a580b6d3e4ff30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
