@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dfb4332_351d97ab",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-01-28T11:54:25Z",
+      "side": 1,
+      "message": "nit: maybe call this \"ShouldRepositoryBeIncluded()\" this type of name makes it easier for people reading the caller code to understand without having to go read the whole function.",
+      "range": {
+        "startLine": 386,
+        "startChar": 4,
+        "endLine": 386,
+        "endChar": 29
+      },
+      "revId": "f665c7da126c0c2ad54c863a8e8a1904b80f321b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
