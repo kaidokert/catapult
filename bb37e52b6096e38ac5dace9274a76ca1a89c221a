@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4d3bd8b1_ed57d749",
+        "filename": "telemetry/telemetry/timeline/trace_event_importer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-01-28T10:49:18Z",
+      "side": 1,
+      "message": "Fair point -- let\u0027s always keep it a number.",
+      "parentUuid": "4145c38f_b4187461",
+      "range": {
+        "startLine": 303,
+        "startChar": 21,
+        "endLine": 303,
+        "endChar": 43
+      },
+      "revId": "bb37e52b6096e38ac5dace9274a76ca1a89c221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0584cd18_501d829b",
         "filename": "telemetry/telemetry/timeline/trace_event_importer_unittest.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "bb37e52b6096e38ac5dace9274a76ca1a89c221a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "199bf6f5_680f0828",
+        "filename": "telemetry/telemetry/timeline/trace_event_importer_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-01-28T10:49:18Z",
+      "side": 1,
+      "message": "No, this is saying \u002772\u0027 is an id in the global namespace, i.e., it\u0027s globally unique in the trace. In contrast, \u0027local\u0027 means the id is only valid within it\u0027s process.",
+      "parentUuid": "0584cd18_501d829b",
+      "range": {
+        "startLine": 624,
+        "startChar": 49,
+        "endLine": 624,
+        "endChar": 51
+      },
+      "revId": "bb37e52b6096e38ac5dace9274a76ca1a89c221a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
