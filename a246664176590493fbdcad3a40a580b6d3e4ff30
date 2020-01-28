@@ -22,6 +22,30 @@
       "revId": "a246664176590493fbdcad3a40a580b6d3e4ff30",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "921d8676_512b6f07",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-28T00:25:13Z",
+      "side": 1,
+      "message": "Also namespaced_stored_object appears to automatically add an \"externally_visible__\" or \"internal_only__\" to the key depending on context, so it appears error prone to cache globally like this.  I think ideally we\u0027d limit this cached object\u0027s lifetime to a single request.",
+      "parentUuid": "2f9b115e_912542f9",
+      "range": {
+        "startLine": 393,
+        "startChar": 0,
+        "endLine": 393,
+        "endChar": 79
+      },
+      "revId": "a246664176590493fbdcad3a40a580b6d3e4ff30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
