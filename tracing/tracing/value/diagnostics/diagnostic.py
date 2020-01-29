@@ -68,6 +68,15 @@ class Diagnostic(object):
       diagnostic.guid = dct['guid']
     return diagnostic
 
+  @staticmethod
+  def FromProto(d):
+    diag_type = type(d).__name__
+    cls = all_diagnostics.GetDiagnosticClassForName(diag_type)
+    if not cls:
+      raise ValueError('Unrecognized diagnostic type: ' + diag_type)
+
+    return cls.FromProto(d)
+
   def ResetGuid(self, guid=None):
     if guid:
       self._guid = guid

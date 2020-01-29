@@ -4,6 +4,7 @@
 
 import unittest
 
+from tracing import histogram_pb2
 from tracing.value import histogram
 from tracing.value import histogram_set
 from tracing.value.diagnostics import date_range
@@ -252,3 +253,32 @@ class HistogramSetUnittest(unittest.TestCase):
     self.assertEqual(
         a_hist2.diagnostics['date'],
         b_hist2.diagnostics['date'])
+
+  def testImportSharedDiagnosticsFromProto(self):
+    guid1 = 'f7f17394-fa4a-481e-86bd-a82cd55935a7'
+    guid2 = '88ea36c7-6dcb-4ba8-ba56-1979de05e16f'
+    hist_set = histogram_pb2.HistogramSet()
+
+    hist_set.shared_diagnostics[guid1].generic_set.values.append(
+        '"webrtc_perf_tests"')
+    hist_set.shared_diagnostics[guid2].generic_set.values.append('123456')
+    hist_set.shared_diagnostics['whatever'].generic_set.values.append('2')
+
+    hist = hist_set.histograms.add()
+    hist.name = "_"
+    hist.unit.unit = histogram_pb2.MS
+    hist.diagnostics.diagnostic_map['bots'].shared_diagnostic_guid = guid1
+    hist.diagnostics.diagnostic_map['pointId'].shared_diagnostic_guid = guid2
+
+    parsed = histogram_set.HistogramSet()
+    parsed.ImportProto(hist_set.SerializeToString())
+
+    parsed_hist = parsed.GetFirstHistogram()
+
+    self.assertIsNotNone(parsed_hist)
+    self.assertEqual(len(parsed_hist.diagnostics), 2)
+
+    self.assertEqual(parsed_hist.diagnostics['pointId'],
+                     generic_set.GenericSet(values=[123456]))
+    self.assertEqual(parsed_hist.diagnostics['bots'],
+                     generic_set.GenericSet(values=['webrtc_perf_tests']))

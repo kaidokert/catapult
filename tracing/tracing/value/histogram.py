@@ -18,6 +18,7 @@ from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import unmergeable_diagnostic_set
+from tracing import histogram_pb2
 
 
 try:
@@ -451,6 +452,14 @@ class DiagnosticMap(dict):
         # TODO(benjhayden): Forget about them in 2019 Q2.
         self[name] = diagnostic.Diagnostic.FromDict(diagnostic_dict)
 
+  def AddProtos(self, protos):
+    for name, diagnostic_proto in protos.items():
+      if diagnostic_proto.HasField('shared_diagnostic_guid'):
+        self[name] = diagnostic_ref.DiagnosticRef(
+            diagnostic_proto.shared_diagnostic_guid)
+      else:
+        self[name] = diagnostic.FromProto(diagnostic_proto)
+
   def ResolveSharedDiagnostics(self, histograms, required=False):
     for name, diag in self.items():
       if not isinstance(diag, diagnostic_ref.DiagnosticRef):
@@ -566,6 +575,28 @@ UNIT_NAMES = [
     'count',
     'sigma',
 ]
+
+PROTO_UNIT_MAP = {
+    histogram_pb2.MS: 'ms',
+    histogram_pb2.MS_BEST_FIT_FORMAT: 'msBestFitFormat',
+    histogram_pb2.TS_MS: 'tsMs',
+    histogram_pb2.N_PERCENT: 'n%',
+    histogram_pb2.SIZE_IN_BYTES: 'sizeInBytes',
+    histogram_pb2.BYTES_PER_SECOND: 'bytesPerSecond',
+    histogram_pb2.J: 'J',
+    histogram_pb2.W: 'W',
+    histogram_pb2.A: 'A',
+    histogram_pb2.V: 'V',
+    histogram_pb2.HERTZ: 'Hz',
+    histogram_pb2.UNITLESS: 'unitless',
+    histogram_pb2.COUNT: 'count',
+    histogram_pb2.SIGMA: 'sigma',
+}
+
+PROTO_IMPROVEMENT_DIRECTION_MAP = {
+    histogram_pb2.BIGGER_IS_BETTER: 'biggerIsBetter',
+    histogram_pb2.SMALLER_IS_BETTER: 'smallerIsBetter',
+}
 
 def ExtendUnitNames():
   # Use a function in order to avoid cluttering the global namespace with a loop
@@ -849,6 +880,29 @@ class Histogram(object):
     if 'nanDiagnostics' in dct:
       for map_dct in dct['nanDiagnostics']:
         hist._nan_diagnostic_maps.append(DiagnosticMap.FromDict(map_dct))
+    return hist
+
+  @staticmethod
+  def FromProto(proto):
+    if not proto.unit:
+      raise ValueError('The "unit" field is required.')
+    if not proto.name:
+      raise ValueError('The "name" field is required.')
+
+    boundaries = HistogramBinBoundaries.FromProto(proto.bin_boundaries)
+
+    improvement_direction = proto.unit.improvement_direction
+    unit = PROTO_UNIT_MAP[proto.unit.unit]
+    if improvement_direction and improvement_direction != 'NOT_SPECIFIED':
+      unit += '_' + PROTO_IMPROVEMENT_DIRECTION_MAP[improvement_direction]
+
+    hist = Histogram(proto.name, unit, boundaries)
+
+    if proto.description:
+      hist.description = proto.description
+    if proto.diagnostics:
+      hist.diagnostics.AddProtos(proto.diagnostics.diagnostic_map)
+
     return hist
 
   @property
@@ -1247,6 +1301,29 @@ class HistogramBinBoundaries(object):
 
     bin_boundaries._BuildBins()
     HistogramBinBoundaries.CACHE[cache_key] = bin_boundaries
+    return bin_boundaries
+
+  @staticmethod
+  def FromProto(proto):
+    if not proto:
+      return HistogramBinBoundaries.SINGULAR
+
+    bin_boundaries = HistogramBinBoundaries(proto.first_bin_boundary)
+    for spec in proto.bin_specs:
+      if spec.HasField('bin_boundary'):
+        bin_boundaries.AddBinBoundary(spec.bin_boundary)
+      elif spec.hasField('bin_spec'):
+        bin_spec = spec.bin_spec
+        if bin_spec.boundary_type == histogram_pb2.LINEAR:
+          bin_boundaries.AddLinearBins(
+              bin_spec.maximum_bin_boundary, bin_spec.num_bin_boundaries)
+        elif bin_spec.boundary_type == histogram_pb2.EXPONENTIAL:
+          bin_boundaries.AddExponentialBins(
+              bin_spec.maximum_bin_boundary, bin_spec.num_bin_boundaries)
+        else:
+          raise ValueError('Unrecognized HistogramBinBoundaries slice type')
+
+    bin_boundaries._BuildBins()
     return bin_boundaries
 
   def AsDict(self):
