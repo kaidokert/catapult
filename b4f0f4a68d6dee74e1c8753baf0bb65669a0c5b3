@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9443e4d_29a08168",
+        "filename": "dashboard/dashboard/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-29T03:44:48Z",
+      "side": 1,
+      "message": "Define an Exception subclass to use here, rather than a completely generic exception, especially as this code as no control over the `err_msg`, so the string in this generic exception could turn out to be completely generic and useless too.\n\nEven generic \u0027Error\u0027 class that\u0027s specific to this module would be enough of an improvement:\n\nclass Error(Exception):\n  pass\n\n(Possibly with a docstring to make pylint happy.)\n\nAlso, please add a test in alerts_test.py that covers this error case.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 28
+      },
+      "revId": "b4f0f4a68d6dee74e1c8753baf0bb65669a0c5b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86378a92_b1bd57a5",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-01-29T03:44:48Z",
+      "side": 1,
+      "message": "FYI only (because this CL didn\u0027t introduce this typo): these tests misspell “Label”.",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 21
+      },
+      "revId": "b4f0f4a68d6dee74e1c8753baf0bb65669a0c5b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
