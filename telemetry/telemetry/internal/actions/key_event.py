@@ -31,6 +31,7 @@ _AddSpecialKey('ArrowLeft', 0x25)
 _AddSpecialKey('ArrowUp', 0x26)
 _AddSpecialKey('ArrowRight', 0x27)
 _AddSpecialKey('ArrowDown', 0x28)
+_AddSpecialKey('F12', 0x7B)
 
 _AddSpecialKey('Return', 0x0D, text='\x0D')
 _AddSpecialKey('Delete', 0x2E, text='\x7F')
@@ -72,8 +73,9 @@ _AddRegularKey(' ', 0x20)
 
 class KeyPressAction(page_action.PageAction):
 
-  def __init__(self, dom_key, timeout=page_action.DEFAULT_TIMEOUT):
-    super(KeyPressAction, self).__init__(timeout=timeout)
+  def __init__(self, dom_key, timeout=page_action.DEFAULT_TIMEOUT,
+               use_native_key=False):
+    super(KeyPressAction, self).__init__()
     char_code = 0 if len(dom_key) > 1 else ord(dom_key)
     self._dom_key = dom_key
     # Check that ascii chars are allowed.
@@ -84,6 +86,14 @@ class KeyPressAction(page_action.PageAction):
     self._windows_virtual_key_code, self._text = _KEY_MAP.get(
         dom_key, ('', dom_key))
 
+    if use_native_key:
+      self._native_virtual_key_code, self._text = _KEY_MAP.get(
+          dom_key, ('', dom_key))
+    else:
+      self._native_virtual_key_code = None
+
+    self._timeout = timeout
+
   def RunAction(self, tab):
     # Note that this action does not handle self.timeout properly. Since each
     # command gets the whole timeout, the PageAction can potentially
@@ -92,19 +102,22 @@ class KeyPressAction(page_action.PageAction):
         key_event_type='rawKeyDown',
         dom_key=self._dom_key,
         windows_virtual_key_code=self._windows_virtual_key_code,
-        timeout=self.timeout)
+        native_virtual_key_code=self._native_virtual_key_code,
+        timeout=self._timeout)
     if self._text:
       tab.DispatchKeyEvent(
           key_event_type='char',
           text=self._text,
           dom_key=self._dom_key,
           windows_virtual_key_code=ord(self._text),
-          timeout=self.timeout)
+          native_virtual_key_code=ord(self._text),
+          timeout=self._timeout)
     tab.DispatchKeyEvent(
         key_event_type='keyUp',
         dom_key=self._dom_key,
         windows_virtual_key_code=self._windows_virtual_key_code,
-        timeout=self.timeout)
+        native_virtual_key_code=self._native_virtual_key_code,
+        timeout=self._timeout)
 
   def __str__(self):
     return "%s('%s')" % (self.__class__.__name__, self._dom_key)

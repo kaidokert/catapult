@@ -63,6 +63,10 @@ class Browser(app.App):
     return self._browser_backend.supports_tab_control
 
   @property
+  def supports_devtools_frontend(self):
+    return self._browser_backend.supports_devtools_frontend
+
+  @property
   def tabs(self):
     return self._tabs
 

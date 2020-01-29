@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Copyright 2019 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics', function() {
+
+  function getDurationsBetweenFrontendEvents(model, startEvent, endEvent) {
+    // finds the duration between the first occuring startEvent and first
+    // occuring endEvent on each render thread where the events are both present
+    const rendererThreads = model.getAllThreads()
+        .filter(thread => thread.name === 'CrRendererMain');
+
+    const durations = [];
+    for (const thread of rendererThreads) {
+      const startSlices = thread.sliceGroup.slices
+          .filter(slice => slice.title === startEvent)
+          .sort((a, b) => a.start - b.start);
+      const startSlice = startSlices.length ? startSlices[0] : undefined;
+
+      const endSlices = thread.sliceGroup.slices
+          .filter(slice => slice.title === endEvent)
+          .sort((a, b) => a.start - b.start);
+      const endSlice = endSlices.length ? endSlices[0] : undefined;
+
+      if (startSlice && endSlice) {
+        durations.push(endSlice.start - startSlice.start);
+      }
+    }
+    return durations;
+  }
+
+  function computeHitBreakpointMetric(histograms, model) {
+    const durations = getDurationsBetweenFrontendEvents(model,
+        'DevTools.HitBreakpointStart', 'DevTools.HitBreakpointEnd');
+
+    addHistogramWithDefaultProperties('HitBreakpoint_duration', durations,
+        histograms);
+  }
+
+  function addHistogramWithDefaultProperties(name, durations, histograms) {
+    if (!durations.length) {
+      return;
+    }
+
+    const histogram = new tr.v.Histogram(
+        name,
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+        tr.v.HistogramBinBoundaries.createLinear(/* min */ 0, /* max */ 500,
+            /* numBins */ 10));
+    durations.forEach(dur => histogram.addSample(dur));
+    histograms.addHistogram(histogram);
+  }
+
+  function devtoolsMetric(histograms, model) {
+    computeHitBreakpointMetric(histograms, model);
+  }
+
+  tr.metrics.MetricRegistry.register(devtoolsMetric);
+
+  return {
+    devtoolsMetric
+  };
+});
+</script>
