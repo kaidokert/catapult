@@ -4,9 +4,10 @@
 
 import collections
 
+from tracing import histogram_pb2
 from tracing.value import histogram as histogram
 from tracing.value import histogram_deserializer
-from tracing.value import histogram_proto_converter
+from tracing.value import histogram_proto_json_converter
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import diagnostic_ref
@@ -91,6 +92,27 @@ class HistogramSet(object):
 
   def Deserialize(self, data):
     for hist in histogram_deserializer.Deserialize(data):
+      self.AddHistogram(hist)
+
+  def ImportProto(self, serialized_proto):
+    hist_set = histogram_pb2.HistogramSet()
+    hist_set.ParseFromString(serialized_proto)
+
+    for guid, d in hist_set.shared_diagnostics.items():
+      attr_name = d.WhichOneof('diagnostic_oneof')
+      assert attr_name, 'The diagnostic oneof cannot be empty.'
+
+      d = getattr(d, attr_name)
+      assert type(d).__name__ in all_diagnostics.GetDiagnosticTypenames(), (
+          'Unrecognized shared diagnostic type ' + type(d).__name__)
+
+      diag = diagnostic.Diagnostic.FromProto(d)
+      diag.guid = guid
+      self._shared_diagnostics_by_guid[guid] = diag
+
+    for h in hist_set.histograms:
+      hist = histogram.Histogram.FromProto(h)
+      hist.diagnostics.ResolveSharedDiagnostics(self)
       self.AddHistogram(hist)
 
   def ImportDicts(self, dicts):
