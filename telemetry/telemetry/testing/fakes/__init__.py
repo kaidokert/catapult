@@ -321,7 +321,6 @@ class FakeApp(object):
     else:
       self._platform = platform
     self.standard_output = ''
-    self.stack_trace = (False, '')
     self.recent_minidump_path = None
 
   @property
@@ -336,9 +335,6 @@ class FakeApp(object):
 
   def GetStandardOutput(self):
     return self.standard_output
-
-  def GetStackTrace(self):
-    return self.stack_trace
 
   def GetMostRecentMinidumpPath(self):
     return self.recent_minidump_path
