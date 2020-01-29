@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a613cac_b79af9cc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-29T01:25:01Z",
+      "side": 1,
+      "message": "This was an issue that got caught now that some of the unit tests end up going through this code path.",
+      "range": {
+        "startLine": 91,
+        "startChar": 33,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "revId": "fe701b9cc88dd4dd3f5d34cee296cb2e1e6a4f46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

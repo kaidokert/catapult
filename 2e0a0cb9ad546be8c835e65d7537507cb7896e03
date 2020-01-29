@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e88bd6e_9082c485",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-29T01:25:01Z",
+      "side": 0,
+      "message": "No longer used.",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 19
+      },
+      "revId": "2e0a0cb9ad546be8c835e65d7537507cb7896e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba01daaf_31065372",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-29T01:25:01Z",
+      "side": 0,
+      "message": "This is now handled by CollectDebugData.",
+      "range": {
+        "startLine": 127,
+        "startChar": 23,
+        "endLine": 127,
+        "endChar": 38
+      },
+      "revId": "2e0a0cb9ad546be8c835e65d7537507cb7896e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
