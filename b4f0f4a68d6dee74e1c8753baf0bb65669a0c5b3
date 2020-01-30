@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d4088e11_6aacbd12",
+        "filename": "dashboard/dashboard/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-30T00:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9443e4d_29a08168",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 28
+      },
+      "revId": "b4f0f4a68d6dee74e1c8753baf0bb65669a0c5b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86378a92_b1bd57a5",
         "filename": "dashboard/dashboard/sheriff_config_client_test.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-01-29T03:44:48Z",
       "side": 1,
       "message": "FYI only (because this CL didn\u0027t introduce this typo): these tests misspell “Label”.",
+      "range": {
+        "startLine": 120,
+        "startChar": 15,
+        "endLine": 120,
+        "endChar": 21
+      },
+      "revId": "b4f0f4a68d6dee74e1c8753baf0bb65669a0c5b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a71386cd_4d106504",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-01-30T00:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86378a92_b1bd57a5",
       "range": {
         "startLine": 120,
         "startChar": 15,
