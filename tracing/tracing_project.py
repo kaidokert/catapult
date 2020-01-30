@@ -25,6 +25,7 @@ def GetDependencyPaths():
       p.catapult_path,
       p.py_vulcanize_path,
       p.vinn_path,
+      p.protobuf_path,
       os.path.join(p.catapult_third_party_path, 'WebOb'),
       os.path.join(p.catapult_third_party_path, 'Paste'),
       os.path.join(p.catapult_third_party_path, 'six'),
@@ -76,6 +77,8 @@ class TracingProject(object):
 
   catapult_third_party_path = os.path.join(catapult_path, 'third_party')
   polymer_path = os.path.join(catapult_third_party_path, 'polymer')
+  protobuf_path = os.path.join(
+      catapult_third_party_path, 'gae_ts_mon', 'gae_ts_mon', 'protobuf')
 
   tracing_third_party_path = os.path.join(tracing_root_path, 'third_party')
   py_vulcanize_path = os.path.join(common_root_path, 'py_vulcanize')
