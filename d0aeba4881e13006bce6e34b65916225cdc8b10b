@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11c8eb0f_c9ff1a06",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-31T13:40:41Z",
+      "side": 1,
+      "message": "Probably having an example command-line somewhere (either here or in a README.md file) on how to run this will be useful.",
+      "revId": "d0aeba4881e13006bce6e34b65916225cdc8b10b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2247489c_abaeee22",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-31T13:40:41Z",
+      "side": 1,
+      "message": "Why was this necessary?",
+      "revId": "d0aeba4881e13006bce6e34b65916225cdc8b10b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f49fc119_a98849c3",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-31T13:40:41Z",
+      "side": 1,
+      "message": "I think an easy win here is to just export the anomalies, and have another job that exports just the rows for the past 180 days.\n\nThe other way to do this is if we query the rows and only export the anomalies that fit. You can do that with two different sources and merge/filter at a later stage.",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 12
+      },
+      "revId": "d0aeba4881e13006bce6e34b65916225cdc8b10b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f6893c1_0f111d06",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-31T13:40:41Z",
+      "side": 1,
+      "message": "This looks slow. If we need to do this at all, we should use the async/cursor API.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 0
+      },
+      "revId": "d0aeba4881e13006bce6e34b65916225cdc8b10b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a328a7e8_13c97782",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-01-31T13:40:41Z",
+      "side": 1,
+      "message": "We should replicate/emit these as a different column (master and bot).",
+      "revId": "d0aeba4881e13006bce6e34b65916225cdc8b10b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
