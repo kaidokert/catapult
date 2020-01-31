@@ -59,7 +59,8 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
       self._browser_options = None
 
   def SupportsOptions(self, browser_options):
-    return bool(len(browser_options.extensions_to_load))
+    # Fuchsia browsers currently doesn't have extension support
+    return len(browser_options.extensions_to_load) == 0
 
   def UpdateExecutableIfNeeded(self):
     # Updating the browser is currently handled in the Chromium repository
