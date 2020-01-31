@@ -45,6 +45,30 @@
       "revId": "272580e528cc88f6c686242c016a1e1577a8b704",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4336d02_3992a985",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-01-31T16:52:31Z",
+      "side": 1,
+      "message": "Yea, the screenshot from the win32 API comes in BMP format, and there\u0027s a test to validate that the screenshot is in PNG format. So I am attempting to convert from BMP to PNG. But it doesn\u0027t look like there is an easy way of doing this. What do you think of disabling that test on Windows, and stick with the BMP format screenshots on Windows?",
+      "parentUuid": "8f01241e_b79e45d0",
+      "range": {
+        "startLine": 165,
+        "startChar": 10,
+        "endLine": 165,
+        "endChar": 14
+      },
+      "revId": "272580e528cc88f6c686242c016a1e1577a8b704",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
