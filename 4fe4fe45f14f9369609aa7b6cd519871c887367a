@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "06a2a0c2_41c035e4",
+        "filename": "telemetry/telemetry/core/debug_data.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-31T19:04:08Z",
+      "side": 1,
+      "message": "Nope, leftover from before I trimmed unused code. Removed.",
+      "parentUuid": "854789ee_3215c520",
+      "range": {
+        "startLine": 16,
+        "startChar": 9,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "4fe4fe45f14f9369609aa7b6cd519871c887367a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "154f52e0_b1e65c32",
         "filename": "telemetry/telemetry/core/exceptions.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "4fe4fe45f14f9369609aa7b6cd519871c887367a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ed1627d_9ed8420d",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-31T19:04:08Z",
+      "side": 1,
+      "message": "Yes and no. There\u0027s nothing actually tying CollectDebugData to the App class, but AFAIK the only App we ever actually use is Browser, which does have CollectDebugData. I\u0027ll log something anyways.",
+      "parentUuid": "154f52e0_b1e65c32",
+      "range": {
+        "startLine": 64,
+        "startChar": 29,
+        "endLine": 64,
+        "endChar": 45
+      },
+      "revId": "4fe4fe45f14f9369609aa7b6cd519871c887367a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "28901bb6_40d9b3e3",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-31T19:04:08Z",
+      "side": 1,
+      "message": "is_valid_dump is defined as a property, so you you treat it like a variable, not a method.",
+      "parentUuid": "e1c5b707_d6996054",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "4fe4fe45f14f9369609aa7b6cd519871c887367a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45f41b0c_845cd4b8",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "4fe4fe45f14f9369609aa7b6cd519871c887367a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b63e14bc_96c27831",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-01-31T19:04:08Z",
+      "side": 1,
+      "message": "I\u0027ve updated the GetSystemLog to catch the exception instead.",
+      "parentUuid": "45f41b0c_845cd4b8",
+      "range": {
+        "startLine": 180,
+        "startChar": 39,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "4fe4fe45f14f9369609aa7b6cd519871c887367a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
