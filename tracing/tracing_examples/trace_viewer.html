@@ -10,9 +10,10 @@ found in the LICENSE file.
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- WebComponents V0 origin trial token for localhost:8003. Expires 5 Nov 2020.
      See https://crbug.com/1021137. -->
-<meta http-equiv="origin-trial" content="AmIXlLSm/iI9w4skkaEKFRo+EW9D0lDg4u4GZIp70Ggf4bHfY5U5Jwh2lv793zDl7SHbRMgrhPjAy6NcE6VDvwsAAABSeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwMDMiLCJmZWF0dXJlIjoiV2ViQ29tcG9uZW50c1YwIiwiZXhwaXJ5IjoxNjA0NjEzNzYwfQ==">
-<script src="/components/webcomponentsjs/HTMLImports.js"></script>
+<!-- <meta http-equiv="origin-trial" content="AmIXlLSm/iI9w4skkaEKFRo+EW9D0lDg4u4GZIp70Ggf4bHfY5U5Jwh2lv793zDl7SHbRMgrhPjAy6NcE6VDvwsAAABSeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwMDMiLCJmZWF0dXJlIjoiV2ViQ29tcG9uZW50c1YwIiwiZXhwaXJ5IjoxNjA0NjEzNzYwfQ=="> -->
+<script src="/components/webcomponentsjs/webcomponents-lite.js"></script>
 
+<link rel="import" href="/tracing/base/base.html">
 <link rel="import" href="/tracing/base/timing.html">
 <link rel="import" href="/tracing/base/xhr.html">
 <link rel="import" href="/tracing/importer/import.html">
@@ -180,8 +181,21 @@ found in the LICENSE file.
     timelineViewEl.leftControls.appendChild(trackDetailedModelStatsEl);
   }
 
-  window.addEventListener('load', onLoad);
-  window.addEventListener('HTMLImportsLoaded', onLoad);
+  let loadEventFired = false;
+  let htmlImportsLoaded = false;
+  function maybeOnLoad() {
+    if (loadEventFired && htmlImportsLoaded) onLoad();
+  }
+
+  window.addEventListener('load', () => {
+    loadEventFired = true;
+    maybeOnLoad();
+  });
+  window.addEventListener('HTMLImportsLoaded', () => {
+    htmlImportsLoaded = true;
+    maybeOnLoad();
+  });
+
   </script>
 </body>
 </html>
