@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import logging
+import time
 
 from telemetry.core import exceptions
 from telemetry.internal.browser import web_contents
@@ -96,7 +97,8 @@ class Oobe(web_contents.WebContents):
 
   def NavigateGaiaLogin(self, username, password,
                         enterprise_enroll=False,
-                        for_user_triggered_enrollment=False):
+                        for_user_triggered_enrollment=False,
+                        remora_enroll=False):
     """Logs in using the GAIA webview. |enterprise_enroll| allows for enterprise
     enrollment. |for_user_triggered_enrollment| should be False for remora
     enrollment."""
@@ -108,6 +110,10 @@ class Oobe(web_contents.WebContents):
     py_utils.WaitFor(self._GaiaWebviewContext, 20)
     self._NavigateWebviewLogin(username, password,
                                wait_for_close=not enterprise_enroll)
+
+    # Crash if enrollment is checked immediately after login
+    if remora_enroll:
+      time.sleep(1)
 
     if enterprise_enroll:
       self.WaitForJavaScriptCondition(
