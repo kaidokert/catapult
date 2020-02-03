@@ -73,7 +73,7 @@ class ValidationTest(unittest.TestCase):
     self.assertIn('messages', response_proto)
     self.assertGreater(len(response_proto['messages']), 0)
     self.assertRegex(response_proto['messages'][0].get('text'),
-                     'notification_email')
+                     'patterns')
 
   def testValidationSucceedsSilently(self):
     response = self.client.post(

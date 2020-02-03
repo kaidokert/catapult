@@ -410,7 +410,6 @@ class LuciContentChangesTest(unittest.TestCase):
                     name: "Missing Email"
                     bug_labels: ["Some-Label"]
                     bug_components: ["Some>Component"]
-                    patterns: [{glob: "project/**"}]
         }""", 'utf-8')).decode())
     app = service.CreateApp({
         'environ': {

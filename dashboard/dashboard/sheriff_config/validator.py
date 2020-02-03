@@ -101,9 +101,6 @@ def Validate(content):
   # Go through each of the subscriptions, and ensure we find the semantically
   # required fields.
   for (index, subscription) in enumerate(result.subscriptions):
-    if subscription.notification_email is None or len(
-        subscription.notification_email) == 0:
-      raise MissingEmail(result, index)
     if subscription.name is None or len(subscription.name) == 0:
       raise MissingName(result, index)
     if subscription.patterns is None or len(subscription.patterns) == 0:

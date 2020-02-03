@@ -42,19 +42,6 @@ class ValidatorTest(unittest.TestCase):
                              subscriptions: ...
                              """)
 
-  def testMissingEmail(self):
-    with self.assertRaises(validator.MissingEmail):
-      _ = validator.Validate("""
-                               subscriptions: [
-                                 {
-                                   name: "Missing Email",
-                                   bug_labels: ["test-blocker"],
-                                   bug_components: ["Sample>Component"],
-                                   patterns: [{glob: "project/**"}]
-                                 }
-                               ]
-                             """)
-
   def testMissingName(self):
     with self.assertRaises(validator.MissingName):
       _ = validator.Validate("""
