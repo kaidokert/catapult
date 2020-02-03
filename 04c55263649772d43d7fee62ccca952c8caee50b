@@ -22,6 +22,30 @@
       "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8390df_73b758aa",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-03T11:13:21Z",
+      "side": 1,
+      "message": "Never mind, this doesn\u0027t work because the bot doesn\u0027t have protoc in its PATH.\n\nHmm. We could make the presubmit bot run builds_steps.py. Actually it\u0027s enough to add a ensure_installed(protoc) like the other bots.\n\nFor local users, we could add a check in the presubmit that says \"histogram.pb2 doesn\u0027t exist\", please cd tracing/tracing \u0026\u0026 make and try again.\"\n\nThis makes me wonder though: will all the telemetry code blow up downstream? I probably need to make sure the filegroup for telemetry generates the proto.",
+      "parentUuid": "e9ff0ff7_689d19cc",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
