@@ -52,6 +52,27 @@ def _WarnOnReservedInfosChanges(input_api, output_api):
         'are in sync.'))
   return results
 
+
+def _BuildHistogramProto(input_api, output_api):
+  results = []
+
+  # The presubmit looks at code that includes the histogram proto, so we need
+  # to make sure it's built. Keep in sync with code in build_steps.py.
+  tracing_dir = input_api.PresubmitLocalPath()
+  proto_path = input_api.os_path.join(tracing_dir, 'tracing', 'proto')
+  output_path = input_api.os_path.join(tracing_dir, 'tracing')
+  histogram_proto = input_api.os_path.join(proto_path, 'histogram.proto')
+  protoc_cmd = ['protoc', '--proto_path', proto_path,
+                '--python_out', output_path, histogram_proto]
+
+  out, return_code = _RunArgs(protoc_cmd, input_api)
+  if return_code:
+    results.append(
+        output_api.PresubmitError('Failed %s: %s' % (protoc_cmd, out)))
+
+  return results
+
+
 def CheckChangeOnUpload(input_api, output_api):
   return _CheckChange(input_api, output_api)
 
@@ -72,6 +93,8 @@ def _CheckChange(input_api, output_api):
       results.append(output_api.PresubmitError(error))
   finally:
     sys.path = original_sys_path
+
+  results += _BuildHistogramProto(input_api, output_api)
 
   black_list = input_api.DEFAULT_BLACK_LIST + (".*_pb2.py$",)
   results += input_api.RunTests(input_api.canned_checks.GetPylint(
