@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9ff0ff7_689d19cc",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-03T08:31:43Z",
+      "side": 1,
+      "message": "I had to give the PRESUBMIT the capability to build the proto as well. You should be able to run the presubmit at any time (straight after a clone) and it should always work. In order for it to always work, it needs to generate all protos that are used by code that the presubmit looks at (like generic_set in this case).\n\nI didn\u0027t find anything magical that builds the sheriff config protos either for the presubmit, so I assume I have to do this.\n\nWe could save some duplication by importing build_steps here and having it be the source of truth for how the protoc command should look like. I\u0027m unsure, but I think it makes reasonable sense to have the presubmit import build_steps.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
