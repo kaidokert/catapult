@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42236d97_57e22a6b",
+        "filename": "tracing/tracing/metrics/v8/runtime_stats_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-02-03T14:00:22Z",
+      "side": 1,
+      "message": "nit: maybe we can inline this for easier readability? e.g.\ntr.metrics.v8.utils.filterEvents(\n        model, ev \u003d\u003e ev instanceof tr.e.v8.V8ThreadSlice)\n\nAlternatively, rename filterV8ThreadSlices -\u003e isV8ThreadSlice.",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 28
+      },
+      "revId": "be51e1a8d78ca2db08e9e9bf4797c1c41634b460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f26a76c_32000096",
+        "filename": "tracing/tracing/metrics/v8/utils.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-02-03T14:00:22Z",
+      "side": 1,
+      "message": "This is great! Thanks :)",
+      "revId": "be51e1a8d78ca2db08e9e9bf4797c1c41634b460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
