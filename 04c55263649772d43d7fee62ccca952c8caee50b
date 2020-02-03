@@ -46,6 +46,30 @@
       "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81f4af37_edeb7f7d",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-03T12:09:59Z",
+      "side": 1,
+      "message": "All right, I\u0027m going to have to figure out when the proto gets generated when downstream targets use histogram.py. That\u0027s going to be exciting, because there is no infrastructure for that. Python scripts in Chromium (like tools/perf/run_benchmark) generally just use path hacks to yank in catapult python code. That doesn\u0027t work if the code hasn\u0027t been generated. You would normally do this using a GN rule, but no GN rule ever gets executed if you just run, say, tools/perf/run_benchmark. You just run it like tools/perf_run_benchmark, you don\u0027t have to do e.g. ninja -C out/Default run_benchmark \u0026\u0026 out/Default/run_benchmark. \n\nI see only these options: \n\n1) Add proper python support to GN so you can do python_library / python_binary and rewrite telemetry so you can\u0027t just invoke the script but have to build it first (months of work / disruptive)\n2) Make tracing/__init__.py invoke protoc and build the proto when the module is loaded (horrible hack)\n3) Check in the generated proto.\n4) Graceful degradation if histogram_pb2 doesn\u0027t import (telemetry doesn\u0027t use the protos anyway, so as long it stays away from the code paths using histogram_pb2 it\u0027s OK). The only code that will actually use the protos is C++ code and the webrtc upload script. The WebRTC upload script works because it has an associated build rule (https://cs.chromium.org/chromium/src/third_party/webrtc/tools_webrtc/perf/BUILD.gn) and it will not be run by humans. The bots ensure the build rule is run before the script is invoked, similar to build_steps.py in catapult.\n\nI don\u0027t like 3 because it\u0027s bad to check in generated code, but unfortunately 1) is most likely infeasible and 2) is a horrible hack. 3) is OK IMO given the circumstances, and 4) works but will be a problem again when/if telemetry tests want to use the protos. Besides 4) is quite risky, it\u0027s easy to accidentally slip a histogram_pb2 in the wrong place and then you break telemetry. I think 3 is best. What do you think of this whole mess? 😊",
+      "parentUuid": "6d8390df_73b758aa",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
