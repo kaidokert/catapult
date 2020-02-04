@@ -118,6 +118,30 @@
       "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea4c13dc_9c24f922",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-04T13:10:31Z",
+      "side": 1,
+      "message": "I\u0027ve written down the details in the design doc now, so let\u0027s continue the discussion there and return to this CL when we agree on the approach. I sent a separate email with a link to the new section discussing this.",
+      "parentUuid": "2da9da22_e426ad02",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
