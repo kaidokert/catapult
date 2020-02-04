@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "51a36244_67467937",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-02-04T15:14:42Z",
+      "side": 1,
+      "message": "Nit: other functions in the file use CamelCase naming scheme.\n\nAlso the function is not used in this file, may be it is better to move it to the test file?",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e679a889_04b57fc5",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-02-04T15:14:42Z",
+      "side": 1,
+      "message": "Could you please add link to the doc that describes this encoding?",
+      "range": {
+        "startLine": 74,
+        "startChar": 52,
+        "endLine": 74,
+        "endChar": 53
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c12f5514_9e330b30",
         "filename": "telemetry/telemetry/internal/actions/key_event_unittest.py",
         "patchSetId": 1
