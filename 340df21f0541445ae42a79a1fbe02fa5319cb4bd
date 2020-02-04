@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "3f85ec77_6b38203e",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-04T15:38:40Z",
+      "side": 1,
+      "message": "I know that the new standard is to use lowercase_with_underscores, but we should still be consistent within a module. This should be CamelCase. (If you feel strongly, you could send out another CL to migrate the whole module, and then put this CL on top of that.)",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "332f2802_714afff7",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-04T15:38:40Z",
+      "side": 1,
+      "message": "I think that it\u0027s an implementation detail that this is a bitfield. Ideally the user of this function doesn\u0027t need to know any of that. I think therefore that this function could just be named \"Modifier\" or \"CreateModifier\" or \"BuildModifier\" (even \"CalculateModifier\" is fine, but I do think that that makes things feel more complicated for the user). The docstring or some comment could explain that this is a bitfield, but I don\u0027t even think that is really necessary.",
+      "range": {
+        "startLine": 72,
+        "startChar": 9,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e679a889_04b57fc5",
         "filename": "telemetry/telemetry/internal/actions/key_event.py",
         "patchSetId": 1
@@ -48,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "e3054d33_8a1fb535",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-04T15:38:40Z",
+      "side": 1,
+      "message": "Add a docstring to this constructor so that people can understand what acceptable arguments are. See go/pythonstyle for formatting.",
+      "range": {
+        "startLine": 80,
+        "startChar": 21,
+        "endLine": 80,
+        "endChar": 30
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c12f5514_9e330b30",
         "filename": "telemetry/telemetry/internal/actions/key_event_unittest.py",
         "patchSetId": 1
@@ -59,6 +128,24 @@
       "writtenOn": "2020-02-04T14:01:23Z",
       "side": 1,
       "message": "Caleb, this fails in Mac because it expected Command+A, can you point me to a code for detecting the platform in tests?",
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3529bfc6_18a89334",
+        "filename": "telemetry/telemetry/internal/actions/key_event_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-04T15:38:40Z",
+      "side": 1,
+      "message": "self._tab.browser.platform.GetOSName() \u003d\u003d \u0027mac\u0027",
+      "parentUuid": "c12f5514_9e330b30",
       "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
