@@ -94,6 +94,30 @@
       "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2da9da22_e426ad02",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-04T10:13:08Z",
+      "side": 1,
+      "message": "Well, the problem is that histogram.py includes histogram_pb2 today, which means we can\u0027t check that or anything that imports it.\n\nWorse, several downstream scripts import histogram.py, so they will break too. You can fix some of them with GN rules and import hacks, but this killer combo can\u0027t easily be fixed:\n\n1) tools/perf/run_benchmark should work straight from a git clone\u0027d chromium repo. You don\u0027t have to gn gen or build anything.\n2) tools/perf/run_benchmark imports histogram.py.\n3) histogram.py imports histogram_pb2.py, which is generated.\n\nYou would have to engineer a solution that ensures histogram_pb2 is built for all users of histogram.py, which is a bunch of places in the Chromium repo (run_benchmark, process_perf_results.py, etc), WebRTC Repo (webrtc_dashboard_upload.py) and downstream (histogram_util.py, probably other places)\n\nLet me flesh out the various options a bit more in the design doc.",
+      "parentUuid": "9adedecc_fa20e76d",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
