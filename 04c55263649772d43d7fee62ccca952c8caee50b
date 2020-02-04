@@ -70,6 +70,30 @@
       "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9adedecc_fa20e76d",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-04T00:37:32Z",
+      "side": 1,
+      "message": "I have a simpler solution -- we don\u0027t check any proto-related things in PRESUBMIT now, and I\u0027m not going to require that to be the case either. How about we leave that alone for now and just change the steps to add the protos we need in CI?\n\nRight now if you run tests that fail because the proto is not there, we ask folks developing to run make in the correct directories. This is fine for now and it\u0027s usually a one-time thing.",
+      "parentUuid": "81f4af37_edeb7f7d",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
