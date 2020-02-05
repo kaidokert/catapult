@@ -71,6 +71,78 @@
     },
     {
       "key": {
+        "uuid": "fd7a39e0_a04119c2",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1316073
+      },
+      "writtenOn": "2020-02-05T15:39:53Z",
+      "side": 1,
+      "message": "People using the modifier keys will need to use this function that\u0027s why it\u0027s a part of the API",
+      "parentUuid": "51a36244_67467937",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b490eca_9c8e7df9",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1316073
+      },
+      "writtenOn": "2020-02-05T15:39:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "332f2802_714afff7",
+      "range": {
+        "startLine": 72,
+        "startChar": 9,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bd73120_9abfd36f",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1316073
+      },
+      "writtenOn": "2020-02-05T15:39:53Z",
+      "side": 1,
+      "message": "No strong feelings, but happy to clean up technical debt :) https://chromium-review.googlesource.com/c/catapult/+/2038571/1",
+      "parentUuid": "3f85ec77_6b38203e",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e679a889_04b57fc5",
         "filename": "telemetry/telemetry/internal/actions/key_event.py",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ff72cd3a_006f515b",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1316073
+      },
+      "writtenOn": "2020-02-05T15:39:53Z",
+      "side": 1,
+      "message": "Added docstrings to explain it",
+      "parentUuid": "e679a889_04b57fc5",
+      "range": {
+        "startLine": 74,
+        "startChar": 52,
+        "endLine": 74,
+        "endChar": 53
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3054d33_8a1fb535",
         "filename": "telemetry/telemetry/internal/actions/key_event.py",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d2b5b58_9128cfd3",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1316073
+      },
+      "writtenOn": "2020-02-05T15:39:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3054d33_8a1fb535",
+      "range": {
+        "startLine": 80,
+        "startChar": 21,
+        "endLine": 80,
+        "endChar": 30
+      },
+      "revId": "340df21f0541445ae42a79a1fbe02fa5319cb4bd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
