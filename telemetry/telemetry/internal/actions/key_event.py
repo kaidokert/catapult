@@ -69,13 +69,29 @@ _add_regular_key('9(', 0x39)
 # Space.
 _add_regular_key(' ', 0x20)
 
+def encode_modifiers(
+    alt=False, control=False, meta=False, shift=False):
+  """Encodes the modifier keys in a format accepted by the Chrome inspector
+  Backend.
+
+  For details, see https://vanilla.aslushnikov.com/?Input.dispatchKeyEvent.
+  """
+  return alt * 1 + control * 2 + meta * 4 + shift * 8
+
 
 class KeyPressAction(page_action.PageAction):
 
-  def __init__(self, dom_key, timeout=page_action.DEFAULT_TIMEOUT):
+  def __init__(
+      self, dom_key, modifiers=None, timeout=page_action.DEFAULT_TIMEOUT):
+    """
+    Args:
+      modifiers: Bit field representing pressed modifier keys. Alt=1, Ctrl=2,
+          Meta/Command=4, Shift=8 (default: 0).
+    """
     super(KeyPressAction, self).__init__(timeout=timeout)
     char_code = 0 if len(dom_key) > 1 else ord(dom_key)
     self._dom_key = dom_key
+    self._modifiers = modifiers
     # Check that ascii chars are allowed.
     use_key_map = len(dom_key) > 1 or char_code < 128
     if use_key_map and dom_key not in _KEY_MAP:
@@ -91,18 +107,21 @@ class KeyPressAction(page_action.PageAction):
     tab.DispatchKeyEvent(
         key_event_type='rawKeyDown',
         dom_key=self._dom_key,
+        modifiers=self._modifiers,
         windows_virtual_key_code=self._windows_virtual_key_code,
         timeout=self.timeout)
     if self._text:
       tab.DispatchKeyEvent(
           key_event_type='char',
           text=self._text,
+          modifiers=self._modifiers,
           dom_key=self._dom_key,
           windows_virtual_key_code=ord(self._text),
           timeout=self.timeout)
     tab.DispatchKeyEvent(
         key_event_type='keyUp',
         dom_key=self._dom_key,
+        modifiers=self._modifiers,
         windows_virtual_key_code=self._windows_virtual_key_code,
         timeout=self.timeout)
 
