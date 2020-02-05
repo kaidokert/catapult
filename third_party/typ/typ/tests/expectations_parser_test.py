@@ -23,7 +23,7 @@ class TaggedTestListParserTest(unittest.TestCase):
 #   Win ]
 # results: [ Skip ]
 
-crbug.com/12345 [ Mac ] b1/s1 [ Skip ]
+crbug.com/12345 [ Mac ] b1/s1 [ Skip ] # foo
 crbug.com/23456 [ Mac Debug ] b1/s2 [ Skip ]
 """
         parser = expectations_parser.TaggedTestListParser(good_data)
@@ -32,7 +32,7 @@ crbug.com/23456 [ Mac Debug ] b1/s2 [ Skip ]
         self.assertEqual(tag_sets, parser.tag_sets)
         expected_outcome = [
             expectations_parser.Expectation('crbug.com/12345', 'b1/s1',
-                                            ['mac'], ['SKIP'], 10),
+                                            ['mac'], ['SKIP'], 10, trailing_comments=' # foo'),
             expectations_parser.Expectation('crbug.com/23456', 'b1/s2',
                                             ['mac', 'debug'], ['SKIP'], 11)
         ]
@@ -189,7 +189,8 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
         parser = expectations_parser.TaggedTestListParser(raw_data)
         expected_outcome = [
             expectations_parser.Expectation('crbug.com/23456', 'b1/s2',
-                                            ['mac'], ['SKIP'], 3)
+                                            ['mac'], ['SKIP'], 3,
+                                            trailing_comments=' # abc 123')
         ]
         for i in range(len(parser.expectations)):
             self.assertEqual(parser.expectations[i], expected_outcome[i])
