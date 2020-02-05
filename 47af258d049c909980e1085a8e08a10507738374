@@ -22,6 +22,30 @@
       "revId": "47af258d049c909980e1085a8e08a10507738374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bee87174_3c4dacf2",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-05T21:12:59Z",
+      "side": 1,
+      "message": "I don\u0027t think it makes sense to have a module that mixes styles. If you aren\u0027t willing to convert all of this (which would be a huge amount of work), then I think it makes more sense to keep things the same.",
+      "parentUuid": "faba9a5f_0d1e45bc",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 15
+      },
+      "revId": "47af258d049c909980e1085a8e08a10507738374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
