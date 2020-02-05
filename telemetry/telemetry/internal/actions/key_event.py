@@ -14,60 +14,60 @@ from telemetry.internal.actions import page_action
 # and their printed representations (if available).
 _KEY_MAP = {}
 
-def _AddSpecialKey(key, windows_virtual_key_code, text=None):
+def _add_special_key(key, windows_virtual_key_code, text=None):
   assert key not in _KEY_MAP, 'Duplicate key: %s' % key
   _KEY_MAP[key] = (windows_virtual_key_code, text)
 
-def _AddRegularKey(keys, windows_virtual_key_code):
+def _add_regular_key(keys, windows_virtual_key_code):
   for k in keys:
     assert k not in _KEY_MAP, 'Duplicate key: %s' % k
     _KEY_MAP[k] = (windows_virtual_key_code, k)
 
-_AddSpecialKey('PageUp', 0x21)
-_AddSpecialKey('PageDown', 0x22)
-_AddSpecialKey('End', 0x23)
-_AddSpecialKey('Home', 0x24)
-_AddSpecialKey('ArrowLeft', 0x25)
-_AddSpecialKey('ArrowUp', 0x26)
-_AddSpecialKey('ArrowRight', 0x27)
-_AddSpecialKey('ArrowDown', 0x28)
+_add_special_key('PageUp', 0x21)
+_add_special_key('PageDown', 0x22)
+_add_special_key('End', 0x23)
+_add_special_key('Home', 0x24)
+_add_special_key('ArrowLeft', 0x25)
+_add_special_key('ArrowUp', 0x26)
+_add_special_key('ArrowRight', 0x27)
+_add_special_key('ArrowDown', 0x28)
 
-_AddSpecialKey('Return', 0x0D, text='\x0D')
-_AddSpecialKey('Delete', 0x2E, text='\x7F')
-_AddSpecialKey('Backspace', 0x08, text='\x08')
-_AddSpecialKey('Tab', 0x09, text='\x09')
+_add_special_key('Return', 0x0D, text='\x0D')
+_add_special_key('Delete', 0x2E, text='\x7F')
+_add_special_key('Backspace', 0x08, text='\x08')
+_add_special_key('Tab', 0x09, text='\x09')
 
 # Letter keys.
 for c in string.ascii_uppercase:
-  _AddRegularKey([c, c.lower()], ord(c))
+  _add_regular_key([c, c.lower()], ord(c))
 
 # Symbol keys.
-_AddRegularKey(';:', 0xBA)
-_AddRegularKey('=+', 0xBB)
-_AddRegularKey(',<', 0xBC)
-_AddRegularKey('-_', 0xBD)
-_AddRegularKey('.>', 0xBE)
-_AddRegularKey('/?', 0xBF)
-_AddRegularKey('`~', 0xC0)
-_AddRegularKey('[{', 0xDB)
-_AddRegularKey('\\|', 0xDC)
-_AddRegularKey(']}', 0xDD)
-_AddRegularKey('\'"', 0xDE)
+_add_regular_key(';:', 0xBA)
+_add_regular_key('=+', 0xBB)
+_add_regular_key(',<', 0xBC)
+_add_regular_key('-_', 0xBD)
+_add_regular_key('.>', 0xBE)
+_add_regular_key('/?', 0xBF)
+_add_regular_key('`~', 0xC0)
+_add_regular_key('[{', 0xDB)
+_add_regular_key('\\|', 0xDC)
+_add_regular_key(']}', 0xDD)
+_add_regular_key('\'"', 0xDE)
 
 # Numeric keys.
-_AddRegularKey('0)', 0x30)
-_AddRegularKey('1!', 0x31)
-_AddRegularKey('2@', 0x32)
-_AddRegularKey('3#', 0x33)
-_AddRegularKey('4$', 0x34)
-_AddRegularKey('5%', 0x35)
-_AddRegularKey('6^', 0x36)
-_AddRegularKey('7&', 0x37)
-_AddRegularKey('8*', 0x38)
-_AddRegularKey('9(', 0x39)
+_add_regular_key('0)', 0x30)
+_add_regular_key('1!', 0x31)
+_add_regular_key('2@', 0x32)
+_add_regular_key('3#', 0x33)
+_add_regular_key('4$', 0x34)
+_add_regular_key('5%', 0x35)
+_add_regular_key('6^', 0x36)
+_add_regular_key('7&', 0x37)
+_add_regular_key('8*', 0x38)
+_add_regular_key('9(', 0x39)
 
 # Space.
-_AddRegularKey(' ', 0x20)
+_add_regular_key(' ', 0x20)
 
 
 class KeyPressAction(page_action.PageAction):

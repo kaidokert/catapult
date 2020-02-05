@@ -21,7 +21,7 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
   def _window_height(self):
     return self._tab.EvaluateJavaScript('__GestureCommon_GetWindowHeight()')
 
-  def _PressKey(self, key):
+  def _press_key(self, key):
     action = key_event.KeyPressAction(key)
     action.WillRunAction(self._tab)
     action.RunAction(self._tab)
@@ -45,7 +45,7 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
     self.assertEquals(0, self._scroll_position)
     self.assertLess(50, self._window_height)
 
-    self._PressKey('End')
+    self._press_key('End')
 
     # Scroll happens *after* key press returns, so we need to wait a little.
     time.sleep(1)
@@ -54,7 +54,7 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
     self.assertAlmostEqual(
         2 * self._window_height, self._scroll_position, delta=20)
 
-    self._PressKey('Home')
+    self._press_key('Home')
 
     # Scroll happens *after* key press returns, so we need to wait a little.
     time.sleep(1)
@@ -72,13 +72,13 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
 
     # Simulate typing a sentence.
     for char in 'Hello, World!':
-      self._PressKey(char)
+      self._press_key(char)
 
     # Make changes to the sentence using special keys.
     for _ in xrange(6):
-      self._PressKey('ArrowLeft')
-    self._PressKey('Backspace')
-    self._PressKey('Return')
+      self._press_key('ArrowLeft')
+    self._press_key('Backspace')
+    self._press_key('Return')
 
     # Check that the contents of the textarea is correct. It might take a second
     # until all keystrokes have been handled by the browser (crbug.com/630017).
@@ -88,4 +88,4 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
 
   def testPressUnknownKey(self):
     with self.assertRaises(ValueError):
-      self._PressKey('UnknownKeyName')
+      self._press_key('UnknownKeyName')
