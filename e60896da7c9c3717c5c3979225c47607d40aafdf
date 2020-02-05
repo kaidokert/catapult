@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "999511f1_b8f3a2d8",
+        "filename": "telemetry/telemetry/core/debug_data.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-05T21:43:00Z",
+      "side": 1,
+      "message": "Please add a comment explaining how this should be used.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 34
+      },
+      "revId": "e60896da7c9c3717c5c3979225c47607d40aafdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73e1e111_89c6f751",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-05T21:43:00Z",
+      "side": 1,
+      "message": "nit: instead, can we just add a CollectDebugData to the parent App class and have that implementation print the warning along with the name of the App and then return a blank debug data? I feel that\u0027s a bit more standard than this",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 42
+      },
+      "revId": "e60896da7c9c3717c5c3979225c47607d40aafdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "934aa8f8_8b8e605f",
+        "filename": "telemetry/telemetry/core/exceptions.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-05T21:43:00Z",
+      "side": 1,
+      "message": "This would be more helpful if you provided the class name of the app.",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 40
+      },
+      "revId": "e60896da7c9c3717c5c3979225c47607d40aafdf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
