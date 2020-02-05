@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff77934d_67e05f35",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-05T22:08:06Z",
+      "side": 1,
+      "message": "I don\u0027t think we should link to the personal website of a xoogler in source code. I think this documentation is also available on an official website.",
+      "range": {
+        "startLine": 77,
+        "startChar": 28,
+        "endLine": 77,
+        "endChar": 74
+      },
+      "revId": "8f8e8d5561eb05dc51f95fe236c3ef9d136d6142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
