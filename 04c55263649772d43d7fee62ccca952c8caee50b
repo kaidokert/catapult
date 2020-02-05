@@ -142,6 +142,30 @@
       "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d91e9a6_4569af31",
+        "filename": "tracing/PRESUBMIT.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-05T17:16:36Z",
+      "side": 1,
+      "message": "All right, I\u0027ve solved the presubmit problem at least. Now that I have made the code deal with ImportError, the presubmit can check all the python code. Instead I\u0027m adding a presubmit that ensures nobody will accidentally include histogram_pb2 without the appropriate safeguards.",
+      "parentUuid": "ea4c13dc_9c24f922",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "04c55263649772d43d7fee62ccca952c8caee50b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
