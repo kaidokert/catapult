@@ -46,6 +46,30 @@
       "revId": "a09a05385a75ea2217278175e4bd62d2324bf0c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c99f4c_1581ea97",
+        "filename": "tracing/tracing_project.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-06T14:52:13Z",
+      "side": 1,
+      "message": "Aha, it\u0027s here: https://cs.chromium.org/chromium/infra/appengine_module/gae_ts_mon/__init__.py?sq\u003dpackage:chromium\u0026dr\u0026g\u003d0\u0026l\u003d22\n\nThe dashboard returns gae_ts_mon in its paths for testing, and importing gae_ts_mon anywhere is going to hack the pythonpath so google.protobuf is on it. I am getting increasingly frustrated with these import hacks :/\n\nOk, that\u0027s how the dashboard side does it, the I propose we do the same for tracing. It appears to work at least. I can spin off a separate email thread if it\u0027s even a good idea to do this for the dashboard side. The protoc cipd package is hardcoded in the catapult recipe (https://cs.chromium.org/chromium/build/scripts/slave/recipes/catapult.py?sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d72), and it better be in sync with the gae_ts_mon protobuf lib. Maybe neither of those are touched very often and that\u0027s why it works?\n\nI\u0027ll add a comment that we\u0027re using the gae_ts_mon protobuf library out of convenience.",
+      "parentUuid": "b4786f6d_510898ce",
+      "range": {
+        "startLine": 81,
+        "startChar": 6,
+        "endLine": 81,
+        "endChar": 72
+      },
+      "revId": "a09a05385a75ea2217278175e4bd62d2324bf0c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
