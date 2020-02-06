@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "dd2e5e54_dd4cad93",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-02-06T00:16:31Z",
+      "side": 1,
+      "message": "Catapult\u0027s .vpython file doesn\u0027t have an entry for Pillow, so you\u0027ll need to add that https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/.vpython?q\u003d.vpython%20file:catapult. Can probably just copy the entry from Chromium\u0027s .vpython file.",
+      "parentUuid": "15a27ad8_c1e10696",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "272580e528cc88f6c686242c016a1e1577a8b704",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b53ebd13_aca03ce2",
         "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
         "patchSetId": 8
