@@ -44,6 +44,7 @@ class PlatformScreenshotTest(tab_test_case.TabTestCase):
       img = image_util.FromPngFile(tf.name)
       screenshot_pixels = image_util.Pixels(img)
       special_colored_pixel = bytearray([217, 115, 43])
+      print(screenshot_pixels)
       self.assertTrue(special_colored_pixel in screenshot_pixels)
     finally:
       os.remove(tf.name)
