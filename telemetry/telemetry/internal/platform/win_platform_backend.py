@@ -7,8 +7,11 @@ import ctypes
 import logging
 import platform
 import re
+import StringIO
 import subprocess
 import sys
+
+from PIL import Image
 
 from telemetry.core import exceptions
 from telemetry.core import os_version as os_version_module
@@ -23,6 +26,7 @@ try:
   import win32con  # pylint: disable=import-error
   import win32gui  # pylint: disable=import-error
   import win32process  # pylint: disable=import-error
+  import win32ui  # pylint: disable=import-error
   import winerror  # pylint: disable=import-error
   try:
     import winreg  # pylint: disable=import-error
@@ -40,6 +44,7 @@ except ImportError:
   win32pipe = None
   win32process = None
   win32security = None
+  win32ui = None
   winerror = None
   winreg = None
 
@@ -136,6 +141,30 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
   @decorators.Cache
   def GetOSVersionDetailString(self):
     return platform.uname()[3]
+
+  def CanTakeScreenshot(self):
+    return True
+
+  def TakeScreenshot(self, file_path):
+    width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
+    height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+    screen_win = win32gui.GetDesktopWindow()
+    win_dc = win32gui.GetWindowDC(screen_win)
+    screen_dc = win32ui.CreateDCFromHandle(win_dc)
+    capture_dc = screen_dc.CreateCompatibleDC()
+    capture_bitmap = win32ui.CreateBitmap()
+    capture_bitmap.CreateCompatibleBitmap(screen_dc, width, height)
+    capture_dc.SelectObject(capture_bitmap)
+    capture_dc.BitBlt(
+        (0, 0), (width, height), screen_dc, (0, 0), win32con.SRCCOPY)
+    pixels = capture_bitmap.GetBitmapBits(False)
+    image = Image.open(StringIO.StringIO(pixels))
+    image.save(file_path)
+    screen_dc.DeleteDC()
+    capture_dc.DeleteDC()
+    win32gui.ReleaseDC(screen_win, win_dc)
+    win32gui.DeleteObject(capture_bitmap.GetHandle())
+    return True
 
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
