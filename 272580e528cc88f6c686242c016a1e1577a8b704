@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "a34091ca_2844f1d5",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-02-06T00:20:45Z",
+      "side": 1,
+      "message": "Perhaps there\u0027s some magic incantation I need to use (like \u0027sys.path.append(...)\u0027 before the import) so python finds the module?",
+      "parentUuid": "15a27ad8_c1e10696",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "272580e528cc88f6c686242c016a1e1577a8b704",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b53ebd13_aca03ce2",
         "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
         "patchSetId": 8
