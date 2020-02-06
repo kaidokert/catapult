@@ -195,6 +195,20 @@ _CATAPULT_TESTS = [
 
 _STALE_FILE_TYPES = ['.pyc', '.pseudo_lock']
 
+_SAD_TESTS = [
+    {
+        'name': 'Telemetry Tests with Stable Browser (Desktop)',
+        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
+        'additional_args': [
+            '--browser=reference',
+            '--start-xvfb',
+            '-v',
+        ],
+        'uses_sandbox_env': True,
+        'disabled': ['android'],
+    },
+]
+
 
 def main(args=None):
   """Send list of test to run to recipes generator_script.
@@ -308,7 +322,7 @@ def main(args=None):
   if args.dashboard_only:
     tests = _DASHBOARD_TESTS
   else:
-    tests = _DASHBOARD_TESTS + _CATAPULT_TESTS
+    tests = _SAD_TESTS # _DASHBOARD_TESTS + _CATAPULT_TESTS
   for test in tests:
     if args.platform == 'android' and not args.run_android_tests:
       # Remove all the steps for the Android configuration if we're asked to not
