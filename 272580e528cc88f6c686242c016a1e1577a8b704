@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "15a27ad8_c1e10696",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-02-06T00:13:43Z",
+      "side": 1,
+      "message": "The error from the try failure:\n\n Traceback (most recent call last):\n   \u003cmodule\u003e at C:\\b\\s\\w\\ir\\k\\catapult\\telemetry\\bin\\run_snap_it_unittest:69\n     sys.exit(main(sys.argv[1:]))\n   main at C:\\b\\s\\w\\ir\\k\\catapult\\telemetry\\bin\\run_snap_it_unittest:54\n     parser.parse_args(args)\n   ParseArgs at C:\\b\\s\\w\\ir\\k\\catapult\\telemetry\\telemetry\\internal\\browser\\browser_options.py:332\n     self.browser_options.UpdateFromParseResults(self)\n...\n   \u003cmodule\u003e at C:\\b\\s\\w\\ir\\k\\catapult\\telemetry\\telemetry\\internal\\platform\\desktop_platform_backend_unittest.py:9\n     from telemetry.internal.platform import win_platform_backend\n   \u003cmodule\u003e at C:\\b\\s\\w\\ir\\k\\catapult\\telemetry\\telemetry\\internal\\platform\\win_platform_backend.py:13\n     from PIL import Image\n ImportError: No module named PIL",
+      "parentUuid": "3b2fa2fa_b6efa711",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "272580e528cc88f6c686242c016a1e1577a8b704",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b53ebd13_aca03ce2",
         "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
         "patchSetId": 8
