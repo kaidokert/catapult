@@ -144,6 +144,7 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
         return
       story.wpr_mode = state.wpr_mode
       state.RunStory(results)
+      state.DumpStateUponStoryRunFailure(results)
       if isinstance(test, story_test.StoryTest):
         test.Measure(state.platform, results)
     except page_action.PageActionNotSupported as exc:
