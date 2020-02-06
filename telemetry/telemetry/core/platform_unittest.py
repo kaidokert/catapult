@@ -41,6 +41,13 @@ class PlatformScreenshotTest(tab_test_case.TabTestCase):
       self._platform.TakeScreenshot(tf.name)
       # Assert that screenshot image contains the color of the triangle defined
       # in screenshot_test.html.
+      try:
+        print(tf.name)
+        f = open(tf.name)
+        print(f.read())
+        f.close()
+      except:
+        print('whoops error printing the filename')
       img = image_util.FromPngFile(tf.name)
       screenshot_pixels = image_util.Pixels(img)
       special_colored_pixel = bytearray([217, 115, 43])
