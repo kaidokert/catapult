@@ -33,6 +33,24 @@
       "revId": "269c0b65630b634b13e636aec14a7fd72f7b5ab5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8803a8f0_956237df",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1168342
+      },
+      "writtenOn": "2020-02-06T19:31:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5467a4e_854b0d1a",
+      "revId": "269c0b65630b634b13e636aec14a7fd72f7b5ab5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
