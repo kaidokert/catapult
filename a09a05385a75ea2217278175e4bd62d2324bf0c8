@@ -22,6 +22,30 @@
       "revId": "a09a05385a75ea2217278175e4bd62d2324bf0c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4786f6d_510898ce",
+        "filename": "tracing/tracing_project.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-02-06T10:23:01Z",
+      "side": 1,
+      "message": "Yeah, there happened to be a protobuf library checked in there, so I just used that one.\n\nTBH I don\u0027t understand why this is needed. It seems the dashboard tests work ok, and they don\u0027t explicitly add a protobuf lib anywhere. I thought they were getting them from google_appengine which is on the PYTHONPATH for all tests, but in that case it should work for tracing tests too. I\u0027ll try to dig into this. As I\u0027ve learned in the email thread, it\u0027s dangerous to use the cipd protoc with an unrelated protobuf library anyway.",
+      "parentUuid": "80a18da8_bb1dcab8",
+      "range": {
+        "startLine": 81,
+        "startChar": 6,
+        "endLine": 81,
+        "endChar": 72
+      },
+      "revId": "a09a05385a75ea2217278175e4bd62d2324bf0c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
