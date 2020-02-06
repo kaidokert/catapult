@@ -22,6 +22,30 @@
       "revId": "3aa745ee6c471749bdc0ee767568ca31da1f4fbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf1be934_a4eaedfc",
+        "filename": "telemetry/docs/run_benchmarks_locally.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-02-06T01:21:34Z",
+      "side": 1,
+      "message": "Should they be called perf integration tests? I own that doc and can update it as well.",
+      "parentUuid": "c64b91ef_40dfc990",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 131
+      },
+      "revId": "3aa745ee6c471749bdc0ee767568ca31da1f4fbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
