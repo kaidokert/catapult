@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "9fbfdfa1_d2e95d69",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-02-06T00:21:56Z",
+      "side": 1,
+      "message": "You shouldn\u0027t have to once you add the entry to Catapult\u0027s .vpython file.",
+      "parentUuid": "a34091ca_2844f1d5",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "272580e528cc88f6c686242c016a1e1577a8b704",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b53ebd13_aca03ce2",
         "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
         "patchSetId": 8
