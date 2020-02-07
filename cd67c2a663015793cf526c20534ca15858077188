@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c44a832c_3c25c864",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-07T20:43:54Z",
+      "side": 1,
+      "message": "this won\u0027t work properly if you hit an exception early on inside the try area. See this:\n\ncrouleau@crouleau:~/play$ cat undeffed.py \ntry:\n  raise RuntimeError\n  var \u003d 1\nexcept:\n  if var:\n    print \u0027cleaning up var!\u0027\n\ncrouleau@crouleau:~/play$ python undeffed.py \nTraceback (most recent call last):\n  File \"undeffed.py\", line 7, in \u003cmodule\u003e\n    if var:\nNameError: name \u0027var\u0027 is not defined\n\n\nThe solution is to define that variables beforehand:\n\n\ncrouleau@crouleau:~/play$ cat undeffed.py \nvar \u003d None\ntry:\n  raise RuntimeError\n  var \u003d 1\nexcept:\n  if var:\n    print \u0027cleaning up var!\u0027\n\ncrouleau@crouleau:~/play$ python undeffed.py \ncrouleau@crouleau:~/play$",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 4
+      },
+      "revId": "cd67c2a663015793cf526c20534ca15858077188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
