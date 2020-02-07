@@ -27,8 +27,6 @@ tr.exportTo('tr.metrics.blink', function() {
     'BlinkGC.AtomicPauseMarkEpilogue': 'blink-gc-atomic-pause-mark-epilogue',
     'BlinkGC.AtomicPauseMarkPrologue': 'blink-gc-atomic-pause-mark-prologue',
     'BlinkGC.AtomicPauseMarkRoots': 'blink-gc-atomic-pause-mark-roots',
-    'BlinkGC.AtomicPauseMarkTransitiveClosure':
-        'blink-gc-atomic-pause-mark-transitive-closure',
     'BlinkGC.IncrementalMarkingStartMarking': 'blink-gc-incremental-start',
     'BlinkGC.IncrementalMarkingStep': 'blink-gc-incremental-step',
   }, BLINK_TOP_UNIFIED_GC_MARKING_EVENTS);
@@ -42,6 +40,11 @@ tr.exportTo('tr.metrics.blink', function() {
   // All events that should be summed up to 'blink-gc-mark-roots'.
   const BLINK_TOP_GC_ROOTS_MARKING_EVENTS = [
     'BlinkGC.VisitRoots'
+  ];
+
+  // All events that should be summed up to 'blink-gc-mark-transitive-closure'.
+  const BLINK_GC_ATOMIC_PAUSE_TRANSITIVE_CLOSURE_EVENTS = [
+    'BlinkGC.AtomicPauseMarkTransitiveClosure'
   ];
 
   // All events that should be summed up to 'blink-gc-mark-transitive-closure'.
@@ -116,6 +119,13 @@ tr.exportTo('tr.metrics.blink', function() {
            isNonForcedEvent(event);
   }
 
+  function
+  isNonForcedBlinkGarbageCollectionAtomicPauseTransitiveColsureEvent(event) {
+    return BLINK_GC_ATOMIC_PAUSE_TRANSITIVE_CLOSURE_EVENTS.includes(
+        event.title) &&
+           isNonForcedEvent(event);
+  }
+
   function isNonForcedBlinkGarbageCollectionForegroundMarkingEvent(event) {
     return event.title in BLINK_TOP_GC_FOREGROUND_MARKING_EVENTS &&
            isNonForcedEvent(event);
@@ -145,6 +155,7 @@ tr.exportTo('tr.metrics.blink', function() {
   function blinkGcMetric(histograms, model) {
     addDurationOfTopEvents(histograms, model);
     addDurationOfAtomicPause(histograms, model);
+    addDurationOfAtomicPauseTransitiveClosurePerGc(histograms, model);
     addTotalDurationOfTopEvents(histograms, model);
     addTotalDurationOfBlinkAndV8TopEvents(histograms, model);
     addTotalDurationOfRootsMarking(histograms, model);
@@ -237,6 +248,24 @@ tr.exportTo('tr.metrics.blink', function() {
         function(group, events) {
           const cpuDuration = createNumericForTopEventTime(
               'blink-gc-atomic-pause');
+          cpuDuration.addSample(
+              events.reduce((acc, current) => acc + current.cpuDuration, 0));
+          histograms.addHistogram(cpuDuration);
+        }
+    );
+  }
+
+  /**
+   * Example output:
+   * - blink-gc-atomic-pause-mark-transitive-closure
+   */
+  function addDurationOfAtomicPauseTransitiveClosurePerGc(histograms, model) {
+    tr.metrics.v8.utils.groupAndProcessEvents(model,
+        isNonForcedBlinkGarbageCollectionAtomicPauseTransitiveColsureEvent,
+        event => event.args.epoch,
+        function(group, events) {
+          const cpuDuration = createNumericForTopEventTime(
+              'blink-gc-atomic-pause-mark-transitive-closure');
           cpuDuration.addSample(
               events.reduce((acc, current) => acc + current.cpuDuration, 0));
           histograms.addHistogram(cpuDuration);
