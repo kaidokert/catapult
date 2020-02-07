@@ -70,6 +70,30 @@
       "revId": "a09a05385a75ea2217278175e4bd62d2324bf0c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "907c1335_f51a9188",
+        "filename": "tracing/tracing_project.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-07T06:14:10Z",
+      "side": 1,
+      "message": "\u003e Aha, it\u0027s here: https://cs.chromium.org/chromium/infra/appengine_module/gae_ts_mon/__init__.py?sq\u003dpackage:chromium\u0026dr\u0026g\u003d0\u0026l\u003d22\n\nThat\u0027s not used by the Dashboard. We use the vendored version.\n\n\u003e \n\u003e The dashboard returns gae_ts_mon in its paths for testing, and importing gae_ts_mon anywhere is going to hack the pythonpath so google.protobuf is on it. I am getting increasingly frustrated with these import hacks :/\n\u003e \n\nHear, hear.\n\n\u003e Ok, that\u0027s how the dashboard side does it, the I propose we do the same for tracing. It appears to work at least. I can spin off a separate email thread if it\u0027s even a good idea to do this for the dashboard side. The protoc cipd package is hardcoded in the catapult recipe (https://cs.chromium.org/chromium/build/scripts/slave/recipes/catapult.py?sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d72), and it better be in sync with the gae_ts_mon protobuf lib. Maybe neither of those are touched very often and that\u0027s why it works?\n\u003e \n\nThe Dashboard also uses the AppEngine provided protobuf library AFAICT. So at runtime it\u0027s not guaranteed to use the vendored protobuf library.\n\n\u003e I\u0027ll add a comment that we\u0027re using the gae_ts_mon protobuf library out of convenience.\n\nSGTM",
+      "parentUuid": "95c99f4c_1581ea97",
+      "range": {
+        "startLine": 81,
+        "startChar": 6,
+        "endLine": 81,
+        "endChar": 72
+      },
+      "revId": "a09a05385a75ea2217278175e4bd62d2324bf0c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
