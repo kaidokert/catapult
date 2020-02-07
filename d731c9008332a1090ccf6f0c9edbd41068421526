@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2161f610_b8e982f9",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-02-07T01:58:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "397de1c2_3e0dbda8",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 16
+      },
+      "revId": "d731c9008332a1090ccf6f0c9edbd41068421526",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "163d565e_d6ece7da",
         "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
         "patchSetId": 6
@@ -69,6 +93,30 @@
       "revId": "d731c9008332a1090ccf6f0c9edbd41068421526",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27ce50a4_d45a6b88",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-02-07T01:58:02Z",
+      "side": 1,
+      "message": "Sorry, missed this amid the other adventures.\n\nI don\u0027t know for sure what happens if there is an exception here. I would think the resources would be released after the process terminates (i.e. when telemetry ends). But I seem to remember that\u0027s not always the case on win32. So the try/finally suggestion sounds like a good plan. Thanks for catching this! Done.",
+      "parentUuid": "fd8584a7_e46f4614",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 15
+      },
+      "revId": "d731c9008332a1090ccf6f0c9edbd41068421526",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
