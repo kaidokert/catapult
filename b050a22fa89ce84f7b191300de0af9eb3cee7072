@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0162bd1b_4ea36f86",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-02-07T17:55:26Z",
+      "side": 1,
+      "message": "now the accumulation uses the same name as the old metric instead of a new metric",
+      "range": {
+        "startLine": 268,
+        "startChar": 15,
+        "endLine": 268,
+        "endChar": 60
+      },
+      "revId": "b050a22fa89ce84f7b191300de0af9eb3cee7072",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
