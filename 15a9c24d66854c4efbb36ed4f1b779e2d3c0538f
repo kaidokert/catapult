@@ -39,6 +39,24 @@
       "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "336b05cd_afa09be4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1111144
+      },
+      "writtenOn": "2020-02-10T09:27:57Z",
+      "side": 1,
+      "message": "+1, where does it crash?",
+      "parentUuid": "aef0b627_a0c115ac",
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
