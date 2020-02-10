@@ -117,6 +117,24 @@
       "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ce4fe02_e0019943",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1341398
+      },
+      "writtenOn": "2020-02-10T17:29:10Z",
+      "side": 1,
+      "message": "I included the full autotest log in the comment, but I don\u0027t know if that includes a chrome stack dump. Can you point me to how one is usually collected?",
+      "parentUuid": "8c6cf17e_d2a3a033",
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
