@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d65a911_86eb25a7",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-02-10T14:14:01Z",
+      "side": 1,
+      "message": "Outdated comment.\n\nYou could split the functionality into a dictionary that maps names and the arrays (like you already have them).",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 9
+      },
+      "revId": "24a3ad9e0baa3a9b31eddf54000ff3b10eed817e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c30fb852_33992bbb",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-02-10T14:14:01Z",
+      "side": 1,
+      "message": "Outdated comment.",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 53,
+        "endChar": 9
+      },
+      "revId": "24a3ad9e0baa3a9b31eddf54000ff3b10eed817e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a0a9b1e_92cff0bf",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-02-10T14:14:01Z",
+      "side": 1,
+      "message": "Outdated comment.",
+      "range": {
+        "startLine": 60,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "24a3ad9e0baa3a9b31eddf54000ff3b10eed817e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e097cea_edc033a3",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-02-10T14:14:01Z",
+      "side": 1,
+      "message": "Outdated comment.",
+      "range": {
+        "startLine": 66,
+        "startChar": 5,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "24a3ad9e0baa3a9b31eddf54000ff3b10eed817e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36552cb9_112e750b",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-02-10T14:14:01Z",
+      "side": 1,
+      "message": "Outdated comment.",
+      "range": {
+        "startLine": 76,
+        "startChar": 5,
+        "endLine": 76,
+        "endChar": 9
+      },
+      "revId": "24a3ad9e0baa3a9b31eddf54000ff3b10eed817e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
