@@ -46,6 +46,30 @@
       "revId": "3aa745ee6c471749bdc0ee767568ca31da1f4fbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "152afbe8_1f9b2555",
+        "filename": "telemetry/docs/run_benchmarks_locally.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-10T20:22:48Z",
+      "side": 1,
+      "message": "yes please :)",
+      "parentUuid": "bf1be934_a4eaedfc",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 131
+      },
+      "revId": "3aa745ee6c471749bdc0ee767568ca31da1f4fbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
