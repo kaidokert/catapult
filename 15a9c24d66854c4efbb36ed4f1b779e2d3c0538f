@@ -99,6 +99,24 @@
       "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c6cf17e_d2a3a033",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-02-10T16:23:41Z",
+      "side": 1,
+      "message": "I meant the chrome crash. We should get a stack dump of chrome to see where it\u0027s crashing.",
+      "parentUuid": "4ece1a2b_40505006",
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8c5e120_e704c67d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-02-10T16:23:41Z",
+      "side": 1,
+      "message": "Add bug-id, period at end of sentence.",
+      "range": {
+        "startLine": 114,
+        "startChar": 6,
+        "endLine": 114,
+        "endChar": 60
+      },
+      "revId": "b24e2e127f86080809bf7b5921778f16bc9a3d49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
