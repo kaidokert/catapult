@@ -22,6 +22,30 @@
       "revId": "cd67c2a663015793cf526c20534ca15858077188",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd528f21_61d95dd7",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-02-10T18:30:00Z",
+      "side": 1,
+      "message": "TIL. Thanks for catching this. Fixed.",
+      "parentUuid": "c44a832c_3c25c864",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 4
+      },
+      "revId": "cd67c2a663015793cf526c20534ca15858077188",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
