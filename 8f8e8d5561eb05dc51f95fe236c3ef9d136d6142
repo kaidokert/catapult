@@ -22,6 +22,52 @@
       "revId": "8f8e8d5561eb05dc51f95fe236c3ef9d136d6142",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34418688_9384780e",
+        "filename": "telemetry/telemetry/internal/actions/key_event_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-10T18:18:08Z",
+      "side": 1,
+      "message": "are you sure this works? YOu could try logging the modifiers after this to be sure that this works on mac.",
+      "range": {
+        "startLine": 105,
+        "startChar": 1,
+        "endLine": 105,
+        "endChar": 57
+      },
+      "revId": "8f8e8d5561eb05dc51f95fe236c3ef9d136d6142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f003dab_cc374294",
+        "filename": "telemetry/telemetry/internal/actions/key_event_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-10T18:18:08Z",
+      "side": 1,
+      "message": "Is it backspace on mac?",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "8f8e8d5561eb05dc51f95fe236c3ef9d136d6142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
