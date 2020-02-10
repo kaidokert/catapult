@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7e2a9aca_74237d1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1341398
+      },
+      "writtenOn": "2020-02-10T16:03:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7801694_2da78477",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef0b627_a0c115ac",
         "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
         "patchSetId": 1
@@ -54,6 +78,24 @@
       "side": 1,
       "message": "+1, where does it crash?",
       "parentUuid": "aef0b627_a0c115ac",
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ece1a2b_40505006",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1341398
+      },
+      "writtenOn": "2020-02-10T16:03:32Z",
+      "side": 1,
+      "message": "I believe line 119. It looks like it starts polling very briefly before Chrome stops. I\u0027ve attached a recent result at https://crbug.com/1033532#c7.",
+      "parentUuid": "336b05cd_afa09be4",
       "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
