@@ -135,6 +135,24 @@
       "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9775f941_54f33861",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-02-10T17:46:52Z",
+      "side": 1,
+      "message": "You need a debug chrome build:\nhttps://chromium.googlesource.com/chromiumos/docs/+/master/simple_chrome_workflow.md#debug-builds\n\nYou need to enable core dumps:\nhttps://www.chromium.org/chromium-os/how-tos-and-troubleshooting/debugging-tips#TOC-Enabling-core-dumps",
+      "parentUuid": "6ce4fe02_e0019943",
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
