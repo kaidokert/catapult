@@ -19,7 +19,6 @@ from dashboard import associate_alerts
 from dashboard import bug_details
 from dashboard import buildbucket_job_status
 from dashboard import create_health_report
-from dashboard import cron_update_sheriff
 from dashboard import debug_alert
 from dashboard import delete_test_data
 from dashboard import deprecate_tests
@@ -38,7 +37,6 @@ from dashboard import graph_revisions
 from dashboard import group_report
 from dashboard import jstsmon
 from dashboard import layered_cache_delete_expired
-from dashboard import list_monitored_tests
 from dashboard import list_tests
 from dashboard import load_from_prod
 from dashboard import main
@@ -60,7 +58,6 @@ from dashboard.api import alerts as api_alerts
 from dashboard.api import bugs
 from dashboard.api import config
 from dashboard.api import describe
-from dashboard.api import list_timeseries
 from dashboard.api import new_bug
 from dashboard.api import new_pinpoint
 from dashboard.api import existing_bug
@@ -68,7 +65,6 @@ from dashboard.api import nudge_alert
 from dashboard.api import report_generate
 from dashboard.api import report_names
 from dashboard.api import report_template
-from dashboard.api import sheriffs
 from dashboard.api import test_suites
 from dashboard.api import timeseries
 from dashboard.api import timeseries2
@@ -86,7 +82,6 @@ _URL_MAPPING = [
     (r'/api/bugs/(.*)', bugs.BugsHandler),
     (r'/api/config', config.ConfigHandler),
     (r'/api/describe', describe.DescribeHandler),
-    (r'/api/list_timeseries/(.*)', list_timeseries.ListTimeseriesHandler),
     (r'/api/new_bug', new_bug.NewBugHandler),
     (r'/api/new_pinpoint', new_pinpoint.NewPinpointHandler),
     (r'/api/existing_bug', existing_bug.ExistingBugHandler),
@@ -94,7 +89,6 @@ _URL_MAPPING = [
     (r'/api/report/generate', report_generate.ReportGenerateHandler),
     (r'/api/report/names', report_names.ReportNamesHandler),
     (r'/api/report/template', report_template.ReportTemplateHandler),
-    (r'/api/sheriffs', sheriffs.SheriffsHandler),
     (r'/api/test_suites', test_suites.TestSuitesHandler),
     (r'/api/timeseries/(.*)', timeseries.TimeseriesHandler),
     (r'/api/timeseries2', timeseries2.Timeseries2Handler),
@@ -104,7 +98,6 @@ _URL_MAPPING = [
      buildbucket_job_status.BuildbucketJobStatusHandler),
     ('/create_health_report', create_health_report.CreateHealthReportHandler),
     ('/configs/update', sheriff_config_poller.ConfigsUpdateHandler),
-    ('/cron/update_sheriff', cron_update_sheriff.CronUpdateSheriffHandler),
     ('/debug_alert', debug_alert.DebugAlertHandler),
     ('/delete_expired_entities',
      layered_cache_delete_expired.LayeredCacheDeleteExpiredHandler),
@@ -122,7 +115,6 @@ _URL_MAPPING = [
     ('/graph_json', graph_json.GraphJsonHandler),
     ('/graph_revisions', graph_revisions.GraphRevisionsHandler),
     ('/group_report', group_report.GroupReportHandler),
-    ('/list_monitored_tests', list_monitored_tests.ListMonitoredTestsHandler),
     ('/list_tests', list_tests.ListTestsHandler),
     ('/load_from_prod', load_from_prod.LoadFromProdHandler),
     ('/', main.MainHandler),

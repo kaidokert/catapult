@@ -72,39 +72,14 @@ found in the LICENSE file.
     document.getElementById('subscription-textarea').textContent = '';
   }
 
-  /**
-   * Shows a list of all the tests for a given sheriff.
-   * @param {Event} clickEvent The click event that this function handles.
-   */
-  function listTests(clickEvent) {
-    var selectMenu = document.getElementById('edit-name');
-    var sheriffName = selectMenu.options[selectMenu.selectedIndex].value;
-    if (sheriffName == '') {
-      console.error('Sheriff name is empty, cannot list tests.');
-      return;
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function showSheriffs() {
-      var arr = JSON.parse(xhr.responseText);
-      document.getElementById('matching-list').innerHTML = arr.join('<br>');
-    };
-    xhr.open(
-        'GET', '/list_monitored_tests?get-sheriffed-by=' +
-        encodeURIComponent(sheriffName));
-    xhr.send();
-    document.getElementById('matching-list').innerHTML =
-        '<img src="//www.google.com/images/loading.gif">';
-    clickEvent.preventDefault();
-  }
-
   window.addEventListener('DOMContentLoaded', initialize, true);
   </script>
 </head>
 <body>
   <nav-bar></nav-bar>
   <h1>Edit Sheriffs</h1>
-  <p><b>Note: Sheriff configs are no longer editable via this page.
-  See go/chromeperf-sheriff-redux</b></p>
+  <h2>Note: Sheriff configs are no longer editable via this page.
+  See go/chromeperf-sheriff-redux</h2>
 
   <form method="POST">
     {{xsrf_input | safe}}
@@ -151,8 +126,6 @@ found in the LICENSE file.
     <textarea name="patterns" id="patterns-textarea"
               rows="15" cols="72" disabled="true"></textarea><br>
             <button type="submit" disabled="true">Submit</button><br><br>
-    <button id="list-tests-button" hidden>List monitored tests</button>
-    <div id="matching-list"></div>
     <h2>Subscription Proto</h2>
     <p>This is an aid for administrators to manually transcribe existing
        sheriff configurations into subscriptions in the new sheriff
