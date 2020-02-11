@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ed3b0f60_e24f1f2e",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-11T02:08:26Z",
+      "side": 1,
+      "message": "All of Beam\u0027s examples use `p`, so I assume that\u0027s the convention we should follow :/",
+      "parentUuid": "ad7a210b_2d65e3c7",
+      "range": {
+        "startLine": 149,
+        "startChar": 2,
+        "endLine": 149,
+        "endChar": 3
+      },
+      "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54c3a6cd_ff6b498f",
         "filename": "dashboard/bq_export/bq_rows.py",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2020-02-11T00:19:39Z",
       "side": 1,
       "message": "Chatted offline on this, we probably want to ensure that we have the schema is precisely this before we attempt to start writing data to it. Could be a TODO or if easy to implement just have it done as the first step of the pipeline.",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 137,
+        "endChar": 35
+      },
+      "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a32aa4f_a58b2811",
+        "filename": "dashboard/bq_export/bq_rows.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-11T02:08:26Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nI believe it is already checking the schema matches the bq_row_schema (and will error out if not).  I\u0027ll verify that (but probably not block submitting this CL for it).",
+      "parentUuid": "54c3a6cd_ff6b498f",
       "range": {
         "startLine": 130,
         "startChar": 2,
@@ -68,6 +116,30 @@
       "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "662bf178_83f1b2ca",
+        "filename": "dashboard/bq_export/bq_rows.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-11T02:08:26Z",
+      "side": 1,
+      "message": "No.  Removed, thanks :)",
+      "parentUuid": "f26e9176_5f26c8ac",
+      "range": {
+        "startLine": 190,
+        "startChar": 15,
+        "endLine": 190,
+        "endChar": 48
+      },
+      "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
