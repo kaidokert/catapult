@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad7a210b_2d65e3c7",
+        "filename": "dashboard/bq_export/bq_dash.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-11T00:19:39Z",
+      "side": 1,
+      "message": "nit: It would be a lot more readable if this was `pipeline` instead of just `p`.",
+      "range": {
+        "startLine": 149,
+        "startChar": 2,
+        "endLine": 149,
+        "endChar": 3
+      },
+      "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54c3a6cd_ff6b498f",
+        "filename": "dashboard/bq_export/bq_rows.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-11T00:19:39Z",
+      "side": 1,
+      "message": "Chatted offline on this, we probably want to ensure that we have the schema is precisely this before we attempt to start writing data to it. Could be a TODO or if easy to implement just have it done as the first step of the pipeline.",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 137,
+        "endChar": 35
+      },
+      "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f26e9176_5f26c8ac",
+        "filename": "dashboard/bq_export/bq_rows.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-11T00:19:39Z",
+      "side": 1,
+      "message": "Still needed?",
+      "range": {
+        "startLine": 190,
+        "startChar": 15,
+        "endLine": 190,
+        "endChar": 48
+      },
+      "revId": "9964599cdd8c8262e08b6f18e1bbad68aac294f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
