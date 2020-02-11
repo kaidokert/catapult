@@ -22,6 +22,30 @@
       "revId": "203892adba2bac5b85d81308e11a2d48f6ffb26e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d7ad6eb_1391546e",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-11T06:31:09Z",
+      "side": 1,
+      "message": "You\u0027re right 😊",
+      "parentUuid": "285d8e23_a14cde0b",
+      "range": {
+        "startLine": 197,
+        "startChar": 20,
+        "endLine": 197,
+        "endChar": 53
+      },
+      "revId": "203892adba2bac5b85d81308e11a2d48f6ffb26e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
