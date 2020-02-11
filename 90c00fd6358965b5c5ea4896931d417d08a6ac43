@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32c6d41f_b5604a6e",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-11T05:00:23Z",
+      "side": 1,
+      "message": "I don\u0027t think this works... does it?\n\nI suspect checking the call count would be better?",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 42
+      },
+      "revId": "90c00fd6358965b5c5ea4896931d417d08a6ac43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
