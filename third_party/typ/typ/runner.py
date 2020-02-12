@@ -154,7 +154,7 @@ class Runner(object):
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
-        self.parse_args(parser, [])
+        self.parse_args(parser, None)
 
     def main(self, argv=None, **defaults):
         parser = ArgumentParser(self.host)
