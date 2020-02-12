@@ -153,6 +153,24 @@
       "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f76a4158_abf57d95",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1341398
+      },
+      "writtenOn": "2020-02-12T00:01:41Z",
+      "side": 1,
+      "message": "No luck so far. I think debug simple chrome is mounted on my guado now, but the test also is no longer crashing.",
+      "parentUuid": "9775f941_54f33861",
+      "revId": "15a9c24d66854c4efbb36ed4f1b779e2d3c0538f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
