@@ -22,6 +22,30 @@
       "revId": "de3f97ce8a5a4a17ce6096b40d54481a4a1e4be1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e33838b_96fac597",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-02-12T18:18:46Z",
+      "side": 1,
+      "message": "1. The particular case that this applies to is Android tests run on  the Skia team\u0027s devices. The hosts are Raspberry Pis, which don\u0027t seem to be guaranteed to have SSH. AFAIK, the only tests that use this argument are CrOS ones, so the majority of tests won\u0027t care whether this is hit or not.\n\n2. We\u0027ll only end up logging and failing later if the following conditions are met:\n  a. We\u0027re running CrOS tests\n  b. We\u0027re running in remote mode\n  c. --remote-ssh-port is not specified\n  d. SSH is not installed on the host\n\nI could change it so that we hard-fail if we fail to get the SSH port and the browser is cros-chrome if that\u0027s preferable.",
+      "parentUuid": "a72ea4fa_757afcb8",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "de3f97ce8a5a4a17ce6096b40d54481a4a1e4be1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
