@@ -24,6 +24,16 @@ from telemetry.internal.util import binary_manager
 from telemetry.util import wpr_modes
 
 
+def _GetSshPort():
+  try:
+    return socket.getservbyname('ssh')
+  except OSError:
+    logging.warning(
+        'Failed to retrieve port used by SSH service. This likely means SSH is '
+        'not installed on the system. CrOS tests will not function properly.')
+    return -1
+
+
 class BrowserFinderOptions(optparse.Values):
   """Options to be used for discovering a browser."""
 
@@ -112,7 +122,7 @@ class BrowserFinderOptions(optparse.Values):
     group.add_option(
         '--remote-ssh-port',
         type=int,
-        default=socket.getservbyname('ssh'),
+        default=_GetSshPort(),
         dest='cros_remote_ssh_port',
         help='The SSH port of the remote ChromeOS device (requires --remote).')
     compat_mode_options_list = [

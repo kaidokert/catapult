@@ -7,6 +7,8 @@ import unittest
 
 from telemetry.internal.browser import browser_options
 
+import mock
+
 
 class BrowserOptionsTest(unittest.TestCase):
   def testBrowserMultipleValues_UseLast(self):
@@ -134,3 +136,19 @@ class BrowserOptionsTest(unittest.TestCase):
     self.assertFalse(options.default_false)
     self.assertFalse(options.override_to_true)
     self.assertTrue(options.override_to_false)
+
+  @mock.patch('socket.getservbyname')
+  def testSshAvailable(self, serv_mock):
+    serv_mock.return_value = 22
+    options = browser_options.BrowserFinderOptions()
+    parser = options.CreateParser()
+    parser.parse_args([])
+    self.assertEquals(options.cros_remote_ssh_port, 22)
+
+  @mock.patch('socket.getservbyname')
+  def testSshNotAvailable(self, serv_mock):
+    serv_mock.side_effect = OSError('No SSH here')
+    options = browser_options.BrowserFinderOptions()
+    parser = options.CreateParser()
+    parser.parse_args([])
+    self.assertEquals(options.cros_remote_ssh_port, -1)
