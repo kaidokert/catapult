@@ -46,6 +46,30 @@
       "revId": "de3f97ce8a5a4a17ce6096b40d54481a4a1e4be1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e81fe8c_36f4c9e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-12T18:25:10Z",
+      "side": 1,
+      "message": "Yeah, I think the solution here is to only call socket.getservbyname(\u0027ssh\u0027) if we are trying to run in remote chromeos mode. It\u0027s definitely bad to be calling this and then not using it, especially if we end up spamming the logs with this warning.",
+      "parentUuid": "2e33838b_96fac597",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "de3f97ce8a5a4a17ce6096b40d54481a4a1e4be1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
