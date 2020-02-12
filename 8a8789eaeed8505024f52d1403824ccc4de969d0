@@ -22,6 +22,30 @@
       "revId": "8a8789eaeed8505024f52d1403824ccc4de969d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "976e6747_21464b19",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-02-12T20:29:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e54c1efb_80160157",
+      "range": {
+        "startLine": 327,
+        "startChar": 15,
+        "endLine": 329,
+        "endChar": 27
+      },
+      "revId": "8a8789eaeed8505024f52d1403824ccc4de969d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
