@@ -24,6 +24,16 @@ from telemetry.internal.util import binary_manager
 from telemetry.util import wpr_modes
 
 
+def _GetSshPort():
+  try:
+    return socket.getservbyname('ssh')
+  except OSError:
+    logging.warning(
+        'Failed to retrieve port used by SSH service. This likely means SSH is '
+        'not installed on the system. CrOS tests will not function properly.')
+    return -1
+
+
 class BrowserFinderOptions(optparse.Values):
   """Options to be used for discovering a browser."""
 
@@ -40,6 +50,7 @@ class BrowserFinderOptions(optparse.Values):
     self.cros_ssh_identity = None
 
     self.cros_remote = None
+    self.cros_remote_ssh_port = None
 
     self.verbosity = 0
 
@@ -112,7 +123,8 @@ class BrowserFinderOptions(optparse.Values):
     group.add_option(
         '--remote-ssh-port',
         type=int,
-        default=socket.getservbyname('ssh'),
+        # This is set in ParseArgs if necessary.
+        default=-1,
         dest='cros_remote_ssh_port',
         help='The SSH port of the remote ChromeOS device (requires --remote).')
     compat_mode_options_list = [
@@ -315,6 +327,16 @@ class BrowserFinderOptions(optparse.Values):
           if len(browser_types[device_name]) == 0:
             print '     No browsers found for this device'
         sys.exit(0)
+
+      if self.browser_type == 'cros_chrome' and self.cros_remote and (
+          self.cros_remote_ssh_port < 0):
+        try:
+          self.cros_remote_ssh_port = socket.getservbyname('ssh')
+        except OSError:
+          raise RuntimeError(
+              'Running a CrOS test in remote mode, but failed to retrieve port '
+              'used by SSH service. This likely means SSH is not installed on '
+              'the system.')
 
       # Profiling other periods along with the story_run period leads to running
       # multiple profiling processes at the same time. The effects of performing
