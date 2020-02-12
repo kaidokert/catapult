@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a72ea4fa_757afcb8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-12T18:11:59Z",
+      "side": 1,
+      "message": "It might be nice to break this down by the cases here to understand where the new behavior is improving things. The previous behavior hard-failed, which is nice because it prevented things from getting into a bad and confusing state. Hard fail is nice so that users understand exactly why something isn\u0027t working. Warnings and soft failures are generally bad because users may miss them and dig through lots of confusing and misleading logs before they understand what is going on.\n\nHowever, I believe you must be doing this for a good reason, so let\u0027s break it down by the use cases.\n\n1. In what case is it better to log a warning and then keep running? In other words, when can we actually work properly when we can\u0027t find a valid port?\n\n2. In what case will we now end up logging a warning and then failing later on? What logs would the printed in that case, and would they clearly point a user who is not knowledgeable about the code in question to the root cause?\n\nI\u0027m also wondering if we could separate out those too cases such that (1) does not log a warning and (2) hard fails. WDYT?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "de3f97ce8a5a4a17ce6096b40d54481a4a1e4be1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
