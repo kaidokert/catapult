@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3ff8bfd9_d5e04088",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-13T00:13:37Z",
+      "side": 1,
+      "message": "Sorry for resurrecting this after over a year. I was wondering if there\u0027s a recommended way for the setup_fn to get access to commandline arguments. Specifically the setup_fn needs to know the verbosity to setup the logging basicConfig, so it needs access to runner.args.verbose. I was doing https://chromium-review.googlesource.com/c/catapult/+/2053063 when I realized it would hit this issue. I see that setup_fn gets a typ.runner._Child object. Presumably I could figure out how to get access to args.verbose from there, but it feels like the wrong solution since  the object starts with an underscore.",
+      "parentUuid": "9224103d_45526a3c",
+      "revId": "f227718faa1db2261350ad32e9e33dc10cec8a3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4dc21548_e9a67da5",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
