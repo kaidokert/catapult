@@ -33,6 +33,24 @@
       "revId": "529a9aebf349b280635f9d58586b8249cb37da0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3aeb76e7_d4b13d79",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-02-13T21:37:41Z",
+      "side": 1,
+      "message": "Oh, yeah, right :). Never mind me, then.\n\nThis works in the normal case because Runner.main() then calls Runner.parse_args() to re-parse things, and that\u0027ll pick up sys.argv by default. Telemetry would presumably need to do the same thing.",
+      "parentUuid": "449889e2_6c951d16",
+      "revId": "529a9aebf349b280635f9d58586b8249cb37da0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
