@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "449889e2_6c951d16",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-02-13T18:37:19Z",
+      "side": 1,
+      "message": "Passing the empty list was intentional. As can be seen in the comment at 155, we are trying to set the parser values to default argument values, not the ones passed in sys.argv.",
+      "revId": "529a9aebf349b280635f9d58586b8249cb37da0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
