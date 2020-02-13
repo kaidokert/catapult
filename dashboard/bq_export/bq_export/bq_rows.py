@@ -12,7 +12,6 @@ import json
 import logging
 
 import apache_beam as beam
-from apache_beam.io.gcp.bigquery import BigQueryWriteFn
 from apache_beam.options.pipeline_options import GoogleCloudOptions
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.metrics import Metrics
@@ -20,7 +19,7 @@ from apache_beam.transforms.core import FlatMap
 
 from bq_export.split_by_timestamp import ReadTimestampRangeFromDatastore
 from bq_export.export_options import BqExportOptions
-from bq_export.utils import FloatHack, PrintCounters
+from bq_export.utils import FloatHack, PrintCounters, IsoDateToYYYYMMDD
 
 
 def main():
@@ -32,9 +31,6 @@ def main():
   p = beam.Pipeline(options=options)
   entities_read = Metrics.counter('main', 'entities_read')
   failed_entity_transforms = Metrics.counter('main', 'failed_entity_transforms')
-  failed_bq_rows = Metrics.counter('main', 'failed_bq_rows')
-  def CountFailed(unused_element):
-    failed_bq_rows.inc()
 
   # CREATE TABLE `chromeperf.chromeperf_dashboard_data.rows_test`
   # (revision INT64 NOT NULL,
@@ -92,22 +88,32 @@ def main():
   row_dicts = (
       row_entities | 'ConvertEntityToRow(Row)' >> FlatMap(RowEntityToRowDict))
 
-  additional_bq_parameters = {
-      'timePartitioning': {'type': 'DAY', 'field': 'timestamp'},
-  }
 
-  # TODO(abennetts): clear any day partitions that we are about to overwrite.
-  bq_rows = (
+  # Instead of writing to the table, we write to the individual partitions
+  # instead (effectively treating each partition as an independent table).
+  # Because the table is partitioned by day, this allows us to use the
+  # WRITE_TRUNCATE option to regenerate the specified days without deleting the
+  # rest of the table.  So instead of passing a table name string as the
+  # destination for WriteToBigQuery, we pass a function that dynamically
+  # calculates the partition name.  Also because we are loading data into the
+  # partition directly we must *not* set 'timePartitioning' in
+  # additional_bq_parameters, otherwise the load job will fail with a kind of
+  # schema mismatch.
+  table_name = '{}:chromeperf_dashboard_data.rows{}'.format(
+      project, bq_export_options.table_suffix)
+  def TableWithPartitionSuffix(row_dict):
+    # Partition names are the table name with a $yyyymmdd suffix, e.g.
+    # 'my_dataset.my_table$20200123'.  So extract the suffix from the ISO-format
+    # timestamp value in this element.
+    return table_name + '$' + IsoDateToYYYYMMDD(row_dict['timestamp'])
+  _ = (
       row_dicts | 'WriteToBigQuery(rows)' >> beam.io.WriteToBigQuery(
-          '{}:chromeperf_dashboard_data.rows_test'.format(project),
+          TableWithPartitionSuffix,
           schema=bq_row_schema,
-          method=beam.io.WriteToBigQuery.Method.STREAMING_INSERTS,
-          write_disposition=beam.io.BigQueryDisposition.WRITE_APPEND,
+          method=beam.io.WriteToBigQuery.Method.FILE_LOADS,
+          write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
           create_disposition=beam.io.BigQueryDisposition.CREATE_NEVER,
-          additional_bq_parameters=additional_bq_parameters,
       ))
-  failed_row_inserts = bq_rows[BigQueryWriteFn.FAILED_ROWS]
-  _ = failed_row_inserts | 'CountFailed(Row)' >> beam.Map(CountFailed)
 
   result = p.run()
   result.wait_until_finish()

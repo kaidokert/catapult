@@ -8,14 +8,18 @@ from __future__ import division
 from __future__ import print_function
 
 import apache_beam as beam
-from apache_beam.io.gcp.bigquery import BigQueryWriteFn
 from apache_beam.options.pipeline_options import GoogleCloudOptions
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.metrics import Metrics
 
 from bq_export.split_by_timestamp import ReadTimestampRangeFromDatastore
 from bq_export.export_options import BqExportOptions
-from bq_export.utils import TestPath, FloatHack, PrintCounters
+from bq_export.utils import (TestPath, FloatHack, PrintCounters,
+                             IsoDateToYYYYMMDD)
+
+
+class UnconvertibleAnomalyError(Exception):
+  pass
 
 
 def main():
@@ -27,9 +31,6 @@ def main():
   p = beam.Pipeline(options=options)
   entities_read = Metrics.counter('main', 'entities_read')
   failed_entity_transforms = Metrics.counter('main', 'failed_entity_transforms')
-  failed_bq_rows = Metrics.counter('main', 'failed_bq_rows')
-  def CountFailed(unused_element):
-    failed_bq_rows.inc()
 
   # Read 'Anomaly' entities from datastore.
   entities = (
@@ -73,14 +74,43 @@ def main():
           # TODO: 'recipe_bisects'
           'pinpoint_bisects': entity.get('pinpoint_bisects', []),
       }
+      if d['statistic'] is None:
+        # Some years-old anomalies lack this.
+        raise UnconvertibleAnomalyError()
       return [d]
-    except KeyError:
+    except (KeyError, UnconvertibleAnomalyError):
       failed_entity_transforms.inc()
       return []
   anomaly_dicts = (
       entities
       | 'ConvertEntityToRow(Anomaly)' >> beam.FlatMap(AnomalyEntityToRowDict))
 
+  # CREATE TABLE `chromeperf.chromeperf_dashboard_data.anomalies`
+  # (id INT64 NOT NULL,
+  #  `timestamp` TIMESTAMP NOT NULL,
+  #  subscription_names ARRAY<STRING>,
+  #  `test` STRING NOT NULL,
+  #  start_revision INT64 NOT NULL,
+  #  end_revision INT64 NOT NULL,
+  #  display_start INT64,
+  #  display_end INT64,
+  #  statistic STRING NOT NULL,
+  #  bug_id INT64,
+  #  internal_only BOOLEAN NOT NULL,
+  #  segment_size_before INT64,
+  #  segment_size_after INT64,
+  #  median_before_anomaly FLOAT64,
+  #  median_after_anomaly FLOAT64,
+  #  std_dev_before_anomaly FLOAT64,
+  #  window_end_revision INT64,
+  #  t_statistic FLOAT64,
+  #  degrees_of_freedom FLOAT64,
+  #  p_value FLOAT64,
+  #  is_improvement BOOLEAN NOT NULL,
+  #  recovered BOOLEAN NOT NULL,
+  #  units STRING,
+  #  pinpoint_bisects ARRAY<STRING>)
+  # PARTITION BY DATE(`timestamp`);
   bq_anomaly_schema = {'fields': [
       {'name': 'id', 'type': 'INT64', 'mode': 'REQUIRED'},
       {'name': 'subscription_names', 'type': 'STRING', 'mode': 'REPEATED'},
@@ -108,18 +138,33 @@ def main():
       {'name': 'pinpoint_bisects', 'type': 'STRING', 'mode': 'REPEATED'},
   ]}
 
-  bq_anomalies = (
+  # Instead of writing to the table, we write to the individual partitions
+  # instead (effectively treating each partition as an independent table).
+  # Because the table is partitioned by day, this allows us to use the
+  # WRITE_TRUNCATE option to regenerate the specified days without deleting the
+  # rest of the table.  So instead of passing a table name string as the
+  # destination for WriteToBigQuery, we pass a function that dynamically
+  # calculates the partition name.  Also because we are loading data into the
+  # partition directly we must *not* set 'timePartitioning' in
+  # additional_bq_parameters, otherwise the load job will fail with a kind of
+  # schema mismatch.
+  table_name = '{}:chromeperf_dashboard_data.anomalies{}'.format(
+      project, bq_export_options.table_suffix)
+  def TableWithPartitionSuffix(anomaly_dict):
+    # Partition names are the table name with a $yyyymmdd suffix, e.g.
+    # 'my_dataset.my_table$20200123'.  So extract the suffix from the ISO-format
+    # timestamp value in this element.
+    return table_name + '$' + IsoDateToYYYYMMDD(anomaly_dict['timestamp'])
+  _ = (
       anomaly_dicts | 'WriteToBigQuery(anomalies)' >> beam.io.WriteToBigQuery(
-          '{}:chromeperf_dashboard_data.anomalies_test'.format(project),
+          TableWithPartitionSuffix,
           schema=bq_anomaly_schema,
-          method=beam.io.WriteToBigQuery.Method.STREAMING_INSERTS,
+          method=beam.io.WriteToBigQuery.Method.FILE_LOADS,
           write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
-          create_disposition=beam.io.BigQueryDisposition.CREATE_NEVER))
-
-  failed_anomaly_inserts = bq_anomalies[BigQueryWriteFn.FAILED_ROWS]
-  _ = failed_anomaly_inserts | 'CountFailed(Anomaly)' >> beam.Map(CountFailed)
+          create_disposition=beam.io.BigQueryDisposition.CREATE_NEVER,
+      )
+  )
 
   result = p.run()
   result.wait_until_finish()
   PrintCounters(result)
-

@@ -49,3 +49,8 @@ def PrintCounters(pipeline_result):
     print('Counter: ' + repr(counter))
     print('  = ' + str(counter.result))
 
+
+def IsoDateToYYYYMMDD(iso_date_str):
+  """Convert ISO-formatted dates to a YYYYMMDD string."""
+  return iso_date_str[:4] + iso_date_str[5:7] + iso_date_str[8:10]
+
