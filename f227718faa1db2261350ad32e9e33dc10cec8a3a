@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "29d20a89_5ec61cb9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-02-13T21:47:31Z",
+      "side": 1,
+      "message": "Sure would be nice if there was more documentation for typ, wouldn\u0027t it? :(.\n\n`setup_fn` and `teardown_fn` both take a `context` argument.\n\nThe context argument passed to setup_fn can be an almost-arbitrary python object (it must be picklable); you set runner.context wherever you set runner.setup_fn.\n\nsetup_fn can (must?) return an object which will then be passed to teardown_fn(); this can either be `None` (if teardown doesn\u0027t need an argument), or the same `context` value passed to `setup_fn`, or a modified or different value (which must also be picklable).\n\nSo, in your case, for example, you could set `runner.context` to `runner.args`.",
+      "parentUuid": "3ff8bfd9_d5e04088",
+      "revId": "f227718faa1db2261350ad32e9e33dc10cec8a3a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4dc21548_e9a67da5",
         "filename": "/COMMIT_MSG",
         "patchSetId": 7
