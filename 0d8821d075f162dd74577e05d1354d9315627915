@@ -22,6 +22,30 @@
       "revId": "0d8821d075f162dd74577e05d1354d9315627915",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da157d74_0c298f48",
+        "filename": "tracing/tracing/ui/base/hotkey_controller.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-02-14T14:40:38Z",
+      "side": 1,
+      "message": "Yup everything else is wrapped by default. Polymer can\u0027t wrap the document variable automatically apparently so the document.body is not wrapped by default.",
+      "parentUuid": "4e3fc013_d17c5299",
+      "range": {
+        "startLine": 219,
+        "startChar": 40,
+        "endLine": 219,
+        "endChar": 53
+      },
+      "revId": "0d8821d075f162dd74577e05d1354d9315627915",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
