@@ -45,6 +45,30 @@
       "revId": "4fc02a7d22dbcf45955203dbb998f3cc60dac130",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8f522e_2c36f19e",
+        "filename": "dashboard/bq_export/bq_export/bq_rows.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-14T00:47:46Z",
+      "side": 1,
+      "message": "Ideally, yes.  For now I\u0027ve made a common WriteToPartitionedBigQuery util function and moved this content to the docstring.  It doesn\u0027t feel ideal, but it\u0027s good enough for now.\n\n(And perhaps more importantly the logic to determine a partition name given a table name + an element is now defined in a single place.)",
+      "parentUuid": "f674438e_3db36ec4",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 20
+      },
+      "revId": "4fc02a7d22dbcf45955203dbb998f3cc60dac130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
