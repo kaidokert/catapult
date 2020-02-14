@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e3fc013_d17c5299",
+        "filename": "tracing/tracing/ui/base/hotkey_controller.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-02-14T14:31:18Z",
+      "side": 1,
+      "message": "I assume that this.parentElement and this.host are already \"wrapped\" then?",
+      "range": {
+        "startLine": 219,
+        "startChar": 40,
+        "endLine": 219,
+        "endChar": 53
+      },
+      "revId": "0d8821d075f162dd74577e05d1354d9315627915",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
