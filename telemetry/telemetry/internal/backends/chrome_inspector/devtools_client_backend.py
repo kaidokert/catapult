@@ -103,6 +103,11 @@ class _DevToolsClientBackend(object):
 
   @property
   def browser_target_url(self):
+    # For Fuchsia browsers, we get the browser_target through a JSON request
+    if self.platform_backend.GetOSName() == 'fuchsia':
+      resp = self.GetVersion()
+      if 'webSocketDebuggerUrl' in resp:
+        return resp['webSocketDebuggerUrl']
     return 'ws://127.0.0.1:%i%s' % (self._local_port, self._browser_target)
 
   @property
@@ -147,7 +152,6 @@ class _DevToolsClientBackend(object):
         remote_port=devtools_port, reverse=True)
     self._local_port = self._forwarder._local_port
     self._remote_port = self._forwarder._remote_port
-
     self._devtools_http = devtools_http.DevToolsHttp(self.local_port)
     # If the agent is not alive and ready, trying to get the branch number will
     # raise a devtools_http.DevToolsClientConnectionError.

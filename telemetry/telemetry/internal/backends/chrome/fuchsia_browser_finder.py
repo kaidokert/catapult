@@ -3,6 +3,8 @@
 # found in the LICENSE file.
 """Finds Fuchsia browsers that can be started and controlled by telemetry."""
 
+import logging
+
 from telemetry.core import fuchsia_interface
 from telemetry.core import platform
 from telemetry.internal.backends.chrome import fuchsia_browser_backend
@@ -59,7 +61,9 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
       self._browser_options = None
 
   def SupportsOptions(self, browser_options):
-    return bool(len(browser_options.extensions_to_load))
+    if len(browser_options.extensions_to_load) > 0:
+      logging.warning('Fuchsia browsers do not support extensions.')
+    return True
 
   def UpdateExecutableIfNeeded(self):
     # Updating the browser is currently handled in the Chromium repository
