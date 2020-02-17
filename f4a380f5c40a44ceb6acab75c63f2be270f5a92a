@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "365a5ef6_ded27064",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-02-17T09:08:16Z",
+      "side": 1,
+      "message": "Reading this again, I think we should split the names into a NAME_MAP (or similar). Without knowing how they are using, it\u0027s a bit hard to follow why some _EVENTS are maps and others are just arrays (sets).",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 9
+      },
+      "revId": "f4a380f5c40a44ceb6acab75c63f2be270f5a92a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
