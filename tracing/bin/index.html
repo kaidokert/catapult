@@ -5,6 +5,7 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 <head>
+<script src="./webcomponents.min.js"></script>
 <script>
 'use strict';
 
@@ -92,7 +93,7 @@ function onTraceViewerImportFail() {
     overlay.visible = true;
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('WebComponentsReady', function() {
     var container = document.createElement('track-view-container');
     container.id = 'track_view_container';
 
