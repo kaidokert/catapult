@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9510fbee_6e1b66ce",
+        "filename": "OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2020-02-19T14:13:16Z",
+      "side": 1,
+      "message": "Might as well remove this line. 😞",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 40
+      },
+      "revId": "9508452e18f130c98499cb4c4f1e1efaedee8962",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
