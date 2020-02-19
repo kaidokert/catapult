@@ -22,6 +22,30 @@
       "revId": "74876d7988d14cbf6774c132d433ad87f3d80324",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c67a5eb9_0ebf2a98",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-02-19T19:46:25Z",
+      "side": 1,
+      "message": "Good idea - done. Also added an comment to tracing_example/trace_viewer_embedder.html.",
+      "parentUuid": "f3e638eb_63838d6f",
+      "range": {
+        "startLine": 282,
+        "startChar": 16,
+        "endLine": 282,
+        "endChar": 48
+      },
+      "revId": "74876d7988d14cbf6774c132d433ad87f3d80324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
