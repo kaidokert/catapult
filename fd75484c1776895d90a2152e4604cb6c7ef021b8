@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c71cb9d_e991ea1d",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-19T23:01:46Z",
+      "side": 1,
+      "message": "Can we just use re2 explicitly?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "485d996b_44d64493",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-19T23:01:46Z",
+      "side": 1,
+      "message": "Does\u0027t this need a @cache decorator?",
+      "range": {
+        "startLine": 160,
+        "startChar": 11,
+        "endLine": 160,
+        "endChar": 32
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16de230f_eda76397",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-19T23:01:46Z",
+      "side": 1,
+      "message": "Please add two empty lines before this one.",
+      "range": {
+        "startLine": 172,
+        "startChar": 1,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e255ed67_3ce219a6",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-19T23:01:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure I agree with this. Discussed this offline before already, we should just document this behaviour.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f6c374_a99acf58",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-19T23:01:46Z",
+      "side": 1,
+      "message": "Why do we need \\Z? Why not just force folks to use $ instead?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
