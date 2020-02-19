@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3e638eb_63838d6f",
+        "filename": "tracing/tracing/ui/timeline_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-19T19:26:49Z",
+      "side": 1,
+      "message": "I think you should add a comment here telling embedders how they should use this boolean. Do they just put `__hideTraceViewerPolyfillWarning \u003d false` somewhere in their setup?",
+      "range": {
+        "startLine": 282,
+        "startChar": 16,
+        "endLine": 282,
+        "endChar": 48
+      },
+      "revId": "74876d7988d14cbf6774c132d433ad87f3d80324",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
