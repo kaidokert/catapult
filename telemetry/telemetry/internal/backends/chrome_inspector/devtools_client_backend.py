@@ -6,7 +6,7 @@ import logging
 import re
 import socket
 import sys
-
+import time
 from py_utils import exc_util
 from telemetry.core import exceptions
 from telemetry import decorators
@@ -59,6 +59,9 @@ def GetDevToolsBackEndIfReady(devtools_port, app_backend, browser_target=None):
   return client
 
 
+class FuchsiaBrowserTargetNotFoundException(Exception):
+  pass
+
 class _DevToolsClientBackend(object):
   """An object that communicates with Chrome's devtools.
 
@@ -103,6 +106,14 @@ class _DevToolsClientBackend(object):
 
   @property
   def browser_target_url(self):
+    # For Fuchsia browsers, we get the browser_target through a JSON request
+    if self.platform_backend.GetOSName() == 'fuchsia':
+      resp = self.GetVersion()
+      if 'webSocketDebuggerUrl' in resp:
+        return resp['webSocketDebuggerUrl']
+      else:
+        raise FuchsiaBrowserTargetNotFoundException(
+            'Could not get the browser target.')
     return 'ws://127.0.0.1:%i%s' % (self._local_port, self._browser_target)
 
   @property
@@ -147,11 +158,12 @@ class _DevToolsClientBackend(object):
         remote_port=devtools_port, reverse=True)
     self._local_port = self._forwarder._local_port
     self._remote_port = self._forwarder._remote_port
-
     self._devtools_http = devtools_http.DevToolsHttp(self.local_port)
+    time.sleep(30)
     # If the agent is not alive and ready, trying to get the branch number will
     # raise a devtools_http.DevToolsClientConnectionError.
     branch_number = self.GetChromeBranchNumber()
+    logging.warning(branch_number)
     if branch_number < MIN_SUPPORTED_BRANCH_NUMBER:
       raise UnsupportedVersionError(
           'Chrome branch number %d is no longer supported' % branch_number)
@@ -159,6 +171,7 @@ class _DevToolsClientBackend(object):
     # Ensure that the inspector websocket is ready. This may raise a
     # inspector_websocket.WebSocketException or socket.error if not ready.
     self._browser_websocket = inspector_websocket.InspectorWebsocket()
+    logging.warning(self.browser_target_url)
     self._browser_websocket.Connect(self.browser_target_url, timeout=10)
 
     chrome_tracing_devtools_manager.RegisterDevToolsClient(self)
