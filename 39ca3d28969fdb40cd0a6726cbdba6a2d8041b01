@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53d049e9_9c3414fd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-02-19T19:00:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4d4cdb4_2070a655",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 68
+      },
+      "revId": "39ca3d28969fdb40cd0a6726cbdba6a2d8041b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47bb0c9f_870e5055",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "39ca3d28969fdb40cd0a6726cbdba6a2d8041b01",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70e79e22_3431ea45",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-02-19T19:00:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47bb0c9f_870e5055",
+      "range": {
+        "startLine": 109,
+        "startChar": 6,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "39ca3d28969fdb40cd0a6726cbdba6a2d8041b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
