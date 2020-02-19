@@ -83,6 +83,8 @@ class Page(story.Story):
       with shared_state.interval_profiling_controller.SamplePeriod(
           'interactions', action_runner):
         self.RunPageInteractions(action_runner)
+    # Navigate to about:blank in order to force previous page's
+    action_runner.Navigate('about:blank')
 
   def RunNavigateSteps(self, action_runner):
     url = self.file_path_url_with_scheme if self.is_file else self.url
