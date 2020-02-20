@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a7f9191_3d63170c",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-20T18:35:45Z",
+      "side": 1,
+      "message": "nit: add \"UMA\" here for clarity (since normally people reading this will get confused because we normally output trace events from Telemetry, not metrics)",
+      "range": {
+        "startLine": 47,
+        "startChar": 43,
+        "endLine": 47,
+        "endChar": 50
+      },
+      "revId": "d1555d1338a6e4994cc2727de2dd4ec9f745ff26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
