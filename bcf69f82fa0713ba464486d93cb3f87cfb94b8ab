@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b494bc1a_47d1fdf1",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T03:56:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a9174b2_dc4108cb",
+      "range": {
+        "startLine": 35,
+        "startChar": 45,
+        "endLine": 35,
+        "endChar": 56
+      },
+      "revId": "bcf69f82fa0713ba464486d93cb3f87cfb94b8ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feee18e6_33ecfb1e",
         "filename": "dashboard/dashboard/sheriff_config/utils.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "bcf69f82fa0713ba464486d93cb3f87cfb94b8ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3da5a1fc_a09e1eb2",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T03:56:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feee18e6_33ecfb1e",
+      "range": {
+        "startLine": 36,
+        "startChar": 51,
+        "endLine": 36,
+        "endChar": 77
+      },
+      "revId": "bcf69f82fa0713ba464486d93cb3f87cfb94b8ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
