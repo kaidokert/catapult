@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8e61ce7_960a0a03",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-20T00:01:38Z",
+      "side": 1,
+      "message": "My guess is that this will increase the runtime of all the Telemetry benchmarks by a significant amount. Mind starting a Pinpoint try job to figure out an estimate of how much?\n\nI think we could consider making this change only apply to benchmarks that care about this uma loading metric, rather than making it apply to all benchmarks whose stories extend Page.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "f7c9a63b8904b15b904cdb6bcd80372ac9af9e56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
