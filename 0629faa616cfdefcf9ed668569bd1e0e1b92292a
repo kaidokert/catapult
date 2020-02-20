@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6594ad7_2b21fb17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-20T10:13:12Z",
+      "side": 1,
+      "message": "Actually, we *should* support ** to mean everything recursively.",
+      "range": {
+        "startLine": 9,
+        "startChar": 43,
+        "endLine": 11,
+        "endChar": 33
+      },
+      "revId": "0629faa616cfdefcf9ed668569bd1e0e1b92292a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0335aaa9_403676ca",
+        "filename": "dashboard/dashboard/sheriff_config/test_validator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-20T10:13:12Z",
+      "side": 1,
+      "message": "No, we need to make /** work this time now that we\u0027re using globs \"properly\".",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "0629faa616cfdefcf9ed668569bd1e0e1b92292a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
