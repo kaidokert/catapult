@@ -116,7 +116,7 @@ class LuciPollingTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'patterns': [{
-                        'glob': 'project/**'
+                        'glob': 'project/*/*/*'
                     }]
                 }
             }, {
@@ -317,7 +317,7 @@ class LuciContentChangesTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'patterns': [{
-                        'glob': 'project/**'
+                        'glob': 'project/*/*/*'
                     }]
                 }
             }, {
@@ -419,7 +419,7 @@ class LuciContentChangesTest(unittest.TestCase):
                     name: "Missing Email"
                     bug_labels: ["Some-Label"]
                     bug_components: ["Some>Component"]
-                    patterns: [{glob: "project/**"}]
+                    patterns: [{glob: "project/*/*/*"}]
         }""", 'utf-8')).decode())
     app = service.CreateApp({
         'environ': {

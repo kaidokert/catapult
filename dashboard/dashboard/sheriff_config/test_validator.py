@@ -19,7 +19,7 @@ class ValidatorTest(unittest.TestCase):
             contact_email: "release-team@example.com"
             bug_labels: ["release-blocker"]
             bug_components: ["Sample>Component"]
-            patterns: [{glob: "project/**"}]
+            patterns: [{glob: "project/*/*/*"}]
           },
           {
             name: "Memory Team",
@@ -50,7 +50,7 @@ class ValidatorTest(unittest.TestCase):
                                    name: "Missing Email",
                                    bug_labels: ["test-blocker"],
                                    bug_components: ["Sample>Component"],
-                                   patterns: [{glob: "project/**"}]
+                                   patterns: [{glob: "project/*/*/*"}]
                                  }
                                ]
                              """)
@@ -63,7 +63,7 @@ class ValidatorTest(unittest.TestCase):
                                    contact_email: "missing-name@domain",
                                    bug_labels: ["test-blocker"],
                                    bug_components: ["Sample>Component"],
-                                   patterns: [{glob: "project/**"}]
+                                   patterns: [{glob: "project/*/*/*"}]
                                  }
                                ]
                              """)

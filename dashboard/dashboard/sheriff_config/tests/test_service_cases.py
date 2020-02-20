@@ -92,7 +92,7 @@ class ValidationTest(unittest.TestCase):
                             contact_email: 'release-team@example.com',
                             bug_labels: ['release-blocker'],
                             bug_components: ['Sample>Component'],
-                            patterns: [{ glob: 'project/**' }]
+                            patterns: [{ glob: 'project/*/*/*' }]
                         }, {
                             name: 'Memory Team',
                             contact_email: 'memory-team@example.com',
