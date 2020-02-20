@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6941eb9d_3d3f1495",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T01:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c71cb9d_e991ea1d",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "485d996b_44d64493",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5012b47a_3002abe5",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T01:42:24Z",
+      "side": 1,
+      "message": "We can\u0027t use @cache decorator because subscription is not hashable. So manually cached in something like function static variable. It maybe a bit implicit, changing to a more obvious way.",
+      "parentUuid": "485d996b_44d64493",
+      "range": {
+        "startLine": 160,
+        "startChar": 11,
+        "endLine": 160,
+        "endChar": 32
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b9bbc227_831d1563",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T01:42:24Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "16de230f_eda76397",
+      "range": {
+        "startLine": 172,
+        "startChar": 1,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e255ed67_3ce219a6",
         "filename": "dashboard/dashboard/sheriff_config/utils.py",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "f1a8fcfa_f0a173f0",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T01:42:24Z",
+      "side": 1,
+      "message": "So as we discussed support a unsuperising glob match need to implement fnmatch.translate ourselves, which is too complicated. But because of the \\Z we need to implement it anyway (or some strange code to remove suffix), so it\u0027s almost free to support that.",
+      "parentUuid": "e255ed67_3ce219a6",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7f6c374_a99acf58",
         "filename": "dashboard/dashboard/sheriff_config/utils.py",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2020-02-19T23:01:46Z",
       "side": 1,
       "message": "Why do we need \\Z? Why not just force folks to use $ instead?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "fd75484c1776895d90a2152e4604cb6c7ef021b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45704b5a_b7bf13cd",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-20T01:42:24Z",
+      "side": 1,
+      "message": "Because fnmatch.translate generated one has this. We can\u0027t control this behaviour. So need a modified version. Maybe change some words make it more clear.",
+      "parentUuid": "e7f6c374_a99acf58",
       "range": {
         "startLine": 35,
         "startChar": 0,
