@@ -15,6 +15,11 @@
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
+        "linux2_armv7l": {
+          "local_paths": [
+            "/usr/bin/adb"
+          ]
+        },
         "linux2_x86_64": {
           "cloud_storage_hash": "8bd43e3930f6eec643d5dc64cab9e5bb4ddf4909",
           "download_path": "../bin/deps/linux2/x86_64/bin/adb"
@@ -103,6 +108,10 @@
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
+        "linux2_armv7l": {
+          "cloud_storage_hash": "1dcc74b9a0a64c205b59a8efda368fe5ff5c4442",
+          "download_path": "../bin/deps/linux2/armv7l/forwarder_host"
+        },
         "linux2_x86_64": {
           "cloud_storage_hash": "8fe69994b670f028484eed475dbffc838c8a57f7",
           "download_path": "../bin/deps/linux2/x86_64/forwarder_host"
@@ -131,6 +140,10 @@
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
+        "linux2_armv7l": {
+          "cloud_storage_hash": "6f6a6c5a8af58b4b3f67f64841f58389fc34e026",
+          "download_path": "../bin/deps/linux2/armv7l/bin/md5sum_host"
+        },
         "linux2_x86_64": {
           "cloud_storage_hash": "4db5bd5e9bea8880d8bf2caa59d0efb0acc19f74",
           "download_path": "../bin/deps/linux2/x86_64/bin/md5sum_host"
