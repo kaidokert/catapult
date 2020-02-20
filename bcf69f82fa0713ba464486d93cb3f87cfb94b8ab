@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a9174b2_dc4108cb",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-20T02:15:16Z",
+      "side": 1,
+      "message": "unsurprising?",
+      "range": {
+        "startLine": 35,
+        "startChar": 45,
+        "endLine": 35,
+        "endChar": 56
+      },
+      "revId": "bcf69f82fa0713ba464486d93cb3f87cfb94b8ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feee18e6_33ecfb1e",
+        "filename": "dashboard/dashboard/sheriff_config/utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-20T02:15:16Z",
+      "side": 1,
+      "message": "s/because re2 doesn\u0027t support/so re2 can use the regular expression/",
+      "range": {
+        "startLine": 36,
+        "startChar": 51,
+        "endLine": 36,
+        "endChar": 77
+      },
+      "revId": "bcf69f82fa0713ba464486d93cb3f87cfb94b8ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
