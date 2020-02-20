@@ -22,6 +22,30 @@
       "revId": "f7c9a63b8904b15b904cdb6bcd80372ac9af9e56",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d514bc99_dbb020ca",
+        "filename": "telemetry/telemetry/page/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-02-20T01:28:40Z",
+      "side": 1,
+      "message": "Navigation to about:blank is normally expected to be fast, so this probably won\u0027t increase the runtime by much for a single story. For larger benchmarks that run a whole bunch of stories, this may accumulate to be somewhat non-negligible though.",
+      "parentUuid": "d8e61ce7_960a0a03",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 41
+      },
+      "revId": "f7c9a63b8904b15b904cdb6bcd80372ac9af9e56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
