@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfc7c116_a00bb677",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-21T18:31:11Z",
+      "side": 1,
+      "message": "this will likely go out of date if people add new webview types and forget to add them here. Instead, we can include something in the android_browser_backend_settings objects that explains whether they are webview or not.",
+      "range": {
+        "startLine": 422,
+        "startChar": 2,
+        "endLine": 429,
+        "endChar": 0
+      },
+      "revId": "b22cec7171146cf970e407f02e9ae809fa2059cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
