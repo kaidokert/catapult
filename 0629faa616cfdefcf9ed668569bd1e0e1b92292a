@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "26417180_a2cd8bfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-21T00:16:32Z",
+      "side": 1,
+      "message": "It\u0027s not so hard. Actually I find it simpler than fixing tests :(",
+      "parentUuid": "d6594ad7_2b21fb17",
+      "range": {
+        "startLine": 9,
+        "startChar": 43,
+        "endLine": 11,
+        "endChar": 33
+      },
+      "revId": "0629faa616cfdefcf9ed668569bd1e0e1b92292a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0335aaa9_403676ca",
         "filename": "dashboard/dashboard/sheriff_config/test_validator.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "0629faa616cfdefcf9ed668569bd1e0e1b92292a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40ed5094_5781aa76",
+        "filename": "dashboard/dashboard/sheriff_config/test_validator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-21T00:16:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0335aaa9_403676ca",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "0629faa616cfdefcf9ed668569bd1e0e1b92292a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
