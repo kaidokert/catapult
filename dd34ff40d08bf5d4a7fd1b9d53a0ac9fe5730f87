@@ -22,6 +22,30 @@
       "revId": "dd34ff40d08bf5d4a7fd1b9d53a0ac9fe5730f87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aad7b7e_725c32df",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_symbolizer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-02-21T23:44:21Z",
+      "side": 1,
+      "message": "Hm, I could have sworn that adding the https:// made Gitiles recognize it as a link, but that doesn\u0027t appear to be the case. It doesn\u0027t hurt anything, and removing it won\u0027t reduce the number of lines, so I\u0027ll keep it as-is and just remember that for the future.",
+      "parentUuid": "9e7b1ac7_aac41091",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 81,
+        "endChar": 19
+      },
+      "revId": "dd34ff40d08bf5d4a7fd1b9d53a0ac9fe5730f87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
