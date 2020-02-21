@@ -73,9 +73,9 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
   """A launchable android browser instance."""
 
   def __init__(self, browser_type, finder_options, android_platform,
-               backend_settings, local_apk=None):
+               backend_settings, local_apk=None, target_os='android'):
     super(PossibleAndroidBrowser, self).__init__(
-        browser_type, 'android', backend_settings.supports_tab_control)
+        browser_type, target_os, backend_settings.supports_tab_control)
     assert browser_type in FindAllBrowserTypes(), (
         'Please add %s to android_browser_finder.FindAllBrowserTypes' %
         browser_type)
@@ -419,6 +419,14 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
     if reference_browser:
       possible_browsers.append(reference_browser)
 
+  webview_types = [
+      android_browser_backend_settings.ANDROID_WEBVIEW.browser_type,
+      android_browser_backend_settings.ANDROID_WEBVIEW_BUNDLE.browser_type,
+      android_browser_backend_settings.ANDROID_WEBVIEW_GOOGLE.browser_type,
+      android_browser_backend_settings.ANDROID_WEBVIEW_GOOGLE_BUNDLE.browser_type,
+      android_browser_backend_settings.ANDROID_WEBVIEW_INSTRUMENTATION.browser_type
+  ]
+
   # Add any other known available browsers.
   for settings in ANDROID_BACKEND_SETTINGS:
     if finder_options.IsBrowserTypeRelevant(settings.browser_type):
@@ -426,9 +434,15 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
       if finder_options.IsBrowserTypeReference():
         local_apk = _FetchReferenceApk(
             android_platform, finder_options.IsBrowserTypeBundle())
-      p_browser = PossibleAndroidBrowser(
-          settings.browser_type, finder_options, android_platform, settings,
-          local_apk=local_apk)
+
+      if settings.browser_type in webview_types:
+        p_browser = PossibleAndroidBrowser(
+            settings.browser_type, finder_options, android_platform, settings,
+            local_apk=local_apk, target_os='android_webview')
+      else:
+        p_browser = PossibleAndroidBrowser(
+            settings.browser_type, finder_options, android_platform, settings,
+            local_apk=local_apk)
       if p_browser.IsAvailable():
         possible_browsers.append(p_browser)
   return possible_browsers
