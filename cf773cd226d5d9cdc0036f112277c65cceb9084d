@@ -22,6 +22,30 @@
       "revId": "cf773cd226d5d9cdc0036f112277c65cceb9084d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba22a34b_1ee7d075",
+        "filename": "dashboard/bq_export/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-21T05:20:16Z",
+      "side": 1,
+      "message": "Good point, done.\n\n(That\u0027s what the previous link describes, but I\u0027ve made this explicit now.)",
+      "parentUuid": "3b6d8a9b_9b68e0e8",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "cf773cd226d5d9cdc0036f112277c65cceb9084d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
