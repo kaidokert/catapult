@@ -213,11 +213,13 @@ class ArgumentParser(argparse.ArgumentParser):
 
 
     def parse_args(self, args=None, namespace=None):
+        print('parse_args: input args are ', args)
         try:
             rargs = super(ArgumentParser, self).parse_args(args=args,
                                                            namespace=namespace)
         except _Bailout:
             return None
+        print('parsed arguments is ', rargs)
 
         for val in rargs.metadata:
             if '=' not in val:

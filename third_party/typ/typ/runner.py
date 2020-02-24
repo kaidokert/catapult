@@ -158,7 +158,7 @@ class Runner(object):
 
     def main(self, argv=None, **defaults):
         parser = ArgumentParser(self.host)
-        self.parse_args(parser, argv, **defaults)
+        self.parse_args(parser, argv or sys.argv[1:], **defaults)
         if parser.exit_status is not None:
             return parser.exit_status
 
