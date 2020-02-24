@@ -79,6 +79,9 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
     else:
       return util.FindLatestApkOnHost(chrome_root, apk_name)
 
+  def IsWebViewOs(self):
+    return False
+
 
 class GenericChromeBackendSettings(AndroidBrowserBackendSettings):
   def __new__(cls, **kwargs):
@@ -135,6 +138,7 @@ class WebViewBasedBackendSettings(AndroidBrowserBackendSettings):
     return self.devtools_port.format(pid=pid)
 
 
+
 class WebViewBackendSettings(WebViewBasedBackendSettings):
   def __new__(cls, **kwargs):
     # Provide some defaults for backends that work via system_webview_shell,
@@ -165,6 +169,8 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
         return [embedder_apk_path]
     return []
 
+  def IsWebViewOs(self):
+    return True
 
 class WebViewGoogleBackendSettings(WebViewBackendSettings):
   def GetApkName(self, device):
@@ -175,6 +181,8 @@ class WebViewGoogleBackendSettings(WebViewBackendSettings):
     else:
       return 'SystemWebViewGoogle.apk'
 
+  def IsWebViewOs(self):
+    return True
 
 class WebViewBundleBackendSettings(WebViewBackendSettings):
   def GetApkName(self, device):
@@ -195,6 +203,8 @@ class WebViewBundleBackendSettings(WebViewBackendSettings):
         return [embedder_apk_path]
     return []
 
+  def IsWebViewOs(self):
+    return True
 
 class WebLayerBackendSettings(WebViewBackendSettings):
   def __new__(cls, **kwargs):
