@@ -222,6 +222,11 @@ def _LocalServerBackendMain(args):
   if handler_module_name and handler_class_name:
     handler_module = __import__(handler_module_name, fromlist=[True])
     handler_class = getattr(handler_module, handler_class_name, None)
+  logging.error('---- local_server.py, _LocalServerBackendMain, handler_module_name: %s, handler_class_name: %s', handler_module_name, handler_class_name)
+  if handler_class:
+    logging.error('---- local_server.py, _LocalServerBackendMain, handler_class loaded')
+  else:
+    logging.error('---- ERROR: local_server.py, _LocalServerBackendMain, handler_class not loaded')
 
   named_ports = server.StartAndGetNamedPorts(server_args, handler_class)
   assert isinstance(named_ports, list)

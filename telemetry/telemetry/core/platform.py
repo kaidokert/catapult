@@ -339,6 +339,7 @@ class Platform(object):
     if handler_class:
       server = memory_cache_http_server.MemoryCacheDynamicHTTPServer(
           paths, handler_class)
+      real_logging.error('---- platform.py, MemoryCacheDynamicHTTPServer created.')
     else:
       server = memory_cache_http_server.MemoryCacheHTTPServer(paths)
     self.StartLocalServer(server)
