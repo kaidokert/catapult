@@ -21,6 +21,7 @@ from devil.android import device_test_case
 def main():
   runner = typ.Runner()
   runner.setup_fn = device_test_case.PrepareDevices
+  runner.context = runner.args
   return runner.main(
       coverage_source=[_DEVIL_PATH],
       jobs=1,

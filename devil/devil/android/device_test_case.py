@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import logging
 import threading
 import unittest
 
@@ -13,7 +14,25 @@ _devices_condition = threading.Condition(_devices_lock)
 _devices = set()
 
 
-def PrepareDevices(*_args):
+def _SetUpLogging(verbosity):
+  level = None
+  if verbosity == 0:
+    level = logging.WARNING
+  elif verbosity == 1:
+    level = logging.INFO
+  elif verbosity >= 2:
+    level = logging.DEBUG
+  else:
+    raise RuntimeError(
+        'Logging verbosity of {} is not allowed.'.format(verbosity))
+  print('verb is %s setting level to %s' % (verbosity, level))
+  logging.basicConfig(
+    level=level,
+    format='(%(levelname)s) %(asctime)s %(module)s:%(lineno)d %(message)s')
+
+
+def PrepareDevices(_, commandline_args):
+  _SetUpLogging(commandline_args.verbose)
 
   raw_devices = device_utils.DeviceUtils.HealthyDevices()
   live_devices = []
@@ -29,6 +48,8 @@ def PrepareDevices(*_args):
 
   if not _devices:
     raise Exception('No live devices attached.')
+
+  return commandline_args
 
 
 class DeviceTestCase(unittest.TestCase):
