@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "858c5091_1f7bc97a",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-24T23:10:24Z",
+      "side": 1,
+      "message": "Why not just \"IsWebView\"? I\u0027m not sure what \"Os\" means in this context.",
+      "range": {
+        "startLine": 224,
+        "startChar": 6,
+        "endLine": 224,
+        "endChar": 17
+      },
+      "revId": "4af2723e10fec64e03c52e6ce3d60c00ce8e032b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
