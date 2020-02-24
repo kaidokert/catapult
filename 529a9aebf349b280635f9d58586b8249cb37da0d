@@ -69,6 +69,24 @@
       "revId": "529a9aebf349b280635f9d58586b8249cb37da0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90eaa4b9_7ab57ff5",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-24T22:52:39Z",
+      "side": 1,
+      "message": "ah, I realized I can do \nargv or sys.argv[1:]\ninstead of \nargv or sys.argv\n\nand that fixes it.",
+      "parentUuid": "6272ff53_24f7f198",
+      "revId": "529a9aebf349b280635f9d58586b8249cb37da0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
