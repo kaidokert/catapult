@@ -22,6 +22,30 @@
       "revId": "b22cec7171146cf970e407f02e9ae809fa2059cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2729df35_b2f80b54",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1265134
+      },
+      "writtenOn": "2020-02-24T22:17:26Z",
+      "side": 1,
+      "message": "Thank you for the suggestion! I added an IsWebViewOs() method to AndroidBrowserBackendSettings that returns False and is overridden by WebViewBackendSettings to return True. Is this more or less what you meant (I will also add some comments)? Not sure about instrumentation and WebLayer configurations. Should we keep \u0027android\u0027 target os for them?",
+      "parentUuid": "bfc7c116_a00bb677",
+      "range": {
+        "startLine": 422,
+        "startChar": 2,
+        "endLine": 429,
+        "endChar": 0
+      },
+      "revId": "b22cec7171146cf970e407f02e9ae809fa2059cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
