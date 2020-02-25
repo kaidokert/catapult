@@ -22,6 +22,30 @@
       "revId": "4af2723e10fec64e03c52e6ce3d60c00ce8e032b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ace373d_5a80eb63",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1265134
+      },
+      "writtenOn": "2020-02-25T19:39:21Z",
+      "side": 1,
+      "message": "Changed to IsWebView. I was thinking about \u0027target_os\u0027 because this is the parameter that is now different between the configurations, but this might be too implementation-specific.",
+      "parentUuid": "858c5091_1f7bc97a",
+      "range": {
+        "startLine": 224,
+        "startChar": 6,
+        "endLine": 224,
+        "endChar": 17
+      },
+      "revId": "4af2723e10fec64e03c52e6ce3d60c00ce8e032b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

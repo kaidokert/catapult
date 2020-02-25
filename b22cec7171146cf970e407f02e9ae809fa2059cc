@@ -70,6 +70,30 @@
       "revId": "b22cec7171146cf970e407f02e9ae809fa2059cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ac4ad05_a62fc3af",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1265134
+      },
+      "writtenOn": "2020-02-25T19:39:21Z",
+      "side": 1,
+      "message": "Toby, could you please confirm whether leaving \u0027android\u0027 as target_os for WebLayerBackendSettings would be OK (meaning that \u0027android\u0027 experiments would apply to them, and not \u0027android_webview\u0027)?",
+      "parentUuid": "82eee2af_5c5ccfad",
+      "range": {
+        "startLine": 422,
+        "startChar": 2,
+        "endLine": 429,
+        "endChar": 0
+      },
+      "revId": "b22cec7171146cf970e407f02e9ae809fa2059cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
