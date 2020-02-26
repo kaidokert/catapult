@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49721f8d_65ed4489",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-26T05:17:03Z",
+      "side": 1,
+      "message": "Can we name this `client`, and change t to `test` please?",
+      "range": {
+        "startLine": 213,
+        "startChar": 18,
+        "endLine": 213,
+        "endChar": 21
+      },
+      "revId": "b350678b484280b7a12f8a9cd0baee9cc67a161c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad60aebc_c303af0b",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-26T05:17:03Z",
+      "side": 1,
+      "message": "Making this a named constant will help with readability -- that way you don\u0027t need to explain with a comment.",
+      "range": {
+        "startLine": 216,
+        "startChar": 25,
+        "endLine": 216,
+        "endChar": 28
+      },
+      "revId": "b350678b484280b7a12f8a9cd0baee9cc67a161c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
