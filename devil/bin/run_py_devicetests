@@ -22,6 +22,7 @@ def main():
   runner = typ.Runner()
   runner.setup_fn = device_test_case.PrepareDevices
   return runner.main(
+      argv=sys.argv[1:],
       coverage_source=[_DEVIL_PATH],
       jobs=1,
       suffixes=['*_devicetest.py'],
