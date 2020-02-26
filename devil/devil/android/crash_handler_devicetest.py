@@ -75,5 +75,8 @@ class DeviceCrashTest(device_test_case.DeviceTestCase):
 
 
 if __name__ == '__main__':
-  device_test_case.PrepareDevices()
+  class Args(object):
+    verbose = 1
+
+  device_test_case.PrepareDevices(Args(), Args())
   unittest.main()

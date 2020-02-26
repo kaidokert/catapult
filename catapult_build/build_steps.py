@@ -67,7 +67,8 @@ _CATAPULT_TESTS = [
     {
         'name': 'Devil Device Tests',
         'path': 'devil/bin/run_py_devicetests',
-        'disabled': ['win', 'mac', 'linux']
+        'disabled': ['win', 'mac', 'linux'],
+        'additional_args': ['-vvvv']
     },
     {
         'name': 'Devil Python Tests',

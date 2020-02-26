@@ -19,7 +19,9 @@ from devil.android import device_test_case
 
 
 def main():
+  parser = typ.arg_parser.ArgumentParser()
   runner = typ.Runner()
+  runner.context = parser.parse_args(args=sys.argv[1:])
   runner.setup_fn = device_test_case.PrepareDevices
   return runner.main(
       coverage_source=[_DEVIL_PATH],

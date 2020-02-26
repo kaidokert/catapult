@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 # pylint: disable=W0212
 
+import logging
 import os
 import sys
 import unittest
@@ -22,6 +23,8 @@ class TestPerfControl(device_test_case.DeviceTestCase):
     self._device = device_utils.DeviceUtils(self.serial)
 
   def testHighPerfMode(self):
+    logging.debug('debug log')
+    logging.info('info log')
     perf = perf_control.PerfControl(self._device)
     try:
       perf.SetPerfProfilingMode()
