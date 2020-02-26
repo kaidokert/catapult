@@ -32,7 +32,7 @@ class HistogramBuilder {
   void AddDiagnostic(const std::string& key,
                      tracing::tracing::proto::Diagnostic diagnostic);
 
-  void AddSample(float value);
+  void AddSample(double value);
 
   std::unique_ptr<tracing::tracing::proto::Histogram> toProto() const;
 
@@ -45,7 +45,7 @@ class HistogramBuilder {
   std::string name_;
   std::string description_;
   tracing::tracing::proto::UnitAndDirection unit_;
-  std::vector<float> sample_values_;
+  std::vector<double> sample_values_;
   std::unordered_map<std::string, tracing::tracing::proto::Diagnostic>
       diagnostics_;
   int num_nans_;
