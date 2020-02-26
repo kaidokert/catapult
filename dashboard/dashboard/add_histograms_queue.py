@@ -11,6 +11,7 @@ import json
 import logging
 import sys
 import uuid
+import random
 
 from google.appengine.ext import ndb
 
@@ -25,6 +26,7 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import histogram
+from dashboard.sheriff_config_client import SheriffConfigClient
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
@@ -208,8 +210,12 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
 
   yield ndb.put_multi_async(rows) + [r.UpdateParentAsync() for r in rows]
 
-  def IsMonitored(t):
+  def IsMonitored(clt, t):
     reason = []
+    # Sampling 20% request for testing sherrif-config load
+    if random.random() < 0.2:
+      subscriptions, err_msg = clt.Match(t.test_path)
+      logging.info('Sheriff Config Matching: %s err=%s', subscriptions, err_msg)
     if not t.sheriff:
       reason.append('sheriff')
     if not t.has_rows:
@@ -220,12 +226,13 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
     logging.info('Process test: %s', t.key)
     return True
 
+  clt = SheriffConfigClient()
   tests_keys = []
-  if IsMonitored(parent_test):
+  if IsMonitored(clt, parent_test):
     tests_keys.append(parent_test.key)
 
   for legacy_parent_test in legacy_parent_tests.values():
-    if IsMonitored(legacy_parent_test):
+    if IsMonitored(clt, legacy_parent_test):
       tests_keys.append(legacy_parent_test.key)
 
   tests_keys = [
