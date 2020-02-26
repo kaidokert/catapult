@@ -16,6 +16,7 @@ import fnmatch
 import importlib
 import inspect
 import json
+import logging
 import os
 import pdb
 import sys
@@ -187,6 +188,7 @@ class Runner(object):
 
         ret = 0
         h = self.host
+        h.logger.setLevel(_get_log_level(self.args.verbose))
 
         if self.args.version:
             self.print_(VERSION)
@@ -1162,6 +1164,18 @@ def _load_via_load_tests(child, test_name):
 
 def _sort_inputs(inps):
     return sorted(inps, key=lambda inp: inp.name)
+
+
+def _get_log_level(verbosity):
+    if verbosity == 0:
+        return logging.WARNING
+    elif verbosity == 1:
+        return logging.INFO
+    elif verbosity >= 2:
+        return logging.DEBUG
+    else:
+        raise RuntimeError(
+            'Logging verbosity of {} is not allowed.'.format(verbosity))
 
 
 if __name__ == '__main__':  # pragma: no cover

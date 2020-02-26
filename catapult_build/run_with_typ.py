@@ -30,6 +30,7 @@ def Run(top_level_dir, path=None, suffixes=None, **kwargs):
       path=(path or []),
       coverage_source=[top_level_dir],
       suffixes=suffixes,
+      argv=sys.argv[1:],
       **kwargs)
 
 
