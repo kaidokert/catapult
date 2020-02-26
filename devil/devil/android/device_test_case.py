@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import logging
 import threading
 import unittest
 
@@ -43,6 +44,9 @@ class DeviceTestCase(unittest.TestCase):
       while not _devices:
         _devices_condition.wait(5)
       self.serial = _devices.pop()
+    # If the following line isn't there, then later logging statements in Devil
+    # will not work. I have no idea why this is the case.
+    logging.debug('Set up device test case.')
 
   #override
   def tearDown(self):
