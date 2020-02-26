@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34fa0e14_20362006",
+        "filename": "systrace/systrace/tracing_agents/android_cgroup_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1267170
+      },
+      "writtenOn": "2020-02-26T07:53:12Z",
+      "side": 1,
+      "message": "\u0027-1\u0027 ?",
+      "range": {
+        "startLine": 72,
+        "startChar": 11,
+        "endLine": 72,
+        "endChar": 13
+      },
+      "revId": "b61099676c9318241166f35e8eb5db9b20a41460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "354f1295_2d43a7f6",
+        "filename": "systrace/systrace/tracing_agents/android_cgroup_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1267170
+      },
+      "writtenOn": "2020-02-26T07:53:12Z",
+      "side": 1,
+      "message": "nit: probably need change if we want other e.g. blkio and stune. for now, cpuset is good.",
+      "range": {
+        "startLine": 89,
+        "startChar": 19,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "b61099676c9318241166f35e8eb5db9b20a41460",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
