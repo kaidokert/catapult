@@ -339,8 +339,11 @@ class Platform(object):
     if handler_class:
       server = memory_cache_http_server.MemoryCacheDynamicHTTPServer(
           paths, handler_class)
+      print 'MemoryCacheDynamicHTTPServer created'
     else:
       server = memory_cache_http_server.MemoryCacheHTTPServer(paths)
+      print 'MemoryCacheHTTPServer created'
+
     self.StartLocalServer(server)
     # For now, Fuchsia needs to do port forwarding due to --proxy-server
     # flag not being supported in its browser.
