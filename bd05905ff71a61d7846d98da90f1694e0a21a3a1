@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "80dc56fd_7e40809a",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-27T02:57:46Z",
+      "side": 1,
+      "message": "Why not import the sheriff_config_client and call the appropriate function there instead, so it\u0027s easier to track which module a function is being called from?\n\nfrom dashboard import sheriff_config_client\n# ... then somewhere you need something in that module ...\nx \u003d sheriff_config_client.GetClient()",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f887acaa_7bea27ac",
+        "filename": "dashboard/dashboard/add_point_queue.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-27T02:57:46Z",
+      "side": 1,
+      "message": "same here.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 66
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99adb2e0_d82a0831",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -41,6 +87,29 @@
         "startChar": 42,
         "endLine": 20,
         "endChar": 48
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8dc3772_5ced8f99",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-27T02:57:46Z",
+      "side": 1,
+      "message": "Why do this instead of a global?\n\n```\n_CACHED_CONFIG_CLIENT \u003d None\n\n\ndef GetClient():\n  if _CACHED_CONFIG_CLIENT is None:\n    _CACHED_CONFIG_CLIENT \u003d SheriffConfigClient()\n  return _CACHED_CONFIG_CLIENT\n```\n\nThe other question is what happens when the stored `_session` in the client is no longer valid? i.e. do we need to change it in cases where the request fails because the auth expired?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
       },
       "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
