@@ -16,6 +16,12 @@ from google.auth.transport.requests import AuthorizedSession
 from google.protobuf import json_format
 
 
+def GetSheriffConfigClient():
+  if not hasattr(GetSheriffConfigClient, '_client'):
+    GetSheriffConfigClient.client = SheriffConfigClient()
+  return GetSheriffConfigClient.client
+
+
 class SheriffConfigClient(object):
   """Wrapping of sheriff-config HTTP API."""
 

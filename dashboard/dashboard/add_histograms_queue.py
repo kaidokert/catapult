@@ -26,7 +26,7 @@ from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
 from dashboard.models import histogram
-from dashboard.sheriff_config_client import SheriffConfigClient
+from dashboard.sheriff_config_client import GetSheriffConfigClient
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
@@ -226,7 +226,7 @@ def _AddRowsFromData(params, revision, parent_test, legacy_parent_tests):
     logging.info('Process test: %s', test.key)
     return True
 
-  client = SheriffConfigClient()
+  client = GetSheriffConfigClient()
   tests_keys = []
   if IsMonitored(client, parent_test):
     tests_keys.append(parent_test.key)
