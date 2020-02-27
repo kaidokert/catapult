@@ -741,3 +741,10 @@ class ReadValueTest(_ReadValueExecutionTest):
     self.assertReadValueSuccess(execution)
     self.assertEqual(execution.result_values, (0, 1, 2))
     self.assertRetrievedOutputJson()
+
+  def testMetric(self):
+    quest = read_value.ReadValue(
+        results_filename='somefile.json',
+        chart='chart',
+        trace_or_story='trace')
+    self.assertEqual(quest.metric, 'chart')
