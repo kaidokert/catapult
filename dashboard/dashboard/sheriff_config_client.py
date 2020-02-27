@@ -17,7 +17,7 @@ from google.protobuf import json_format
 
 
 def GetSheriffConfigClient():
-  if not hasattr(GetSheriffConfigClient, '_client'):
+  if not hasattr(GetSheriffConfigClient, 'client'):
     GetSheriffConfigClient.client = SheriffConfigClient()
   return GetSheriffConfigClient.client
 
