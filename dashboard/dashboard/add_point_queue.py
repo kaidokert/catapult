@@ -73,7 +73,7 @@ class AddPointQueueHandler(request_handler.RequestHandler):
     tests_keys = []
     for t in parent_tests:
       reason = []
-      request_sampling_percentage = 0.2
+      request_sampling_percentage = 0.5
       if random.random() < request_sampling_percentage:
         subscriptions, err_msg = client.Match(t.test_path)
         logging.info('Sheriff Config Matching: %s err=%s',
