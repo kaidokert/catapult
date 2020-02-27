@@ -74,11 +74,11 @@ class AddPointQueueHandler(request_handler.RequestHandler):
       reason = []
       request_sampling_percentage = 0.2
       if random.random() < request_sampling_percentage:
-        subscriptions, err_msg = client.Match(t.test_path)
-        logging.info('Sheriff Config Matching: %s err=%s',
-                     subscriptions, err_msg)
-      if not t.sheriff:
-        reason.append('sheriff')
+        subscriptions, _ = client.Match(t.test_path, check=True)
+        if not subscriptions:
+          reason.append('sheriff')
+      elif not t.sheriff:
+        reason.append('legacy sheriff')
       if not t.has_rows:
         reason.append('has_rows')
       if IsRefBuild(t.key):
