@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ca372ec_60e0b1b4",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-27T00:09:01Z",
+      "side": 1,
+      "message": "why change this to be verbose? I think the default is fine for the bots.",
+      "range": {
+        "startLine": 71,
+        "startChar": 11,
+        "endLine": 71,
+        "endChar": 36
+      },
+      "revId": "ea01a1faba717f6159a801fb6724538ae5e1ae32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f53085ac_955542dd",
+        "filename": "devil/devil/android/crash_handler_devicetest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-02-27T00:09:01Z",
+      "side": 1,
+      "message": "We can probably just delete this instead of improving it. people should use run_py_devicetests to run these, not directly run them.",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 26
+      },
+      "revId": "ea01a1faba717f6159a801fb6724538ae5e1ae32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
