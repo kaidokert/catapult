@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99adb2e0_d82a0831",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-27T02:54:34Z",
+      "side": 1,
+      "message": "Give this method a docstring, e.g.\n\n   \"\"\"Get a singleton SheriffConfigClient instance.\n\n   Most code should use this rather than constructing a SheriffConfigClient directly.\n   \"\"\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23323430_ba7fd3f0",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-27T02:54:34Z",
+      "side": 1,
+      "message": "Call this attribute _client, so that it is private.",
+      "range": {
+        "startLine": 20,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed67bb53_cb905c82",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-27T02:54:34Z",
+      "side": 1,
+      "message": "Perhaps rename this to _SheriffConfigClient, so that it is private to this module?",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
