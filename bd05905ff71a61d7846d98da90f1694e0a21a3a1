@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "deebfef6_bf945868",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-27T03:14:40Z",
+      "side": 1,
+      "message": "\u003e Why do this instead of a global?\n\nI don\u0027t have a strong opinion either way here, I just want to share some trivia.\n\nThe glib answer is: because your implementation has a bug (missing a \u0027global\u0027 statement\u0027) :P\n\nArguably, there\u0027s less namespace pollution this way.\n\nAlso, this is slightly closer to how a generic @once decorator tends to be implemented.\n\nThe usual implementation is something like:\n\ndef once(f):\n  @functools.wraps(f)\n  def wrapper():\n    result \u003d getattr(f, \u0027_cached_result\u0027, None)\n    if result is None:\n      result \u003d f()\n      f._cached_result \u003d result\n    return result\n  return wrapper\n\nwhich has the slight advantage of not relying on any module globals, which means it will continue to work as expected even during interpreter shutdown (which has a weird phase where module globals are all set to None to try help garbage collection, and ends up causing lots of unexpected None values in threads and __del__ methods).",
+      "parentUuid": "a8dc3772_5ced8f99",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed67bb53_cb905c82",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
