@@ -12,7 +12,6 @@ from dashboard import speed_releasing
 from dashboard.common import testing_common
 from dashboard.models.subscription import Subscription
 from dashboard.models.subscription import VISIBILITY
-from dashboard.sheriff_config_client import GetSheriffConfigClient
 from dashboard.sheriff_config_client import SheriffConfigClient
 import mock
 
