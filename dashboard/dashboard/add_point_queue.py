@@ -23,7 +23,7 @@ from dashboard.common import request_handler
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import graph_data
-from dashboard.sheriff_config_client import SheriffConfigClient
+from dashboard.sheriff_config_client import GetSheriffConfigClient
 
 
 class AddPointQueueHandler(request_handler.RequestHandler):
@@ -69,7 +69,7 @@ class AddPointQueueHandler(request_handler.RequestHandler):
 
     ndb.Future.wait_all(all_put_futures)
 
-    client = SheriffConfigClient()
+    client = GetSheriffConfigClient()
     tests_keys = []
     for t in parent_tests:
       reason = []
