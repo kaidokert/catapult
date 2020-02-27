@@ -75,6 +75,7 @@ type replayingProxy struct {
 	scheme       string
 	transformers []ResponseTransformer
 	quietMode    bool
+
 }
 
 func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -97,13 +98,18 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	logf := makeLogger(req, proxy.quietMode)
 
 	// Lookup the response in the archive.
-	_, storedResp, err := proxy.a.FindRequest(req)
+	matchedReq, storedResp, err := proxy.a.FindRequest(req)
 	if err != nil {
 		logf("couldn't find matching request: %v", err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 	defer storedResp.Body.Close()
+
+	inexactUrlMatchSnippet := ""
+	if req.URL.String() != matchedReq.URL.String() {
+		inexactUrlMatchSnippet = " via inexact URL match"
+	}
 
 	// Check if the stored Content-Encoding matches an encoding allowed by the client.
 	// If not, transform the response body to match the client's Accept-Encoding.
@@ -147,7 +153,7 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 	}
 
 	// Forward the response.
-	logf("serving %v response", storedResp.StatusCode)
+	logf("serving %v response%v", storedResp.StatusCode,  inexactUrlMatchSnippet)
 	for k, v := range storedResp.Header {
 		w.Header()[k] = append([]string{}, v...)
 	}

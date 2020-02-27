@@ -22,6 +22,7 @@ import (
 )
 
 var ErrNotFound = errors.New("not found")
+var ErrNoExactMatch = errors.New("only fuzzy match available")
 
 // ArchivedRequest contains a single request and its response.
 // Immutable after creation.
@@ -109,6 +110,9 @@ type Archive struct {
 	// serve the responses in the chronological sequence in which wpr_go
 	// recorded them.
 	ServeResponseInChronologicalSequence bool
+	// If an exact match is not found for a particular URL, do not attempt to
+	// fuzzy match based on only same path (with different query params).
+	ExactMatchOnly bool
 	// Records the current session id.
 	// Archive can serve responses in chronological order. If a client wants to
 	// reset the Archive to serve responses from the start, the client may do so
@@ -209,7 +213,6 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 	if len(hostMap[reqUrl]) > 0 {
 		return a.findBestMatchInArchivedRequestSet(req, hostMap[reqUrl])
 	}
-
 	// For all URLs with a matching path, pick the URL that has the most matching query parameters.
 	// The match ratio is defined to be 2*M/T, where
 	//   M = number of matches x where a.Query[x]=b.Query[x]
@@ -245,6 +248,9 @@ func (a *Archive) FindRequest(req *http.Request) (*http.Request, *http.Response,
 	}
 
 	if bestURL != "" {
+		if a.ExactMatchOnly {
+			return nil, nil, ErrNoExactMatch
+		}
 		return a.findBestMatchInArchivedRequestSet(req, hostMap[bestURL])
 	}
 
