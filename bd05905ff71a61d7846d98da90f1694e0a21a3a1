@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "fe873411_ee94f1e2",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-27T03:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99adb2e0_d82a0831",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23323430_ba7fd3f0",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -91,6 +115,30 @@
       "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5950974_bf5d6c1d",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-27T03:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23323430_ba7fd3f0",
+      "range": {
+        "startLine": 20,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "d606f6fa_1901e705",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-27T03:42:24Z",
+      "side": 1,
+      "message": "It will be refreshed in the `request` function (you can see from https://google-auth.readthedocs.io/en/latest/_modules/google/auth/transport/requests.html#AuthorizedSession). I checked vendored code is same.\n\nI had some horrible experiences with modifying global values (and forgot `global`) in python. So it\u0027s just personal preference.",
+      "parentUuid": "a8dc3772_5ced8f99",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed67bb53_cb905c82",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -161,6 +233,30 @@
       "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c367c2dd_a3c12d4c",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-02-27T03:42:24Z",
+      "side": 1,
+      "message": "We still need the client in other tests because we mock it and reusing will cause checking called status affected by other tests. I\u0027m not sure in this case we should mark it private or not.",
+      "parentUuid": "ed67bb53_cb905c82",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
