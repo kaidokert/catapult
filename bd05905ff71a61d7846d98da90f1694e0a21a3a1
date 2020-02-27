@@ -261,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "c7dbf5f9_aacdf7ef",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-27T04:10:01Z",
+      "side": 1,
+      "message": "Oh, wow -- #TIL. I thought this was a python3 only thing.\n\nI\u0027m fine with keeping it this way.",
+      "parentUuid": "d606f6fa_1901e705",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed67bb53_cb905c82",
         "filename": "dashboard/dashboard/sheriff_config_client.py",
         "patchSetId": 2
@@ -296,6 +320,30 @@
       "side": 1,
       "message": "We still need the client in other tests because we mock it and reusing will cause checking called status affected by other tests. I\u0027m not sure in this case we should mark it private or not.",
       "parentUuid": "ed67bb53_cb905c82",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "bd05905ff71a61d7846d98da90f1694e0a21a3a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64674693_aa54069b",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-27T04:10:01Z",
+      "side": 1,
+      "message": "I can go either way on this. I suspect it\u0027s fine to leave it as is for now.",
+      "parentUuid": "c367c2dd_a3c12d4c",
       "range": {
         "startLine": 25,
         "startChar": 6,
