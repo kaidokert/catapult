@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f14d0005_28e3076a",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-02-27T00:10:36Z",
+      "side": 1,
+      "message": "Typically, named constants would be in the global scope, and be named something like _REQUEST_SAMPLING_PERCENTAGE or more accurately _REQUEST_SAMPLING_PROBABILITY.",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 37
+      },
+      "revId": "c4b80968d71526ba5806109a4947e05f44b153fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
