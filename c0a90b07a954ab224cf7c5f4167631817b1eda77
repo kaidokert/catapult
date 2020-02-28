@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e53ee00_298eab38",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-02-28T03:58:50Z",
+      "side": 1,
+      "message": "FYI you can also just name them *unused_args and **unused_kwargs in the function signature.",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 14
+      },
+      "revId": "c0a90b07a954ab224cf7c5f4167631817b1eda77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
