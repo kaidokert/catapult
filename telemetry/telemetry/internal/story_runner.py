@@ -293,12 +293,14 @@ def RunStorySet(test, story_set, finder_options, results, max_failures=None):
             continue
 
           try:
+            _CleanupUnsymbolizedMinidumps(state)
             if state.platform:
               state.platform.WaitForBatteryTemperature(35)
               if finder_options.wait_for_cpu_temp:
                 state.platform.WaitForCpuTemperature(38.0)
               _WaitForThermalThrottlingIfNeeded(state.platform)
             _RunStoryAndProcessErrorIfNeeded(story, results, state, test)
+            _CleanupUnsymbolizedMinidumpsFatal(state)
           except _UNHANDLEABLE_ERRORS as exc:
             interruption = (
                 'Benchmark execution interrupted by a fatal exception: %r' %
@@ -513,3 +515,23 @@ def _CheckThermalThrottling(platform):
   if platform.HasBeenThermallyThrottled():
     logging.warning('Device has been thermally throttled during '
                     'performance tests, results will vary.')
+
+
+def _CleanupUnsymbolizedMinidumps(state):
+  """Cleans up any unsymbolized minidumps so the yaren't found later.
+
+  Args:
+    state: The shared_state.SharedState instance for the test.
+  """
+  if hasattr(state, 'browser'):
+    state.browser._CleanupUnsymbolizedMinidumps()
+
+
+def _CleanupUnsymbolizedMinidumpsFatal(state):
+  """Cleans up any unsymbolized minidumps and raises an exception if present.
+
+  Args:
+    state: The shared_state.SharedState instance for the test.
+  """
+  if hasattr(state, 'browser'):
+    state.browser._CleanupUnsymbolizedMinidumpsFatal()
