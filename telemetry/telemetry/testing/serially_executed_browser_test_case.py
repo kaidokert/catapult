@@ -39,6 +39,14 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
     super(SeriallyExecutedBrowserTestCase, self).set_artifacts(artifacts)
     artifact_logger.RegisterArtifactImplementation(artifacts)
 
+  def setUp(self):
+    if self.browser:
+      self.browser.CleanupUnsymbolizedMinidumps()
+
+  def tearDown(self):
+    if self.browser:
+      self.browser.CleanupUnsymbolizedMinidumpsFatal()
+
   @classmethod
   def Name(cls):
     return cls.__name__
