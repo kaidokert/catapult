@@ -49,6 +49,53 @@
     },
     {
       "key": {
+        "uuid": "fb3d9c30_d5c5b48a",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-02T17:24:28Z",
+      "side": 1,
+      "message": "readline will surely get the output whether the subprocess uses logging or print itself. It shouldn\u0027t matter.\n\nSince this is printing output from another subprocess, it may be that the other process already uses logging.info() so the printout already has various metadata in it. If so, then it\u0027s fine not to use logging.info here. Either way, I don\u0027t want to block you so LGTM.",
+      "parentUuid": "5b6814c1_5e701465",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 16
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee82d687_63327d81",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-02T17:24:28Z",
+      "side": 1,
+      "message": "This absolutely needs to be a logging.info. This should not be a print statement.",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 57
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48b2aad5_507c056c",
         "filename": "telemetry/telemetry/core/local_server.py",
         "patchSetId": 1
@@ -131,6 +178,54 @@
       "side": 1,
       "message": "In the new blink perf test for service worker, the handler class should has a valid value, please refer here:\nhttps://cs.chromium.org/chromium/src/tools/perf/benchmarks/blink_perf.py?q\u003dblink_perf.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d428",
       "parentUuid": "48b2aad5_507c056c",
+      "range": {
+        "startLine": 229,
+        "startChar": 58,
+        "endLine": 229,
+        "endChar": 76
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20c8be50_5717befa",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-02T17:24:28Z",
+      "side": 1,
+      "message": "in general, it\u0027s better to raise an exception rather than print an error message and continue. The only time that you should continue is if you think that the application may be able to recover. If the handler class is None, then does that mean that Telemetry will inevitably fail? If so, raise an exception. If not, log a warning.",
+      "parentUuid": "7c85faf2_396dabb3",
+      "range": {
+        "startLine": 229,
+        "startChar": 14,
+        "endLine": 229,
+        "endChar": 19
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbbf8173_82d14bcf",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-02T17:24:28Z",
+      "side": 1,
+      "message": "Ting is correct here. The name could have a value but the class does not have a value.",
+      "parentUuid": "d45f5ea6_cc179c6f",
       "range": {
         "startLine": 229,
         "startChar": 58,
