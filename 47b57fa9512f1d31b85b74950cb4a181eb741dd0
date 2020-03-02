@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5b6814c1_5e701465",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2020-03-02T03:22:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure and I guess if other files changes to use logging.info() or other logging methods, then readline() won\u0027t get those output? In that case, I think maybe this \u0027print line\u0027 here is not useful anymore.",
+      "parentUuid": "5007f7cb_7f017bb4",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 16
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "48b2aad5_507c056c",
         "filename": "telemetry/telemetry/core/local_server.py",
         "patchSetId": 1
@@ -64,6 +88,54 @@
         "startChar": 14,
         "endLine": 229,
         "endChar": 19
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c85faf2_396dabb3",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2020-03-02T03:22:35Z",
+      "side": 1,
+      "message": "Sorry that, I\u0027m not quite familiar with logging and how it\u0027s setup in pinpoint. I know the output of logging.error() can be seen both locally and in pinpoint tasks. But I don\u0027t know whether the output of logging.info() and logging.warning() can be seen in pinpoint tasks.",
+      "parentUuid": "dd2baa2f_ae2c5089",
+      "range": {
+        "startLine": 229,
+        "startChar": 14,
+        "endLine": 229,
+        "endChar": 19
+      },
+      "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d45f5ea6_cc179c6f",
+        "filename": "telemetry/telemetry/core/local_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1304488
+      },
+      "writtenOn": "2020-03-02T03:22:35Z",
+      "side": 1,
+      "message": "In the new blink perf test for service worker, the handler class should has a valid value, please refer here:\nhttps://cs.chromium.org/chromium/src/tools/perf/benchmarks/blink_perf.py?q\u003dblink_perf.py\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d428",
+      "parentUuid": "48b2aad5_507c056c",
+      "range": {
+        "startLine": 229,
+        "startChar": 58,
+        "endLine": 229,
+        "endChar": 76
       },
       "revId": "47b57fa9512f1d31b85b74950cb4a181eb741dd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
