@@ -133,10 +133,15 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
             'Skipped because story is not supported '
             '(SharedState.CanRunStory() returns False).')
         return
+
+      _CleanupUnsymbolizedMinidumps(state)
+
       story.wpr_mode = state.wpr_mode
       state.RunStory(results)
       if isinstance(test, story_test.StoryTest):
         test.Measure(state.platform, results)
+
+      _CleanupUnsymbolizedMinidumpsFatal(state)
     except page_action.PageActionNotSupported as exc:
       results.Skip('Unsupported page action: %s' % exc)
     except (legacy_page_test.Failure, exceptions.TimeoutException,
@@ -513,3 +518,23 @@ def _CheckThermalThrottling(platform):
   if platform.HasBeenThermallyThrottled():
     logging.warning('Device has been thermally throttled during '
                     'performance tests, results will vary.')
+
+
+def _CleanupUnsymbolizedMinidumps(state):
+  """Cleans up any unsymbolized minidumps so the yaren't found later.
+
+  Args:
+    state: The shared_state.SharedState instance for the test.
+  """
+  if hasattr(state, 'browser'):
+    state.browser.CleanupUnsymbolizedMinidumps()
+
+
+def _CleanupUnsymbolizedMinidumpsFatal(state):
+  """Cleans up any unsymbolized minidumps and raises an exception if present.
+
+  Args:
+    state: The shared_state.SharedState instance for the test.
+  """
+  if hasattr(state, 'browser'):
+    state.browser.CleanupUnsymbolizedMinidumpsFatal()
