@@ -22,6 +22,30 @@
       "revId": "212ea0cc723e1e163903da6356bbcd1ca6cc48ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1440d9c8_2abacaf1",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-04T05:51:57Z",
+      "side": 1,
+      "message": "Ah, it actually is... in a roundabout way.\n\nThis test ensures that if we have more than one CL we have data for, that we\u0027ll be able to see those histograms show up in the list of histograms processed. Right now we don\u0027t look at the generated HTML, but instead we ensure that we can see the histograms... which passes through the code that does the logging.\n\nI don\u0027t have an expectation of checking the log of what\u0027s made it in there, but this does exercise the code that will log, and with visual inspection of test results satisfies that not only do we see the histograms being processed but that we are logging something about how many histograms we\u0027re seeing.\n\nInsted, I\u0027ll update the description to say we\u0027re adding test coverage. 😊",
+      "parentUuid": "d095380a_ece7807a",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 58
+      },
+      "revId": "212ea0cc723e1e163903da6356bbcd1ca6cc48ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
