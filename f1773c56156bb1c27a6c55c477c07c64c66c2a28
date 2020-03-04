@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "0a882fd4_35d90ecb",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-04T19:01:40Z",
+      "side": 1,
+      "message": "should this be done in the finally: clause below?",
+      "range": {
+        "startLine": 144,
+        "startChar": 6,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "722e1cb8_7b7225c2",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 7
