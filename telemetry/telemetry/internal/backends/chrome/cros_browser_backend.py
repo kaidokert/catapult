@@ -163,7 +163,10 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return 'Cannot get standard output on CrOS'
 
   def PullMinidumps(self):
-    self._cri.PullDumps(self._tmp_minidump_dir)
+    if self._cri:
+      self._cri.PullDumps(self._tmp_minidump_dir)
+    else:
+      logging.debug('Attempted to pull minidumps without CrOSInterface')
 
   def SymbolizeMinidump(self, minidump_path):
     return self._SymbolizeMinidump(minidump_path)
