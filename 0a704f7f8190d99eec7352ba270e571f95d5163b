@@ -46,6 +46,30 @@
       "revId": "0a704f7f8190d99eec7352ba270e571f95d5163b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ff07d3f_c8ee60f7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-03-04T18:22:05Z",
+      "side": 1,
+      "message": "To clarify, the config_path here is the path on the host instead of the device, so we do want to use paths that the host machine supports.",
+      "parentUuid": "d3b98a6b_cbb59414",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 67
+      },
+      "revId": "0a704f7f8190d99eec7352ba270e571f95d5163b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
