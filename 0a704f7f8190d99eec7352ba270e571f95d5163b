@@ -22,6 +22,30 @@
       "revId": "0a704f7f8190d99eec7352ba270e571f95d5163b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3b98a6b_cbb59414",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-03-04T18:16:54Z",
+      "side": 1,
+      "message": "We currently only support linux hosts: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/platform/fuchsia_device.py;l\u003d122 and I think there\u0027s no plan to create a Fuchsia sdk for windows yet. That being said, does os.path.join not work on Windows? My impression was that it just builds paths based on the os.",
+      "parentUuid": "cce51ea5_f84d63ed",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 67
+      },
+      "revId": "0a704f7f8190d99eec7352ba270e571f95d5163b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
