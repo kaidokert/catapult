@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cce51ea5_f84d63ed",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-04T17:35:40Z",
+      "side": 1,
+      "message": "What if a Windows device is running Telemetry and driving a fuchsia device? Should this be posixpath.join instead?\n\nIn [1]: import posixpath\n\nIn [2]: posixpath.join(\u0027path\u0027, \u0027to\u0027, \u0027location\u0027)\nOut[2]: \u0027path/to/location\u0027",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 67
+      },
+      "revId": "0a704f7f8190d99eec7352ba270e571f95d5163b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
