@@ -12,7 +12,7 @@ from telemetry.internal.platform import platform_backend
 class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
   def __init__(self, device):
     super(FuchsiaPlatformBackend, self).__init__(device)
-    config_path = device.output_dir + '/ssh-keys/ssh_config'
+    config_path = device.ssh_config_dir + '/ssh_config'
     self._command_runner = CommandRunner(config_path,
                                          device.host,
                                          device.port)
