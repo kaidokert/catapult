@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d26d155b_ce8d8abd",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-04T19:00:43Z",
+      "side": 1,
+      "message": "How much runtime does this take? Will it potentially regression Chromium CQ times?",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 72
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f6abd41_b4b2433a",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-04T19:00:43Z",
+      "side": 1,
+      "message": "Instead of having two functions, what if you had one function with a |fatal| argument? Why did you decide to do it this way?",
+      "range": {
+        "startLine": 270,
+        "startChar": 22,
+        "endLine": 270,
+        "endChar": 46
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aec971ac_85c7f424",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-04T19:00:43Z",
+      "side": 1,
+      "message": "seems like this should be an error. The caller told this function DoThis and the function silently did nothing and didn\u0027t even log anything (since debug logs don\u0027t normally appear anywhere). Ideally it would throw an exception and the caller would catch that and do something useful, but I guess you could just log an error if necessary for whatever reason. Note that my opinion would be different if this function was named something else like PullMinidumpsIfPossible()",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 72
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "722e1cb8_7b7225c2",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-04T19:00:43Z",
+      "side": 1,
+      "message": "I think it would be better to inline this logic rather than have a function. The reason is that the function name is basically lying. It may silently not do what you tell it to do.",
+      "range": {
+        "startLine": 529,
+        "startChar": 3,
+        "endLine": 531,
+        "endChar": 0
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
