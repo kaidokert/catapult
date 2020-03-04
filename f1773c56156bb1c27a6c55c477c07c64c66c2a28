@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "964b62b4_a0bb3b7c",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-04T19:35:51Z",
+      "side": 1,
+      "message": "Comparing the runtimes for the pixel_skia_gold_test step on linux-rel with and without the CL, it looks like it adds about half a second per test (~30 seconds total for ~60 tests). Strangely, the runtime on Android seems unaffected even though I would expect the pulling of the minidumps to add more overhead. The successful run with the CL took 7 minutes 40 seconds, which was shorter than all the other runs I checked (7:42-8:56).",
+      "parentUuid": "d26d155b_ce8d8abd",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 72
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f6abd41_b4b2433a",
         "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30f51481_f8d2df5a",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-04T19:35:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f6abd41_b4b2433a",
+      "range": {
+        "startLine": 270,
+        "startChar": 22,
+        "endLine": 270,
+        "endChar": 46
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2154eafc_295b0d89",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-04T19:35:51Z",
+      "side": 1,
+      "message": "Switched to error. This is expected to happen in cases where the browser is either already shut down during tearDown, or for whatever reason, a browser was never actually started.",
+      "parentUuid": "aec971ac_85c7f424",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 72
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a882fd4_35d90ecb",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ef47b385_68b4c208",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-04T19:35:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a882fd4_35d90ecb",
+      "range": {
+        "startLine": 144,
+        "startChar": 6,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "722e1cb8_7b7225c2",
         "filename": "telemetry/telemetry/internal/story_runner.py",
         "patchSetId": 7
@@ -114,6 +210,30 @@
       "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfa6d015_61aa764d",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-04T19:35:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "722e1cb8_7b7225c2",
+      "range": {
+        "startLine": 529,
+        "startChar": 3,
+        "endLine": 531,
+        "endChar": 0
+      },
+      "revId": "f1773c56156bb1c27a6c55c477c07c64c66c2a28",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
