@@ -7,7 +7,7 @@ import re
 import socket
 import sys
 
-from py_utils import exc_util
+from py_utils import exc_util, retry_util
 from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.backends import browser_backend
@@ -156,6 +156,7 @@ class _DevToolsClientBackend(object):
     self._forwarder = self.platform_backend.forwarder_factory.Create(
         local_port=None,  # Forwarder will choose an available port.
         remote_port=devtools_port, reverse=True)
+    #time.sleep(30)
     self._local_port = self._forwarder._local_port
     self._remote_port = self._forwarder._remote_port
 
@@ -229,7 +230,9 @@ class _DevToolsClientBackend(object):
     """Return the version dict as provided by the DevTools agent."""
     return self._devtools_http.RequestJson('version')
 
-  def GetChromeBranchNumber(self):
+  @retry_util.RetryOnException(devtools_http.DevToolsClientUrlError, retries=3)
+  def GetChromeBranchNumber(self, retries=None):
+    del retries
     # Detect version information.
     resp = self.GetVersion()
     if 'Protocol-Version' in resp:
