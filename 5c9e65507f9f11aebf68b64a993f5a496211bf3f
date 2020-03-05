@@ -16,6 +16,24 @@
       "revId": "5c9e65507f9f11aebf68b64a993f5a496211bf3f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39c84c20_6021f28c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-03-05T23:00:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65051d55_94481cb4",
+      "revId": "5c9e65507f9f11aebf68b64a993f5a496211bf3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
