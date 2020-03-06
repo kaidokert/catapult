@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f26a799_723c9771",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-03-06T16:30:46Z",
+      "side": 1,
+      "message": "With these changes, I suspect this would be more succinct if the long_list logic was inside the for loop vs having two for loops.",
+      "revId": "03012d41a66b5b462cbd81664132099bf62b3a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d164d71b_51e95692",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-03-06T16:30:46Z",
+      "side": 1,
+      "message": "If we do keep this, the log line should *definitely* include line[0] to make it clear which device has an unexpected state.",
+      "revId": "03012d41a66b5b462cbd81664132099bf62b3a42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
