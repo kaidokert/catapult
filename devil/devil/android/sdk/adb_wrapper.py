@@ -440,15 +440,30 @@ class AdbWrapper(object):
     """
     lines = cls._RawDevices(
         long_list=long_list, timeout=timeout, retries=retries)
+
+    devices = []
+
     if long_list:
-      return [[AdbWrapper(line[0])] + line[1:] for line in lines if (
-          len(line) >= 2 and (not desired_state or line[1] == desired_state))]
+      for line in lines:
+        if len(line) < 2:
+          continue
+        elif desired_state and line[1] != desired_state:
+          logging.warning('expected device state to be %s, but found to be %s.',
+                          desired_state, line[1])
+        else:
+          devices.append([AdbWrapper(line[0])] + line[1:])
     else:
-      return [
-          AdbWrapper(line[0]) for line in lines
-          if (len(line) == 2 and (not desired_state or line[1] == desired_state)
-              )
-      ]
+      for line in lines:
+        if len(line) != 2:
+          continue
+        elif desired_state and line[1] != desired_state:
+          logging.warning('expected device state to be %s, but found to be %s.',
+                          desired_state, line[1])
+        else:
+          devices.append(AdbWrapper(line[0]))
+
+    return devices
+
 
   @classmethod
   def _RawDevices(cls,
