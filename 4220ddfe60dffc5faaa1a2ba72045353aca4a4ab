@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c83fa454_907bd1d3",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-07T00:19:14Z",
+      "side": 1,
+      "message": "How about \"For Fuchsia, wait until port forwarding has started working.\"",
+      "range": {
+        "startLine": 158,
+        "startChar": 5,
+        "endLine": 158,
+        "endChar": 59
+      },
+      "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
