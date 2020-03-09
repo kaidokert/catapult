@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "09f806e8_239f0b37",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-03-09T20:53:15Z",
+      "side": 1,
+      "message": "Ack. Will implement in separate cl.",
+      "parentUuid": "101e398e_ba22fb28",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 41
+      },
+      "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c83fa454_907bd1d3",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 5
@@ -92,6 +116,30 @@
       "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3e72a0c_a21c94e0",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-03-09T20:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9613936f_b60bb09c",
+      "range": {
+        "startLine": 160,
+        "startChar": 11,
+        "endLine": 160,
+        "endChar": 25
+      },
+      "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
