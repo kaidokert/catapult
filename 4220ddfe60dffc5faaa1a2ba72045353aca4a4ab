@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "101e398e_ba22fb28",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-09T20:47:37Z",
+      "side": 1,
+      "message": "nit: RetryOnException waits for a full second after the first failure. That seems far longer than it should. It might be nice to edit RetryOnException to take an \"initial_wait\" argument so that for use cases like this you can wait a tenth of a second instead. \nTHis is a nit and doesn\u0027t need to be done before this change is submitted. It\u0027s just nice to have in the future 😊",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 41
+      },
+      "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c83fa454_907bd1d3",
         "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
         "patchSetId": 5
@@ -46,6 +69,29 @@
       "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9613936f_b60bb09c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-09T20:47:37Z",
+      "side": 1,
+      "message": "I think that what this function really does is wait for the connect. It therefore should be named _WaitForConnection() or something like that. _TryConnection is a bit confusing.",
+      "range": {
+        "startLine": 160,
+        "startChar": 11,
+        "endLine": 160,
+        "endChar": 25
+      },
+      "revId": "4220ddfe60dffc5faaa1a2ba72045353aca4a4ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
