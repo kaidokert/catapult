@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c262528_9300a19d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-09T20:55:16Z",
+      "side": 1,
+      "message": "No longer necessary since you removed the annotation.",
+      "range": {
+        "startLine": 245,
+        "startChar": 32,
+        "endLine": 245,
+        "endChar": 46
+      },
+      "revId": "21509a2393742767cab4e0b4fa20270cc1af2076",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
