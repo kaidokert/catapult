@@ -45,6 +45,53 @@
       "revId": "2d5c5a53d4da86e482512f12551fb8f9aaef3f2e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f0a0c8c_f8b1c986",
+        "filename": "dashboard/dashboard/elements/nav-bar.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-10T22:31:19Z",
+      "side": 1,
+      "message": "I just noticed this -- let\u0027s not put a link to a document here. Let\u0027s just delete this entry because it\u0027s just administrators who will see this (a small group of people).",
+      "range": {
+        "startLine": 162,
+        "startChar": 27,
+        "endLine": 162,
+        "endChar": 106
+      },
+      "revId": "2d5c5a53d4da86e482512f12551fb8f9aaef3f2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b755045_b310c140",
+        "filename": "dashboard/dashboard/elements/nav-bar.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-10T22:31:19Z",
+      "side": 1,
+      "message": "Or just delete it?",
+      "parentUuid": "889e8ea9_cff55d2e",
+      "range": {
+        "startLine": 162,
+        "startChar": 124,
+        "endLine": 162,
+        "endChar": 146
+      },
+      "revId": "2d5c5a53d4da86e482512f12551fb8f9aaef3f2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
