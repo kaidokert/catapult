@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "915cb0ca_84918af0",
+        "filename": "dashboard/bin/dev_server",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-03-10T04:51:50Z",
+      "side": 1,
+      "message": "This seems unrelated to the rest of this CL?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 58
+      },
+      "revId": "2d5c5a53d4da86e482512f12551fb8f9aaef3f2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "889e8ea9_cff55d2e",
+        "filename": "dashboard/dashboard/elements/nav-bar.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-03-10T04:51:50Z",
+      "side": 1,
+      "message": "Perhaps update the link text to something like “Edit Sheriff Rotations (obsolete)”.",
+      "range": {
+        "startLine": 162,
+        "startChar": 124,
+        "endLine": 162,
+        "endChar": 146
+      },
+      "revId": "2d5c5a53d4da86e482512f12551fb8f9aaef3f2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
