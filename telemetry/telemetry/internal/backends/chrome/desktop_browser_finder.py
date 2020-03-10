@@ -216,6 +216,15 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
   def UpdateExecutableIfNeeded(self):
     pass
 
+  def GetTypExpectationsTags(self):
+    '''This function overrides PossibleBrowser's GetTypExpectationTags
+    member function. It adds the 'debug' tag if a debug browser like
+    debug_x64 is being used for tests.'''
+    tags = super(PossibleDesktopBrowser, self).GetTypExpectationsTags()
+    if 'debug' in self.browser_type.lower():
+      tags.append('debug')
+    return tags
+
 
 def SelectDefaultBrowser(possible_browsers):
   local_builds_by_date = [
