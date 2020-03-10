@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d86ba711_11b0e15b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-10T23:55:02Z",
+      "side": 1,
+      "message": "nit: please make sure this matches go/python-style. i.e.:\n\n\"\"\"Override parent function to add debug tag.\n\nThe debug tag is added if a debug browser such as debug_x64\nis being used in tests.\n\"\"\"",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 70
+      },
+      "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0edf9d03_3928483f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-10T23:55:02Z",
+      "side": 1,
+      "message": "This isn\u0027t really the right way to do this... The right way would be to have a class matching the browser_type and then you could ask that object questions like IsDebug(). However, I\u0027m willing to let this slide if doing it that way is complicated.\n\nHowever, I do think it would be better to do:\n\nif debug in self.browser_type.lower().split(\u0027_\u0027):\n\nthis prevents strange things from happening in the future like for example if Google decides to release a new operating system called \"DeBugDestroyer\"",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 44
+      },
+      "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
