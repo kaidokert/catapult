@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "172b3f71_5b76125b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-11T20:34:02Z",
+      "side": 1,
+      "message": "This runs on the current machine, but the below command runs on the device. That means that you aren\u0027t really using tempfile the way it is meant to be used. Potentially it could (especially in the case of a Windows host of a CrOS device), provide a tempfile path that is impossible to create on the remote machine.\n\nInstead, what about using\nimport random\ndef _GetRandomHash():\n  return \u0027%08x\u0027 % random.getrandbits(32)\n...\nfilename \u003d \u0027existing_chrome_env_%s.conf\u0027 % _GetRandomHash()\nposix_path.join(\u0027/tmp\u0027, filename)",
+      "range": {
+        "startLine": 208,
+        "startChar": 34,
+        "endLine": 208,
+        "endChar": 75
+      },
+      "revId": "bc882ae1da09efe34147aa1542e5ac2be93d4f40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
