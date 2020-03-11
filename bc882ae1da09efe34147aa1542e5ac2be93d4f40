@@ -22,6 +22,30 @@
       "revId": "bc882ae1da09efe34147aa1542e5ac2be93d4f40",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a85eb772_f0d4aa2a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-11T20:45:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "172b3f71_5b76125b",
+      "range": {
+        "startLine": 208,
+        "startChar": 34,
+        "endLine": 208,
+        "endChar": 75
+      },
+      "revId": "bc882ae1da09efe34147aa1542e5ac2be93d4f40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
