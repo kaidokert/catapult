@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff73ca96_3447ffeb",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1327869
+      },
+      "writtenOn": "2020-03-11T17:29:54Z",
+      "side": 1,
+      "message": "Use your path!",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 106
+      },
+      "revId": "1e7b1032a46aef1c4ff27c8af647955554c87ff9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
