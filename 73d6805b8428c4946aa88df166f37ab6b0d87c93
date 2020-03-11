@@ -45,6 +45,29 @@
       "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feedc872_ad8b5e58",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-03-11T00:03:45Z",
+      "side": 1,
+      "message": "Do we also want to add \u0027release\u0027 if \u0027release_x64\u0027 is used?",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 13
+      },
+      "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
