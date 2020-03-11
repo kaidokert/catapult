@@ -73,7 +73,7 @@ class TsProxyServer(object):
     del retries  # handled by the decorator
     cmd_line = [sys.executable, _TSPROXY_PATH]
     cmd_line.extend([
-        '--port=0'])  # Use port 0 so tsproxy picks a random available port.
+        '--port=34567'])
     if self._host_ip:
       cmd_line.append('--desthost=%s' % self._host_ip)
     if self._http_port:

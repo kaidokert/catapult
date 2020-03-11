@@ -245,7 +245,7 @@ class AdbWrapper(object):
 
   @classmethod
   def GetAdbPath(cls):
-    return cls._adb_path.read()
+    return "/usr/local/google/home/solanes/chromium/src/third_party/android_sdk/public/platform-tools/adb"
 
   @classmethod
   def Version(cls):
