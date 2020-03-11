@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2cdcf521_eb849167",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-03-11T17:56:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d86ba711_11b0e15b",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 70
+      },
+      "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0edf9d03_3928483f",
         "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
         "patchSetId": 7
@@ -92,6 +116,54 @@
       "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8702a4b9_b12937ff",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-03-11T17:56:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0edf9d03_3928483f",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 44
+      },
+      "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff26c92c_44ea3e72",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-03-11T17:56:55Z",
+      "side": 1,
+      "message": "I added the \u0027release\u0027 tag for release_x64 browsers.",
+      "parentUuid": "3153dc98_6c3e923e",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 13
+      },
+      "revId": "73d6805b8428c4946aa88df166f37ab6b0d87c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
