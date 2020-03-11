@@ -167,8 +167,8 @@ class NetworkControllerBackend(object):
     self._wpr_server = webpagereplay_go_server.ReplayServer(
         self._archive_path,
         self.host_ip,
-        http_port=0,
-        https_port=0,
+        http_port=34568,
+        https_port=34569,
         replay_options=self._ReplayCommandLineArgs())
     return self._wpr_server.StartServer()
 

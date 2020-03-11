@@ -141,17 +141,14 @@ class Forwarder(object):
       instance._InitDeviceLocked(device, tool)
 
       device_serial = str(device)
-      map_arg_lists = [[
-          '--adb=' + adb_wrapper.AdbWrapper.GetAdbPath(),
-          '--serial-id=' + device_serial, '--map',
-          str(device_port),
-          str(host_port)
-      ] for device_port, host_port in port_pairs]
-      logger.info('Forwarding using commands: %s', map_arg_lists)
 
-      for map_arg_list in map_arg_lists:
+      for device_port, host_port in port_pairs:
+        device_port = host_port
         try:
-          map_cmd = [instance._host_forwarder_path] + map_arg_list
+          map_cmd = [
+              adb_wrapper.AdbWrapper.GetAdbPath(), "reverse",
+              "tcp:" + str(host_port), "tcp:" + str(host_port)
+          ]
           (exit_code, output) = cmd_helper.GetCmdStatusAndOutputWithTimeout(
               map_cmd, Forwarder._TIMEOUT)
         except cmd_helper.TimeoutError as e:
@@ -179,12 +176,6 @@ class Forwarder(object):
           raise HostForwarderError(
               '`%s` exited with %d:\n%s' % (' '.join(map_cmd), exit_code,
                                             formatted_output))
-        tokens = output.split(':')
-        if len(tokens) != 2:
-          raise HostForwarderError('Unexpected host forwarder output "%s", '
-                                   'expected "device_port:host_port"' % output)
-        device_port = int(tokens[0])
-        host_port = int(tokens[1])
         serial_with_port = (device_serial, device_port)
         instance._device_to_host_port_map[serial_with_port] = host_port
         instance._host_to_device_port_map[host_port] = serial_with_port
