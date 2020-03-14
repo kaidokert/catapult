@@ -35,6 +35,8 @@ static constexpr std::pair<const char*, proto::Unit> kJsonUnitToProtoUnit[] = {
 // Assume a single bin. The default num sample values is num bins * 10.
 static constexpr int kDefaultNumSampleValues = 10;
 
+static constexpr double kJsMaxValue = 1.7976931348623157e+308;
+
 class HistogramBuilder::Resampler {
  public:
   Resampler() : distribution_(0.0, 1.0) {}
@@ -115,6 +117,11 @@ std::unique_ptr<proto::Histogram> HistogramBuilder::toProto() const {
   histogram->set_name(name_);
   *histogram->mutable_unit() = unit_;
   histogram->set_description(description_);
+
+  // Always set a one bin for now (same as HistogramBinBoundaries.SINGULAR in
+  // the python API).
+  proto::BinBoundaries* bin_boundaries = histogram->mutable_bin_boundaries();
+  bin_boundaries->set_first_bin_boundary(kJsMaxValue);
 
   proto::DiagnosticMap* diagnostics = histogram->mutable_diagnostics();
   for (const auto& pair : diagnostics_) {
