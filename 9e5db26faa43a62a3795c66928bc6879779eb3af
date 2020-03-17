@@ -22,6 +22,30 @@
       "revId": "9e5db26faa43a62a3795c66928bc6879779eb3af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6610307f_e4a96a10",
+        "filename": "dashboard/dashboard/api/list_timeseries.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-17T08:04:11Z",
+      "side": 0,
+      "message": "I change to return an error when sheriff is given. So it\u0027s still partly working for cli user.",
+      "parentUuid": "ec88ff13_746fc0f5",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "9e5db26faa43a62a3795c66928bc6879779eb3af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
