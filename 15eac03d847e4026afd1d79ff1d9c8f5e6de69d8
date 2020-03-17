@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "829474d1_fa222839",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-17T10:04:06Z",
+      "side": 1,
+      "message": "nit: I rather there wasn\u0027t an intermediate variable but that\u0027s just my taste. 😊",
+      "range": {
+        "startLine": 198,
+        "startChar": 6,
+        "endLine": 199,
+        "endChar": 56
+      },
+      "revId": "15eac03d847e4026afd1d79ff1d9c8f5e6de69d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
