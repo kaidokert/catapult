@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "164fa2eb_cbd1f5c1",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-17T01:42:21Z",
+      "side": 1,
+      "message": "Is this value not something we can get from std::numeric_limits\u003cdouble\u003e::max()?",
+      "range": {
+        "startLine": 38,
+        "startChar": 38,
+        "endLine": 38,
+        "endChar": 61
+      },
+      "revId": "25de64e72f9f1ea7d4a3fd43c25a482e4b76473b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "895c4cc7_f3caa679",
+        "filename": "tracing/tracing/value/histogram.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-17T01:42:21Z",
+      "side": 1,
+      "message": "Why do this when we can generate the appropriate bin boundaries from the sample values anyway?",
+      "range": {
+        "startLine": 121,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 54
+      },
+      "revId": "25de64e72f9f1ea7d4a3fd43c25a482e4b76473b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
