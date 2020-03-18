@@ -83,7 +83,7 @@ class Expectation(object):
         assert python_2_3_compat.is_str(reason)
         assert python_2_3_compat.is_str(test)
         self._reason = reason
-        self._test = test
+        self._test = '%20'.join([p.replace('%20', ' ') for p in test.split('\%20')])
         self._tags = frozenset(tags)
         self._results = frozenset(results)
         self._lineno = lineno
