@@ -129,6 +129,7 @@ class Expectation(object):
             pattern = self._test[:-1].replace('*', '\\*') + '*'
         else:
             pattern = self._test.replace('*', '\\*')
+        pattern = pattern.replace('%20', '\%20').replace(' ', '%20')
         self._string_value = ''
         if self._reason:
             self._string_value += self._reason + ' '
@@ -380,7 +381,7 @@ class TaggedTestListParser(object):
 
         # remove escapes for asterisks
         is_glob = not test.endswith('\\*') and test.endswith('*')
-        test = test.replace('\\*', '*')
+        test = '%20'.join([p.replace('%20', ' ') for p in test.replace('\\*', '*').split('\%20')])
         if raw_tags:
             raw_tags = raw_tags.split()
         if raw_results:
