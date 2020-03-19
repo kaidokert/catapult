@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6144b048_0994cb13",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T23:26:24Z",
+      "side": 1,
+      "message": "this should be at the end of the finally block so that if it fails then we still correctly set current_page and current_tab to None. That will allow us to run the next story if the story_runner determines that the error is non-fatal.",
+      "range": {
+        "startLine": 124,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 41
+      },
+      "revId": "cd0d40c2a2de0d70cebc826d01d87a411a0bf43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

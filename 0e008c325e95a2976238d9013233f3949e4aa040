@@ -331,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "3121d146_06f29e35",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T23:26:24Z",
+      "side": 1,
+      "message": "I\u0027m thinking that we should move the CleanupUnsymbolizedMinidumps() call that Brian recently added here https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?type\u003dcs\u0026q\u003dDidRunStory+telemetry\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d164\nto after the DidRunStory() call so that we still stop recording video if we discover a minidump.",
+      "parentUuid": "e547444d_bcf9c2db",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4cd19917_028fdc89",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 4
