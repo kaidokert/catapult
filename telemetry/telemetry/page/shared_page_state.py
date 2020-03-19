@@ -5,7 +5,10 @@
 import logging
 import os
 import shutil
+import threading
 
+from devil.android import device_utils
+from devil.android.tools.video_recorder import VideoRecorder
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import gpu_compositing_checker
@@ -115,6 +118,12 @@ class SharedPageState(story_module.SharedState):
               '%s raised while closing tab connections; tab will be closed.',
               type(exc).__name__)
           self._current_tab.Close()
+
+      with results.CaptureArtifact('recording.mp4') as path:
+        self._recording_path = path
+        self._stop_recording.set()
+        self._running_recording.pGet(timeout=30)
+
       self._interval_profiling_controller.GetResults(
           self._current_page.file_safe_name, results)
     finally:
@@ -193,6 +202,22 @@ class SharedPageState(story_module.SharedState):
         archive_path, page.make_javascript_deterministic, self._extra_wpr_args)
 
     reusing_browser = self.browser is not None
+
+    # Start screenrecord.
+    def record_video(device, state):
+      recorder = VideoRecorder(device)
+      with recorder:
+        state._stop_recording.wait()
+
+      if state._recording_path:
+        f = recorder.Pull(state._recording_path)
+        logging.warning('Video written to %s' % os.path.abspath(f))
+
+    parallel_devices = device_utils.DeviceUtils.parallel(
+        [self.platform._platform_backend.device], async=True)
+    self._stop_recording = threading.Event()
+    self._running_recording = parallel_devices.pMap(record_video, self)
+
     if not reusing_browser:
       self._StartBrowser(page)
 
