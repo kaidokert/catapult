@@ -74,6 +74,9 @@ class SharedPageState(story_module.SharedState):
     self.platform.network_controller.Open(self.wpr_mode)
     self.platform.Initialize()
 
+    self._video_recording_enabled = (self._finder_options.capture_screen_video
+                                     and self.platform.CanRecordVideo())
+
   @property
   def interval_profiling_controller(self):
     return self._interval_profiling_controller
@@ -115,6 +118,7 @@ class SharedPageState(story_module.SharedState):
               '%s raised while closing tab connections; tab will be closed.',
               type(exc).__name__)
           self._current_tab.Close()
+      self._StopVideoRecording(results)
       self._interval_profiling_controller.GetResults(
           self._current_page.file_safe_name, results)
     finally:
@@ -140,6 +144,15 @@ class SharedPageState(story_module.SharedState):
     if self._finder_options.pause == stage:
       raw_input('Pausing for interaction at %s... Press Enter to continue.' %
                 stage)
+
+  def _StartVideoRecording(self):
+    if self._video_recording_enabled:
+      self.platform.StartVideoRecording()
+
+  def _StopVideoRecording(self, results):
+    if self._video_recording_enabled:
+      with results.CaptureArtifact('recording.mp4') as video_path:
+        self.platform.StopVideoRecording(video_path)
 
   def _StartBrowser(self, page):
     assert self._browser is None
@@ -193,6 +206,9 @@ class SharedPageState(story_module.SharedState):
         archive_path, page.make_javascript_deterministic, self._extra_wpr_args)
 
     reusing_browser = self.browser is not None
+
+    self._StartVideoRecording()
+
     if not reusing_browser:
       self._StartBrowser(page)
 

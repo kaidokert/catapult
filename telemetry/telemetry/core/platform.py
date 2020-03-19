@@ -277,6 +277,15 @@ class Platform(object):
     """
     return self._platform_backend.TakeScreenshot(file_path)
 
+  def CanRecordVideo(self):
+    return self._platform_backend.CanRecordVideo()
+
+  def StartVideoRecording(self):
+    self._platform_backend.StartVideoRecording()
+
+  def StopVideoRecording(self, video_path):
+    self._platform_backend.StopVideoRecording(video_path)
+
   def SetFullPerformanceModeEnabled(self, enabled):
     """ Set full performance mode on the platform.
 
