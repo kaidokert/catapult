@@ -427,6 +427,7 @@ class BrowserOptions(object):
     self._extra_browser_args = set()
     self.extra_wpr_args = []
     self.wpr_mode = wpr_modes.WPR_OFF
+    self.capture_screen_video = False
 
     # The amount of time Telemetry should wait for the browser to start.
     # This property is not exposed as a command line option.
@@ -541,6 +542,10 @@ class BrowserOptions(object):
         dest='assert_gpu_compositing', action='store_true',
         help='Assert the browser uses gpu compositing and not software path.')
     parser.add_option_group(group)
+    group.add_option(
+        '--capture-screen-video',
+        dest='capture_screen_video', action='store_true',
+        help='Capture the screen during the test into a video.')
 
     group = optparse.OptionGroup(parser, 'Compatibility options')
     group.add_option(

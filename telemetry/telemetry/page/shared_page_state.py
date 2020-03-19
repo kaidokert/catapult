@@ -5,7 +5,10 @@
 import logging
 import os
 import shutil
+import threading
 
+from devil.android import device_utils
+from devil.android.tools.video_recorder import VideoRecorder
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import gpu_compositing_checker
@@ -16,6 +19,38 @@ from telemetry.page import legacy_page_test
 from telemetry.page import traffic_setting
 from telemetry import story as story_module
 from telemetry.util import screenshot
+
+
+class _VideoRecorder(object):
+  def __init__(self):
+    self._stop_recording_signal = threading.Event()
+    self._recording_path = None
+    self._runner = None
+
+  def WaitForSignal(self):
+    self._stop_recording_signal.wait()
+
+  @property
+  def recording_path(self):
+    return self._recording_path
+
+  def Start(self, device):
+    def record_video(device, state):
+      recorder = VideoRecorder(device)
+      with recorder:
+        state.WaitForSignal()
+
+      if state.recording_path:
+        f = recorder.Pull(state.recording_path)
+        logging.info('Video written to %s' % os.path.abspath(f))
+
+    parallel_devices = device_utils.DeviceUtils.parallel([device], async=True)
+    self._runner = parallel_devices.pMap(record_video, self)
+
+  def Stop(self, path):
+    self._recording_path = path
+    self._stop_recording_signal.set()
+    self._runner.pGet(timeout=30)
 
 
 class SharedPageState(story_module.SharedState):
@@ -54,6 +89,10 @@ class SharedPageState(story_module.SharedState):
     self._first_browser = True
     self._current_page = None
     self._current_tab = None
+
+    self._video_recorder = None
+    if self._finder_options.capture_screen_video:
+      self._video_recorder = _VideoRecorder()
 
     if self._page_test:
       self._page_test.SetOptions(self._finder_options)
@@ -115,6 +154,7 @@ class SharedPageState(story_module.SharedState):
               '%s raised while closing tab connections; tab will be closed.',
               type(exc).__name__)
           self._current_tab.Close()
+      self._StopVideoRecording(results)
       self._interval_profiling_controller.GetResults(
           self._current_page.file_safe_name, results)
     finally:
@@ -140,6 +180,15 @@ class SharedPageState(story_module.SharedState):
     if self._finder_options.pause == stage:
       raw_input('Pausing for interaction at %s... Press Enter to continue.' %
                 stage)
+
+  def _StartVideoRecording(self):
+    if self._video_recorder:
+      self._video_recorder.Start(self.platform.device)
+
+  def _StopVideoRecording(self, results):
+    if self._video_recorder:
+      with results.CaptureArtifact('recording.mp4') as path:
+        self._video_recorder.Stop(path)
 
   def _StartBrowser(self, page):
     assert self._browser is None
@@ -193,6 +242,9 @@ class SharedPageState(story_module.SharedState):
         archive_path, page.make_javascript_deterministic, self._extra_wpr_args)
 
     reusing_browser = self.browser is not None
+
+    self._StartVideoRecording()
+
     if not reusing_browser:
       self._StartBrowser(page)
 
