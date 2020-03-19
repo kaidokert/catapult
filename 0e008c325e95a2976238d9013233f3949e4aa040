@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28d4386c_540698cc",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "These should be documented thoroughly. For example, what should StopVideoRecording implementation do if video recording was never started? What should happen if StartVideoRecording() is called twice without StopVideoRecording in between? This stuff needs to be documented so that people can implement it and use it.",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 43
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2389f242_7880f0d6",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "import modules, not classes:\n\nfrom devil.android.tools import video_recorder\n\n...\n\nvideo_recorder.VideoRecorder()",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 60
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "120cc3e8_50dcc96a",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "I can\u0027t follow this code easily. mind adding comments?",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 20
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ad0db4a_c6496677",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "Can you add a comment explaining why you picked 30? (I\u0027m assuming this is 30 seconds?)",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 33
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d68f0fb_cb0b1227",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "This leaks _video_recorders if StartVideoRecording() is called twice in a row. Maybe instead it should raise an exception in that case?",
+      "range": {
+        "startLine": 273,
+        "startChar": 9,
+        "endLine": 273,
+        "endChar": 24
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3cb6f2e_64f9fcd5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "I don\u0027t like silent failures like this. I perfer for us to have an else clause so that we can notice when something goes wrong. That will prevent us from writing broken code in the future. The else cause should raise an exception ideally.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "620f8166_dba166e3",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "if ShouldReuseBrowserForAllStoryRuns() or _StopBrowser() raises an exception then we will never call _StopVideoRecording()... maybe we should put ._StopVideoRecording at the end of the finally clause instead... not sure here but we do need to be careful here.\n\nAlso, I\u0027m thinking that we should move the CleanupUnsymbolizedMinidumps() call that Brian recently added here https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/story_runner.py?type\u003dcs\u0026q\u003dDidRunStory+telemetry\u0026sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d164\nto after the DidRunStory() call so that we still stop recording video if we discover a minidump.",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cd19917_028fdc89",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "nit: I feel this is misleading the reader because usually there is no video recording running. I would prefer to put the \"if self._video_recording_enabled:\" inline to make it readable.",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42354eaa_43d25d6f",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T21:44:15Z",
+      "side": 1,
+      "message": "get rid of unnecessary newlines around this.",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 0
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
