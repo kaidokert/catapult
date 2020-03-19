@@ -159,9 +159,20 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       raise
     finally:
       has_existing_exception = (sys.exc_info() != (None, None, None))
+      def handle_nested_exception(msg):
+        if not has_existing_exception:
+          state.DumpStateUponStoryRunFailure(results)
+          raise # pylint: disable=misplaced-bare-raise
+        # Print current exception and propagate existing exception.
+        exception_formatter.PrintFormattedException(msg)
       try:
         if hasattr(state, 'browser') and state.browser:
-          state.browser.CleanupUnsymbolizedMinidumps(fatal=True)
+          try:
+            state.browser.CleanupUnsymbolizedMinidumps(fatal=True)
+          except Exception: # pylint: disable=broad-except
+            handle_nested_exception(
+                'Exception raised when cleaning minidumps: ')
+
         # We attempt to stop tracing and/or metric collecting before possibly
         # closing the browser. Closing the browser first and stopping tracing
         # later appeared to cause issues where subsequent browser instances
@@ -174,12 +185,7 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
         # And the following normally causes the browser to be closed.
         state.DidRunStory(results)
       except Exception:  # pylint: disable=broad-except
-        if not has_existing_exception:
-          state.DumpStateUponStoryRunFailure(results)
-          raise
-        # Print current exception and propagate existing exception.
-        exception_formatter.PrintFormattedException(
-            msg='Exception raised when cleaning story run: ')
+        handle_nested_exception('Exception raised when cleaning story run: ')
 
 
 def _GetPossibleBrowser(finder_options):
