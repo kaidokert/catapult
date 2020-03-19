@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59cfc4d0_afedcc98",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T23:57:08Z",
+      "side": 1,
+      "message": "instead of all this complexity, could we just move the CleanupUnsymbolizedMinidumps to after the  state.DidRunStory() below?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 66
+      },
+      "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
