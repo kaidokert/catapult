@@ -22,6 +22,30 @@
       "revId": "84be7b3fba5d083c863ab44a5953642fefbb40f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "040a5cea_773c1fa1",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-19T00:49:50Z",
+      "side": 1,
+      "message": "It\u0027s image name not the name of step (like \u0027gcr.io/$PROJECT_ID/docker-compose\u0027 below). Yeah it\u0027s a bit strange...",
+      "parentUuid": "a74a8ecb_dda8ad38",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 38
+      },
+      "revId": "84be7b3fba5d083c863ab44a5953642fefbb40f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
