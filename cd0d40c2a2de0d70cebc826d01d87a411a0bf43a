@@ -96,6 +96,29 @@
     },
     {
       "key": {
+        "uuid": "9b8c7bab_c0f5321f",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-19T23:55:20Z",
+      "side": 1,
+      "message": "this should assert as well.\n\nI think the pattern\n\nDoThing()\n\ndef DoThing():\n  if thing is possible:\n    _ReallyDoThing()\n\nis really bad for readability because readers of this code must go read the function itself to figure out that it actually sometimes doesn\u0027t do the thing.",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 37
+      },
+      "revId": "cd0d40c2a2de0d70cebc826d01d87a411a0bf43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d990b5f_210982c7",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 5
