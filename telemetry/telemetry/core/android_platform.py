@@ -19,6 +19,10 @@ class AndroidPlatform(platform.Platform):
     self._platform_backend.Initialize()
 
   @property
+  def device(self):
+    return self._platform_backend.device
+
+  @property
   def android_action_runner(self):
     return self._android_action_runner
 
