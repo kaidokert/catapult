@@ -48,6 +48,30 @@ _PERFORMANCE_MODE_DEFINITIONS = {
         },
         'default_mode_governor': 'schedutil',
     },
+    'Pixel 2': {
+        'high_perf_mode': {
+            'bring_cpu_cores_online': True,
+            # These are set to roughly 3/4 of the max frequency. The purpose of
+            # this is to ensure that thermal throttling doesn't kick in midway
+            # through a test and cause flaky results. It should also improve the
+            # longevity of the devices by keeping them cooler.
+            'cpu_max_freq': {
+                '0..3': 1478400,
+                '4..7': 1881600,
+            },
+            'gpu_max_freq': 596000000,
+        },
+        'default_mode': {
+            # These are the maximum frequencies available for these CPUs and
+            # GPUs.
+            'cpu_max_freq': {
+                '0..3': 1900800,
+                '4..7': 2457600,
+            },
+            'gpu_max_freq': 710000000,
+        },
+        'default_mode_governor': 'schedutil',
+    },
     'GT-I9300': {
         'default_mode_governor': 'pegasusq',
     },
