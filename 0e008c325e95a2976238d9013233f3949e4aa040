@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f3744b7_80254704",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28d4386c_540698cc",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 43
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2389f242_7880f0d6",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42f4b0f9_e8f53630",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2389f242_7880f0d6",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 60
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b30a937d_6d2ef742",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "120cc3e8_50dcc96a",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 20
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ad0db4a_c6496677",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a78dc79b_97c9154d",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ad0db4a_c6496677",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 33
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "207848de_a3593091",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Added an assert here.",
+      "parentUuid": "7d68f0fb_cb0b1227",
+      "range": {
+        "startLine": 273,
+        "startChar": 9,
+        "endLine": 273,
+        "endChar": 24
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3cb6f2e_64f9fcd5",
         "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
         "patchSetId": 4
@@ -137,6 +257,30 @@
       "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0b51d57_38c9b76d",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Added an assert here too.",
+      "parentUuid": "e3cb6f2e_64f9fcd5",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "e547444d_bcf9c2db",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Moved this to the finally block.",
+      "parentUuid": "620f8166_dba166e3",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cd19917_028fdc89",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 4
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "43078f1e_d80e3184",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cd19917_028fdc89",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 30
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42354eaa_43d25d6f",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 4
@@ -206,6 +398,30 @@
       "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "480413bc_303aba8b",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:12:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42354eaa_43d25d6f",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 0
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
