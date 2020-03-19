@@ -355,6 +355,30 @@
     },
     {
       "key": {
+        "uuid": "d54a24f5_8d2a677d",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-19T23:48:19Z",
+      "side": 1,
+      "message": "I have put up https://chromium-review.googlesource.com/c/catapult/+/2111116 for that. (I don\u0027t know if I can move this to after DidRunStory, since if I understand correctly, that may end up resetting the browser?)",
+      "parentUuid": "3121d146_06f29e35",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "0e008c325e95a2976238d9013233f3949e4aa040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cd19917_028fdc89",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 4
