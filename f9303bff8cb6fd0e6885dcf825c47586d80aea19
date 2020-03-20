@@ -69,6 +69,30 @@
       "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "009019c2_5e42e42a",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-20T00:41:46Z",
+      "side": 1,
+      "message": "yea, this was not correct I think, sorry. Simplified this so we don\u0027t raise for a minidump-failure.",
+      "parentUuid": "4c11e54b_1093142b",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 36
+      },
+      "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
