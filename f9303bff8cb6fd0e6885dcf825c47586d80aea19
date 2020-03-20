@@ -22,6 +22,30 @@
       "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f2407c7_12078daf",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-20T00:00:23Z",
+      "side": 1,
+      "message": "I don\u0027t think so. DidRunStory() can reset the browser, in which case this will never be called.",
+      "parentUuid": "59cfc4d0_afedcc98",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 66
+      },
+      "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
