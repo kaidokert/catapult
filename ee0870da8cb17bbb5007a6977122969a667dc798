@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86da9fe5_ca759b21",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-20T17:39:20Z",
+      "side": 1,
+      "message": "This should mention that it only works on some platforms.",
+      "range": {
+        "startLine": 178,
+        "startChar": 14,
+        "endLine": 178,
+        "endChar": 78
+      },
+      "revId": "ee0870da8cb17bbb5007a6977122969a667dc798",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a66cd81_ef5cfe16",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-20T17:39:20Z",
+      "side": 1,
+      "message": "nit: remove unnecessary newlines here and elsewhere.",
+      "revId": "ee0870da8cb17bbb5007a6977122969a667dc798",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
