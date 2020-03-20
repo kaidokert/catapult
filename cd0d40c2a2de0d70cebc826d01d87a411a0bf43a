@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "8c87defc_95e8ee2b",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-20T00:22:09Z",
+      "side": 1,
+      "message": "you can also rename functions\nStopVideoRecordingIfRunning()\nthe code just needs to not lie to the reader",
+      "parentUuid": "0e799a29_2d4fbefd",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 37
+      },
+      "revId": "cd0d40c2a2de0d70cebc826d01d87a411a0bf43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d990b5f_210982c7",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 5
