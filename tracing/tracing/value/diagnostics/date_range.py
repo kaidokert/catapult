@@ -56,6 +56,9 @@ class DateRange(diagnostic.Diagnostic):
       return
     dct['max'] = self._range.max
 
+  def _AsProto(self):
+    raise NotImplementedError
+
   def Serialize(self, unused_serializer):
     if self.duration_ms == 0:
       return self._range.min

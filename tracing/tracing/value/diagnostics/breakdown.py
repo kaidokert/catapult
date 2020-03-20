@@ -66,6 +66,9 @@ class Breakdown(diagnostic.Diagnostic):
   def FromProto(d):
     assert False, 'Not implemented in proto yet'
 
+  def _AsProto(self):
+    raise NotImplementedError
+
   def Serialize(self, serializer):
     keys = list(self._values.keys())
     keys.sort()
