@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "336823fe_0778d997",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-20T17:34:30Z",
+      "side": 1,
+      "message": "Let\u0027s also do a results.Fail() here.\n\nThen you\u0027ll need to change SetFailed() here https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/story_run.py?sq\u003dpackage:chromium\u0026dr\u0026g\u003d0\u0026l\u003d147\nto do something like\n\nif self._failure_str:\n  self._failure_str +\u003d \u0027\\n\\nAlso failed because of \u0027 + failure_str\nelse:\n  self._failure_str \u003d failure_str\n\nSo that we don\u0027t lose the previous failure.",
+      "range": {
+        "startLine": 166,
+        "startChar": 10,
+        "endLine": 166,
+        "endChar": 58
+      },
+      "revId": "e43075ee534eb980f4e54f26a76f01e78f350ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
