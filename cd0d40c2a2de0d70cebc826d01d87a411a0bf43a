@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "0e799a29_2d4fbefd",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-20T00:09:00Z",
+      "side": 1,
+      "message": "Perhaps inlining is more readable.\n\nYes I feel strongly about it. Telemetry is not a well-written codebase, so don\u0027t take the examples in the code as canon.",
+      "parentUuid": "0685c9f0_82bcd387",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 37
+      },
+      "revId": "cd0d40c2a2de0d70cebc826d01d87a411a0bf43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d990b5f_210982c7",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 5
