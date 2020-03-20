@@ -22,6 +22,30 @@
       "revId": "e43075ee534eb980f4e54f26a76f01e78f350ac3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afb96adf_02e727f7",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-20T21:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "336823fe_0778d997",
+      "range": {
+        "startLine": 166,
+        "startChar": 10,
+        "endLine": 166,
+        "endChar": 58
+      },
+      "revId": "e43075ee534eb980f4e54f26a76f01e78f350ac3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
