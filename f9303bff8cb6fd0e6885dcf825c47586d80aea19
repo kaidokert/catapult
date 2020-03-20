@@ -46,6 +46,29 @@
       "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c11e54b_1093142b",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-20T00:05:02Z",
+      "side": 1,
+      "message": "I don\u0027t understand this. If handle_nested_exception raises then we will never call DidRunStory so we won\u0027t be able to turn off the video recording.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 36
+      },
+      "revId": "f9303bff8cb6fd0e6885dcf825c47586d80aea19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
