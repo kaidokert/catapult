@@ -45,6 +45,9 @@ class UnmergeableDiagnosticSet(diagnostic.Diagnostic):
   def _AsDictInto(self, d):
     d['diagnostics'] = [d.AsDictOrReference() for d in self]
 
+  def _AsProto(self):
+    raise NotImplementedError
+
   @staticmethod
   def Deserialize(data, deserializer):
     return UnmergeableDiagnosticSet(

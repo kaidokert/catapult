@@ -69,3 +69,6 @@ class RelatedEventSet(diagnostic.Diagnostic):
 
   def _AsDictInto(self, d):
     d['events'] = [event for event in self]
+
+  def _AsProto(self):
+    raise NotImplementedError

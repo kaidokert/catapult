@@ -31,7 +31,7 @@ def DevAppserver(paths, args, reuse_path=None):
       print 'This script requires the App Engine SDK to be in PATH.'
       sys.exit(1)
 
-    subprocess.call([sys.executable, script_path] +
+    subprocess.call([sys.executable, script_path, '--clear_datastore=true'] +
                     _AddTempDirToYamlPathArgs(temp_dir, args))
 
 
