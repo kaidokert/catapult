@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "5c4c848e_f48394fd",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-03-20T00:32:09Z",
+      "side": 1,
+      "message": "Fair enough. I went with inlining since it\u0027s simple enough.",
+      "parentUuid": "8c87defc_95e8ee2b",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 37
+      },
+      "revId": "cd0d40c2a2de0d70cebc826d01d87a411a0bf43a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d990b5f_210982c7",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 5
