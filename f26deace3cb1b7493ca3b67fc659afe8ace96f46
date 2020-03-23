@@ -22,6 +22,30 @@
       "revId": "f26deace3cb1b7493ca3b67fc659afe8ace96f46",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e63419f_d7655111",
+        "filename": "tracing/tracing/value/diagnostics/breakdown.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002301
+      },
+      "writtenOn": "2020-03-23T11:56:33Z",
+      "side": 1,
+      "message": "Both end up looking the same in the stack trace. raise NotImplementedError raises the class itself, which probably means \"raise an instance of T with no arguments\". I agree NotImplementedError() is more sane.\n\nI also changed the assert False to also raise NotImplementedError, to be consistent.",
+      "parentUuid": "2d19a928_64d0c6e6",
+      "range": {
+        "startLine": 70,
+        "startChar": 10,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "f26deace3cb1b7493ca3b67fc659afe8ace96f46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
