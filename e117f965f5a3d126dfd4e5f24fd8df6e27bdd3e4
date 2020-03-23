@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "550da8f4_94534ada",
+        "filename": "telemetry/telemetry/internal/results/story_run.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-23T17:35:03Z",
+      "side": 1,
+      "message": "This is going to look bad because you don\u0027t delimit these. THere\u0027s no space or new lines between the errors.",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 38
+      },
+      "revId": "e117f965f5a3d126dfd4e5f24fd8df6e27bdd3e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45f4e59b_ad77f4ac",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-23T17:35:03Z",
+      "side": 1,
+      "message": "you still need to print the exception",
+      "range": {
+        "startLine": 167,
+        "startChar": 12,
+        "endLine": 167,
+        "endChar": 40
+      },
+      "revId": "e117f965f5a3d126dfd4e5f24fd8df6e27bdd3e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
