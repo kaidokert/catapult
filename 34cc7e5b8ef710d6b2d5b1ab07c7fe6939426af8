@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a257fdb3_42c091eb",
+        "filename": "dashboard/bq_export/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-24T05:58:01Z",
+      "side": 1,
+      "message": "nit: I\u0027m missing the Oxford Comma... 😊",
+      "range": {
+        "startLine": 3,
+        "startChar": 69,
+        "endLine": 3,
+        "endChar": 76
+      },
+      "revId": "34cc7e5b8ef710d6b2d5b1ab07c7fe6939426af8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
