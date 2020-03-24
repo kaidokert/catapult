@@ -56,28 +56,20 @@ class Benchmark(command_line.Command):
     #   Benchmark.test set.
     # See https://github.com/catapult-project/catapult/issues/3708
 
-  def CanRunOnPlatform(self, platform, finder_options):
-    """Figures out if the benchmark is meant to support this platform.
+  def CanRunOnBrowser(self, possible_browser):
+    """Figures out if the benchmark is meant to support this browser.
 
-    This is based on the SUPPORTED_PLATFORMS class member of the benchmark.
+    This is based on the SUPPORTED_PLATFORM_TAGS class member of the benchmark.
 
     This method should not be overriden or called outside of the Telemetry
     framework.
-
-    Note that finder_options object in practice sometimes is actually not
-    a BrowserFinderOptions object but a PossibleBrowser object.
-    The key is that it can be passed to ShouldDisable, which only uses
-    finder_options.browser_type, which is available on both PossibleBrowser
-    and BrowserFinderOptions.
     """
-    for p in self.SUPPORTED_PLATFORMS:
-      # This is reusing StoryExpectation code, so it is a bit unintuitive. We
-      # are trying to detect the opposite of the usual case in StoryExpectations
-      # so we want to return True when ShouldDisable returns true, even though
-      # we do not want to disable.
-      if p.ShouldDisable(platform, finder_options):
-        return True
-    return False
+    if not self.SUPPORTED_PLATFORM_TAGS:
+      return True
+    intersection = (
+        {t.lower() for t in self.SUPPORTED_PLATFORM_TAGS} &
+        {t1.lower() for t1 in possible_browser.GetTypExpectationsTags()})
+    return len(intersection) > 0
 
   def Run(self, finder_options):
     """Do not override this method."""

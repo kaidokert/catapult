@@ -16,8 +16,7 @@ from telemetry.util import matching
 
 
 def _IsBenchmarkSupported(benchmark_, possible_browser):
-  return benchmark_().CanRunOnPlatform(
-      possible_browser.platform, possible_browser)
+  return benchmark_().CanRunOnBrowser(possible_browser)
 
 
 def _GetStoriesWithTags(b):
