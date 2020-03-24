@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "56708121_87b7c5a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-03-24T17:25:40Z",
+      "side": 1,
+      "message": "I do not know either, but it could be that other code initialize the global variable. I just call webpagereplay_go_server.ReplayServer to create an instance without all the other plumbing code.",
+      "parentUuid": "e0481e27_fa24448f",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 64
+      },
+      "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "715a4327_6416671a",
         "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3c7f33b2_ebf5db2d",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-03-24T17:25:40Z",
+      "side": 1,
+      "message": "Sure. that sounds good to me.",
+      "parentUuid": "715a4327_6416671a",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82c27117_e0b498dc",
         "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2020-03-24T17:02:03Z",
       "side": 1,
       "message": "Can you please provide more information in the commit message about what this change is doing and how you have become confident that it won\u0027t break things?",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2022699_0686d325",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-03-24T17:25:40Z",
+      "side": 1,
+      "message": "When I call webpagereplay_go_server.ReplayServer(...), it raise exception because global variable _binary_manager is not initialized. The exception is https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/util/binary_manager.py;l\u003d99?q\u003dbinary_manager%20InitDependencyManager\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "82c27117_e0b498dc",
       "range": {
         "startLine": 98,
         "startChar": 0,
