@@ -11,6 +11,7 @@ import mock
 from telemetry import android
 from telemetry import benchmark
 from telemetry.testing import options_for_unittests
+from telemetry.testing import fakes
 from telemetry.timeline import chrome_trace_category_filter
 from telemetry import page
 from telemetry.page import legacy_page_test
@@ -203,19 +204,26 @@ class BenchmarkTest(unittest.TestCase):
     self.assertTrue(
         tbm.tbm_options.config.chrome_trace_config.enable_systrace)
 
-  def testCanRunOnPlatformReturnTrue(self):
+  def testCanRunOnBrowserReturnTrue(self):
     b = TestBenchmark(story_module.Story(
         name='test name',
         shared_state_class=shared_page_state.SharedPageState))
-    # We can pass None for both arguments because it defaults to ALL for
-    # supported platforms, which always returns true.
-    self.assertTrue(b.CanRunOnPlatform(None, None))
+    b.SUPPORTED_PLATFORM_TAGS = ['Mac', 'Win']
+    possible_browser = fakes.FakePossibleBrowser(os_name='win')
+    self.assertTrue(b.CanRunOnBrowser(possible_browser))
 
-  def testCanRunOnPlatformReturnFalse(self):
+  def testCanRunOnAllBrowsers(self):
     b = TestBenchmark(story_module.Story(
         name='test name',
         shared_state_class=shared_page_state.SharedPageState))
-    b.SUPPORTED_PLATFORMS = [] # pylint: disable=invalid-name
-    # We can pass None for both arguments because we select no platforms as
-    # supported, which always returns false.
-    self.assertFalse(b.CanRunOnPlatform(None, None))
+    b.SUPPORTED_PLATFORM_TAGS = []
+    possible_browser = fakes.FakePossibleBrowser(os_name='win')
+    self.assertTrue(b.CanRunOnBrowser(possible_browser))
+
+  def testCannotRunOnBrowser(self):
+    b = TestBenchmark(story_module.Story(
+        name='test name',
+        shared_state_class=shared_page_state.SharedPageState))
+    b.SUPPORTED_PLATFORM_TAGS = ['Mac']
+    possible_browser = fakes.FakePossibleBrowser(os_name='win')
+    self.assertFalse(b.CanRunOnBrowser(possible_browser))
