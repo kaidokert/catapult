@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "715a4327_6416671a",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-24T17:02:03Z",
+      "side": 1,
+      "message": "I\u0027m afraid this might break backwards compatibility. how about\n\nif \u0027--record\u0027 in replay_options or \u0027record\u0027 in replay_options:\n\n?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82c27117_e0b498dc",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-24T17:02:03Z",
+      "side": 1,
+      "message": "Can you please provide more information in the commit message about what this change is doing and how you have become confident that it won\u0027t break things?",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
