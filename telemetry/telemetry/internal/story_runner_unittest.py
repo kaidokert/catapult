@@ -633,9 +633,9 @@ class RunBenchmarkTest(unittest.TestCase):
     return results_options.ReadTestResults(
         os.path.join(self.output_dir, 'artifacts'))
 
-  def testDisabledBenchmarkViaCanRunOnPlatform(self):
+  def testDisabledBenchmarkViaCanRunOnBrowser(self):
     fake_benchmark = FakeBenchmark()
-    fake_benchmark.SUPPORTED_PLATFORMS = []
+    fake_benchmark.SUPPORTED_PLATFORM_TAGS = ['mac']
     options = self.GetFakeBrowserOptions()
     story_runner.RunBenchmark(fake_benchmark, options)
     test_results = self.ReadTestResults()
