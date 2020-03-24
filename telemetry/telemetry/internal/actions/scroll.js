@@ -177,9 +177,32 @@
         rect.left + rect.width * this.options_.left_start_ratio_;
     const startTop =
         rect.top + rect.height * this.options_.top_start_ratio_;
+    let pixels_to_scroll_x = 0;
+    let pixels_to_scroll_y = 0;
+    if (this.options_.direction == "down") {
+      pixels_to_scroll_y = distance;
+    } else if (this.options_.direction == "up") {
+      pixels_to_scroll_y = -distance;
+    } else if (this.options_.direction == "right") {
+      pixels_to_scroll_x = distance;
+    } else if (this.options_.direction == "left") {
+      pixels_to_scroll_x = -distance;
+    } else if (this.options_.direction == "upleft") {
+      pixels_to_scroll_x = -distance;
+      pixels_to_scroll_y = -distance;
+    } else if (this.options_.direction == "upright") {
+      pixels_to_scroll_x = distance;
+      pixels_to_scroll_y = -distance;
+    } else if (this.options_.direction == "downleft") {
+      pixels_to_scroll_x = -distance;
+      pixels_to_scroll_y = distance;
+    } else if (this.options_.direction == "downright") {
+      pixels_to_scroll_x = distance;
+      pixels_to_scroll_y = distance;
+    }
     chrome.gpuBenchmarking.smoothScrollBy(
-        distance, this.onGestureComplete_.bind(this), startLeft, startTop,
-        this.options_.gesture_source_type_, this.options_.direction_,
+        pixels_to_scroll_y, this.onGestureComplete_.bind(this), startLeft, startTop,
+        this.options_.gesture_source_type_, pixels_to_scroll_x,
         speed);
   };
 
