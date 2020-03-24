@@ -363,7 +363,7 @@ def ValidateStory(story):
 def _ShouldRunBenchmark(benchmark, possible_browser, finder_options):
   if finder_options.print_only:
     return True  # Should always run on print-only mode.
-  if benchmark.CanRunOnPlatform(possible_browser.platform, finder_options):
+  if benchmark.CanRunOnBrowser(possible_browser):
     return True
   print ('Benchmark "%s" is not supported on the current platform. If this '
          "is in error please add it to the benchmark's SUPPORTED_PLATFORMS."
