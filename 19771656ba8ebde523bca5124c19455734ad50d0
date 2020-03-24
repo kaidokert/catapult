@@ -140,6 +140,30 @@
       "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c692e4d8_e1f73bc6",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1149061
+      },
+      "writtenOn": "2020-03-24T18:52:12Z",
+      "side": 1,
+      "message": "Thank you! Please add this information to the commit message so that others can understand what this changelist is intending to do.",
+      "parentUuid": "b2022699_0686d325",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 48
+      },
+      "revId": "19771656ba8ebde523bca5124c19455734ad50d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
