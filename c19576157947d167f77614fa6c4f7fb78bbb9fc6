@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59cf71b4_ef64cf74",
+        "filename": "tracing/tracing/metrics/reported_by_page_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-03-25T13:59:15Z",
+      "side": 1,
+      "message": "Could we change the RendererHelper itself so that you have to explicitly ask for renderers that don\u0027t have main threads? I don\u0027t think there are too many places where we care about non-main-thread renderers, so those should be the exception rather than the rule.",
+      "range": {
+        "startLine": 82,
+        "startChar": 42,
+        "endLine": 82,
+        "endChar": 57
+      },
+      "revId": "c19576157947d167f77614fa6c4f7fb78bbb9fc6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
