@@ -124,6 +124,7 @@ tr.exportTo('tr.metrics.sh', function() {
         ' for a given renderer');
     for (const rendererHelper of rendererHelpers) {
       if (rendererHelper.isChromeTracingUI) continue;
+      if (rendererHelper.mainThread === undefined) continue;
       // Renderers with lifetime smaller than WINDOW_SIZE_MS do not have
       // meaningful EQT.
       if (rendererHelper.mainThread.bounds.duration < WINDOW_SIZE_MS) continue;
