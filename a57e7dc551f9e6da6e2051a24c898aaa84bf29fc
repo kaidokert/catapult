@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0965c24d_1a925042",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-03-26T18:53:04Z",
+      "side": 1,
+      "message": "Question: is it also the \u0027option\u0027 key on mac?",
+      "range": {
+        "startLine": 79,
+        "startChar": 9,
+        "endLine": 79,
+        "endChar": 12
+      },
+      "revId": "a57e7dc551f9e6da6e2051a24c898aaa84bf29fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06baa85a_66243364",
+        "filename": "telemetry/telemetry/internal/actions/key_event.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-03-26T18:53:04Z",
+      "side": 1,
+      "message": "In the comments the default is 0. Would you match those values?",
+      "range": {
+        "startLine": 85,
+        "startChar": 31,
+        "endLine": 85,
+        "endChar": 35
+      },
+      "revId": "a57e7dc551f9e6da6e2051a24c898aaa84bf29fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
