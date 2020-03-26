@@ -54,6 +54,7 @@ class SheriffConfigClient(object):
         bug_components=list(subscription.bug_components),
         bug_cc_emails=list(subscription.bug_cc_emails),
         visibility=subscription.visibility,
+        enable_auto_triage=subscription.enable_auto_triage,
     )
 
   def Match(self, path, check=False):

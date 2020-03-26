@@ -82,6 +82,9 @@ message Subscription {
   // A list of email addresses to CC for issues filed by the dashboard.
   repeated string bug_cc_emails = 6;
 
+  // Enable automatic create issue based on alert group
+  bool enable_auto_triage = 11;
+
   enum VisibilityTag {
     INTERNAL_ONLY = 0;
     PUBLIC = 1;
