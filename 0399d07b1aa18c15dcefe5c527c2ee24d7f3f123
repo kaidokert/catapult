@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0f1e4f4_c56e9de8",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-26T23:37:21Z",
+      "side": 1,
+      "message": "This is an OK idea, but my feeling is that we\u0027d need to have this more granular -- i.e. only the \"important\" or \"stable\" measurements would be worth auto-triaging, and some stay as informational.\n\nMaybe this is better set in the `Pattern` message, and instead of a bool be a list of enums for the set of options?\n\nAn alternative design here would be to have a subscription-level set of options, and per-pattern override. I\u0027m thinking ahead about whether we want only certain metrics to be auto-triaged and auto-bisected, while some are only auto-triaged.",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 31
+      },
+      "revId": "0399d07b1aa18c15dcefe5c527c2ee24d7f3f123",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
