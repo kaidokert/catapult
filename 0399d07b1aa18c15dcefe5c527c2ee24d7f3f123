@@ -22,6 +22,30 @@
       "revId": "0399d07b1aa18c15dcefe5c527c2ee24d7f3f123",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e92e4a23_3db1a648",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T01:28:58Z",
+      "side": 1,
+      "message": "Because we want matching process happend in sheriff-config instead of dashboard, only boolean (enable or not) will be returned from sheriff-config. So I changed the proto definition a bit and it also allowing user choose subscription-level or per-pattern override.",
+      "parentUuid": "c0f1e4f4_c56e9de8",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 31
+      },
+      "revId": "0399d07b1aa18c15dcefe5c527c2ee24d7f3f123",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
