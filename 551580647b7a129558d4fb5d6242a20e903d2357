@@ -617,6 +617,53 @@
     },
     {
       "key": {
+        "uuid": "2ff72556_3f3afd4b",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T06:30:51Z",
+      "side": 1,
+      "message": "If folks want auto-triage and auto-bisect, then do they need to repeat the patterns if they\u0027re two separate fields?",
+      "parentUuid": "6a1cdf51_f3c7b261",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9759a777_432e1ac3",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T06:30:51Z",
+      "side": 1,
+      "message": "Can you document what happens if these rules match different things from what\u0027s in the list of patterns already specified? Also, how does this change the way we\u0027re responding in the match and list APIs?",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8dfdd951_41467be3",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 2
@@ -661,6 +708,29 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0185207_0719a858",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T06:30:51Z",
+      "side": 1,
+      "message": "With the change in the way auto_triage is configured now (with rules), I\u0027m not sure this is sufficient anymore.",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
