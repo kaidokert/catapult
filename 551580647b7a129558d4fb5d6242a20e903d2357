@@ -1,0 +1,360 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04ebf46f_dab950da",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "How many can these be? Maybe these should just be the active ones?",
+      "range": {
+        "startLine": 20,
+        "startChar": 36,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39f263e0_db277ff1",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "How can this fail?",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 25
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "756c32a8_a70eb6af",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Same here, what happens on failure?",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "415adc87_334d9a3d",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "s/Deactive/Deactivate/g\n\nOr, if you want something more positive, call it \"Archive\".\n\nOne thing we need to do is figure out an escalation path -- i.e. maybe we need this to be escalated to us, through some component in Monorail so we can find these auto-triaged groups that are past-due?",
+      "range": {
+        "startLine": 33,
+        "startChar": 16,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef2a9550_f0f10e38",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "s/IsIntersected/IsIncluded/g",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "472c75e3_52d0665f",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Is the \"Ungrouped\" alert group special, and should it be excluded from the de-activation process above?",
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaefce8c_cb313649",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Please add documentation. I suspect this is really a RevisionRange too, rather than a RevisionInfo.",
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "315c50e2_58952265",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Overlaps? HasIntersection?",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19db48ae_f31c9907",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "What\u0027s the bug? It seems we\u0027re already providing components here... is this TODO stale?",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 52
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4387f0a6_03efb22b",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "`response` seems to be fine here. 😊",
+      "range": {
+        "startLine": 124,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 6
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "173da519_0295a81d",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Does this API support adding the project in the request?",
+      "range": {
+        "startLine": 124,
+        "startChar": 23,
+        "endLine": 124,
+        "endChar": 29
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd5bd946_de201771",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "I don\u0027t think this summary works anymore for alert groups. I think we need at least two things in the summary:\n\n1. The fact that this is auto-triaged (to differentiate from non-auto-triaged alerts).\n2. The fact that this is a group of anomalies.\n\nWe already have complaints about the magnitude we include in the summary, and I really wish we put that later in the summary. So something like:\n\n\"[AUTOMATED] Alerts for \u003cbenchmark or alert group name\u003e\"\n\nmight be sufficient.\n\nThen, in the description, we can go into as much detail about the platforms, the regression percentages, and other things as richly as we can. Let\u0027s leverage the fact that we can generate tables and lists much better in Python and with some templating packages we have access to (like Jinja) for that.",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 144,
+        "endChar": 3
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17fce039_58868804",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Yeah, this no longer works I think.\n\nFirst, I think we need to provide metadata about this alert group. Things like:\n\n- Time this was computed.\n- If there\u0027s an ID, we should provide the ID in the description (for debugging and for tracking).\n- The overall revision range we\u0027re looking at\n- How the grouping was done. For now it\u0027s sufficient that it\u0027s grouped by benchmark. In the future we\u0027ll need to provide a clear explanation of how it\u0027s grouped, potentially a link to documentation.\n\nWe should generate a table instead and provide as detailed links as we can in the table. I suggest one table per master+bot, and in the table have the following columns:\n\n1. Name of the measurement/metric (i.e. the path, minus the master/bot/benchmark)\n2. Baseline before anomaly\n3. Value at anomalous range\n4. Absolute difference with units\n5. Relative difference\n\nThis way we don\u0027t need folks to go to the UI just to figure out what\u0027s changed. This also means when we add more alerts for the alert group, we can use the same format for the updates.\n\nIf we can manage having a link to contain all the alerts per-bot, and one for all anomalies for the group, along with a report for the whole range, then that\u0027s already a better start.",
+      "range": {
+        "startLine": 153,
+        "startChar": 2,
+        "endLine": 160,
+        "endChar": 71
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0a3135a_3b574980",
+        "filename": "dashboard/dashboard/models/subscription.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 24,
+        "startChar": 55,
+        "endLine": 24,
+        "endChar": 62
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef889d35_8422fc27",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "Okay, if we\u0027re doing this, I suggest not only bool but a list of enums. This is for the following options:\n\n- AUTO_TRIAGE_UNSPECIFIED\n- AUTO_TRIAGE\n- AUTO_BISECT\n\nWe can have 3 possible states:\n\n- Auto-bisect (automatically bisect anomalies without grouping)\n- Auto-triage (automatically triage without bisection)\n- Auto-triage + Auto-bisect (automatically triage groups and then bisect)\n\nThe default (unspecified) is that we don\u0027t do anything.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dfdd951_41467be3",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-03-30T02:47:05Z",
+      "side": 1,
+      "message": "nit: Please add an empty line in between.",
+      "range": {
+        "startLine": 122,
+        "startChar": 2,
+        "endLine": 123,
+        "endChar": 43
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
