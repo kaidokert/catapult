@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "99727ddb_59ac735a",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "By default it only retrieves active ones.",
+      "parentUuid": "04ebf46f_dab950da",
+      "range": {
+        "startLine": 20,
+        "startChar": 36,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39f263e0_db277ff1",
         "filename": "dashboard/dashboard/alert_groups.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-03-30T02:47:05Z",
       "side": 1,
       "message": "How can this fail?",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 25
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c10e0d5_1414455d",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "Because we send request to monorail. Another reason is maybe the group only includes anomalies (improvement) without alerts.",
+      "parentUuid": "39f263e0_db277ff1",
       "range": {
         "startLine": 24,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "184068df_5873aea5",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "It\u0027s same to the TryTriage. If it\u0027s failed, group status won\u0027t be updated, so we can retry it in next iteration (maybe we need a retry limit).",
+      "parentUuid": "756c32a8_a70eb6af",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "415adc87_334d9a3d",
         "filename": "dashboard/dashboard/alert_groups.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2020-03-30T02:47:05Z",
       "side": 1,
       "message": "s/Deactive/Deactivate/g\n\nOr, if you want something more positive, call it \"Archive\".\n\nOne thing we need to do is figure out an escalation path -- i.e. maybe we need this to be escalated to us, through some component in Monorail so we can find these auto-triaged groups that are past-due?",
+      "range": {
+        "startLine": 33,
+        "startChar": 16,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d458f45f_099e73b9",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "What you mean \u0027find these auto-triaged groups that are past-due\u0027 here? Do you mean groups that triaged but without any actions after some time?",
+      "parentUuid": "415adc87_334d9a3d",
       "range": {
         "startLine": 33,
         "startChar": 16,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "60d0de9a_792f736a",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "It\u0027s...IsOverlapping. Naming is hard.",
+      "parentUuid": "ef2a9550_f0f10e38",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 35
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "472c75e3_52d0665f",
         "filename": "dashboard/dashboard/alert_groups.py",
         "patchSetId": 2
@@ -128,6 +248,24 @@
       "writtenOn": "2020-03-30T02:47:05Z",
       "side": 1,
       "message": "Is the \"Ungrouped\" alert group special, and should it be excluded from the de-activation process above?",
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "383c683d_f7eb1da1",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "It\u0027s already excluded because its status is \u0027unknown\u0027.",
+      "parentUuid": "472c75e3_52d0665f",
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -174,6 +312,30 @@
     },
     {
       "key": {
+        "uuid": "9428eb65_4cab1e4a",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "Overlaps. Thanks.",
+      "parentUuid": "315c50e2_58952265",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19db48ae_f31c9907",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 2
@@ -185,6 +347,30 @@
       "writtenOn": "2020-03-30T02:47:05Z",
       "side": 1,
       "message": "What\u0027s the bug? It seems we\u0027re already providing components here... is this TODO stale?",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 52
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2224662e_629edab6",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "In sheriff config file. Just notice me updating the config before this CL being merged",
+      "parentUuid": "19db48ae_f31c9907",
       "range": {
         "startLine": 120,
         "startChar": 2,
@@ -240,6 +426,54 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcd35928_5eb2a0c9",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "It\u0027s already used in the previous file bug code.",
+      "parentUuid": "173da519_0295a81d",
+      "range": {
+        "startLine": 124,
+        "startChar": 23,
+        "endLine": 124,
+        "endChar": 29
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfec2609_c8f20af5",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4387f0a6_03efb22b",
+      "range": {
+        "startLine": 124,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 6
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -312,6 +546,30 @@
     },
     {
       "key": {
+        "uuid": "814a88fe_038fb4cb",
+        "filename": "dashboard/dashboard/models/subscription.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0a3135a_3b574980",
+      "range": {
+        "startLine": 24,
+        "startChar": 55,
+        "endLine": 24,
+        "endChar": 62
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef889d35_8422fc27",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 2
@@ -323,6 +581,30 @@
       "writtenOn": "2020-03-30T02:47:05Z",
       "side": 1,
       "message": "Okay, if we\u0027re doing this, I suggest not only bool but a list of enums. This is for the following options:\n\n- AUTO_TRIAGE_UNSPECIFIED\n- AUTO_TRIAGE\n- AUTO_BISECT\n\nWe can have 3 possible states:\n\n- Auto-bisect (automatically bisect anomalies without grouping)\n- Auto-triage (automatically triage without bisection)\n- Auto-triage + Auto-bisect (automatically triage groups and then bisect)\n\nThe default (unspecified) is that we don\u0027t do anything.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a1cdf51_f3c7b261",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "Maybe we should allow our user use different patterns for auto-triage and auto-bisection? And auto-bisection will be a seperate field.",
+      "parentUuid": "ef889d35_8422fc27",
       "range": {
         "startLine": 64,
         "startChar": 4,
@@ -355,6 +637,30 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3fab2e6_7ca42cde",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-30T04:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dfdd951_41467be3",
+      "range": {
+        "startLine": 122,
+        "startChar": 2,
+        "endLine": 123,
+        "endChar": 43
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
