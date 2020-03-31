@@ -641,6 +641,30 @@
     },
     {
       "key": {
+        "uuid": "c0a14d03_ce2c2e77",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-31T01:23:47Z",
+      "side": 1,
+      "message": "No. just set patterns in auto-triage then set auto_bisect enable.",
+      "parentUuid": "2ff72556_3f3afd4b",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9759a777_432e1ac3",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 2
@@ -652,6 +676,30 @@
       "writtenOn": "2020-03-30T06:30:51Z",
       "side": 1,
       "message": "Can you document what happens if these rules match different things from what\u0027s in the list of patterns already specified? Also, how does this change the way we\u0027re responding in the match and list APIs?",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42186e9c_226f24d5",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-31T01:23:47Z",
+      "side": 1,
+      "message": "When we responding the match, we only respond the match result with enable or not.",
+      "parentUuid": "9759a777_432e1ac3",
       "range": {
         "startLine": 65,
         "startChar": 4,
@@ -722,6 +770,30 @@
       "writtenOn": "2020-03-30T06:30:51Z",
       "side": 1,
       "message": "With the change in the way auto_triage is configured now (with rules), I\u0027m not sure this is sufficient anymore.",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32fc0523_acd1b3de",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-03-31T01:23:47Z",
+      "side": 1,
+      "message": "It\u0027s sufficient. I will add some comments here. The idea here is dashboard shouldn\u0027t do the match work. So wether user config it as pattern match or just enable it, we only return enable flag as a result in Match request.",
+      "parentUuid": "f0185207_0719a858",
       "range": {
         "startLine": 57,
         "startChar": 8,
