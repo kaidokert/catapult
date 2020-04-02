@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b47a244_0a1ae574",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T08:25:12Z",
+      "side": 1,
+      "message": "based",
+      "range": {
+        "startLine": 19,
+        "startChar": 35,
+        "endLine": 19,
+        "endChar": 39
+      },
+      "revId": "a18de01237a77781db1801750cbec9869a3dd646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab7881b3_53dc36d2",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T08:25:12Z",
+      "side": 1,
+      "message": "configuration in matching subscriptions?",
+      "range": {
+        "startLine": 19,
+        "startChar": 43,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "a18de01237a77781db1801750cbec9869a3dd646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "588e68ca_fe898f4b",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T08:25:12Z",
+      "side": 1,
+      "message": "All -\u003e all",
+      "range": {
+        "startLine": 21,
+        "startChar": 68,
+        "endLine": 21,
+        "endChar": 71
+      },
+      "revId": "a18de01237a77781db1801750cbec9869a3dd646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4ad36ba_8fe1cec9",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T08:25:12Z",
+      "side": 1,
+      "message": "passes",
+      "range": {
+        "startLine": 25,
+        "startChar": 46,
+        "endLine": 25,
+        "endChar": 52
+      },
+      "revId": "a18de01237a77781db1801750cbec9869a3dd646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fc9a14c_88a087c0",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T08:25:12Z",
+      "side": 1,
+      "message": "nit: empty line in between?",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 74
+      },
+      "revId": "a18de01237a77781db1801750cbec9869a3dd646",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
