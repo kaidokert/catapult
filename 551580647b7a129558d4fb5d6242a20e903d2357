@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "594d6c52_5e4c46e1",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99727ddb_59ac735a",
+      "range": {
+        "startLine": 20,
+        "startChar": 36,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39f263e0_db277ff1",
         "filename": "dashboard/dashboard/alert_groups.py",
         "patchSetId": 2
@@ -93,6 +117,30 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46cd4589_60d56488",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c10e0d5_1414455d",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 25
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "6e9d7a83_3e339728",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "184068df_5873aea5",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "415adc87_334d9a3d",
         "filename": "dashboard/dashboard/alert_groups.py",
         "patchSetId": 2
@@ -187,6 +259,30 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bc10635_6f00380f",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d458f45f_099e73b9",
+      "range": {
+        "startLine": 33,
+        "startChar": 16,
+        "endLine": 33,
+        "endChar": 24
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -272,6 +368,24 @@
     },
     {
       "key": {
+        "uuid": "bfa5eb26_963c7b9d",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "383c683d_f7eb1da1",
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aaefce8c_cb313649",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 2
@@ -286,6 +400,24 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e1c47f5_b0bf04bd",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaefce8c_cb313649",
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -383,6 +515,30 @@
     },
     {
       "key": {
+        "uuid": "d7cf5e7b_059ced0c",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2224662e_629edab6",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 52
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4387f0a6_03efb22b",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 2
@@ -477,6 +633,30 @@
     },
     {
       "key": {
+        "uuid": "efbe0823_8ced0ac2",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcd35928_5eb2a0c9",
+      "range": {
+        "startLine": 124,
+        "startChar": 23,
+        "endLine": 124,
+        "endChar": 29
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd5bd946_de201771",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 2
@@ -500,6 +680,30 @@
     },
     {
       "key": {
+        "uuid": "0a088d14_cbbf8af1",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cd5bd946_de201771",
+      "range": {
+        "startLine": 141,
+        "startChar": 9,
+        "endLine": 144,
+        "endChar": 3
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17fce039_58868804",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 2
@@ -520,6 +724,30 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5ead3d1_836b2df4",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "17fce039_58868804",
+      "range": {
+        "startLine": 153,
+        "startChar": 2,
+        "endLine": 160,
+        "endChar": 71
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -665,6 +893,30 @@
     },
     {
       "key": {
+        "uuid": "2a58a5e0_a6eed726",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0a14d03_ce2c2e77",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9759a777_432e1ac3",
         "filename": "dashboard/dashboard/proto/sheriff.proto",
         "patchSetId": 2
@@ -709,6 +961,30 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "859da26f_a493e648",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42186e9c_226f24d5",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 20
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -803,6 +1079,30 @@
       "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd4c97eb_62699ba8",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-02T05:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32fc0523_acd1b3de",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "551580647b7a129558d4fb5d6242a20e903d2357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
