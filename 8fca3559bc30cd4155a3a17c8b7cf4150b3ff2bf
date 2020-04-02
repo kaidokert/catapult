@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3277b0d5_e4f64623",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T05:52:48Z",
+      "side": 1,
+      "message": "I think it would be great if you expand this to explain the workflow and algorithm a little bit, for the benefit of the next group of people that will read this (which is us, +N months later).",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "8fca3559bc30cd4155a3a17c8b7cf4150b3ff2bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a18617fc_c2f7a65e",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T05:52:48Z",
+      "side": 1,
+      "message": "Typo?",
+      "range": {
+        "startLine": 17,
+        "startChar": 31,
+        "endLine": 17,
+        "endChar": 42
+      },
+      "revId": "8fca3559bc30cd4155a3a17c8b7cf4150b3ff2bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e63987ce_98024f8f",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T05:52:48Z",
+      "side": 1,
+      "message": "This I think would be much better with a comment explaining that we support multiple groups per anomaly, and if a group doesn\u0027t exist yet, that it\u0027s possible an anomaly can have \"Ungrouped\" as one of the groups in the list of groups.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 38
+      },
+      "revId": "8fca3559bc30cd4155a3a17c8b7cf4150b3ff2bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8612448b_349cf7aa",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T05:52:48Z",
+      "side": 1,
+      "message": "Adding TODO comments here would be really nice.",
+      "range": {
+        "startLine": 95,
+        "startChar": 2,
+        "endLine": 99,
+        "endChar": 8
+      },
+      "revId": "8fca3559bc30cd4155a3a17c8b7cf4150b3ff2bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b888bdd_e349a324",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-02T05:52:48Z",
+      "side": 1,
+      "message": "As proposed offline, we should stage changes in the sheriff-config service in a different CL instead.",
+      "revId": "8fca3559bc30cd4155a3a17c8b7cf4150b3ff2bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
