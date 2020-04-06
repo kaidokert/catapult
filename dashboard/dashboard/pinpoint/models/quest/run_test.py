@@ -26,6 +26,8 @@ from dashboard.services import swarming
 _CIPD_VERSION = 'git_revision:66410e06ff82b4e79e849977e4e58c0a261d9953'
 _CPYTHON_VERSION = 'version:2.7.14.chromium14'
 _LOGDOG_BUTLER_VERSION = 'git_revision:e1abc57be62d198b5c2f487bfb2fa2d2eb0e867c'
+_TESTER_SERVICE_ACCOUNT = (
+    'chrome-tester@chops-service-accounts.iam.gserviceacount.com')
 _VPYTHON_VERSION = 'git_revision:00e2d8b49a4e7505d1c71f19d15c9e7c5b9245a5'
 VPYTHON_PARAMS = {
     'caches': [
@@ -295,6 +297,7 @@ class _RunTestExecution(execution_module.Execution):
         # TODO(dberris): Make this configuration dependent.
         'execution_timeout_secs': '2700',  # 45 minutes for all tasks.
         'io_timeout_secs': '2700',  # Also set 45 minutes for all tasks.
+        'service_account': _TESTER_SERVICE_ACCOUNT,
     }
     properties.update(VPYTHON_PARAMS)
     body = {
