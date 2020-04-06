@@ -70,6 +70,15 @@ def PermutationTest(sequence, min_segment_size, rand=None):
 
   Determine whether there's a potential change point within the sequence,
   using randomised permutation testing.
+
+  Arguments:
+    - sequence: an iterable of values to perform permutation testing on.
+    - min_segment_size: the margins in the sequence to consider when creating
+          permutations.
+    - rand: an implementation of a pseudo-random generator (see random.Random))
+
+  Returns 'True' if there's a greater than 5% probability that a permutation of
+  the values in the sequence, in a re-clustering contains a change-point.
   """
   if len(sequence) < (min_segment_size * 2) + 1:
     return False
@@ -240,8 +249,6 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
     # Case 1: We haven't found alternative likely change points in either
     # cluster.
     if not in_a and not in_b:
-      if not candidate_indices:
-        raise InsufficientData('Not enough data to suggest a change point.')
       break
 
     # Case 2: We've found a likely change point in one of the clusters. In this
@@ -250,9 +257,19 @@ def ClusterAndFindSplit(values, min_segment_size, rand=None):
     # TODO(crbug/1045595): Change this to explore both clusters, using an
     # interval tree traversal algorithm.
     if in_a:
-      length = min(partition_point + min_segment_size, len(values))
+      new_length = partition_point + min_segment_size
+      if new_length == length:
+        logging.debug('Length converged at %d, terminating early', new_length)
+        break
+      length = new_length
     elif in_b:
-      length = min(len(cluster_b) + min_segment_size - 1, len(values))
-      start += max(partition_point - (min_segment_size - 1), 0)
+      new_length = len(cluster_b) + min_segment_size
+      new_start = start + max(partition_point - (min_segment_size - 1), 0)
+      if new_start == start and new_length == length:
+        logging.debug('Start converged at %d, terminating early', new_start)
+        break
+      start, length = new_start, new_length
 
+  if not candidate_indices:
+    raise InsufficientData('Not enough data to suggest a change point.')
   return candidate_indices
