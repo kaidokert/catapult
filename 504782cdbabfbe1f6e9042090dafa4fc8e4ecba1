@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83456d42_e8b77031",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-06T23:05:50Z",
+      "side": 0,
+      "message": "Curious why this was removed?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 37
+      },
+      "revId": "504782cdbabfbe1f6e9042090dafa4fc8e4ecba1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
