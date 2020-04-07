@@ -52,6 +52,13 @@ class DNSFailureException(LoginException):
   pass
 
 
+def _Unquote(s):
+  if not hasattr(s, 'strip'):
+    return s
+  # Repeated to handle both "'foo'" and '"foo"'
+  return s.strip("'").strip('"').strip("'")
+
+
 class CrOSInterface(object):
 
   CROS_MINIDUMP_DIR = '/var/log/chrome/Crash Reports/'
@@ -309,6 +316,8 @@ class CrOSInterface(object):
     """
     logging.debug("GetFile(%s, %s)" % (filename, destfile))
     if self.local:
+      filename = _Unquote(filename)
+      destfile = _Unquote(destfile)
       if destfile is not None and destfile != filename:
         shutil.copyfile(filename, destfile)
         return
