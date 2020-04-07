@@ -16,6 +16,24 @@
       "revId": "9baa7dd24b24d44be1b8aef6e69d1e3e828b6d00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b664d51_06346d34",
+        "filename": "telemetry/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-04-07T14:36:35Z",
+      "side": 1,
+      "message": "Added - thanks!",
+      "parentUuid": "6dd8dccb_b9eb6de6",
+      "revId": "9baa7dd24b24d44be1b8aef6e69d1e3e828b6d00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
