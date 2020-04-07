@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af9c5e17_eb3bfab1",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-07T01:06:36Z",
+      "side": 1,
+      "message": "This one never happens I guess? As\n```\n  estimates \u003d [\n      Estimator(i)\n      for i, _ in enumerate(sequence)\n      if margin \u003c\u003d i \u003c len(sequence) - margin\n  ]\n```\n(partition_point + min_segment_size) always less then length. Do I miss anything?",
+      "revId": "3c43849ffaad3db29fe4c8cbf90ef3ecedf831d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91c8996b_6831a7f5",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-07T01:06:36Z",
+      "side": 1,
+      "message": "Also the case `in_b` looks like not providing any extra level prevention compare to the previous code?\n`length` has already promised decreasing during each iteration.",
+      "revId": "3c43849ffaad3db29fe4c8cbf90ef3ecedf831d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
