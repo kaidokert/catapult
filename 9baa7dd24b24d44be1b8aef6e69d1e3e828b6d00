@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dd8dccb_b9eb6de6",
+        "filename": "telemetry/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-07T11:14:48Z",
+      "side": 1,
+      "message": "It might make sense to mention that Telemetry doesn\u0027t compute metrics anymore, it only collects traces and other artifacts and stores them in the form of test results. The metric computation is done by Results Processor [1].\n\n[1] https://source.chromium.org/chromium/chromium/src/+/master:tools/perf/core/results_processor/README.md",
+      "revId": "9baa7dd24b24d44be1b8aef6e69d1e3e828b6d00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
