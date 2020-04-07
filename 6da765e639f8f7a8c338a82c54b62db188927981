@@ -16,6 +16,24 @@
       "revId": "6da765e639f8f7a8c338a82c54b62db188927981",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7ee15e2_b00bc7d0",
+        "filename": "dashboard/queue.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-07T01:21:51Z",
+      "side": 1,
+      "message": "It turns out, if we\u0027re processing at higher than 500/s, then we become limited by the number of live requests that are concurrently running. I\u0027ve seen this number get up as high as 3000 when the service is scaling up (after scaling down for a period), so we do need to keep this at a high level as well to keep the live machines busy.",
+      "parentUuid": "8c0195f4_96b389c6",
+      "revId": "6da765e639f8f7a8c338a82c54b62db188927981",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
