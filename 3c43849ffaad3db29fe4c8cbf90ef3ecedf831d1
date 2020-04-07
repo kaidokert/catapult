@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "945a1ef5_d037b822",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-07T02:57:48Z",
+      "side": 1,
+      "message": "No, because parition_point + min_segment_size might actually equal len(values) -- note that it\u0027s the length of the initial input. Say we find a partition point that\u0027s exactly min_segment_size away from the end, then we\u0027ll have partition_point + min_segment_size \u003d\u003d len(values).",
+      "parentUuid": "af9c5e17_eb3bfab1",
+      "revId": "3c43849ffaad3db29fe4c8cbf90ef3ecedf831d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91c8996b_6831a7f5",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "3c43849ffaad3db29fe4c8cbf90ef3ecedf831d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cb8c153_dfe30e6d",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-07T02:57:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91c8996b_6831a7f5",
+      "revId": "3c43849ffaad3db29fe4c8cbf90ef3ecedf831d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
