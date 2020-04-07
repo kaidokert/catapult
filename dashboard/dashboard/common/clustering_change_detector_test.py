@@ -5,6 +5,9 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import sys
+
+import array
 import logging
 import unittest
 import itertools
@@ -16,12 +19,17 @@ from dashboard.common import clustering_change_detector as ccd
 class ChangeDetectorTest(unittest.TestCase):
 
   def setUp(self):
+    self.logger = logging.getLogger()
+    self.logger.level = logging.DEBUG
+    self.stream_handler = logging.StreamHandler(sys.stdout)
+    self.logger.addHandler(self.stream_handler)
+    self.addCleanup(self.logger.removeHandler, self.stream_handler)
     self.rand = random.Random(x=1)
 
   def testClusterPartitioning(self):
     a, b = ccd.Cluster([1, 2, 3], 1)
-    self.assertEqual(a, [1])
-    self.assertEqual(b, [2, 3])
+    self.assertEqual(a, array.array('d', [1]))
+    self.assertEqual(b, array.array('d', [2, 3]))
 
   def testMidpoint_Long(self):
     self.assertEqual(1, ccd.Midpoint([0, 0, 0]))
@@ -93,3 +101,12 @@ class ChangeDetectorTest(unittest.TestCase):
     splits = ccd.ClusterAndFindSplit(sequence, 0, self.rand)
     logging.debug('Splits = %s', splits)
     self.assertEqual([10], splits)
+
+  def testClusterAndFindSplit_N_Pattern(self):
+    # In this test case we're ensuring that permutation testing is finding the
+    # local mimima for a sub-segment.
+    sequence = range(100, 200) + range(200, 100, -1) + [300] * 10
+    splits = ccd.ClusterAndFindSplit(sequence, 0, self.rand)
+    logging.debug('Splits = %s', splits)
+    self.assertIn(200, splits)
+    self.assertTrue(any(c < 200 for c in splits))
