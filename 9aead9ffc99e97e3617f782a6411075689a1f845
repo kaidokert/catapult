@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f346084c_5d13c710",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-08T07:13:11Z",
+      "side": 1,
+      "message": "No need to create a list I think, the generator expression should be sufficient.",
+      "range": {
+        "startLine": 164,
+        "startChar": 23,
+        "endLine": 164,
+        "endChar": 53
+      },
+      "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8784aad_29446f55",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-08T07:13:11Z",
+      "side": 1,
+      "message": "Probably want to document this so that it\u0027s clear we\u0027re exposing the \u0027match_subscription\u0027 and \u0027match_auto_triage\u0027 as members but should be treated as functions. I would suspect this would be better this way:\n\n```\ndef __init__(self, ...):\n  self._subscription_matcher \u003d ...\n  self._auto_triage_matcher \u003d ...\n\ndef match_subscriptions(self, ...):\n  return self._subscription_matcher(...)\n\ndef match_auto_triage(self, ...):\n  return self._auto_triage_matcher(...)\n```\n\nIt would make it clear that we\u0027re exposing functions.",
+      "range": {
+        "startLine": 169,
+        "startChar": 2,
+        "endLine": 169,
+        "endChar": 35
+      },
+      "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8e99fcb_a524dbce",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-08T07:13:11Z",
+      "side": 1,
+      "message": "How do we know whether cached is not an empty tuple? Maybe do this instead:\n\n```\nif cached and cached[0] \u003d\u003d revision:\n  ...\n```\n\nOr, better:\n\n```\nif cached and len(cached) \u003d\u003d 2:\n  key, value \u003d cached\n  cached\n```\n\nIf you change what you\u0027re caching from a raw tuple to a `collections.namedtuple` instead, then you can refer to those by name:\n\n```\ncached \u003d ...\nif cached cached.revision \u003d\u003d revision:\n  return cached.value\n```",
+      "range": {
+        "startLine": 187,
+        "startChar": 28,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
