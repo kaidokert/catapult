@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62f3d59b_81c273d9",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-08T07:47:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f346084c_5d13c710",
+      "range": {
+        "startLine": 164,
+        "startChar": 23,
+        "endLine": 164,
+        "endChar": 53
+      },
+      "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8784aad_29446f55",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9cdfb022_d71f1447",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-08T07:47:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8784aad_29446f55",
+      "range": {
+        "startLine": 169,
+        "startChar": 2,
+        "endLine": 169,
+        "endChar": 35
+      },
+      "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8e99fcb_a524dbce",
         "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7127556e_2b64cc4e",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-08T07:47:45Z",
+      "side": 1,
+      "message": "`namedtuple` is a great idea, thanks!",
+      "parentUuid": "b8e99fcb_a524dbce",
+      "range": {
+        "startLine": 187,
+        "startChar": 28,
+        "endLine": 187,
+        "endChar": 37
+      },
+      "revId": "9aead9ffc99e97e3617f782a6411075689a1f845",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
