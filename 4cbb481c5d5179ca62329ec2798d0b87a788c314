@@ -16,6 +16,24 @@
       "revId": "4cbb481c5d5179ca62329ec2798d0b87a788c314",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8043542f_3321e1da",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1265570
+      },
+      "writtenOn": "2020-04-08T23:48:43Z",
+      "side": 1,
+      "message": "I synchronized them with the default tracepoints in the System Tracing app, which I believe was reviewed more recently. \nI don\u0027t think disk and rs are useful as defaults - webview could arguably be; if you feel strongly about it I could add that one in both places.",
+      "parentUuid": "f41d2e3c_1673eebd",
+      "revId": "4cbb481c5d5179ca62329ec2798d0b87a788c314",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
