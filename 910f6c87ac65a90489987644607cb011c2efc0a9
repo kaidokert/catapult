@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3140b1cb_db0975bd",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2020-04-08T13:41:34Z",
+      "side": 1,
+      "message": "This is based on process creation time, which adds noise unnecessarily. On Android/Linux to avoid potentially large skew we should be using base::TimeTicks::Now() or SystemClock.uptimeMillis() (both take the value from the same clock). Also it is preferable to avoid using the thread priority hack in StartupTimeToTimeTicks(). See crbug.com/797762 for more details.",
+      "range": {
+        "startLine": 32,
+        "startChar": 35,
+        "endLine": 32,
+        "endChar": 70
+      },
+      "revId": "910f6c87ac65a90489987644607cb011c2efc0a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
