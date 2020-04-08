@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b4c231b_0aea416c",
+        "filename": "dashboard/dashboard/sheriff_config/luci_config.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-08T09:19:11Z",
+      "side": 1,
+      "message": "For the future, you can inherit from this class instead at module-level so it\u0027s only done once:\n\n```\nclass CachedMatcher(collections.namedtuple(\n    \u0027CachedMatcher\u0027, (\u0027revision\u0027, \u0027matcher\u0027))):\n  __slots__ \u003d ()  # Saves memory per instance.\n```",
+      "range": {
+        "startLine": 197,
+        "startChar": 2,
+        "endLine": 198,
+        "endChar": 47
+      },
+      "revId": "475c8941a1ee84f98e8056d16ddceff37cece233",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
