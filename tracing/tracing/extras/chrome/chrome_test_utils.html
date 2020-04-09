@@ -53,6 +53,7 @@ tr.exportTo('tr.e.chrome', function() {
 
   ChromeTestUtils.addFirstContentfulPaintEvent = function(model, dict) {
     dict.title = 'firstContentfulPaint';
+    dict.category = 'loading';
     const event = tr.c.TestUtils.newInstantEvent(dict);
     model.instantEvents.push(event);
     return event;
