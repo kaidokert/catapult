@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "086494ab_07f5083d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-09T18:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48e6773c_1ff628ff",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 94,
+        "endChar": 22
+      },
+      "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a906aa50_3c319d20",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-09T18:23:08Z",
       "side": 1,
       "message": "Is this actually the case for Fuchsia, or is this just copied from the Mac implementation?",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7ad8c12_e86d90d7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-09T18:33:40Z",
+      "side": 1,
+      "message": "This is copied from Fuchsia, I\u0027m not sure what constitutes very large, but Fuchsia logs can be spammy at times. I tried the hardware_accelerated_feature tests, and it seems like the log was ~1000 lines",
+      "parentUuid": "a906aa50_3c319d20",
       "range": {
         "startLine": 39,
         "startChar": 6,
