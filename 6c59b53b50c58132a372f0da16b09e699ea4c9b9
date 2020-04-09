@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a187e13_723bd426",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-04-09T03:27:36Z",
+      "side": 1,
+      "message": "You could just inline _Unquote",
+      "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20cfa2f3_7bd52d7d",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-04-09T03:27:36Z",
+      "side": 1,
+      "message": "You\u0027re not actually doing this",
+      "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4963fe7_f4e4ad93",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-04-09T03:27:36Z",
+      "side": 1,
+      "message": "You\u0027re not doing this",
+      "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
