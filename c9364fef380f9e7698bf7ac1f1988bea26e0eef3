@@ -117,6 +117,30 @@
       "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c1b8679_3d410ebf",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-09T18:48:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4c6c9031_c35a5b8d",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
