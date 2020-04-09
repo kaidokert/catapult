@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48e6773c_1ff628ff",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T18:23:08Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need to override this as long as you\u0027re implementing GetSystemLog in your platform.",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 94,
+        "endChar": 22
+      },
+      "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a906aa50_3c319d20",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T18:23:08Z",
+      "side": 1,
+      "message": "Is this actually the case for Fuchsia, or is this just copied from the Mac implementation?",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
