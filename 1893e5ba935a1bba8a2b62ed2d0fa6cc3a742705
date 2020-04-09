@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22055642_8629dded",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T18:37:53Z",
+      "side": 1,
+      "message": "Nit: Also pass \"stderr\u003dsubprocess.STDOUT\" so that stderr shows up in the failure message if this actually fails.",
+      "range": {
+        "startLine": 40,
+        "startChar": 24,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "1893e5ba935a1bba8a2b62ed2d0fa6cc3a742705",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6632451_faa95cda",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T18:37:53Z",
+      "side": 1,
+      "message": "You should probably check whether this is set at the beginning and early return if it isn\u0027t.",
+      "range": {
+        "startLine": 41,
+        "startChar": 37,
+        "endLine": 41,
+        "endChar": 53
+      },
+      "revId": "1893e5ba935a1bba8a2b62ed2d0fa6cc3a742705",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

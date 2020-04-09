@@ -93,6 +93,30 @@
       "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6c9031_c35a5b8d",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T18:37:53Z",
+      "side": 1,
+      "message": "1000 lines isn\u0027t too bad, but you\u0027re free to leave as-is if you\u0027re fine only getting the last 200 lines.",
+      "parentUuid": "c7ad8c12_e86d90d7",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 75
+      },
+      "revId": "c9364fef380f9e7698bf7ac1f1988bea26e0eef3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
