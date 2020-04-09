@@ -6,10 +6,12 @@ import logging
 import re
 import subprocess
 
+from telemetry.core import debug_data
 from telemetry.core import exceptions
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import minidump_finder
 from telemetry.internal.platform import fuchsia_platform_backend as fuchsia_platform_backend_module
+from telemetry.internal.results import artifact_logger
 
 import py_utils
 
@@ -89,4 +91,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     logging.warning('Symbolizing Minidump not supported on Fuchsia.')
     return None
 
-
+  def CollectDebugData(self, log_level):
+    logging.warning('here')
+    suffix = artifact_logger.GetTimestampSuffix()
+    data = debug_data.DebugData()
+    self._CollectSystemLog(log_level, suffix, data)
+    return data
