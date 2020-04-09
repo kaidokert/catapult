@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4d83837c_c951c894",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T16:41:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a187e13_723bd426",
+      "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20cfa2f3_7bd52d7d",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "421d1723_73466c0a",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T16:41:31Z",
+      "side": 1,
+      "message": "Done, although it was effectively handled by PushFile since we don\u0027t do anything else with the path here except log it.",
+      "parentUuid": "20cfa2f3_7bd52d7d",
+      "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4963fe7_f4e4ad93",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 1
@@ -50,6 +86,24 @@
       "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b2a4df7_72e5c507",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-09T16:41:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4963fe7_f4e4ad93",
+      "revId": "6c59b53b50c58132a372f0da16b09e699ea4c9b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
