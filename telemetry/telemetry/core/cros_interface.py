@@ -562,12 +562,21 @@ class CrOSInterface(object):
     return True
 
   def _GetMountSourceAndTarget(self, path, ns=None):
-    cmd = []
+    def _RunAndSplit(cmd):
+      cmd_out, _ = self.RunCmdOnDevice(cmd)
+      return cmd_out.split('\n')
+
+    cmd = ['/bin/df', '--output=source,target', path]
+    df_ary = []
     if ns:
-      cmd.extend(['nsenter', '--mount=%s' % ns])
-    cmd.extend(['/bin/df', '--output=source,target', path])
-    df_out, _ = self.RunCmdOnDevice(cmd)
-    df_ary = df_out.split('\n')
+      ns_cmd = ['nsenter', '--mount=%s' % ns]
+      ns_cmd.extend(cmd)
+      # Try running 'df' in the non-root mount namespace.
+      df_ary = _RunAndSplit(ns_cmd)
+
+    if len(df_ary) < 3:
+      df_ary = _RunAndSplit(cmd)
+
     # 3 lines for title, mount info, and empty line.
     if len(df_ary) == 3:
       line_ary = df_ary[1].split()
