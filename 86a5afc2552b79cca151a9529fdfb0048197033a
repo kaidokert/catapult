@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dcdba02b_ab9ee383",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-13T17:18:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f08e56cb_8d7d6152",
+      "revId": "86a5afc2552b79cca151a9529fdfb0048197033a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fec214d8_972eecc1",
         "filename": "telemetry/telemetry/core/cros_interface.py",
         "patchSetId": 7
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "bfffca1a_37b3b291",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-13T17:18:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fec214d8_972eecc1",
+      "revId": "86a5afc2552b79cca151a9529fdfb0048197033a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4471c6c1_b5092a49",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 7
@@ -50,6 +86,24 @@
       "revId": "86a5afc2552b79cca151a9529fdfb0048197033a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a4b46eb_cb19fe87",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-13T17:18:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4471c6c1_b5092a49",
+      "revId": "86a5afc2552b79cca151a9529fdfb0048197033a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -73,6 +127,30 @@
       "revId": "86a5afc2552b79cca151a9529fdfb0048197033a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37281538_0e355725",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-13T17:18:22Z",
+      "side": 1,
+      "message": "Fixed. It wasn\u0027t being run since it\u0027s annotated with @decorators.Disabled(\u0027all\u0027).",
+      "parentUuid": "2442a846_17919d28",
+      "range": {
+        "startLine": 237,
+        "startChar": 32,
+        "endLine": 237,
+        "endChar": 37
+      },
+      "revId": "86a5afc2552b79cca151a9529fdfb0048197033a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
