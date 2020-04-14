@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1df551f8_52782faf",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-04-14T16:11:16Z",
+      "side": 1,
+      "message": "Isn\u0027t the host x64?",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
