@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "841265bc_29a53f4f",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-04-14T08:22:23Z",
+      "side": 1,
+      "message": "It doesn\u0027t surprise me that constructing arrays are more expensive than just using lists, because Python has spent a lot of effort optimizing the handling of the core builtin types.\n\narray.array might be useful to reduce memory consumption, but reading data out of it requires unmarshalling into new Python objects (without the benefit of specialized op codes like lists have) and thus I would expect it to be slow.  Perhaps combined with memoryview or something you could avoid copying lists of ints… but yeah this sort of issue is why numpy exists.",
+      "range": {
+        "startLine": 52,
+        "startChar": 3,
+        "endLine": 52,
+        "endChar": 65
+      },
+      "revId": "6b549f89a8c3f10f329b9c3bb9555569a9a5f89e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
