@@ -22,6 +22,178 @@
       "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dfe4a35_a54402b2",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "you set up logging below, so either\n- use logging.info() here\nor\n- get rid of the logging setup, and use print().. (gotta get to py3 someday)",
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bd45f47_be787bbf",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "goma_dir defaults to ~/goma/ when use_goma\u003dtrue, so I wonder how many folks have a goma client up and running under ~/goma/",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a33f62ae_322c9ef6",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "use autoninja and nix the hardcoded -j value",
+      "range": {
+        "startLine": 96,
+        "startChar": 27,
+        "endLine": 96,
+        "endChar": 32
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44a8a06a_444011fc",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "as written, the error msg appears to want to print local_path instead",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 58
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a266211_7711e537",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "Will this fail loud if gsutil fails? If not, make sure the error message is clear and this script exits fast IMO",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 19
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9238eb75_c3c3be71",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "?\n\nAt least put a comment pls",
+      "range": {
+        "startLine": 126,
+        "startChar": 26,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c411ed_a7d833ab",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "description\u003d__doc__",
+      "range": {
+        "startLine": 168,
+        "startChar": 34,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9bd5224_ed49f4d5",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-14T18:10:15Z",
+      "side": 1,
+      "message": "nit: since this is devil, i woulda assumed a \u0027-d\u0027 arg would be an alias for \"--device\"\n\nMaybe -j instead? Tho that\u0027s not great either",
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
