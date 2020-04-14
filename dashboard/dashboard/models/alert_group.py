@@ -73,6 +73,10 @@ class AlertGroup(ndb.Model):
     return [g.key for g in groups]
 
   @classmethod
+  def GetByID(cls, group_id):
+    return ndb.Key('AlertGroup', int(group_id)).get()
+
+  @classmethod
   def Get(cls, group_name, revision_info, active=True):
     query = cls.query(
         cls.active == active,
