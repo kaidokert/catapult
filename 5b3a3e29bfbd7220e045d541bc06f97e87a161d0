@@ -16,6 +16,24 @@
       "revId": "5b3a3e29bfbd7220e045d541bc06f97e87a161d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0222a0dd_2beb4682",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-04-14T17:11:20Z",
+      "side": 1,
+      "message": "Clarified - lighthouse uses FMP internally when computing TTI.",
+      "parentUuid": "2b040875_c18fb60f",
+      "revId": "5b3a3e29bfbd7220e045d541bc06f97e87a161d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
