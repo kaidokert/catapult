@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b040875_c18fb60f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-14T10:20:54Z",
+      "side": 1,
+      "message": "The lighthouse code at the link above only mentions FCP, not FMP. So this line seems confusing to me.",
+      "revId": "5b3a3e29bfbd7220e045d541bc06f97e87a161d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
