@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c8b92ad_758824b1",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-04-15T15:56:37Z",
+      "side": 1,
+      "message": "I guess this works, but I thought perfetto cmd also supported interrupts for \"stop tracing\". Would that be simpler than sending a trigger? (not sure, I guess you\u0027d have to find the right PID to interrupt)\n\nhttps://cs.chromium.org/chromium/src/third_party/perfetto/src/perfetto_cmd/perfetto_cmd.cc?l\u003d857",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12902e5_675c15f3",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-04-15T15:56:37Z",
+      "side": 1,
+      "message": "does this comment need updating? 😊",
+      "range": {
+        "startLine": 71,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
