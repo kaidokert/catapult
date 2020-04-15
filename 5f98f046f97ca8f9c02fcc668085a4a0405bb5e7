@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec25dfac_f9b3cffe",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001385
+      },
+      "writtenOn": "2020-04-15T14:30:53Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem right - we are directing the web_engine_shell\u0027s stderr to a pipe in the RunCommandPiped() call; can\u0027t we do the same for stdout?",
+      "range": {
+        "startLine": 83,
+        "startChar": 11,
+        "endLine": 83,
+        "endChar": 56
+      },
+      "revId": "5f98f046f97ca8f9c02fcc668085a4a0405bb5e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
