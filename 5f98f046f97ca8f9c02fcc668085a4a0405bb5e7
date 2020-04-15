@@ -22,6 +22,30 @@
       "revId": "5f98f046f97ca8f9c02fcc668085a4a0405bb5e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc1ca8f8_456d289a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-15T17:11:07Z",
+      "side": 1,
+      "message": "Yeah, this is in progress.",
+      "parentUuid": "ec25dfac_f9b3cffe",
+      "range": {
+        "startLine": 83,
+        "startChar": 11,
+        "endLine": 83,
+        "endChar": 56
+      },
+      "revId": "5f98f046f97ca8f9c02fcc668085a4a0405bb5e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
