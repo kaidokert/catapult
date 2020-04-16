@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "27d4f61c_2a47b7b8",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "it is; this is somewhat misleading in that it builds these binaries with the host toolchain within a target_cpu\u003d\"arm\" build. adding a comment to clarify.",
+      "parentUuid": "1df551f8_52782faf",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dfe4a35_a54402b2",
         "filename": "devil/devil/utils/update_dependencies.py",
         "patchSetId": 8
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "cf394041_f61ba2eb",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "logging it is, though devil py3 may be a future weekender.",
+      "parentUuid": "3dfe4a35_a54402b2",
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bd45f47_be787bbf",
         "filename": "devil/devil/utils/update_dependencies.py",
         "patchSetId": 8
@@ -53,6 +95,30 @@
       "writtenOn": "2020-04-14T18:10:15Z",
       "side": 1,
       "message": "goma_dir defaults to ~/goma/ when use_goma\u003dtrue, so I wonder how many folks have a goma client up and running under ~/goma/",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8885356_e0cd8f68",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "I\u0027m not sure where you\u0027re going with this comment. Mind clarifying?",
+      "parentUuid": "9bd45f47_be787bbf",
       "range": {
         "startLine": 88,
         "startChar": 7,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "d8d507ff_e138a6bd",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "done, also removed -l since that\u0027s also probably just a specific habit of mine",
+      "parentUuid": "a33f62ae_322c9ef6",
+      "range": {
+        "startLine": 96,
+        "startChar": 27,
+        "endLine": 96,
+        "endChar": 32
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44a8a06a_444011fc",
         "filename": "devil/devil/utils/update_dependencies.py",
         "patchSetId": 8
@@ -108,6 +198,30 @@
       "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e228256_abba3e18",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "it does. tweaked to include local_path and sha1sum_output",
+      "parentUuid": "44a8a06a_444011fc",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 58
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "61ba5489_f519cbd2",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "Good call; it\u0027ll be loud but won\u0027t fail. Updated to do something similar to the sha1sum call above.",
+      "parentUuid": "6a266211_7711e537",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 19
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9238eb75_c3c3be71",
         "filename": "devil/devil/utils/update_dependencies.py",
         "patchSetId": 8
@@ -154,6 +292,30 @@
       "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a70daf2_db5dcc52",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "This is intentional; whoever\u0027s running the script needs to update the download path after creating a new dependency with this. I don\u0027t think the script can necessarily determine it.\n\nadded a comment to clarify.",
+      "parentUuid": "9238eb75_c3c3be71",
+      "range": {
+        "startLine": 126,
+        "startChar": 26,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "6d6231be_1de3352c",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46c411ed_a7d833ab",
+      "range": {
+        "startLine": 168,
+        "startChar": 34,
+        "endLine": 168,
+        "endChar": 36
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9bd5224_ed49f4d5",
         "filename": "devil/devil/utils/update_dependencies.py",
         "patchSetId": 8
@@ -194,6 +380,24 @@
       "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5649a5f1_b43251a0",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-04-16T15:34:31Z",
+      "side": 1,
+      "message": "eh, good point, both are confusing. just going to remove the short argument.",
+      "parentUuid": "b9bd5224_ed49f4d5",
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
