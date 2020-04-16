@@ -567,6 +567,30 @@
     },
     {
       "key": {
+        "uuid": "9be7d657_99b802b9",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T18:19:49Z",
+      "side": 1,
+      "message": "Got it. I think it\u0027s fine to keep this as .pb for now, but maybe move to .pftrace as a follow-up.",
+      "parentUuid": "42b62b11_1be41b80",
+      "range": {
+        "startLine": 125,
+        "startChar": 47,
+        "endLine": 125,
+        "endChar": 49
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81cb1f1d_2158f0e7",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3

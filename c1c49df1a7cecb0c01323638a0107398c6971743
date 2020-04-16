@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12129cab_a23eead6",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T18:19:49Z",
+      "side": 1,
+      "message": "I\u0027d suggest using --background instead of \u0026, recording the pid that is printed by perfetto and using that to kill the right process in StopAgentTracing(). Otherwise we might accidentally trample over other perfetto users, e.g, if you\u0027re recording another trace while running telemetry.",
+      "range": {
+        "startLine": 95,
+        "startChar": 63,
+        "endLine": 95,
+        "endChar": 64
+      },
+      "revId": "c1c49df1a7cecb0c01323638a0107398c6971743",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "545afcd0_7c4fa2c9",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T18:19:49Z",
+      "side": 1,
+      "message": "Not needed anymore?",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 24
+      },
+      "revId": "c1c49df1a7cecb0c01323638a0107398c6971743",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
