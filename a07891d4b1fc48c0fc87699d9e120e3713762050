@@ -93,6 +93,30 @@
       "revId": "a07891d4b1fc48c0fc87699d9e120e3713762050",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb231383_0d65ff68",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-16T05:09:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9b701e2e_b5110ca9",
+      "range": {
+        "startLine": 76,
+        "startChar": 2,
+        "endLine": 78,
+        "endChar": 0
+      },
+      "revId": "a07891d4b1fc48c0fc87699d9e120e3713762050",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
