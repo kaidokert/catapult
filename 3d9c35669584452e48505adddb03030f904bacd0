@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a45585da_6db7afd9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6af7ce2_38596d50",
+      "range": {
+        "startLine": 12,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d54c42da_3c44ddf8",
         "filename": "telemetry/telemetry/internal/browser/browser_options.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "577b63ef_fa89e45a",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d54c42da_3c44ddf8",
+      "range": {
+        "startLine": 147,
+        "startChar": 38,
+        "endLine": 147,
+        "endChar": 39
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a22bbc5c_7ed9fcef",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ebdf852_fd9053e4",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a22bbc5c_7ed9fcef",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -118,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "c84a3077_632aa670",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "AFAICT, interrupts don\u0027t help against stale tracing sessions; e.g. if I kill Telemetry, I can still see a Perfetto process running on the device. I added a duration_ms config parameter to ensure that at least it won\u0027t be running for ever.\n\nBut I agree that interrupt version is simpler and doesn\u0027t depend on trigger_perfetto.",
+      "parentUuid": "ac0ab3df_104f0d9f",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e12902e5_675c15f3",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -138,6 +234,30 @@
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "186e621a_d3537b86",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Removed it altogether, the method name seems pretty clear anyway.",
+      "parentUuid": "e12902e5_675c15f3",
+      "range": {
+        "startLine": 71,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -164,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "4d55b1a3_bfb8718d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf1016ef_7c2d13d0",
+      "range": {
+        "startLine": 73,
+        "startChar": 14,
+        "endLine": 73,
+        "endChar": 21
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cdf367d_aa526cbc",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -184,6 +328,30 @@
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9690ed8_39dc8db5",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cdf367d_aa526cbc",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -234,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "a9fa2bcb_1c1c3804",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Perhaps on P+ this directory should just be there? I think I added this line when I was trying to run this on an older device. I will remove this for now.",
+      "parentUuid": "2f30abb7_aa2bcc0f",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 30
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21be2ff7_e67decc6",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -254,6 +446,30 @@
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55bee405_011bbe26",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21be2ff7_e67decc6",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 19
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -280,6 +496,30 @@
     },
     {
       "key": {
+        "uuid": "ccfd1e58_e3cc0cc8",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "872b3777_3e3ec7a5",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 19
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06564c2b_866dad6f",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -291,6 +531,30 @@
       "writtenOn": "2020-04-16T10:07:29Z",
       "side": 1,
       "message": "Can we use .pftrace here too?",
+      "range": {
+        "startLine": 125,
+        "startChar": 47,
+        "endLine": 125,
+        "endChar": 49
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42b62b11_1be41b80",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "This extension is used in a couple of places to determine trace type:\n\nhttps://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/results/story_run.py?sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d27\nhttps://cs.chromium.org/chromium/src/tools/perf/core/results_processor/processor.py?sq\u003dpackage:chromium\u0026g\u003d0\u0026l\u003d189\n\n\".pftrace\" is not supported so far, but we can add it to a list of known extensions if you think it makes sense.",
+      "parentUuid": "06564c2b_866dad6f",
       "range": {
         "startLine": 125,
         "startChar": 47,
@@ -326,6 +590,30 @@
     },
     {
       "key": {
+        "uuid": "1c09f9e9_48499b83",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81cb1f1d_2158f0e7",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b80f2b69_e307b218",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -346,6 +634,30 @@
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a81c2701_56f3ea33",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-16T17:00:48Z",
+      "side": 1,
+      "message": "The longest tests that I know of usually run for 3-4 minutes. But it doesn\u0027t hurt to keep this timeout large, because in normal situations tracing will be stopped by StopAgentTracing() at the end of the test. This timeout is only for cases when Telemetry crashes before StopAgentTracing() is called, to make sure that tracing service doesn\u0027t run forever.\n\n(BTW, this constant has moved to duration_ms in trace config)",
+      "parentUuid": "b80f2b69_e307b218",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 52
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
