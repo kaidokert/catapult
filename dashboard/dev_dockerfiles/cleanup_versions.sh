@@ -1,0 +1,15 @@
+#!/bin/bash -x -e
+# Copyright 2020 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+for SERVICE in "$*"; do
+  VERSIONS=$(gcloud app versions list \
+    --format="table[no-heading](VERSION.ID)" \
+    --filter="SERVICE=${SERVICE} AND
+              TRAFFIC_SPLIT=0 AND
+              LAST_DEPLOYED.date()<$(date -I --date='-3 day')")
+  if ! [ -z "${VERSIONS}" ]; then
+    gcloud app versions delete -s ${SERVICE} ${VERSIONS}
+  fi
+done
