@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "818b4918_72095203",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-16T05:55:57Z",
+      "side": 1,
+      "message": "We can but put it before deploy can always keep the current active version.",
+      "parentUuid": "a8de572c_0f6f8d02",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 3
+      },
+      "revId": "27d88bc974704ddf5f6b019c1ef3eea0eeac4dcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f538581_e25e0173",
         "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-16T02:47:20Z",
       "side": 1,
       "message": "This only echoes the result. I would much rather this script also did the deletion.\n\nAlso, consider using xargs to do the batching so we don\u0027t run into shell input length limits.\n\nThis would then look like:\n\n`echo ${VERSIONS} | xargs gcloud app versions delete -s ${SERVICE}`\n\nWhat will happen is xargs will run that command enough times, batching the versions up so that bash can handle the individual invocations.",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 4
+      },
+      "revId": "27d88bc974704ddf5f6b019c1ef3eea0eeac4dcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a404219b_729a7a63",
+        "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-16T05:55:57Z",
+      "side": 1,
+      "message": "Oh, forgot removing `echo` used for testing.\nAnd I considered your suggestion but xargs only works if we directly pipe the result from `gcloud app versions list`. `echo` also caused expansion. I didn\u0027t find a clear way to write that code (without writing to a temp file) because we need check if it\u0027s empty first. Do you have any idea or just use a temp file?",
+      "parentUuid": "1f538581_e25e0173",
       "range": {
         "startLine": 12,
         "startChar": 2,
