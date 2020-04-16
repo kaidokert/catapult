@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f93a0f98_99ef2dfa",
+        "filename": "dashboard/cloudbuild-dashboard-push-on-green.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-16T06:22:44Z",
+      "side": 1,
+      "message": "Right, that makes sense.",
+      "parentUuid": "818b4918_72095203",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 3
+      },
+      "revId": "27d88bc974704ddf5f6b019c1ef3eea0eeac4dcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f538581_e25e0173",
         "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Oh, forgot removing `echo` used for testing.\nAnd I considered your suggestion but xargs only works if we directly pipe the result from `gcloud app versions list`. `echo` also caused expansion. I didn\u0027t find a clear way to write that code (without writing to a temp file) because we need check if it\u0027s empty first. Do you have any idea or just use a temp file?",
       "parentUuid": "1f538581_e25e0173",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 4
+      },
+      "revId": "27d88bc974704ddf5f6b019c1ef3eea0eeac4dcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1711eb33_ced0e4fb",
+        "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-16T06:22:44Z",
+      "side": 1,
+      "message": "There\u0027s a `-r` or `--no-run-if-empty` option for the GNU version of xargs, which allows you to bypass the empty check. That way you can pipe the result of the `gcloud app versions list` directly. So that\u0027s:\n\n`gcloud app versions list ... | xargs --no-run-if-empty gcloud app versions delete -s ${SERVICE}`\n\nAlternatively you can make \u0027echo\u0027 not do any interpretation of escape sequences with -E. So something like this, after checking whether the versions list is empty:\n\n`echo -E \"${VERSIONS}\" | xargs gcloud app versions delete -s ${SERVICE}`",
+      "parentUuid": "a404219b_729a7a63",
       "range": {
         "startLine": 12,
         "startChar": 2,
