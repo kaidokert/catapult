@@ -141,6 +141,30 @@
       "revId": "27d88bc974704ddf5f6b019c1ef3eea0eeac4dcb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab0d5490_678517aa",
+        "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-04-16T07:37:25Z",
+      "side": 1,
+      "message": "TIL: `--no-run-if-empty` is a really convenient solution. Thanks!",
+      "parentUuid": "1711eb33_ced0e4fb",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 4
+      },
+      "revId": "27d88bc974704ddf5f6b019c1ef3eea0eeac4dcb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
