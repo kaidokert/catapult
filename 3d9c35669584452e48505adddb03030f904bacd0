@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "f6af7ce2_38596d50",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "N.B. if we avoid using trace triggers we should be able to support P too I think.",
+      "range": {
+        "startLine": 12,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d54c42da_3c44ddf8",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "nit: Perfetto",
+      "range": {
+        "startLine": 147,
+        "startChar": 38,
+        "endLine": 147,
+        "endChar": 39
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a22bbc5c_7ed9fcef",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "Right now this works but requires a rooted phone (which is probably okay for now), but if we wanted to make this not require root I think we need just a couple of small tweaks:\n\n1) Write temporary files to /data/local/tmp instead of /data/misc/perfetto-traces (the trace still needs to go there however).\n\n2) Instead of \"perfetto --config /data/local/tmp/foo.txt --txt\", run \"cat /data/local/tmp/foo.txt | perfetto --config - --txt\". There\u0027s an selinux bug which prevents perfetto from reading the trace config from /data/local/tmp directly.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8c8b92ad_758824b1",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -13,6 +82,30 @@
       "writtenOn": "2020-04-15T15:56:37Z",
       "side": 1,
       "message": "I guess this works, but I thought perfetto cmd also supported interrupts for \"stop tracing\". Would that be simpler than sending a trigger? (not sure, I guess you\u0027d have to find the right PID to interrupt)\n\nhttps://cs.chromium.org/chromium/src/third_party/perfetto/src/perfetto_cmd/perfetto_cmd.cc?l\u003d857",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac0ab3df_104f0d9f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "The interrupt version would also work better if telemetry itself is terminated for some reason. We might end up with stale tracing sessions otherwise.",
+      "parentUuid": "8c8b92ad_758824b1",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -41,6 +134,144 @@
         "startChar": 7,
         "endLine": 71,
         "endChar": 14
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf1016ef_7c2d13d0",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "s/warning/error/?",
+      "range": {
+        "startLine": 73,
+        "startChar": 14,
+        "endLine": 73,
+        "endChar": 21
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cdf367d_aa526cbc",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 77,
+        "startChar": 14,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f30abb7_aa2bcc0f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "mkdir -p since this might already exist.",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 30
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21be2ff7_e67decc6",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "logging.info (same for the other informative warnings too)",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 19
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06564c2b_866dad6f",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "Can we use .pftrace here too?",
+      "range": {
+        "startLine": 125,
+        "startChar": 47,
+        "endLine": 125,
+        "endChar": 49
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81cb1f1d_2158f0e7",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-04-16T10:07:29Z",
+      "side": 1,
+      "message": "Could we use py_utils.WaitFor?",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 9
       },
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
