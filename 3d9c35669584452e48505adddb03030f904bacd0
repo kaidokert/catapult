@@ -210,6 +210,30 @@
     },
     {
       "key": {
+        "uuid": "44097709_54bf6548",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-04-16T12:00:37Z",
+      "side": 1,
+      "message": "Rather then creating the directory can we setProp for perfetto on P+ devices? I believe that will create the directories, but perhaps its not worth it to have two separate paths?\n\nIf we create the directory with root I think traced might not be able to write files there.",
+      "parentUuid": "2f30abb7_aa2bcc0f",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 30
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21be2ff7_e67decc6",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
@@ -225,6 +249,29 @@
         "startLine": 84,
         "startChar": 12,
         "endLine": 84,
+        "endChar": 19
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "872b3777_3e3ec7a5",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-04-16T12:00:37Z",
+      "side": 1,
+      "message": "info rather then warning? or whatever the equivalent is for python. Here and any other warnings that are more info.",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
         "endChar": 19
       },
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
@@ -272,6 +319,29 @@
         "startChar": 4,
         "endLine": 127,
         "endChar": 9
+      },
+      "revId": "3d9c35669584452e48505adddb03030f904bacd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b80f2b69_e307b218",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-04-16T12:00:37Z",
+      "side": 1,
+      "message": "Do we have tests that run for half an hour.",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 52
       },
       "revId": "3d9c35669584452e48505adddb03030f904bacd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
