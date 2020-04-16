@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51b19491_ed7e613b",
+        "filename": "dashboard/dev_dockerfiles/cleanup_versions.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-04-16T23:52:24Z",
+      "side": 1,
+      "message": "My shell skills are rusty, but I think \"$@\" may be better here as it will still be robust if any param does have a space?",
+      "range": {
+        "startLine": 6,
+        "startChar": 15,
+        "endLine": 6,
+        "endChar": 17
+      },
+      "revId": "9a3d73e5369527af52e99cc8dadcbc7ac0d988ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
