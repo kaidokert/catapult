@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "482e7d1e_af3507d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-16T22:03:16Z",
+      "side": 1,
+      "message": "Nit: Use the standard docstring format:\n\n\"\"\"One-line description.\n\nAdditional, longer description if necessary.\n\nArgs:\n  arg1: ...\n  arg2: ...\n\nReturns:\n  ...",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 54
+      },
+      "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0541fca_ecabfd10",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-16T22:03:16Z",
+      "side": 1,
+      "message": "Nit: Debug to avoid clutter.",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d3a326f_1d7e6242",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-16T22:03:16Z",
+      "side": 1,
+      "message": "Instead of escaping the line break, just close the string and create a new string on the next line. Python does implicit string concatenation in that case.",
+      "range": {
+        "startLine": 101,
+        "startChar": 79,
+        "endLine": 101,
+        "endChar": 80
+      },
+      "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f0a0d11_660778cd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-16T22:03:16Z",
+      "side": 1,
+      "message": "Nit: stdout",
+      "range": {
+        "startLine": 101,
+        "startChar": 72,
+        "endLine": 101,
+        "endChar": 78
+      },
+      "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f9ab2cd_33fb0374",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-16T22:03:16Z",
+      "side": 1,
+      "message": "Nit: Add a comment explaining why you\u0027re doing this instead of just reading stderr.",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
