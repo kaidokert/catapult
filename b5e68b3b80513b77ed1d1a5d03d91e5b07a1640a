@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "246034fc_e351ede4",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-16T18:37:17Z",
+      "side": 1,
+      "message": "You\u0027re telling the build to use goma, but not specifying goma_dir. So if the user of this script doesn\u0027t have gomactl under ~/goma/, I think the build will either fail fast or fallback to local compile (and then fail after that after a while with \"max local fallbacks\")\n\nPretty sure that\u0027s what will happen, at least. Your call if you want to remove use_goma, add a goma_dir arg, or leave as is and hope everyone has gomactl under ~/goma/",
+      "parentUuid": "a8885356_e0cd8f68",
+      "range": {
+        "startLine": 88,
+        "startChar": 7,
+        "endLine": 88,
+        "endChar": 15
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a33f62ae_322c9ef6",
         "filename": "devil/devil/utils/update_dependencies.py",
         "patchSetId": 8
@@ -307,6 +331,30 @@
       "side": 1,
       "message": "This is intentional; whoever\u0027s running the script needs to update the download path after creating a new dependency with this. I don\u0027t think the script can necessarily determine it.\n\nadded a comment to clarify.",
       "parentUuid": "9238eb75_c3c3be71",
+      "range": {
+        "startLine": 126,
+        "startChar": 26,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "b5e68b3b80513b77ed1d1a5d03d91e5b07a1640a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5223c57_12009de8",
+        "filename": "devil/devil/utils/update_dependencies.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-16T18:37:17Z",
+      "side": 1,
+      "message": "thankee",
+      "parentUuid": "1a70daf2_db5dcc52",
       "range": {
         "startLine": 126,
         "startChar": 26,
