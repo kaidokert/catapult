@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b8fb84b_17ec0e7b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-17T00:41:10Z",
+      "side": 1,
+      "message": "nit: s/decryption/full-disk decryption/ here and elsewhere in doc strings",
+      "range": {
+        "startLine": 931,
+        "startChar": 49,
+        "endLine": 931,
+        "endChar": 68
+      },
+      "revId": "d75a4dafe671767d84c0b432e018467ec23db1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa48ab85_0be124b1",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-17T00:41:10Z",
+      "side": 1,
+      "message": "What is this test testing that \"testWaitUntilFullyBooted_succeedsNoWifi\" isn\u0027t?",
+      "range": {
+        "startLine": 665,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 65
+      },
+      "revId": "d75a4dafe671767d84c0b432e018467ec23db1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
