@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c548b614_9c77f7cc",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-17T11:46:00Z",
+      "side": 1,
+      "message": "Thanks for the suggestion! It looks much better now.",
+      "parentUuid": "12129cab_a23eead6",
+      "range": {
+        "startLine": 95,
+        "startChar": 63,
+        "endLine": 95,
+        "endChar": 64
+      },
+      "revId": "c1c49df1a7cecb0c01323638a0107398c6971743",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "545afcd0_7c4fa2c9",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "c1c49df1a7cecb0c01323638a0107398c6971743",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24d46ab1_e51a339b",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-04-17T11:46:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "545afcd0_7c4fa2c9",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 24
+      },
+      "revId": "c1c49df1a7cecb0c01323638a0107398c6971743",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
