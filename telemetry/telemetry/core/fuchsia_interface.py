@@ -4,7 +4,10 @@
 """A wrapper for common operations on a Fuchsia device"""
 
 import logging
+import os
 import subprocess
+
+from telemetry.core import util
 
 FUCHSIA_BROWSERS = ['web-engine-shell']
 
@@ -51,3 +54,38 @@ class CommandRunner(object):
     ssh_command = self._GetSshCommandLinePrefix() + ssh_args + ['--'] + command
     logging.debug(' '.join(ssh_command))
     return subprocess.Popen(ssh_command, **kwargs)
+
+
+def StartSymbolizerForProcessIfPossible(input_file, output_file, build_id_file):
+  """Starts a symbolizer process if possible.
+
+    Args:
+      input_file: Input file to be symbolized.
+      output_file: Output file for symbolizer stdout and stderr.
+      build_id_file: Path to the ids.txt file which maps build IDs to
+                      unstripped binaries on the filesystem.
+
+    Returns:
+      a Popen object for the started process."""
+  llvm_symbolizer_path = os.path.join(
+      util.GetCatapultDir(), '..', 'llvm-build',
+      'Release+Asserts', 'bin', 'llvm-symbolizer')
+  if (os.path.isfile(llvm_symbolizer_path) and
+      os.path.isfile(build_id_file)):
+    sdk_root = os.path.join(util.GetCatapultDir(), '..', 'fuchsia-sdk', 'sdk')
+    symbolizer = os.path.join(sdk_root, 'tools', 'x64', 'symbolize')
+    symbolizer_cmd = [symbolizer,
+                      '-ids-rel', '-llvm-symbolizer', llvm_symbolizer_path,
+                      '-build-id-dir', os.path.join(sdk_root, '.build-id')]
+    symbolizer_cmd.extend(['-ids', build_id_file])
+
+    logging.debug('Running "%s".' % ' '.join(symbolizer_cmd))
+    return subprocess.Popen(symbolizer_cmd,
+                            stdin=input_file,
+                            stdout=output_file,
+                            stderr=subprocess.STDOUT,
+                            close_fds=True)
+  else:
+    logging.info('Symbolization is not available. '
+                 'Stdout will only contain raw output.')
+    return None
