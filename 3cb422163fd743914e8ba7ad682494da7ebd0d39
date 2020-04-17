@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fd13b0f_2e9a7461",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-17T18:48:43Z",
+      "side": 1,
+      "message": "Nit: \"an llvm symbolizer\" to clarify what it\u0027s doing (I assume it\u0027s attempting to symbolize any stack traces that it finds?)",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 24
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9c268fb_23c5bd1b",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-17T18:48:43Z",
+      "side": 1,
+      "message": "Nit: Typically continued lines are indented 4 spaces, e.g.\n\nbuild_id_file: ...\n    unstripped binaries ...",
+      "range": {
+        "startLine": 66,
+        "startChar": 22,
+        "endLine": 66,
+        "endChar": 60
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "956068f8_3d1d1ab1",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-17T18:48:43Z",
+      "side": 1,
+      "message": "Nit: subprocess.Popen",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "243905cb_ba93b086",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-17T18:48:43Z",
+      "side": 1,
+      "message": "Nit: Capitalize",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31ee1149_f43e5bfe",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-17T18:48:43Z",
+      "side": 1,
+      "message": "Nit: Period",
+      "range": {
+        "startLine": 69,
+        "startChar": 54,
+        "endLine": 69,
+        "endChar": 55
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
