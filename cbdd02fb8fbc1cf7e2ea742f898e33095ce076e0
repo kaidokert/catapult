@@ -234,6 +234,30 @@
       "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1da6759_bf73b912",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-17T17:14:32Z",
+      "side": 1,
+      "message": "I was referring to the fact that you\u0027re storing _browser_log instead of just reading from stderr. You and I have context as to why that\u0027s the case, but someone later on might not.",
+      "parentUuid": "0f3da7db_40850f79",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 29
+      },
+      "revId": "cbdd02fb8fbc1cf7e2ea742f898e33095ce076e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
