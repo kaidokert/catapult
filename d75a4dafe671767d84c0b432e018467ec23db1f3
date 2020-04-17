@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c398f62_b2b9c1cd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-04-17T23:46:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b8fb84b_17ec0e7b",
+      "range": {
+        "startLine": 931,
+        "startChar": 49,
+        "endLine": 931,
+        "endChar": 68
+      },
+      "revId": "d75a4dafe671767d84c0b432e018467ec23db1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa48ab85_0be124b1",
         "filename": "devil/devil/android/device_utils_test.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-17T00:41:10Z",
       "side": 1,
       "message": "What is this test testing that \"testWaitUntilFullyBooted_succeedsNoWifi\" isn\u0027t?",
+      "range": {
+        "startLine": 665,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 65
+      },
+      "revId": "d75a4dafe671767d84c0b432e018467ec23db1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4637a889_e0a9a9db",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-04-17T23:46:05Z",
+      "side": 1,
+      "message": "Ah, thanks for pointing out. They are identical. Removed the duplicated one.",
+      "parentUuid": "fa48ab85_0be124b1",
       "range": {
         "startLine": 665,
         "startChar": 0,
