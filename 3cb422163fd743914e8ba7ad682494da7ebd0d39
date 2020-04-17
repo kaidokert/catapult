@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "f783839b_63b1a4e9",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-17T23:16:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9c268fb_23c5bd1b",
+      "range": {
+        "startLine": 66,
+        "startChar": 22,
+        "endLine": 66,
+        "endChar": 60
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "956068f8_3d1d1ab1",
         "filename": "telemetry/telemetry/core/fuchsia_interface.py",
         "patchSetId": 5
@@ -91,6 +115,54 @@
       "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c865580c_a21dba54",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-17T23:16:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "243905cb_ba93b086",
+      "range": {
+        "startLine": 69,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c43d695_8e9ff02e",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-04-17T23:16:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "956068f8_3d1d1ab1",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "3cb422163fd743914e8ba7ad682494da7ebd0d39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
