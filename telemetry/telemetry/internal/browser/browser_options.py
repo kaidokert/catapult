@@ -141,6 +141,10 @@ class BrowserFinderOptions(optparse.Values):
         '--legacy-json-trace-format',
         action='store_true',
         help='Request traces from Chrome in legacy JSON format.')
+    parser.add_option(
+        '--experimental-system-tracing',
+        action='store_true',
+        help='Use system tracing from Perfetto to trace Chrome.')
     identity = None
     testing_rsa = os.path.join(
         util.GetTelemetryThirdPartyDir(), 'chromite', 'ssh_keys', 'testing_rsa')
