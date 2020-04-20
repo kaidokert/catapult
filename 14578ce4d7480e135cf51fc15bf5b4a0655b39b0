@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7e36681_a323d086",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-20T22:10:10Z",
+      "side": 1,
+      "message": "404 word-not-found: https://www.merriam-webster.com/dictionary/meanful\n\nNo need for extra verbiage; just make it say:\n\ndecrypt: A boolean indicating if we should wait for full-disk decryption to complete.",
+      "range": {
+        "startLine": 933,
+        "startChar": 21,
+        "endLine": 933,
+        "endChar": 28
+      },
+      "revId": "14578ce4d7480e135cf51fc15bf5b4a0655b39b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
