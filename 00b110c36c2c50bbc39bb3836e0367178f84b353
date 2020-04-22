@@ -46,6 +46,30 @@
       "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "603ee666_8d774e16",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-04-22T11:36:01Z",
+      "side": 1,
+      "message": "I forget. I think the idea was to deprecate skipToLoginForTesting at some point. I don\u0027t think anyone is going to do this, so just delete this TODO",
+      "parentUuid": "7916e2f1_01fad295",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 60
+      },
+      "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
