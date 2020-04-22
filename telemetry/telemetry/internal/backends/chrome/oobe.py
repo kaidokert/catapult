@@ -16,6 +16,9 @@ class Oobe(web_contents.WebContents):
   def __init__(self, inspector_backend):
     super(Oobe, self).__init__(inspector_backend)
 
+  OOBE_GAIA_PRIMARY_BUTTON_CLICK = ("document.getElementById('gaia-signin')."
+                                    "$$('#primary-action-button').click();")
+
   @staticmethod
   def Canonicalize(user, remove_dots=True):
     """Get rid of dots in |user| and add @gmail.com."""
@@ -145,23 +148,25 @@ class Oobe(web_contents.WebContents):
     parent_user = self.Canonicalize(parent_user, remove_dots=False)
     self._ClickGaiaButton(parent_user, self._UnicornObfuscated(parent_user))
     logging.info('Entering parent credentials')
-    self._NavigateWebviewEntry('password', parent_pass, 'passwordNext')
-    logging.info('Clicking Yes')
-    self._ClickGaiaButton('Yes', 'Yes')
+    self._NavigateWebviewEntry('password', parent_pass)
+    self.ExecuteJavaScript(Oobe.OOBE_GAIA_PRIMARY_BUTTON_CLICK)
+    logging.info('Clicking Yes (or I agree)')
+    self._ClickGaiaButton('Yes', 'agree')
     py_utils.WaitFor(lambda: not self._GaiaWebviewContext(), 60)
     logging.info('Logged in as unicorn user')
 
   def _NavigateWebviewLogin(self, username, password, wait_for_close):
     """Logs into the webview-based GAIA screen."""
-    self._NavigateWebviewEntry('identifierId', username, 'identifierNext')
-    self._NavigateWebviewEntry('password', password, 'passwordNext')
+    self._NavigateWebviewEntry('identifierId', username)
+    self.ExecuteJavaScript(Oobe.OOBE_GAIA_PRIMARY_BUTTON_CLICK)
+    self._NavigateWebviewEntry('password', password)
+    self.ExecuteJavaScript(Oobe.OOBE_GAIA_PRIMARY_BUTTON_CLICK)
     if wait_for_close:
       py_utils.WaitFor(lambda: not self._GaiaWebviewContext(), 60)
 
-  def _NavigateWebviewEntry(self, field, value, next_field):
+  def _NavigateWebviewEntry(self, field, value):
     """Navigate a username/password GAIA screen."""
     self._WaitForField(field)
-    self._WaitForField(next_field)
     # This code supports both ChromeOS Gaia v1 and v2.
     # In v2 'password' id is assigned to <DIV> element encapsulating
     # unnamed <INPUT>. So this code will select the first <INPUT> element
@@ -173,11 +178,9 @@ class Oobe(web_contents.WebContents):
         if (field.tagName != 'INPUT')
           field = field.getElementsByTagName('INPUT')[0];
 
-        field.value= {{ value }};
-        document.getElementById({{ next_field }}).click();""",
+        field.value= {{ value }};""",
         field=field,
-        value=value,
-        next_field=next_field)
+        value=value)
 
   def _WaitForField(self, field):
     """Wait for username/password field to become available."""
