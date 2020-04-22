@@ -16,6 +16,24 @@
       "revId": "394034aa4c7a8e5c353b16b9177abcd0a489ad88",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40210ddb_a4ea725a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1111144
+      },
+      "writtenOn": "2020-04-22T10:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d0be4eb_8d4daf55",
+      "revId": "394034aa4c7a8e5c353b16b9177abcd0a489ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
