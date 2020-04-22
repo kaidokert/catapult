@@ -22,6 +22,30 @@
       "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7916e2f1_01fad295",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1378455
+      },
+      "writtenOn": "2020-04-22T09:55:46Z",
+      "side": 1,
+      "message": "I have no idea. Maybe Achuith knows it.",
+      "parentUuid": "3f17c6ca_6bb55a22",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 60
+      },
+      "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
