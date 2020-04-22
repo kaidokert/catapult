@@ -22,6 +22,30 @@
       "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7dc79de_2a8d4198",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-04-22T09:05:55Z",
+      "side": 0,
+      "message": "That\u0027s oobe-skip-postlogin, which skips the post login screens like setting the avatar, etc. This is the switch to skip the pre-login screens.",
+      "parentUuid": "5171ee06_bcff35cd",
+      "range": {
+        "startLine": 176,
+        "startChar": 29,
+        "endLine": 176,
+        "endChar": 48
+      },
+      "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }

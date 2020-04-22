@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d0be4eb_8d4daf55",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-04-22T09:05:55Z",
+      "side": 1,
+      "message": "Let\u0027s make this a private function instead",
+      "revId": "394034aa4c7a8e5c353b16b9177abcd0a489ad88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
