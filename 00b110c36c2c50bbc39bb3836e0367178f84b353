@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5171ee06_bcff35cd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1111144
+      },
+      "writtenOn": "2020-04-22T09:00:38Z",
+      "side": 0,
+      "message": "this is already set on line 160",
+      "range": {
+        "startLine": 176,
+        "startChar": 29,
+        "endLine": 176,
+        "endChar": 48
+      },
+      "revId": "00b110c36c2c50bbc39bb3836e0367178f84b353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
