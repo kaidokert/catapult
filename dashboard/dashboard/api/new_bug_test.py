@@ -56,9 +56,6 @@ class NewBugTest(testing_common.TestCase):
     self.SetCurrentUserOAuth(None)
     testing_common.SetSheriffDomains(['example.com'])
 
-    self.PatchObject(new_bug.utils, 'ServiceAccountHttp',
-                     mock.Mock(return_value=None))
-
     mits = mock.MagicMock()
     mits.IssueTrackerService = MockIssueTrackerService
     self.PatchObject(file_bug, 'issue_tracker_service', mits)

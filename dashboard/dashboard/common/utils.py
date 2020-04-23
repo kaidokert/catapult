@@ -25,6 +25,7 @@ from google.appengine.api import users
 from google.appengine.ext import ndb
 import httplib2
 from oauth2client import client
+from oauth2client import appengine
 
 from dashboard.common import stored_object
 
@@ -553,21 +554,10 @@ def _IsGroupMemberCacheKey(identity, group):
   return 'is_group_member_%s_%s' % (identity, group)
 
 
-@ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)
 def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
   """Returns the Credentials of the service account if available."""
-  account_details = stored_object.Get(SERVICE_ACCOUNT_KEY)
-  if not account_details:
-    raise KeyError('Service account credentials not found.')
-
-  assert scope, "ServiceAccountHttp scope must not be None."
-
   client.logger.setLevel(logging.WARNING)
-  credentials = client.SignedJwtAssertionCredentials(
-      service_account_name=account_details['client_email'],
-      private_key=account_details['private_key'],
-      scope=scope)
-
+  credentials = appengine.AppAssertionCredentials(scope=scope)
   http = httplib2.Http(timeout=timeout)
   credentials.authorize(http)
   return http
