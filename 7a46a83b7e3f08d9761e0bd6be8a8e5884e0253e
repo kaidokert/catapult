@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ef68549_40e1cc81",
+        "filename": "dashboard/dashboard/services/issue_tracker_service.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-23T07:24:52Z",
+      "side": 1,
+      "message": "nit: Could be:\n\nreason \u003d _GetErrorReason(e) or \u0027\u0027\n\ninstead?",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 19
+      },
+      "revId": "7a46a83b7e3f08d9761e0bd6be8a8e5884e0253e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
