@@ -1,0 +1,786 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54e36af3_ac8e3cb0",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: I think Telemetry style prefers to avoid importing things within a module instead of just using them directly from the module?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad72fb7b_155dda15",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "This is still pointing to the old location?",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 69
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daf2a48f_2fd53931",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "If there\u0027s no potential use for this elsewhere, consider just defining it in the method that\u0027s actually using it.",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d522b925_fbbe98a0",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: lower case",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea7fb4aa_a18a6c2a",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: Mention that this can be used as a context manager.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "965bd2cc_6f5858ca",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Path is incorrect now.",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f3e93aa_a965fbe0",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: Include a full docstring for public functions and non-trivial private ones.",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 32
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c27c65ab_fbb13c0c",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: Should be on the line above.",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52966530_f6584351",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 7
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "102aad59_62f69610",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: \"trying to set\".",
+      "range": {
+        "startLine": 87,
+        "startChar": 40,
+        "endLine": 87,
+        "endChar": 51
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cea064e5_c465313c",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: ReadSingleLine instead of Read1Line",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 17
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075dca5b_ad2ccc18",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Seems a bit superfluous? If a flush is actually necessary before reading, I feel like it should be done before each read attempt, not once after the command is issued.",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 29
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba454365_ddc93dca",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: Period.",
+      "range": {
+        "startLine": 162,
+        "startChar": 62,
+        "endLine": 162,
+        "endChar": 63
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "945199a3_ea245745",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "This seems like it has the potential to hang indefinitely if the process doesn\u0027t end up properly handling SIGTERM. Perhaps use self._proc.poll() for some reasonable period of time before moving on to self._proc.kill() (SIGKILL)?",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 23
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fdccd41_4ba90579",
+        "filename": "common/py_utils/py_utils/ts_proxy_server_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "The test coverage from this class feels inadequate, although without coverage data, I can\u0027t really provide explicit suggestions.",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "642bc496_ab08631a",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Is this still the correct path?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06783026_e7b498b4",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: Docstring",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c5db7bf_1d70626a",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Should mention that this can be used as a context manager.",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dc96e32_3aff067f",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: It\u0027s implied that an arg is required if it doesn\u0027t have a default value.",
+      "range": {
+        "startLine": 69,
+        "startChar": 53,
+        "endLine": 69,
+        "endChar": 63
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bb4abef_4786a589",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "If you clear self._started_ports on shutdown as suggested below, can probably be simplified to just\n\nreturn self._started_ports.get(\u0027http\u0027)",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 0
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bba3ab9c_a9c3327d",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 123,
+        "endChar": 39
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4f2705a_32c5410b",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: Args",
+      "range": {
+        "startLine": 128,
+        "startChar": 5,
+        "endLine": 128,
+        "endChar": 68
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ff88696_235c6f98",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Seems weird that these are the only supported options, but simply \"replay\" is implied to be supported by the code in the constructor.",
+      "range": {
+        "startLine": 130,
+        "startChar": 24,
+        "endLine": 130,
+        "endChar": 67
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "462947a3_469450bc",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Probably more clear to only show the invalid option, or even better, collect all invalid options before raising an exception.",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 70
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b39db0b9_f77d79ca",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: This and other options are used pretty regularly, probably better to move them to constants.",
+      "range": {
+        "startLine": 133,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 17
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ddf423a_4d69b1f4",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: _AssertPathExists is more explicit about what this is doing.",
+      "range": {
+        "startLine": 152,
+        "startChar": 6,
+        "endLine": 152,
+        "endChar": 16
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eacfbf38_a145cf76",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "This should be os.path.isdir() in case there\u0027s both /foo/bar (file) and /foo/bar/ (directory).",
+      "range": {
+        "startLine": 159,
+        "startChar": 11,
+        "endLine": 159,
+        "endChar": 25
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e0bf70c_018dae92",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Nit: \"Yields any log lines that have been written to disk\" or similar.",
+      "range": {
+        "startLine": 164,
+        "startChar": 7,
+        "endLine": 164,
+        "endChar": 28
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3d4d58c_c97b1401",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "This makes me feel a bit uneasy since this will get closed pretty much immediately, but maybe subprocess copies it?",
+      "range": {
+        "startLine": 237,
+        "startChar": 33,
+        "endLine": 237,
+        "endChar": 39
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "631aa34c_fcc08b6f",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Should this also clear self._started_ports?",
+      "range": {
+        "startLine": 255,
+        "startChar": 6,
+        "endLine": 255,
+        "endChar": 16
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7853caa7_3e88f1a6",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Similar to before, might be worth poll()ing for a while before moving on to .kill()?",
+      "range": {
+        "startLine": 299,
+        "startChar": 26,
+        "endLine": 299,
+        "endChar": 30
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d8b2645_45257349",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "I\u0027m not seeing how this can actually be hit - either the initial poll() returns not None or we terminate and wait, which will effectively block until poll() returns not None.",
+      "range": {
+        "startLine": 301,
+        "startChar": 6,
+        "endLine": 303,
+        "endChar": 34
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9e23e8c_c05f8c18",
+        "filename": "telemetry/telemetry/internal/util/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Can you file a bug to get rid of this class and use the py_utils version directly everywhere?",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab863e52_1abb6003",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-23T17:52:56Z",
+      "side": 1,
+      "message": "Ditto, although I could see this being more valid since there is some amount of extra logic.\n\nIf you do keep this around, consider renaming it - identically named classes in the same project often make it ambiguous which is being used since Python doesn\u0027t have cross-reference support in codesearch like C++ does.",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
