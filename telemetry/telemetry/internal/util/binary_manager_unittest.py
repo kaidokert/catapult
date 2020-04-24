@@ -30,7 +30,7 @@ class BinaryManagerTest(unittest.TestCase):
         mock.call.binary_manager.BinaryManager().FetchPath('dep', 'plat_arch')
     ]
     binary_manager.InitDependencyManager(None)
-    binary_manager.FetchPath('dep', 'plat', 'arch')
+    binary_manager.FetchPath('dep', 'arch', 'plat')
     binary_manager_mock.assert_call_args(expected)
 
   def testFetchPathUninitialized(self):
@@ -44,9 +44,9 @@ class BinaryManagerTest(unittest.TestCase):
         mock.call.binary_manager.BinaryManager().LocalPath('dep', 'plat_arch')
     ]
     binary_manager.InitDependencyManager(None)
-    binary_manager.LocalPath('dep', 'plat', 'arch')
+    binary_manager.LocalPath('dep', 'arch', 'plat')
     binary_manager_mock.assert_call_args(expected)
 
   def testLocalPathUninitialized(self):
     self.assertRaises(exceptions.InitializationError,
-                      binary_manager.LocalPath, 'dep', 'plat', 'arch')
+                      binary_manager.LocalPath, 'dep', 'arch', 'plat')
