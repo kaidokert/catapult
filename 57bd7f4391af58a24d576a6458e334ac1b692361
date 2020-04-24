@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9910592f_e75fd3ad",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-04-24T05:40:42Z",
+      "side": 1,
+      "message": "I\u0027m not sure that making the default priority be maximum urgency is ideal.\n\nHow about defining a couple of constants like:\n\n  INTERACTIVE \u003d 100\n  BATCH \u003d 200\n\nAnd setting default\u003dBATCH (and using the same default in the job.arguments.get call as well, of course)?",
+      "range": {
+        "startLine": 43,
+        "startChar": 48,
+        "endLine": 43,
+        "endChar": 57
+      },
+      "revId": "57bd7f4391af58a24d576a6458e334ac1b692361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa9a09f2_b5b413d8",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-04-24T05:40:42Z",
+      "side": 1,
+      "message": "As noted above, I\u0027m not sure that defaulting to max priority is ideal.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 45
+      },
+      "revId": "57bd7f4391af58a24d576a6458e334ac1b692361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
