@@ -55,7 +55,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def Start(self, startup_args):
     browser_cmd = [
         'run',
-        'fuchsia-pkg://fuchsia.com/web_engine_shell#meta/web_engine_shell.cmx',
+        'fuchsia-pkg://chrome_runner/web_engine_shell#meta/web_engine_shell.cmx',
         '--remote-debugging-port=0',
         'about:blank'
     ]
