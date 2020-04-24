@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2cf66d63_bad51a41",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T21:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f9c80ec_b893fbb2",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 63
+      },
+      "revId": "388204e39dd00b352372653b6e3c2d69d6469cdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94064958_5291313d",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "388204e39dd00b352372653b6e3c2d69d6469cdc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd7fcfa9_cfe6262b",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T21:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94064958_5291313d",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 76
+      },
+      "revId": "388204e39dd00b352372653b6e3c2d69d6469cdc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
