@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a3ff5d81_1d8021f1",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-04-24T17:14:25Z",
+      "side": 1,
+      "message": "Ah, I got confused. I guess py_utils has some code in its __init__, which is why you can import it directly, but retry_util, etc. are separate .py files in that directory.",
+      "parentUuid": "cff7beab_b999b5f8",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad72fb7b_155dda15",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
