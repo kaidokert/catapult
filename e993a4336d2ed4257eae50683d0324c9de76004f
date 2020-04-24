@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cff7beab_b999b5f8",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "I tried to remove these reference, and get compile error: \nAttributeError: \u0027module\u0027 object has no attribute \u0027retry_util\u0027",
+      "parentUuid": "54e36af3_ac8e3cb0",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad72fb7b_155dda15",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "757c415f_91e9dca3",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Nope. the new location is //third_party/catapult/third_party/tsproxy. The old location is //third_party/catapult/telemetry/third_party/tsproxy",
+      "parentUuid": "ad72fb7b_155dda15",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 69
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "daf2a48f_2fd53931",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "041607bb_117476d8",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "chatted offline. we call it within unit test. so keep this around",
+      "parentUuid": "daf2a48f_2fd53931",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 30
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "da2826e2_49a7ce93",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea7fb4aa_a18a6c2a",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f55305a_084fe45e",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d522b925_fbbe98a0",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "965bd2cc_6f5858ca",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85176af8_3db9ade0",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "965bd2cc_6f5858ca",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "c2eae1ad_e602fa0f",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3e93aa_a965fbe0",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 32
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c27c65ab_fbb13c0c",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -183,6 +351,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39e37b4d_8cc46aa7",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c27c65ab_fbb13c0c",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "a1453c6f_33f6ea62",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52966530_f6584351",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 7
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "102aad59_62f69610",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -229,6 +445,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a2244c6_0fd41926",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "102aad59_62f69610",
+      "range": {
+        "startLine": 87,
+        "startChar": 40,
+        "endLine": 87,
+        "endChar": 51
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "85d1e867_2c4eb5a0",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cea064e5_c465313c",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 17
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "075dca5b_ad2ccc18",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -275,6 +539,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "147d9051_8f78b878",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "075dca5b_ad2ccc18",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 29
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "1940dc3a_86c83c25",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba454365_ddc93dca",
+      "range": {
+        "startLine": 162,
+        "startChar": 62,
+        "endLine": 162,
+        "endChar": 63
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "945199a3_ea245745",
         "filename": "common/py_utils/py_utils/ts_proxy_server.py",
         "patchSetId": 3
@@ -321,6 +633,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24a553fd_1c85f03b",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "945199a3_ea245745",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 23
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "b80ec571_e5d57c45",
+        "filename": "common/py_utils/py_utils/ts_proxy_server_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Ack. will add some unit test after this cl.",
+      "parentUuid": "1fdccd41_4ba90579",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "642bc496_ab08631a",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -367,6 +727,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2be5a2a_ba833e55",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "yes. That is a different path with those pem files and we did not update anything inside that path.",
+      "parentUuid": "642bc496_ab08631a",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -393,6 +777,30 @@
     },
     {
       "key": {
+        "uuid": "b56f0529_33d463c0",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06783026_e7b498b4",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c5db7bf_1d70626a",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -413,6 +821,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5b25442_d42bd58b",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c5db7bf_1d70626a",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +871,30 @@
     },
     {
       "key": {
+        "uuid": "43f4b128_8f65d9d8",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dc96e32_3aff067f",
+      "range": {
+        "startLine": 69,
+        "startChar": 53,
+        "endLine": 69,
+        "endChar": 63
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9bb4abef_4786a589",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -459,6 +915,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6843fa4c_6ad9e3c2",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bb4abef_4786a589",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 0
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -485,6 +965,30 @@
     },
     {
       "key": {
+        "uuid": "935c9170_588ed0a6",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bba3ab9c_a9c3327d",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 123,
+        "endChar": 39
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4f2705a_32c5410b",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -505,6 +1009,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14cee479_92e10bd5",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4f2705a_32c5410b",
+      "range": {
+        "startLine": 128,
+        "startChar": 5,
+        "endLine": 128,
+        "endChar": 68
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -531,6 +1059,30 @@
     },
     {
       "key": {
+        "uuid": "8f99726b_ddf03643",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ff88696_235c6f98",
+      "range": {
+        "startLine": 130,
+        "startChar": 24,
+        "endLine": 130,
+        "endChar": 67
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "462947a3_469450bc",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -551,6 +1103,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5f07e74_8a0e24a3",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "462947a3_469450bc",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 70
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -577,6 +1153,30 @@
     },
     {
       "key": {
+        "uuid": "04808971_46c9cd46",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b39db0b9_f77d79ca",
+      "range": {
+        "startLine": 133,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 17
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ddf423a_4d69b1f4",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -597,6 +1197,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df45e9fd_a1fad8e3",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ddf423a_4d69b1f4",
+      "range": {
+        "startLine": 152,
+        "startChar": 6,
+        "endLine": 152,
+        "endChar": 16
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -623,6 +1247,30 @@
     },
     {
       "key": {
+        "uuid": "22c769e6_454b669d",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eacfbf38_a145cf76",
+      "range": {
+        "startLine": 159,
+        "startChar": 11,
+        "endLine": 159,
+        "endChar": 25
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e0bf70c_018dae92",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -643,6 +1291,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05439b00_121a4af0",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e0bf70c_018dae92",
+      "range": {
+        "startLine": 164,
+        "startChar": 7,
+        "endLine": 164,
+        "endChar": 28
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -669,6 +1341,30 @@
     },
     {
       "key": {
+        "uuid": "e210c830_272337d5",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "according to https://docs.python.org/2/library/subprocess.html\nthe child’s file handles will be inherited from the parent.\nalso, \nIf close_fds is true, all file descriptors except 0, 1 and 2 will be closed before the child process is executed. (Unix only). Or, on Windows, if close_fds is true then no handles will be inherited by the child process. Note that on Windows, you cannot set close_fds to true and also redirect the standard handles by setting stdin, stdout or stderr. \n\nthe default value of close_fds is False.",
+      "parentUuid": "c3d4d58c_c97b1401",
+      "range": {
+        "startLine": 237,
+        "startChar": 33,
+        "endLine": 237,
+        "endChar": 39
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "631aa34c_fcc08b6f",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -689,6 +1385,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a8abaf1_f189bca4",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "631aa34c_fcc08b6f",
+      "range": {
+        "startLine": 255,
+        "startChar": 6,
+        "endLine": 255,
+        "endChar": 16
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -715,6 +1435,30 @@
     },
     {
       "key": {
+        "uuid": "5cc51299_437a48ab",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done. there is a WaitFor 10 seconds before trying to send signal.SIGINT and/or call terminate(). So it should be fine by now.",
+      "parentUuid": "7853caa7_3e88f1a6",
+      "range": {
+        "startLine": 299,
+        "startChar": 26,
+        "endLine": 299,
+        "endChar": 30
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d8b2645_45257349",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -735,6 +1479,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5613cc4c_7aaa1802",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d8b2645_45257349",
+      "range": {
+        "startLine": 301,
+        "startChar": 6,
+        "endLine": 303,
+        "endChar": 34
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -761,6 +1529,30 @@
     },
     {
       "key": {
+        "uuid": "28b2a6eb_61408c44",
+        "filename": "telemetry/telemetry/internal/util/ts_proxy_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "I initially plan to use the same approach as in webpagereplay_go_server.py, but the retry_utils introduced in so many issues and it always looks like it is not friendly towards subclass. So I opt for this approach instead. I did not plan to clean this up right away because it will break a lot more telemtry test that uses this library. I do want to clean it up a bit later by remove this class entirely and let them use the one in py_utils.\n\nregardless, here it is a crbug to track the cleanup efforts",
+      "parentUuid": "b9e23e8c_c05f8c18",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab863e52_1abb6003",
         "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
         "patchSetId": 3
@@ -781,6 +1573,30 @@
       "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e47b592e_fe0c7652",
+        "filename": "telemetry/telemetry/internal/util/webpagereplay_go_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-04-24T01:24:53Z",
+      "side": 1,
+      "message": "I will clean it up. I filed crbug/1074047 to track the cleanup effort.",
+      "parentUuid": "ab863e52_1abb6003",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "e993a4336d2ed4257eae50683d0324c9de76004f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
