@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0601af3_ef91b23b",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-24T06:05:02Z",
+      "side": 1,
+      "message": "It\u0027s all relative. 😊\n\nThese are arbitrary and there\u0027s really nothing stopping us from using negative priority to indicate \"jump the queue\".\n\nRight now, it\u0027s already as if all jobs are at 0 priority anyway (because we don\u0027t have support for priorities).",
+      "parentUuid": "9910592f_e75fd3ad",
+      "range": {
+        "startLine": 43,
+        "startChar": 48,
+        "endLine": 43,
+        "endChar": 57
+      },
+      "revId": "57bd7f4391af58a24d576a6458e334ac1b692361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa9a09f2_b5b413d8",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-24T05:40:42Z",
       "side": 1,
       "message": "As noted above, I\u0027m not sure that defaulting to max priority is ideal.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 45
+      },
+      "revId": "57bd7f4391af58a24d576a6458e334ac1b692361",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6efb12f0_d16ce497",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-24T06:05:02Z",
+      "side": 1,
+      "message": "0 is not max priority for integers, because they can be negative. 😊",
+      "parentUuid": "aa9a09f2_b5b413d8",
       "range": {
         "startLine": 138,
         "startChar": 0,
