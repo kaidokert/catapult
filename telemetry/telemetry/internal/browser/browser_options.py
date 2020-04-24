@@ -227,6 +227,10 @@ class BrowserFinderOptions(optparse.Values):
         help='The port on the host to which the ssh service running on the '
         'Fuchsia device was forwarded. Will skip using the device-finder tool '
         'if specified.')
+    group.add_option(
+        '--fuchsia-repo',
+        default="fuchsia.com",
+        help='The name of the Fuchsia repo used to serve required packages.')
     parser.add_option_group(group)
 
     # CPU profiling on Android/Linux/ChromeOS.
