@@ -49,7 +49,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
     self.fake_platform.GetArchName.return_value = 'armeabi-v7a'
     # The android_browser_finder converts the os version name to 'k' or 'l'
     self.expected_reference_build = FakeFetchPath(
-        'chrome_stable', 'armeabi-v7a', 'android', 'l')
+        'chrome_stable', 'android', 'armeabi-v7a', 'l')
 
   def tearDown(self):
     self.tearDownPyfakefs()
