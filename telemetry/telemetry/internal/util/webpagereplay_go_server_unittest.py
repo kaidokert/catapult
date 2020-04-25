@@ -8,6 +8,7 @@ import urllib2
 import mock
 
 import py_utils
+from py_utils import webpagereplay_go_server
 
 from telemetry import decorators
 from telemetry.internal.util import binary_manager
@@ -19,8 +20,8 @@ class WebPageReplayGoServerTest(unittest.TestCase):
   def setUp(self):
     self.archive_path = binary_manager.FetchPath(
         'example_domain_wpr_go_archive',
-        py_utils.GetHostArchName(),
-        py_utils.GetHostOsName())
+        py_utils.GetHostOsName(),
+        py_utils.GetHostArchName())
 
   @decorators.Disabled('all')  # crbug.com/909746
   @decorators.Disabled('chromeos')  # crbug.com/750323
@@ -57,3 +58,4 @@ class WebPageReplayGoServerTest(unittest.TestCase):
 
     # Ensure replay process is probably cleaned up after StartServer crashed.
     self.assertIsNone(server.replay_process)
+
