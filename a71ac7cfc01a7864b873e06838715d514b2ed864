@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bebd4394_102b7a64",
+        "filename": "dashboard/dashboard/alert_groups_bug_description.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-29T06:48:00Z",
+      "side": 1,
+      "message": "Please also include the number of improvements in the group.",
+      "range": {
+        "startLine": 5,
+        "startChar": 41,
+        "endLine": 5,
+        "endChar": 67
+      },
+      "revId": "a71ac7cfc01a7864b873e06838715d514b2ed864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
