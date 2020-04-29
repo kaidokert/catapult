@@ -77,6 +77,7 @@ class Expectation(object):
           results: List of outcomes for test. Example: ['Skip', 'Pass']
         """
         tags = tags or []
+        self.is_default_pass = not results
         results = results or {ResultType.Pass}
         reason = reason or ''
         trailing_comments = trailing_comments or ''
@@ -513,7 +514,7 @@ class TestExpectations(object):
             self.glob_exps[pattern] = exps
 
     def expectations_for(self, test):
-        # Returns a tuple of (expectations, should_retry_on_failure)
+        # Returns an Expectation.
         #
         # A given test may have multiple expectations, each with different
         # sets of tags that apply and different expected results, e.g.:
