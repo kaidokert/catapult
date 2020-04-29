@@ -303,7 +303,6 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
                       str(context.exception))
         self.assertNotIn('  - Tags webgl-version-1', str(context.exception))
 
-
     def testEachTagInGroupIsFromDisjointTagSets(self):
         raw_data = (
             '# tags: [ Mac Win Linux ]\n'
@@ -338,6 +337,20 @@ crbug.com/12345 [ tag3 tag4 ] b1/s1 [ Skip ]
         parser = expectations_parser.TaggedTestListParser(raw_data)
         exp = parser.expectations[0]
         self.assertEqual(exp.should_retry_on_failure, True)
+
+    def testDefaultPass(self):
+        raw_data = (
+            '# tags: [ Linux ]\n'
+            '# results: [ Failure ]\n'
+            'crbug.com/23456 [ linux ] b1/s1 [ Failure ]\n')
+        expectations = expectations_parser.TestExpectations(tags=['linux'])
+        expectations.parse_tagged_list(raw_data)
+        exp = expectations.expectations_for('b1/s1')
+        self.assertEqual(exp.reslts, set([ResultType.Failure]))
+        self.assertFalse(exp.is_default_pass)
+        exp = expectations.expectations_for('b1/s2')
+        self.assertEqual(exp.reslts, set([ResultType.Pass]))
+        self.assertTrue(exp.is_default_pass)
 
     def testGetExpectationsFromGlob(self):
         raw_data = (
