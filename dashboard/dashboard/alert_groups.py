@@ -32,13 +32,13 @@ class AlertGroupsHandler(request_handler.RequestHandler):
     groups = alert_group.AlertGroup.GetAll()
     for group in groups:
       group.Update()
-      deadline = group.updated + datetime.timedelta(days=7)
-      past_due = deadline < datetime.datetime.utcnow()
-      closed = (group.status == alert_group.AlertGroup.Status.closed)
-      untriaged = (group.status == alert_group.AlertGroup.Status.untriaged)
-      if past_due and (closed or untriaged):
+      now = datetime.datetime.utcnow()
+      if group.updated + datetime.timedelta(days=7) < now and (
+          group.status == alert_group.AlertGroup.Status.closed or
+          group.status == alert_group.AlertGroup.Status.untriaged):
         group.Archive()
-      elif group.status == alert_group.AlertGroup.Status.untriaged:
+      elif group.created + datetime.timedelta(hours=1) < now and (
+          group.status == alert_group.AlertGroup.Status.untriaged):
         group.TryTriage()
       elif group.status == alert_group.AlertGroup.Status.triaged:
         group.TryBisect()

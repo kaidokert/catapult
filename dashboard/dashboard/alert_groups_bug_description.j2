@@ -1,0 +1,30 @@
+All graphs for this alert group at {{ group.revision.start }}:{{ group.revision.end }}:
+  https://chromeperf.appspot.com/group_report?group_id={{ group.key.string_id() }}
+
+{% set top_alerts = alerts[:10] -%}
+Top {{ top_alerts|length }} regressions (out of {{ alerts|length }}) in this group:
+{%- for alert in top_alerts %}
+  - {{ alert.test.string_id() }}
+    {%- set before = alert.segment_size_before %}
+    {%- set after = alert.segment_size_after %}
+    {{ (after / before - 1) * 100 }}%: {{ before }} -> {{ after }}
+{%- endfor %}
+{% for benchmark in benchmarks|sort %}
+Affected measurements in {{ benchmark.name }}:
+{%- for alert in alerts %}
+{%- if alert.benchmark_name == benchmark.name %}
+  - {{ alert.test.string_id() }}
+    {%- set before = alert.segment_size_before %}
+    {%- set after = alert.segment_size_after %}
+    {{ (after / before - 1) * 100 }}%: {{ before }} -> {{ after }}
+{%- endif %}
+{%- endfor %}
+{% endfor %}
+Alerts grouped by {{ group.name }} includes data from:
+{%- for benchmark in benchmarks|sort %}
+  {{ benchmark.name }}: {{ benchmark.owners|sort|join(',') }}
+{%- endfor %}
+
+{# TODO(fancl20): directly use commit range instead -#}
+Commits in this range:
+  https://test-results.appspot.com/revision_range?start={{ group.revision.start }}&end={{ group.revision.end }}&n=1000
