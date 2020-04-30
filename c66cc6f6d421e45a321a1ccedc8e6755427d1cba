@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b8c34b8_f385b06e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-30T19:02:46Z",
+      "side": 1,
+      "message": "I suspect this will have some benefits for the bots as well. Although their phones are ~inches away from their host that runs the test, we\u0027ll often cap out the usb hub\u0027s throughput if each phone on the hub is getting a large amount data pushed to it. I\u0027m excited to see what affect this will have on the waterfalls.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "c66cc6f6d421e45a321a1ccedc8e6755427d1cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78bfccb3_63504de2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-30T19:02:46Z",
+      "side": 1,
+      "message": "nit: That\u0027s a bit mystical for us bash noobs. I presume it\u0027s just taking the filename and chopping of dirs? A comment would be appreciated.",
+      "range": {
+        "startLine": 80,
+        "startChar": 6,
+        "endLine": 80,
+        "endChar": 19
+      },
+      "revId": "c66cc6f6d421e45a321a1ccedc8e6755427d1cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2af8d14a_c313589c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-30T19:02:46Z",
+      "side": 1,
+      "message": "While we\u0027re here, let\u0027s replace this \u0027%s\u0027 with a named var so we can do \u0027_FILE_LIST_SCRIPT.format(input_path\u003dpath)\u0027 instead of just \u0027_FILE_LIST_SCRIPT % path\u0027 which makes it a bit more readable.",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 15
+      },
+      "revId": "c66cc6f6d421e45a321a1ccedc8e6755427d1cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1802edca_42c356cf",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-30T19:02:46Z",
+      "side": 1,
+      "message": "How\u0027d you come to 5000? I\u0027d suspect it\u0027d be difficult to reason about how long a list of filepaths is when compressed and joined.",
+      "range": {
+        "startLine": 22,
+        "startChar": 28,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "c66cc6f6d421e45a321a1ccedc8e6755427d1cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d7317b9_00e7c823",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-30T19:02:46Z",
+      "side": 1,
+      "message": "Is this line needed?",
+      "revId": "c66cc6f6d421e45a321a1ccedc8e6755427d1cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7175aded_338a6b78",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-04-30T19:02:46Z",
+      "side": 1,
+      "message": "This is pretty strange, to say the least.\n\nA unfamiliar reader of this code would be forgiven for assuming that the api for the \"md5sum_bin\" would be identical to ubuntu\u0027s stock md5sum bin (along with all the sha*sum variants). So imagine their surprise when they get to this line.\n\nFor clarity\u0027s sake, I would suggest keeping the chromium md5sum\u0027s current behavior, and adding our new \u0027base64-encoded-gzip-compressed-semicolon-joined-list-of-paths\" logic behind a flag to the binary. (Which we\u0027d subsequently enable here.) That way, the normal behavior is the default, while here we\u0027re upfront about the fact that our md5sum is about to do some wild stuff.",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 76
+      },
+      "revId": "c66cc6f6d421e45a321a1ccedc8e6755427d1cba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
