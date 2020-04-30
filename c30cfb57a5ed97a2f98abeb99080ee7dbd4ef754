@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f084dc4d_c3b5c2e3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-04-30T00:29:24Z",
+      "side": 1,
+      "message": "Can you create a property instead that returns the evaluation of this boolean expression.",
+      "revId": "c30cfb57a5ed97a2f98abeb99080ee7dbd4ef754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3eabc858_2aa800b1",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 7
