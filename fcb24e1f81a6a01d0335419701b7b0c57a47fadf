@@ -16,6 +16,24 @@
       "revId": "fcb24e1f81a6a01d0335419701b7b0c57a47fadf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f97511af_21ad96b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2020-04-30T00:51:21Z",
+      "side": 1,
+      "message": "You are already an owner of catapult and typ. Cc\u0027ing dprank@.",
+      "parentUuid": "7f7be121_8e939fc3",
+      "revId": "fcb24e1f81a6a01d0335419701b7b0c57a47fadf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
