@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "911f6773_66276e16",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Can we explain why this is 7 days? Also, probably give this a name and make a global constant.",
+      "range": {
+        "startLine": 36,
+        "startChar": 44,
+        "endLine": 36,
+        "endChar": 50
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df5603fc_7def6cf3",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Can we explain why this is 1 hour? Also, probably give this a name and make a global constant.",
+      "range": {
+        "startLine": 40,
+        "startChar": 46,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f69e243_232d442b",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Please also add a test case for when we update an existing group, and what happens when filing the issue fails the first time (do we retry?).",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f3786e_16ff4e7e",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Raname to something more direct, like `_FileIssue` instead. Try implies failures will raise an exception, which this doesn\u0027t.",
+      "range": {
+        "startLine": 137,
+        "startChar": 6,
+        "endLine": 137,
+        "endChar": 17
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf6af5a8_c8719ecb",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "This is in ascending order. Did you want this in descending order?",
+      "range": {
+        "startLine": 143,
+        "startChar": 4,
+        "endLine": 144,
+        "endChar": 71
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e44861b_fa22b24e",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "I recommend documenting what\u0027s going on here because it\u0027s not obvious. I recommend either breaking it out into a different function, or using comments. Something like:\n\n```\n# First, we set up the inputs needed for the templates that generate\n# the strings we\u0027ll use in the issue.\ninputs \u003d {\n  # The details of the alert group.\n  \u0027group\u0027: self,\n\n  # The list of regressions to be included/rendered in the template.\n  \u0027regressions\u0027: regressions,\n\n  # The list of benchmarks associated with the group.\n  \u0027benchmarks\u0027: benchmarks\n}\n\n# Then we generate the strings we\u0027ll use in filing the issue.\nsummary \u003d _RenderSummary(inputs)\ndescription \u003d _RenderDescription(inputs)\n...\n\n```",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 165,
+        "endChar": 72
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2effd64_c78cdbb8",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Consider making the bug title template a global so you only create it once.",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 15
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c27e90f0_a1a6beb6",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Typically, constants or cached globals appear at the top of the module, with comments explaining what they\u0027re there for. 😊",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 59
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d54d175_7220cbd8",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Does this create a client every time you need one? Should this be done once as well and cached?",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 33
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7646a351_c260ed48",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "Missing space before \u0027}\u0027 ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 43,
+        "endLine": 10,
+        "endChar": 44
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48e15843_35fe3d42",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to include the unit(s)?",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 75
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d91c0d27_afe8b88e",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-04-30T08:39:50Z",
+      "side": 1,
+      "message": "This looks unnecessarily inefficient, because you\u0027re going through all the regressions every time looking for the benchmarks.\n\nWhy not just provide a mapping between a benchmark name and the measurements?\n\nAlso we\u0027re not doing the top N for each benchmark? This can get to the hundreds if we\u0027re not careful.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
