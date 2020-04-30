@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c3150847_6156e16b",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2020-04-30T00:35:24Z",
+      "side": 1,
+      "message": "Created a property. The property can\u0027t return \"not results\" because results will be set to {ResultType.Pass} in the next line.",
+      "parentUuid": "f084dc4d_c3b5c2e3",
+      "revId": "c30cfb57a5ed97a2f98abeb99080ee7dbd4ef754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3eabc858_2aa800b1",
         "filename": "third_party/typ/typ/expectations_parser.py",
         "patchSetId": 7
@@ -33,6 +51,24 @@
       "revId": "c30cfb57a5ed97a2f98abeb99080ee7dbd4ef754",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0617614c_4535e0f3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2020-04-30T00:35:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3eabc858_2aa800b1",
+      "revId": "c30cfb57a5ed97a2f98abeb99080ee7dbd4ef754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
