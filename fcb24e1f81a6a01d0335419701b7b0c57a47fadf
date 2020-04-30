@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f7be121_8e939fc3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-04-30T00:43:58Z",
+      "side": 1,
+      "message": "Please TBR dpranke@chromium.org",
+      "revId": "fcb24e1f81a6a01d0335419701b7b0c57a47fadf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
