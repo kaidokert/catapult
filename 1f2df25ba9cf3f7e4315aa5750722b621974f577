@@ -16,6 +16,24 @@
       "revId": "1f2df25ba9cf3f7e4315aa5750722b621974f577",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76a3c85d_7cfc7ff8",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2020-04-30T03:11:10Z",
+      "side": 1,
+      "message": "Please see the example in the CL description:\n\n# In TestExpectations\n[ Linux ] foo/bar [ Failure ]\n# In SlowTests\nfoo/bar [ Slow ]  # In SlowTests\n\nThe [ Slow ] entry in SlowTests should imply [ Pass ] only if there is no other failure expectations. In the above example, The [ Slow ] entry should not imply a [ Pass ] expectation on Linux.\n\nThe above is not a current problem because run_web_tests.py workarounds the issue by ignoring the single [ Pass ] expectation from SlowTests. However, this is incorrect because it\u0027ll cause explicit [ Pass ] from flag-specific expectations to be incorrectly ignored. To fix the problem, we need to know if the [ Pass ] from TestExpectation is implied default or explicit. The implied default pass can be ignored when merging expectations.\n\nThe problem will surface when we treat unexpected passes as test step warnings or even failures (which will help us recover test coverage that is lost due to out-dated failure/flaky entries).\n\nKnowing default pass is also useful for virtual fallback (crbug.com/1072015) and flag-specific fallback for test expectations.\n\nFor example, the CompositeAfterPaint feature fixes some bugs of the current system, and some failing tests will pass with the feature. For now, we are unable to specify the [ Pass ] expectation, because not only it\u0027s ignored due to the issue stated above, but also we try to merge the flag-specific expectations with the base expectations.\n\nFor crbug.com/1072015, I want to implement fallback mechanism for virtual test expectations, which also require the override logic instead of the merge logic to avoid the same problem of flag-specific expectations.",
+      "parentUuid": "fa04ebe2_02ae59fb",
+      "revId": "1f2df25ba9cf3f7e4315aa5750722b621974f577",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
