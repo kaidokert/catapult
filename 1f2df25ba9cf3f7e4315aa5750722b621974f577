@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa04ebe2_02ae59fb",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-04-30T02:09:31Z",
+      "side": 1,
+      "message": "Why is this surfaced? Is there a reason (other than for testing) why a user would need to know that someone wrote [ Slow ] instead of [ Slow Pass ]?",
+      "revId": "1f2df25ba9cf3f7e4315aa5750722b621974f577",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
