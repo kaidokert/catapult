@@ -34,6 +34,24 @@
       "revId": "fcb24e1f81a6a01d0335419701b7b0c57a47fadf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef365dde_4d919e73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-04-30T02:11:03Z",
+      "side": 1,
+      "message": "Why does it matter whether Rakib is an owner? If you TBR me on a CL, that tells me that I should review the CL. If you cc me, it does not tell me that.",
+      "parentUuid": "f97511af_21ad96b9",
+      "revId": "fcb24e1f81a6a01d0335419701b7b0c57a47fadf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
