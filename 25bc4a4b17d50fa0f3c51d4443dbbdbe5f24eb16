@@ -22,6 +22,30 @@
       "revId": "25bc4a4b17d50fa0f3c51d4443dbbdbe5f24eb16",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33690fc0_7e0bd1c3",
+        "filename": "tracing/tracing/ui/extras/about_tracing/record_selection_dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1115989
+      },
+      "writtenOn": "2020-05-01T21:18:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c247921_99893f3a",
+      "range": {
+        "startLine": 222,
+        "startChar": 31,
+        "endLine": 222,
+        "endChar": 39
+      },
+      "revId": "25bc4a4b17d50fa0f3c51d4443dbbdbe5f24eb16",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
