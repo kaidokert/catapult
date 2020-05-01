@@ -12,6 +12,21 @@ from dashboard.common import request_handler
 from dashboard.models import alert_group
 from google.appengine.ext import ndb
 
+# Waiting 7 days to gather more potential alerts. Just choose a long
+# enough time and all alerts arrive after archived shouldn't be silent
+# merged.
+_ALERT_GROUP_ACTIVE_WINDOW = datetime.timedelta(days=7)
+# (2020-05-01) Only ~62% issues' alerts are triggered in one hour.
+# But we don't want to wait all these long tail alerts finished.
+# SELECT APPROX_QUANTILES(diff, 100) as percentiles
+# FROM (
+#   SELECT TIMESTAMP_DIFF(MAX(timestamp), MIN(timestamp), MINUTE) as diff
+#   FROM chromeperf.chromeperf_dashboard_data.anomalies
+#   WHERE 'Chromium Perf Sheriff' IN UNNEST(subscription_names)
+#         AND bug_id IS NOT NULL AND timestamp > '2020-03-01'
+#   GROUP BY bug_id
+# )
+_ALERT_GROUP_TRIAGE_DELAY = datetime.timedelta(hours=1)
 
 class AlertGroupsHandler(request_handler.RequestHandler):
   """Create and Update AlertGroups.
@@ -32,13 +47,13 @@ class AlertGroupsHandler(request_handler.RequestHandler):
     groups = alert_group.AlertGroup.GetAll()
     for group in groups:
       group.Update()
-      deadline = group.updated + datetime.timedelta(days=7)
-      past_due = deadline < datetime.datetime.utcnow()
-      closed = (group.status == alert_group.AlertGroup.Status.closed)
-      untriaged = (group.status == alert_group.AlertGroup.Status.untriaged)
-      if past_due and (closed or untriaged):
+      now = datetime.datetime.utcnow()
+      if group.updated + _ALERT_GROUP_ACTIVE_WINDOW < now and (
+          group.status == alert_group.AlertGroup.Status.closed or
+          group.status == alert_group.AlertGroup.Status.untriaged):
         group.Archive()
-      elif group.status == alert_group.AlertGroup.Status.untriaged:
+      elif group.created + _ALERT_GROUP_TRIAGE_DELAY < now and (
+          group.status == alert_group.AlertGroup.Status.untriaged):
         group.TryTriage()
       elif group.status == alert_group.AlertGroup.Status.triaged:
         group.TryBisect()
