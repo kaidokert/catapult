@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b4a026c_af0f0754",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T08:23:50Z",
+      "side": 1,
+      "message": "I understand this part is legacy, but is there a way we can make this less hard-coded? The reasoning for 2 was:\n\nfloor(log10(culprits)) + 1\n\nMaybe we can use that instead?",
+      "range": {
+        "startLine": 94,
+        "startChar": 52,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f7c9180_d9f9ecd5",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T08:23:50Z",
+      "side": 1,
+      "message": "Do you still need the slide here given that ordered_commits is already at most two?",
+      "range": {
+        "startLine": 98,
+        "startChar": 18,
+        "endLine": 98,
+        "endChar": 37
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01e7aa9c_ec26339b",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T08:23:50Z",
+      "side": 1,
+      "message": "Okay, since we\u0027re refactoring, have you thought about turning most of the string manipulation here into a jinja2 template instead?",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7ecf32b_ea9744c5",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T08:23:50Z",
+      "side": 1,
+      "message": "Yeah this one might be better as a jinja template.",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 165,
+        "endChar": 18
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
