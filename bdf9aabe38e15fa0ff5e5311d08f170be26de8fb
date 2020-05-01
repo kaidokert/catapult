@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9507888a_a1f24f1e",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-01T11:48:50Z",
+      "side": 1,
+      "message": "Yes, because status won\u0027t be updated.",
+      "parentUuid": "2f69e243_232d442b",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7f3786e_16ff4e7e",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 6
@@ -468,6 +492,30 @@
       "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b8bd00e_a1407009",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-01T11:48:50Z",
+      "side": 1,
+      "message": "Seems we can only get units in TestMetadata or copy the parsing function? Maybe add it later...",
+      "parentUuid": "48e15843_35fe3d42",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 75
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     },
     {
       "key": {
