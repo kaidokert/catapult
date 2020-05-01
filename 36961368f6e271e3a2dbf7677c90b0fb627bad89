@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdd15e31_1bcc5cb1",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T09:37:54Z",
+      "side": 1,
+      "message": "Probably not something we\u0027ll do, so let\u0027s remove this TODO.",
+      "revId": "36961368f6e271e3a2dbf7677c90b0fb627bad89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2975ec8d_ce251a47",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T09:37:54Z",
+      "side": 1,
+      "message": "Another TODO is the adding of the project in the anomaly.",
+      "revId": "36961368f6e271e3a2dbf7677c90b0fb627bad89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
