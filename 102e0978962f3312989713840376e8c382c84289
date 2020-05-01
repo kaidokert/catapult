@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18c8473e_d69b6c1b",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "Empty line in between please.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 66
+      },
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dce9c20d_adfc3f56",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "Should you be stashing this outside the loop?",
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad34adda_dc8ce15c",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "Can we rename this to \u0027inputs\u0027 instead, to make it clearer? \u0027env\u0027 seems too jinja-specific and not very helpful for readability.",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 7
+      },
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d88ef781_56580672",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "Does this create an issue tracker instance every time? Should this be a global or instance variable instead?",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 35
+      },
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48ad7a50_2a7d104f",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "Why not do this once?\n\ncomponents \u003d set(...) | self._GetComponentsFromRegressions(...)",
+      "range": {
+        "startLine": 193,
+        "startChar": 4,
+        "endLine": 194,
+        "endChar": 70
+      },
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0bd9222_5150b1b7",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "I think we mentioned elsewhere that labels should include a special one to indicate that an issue is auto-triaged. Let\u0027s add \u0027Chromeperf-Auto-Triaged\u0027 to the labels now so we can find all these labelled issues later.",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 196,
+        "endChar": 64
+      },
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4707774b_ddf36b80",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-01T07:29:30Z",
+      "side": 1,
+      "message": "I\u0027m wondering why we don\u0027t just have these template instances loaded as globals, so that we can use them directly? Is there an advantage to loading the template every time we need it? I\u0027m thinking this should just be a global:\n\n_ISSUE_DESCRIPTION_TEMPLATE \u003d _TEMPLATE_ENV.get_template(\u0027alert_group_description.j2\u0027)\n\nSo that in the one place we need to render it, we call the render function directly:\n\ndescription \u003d _ISSUE_DESCRIPTION_TEMPLATE.render(inputs)",
+      "range": {
+        "startLine": 219,
+        "startChar": 6,
+        "endLine": 219,
+        "endChar": 39
+      },
+      "revId": "102e0978962f3312989713840376e8c382c84289",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
