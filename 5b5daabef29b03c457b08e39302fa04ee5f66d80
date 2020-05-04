@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9c42fedc_4924ec9d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-04T04:53:36Z",
+      "side": 1,
+      "message": "Oh that\u0027s good to know!  That wasn\u0027t obvious to me earlier, so sure, I\u0027ll make that change now to make sure this reasoning is explicitly captured.\n\nOh hmm, actually that\u0027s a behaviour change for the case where there are 2–9 culprit commits: previously this CC\u0027d the top 2 in that case, now it will only CC 1.  That\u0027s probably fine, but it understandably impacts more tests, so I think it\u0027s clearest and safest to do this in a separate CL.",
+      "parentUuid": "7b4a026c_af0f0754",
+      "range": {
+        "startLine": 94,
+        "startChar": 52,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f7c9180_d9f9ecd5",
         "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94bf617f_13616d2b",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-04T04:53:36Z",
+      "side": 1,
+      "message": "No, that\u0027s a mistake.  Fixed :)",
+      "parentUuid": "1f7c9180_d9f9ecd5",
+      "range": {
+        "startLine": 98,
+        "startChar": 18,
+        "endLine": 98,
+        "endChar": 37
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6f118b0d_8291602b",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-04T04:53:36Z",
+      "side": 1,
+      "message": "I certainly thought that a better string templating system would be welcome here, but not specifically which one 😊\n\nThat sounds like a good idea, I think I\u0027ll tackle that in a follow-up CL though as that\u0027s a fairly substantial extra change.",
+      "parentUuid": "01e7aa9c_ec26339b",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7ecf32b_ea9744c5",
         "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
         "patchSetId": 6
@@ -91,6 +163,30 @@
       "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eb78be2_3dff91a2",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-04T04:53:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7ecf32b_ea9744c5",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 165,
+        "endChar": 18
+      },
+      "revId": "5b5daabef29b03c457b08e39302fa04ee5f66d80",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
