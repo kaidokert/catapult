@@ -143,6 +143,10 @@ class Expectation(object):
         self._set_string_value()
         return self._string_value
 
+    def set_expected_results(self, results):
+        self._results = frozenset(results)
+        self._raw_results = None
+
     @property
     def reason(self):
         return self._reason
