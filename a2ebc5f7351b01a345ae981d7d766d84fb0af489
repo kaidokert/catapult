@@ -1,0 +1,204 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee3d83f4_4fd2a982",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1809,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "docstring needed",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b31f9b3a_c8a25028",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this line is doing, or what current_path is for. Shouldn\u0027t it be\n\nif line.endswith(\u0027/\u0027):\n\n?",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e41eca41_b3843882",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "This try-catch block seems way too big for what it\u0027s catching. Just wrap it around the calculate_*_checksums bit?",
+      "range": {
+        "startLine": 1839,
+        "startChar": 4,
+        "endLine": 1839,
+        "endChar": 8
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f324737_459a811d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1843,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "So this just contains dirs? Let\u0027s give it a more descriptive name pls.\n\nAlso, please try to conform on either \"folders\" or \"directories\". (preferably the latter, but I don\u0027t really care either way)",
+      "range": {
+        "startLine": 1843,
+        "startChar": 6,
+        "endLine": 1843,
+        "endChar": 18
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41624866_3f191c63",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "Use os.path.relpath instead",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5674749_29955caa",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1870,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "nit: pls don\u0027t name something so similar to a module",
+      "range": {
+        "startLine": 1870,
+        "startChar": 12,
+        "endLine": 1870,
+        "endChar": 34
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "366ccc88_b49a76e5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1909,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "nit: instead of hijacking+cloning paths, let\u0027s just create a new empty iterable like \"paths_not_in_cache \u003d []\" or somesuch and have the for loop add to it as needed",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88f37a07_1b93676c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1931,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "What if they\u0027re both None?",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f89cb445_0fe459c3",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "Any reason not to add a \u0027$\u0027 anchor?",
+      "range": {
+        "startLine": 18,
+        "startChar": 56,
+        "endLine": 18,
+        "endChar": 58
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ea1c51e_5c030c2f",
+        "filename": "devil/devil/android/md5sum_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-05T19:59:46Z",
+      "side": 1,
+      "message": "I don\u0027t think this test is covering anything that testCalculateHostMd5Sums_list() isn\u0027t. I\u0027m inclined to just get rid of it.",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 40
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
