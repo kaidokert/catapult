@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b41376a_ea14b419",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08976f74_5ff48ffa",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 66
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8f27a9d_7060a31c",
         "filename": "dashboard/dashboard/alert_groups_test.py",
         "patchSetId": 15
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6ed1da34_df7d4695",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8f27a9d_7060a31c",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 0
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3af8effd_51718486",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 15
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "4555d53d_ccd8e741",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3af8effd_51718486",
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9169224a_1be2deda",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 15
@@ -79,6 +145,24 @@
       "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "065be4e9_900e1f7c",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Yes. It doesn\u0027t affect the workflow because for now AlertGroup is not first class concept in dashboard.",
+      "parentUuid": "9169224a_1be2deda",
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "54078de3_c9f6e012",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf8bce1f_2bc97d3a",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 9
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04d81654_14b91bdb",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 15
@@ -125,6 +233,30 @@
       "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "535530d5_2917cff5",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04d81654_14b91bdb",
+      "range": {
+        "startLine": 156,
+        "startChar": 18,
+        "endLine": 156,
+        "endChar": 23
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -151,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "511ffc33_1969a939",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Embedding ` _TEMPLATE_ISSUE_COMMENT.render(template_args)` in the arguments makes it a bit hard to read? I\u0027m not sure the meaning of \u0027don\u0027t need the local variables\u0027 here so leave it for now/",
+      "parentUuid": "eebe640e_5d3130a5",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 59
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdf757d8_d9035f27",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 15
@@ -171,6 +327,30 @@
       "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eb512a6_c70ffb5a",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdf757d8_d9035f27",
+      "range": {
+        "startLine": 203,
+        "startChar": 4,
+        "endLine": 205,
+        "endChar": 5
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -197,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "81a53ea2_614dfa55",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b609f67a_a37c0040",
+      "range": {
+        "startLine": 207,
+        "startChar": 8,
+        "endLine": 207,
+        "endChar": 9
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e841964f_8f8b6cec",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 15
@@ -217,6 +421,30 @@
       "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a93076c_d532a078",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e841964f_8f8b6cec",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 209,
+        "endChar": 7
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -243,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "84c99022_a3617556",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bc4e007_501bfee3",
+      "range": {
+        "startLine": 219,
+        "startChar": 22,
+        "endLine": 219,
+        "endChar": 23
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0400bd28_bd52d975",
         "filename": "dashboard/dashboard/models/alert_groups_bug_comment.j2",
         "patchSetId": 15
@@ -263,6 +515,30 @@
       "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be43c56b_627a66d7",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_comment.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0400bd28_bd52d975",
+      "range": {
+        "startLine": 1,
+        "startChar": 6,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -289,6 +565,30 @@
     },
     {
       "key": {
+        "uuid": "13022db7_4b65ce81",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_comment.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ccd9ea0_4cd830d4",
+      "range": {
+        "startLine": 3,
+        "startChar": 31,
+        "endLine": 3,
+        "endChar": 37
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b917c7ce_2273c33d",
         "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
         "patchSetId": 15
@@ -312,6 +612,30 @@
     },
     {
       "key": {
+        "uuid": "a560285e_7512aba7",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b917c7ce_2273c33d",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 58
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "959e6867_f62e4778",
         "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
         "patchSetId": 15
@@ -332,6 +656,30 @@
       "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5996b541_ef01c5fd",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T06:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "959e6867_f62e4778",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 15
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
