@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d7ddeb44_9a38e2d9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1809,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee3d83f4_4fd2a982",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b31f9b3a_c8a25028",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 13
@@ -33,6 +51,24 @@
       "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a59b57f4_15a5d411",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Nope, added comments to clarify.",
+      "parentUuid": "b31f9b3a_c8a25028",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "b3c2e806_931f9d81",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e41eca41_b3843882",
+      "range": {
+        "startLine": 1839,
+        "startChar": 4,
+        "endLine": 1839,
+        "endChar": 8
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f324737_459a811d",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 13
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "cf9c16fc_456aa614",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1843,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f324737_459a811d",
+      "range": {
+        "startLine": 1843,
+        "startChar": 6,
+        "endLine": 1843,
+        "endChar": 18
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41624866_3f191c63",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 13
@@ -96,6 +180,24 @@
       "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e491d5d0_2897afc5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1869,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41624866_3f191c63",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "041bfe75_ee553b4e",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1870,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5674749_29955caa",
+      "range": {
+        "startLine": 1870,
+        "startChar": 12,
+        "endLine": 1870,
+        "endChar": 34
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "366ccc88_b49a76e5",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 13
@@ -139,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "a5fcffba_06c61f36",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1909,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "366ccc88_b49a76e5",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88f37a07_1b93676c",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 13
@@ -153,6 +297,24 @@
       "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9486282_1b279d63",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1931,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be possible unless the checksumming failed somehow, but I added a not None check.",
+      "parentUuid": "88f37a07_1b93676c",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -179,6 +341,30 @@
     },
     {
       "key": {
+        "uuid": "b13e4488_988d6694",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f89cb445_0fe459c3",
+      "range": {
+        "startLine": 18,
+        "startChar": 56,
+        "endLine": 18,
+        "endChar": 58
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ea1c51e_5c030c2f",
         "filename": "devil/devil/android/md5sum_test.py",
         "patchSetId": 13
@@ -199,6 +385,30 @@
       "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6d40c76_8e2a364d",
+        "filename": "devil/devil/android/md5sum_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-05-05T21:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ea1c51e_5c030c2f",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 68,
+        "endChar": 40
+      },
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
