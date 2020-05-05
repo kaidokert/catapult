@@ -1,0 +1,337 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08976f74_5ff48ffa",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "readability: Please add an empty line between the first comment line and the last non-comment line.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 66
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8f27a9d_7060a31c",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "nit: empty lines before and after this look unnecessary.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 0
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3af8effd_51718486",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "Empty line before comment please.",
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9169224a_1be2deda",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "So this means we never auto-archive groups that have issues marked closed for now?",
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf8bce1f_2bc97d3a",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "a isn\u0027t very readable here, consider `regression` instead?",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 9
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04d81654_14b91bdb",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "I think this deserves a comment why we\u0027re persisting the input. I understand what this means, but a future reader might not understand why this should work (you\u0027re updating data in `regressions` assuming that it\u0027s a reference to the inputs).",
+      "range": {
+        "startLine": 156,
+        "startChar": 18,
+        "endLine": 156,
+        "endChar": 23
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eebe640e_5d3130a5",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "I don\u0027t think you need the local variables, if you used keyword arguments in the call to `AddBugComment(...)`.",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 59
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdf757d8_d9035f27",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "Move this out in a class at module level so you don\u0027t have to create this class every time:\n\nclass _Benchmark(collections.namedtuple(...)):\n  __slots__ \u003d ()",
+      "range": {
+        "startLine": 203,
+        "startChar": 4,
+        "endLine": 205,
+        "endChar": 5
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b609f67a_a37c0040",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "r isn\u0027t terribly readable, use `regression` instead?",
+      "range": {
+        "startLine": 207,
+        "startChar": 8,
+        "endLine": 207,
+        "endChar": 9
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e841964f_8f8b6cec",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "b isn\u0027t terribly readable, use `benchmark` instead?",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 209,
+        "endChar": 7
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc4e007_501bfee3",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "The alternative is using \u0027reverse\u003dTrue\u0027 as an argument to sort.",
+      "range": {
+        "startLine": 219,
+        "startChar": 22,
+        "endLine": 219,
+        "endChar": 23
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0400bd28_bd52d975",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_comment.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "s/list/group/",
+      "range": {
+        "startLine": 1,
+        "startChar": 6,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ccd9ea0_4cd830d4",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_comment.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "s/alerts/regressions/",
+      "range": {
+        "startLine": 3,
+        "startChar": 31,
+        "endLine": 3,
+        "endChar": 37
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b917c7ce_2273c33d",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "You probably want to mention that these benchmarks are owned by certain folks. So something like:\n\nRegressions grouped by {{ group.name }} includes data from the following benchmarks with listed owners:",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 58
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "959e6867_f62e4778",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-05T04:05:58Z",
+      "side": 1,
+      "message": "fancl20?",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 15
+      },
+      "revId": "2585d4a1ea91244a1efa6ea5f5fc449cd0fbb268",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
