@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "835ff992_e93f7014",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T01:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "978368c6_9d4542dd",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7f3786e_16ff4e7e",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 6
@@ -564,6 +588,30 @@
       "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17f26f22_eb4eec42",
+        "filename": "dashboard/dashboard/models/alert_groups_bug_description.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-05T01:59:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5149d0e3_da24f877",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 75
+      },
+      "revId": "bdf9aabe38e15fa0ff5e5311d08f170be26de8fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
