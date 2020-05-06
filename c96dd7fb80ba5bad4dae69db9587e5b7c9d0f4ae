@@ -22,6 +22,30 @@
       "revId": "c96dd7fb80ba5bad4dae69db9587e5b7c9d0f4ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fcefdff_2de532cd",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-06T15:27:04Z",
+      "side": 1,
+      "message": "Aha! Yes, it should be a list(set()), great catch!\n\nFixed.",
+      "parentUuid": "0acb6ea8_7ab9279a",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 60
+      },
+      "revId": "c96dd7fb80ba5bad4dae69db9587e5b7c9d0f4ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
