@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c2e3fa85_dad4e96e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1111144
+      },
+      "writtenOn": "2020-05-06T07:31:57Z",
+      "side": 1,
+      "message": "Called from autotest: https://chromium-review.googlesource.com/c/chromiumos/third_party/autotest/+/2172696",
+      "parentUuid": "47ac2bf5_8c0d73dc",
+      "revId": "ede688a7f16fffad4ab070e2b06a4fcd0300f24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aed9da53_2f1b2fb6",
         "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2020-05-06T06:39:50Z",
       "side": 1,
       "message": "Is this going to be racy?",
+      "revId": "ede688a7f16fffad4ab070e2b06a4fcd0300f24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10706a5d_daac7ae6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1111144
+      },
+      "writtenOn": "2020-05-06T07:31:57Z",
+      "side": 1,
+      "message": "Not sure actually. Oobe is supposed to be destroyed here. This was my best guess how to wait for it. I guess |self| should be live?",
+      "parentUuid": "aed9da53_2f1b2fb6",
       "revId": "ede688a7f16fffad4ab070e2b06a4fcd0300f24d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
