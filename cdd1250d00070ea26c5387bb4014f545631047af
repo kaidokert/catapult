@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ac8bec1_dba1cafd",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-06T17:20:45Z",
+      "side": 1,
+      "message": "Looks like the prev behavior didn\u0027t check for self._enable_device_files_cache before adding to the cache. We may want to consider defaulting enable_device_files_cache to true. Maybe in a follow up.",
+      "revId": "cdd1250d00070ea26c5387bb4014f545631047af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

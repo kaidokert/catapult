@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "9eb8aa50_a594b375",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-05-06T17:20:45Z",
+      "side": 1,
+      "message": "Could also do posixpath.isabs(...)",
+      "parentUuid": "a59b57f4_15a5d411",
+      "revId": "a2ebc5f7351b01a345ae981d7d766d84fb0af489",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e41eca41_b3843882",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 13
