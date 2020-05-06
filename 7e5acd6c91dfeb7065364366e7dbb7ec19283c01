@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72650be6_e9e4d25d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-05-06T06:39:50Z",
+      "side": 0,
+      "message": "I think you want this WaitFor. It might work on the first try in your local testing, but I suspect the tests will flake.",
+      "revId": "7e5acd6c91dfeb7065364366e7dbb7ec19283c01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
