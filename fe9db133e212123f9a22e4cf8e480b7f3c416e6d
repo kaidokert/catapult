@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e79c3628_d03ca4e4",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-05-06T03:26:51Z",
+      "side": 1,
+      "message": "Do we actually expect to use locales that don\u0027t contain \u0027-\u0027? Should this accept them?",
+      "revId": "fe9db133e212123f9a22e4cf8e480b7f3c416e6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
