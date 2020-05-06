@@ -8,10 +8,10 @@ from telemetry.internal.browser import browser
 
 class CrOSBrowserWithOOBE(browser.Browser):
   """Cros-specific browser."""
-  def __init__(self, backend, platform_backend, startup_args):
+  def __init__(self, backend, platform_backend, startup_args, env):
     assert isinstance(backend, cros_browser_backend.CrOSBrowserBackend)
     super(CrOSBrowserWithOOBE, self).__init__(
-        backend, platform_backend, startup_args)
+        backend, platform_backend, startup_args, env=env)
 
   @property
   def oobe(self):
