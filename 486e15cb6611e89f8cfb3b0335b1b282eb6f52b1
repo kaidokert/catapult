@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d454e3c0_3397840a",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-07T08:51:05Z",
+      "side": 1,
+      "message": "Can you add a comment just outside of the message documentation, saying something like:\n\n```\n// Next ID: 14\n```\n\nSo we don\u0027t forget? Ideally that\u0027d be between either line 86/87 or 87/88.",
+      "range": {
+        "startLine": 117,
+        "startChar": 33,
+        "endLine": 117,
+        "endChar": 35
+      },
+      "revId": "486e15cb6611e89f8cfb3b0335b1b282eb6f52b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c475b561_65e1d128",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-07T08:51:05Z",
+      "side": 1,
+      "message": "Please add test case where we have the following combinations:\n\n{ auto-triage, no-auto-triage } x { auto-bisect, no-auto-bisect}\n\nWe want to ensure that:\n\n- auto-triage, auto-bisect -\u003e auto-bisect \u003d true\n- no-auto-triage, auto-bisect -\u003e auto-bisect \u003d false\n- auto-triage, no-auto-bisect -\u003e auto-bisect \u003d false\n- no-auto-triage, no-auto-bisect -\u003e auto-bisect \u003d false",
+      "revId": "486e15cb6611e89f8cfb3b0335b1b282eb6f52b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
