@@ -78,6 +78,7 @@ class LuciPollingTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'auto_triage': {'enable': True},
+                    'auto_bisection': {'enable': True},
                     'rules': {},
                 }
             }]
@@ -115,6 +116,7 @@ class LuciPollingTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'auto_triage': {'enable': False},
+                    'auto_bisection': {'enable': False},
                     'rules': {},
                 }
             }, {
@@ -126,6 +128,7 @@ class LuciPollingTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'auto_triage': {'enable': False},
+                    'auto_bisection': {'enable': False},
                     'rules': {},
                 }
             }]
@@ -211,6 +214,7 @@ class LuciPollingTest(unittest.TestCase):
                 'bug_labels': ['Some-Label'],
                 'bug_components': ['Some>Component'],
                 'auto_triage': {'enable': False},
+                'auto_bisection': {'enable': False},
                 'rules': {},
             }
         }, {
@@ -222,6 +226,7 @@ class LuciPollingTest(unittest.TestCase):
                 'bug_labels': ['Some-Label'],
                 'bug_components': ['Some>Component'],
                 'auto_triage': {'enable': False},
+                'auto_bisection': {'enable': False},
                 'rules': {},
             }
         }, {
@@ -233,6 +238,7 @@ class LuciPollingTest(unittest.TestCase):
                 'bug_labels': ['Some-Label'],
                 'bug_components': ['Some>Component'],
                 'auto_triage': {'enable': False},
+                'auto_bisection': {'enable': False},
                 'rules': {},
             }
         }]
@@ -293,6 +299,7 @@ class LuciContentChangesTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'auto_triage': {'enable': True},
+                    'auto_bisection': {'enable': True},
                     'rules': {},
                 }
             }]
@@ -328,6 +335,7 @@ class LuciContentChangesTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'auto_triage': {'enable': False},
+                    'auto_bisection': {'enable': False},
                     'rules': {},
                 }
             }, {
@@ -339,6 +347,7 @@ class LuciContentChangesTest(unittest.TestCase):
                     'bug_labels': ['Some-Label'],
                     'bug_components': ['Some>Component'],
                     'auto_triage': {'enable': False},
+                    'auto_bisection': {'enable': False},
                     'rules': {},
                 }
             }]

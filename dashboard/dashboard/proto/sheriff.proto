@@ -69,6 +69,16 @@ message AutoTriage {
   };
 }
 
+// Sheriff can use enable flag or rules to select tests being auto bisected. But
+// when sending Match request to the sheriff-config service, we only respond
+// enable or not without rules.
+message AutoBisection {
+  oneof auto_bisection {
+    bool enable = 1;
+    Rules rules = 2;
+  };
+}
+
 // TODO(fancl): Maybe split Subscription used in config with the one used in
 // sheriff-config's response. We only return part of the Subscription info
 // from sheriff-config.
@@ -102,6 +112,9 @@ message Subscription {
 
   // Enable automatic create issue based on alert group
   AutoTriage auto_triage = 11;
+
+  // Enable automatic create pinpint bisection job based on alert group
+  AutoBisection auto_bisection = 13;
 
   enum VisibilityTag {
     INTERNAL_ONLY = 0;
