@@ -90,6 +90,7 @@ class GroupReportTest(testing_common.TestCase):
 
   def setUp(self):
     super(GroupReportTest, self).setUp()
+    self.maxDiff = None
     app = webapp2.WSGIApplication(
         [('/alert_groups_update', alert_groups.AlertGroupsHandler)])
     self.testapp = webtest.TestApp(app)
@@ -269,6 +270,10 @@ class GroupReportTest(testing_common.TestCase):
     self.assertEqual(group.status, alert_group.AlertGroup.Status.triaged)
     self.assertItemsEqual(MockIssueTrackerService.new_bug_kwargs['components'],
                           ['Foo>Bar'])
+    self.assertItemsEqual(MockIssueTrackerService.new_bug_kwargs['labels'], [
+        'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
+        'Chromeperf-Auto-Triaged'
+    ])
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)
     # Make sure we don't file the issue again for this alert group.
@@ -305,6 +310,10 @@ class GroupReportTest(testing_common.TestCase):
     self.assertEqual(group.status, alert_group.AlertGroup.Status.triaged)
     self.assertItemsEqual(MockIssueTrackerService.new_bug_kwargs['components'],
                           ['Foo>Bar'])
+    self.assertItemsEqual(MockIssueTrackerService.new_bug_kwargs['labels'], [
+        'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
+        'Chromeperf-Auto-Triaged'
+    ])
     self.assertEqual(a.get().bug_id, 12345)
 
 
@@ -341,3 +350,10 @@ class GroupReportTest(testing_common.TestCase):
     for a in anomalies:
       self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(MockIssueTrackerService.add_comment_args[0], 12345)
+    self.assertItemsEqual(
+        MockIssueTrackerService.add_comment_kwargs['components'], ['Foo>Bar'])
+    self.assertItemsEqual(MockIssueTrackerService.add_comment_kwargs['labels'],
+                          [
+                              'Pri-2', 'Restrict-View-Google',
+                              'Type-Bug-Regression', 'Chromeperf-Auto-Triaged'
+                          ])
