@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "44517128_15cb9a95",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-05-08T08:29:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2e3fa85_dad4e96e",
+      "revId": "ede688a7f16fffad4ab070e2b06a4fcd0300f24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aed9da53_2f1b2fb6",
         "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
         "patchSetId": 1
@@ -69,6 +87,24 @@
       "revId": "ede688a7f16fffad4ab070e2b06a4fcd0300f24d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79177373_18356109",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-05-08T08:29:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "10706a5d_daac7ae6",
+      "revId": "ede688a7f16fffad4ab070e2b06a4fcd0300f24d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
