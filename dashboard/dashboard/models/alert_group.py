@@ -173,6 +173,8 @@ class AlertGroup(ndb.Model):
       return
     self.updated = self.updated = datetime.datetime.now()
     self.status = self.Status.triaged
+    # Commit this change ASAP.
+    self.put()
 
   def _TryBisect(self):
     # TODO(fancl): Trigger bisection
@@ -274,11 +276,11 @@ class AlertGroup(ndb.Model):
       logging.warning('AlertGroup file bug failed: %s', response['error'])
       return None
 
-    # Link the bug to auto-triage enabled alerts.
-    for a in regressions:
+    # Link the bug to auto-triage enabled anomalies.
+    for a in anomalies:
       if not a.bug_id and a.auto_triage_enable:
         a.bug_id = response['bug_id']
-    ndb.put_multi(regressions)
+    ndb.put_multi(anomalies)
     # TODO(fancl): Add bug project in config and anomaly
     return BugInfo(project='chromium', bug_id=response['bug_id'])
 
