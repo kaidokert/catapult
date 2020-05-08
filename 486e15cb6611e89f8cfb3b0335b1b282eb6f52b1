@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "72c5493e_9475d392",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-08T07:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d454e3c0_3397840a",
+      "range": {
+        "startLine": 117,
+        "startChar": 33,
+        "endLine": 117,
+        "endChar": 35
+      },
+      "revId": "486e15cb6611e89f8cfb3b0335b1b282eb6f52b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c475b561_65e1d128",
         "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "486e15cb6611e89f8cfb3b0335b1b282eb6f52b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d11246f1_0c42da6a",
+        "filename": "dashboard/dashboard/sheriff_config/tests/test_e2e_cases.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-08T07:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c475b561_65e1d128",
+      "revId": "486e15cb6611e89f8cfb3b0335b1b282eb6f52b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
