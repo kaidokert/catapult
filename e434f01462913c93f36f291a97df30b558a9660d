@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82af3377_c0361799",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-08T00:44:33Z",
+      "side": 1,
+      "message": "Probably don\u0027t need \u0027not regressions\u0027 because `any([])` will be False anyway.",
+      "range": {
+        "startLine": 249,
+        "startChar": 7,
+        "endLine": 249,
+        "endChar": 22
+      },
+      "revId": "e434f01462913c93f36f291a97df30b558a9660d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
