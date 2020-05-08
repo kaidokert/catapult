@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aedb536_cee5dd32",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-08T05:26:42Z",
+      "side": 1,
+      "message": "Nit: the convention is `kwargs` (short for “keyword args”).",
+      "range": {
+        "startLine": 97,
+        "startChar": 26,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "0161806d17de066270f6f839e7b4873ff2f2c066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
