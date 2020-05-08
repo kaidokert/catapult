@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0fea9d65_c7887931",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-08T08:24:23Z",
+      "side": 1,
+      "message": "This part doesn\u0027t appear to be described by the CL description.",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 34
+      },
+      "revId": "3c60d0b6b9072a505b3103fa5c4616e45154fdec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
