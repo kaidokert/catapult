@@ -22,6 +22,30 @@
       "revId": "659e3b92ecb3620da6d350046fda05ae688ab1dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c2cdc89_cc3bb542",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_minidump_symbolizer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-05-08T19:05:49Z",
+      "side": 1,
+      "message": "Done. I didn\u0027t see a way to access it via the name with group(), but groupdict() exists.",
+      "parentUuid": "ece0ebf7_48890e31",
+      "range": {
+        "startLine": 153,
+        "startChar": 27,
+        "endLine": 153,
+        "endChar": 28
+      },
+      "revId": "659e3b92ecb3620da6d350046fda05ae688ab1dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
