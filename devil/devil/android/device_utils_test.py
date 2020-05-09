@@ -593,6 +593,48 @@ class DeviceUtils_GetApplicationVersionTest(DeviceUtilsTest):
         self.device.GetApplicationVersion('com.android.chrome')
 
 
+class DeviceUtils_GetApplicationTargetSdkTest(DeviceUtilsTest):
+  def test_GetApplicationTargetSdk_exists(self):
+    with self.assertCalls(
+        (self.call.adb.Shell('dumpsys package com.android.chrome'),
+         'Packages:\n'
+         '  Package [com.android.chrome] (3901ecfb):\n'
+         '    userId=1234 gids=[123, 456, 789]\n'
+         '    pkg=Package{1fecf634 com.android.chrome}\n'
+         '    versionCode=413200001 minSdk=21 targetSdk=29\n')):
+      self.assertEquals(
+          '29', self.device.GetApplicationTargetSdk('com.android.chrome'))
+
+  def test_GetApplicationTargetSdk_notExists(self):
+    with self.assertCalls(
+        (self.call.adb.Shell('dumpsys package com.android.chrome'), '')):
+      self.assertEquals(
+          None, self.device.GetApplicationTargetSdk('com.android.chrome'))
+
+  def test_GetApplicationTargetSdk_fails(self):
+    with self.assertCalls(
+        (self.call.adb.Shell('dumpsys package com.android.chrome'),
+         'Packages:\n'
+         '  Package [com.android.chrome] (3901ecfb):\n'
+         '    userId=1234 gids=[123, 456, 789]\n'
+         '    pkg=Package{1fecf634 com.android.chrome}\n')):
+      with self.assertRaises(device_errors.CommandFailedError):
+        self.device.GetApplicationTargetSdk('com.android.chrome')
+
+  def test_GetApplicationTargetSdk_prefinalizedSdk(self):
+    with self.assertCalls(
+        (self.call.adb.Shell('dumpsys package com.android.chrome'),
+         'Packages:\n'
+         '  Package [com.android.chrome] (3901ecfb):\n'
+         '    userId=1234 gids=[123, 456, 789]\n'
+         '    pkg=Package{1fecf634 com.android.chrome}\n'
+         '    versionCode=410301483 minSdk=10000 targetSdk=10000\n'),
+        (self.call.device.GetProp('ro.build.version.codename',
+                                  cache=True), 'R')):
+      self.assertEquals(
+          'R', self.device.GetApplicationTargetSdk('com.android.chrome'))
+
+
 class DeviceUtils_GetPackageArchitectureTest(DeviceUtilsTest):
   def test_GetPackageArchitecture_exists(self):
     with self.assertCall(
