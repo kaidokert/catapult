@@ -41,7 +41,7 @@ def Compare(values_a, values_b, attempt_count, mode, magnitude):
     UNKNOWN: Not enough evidence to reject either hypothesis.
         We should collect more data before making a final decision.
   """
-  if not (values_a and values_b):
+  if not (len(values_a) > 0 and len(values_b) > 0):
     # A sample has no values in it.
     return UNKNOWN
 

@@ -25,6 +25,10 @@ from dashboard.common import math_utils
 # instead.
 from dashboard.pinpoint.models.compare import compare as pinpoint_compare
 
+# DO NOT SUBMIT
+# This is an attempt to use numpy instead of pure python datatypes.
+import numpy as np
+
 # This number controls the maximum number of iterations we perform when doing
 # permutation testing to identify potential change-points hidden in the
 # sub-clustering of values. The higher the number, the more CPU time we're
@@ -91,12 +95,11 @@ def PermutationTest(sequence, rand=None):
     rand = random.Random()
 
   def RandomPermutations(sequence, count):
-    pool = tuple(sequence)
-    length = len(sequence)
+    length = min(len(sequence), _MAX_SUBSAMPLING_LENGTH)
     i = 0
     while i < count:
       i += 1
-      yield tuple(rand.sample(pool, min(length, _MAX_SUBSAMPLING_LENGTH)))
+      yield np.random.permutation(sequence)[:length]
 
   sames = 0
   differences = 0
@@ -145,41 +148,56 @@ def ChangePointEstimator(sequence):
   # This algorithm is O(N^2) to the size of the sequence.
   def Estimator(index):
     cluster_a, cluster_b = Cluster(sequence, index)
-    a_array = tuple(
-        abs(a - b)**2 for a, b in itertools.combinations(cluster_a, 2))
-    if not a_array:
-      a_array = (0.,)
-    b_array = tuple(
-        abs(a - b)**2 for a, b in itertools.combinations(cluster_b, 2))
-    if not b_array:
-      b_array = (0.,)
-    y = sum(abs(a - b)**2 for a, b in itertools.product(cluster_a, cluster_b))
-    x_a = sum(a_array)
-    x_b = sum(b_array)
-    a_len_combinations = len(a_array)
-    b_len_combinations = len(b_array)
-    y_scaler = 2.0 / (len(cluster_a) * len(cluster_b))
-    a_estimate = (x_a / a_len_combinations)
-    b_estimate = (x_b / b_len_combinations)
+
+    def Cartesian(x, y):
+      return np.array(np.meshgrid(x, y)).T.reshape(-1, 2)
+
+    def Distance(x):
+      return abs(x[0] - x[1])
+
+    def Combinations(n, r):
+      if n >= r and r > 0:
+        return math.factorial(n) / (math.factorial(r) * (math.factorial(n - r)))
+      return 1
+
+    # We want to only have the unique combinations of values for a and b.
+    x_a = np.sum(
+        np.apply_along_axis(
+            Distance, 1,
+            np.unique(
+                np.apply_along_axis(lambda x: np.sort(x, axis=None), 1,
+                                    Cartesian(cluster_a, cluster_a)),
+                axis=0))**2)
+
+    b = np.unique(
+        np.apply_along_axis(lambda x: np.sort(x, None), 1,
+                            Cartesian(cluster_b, cluster_b)),
+        axis=0)
+    x_b = np.sum(np.apply_along_axis(Distance, 1, b)**
+                 2) if len(cluster_b) > 0 else 0.
+    y = np.sum(
+        np.apply_along_axis(Distance, 1, Cartesian(cluster_a, cluster_b))**2)
+
+    a_combinations = Combinations(len(cluster_a), 2)
+    b_combinations = Combinations(len(cluster_b), 2)
+    y_scaler = 2.0 / (a_combinations * b_combinations)
+    a_estimate = (x_a / a_combinations)
+    b_estimate = (x_b / a_combinations)
     e = (y_scaler * y) - a_estimate - b_estimate
-    return (e * a_len_combinations * b_len_combinations) / (
-        a_len_combinations + b_len_combinations)
+    return (e * a_combinations * b_combinations) / (
+        a_combinations + b_combinations)
 
   margin = 1
   max_estimate = None
   max_index = 0
-  estimates = [
+  estimates = np.array([
       Estimator(i)
       for i, _ in enumerate(sequence)
       if margin <= i < len(sequence)
-  ]
-  if not estimates:
+  ])
+  if len(estimates) == 0:
     return (0, False)
-  for index, estimate in enumerate(estimates):
-    if max_estimate is None or estimate > max_estimate:
-      max_estimate = estimate
-      max_index = index
-  return (max_index + margin, True)
+  return np.argmax(estimates) + margin, True
 
 
 def ClusterAndFindSplit(values, rand=None):
@@ -220,6 +238,7 @@ def ClusterAndFindSplit(values, rand=None):
         (length, 3))
   candidate_indices = set()
   exploration_queue = [(0, length)]
+  array = np.array(values)
   while exploration_queue:
     # Find the most likely change point in the whole range, only excluding the
     # first and last elements. We're doing this because we want to still be able
@@ -227,7 +246,7 @@ def ClusterAndFindSplit(values, rand=None):
     # enough confidence that it is a change point.
     start, end = exploration_queue.pop(0)
     logging.debug('Exploring range seq[%s:%s]', start, end)
-    segment = values[start:end]
+    segment = array[start:end:1]
     partition_point, _ = ChangePointEstimator(segment)
 
     # Compare the left and right part divided by the possible change point
