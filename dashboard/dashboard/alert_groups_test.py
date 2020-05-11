@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import mock
 import datetime
 
+import logging
 import webapp2
 import webtest
 
@@ -254,6 +255,10 @@ class GroupReportTest(testing_common.TestCase):
         'Pri-2', 'Restrict-View-Google', 'Type-Bug-Regression',
         'Chromeperf-Auto-Triaged'
     ])
+    self.assertRegexpMatches(MockIssueTrackerService.new_bug_args[1],
+                             r'Top 1 affected measurements in bot:')
+    logging.debug('Template output =\n%s',
+                  MockIssueTrackerService.new_bug_args[1])
     self.assertEqual(a.get().bug_id, 12345)
     self.assertEqual(group.bug.bug_id, 12345)
     # Make sure we don't file the issue again for this alert group.
@@ -298,7 +303,6 @@ class GroupReportTest(testing_common.TestCase):
         'Chromeperf-Auto-Triaged'
     ])
     self.assertEqual(a.get().bug_id, 12345)
-
 
   def testAddAlertsAfterTriage(self, mock_get_sheriff_client):
     sheriff = subscription.Subscription(name='sheriff', auto_triage_enable=True)
