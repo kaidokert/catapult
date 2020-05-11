@@ -21,13 +21,10 @@ import random
 
 from dashboard.common import math_utils
 
-# TODO(dberris): Remove this dependency if/when we are able to depend on SciPy
-# instead.
-from dashboard.pinpoint.models.compare import compare as pinpoint_compare
-
 # DO NOT SUBMIT
 # This is an attempt to use numpy instead of pure python datatypes.
 import numpy as np
+from scipy import stats
 
 # This number controls the maximum number of iterations we perform when doing
 # permutation testing to identify potential change-points hidden in the
@@ -61,18 +58,27 @@ def Midpoint(sequence):
   return (len(sequence) - 1) // 2
 
 
+_ALPHA_LOW = 0.01
+_ALPHA_HIGH = 0.30
+
+
 def ClusterAndCompare(sequence, partition_point):
   """Returns the comparison result and the clusters at the partition point."""
   # Detect a difference between the two clusters
   cluster_a, cluster_b = Cluster(sequence, partition_point)
-  if len(cluster_a) > 2 and len(cluster_b) > 2:
-    magnitude = float(math_utils.Iqr(cluster_a) + math_utils.Iqr(cluster_b)) / 2
+  if len(cluster_a) < 2 or len(cluster_b) < 2:
+    return ('unknown', cluster_a, cluster_b)
+
+  u_stat, up_value = stats.mannwhitneyu(cluster_a, cluster_b)
+  d_stat, dp_value = stats.ks_2samp(cluster_a, cluster_b)
+  p_value = min(up_value, dp_value)
+  if p_value <= _ALPHA_LOW:
+    result = 'different'
+  elif p_value <= _ALPHA_HIGH:
+    result = 'unknown'
   else:
-    magnitude = 1
-  return (pinpoint_compare.Compare(cluster_a, cluster_b,
-                                   (len(cluster_a) + len(cluster_b)) // 2,
-                                   'performance',
-                                   magnitude), cluster_a, cluster_b)
+    result = 'same'
+  return (result, cluster_a, cluster_b)
 
 
 def PermutationTest(sequence, rand=None):
@@ -91,40 +97,31 @@ def PermutationTest(sequence, rand=None):
   if len(sequence) < 3:
     return False
 
-  if rand is None:
-    rand = random.Random()
+  # With numpy, we have the capability to create a large 2D array with all the
+  # permutations, and perform the computations on each row to futher reduce into
+  # a probability.
+  count = min(_MAX_PERMUTATION_TESTING_ITERATIONS,
+              math.factorial(len(sequence)))
+  length = min(len(sequence), _MAX_SUBSAMPLING_LENGTH)
+  permutation_space = np.concatenate(
+      tuple(
+          np.random.permutation(sequence[:length]).reshape(-1, length)
+          for _ in range(count)),
+      axis=0)
 
-  def RandomPermutations(sequence, count):
-    length = min(len(sequence), _MAX_SUBSAMPLING_LENGTH)
-    i = 0
-    while i < count:
-      i += 1
-      yield np.random.permutation(sequence)[:length]
-
-  sames = 0
-  differences = 0
-  unknowns = 0
-  for permutation in RandomPermutations(
-      sequence,
-      min(_MAX_PERMUTATION_TESTING_ITERATIONS, math.factorial(len(sequence)))):
-    change_point, found = ChangePointEstimator(permutation)
+  # From here we can then apply the clustering and change point detection for
+  # each permutation, and yield an array of results.
+  def CompareResults(a):
+    change_point, found = ChangePointEstimator(a)
     if not found:
-      sames += 1
-      continue
-    compare_result, unused_a, unused_b = ClusterAndCompare(
-        permutation, change_point)
-    if compare_result == pinpoint_compare.SAME:
-      sames += 1
-    elif compare_result == pinpoint_compare.UNKNOWN:
-      unknowns += 1
-    else:
-      differences += 1
+      return 'same'
+    compare_result, unused_a, unused_b = ClusterAndCompare(a, change_point)
+    return compare_result
 
-  # If at least 5% of the permutations compare differently, then it passes the
-  # permutation test (meaning we can detect a potential change-point in the
-  # sequence).
-  total = float(sames + unknowns + differences)
-  probability = float(differences) / total if total > 0. else 0.
+  comparison_results = np.apply_along_axis(CompareResults, 1, permutation_space)
+  total = float(len(permutation_space))
+  differents = comparison_results == 'different'
+  probability = np.sum(differents) / total
   return probability
 
 
@@ -169,12 +166,14 @@ def ChangePointEstimator(sequence):
                                     Cartesian(cluster_a, cluster_a)),
                 axis=0))**2)
 
-    b = np.unique(
-        np.apply_along_axis(lambda x: np.sort(x, None), 1,
-                            Cartesian(cluster_b, cluster_b)),
-        axis=0)
-    x_b = np.sum(np.apply_along_axis(Distance, 1, b)**
-                 2) if len(cluster_b) > 0 else 0.
+    x_b = np.sum(
+        np.apply_along_axis(
+            Distance, 1,
+            np.unique(
+                np.apply_along_axis(lambda x: np.sort(x, None), 1,
+                                    Cartesian(cluster_b, cluster_b)),
+                axis=0))**2)
+
     y = np.sum(
         np.apply_along_axis(Distance, 1, Cartesian(cluster_a, cluster_b))**2)
 
@@ -184,7 +183,7 @@ def ChangePointEstimator(sequence):
     a_estimate = (x_a / a_combinations)
     b_estimate = (x_b / a_combinations)
     e = (y_scaler * y) - a_estimate - b_estimate
-    return (e * a_combinations * b_combinations) / (
+    return (e * a_combinations * b_combinations) / float(
         a_combinations + b_combinations)
 
   margin = 1
@@ -252,7 +251,7 @@ def ClusterAndFindSplit(values, rand=None):
     # Compare the left and right part divided by the possible change point
     compare_result, cluster_a, cluster_b = ClusterAndCompare(
         segment, partition_point)
-    if compare_result == pinpoint_compare.DIFFERENT:
+    if compare_result == 'different':
       candidate_indices.add(start + partition_point)
 
     # Even though we have a likely partiion point, we want to be able to find
