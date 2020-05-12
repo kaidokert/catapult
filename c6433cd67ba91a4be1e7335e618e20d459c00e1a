@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "67b594b1_ca71b3a8",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-12T02:00:07Z",
+      "side": 1,
+      "message": "If we add `relative_delta` to regression, we can remove all `get_magnitude` (sorry for bad naming)? It\u0027s almost the same thing.\nAlso do you mean `abs(a.absolute_delta /  a.median_before_anomaly)`?",
+      "revId": "c6433cd67ba91a4be1e7335e618e20d459c00e1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdd97123_4de00ff5",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 1
