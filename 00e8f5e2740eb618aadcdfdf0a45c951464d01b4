@@ -22,6 +22,30 @@
       "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "229476b4_20cb6dce",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-05-12T21:18:47Z",
+      "side": 1,
+      "message": "The way I understand it, all the other OSes do something similar where they\u0027re given some brower_options and customize flags somehow. Most of the process seems to be adding additional flags though.",
+      "parentUuid": "8dd633c3_5cebfa47",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 27
+      },
+      "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
