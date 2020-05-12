@@ -9,6 +9,7 @@ from telemetry.internal.backends.chrome import fuchsia_browser_backend
 from telemetry.internal.browser import browser
 from telemetry.internal.browser import possible_browser
 from telemetry.internal.platform import fuchsia_device
+from telemetry.internal.backends.chrome import chrome_startup_args
 
 
 class UnsupportedExtensionException(Exception):
@@ -42,16 +43,26 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
 
   def Create(self):
     """Start the browser process."""
+    startup_args = self.GetBrowserStartupArgs(self._browser_options)
     browser_backend = fuchsia_browser_backend.FuchsiaBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory)
     try:
       return browser.Browser(
-          browser_backend, self._platform_backend, startup_args=(),
+          browser_backend, self._platform_backend, startup_args,
           find_existing=False)
     except Exception:
       browser_backend.Close()
       raise
+
+  def GetBrowserStartupArgs(self, browser_options):
+    initial_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
+    filtered_args = []
+    if self.browser_type == 'web-engine-shell':
+      for arg in initial_args:
+        if arg in fuchsia_interface.SUPPORTED_WEB_ENGINE_FLAGS:
+          filtered_args.append(arg)
+    return filtered_args
 
   def CleanUpEnvironment(self):
     if self._browser_options is None:

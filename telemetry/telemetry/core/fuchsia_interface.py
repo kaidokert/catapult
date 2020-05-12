@@ -14,6 +14,7 @@ _LLVM_SYMBOLIZER_PATH = os.path.join(
     util.GetCatapultDir(), '..', 'llvm-build', 'Release+Asserts', 'bin',
     'llvm-symbolizer')
 
+SUPPORTED_WEB_ENGINE_FLAGS = ['--enable-gpu-benchmarking']
 
 class CommandRunner(object):
   """Helper class used to execute commands on Fuchsia devices on a remote host
