@@ -16,6 +16,24 @@
       "revId": "9e76fafaefc0136a84fc0d80f721a4078aaf675c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "863120ae_3f63f8da",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-12T05:00:05Z",
+      "side": 1,
+      "message": "Previous task for the same alert group? Yes. I know we don\u0027t do transactional queries, but that\u0027s probably the next thing we need to do here if we think that\u0027s going to be a huge problem in practice.",
+      "parentUuid": "dccdfd45_2db6b14b",
+      "revId": "9e76fafaefc0136a84fc0d80f721a4078aaf675c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
