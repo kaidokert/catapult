@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dccdfd45_2db6b14b",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-12T04:56:53Z",
+      "side": 1,
+      "message": "Is it possible starting a new deferred task for the same AlertGroup before previous one finished?",
+      "revId": "9e76fafaefc0136a84fc0d80f721a4078aaf675c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
