@@ -70,6 +70,30 @@
       "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a113a1ec_91ad1082",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-05-12T21:23:14Z",
+      "side": 1,
+      "message": "Adding some extra (probably default) args seems reasonable. I\u0027m not aware of any other platforms filtering out arguments - can you provide an example if that\u0027s the case?\n\nMy order of preference is:\n1. Pass everything as-is, letting web engine handle what\u0027s supported or not (supported arguments are handled in a single place)\n2. Filter, but fail if any unsupported arguments are found (supported arguments are handled in two separate places/repos)\n3. Filter as you\u0027re doing now (supported arguments are handled in two separate places/repos, and we silently discard arguments we were given)",
+      "parentUuid": "229476b4_20cb6dce",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 27
+      },
+      "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
