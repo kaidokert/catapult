@@ -54,7 +54,6 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return py_utils.WaitFor(lambda: TryReadingPort(stderr), timeout=60)
 
   def _ConstructCmdLine(self, startup_args):
-    del startup_args
     browser_cmd = [
         'run',
         'fuchsia-pkg://%s/web_engine_shell#meta/web_engine_shell.cmx' %
@@ -62,6 +61,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--remote-debugging-port=0',
         'about:blank'
     ]
+    if startup_args:
+      browser_cmd.append('--')
+      browser_cmd.extend(startup_args)
     return browser_cmd
 
   def Start(self, startup_args):
