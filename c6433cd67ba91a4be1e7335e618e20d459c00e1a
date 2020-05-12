@@ -39,6 +39,30 @@
       "revId": "c6433cd67ba91a4be1e7335e618e20d459c00e1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d61c1a89_9f55f257",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-12T02:51:29Z",
+      "side": 1,
+      "message": "Good catch! The condition should be whether a.median_before_anomaly !\u003d 0.\n\nReformatted -- it\u0027s still possible that the median_before_anomaly could be negative, in which case it\u0027d be wrong that the relative change is negative (so we still need the call to abs).\n\nAlso, we need to preserve the infinity (relative delta cannot be 0.0).",
+      "parentUuid": "bdd97123_4de00ff5",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 20
+      },
+      "revId": "c6433cd67ba91a4be1e7335e618e20d459c00e1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
