@@ -7,6 +7,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import jinja2
 from collections import namedtuple
 import math
 
@@ -114,7 +115,7 @@ class DifferencesFoundBugUpdateBuilder(object):
     sheriff = utils.GetSheriffForAutorollCommit(owner, top_commit['message'])
     if sheriff:
       owner = sheriff
-      why_text = '\n\nAssigning to sheriff %s because "%s" is a roll.' % (
+      why_text = 'Assigning to sheriff %s because "%s" is a roll.' % (
           sheriff, top_commit['subject'])
 
     return owner, cc_list, why_text
@@ -130,10 +131,7 @@ class _Difference(object):
   def MeanDelta(self):
     return job_state.Mean(self.values_b) - job_state.Mean(self.values_a)
 
-  def FormatForBug(self, metric):
-    subject = '<b>%s</b> by %s' % (
-        self.commit_info['subject'], self.commit_info['author'])
-
+  def Formatted(self):
     if self.values_a:
       mean_a = job_state.Mean(self.values_a)
       formatted_a = '%.4g' % mean_a
@@ -148,18 +146,14 @@ class _Difference(object):
       mean_b = None
       formatted_b = 'No values'
 
-    metric = '%s: ' % metric if metric else ''
-
-    difference = '%s%s %s %s' % (metric, formatted_a, _RIGHT_ARROW, formatted_b)
+    difference = ''
     if self.values_a and self.values_b:
-      difference += ' (%+.4g)' % (mean_b - mean_a)
+      difference = ' (%+.4g)' % (mean_b - mean_a)
       if mean_a:
         difference += ' (%+.4g%%)' % ((mean_b - mean_a) / mean_a * 100)
       else:
         difference += ' (+%s%%)' % _INFINITY
-
-    return '\n'.join((subject, self.commit_info['url'], difference))
-
+    return '%s %s %s%s' % (formatted_a, _RIGHT_ARROW, formatted_b, difference)
 
 class _BugUpdateInfo(
     namedtuple('_BugUpdateInfo',
@@ -171,25 +165,13 @@ class _BugUpdateInfo(
 
 
 def _FormatComment(differences, metric, notify_why_text, tags, url):
-  if len(differences) == 1:
-    status = 'Found a significant difference after 1 commit.'
-  else:
-    status = ('Found significant differences after each of %d commits.' %
-              len(differences))
-
-  title = '<b>%s %s</b>' % (_ROUND_PUSHPIN, status)
-  header = '\n'.join((title, url))
-  body = '\n\n'.join(diff.FormatForBug(metric) for diff in differences)
-  body += notify_why_text
-
-  footer = ('Understanding performance regressions:\n'
-            '  http://g.co/ChromePerformanceRegressions')
-
-  if differences:
-    footer += _FormatDocumentationUrls(tags)
-
-  comment = '\n\n'.join((header, body, footer))
-  return comment
+  tmpl = JINJA2_ENVIRONMENT.get_template('DifferencesFound')
+  return tmpl.render(
+      differences=differences,
+      url=url,
+      metric=metric,
+      notify_why_text=notify_why_text,
+      doc_links=_FormatDocumentationUrls(tags))
 
 
 def _ComputePostMergeDetails(issue_tracker, commit_cache_key, cc_list):
@@ -269,3 +251,35 @@ def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url):
       merge_issue=merge_details.get('id'))
   update_bug_with_results.UpdateMergeIssue(commit_cache_key, merge_details,
                                            bug_id)
+
+_DIFFERENCES_FOUND_TEMPLATE = ur'''<b>{{ glyphs.ROUND_PUSHPIN
+}} {% if differences|length == 1 -%}
+Found a significant difference after 1 commit.
+{%- else -%}
+Found significant differences after each of {{ differences|length }} commits.
+{%- endif -%}
+</b>
+{{ url }}
+
+{% for diff in differences -%}
+<b>{{ diff.commit_info['subject'] }}</b> by {{ diff.commit_info['author'] }}
+{{ diff.commit_info['url'] }}
+{% if metric %}{{ metric }}: {% endif -%}
+{{ diff.Formatted() }}
+{%- if not loop.last %}
+{% endif %}
+{% endfor -%}
+{% if notify_why_text %}
+{{ notify_why_text }}
+{% endif %}
+Understanding performance regressions:
+  http://g.co/ChromePerformanceRegressions
+{%- if differences %}{{doc_links}}{% endif %}
+'''
+
+JINJA2_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.DictLoader(
+        {'DifferencesFound': _DIFFERENCES_FOUND_TEMPLATE}
+    ),
+)
+JINJA2_ENVIRONMENT.globals['glyphs'] = {'ROUND_PUSHPIN': _ROUND_PUSHPIN}
