@@ -43,6 +43,10 @@ class DifferencesFoundBugUpdateBuilder(object):
   def __init__(self, metric):
     self._metric = metric
     self._differences = []
+    self._examined_count = None
+
+  def SetExaminedCount(self, examined_count):
+    self._examined_count = examined_count
 
   def AddDifference(self, commit, values_a, values_b):
     """Add a difference (a commit where the metric changed significantly).
@@ -60,8 +64,15 @@ class DifferencesFoundBugUpdateBuilder(object):
     if len(self._differences) == 0:
       raise ValueError("BuildUpdate called with 0 differences")
     owner, cc_list, notify_why_text = self._PeopleToNotify()
-    comment_text = _FormatComment(self._differences, self._metric,
-                                  notify_why_text, tags, url)
+    tmpl = JINJA2_ENVIRONMENT.get_template('DifferencesFound')
+    comment_text = tmpl.render(
+        differences=self._differences,
+        url=url,
+        metric=self._metric,
+        notify_why_text=notify_why_text,
+        doc_links=_FormatDocumentationUrls(tags),
+        examined_count=self._examined_count,
+    )
     labels = [
         'Pinpoint-Culprit-Found'
         if len(self._differences) == 1 else 'Pinpoint-Multiple-Culprits'
@@ -164,16 +175,6 @@ class _BugUpdateInfo(
   """
 
 
-def _FormatComment(differences, metric, notify_why_text, tags, url):
-  tmpl = JINJA2_ENVIRONMENT.get_template('DifferencesFound')
-  return tmpl.render(
-      differences=differences,
-      url=url,
-      metric=metric,
-      notify_why_text=notify_why_text,
-      doc_links=_FormatDocumentationUrls(tags))
-
-
 def _ComputePostMergeDetails(issue_tracker, commit_cache_key, cc_list):
   merge_details = {}
   if commit_cache_key:
@@ -254,15 +255,27 @@ def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url):
 
 _DIFFERENCES_FOUND_TEMPLATE = ur'''<b>{{ glyphs.ROUND_PUSHPIN
 }} {% if differences|length == 1 -%}
-Found a significant difference after 1 commit.
+Found a significant difference at 1 commit
 {%- else -%}
-Found significant differences after each of {{ differences|length }} commits.
+Found significant differences at {{ differences|length }} commits
 {%- endif -%}
-</b>
+.</b>
+{%- if not examined_count is none %}
+{% if examined_count == 1 -%}
+1 revision
+{%- else -%}
+{{ examined_count }} revisions
+{%- endif %} compared.{% endif %}
 {{ url }}
 
-{% for diff in differences -%}
-<b>{{ diff.commit_info['subject'] }}</b> by {{ diff.commit_info['author'] }}
+{% if differences|length != 1 -%}
+The top {{ differences[:3]|length }} are:
+
+{% endif -%}
+
+{% for diff in differences[:3] -%}
+<b>{% if differences|length != 1 -%}{{ loop.index }}. {% endif -%}
+{{ diff.commit_info['subject'] }}</b> by {{ diff.commit_info['author'] }}
 {{ diff.commit_info['url'] }}
 {% if metric %}{{ metric }}: {% endif -%}
 {{ diff.Formatted() }}
