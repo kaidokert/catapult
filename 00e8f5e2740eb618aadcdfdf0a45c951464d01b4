@@ -46,6 +46,30 @@
       "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc6d097_a95d40f4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-05-12T21:21:20Z",
+      "side": 1,
+      "message": "I think we can either 1) log warnings for flags that were filtered out. 2) handle flags in the gpu tests beforehands. The second option might be a bit more tricky since not all flags are directly passed in as arguments in brower options (hence the use of chrome_startup_args.GetFromBrowserOptions above)",
+      "parentUuid": "229476b4_20cb6dce",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 27
+      },
+      "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
