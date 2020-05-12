@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "30e37c6a_ba70da4c",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-12T02:55:08Z",
+      "side": 1,
+      "message": "I think we can, yes, let me do that now. Also, recent update did do the change to move the call to abs to the outer expression.",
+      "parentUuid": "67b594b1_ca71b3a8",
+      "revId": "c6433cd67ba91a4be1e7335e618e20d459c00e1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bdd97123_4de00ff5",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 1
