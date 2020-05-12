@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dd633c3_5cebfa47",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-05-12T21:14:37Z",
+      "side": 1,
+      "message": "I feel like Telemetry shouldn\u0027t be filtering the arguments it was given. It seems more correct for Telemetry to just forward what it\u0027s been given to web engine, and have web engine fail if it\u0027s given an unsupported argument.",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 27
+      },
+      "revId": "00e8f5e2740eb618aadcdfdf0a45c951464d01b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
