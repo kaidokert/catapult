@@ -19,7 +19,10 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import anomaly
+from dashboard.models import graph_data
 from dashboard.models import subscription
+from dashboard.services import crrev_service
+from dashboard.services import pinpoint_service
 
 
 class MockIssueTrackerService(object):
@@ -87,6 +90,7 @@ class MockIssueTrackerService(object):
   def GetIssue(cls, _):
     return cls.issue
 
+
 @mock.patch('dashboard.sheriff_config_client.GetSheriffConfigClient')
 class GroupReportTest(testing_common.TestCase):
 
@@ -112,10 +116,10 @@ class GroupReportTest(testing_common.TestCase):
     }
     default.update(kargs)
     default['test'] = utils.TestKey(default['test'])
+    graph_data.TestMetadata(key=default['test']).put()
     a = anomaly.Anomaly(**default)
     a.groups = alert_group.AlertGroup.GetGroupsForAnomaly(a)
     return a.put()
-
 
   def testNoGroup(self, _):
     # Put an anomaly before Ungrouped is created
@@ -212,14 +216,12 @@ class GroupReportTest(testing_common.TestCase):
     # Create Issue
     self.testapp.get('/alert_groups_update')
     self.ExecuteDeferredTasks('default')
-    # ...Nothing should happen here
-    group.updated = datetime.datetime.utcnow() - datetime.timedelta(days=10)
-    self.testapp.get('/alert_groups_update')
-    self.ExecuteDeferredTasks('default')
-    group = alert_group.AlertGroup.Get('test_suite', None)[0]
-    self.assertEqual(group.name, 'test_suite')
     # Issue closed
     MockIssueTrackerService.issue['state'] = 'closed'
+    # Set Create timestamp to 10 days ago
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    group.updated = datetime.datetime.utcnow() - datetime.timedelta(days=10)
+    group.put()
     # Archive Group
     self.testapp.get('/alert_groups_update')
     self.ExecuteDeferredTasks('default')
@@ -428,3 +430,40 @@ class GroupReportTest(testing_common.TestCase):
                           ])
     self.assertRegexpMatches(MockIssueTrackerService.add_comment_args[1],
                              r'Top 2 affected measurements in bot:')
+
+  def testStartAutoBisection(self, mock_get_sheriff_client):
+    sheriff = subscription.Subscription(
+        name='sheriff', auto_triage_enable=True, auto_bisect_enable=True)
+    mock_get_sheriff_client().Match.return_value = ([sheriff], None)
+    MockIssueTrackerService.issue['state'] = 'open'
+    self.PatchObject(alert_group, '_IssueTracker',
+                     lambda: MockIssueTrackerService)
+    self.PatchObject(utils, 'GetServiceAccountCredential',
+                     lambda: {'client_email': 'test@g.com', 'private_key': ''})
+    self.PatchObject(crrev_service, 'GetNumbering',
+                     lambda *args, **kargs: {'git_sha': 'abcd'})
+    new_job = mock.MagicMock(return_value={'jobId': '123456'})
+    self.PatchObject(pinpoint_service, 'NewJob', new_job)
+
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    # Add anomalies
+    self._AddAnomaly()
+    # Create Group
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    # Update Group to associate alerts
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    # Set Create timestamp to 2 hours ago
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    group.created = datetime.datetime.utcnow() - datetime.timedelta(hours=2)
+    group.put()
+    # Submit issue
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    # Start bisection
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    self.assertItemsEqual(group.bisection_ids, ['123456'])
