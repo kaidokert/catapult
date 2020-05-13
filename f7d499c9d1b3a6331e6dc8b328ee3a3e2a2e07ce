@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98e4b096_9684f113",
+        "filename": "dashboard/dashboard/services/issue_tracker_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T09:40:42Z",
+      "side": 1,
+      "message": "jojwang@ - is this something that the v1 API supports, i.e. setting \u0027mergedInto \u003d \u003csome string\u003e\u0027?",
+      "revId": "f7d499c9d1b3a6331e6dc8b328ee3a3e2a2e07ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
