@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4115d316_17233f14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-13T04:59:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88683014_bd8a004b",
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1f5ecb9_2fee5b0e",
         "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
         "patchSetId": 6
@@ -30,6 +48,30 @@
       "writtenOn": "2020-05-13T04:49:25Z",
       "side": 1,
       "message": "Similar comment in other places, this is quite expensive. Consider moving this to global scope and having it initialised once.",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 59
+      },
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bd4a499_c524543b",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-13T04:59:39Z",
+      "side": 1,
+      "message": "https://jinja.palletsprojects.com/en/2.11.x/api/#jinja2.Environment says jinja2.Environment has a default `cache_size` of 400 (or 50 for earlier versions, which might apply to us).  Either way, 1 template is much lower than 400 (or 50) templates.  Manually caching templates seems to be fighting against jinja\u0027s builtin facilities rather than working with them.\n\nIt seems reasonable to add a get_template call at module load time to warm the cache before any request handling occurs, though.  WDYT?",
+      "parentUuid": "e1f5ecb9_2fee5b0e",
       "range": {
         "startLine": 175,
         "startChar": 2,
