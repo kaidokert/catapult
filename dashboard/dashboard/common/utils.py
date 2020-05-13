@@ -554,12 +554,21 @@ def _IsGroupMemberCacheKey(identity, group):
 
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)
-def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
+def GetServiceAccountCredential():
   """Returns the Credentials of the service account if available."""
   account_details = stored_object.Get(SERVICE_ACCOUNT_KEY)
   if not account_details:
     raise KeyError('Service account credentials not found.')
+  return account_details
 
+
+def ServiceAccountEmail():
+  account_details = GetServiceAccountCredential()
+  return account_details['client_email']
+
+
+def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
+  account_details = GetServiceAccountCredential()
   assert scope, "ServiceAccountHttp scope must not be None."
 
   client.logger.setLevel(logging.WARNING)
