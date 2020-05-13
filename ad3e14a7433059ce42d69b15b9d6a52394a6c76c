@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4e01119_41432b8d",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T01:50:17Z",
+      "side": 1,
+      "message": "How about infinite relative deltas? Those typically aren\u0027t easy/useful to bisect.\n\nAlso, how about those that are already recovered? We probably want to filter those out.\n\nAlso, are these only the auto-triaged regressions, or all regressions in the group?",
+      "range": {
+        "startLine": 346,
+        "startChar": 17,
+        "endLine": 346,
+        "endChar": 65
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61d64589_02333919",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T01:50:17Z",
+      "side": 1,
+      "message": "Consider naming this something like \u0027CraftPinpointRequest\u0027 or \u0027CreatePinpointRequest\u0027 because \u0027Get\u0027 sounds like you\u0027re retrieving something (which isn\u0027t necessarily accurate).",
+      "range": {
+        "startLine": 348,
+        "startChar": 14,
+        "endLine": 348,
+        "endChar": 33
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "463f0420_e914a285",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T01:50:17Z",
+      "side": 1,
+      "message": "Why is this duplicating functionality in pinpoint_request?",
+      "range": {
+        "startLine": 374,
+        "startChar": 4,
+        "endLine": 374,
+        "endChar": 23
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5375d0f_bfa713b0",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T01:50:17Z",
+      "side": 1,
+      "message": "I don\u0027t think you need this, because Pinpoint will check the requester\u0027s account if the user isn\u0027t part of the request.",
+      "range": {
+        "startLine": 375,
+        "startChar": 2,
+        "endLine": 377,
+        "endChar": 33
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb938050_6491c1e1",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T01:50:17Z",
+      "side": 1,
+      "message": "SparseDiagnostic ?",
+      "range": {
+        "startLine": 393,
+        "startChar": 27,
+        "endLine": 393,
+        "endChar": 43
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "667f6cc8_a544f239",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T01:50:17Z",
+      "side": 1,
+      "message": "Please put a TODO here to use the data from the sparse diagnostics as well. I really don\u0027t want us to rely on hard-coded information here if we can help it at all.",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 149,
+        "endChar": 55
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
