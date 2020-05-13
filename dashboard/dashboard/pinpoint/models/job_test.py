@@ -267,7 +267,7 @@ class BugCommentTest(test.TestCase):
 
     self.assertFalse(j.failed)
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_STARTED, send_email=True)
+        123456, _COMMENT_STARTED, send_email=True, project='chromium')
 
   def testCompletedNoComparison(self):
     j = job.Job.New((), (), bug_id=123456)
@@ -280,6 +280,7 @@ class BugCommentTest(test.TestCase):
         123456,
         _COMMENT_COMPLETED_NO_COMPARISON,
         labels=['Pinpoint-Tryjob-Completed'],
+        project='chromium',
     )
 
   def testCompletedNoDifference(self):
@@ -294,6 +295,7 @@ class BugCommentTest(test.TestCase):
         _COMMENT_COMPLETED_NO_DIFFERENCES,
         labels=['Pinpoint-No-Repro'],
         status='WontFix',
+        project='chromium',
     )
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
@@ -321,10 +323,14 @@ class BugCommentTest(test.TestCase):
 
     self.assertFalse(j.failed)
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_WITH_COMMIT,
-        status='Assigned', owner='author@chromium.org',
+        123456,
+        _COMMENT_COMPLETED_WITH_COMMIT,
+        status='Assigned',
+        owner='author@chromium.org',
         labels=['Pinpoint-Culprit-Found'],
-        cc_list=['author@chromium.org'], merge_issue=None)
+        cc_list=['author@chromium.org'],
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -343,8 +349,12 @@ class BugCommentTest(test.TestCase):
         'message': 'Subject.\n\nCommit message.',
     }
 
-    self.get_issue.return_value = {'status': 'Untriaged', 'id': '111222'}
-    layered_cache.SetExternal('commit_hash_git_hash', 111222)
+    self.get_issue.return_value = {
+        'status': 'Untriaged',
+        'id': '111222',
+        'projectId': 'chromium'
+    }
+    layered_cache.SetExternal('commit_hash_git_hash', 'chromium:111222')
 
     j = job.Job.New((), (), bug_id=123456, comparison_mode='performance')
     j.Run()
@@ -359,7 +369,8 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         cc_list=[],
         labels=['Pinpoint-Culprit-Found'],
-        merge_issue='111222')
+        merge_issue='111222',
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -378,27 +389,34 @@ class BugCommentTest(test.TestCase):
         'message': 'Subject.\n\nCommit message.',
     }
 
-    def _GetIssue(bug_id):
-      if bug_id == 111222:
-        return {'status': 'Duplicate', 'id': '111222'}
+    def _GetIssue(bug_id, project='chromium'):
+      if bug_id == '111222':
+        return {'status': 'Duplicate', 'projectId': project, 'id': '111222'}
       else:
-        return {'status': 'Untriaged'}
+        return {'status': 'Untriaged', 'projectId': project, 'id': str(bug_id)}
 
     self.get_issue.side_effect = _GetIssue
 
-    layered_cache.SetExternal('commit_hash_git_hash', 111222)
+    layered_cache.SetExternal('commit_hash_git_hash', 'chromium:111222')
 
-    j = job.Job.New((), (), bug_id=123456, comparison_mode='performance')
+    j = job.Job.New((), (),
+                    bug_id=123456,
+                    comparison_mode='performance',
+                    project='chromium')
     j.Run()
 
     self.ExecuteDeferredTasks('default')
 
     self.assertFalse(j.failed)
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_WITH_COMMIT,
-        status='Assigned', owner='author@chromium.org',
+        123456,
+        _COMMENT_COMPLETED_WITH_COMMIT,
+        status='Assigned',
+        owner='author@chromium.org',
         labels=['Pinpoint-Culprit-Found'],
-        cc_list=['author@chromium.org'], merge_issue=None)
+        cc_list=['author@chromium.org'],
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -469,7 +487,8 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         labels=['Pinpoint-Culprit-Found'],
         cc_list=['author@chromium.org'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.patch.GerritPatch.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -502,7 +521,8 @@ class BugCommentTest(test.TestCase):
         owner='author@chromium.org',
         labels=['Pinpoint-Culprit-Found'],
         cc_list=['author@chromium.org'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.patch.GerritPatch.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -537,7 +557,8 @@ class BugCommentTest(test.TestCase):
         status=None,
         cc_list=['author@chromium.org'],
         labels=['Pinpoint-Culprit-Found'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.patch.GerritPatch.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -571,7 +592,8 @@ class BugCommentTest(test.TestCase):
         status=None,
         cc_list=['author@chromium.org'],
         labels=['Pinpoint-Culprit-Found'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -624,11 +646,14 @@ class BugCommentTest(test.TestCase):
 
     # We now only CC folks from the top commit.
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_THREE_DIFFERENCES,
-        status='Assigned', owner='author1@chromium.org',
+        123456,
+        _COMMENT_COMPLETED_THREE_DIFFERENCES,
+        status='Assigned',
+        owner='author1@chromium.org',
         cc_list=['author1@chromium.org'],
         labels=['Pinpoint-Multiple-Culprits'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -679,11 +704,14 @@ class BugCommentTest(test.TestCase):
 
     # We now only CC folks from the top commit.
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_THREE_DIFFERENCES_ABSOLUTE,
-        status='Assigned', owner='author3@chromium.org',
+        123456,
+        _COMMENT_COMPLETED_THREE_DIFFERENCES_ABSOLUTE,
+        status='Assigned',
+        owner='author3@chromium.org',
         cc_list=['author3@chromium.org'],
         labels=['Pinpoint-Multiple-Culprits'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -748,11 +776,14 @@ class BugCommentTest(test.TestCase):
 
     # We only CC folks from the top commits.
     self.add_bug_comment.assert_called_once_with(
-        123456, mock.ANY,
-        status='Assigned', owner=expected_ccs[0],
+        123456,
+        mock.ANY,
+        status='Assigned',
+        owner=expected_ccs[0],
         cc_list=sorted(expected_ccs),
         labels=['Pinpoint-Multiple-Culprits'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
@@ -803,11 +834,14 @@ class BugCommentTest(test.TestCase):
     # Notifies the owner of the first change in the list of differences, seeing
     # as they are all equally small.
     self.add_bug_comment.assert_called_once_with(
-        123456, mock.ANY,
-        status='Assigned', owner='author1@chromium.org',
+        123456,
+        mock.ANY,
+        status='Assigned',
+        owner='author1@chromium.org',
         cc_list=['author1@chromium.org'],
         labels=['Pinpoint-Multiple-Culprits'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -836,11 +870,14 @@ class BugCommentTest(test.TestCase):
 
     self.assertFalse(j.failed)
     self.add_bug_comment.assert_called_once_with(
-        123456, _COMMENT_COMPLETED_WITH_AUTOROLL_COMMIT,
-        status='Assigned', owner='sheriff@bar.com',
+        123456,
+        _COMMENT_COMPLETED_WITH_AUTOROLL_COMMIT,
+        status='Assigned',
+        owner='sheriff@bar.com',
         cc_list=['chromium-autoroll@skia-public.iam.gserviceaccount.com'],
         labels=['Pinpoint-Culprit-Found'],
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch('dashboard.pinpoint.models.change.commit.Commit.AsDict')
   @mock.patch.object(job.job_state.JobState, 'ResultValues')
@@ -887,11 +924,14 @@ class BugCommentTest(test.TestCase):
 
     self.assertFalse(j.failed)
     self.add_bug_comment.assert_called_once_with(
-        mock.ANY, mock.ANY,
-        status='Assigned', owner='sheriff@bar.com',
+        mock.ANY,
+        mock.ANY,
+        status='Assigned',
+        owner='sheriff@bar.com',
         cc_list=['chromium-autoroll@skia-public.iam.gserviceaccount.com'],
         labels=mock.ANY,
-        merge_issue=None)
+        merge_issue=None,
+        project='chromium')
 
   @mock.patch.object(job.job_state.JobState, 'ScheduleWork',
                      mock.MagicMock(side_effect=AssertionError('Error string')))
@@ -907,7 +947,8 @@ class BugCommentTest(test.TestCase):
         123456,
         _COMMENT_FAILED,
         send_email=True,
-        labels=['Pinpoint-Job-Failed'])
+        labels=['Pinpoint-Job-Failed'],
+        project='chromium')
 
   @mock.patch.object(job.job_state.JobState, 'ScheduleWork',
                      mock.MagicMock(side_effect=AssertionError('Error string')))

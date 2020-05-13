@@ -202,11 +202,11 @@ def _ComputePostMergeDetails(issue_tracker, commit_cache_key, cc_list):
   return merge_details, cc_list
 
 
-def _GetBugStatus(issue_tracker, bug_id):
+def _GetBugStatus(issue_tracker, bug_id, project='chromium'):
   if not bug_id:
     return None
 
-  issue_data = issue_tracker.GetIssue(bug_id)
+  issue_data = issue_tracker.GetIssue(bug_id, project=project)
   if not issue_data:
     return None
 
@@ -237,7 +237,7 @@ def _FormatDocumentationUrls(tags):
   return footer
 
 
-def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url):
+def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url, project):
   if not bug_id:
     return
   commit_cache_key = bug_update_builder.GenerateCommitCacheKey()
@@ -247,7 +247,7 @@ def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url):
   merge_details, cc_list = _ComputePostMergeDetails(issue_tracker,
                                                     commit_cache_key,
                                                     bug_update.cc_list)
-  current_bug_status = _GetBugStatus(issue_tracker, bug_id)
+  current_bug_status = _GetBugStatus(issue_tracker, bug_id, project=project)
   if not current_bug_status:
     return
 
@@ -266,6 +266,7 @@ def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url):
       cc_list=sorted(cc_list),
       owner=bug_owner,
       labels=bug_update.labels,
-      merge_issue=merge_details.get('id'))
-  update_bug_with_results.UpdateMergeIssue(commit_cache_key, merge_details,
-                                           bug_id)
+      merge_issue=merge_details.get('id'),
+      project=project)
+  update_bug_with_results.UpdateMergeIssue(
+      commit_cache_key, merge_details, bug_id, project=project)
