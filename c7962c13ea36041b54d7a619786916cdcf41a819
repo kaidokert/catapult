@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "c70ebe4d_2182ee5d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T05:14:46Z",
+      "side": 1,
+      "message": "We already do that with the auto-triage bits -- we ensure that the template is cached, and that we\u0027re not using the \u0027get_template\u0027 call lookup in the deep parts of the code. This is because the way App Engine works is it will re-use instances, so module-level variables only get initialised once.\n\nAvoiding the lookup is what I\u0027m concerned with, not that we\u0027re using the cache.",
+      "parentUuid": "2bd4a499_c524543b",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 59
+      },
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ba221ffe_cb1ada19",
         "filename": "dashboard/dashboard/pinpoint/models/templates/differences_found.j2",
         "patchSetId": 6
