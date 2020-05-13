@@ -19,6 +19,7 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import anomaly
+from dashboard.models import graph_data
 from dashboard.models import subscription
 
 
@@ -87,6 +88,7 @@ class MockIssueTrackerService(object):
   def GetIssue(cls, _):
     return cls.issue
 
+
 @mock.patch('dashboard.sheriff_config_client.GetSheriffConfigClient')
 class GroupReportTest(testing_common.TestCase):
 
@@ -112,10 +114,10 @@ class GroupReportTest(testing_common.TestCase):
     }
     default.update(kargs)
     default['test'] = utils.TestKey(default['test'])
+    graph_data.TestMetadata(key=default['test']).put()
     a = anomaly.Anomaly(**default)
     a.groups = alert_group.AlertGroup.GetGroupsForAnomaly(a)
     return a.put()
-
 
   def testNoGroup(self, _):
     # Put an anomaly before Ungrouped is created

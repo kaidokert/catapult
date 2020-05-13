@@ -145,8 +145,8 @@ def ResolveToGitHash(commit_position, suite):
   return commit_position
 
 
-def _GetIsolateTarget(bot_name, suite, start_commit,
-                      end_commit, only_telemetry=False):
+def GetIsolateTarget(bot_name, suite, start_commit,
+                     end_commit, only_telemetry=False):
   if suite in _NON_CHROME_TARGETS:
     return ''
 
@@ -237,8 +237,8 @@ def PinpointParamsFromPerfTryParams(params):
   # Pinpoint also requires you specify which isolate target to run the
   # test, so we derive that from the suite name. Eventually, this would
   # ideally be stored in a SparesDiagnostic but for now we can guess.
-  target = _GetIsolateTarget(bot_name, suite, start_commit,
-                             end_commit, only_telemetry=True)
+  target = GetIsolateTarget(bot_name, suite, start_commit,
+                            end_commit, only_telemetry=True)
 
   extra_test_args = params['extra_test_args']
 
@@ -312,7 +312,7 @@ def PinpointParamsFromBisectParams(params):
   # Pinpoint also requires you specify which isolate target to run the
   # test, so we derive that from the suite name. Eventually, this would
   # ideally be stored in a SparesDiagnostic but for now we can guess.
-  target = _GetIsolateTarget(bot_name, suite, start_commit, end_commit)
+  target = GetIsolateTarget(bot_name, suite, start_commit, end_commit)
 
   email = utils.GetEmail()
   job_name = '%s bisect on %s/%s' % (bisect_mode.capitalize(), bot_name, suite)

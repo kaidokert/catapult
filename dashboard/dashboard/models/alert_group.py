@@ -8,16 +8,19 @@ from __future__ import absolute_import
 
 import collections
 import datetime
+import json
 import logging
 import os
 import uuid
 
 import jinja2
 
+from dashboard import pinpoint_request
 from dashboard.common import utils
 from dashboard.models import anomaly
 from dashboard.models import subscription
 from dashboard.services import issue_tracker_service
+from dashboard.services import pinpoint_service
 from google.appengine.ext import ndb
 
 # Move import of protobuf-dependent code here so that all AppEngine work-arounds
@@ -192,15 +195,39 @@ class AlertGroup(ndb.Model):
         components=components)
 
   def _TryTriage(self):
-    self.bug = self._FileIssue()
-    if not self.bug:
+    bug, anomalies = self._FileIssue()
+    if not bug:
       return
-    self.updated = self.updated = datetime.datetime.now()
+
+    # Update the issue associated with his group, before we continue.
+    self.bug = bug
+    self.updated = datetime.datetime.now()
     self.status = self.Status.triaged
+    self.put()
+
+    # Link the bug to auto-triage enabled anomalies.
+    for a in anomalies:
+      if not a.bug_id and a.auto_triage_enable:
+        # TODO(dberris): Add bug project in config and anomaly
+        a.bug_id = self.bug.bug_id
+    ndb.put_multi(anomalies)
 
   def _TryBisect(self):
-    # TODO(fancl): Trigger bisection
-    pass
+    job_id, anomalies = self._NewPinpointBisect()
+    if not job_id:
+      return
+
+    # Update the issue associated with his group, before we continue.
+    self.bisection_ids.append(job_id)
+    self.updated = datetime.datetime.now()
+    self.status = self.Status.bisected
+    self.put()
+
+    # Link the bug to auto-bisect enabled anomalies.
+    for a in anomalies:
+      if a.auto_bisect_enable:
+        a.pinpoint_bisects.append(job_id)
+    ndb.put_multi(anomalies)
 
   def _Archive(self):
     self.active = False
@@ -215,6 +242,7 @@ class AlertGroup(ndb.Model):
       subscriptions_dict.update({s.name: s for s in subscriptions})
       # Only auto-triage if this is a regression.
       a.auto_triage_enable = any(s.auto_triage_enable for s in subscriptions)
+      a.auto_bisect_enable = any(s.auto_bisect_enable for s in subscriptions)
       a.relative_delta = abs(a.absolute_delta / float(a.median_before_anomaly)
                             ) if a.median_before_anomaly != 0. else float('Inf')
       if not a.is_improvement and not a.recovered:
@@ -309,19 +337,21 @@ class AlertGroup(ndb.Model):
       logging.warning('AlertGroup file bug failed: %s', response['error'])
       return None
 
-    # Update the issue associated witht his group, before we continue.
     # TODO(dberris): Add bug project in config and anomaly
-    result = BugInfo(project='chromium', bug_id=response['bug_id'])
-    self.bug = result
-    self.put()
+    return BugInfo(project='chromium', bug_id=response['bug_id']), anomalies
 
-    # Link the bug to auto-triage enabled anomalies.
-    for a in anomalies:
-      if not a.bug_id and a.auto_triage_enable:
-        # TODO(dberris): Add bug project in config and anomaly
-        a.bug_id = self.bug.bug_id
-    ndb.put_multi(anomalies)
-    return result
+  def _NewPinpointBisect(self):
+    anomalies = ndb.get_multi(self.anomalies)
+    regressions, _ = self._GetPreproccessedRegressions(anomalies)
+    regression = max(regressions, key=lambda r: r.relative_delta)
+
+    request = _GetPinpointRequest(regression)
+    logging.info('Pinpoint request: %s', request)
+
+    results = pinpoint_service.NewJob(request)
+    logging.info('Pinpoint Service Response: %s', results)
+
+    return results.get('jobId'), anomalies
 
 
 def _BugTitle(env):
@@ -339,3 +369,59 @@ def _IssueTracker():
     _IssueTracker._client = issue_tracker_service.IssueTrackerService(
         utils.ServiceAccountHttp())
   return _IssueTracker._client
+
+
+def _GetPinpointRequest(alert):
+  if not hasattr(_GetPinpointRequest, 'user'):
+    _GetPinpointRequest.user = utils.ServiceAccountEmail()
+  user = _GetPinpointRequest.user
+
+  test_path = alert.test.string_id()
+  test = alert.test.get()
+
+  story = test.unescaped_story_name
+  grouping_label, chart_name, trace_name = (
+      pinpoint_request.ParseGroupingLabelChartNameAndTraceName(test_path))
+
+  start_git_hash = pinpoint_request.ResolveToGitHash(
+      alert.end_revision, alert.benchmark_name)
+  end_git_hash = pinpoint_request.ResolveToGitHash(
+      alert.start_revision, alert.benchmark_name)
+
+  # Pinpoint also requires you specify which isolate target to run the
+  # test, so we derive that from the suite name. Eventually, this would
+  # ideally be stored in a SparesDiagnostic but for now we can guess.
+  target = pinpoint_request.GetIsolateTarget(
+      alert.bot_name, alert.benchmark_name,
+      alert.start_revision, alert.end_revision)
+
+  job_name = 'Auto-Bisection on %s/%s' % (alert.bot_name, alert.benchmark_name)
+
+  # Histogram names don't include the statistic, so split these
+  chart_name, statistic_name = (
+      pinpoint_request.ParseStatisticNameFromChart(chart_name))
+
+  alert_magnitude = alert.median_after_anomaly - alert.median_before_anomaly
+
+  return {
+      'configuration': alert.bot_name,
+      'benchmark': alert.benchmark_name,
+      'story': story,
+      'start_git_hash': start_git_hash,
+      'end_git_hash': end_git_hash,
+      'bug_id': alert.bug_id,
+      'comparison_mode': 'performance',
+      'comparison_magnitude': alert_magnitude,
+      'target': target,
+      'user': user,
+      'name': job_name,
+      'statistic': statistic_name,
+      'grouping_label': grouping_label,
+      'trace': trace_name,
+      'priority': 10,
+      'tags': json.dumps({
+          'test_path': test_path,
+          'alert': alert.key(),
+          'auto_bisection': True,
+      }),
+  }
