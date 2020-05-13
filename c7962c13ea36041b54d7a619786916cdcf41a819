@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88683014_bd8a004b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T04:49:25Z",
+      "side": 1,
+      "message": "Do we have an existing issue we can use to track this against? I\u0027m fairly certain that this could be associated with the issue regarding the readability of the filed messages.",
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1f5ecb9_2fee5b0e",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T04:49:25Z",
+      "side": 1,
+      "message": "Similar comment in other places, this is quite expensive. Consider moving this to global scope and having it initialised once.",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 59
+      },
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba221ffe_cb1ada19",
+        "filename": "dashboard/dashboard/pinpoint/models/templates/differences_found.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-13T04:49:25Z",
+      "side": 1,
+      "message": "I\u0027m fairly excited about this change, and I\u0027m looking forward to the richer details we can be providing!",
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
