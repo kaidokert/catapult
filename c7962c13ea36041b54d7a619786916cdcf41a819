@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "d06a3f25_1cfc69ea",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-14T05:27:40Z",
+      "side": 1,
+      "message": "Done to unblock this, but I don\u0027t understand your concern here.  Which lookup are you concerned with?\n\nEnviroment.get_template will (after the first load) always get the template directly out of the Environment\u0027s cache here.  I suppose there might be a stat call to check the filesystem hasn\u0027t changed, but if that\u0027s the concern we can just set auto_reload\u003dFalse on the Environment to disable that check.  I just don\u0027t understand why a get_template call would be at all expensive compared to the cost of the render call.  I also don\u0027t understand the comment about module-level variables — this environment object is already a module-level global, so adding a module-level template isn\u0027t fundamentally changing any object lifetimes here.\n\nAlso we don\u0027t do anything to avoid the get_template call in dashboard/dashboard/common/request_handler.py:44, which is in a more latency sensitive code path.",
+      "parentUuid": "c70ebe4d_2182ee5d",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 59
+      },
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba221ffe_cb1ada19",
         "filename": "dashboard/dashboard/pinpoint/models/templates/differences_found.j2",
         "patchSetId": 6
