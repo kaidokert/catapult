@@ -22,6 +22,30 @@
       "revId": "54b0c4bc5c48a877e2c11429518adc3dce0de42a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "667adb1f_8ffe81a0",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-14T05:36:50Z",
+      "side": 1,
+      "message": "Addressed in the parent commit.",
+      "parentUuid": "4c76213e_a56a680c",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 61
+      },
+      "revId": "54b0c4bc5c48a877e2c11429518adc3dce0de42a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
