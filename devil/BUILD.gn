@@ -15,7 +15,7 @@ group("devil") {
   if (is_android) {
     deps += [
       ":empty_system_webview_apk",
-      "//buildtools/third_party/libc++($host_toolchain)",
+      "//buildtools/third_party/libc++:libc++_chrome($host_toolchain)",
       "//tools/android/forwarder2",
       "//tools/android/md5sum",
     ]
