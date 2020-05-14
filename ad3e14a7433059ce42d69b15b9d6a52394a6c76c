@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "266c8cdb_4080e70f",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-14T07:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61d64589_02333919",
+      "range": {
+        "startLine": 348,
+        "startChar": 14,
+        "endLine": 348,
+        "endChar": 33
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "463f0420_e914a285",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 3
@@ -59,6 +83,30 @@
       "writtenOn": "2020-05-13T01:50:17Z",
       "side": 1,
       "message": "Why is this duplicating functionality in pinpoint_request?",
+      "range": {
+        "startLine": 374,
+        "startChar": 4,
+        "endLine": 374,
+        "endChar": 23
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a149a2c_0122365a",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-14T07:48:00Z",
+      "side": 1,
+      "message": "I find it\u0027s actually quite different, including tage, priority, user, and the way we get test_path and alert. The function in pinpoint_request is used for generating a pinpoint request from params from dashboard ui. Even they look simillar, we need to hook half of the code if we want to reuse.",
+      "parentUuid": "463f0420_e914a285",
       "range": {
         "startLine": 374,
         "startChar": 4,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "dc1a4963_e887eb2d",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-14T07:48:00Z",
+      "side": 1,
+      "message": "I\u0027m not sure if service account use oauth.",
+      "parentUuid": "d5375d0f_bfa713b0",
+      "range": {
+        "startLine": 375,
+        "startChar": 2,
+        "endLine": 377,
+        "endChar": 33
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fb938050_6491c1e1",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 3
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "2c4e3031_bf0d6df3",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-14T07:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb938050_6491c1e1",
+      "range": {
+        "startLine": 393,
+        "startChar": 27,
+        "endLine": 393,
+        "endChar": 43
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "667f6cc8_a544f239",
         "filename": "dashboard/dashboard/pinpoint_request.py",
         "patchSetId": 3
@@ -137,6 +233,30 @@
       "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b9369b7_0566c33a",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-14T07:48:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "667f6cc8_a544f239",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 149,
+        "endChar": 55
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
