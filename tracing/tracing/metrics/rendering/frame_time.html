@@ -300,11 +300,21 @@ tr.exportTo('tr.metrics.rendering', function() {
 
       let totalWallTime = 0;
       let totalCpuTime = 0;
-      for (const segment of frameSegments) {
-        for (const thread of model.getAllThreads()) {
-          totalCpuTime += thread.getCpuTimeForRange(segment.boundsRange);
-          totalWallTime += thread.getWallTimeForRange(segment.boundsRange);
+      for (const thread of model.getAllThreads()) {
+        let CpuTime = 0;
+        let WallTime = 0;
+        for (const segment of frameSegments) {
+          CpuTime += thread.getCpuTimeForRange(segment.boundsRange);
+          WallTime += thread.getWallTimeForRange(segment.boundsRange);
         }
+        histograms.createHistogram(`cpu_wall_time_ratio_${thread.name}}`,
+            tr.b.Unit.byName.unitlessNumber_biggerIsBetter,
+            CpuTime / WallTime,
+            { description: 'Ratio of total cpu-time vs. wall-time.',
+              summaryOptions: {},
+            });
+        totalCpuTime += CpuTime;
+        totalWallTime += WallTime;
       }
       histograms.createHistogram('cpu_wall_time_ratio',
           tr.b.Unit.byName.unitlessNumber_biggerIsBetter,
