@@ -132,6 +132,30 @@
     },
     {
       "key": {
+        "uuid": "45558358_0b62bf2d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T05:42:36Z",
+      "side": 1,
+      "message": "That\u0027s actually a bug, if we\u0027re doing it in a more latency sensitive code path.",
+      "parentUuid": "d06a3f25_1cfc69ea",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 175,
+        "endChar": 59
+      },
+      "revId": "c7962c13ea36041b54d7a619786916cdcf41a819",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba221ffe_cb1ada19",
         "filename": "dashboard/dashboard/pinpoint/models/templates/differences_found.j2",
         "patchSetId": 6
