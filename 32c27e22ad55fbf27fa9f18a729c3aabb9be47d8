@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6faf2860_285a08e4",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-14T06:56:36Z",
+      "side": 1,
+      "message": "This part of the docstring needs updating.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 10
+      },
+      "revId": "32c27e22ad55fbf27fa9f18a729c3aabb9be47d8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
