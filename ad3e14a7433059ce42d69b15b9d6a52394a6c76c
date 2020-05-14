@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5d5ed184_f9a849d3",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "That sounds like a refactoring waiting to happen to me -- the inputs we\u0027re providing in auto-bisect is a superset of the inputs being provided by the UI. We should make it so that we only have one implementation of this that supports the superset.",
+      "parentUuid": "8a149a2c_0122365a",
+      "range": {
+        "startLine": 374,
+        "startChar": 4,
+        "endLine": 374,
+        "endChar": 23
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d5375d0f_bfa713b0",
         "filename": "dashboard/dashboard/models/alert_group.py",
         "patchSetId": 3
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "I\u0027m not sure if service account use oauth.",
       "parentUuid": "d5375d0f_bfa713b0",
+      "range": {
+        "startLine": 375,
+        "startChar": 2,
+        "endLine": 377,
+        "endChar": 33
+      },
+      "revId": "ad3e14a7433059ce42d69b15b9d6a52394a6c76c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d8008b2_1223148f",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "That\u0027s the point of using the service account\u0027s credentials as part of the HTTP client, so that it can sign the request with the credentials in the request headers. Pinpoint\u0027s APIs require that a POST request be OAuth-bearing.",
+      "parentUuid": "dc1a4963_e887eb2d",
       "range": {
         "startLine": 375,
         "startChar": 2,

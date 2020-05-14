@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86623133_ecccf647",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "Looks like:\n\nif not any(r.auto_bisect_enable for r in regressions):\n  ...",
+      "range": {
+        "startLine": 347,
+        "startChar": 4,
+        "endLine": 349,
+        "endChar": 23
+      },
+      "revId": "dc9367601b97fb90e533e1e1fa96d69704a6586d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d094d29d_39379ffd",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "It probably won\u0027t be this simple, as mentioned earlier, where you need to check whether:\n\n- the largest relative delta is infinity\n- if all the relative deltas are infinity\n- if you have \"ties\" you probably need to prefer the bot that has the most regressions\n\nIn some of these cases the answer would be to escalate to a sheriff, which right now involves CC\u0027ing a notification email.",
+      "revId": "dc9367601b97fb90e533e1e1fa96d69704a6586d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ed2625f_8ee7325a",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "I suspect you\u0027ll need to also consider a few more things:\n\n- Check whether there\u0027s an ongoing bisection or whether there\u0027s been one done against any of the manually grouped anomalies.\n- Check whether any previous bisections have been associated with a particular alert group. I don\u0027t think we associate the bisection ID with the alert group, but we probably want to do that so we can find previous bisections and details about those bisections.",
+      "range": {
+        "startLine": 352,
+        "startChar": 34,
+        "endLine": 352,
+        "endChar": 44
+      },
+      "revId": "dc9367601b97fb90e533e1e1fa96d69704a6586d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01600d00_756360da",
+        "filename": "dashboard/dashboard/models/alert_group_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "I think this is an OK start, but I think I\u0027d like to see more test cases here (as enumerated in another comment on the implementation). In particular:\n\n- What happens when the regressions are not bisectable? We have code elsewhere in the Dashboard that determines whether a particular measurement can be bisected.\n\n- What happens when the regression we\u0027re bisecting for is marked recovered? We should probably cancel a pending bisection against the anomaly.\n\n- What happens when we add new regressions that are more bisectable, but the auto-bisect that was started was for a less-bisectable regression (by some heuristic)?\n\nI\u0027m sure there are more cases you can think of in addition to those. 😊",
+      "range": {
+        "startLine": 115,
+        "startChar": 6,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "dc9367601b97fb90e533e1e1fa96d69704a6586d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6d71cd9_67b3c9a2",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-14T09:56:41Z",
+      "side": 1,
+      "message": "Isolation? Did you mean \u0027isolate target\u0027?",
+      "range": {
+        "startLine": 148,
+        "startChar": 19,
+        "endLine": 148,
+        "endChar": 28
+      },
+      "revId": "dc9367601b97fb90e533e1e1fa96d69704a6586d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
