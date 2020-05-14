@@ -35,6 +35,7 @@ tr.exportTo('tr.metrics.v8', function() {
     addMarkCompactorMutatorUtilization(histograms, model);
     addTotalMarkCompactorTime(histograms, model);
     addTotalMarkCompactorMarkingTime(histograms, model);
+    addScavengerSurvivedFromStackEvents(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(gcMetric);
@@ -214,6 +215,48 @@ tr.exportTo('tr.metrics.v8', function() {
         event => 'v8-gc-mark-compactor-marking',
         (name, events) => createHistogramFromSummary(histograms, name, events),
         ['v8-gc-mark-compactor-marking']
+    );
+  }
+
+  function createNumericForTotals(name) {
+    const n = new tr.v.Histogram(name,
+        timeDurationInMs_smallerIsBetter, CUSTOM_BOUNDARIES);
+    n.customizeSummaryOptions({
+      avg: false,
+      count: false,
+      max: false,
+      min: false,
+      std: false,
+      sum: true,
+      percentile: []
+    });
+    return n;
+  }
+
+  function addScavengerSurvivedFromStackEvents(histograms, model) {
+    const baseName = 'v8-gc-scavenger-survived';
+    tr.metrics.v8.utils.groupAndProcessEvents(model,
+        isScavengerStackScanningEvent,
+        event => baseName,
+        function(name, events) {
+          const percentage = createNumericForSubEventTime(
+              baseName + '-from-stack-percentage');
+          const totalBytesWithoutStack = createNumericForTotals(
+              baseName + '-bytes-without-stack');
+          const totalBytesWithStack = createNumericForTotals(
+              baseName + '-bytes-with-stack');
+          events.forEach(function(event) {
+            percentage.addSample(
+                (event.survived_bytes_after - event.survived_bytes_before) /
+                    event.survived_bytes_after);
+            totalBytesWithoutStack.addSample(event.survived_bytes_before);
+            totalBytesWithStack.addSample(event.survived_bytes_after);
+          });
+          histograms.addHistogram(percentage);
+          histograms.addHistogram(totalBytesWithoutStack);
+          histograms.addHistogram(totalBytesWithStack);
+        },
+        [baseName]
     );
   }
 
