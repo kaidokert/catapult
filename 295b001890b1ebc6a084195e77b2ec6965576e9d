@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4d3238c_4368f8c6",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-05-18T19:59:42Z",
+      "side": 1,
+      "message": "I think it\u0027d be preferable to attempt to match each line in the output \u0026 accepting the first match rather than searching the entire output; if a log line includes a pair of ports, we\u0027re liable to parse that rather than the intended output.",
+      "revId": "295b001890b1ebc6a084195e77b2ec6965576e9d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
