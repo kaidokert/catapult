@@ -16,6 +16,24 @@
       "revId": "e359a2ff2c64f83afd4d9be9a90dae6cb74439e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7c7078a_2bbf5cf8",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-05-18T20:18:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a46bf63f_cf17fd83",
+      "revId": "e359a2ff2c64f83afd4d9be9a90dae6cb74439e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
