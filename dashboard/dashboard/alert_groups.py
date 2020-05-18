@@ -51,7 +51,7 @@ def _ProcessUngroupedAlerts():
   # logarithmic to the number of unique revision ranges.
   def FindGroup(group):
     for g in groups:
-      if group.IsOverlapping(g):
+      if group.IsOverlapping(g) and group.project_id == g.project_id:
         return g.key
     groups.append(group)
     return None
