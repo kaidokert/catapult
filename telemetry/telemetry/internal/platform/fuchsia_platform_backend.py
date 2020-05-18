@@ -121,3 +121,6 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
 
   def TakeScreenshot(self, file_path):
     return None
+
+  def GetTypExpectationsTags(self):
+    return [self.GetOSName()]
