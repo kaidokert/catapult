@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76d3a557_ff5a0762",
+        "filename": "dashboard/dashboard/alert_groups.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-19T05:09:37Z",
+      "side": 1,
+      "message": "Maybe put this in IsOverlapping if we consider it\u0027s also part of semantic overlapping?",
+      "revId": "740b91f0678b417b7f60ca43e0359e040b32c086",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
