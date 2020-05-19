@@ -188,6 +188,30 @@
     },
     {
       "key": {
+        "uuid": "eb6aad1b_17d3f684",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T07:51:37Z",
+      "side": 1,
+      "message": "We can, it\u0027s fine to include that change in the refactoring. 😊",
+      "parentUuid": "8cea4fd0_848e31ed",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ccab8fc_872e1568",
         "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
         "patchSetId": 3
