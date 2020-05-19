@@ -81,6 +81,24 @@
       "revId": "35f77a30e5536d9d82622476802cdfb5de55f18d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc2aeaf9_1f7a782c",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-05-19T01:15:05Z",
+      "side": 1,
+      "message": "Ack. If it\u0027s planned to be implemented at some point, can you add a TODO linking to a bug?",
+      "parentUuid": "2079a78d_3b5052cf",
+      "revId": "35f77a30e5536d9d82622476802cdfb5de55f18d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
