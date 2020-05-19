@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f88969f3_4f057f9f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "Can you answer the following questions in the docstring:\n\n- Why do we need this workflow module?\n- What are the steps in the workflow?\n- How does it accomplish what it\u0027s accomplishing?\n- How do we use this workflow? Are there key examples that show the usage?",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f61f4429_c06fadad",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "Having re-read this now, since we\u0027re adding comments to update groups anyway, I don\u0027t think we want to wait as long as an hour. Some platforms will always have a delay because they have longer cycle times, but we shouldn\u0027t be waiting on those too much.\n\nFor example, if a regression shows up in a desktop platform, those would cluster around the same detection times (within a few minutes difference in timing). If they show up in a mobile platform we\u0027d see those typically an hour or more after we find it in the desktop platform. My thinking is that those are rare, and that mobile-affecting regressions are more likely to cluster with each other than across desktop and mobile.\n\nI rather we tighten this up and file issues within a few minutes (make it 20) of us detecting some regressions. Because we\u0027re updating the issues anyway if new regressions are found, it\u0027s OK for us to not wait too long.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 64
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db01c683_e9809c76",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "As discussed offline, it looks like the member functions came from the AlertGroup module -- let\u0027s remove the implementation from the AlertGroup class and ensure all the tests are still passing.",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 24
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c91a50c_9452efce",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "Please, do. 😊",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 36
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9dd8d452_245c0199",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "Can we take a reference to an issue tracker when creating a workflow instead of having this caching function be used throughout? That way we can use dependency injection to provide a stateful issue tracker instead cleanly when we create a workflow object.",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 30
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c37a6001_d7820058",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "In https://chromium-review.googlesource.com/c/catapult/+/2206622 I refactored this to be a state-ful object rather than a global. I suspect that\u0027s a cleaner way of doing this, so I suggest we land that change first and use the patterns here?",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ccab8fc_872e1568",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "You can do this instead:\n\n```\ndef Match(self, path, **_):\n```",
+      "range": {
+        "startLine": 95,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a32085c_55eb17a3",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "I suspect you can do better here by actually having a list of subscriptions seeded in `__init__(...)` as inputs and doing an approximation of what the actual service does. We can use the fnmatch module here so that it behaves like how the actual service does.",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 42
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e594c044_461ae0fa",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "I suspect that if you rebase, we\u0027ve moved the `_AddAnomaly()` helper to a base class that\u0027s shared across the tests. That\u0027s a tighter scope where this function is useful.",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a549ba85_9db15676",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "nit: The \"pythonic\" way of spelling this is \"kwargs\".",
+      "range": {
+        "startLine": 100,
+        "startChar": 17,
+        "endLine": 100,
+        "endChar": 22
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3fcd700_2459e03b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-19T02:38:57Z",
+      "side": 1,
+      "message": "I suspect this is better as a member in the test?",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 17
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
