@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bfe38793_92a3cc6b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-05-19T01:12:59Z",
+      "side": 1,
+      "message": "So Fuchsia has the concept of tabs, meaning you can call DevTools APIs involving the current tab. It only has one tab per browser instance though, so operations like new tab/switch tab is not supported. The notion of tab control in Telemetry I believe contains the former and the latter, so we will set to True here and filter any tests where the use of tab goes beyond what Fuchsia supports.",
+      "parentUuid": "7f4df14b_dbc221c6",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "35f77a30e5536d9d82622476802cdfb5de55f18d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fecbddfd_faa62b58",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2020-05-19T01:07:10Z",
       "side": 1,
       "message": "Turns out you don\u0027t actually need this. The base class already does something similar, so if you don\u0027t need to add any Fuchsia-specific tags, you can just leave it undefined in the child class https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/platform/platform_backend.py;l\u003d230?q\u003dplatformbackend",
+      "revId": "35f77a30e5536d9d82622476802cdfb5de55f18d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2079a78d_3b5052cf",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-05-19T01:12:59Z",
+      "side": 1,
+      "message": "I think I do still need this since GetOSVersionName is not implemented yet in Fuchsia?",
+      "parentUuid": "fecbddfd_faa62b58",
       "revId": "35f77a30e5536d9d82622476802cdfb5de55f18d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
