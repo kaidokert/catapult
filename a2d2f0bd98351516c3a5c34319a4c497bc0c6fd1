@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ecdc4f23_15ac15bb",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-20T02:05:27Z",
+      "side": 1,
+      "message": "Why do we need to wait before starting a bisection? If we already have a set of regressions by the time we file an issue (after 20 minutes) then we should definitely bisect right away. I don\u0027t see a point in waiting before we try to bisect a clear regression.",
+      "parentUuid": "e2c5be4c_83a3e6e5",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 64
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db01c683_e9809c76",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 3

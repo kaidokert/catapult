@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ceea4de_5e0dba72",
+        "filename": "dashboard/dashboard/common/testing_common.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-20T02:05:27Z",
+      "side": 1,
+      "message": "Some suggestions:\n\n- We can keep this as-is, or we can make it work like an issue tracker (implementing in-memory storage for issues created and updated).\n\n- We can at least follow the signature of the API being faked.\n\nThese can be disruptive but could be done in a different change (i.e. we can leave a TODO here so that we can make the changes later).",
+      "range": {
+        "startLine": 333,
+        "startChar": 6,
+        "endLine": 333,
+        "endChar": 29
+      },
+      "revId": "ca258d5a6cf7dda98a949d2d823b311d0317d669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73aa43e1_96a34830",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-20T02:05:27Z",
+      "side": 1,
+      "message": "I understand that I wrote this code here, but have you thought about taking the sheriff config client as a dependency/input?",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "ca258d5a6cf7dda98a949d2d823b311d0317d669",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
