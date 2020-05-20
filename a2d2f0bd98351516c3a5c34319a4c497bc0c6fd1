@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d23b8e54_181f66e6",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-20T13:47:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f88969f3_4f057f9f",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f61f4429_c06fadad",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 3
@@ -93,6 +117,30 @@
       "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1030c637_e72b387f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-20T13:47:17Z",
+      "side": 1,
+      "message": "So, because we (plan to) start an another bisection when new anomalies arrived if it\u0027s closed, sounds like reasonable. Change to 20 mins.",
+      "parentUuid": "ecdc4f23_15ac15bb",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 64
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -166,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "ea829dfe_58396a6a",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-20T13:47:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c91a50c_9452efce",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 36
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9dd8d452_245c0199",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 3
@@ -210,6 +282,30 @@
       "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0fa58e2_34b4e7a4",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-20T13:47:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ee3c5fa_e18f74d0",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 30
+      },
+      "revId": "a2d2f0bd98351516c3a5c34319a4c497bc0c6fd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
