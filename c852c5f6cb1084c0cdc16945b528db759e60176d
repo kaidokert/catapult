@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56228eef_14bd8f08",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-20T08:26:59Z",
+      "side": 1,
+      "message": "[See other comment which may make this moot, but if you do keep returning a _BugUpdateInfo from CreationUpdate…]\n\nI think this may be better done with attribute access rather than tuple unpacking:\n\n   bug_update \u003d job_bug_update.JobUpdateBuilder(self).CreationUpdate(pending)\n\n   deferred.defer(\n       …\n       bug_update.comment_text,\n       …\n       )",
+      "range": {
+        "startLine": 357,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 70
+      },
+      "revId": "c852c5f6cb1084c0cdc16945b528db759e60176d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0f35939_c8158d23",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-05-20T08:26:59Z",
+      "side": 1,
+      "message": "Nit: Why not just return comment_text in this case?  I don\u0027t strongly object, but I think it\u0027s a bit premature.\n\nI agree we may want to move towards having these classes eventually driving most or all of the _PostBugCommentDeferred parameters in future, but I think that we should defer that sort of refactoring until we have some more bug comments updated, to better triangulate on the requirements.  `_BugUpdateInfo` has an underscore prefix in large part because I\u0027m not yet confident it\u0027s a good interface.  This usage (where 3 out of 4 values are None!) makes me think that was right, because it doesn\u0027t appear well-suited here.\n\nIn the meantime, returning the simplest thing here (just the comment_text value) won\u0027t noticeably impede that hypothetical refactoring, so personally I\u0027d avoid the clutter right now.",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 57
+      },
+      "revId": "c852c5f6cb1084c0cdc16945b528db759e60176d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
