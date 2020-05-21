@@ -106,7 +106,8 @@ def main():
   table_name = '{}:chromeperf_dashboard_data.rows{}'.format(
       project, bq_export_options.table_suffix)
   _ = row_dicts | 'WriteToBigQuery(rows)' >> WriteToPartitionedBigQuery(
-      table_name, bq_row_schema)
+      table_name, bq_row_schema, additional_bq_parameters={
+          'clustering': {'fields': ['master', 'bot', 'measurement']}})
 
   result = p.run()
   result.wait_until_finish()
