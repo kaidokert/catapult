@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a7da006_3cbb277d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "either: \"manipulate AlterGroup instances\" or \"manipulate an AlertGroup\".",
+      "range": {
+        "startLine": 4,
+        "startChar": 19,
+        "endLine": 4,
+        "endChar": 40
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3d28761_47f0275f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "separate?",
+      "range": {
+        "startLine": 5,
+        "startChar": 11,
+        "endLine": 5,
+        "endChar": 19
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50ed77d1_1bdbf5f8",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "A?",
+      "range": {
+        "startLine": 5,
+        "startChar": 58,
+        "endLine": 5,
+        "endChar": 60
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73b29a30_6cd3ba24",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "either omit or \"itself\"",
+      "range": {
+        "startLine": 5,
+        "startChar": 49,
+        "endLine": 5,
+        "endChar": 56
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb7d2697_60755bd5",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "Empty line before this line please.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 2
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2eb01965_aaad60ea",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "transitions?",
+      "range": {
+        "startLine": 6,
+        "startChar": 44,
+        "endLine": 6,
+        "endChar": 54
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25d897a5_018c13aa",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "includes?",
+      "range": {
+        "startLine": 8,
+        "startChar": 19,
+        "endLine": 8,
+        "endChar": 28
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc57f7db_08238e97",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "Consider: \"Associate anomalies to an AlertGroup\"",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ecbe6cc_885aec99",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "Update",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 8
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e208a51_33ffc212",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "if necessary?",
+      "range": {
+        "startLine": 11,
+        "startChar": 22,
+        "endLine": 11,
+        "endChar": 33
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3032a968_611ba666",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "Same here \"if necessary\"?",
+      "range": {
+        "startLine": 12,
+        "startChar": 25,
+        "endLine": 12,
+        "endChar": 36
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffeb25b9_0e89df17",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "Manage an AlertGroup\u0027s lifecycle",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 31
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67e33111_97f3705f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "provides",
+      "range": {
+        "startLine": 16,
+        "startChar": 7,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ee233c1_1f8bd5bc",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "nit: Probably rename this to something more descriptive. It looks like it\u0027s preparing a GroupUpdate object. Call it that instead? `_PrepareGroupUpdate()` reads better than `_GetUpdate()` at least to me.",
+      "range": {
+        "startLine": 109,
+        "startChar": 6,
+        "endLine": 109,
+        "endChar": 16
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99787ab8_96d86493",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T01:11:03Z",
+      "side": 1,
+      "message": "Suggestion: Please reformat, and reword a little.\n\n\"\"\"Process the workflow.\n\nThe workflow promises to only depend on the provided update and injected dependencies. The workflow steps will always be reproducible if all the inputs are the same.\n\nProcess will always update the group and store once the steps have completed.\n\nThe update argument can be a prepared GroupUpdate instance or None (if None, then Process will prepare the update itself).\n\nReturns the key for the associated group when the workflow was initialized.\"\"\"",
+      "range": {
+        "startLine": 122,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 43
+      },
+      "revId": "d40a2ea18da2eeb7805ed571bf63cec6ae694c66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
