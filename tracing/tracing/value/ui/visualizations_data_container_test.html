@@ -46,12 +46,6 @@ tr.b.unittest.testSuite(function() {
       histograms.addHistogram(getHistogram(metric));
     }
 
-    if (containsRasterStart) {
-      histograms.addHistogram(
-          getHistogram('pipeline:begin_frame_to_raster_start'));
-      histograms.addHistogram(
-          getHistogram('pipeline:begin_frame_to_raster_end'));
-    }
     histograms.addSharedDiagnosticToAllHistograms(
         tr.v.d.RESERVED_NAMES.LABELS, new tr.v.d.GenericSet([displayLabel]));
     histograms.addSharedDiagnosticToAllHistograms(
