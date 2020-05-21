@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f947b7f_aa36b9b7",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-05-21T17:42:30Z",
+      "side": 1,
+      "message": "Note: As of patchset 1, all tests in visualizations_data_container_test.html would have failed if |rasterVisualization.build()| is called, since |this.buildRasterChart_()| returns an empty result when FRAME is empty, but |rasterVisualization.build()| depends on a non-empty input. (see https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/value/ui/raster_visualization.html?sq\u003dpackage:chromium\u0026q\u003draster_visualization\u0026g\u003d0\u0026l\u003d119).",
+      "revId": "0157265faf52001f8aef0270b254c46cf4a2bf87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
