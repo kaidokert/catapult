@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6160ac5e_b4f38bd6",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-05-21T20:06:40Z",
+      "side": 1,
+      "message": "Will this still be needed when \"CompositorLatency.TotalLatency\" is exposed to catapult, and we begin to parse it?",
+      "range": {
+        "startLine": 77,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "1dd6598a766f758425d0681791afbe617886ddc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a2b190c_558fbcea",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-05-21T20:06:40Z",
+      "side": 1,
+      "message": "Are we able to build the Raster Visualization with CompositorLatency.TotalLatency?",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
+      "revId": "1dd6598a766f758425d0681791afbe617886ddc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

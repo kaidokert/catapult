@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb5f83ad_f74a1a7a",
+        "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-05-21T20:06:40Z",
+      "side": 0,
+      "message": "I do not believe that we can remove all of these tests directly.\n\naddDrawSlice above refers to \u0027Graphics.Pipeline.DrawAndSwap\u0027 which is still being parsed in pipeline.html",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 39
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be4555ef_5b1e58d8",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-05-21T20:06:40Z",
+      "side": 0,
+      "message": "Nit: remove this aswell",
+      "range": {
+        "startLine": 39,
+        "startChar": 47,
+        "endLine": 39,
+        "endChar": 74
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
