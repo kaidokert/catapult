@@ -74,20 +74,9 @@ tr.exportTo('tr.v.ui', function() {
     ['#FFAB40', '#FF9100', '#FF6D00', '#D65C02'],
     ['#8C9EFF', '#536DFE', '#3D5AFE', '#304FFE']];
 
-  const FRAME = [new Map([
-    ['pipeline:begin_frame_to_raster_start', false],
-    ['pipeline:begin_frame_to_raster_end', true]]), new Map([
-    ['pipeline:begin_frame_transport', true],
-    ['pipeline:begin_frame_to_frame_submission', true],
-    ['pipeline:frame_submission_to_display', true],
-    ['pipeline:draw', true]])];
+  const FRAME = [new Map()];
 
   const METRICS = new Map([
-    ['Pipeline', [
-      'pipeline:begin_frame_transport',
-      'pipeline:begin_frame_to_frame_submission',
-      'pipeline:frame_submission_to_display',
-      'pipeline:draw']],
     ['Thread', [
       'thread_browser_cpu_time_per_frame',
       'thread_display_compositor_cpu_time_per_frame',
@@ -204,7 +193,8 @@ tr.exportTo('tr.v.ui', function() {
 
     buildCharts_() {
       const rasterDataToBePassed = this.buildRasterChart_();
-      this.$.rasterVisualization.build(rasterDataToBePassed);
+      // When FRAME is empty, building the raster visualization would fail
+      // due to an empty rasterDataToBePassed.
 
       for (const chartName of METRICS.keys()) {
         const metricsDataToBePassed = this.buildMetricsData_(chartName);
