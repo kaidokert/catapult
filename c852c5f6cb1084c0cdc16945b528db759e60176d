@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62b9e5a5_e7ff1b28",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T04:00:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56228eef_14bd8f08",
+      "range": {
+        "startLine": 357,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 70
+      },
+      "revId": "c852c5f6cb1084c0cdc16945b528db759e60176d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0f35939_c8158d23",
         "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "c852c5f6cb1084c0cdc16945b528db759e60176d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ff13aab_991f6e8c",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-21T04:00:02Z",
+      "side": 1,
+      "message": "I think I\u0027m leaning the other way here, in that we probably do need this sooner than later. None isn\u0027t a great value to set for these (they really should be default values for the types), but it greatly simplifies whatever future refactoring we want if/when we consolidate the issue updates to this module as well (i.e. move it out of the job module and other places).\n\nThis CL is just for the creation update, but there\u0027s cancellation updates, \"started\" updates, failures, etc.",
+      "parentUuid": "a0f35939_c8158d23",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 57
+      },
+      "revId": "c852c5f6cb1084c0cdc16945b528db759e60176d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
