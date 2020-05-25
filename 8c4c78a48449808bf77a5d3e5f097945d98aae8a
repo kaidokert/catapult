@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78ec3545_faad0956",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-25T02:31:46Z",
+      "side": 1,
+      "message": "You probably want a test case too where the ranges are exactly the same (for different measurements).",
+      "range": {
+        "startLine": 115,
+        "startChar": 6,
+        "endLine": 115,
+        "endChar": 43
+      },
+      "revId": "8c4c78a48449808bf77a5d3e5f097945d98aae8a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
