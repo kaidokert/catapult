@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52b6335e_05e374c3",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "We should only associate the job to the anomaly/regression that we actually end up bisecting, like we do today with manual triage/bisection. Please add a test to ensure that we\u0027re only updating the anomaly we pick to be bisected.",
+      "range": {
+        "startLine": 337,
+        "startChar": 4,
+        "endLine": 340,
+        "endChar": 41
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ac67643_de30196d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "We don\u0027t use `Alert` in this context, I suspect you meant `Regression` in the name of the function?",
+      "range": {
+        "startLine": 384,
+        "startChar": 22,
+        "endLine": 384,
+        "endChar": 44
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "887dac9b_872c0baa",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "These variables seem unnecessary to me and clash with a lot of other names. These should-really be in-lined instead:\n\n```\n  results \u003d self._pinpoint.NewJob(self._NewPinpointRequest(\n          self._SelectRegressionForBisect(bisect_enabled_regressions)))\n  return results, anomalies\n```",
+      "range": {
+        "startLine": 385,
+        "startChar": 4,
+        "endLine": 386,
+        "endChar": 44
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c23e1a_316ea650",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "Typo -- `CompareRegressions(x, y)` or `MaxRegression(x, y)`",
+      "range": {
+        "startLine": 395,
+        "startChar": 8,
+        "endLine": 395,
+        "endChar": 26
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fc9167c_865408bd",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "Instead of returning True/False, why not return either one of x/y?",
+      "range": {
+        "startLine": 396,
+        "startChar": 6,
+        "endLine": 403,
+        "endChar": 48
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c57dbb2_d3c031c4",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "Spell it as `count` instead?",
+      "range": {
+        "startLine": 408,
+        "startChar": 6,
+        "endLine": 408,
+        "endChar": 9
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0224166_cb79ea46",
+        "filename": "dashboard/dashboard/services/pinpoint_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-26T15:47:29Z",
+      "side": 1,
+      "message": "Docstring?",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 24
+      },
+      "revId": "776efbdcf56f61068491b0c98832643c2b236abf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
