@@ -419,3 +419,22 @@ class FakeSheriffConfigClient(object):
       if re.match(fnmatch.translate(p), path):
         return s, None
     return [], None
+
+
+class FakeCrrev(object):
+
+  @staticmethod
+  def GetNumbering(*args, **kwargs):
+    # pylint: disable=unused-argument
+    return {'git_sha': 'abcd'}
+
+
+class FakePinpoint(object):
+
+  def __init__(self):
+    self.new_job_request = None
+
+  def NewJob(self, request):
+    self.new_job_request = request
+
+    return {'jobId': '123456'}

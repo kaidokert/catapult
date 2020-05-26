@@ -20,7 +20,10 @@ from dashboard.common import utils
 from dashboard.models import alert_group
 from dashboard.models import alert_group_workflow
 from dashboard.models import anomaly
+from dashboard.models import graph_data
 from dashboard.models import subscription
+from dashboard.services import crrev_service
+from dashboard.services import pinpoint_service
 
 
 class GroupReportTestBase(testing_common.TestCase):
@@ -47,6 +50,10 @@ class GroupReportTestBase(testing_common.TestCase):
     mock_get_sheriff_client().Match.return_value = ([sheriff], None)
     self.PatchObject(alert_group_workflow, '_IssueTracker',
                      lambda: self.fake_issue_tracker)
+    self.PatchObject(crrev_service, 'GetNumbering',
+                     lambda *args, **kargs: {'git_sha': 'abcd'})
+    new_job = mock.MagicMock(return_value={'jobId': '123456'})
+    self.PatchObject(pinpoint_service, 'NewJob', new_job)
 
   def _AddAnomaly(self, **kargs):
     default = {
@@ -63,6 +70,7 @@ class GroupReportTestBase(testing_common.TestCase):
     }
     default.update(kargs)
     default['test'] = utils.TestKey(default['test'])
+    graph_data.TestMetadata(key=default['test']).put()
     a = anomaly.Anomaly(**default)
     a.groups = alert_group.AlertGroup.GetGroupsForAnomaly(a)
     return a.put()
@@ -111,6 +119,25 @@ class GroupReportTest(GroupReportTestBase):
     self.assertItemsEqual(group.anomalies, [a1, a2, a4])
     group = alert_group.AlertGroup.Get('other', None)[0]
     self.assertItemsEqual(group.anomalies, [a3])
+
+  def testMultipleAltertsGroupingPointRange(self, mock_get_sheriff_client):
+    self._SetUpMocks(mock_get_sheriff_client)
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    # Add anomalies
+    a1 = self._AddAnomaly(start_revision=100, end_revision=100)
+    a2 = self._AddAnomaly(start_revision=100, end_revision=100)
+    a3 = self._AddAnomaly(test='master/bot/other/measurement/test_case',
+                          start_revision=100, end_revision=100)
+    # Create Group
+    self._CallHandler()
+    # Update Group to associate alerts
+    self._CallHandler()
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    self.assertItemsEqual(group.anomalies, [a1, a2])
+    group = alert_group.AlertGroup.Get('other', None)[0]
+    self.assertItemsEqual(group.anomalies, [a3])
+
 
   def testArchiveAltertsGroup(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
@@ -379,6 +406,34 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self.assertRegexpMatches(
         self.fake_issue_tracker.add_comment_args[1],
         r'test_suite/measurement/other_test_case')
+
+  def testStartAutoBisection(self, mock_get_sheriff_client):
+    self._SetUpMocks(mock_get_sheriff_client)
+    mock_get_sheriff_client().Match.return_value = ([
+        subscription.Subscription(
+            name='sheriff',
+            auto_triage_enable=True,
+            auto_bisect_enable=True)
+    ], None)
+
+    self._CallHandler()
+    # Add anomalies
+    self._AddAnomaly()
+    # Create Group
+    self._CallHandler()
+    # Update Group to associate alerts
+    self._CallHandler()
+    # Set Create timestamp to 2 hours ago
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    group.created = datetime.datetime.utcnow() - datetime.timedelta(hours=2)
+    group.put()
+    # Submit issue
+    self._CallHandler()
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    # Start bisection
+    self._CallHandler()
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    self.assertItemsEqual(group.bisection_ids, ['123456'])
 
 
 class NonChromiumAutoTriage(GroupReportTestBase):
