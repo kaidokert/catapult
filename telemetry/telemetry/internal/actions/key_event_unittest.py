@@ -21,8 +21,8 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
   def _window_height(self):
     return self._tab.EvaluateJavaScript('__GestureCommon_GetWindowHeight()')
 
-  def _PressKey(self, key):
-    action = key_event.KeyPressAction(key)
+  def _PressKey(self, key, modifiers=None):
+    action = key_event.KeyPressAction(key, modifiers=modifiers)
     action.WillRunAction(self._tab)
     action.RunAction(self._tab)
 
@@ -85,6 +85,30 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
     self._tab.WaitForJavaScriptCondition(
         'document.querySelector("textarea").value === "Hello,\\nWorld!"',
         timeout=1)
+
+  def testModifierKey(self):
+    # Add an input box to the page.
+    self._tab.ExecuteJavaScript(
+        '(function() {'
+        '  var elem = document.createElement("textarea");'
+        '  document.body.appendChild(elem);'
+        '  elem.focus();'
+        '})();')
+
+    # Simulate typing a sentence.
+    for char in 'Hello, World!':
+      self._PressKey(char)
+
+    # win: <CTRL-A>, mac: <CMD-A> select everything inside input box.
+    self._PressKey('a', modifiers=key_event.PRIMARY)
+    self._PressKey('X')
+
+    # Check that the contents of the textarea is correct. It might take a second
+    # until all keystrokes have been handled by the browser (crbug.com/630017).
+    self._tab.WaitForJavaScriptCondition(
+        'document.querySelector("textarea").value === "X"',
+        timeout=1)
+
 
   def testPressUnknownKey(self):
     with self.assertRaises(ValueError):

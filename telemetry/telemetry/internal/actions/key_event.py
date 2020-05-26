@@ -70,12 +70,87 @@ _AddRegularKey('9(', 0x39)
 _AddRegularKey(' ', 0x20)
 
 
+class Modifiers(object):
+  def __init__(self, *args):
+    self._modifiers = list(*args)
+
+  def encode(self, platform):
+    result = 0
+    for modifier in self._modifiers:
+      result |= modifier.encode(platform)
+    return result
+
+  def __or__(self, modifier):
+    self._modifiers.append(modifier)
+
+  def __str__(self):
+    return '+'.join(self._modifiers)
+
+
+class Modifier(object):
+  def __init__(self, name, code):
+    self._name = name
+    self._code = code
+
+  def encode(self, _):
+    return self._code
+
+  def __or__(self, modifier):
+    return Modifiers(self, modifier)
+
+  def __str__(self):
+    return self._name
+
+
+class PlatformModifier(Modifier):
+  def __init__(self, name, win=None, mac=None, linux=None):
+    super(PlatformModifier, self).__init__(name, code=None)
+    self._modifier_win = win
+    self._modifier_mac = mac
+    self._modifier_linux = linux
+    assert (win is not None) or (mac is not None) or (linux is not None), \
+          'One platform must be specified'
+
+  def encode(self, platform):
+    if platform.GetOSName() == 'win':
+      return self._modifier_win.encode(platform)
+    if platform.GetOSName() == 'mac':
+      return self._modifier_mac.encode(platform)
+    assert platform.GetOSName() in (
+        'linux', 'android', 'chromeos',
+        'fuchsia'), 'Unsupported platform for Key Modifiers'
+    # Assume linux keybindings for: linux, android, fuchsia
+    return self._modifier_linux.encode(platform)
+
+
+# Codes are match chrome inspector protocol.
+ALT = Modifier('Alt', code=1)
+CTRL = Modifier('Ctrl', code=2)
+META = Modifier('Meta', code=4)
+SHIFT = Modifier('Shift', code=8)
+
+# Platform specific names for existing modifiers.
+OPTION = PlatformModifier('Opt', mac=ALT)
+COMMAND = PlatformModifier('Cmd', mac=META)
+WINDOWS = PlatformModifier('Win', win=META)
+
+# Virtual modifier keys, resolved to platform specific ones.
+PRIMARY = PlatformModifier('Primary', win=CTRL, mac=META, linux=CTRL)
+SECONDARY = PlatformModifier('Secondary', win=ALT, mac=CTRL, linux=ALT)
+
+
 class KeyPressAction(page_action.PageAction):
 
-  def __init__(self, dom_key, timeout=page_action.DEFAULT_TIMEOUT):
+  def __init__(
+      self, dom_key, modifiers=None, timeout=page_action.DEFAULT_TIMEOUT):
+    """
+    Args:
+      modifiers: a Modifers instance or None
+    """
     super(KeyPressAction, self).__init__(timeout=timeout)
     char_code = 0 if len(dom_key) > 1 else ord(dom_key)
     self._dom_key = dom_key
+    self._modifiers = modifiers
     # Check that ascii chars are allowed.
     use_key_map = len(dom_key) > 1 or char_code < 128
     if use_key_map and dom_key not in _KEY_MAP:
@@ -88,23 +163,33 @@ class KeyPressAction(page_action.PageAction):
     # Note that this action does not handle self.timeout properly. Since each
     # command gets the whole timeout, the PageAction can potentially
     # take three times as long as it should.
+    encoded_modifiers = 0
+    if self._modifiers is not None:
+      encoded_modifiers = self._modifiers.encode(tab.browser.platform)
     tab.DispatchKeyEvent(
         key_event_type='rawKeyDown',
         dom_key=self._dom_key,
+        modifiers=encoded_modifiers,
         windows_virtual_key_code=self._windows_virtual_key_code,
+        native_virtual_key_code=self._windows_virtual_key_code,
         timeout=self.timeout)
     if self._text:
       tab.DispatchKeyEvent(
           key_event_type='char',
           text=self._text,
+          modifiers=encoded_modifiers,
           dom_key=self._dom_key,
           windows_virtual_key_code=ord(self._text),
+          native_virtual_key_code=ord(self._text),
           timeout=self.timeout)
     tab.DispatchKeyEvent(
         key_event_type='keyUp',
         dom_key=self._dom_key,
+        modifiers=encoded_modifiers,
         windows_virtual_key_code=self._windows_virtual_key_code,
+        native_virtual_key_code=self._windows_virtual_key_code,
         timeout=self.timeout)
 
   def __str__(self):
-    return "%s('%s')" % (self.__class__.__name__, self._dom_key)
+    return "%s('%s%s')" % (
+        self.__class__.__name__, self._modifiers, self._dom_key)
