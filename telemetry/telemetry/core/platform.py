@@ -141,7 +141,7 @@ class Platform(object):
   def GetOSName(self):
     """Returns a string description of the Platform OS.
 
-    Examples: WIN, MAC, LINUX, CHROMEOS"""
+    Examples: win, mac, linux, chromeos, android, fuchsia"""
     return self._platform_backend.GetOSName()
 
   def GetDeviceId(self):
