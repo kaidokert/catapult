@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "800ebc6a_b68cf011",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-27T07:10:50Z",
+      "side": 1,
+      "message": "Consider including more to explain the following in the commit message:\n\n- Which parts did we refactor/move around?\n- Are there caveats (explain how we\u0027re handling failures, say something about the \u0027Chromeperf-Auto-NeedsAttention\u0027 label) to look out for?\n- What priority are the bisections being set at? Will they interfere with existing manual bisections?\n\netc. etc.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "5cb59a685457358a627929260c210e0bb917ae19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26ed540e_8a3824c0",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 12
