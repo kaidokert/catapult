@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26ed540e_8a3824c0",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-27T07:08:19Z",
+      "side": 1,
+      "message": "InvalidPinpointRequest?",
+      "range": {
+        "startLine": 77,
+        "startChar": 6,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "5cb59a685457358a627929260c210e0bb917ae19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a121b6c_da24226c",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-27T07:08:19Z",
+      "side": 1,
+      "message": "Probably name this `_StartPinpointBisectJob` instead to make it clear it\u0027s starting a new job?",
+      "range": {
+        "startLine": 387,
+        "startChar": 6,
+        "endLine": 387,
+        "endChar": 24
+      },
+      "revId": "5cb59a685457358a627929260c210e0bb917ae19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da89dcb1_a9c7e7a1",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-27T07:08:19Z",
+      "side": 1,
+      "message": "Typo -- maybe MaxRegression ?",
+      "range": {
+        "startLine": 410,
+        "startChar": 8,
+        "endLine": 410,
+        "endChar": 22
+      },
+      "revId": "5cb59a685457358a627929260c210e0bb917ae19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef823926_effc0f2e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-27T07:08:19Z",
+      "side": 1,
+      "message": "if x is None and y is None then... ?",
+      "range": {
+        "startLine": 411,
+        "startChar": 6,
+        "endLine": 412,
+        "endChar": 21
+      },
+      "revId": "5cb59a685457358a627929260c210e0bb917ae19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0ab2ac5_b9043a95",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-27T07:08:19Z",
+      "side": 1,
+      "message": "Probably quote the error -- remember a human will be reading this, so we should say more clearly what the error is. Something like:\n\n```\nAuto-Bisection failed with the following message:\n\n%s\n\nNot retrying.\n```",
+      "range": {
+        "startLine": 483,
+        "startChar": 37,
+        "endLine": 483,
+        "endChar": 38
+      },
+      "revId": "5cb59a685457358a627929260c210e0bb917ae19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
