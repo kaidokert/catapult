@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e20d8e68_39b91432",
+        "filename": "dashboard/dashboard/pinpoint/handlers/fifo_scheduler_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-05-28T09:36:56Z",
+      "side": 1,
+      "message": "Its strange no that you need priority here as a string and as a int parameter later?\n\nIs that intended?",
+      "revId": "8e6bde283cfa4c5eae0dd7a9a263850ce7163179",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
