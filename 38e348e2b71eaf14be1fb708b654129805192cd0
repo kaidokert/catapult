@@ -16,6 +16,24 @@
       "revId": "38e348e2b71eaf14be1fb708b654129805192cd0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41a4a6ae_53d47743",
+        "filename": "dashboard/dashboard/file_bug_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-28T11:11:15Z",
+      "side": 0,
+      "message": "Yeah, it\u0027s to make pylint happy (because this file is too large). 😞",
+      "parentUuid": "52e41e5c_535a167a",
+      "revId": "38e348e2b71eaf14be1fb708b654129805192cd0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

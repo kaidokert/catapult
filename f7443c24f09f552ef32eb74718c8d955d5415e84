@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e93115f4_cd5c8866",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-28T11:11:15Z",
+      "side": 1,
+      "message": "Not at this point, but at the lower level at least.",
+      "parentUuid": "4eb1900c_10e11b58",
+      "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35e8eda5_a84336bb",
         "filename": "dashboard/dashboard/file_bug_test.py",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "aad4f8f9_17b54f25",
+        "filename": "dashboard/dashboard/file_bug_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-28T11:11:15Z",
+      "side": 1,
+      "message": "yes, cc can be None (and that\u0027s the default too).",
+      "parentUuid": "35e8eda5_a84336bb",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 64
+      },
+      "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "710cd711_425716a6",
         "filename": "dashboard/dashboard/services/issue_tracker_service.py",
         "patchSetId": 1
@@ -56,6 +98,24 @@
       "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cbf86fc_dc4293d2",
+        "filename": "dashboard/dashboard/services/issue_tracker_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-28T11:11:15Z",
+      "side": 1,
+      "message": "Good point, yes we need to dedupe them here (even though Monorail generally does a good job of deduping CC\u0027ed emails).",
+      "parentUuid": "710cd711_425716a6",
+      "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
