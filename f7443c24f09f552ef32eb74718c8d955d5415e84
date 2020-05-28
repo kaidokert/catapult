@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4eb1900c_10e11b58",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-05-28T10:37:55Z",
+      "side": 1,
+      "message": "Do we have to worry about duplicate emails here? Or is that filtered somewhere else? I remember in a previous CL that you were wrapping these lists in sets to perform deduplication.",
+      "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35e8eda5_a84336bb",
+        "filename": "dashboard/dashboard/file_bug_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-05-28T10:37:55Z",
+      "side": 1,
+      "message": "Is this field by default empty so that is handled/tested by other tests?",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 64
+      },
+      "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "710cd711_425716a6",
+        "filename": "dashboard/dashboard/services/issue_tracker_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-05-28T10:37:55Z",
+      "side": 1,
+      "message": "Same question though probably only needs to be handled once should this be deduplicated? Probably the other location on receiving the request should handle the deduplication and this should just post the message as is.",
+      "revId": "f7443c24f09f552ef32eb74718c8d955d5415e84",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
