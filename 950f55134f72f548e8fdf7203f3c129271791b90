@@ -16,6 +16,24 @@
       "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a1396fc_a11a6bfa",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-29T13:33:34Z",
+      "side": 1,
+      "message": "Unfortunately it\u0027s not just in `_UpdateIssues` where this function is called, so we need to apply the logic here so we can maintain the invariant that this pre-processing function will actually update all the anomalies provided in the arguments.",
+      "parentUuid": "ffbd6b82_5586b88a",
+      "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
