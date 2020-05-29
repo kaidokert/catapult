@@ -232,7 +232,7 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
       # The config file has fixed path on CrOS. We need to ensure it is
       # always cleaned up.
       atexit_with_log.Register(self._RemoveTraceConfigFile)
-    elif os_name in _DESKTOP_OS_NAMES:
+    else:
       self._trace_config_file = os.path.join(tempfile.mkdtemp(),
                                              _CHROME_TRACE_CONFIG_FILE_NAME)
       with open(self._trace_config_file, 'w') as f:
@@ -241,8 +241,8 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
         f.write(trace_config_string)
       os.chmod(self._trace_config_file,
                os.stat(self._trace_config_file).st_mode | stat.S_IROTH)
-    else:
-      raise NotImplementedError('Tracing not supported on: %s' % os_name)
+    # else:
+    #   raise NotImplementedError('Tracing not supported on: %s' % os_name)
 
   def _RemoveTraceConfigFile(self):
     if not self._trace_config_file:
@@ -253,12 +253,12 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
           self._trace_config_file, force=True, rename=True, as_root=True)
     elif self._platform_backend.GetOSName() == 'chromeos':
       self._platform_backend.cri.RmRF(self._trace_config_file)
-    elif self._platform_backend.GetOSName() in _DESKTOP_OS_NAMES:
+    else:
       if os.path.exists(self._trace_config_file):
         os.remove(self._trace_config_file)
       shutil.rmtree(os.path.dirname(self._trace_config_file))
-    else:
-      raise NotImplementedError
+    # else:
+    #   raise NotImplementedError
     self._trace_config_file = None
 
   def SupportsFlushingAgentTracing(self):

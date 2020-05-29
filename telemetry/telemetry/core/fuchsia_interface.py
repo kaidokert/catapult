@@ -54,6 +54,7 @@ class CommandRunner(object):
     # Having control master causes weird behavior in port_forwarding.
     ssh_args.append('-oControlMaster=no')
     ssh_command = self._GetSshCommandLinePrefix() + ssh_args + ['--'] + command
+    print(' '.join(ssh_command))
     logging.debug(' '.join(ssh_command))
     return subprocess.Popen(ssh_command, **kwargs)
 
