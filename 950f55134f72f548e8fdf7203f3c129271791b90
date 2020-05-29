@@ -52,6 +52,24 @@
       "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6c5613e_707a711b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-29T13:53:13Z",
+      "side": 1,
+      "message": "Actually it turns out the code in 186 is incomplete, as it\u0027s not setting the project. Without this change the test fails, so it\u0027s suggesting this is required.",
+      "parentUuid": "6a1396fc_a11a6bfa",
+      "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
