@@ -88,6 +88,24 @@
       "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "091d2dd0_3eab304b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-29T13:57:09Z",
+      "side": 1,
+      "message": "\u003e And the problem here is if a sheriff manually unassociates the bug with the issue, the a.bug_id will become None then being automatically associated again.\n\nThat\u0027s working as intended. What we don\u0027t want is if an anomaly is associated with another issue that we re-associate it to the issue associated with the group.",
+      "parentUuid": "03685e55_d2e8ded1",
+      "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
