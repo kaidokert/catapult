@@ -34,6 +34,24 @@
       "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8c0a4d1_73d32170",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-29T13:51:41Z",
+      "side": 1,
+      "message": "I think it\u0027s impossible to skip `_UpdateIssues` because it always runs if a bug available (or all of the updating feature will be broken). And the problem here is if a sheriff manually unassociates the bug with the issue, the a.bug_id will become None then being automatically associated again.",
+      "parentUuid": "6a1396fc_a11a6bfa",
+      "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
