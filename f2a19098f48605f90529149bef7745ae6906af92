@@ -16,6 +16,24 @@
       "revId": "f2a19098f48605f90529149bef7745ae6906af92",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db1778fc_bd590116",
+        "filename": "dashboard/dashboard/pinpoint/models/compare/compare.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-29T05:33:09Z",
+      "side": 1,
+      "message": "It\u0027s needed so that we can work with numpy arrays (or pandas data frames) which don\u0027t have an implicit conversion to bool. I learned that the hard way. 😊",
+      "parentUuid": "05aea24c_38bf832a",
+      "revId": "f2a19098f48605f90529149bef7745ae6906af92",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
