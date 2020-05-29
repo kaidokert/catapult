@@ -124,6 +124,24 @@
       "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ec53076_b2e8c907",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-05-29T16:10:52Z",
+      "side": 1,
+      "message": "Nice, thanks! I\u0027ll let you do a follow-up instead, I\u0027ll land this now so we can get this in production to prevent the specific failure for now. 😊",
+      "parentUuid": "9899ee09_8827ad7c",
+      "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
