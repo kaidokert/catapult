@@ -106,6 +106,24 @@
       "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9899ee09_8827ad7c",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-05-29T14:59:28Z",
+      "side": 1,
+      "message": "After testing a bit actually the problem is from test side. We always ensure alerts has associated with issue and the fake alert omit the bug_id. So it can\u0027t happen unless a human unassociates the alert with issue.\n\n\u003e That\u0027s working as intended. What we don\u0027t want is if an anomaly is associated with another issue that we re-associate it to the issue associated with the group.\nMaybe I still not get the reason. But even it\u0027s intended, we should do it in UpdateIssue instead of _GetPreproccessedRegressions because we call the function multiple times during Process and passing different subset of anomalies to this function. And for now we don\u0027t touch any valid field in alerts in this function. It\u0027s really a read-only function (but add some calculated fields for convenient. They never update to alert data model).\n\nSo I think the right way is to preprocess all of the anomalies before we doing anything because it includes calls to pinpoint. Split the function like:\n\n```\n  def _GetPreproccessedAnomalies(self, anomalies):\n    for a in anomalies:\n      subscriptions, _ \u003d self._sheriff_config.Match(\n          a.test.string_id(), check\u003dTrue)\n      a.subsciptions \u003d subscriptions\n      a.auto_triage_enable \u003d any(s.auto_triage_enable for s in subscriptions)\n      a.auto_bisect_enable \u003d any(s.auto_bisect_enable for s in subscriptions)\n      a.relative_delta \u003d abs(a.absolute_delta / float(a.median_before_anomaly)\n                            ) if a.median_before_anomaly !\u003d 0. else float(\u0027Inf\u0027)\n    return anomalies\n\n  def _GetRegressions(self, anomalies):\n    regressions \u003d []\n    subscriptions_dict \u003d {}\n    for a in anomalies:\n      subscriptions_dict.update({s.name: s for s in a.subscriptions})\n      if not a.is_improvement and not a.recovered:\n        regressions.append(a)\n    return (regressions, subscriptions_dict.values())\n```\n\n...and only call _GetPreproccessedAnomalies once.\n\nAlso after playing with the tests the bug is actually in `UpdateIssue`. It returns early before making any changes to anomalies. So moving the anomaly update to the top fixes the problem.\n\n```\n  def _UpdateIssue(self, issue, anomalies, added):\n    regressions, subscriptions \u003d self._GetRegressions(added)\n\n    for a in anomalies:\n      if a.bug_id is None and a.auto_triage_enable:\n        a.project_id \u003d self._group.project_id\n        a.bug_id \u003d self._group.bug.bug_id\n\n    # Write back bug_id to anomalies. We can\u0027t do it when anomaly is\n    # found because group may being updating at that time.\n    ndb.put_multi(anomalies)\n\n    # Only update issue if there is at least one regression\n    if not regressions or not any(r.auto_triage_enable for r in regressions):\n      # Check whether all the anomalies associated have been marked recovered.\n      if all(a.recovered for a in anomalies if not a.is_improvement):\n        return self._CloseBecauseRecovered()\n\n    if issue.get(\u0027state\u0027) \u003d\u003d \u0027closed\u0027:\n      self._ReopenWithNewRegressions(regressions, subscriptions)\n    else:\n      self._FileNormalUpdate(regressions, subscriptions)\n```\n\nThis should fix.\n\nAnyway it\u0027s more like a part refactoring so I think you can merge it if you want and I will submit another CL.",
+      "parentUuid": "a6c5613e_707a711b",
+      "revId": "950f55134f72f548e8fdf7203f3c129271791b90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
