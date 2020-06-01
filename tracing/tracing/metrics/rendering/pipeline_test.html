@@ -123,23 +123,6 @@ tr.b.unittest.testSuite(function() {
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.addPipelineHistograms(
         histograms, model, [new tr.model.um.Segment(0, 50)]);
-
-
-    const beginFrameTransport = histograms.getHistogramNamed(
-        'pipeline:begin_frame_transport');
-    const frameSubmission = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_frame_submission');
-    const surfaceAggregation = histograms.getHistogramNamed(
-        'pipeline:frame_submission_to_display');
-    const rasterStart = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_raster_start');
-    const rasterEnd = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_raster_end');
-    assert.closeTo(beginFrameTransport.average, 4 / 3, 1e-6);
-    assert.closeTo(frameSubmission.average, 13 / 3, 1e-6);
-    assert.closeTo(surfaceAggregation.average, 13 / 3, 1e-6);
-    assert.closeTo(rasterStart.average, 6 / 2, 1e-6);
-    assert.closeTo(rasterEnd.average, 16 / 2, 1e-6);
   });
 
   test('graphicsPipeline_duplicateSteps', function() {
@@ -180,22 +163,6 @@ tr.b.unittest.testSuite(function() {
     tr.metrics.rendering.addPipelineHistograms(
         histograms, model,
         [new tr.model.um.Segment(0, 50), new tr.model.um.Segment(0, 20)]);
-
-    const beginFrameTransport = histograms.getHistogramNamed(
-        'pipeline:begin_frame_transport');
-    const frameSubmission = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_frame_submission');
-    const surfaceAggregation = histograms.getHistogramNamed(
-        'pipeline:frame_submission_to_display');
-    const rasterStart = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_raster_start');
-    const rasterEnd = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_raster_end');
-    assert.strictEqual(beginFrameTransport.average, 1);
-    assert.strictEqual(frameSubmission.average, 4);
-    assert.strictEqual(surfaceAggregation.average, 4);
-    assert.strictEqual(rasterStart.average, 1);
-    assert.strictEqual(rasterEnd.average, 6);
   });
 
   test('graphicsPipeline_duplicateRenderers', function() {
@@ -243,13 +210,6 @@ tr.b.unittest.testSuite(function() {
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.addPipelineHistograms(
         histograms, model, [new tr.model.um.Segment(0, 50)]);
-
-    const rasterStart = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_raster_start');
-    const rasterEnd = histograms.getHistogramNamed(
-        'pipeline:begin_frame_to_raster_end');
-    assert.strictEqual(rasterStart.average, 1);
-    assert.strictEqual(rasterEnd.average, 6);
   });
 
   test('graphicsPipeline_drawSteps', function() {
@@ -284,9 +244,6 @@ tr.b.unittest.testSuite(function() {
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.addPipelineHistograms(
         histograms, model, [new tr.model.um.Segment(0, 50)]);
-
-    const drawHistogram = histograms.getHistogramNamed('pipeline:draw');
-    assert.strictEqual(drawHistogram.average, 8);
   });
 
   test('graphicsPipeline_drawCanceled', function() {
@@ -323,9 +280,6 @@ tr.b.unittest.testSuite(function() {
     const histograms = new tr.v.HistogramSet();
     tr.metrics.rendering.addPipelineHistograms(
         histograms, model, [new tr.model.um.Segment(0, 50)]);
-
-    const drawHistogram = histograms.getHistogramNamed('pipeline:draw');
-    assert.strictEqual(drawHistogram.average, 8);
   });
 
   test('graphicsPipeline_receiveCFAfterAnimation', function() {
@@ -357,10 +311,6 @@ tr.b.unittest.testSuite(function() {
     tr.metrics.rendering.addPipelineHistograms(
         histograms, model,
         [new tr.model.um.Segment(0, 10), new tr.model.um.Segment(14, 16)]);
-
-    const surfaceAggregation = histograms.getHistogramNamed(
-        'pipeline:frame_submission_to_display');
-    assert.strictEqual(surfaceAggregation.average, 10);
   });
 });
 </script>

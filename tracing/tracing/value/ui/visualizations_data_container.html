@@ -74,20 +74,7 @@ tr.exportTo('tr.v.ui', function() {
     ['#FFAB40', '#FF9100', '#FF6D00', '#D65C02'],
     ['#8C9EFF', '#536DFE', '#3D5AFE', '#304FFE']];
 
-  const FRAME = [new Map([
-    ['pipeline:begin_frame_to_raster_start', false],
-    ['pipeline:begin_frame_to_raster_end', true]]), new Map([
-    ['pipeline:begin_frame_transport', true],
-    ['pipeline:begin_frame_to_frame_submission', true],
-    ['pipeline:frame_submission_to_display', true],
-    ['pipeline:draw', true]])];
-
   const METRICS = new Map([
-    ['Pipeline', [
-      'pipeline:begin_frame_transport',
-      'pipeline:begin_frame_to_frame_submission',
-      'pipeline:frame_submission_to_display',
-      'pipeline:draw']],
     ['Thread', [
       'thread_browser_cpu_time_per_frame',
       'thread_display_compositor_cpu_time_per_frame',
@@ -204,7 +191,8 @@ tr.exportTo('tr.v.ui', function() {
 
     buildCharts_() {
       const rasterDataToBePassed = this.buildRasterChart_();
-      this.$.rasterVisualization.build(rasterDataToBePassed);
+      // When FRAME is empty, building the raster visualization would fail
+      // due to an empty rasterDataToBePassed.
 
       for (const chartName of METRICS.keys()) {
         const metricsDataToBePassed = this.buildMetricsData_(chartName);
@@ -229,26 +217,6 @@ tr.exportTo('tr.v.ui', function() {
           const benchmarkData = [];
           if (benchmarkMap.get(RASTER_START_METRIC_KEY) === undefined) {
             continue;
-          }
-          for (const [threadName, thread] of FRAME.entries()) {
-            const data = {x: benchmark, hide: 0};
-            if (page !== AGGREGATE_KEY) data.group = page;
-            let rasterBegin = 0;
-            for (const metric of thread.keys()) {
-              const metricMap = benchmarkMap.get(metric);
-              const key = this.getSeriesKey_(metric,
-                  data.x + '-' + threadName);
-              const stats = metricMap.get(STATISTICS_KEY);
-              const mean = stats ? stats.mean : 0;
-              let roundedMean = Math.round(mean * 100) / 100;
-              if (metric === RASTER_START_METRIC_KEY) {
-                rasterBegin = roundedMean;
-              } else if (metric === 'pipeline:begin_frame_to_raster_end') {
-                roundedMean -= rasterBegin;
-              }
-              data[key] = roundedMean;
-            }
-            benchmarkData.push(data);
           }
           chartData = chartData.concat(benchmarkData);
         }
@@ -402,7 +370,6 @@ tr.exportTo('tr.v.ui', function() {
     SUBMETRICS_KEY,
     AGGREGATE_KEY,
     COLORS,
-    FRAME,
     METRICS,
     getValueFromMap,
   };
