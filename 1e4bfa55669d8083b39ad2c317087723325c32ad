@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2038670a_84837129",
+        "filename": "tracing/tracing/metrics/rendering/pipeline_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-01T20:15:16Z",
+      "side": 0,
+      "message": "The tests were restored with the asserts regarding pipeline metrics removed.\n\n\u003e The initial rationale for removing these tests was because all asserts in these tests are for pipeline metrics. With the metrics now removed, these tests do not seem to have anything to test numerically. However, on second thought, I guess the tests may still be somewhat useful to prove the actions (e.g. tr.c.TestUtils.newAsyncSliceNamed) involved will not fail?",
+      "parentUuid": "eb5f83ad_f74a1a7a",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 39
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be4555ef_5b1e58d8",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de5e103a_dc194302",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-01T20:15:16Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "be4555ef_5b1e58d8",
+      "range": {
+        "startLine": 39,
+        "startChar": 47,
+        "endLine": 39,
+        "endChar": 74
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

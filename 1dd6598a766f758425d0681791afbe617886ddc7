@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "291bc752_2829260f",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-01T20:15:16Z",
+      "side": 1,
+      "message": "It appears that FRAME is no longer needed with all the pipeline metrics removed. I have removed  FRAME and code that requires it.",
+      "parentUuid": "6160ac5e_b4f38bd6",
+      "range": {
+        "startLine": 77,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "1dd6598a766f758425d0681791afbe617886ddc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2b190c_558fbcea",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-05-21T20:06:40Z",
       "side": 1,
       "message": "Are we able to build the Raster Visualization with CompositorLatency.TotalLatency?",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
+      "revId": "1dd6598a766f758425d0681791afbe617886ddc7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "157de453_94c4b4ec",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-01T20:15:16Z",
+      "side": 1,
+      "message": "I am not sure if that is possible, as CompositorLatency.TotalLatency does not appear to be something I can directly import here. \n\nsadrul@ Do you have any comment on this?",
+      "parentUuid": "1a2b190c_558fbcea",
       "range": {
         "startLine": 196,
         "startChar": 0,
