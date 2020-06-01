@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c31b3e7e_103c864f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-01T11:59:22Z",
+      "side": 1,
+      "message": "That\u0027s fine, I just don\u0027t think it needs to be a function if we need to always do this here and only here.",
+      "parentUuid": "be5e7bd9_cdd2b2c7",
+      "range": {
+        "startLine": 147,
+        "startChar": 9,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "666b41a1f8097e68a9d8757ab92c1123dad0ceab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "edb39755_e2a3088f",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I think it will be more clear if we have a line between process input and process alert group.",
       "parentUuid": "edb39755_e2a3088f",
+      "range": {
+        "startLine": 239,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 60
+      },
+      "revId": "666b41a1f8097e68a9d8757ab92c1123dad0ceab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1ac9b9c_b045e440",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-01T11:59:22Z",
+      "side": 1,
+      "message": "It\u0027s still not clear to me why this function exists at all -- we should just move this where it needs to be and not give it a name, because if it\u0027s a function it can be called multiple times in many places.",
+      "parentUuid": "8817f7d1_b80a9794",
       "range": {
         "startLine": 239,
         "startChar": 4,
