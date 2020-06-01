@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39b65806_16ac71b9",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1145695
+      },
+      "writtenOn": "2020-06-01T23:09:50Z",
+      "side": 1,
+      "message": "A question: do we have to encode the compressed data into Base64?\n\nWe could skip reconverting it back to a regular data stream in md5sum.",
+      "revId": "ce41a3520a40d9da1d54d7335291dd80f03b4057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
