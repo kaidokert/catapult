@@ -457,6 +457,7 @@ class FakeCrrev(object):
 
   def GetNumbering(self, *args, **kwargs):
     # pylint: disable=unused-argument
+    logging.debug('Called GetNumbering: args = %s ; kwargs = %s', args, kwargs)
     return self._response
 
 
@@ -476,3 +477,13 @@ class FakePinpoint(object):
   def NewJob(self, request):
     self.new_job_request = request
     return self._response
+
+
+class FakeGitiles(object):
+
+  def __init__(self, repo_commit_list=None):
+    self._repo_commit_list = repo_commit_list or {}
+
+  def CommitInfo(self, repo, revision):
+    logging.debug('Called: repo = %s, revision = %s', repo, revision)
+    return self._repo_commit_list.get(repo, {}).get(revision, {})
