@@ -16,6 +16,24 @@
       "revId": "ce41a3520a40d9da1d54d7335291dd80f03b4057",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "012e82d3_8b362eb9",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-06-01T23:13:17Z",
+      "side": 1,
+      "message": "I couldn\u0027t find any way to pass binary data to md5sum from python over adb.\n\nTheoretically you could write a gzip file, push the file, and pass it into md5sum, but that would be significantly slower.",
+      "parentUuid": "39b65806_16ac71b9",
+      "revId": "ce41a3520a40d9da1d54d7335291dd80f03b4057",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
