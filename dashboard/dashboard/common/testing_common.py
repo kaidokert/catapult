@@ -417,8 +417,10 @@ class FakeIssueTrackerService(object):
     # If we fined that one of the keyword arguments is an update, we'll mimic
     # what the actual service will do and mark the state "closed" or "open".
     # TODO(dberris): Actually simulate an update faithfully, someday.
-    self.issues.get((kwargs.get('project', 'chromium'), args[0]))['state'] = (
-        'closed' if kwargs.get('status') in {'WontFix', 'Fixed'} else 'open')
+    self.issues.get((kwargs.get('project', 'chromium'), args[0]),
+                    {})['state'] = ('closed' if kwargs.get('status') in {
+                        'WontFix', 'Fixed'
+                    } else 'open')
     self.calls.append({
         'method': 'AddBugComment',
         'args': args,
