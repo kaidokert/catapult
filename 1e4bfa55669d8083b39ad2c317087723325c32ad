@@ -49,6 +49,52 @@
     },
     {
       "key": {
+        "uuid": "35be61e2_cb3da7bf",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-02T14:57:26Z",
+      "side": 0,
+      "message": "Curious as to why we are removing the entire setChartColors",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 32
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21e323b6_e3b55183",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-02T14:57:26Z",
+      "side": 0,
+      "message": "Is the tr.v.ui.FRAME tied to the pipeline.html?",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be4555ef_5b1e58d8",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 2
