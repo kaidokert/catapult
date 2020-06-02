@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2ba9a62_5e75d7bc",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-02T07:11:54Z",
+      "side": 1,
+      "message": "Yeah, using a parenthesis will make this more readable:\n\n```\na.relative_delta \u003d (\n  abs(...) if a.median_before_anomaly !\u003d 0.\n  else floa(\u0027Inf\u0027)\n)\n```\n\nWe now also have a `yapf` formatter config to automate the formatting.",
+      "range": {
+        "startLine": 156,
+        "startChar": 25,
+        "endLine": 157,
+        "endChar": 80
+      },
+      "revId": "ec5cf86133e0c22018e3e160774dddb85d41453d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
