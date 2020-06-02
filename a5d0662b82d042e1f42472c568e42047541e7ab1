@@ -22,6 +22,30 @@
       "revId": "a5d0662b82d042e1f42472c568e42047541e7ab1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0586d323_dd4c0259",
+        "filename": "dashboard/dashboard/common/testing_common.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-02T03:41:50Z",
+      "side": 1,
+      "message": "Huh. Yeah, I\u0027ll write a follow-up.",
+      "parentUuid": "84f067ec_c741966e",
+      "range": {
+        "startLine": 427,
+        "startChar": 0,
+        "endLine": 427,
+        "endChar": 56
+      },
+      "revId": "a5d0662b82d042e1f42472c568e42047541e7ab1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
