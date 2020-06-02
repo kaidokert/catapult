@@ -38,17 +38,16 @@ class FileBugTest(testing_common.TestCase):
 
   def setUp(self):
     super(FileBugTest, self).setUp()
-    app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
-    self.testapp = webtest.TestApp(app)
     testing_common.SetSheriffDomains(['chromium.org'])
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     self.SetCurrentUser('foo@chromium.org')
-
     self._issue_tracker_service = testing_common.FakeIssueTrackerService()
     self.PatchObject(
         file_bug.issue_tracker_service,
         'IssueTrackerService', lambda *_: self._issue_tracker_service)
+    app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
+    self.testapp = webtest.TestApp(app)
 
   def tearDown(self):
     super(FileBugTest, self).tearDown()
