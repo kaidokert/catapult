@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a49c2777_a46d5186",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-02T17:02:29Z",
+      "side": 0,
+      "message": "It appears that, when FRAME is undefined or empty, the loops in this function that depend on FRAME are no longer relevant and must be removed to avoid exception. Without those loops, this entire function practically becomes no-op and seems no longer useful to exist.",
+      "parentUuid": "35be61e2_cb3da7bf",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 32
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "21e323b6_e3b55183",
         "filename": "tracing/tracing/value/ui/raster_visualization.html",
         "patchSetId": 4
@@ -83,6 +107,30 @@
       "writtenOn": "2020-06-02T14:57:26Z",
       "side": 0,
       "message": "Is the tr.v.ui.FRAME tied to the pipeline.html?",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e61975d9_3e79f04a",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-02T17:02:29Z",
+      "side": 0,
+      "message": "My interpretation is that tr.v.ui.FRAME, as a mere list of metric names, does not directly depend on pipeline.html, but eventually requires the entries in FRAME to match those metrics provided by pipeline.html. Now that pipeline.html no longer exists, FRAME also serves no purpose.",
+      "parentUuid": "21e323b6_e3b55183",
       "range": {
         "startLine": 147,
         "startChar": 49,
