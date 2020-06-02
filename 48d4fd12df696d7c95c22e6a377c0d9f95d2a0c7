@@ -51,6 +51,24 @@
       "revId": "48d4fd12df696d7c95c22e6a377c0d9f95d2a0c7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fb0e97f_ba83f494",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-02T07:40:12Z",
+      "side": 1,
+      "message": "Restructured this a little bit to remove the reliance on the job_id variable. PTAL?",
+      "parentUuid": "0e9b693d_167cc526",
+      "revId": "48d4fd12df696d7c95c22e6a377c0d9f95d2a0c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
