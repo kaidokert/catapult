@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "c75e738e_a845a1dd",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-02T19:31:49Z",
+      "side": 0,
+      "message": "I\u0027m not sure pipeline.html the sole source of them?\n\nAs in openBenchmarkChart_ (line 181 below) there is references to FRAME which I would similarly expect to fail.\n\nThe original commit of this file: https://chromium-review.googlesource.com/c/1316007\n\nlinks to aDesign Doc:\nhttps://docs.google.com/document/d/1nUiPkFEinH9hYxJsw_JVzXXaYkwdYxEB9yFjqEwmVzw/edit\n\nI see there other visualizations other than pipeline. Could you take a look at them to see how they would be impacted by this?",
+      "parentUuid": "e61975d9_3e79f04a",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be4555ef_5b1e58d8",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 2
