@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84f067ec_c741966e",
+        "filename": "dashboard/dashboard/common/testing_common.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-06-02T03:39:40Z",
+      "side": 1,
+      "message": "Isn\u0027t this a no-op when self.issues does not contain issue_key?  I think you want `setdefault` not `get` here.\n\nIf silently ignoring status updates for absent issues is deliberate, then there needs to be a comment to say so explicitly.",
+      "range": {
+        "startLine": 427,
+        "startChar": 0,
+        "endLine": 427,
+        "endChar": 56
+      },
+      "revId": "a5d0662b82d042e1f42472c568e42047541e7ab1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
