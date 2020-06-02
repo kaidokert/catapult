@@ -8,17 +8,16 @@ from __future__ import absolute_import
 
 import datetime
 import json
-import sys
-
+import logging
 import mock
+import sys
 import webapp2
 import webtest
 
 # Importing mock_oauth2_decorator before file_bug mocks out
 # OAuth2Decorator usage in that file.
-# pylint: disable=unused-import
 from dashboard import mock_oauth2_decorator
-# pylint: enable=unused-import
+mock_oauth2_decorator.init()  # Force initialise decorator.
 
 from dashboard import file_bug
 from dashboard.common import namespaced_stored_object
@@ -28,7 +27,6 @@ from dashboard.models import anomaly
 from dashboard.models import bug_label_patterns
 from dashboard.models import histogram
 from dashboard.models.subscription import Subscription
-from dashboard.services import crrev_service
 
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
@@ -38,17 +36,16 @@ class FileBugTest(testing_common.TestCase):
 
   def setUp(self):
     super(FileBugTest, self).setUp()
-    app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
-    self.testapp = webtest.TestApp(app)
     testing_common.SetSheriffDomains(['chromium.org'])
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     self.SetCurrentUser('foo@chromium.org')
-
     self._issue_tracker_service = testing_common.FakeIssueTrackerService()
     self.PatchObject(
         file_bug.issue_tracker_service,
         'IssueTrackerService', lambda *_: self._issue_tracker_service)
+    app = webapp2.WSGIApplication([('/file_bug', file_bug.FileBugHandler)])
+    self.testapp = webtest.TestApp(app)
 
   def tearDown(self):
     super(FileBugTest, self).tearDown()
@@ -332,27 +329,32 @@ class FileBugTest(testing_common.TestCase):
     self.assertIn('http://docs', comment)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
   @mock.patch.object(
-      file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
-      mock.MagicMock(return_value=[]))
+      file_bug.crrev_service, 'GetNumbering',
+      mock.MagicMock(
+          return_value={'git_sha': '852ba7672ce02911e9f8f2a22363283adc80940e'}))
   @mock.patch.object(
-      crrev_service, 'GetNumbering',
+      file_bug.gitiles_service, 'CommitInfo',
       mock.MagicMock(return_value={
-          'git_sha': '852ba7672ce02911e9f8f2a22363283adc80940e'}))
-  @mock.patch('dashboard.services.gitiles_service.CommitInfo',
-              mock.MagicMock(return_value={
-                  'author': {'email': 'foo@bar.com'},
-                  'message': 'My first commit!'}))
+          'author': {
+              'email': 'foo@bar.com'
+          },
+          'message': 'My first commit!'
+      }))
   def testGet_WithFinish_CreatesBugSingleRevOwner(self):
     # When a POST request is sent with keys specified and with the finish
     # parameter given, an issue will be created using the issue tracker
     # API, and the anomalies will be updated, and a response page will
     # be sent which indicates success.
     namespaced_stored_object.Set(
-        'repositories',
-        {"chromium": {
-            "repository_url": "https://chromium.googlesource.com/chromium/src"
-        }})
+        'repositories', {
+            "chromium": {
+                "repository_url":
+                    "https://chromium.googlesource.com/chromium/src"
+            }
+        })
     self._issue_tracker_service.bug_id = 277761
     response = self._PostSampleBug(is_single_rev=True)
 
@@ -368,28 +370,34 @@ class FileBugTest(testing_common.TestCase):
     self.assertIn('My first commit', comment)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
   @mock.patch.object(
-      file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
-      mock.MagicMock(return_value=[]))
+      file_bug.crrev_service, 'GetNumbering',
+      mock.MagicMock(
+          return_value={'git_sha': '852ba7672ce02911e9f8f2a22363283adc80940e'}))
   @mock.patch.object(
-      crrev_service, 'GetNumbering',
-      mock.MagicMock(return_value={
-          'git_sha': '852ba7672ce02911e9f8f2a22363283adc80940e'}))
-  @mock.patch('dashboard.services.gitiles_service.CommitInfo',
-              mock.MagicMock(return_value={
-                  'author': {'email': 'v8-ci-autoroll-builder@chops-service-'
-                                      'accounts.iam.gserviceaccount.com'},
-                  'message': 'This is a roll\n\nTBR=sheriff@bar.com'}))
+      file_bug.gitiles_service, 'CommitInfo',
+      mock.MagicMock(
+          return_value={
+              'author': {
+                  'email': 'v8-ci-autoroll-builder@chops-service-'
+                           'accounts.iam.gserviceaccount.com'
+              },
+              'message': 'This is a roll\n\nTBR=sheriff@bar.com'
+          }))
   def testGet_WithFinish_CreatesBugSingleRevAutorollOwner(self):
     # When a POST request is sent with keys specified and with the finish
     # parameter given, an issue will be created using the issue tracker
     # API, and the anomalies will be updated, and a response page will
     # be sent which indicates success.
     namespaced_stored_object.Set(
-        'repositories',
-        {"chromium": {
-            "repository_url": "https://chromium.googlesource.com/chromium/src"
-        }})
+        'repositories', {
+            "chromium": {
+                "repository_url":
+                    "https://chromium.googlesource.com/chromium/src"
+            }
+        })
     self._issue_tracker_service.bug_id = 277761
     response = self._PostSampleBug(is_single_rev=True)
 
@@ -459,27 +467,32 @@ class FileBugTest(testing_common.TestCase):
         comment)
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
+  @mock.patch.object(file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
+                     mock.MagicMock(return_value=[]))
   @mock.patch.object(
-      file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
-      mock.MagicMock(return_value=[]))
+      file_bug.crrev_service, 'GetNumbering',
+      mock.MagicMock(
+          return_value={'git_sha': '852ba7672ce02911e9f8f2a22363283adc80940e'}))
   @mock.patch.object(
-      crrev_service, 'GetNumbering',
+      file_bug.gitiles_service, 'CommitInfo',
       mock.MagicMock(return_value={
-          'git_sha': '852ba7672ce02911e9f8f2a22363283adc80940e'}))
-  @mock.patch('dashboard.services.gitiles_service.CommitInfo',
-              mock.MagicMock(return_value={
-                  'author': {'email': 'foo@bar.com'},
-                  'message': 'My first commit!'}))
+          'author': {
+              'email': 'foo@bar.com'
+          },
+          'message': 'My first commit!'
+      }))
   def testGet_WithFinish_CreatesBugSingleRevDifferentMasterOwner(self):
     # When a POST request is sent with keys specified and with the finish
     # parameter given, an issue will be created using the issue tracker
     # API, and the anomalies will be updated, and a response page will
     # be sent which indicates success.
     namespaced_stored_object.Set(
-        'repositories',
-        {"chromium": {
-            "repository_url": "https://chromium.googlesource.com/chromium/src"
-        }})
+        'repositories', {
+            "chromium": {
+                "repository_url":
+                    "https://chromium.googlesource.com/chromium/src"
+            }
+        })
     self._issue_tracker_service.bug_id = 277761
     response = self._PostSampleBug(is_single_rev=True, master='Foo')
 
@@ -668,6 +681,7 @@ class FileBugTest(testing_common.TestCase):
             ('component', 'Foo>Bar'),
         ])
 
+    logging.debug('response = %s', response)
     self.assertIn(
         '<input type="text" name="owner" value="">',
         response.body)
@@ -710,6 +724,7 @@ class FileBugTest(testing_common.TestCase):
             ('component', 'Foo>Bar'),
         ])
 
+    logging.debug('response = %s', response)
     self.assertIn(
         '<input type="text" name="owner" value="">',
         response.body)
@@ -759,6 +774,7 @@ class FileBugTest(testing_common.TestCase):
             ('component', 'Foo>Bar'),
         ])
 
+    logging.debug('response = %s', response)
     self.assertIn(
         '<input type="checkbox" checked name="component" value="Abc&gt;Xyz">',
         response.body)
@@ -829,6 +845,7 @@ class FileBugTest(testing_common.TestCase):
             ('component', 'Foo>Bar'),
         ])
 
+    logging.debug('response = %s', response)
     self.assertNotIn(
         '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)
@@ -899,6 +916,7 @@ class FileBugTest(testing_common.TestCase):
             ('label', 'two'),
             ('component', 'Foo>Bar'),
         ])
+    logging.debug('response = %s', response)
     self.assertIn(
         '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)
@@ -964,6 +982,7 @@ class FileBugTest(testing_common.TestCase):
             ('label', 'two'),
             ('component', 'Foo>Bar'),
         ])
+    logging.debug('response = %s', response)
     self.assertIn(
         '<input type="checkbox" checked name="component" value="Abc&gt;Def">',
         response.body)

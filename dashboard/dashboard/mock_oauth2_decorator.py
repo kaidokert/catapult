@@ -39,9 +39,13 @@ class MockOAuth2Decorator(object):
     pass
 
 
-oauth2_decorator.DECORATOR = MockOAuth2Decorator(
-    client_id='client_id',
-    client_secret='client_secret',
-    scope='scope',
-    message='message',
-    callback_path='callback_path')
+def Init():
+  oauth2_decorator.DECORATOR = MockOAuth2Decorator(
+      client_id='client_id',
+      client_secret='client_secret',
+      scope='scope',
+      message='message',
+      callback_path='callback_path')
+
+# Always force the init funciton to be called on import.
+Init()
