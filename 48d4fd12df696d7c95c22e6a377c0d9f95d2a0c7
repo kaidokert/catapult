@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ce8a376_3b704c19",
+        "filename": "dashboard/dashboard/file_bug.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-06-02T02:40:39Z",
+      "side": 1,
+      "message": "if GetNumbering returns error, KeyError will be raised here. Maybe we should check `if \u0027error\u0027 in result` like pinpoint.ResolveToGitHash.",
+      "revId": "48d4fd12df696d7c95c22e6a377c0d9f95d2a0c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e9b693d_167cc526",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-06-02T02:40:39Z",
+      "side": 1,
+      "message": "It\u0027s not clear for me that we are checking job_id everywhere but it actually means checking commit range. We only reuse the code:\n```\n    self._group.updated \u003d now\n    self._group.status \u003d self._group.Status.bisected\n    self._CommitGroup()\n```\nIf assigning issue to culprit fails with 500, because we have updated the group, it will never retry. And `_UpdateWithBisectError` also includes updating group, we may update the group twice.\n\nJust make the one CL case more explicit maybe better, like:\n```\n      regression \u003d self._SelectAutoBisectRegression(bisect_enabled)\n\n      # We\u0027ll only bisect a range if it has more than one commit included.\n      if abs(regression.start_revision - regression.end_revision) \u003c\u003d 1\n        return self._AssignIssue(regression)\n\n      job_id \u003d self._StartPinpointBisectJob(regression)\n```",
+      "revId": "48d4fd12df696d7c95c22e6a377c0d9f95d2a0c7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
