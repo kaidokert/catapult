@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc19f40_edeb3ff4",
+        "filename": "dashboard/dashboard/common/testing_common.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-06-02T02:44:53Z",
+      "side": 1,
+      "message": "This line is a bit hard to read, maybe split into multiple statements?",
+      "revId": "615fe69178bcbb8f400a1c6cf2784dca0897aade",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
