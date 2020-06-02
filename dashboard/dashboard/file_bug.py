@@ -341,9 +341,11 @@ def _GetSingleCLForAnomalies(alerts):
   return revision
 
 
-def _GetCommitInfoForAlert(alert):
+def GetCommitInfoForAlert(alert, crrev=None, gitiles=None):
   repository_url = None
   repositories = namespaced_stored_object.Get('repositories')
+  crrev = crrev or crrev_service
+  gitiles = gitiles or gitiles_service
   test_path = utils.TestPath(alert.test)
   if test_path.startswith('ChromiumPerf'):
     repository_url = repositories['chromium']['repository_url']
@@ -358,29 +360,45 @@ def _GetCommitInfoForAlert(alert):
   if (re.match(r'^[0-9]{5,7}$', rev) and
       repository_url == repositories['chromium']['repository_url']):
     # This is a commit position, need the git hash.
-    result = crrev_service.GetNumbering(
+    result = crrev.GetNumbering(
         number=rev,
         numbering_identifier='refs/heads/master',
         numbering_type='COMMIT_POSITION',
         project='chromium',
         repo='chromium/src')
-    rev = result['git_sha']
+
+    # First check if there's an error in the response.
+    error = result.get('error')
+    if error is not None:
+      logging.error('Got error from crrev: %s', error)
+      return None
+
+    # Safely retrieve the git_sha key.
+    rev = result.get('git_sha', '')
   if not re.match(r'[a-fA-F0-9]{40}$', rev):
     # This still isn't a git hash; can't assign bug.
     return None
 
-  return gitiles_service.CommitInfo(repository_url, rev)
+  return gitiles.CommitInfo(repository_url, rev)
 
-def _AssignBugToCLAuthor(bug_id, commit_info, service):
+
+def AssignBugToCLAuthor(bug_id,
+                        commit_info,
+                        service,
+                        project='chromium',
+                        labels=None):
   """Assigns the bug to the author of the given revision."""
   author = commit_info['author']['email']
   message = commit_info['message']
   service.AddBugComment(
       bug_id,
-      'Assigning to %s because this is the only CL in range:\n%s' % (
-          author, message),
+      'Assigning to %s because this is the only CL in range:\n%s' %
+      (author, message),
       status='Assigned',
-      owner=author)
+      owner=author,
+      labels=labels,
+      project=project)
+
 
 def FileBug(http, owner, cc, summary, description, labels, components,
             urlsafe_keys, needs_bisect=True):
@@ -423,14 +441,14 @@ def FileBug(http, owner, cc, summary, description, labels, components,
     culprit_rev = _GetSingleCLForAnomalies(alerts)
 
     if culprit_rev is not None:
-      commit_info = _GetCommitInfoForAlert(alerts[0])
+      commit_info = GetCommitInfoForAlert(alerts[0])
       if commit_info:
         author = commit_info['author']['email']
         message = commit_info['message']
         if not utils.GetSheriffForAutorollCommit(author, message):
           needs_bisect = False
-          _AssignBugToCLAuthor(
-              bug_id, commit_info, dashboard_issue_tracker_service)
+          AssignBugToCLAuthor(bug_id, commit_info,
+                              dashboard_issue_tracker_service)
 
     if needs_bisect:
       bisect_result = auto_bisect.StartNewBisectForBug(bug_id)
