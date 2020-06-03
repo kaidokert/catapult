@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "55042007_6b628c50",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-03T20:55:10Z",
+      "side": 0,
+      "message": "Thank you for the comment. I have removed the references to FRAME in openBenchmarkChart_().\n\nAs of Patchset 5, this CL makes the following changes to the visualization charts as shown by the screenshot in subsection 2 of the \"How it works\" section of the design doc above:\n\n* The entire raster visualization chart is removed. i.e. the part from \"Aggregate Data by Run\" to before the \"Metrics\" visualization section. This is due to the removal of the rasterVisualization.build() call (https://chromium-review.googlesource.com/c/catapult/+/2212422/1/tracing/tracing/value/ui/visualizations_data_container.html#196).\n\n* The \"Individual Page Results\" dropdown list above the raster visualization still exists but is empty, since the population of the list\u0027s items is in the no-longer-called rasterVisualization.build() (https://chromium-review.googlesource.com/c/catapult/+/2212422/3/tracing/tracing/value/ui/raster_visualization.html#b129)\n\n* The \"Pipeline\" and \"Pipeline Breakdown\" charts in the \"Metrics\" section are removed. This is presumably due to the removal of pipeline related info in the \"METRICS\" container (https://chromium-review.googlesource.com/c/catapult/+/2212422/4/tracing/tracing/value/ui/visualizations_data_container.html#b86)\n\nSo the only visualization charts that are still visible are the \"Thread\" and \"Thread Breakdown\" charts.",
+      "parentUuid": "c75e738e_a845a1dd",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be4555ef_5b1e58d8",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 2
