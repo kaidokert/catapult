@@ -14,16 +14,6 @@ found in the LICENSE file.
 tr.b.unittest.testSuite(function() {
   function generateBars(page, benchmark) {
     const benchmarkData = [];
-    for (const [threadName, thread] of tr.v.ui.FRAME.entries()) {
-      const data = {x: benchmark, hide: 0};
-      if (page !== tr.v.ui.AGGREGATE_KEY) data.group = page;
-      for (const metric of thread.keys()) {
-        const key = metric + '-' + data.x + '-' + threadName;
-        const mean = Math.random() * 100;
-        data[key] = Math.round(mean * 100) / 100;
-      }
-      benchmarkData.push(data);
-    }
     return benchmarkData;
   }
 

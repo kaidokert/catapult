@@ -116,7 +116,6 @@ Polymer({
     aggregateChart.enableToolTip = true;
     aggregateChart.toolTipCallBack = (rect) =>
       this.openBenchmarkChart_(rect);
-    this.setChartColors_(aggregateChart, this.data_.get(tr.v.ui.AGGREGATE_KEY));
     aggregateChart.data = this.data_.get(tr.v.ui.AGGREGATE_KEY);
     this.setChartSize_(aggregateChart,
         this.data_.get(tr.v.ui.AGGREGATE_KEY).length);
@@ -135,34 +134,6 @@ Polymer({
     chart.graphWidth = tr.b.math.clamp(pageCount * 25, 500, 1000);
   },
 
-  setChartColors_(chart, data) {
-    const metrics = new Map();
-    let count = 0;
-    for (const thread of tr.v.ui.FRAME.values()) {
-      for (const metric of thread.keys()) {
-        metrics.set(metric, count);
-        count++;
-      }
-    }
-    for (let i = 0; i < Math.floor(data.length / tr.v.ui.FRAME.length); ++i) {
-      let j = 0;
-      for (const [threadName, thread] of tr.v.ui.FRAME.entries()) {
-        for (const metric of thread.keys()) {
-          let color = 'transparent';
-          if (thread.get(metric)) {
-            const mainColorIndex = metrics.get(metric) % tr.v.ui.COLORS.length;
-            const subColorIndex = i % tr.v.ui.COLORS[mainColorIndex].length;
-            color = tr.v.ui.COLORS[mainColorIndex][subColorIndex];
-          }
-          const series = metric + '-' + data[i * 2 + j].x + '-' + threadName;
-          chart.getDataSeries(series).color = color;
-          chart.getDataSeries(series).title = !i ? metric : '';
-        }
-        j++;
-      }
-    }
-  },
-
   createChart_(title) {
     const newChart = new tr.ui.b.NameBarChart();
     newChart.chartTitle = title;
@@ -177,8 +148,6 @@ Polymer({
   },
 
   openBenchmarkChart_(rect) {
-    // Find main metric and corresponding sub-metrics
-    const benchmarkIndex = Math.floor(rect.index / tr.v.ui.FRAME.length);
     const title = rect.datum.x;
 
     // Create child chart with breakdown data
@@ -194,15 +163,6 @@ Polymer({
 
     const newDataSet = [];
 
-    for (const page of this.data_.keys()) {
-      if (page === tr.v.ui.AGGREGATE_KEY) continue;
-      for (let i = 0; i < tr.v.ui.FRAME.length; i++) {
-        newDataSet.push(this.data_
-            .get(page)[benchmarkIndex * tr.v.ui.FRAME.length + i]);
-      }
-    }
-
-    this.setChartColors_(chart, newDataSet);
     chart.data = newDataSet;
     this.setChartSize_(chart, newDataSet.length);
   },
@@ -223,7 +183,6 @@ Polymer({
 
     const pageData = this.data_.get(page);
 
-    this.setChartColors_(pageChart, pageData);
     pageChart.data = pageData;
     this.setChartSize_(pageChart, pageData.length);
   },
@@ -257,7 +216,6 @@ Polymer({
 
     const pageData = this.data_.get(page);
 
-    this.setChartColors_(pageChart, pageData);
     pageChart.data = pageData;
     this.setChartSize_(pageChart, pageData.length);
   },
