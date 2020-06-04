@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "685cc9a0_2943a7e9",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-04T14:13:07Z",
+      "side": 0,
+      "message": "If the entire \"Raster Visualization\" chart is removed, then do we need this file anymore?\n\nEspecially as you noted tracing/tracing/value/ui/visualizations_data_container.html is no longer calling into |build()|\n\nthird_party/catapult/tracing/tracing/value/ui/metrics_visualization.html will handle the \"Thread\" and \"Thread Breakdown\" charts.",
+      "parentUuid": "55042007_6b628c50",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be4555ef_5b1e58d8",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 2

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03597433_3dffffaa",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-04T14:13:07Z",
+      "side": 1,
+      "message": "If there are no longer any raster charts, then we could remove \"buildRasterChart_\"",
+      "range": {
+        "startLine": 193,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 46
+      },
+      "revId": "e066e986ed61f3a4b0c2e360a4a2d63a4f892a09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
