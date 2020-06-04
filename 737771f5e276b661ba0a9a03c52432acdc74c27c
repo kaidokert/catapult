@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b86c0ee4_6192bbc5",
+        "filename": "tracing/tracing/extras/importer/linux_perf/memreclaim_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1115925
+      },
+      "writtenOn": "2020-06-04T10:05:28Z",
+      "side": 1,
+      "message": "It seems like kswapdWake/kswapdSleep from above will still stomp on the order and gfp\nvariables.\n\nThere are two pairs of events: reclaimBegin/reclaimEnd and kswapdWake/kswapdSleep. The code seems assume that they can\u0027t overlap (you can\u0027t have kswapdWake then reclaimBegin then later kswapdSleep) and so uses the same three variables (order, gfp, openSliceTs) for information about both. It seems to have been this way right from the beginning: [1]\n\nMaybe that\u0027s a bad assumption and it can happen (although it must be quite rare because we don\u0027t see this a lot). Maybe it happens (more often?) for us now because of some issue in the exporter.\n\nI feel like we have two options:\n1. We completely separate all the variables (e.g. we have memReclaimOpenSliceTS, memReclaimOrder, memReclaimGfp, kswapdWakeOpenSliceTs, ...). This will lead to overlapping slices in the output. I don\u0027t know if the semantics of that are correct or what other problems it might cause. \n2. When we see reclaimBegin and we\u0027re waiting for kswapdSleep (or vice versa) we ignore it.\nThis probably means putting in adding an explicit kthread.waitingFor \u003d kswapdSleep/reclaimEnd/undefined check/set at the start of each function.\n\nI probably lean towards 2. what are your thoughts?\n\n[1]: https://source.chromium.org/chromium/_/chromium/catapult.git/+/376c4cbfac2231e44d9cbe7b36b8ee673b0990a6?originalUrl\u003dhttps%2F%2F%2F%2F:%2F%2F%2F%2F%2F%2Fcs.chromium.org%2F",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 33
+      },
+      "revId": "737771f5e276b661ba0a9a03c52432acdc74c27c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
