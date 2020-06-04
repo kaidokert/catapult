@@ -365,16 +365,11 @@ class AlertGroupWorkflow(object):
 
     try:
       regressions, _ = self._GetRegressions(update.anomalies)
-      bisect_enabled = [
-          r for r in regressions
-          if r.auto_bisect_enable and r.bug_id > 0
-      ]
+      regression = self._SelectAutoBisectRegression(regressions)
 
       # Do nothing if none of the regressions should be auto-bisected.
-      if not bisect_enabled:
+      if regression is None:
         return
-
-      regression = self._SelectAutoBisectRegression(bisect_enabled)
 
       # We'll only bisect a range if the range at least one point.
       if regression.start_revision == regression.end_revision:
@@ -455,10 +450,19 @@ class AlertGroupWorkflow(object):
 
     return results.get('jobId')
 
-  @staticmethod
-  def _SelectAutoBisectRegression(regressions):
+  def _SelectAutoBisectRegression(self, regressions):
+    # Select valid regressions for bisection:
+    # 1. auto_bisect_enable
+    # 2. has a valid bug_id
+    # 3. hasn't start a bisection
+    regressions = [
+        r for r in regressions or []
+        if (r.auto_bisect_enable and
+            r.bug_id > 0 and
+            not set(r.pinpoint_bisects) & set(self._group.bisection_ids))
+    ]
     if not regressions:
-      return None, []
+      return None
 
     max_regression = None
     max_count = 0

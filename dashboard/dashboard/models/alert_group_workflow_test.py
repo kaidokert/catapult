@@ -64,7 +64,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
                      issue=None,
                      anomalies=None,
                      status=None,
-                     project_id=None):
+                     project_id=None,
+                     bisection_ids=None):
     anomaly_entity = anomaly_key.get()
     group = alert_group.AlertGroup(
         id=str(uuid.uuid4()),
@@ -77,6 +78,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             start=anomaly_entity.start_revision,
             end=anomaly_entity.end_revision,
         ),
+        bisection_ids=bisection_ids or [],
     )
     if issue:
       group.bug = alert_group.BugInfo(
@@ -541,7 +543,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     ))
     self.assertIsNone(self._pinpoint.new_job_request)
 
-  def testBisect_GroupBisected_NoRecovered(self):
+  def testBisect_GroupTriaged_NoRecovered(self):
     anomalies = [
         self._AddAnomaly(
             median_before_anomaly=0.1, median_after_anomaly=1.0,
@@ -587,7 +589,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertNotEqual(recovered_anomaly.pinpoint_bisects, ['123456'])
     self.assertEqual(bisected_anomaly.pinpoint_bisects, ['123456'])
 
-  def testBisect_GroupBisected_NoIgnored(self):
+  def testBisect_GroupTriaged_NoIgnored(self):
     anomalies = [
         # This anomaly is manually ignored.
         self._AddAnomaly(
@@ -808,6 +810,49 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         anomalies[1].urlsafe(),
         json.loads(self._pinpoint.new_job_request['tags'])['alert'])
     self.assertEqual(['123456'], group.get().bisection_ids)
+
+  def testBisect_GroupTriaged_AlertBisected(self):
+    anomalies = [
+        self._AddAnomaly(
+            test='master/bot1/test_suite/measurement/test_case1',
+            pinpoint_bisects=['abcdefg'],
+            median_before_anomaly=0.2,
+        ),
+        self._AddAnomaly(
+            test='master/bot1/test_suite/measurement/test_case2',
+            pinpoint_bisects=['abcdef'],
+            median_before_anomaly=0.1,
+        ),
+    ]
+    group = self._AddAlertGroup(
+        anomalies[0],
+        issue=self._issue_tracker.issue,
+        status=alert_group.AlertGroup.Status.triaged,
+        bisection_ids=['abcdef'],
+    )
+    self._issue_tracker.issue.update({
+        'state': 'open',
+    })
+    self._sheriff_config.patterns = {
+        '*': [subscription.Subscription(
+            name='sheriff', auto_triage_enable=True, auto_bisect_enable=True)],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        issue_tracker=self._issue_tracker,
+        pinpoint=self._pinpoint,
+        crrev=self._crrev,
+    )
+    w.Process(update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+        now=datetime.datetime.utcnow(),
+        anomalies=ndb.get_multi(anomalies),
+        issue=self._issue_tracker.issue,
+    ))
+    self.assertEqual(
+        anomalies[0].urlsafe(),
+        json.loads(self._pinpoint.new_job_request['tags'])['alert'])
+    self.assertEqual(['abcdef', '123456'], group.get().bisection_ids)
 
   def testBisect_GroupTriaged_CrrevFailed(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]
