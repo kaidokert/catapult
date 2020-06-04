@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd74aacf_ac90005b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-04T05:24:53Z",
+      "side": 1,
+      "message": "Please auto-format with yapf.",
+      "range": {
+        "startLine": 458,
+        "startChar": 4,
+        "endLine": 463,
+        "endChar": 5
+      },
+      "revId": "0f4c8026e24c75ad691ab020a63e0e21facfc9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cba0ca8_f65b0b0f",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-04T05:24:53Z",
+      "side": 1,
+      "message": "This is testing that we created two Pinpoint bisections for the group?\n\nI think you don\u0027t want to enforce the order of the ids (i.e. maybe use self.assertItemsEqual(...))",
+      "range": {
+        "startLine": 855,
+        "startChar": 0,
+        "endLine": 855,
+        "endChar": 69
+      },
+      "revId": "0f4c8026e24c75ad691ab020a63e0e21facfc9cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
