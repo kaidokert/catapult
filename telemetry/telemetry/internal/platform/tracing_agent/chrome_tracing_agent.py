@@ -88,7 +88,13 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
         raise ChromeTracingStartedError(
             'Tracing is already running on devtools at port %s on platform'
             'backend %s.' % (client.remote_port, self._platform_backend))
-      client.StartChromeTracing(config, timeout)
+
+      # Fuchsia doesn't support ReturnAsStream transfer mode.
+      if self._platform_backend.GetOSName() != 'fuchsia':
+        client.StartChromeTracing(config, timeout,
+                                  transfer_mode='ReturnAsStream')
+      else:
+        client.StartChromeTracing(config, timeout, transfer_mode='ReportEvents')
     return True
 
   def StartAgentTracing(self, config, timeout):
@@ -110,7 +116,12 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     # this point to use it for enabling tracing upon browser startup. For the
     # latter, we invoke start tracing command through devtools for browsers that
     # are already started and tracked by chrome_tracing_devtools_manager.
-    started_startup_tracing = self._StartStartupTracing(config)
+    started_startup_tracing = False
+
+    # Fuchsia doesn't support starting tracing with a config file.
+    if self._platform_backend.GetOSName() != 'fuchsia':
+      started_startup_tracing = self._StartStartupTracing(config)
+
     started_devtools_tracing = self._StartDevToolsTracing(config, timeout)
     if started_startup_tracing or started_devtools_tracing:
       self._trace_config = config
@@ -150,8 +161,8 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
       raise ChromeTracingStoppedError(
           'Tracing is not running on platform backend %s.'
           % self._platform_backend)
-
-    self._RemoveTraceConfigFile()
+    if self._platform_backend.GetOSName() != 'fuchsia':
+      self._RemoveTraceConfigFile()
 
     # We get all DevTools clients including the stale ones, so that we get an
     # exception if there is a stale client. This is because we will potentially
@@ -247,18 +258,19 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
   def _RemoveTraceConfigFile(self):
     if not self._trace_config_file:
       return
+    os_name = self._platform_backend.GetOSName()
     logging.info('Remove trace config file in %s', self._trace_config_file)
-    if self._platform_backend.GetOSName() == 'android':
+    if os_name == 'android':
       self._platform_backend.device.RemovePath(
           self._trace_config_file, force=True, rename=True, as_root=True)
-    elif self._platform_backend.GetOSName() == 'chromeos':
+    elif os_name == 'chromeos':
       self._platform_backend.cri.RmRF(self._trace_config_file)
-    elif self._platform_backend.GetOSName() in _DESKTOP_OS_NAMES:
+    elif os_name in _DESKTOP_OS_NAMES:
       if os.path.exists(self._trace_config_file):
         os.remove(self._trace_config_file)
       shutil.rmtree(os.path.dirname(self._trace_config_file))
-    else:
-      raise NotImplementedError
+    # else:
+    #   raise NotImplementedError
     self._trace_config_file = None
 
   def SupportsFlushingAgentTracing(self):
