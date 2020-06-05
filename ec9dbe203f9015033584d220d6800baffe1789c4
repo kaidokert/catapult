@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86594cdb_89d65805",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-05T21:08:36Z",
+      "side": 1,
+      "message": "Nit: Instead of having the same \u0027ReturnAsStream\u0027 default in multiple places, make the default None and use \"transfer_mode or \u0027ReturnAsStream\u0027\" in the place where it\u0027s actually used.",
+      "range": {
+        "startLine": 363,
+        "startChar": 25,
+        "endLine": 363,
+        "endChar": 55
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a15f420_d40ecd0e",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-05T21:08:36Z",
+      "side": 1,
+      "message": "Is it possible to make a Fuchsia-specific ChromeTracingAgent? If so, my preference would be to have a Fuchsia-specific sub class and have the special logic stuck in there instead of sprinkled throughout this file. Concrete examples below.\n\nAlternatively, instead of making it Fuchsia-specific, you can base it off the transfer mode, e.g. \"ChromeReportEventsTracingAgent\". In that case, it might be better to have ChromeTracingAgent be abstract and also add \"ChromeReturnAsStreamTracingAgent\" as a subclass and use that in more places.",
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f95cca2_cce5079d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-05T21:08:36Z",
+      "side": 1,
+      "message": "tranfer_mode\u003dself.TransferMode(), and have the Fuchsia-specific one override that to return \u0027ReportEvents\u0027.",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 64
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f47f34f_dfebf5f0",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-05T21:08:36Z",
+      "side": 1,
+      "message": "Have the Fuchsia version no-op.",
+      "range": {
+        "startLine": 123,
+        "startChar": 32,
+        "endLine": 123,
+        "endChar": 65
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c08c20e7_bf9710aa",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-05T21:08:36Z",
+      "side": 1,
+      "message": "Ditto.",
+      "range": {
+        "startLine": 165,
+        "startChar": 6,
+        "endLine": 165,
+        "endChar": 35
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
