@@ -22,6 +22,30 @@
       "revId": "e066e986ed61f3a4b0c2e360a4a2d63a4f892a09",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6ec8ce9_6e31b82e",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-06-05T16:21:13Z",
+      "side": 1,
+      "message": "Yea, looks like the code (and comment) are no longer used. Remove all code/comments that is no longer needed.",
+      "parentUuid": "03597433_3dffffaa",
+      "range": {
+        "startLine": 193,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 46
+      },
+      "revId": "e066e986ed61f3a4b0c2e360a4a2d63a4f892a09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
