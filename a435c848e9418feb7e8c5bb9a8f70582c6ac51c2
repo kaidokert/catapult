@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be2573ea_9de0b668",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-08T21:10:32Z",
+      "side": 1,
+      "message": "bpastene@, would it be better to move this to device_utils?",
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
