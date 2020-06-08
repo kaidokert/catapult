@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fbe06286_bdf39e6c",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-08T22:41:20Z",
+      "side": 1,
+      "message": "Why keep this lambda if it just immediately returns what it\u0027s passed?",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be2573ea_9de0b668",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 2
@@ -13,6 +36,47 @@
       "writtenOn": "2020-06-08T21:10:32Z",
       "side": 1,
       "message": "bpastene@, would it be better to move this to device_utils?",
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4cac8ab_2d19d79a",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-08T22:41:20Z",
+      "side": 1,
+      "message": "If you expect someone else (or some other file) will want to call it, yes. Otherwise if you suspect this is going to be the only user, then it\u0027s best to keep the method here.",
+      "parentUuid": "be2573ea_9de0b668",
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c8fa0be_4abe5cea",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-08T22:41:20Z",
+      "side": 1,
+      "message": "I believe this class can be initialized for a device currently in fastboot mode. What would this getprop call do in that case?",
+      "range": {
+        "startLine": 168,
+        "startChar": 25,
+        "endLine": 168,
+        "endChar": 45
+      },
       "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
