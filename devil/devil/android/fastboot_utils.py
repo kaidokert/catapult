@@ -22,9 +22,6 @@ logger = logging.getLogger(__name__)
 _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
 _FASTBOOT_REBOOT_TIMEOUT = 10 * _DEFAULT_TIMEOUT
-# It appears that boards which support A/B updates have different partition
-# requirements when flashing.
-_A_B_BOARDS = {'walleye'}
 _KNOWN_PARTITIONS = collections.OrderedDict([
     ('bootloader', {
         'image': 'bootloader*.img',
@@ -41,7 +38,7 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
     # https://source.android.com/devices/tech/ota/ab/ab_implement#recovery
     ('recovery', {
         'image': 'recovery.img',
-        'optional': lambda b: b in _A_B_BOARDS
+        'optional': lambda b: b
     }),
     ('system', {
         'image': 'system.img'
@@ -55,7 +52,7 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
     ('cache', {
         'image': 'cache.img',
         'wipe_only': True,
-        'optional': lambda b: b in _A_B_BOARDS
+        'optional': lambda b: b
     }),
     ('vendor', {
         'image': 'vendor*.img',
@@ -63,17 +60,17 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
     }),
     ('dtbo', {
         'image': 'dtbo.img',
-        'optional': lambda b: b not in _A_B_BOARDS
+        'optional': lambda b: not b
     }),
     ('vbmeta', {
         'image': 'vbmeta.img',
-        'optional': lambda b: b not in _A_B_BOARDS
+        'optional': lambda b: not b
     }),
 ])
 ALL_PARTITIONS = _KNOWN_PARTITIONS.keys()
 
 
-def _FindAndVerifyPartitionsAndImages(partitions, directory, board):
+def _FindAndVerifyPartitionsAndImages(partitions, directory, ab_capable):
   """Validate partitions and images.
 
   Validate all partition names and partition directories. Cannot stop mid
@@ -82,7 +79,7 @@ def _FindAndVerifyPartitionsAndImages(partitions, directory, board):
   Args:
     Partitions: partitions to be tested.
     directory: directory containing the images.
-    board: board name of the device to flash.
+    ab_capable: boolean to indicate if the device supports A/B system updates.
 
   Returns:
     Dictionary with exact partition, image name mapping.
@@ -103,7 +100,7 @@ def _FindAndVerifyPartitionsAndImages(partitions, directory, board):
     if image_file:
       return_dict[partition] = image_file
     elif ('optional' not in partition_info
-          or not partition_info['optional'](board)):
+          or not partition_info['optional'](ab_capable)):
       raise device_errors.FastbootCommandFailedError(
           'Failed to flash device. Could not find image for %s.',
           partition_info['image'])
@@ -155,6 +152,22 @@ class FastbootUtils(object):
 
     self._default_timeout = default_timeout
     self._default_retries = default_retries
+    self._ab_capable = None
+
+  @property
+  def ab_capable(self):
+    """returns boolean to indicate if a device supports A/B updates.
+
+    It appears that boards which support A/B updates have different partition
+    requirements when flashing.
+    """
+    if self._ab_capable is None:
+      # According to https://bit.ly/2UlJkGa and https://bit.ly/2MG8CL0,
+      # The property 'ro.build.ab_update' will be defined if the device
+      # supports A/B system updates.
+      self._ab_capable = self._device.GetProp('ro.build.ab_update') == 'true'
+
+    return self._ab_capable
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def WaitForFastbootMode(self, timeout=None, retries=None):
@@ -261,7 +274,7 @@ class FastbootUtils(object):
             'unverified board.')
 
     flash_image_files = _FindAndVerifyPartitionsAndImages(
-        partitions, directory, self._board)
+        partitions, directory, self.ab_capable)
     partitions = flash_image_files.keys()
     for partition in partitions:
       if _KNOWN_PARTITIONS[partition].get('wipe_only') and not wipe:
