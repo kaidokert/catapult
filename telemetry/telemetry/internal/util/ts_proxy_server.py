@@ -15,7 +15,6 @@ class TsProxyServer(ts_proxy_server.TsProxyServer):
   class provides a programming API to the tsproxy script in
   telemetry/third_party/tsproxy/tsproxy.py
   """
-
   def __enter__(self):
     """Add support for with-statement."""
     self.StartServer()
@@ -24,4 +23,3 @@ class TsProxyServer(ts_proxy_server.TsProxyServer):
   def __exit__(self, unused_exc_type, unused_exc_val, unused_exc_tb):
     """Add support for with-statement."""
     self.StopServer()
-
