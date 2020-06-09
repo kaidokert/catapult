@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "59c0f0d5_82b433a0",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-09T00:52:17Z",
+      "side": 1,
+      "message": "Probably a dump question, but do you know how to fix it? (dtbo below returns \"not b\")",
+      "parentUuid": "fbe06286_bdf39e6c",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be2573ea_9de0b668",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 2
@@ -60,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "eec33f4a_ed731643",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-09T00:52:17Z",
+      "side": 1,
+      "message": "Ack. Thanks",
+      "parentUuid": "f4cac8ab_2d19d79a",
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c8fa0be_4abe5cea",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 2
@@ -80,6 +122,30 @@
       "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70be42c1_ffcd0459",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-09T00:52:17Z",
+      "side": 1,
+      "message": "Ah, thanks. It will fail with error \"No device/emulator found\".\nSince it is called only during flashing, I have replaced with fastboot version.",
+      "parentUuid": "7c8fa0be_4abe5cea",
+      "range": {
+        "startLine": 168,
+        "startChar": 25,
+        "endLine": 168,
+        "endChar": 45
+      },
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
