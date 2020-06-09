@@ -177,6 +177,29 @@
         rect.left + rect.width * this.options_.left_start_ratio_;
     const startTop =
         rect.top + rect.height * this.options_.top_start_ratio_;
+    // let pixelsToScrollX = 0;
+    // let pixelsToScrollY = 0;
+    // if (this.options_.direction_ === 'down') {
+    //   pixelsToScrollY = distance;
+    // } else if (this.options_.direction_ === 'up') {
+    //   pixelsToScrollY = -distance;
+    // } else if (this.options_.direction_ === 'right') {
+    //   pixelsToScrollX = distance;
+    // } else if (this.options_.direction_ === 'left') {
+    //   pixelsToScrollX = -distance;
+    // } else if (this.options_.direction_ === 'upleft') {
+    //   pixelsToScrollX = -distance;
+    //   pixelsToScrollY = -distance;
+    // } else if (this.options_.direction_ === 'upright') {
+    //   pixelsToScrollX = distance;
+    //   pixelsToScrollY = -distance;
+    // } else if (this.options_.direction_ === 'downleft') {
+    //   pixelsToScrollX = -distance;
+    //   pixelsToScrollY = distance;
+    // } else if (this.options_.direction_ === 'downright') {
+    //   pixelsToScrollX = distance;
+    //   pixelsToScrollY = distance;
+    // }
     chrome.gpuBenchmarking.smoothScrollBy(
         distance, this.onGestureComplete_.bind(this), startLeft, startTop,
         this.options_.gesture_source_type_, this.options_.direction_,
