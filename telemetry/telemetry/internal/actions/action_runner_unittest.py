@@ -335,17 +335,17 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
     self.assertTrue(
         action_runner.EvaluateJavaScript(
             'document.querySelector("#left-right").scrollLeft') > 75)
-    action_runner.ScrollElement(
-        selector='#top-bottom', direction='down', top_start_ratio=0.9)
-    self.assertTrue(
-        action_runner.EvaluateJavaScript(
-            'document.querySelector("#top-bottom").scrollTop') > 75)
+    # action_runner.ScrollElement(
+    #     selector='#top-bottom', direction='down', top_start_ratio=0.9)
+    # self.assertTrue(
+    #     action_runner.EvaluateJavaScript(
+    #         'document.querySelector("#top-bottom").scrollTop') > 75)
 
-    action_runner.ScrollPage(
-        direction='right', left_start_ratio=0.9, distance=100)
-    self.assertTrue(
-        action_runner.EvaluateJavaScript(
-            '(document.scrollingElement || document.body).scrollLeft') > 75)
+    # action_runner.ScrollPage(
+    #     direction='right', left_start_ratio=0.9, distance=100)
+    # self.assertTrue(
+    #     action_runner.EvaluateJavaScript(
+    #         '(document.scrollingElement || document.body).scrollLeft') > 75)
 
   @decorators.Disabled(
       'android',  # crbug.com/437065.
