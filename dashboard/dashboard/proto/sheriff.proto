@@ -44,6 +44,7 @@ message Pattern {
 // TODO(fancl): Support post filter
 message Rules {
   repeated Pattern match = 1;
+  repeated Pattern post_filter = 2;
 }
 
 // An AnomalyConfig defines the bounds for which a change in a matching metric
