@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf76861c_0544d602",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-09T19:03:22Z",
+      "side": 1,
+      "message": "You could keep both the fastboot.GerVar check along with the device.GetProp check, and use a check similar to line 194 below to determine which to use.",
+      "revId": "346c1d2df81308b509ea4ef375b3feaf3165d937",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "91352183_3351d54a",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-09T19:03:22Z",
+      "side": 1,
+      "message": "Previously, we needed to check the presence of a passed-in-string in a set. A lambda worked well for that case.\n\nNow, you\u0027re just testing for the value of a passed-in-boolean. How can you refactor this to add static fields to these entries, and upstream any checking to users of this dict?",
+      "parentUuid": "59c0f0d5_82b433a0",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be2573ea_9de0b668",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 2
