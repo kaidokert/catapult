@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c20f0633_fd243fbb",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-10T01:06:17Z",
+      "side": 1,
+      "message": "Suggestion: use \u0027exclude\u0027 instead. Also explain that this is applied after match?",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "2b8f52d1e5b215524534b2a05dfaf3fb13b7f979",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8cfde1e_acf6b7cc",
+        "filename": "dashboard/dashboard/sheriff_config/validator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-10T01:06:17Z",
+      "side": 1,
+      "message": "Would `not subscription.patterns and not subscription.rules.match` be sufficient here?",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 53
+      },
+      "revId": "2b8f52d1e5b215524534b2a05dfaf3fb13b7f979",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
