@@ -41,9 +41,9 @@ message Pattern {
   repeated StatType stats = 3;
 }
 
-// TODO(fancl): Support post filter
 message Rules {
   repeated Pattern match = 1;
+  repeated Pattern exclude = 2;
 }
 
 // An AnomalyConfig defines the bounds for which a change in a matching metric
