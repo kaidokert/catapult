@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f69292b2_2f9cdafe",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T19:05:46Z",
+      "side": 1,
+      "message": "Nit: This isn\u0027t necessarily exclusively for CIPD usage, so I would suggest something like:\n\n\"\"\"Overrides _go_binary_path.\n\nThis allows the server to use WPRGO files retrieved from somewhere other\nthan GCS, such as CIPD.\n\"\"\"",
+      "range": {
+        "startLine": 134,
+        "startChar": 4,
+        "endLine": 134,
+        "endChar": 70
+      },
+      "revId": "c680f9fbc48bf6b53c38d0b49dcb674c60c40f73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "360ce280_4e8ca433",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T19:05:46Z",
+      "side": 1,
+      "message": "Nit: os.path.join instead of os.sep.join here and elsewhere.",
+      "range": {
+        "startLine": 52,
+        "startChar": 34,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "c680f9fbc48bf6b53c38d0b49dcb674c60c40f73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
