@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "898779bc_aa7e5955",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T17:29:15Z",
+      "side": 1,
+      "message": "Nit: executable",
+      "range": {
+        "startLine": 36,
+        "startChar": 20,
+        "endLine": 36,
+        "endChar": 31
+      },
+      "revId": "b3ea44cd94dea00091030dbc805237b52c28570b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cde5a04e_eceda492",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T17:29:15Z",
+      "side": 1,
+      "message": "Nit: It\u0027s more common to set uninitialized members that you aren\u0027t modifying in place to None",
+      "range": {
+        "startLine": 45,
+        "startChar": 24,
+        "endLine": 45,
+        "endChar": 26
+      },
+      "revId": "b3ea44cd94dea00091030dbc805237b52c28570b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95f4bd76_6c770647",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T17:29:15Z",
+      "side": 1,
+      "message": ".keys() is unnecessary.",
+      "range": {
+        "startLine": 62,
+        "startChar": 49,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "b3ea44cd94dea00091030dbc805237b52c28570b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c442af71_2ff0dfe3",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T17:29:15Z",
+      "side": 1,
+      "message": "Does this accept arguments as two separate strings (i.e. separated by a space on the command line)? If so, it\u0027ll be shorter and arguably cleaner to use `... \u0027-pkg-def\u0027, os.path.basename(pkg_def)]` instead.",
+      "range": {
+        "startLine": 94,
+        "startChar": 27,
+        "endLine": 94,
+        "endChar": 28
+      },
+      "revId": "b3ea44cd94dea00091030dbc805237b52c28570b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7d431500_c59f049a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T17:29:15Z",
+      "side": 1,
+      "message": "Still missing a description.",
+      "parentUuid": "66c5bea2_3edd11a1",
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6475ac38_f1c75928",
         "filename": "telemetry/bin/update_wpr_go_cipd",
         "patchSetId": 3
