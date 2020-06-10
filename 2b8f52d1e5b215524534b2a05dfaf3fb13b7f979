@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a5d0c9d_b2dc8fda",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-10T05:56:06Z",
+      "side": 1,
+      "message": "Please document this message better -- use other message documentation as a guide on how to explain what this message defines.",
+      "parentUuid": "a433f7e1_17cf7106",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "2b8f52d1e5b215524534b2a05dfaf3fb13b7f979",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8cfde1e_acf6b7cc",
         "filename": "dashboard/dashboard/sheriff_config/validator.py",
         "patchSetId": 1
