@@ -392,6 +392,19 @@ class DeviceUtilsGetExternalStoragePathTest(DeviceUtilsTest):
         self.device.GetExternalStoragePath()
 
 
+class DeviceUtilsGetAppWritablePathTest(DeviceUtilsTest):
+  def testGetAppWritablePath_succeeds(self):
+    with self.assertCalls(
+        self.EnsureCacheInitialized(sdcard='/fake/storage/path')):
+      self.assertEquals('/fake/storage/path/Documents',
+                        self.device.GetAppWritablePath())
+
+  def testGetAppWritablePath_fails(self):
+    with self.assertCalls(self.EnsureCacheInitialized(sdcard='')):
+      with self.assertRaises(device_errors.CommandFailedError):
+        self.device.GetAppWritablePath()
+
+
 class DeviceUtilsGetApplicationPathsInternalTest(DeviceUtilsTest):
 
   def testGetApplicationPathsInternal_exists(self):
