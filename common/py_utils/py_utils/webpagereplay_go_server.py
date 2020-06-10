@@ -129,6 +129,11 @@ class ReplayServer(object):
           'wpr_go', py_utils.GetHostOsName(), py_utils.GetHostArchName())
     return cls._go_binary_path
 
+  @classmethod
+  def _SetGoBinaryPath(cls, go_binary_path):
+    """Overrides the _go_binary_path so that it would work on CIPD."""
+    cls._go_binary_path = go_binary_path
+
   @property
   def http_port(self):
     return self._started_ports['http']
