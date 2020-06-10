@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "04437ddb_8993c36c",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-10T22:39:56Z",
+      "side": 1,
+      "message": "I have refactored it. Please let me know your comments.",
+      "parentUuid": "91352183_3351d54a",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "a435c848e9418feb7e8c5bb9a8f70582c6ac51c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be2573ea_9de0b668",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 2
