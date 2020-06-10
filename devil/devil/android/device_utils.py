@@ -680,6 +680,9 @@ class DeviceUtils(object):
   def GetExternalStoragePath(self, timeout=None, retries=None):
     """Get the device's path to its SD card.
 
+    Note: this path is read-only by apps in R+. Use GetAppWritablePath() to
+    obtain a path writable by apps.
+
     Args:
       timeout: timeout in seconds
       retries: number of retries
@@ -697,6 +700,23 @@ class DeviceUtils(object):
       raise device_errors.CommandFailedError('$EXTERNAL_STORAGE is not set',
                                              str(self))
     return self._cache['external_storage']
+
+  def GetAppWritablePath(self, timeout=None, retries=None):
+    """Get a path that on the device's SD card that apps can write.
+
+    Args:
+      timeout: timeout in seconds
+      retries: number of retries
+
+    Returns:
+      A app-writeable path on the device's SD card.
+
+    Raises:
+      CommandFailedError if the external storage path could not be determined.
+      CommandTimeoutError on timeout.
+      DeviceUnreachableError on missing device.
+    """
+    return '%s/Documents' % self.GetExternalStoragePath()
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetIMEI(self, timeout=None, retries=None):

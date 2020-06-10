@@ -494,28 +494,17 @@ class DeviceUtilsGetExternalStoragePathTest(DeviceUtilsTest):
         self.device.GetExternalStoragePath()
 
 
-class DeviceUtilsIsApplicationInstalledTest(DeviceUtilsTest):
-  def testIsApplicationInstalled_installed(self):
-    with self.assertCalls((self.call.device.RunShellCommand(
-        ['pm', 'list', 'packages', 'some.installed.app'], check_return=True),
-                           ['package:some.installed.app'])):
-      self.assertTrue(self.device.IsApplicationInstalled('some.installed.app'))
+class DeviceUtilsGetAppWritablePathTest(DeviceUtilsTest):
+  def testGetAppWritablePath_succeeds(self):
+    with self.assertCalls(
+        self.EnsureCacheInitialized(sdcard='/fake/storage/path')):
+      self.assertEquals('/fake/storage/path/Documents',
+                        self.device.GetAppWritablePath())
 
-  def testIsApplicationInstalled_notInstalled(self):
-    with self.assertCalls((self.call.device.RunShellCommand(
-        ['pm', 'list', 'packages', 'not.installed.app'], check_return=True),
-                           '')):
-      self.assertFalse(self.device.IsApplicationInstalled('not.installed.app'))
-
-  def testIsApplicationInstalled_substringMatch(self):
-    with self.assertCalls((self.call.device.RunShellCommand(
-        ['pm', 'list', 'packages', 'substring.of.package'], check_return=True),
-                           [
-                               'package:first.substring.of.package',
-                               'package:second.substring.of.package',
-                           ])):
-      self.assertFalse(
-          self.device.IsApplicationInstalled('substring.of.package'))
+  def testGetAppWritablePath_fails(self):
+    with self.assertCalls(self.EnsureCacheInitialized(sdcard='')):
+      with self.assertRaises(device_errors.CommandFailedError):
+        self.device.GetAppWritablePath()
 
 
 class DeviceUtilsGetApplicationPathsInternalTest(DeviceUtilsTest):
