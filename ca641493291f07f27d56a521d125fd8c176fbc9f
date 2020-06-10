@@ -34,6 +34,24 @@
       "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8092ebde_2f876802",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-10T23:24:42Z",
+      "side": 1,
+      "message": "Re the 1st comment, yes, I am trying to add that path.\nThe current dir_cov works fine in my local repo.\ndir_above_typ points to //src/third_party/catapult/third_party/typ. Adding \"../../\" would be too much.\n\nI have tried to add the path to coverage in \"catapult_build/run_with_typ.py\" but it does not fix it.",
+      "parentUuid": "d74eb52f_26d91447",
+      "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
