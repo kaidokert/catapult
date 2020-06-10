@@ -16,6 +16,24 @@
       "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d74eb52f_26d91447",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-06-10T23:13:31Z",
+      "side": 1,
+      "message": "Also, instead of doing this here consider doing it in\n//src/third_party/catapult/catapult_build/run_with_typ.py. I think that is a better place.",
+      "parentUuid": "bded384c_a6f95723",
+      "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
