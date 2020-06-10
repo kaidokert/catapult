@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9293826d_7703b750",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-10T07:48:22Z",
+      "side": 1,
+      "message": "Can you format this to be more readable?\n\nYou can use more vertical space in the commit message to make this better, and explain what the expectations are as well (when it\u0027s used).",
+      "range": {
+        "startLine": 11,
+        "startChar": 46,
+        "endLine": 12,
+        "endChar": 72
+      },
+      "revId": "069334162e92a718acc06a22e128e264d6accc18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
