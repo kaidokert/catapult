@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afcb59d_1496c11d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "Please add a description of what this CL is for, not just what it does.",
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6475ac38_f1c75928",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed409897_bb995faa",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "I believe the current style does not have this, e.g. https://cs.chromium.org/chromium/src/third_party/catapult/telemetry/telemetry/internal/backends/chrome/cros_minidump_symbolizer.py?l\u003d1",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a6d57e_bf6983fb",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "os.sep so it works on Windows? Applies here and elsewhere.",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 33
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "907c3252_ea2f1aa2",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "nit: on",
+      "range": {
+        "startLine": 66,
+        "startChar": 35,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58cd7060_b67f2a3d",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "if platform not in self._wpr_binaries",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfe7d7c0_026adee1",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-10T00:54:50Z",
+      "side": 1,
+      "message": "Would be good to clarify here and elsewhere what exactly this is doing - it\u0027s unclear whether we\u0027re just modifying local state or if we\u0027re modifying something in the cloud.",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 32
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
