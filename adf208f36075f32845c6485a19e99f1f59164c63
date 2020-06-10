@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "68706ed9_a6123967",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T18:59:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d431500_c59f049a",
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6475ac38_f1c75928",
         "filename": "telemetry/bin/update_wpr_go_cipd",
         "patchSetId": 3
