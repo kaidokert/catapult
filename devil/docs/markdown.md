@@ -4,9 +4,9 @@
 
 ## MarkdownHelpAction
 
-### MarkdownHelpAction.\_\_init\_\_
-
 ### MarkdownHelpAction.\_\_call\_\_
+
+### MarkdownHelpAction.\_\_init\_\_
 
 ## MarkdownHelpFormatter
 
@@ -30,39 +30,6 @@ A really bare-bones argparse help formatter that generates valid markdown.
 ### MarkdownHelpFormatter.format\_help
 
 ### MarkdownHelpFormatter.start\_section
-
-### md\_bold
-
-Returns markdown-formatted bold text.
-### md\_code
-
-Returns a markdown-formatted code block in the given language.
-### md\_escape
-
-Escapes \* and \_.
-### md\_heading
-
-Returns markdown-formatted heading.
-### md\_inline\_code
-
-Returns markdown-formatted inline code.
-### md\_italic
-
-Returns markdown-formatted italic text.
-### md\_link
-
-returns a markdown-formatted link.
-### add\_md\_help\_argument
-
-Adds --md-help to the given argparse.ArgumentParser.
-```
-  Running a script with --md-help will print the help text for that script
-  as valid markdown.
-
-  Args:
-    parser: The ArgumentParser to which --md-help should be added.
-```
-
 
 ### load\_module\_from\_path
 
@@ -134,6 +101,39 @@ Write markdown documentation for the module at the provided path.
     raw_args: the raw command-line args. Usually sys.argv[1:].
   Returns:
     An integer exit code. 0 for success, non-zero for failure.
+```
+
+
+### md\_bold
+
+Returns markdown-formatted bold text.
+### md\_code
+
+Returns a markdown-formatted code block in the given language.
+### md\_escape
+
+Escapes \* and \_.
+### md\_heading
+
+Returns markdown-formatted heading.
+### md\_inline\_code
+
+Returns markdown-formatted inline code.
+### md\_italic
+
+Returns markdown-formatted italic text.
+### md\_link
+
+returns a markdown-formatted link.
+### add\_md\_help\_argument
+
+Adds --md-help to the given argparse.ArgumentParser.
+```
+  Running a script with --md-help will print the help text for that script
+  as valid markdown.
+
+  Args:
+    parser: The ArgumentParser to which --md-help should be added.
 ```
 
 
