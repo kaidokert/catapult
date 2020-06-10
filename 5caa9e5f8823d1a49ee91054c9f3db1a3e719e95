@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "323f8e8d_2b59df93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-10T05:57:51Z",
+      "side": 1,
+      "message": "Please update the description to mention the \u0027exclude\u0027 option and maybe provide an example of how this should be used.",
+      "revId": "5caa9e5f8823d1a49ee91054c9f3db1a3e719e95",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
