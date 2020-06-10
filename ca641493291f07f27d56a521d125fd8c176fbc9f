@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bded384c_a6f95723",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-06-10T23:07:24Z",
+      "side": 1,
+      "message": "Are you trying to add //src/third_party/catapult/third_party/coverage to the sys.path. If so then you need to add ../../ to dir_above_typ.",
+      "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
