@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "66c5bea2_3edd11a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3afcb59d_1496c11d",
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6475ac38_f1c75928",
         "filename": "telemetry/bin/update_wpr_go_cipd",
         "patchSetId": 3
@@ -65,6 +83,54 @@
     },
     {
       "key": {
+        "uuid": "97ddef77_205d79e2",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed409897_bb995faa",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0017efb_5febd317",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6475ac38_f1c75928",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7a6d57e_bf6983fb",
         "filename": "telemetry/bin/update_wpr_go_cipd",
         "patchSetId": 3
@@ -85,6 +151,30 @@
       "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aa58d11_a468a79b",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a6d57e_bf6983fb",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 33
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "8a98c8a3_cac4ff52",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "907c3252_ea2f1aa2",
+      "range": {
+        "startLine": 66,
+        "startChar": 35,
+        "endLine": 66,
+        "endChar": 36
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58cd7060_b67f2a3d",
         "filename": "telemetry/bin/update_wpr_go_cipd",
         "patchSetId": 3
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "cd6ced4b_fcea7b10",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58cd7060_b67f2a3d",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfe7d7c0_026adee1",
         "filename": "telemetry/bin/update_wpr_go_cipd",
         "patchSetId": 3
@@ -154,6 +292,30 @@
       "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a98a983d_079bc87b",
+        "filename": "telemetry/bin/update_wpr_go_cipd",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-06-10T01:05:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfe7d7c0_026adee1",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 32
+      },
+      "revId": "adf208f36075f32845c6485a19e99f1f59164c63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
