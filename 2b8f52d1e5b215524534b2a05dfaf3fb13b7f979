@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a433f7e1_17cf7106",
+        "filename": "dashboard/dashboard/proto/sheriff.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-06-10T05:40:08Z",
+      "side": 1,
+      "message": "Actually the order doesn\u0027t affect the result so `exclude` is enough for explaining the behaviour",
+      "parentUuid": "c20f0633_fd243fbb",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "2b8f52d1e5b215524534b2a05dfaf3fb13b7f979",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8cfde1e_acf6b7cc",
         "filename": "dashboard/dashboard/sheriff_config/validator.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "2b8f52d1e5b215524534b2a05dfaf3fb13b7f979",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb9dafc3_dbb5bc03",
+        "filename": "dashboard/dashboard/sheriff_config/validator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-06-10T05:40:08Z",
+      "side": 1,
+      "message": "😂",
+      "parentUuid": "a8cfde1e_acf6b7cc",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 53
+      },
+      "revId": "2b8f52d1e5b215524534b2a05dfaf3fb13b7f979",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
