@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import re
+
 from telemetry.internal.actions import scroll_to_element
 from telemetry.internal.actions import utils
 from telemetry.testing import tab_test_case
@@ -44,12 +46,29 @@ class ScrollToElementActionTest(tab_test_case.TabTestCase):
       container.appendChild(element);
     """, theid=theid, container_selector=container_selector)
 
+  def _GetChromeVersion(self):
+    self.Navigate('blank.html')
+    ua = self._tab.EvaluateJavaScript('window.navigator.userAgent')
+    match = re.search(r'Chrome/[0-9\.]+', ua)
+    if not match:
+      raise Exception('Could not find Chrome version in User-Agent: %s' % ua)
+    chrome_version = ua[match.start():match.end()]
+    version = chrome_version[chrome_version.find('/') + 1:]
+    version_split = version.split('.')
+    milestone = int(version_split[0])
+    return milestone
+
   def setUp(self):
     tab_test_case.TabTestCase.setUp(self)
     self.Navigate('blank.html')
     utils.InjectJavaScript(self._tab, 'gesture_common.js')
 
   def testScrollToElement(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     self._MakePageVerticallyScrollable()
     self._InsertElement()
     self.assertEquals(
@@ -66,6 +85,11 @@ class ScrollToElementActionTest(tab_test_case.TabTestCase):
     self.assertGreater(self._VisibleAreaOfElement(selector='#element'), 0)
 
   def testScrollContainerToElement(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     self._MakePageVerticallyScrollable()
     self._InsertContainer()
     self._InsertElement(container_selector='#container')

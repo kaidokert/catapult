@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import re
+
 from telemetry import decorators
 from telemetry.internal.actions import page_action
 from telemetry.internal.actions import scroll
@@ -78,8 +80,25 @@ class ScrollActionTest(tab_test_case.TabTestCase):
 
     self.assertAlmostEqual(distance, actual, delta=maxError + urlBarError)
 
+  def _GetChromeVersion(self):
+    self.Navigate('blank.html')
+    ua = self._tab.EvaluateJavaScript('window.navigator.userAgent')
+    match = re.search(r'Chrome/[0-9\.]+', ua)
+    if not match:
+      raise Exception('Could not find Chrome version in User-Agent: %s' % ua)
+    chrome_version = ua[match.start():match.end()]
+    version = chrome_version[chrome_version.find('/') + 1:]
+    version_split = version.split('.')
+    milestone = int(version_split[0])
+    return milestone
+
   @decorators.Disabled('chromeos', 'linux')  # crbug.com/1006789
   def testScrollDistanceFastTouch(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     # Just pass the test on platforms that don't support touch (i.e. Mac)
     if not page_action.IsGestureSourceTypeSupported(self._tab, 'touch'):
       return
@@ -92,6 +111,11 @@ class ScrollActionTest(tab_test_case.TabTestCase):
 
   @decorators.Disabled('android-reference')  # crbug.com/934649
   def testScrollDistanceFastWheel(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     # Wheel scrolling will have a much greater error than touch. There's 2
     # reasons: 1) synthetic wheel gesture accumulate the sent deltas and use
     # that to determine how much delta to send at each event dispatch time.
@@ -103,6 +127,11 @@ class ScrollActionTest(tab_test_case.TabTestCase):
         500000, 200000, page_action.GESTURE_SOURCE_MOUSE, 15000)
 
   def testScrollDistanceSlowTouch(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     # Just pass the test on platforms that don't support touch (i.e. Mac)
     if not page_action.IsGestureSourceTypeSupported(self._tab, 'touch'):
       return
@@ -115,12 +144,22 @@ class ScrollActionTest(tab_test_case.TabTestCase):
 
   @decorators.Disabled('android-reference')  # crbug.com/934649
   def testScrollDistanceSlowWheel(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     self._RunScrollDistanceTest(
         1000, 300, page_action.GESTURE_SOURCE_MOUSE, 200)
 
   @decorators.Disabled('android-reference')  # crbug.com/934649
   @decorators.Disabled('win-reference')  # crbug.com/805523
   def testWheelScrollDistanceWhileZoomed(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     # TODO(bokan): This API was added recently so only run the test once it's
     # available. Remove this check once it rolls into stable builds.
     chromeSupportsSetPageScaleFactor = self._tab.EvaluateJavaScript(
@@ -154,6 +193,11 @@ class ScrollActionTest(tab_test_case.TabTestCase):
         2000, 2000, page_action.GESTURE_SOURCE_MOUSE, 60)
 
   def testTouchScrollDistanceWhileZoomed(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     # Just pass the test on platforms that don't support touch (i.e. Mac)
     if not page_action.IsGestureSourceTypeSupported(self._tab, 'touch'):
       return
@@ -170,6 +214,10 @@ class ScrollActionTest(tab_test_case.TabTestCase):
         2000, 2000, page_action.GESTURE_SOURCE_TOUCH, 20)
 
   def testScrollAction(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
 
     self._MakePageVerticallyScrollable()
     self.assertEquals(
@@ -199,6 +247,11 @@ class ScrollActionTest(tab_test_case.TabTestCase):
   @decorators.Disabled('android')
   @decorators.Disabled('chromeos')  # crbug.com/984016
   def testDiagonalScrollAction(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self._GetChromeVersion() < 84:
+      return
+
     self._MakePageVerticallyScrollable()
     self.assertEquals(
         self._tab.EvaluateJavaScript('document.scrollingElement.scrollTop'), 0)
