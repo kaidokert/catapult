@@ -22,9 +22,6 @@ logger = logging.getLogger(__name__)
 _DEFAULT_TIMEOUT = 30
 _DEFAULT_RETRIES = 3
 _FASTBOOT_REBOOT_TIMEOUT = 10 * _DEFAULT_TIMEOUT
-# It appears that boards which support A/B updates have different partition
-# requirements when flashing.
-_A_B_BOARDS = {'walleye'}
 _KNOWN_PARTITIONS = collections.OrderedDict([
     ('bootloader', {
         'image': 'bootloader*.img',
@@ -41,7 +38,7 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
     # https://source.android.com/devices/tech/ota/ab/ab_implement#recovery
     ('recovery', {
         'image': 'recovery.img',
-        'optional': lambda b: b in _A_B_BOARDS
+        'optional_ab': True
     }),
     ('system', {
         'image': 'system.img'
@@ -55,25 +52,25 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
     ('cache', {
         'image': 'cache.img',
         'wipe_only': True,
-        'optional': lambda b: b in _A_B_BOARDS
+        'optional_ab': True
     }),
     ('vendor', {
         'image': 'vendor*.img',
-        'optional': lambda _: True
+        'optional': True
     }),
     ('dtbo', {
         'image': 'dtbo.img',
-        'optional': lambda b: b not in _A_B_BOARDS
+        'optional_ab': False
     }),
     ('vbmeta', {
         'image': 'vbmeta.img',
-        'optional': lambda b: b not in _A_B_BOARDS
+        'optional_ab': False
     }),
 ])
 ALL_PARTITIONS = _KNOWN_PARTITIONS.keys()
 
 
-def _FindAndVerifyPartitionsAndImages(partitions, directory, board):
+def _FindAndVerifyPartitionsAndImages(partitions, directory, supports_ab):
   """Validate partitions and images.
 
   Validate all partition names and partition directories. Cannot stop mid
@@ -82,7 +79,7 @@ def _FindAndVerifyPartitionsAndImages(partitions, directory, board):
   Args:
     Partitions: partitions to be tested.
     directory: directory containing the images.
-    board: board name of the device to flash.
+    supports_ab: boolean to indicate if the device supports A/B system updates.
 
   Returns:
     Dictionary with exact partition, image name mapping.
@@ -97,16 +94,32 @@ def _FindAndVerifyPartitionsAndImages(partitions, directory, board):
         return os.path.join(directory, filename)
     return None
 
+  def is_image_optional(partition_info, supports_ab):
+    """Check if an image is optional.
+
+    An image will be optional if the key 'optional' is True in partition_info.
+    In addition, an image will also be optional if
+     - devices don't support A/B updates (support_ab is False), and
+       the key 'optional_ab' exists in partition_info.
+     - devices support A/B updates (supports_ab is True), and
+       the key 'optional_ab' is true in partition_info.
+    """
+    return (partition_info.get('optional')
+            or (not supports_ab and 'optional_ab' in partition_info)
+            or (supports_ab and partition_info.get('optional_ab')))
+
   for partition in partitions:
     partition_info = _KNOWN_PARTITIONS[partition]
     image_file = find_file(partition_info['image'])
     if image_file:
       return_dict[partition] = image_file
-    elif ('optional' not in partition_info
-          or not partition_info['optional'](board)):
+    elif not is_image_optional(partition_info, supports_ab):
       raise device_errors.FastbootCommandFailedError(
-          'Failed to flash device. Could not find image for %s.',
-          partition_info['image'])
+          [],
+          '',
+          message='Failed to flash device%s. Could not find image for %s.' %
+          (' which supports A/B updates' if supports_ab else '',
+           partition_info['image']))
   return return_dict
 
 
@@ -155,6 +168,35 @@ class FastbootUtils(object):
 
     self._default_timeout = default_timeout
     self._default_retries = default_retries
+    self._supports_ab = None
+
+  @property
+  def supports_ab(self):
+    """returns boolean to indicate if a device supports A/B updates.
+
+    It appears that boards which support A/B updates have different partition
+    requirements when flashing.
+    """
+    if self._supports_ab is None:
+      if self.IsFastbootMode():
+        try:
+          # According to https://bit.ly/2XIuICQ, slot-count is used to
+          # determine if a device supports A/B updates
+          self._supports_ab = int(self.fastboot.GetVar('slot-count')) >= 2
+        except device_errors.FastbootCommandFailedError:
+          self._supports_ab = False
+      else:
+        # According to https://bit.ly/2UlJkGa and https://bit.ly/2MG8CL0,
+        # the property 'ro.build.ab_update' will be defined if the device
+        # supports A/B system updates.
+        self._supports_ab = (
+            self._device.GetProp('ro.build.ab_update') == 'true')
+
+    return self._supports_ab
+
+  def IsFastbootMode(self):
+    return self._serial in (str(d) for d in self.fastboot.Devices())
+    #return self._serial in (str(d) for d in fastboot.Fastboot.Devices())
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def WaitForFastbootMode(self, timeout=None, retries=None):
@@ -162,11 +204,8 @@ class FastbootUtils(object):
 
     This waits for the device serial to show up in fastboot devices output.
     """
-
-    def fastboot_mode():
-      return any(self._serial == str(d) for d in self.fastboot.Devices())
-
-    timeout_retry.WaitFor(fastboot_mode, wait_period=self._FASTBOOT_WAIT_TIME)
+    timeout_retry.WaitFor(self.IsFastbootMode,
+                          wait_period=self._FASTBOOT_WAIT_TIME)
 
   @decorators.WithTimeoutAndRetriesFromInstance(
       min_default_timeout=_FASTBOOT_REBOOT_TIMEOUT)
@@ -175,7 +214,7 @@ class FastbootUtils(object):
 
     Roots phone if needed, then reboots phone into fastboot mode and waits.
     """
-    if self._serial in (str(d) for d in fastboot.Fastboot.Devices()):
+    if self.IsFastbootMode():
       return
     self._device.EnableRoot()
     self._device.adb.Reboot(to_bootloader=True)
@@ -261,7 +300,7 @@ class FastbootUtils(object):
             'unverified board.')
 
     flash_image_files = _FindAndVerifyPartitionsAndImages(
-        partitions, directory, self._board)
+        partitions, directory, self.supports_ab)
     partitions = flash_image_files.keys()
     for partition in partitions:
       if _KNOWN_PARTITIONS[partition].get('wipe_only') and not wipe:
@@ -300,7 +339,6 @@ class FastbootUtils(object):
     use with care.
 
     Args:
-      fastboot: A FastbootUtils instance.
       directory: Directory with build files.
       wipe: Wipes cache and userdata if set to true.
       partitions: List of partitions to flash. Defaults to all.
