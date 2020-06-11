@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "254d1de3_439efb21",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-11T19:29:48Z",
+      "side": 1,
+      "message": "\u003e \u0027ab_exclusive\u0027 implies that it only applies to A/B devices\n\nBut they do, don\u0027t they?\n- dtbo \u0026 vbmeta only apply to A/B devices\n- cache \u0026 recovery only apply to non-A/B devices\n\nTherefore, exclusive seems more intuitive to me.",
+      "parentUuid": "90e93abc_af2ce61a",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "678d366b42cbb9eed9457074a52339b47d3d0d3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "932b6d44_adede8cc",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 8
