@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26c8c073_a70a154c",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-06-11T14:34:22Z",
+      "side": 0,
+      "message": "Why\u0027d you remove this test?",
+      "range": {
+        "startLine": 497,
+        "startChar": 6,
+        "endLine": 497,
+        "endChar": 43
+      },
+      "revId": "eb9f481af81830207aab0aa28aee1887e34e3415",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

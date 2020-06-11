@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "195fc5cb_5fbe4163",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-06-11T14:34:22Z",
+      "side": 1,
+      "message": "nit: should this be Downloads, given your comment above?",
+      "range": {
+        "startLine": 725,
+        "startChar": 17,
+        "endLine": 725,
+        "endChar": 25
+      },
+      "revId": "a88a6b377de12a95a3b416f356f9dcf0586bdfd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
