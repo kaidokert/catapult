@@ -52,6 +52,24 @@
       "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c55020e_680725ac",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-11T01:14:46Z",
+      "side": 1,
+      "message": "The change has been moved to crrev.com/c/2240500",
+      "parentUuid": "8092ebde_2f876802",
+      "revId": "ca641493291f07f27d56a521d125fd8c176fbc9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
