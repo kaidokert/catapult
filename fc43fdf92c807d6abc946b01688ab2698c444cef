@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66a26e21_16a57742",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-06-11T19:30:17Z",
+      "side": 1,
+      "message": "Are MediaStore.Download and /sdcard/Download the same thing? That isn\u0027t clear from the doc.",
+      "range": {
+        "startLine": 721,
+        "startChar": 23,
+        "endLine": 721,
+        "endChar": 31
+      },
+      "revId": "fc43fdf92c807d6abc946b01688ab2698c444cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "037582ca_ba117458",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-06-11T19:30:17Z",
+      "side": 1,
+      "message": "nit: posixpath.join(GetExternalStoragePath(), \u0027Download\u0027)",
+      "range": {
+        "startLine": 725,
+        "startChar": 13,
+        "endLine": 725,
+        "endChar": 58
+      },
+      "revId": "fc43fdf92c807d6abc946b01688ab2698c444cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
