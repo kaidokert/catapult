@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "90e93abc_af2ce61a",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-11T19:04:20Z",
+      "side": 1,
+      "message": "\u0027ab_exclusive\u0027 implies that it only applies to A/B devices.\nBut for A/B devices, there are images that are needed (dtbo and vbmeta), and not needed (recovery and cache). Setting \u0027ab_exclusive\u0027 to True and False for them seems ambiguous as well.\n\nHow about \u0027ab_required\u0027 or \u0027ab_needed\u0027?\nSince images usually are compiled from source, I think it is not common to have recovery.img in compile output for A/B devices.",
+      "parentUuid": "7ba628de_eab51683",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "678d366b42cbb9eed9457074a52339b47d3d0d3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "932b6d44_adede8cc",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-11T18:30:50Z",
       "side": 1,
       "message": "?",
+      "range": {
+        "startLine": 199,
+        "startChar": 4,
+        "endLine": 199,
+        "endChar": 73
+      },
+      "revId": "678d366b42cbb9eed9457074a52339b47d3d0d3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc99fbcb_c4714b5d",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-11T19:04:20Z",
+      "side": 1,
+      "message": "Ah, apologize. I will remove it",
+      "parentUuid": "932b6d44_adede8cc",
       "range": {
         "startLine": 199,
         "startChar": 4,
