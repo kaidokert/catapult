@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a3952cd6_a4392676",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1002120
+      },
+      "writtenOn": "2020-06-11T20:45:56Z",
+      "side": 1,
+      "message": "It seems so. The base_unittests now work when using GetAppWritablePath. The Android code that was previously throwing the exception appears to be responsible for validating file access based on the mapping.\n\nUpdated the comment.",
+      "parentUuid": "66a26e21_16a57742",
+      "range": {
+        "startLine": 721,
+        "startChar": 23,
+        "endLine": 721,
+        "endChar": 31
+      },
+      "revId": "fc43fdf92c807d6abc946b01688ab2698c444cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "037582ca_ba117458",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "fc43fdf92c807d6abc946b01688ab2698c444cef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b614f6a_d765efb2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1002120
+      },
+      "writtenOn": "2020-06-11T20:45:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "037582ca_ba117458",
+      "range": {
+        "startLine": 725,
+        "startChar": 13,
+        "endLine": 725,
+        "endChar": 58
+      },
+      "revId": "fc43fdf92c807d6abc946b01688ab2698c444cef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
