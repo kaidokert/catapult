@@ -4,6 +4,7 @@
 # found in the LICENSE file.
 import unittest
 
+import re
 import mock
 
 from telemetry.core import exceptions
@@ -73,6 +74,17 @@ class ActionRunnerMeasureMemoryTest(tab_test_case.TabTestCase):
 
 
 class ActionRunnerTest(tab_test_case.TabTestCase):
+  def GetChromeVersion(self):
+    self.Navigate('blank.html')
+    ua = self._tab.EvaluateJavaScript('window.navigator.userAgent')
+    match = re.search('Chrome/[0-9\.]+', ua)
+    if not match:
+      raise Exception('Could not find Chrome version in User-Agent: %s' % ua)
+    chrome_version = ua[match.start():match.end()]
+    version = chrome_version[chrome_version.find('/') + 1:]
+    version_split = version.split('.')
+    milestone = int(version_split[0])
+    return milestone
 
   def testExecuteJavaScript(self):
     action_runner = action_runner_module.ActionRunner(
@@ -279,6 +291,11 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
     self.assertRaises(exceptions.EvaluateException, WillFail)
 
   def testScrollToElement(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self.GetChromeVersion() < 84:
+      return
+
     self.Navigate('page_with_swipeables.html')
     action_runner = action_runner_module.ActionRunner(
         self._tab, skip_waits=True)
@@ -323,6 +340,11 @@ class ActionRunnerTest(tab_test_case.TabTestCase):
       'android',  # crbug.com/437065.
       'chromeos')  # crbug.com/483212.
   def testScroll(self):
+    # This test requires changes in M84 to pass, so I add a chrome version
+    # check here, will remove it after M84 goes stable.
+    if self.GetChromeVersion() < 84:
+      return
+
     if not page_action.IsGestureSourceTypeSupported(self._tab, 'touch'):
       return
 
