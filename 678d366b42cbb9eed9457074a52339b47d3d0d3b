@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "50a5ba11_439032cf",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-11T23:32:04Z",
+      "side": 1,
+      "message": "Now I get it. Updated the logic in \"is_image_required\" as well.",
+      "parentUuid": "254d1de3_439efb21",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 20
+      },
+      "revId": "678d366b42cbb9eed9457074a52339b47d3d0d3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "932b6d44_adede8cc",
         "filename": "devil/devil/android/fastboot_utils.py",
         "patchSetId": 8
@@ -117,6 +141,30 @@
       "revId": "678d366b42cbb9eed9457074a52339b47d3d0d3b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca337add_722b6a8d",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-11T23:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc99fbcb_c4714b5d",
+      "range": {
+        "startLine": 199,
+        "startChar": 4,
+        "endLine": 199,
+        "endChar": 73
+      },
+      "revId": "678d366b42cbb9eed9457074a52339b47d3d0d3b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
