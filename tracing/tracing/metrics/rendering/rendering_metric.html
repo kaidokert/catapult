@@ -43,6 +43,8 @@ tr.exportTo('tr.metrics.rendering', function() {
       tr.metrics.rendering.addUIFrameTimeHistograms(
           histograms, model, chromeHelper.telemetryHelper.uiSegments);
     }
+
+    tr.metrics.rendering.addAblationTimeHistograms(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric, {

@@ -776,6 +776,34 @@ tr.exportTo('tr.metrics.sh', function() {
         samplesSet.totalBlockingTimeSamples,
         totalBlockingTimeHistogram,
         histograms);
+
+
+    if (chromeHelper.gpuHelper) {
+      const gpuProcess = chromeHelper.gpuHelper.process;
+      const events = [...gpuProcess.findTopmostSlicesNamed(
+          'Memory.GPU.PeakMemoryUsage.AblationTimes')];
+
+      const allocHistogram = histograms.createHistogram('Ablation Alloc',
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [],
+          { binBoundaries:
+                tr.v.HistogramBinBoundaries.createLinear(0, 10000, 20),
+          description:
+                'The amount of time spent allocating the ablation memory',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+          });
+      const deallocHistogram = histograms.createHistogram('Ablation Dealloc',
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter, [],
+          { binBoundaries:
+                tr.v.HistogramBinBoundaries.createLinear(0, 10000, 20),
+          description:
+                'The amount of time spent deallocating the ablation memory',
+          summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+          });
+      for (let i = 0; i < events.length; i++) {
+        allocHistogram.addSample(events[i].args.alloc);
+        deallocHistogram.addSample(events[i].args.dealloc);
+      }
+    }
   }
 
   tr.metrics.MetricRegistry.register(loadingMetric);
