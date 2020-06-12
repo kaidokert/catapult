@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "4450f19d_dad85cf9",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-12T15:37:12Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a49c2777_a46d5186",
+      "range": {
+        "startLine": 138,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 32
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21e323b6_e3b55183",
         "filename": "tracing/tracing/value/ui/raster_visualization.html",
         "patchSetId": 4
@@ -235,6 +259,30 @@
       "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1a1483d_d8e43b47",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-12T15:37:12Z",
+      "side": 0,
+      "message": "raster_visualization.html and its tests are removed in Patchset 6.\n\nAs per an offline conversation with sadrul@, Patchset 7 also removes metrics_visualization.html (including the Thread and Thread Breakdown charts) due to the rare use of these visualizations. Since there are no longer any charts to show after the removal of metrics visualization, the visualization_data_container.html and the \"Visualize\" button are also removed.",
+      "parentUuid": "685cc9a0_2943a7e9",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
