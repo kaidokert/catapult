@@ -22,6 +22,30 @@
       "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f88a72c_85869ab1",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1118546
+      },
+      "writtenOn": "2020-06-12T17:16:20Z",
+      "side": 1,
+      "message": "I thought the perf tests are running on the ToT only. If it is also running on a version lower than M84, it will not work. My purpose here is to delete the old GpuBenchmarking.SmoothScrollBy, so we only have GpuBenchmarking.SmoothScrollByXY. If I cannot do it right now, so I guess I have to wait until you update the reference build to M84.",
+      "parentUuid": "a872700e_aec026b7",
+      "range": {
+        "startLine": 296,
+        "startChar": 7,
+        "endLine": 296,
+        "endChar": 37
+      },
+      "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
