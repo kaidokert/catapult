@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a872700e_aec026b7",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-06-12T06:31:19Z",
+      "side": 1,
+      "message": "Does this mean the ScrollAction will no longer work on Chrome 83 and below? That can be a problem, as we run all perf tests against both current ToT build as well as against a reference build (currently m78). Will all perf tests that use ScrollAction stop working with the reference build? It might be necessary for scroll.js to handle both old and new browsers.\n\n+Wenbin to double check my understanding.",
+      "range": {
+        "startLine": 296,
+        "startChar": 7,
+        "endLine": 296,
+        "endChar": 37
+      },
+      "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
