@@ -237,6 +237,31 @@ tr.exportTo('tr.metrics.rendering', function() {
     return frameSegments;
   }
 
+  function addAblationTimeHistograms(histograms, model) {
+    const modelHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    if (modelHelper.gpuHelper) {
+      const gpuProcess = modelHelper.gpuHelper.process;
+      const events = [...gpuProcess.findTopmostSlicesNamed("Memory.GPU.PeakMemoryUsage.AblationTimes")];
+      const alloc_histogram = histograms.createHistogram("Ablation Alloc", 
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,[],
+          { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 10000, 20),
+            description: 'The amount of time spent allocating the ablation memory',
+            summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+          });
+      const dealloc_histogram = histograms.createHistogram("Ablation Dealloc", 
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,[],
+          { binBoundaries: tr.v.HistogramBinBoundaries.createLinear(0, 10000, 20),
+            description: 'The amount of time spent deallocating the ablation memory',
+            summaryOptions: tr.metrics.rendering.SUMMARY_OPTIONS,
+      });
+      for (let i = 0; i < events.length; i++) {
+        alloc_histogram.addSample(events[i].args.alloc)
+        dealloc_histogram.addSample(events[i].args.dealloc)
+      }
+    }
+  }
+
   function addBasicFrameTimeHistograms_(histograms, frameSegments, prefix) {
     // TODO(chiniforooshan): Figure out what kind of break down makes sense
     // here. Perhaps break down by tasks in the Viz/Browser process?
@@ -414,6 +439,7 @@ tr.exportTo('tr.metrics.rendering', function() {
   }
 
   return {
+    addAblationTimeHistograms,
     addFrameTimeHistograms,
     addUIFrameTimeHistograms,
   };
