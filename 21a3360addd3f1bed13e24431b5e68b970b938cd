@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c34c4b3_e0aa46f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-12T16:09:28Z",
+      "side": 1,
+      "message": "Nit: Update this to reflect that the entire Visulizations is being removed.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "21a3360addd3f1bed13e24431b5e68b970b938cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

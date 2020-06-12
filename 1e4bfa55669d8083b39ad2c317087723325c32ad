@@ -286,6 +286,30 @@
     },
     {
       "key": {
+        "uuid": "755f11af_7dba82b2",
+        "filename": "tracing/tracing/value/ui/raster_visualization.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-12T16:09:28Z",
+      "side": 0,
+      "message": "Ah, thank you for that context",
+      "parentUuid": "a1a1483d_d8e43b47",
+      "range": {
+        "startLine": 147,
+        "startChar": 49,
+        "endLine": 147,
+        "endChar": 69
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be4555ef_5b1e58d8",
         "filename": "tracing/tracing/value/ui/visualizations_data_container_test.html",
         "patchSetId": 2
