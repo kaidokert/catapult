@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "eb4085ed_38f2ac96",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-12T14:38:40Z",
+      "side": 1,
+      "message": "We still want to display the Thread visualizations",
+      "range": {
+        "startLine": 77,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "e066e986ed61f3a4b0c2e360a4a2d63a4f892a09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "03597433_3dffffaa",
         "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
         "patchSetId": 3
@@ -37,6 +60,30 @@
       "side": 1,
       "message": "Yea, looks like the code (and comment) are no longer used. Remove all code/comments that is no longer needed.",
       "parentUuid": "03597433_3dffffaa",
+      "range": {
+        "startLine": 193,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 46
+      },
+      "revId": "e066e986ed61f3a4b0c2e360a4a2d63a4f892a09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7916aa5_c7b3ada5",
+        "filename": "tracing/tracing/value/ui/visualizations_data_container.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-12T14:38:40Z",
+      "side": 1,
+      "message": "We only want to remove the portions of this file which are related to showing the Pipeline charts. Those in \"FRAME\"\n\nWe still want to show the Thread charts. This file is used to build both, and to act as their container during layout. Those in \"METRICS\".",
+      "parentUuid": "c6ec8ce9_6e31b82e",
       "range": {
         "startLine": 193,
         "startChar": 6,

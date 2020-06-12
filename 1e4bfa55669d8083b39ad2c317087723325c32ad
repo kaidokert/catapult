@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "22fcfc3a_f8e494a8",
+        "filename": "tracing/tracing/value/ui/metrics_visualization.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-12T14:38:40Z",
+      "side": 0,
+      "message": "This chart handles the Thread visualization, which we still want to present. So we\u0027ll need this file.",
+      "range": {
+        "startLine": 125,
+        "startChar": 3,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "1e4bfa55669d8083b39ad2c317087723325c32ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35be61e2_cb3da7bf",
         "filename": "tracing/tracing/value/ui/raster_visualization.html",
         "patchSetId": 4
