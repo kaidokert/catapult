@@ -46,6 +46,30 @@
       "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aee5d93e_deb579c9",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-06-13T00:19:05Z",
+      "side": 1,
+      "message": "There are discussions of stop running perf tests against ref build, but as of now, Telemetry code still needs to work on the ref build.",
+      "parentUuid": "8f88a72c_85869ab1",
+      "range": {
+        "startLine": 296,
+        "startChar": 7,
+        "endLine": 296,
+        "endChar": 37
+      },
+      "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
