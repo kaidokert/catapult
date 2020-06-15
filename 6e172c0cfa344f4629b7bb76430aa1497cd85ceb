@@ -70,6 +70,30 @@
       "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a0343c_c77d4d42",
+        "filename": "telemetry/telemetry/internal/actions/action_runner_unittest.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-06-15T06:15:26Z",
+      "side": 1,
+      "message": "Yes I think John is right. Maybe we can update the reference build but it doesn\u0027t look like it will be M84. \n\nWithout this CL, does it mean the future changes on the new SmoothScrollByXY will not be tested from telemetry?",
+      "parentUuid": "aee5d93e_deb579c9",
+      "range": {
+        "startLine": 296,
+        "startChar": 7,
+        "endLine": 296,
+        "endChar": 37
+      },
+      "revId": "6e172c0cfa344f4629b7bb76430aa1497cd85ceb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
