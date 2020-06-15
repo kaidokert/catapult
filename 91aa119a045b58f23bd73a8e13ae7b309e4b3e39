@@ -16,6 +16,24 @@
       "revId": "91aa119a045b58f23bd73a8e13ae7b309e4b3e39",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24e30e02_60d425b9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2020-06-15T19:10:35Z",
+      "side": 1,
+      "message": "Removing assert, since _InstallInternal() performs the check also.",
+      "parentUuid": "13bf2d2f_d0188a4c",
+      "revId": "91aa119a045b58f23bd73a8e13ae7b309e4b3e39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
