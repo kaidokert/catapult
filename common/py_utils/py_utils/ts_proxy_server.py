@@ -218,6 +218,9 @@ class TsProxyServer(object):
     self._proc = None
     self._port = None
     self._is_running = False
+    self._rtt = None
+    self._inbkps = None
+    self._outkbps = None
     return err
 
   def __enter__(self):
