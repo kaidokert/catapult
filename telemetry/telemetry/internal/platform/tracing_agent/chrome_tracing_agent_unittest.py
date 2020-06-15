@@ -119,7 +119,6 @@ class ChromeTracingAgentTest(unittest.TestCase):
 
   def StartTracing(self, platform_backend, enable_chrome_trace=True,
                    throw_exception=False):
-    assert chrome_tracing_agent.ChromeTracingAgent.IsSupported(platform_backend)
     agent = chrome_tracing_agent.ChromeTracingAgent(platform_backend)
     config = tracing_config.TracingConfig()
     config.enable_chrome_trace = enable_chrome_trace

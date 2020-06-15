@@ -16,6 +16,7 @@ class TracingBackendUnittest(unittest.TestCase):
   def setUp(self):
     self._fake_timer = fakes.FakeTimer(tracing_backend)
     self._inspector_socket = fakes.FakeInspectorWebsocket(self._fake_timer)
+    self._transfer_mode = 'ReturnAsStream'
 
   def tearDown(self):
     self._fake_timer.Restore()
@@ -131,7 +132,7 @@ class TracingBackendUnittest(unittest.TestCase):
         'Tracing.hasCompleted', lambda req: {})
     backend = tracing_backend.TracingBackend(self._inspector_socket)
     config = tracing_config.TracingConfig()
-    backend.StartTracing(config._chrome_trace_config)
+    backend.StartTracing(config._chrome_trace_config, self._transfer_mode)
     self.assertRaisesRegexp(
         tracing_backend.TracingUnexpectedResponseException,
         'Tracing had an error',
@@ -150,10 +151,10 @@ class TracingBackendUnittest(unittest.TestCase):
 
     backend = tracing_backend.TracingBackend(self._inspector_socket)
     config = tracing_config.TracingConfig()
-    backend.StartTracing(config._chrome_trace_config)
+    backend.StartTracing(config._chrome_trace_config, self._transfer_mode)
     backend.StopTracing()
     with self.assertRaisesRegexp(AssertionError, 'Data not collected from .*'):
-      backend.StartTracing(config._chrome_trace_config)
+      backend.StartTracing(config._chrome_trace_config, self._transfer_mode)
 
 
 class DevToolsStreamPerformanceTest(unittest.TestCase):
