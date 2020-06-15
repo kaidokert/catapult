@@ -22,6 +22,30 @@
       "revId": "21a3360addd3f1bed13e24431b5e68b970b938cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a2da85e_525fdefa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1364134
+      },
+      "writtenOn": "2020-06-15T19:57:45Z",
+      "side": 1,
+      "message": "Done. The commit message is updated accordingly.",
+      "parentUuid": "9c34c4b3_e0aa46f8",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 39
+      },
+      "revId": "21a3360addd3f1bed13e24431b5e68b970b938cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
