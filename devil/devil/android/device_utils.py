@@ -1138,12 +1138,15 @@ class DeviceUtils(object):
     assert modules_set.isdisjoint(fake_modules_set), (
         'These modules overlap: %s' % (modules_set & fake_modules_set))
     all_modules = modules_set | fake_modules_set
+    packge_name = apk.GetPackageName()
+
     with apk.GetApkPaths(self,
                          modules=all_modules,
                          additional_locales=additional_locales) as apk_paths:
       fake_apk_paths = self._GetFakeInstallPaths(apk_paths, fake_modules)
       apk_paths_to_install = [p for p in apk_paths if p not in fake_apk_paths]
-      self._FakeInstall(fake_apk_paths, fake_modules)
+      assert apk_paths_to_install
+      self._FakeInstall(fake_apk_paths, fake_modules, packge_name)
       self._InstallInternal(
           apk,
           apk_paths_to_install,
@@ -1161,11 +1164,12 @@ class DeviceUtils(object):
       return set()
     return set(p for p in apk_paths if IsFakeModulePath(p))
 
-  def _FakeInstall(self, fake_apk_paths, fake_modules):
+  def _FakeInstall(self, fake_apk_paths, fake_modules, packge_name):
     with tempfile_ext.NamedTemporaryDirectory() as modules_dir:
+      device_dir = '/'.join([self.MODULES_SRC_DIRECTORY_PATH, packge_name])
       if not fake_modules:
         # Push empty module dir to clear device dir and update the cache.
-        self.PushChangedFiles([(modules_dir, self.MODULES_SRC_DIRECTORY_PATH)],
+        self.PushChangedFiles([(modules_dir, device_dir)],
                               delete_device_stale=True)
         return
 
@@ -1187,7 +1191,7 @@ class DeviceUtils(object):
 
       assert not still_need_master, (
           'Missing master apk file for %s' % still_need_master)
-      self.PushChangedFiles([(modules_dir, self.MODULES_SRC_DIRECTORY_PATH)],
+      self.PushChangedFiles([(modules_dir, device_dir)],
                             delete_device_stale=True)
 
   @decorators.WithTimeoutAndRetriesFromInstance(
