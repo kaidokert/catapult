@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13bf2d2f_d0188a4c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-15T17:10:45Z",
+      "side": 1,
+      "message": "Add an error msg if the assert fails.",
+      "revId": "91aa119a045b58f23bd73a8e13ae7b309e4b3e39",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
