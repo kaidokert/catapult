@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bbef7fd1_dc07b48a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-15T19:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86594cdb_89d65805",
+      "range": {
+        "startLine": 363,
+        "startChar": 25,
+        "endLine": 363,
+        "endChar": 55
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a15f420_d40ecd0e",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76d8a4bc_3314f7a8",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-15T19:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a15f420_d40ecd0e",
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "e0dc8536_d3f635e1",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-15T19:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f95cca2_cce5079d",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 64
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f47f34f_dfebf5f0",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
         "patchSetId": 4
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "cbaac40f_131b1968",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-15T19:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f47f34f_dfebf5f0",
+      "range": {
+        "startLine": 123,
+        "startChar": 32,
+        "endLine": 123,
+        "endChar": 65
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c08c20e7_bf9710aa",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
         "patchSetId": 4
@@ -108,6 +198,30 @@
       "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b4ba64c_f605106d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-15T19:56:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c08c20e7_bf9710aa",
+      "range": {
+        "startLine": 165,
+        "startChar": 6,
+        "endLine": 165,
+        "endChar": 35
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
