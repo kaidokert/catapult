@@ -5,6 +5,7 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 -->
 
+<link rel="import" href="/tracing/metrics/memory_ablation.html">
 <link rel="import" href="/tracing/metrics/metric_registry.html">
 <link rel="import" href="/tracing/metrics/rendering/frame_time.html">
 <link rel="import" href="/tracing/metrics/rendering/image_decode_time.html">
@@ -43,6 +44,8 @@ tr.exportTo('tr.metrics.rendering', function() {
       tr.metrics.rendering.addUIFrameTimeHistograms(
           histograms, model, chromeHelper.telemetryHelper.uiSegments);
     }
+
+    tr.metrics.addAblationTimeHistograms(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(renderingMetric, {
