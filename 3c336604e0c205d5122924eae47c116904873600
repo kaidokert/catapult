@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "efc70011_7264c8a9",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1141,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2020-06-15T15:42:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93c23744_33c3d2ce",
+      "range": {
+        "startLine": 1141,
+        "startChar": 4,
+        "endLine": 1141,
+        "endChar": 15
+      },
+      "revId": "3c336604e0c205d5122924eae47c116904873600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3a7865b_f057098e",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2020-06-15T14:02:31Z",
       "side": 1,
       "message": "nit: maybe skip these four lines for normal apks?\nI don\u0027t see a way to detect this other than isinstance(ApkHelper). Maybe that\u0027s fine though?",
+      "revId": "3c336604e0c205d5122924eae47c116904873600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65c50d63_0ff727b6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2020-06-15T15:42:14Z",
+      "side": 1,
+      "message": "Skip creating useless fake directories makes sense, but perhaps it should be a separate CL?\n\nAlso, it seems cleaner to have ApkHelper / ApksHelper / BundleScriptHelper implement supportsFakeInstall(), and use that to dictate logic?",
+      "parentUuid": "a3a7865b_f057098e",
       "revId": "3c336604e0c205d5122924eae47c116904873600",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "b2b0baf0_e5d6bb24",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1167,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2020-06-15T15:42:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a1c3f6c_27de4f42",
+      "range": {
+        "startLine": 1167,
+        "startChar": 55,
+        "endLine": 1167,
+        "endChar": 66
+      },
+      "revId": "3c336604e0c205d5122924eae47c116904873600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "843f92bc_0e99d0d7",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 2
@@ -85,6 +151,30 @@
       "revId": "3c336604e0c205d5122924eae47c116904873600",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f96afc7a_550e580b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1001928
+      },
+      "writtenOn": "2020-06-15T15:42:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "843f92bc_0e99d0d7",
+      "range": {
+        "startLine": 1169,
+        "startChar": 19,
+        "endLine": 1169,
+        "endChar": 22
+      },
+      "revId": "3c336604e0c205d5122924eae47c116904873600",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
