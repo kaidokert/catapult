@@ -16,6 +16,24 @@
       "revId": "3e62015ec51dbb69c5c072eafb02a12473f72bb3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fa8a12c_bb75cb6a",
+        "filename": "tracing/tracing/extras/chrome/chrome_auditor.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2020-06-16T03:37:25Z",
+      "side": 1,
+      "message": "Agree, done. Thanks!",
+      "parentUuid": "0130bbb5_2718c3ca",
+      "revId": "3e62015ec51dbb69c5c072eafb02a12473f72bb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
