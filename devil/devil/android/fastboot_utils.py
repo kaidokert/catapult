@@ -58,13 +58,17 @@ _KNOWN_PARTITIONS = collections.OrderedDict([
         'image': 'vendor*.img',
         'optional': True
     }),
+    # dtbo is not always required in A/B devices. For example, it is required
+    # in Pixel 2, but not in Pixel 1.
     ('dtbo', {
         'image': 'dtbo.img',
-        'ab_exclusive': True
+        'optional': True
     }),
+    # vbmeta is not always requierd in A/B devices. For example, it is required
+    # in Pixel 2, but not in Pixel 1.
     ('vbmeta', {
         'image': 'vbmeta.img',
-        'ab_exclusive': True
+        'optional': True
     }),
 ])
 ALL_PARTITIONS = _KNOWN_PARTITIONS.keys()

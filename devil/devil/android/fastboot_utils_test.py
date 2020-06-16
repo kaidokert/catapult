@@ -399,9 +399,6 @@ class FastbootUtilsFindAndVerifyPartitionsAndImages(FastbootUtilsTest):
       with self.assertRaises(device_errors.FastbootCommandFailedError):
         fastboot_utils._FindAndVerifyPartitionsAndImages(['boot'], 'test', True)
 
-      with self.assertRaises(device_errors.FastbootCommandFailedError):
-        fastboot_utils._FindAndVerifyPartitionsAndImages(['dtbo'], 'test', True)
-
   def testFindAndVerifyPartitionsAndImages_noFile_NotRequiredImage(self):
     with mock.patch('os.listdir', return_value=['test']):
       self.assertFalse(
@@ -418,6 +415,9 @@ class FastbootUtilsFindAndVerifyPartitionsAndImages(FastbootUtilsTest):
                                                            True))
       self.assertFalse(
           fastboot_utils._FindAndVerifyPartitionsAndImages(['cache'], 'test',
+                                                           True))
+      self.assertFalse(
+          fastboot_utils._FindAndVerifyPartitionsAndImages(['dtbo'], 'test',
                                                            True))
 
 
