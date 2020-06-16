@@ -22,6 +22,30 @@
       "revId": "01d95dc323c0c05a88f94b1c058995f247c7078a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89b2d3a3_fe43bf7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-16T22:38:32Z",
+      "side": 1,
+      "message": "I have checked the latest public images on N and Q for sailfish, and vbmeta.img and dtbo.img are not included there.\n\nI marked them as optional because I thought they are needed for Pixel 2 (from your earlier change). Is it not the case any more?",
+      "parentUuid": "5125ad30_3d536cf0",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "01d95dc323c0c05a88f94b1c058995f247c7078a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
