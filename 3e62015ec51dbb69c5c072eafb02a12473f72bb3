@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0130bbb5_2718c3ca",
+        "filename": "tracing/tracing/extras/chrome/chrome_auditor.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-06-16T01:52:58Z",
+      "side": 1,
+      "message": "nit: this logic is a little hard to read with all the negatives :( \nCould we maybe rewrite it as this?\n  if (slice.title \u003d\u003d\u003d \u0027PipelineReporter\u0027 \u0026\u0026\n      slice.args.chrome_frame_reporter \u0026\u0026 \n      slice.args.chrome_frame_reporter.state \u003d\u003d\u003d \u0027STATE_DROPPED\u0027) {\n    const alertSlices \u003d ...;\n    ... \n  }",
+      "revId": "3e62015ec51dbb69c5c072eafb02a12473f72bb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
