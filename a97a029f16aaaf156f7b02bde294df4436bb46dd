@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0e9566bd_c7d1b235",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-17T20:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4946121_b11c3b14",
+      "range": {
+        "startLine": 135,
+        "startChar": 54,
+        "endLine": 135,
+        "endChar": 73
+      },
+      "revId": "a97a029f16aaaf156f7b02bde294df4436bb46dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c30ce37_6a5abbde",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "a97a029f16aaaf156f7b02bde294df4436bb46dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c09934_04fd8371",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-06-17T20:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c30ce37_6a5abbde",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "a97a029f16aaaf156f7b02bde294df4436bb46dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
