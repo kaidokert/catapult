@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c87c800d_1fd459ed",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-17T00:08:25Z",
+      "side": 1,
+      "message": "This doesn\u0027t appear to be addressed.",
+      "parentUuid": "bbef7fd1_dc07b48a",
+      "range": {
+        "startLine": 363,
+        "startChar": 25,
+        "endLine": 363,
+        "endChar": 55
+      },
+      "revId": "ec9dbe203f9015033584d220d6800baffe1789c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a15f420_d40ecd0e",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_agent.py",
         "patchSetId": 4

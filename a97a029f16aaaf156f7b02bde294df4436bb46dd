@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4946121_b11c3b14",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend_unittest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-17T00:08:25Z",
+      "side": 1,
+      "message": "Should no longer be necessary once the defaults are set up properly.",
+      "range": {
+        "startLine": 135,
+        "startChar": 54,
+        "endLine": 135,
+        "endChar": 73
+      },
+      "revId": "a97a029f16aaaf156f7b02bde294df4436bb46dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c30ce37_6a5abbde",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-17T00:08:25Z",
+      "side": 1,
+      "message": "Incorrect",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "a97a029f16aaaf156f7b02bde294df4436bb46dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ec8ec5a_230bd40d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_controller_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-17T00:08:25Z",
+      "side": 1,
+      "message": "This feels weird to me (shouldn\u0027t we be calling this on all of our agents?), although it\u0027s not your fault so leaving it as-is is fine with me.",
+      "range": {
+        "startLine": 216,
+        "startChar": 4,
+        "endLine": 217,
+        "endChar": 31
+      },
+      "revId": "a97a029f16aaaf156f7b02bde294df4436bb46dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
