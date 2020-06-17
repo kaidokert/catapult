@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7f472658_86f9aea5",
+        "filename": "dashboard/bq_export/bq_export/bq_dash.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-17T03:53:06Z",
+      "side": 1,
+      "message": "Yes, I learned this by testing it out. 😊 Fixed.",
+      "parentUuid": "2b484808_dada9644",
+      "range": {
+        "startLine": 78,
+        "startChar": 39,
+        "endLine": 78,
+        "endChar": 77
+      },
+      "revId": "6c8340546b93e2c6f6323445d5b3c990da256d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4495b63a_54d56dc2",
         "filename": "dashboard/bq_export/bq_export/bq_dash.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2020-06-17T03:33:11Z",
       "side": 1,
       "message": "This reformatting is some unfortunate noise :/  But it\u0027s probably not worth fighting whatever tool is applying it.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 12
+      },
+      "revId": "6c8340546b93e2c6f6323445d5b3c990da256d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "497dc40a_39d5c997",
+        "filename": "dashboard/bq_export/bq_export/bq_dash.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-17T03:53:06Z",
+      "side": 1,
+      "message": "Yeah... yapf is what I\u0027m using for consistency going forward.",
+      "parentUuid": "4495b63a_54d56dc2",
       "range": {
         "startLine": 123,
         "startChar": 0,
