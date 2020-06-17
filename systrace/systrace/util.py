@@ -52,6 +52,31 @@ def run_adb_shell(shell_args, device_serial):
   return (adb_output, adb_return_code)
 
 
+def get_tracing_path():
+  """Uses adb to attempt to determine tracing path. The newest kernel doesn't
+     support to mount debufs, so the Android master uses tracefs to replace it.
+
+  Returns:
+    /sys/kernel/debugfs for device with debugfs mount supporting;
+    otherwise /sys/kernel/tracing for device with tracefs supporting.
+  """
+  grep_debufs_mount_info_args = ['mount']
+  parser = OptionParserIgnoreErrors()
+  parser.add_option('-e', '--serial', dest='device_serial', type='string')
+  options, unused_args = parser.parse_args()  # pylint: disable=unused-variable
+
+  success = False
+
+  adb_output, adb_return_code = run_adb_shell(grep_debufs_mount_info_args,
+                                              options.device_serial)
+  if adb_return_code == 0:
+    if 'debugfs' in adb_output:
+      return '/sys/kernel/debug/tracing'
+    else:
+      return '/sys/kernel/tracing'
+  return '/sys/kernel/debug/tracing'
+
+
 def get_device_sdk_version():
   """Uses adb to attempt to determine the SDK version of a running device."""
 
