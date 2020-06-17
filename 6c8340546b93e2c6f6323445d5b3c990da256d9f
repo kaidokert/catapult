@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b484808_dada9644",
+        "filename": "dashboard/bq_export/bq_export/bq_dash.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-06-17T03:33:11Z",
+      "side": 1,
+      "message": "I think you need to apply isoformat() to these values to get the right type, same as `timestamp` (unless this is something that has been fixed in the newer SDK versions since I wrote the initial version?).\n\n(This might be more automatic if I turn on the option to emit AVRO files rather than JSON for the BigQuery load stage to consume, but I haven\u0027t invested the time to see if that works well or not yet.)",
+      "range": {
+        "startLine": 78,
+        "startChar": 39,
+        "endLine": 78,
+        "endChar": 77
+      },
+      "revId": "6c8340546b93e2c6f6323445d5b3c990da256d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4495b63a_54d56dc2",
+        "filename": "dashboard/bq_export/bq_export/bq_dash.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-06-17T03:33:11Z",
+      "side": 1,
+      "message": "This reformatting is some unfortunate noise :/  But it\u0027s probably not worth fighting whatever tool is applying it.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 12
+      },
+      "revId": "6c8340546b93e2c6f6323445d5b3c990da256d9f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
