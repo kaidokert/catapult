@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a321f95_fd12c588",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-18T17:50:17Z",
+      "side": 1,
+      "message": "From the bots:\n\n[1/2] telemetry.internal.platform.tracing_agent.atrace_tracing_agent_unittest.AtraceTracingAgentTest.testCollectAgentTraceDataEmptyTrace failed unexpectedly 0.0018s:\n  Traceback (most recent call last):\n    File \"/b/s/w/ir/k/catapult/telemetry/third_party/mock/mock.py\", line 1201, in patched\n      return func(*args, **keywargs)\n    File \"/b/s/w/ir/k/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent_unittest.py\", line 26, in testCollectAgentTraceDataEmptyTrace\n      self._mock_platform_backend)\n    File \"/b/s/w/ir/k/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py\", line 19, in __init__\n      platform_backend.device.build_version_sdk)\n  TypeError: __init__() takes exactly 3 arguments (2 given)\n[2/2] telemetry.internal.platform.tracing_agent.atrace_tracing_agent_unittest.AtraceTracingAgentTest.testCollectAgentTraceDataTimeout failed unexpectedly 0.0017s:\n  Traceback (most recent call last):\n    File \"/b/s/w/ir/k/catapult/telemetry/third_party/mock/mock.py\", line 1201, in patched\n      return func(*args, **keywargs)\n    File \"/b/s/w/ir/k/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent_unittest.py\", line 39, in testCollectAgentTraceDataTimeout\n      self._mock_platform_backend)\n    File \"/b/s/w/ir/k/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py\", line 19, in __init__\n      platform_backend.device.build_version_sdk)\n  TypeError: __init__() takes exactly 3 arguments (2 given)\n\nMaybe better to make this \"None\" then do:\nself._tracing_path \u003d tracing_path or util.get_tracing_path()",
+      "range": {
+        "startLine": 161,
+        "startChar": 41,
+        "endLine": 161,
+        "endChar": 53
+      },
+      "revId": "1a79cc00d48e33084d6f1dabf3a2e82c3085d780",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
