@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e855bc62_3dfa6095",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-18T01:01:12Z",
+      "side": 1,
+      "message": "Nit: This block can be shortened to:\n\nif adb_return_code \u003d\u003d 0 and \u0027debugfs\u0027 not in adb_output:\n  return \u0027/sys/kernel/tracing\u0027",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "0c3e0f8c546a5220a4b5bad20760304cf7cd4718",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
