@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "cab35040_736f2601",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2478ca36_60140199",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbe8effd_b10593dd",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "406bcfd8_7209c981",
+      "range": {
+        "startLine": 57,
+        "startChar": 22,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5538acd0_c046a98f",
         "filename": "systrace/systrace/util.py",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b358119e_80146bad",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5538acd0_c046a98f",
+      "range": {
+        "startLine": 60,
+        "startChar": 54,
+        "endLine": 60,
+        "endChar": 64
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "7ced1615_fc622f82",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "changing to mount_info_args.",
+      "parentUuid": "aab87c0e_b1c80f42",
+      "range": {
+        "startLine": 63,
+        "startChar": 7,
+        "endLine": 63,
+        "endChar": 13
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4c8c52c_eac86cbf",
         "filename": "systrace/systrace/util.py",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2020-06-17T19:07:51Z",
       "side": 1,
       "message": "It feels weird to be parsing arguments again here, although that seems to be the case elsewhere in the file, so I guess it\u0027s fine for now.",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 37
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "118229bc_f20876cc",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "Yes, it\u0027s weird. I just copy it from util.get_device_sdk_version in the same file.",
+      "parentUuid": "f4c8c52c_eac86cbf",
       "range": {
         "startLine": 64,
         "startChar": 2,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "f125a449_1fa2226d",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d771ae63_04ad7fe5",
+      "range": {
+        "startLine": 66,
+        "startChar": 11,
+        "endLine": 66,
+        "endChar": 22
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa467ec0_3ac896b6",
         "filename": "systrace/systrace/util.py",
         "patchSetId": 2
@@ -160,6 +304,30 @@
       "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aac333f0_0a8af7ad",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-18T00:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa467ec0_3ac896b6",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 9
+      },
+      "revId": "557fe0dd6ea73052a716a52bce00d7c0e73db280",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
