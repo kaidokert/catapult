@@ -118,6 +118,30 @@
       "revId": "01d95dc323c0c05a88f94b1c058995f247c7078a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1214bc7_efefaa83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-18T22:51:32Z",
+      "side": 1,
+      "message": "I agree. I will work on making these two configurable, like what has been done for the \"supports_ab\"",
+      "parentUuid": "44d28d89_d5833001",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "01d95dc323c0c05a88f94b1c058995f247c7078a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
