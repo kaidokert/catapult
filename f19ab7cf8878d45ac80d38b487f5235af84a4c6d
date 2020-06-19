@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3019734e_48ae6ca5",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-19T17:32:19Z",
+      "side": 1,
+      "message": "There are a few tests failing on non-Android platforms here due to trying to use adb when a device isn\u0027t attached:\n\nTraceback (most recent call last):\n    File \"/b/s/w/ir/k/catapult/telemetry/third_party/mock/mock.py\", line 1201, in patched\n      return func(*args, **keywargs)\n    File \"/b/s/w/ir/k/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent_unittest.py\", line 39, in testCollectAgentTraceDataTimeout\n      self._mock_platform_backend)\n    File \"/b/s/w/ir/k/catapult/telemetry/telemetry/internal/platform/tracing_agent/atrace_tracing_agent.py\", line 19, in __init__\n      platform_backend.device.build_version_sdk)\n    File \"/b/s/w/ir/k/catapult/systrace/systrace/tracing_agents/atrace_agent.py\", line 164, in __init__\n      self._tracing_path \u003d tracing_path or util.get_tracing_path()\n    File \"/b/s/w/ir/k/catapult/systrace/systrace/util.py\", line 70, in get_tracing_path\n      options.device_serial)\n    File \"/b/s/w/ir/k/catapult/systrace/systrace/util.py\", line 44, in run_adb_shell\n      device \u003d device_utils.DeviceUtils.HealthyDevices(device_arg\u003ddevice_serial)[0]\n    File \"/b/s/w/ir/k/catapult/devil/devil/android/device_utils.py\", line 3617, in HealthyDevices\n      return _get_devices()\n    File \"/b/s/w/ir/k/catapult/devil/devil/android/device_utils.py\", line 3598, in _get_devices\n      raise device_errors.NoDevicesError()\n  NoDevicesError: No devices attached.\n\nYou\u0027ll need to mock out run_adb_shell in the affected tests to fix that.\n\nAffected tests:\ntestCollectAgentTraceDataEmptyTrace\ntestCollectAgentTraceDataTimeout",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "f19ab7cf8878d45ac80d38b487f5235af84a4c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
