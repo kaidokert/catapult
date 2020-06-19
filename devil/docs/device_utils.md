@@ -219,6 +219,21 @@ Returns the PID or PIDs of a given process name.
 ```
 
 
+### DeviceUtils.GetApplicationTargetSdk
+
+Get the targetSdkVersion of a package installed on the device.
+```
+    Args:
+      package: Name of the package.
+
+    Returns:
+      A string with the targetSdkVersion or None if the package is not found on
+      the device. Note: this cannot always be cast to an integer. If this
+      application targets a pre-release SDK, this returns the version codename
+      instead (ex. "R").
+```
+
+
 ### DeviceUtils.GetApplicationVersion
 
 Get the version name of a package installed on the device.
@@ -497,6 +512,8 @@ Install an APK or app bundle.
           should have their apks copied to |MODULES_SRC_DIRECTORY_PATH| rather
           than installed. Thus the app can emulate SplitCompat while running.
           This should not have any overlap with |modules|.
+      additional_locales: An iterable with additional locales to install for a
+        bundle.
 
     Raises:
       CommandFailedError if the installation fails.
@@ -813,7 +830,11 @@ Reboot the device.
     Args:
       block: A boolean indicating if we should wait for the reboot to complete.
       wifi: A boolean indicating if we should wait for wifi to be enabled after
-        the reboot. The option has no effect unless |block| is also True.
+        the reboot.
+        The option has no effect unless |block| is also True.
+      decrypt: A boolean indicating if we should wait for full-disk decryption
+        to complete after the reboot.
+        The option has no effect unless |block| is also True.
       timeout: timeout in seconds
       retries: number of retries
 
@@ -1211,11 +1232,15 @@ Remove the app |package\_name| from the device.
 Wait for the device to fully boot.
 ```
     This means waiting for the device to boot, the package manager to be
-    available, and the SD card to be ready. It can optionally mean waiting
-    for wifi to come up, too.
+    available, and the SD card to be ready.
+    It can optionally wait the following:
+     - Wait for wifi to come up.
+     - Wait for full-disk decryption to complete.
 
     Args:
       wifi: A boolean indicating if we should wait for wifi to come up or not.
+      decrypt: A boolean indicating if we should wait for full-disk decryption
+        to complete.
       timeout: timeout in seconds
       retries: number of retries
 
