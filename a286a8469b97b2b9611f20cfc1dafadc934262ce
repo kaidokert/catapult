@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1971a728_a3dacb8a",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-06-19T10:03:14Z",
+      "side": 0,
+      "message": "should we keep this option for backwards compat? (i.e. equivalent to KEEP_PERFORMANCE_MODE)\n\nI guess we don\u0027t have scripts relying on this. So this would probably only affect developers that have an old command in their bash history? If telemetry complains when you provide an unknown arg (does it?) that might be good enough, too.",
+      "range": {
+        "startLine": 196,
+        "startChar": 11,
+        "endLine": 196,
+        "endChar": 30
+      },
+      "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
