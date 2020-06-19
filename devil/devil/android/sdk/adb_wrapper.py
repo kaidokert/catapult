@@ -295,6 +295,14 @@ class AdbWrapper(object):
         raise device_errors.NoAdbError(msg=str(e))
       else:
         raise
+    except cmd_helper.TimeoutError:
+      ps_output = cmd_helper.GetCmdOutput(
+          'ps -ef | grep "[a]db .* shell"',
+          shell=True,
+          env=env)
+      logger.info('Got TimeoutError. Listing active adb shell process: %s',
+                  ps_output)
+      raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
     # inconsistent with error reporting so many command failures present
