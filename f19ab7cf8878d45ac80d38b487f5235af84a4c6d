@@ -22,6 +22,30 @@
       "revId": "f19ab7cf8878d45ac80d38b487f5235af84a4c6d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfd6de61_cd321494",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1430237
+      },
+      "writtenOn": "2020-06-19T18:00:33Z",
+      "side": 1,
+      "message": "I use mock tracing_path to avoid it.",
+      "parentUuid": "3019734e_48ae6ca5",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "f19ab7cf8878d45ac80d38b487f5235af84a4c6d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
