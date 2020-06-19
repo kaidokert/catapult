@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e3706fe_ab555884",
+        "filename": "devil/devil/android/perf/perf_control.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-06-19T19:02:49Z",
+      "side": 1,
+      "message": "Do you plan on adding any other key to the \u0027little_only_mode\u0027 dict? Otherwise there\u0027s little use in adding a dict that only ever has a single, non-changing key.",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 10
+      },
+      "revId": "92ba6733c61d4a45cf70ab32709e56d0b5d4c8b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
