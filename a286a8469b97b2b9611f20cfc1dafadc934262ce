@@ -22,6 +22,30 @@
       "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "749c1edd_1fd72bbb",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-06-19T11:51:37Z",
+      "side": 0,
+      "message": "Telemetry does complain about an unknown arg, so I think this should be fine.\n\nBTW, the --no-performance-mode option was equivalent to NORMAL_PERFORMANCE_MODE, not KEEP_PERFORMANCE_MODE, it actually changed the performance settings on the device. This is one of the goals of this CL: to make things more explicit in the interface.",
+      "parentUuid": "1971a728_a3dacb8a",
+      "range": {
+        "startLine": 196,
+        "startChar": 11,
+        "endLine": 196,
+        "endChar": 30
+      },
+      "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
