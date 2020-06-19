@@ -3,9 +3,11 @@
 # found in the LICENSE file.
 
 import logging
+import posixpath
 import time
 
 from telemetry.internal.platform import tracing_agent
+from telemetry.internal.util import binary_manager
 
 from devil.android import device_temp_file
 from devil.android.sdk import version_codes
@@ -32,17 +34,40 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
     self._trace_config_temp_file = None
     self._trace_output_temp_file = None
     self._perfetto_pid = None
+    self._perfetto_path = ANDROID_PERFETTO
 
-  @classmethod
-  def SetUpAgent(cls, platform_backend):
-    if not cls.IsSupported(platform_backend):
-      logging.error('Perfetto tracing is not supported on this platform')
-      return
-    device = platform_backend.device
-    if device.build_version_sdk < version_codes.PIE:
-      logging.error('Perfetto tracing requires Android P or higher')
-      return
-    processes = set(p.name for p in device.ListProcesses())
+    if self._device.build_version_sdk <= version_codes.Q:
+      logging.info('Sideloading perfetto binaries to the device.')
+      self._device.RunShellCommand(['mkdir', '-p', ANDROID_TRACES_DIR])
+      perfetto_device_path = posixpath.join(ANDROID_TMP_DIR, ANDROID_PERFETTO)
+      traced_device_path = posixpath.join(ANDROID_TMP_DIR, ANDROID_TRACED)
+      traced_probes_device_path = posixpath.join(
+          ANDROID_TMP_DIR, ANDROID_TRACED_PROBES)
+      perfetto_local_path = binary_manager.FetchPath(
+          'perfetto_monolithic_perfetto',
+          'android',
+          platform_backend.GetArchName())
+      traced_local_path = binary_manager.FetchPath(
+          'perfetto_monolithic_traced',
+          'android',
+          platform_backend.GetArchName())
+      traced_probes_local_path = binary_manager.FetchPath(
+          'perfetto_monolithic_traced_probes',
+          'android',
+          platform_backend.GetArchName())
+      self._device.PushChangedFiles([
+          (perfetto_local_path, perfetto_device_path),
+          (traced_local_path, traced_device_path),
+          (traced_probes_local_path, traced_probes_device_path),
+      ])
+      in_background = '</dev/null >/dev/null 2>&1 &'
+      self._device.RunShellCommand(traced_device_path + in_background,
+                                   shell=True)
+      self._device.RunShellCommand(traced_probes_device_path + in_background,
+                                   shell=True)
+      self._perfetto_path = perfetto_device_path
+
+    processes = set(p.name for p in self._device.ListProcesses())
     assert ANDROID_TRACED in processes
     assert ANDROID_TRACED_PROBES in processes
     logging.info('Perfetto tracing agent is set up.')
@@ -65,7 +90,7 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
     start_perfetto = (
         'cat %s | %s --background --config - --txt --out %s' % (
             self._trace_config_temp_file.name,
-            ANDROID_PERFETTO,
+            self._perfetto_path,
             self._trace_output_temp_file.name,
         )
     )
@@ -78,7 +103,7 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
     self._device.RunShellCommand(['kill', str(self._perfetto_pid)])
     logging.info('Stopped Perfetto system tracing.')
 
-  def CollectAgentTraceData(self, trace_data_builder, timeout=60):
+  def CollectAgentTraceData(self, trace_data_builder, timeout=300):
     start_time = time.time()
     with trace_data_builder.OpenTraceHandleFor(
         trace_data.CHROME_TRACE_PART, suffix='.pb') as handle:
