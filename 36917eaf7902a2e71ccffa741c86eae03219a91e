@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d27f584_fc63721f",
+        "filename": "devil/devil/android/device_blacklist.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-06-20T00:35:04Z",
+      "side": 1,
+      "message": "What\u0027s the timeline for removing this? I know there\u0027s some code outside of chromium which uses devil as well (ex. //clank/), but I\u0027m not sure if there are other clients. Maybe we could add a deprecation message with logging.error() to maintain backward compatibility for a while.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 50
+      },
+      "revId": "36917eaf7902a2e71ccffa741c86eae03219a91e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad5f6c05_96877ed8",
+        "filename": "devil/devil/android/device_denylist.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-06-20T00:35:04Z",
+      "side": 1,
+      "message": "Does this represent a list of devices to avoid running tests on? If so, what about calling this something like \"bad_device_list.py\" instead? It doesn\u0027t seem like we\u0027re \"denying\" these devices.",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "36917eaf7902a2e71ccffa741c86eae03219a91e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
