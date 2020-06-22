@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8db1b02_f3ae6599",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-06-22T18:05:56Z",
+      "side": 1,
+      "message": "Is it not sufficient to only add it to the rendering_metric? If you also add it to the loading_metric, any benchmark that has both rendering and loading metric enabled we will end up with duplicate histograms, and that will be confusing.",
+      "revId": "3682c7f63f6dc76d5a2ad8ccfe1e67b2b0e06f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
