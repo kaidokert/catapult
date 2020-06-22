@@ -16,6 +16,24 @@
       "revId": "3682c7f63f6dc76d5a2ad8ccfe1e67b2b0e06f9b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aab36cc_bb2d7869",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-06-22T18:11:42Z",
+      "side": 1,
+      "message": "I just realized you want it to be enabled for both loading and rendering benchmarks. I would make this metric it\u0027s own metric (i.e. add tr.metrics.MetricRegistry.register(memoryAblationMetric) at the bottom of the file). You can  add the metric to the loading benchmark, i.e. add \"tbm_options.AddTimelineBasedMetric(\u0027memoryAblationMetric\u0027)\"\nhere: https://source.chromium.org/chromium/chromium/src/+/master:tools/perf/benchmarks/loading_metrics_category.py;l\u003d33?q\u003daugmentoptionsforl\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F) . And also add it to the rendering benchmark here: https://source.chromium.org/chromium/chromium/src/+/master:tools/perf/benchmarks/rendering.py;l\u003d75?q\u003drendering\u0026ss\u003dchromium\u0026originalUrl\u003dhttps:%2F%2Fcs.chromium.org%2F",
+      "parentUuid": "b8db1b02_f3ae6599",
+      "revId": "3682c7f63f6dc76d5a2ad8ccfe1e67b2b0e06f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
