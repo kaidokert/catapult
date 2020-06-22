@@ -690,6 +690,10 @@ class Runner(object):
             self.update(test_start_msg, elide=(not self.args.verbose))
 
     def _print_test_finished(self, stats, result):
+        if self.args.quiet:
+            # Print nothing when --quiet was passed.
+            return
+
         stats.add_time()
 
         assert result.actual in [ResultType.Failure, ResultType.Skip,
@@ -741,6 +745,7 @@ class Runner(object):
         self.printer.flush()
 
     def _summarize(self, full_results):
+
         num_passes = json_results.num_passes(full_results)
         num_failures = json_results.num_failures(full_results)
         num_skips = json_results.num_skips(full_results)
