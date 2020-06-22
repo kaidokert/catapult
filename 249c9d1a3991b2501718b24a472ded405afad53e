@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "18b02a8e_1c6485d5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 2862,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-22T17:05:08Z",
+      "side": 1,
+      "message": "This will also cause it to raise an AdbCommandFailedError if the command fails - should you be catching that and returning the debug/tracing path in that case?",
+      "range": {
+        "startLine": 2862,
+        "startChar": 33,
+        "endLine": 2862,
+        "endChar": 51
+      },
+      "revId": "249c9d1a3991b2501718b24a472ded405afad53e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "18aed046_ab96bb42",
         "filename": "devil/docs/device_utils.md",
         "patchSetId": 8
@@ -16,6 +39,29 @@
       "revId": "249c9d1a3991b2501718b24a472ded405afad53e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9175ee9f_2c111f6c",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-22T17:05:08Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be unnecessary now? When we expect this to actually be run (on Android), the device\u0027s tracing_path value is passed in for tracing_path, which has pretty much the same code as util.get_tracing_path.",
+      "range": {
+        "startLine": 164,
+        "startChar": 41,
+        "endLine": 164,
+        "endChar": 64
+      },
+      "revId": "249c9d1a3991b2501718b24a472ded405afad53e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
