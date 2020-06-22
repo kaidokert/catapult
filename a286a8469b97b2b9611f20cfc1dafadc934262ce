@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d841e268_2b978b07",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2020-06-22T14:48:42Z",
+      "side": 0,
+      "message": "I wonder if we should avoid sideloading in recent (R) builds and just use the built-in one? Otherwise we might end up accidentally disabling the built-in perfetto if someone runs this on their personal device. The obvious downside is that we might start depending on something from a more recent service which your device might not support.\n\nEdit: now that I noticed you\u0027re restarting the built-in service perhaps this is fine, but let me leave this comment here for your thoughts anyway",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
