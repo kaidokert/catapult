@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ec3eece_ffdfce6a",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-06-22T14:58:59Z",
+      "side": 1,
+      "message": "it may be nice to have a command line option that disables this, i.e. uses what is on the device already",
+      "revId": "fc262d3da59744de7c39583ef79256802535e3c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1585c67_09b6be36",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 3
