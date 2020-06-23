@@ -655,14 +655,30 @@ class CrOSInterface(object):
     return False
 
   def TakeScreenshot(self, file_path):
-    """Takes a screenshot, saves to |file_path|."""
+    """Takes a screenshot, saves to |file_path|.
+
+    If running in remote mode, also pulls the file to the same location on the
+    host.
+
+    Returns:
+      True if the screenshot was taken without any warnings or errors,
+      otherwise False. The screenshot may still be valid in the case of False,
+      e.g. due to falling back to software rendering on VMs.
+    """
     stdout, stderr = self.RunCmdOnDevice(['/usr/local/sbin/screenshot',
                                           file_path])
+    if not self.local:
+      try:
+        if not os.path.exists(os.path.dirname(file_path)):
+          os.makedirs(os.path.dirname(file_path))
+        self.GetFile(file_path, file_path)
+      except OSError as e:
+        logging.error('Unable to pull screenshot file %s: %s', file_path, e)
     return stdout == '' and stderr == ''
 
   def TakeScreenshotWithPrefix(self, screenshot_prefix):
     """Takes a screenshot, useful for debugging failures."""
-    screenshot_dir = '/var/log/screenshots/'
+    screenshot_dir = '/tmp/telemetry/screenshots/'
     screenshot_ext = '.png'
 
     self.RunCmdOnDevice(['mkdir', '-p', screenshot_dir])
