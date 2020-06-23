@@ -46,6 +46,30 @@
       "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e58da463_8900d088",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-06-23T16:43:49Z",
+      "side": 0,
+      "message": "Telemetry usually tries hard to pull traces no matter what went wrong. So the call to StopTracing() is in kind of catch-all area already.",
+      "parentUuid": "17c257f9_b18f7601",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
