@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "736e5961_cff93e57",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-06-23T19:48:17Z",
+      "side": 1,
+      "message": "Are you sure this change is right, and you don\u0027t want the summary when you get a failure?",
+      "revId": "ccc894eb5930f1a8d0938c08d811326e9a4a7f6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
