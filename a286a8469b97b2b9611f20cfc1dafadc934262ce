@@ -22,6 +22,30 @@
       "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17c257f9_b18f7601",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-06-23T14:38:46Z",
+      "side": 0,
+      "message": "Though I worry about telemetry crashing, if we get an exception will we actually restart the service? This could also be a cause of slowly disabling perfetto on anyone who uses telemetry.\n\nDo we have some catch all exception area where we can ensure we restore the system service?",
+      "parentUuid": "d841e268_2b978b07",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "a286a8469b97b2b9611f20cfc1dafadc934262ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
