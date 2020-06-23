@@ -596,10 +596,11 @@ class Runner(object):
                     self.printer.should_overwrite = False
                     self.args.verbose = min(self.args.verbose, 1)
 
-                self.print_('')
-                self.print_('Retrying failed tests (attempt #%d of %d)...' %
-                            (iteration, self.args.retry_limit))
-                self.print_('')
+                if not self.args.quiet:
+                    self.print_('')
+                    self.print_('Retrying failed tests (attempt #%d of %d)...' %
+                                (iteration, self.args.retry_limit))
+                    self.print_('')
 
                 stats = Stats(self.args.status_format, h.time, 1)
                 stats.total = len(tests_to_retry)
@@ -690,6 +691,10 @@ class Runner(object):
             self.update(test_start_msg, elide=(not self.args.verbose))
 
     def _print_test_finished(self, stats, result):
+        if self.args.quiet:
+            # Print nothing when --quiet was passed.
+            return
+
         stats.add_time()
 
         assert result.actual in [ResultType.Failure, ResultType.Skip,
@@ -741,12 +746,13 @@ class Runner(object):
         self.printer.flush()
 
     def _summarize(self, full_results):
+        if self.args.quiet:
+            # Print nothing when --quiet was passed.
+            return
+
         num_passes = json_results.num_passes(full_results)
         num_failures = json_results.num_failures(full_results)
         num_skips = json_results.num_skips(full_results)
-
-        if self.args.quiet and num_failures == 0:
-            return
 
         if self.args.timing:
             timing_clause = ' in %.1fs' % (self.host.time() -
