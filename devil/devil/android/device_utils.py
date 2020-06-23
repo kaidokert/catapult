@@ -3507,6 +3507,9 @@ class DeviceUtils(object):
   @classmethod
   def HealthyDevices(cls,
                      denylist=None,
+                     # TODO(crbug.com/1097306): Remove this once clients have
+                     # stopped passing it.
+                     blacklist=None,
                      device_arg='default',
                      retries=1,
                      enable_usb_resets=False,
@@ -3562,6 +3565,10 @@ class DeviceUtils(object):
       select_multiple = False
       if device_arg:
         device_arg = (device_arg, )
+
+    # TODO(crbug.com/1097306): Remove this once clients have switched.
+    if blacklist and not denylist:
+      denylist = blacklist
 
     denylisted_devices = denylist.Read() if denylist else []
 
