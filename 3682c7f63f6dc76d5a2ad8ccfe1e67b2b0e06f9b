@@ -34,6 +34,24 @@
       "revId": "3682c7f63f6dc76d5a2ad8ccfe1e67b2b0e06f9b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c366b781_db5c965d",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 10
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-06-23T15:36:36Z",
+      "side": 1,
+      "message": "Awesome, I was not aware of that approach. Done in next patch!",
+      "parentUuid": "1aab36cc_bb2d7869",
+      "revId": "3682c7f63f6dc76d5a2ad8ccfe1e67b2b0e06f9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
