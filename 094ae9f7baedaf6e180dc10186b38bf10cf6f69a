@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "637c9e5b_46da4dc3",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 2846,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-23T17:27:01Z",
+      "side": 1,
+      "message": "How frequently do we expect this to be called? If it\u0027s frequent, please cache the result in self._cache. If it\u0027s infrequent (once per test or less?), it\u0027s probably fine to not cache it for now.",
+      "range": {
+        "startLine": 2846,
+        "startChar": 6,
+        "endLine": 2846,
+        "endChar": 20
+      },
+      "revId": "094ae9f7baedaf6e180dc10186b38bf10cf6f69a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
