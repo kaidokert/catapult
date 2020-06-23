@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd5e2d1f_8d9a45d9",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-06-23T09:50:54Z",
+      "side": 1,
+      "message": "This webrtc-perf-test list is only for the histograms upload ?",
+      "revId": "b148d50a5208f9bc9506305793d5b303dc474ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32cdc7f5_03929bf6",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-06-23T09:50:54Z",
+      "side": 1,
+      "message": "Why do ci and try builders need access to pinpoint ?",
+      "revId": "b148d50a5208f9bc9506305793d5b303dc474ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
