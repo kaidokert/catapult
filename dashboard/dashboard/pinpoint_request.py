@@ -29,9 +29,10 @@ _NON_CHROME_TARGETS = ['v8']
 _ISOLATE_TARGETS = [
     'angle_perftests', 'base_perftests', 'cc_perftests', 'gpu_perftests',
     'load_library_perf_tests', 'media_perftests', 'net_perftests',
-    'performance_browser_tests', 'tracing_perftests']
+    'performance_browser_tests', 'tracing_perftests', 'webrtc_perf_tests']
 _SUITE_CRREV_CONFIGS = {
     'v8': ['chromium', 'v8/v8'],
+    'webrtc_perf_tests': ['chromium', 'webrtc/src'],
 }
 
 
