@@ -96,7 +96,8 @@ class BrowserTestRunnerTest(unittest.TestCase):
           config,
           [test_name,
            '--write-full-results-to=%s' % temp_file_name,
-           '--test-filter=%s' % test_filter] + extra_args)
+           '--test-filter=%s' % test_filter,
+           '--quiet'] + extra_args)
       with open(temp_file_name) as f:
         self._test_result = json.load(f)
       (actual_successes,
@@ -460,7 +461,8 @@ class BrowserTestRunnerTest(unittest.TestCase):
           ['SimpleShardingTest',
            '--write-full-results-to=%s' % temp_file_name,
            '--total-shards=%d' % total_shards,
-           '--shard-index=%d' % shard_index] + opt_args)
+           '--shard-index=%d' % shard_index,
+           '--quiet'] + opt_args)
       with open(temp_file_name) as f:
         test_result = json.load(f)
       (actual_successes,
