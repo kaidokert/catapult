@@ -57,6 +57,24 @@
       "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd7dacd1_698bc7b1",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-06-24T18:28:05Z",
+      "side": 1,
+      "message": "The expectation should be that when iff this returns True, a screenshot has been successfully taken. It probably wouldn\u0027t be too hard to check the return code, and if that doesn\u0027t work, you can filter out the expected output on VMs. The return value isn\u0027t of much use otherwise.",
+      "parentUuid": "e9837b71_69e5878d",
+      "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
