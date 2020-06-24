@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36e7151d_71f7e6cf",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-06-24T06:46:08Z",
+      "side": 1,
+      "message": "Why do this? It\u0027s counter-intuitive, and you now have to check the file to determine if the screenshot was taken or not.",
+      "range": {
+        "startLine": 665,
+        "startChar": 72,
+        "endLine": 665,
+        "endChar": 78
+      },
+      "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e5717c0_47e899ea",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-06-24T06:46:08Z",
+      "side": 1,
+      "message": "Should we assert the return value?",
+      "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

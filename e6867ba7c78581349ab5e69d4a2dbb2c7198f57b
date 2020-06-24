@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c52db660_4f95b5e6",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-06-24T06:46:08Z",
+      "side": 0,
+      "message": "/var/log is a bit of a hack, but the reason I use it is because this directory is saved by bots. If a chromeos integration test fails, it\u0027s possible to go to this directory and look at the screenshot. It\u0027s likely no-one cares about this anymore, but ideally we would keep this behavior.",
+      "range": {
+        "startLine": 665,
+        "startChar": 22,
+        "endLine": 665,
+        "endChar": 31
+      },
+      "revId": "e6867ba7c78581349ab5e69d4a2dbb2c7198f57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
