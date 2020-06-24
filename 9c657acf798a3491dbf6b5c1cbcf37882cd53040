@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6d8136d4_865423a2",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-24T19:10:23Z",
+      "side": 1,
+      "message": "Switched to actually return whether the screenshot succeeded or not.",
+      "parentUuid": "36e7151d_71f7e6cf",
+      "range": {
+        "startLine": 665,
+        "startChar": 72,
+        "endLine": 665,
+        "endChar": 78
+      },
+      "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e5717c0_47e899ea",
         "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
         "patchSetId": 3
@@ -75,6 +99,24 @@
       "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80a56cbf_00cb1e77",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-24T19:10:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7dacd1_698bc7b1",
+      "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

@@ -22,6 +22,30 @@
       "revId": "e6867ba7c78581349ab5e69d4a2dbb2c7198f57b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2878db8a_e10bd62a",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-24T19:10:23Z",
+      "side": 0,
+      "message": "Added code to save a copy to /var/log/screenshots/",
+      "parentUuid": "c52db660_4f95b5e6",
+      "range": {
+        "startLine": 665,
+        "startChar": 22,
+        "endLine": 665,
+        "endChar": 31
+      },
+      "revId": "e6867ba7c78581349ab5e69d4a2dbb2c7198f57b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
