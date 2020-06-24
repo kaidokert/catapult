@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab0b718c_f183eede",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 2874,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-24T17:08:51Z",
+      "side": 1,
+      "message": "Looking at _EnsureCacheInitialized above, this block should be in a \"with self._cache_lock:\" scope.",
+      "range": {
+        "startLine": 2864,
+        "startChar": 4,
+        "endLine": 2874,
+        "endChar": 46
+      },
+      "revId": "66db5341387b35c3c99e43902a11a38288417ab0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
