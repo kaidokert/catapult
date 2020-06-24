@@ -39,6 +39,24 @@
       "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9837b71_69e5878d",
+        "filename": "telemetry/telemetry/core/cros_interface_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-24T16:57:28Z",
+      "side": 1,
+      "message": "No - it returns False on VMs even though the screenshot is successful because it logs a couple of warnings related to using software rendering. I could maybe change the screenshot code to grab the return code of the screenshot attempt and return true/false on that, although I\u0027ll have to double check that it actually returns a non-zero code on failure.",
+      "parentUuid": "7e5717c0_47e899ea",
+      "revId": "9c657acf798a3491dbf6b5c1cbcf37882cd53040",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
