@@ -626,8 +626,18 @@ class CrOSInterface(object):
 
   def CryptohomePath(self, user):
     """Returns the cryptohome mount point for |user|."""
-    stdout, stderr = self.RunCmdOnDevice(['cryptohome-path', 'user', "'%s'" %
-                                          user])
+    # This can occasionally flake due to the SSH connection randomly being
+    # refused or timing out, so retry several times before giving up.
+    # TODO(crbug.com/1091553): Remove retries if root cause is ever found
+    # and fixed.
+    for attempt in xrange(1, 4):
+      stdout, stderr = self.RunCmdOnDevice(['cryptohome-path', 'user', "'%s'" %
+                                            user])
+      if stderr == '':
+        break
+      logging.warning('Attempt %d to get crypthome mount point failed: %s',
+                      attempt, stderr)
+
     if stderr != '':
       raise OSError('cryptohome-path failed: %s' % stderr)
     return stdout.rstrip()
