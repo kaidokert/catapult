@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1e221e9_43f4b3ac",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-06-25T04:57:34Z",
+      "side": 1,
+      "message": "What\u0027s stderr on VMs? perhaps we can continue to check that it\u0027s non-empty",
+      "revId": "698c88ba3c58af85f2922babd21c21dc397f58b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
