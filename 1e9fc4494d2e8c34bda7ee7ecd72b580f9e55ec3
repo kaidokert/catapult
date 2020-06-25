@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efdeb039_dd98afbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001939
+      },
+      "writtenOn": "2020-06-25T08:45:51Z",
+      "side": 1,
+      "message": "note that incremental build reduce goma\u0027s cache hit rate.\n\ngoma helps to make clobber build faster by cache in cloud, but not compiling by incremental build is much faster than fetching goma\u0027s cache result (ninja invokes gomacc -\u003e compiler_proxy checks input files -\u003e goma server retrieves cache -\u003e compiler_proxy downloads output artifacts).",
+      "revId": "1e9fc4494d2e8c34bda7ee7ecd72b580f9e55ec3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
