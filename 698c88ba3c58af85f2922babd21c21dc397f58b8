@@ -16,6 +16,24 @@
       "revId": "698c88ba3c58af85f2922babd21c21dc397f58b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "914eb5f7_3227e416",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-06-25T17:05:18Z",
+      "side": 1,
+      "message": "It contains the warning lines:\n\nlibEGL warning: MESA-LOADER: failed to open virtio_gpu (search paths /usr/lib64/dri)\n  \nlibEGL warning: No hardware driver found, falling back to software rendering\n\nso we can\u0027t assert that it\u0027s empty.",
+      "parentUuid": "f1e221e9_43f4b3ac",
+      "revId": "698c88ba3c58af85f2922babd21c21dc397f58b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
