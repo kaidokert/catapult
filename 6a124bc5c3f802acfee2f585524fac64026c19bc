@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8bb3377_5ea18e76",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-06-26T12:45:09Z",
+      "side": 1,
+      "message": "I would suggest to use \u0027:\u0027 as a separator since that\u0027s what many other metrics are using.\nAlso thinking through the naming scheme for all wasm metrics such that they are also consistent with UMA/UKM metrics will pay off.\n\n\nE.g.:\n- \u0027v8:wasm:latency:sync_instantiation\u0027 \u003c\u003d wall time for the task\n- \u0027v8:wasm:latency:sync_instantiation:cpu\u0027 \u003c\u003d cpu time for task\n- \u0027v8:wasm:latency:sync_instantiation:self_time\u0027 \u003c\u003d wall time for the task\n- \u0027v8:wasm:latency:sync_instantiation:self_time:cpu\u0027 \u003c\u003d cpu time for task\n\nWe are planning to change GC metrics to a similar scheme.",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "6a124bc5c3f802acfee2f585524fac64026c19bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "515f61db_2a129138",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-06-26T12:45:09Z",
+      "side": 1,
+      "message": "Any reason to use selfTime instead of overall duration here?",
+      "range": {
+        "startLine": 31,
+        "startChar": 48,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "6a124bc5c3f802acfee2f585524fac64026c19bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
