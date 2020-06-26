@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "851b1556_15622dc8",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-06-26T14:19:43Z",
+      "side": 1,
+      "message": "It\u0027s probably happening here because it\u0027s the first ssh command. I wonder if we should put this hack somewhere else",
+      "revId": "4352df7ea8ef031d03bc27047553065b5cd00d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
