@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+Copyright 2020 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/extras/importer/trace_event_importer.html">
+<link rel="import" href="/tracing/metrics/v8/wasm_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('testInstantiateMetric', function() {
+    const slices = [
+      {
+        title: 'wasm.SyncInstantiate', args: {}, start: 10, end: 20,
+        cpuStart: 100, cpuEnd: 200
+      },
+      {
+        title: 'wasm.SyncInstantiate', args: {}, start: 30, end: 60,
+        cpuStart: 300, cpuEnd: 600
+      }
+    ];
+    const actual = run(slices);
+
+    const cpuValue =
+      actual.getHistogramNamed('v8_wasm_sync_instantiation_time_cpu_self');
+    assert.strictEqual(cpuValue.running.sum, 400);
+    assert.strictEqual(cpuValue.numValues, 2);
+    assert.strictEqual(cpuValue.average, 200);
+    assert.strictEqual(cpuValue.running.max, 300);
+
+    const wallValue =
+      actual.getHistogramNamed('v8_wasm_sync_instantiation_time_wall_self');
+    assert.strictEqual(wallValue.running.sum, 40);
+    assert.strictEqual(wallValue.numValues, 2);
+    assert.strictEqual(wallValue.average, 20);
+    assert.strictEqual(wallValue.running.max, 30);
+  });
+});
+
+</script>
