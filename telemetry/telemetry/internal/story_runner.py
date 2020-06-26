@@ -142,6 +142,8 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       if isinstance(test, story_test.StoryTest):
         test.Measure(state.platform, results)
 
+      state.browser.CollectDebugData(logging.INFO)
+
     except page_action.PageActionNotSupported as exc:
       results.Skip('Unsupported page action: %s' % exc)
     except (legacy_page_test.Failure, exceptions.TimeoutException,
