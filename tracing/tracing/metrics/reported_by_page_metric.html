@@ -51,29 +51,36 @@ tr.exportTo('tr.metrics', function() {
    *   when the important operation ends.
    */
   function reportedByPageMetric(histograms, model) {
-    const timeToViewable = histograms.createHistogram(
-        'reported_by_page:time_to_viewable',
+    const ccv = histograms.createHistogram(
+        'ccv',
         timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: METRIC_BOUNDARIES,
           description: 'Time from navigation start' +
               'to telemetry:reported_by_page:viewable',
           summaryOptions: SUMMARY_OPTIONS,
         });
-    const timeToInteractive = histograms.createHistogram(
-        'reported_by_page:time_to_interactive',
+    const coe = histograms.createHistogram(
+        'coe',
         timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: METRIC_BOUNDARIES,
           description: 'Time from navigation start ' +
               'to telemetry:reported_by_page:interactive',
           summaryOptions: SUMMARY_OPTIONS,
         });
-    const benchmarkTime = histograms.createHistogram(
-        'reported_by_page:benchmark_time',
+    const fcoe = histograms.createHistogram(
+        'fcoe',
         timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: METRIC_BOUNDARIES,
-          description:
-              'Time from telemetry:reported_by_page:benchmark_begin ' +
-              'to telemetry:reported_by_page:benchmark_end',
+          description: 'Time from navigation start ' +
+              'to telemetry:reported_by_page:interactive',
+          summaryOptions: SUMMARY_OPTIONS,
+        });
+    const shl = histograms.createHistogram(
+        'shl',
+        timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: METRIC_BOUNDARIES,
+          description: 'Time from navigation start ' +
+              'to telemetry:reported_by_page:interactive',
           summaryOptions: SUMMARY_OPTIONS,
         });
     const chromeHelper = model.getOrCreateHelper(
@@ -83,16 +90,20 @@ tr.exportTo('tr.metrics', function() {
       if (rendererHelper.isChromeTracingUI) continue;
       measureUserTime(rendererHelper,
           'navigationStart',
-          'telemetry:reported_by_page:viewable',
-          timeToViewable);
+          'ccv',
+          ccv);
       measureUserTime(rendererHelper,
           'navigationStart',
-          'telemetry:reported_by_page:interactive',
-          timeToInteractive);
+          'coe',
+          coe);
       measureUserTime(rendererHelper,
-          'telemetry:reported_by_page:benchmark_begin',
-          'telemetry:reported_by_page:benchmark_end',
-          benchmarkTime);
+          'navigationStart',
+          'fcoe',
+          fcoe);
+      measureUserTime(rendererHelper,
+          'navigationStart',
+          'shl',
+          shl);
     }
   }
 
