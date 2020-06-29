@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "983af996_74891fd9",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1141154
+      },
+      "writtenOn": "2020-06-29T15:13:46Z",
+      "side": 1,
+      "message": "I renamed the metrics to \"v8:wasm:sync_instantiate:cpu_time\" and \"v8:wasm:sync_instantiate:wall_time\" now. I skipped \"self_time\" as it does not really make sense in this case.",
+      "parentUuid": "b8cc140e_f837b1dd",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "6a124bc5c3f802acfee2f585524fac64026c19bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "515f61db_2a129138",
         "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
         "patchSetId": 3
@@ -69,6 +93,30 @@
       "revId": "6a124bc5c3f802acfee2f585524fac64026c19bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c864681b_17b879b1",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1141154
+      },
+      "writtenOn": "2020-06-29T15:13:46Z",
+      "side": 1,
+      "message": "No, it actually does not make sense. I copied the code from executionMetric, and \"self_time\" is actually the overall time.",
+      "parentUuid": "515f61db_2a129138",
+      "range": {
+        "startLine": 31,
+        "startChar": 48,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "6a124bc5c3f802acfee2f585524fac64026c19bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
