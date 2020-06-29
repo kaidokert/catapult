@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d035add_1d1ae16b",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-06-29T16:14:40Z",
+      "side": 1,
+      "message": "nit: It would be great to make this function name a little more descriptive. Perhaps runMetric?",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "d3dcca0c6ac3e50ac336af95e7b4a1fc58dd0c81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b42bebd_80088338",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-06-29T16:14:40Z",
+      "side": 1,
+      "message": "These reduce statements will fail if in the future someone tries to run it with slices \u003d []. Could you either add a check for slices.length and throw an error with a clear message before these, or add a default value to the reduce statements?",
+      "revId": "d3dcca0c6ac3e50ac336af95e7b4a1fc58dd0c81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef6a206e_9554234c",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-06-29T16:14:40Z",
+      "side": 1,
+      "message": "nit: I prefer calling this \u0027histograms\u0027 to make the return type more obvious (this wouldn\u0027t have been an issue if JS had types) or \u0027results\u0027 (because that\u0027s what metric outputs are conventionally called in the JS code).",
+      "range": {
+        "startLine": 51,
+        "startChar": 10,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "d3dcca0c6ac3e50ac336af95e7b4a1fc58dd0c81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
