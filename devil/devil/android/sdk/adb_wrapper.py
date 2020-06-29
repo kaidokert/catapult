@@ -295,6 +295,13 @@ class AdbWrapper(object):
         raise device_errors.NoAdbError(msg=str(e))
       else:
         raise
+    except cmd_helper.TimeoutError:
+      adb_devices_output = cmd_helper.GetCmdOutput(
+          'adb devices"',
+          env=env)
+      logger.info('Got TimeoutError. Listing adb devices: %s',
+                  adb_devices_output)
+      raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
     # inconsistent with error reporting so many command failures present
