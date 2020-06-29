@@ -158,6 +158,7 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       # create a new shared state.
       raise
     finally:
+      state.browser.CollectDebugData(logging.INFO)
       has_existing_exception = (sys.exc_info() != (None, None, None))
       try:
         if hasattr(state, 'browser') and state.browser:
