@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b8cc140e_f837b1dd",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1381588
+      },
+      "writtenOn": "2020-06-29T13:59:08Z",
+      "side": 1,
+      "message": "Agreed on using \u0027v8:wasm:\u0027 as a prefix and \u0027:\u0027 as a separator. Not sure I like the wall-time as both a metric on its own and a prefix for other metrics.\n\nAligning across UMA, UKM and Telemetry would be desirable, but is also a major effort. We should maybe schedule some time in one of the next quarters for that as not only the naming and structur but also the definition of these metrics differ.",
+      "parentUuid": "c8bb3377_5ea18e76",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 49
+      },
+      "revId": "6a124bc5c3f802acfee2f585524fac64026c19bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "515f61db_2a129138",
         "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
         "patchSetId": 3
