@@ -16,6 +16,24 @@
       "revId": "4d2e0ce020c31747a33617db1a2a8ce1a6a23b69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "272d04f0_4a8eebe5",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-06-30T01:34:06Z",
+      "side": 1,
+      "message": "I think that\u0027s fine -- what\u0027s going to happen is until all the running jobs go below the budget, each iteration will keep returning just the running jobs that fit within the provided budget. So that\u0027s working as intended: we\u0027re not going to return queued jobs until we have enough budget after accounting for the currently running jobs.",
+      "parentUuid": "51e8e91f_3a1571c6",
+      "revId": "4d2e0ce020c31747a33617db1a2a8ce1a6a23b69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
