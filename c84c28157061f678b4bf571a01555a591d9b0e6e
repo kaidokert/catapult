@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9821572e_1f74f8ca",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-06-30T19:49:46Z",
+      "side": 1,
+      "message": "I feel like these can be removed since it is probably only needed under fastboot mode for flashing purpose. wdyt?",
+      "range": {
+        "startLine": 155,
+        "startChar": 6,
+        "endLine": 156,
+        "endChar": 79
+      },
+      "revId": "c84c28157061f678b4bf571a01555a591d9b0e6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
