@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8b56959_3ee5990c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-01T00:33:39Z",
+      "side": 1,
+      "message": "LGTM\n\nBeautiful stuff. I like that there was a single place where we needed to change the logic here. 😊",
+      "revId": "799067961065d0c04c8e3fea921ec4c72dd36620",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
