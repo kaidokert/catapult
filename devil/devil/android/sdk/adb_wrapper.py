@@ -286,15 +286,26 @@ class AdbWrapper(object):
     if additional_env:
       env.update(additional_env)
     try:
-      status, output = cmd_helper.GetCmdStatusAndOutputWithTimeout(
-          cls._BuildAdbCmd(args, device_serial, cpu_affinity=cpu_affinity),
-          timeout,
-          env=env)
+      adb_cmd = cls._BuildAdbCmd(args, device_serial, cpu_affinity=cpu_affinity)
+      status, output = cmd_helper.GetCmdStatusAndOutputWithTimeout(adb_cmd,
+                                                                   timeout,
+                                                                   env=env)
     except OSError as e:
       if e.errno in (errno.ENOENT, errno.ENOEXEC):
         raise device_errors.NoAdbError(msg=str(e))
       else:
         raise
+    except cmd_helper.TimeoutError:
+      logger.info('Got TimeoutError when running command %r', adb_cmd)
+      cmds = (
+          'adb devices',
+          'adb emu ping',
+      )
+      for cmd in cmds:
+        cmd_output = cmd_helper.GetCmdOutput(cls._BuildAdbCmd([cmd], None),
+                                             env=env)
+        logger.info('%s: %r', cmd, cmd_output)
+      raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
     # inconsistent with error reporting so many command failures present

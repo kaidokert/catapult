@@ -1427,6 +1427,8 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
 
+    logger.info('RunShellCommand args: %r', locals())
+
     def env_quote(key, value):
       if not DeviceUtils._VALID_SHELL_VARIABLE.match(key):
         raise KeyError('Invalid shell variable name %r' % key)
@@ -1434,6 +1436,7 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
+      logger.info('RunShellCommand: cmd passed to run: %s', cmd)
       return self.adb.Shell(cmd)
 
     def handle_check_return(cmd):
@@ -1451,16 +1454,17 @@ class DeviceUtils(object):
       else:
         with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
           self._WriteFileWithPush(script.name, cmd)
-          logger.debug('Large shell command will be run from file: %s ...',
-                       cmd[:self._MAX_ADB_COMMAND_LENGTH])
+          logger.info('Large shell command will be run from file: %s ...',
+                      cmd[:self._MAX_ADB_COMMAND_LENGTH])
           return handle_check_return('sh %s' % script.name_quoted)
 
     def handle_large_output(cmd, large_output_mode):
+      logger.info('RunShellCommand: cmd passed to handle_large_output: %s', cmd)
       if large_output_mode:
         with device_temp_file.DeviceTempFile(self.adb) as large_output_file:
           large_output_cmd = '( %s )>%s 2>&1' % (cmd, large_output_file.name)
-          logger.debug('Large output mode enabled. Will write output to '
-                       'device and read results from file.')
+          logger.info('Large output mode enabled. Will write output to '
+                      'device and read results from file.')
           try:
             handle_large_command(large_output_cmd)
             return self.ReadFile(large_output_file.name, force_pull=True)
