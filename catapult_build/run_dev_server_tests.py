@@ -207,7 +207,8 @@ def RunTests(args, chrome_path):
         '--enable-blink-features=CustomElementsV0,'
         'HTMLImports,ShadowDOMV0',
         ('http://localhost:%s/%s/tests.html?' % (port, args.tests)) +
-        'headless=true&testTypeToRun=all',
+        'headless=true&testTypeToRun=all&' +
+        'testSuiteName=tracing.ui.base.camera_test',
     ]
     print('Starting Chrome at path %s...' % chrome_path)
     chrome_process = subprocess.Popen(
