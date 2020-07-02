@@ -1427,6 +1427,8 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
 
+    logger.info('RunShellCommand args: %r', locals())
+
     def env_quote(key, value):
       if not DeviceUtils._VALID_SHELL_VARIABLE.match(key):
         raise KeyError('Invalid shell variable name %r' % key)
@@ -1434,6 +1436,7 @@ class DeviceUtils(object):
       return '%s=%s' % (key, cmd_helper.DoubleQuote(value))
 
     def run(cmd):
+      logger.info('RunShellCommand: cmd passed to run: %s', cmd)
       return self.adb.Shell(cmd)
 
     def handle_check_return(cmd):
@@ -1451,16 +1454,17 @@ class DeviceUtils(object):
       else:
         with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
           self._WriteFileWithPush(script.name, cmd)
-          logger.debug('Large shell command will be run from file: %s ...',
-                       cmd[:self._MAX_ADB_COMMAND_LENGTH])
+          logger.info('Large shell command will be run from file: %s ...',
+                      cmd[:self._MAX_ADB_COMMAND_LENGTH])
           return handle_check_return('sh %s' % script.name_quoted)
 
     def handle_large_output(cmd, large_output_mode):
+      logger.info('RunShellCommand: cmd passed to handle_large_output: %s', cmd)
       if large_output_mode:
         with device_temp_file.DeviceTempFile(self.adb) as large_output_file:
           large_output_cmd = '( %s )>%s 2>&1' % (cmd, large_output_file.name)
-          logger.debug('Large output mode enabled. Will write output to '
-                       'device and read results from file.')
+          logger.info('Large output mode enabled. Will write output to '
+                      'device and read results from file.')
           try:
             handle_large_command(large_output_cmd)
             return self.ReadFile(large_output_file.name, force_pull=True)
@@ -2825,24 +2829,27 @@ class DeviceUtils(object):
     with self._cache_lock:
       if self._cache['token']:
         return
+      # Get prop
+      output = self.RunShellCommand(
+          ('getprop'), check_return=True, large_output=True)
+      prop_cache = self._cache['getprop']
+      prop_cache.clear()
+      for key, value in _GETPROP_RE.findall(''.join(output)):
+        prop_cache[key] = value
+
       # Change the token every time to ensure that it will match only the
       # previously dumped cache.
       token = str(uuid.uuid1())
       cmd = ('c=/data/local/tmp/cache_token;'
              'echo $EXTERNAL_STORAGE;'
              'cat $c 2>/dev/null||echo;'
-             'echo "%s">$c &&' % token + 'getprop')
+             'echo "%s">$c &&' % token)
       output = self.RunShellCommand(
-          cmd, shell=True, check_return=True, large_output=True)
+          cmd, shell=True, check_return=True)
       # Error-checking for this existing is done in GetExternalStoragePath().
       self._cache['external_storage'] = output[0]
       self._cache['prev_token'] = output[1]
-      output = output[2:]
 
-      prop_cache = self._cache['getprop']
-      prop_cache.clear()
-      for key, value in _GETPROP_RE.findall(''.join(output)):
-        prop_cache[key] = value
       self._cache['token'] = token
 
   @decorators.WithTimeoutAndRetriesFromInstance()
