@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "14bcab94_24de934f",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1141154
+      },
+      "writtenOn": "2020-07-02T09:57:24Z",
+      "side": 1,
+      "message": "Hmm, I did not pick wasm.StartStreamingCompilation because in the trace I recorded on my laptop there is a 4ms gap between wasm.StartStreamingCompilation and the first wasm.OnBytesReceived. I admit though, maybe it would be better to use wasm.StartStreamingCompilation, especially if we also introduce another metric that measures the time covered by wasm.ExecuteCompilation events between wasm.StartStreamingCompilation and wasm.BaselineFinished. Wdyt?",
+      "parentUuid": "1289d286_b7a6a6e5",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "464d9e7a_a6f4875a",
         "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
         "patchSetId": 2
