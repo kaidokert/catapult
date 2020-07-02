@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e5005d8e_984e2809",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1177599
+      },
+      "writtenOn": "2020-07-02T10:47:48Z",
+      "side": 1,
+      "message": "Yes, I hadn\u0027t brought this up if I wouldn\u0027t think that it\u0027s a bit cleaner to only use the \"compilation progress marker events\" we explicitly emit.",
+      "parentUuid": "14bcab94_24de934f",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "464d9e7a_a6f4875a",
         "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
         "patchSetId": 2
