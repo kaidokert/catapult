@@ -23,9 +23,10 @@ from dashboard.models import graph_data
 from dashboard.services import crrev_service
 from dashboard.services import pinpoint_service
 
-_NON_CHROME_TARGETS = ['v8']
+_NON_CHROME_TARGETS = ['v8', 'webrtc_perf_tests']
 _SUITE_CRREV_CONFIGS = {
     'v8': ['chromium', 'v8/v8'],
+    'webrtc_perf_tests': ['chromium', 'webrtc/src'],
 }
 
 
