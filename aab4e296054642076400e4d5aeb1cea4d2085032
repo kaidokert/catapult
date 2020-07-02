@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "048ae2bf_cc2e9370",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2020-07-02T10:54:33Z",
+      "side": 1,
+      "message": "I just wanted to mention that when we are running benchmarks, we get the resources from the wpr proxy and usually find them to be faster than getting them from real network latencies.",
+      "parentUuid": "14bcab94_24de934f",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "464d9e7a_a6f4875a",
         "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
         "patchSetId": 2
@@ -84,6 +102,23 @@
       "side": 1,
       "message": "Sorry, just realize that this is not quite correct, since we need to take the \"start\" property of the events. That makes it a bit more verbose:\n\nlet compilationStart \u003d bytesReceivedEvents.reduce((cur, event) \u003d\u003e Math.min(cur, event.start), Infinity);",
       "parentUuid": "464d9e7a_a6f4875a",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffe38e68_a027749c",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2020-07-02T10:54:33Z",
+      "side": 1,
+      "message": "Maybe also another test when there is no BaselineFinished event at all or no wasm.OnBytesReceived.",
       "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
