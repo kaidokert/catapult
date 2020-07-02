@@ -33,6 +33,24 @@
       "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2acb9e4e_fb39ac17",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1177599
+      },
+      "writtenOn": "2020-07-02T08:17:49Z",
+      "side": 1,
+      "message": "Sorry, just realize that this is not quite correct, since we need to take the \"start\" property of the events. That makes it a bit more verbose:\n\nlet compilationStart \u003d bytesReceivedEvents.reduce((cur, event) \u003d\u003e Math.min(cur, event.start), Infinity);",
+      "parentUuid": "464d9e7a_a6f4875a",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
