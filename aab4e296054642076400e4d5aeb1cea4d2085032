@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1289d286_b7a6a6e5",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1177599
+      },
+      "writtenOn": "2020-07-02T08:14:32Z",
+      "side": 1,
+      "message": "I wonder if it would be a bit cleaner to just use \"wasm.StartStreamingCompilation\" as the start event? If we assume that network speed is not an issue (or we decide to ignore any network latency), then I think we should not use these network-based events at all.",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "464d9e7a_a6f4875a",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1177599
+      },
+      "writtenOn": "2020-07-02T08:14:32Z",
+      "side": 1,
+      "message": "Looks like this could be expressed as a reduction (assuming that {bytesReceivedEvents} is an array):\nlet compilationStart \u003d bytesReceivedEvents.reduce(Math.min, Infinity);\n\nIf it\u0027s not an array already, you could use {Array.from(bytesReceivedEvents)} to make it one.",
+      "revId": "aab4e296054642076400e4d5aeb1cea4d2085032",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
