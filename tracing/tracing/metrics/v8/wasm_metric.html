@@ -66,9 +66,34 @@ tr.exportTo('tr.metrics.v8', function() {
     histograms.addHistogram(histogram);
   }
 
+  function computeCompilationTierupWallTimeMetric(histograms, model) {
+    const histogram = new tr.v.Histogram(
+        'v8:wasm:compilation_tierup:wall_time',
+        tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+
+    const baselineFinishedEvents =
+      model.findTopmostSlicesNamed('wasm.BaselineFinished');
+
+    const baselineEvent = baselineFinishedEvents.next();
+    if (baselineEvent.done) return;
+    const baselineEnd = baselineEvent.value.end;
+
+    const toptierFinishedEvents =
+      model.findTopmostSlicesNamed('wasm.TopTierFinished');
+
+    const toptierEvent = toptierFinishedEvents.next();
+    if (toptierEvent.done) return;
+    const toptierEnd = toptierEvent.value.end;
+
+    histogram.addSample(toptierEnd - baselineEnd);
+
+    histograms.addHistogram(histogram);
+  }
+
   function wasmMetric(histograms, model) {
     computeSyncInstantiationTimeMetric(histograms, model);
     computeStreamingBaselineCompileTimeMetric(histograms, model);
+    computeCompilationTierupWallTimeMetric(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(wasmMetric);

@@ -90,6 +90,27 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(compileTime.average, 100);
     assert.strictEqual(compileTime.running.max, 100);
   });
+
+  test('testTierupWallTime', function() {
+    const slices = [
+      {
+        title: 'wasm.BaselineFinished', args: {}, start: 100, end: 110,
+        cpuStart: 100, cpuEnd: 110
+      },
+      {
+        title: 'wasm.TopTierFinished', args: {}, start: 200, end: 210,
+        cpuStart: 200, cpuEnd: 210
+      },
+    ];
+
+    const histograms = runMetrics(slices);
+
+    const compileTime = histograms.getHistogramNamed(
+        'v8:wasm:compilation_tierup:wall_time');
+    assert.strictEqual(compileTime.numValues, 1);
+    assert.strictEqual(compileTime.average, 100);
+    assert.strictEqual(compileTime.running.max, 100);
+  });
 });
 
 </script>
