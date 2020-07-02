@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42019d0a_26851c95",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2020-07-02T10:58:58Z",
+      "side": 1,
+      "message": "I am not sure how expensive these metrics are, but if they turn out to be expensive, may be we can just find these events once in wasmMetric and pass the events to functions to compute metric.",
+      "revId": "49414d826908a28f3e43c6dd1270edbc5ec9a874",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e10c21c4_6f880b6a",
+        "filename": "tracing/tracing/metrics/v8/wasm_metric_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2020-07-02T10:58:58Z",
+      "side": 1,
+      "message": "maybe tests when one or both events don\u0027t exist?",
+      "revId": "49414d826908a28f3e43c6dd1270edbc5ec9a874",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
