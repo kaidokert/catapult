@@ -33,6 +33,24 @@
       "revId": "b148d50a5208f9bc9506305793d5b303dc474ba2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9063589b_36275026",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-07-02T13:44:53Z",
+      "side": 1,
+      "message": "It says here that it is for the isolate upload :\nhttps://chromium-review.googlesource.com/c/catapult/+/1550519\nDoes that mean that the current isolate upload fails ?",
+      "parentUuid": "32cdc7f5_03929bf6",
+      "revId": "b148d50a5208f9bc9506305793d5b303dc474ba2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
