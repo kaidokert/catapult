@@ -16,6 +16,29 @@
       "revId": "955b8aa69986034dadce2a366fe35409870391f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "636ebbee_808dbea9",
+        "filename": "telemetry/telemetry/testing/run_tests_unittest.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-06T21:11:47Z",
+      "side": 1,
+      "message": "Nit: Move this to some common location instead of defining in two separate files. Can be ignored if you\u0027re planning on fixing binary_manager in the near future.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "955b8aa69986034dadce2a366fe35409870391f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
