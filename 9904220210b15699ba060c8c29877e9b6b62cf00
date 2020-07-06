@@ -34,6 +34,24 @@
       "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d21c4f44_62207e48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-07-06T19:38:51Z",
+      "side": 1,
+      "message": "That\u0027s exactly why I think adding this would be helpful.\n\nThe bottom of the page shows that the task failed because of \"NoDevicesError: All devices were blacklisted due to errors\". i.e. https://screenshot.googleplex.com/d5zUPeBv\n\nAnd the device was blackedlisted due to individual_device_tear_down. i.e. https://screenshot.googleplex.com/QmyOHSnZNmV\nAnd the error stack here indicates the root cause is _EnsureCacheInitialized, where adb command `getprop` is called.\n\nThe screenshot you posted is probably be a side effect of the above error.\nAnd you can see that the timeout of getprop happened earlier than delete-temproary-dir (by checking the error log added in this CL). i.e. https://screenshot.googleplex.com/NosOA6NPHig",
+      "parentUuid": "28f06a10_1da42adb",
+      "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
