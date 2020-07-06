@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f82fe16a_5e2d4a22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-06T18:50:14Z",
+      "side": 1,
+      "message": "\u003e Patch Set 3:\n\u003e \n\u003e Friendly Ping :)\n\nBold move to ping after eod on the day before a long weekend",
+      "revId": "5a3f3bb463837fb99ce52dfebfd2353c42614f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ae1cb38_33330959",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-06T18:50:14Z",
+      "side": 1,
+      "message": "Why would the length of the value be the indicator? Code comment pls",
+      "range": {
+        "startLine": 156,
+        "startChar": 30,
+        "endLine": 156,
+        "endChar": 75
+      },
+      "revId": "5a3f3bb463837fb99ce52dfebfd2353c42614f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55718ad4_26d411e9",
+        "filename": "devil/devil/android/fastboot_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-06T18:50:14Z",
+      "side": 1,
+      "message": "Same re the string length.",
+      "range": {
+        "startLine": 170,
+        "startChar": 32,
+        "endLine": 170,
+        "endChar": 35
+      },
+      "revId": "5a3f3bb463837fb99ce52dfebfd2353c42614f0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
