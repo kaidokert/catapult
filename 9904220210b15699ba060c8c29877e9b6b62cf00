@@ -70,6 +70,24 @@
       "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bada34a_0cc9c5af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-07-06T21:14:02Z",
+      "side": 1,
+      "message": "https://chromium-swarm.appspot.com/task?id\u003d4cdaab6e8d7fb110 is an good example.\nOnce a TimeoutError occurred, all the following adb shell commands kept timing out. (More examples can be found in crbug.com/1093602)\nIt is possible that an adb shell command did not ever end and thus block all the rest shell command from executing.\nSo it is important to understand if there is any common pattern, like if it always starts failing with the same shell command (could be `getprop`).\n\nSuch timeout occurs occasionally in Emulator, on both MM and Pie. It hurts the stabilization a lot. But it is very hard to reproduce locally. This CL would help understand the root cause.",
+      "parentUuid": "af7257bc_3a465b9d",
+      "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
