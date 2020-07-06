@@ -16,6 +16,24 @@
       "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28f06a10_1da42adb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-06T18:44:10Z",
+      "side": 1,
+      "message": "But that\u0027s not what\u0027s causing the task to fail, is it? Rather it\u0027s the timed out `rm -rf` commands, which are still being logged regardless of this CL. ie:\nhttps://screenshot.googleplex.com/4NnBtsWQWed.png\n\nSo how would this CL help in that case? What other avenues of investigation does this CL open for you that the base logging currently doesn\u0027t?\n\nDevil is already excessively verbose when it comes to certain failure modes. So I\u0027m hesitant to add even more without proof that it would indeed help.",
+      "parentUuid": "c7a62c9b_02b5bed1",
+      "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
