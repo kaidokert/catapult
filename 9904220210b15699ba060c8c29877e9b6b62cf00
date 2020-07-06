@@ -52,6 +52,24 @@
       "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af7257bc_3a465b9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-06T20:54:16Z",
+      "side": 1,
+      "message": "I guess I\u0027ll rephrase my question: What does it matter if either `getprop` or `rm` timed out first?\n\n\n\u003e The screenshot you posted is probably be a side effect of the above error.\n\nWhat makes you think that?",
+      "parentUuid": "d21c4f44_62207e48",
+      "revId": "9904220210b15699ba060c8c29877e9b6b62cf00",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
