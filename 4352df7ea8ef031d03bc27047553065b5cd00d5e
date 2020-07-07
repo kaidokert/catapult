@@ -52,6 +52,24 @@
       "revId": "4352df7ea8ef031d03bc27047553065b5cd00d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b078cee_527bb66e",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-07T17:26:12Z",
+      "side": 1,
+      "message": "That does seem wrong - I\u0027ll try swapping the order in a separate CL and see if that has any effect.",
+      "parentUuid": "0e724116_01c5197f",
+      "revId": "4352df7ea8ef031d03bc27047553065b5cd00d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
