@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b82ce246_64cfaaf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-07T18:08:30Z",
+      "side": 1,
+      "message": "Self-approving for TBR since this is just an order swap, and tests seem to still run fine for me locally. I\u0027ll keep an eye on the bots to see if this has any effect on the issues we were seeing, or introduces any new ones.",
+      "revId": "8d788ab6d3f2f97bab875bf330b7e9da1dcf6522",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
