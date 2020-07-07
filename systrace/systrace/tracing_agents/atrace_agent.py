@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import logging
 import optparse
 import platform
 import re
@@ -234,10 +235,12 @@ class AtraceAgent(tracing_agents.TracingAgent):
     """
     cmd = 'echo trace_event_clock_sync: name=%s >' \
         ' %s/trace_marker' % (sync_id, self._tracing_path)
+    logging.warning('Atrace cmd: %s', cmd)
     with self._device_utils.adb.PersistentShell(
         self._device_serial_number) as shell:
       t1 = trace_time_module.Now()
-      shell.RunCommand(cmd, close=True)
+      out, code = shell.RunCommand(cmd, close=True)
+      logging.warning('Atrace cmd code: %s, output: %s', code, out)
       did_record_sync_marker_callback(t1, sync_id)
 
   def _stop_collect_trace(self):

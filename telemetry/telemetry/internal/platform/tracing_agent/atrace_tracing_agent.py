@@ -8,6 +8,7 @@ from telemetry.internal.platform import tracing_agent
 from tracing.trace_data import trace_data
 
 from devil.android.sdk import version_codes
+import logging
 
 
 class AtraceTracingAgent(tracing_agent.TracingAgent):
@@ -48,9 +49,12 @@ class AtraceTracingAgent(tracing_agent.TracingAgent):
 
   def RecordClockSyncMarker(self, sync_id,
                             record_controller_clock_sync_marker_callback):
-    return self._atrace_agent.RecordClockSyncMarker(
+    logging.warning('AtraceTracingAgent.RecordClockSyncMarker')
+    a = self._atrace_agent.RecordClockSyncMarker(
         sync_id,
         lambda t, sid: record_controller_clock_sync_marker_callback(sid, t))
+    logging.warning('AtraceTracingAgent.RecordClockSyncMarker success')
+    return a
 
   def CollectAgentTraceData(self, trace_data_builder, timeout=None):
     results = self._atrace_agent.GetResults(timeout)
