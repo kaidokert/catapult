@@ -21,6 +21,11 @@ def _GenerateName(prefix, suffix, dir):
   random_hex = hex(random.randint(0, 2**52))[2:]
   return posixpath.join(dir, '%s-%s%s' % (prefix, random_hex, suffix))
 
+def _ListFiles(adb, dir):
+  content = adb.Shell('ls -l %s' % dir)
+  logger.info('Contents under %s\n%s', dir, content)
+  logger.info('Current user: %s', adb.Shell('whoami'))
+
 
 class DeviceTempFile(object):
   """A named temporary file on a device.
@@ -48,6 +53,7 @@ class DeviceTempFile(object):
       raise ValueError(m)
 
     self._adb = adb
+    self._dir = dir
     # Python's random module use 52-bit numbers according to its docs.
     self.name = _GenerateName(prefix, suffix, dir)
     self.name_quoted = cmd_helper.SingleQuote(self.name)
@@ -73,9 +79,11 @@ class DeviceTempFile(object):
         name='delete_temporary_file(%s)' % self._adb.GetDeviceSerial()).start()
 
   def __enter__(self):
+    _ListFiles(self._adb, self._dir)
     return self
 
   def __exit__(self, type, value, traceback):
+    _ListFiles(self._adb, self._dir)
     self.close()
 
 
@@ -97,6 +105,7 @@ class NamedDeviceTemporaryDirectory(object):
       ValueError if any of suffix, prefix, or dir are None.
     """
     self._adb = adb
+    self._dir = dir
     self.name = _GenerateName(prefix, suffix, dir)
     self.name_quoted = cmd_helper.SingleQuote(self.name)
 
@@ -115,7 +124,9 @@ class NamedDeviceTemporaryDirectory(object):
 
   def __enter__(self):
     self._adb.Shell('mkdir -p %s' % self.name)
+    _ListFiles(self._adb, self._dir)
     return self
 
   def __exit__(self, exc_type, exc_val, exc_tb):
+    _ListFiles(self._adb, self._dir)
     self.close()
