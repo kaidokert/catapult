@@ -2,7 +2,6 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-import contextlib
 import os
 import string
 import sys
@@ -13,7 +12,8 @@ import json
 from telemetry import decorators
 from telemetry import project_config
 from telemetry.core import util
-from telemetry.internal.util import binary_manager
+from telemetry.internal.util.binary_manager import (
+    ReinitializeDependencyManager)
 from telemetry.testing import browser_test_context
 from telemetry.testing import browser_test_runner
 from telemetry.testing import options_for_unittests
@@ -35,18 +35,6 @@ def _MakeTestExpectations(test_name, tag_list, expectations):
 
 def _MakeTestFilter(tests):
   return '::'.join(tests)
-
-
-@contextlib.contextmanager
-def _ReinitializeDependencyManager():
-  # TODO(crbug.com/1099856): Fix telemetry binary_manager API so that
-  # we don't need to access its private global variable
-  old_manager = binary_manager._binary_manager
-  try:
-    binary_manager._binary_manager = None
-    yield
-  finally:
-    binary_manager._binary_manager = old_manager
 
 
 class BrowserTestRunnerTest(unittest.TestCase):
@@ -110,7 +98,7 @@ class BrowserTestRunnerTest(unittest.TestCase):
              '--test-filter=%s' % test_filter] + extra_args)
     try:
       args = browser_test_runner.ProcessConfig(config, args)
-      with _ReinitializeDependencyManager():
+      with ReinitializeDependencyManager():
         run_browser_tests.RunTests(args)
       with open(temp_file_name) as f:
         self._test_result = json.load(f)
@@ -475,7 +463,7 @@ class BrowserTestRunnerTest(unittest.TestCase):
              '--shard-index=%d' % shard_index] + opt_args)
     try:
       args = browser_test_runner.ProcessConfig(config, args)
-      with _ReinitializeDependencyManager():
+      with ReinitializeDependencyManager():
         run_browser_tests.RunTests(args)
       with open(temp_file_name) as f:
         test_result = json.load(f)
