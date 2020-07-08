@@ -22,6 +22,30 @@
       "revId": "e09c9bf68ed971995681b36fca9216f4628745ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d848ae6b_c5d01036",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/telemetry_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-07-08T13:36:11Z",
+      "side": 1,
+      "message": "Yes, it\u0027s true. Unfortunately, we can\u0027t have both TBMv2 based on atrace and TBMv3 at the same time. We\u0027ll have to migrate atrace-based metrics to TBMv3 + system tracing first.",
+      "parentUuid": "f9a6efcf_f16e69ee",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 28
+      },
+      "revId": "e09c9bf68ed971995681b36fca9216f4628745ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
