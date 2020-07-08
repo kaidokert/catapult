@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "855a1ebe_40ee308d",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-07-08T18:32:25Z",
+      "side": 1,
+      "message": "Agreed, I changed the name. PTAL",
+      "parentUuid": "196b0404_8ca97b0c",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 33
+      },
+      "revId": "7cbeaf7c27975c175382bd538801e9d096811aa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2901f64c_b76e6404",
         "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
         "patchSetId": 2
@@ -62,6 +86,30 @@
       "revId": "7cbeaf7c27975c175382bd538801e9d096811aa4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e95ce54_4dd8cab8",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-07-08T18:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2901f64c_b76e6404",
+      "range": {
+        "startLine": 16,
+        "startChar": 3,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "7cbeaf7c27975c175382bd538801e9d096811aa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
