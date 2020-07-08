@@ -16,6 +16,69 @@
       "revId": "90153dc22e353fd2401f60cb050bfc6b9a7ace21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f9c06ec_ca882b3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-07-08T10:08:21Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "90153dc22e353fd2401f60cb050bfc6b9a7ace21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cd134ae_faed92bf",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-07-08T10:08:21Z",
+      "side": 1,
+      "message": "This is not just \"TOP\" (level) events but events of all kinds. The code should work but the name is a little misleading.",
+      "range": {
+        "startLine": 61,
+        "startChar": 14,
+        "endLine": 61,
+        "endChar": 17
+      },
+      "revId": "90153dc22e353fd2401f60cb050bfc6b9a7ace21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "055cbab5_757af9e1",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-07-08T10:08:21Z",
+      "side": 1,
+      "message": "nit: I\u0027d do blink-gc-mark-foreground-forced.",
+      "range": {
+        "startLine": 384,
+        "startChar": 32,
+        "endLine": 384,
+        "endChar": 38
+      },
+      "revId": "90153dc22e353fd2401f60cb050bfc6b9a7ace21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
