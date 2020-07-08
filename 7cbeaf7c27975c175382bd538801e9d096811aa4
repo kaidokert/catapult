@@ -16,6 +16,52 @@
       "revId": "7cbeaf7c27975c175382bd538801e9d096811aa4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "196b0404_8ca97b0c",
+        "filename": "telemetry/telemetry/internal/util/binary_manager.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-08T17:12:52Z",
+      "side": 1,
+      "message": "Nit: This appears to be clearing the binary manager, not reinitializing it.",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 33
+      },
+      "revId": "7cbeaf7c27975c175382bd538801e9d096811aa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2901f64c_b76e6404",
+        "filename": "telemetry/telemetry/testing/browser_test_runner_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-08T17:12:52Z",
+      "side": 1,
+      "message": "Nit: Style preference appears to be \"from telemetry.internal.util import binary_manager\" and \"binary_manager.ReinitializeDependencyManager()\"",
+      "range": {
+        "startLine": 16,
+        "startChar": 3,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "7cbeaf7c27975c175382bd538801e9d096811aa4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
