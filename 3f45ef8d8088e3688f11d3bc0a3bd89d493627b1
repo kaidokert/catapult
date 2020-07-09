@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0b1fffe_863fd2ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-07-09T16:28:01Z",
+      "side": 1,
+      "message": "Allowlist and denylist were actually already used in a couple places and these terms have been recommended for a while apparently. I just remembered that dashboard uses these terms in many places.",
+      "revId": "3f45ef8d8088e3688f11d3bc0a3bd89d493627b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
