@@ -34,6 +34,23 @@
       "revId": "838c32146a6cab2065d11e055b2f6f26b7a612f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40939ab8_ceb4c481",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2020-07-09T17:23:15Z",
+      "side": 1,
+      "message": "lgtm, for the cl description. but i do not know what _blank in href means.",
+      "revId": "838c32146a6cab2065d11e055b2f6f26b7a612f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
