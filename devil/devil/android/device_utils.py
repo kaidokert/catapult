@@ -2871,11 +2871,13 @@ class DeviceUtils(object):
                                      check_return=True,
                                      timeout=timeout,
                                      retries=retries)
+        logging.warning('GetTracingPath mount output: %s', value)
         if value and 'debugfs' not in value:
           tracing_path = '/sys/kernel/tracing'
       except device_errors.AdbCommandFailedError:
         pass
       self._cache['tracing_path'] = tracing_path
+      logging.warning('GetTracingPath result: %s', tracing_path)
     return tracing_path
 
   @decorators.WithTimeoutAndRetriesFromInstance()

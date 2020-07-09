@@ -169,6 +169,7 @@ class TracingControllerBackend(object):
         trace_builder.RecordTraceDataException()
 
   def _IssueClockSyncMarker(self):
+    logging.warning('TracingControllerBackend._IssueClockSyncMarker')
     if not telemetry_tracing_agent.IsAgentEnabled():
       return
 
@@ -179,6 +180,7 @@ class TracingControllerBackend(object):
           with trace_event.trace('RecordClockSyncMarker',
                                  agent=str(agent.__class__.__name__),
                                  sync_id=sync_id):
+            logging.warning('calling RecordClockSyncMarker')
             agent.RecordClockSyncMarker(
                 sync_id, telemetry_tracing_agent.RecordIssuerClockSyncMarker)
 
