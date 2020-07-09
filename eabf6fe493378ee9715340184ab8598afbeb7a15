@@ -50,6 +50,24 @@
       "revId": "eabf6fe493378ee9715340184ab8598afbeb7a15",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d695562_bb4ffbf2",
+        "filename": "telemetry/telemetry/decorators_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-07-09T14:00:07Z",
+      "side": 1,
+      "message": "Having two decorators with the \"emails\" argument throws an error, which is what this test is testing. The extra assertEquals was misleading - that\u0027s not true, and that line never got to execute. My guess is it was added to get around the pylint unused variable warning, but I disabled that lint rule in this test to make it more explicit.",
+      "parentUuid": "69d31a49_1f8c4a43",
+      "revId": "eabf6fe493378ee9715340184ab8598afbeb7a15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
