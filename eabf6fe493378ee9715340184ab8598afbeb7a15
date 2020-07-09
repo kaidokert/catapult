@@ -16,6 +16,40 @@
       "revId": "eabf6fe493378ee9715340184ab8598afbeb7a15",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0caa97fa_748d1bd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-07-09T00:40:28Z",
+      "side": 1,
+      "message": "LGTM except for one question below...",
+      "revId": "eabf6fe493378ee9715340184ab8598afbeb7a15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "69d31a49_1f8c4a43",
+        "filename": "telemetry/telemetry/decorators_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-07-09T00:40:28Z",
+      "side": 1,
+      "message": "Why is the assert removed here? It seems to be useful.",
+      "revId": "eabf6fe493378ee9715340184ab8598afbeb7a15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
