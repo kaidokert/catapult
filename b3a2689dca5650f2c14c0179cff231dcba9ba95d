@@ -16,6 +16,23 @@
       "revId": "b3a2689dca5650f2c14c0179cff231dcba9ba95d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71d6e4e2_5ec1f021",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-07-10T23:32:15Z",
+      "side": 1,
+      "message": "I think this makes sense. Just wanted to confirm that telemetry adds full path every time. I\u0027ll update wpr version for telemetry and update the instructions",
+      "revId": "b3a2689dca5650f2c14c0179cff231dcba9ba95d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
