@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "bfa3b780_2d0283e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-10T18:17:41Z",
+      "side": 1,
+      "message": "It plays nice ResultDB, which IIRC requires that files be captured as an artifact rather than just be in the isolated outdir (i.e. it\u0027s also listed in output.json) in order to show up in the ResultDB UI.\n\n+nodir to confirm that that\u0027s actually the case.",
+      "parentUuid": "d888636d_0383dfaa",
+      "revId": "b406bf799d599b261585c7911fbc500ffef55228",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0dde5c6d_dd0fe422",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
