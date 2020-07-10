@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e85baa26_1320fece",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2020-07-10T09:48:10Z",
+      "side": 1,
+      "message": "lg pending pinpoint tryjobs 😊",
+      "revId": "64a2c50adc0ef3e957bf8056b39e47e8659ff979",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
