@@ -38,6 +38,10 @@ tr.exportTo('tr.e.importer.linux_perf', function() {
         ClockParser.prototype.traceMarkWriteClkOnEvent.bind(this));
     importer.registerEventHandler('clk_disable',
         ClockParser.prototype.traceMarkWriteClkOffEvent.bind(this));
+    importer.registerEventHandler('thermal_temperature',
+        ClockParser.prototype.traceMarkWriteTemperatureEvent.bind(this));
+    importer.registerEventHandler('cdev_update',
+        ClockParser.prototype.traceMarkWriteCdevEvent.bind(this));
     this.model_ = importer.model_;
     this.ppids_ = {};
   }
@@ -99,6 +103,25 @@ tr.exportTo('tr.e.importer.linux_perf', function() {
       const event = /\S+/.exec(eventBase.details);
       const name = event[0];
       this.clockMark(name, 'State', 0, ts);
+      return true;
+    },
+
+    traceMarkWriteTemperatureEvent(eventName, cpuNumber, pid, ts,
+        eventBase, threadName) {
+      const event = /thermal_zone=(\S+) id=(\d+) temp_prev=(\d+) temp=(\d+)/
+          .exec(eventBase.details);
+      const name = event[1];
+      const temp = parseInt(event[4]);
+      this.clockMark(name, 'Temperature', temp, ts);
+      return true;
+    },
+
+    traceMarkWriteCdevEvent(eventName, cpuNumber, pid, ts,
+        eventBase, threadName) {
+      const event = /type=(\S+) target=(\d+)/.exec(eventBase.details);
+      const name = event[1];
+      const rate = parseInt(event[2]);
+      this.clockMark(name, 'CoolingDevice', rate, ts);
       return true;
     }
   };
