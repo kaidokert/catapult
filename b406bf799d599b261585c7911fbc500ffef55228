@@ -33,6 +33,40 @@
       "revId": "b406bf799d599b261585c7911fbc500ffef55228",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb826b18_8b599f7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-10T05:17:06Z",
+      "side": 1,
+      "message": "This replicates stuff that both chrome and cros infra code does. \n\nThe local run case doesn\u0027t seem that compelling, since devs can just look at the files on the device, right?\n\n+Ben in case he has an opinion on this.",
+      "revId": "b406bf799d599b261585c7911fbc500ffef55228",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0dde5c6d_dd0fe422",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-10T05:17:06Z",
+      "side": 1,
+      "message": "can you create a common function for browser and ui logs",
+      "revId": "b406bf799d599b261585c7911fbc500ffef55228",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
