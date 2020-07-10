@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f2efe40_8513b7c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2020-07-10T14:11:43Z",
+      "side": 1,
+      "message": "As an alternative I suggest removing the default argument all-together and update the documentation accrodingly. WDYT?",
+      "revId": "b3a2689dca5650f2c14c0179cff231dcba9ba95d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
