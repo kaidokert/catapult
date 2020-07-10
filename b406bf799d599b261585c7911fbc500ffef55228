@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "d888636d_0383dfaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-07-10T16:03:47Z",
+      "side": 1,
+      "message": "Yeah, we already have a mechanism in place that\u0027s capturing chrome \u0026 system logs and adding them to a task\u0027s output.\n\nWhat\u0027s this accomplishing that that isn\u0027t?",
+      "parentUuid": "bb826b18_8b599f7b",
+      "revId": "b406bf799d599b261585c7911fbc500ffef55228",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0dde5c6d_dd0fe422",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
