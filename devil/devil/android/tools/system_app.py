@@ -140,6 +140,7 @@ def _SetUpSystemAppModification(device, timeout=None, retries=None):
   # Ensure that the device is online & available before proceeding to
   # handle the case where something fails in the middle of set up and
   # triggers a retry.
+  logger.info('_SetUpSystemAppModification: WaitUntilFullyBooted 1')
   device.WaitUntilFullyBooted()
 
   # All calls that could potentially need root should run with as_root=True, but
@@ -147,8 +148,11 @@ def _SetUpSystemAppModification(device, timeout=None, retries=None):
   # root is already granted if it's necessary. The reboot can mess with this, so
   # as a workaround, check whether we're starting with root already, and if so,
   # restore the device to that state at the end.
+  logger.info('_SetUpSystemAppModification: HasRoot 1')
   should_restore_root = device.HasRoot()
+  logger.info('_SetUpSystemAppModification: EnableRoot 1')
   device.EnableRoot()
+  logger.info('_SetUpSystemAppModification: HasRoot 2')
   if not device.HasRoot():
     raise device_errors.CommandFailedError(
         'Failed to enable modification of system apps on non-rooted device',
@@ -157,14 +161,21 @@ def _SetUpSystemAppModification(device, timeout=None, retries=None):
   try:
     # Disable Marshmallow's Verity security feature
     if device.build_version_sdk >= version_codes.MARSHMALLOW:
-      logger.info('Disabling Verity on %s', device.serial)
+      logger.info('_SetUpSystemAppModification: Disabling Verity on %s',
+                  device.serial)
       device.adb.DisableVerity()
+      logger.info('_SetUpSystemAppModification: Reboot')
       device.Reboot()
+      logger.info('_SetUpSystemAppModification: WaitUntilFullyBooted 2')
       device.WaitUntilFullyBooted()
+      logger.info('_SetUpSystemAppModification: EnableRoot 2')
       device.EnableRoot()
 
+    logger.info('_SetUpSystemAppModification: adb.Remount')
     device.adb.Remount()
+    logger.info('_SetUpSystemAppModification: RunShellCommand: stop')
     device.RunShellCommand(['stop'], check_return=True)
+    logger.info('_SetUpSystemAppModification: SetProp')
     device.SetProp(_ENABLE_MODIFICATION_PROP, '1')
   except device_errors.CommandFailedError:
     if device.adb.is_emulator:
@@ -186,10 +197,14 @@ def _TearDownSystemAppModification(device,
                                    timeout=None,
                                    retries=None):
   try:
+    logger.info('_TearDownSystemAppModification: SetProp')
     device.SetProp(_ENABLE_MODIFICATION_PROP, '0')
+    logger.info('_TearDownSystemAppModification: Reboot')
     device.Reboot()
+    logger.info('_TearDownSystemAppModification: WaitUntilFullyBooted')
     device.WaitUntilFullyBooted()
     if should_restore_root:
+      logger.info('_TearDownSystemAppModification: EnableRoot')
       device.EnableRoot()
   except device_errors.CommandTimeoutError:
     logger.error('Timed out while tearing down system app modification.')
@@ -211,11 +226,13 @@ def EnableSystemAppModification(device):
     yield
     return
 
+  logger.info('Start _SetUpSystemAppModification')
   should_restore_root = _SetUpSystemAppModification(
       device, timeout=_MODIFICATION_TIMEOUT, retries=_MODIFICATION_RETRIES)
   try:
     yield
   finally:
+    logger.info('Start _TearDownSystemAppModification')
     _TearDownSystemAppModification(
         device,
         should_restore_root,
@@ -271,7 +288,9 @@ def _MoveApp(device, relocation_map):
   movements = ['mv %s %s' % (k, v) for k, v in relocation_map.iteritems()]
   cmd = ' && '.join(movements)
   with EnableSystemAppModification(device):
+    logger.info('Start shell command: %s', cmd)
     device.RunShellCommand(cmd, as_root=True, check_return=True, shell=True)
+    logger.info('Finish shell command: %s', cmd)
 
 
 def main(raw_args):

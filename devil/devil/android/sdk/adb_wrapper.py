@@ -297,6 +297,15 @@ class AdbWrapper(object):
         raise
     except cmd_helper.TimeoutError:
       logger.error('Timeout on adb command: %r', adb_cmd)
+      cmds = (
+          #['devices'],
+          #['emu', 'ping'],
+          #['logcat', '-d']
+      )
+      for cmd in cmds:
+        cmd_output = cmd_helper.GetCmdOutput(cls._BuildAdbCmd(cmd, None),
+                                             env=env)
+        logger.info('%r: %s', cmd, cmd_output)
       raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
