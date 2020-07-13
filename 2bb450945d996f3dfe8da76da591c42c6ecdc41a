@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93a18a42_fa7b8336",
+        "filename": "third_party/depot_tools/README.catapult",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-07-13T07:41:12Z",
+      "side": 1,
+      "message": "FYI: This particular change is because gclient_utils is large with several dependencies, but we don\u0027t need any of them.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 97
+      },
+      "revId": "2bb450945d996f3dfe8da76da591c42c6ecdc41a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
