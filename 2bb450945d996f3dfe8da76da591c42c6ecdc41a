@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "20243246_d1f25b3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-13T09:01:53Z",
+      "side": 1,
+      "message": "I\u0027m worried that this will cause drift with the depot_tools repo, and changes upstream that require us to upgrade depot_tools is going to impose some maintenance burden on our end given the local patches we\u0027ve needed to apply here.\n\nWhat are our alternatives here?",
+      "revId": "2bb450945d996f3dfe8da76da591c42c6ecdc41a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93a18a42_fa7b8336",
         "filename": "third_party/depot_tools/README.catapult",
         "patchSetId": 3
