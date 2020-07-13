@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbc86caa_493669fe",
+        "filename": "dashboard/dashboard/__init__.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-13T08:58:51Z",
+      "side": 1,
+      "message": "Are we vendoring depot_tools already? That would be surprising.\n\nWhile this will work locally and when testing with vpython, I\u0027m afraid it wouldn\u0027t actually work in AppEngine production unless we host a version of depot_tools in the `catapult/third_party` directory, which I don\u0027t think we actually want to do. 😞",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "e29ba9237db0dae1e8e4dcb80f4bc792f5967eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
