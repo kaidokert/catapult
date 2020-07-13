@@ -44,8 +44,7 @@ deps = {
     'condition': 'checkout_mac or checkout_win',
   },
   'src/third_party/webrtc': {
-    'url': '{webrtc_git}/src.git',
-    'revision': '{webrtc_rev}',
+    'url': '{webrtc_git}/src.git@{webrtc_rev}',
   },
   'src/third_party/intellij': {
     'packages': [{
