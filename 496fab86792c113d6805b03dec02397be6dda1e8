@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0e333c9f_beb699b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-07-13T15:25:26Z",
+      "side": 1,
+      "message": "PRESUBMIT.py now updated",
+      "revId": "496fab86792c113d6805b03dec02397be6dda1e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2af7284_90c0983d",
         "filename": "dashboard/PRESUBMIT.py",
         "patchSetId": 2
@@ -25,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "795490ef_0debbc9b",
+        "filename": "dashboard/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-07-13T15:25:26Z",
+      "side": 1,
+      "message": "Hey, good point! This is also being renamed.\n\nThis should now be DEFAULT_FILES_TO_SKIP (currently both are available with the same value).",
+      "parentUuid": "a2af7284_90c0983d",
+      "range": {
+        "startLine": 19,
+        "startChar": 25,
+        "endLine": 19,
+        "endChar": 43
+      },
+      "revId": "496fab86792c113d6805b03dec02397be6dda1e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "38a08fa1_78ac5204",
         "filename": "dashboard/PRESUBMIT.py",
         "patchSetId": 2
@@ -36,6 +77,30 @@
       "writtenOn": "2020-07-13T06:09:55Z",
       "side": 1,
       "message": "Same here?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 16
+      },
+      "revId": "496fab86792c113d6805b03dec02397be6dda1e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689e5ea0_6b9bc1e1",
+        "filename": "dashboard/PRESUBMIT.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003190
+      },
+      "writtenOn": "2020-07-13T15:25:26Z",
+      "side": 1,
+      "message": "And this argument is also being renamed, this argument can now be block_list, thanks for noting this.",
+      "parentUuid": "38a08fa1_78ac5204",
       "range": {
         "startLine": 23,
         "startChar": 6,
