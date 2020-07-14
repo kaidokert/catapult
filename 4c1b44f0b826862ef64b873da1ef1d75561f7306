@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ccdd77f_bcdc6355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267170
+      },
+      "writtenOn": "2020-07-14T22:24:27Z",
+      "side": 1,
+      "message": "sorry for the spam, but I am not sure who is the right owner for this project. can someone give a review or a pointer who should look at it?",
+      "revId": "4c1b44f0b826862ef64b873da1ef1d75561f7306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
