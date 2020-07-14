@@ -46,6 +46,30 @@
       "revId": "e29ba9237db0dae1e8e4dcb80f4bc792f5967eba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89fb0e80_1f9df2d5",
+        "filename": "dashboard/dashboard/__init__.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-07-14T03:35:34Z",
+      "side": 1,
+      "message": "Other conversation is resolved.",
+      "parentUuid": "f083f7b6_202b5d3a",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "e29ba9237db0dae1e8e4dcb80f4bc792f5967eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
