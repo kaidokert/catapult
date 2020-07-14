@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "08b86564_d947b7e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-14T03:00:40Z",
+      "side": 1,
+      "message": "It sounds like none of our options are good here and this may be the least intrusive change we can make.\n\nI like the idea of asking the depot_tools owners of a way to make this specific part of the tooling be re-usable as a standalone module. Probably something we shouldn\u0027t be blocking on anyway.",
+      "parentUuid": "d117c2f4_dbcc02ed",
+      "revId": "2bb450945d996f3dfe8da76da591c42c6ecdc41a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93a18a42_fa7b8336",
         "filename": "third_party/depot_tools/README.catapult",
         "patchSetId": 3
