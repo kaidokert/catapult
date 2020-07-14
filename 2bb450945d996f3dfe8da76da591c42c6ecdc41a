@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "bac5c147_7d51cd20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-07-14T03:34:46Z",
+      "side": 1,
+      "message": "Thanks.  I\u0027ll land this and follow-up with the depot_tools folks.",
+      "parentUuid": "08b86564_d947b7e6",
+      "revId": "2bb450945d996f3dfe8da76da591c42c6ecdc41a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93a18a42_fa7b8336",
         "filename": "third_party/depot_tools/README.catapult",
         "patchSetId": 3
