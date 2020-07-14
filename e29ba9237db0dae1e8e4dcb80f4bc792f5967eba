@@ -22,6 +22,30 @@
       "revId": "e29ba9237db0dae1e8e4dcb80f4bc792f5967eba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f083f7b6_202b5d3a",
+        "filename": "dashboard/dashboard/__init__.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-07-14T01:15:24Z",
+      "side": 1,
+      "message": "Vendoring this subset of depot_tools is what the parent CL (https://chromium-review.googlesource.com/c/catapult/+/2291425) is for.  Let\u0027s discuss whether that\u0027s a good idea on that CL rather both CLs.\n\n(But leaving this comment unresolved pending the outcome of that conversation.)",
+      "parentUuid": "cbc86caa_493669fe",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "e29ba9237db0dae1e8e4dcb80f4bc792f5967eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
