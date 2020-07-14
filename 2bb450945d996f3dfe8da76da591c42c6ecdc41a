@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d117c2f4_dbcc02ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-07-14T01:07:32Z",
+      "side": 1,
+      "message": "Yeah, I don\u0027t love this, but I think it\u0027s better than where we were.\n\nIt\u0027s worth realising we already have a maintenance burden — DEPS files are growing new features, such as the new Str builtin.  That new feature broke our parsing.  This at least shifts the maintenance effort to a fairly straightforward “update our vendored version” rather than a nebulous “figure out how to reimplement whatever new semantics have been added.”\n\nAlso using Python\u0027s exec() here is scary (some discussion in crbug/1104070).  So I think at least as a temporary measure this is worth doing.\n\nI am bothered by how hard it is to vendor depot_tools.  The Python modules in it are not a clean package, they\u0027re just a directory of many .py files all to be added to the global import path, which means that blindly vendoring the whole thing feels risky, as it could easily clash with another dependency.  This is why I chose to vendor a minimal subset of it.  Similarly I see chromiumos has taken a very similar path: https://chromium.googlesource.com/chromiumos/platform/bisect-kit/+/411e1b9185f308a52069f6a5c8c1efbd4b0249a3\n\nOn https://chromium-review.googlesource.com/c/chromium/src/+/2265498/6/DEPS#159 dpranke says that gclient_eval.Parse is the recommended way to consume this data.  We should talk to the depot_tools owners about how to make it easier to reuse this.\n\nThe only other alternative I can think of is if there\u0027s a service we can query for deps, rather than parsing DEPS ourselves?  But I don\u0027t think such a thing exists.\n\nI\u0027m open to other ideas.  This is merely the best option I\u0027ve thought of so far.  What do you think?",
+      "parentUuid": "20243246_d1f25b3b",
+      "revId": "2bb450945d996f3dfe8da76da591c42c6ecdc41a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93a18a42_fa7b8336",
         "filename": "third_party/depot_tools/README.catapult",
         "patchSetId": 3
