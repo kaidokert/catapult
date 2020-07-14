@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "52cbccfd_3c4f215f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-14T21:00:22Z",
+      "side": 1,
+      "message": "Thanks Nodir! That\u0027s more or less what I thought I remembered.\n\nAssuming we want these logs to show up in Milo for easier consumption, I think we have two options:\n\n1. Continue with this approach (failed tests report relevant logs as artifacts)\n2. Update the CrOS test runner to report the logs as artifacts instead of just copying them into a directory. I think this would require implementing artifact support for the test runner (unless it can re-use Telemetry\u0027s?), as well as supporting invocation-level artifacts in ResultDB (Nodir\u0027s [2]).\n\nI don\u0027t have a super strong preference for the long term, although the first will definitely be easier in the short term.",
+      "parentUuid": "9d2434fa_541fcb24",
+      "revId": "b406bf799d599b261585c7911fbc500ffef55228",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0dde5c6d_dd0fe422",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
