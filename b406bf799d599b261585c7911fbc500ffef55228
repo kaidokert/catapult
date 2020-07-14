@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9d2434fa_541fcb24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-07-14T05:29:53Z",
+      "side": 1,
+      "message": "I have no context of the files changed in this CL, so I can talk only about ResultDB.\n\nFiles, including logs, can be reported to ResultDB as artifacts. In that case, they will show up in the Milo build page, along with steps. There are two kinds of artifacts: 1) attached to a particular test result 2) attached to the invocation (which is a part of the test results). Currently UI supports only (1), and will support (2) when we have a use case. I am not which of the two is applicable here.\n\nUploading an artifact to ResultDB is relatively flexible: it does not depend on whether the file is in ISOLATED_OUT_DIR or not. One just points to a file declares it as an artifact - the surrounding infra will take care of uploading. The \"points to a file\" is done via a *local* HTTP request, but the request does not contain the file content - only the filename. Read more in go/result-sink. Today, it supports uploading only (1), that is artifacts attached to test results. We can consider prioritizing (2) if there is interest.",
+      "parentUuid": "bfa3b780_2d0283e2",
+      "revId": "b406bf799d599b261585c7911fbc500ffef55228",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0dde5c6d_dd0fe422",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py",
         "patchSetId": 2
