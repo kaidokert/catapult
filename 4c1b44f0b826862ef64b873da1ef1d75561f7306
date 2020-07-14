@@ -16,6 +16,24 @@
       "revId": "4c1b44f0b826862ef64b873da1ef1d75561f7306",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c53f5c72_5903eaa4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-14T22:29:10Z",
+      "side": 1,
+      "message": "dproy@ is listed under //third_party/catapult/tracing/OWNERS as preferring JavaScript reviews, so adding them.",
+      "parentUuid": "2ccdd77f_bcdc6355",
+      "revId": "4c1b44f0b826862ef64b873da1ef1d75561f7306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
