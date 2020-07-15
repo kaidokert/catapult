@@ -314,10 +314,13 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
 
-    if (self._backend_settings.GetApkName(
-        self._platform_backend.device) == 'Monochrome.apk'):
-      self._platform_backend.device.SetWebViewImplementation(
-          android_browser_backend_settings.ANDROID_CHROME.package)
+    apk_name = self._backend_settings.GetApkName(
+        self._platform_backend.device)
+    if (apk_name == 'Monochrome.apk' or 'SystemWebView' in apk_name or
+        'TrichromeWebView' in apk_name):
+      package_name = apk_helper.GetPackageName(self._local_apk)
+      logging.warn('Setting %s as WebView implementation.', package_name)
+      self._platform_backend.device.SetWebViewImplementation(package_name)
 
   def GetTypExpectationsTags(self):
     tags = super(PossibleAndroidBrowser, self).GetTypExpectationsTags()
