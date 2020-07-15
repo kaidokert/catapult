@@ -16,6 +16,40 @@
       "revId": "31ded93c64c987f8196559b1d896e6fa43d5f6bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a9b60fa6_d1f9c68b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2020-07-15T17:44:24Z",
+      "side": 1,
+      "message": "Thanks Andreas! lgtm.",
+      "revId": "31ded93c64c987f8196559b1d896e6fa43d5f6bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97d8f695_f198fb0f",
+        "filename": "tracing/tracing/metrics/v8/utils.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1145189
+      },
+      "writtenOn": "2020-07-15T17:44:24Z",
+      "side": 1,
+      "message": "This only fetches threads that could execute JavaScript.It leaves out compositor threads: https://cs.chromium.org/chromium/src/third_party/catapult/tracing/tracing/model/helpers/chrome_renderer_helper.html?l\u003d21. I am sure this is what we want here, but just double checking.",
+      "revId": "31ded93c64c987f8196559b1d896e6fa43d5f6bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
