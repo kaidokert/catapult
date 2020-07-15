@@ -34,6 +34,23 @@
       "revId": "4c1b44f0b826862ef64b873da1ef1d75561f7306",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b5ba0e6_6463b232",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-07-15T00:13:16Z",
+      "side": 1,
+      "message": "I\u0027m not super familiar with this code, but I don\u0027t think the other owners are either. I read the code and it looks reasonable on the surface to me, so LGTM. If something breaks we will revert this. ",
+      "revId": "4c1b44f0b826862ef64b873da1ef1d75561f7306",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
