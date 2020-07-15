@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f76e0c39_33ba7c16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-07-15T07:43:06Z",
+      "side": 1,
+      "message": "Dean, when I click reland it says \"Can\u0027t reland\". :) \n\nCan you reland this one? Things should be fine WebRTC side now.",
+      "revId": "4e64c48aae903ee3f6cd21df67ec7212a05c96d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
