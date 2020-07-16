@@ -15,6 +15,7 @@ import subprocess
 from devil import base_error
 from devil.android import apk_helper
 from devil.android import flag_changer
+from devil.android.sdk import version_codes
 from py_utils import dependency_util
 from py_utils import file_util
 from py_utils import tempfile_ext
@@ -70,6 +71,18 @@ def _ProfileWithExtraFiles(profile_dir, profile_files_to_copy):
       if not os.path.exists(host_path):
         file_util.CopyFileWithIntermediateDirectories(source, host_path)
     yield host_profile
+
+
+def _IsWebViewApk(apk_name):
+  return apk_name is not None and (
+      # Standalone APK.
+      'SystemWebView' in apk_name or
+      # Trichrome APK.
+      'TrichromeWebView' in apk_name or
+      # Standalone bundle.
+      'system_webview' in apk_name or
+      # Trichrome bundle.
+      'trichrome_webview' in apk_name)
 
 
 class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
@@ -309,15 +322,23 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', apk)
       self.platform.InstallApplication(apk)
 
+    apk_name = self._backend_settings.GetApkName(
+        self._platform_backend.device)
+    is_webview_apk = _IsWebViewApk(apk_name)
+    if is_webview_apk:
+      self._platform_backend.device.SetWebViewFallbackLogic(False)
+
     if self._local_apk:
       logging.warn('Installing %s on device if needed.', self._local_apk)
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
 
-    if (self._backend_settings.GetApkName(
-        self._platform_backend.device) == 'Monochrome.apk'):
-      self._platform_backend.device.SetWebViewImplementation(
-          android_browser_backend_settings.ANDROID_CHROME.package)
+    if ((is_webview_apk or apk_name == 'Monochrome.apk') and
+        self._platform_backend.device.build_version_sdk >=
+        version_codes.NOUGAT):
+      package_name = apk_helper.GetPackageName(self._local_apk)
+      logging.warn('Setting %s as WebView implementation.', package_name)
+      self._platform_backend.device.SetWebViewImplementation(package_name)
 
   def GetTypExpectationsTags(self):
     tags = super(PossibleAndroidBrowser, self).GetTypExpectationsTags()
