@@ -16,6 +16,24 @@
       "revId": "4e64c48aae903ee3f6cd21df67ec7212a05c96d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "811e95cb_8edd2c85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-16T03:42:44Z",
+      "side": 1,
+      "message": "Cool -- we can\u0027t reland this because there\u0027s a merge conflict. I\u0027ll re-do it instead. 😊",
+      "parentUuid": "f76e0c39_33ba7c16",
+      "revId": "4e64c48aae903ee3f6cd21df67ec7212a05c96d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
