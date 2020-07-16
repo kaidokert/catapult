@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7308bd23_ec8897d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-07-16T17:07:08Z",
+      "side": 1,
+      "message": "Relanding with TBR, minor change to check apk_name for None.",
+      "revId": "edf1181a8c4fcd6b0e7a478b853e83616ff7aea6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
