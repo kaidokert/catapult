@@ -73,6 +73,18 @@ def _ProfileWithExtraFiles(profile_dir, profile_files_to_copy):
     yield host_profile
 
 
+def _IsWebViewApk(apk_name):
+  return apk_name is not None and (
+      # Standalone APK.
+      'SystemWebView' in apk_name or
+      # Trichrome APK.
+      'TrichromeWebView' in apk_name or
+      # Standalone bundle.
+      'system_webview' in apk_name or
+      # Trichrome bundle.
+      'trichrome_webview' in apk_name)
+
+
 class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
   """A launchable android browser instance."""
 
@@ -310,16 +322,18 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', apk)
       self.platform.InstallApplication(apk)
 
+    apk_name = self._backend_settings.GetApkName(
+        self._platform_backend.device)
+    is_webview_apk = _IsWebViewApk(apk_name)
+    if is_webview_apk:
+      self._platform_backend.device.SetWebViewFallbackLogic(False)
+
     if self._local_apk:
       logging.warn('Installing %s on device if needed.', self._local_apk)
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
 
-    apk_name = self._backend_settings.GetApkName(
-        self._platform_backend.device)
-    if (apk_name is not None and (apk_name == 'Monochrome.apk' or
-                                  'SystemWebView' in apk_name or
-                                  'TrichromeWebView' in apk_name) and
+    if ((is_webview_apk or apk_name == 'Monochrome.apk') and
         self._platform_backend.device.build_version_sdk >=
         version_codes.NOUGAT):
       package_name = apk_helper.GetPackageName(self._local_apk)
@@ -441,6 +455,7 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
 
   # Add any other known available browsers.
   for settings in ANDROID_BACKEND_SETTINGS:
+    print('XPOL TRY %s' % settings.browser_type)
     if finder_options.IsBrowserTypeRelevant(settings.browser_type):
       local_apk = None
       if finder_options.IsBrowserTypeReference():
@@ -448,14 +463,17 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
             android_platform, finder_options.IsBrowserTypeBundle())
 
       if settings.IsWebView():
+        print('XPOL POSSIBLE WEBVIEW %s' % settings.browser_type)
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
             local_apk=local_apk, target_os='android_webview')
       else:
+        print('XPOL POSSIBLE NOT WEBVIEW %s' % settings.browser_type)
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
             local_apk=local_apk)
       if p_browser.IsAvailable():
+        print('XPOL POSSIBLE AVAIL %s' % settings.browser_type)
         possible_browsers.append(p_browser)
   return possible_browsers
 

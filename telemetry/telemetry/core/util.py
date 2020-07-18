@@ -153,11 +153,17 @@ def FindLatestApkOnHost(chrome_root, apk_name):
   latest_mtime = 0
   for build_path in GetBuildDirectories(chrome_root):
     apk_path = os.path.join(build_path, 'apks', apk_name)
+    logging.warn('TRYING %s %s', build_path, apk_name)
+    try:
+      logging.warn('XPOL LIST %s', ','.join(os.listdir(os.path.join(build_path, 'apks'))))
+    except Exception as e:
+      logging.warn('XPOL EXCEPTION %s', e)
     if os.path.exists(apk_path):
       mtime = os.path.getmtime(apk_path)
       if mtime > latest_mtime:
         latest_mtime = mtime
         found_apk_path = apk_path
+  logging.warn('XPOL FINAL PATH %s', found_apk_path or '')
   return found_apk_path
 
 
