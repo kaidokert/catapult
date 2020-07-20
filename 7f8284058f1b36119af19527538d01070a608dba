@@ -51,6 +51,23 @@
       "revId": "7f8284058f1b36119af19527538d01070a608dba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e915e61_da2b6469",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-07-20T17:11:02Z",
+      "side": 1,
+      "message": "Test fix LGTM. Just please don\u0027t use the TimelineModel anywhere, it might be removed soon.",
+      "revId": "7f8284058f1b36119af19527538d01070a608dba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
