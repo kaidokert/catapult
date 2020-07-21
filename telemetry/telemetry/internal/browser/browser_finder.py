@@ -83,10 +83,12 @@ def FindBrowser(options):
 
   browser_finders = _GetBrowserFinders(options.target_platforms)
 
+  print('XPOL START %d %d' % (len(devices), len(browser_finders)))
   for device in devices:
     for finder in browser_finders:
       if(options.browser_type and options.browser_type != 'any' and
          options.browser_type not in finder.FindAllBrowserTypes()):
+        print('XPOL SKIP')
         continue
       curr_browsers = finder.FindAllAvailableBrowsers(options, device)
       new_default_browser = finder.SelectDefaultBrowser(curr_browsers)
@@ -95,6 +97,7 @@ def FindBrowser(options):
       browsers.extend(curr_browsers)
 
   if not browsers:
+    print('XPOL NO BROWSERS')
     return None
 
   if options.browser_type is None:

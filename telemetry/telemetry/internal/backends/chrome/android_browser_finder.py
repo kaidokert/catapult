@@ -448,6 +448,7 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
 
   # Add any other known available browsers.
   for settings in ANDROID_BACKEND_SETTINGS:
+    print('XPOL TRY %s' % settings.browser_type)
     if finder_options.IsBrowserTypeRelevant(settings.browser_type):
       local_apk = None
       if finder_options.IsBrowserTypeReference():
@@ -455,14 +456,17 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
             android_platform, finder_options.IsBrowserTypeBundle())
 
       if settings.IsWebView():
+        print('XPOL POSSIBLE WEBVIEW %s' % settings.browser_type)
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
             local_apk=local_apk, target_os='android_webview')
       else:
+        print('XPOL POSSIBLE NOT WEBVIEW %s' % settings.browser_type)
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
             local_apk=local_apk)
       if p_browser.IsAvailable():
+        print('XPOL POSSIBLE AVAIL %s' % settings.browser_type)
         possible_browsers.append(p_browser)
   return possible_browsers
 
