@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42a26f72_abef6bf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2020-07-23T17:28:58Z",
+      "side": 1,
+      "message": "Mikhail, PTAL thanks.",
+      "revId": "db1c6ac51e87ea84671c1805656051d595401cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93ff31ec_5847cd1b",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1002763
+      },
+      "writtenOn": "2020-07-23T17:28:58Z",
+      "side": 1,
+      "message": "It seems like it isn\u0027t possible to add reference builds for bundles yet, but if it is let me know.",
+      "revId": "db1c6ac51e87ea84671c1805656051d595401cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
