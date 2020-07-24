@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "361e2e58_32be7276",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-07-24T16:28:31Z",
+      "side": 1,
+      "message": "Maybe it has something to do with network maintenance? It causes failures all over Chromium CQ. crbug.com/1108842",
+      "parentUuid": "251d6986_659a73e7",
+      "revId": "db1c6ac51e87ea84671c1805656051d595401cf2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93ff31ec_5847cd1b",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 2
