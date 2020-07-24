@@ -22,6 +22,30 @@
       "revId": "0f69b0f41e06353ffe9affd3a706d6560560d463",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86eb3951_5ff8af88",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-24T00:45:56Z",
+      "side": 1,
+      "message": "Also, if you\u0027re feeling fancy, we can use a Unicode character to represent the Dashboard. Something like:\n\n🚨[{{group.subscription_name}}]:",
+      "parentUuid": "0a065b2c_05e3d171",
+      "range": {
+        "startLine": 50,
+        "startChar": 27,
+        "endLine": 50,
+        "endChar": 56
+      },
+      "revId": "0f69b0f41e06353ffe9affd3a706d6560560d463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
