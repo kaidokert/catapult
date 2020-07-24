@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "30446713_7cce0775",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-07-24T14:13:03Z",
+      "side": 1,
+      "message": "w",
+      "revId": "0f69b0f41e06353ffe9affd3a706d6560560d463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a065b2c_05e3d171",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 1
@@ -46,6 +63,30 @@
       "revId": "0f69b0f41e06353ffe9affd3a706d6560560d463",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef60844e_67699539",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-07-24T14:13:03Z",
+      "side": 1,
+      "message": "[{{ group.subscription_name }}] is fine for me and I\u0027m not a fan of emoji 😜.",
+      "parentUuid": "86eb3951_5ff8af88",
+      "range": {
+        "startLine": 50,
+        "startChar": 27,
+        "endLine": 50,
+        "endChar": 56
+      },
+      "revId": "0f69b0f41e06353ffe9affd3a706d6560560d463",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
