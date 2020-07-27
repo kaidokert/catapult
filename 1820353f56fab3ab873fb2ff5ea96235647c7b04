@@ -59,6 +59,30 @@
     },
     {
       "key": {
+        "uuid": "a6106a84_1b70255d",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-07-27T13:45:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd9f4664_542d64fc",
+      "range": {
+        "startLine": 86,
+        "startChar": 57,
+        "endLine": 86,
+        "endChar": 58
+      },
+      "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f925851e_c59dae5e",
         "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
         "patchSetId": 2
@@ -73,6 +97,24 @@
       "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c25ef9e2_7184a4c3",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1322871
+      },
+      "writtenOn": "2020-07-27T13:45:56Z",
+      "side": 1,
+      "message": "I thought that too, but you and I were incorrect.\n\nThe fork() returns a valid pid in the parent but that pid is then SIGHUP before it ever starts so we won\u0027t see it in the output here (see new update on internal bug). so the stdout will have the pid but the trace won\u0027t be started.",
+      "parentUuid": "f925851e_c59dae5e",
+      "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
