@@ -16,6 +16,63 @@
       "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25b36380_42cfe77a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-07-27T12:15:32Z",
+      "side": 1,
+      "message": "Thanks! LGTM with 2 comments.",
+      "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd9f4664_542d64fc",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-07-27T12:15:32Z",
+      "side": 1,
+      "message": "Maybe make it a named constant?",
+      "range": {
+        "startLine": 86,
+        "startChar": 57,
+        "endLine": 86,
+        "endChar": 58
+      },
+      "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f925851e_c59dae5e",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/perfetto_tracing_agent.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-07-27T12:15:32Z",
+      "side": 1,
+      "message": "I believe if we got a valid integer on the stdout, it means that the perfetto process has successfully started? So no need to check for pid after that.\n\nOn the other hand, if perfetto fails to start, the stdout will be empty, and we\u0027ll have an exception here. So we can retry based on whether output is empty or not.",
+      "revId": "1820353f56fab3ab873fb2ff5ea96235647c7b04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
