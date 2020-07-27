@@ -42,9 +42,11 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
       self._device.RunShellCommand(['setprop', 'ctl.stop', TRACED])
       self._device.RunShellCommand(['setprop', 'ctl.stop', TRACED_PROBES])
       for service in [TRACED, TRACED_PROBES]:
-        self._device.KillAll(service, exact=True, quiet=True,
-                             signum=device_signal.SIGTERM, timeout=STOP_TIMEOUT)
-
+        self._device.KillAll(service, exact=True, quiet=True, blocking=True,
+                             signum=device_signal.SIGTERM)
+      processes = set(p.name for p in self._device.ListProcesses())
+      assert TRACED not in processes
+      assert TRACED_PROBES not in processes
       self._PushFilesAndStartService(platform_backend.GetArchName())
 
     processes = set(p.name for p in self._device.ListProcesses())
@@ -67,11 +69,31 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
         (traced_local_path, traced_device_path),
         (traced_probes_local_path, traced_probes_device_path),
     ])
+
+    # Sometimes the phone might be at its process limit and unable to launch a
+    # new process as we are doing here. Therefore to prevent flakiness we
+    # attempt to start |TRACED| and |TRACED_PROBES| up to 5 times before giving
+    # up. 5 is the default retry amount that RunShellCommand normally uses, but
+    # since we are backgrounding immediately using "&" it always returns
+    # success.
+    #
+    # See internal b/161794654 for the investigation that lead to this
+    # discovery.
+    attempt = 0
     in_background = '</dev/null >/dev/null 2>&1 &'
-    self._device.RunShellCommand(traced_device_path + in_background,
-                                 shell=True)
-    self._device.RunShellCommand(traced_probes_device_path + in_background,
-                                 shell=True)
+    processes = set(p.name for p in self._device.ListProcesses())
+    while (TRACED not in processes or
+           TRACED_PROBES not in processes) and attempt < 5:
+      attempt += 1
+      if attempt > 1:
+        logging.info('Perfetto retrying service setup')
+      if TRACED not in processes:
+        self._device.RunShellCommand(traced_device_path + in_background,
+                                     shell=True)
+      if TRACED_PROBES not in processes:
+        self._device.RunShellCommand(traced_probes_device_path + in_background,
+                                     shell=True)
+      processes = set(p.name for p in self._device.ListProcesses())
     self._perfetto_path = perfetto_device_path
 
   @classmethod
@@ -89,15 +111,35 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
                                                   dir=ANDROID_TRACES_DIR)
     text_config = config.system_trace_config.GetTextConfig()
     self._device.WriteFile(self._trace_config_temp_file.name, text_config)
+    # Redirect stderr to /dev/null so that the only thing printed out is the
+    # pid perfetto command that is tracing.
     start_perfetto = (
-        'cat %s | %s --background --config - --txt --out %s' % (
+        'cat %s | %s --background --config - --txt --out %s 2>/dev/null' % (
             self._trace_config_temp_file.name,
             self._perfetto_path,
             self._trace_output_temp_file.name,
         )
     )
-    stdout = self._device.RunShellCommand(start_perfetto, shell=True)
-    self._perfetto_pid = int(stdout[0])
+
+    # Sometimes the phone might be at its process limit and unable to launch a
+    # new process as we are doing here (--background in the command above calls
+    # fork()). Therefore to prevent flakiness we attempt to start the trace up
+    # to 5 times before giving up.
+    #
+    # See internal b/161794654 for the investigation that lead to this
+    # discovery.
+    attempt = 0
+    self._perfetto_pid = -1
+    processes = set(p.pid for p in self._device.ListProcesses())
+    while self._perfetto_pid not in processes and attempt < 5:
+      attempt += 1
+      if attempt > 1:
+        logging.info('Perfetto retrying trace start')
+      stdout = self._device.RunShellCommand(start_perfetto, shell=True)
+      self._perfetto_pid = int(stdout[0])
+      processes = set(p.pid for p in self._device.ListProcesses())
+    assert self._perfetto_pid in processes
+
     logging.info('Started perfetto with pid %s.', self._perfetto_pid)
     return True
 
