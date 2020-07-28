@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "086109c6_df5ae467",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-28T18:04:39Z",
+      "side": 1,
+      "message": "I\u0027ve seen the \"None + later reassign\" around Chromium, e.g. https://source.chromium.org/chromium/chromium/src/+/master:build/android/pylib/results/json_results.py;l\u003d105?q\u003d%22%3DNone%22%20lang:python%20file:build%2Fandroid%20-file:gyp%20%22%20or%22\n\nI believe there are a few of reasons for this:\n1. In cases of inheritance, the actual default value only has to be specified once where it\u0027ll actually be used instead of in each class.\n2. It allows us to differentiate between using the default and someone explicitly passing in the value that we happen to default to.\n3. If a caller wants to explicitly say \"use the default value\", they can just pass None instead of having to care about what the default value is (e.g. what we do in one of the added unittests)\n\nAdmittedly, none of those reasons apply strongly or at all to this particular use case, but if you don\u0027t have any particularly strong feelings about this, I\u0027d prefer to keep as-is.",
+      "parentUuid": "85f80cfc_3b9444d9",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c987b9b3_ecdbbb97",
         "filename": "telemetry/telemetry/util/screenshot.py",
         "patchSetId": 3
@@ -70,6 +88,24 @@
       "writtenOn": "2020-07-28T05:44:14Z",
       "side": 1,
       "message": "Can we remove this TODO? Do we have platforms that don\u0027t support screenshots?",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d73ad8_9eff2ac4",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-28T18:04:39Z",
+      "side": 1,
+      "message": "Fuchsia does not currently support taking OS-level screenshots https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/platform/fuchsia_platform_backend.py;l\u003d122?q\u003dtakescreenshot%20file:telemetry%20file:fuchsia\n\nEven if all currently supported platforms support OS-level screenshots, I think the tab-level screenshot logic is still worth keeping around in case a new platform is added.\n\nSo, yes, I think the TODO can be removed, but the logic kept.",
+      "parentUuid": "fead0adb_9b682957",
       "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
