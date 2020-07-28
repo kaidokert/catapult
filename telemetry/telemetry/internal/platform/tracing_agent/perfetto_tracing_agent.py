@@ -4,6 +4,7 @@
 
 import logging
 import posixpath
+import time
 
 from telemetry.internal.platform import tracing_agent
 from telemetry.internal.util import binary_manager
@@ -44,7 +45,7 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
       for service in [TRACED, TRACED_PROBES]:
         self._device.KillAll(service, exact=True, quiet=True,
                              signum=device_signal.SIGTERM, timeout=STOP_TIMEOUT)
-
+      time.sleep(5)
       self._PushFilesAndStartService(platform_backend.GetArchName())
 
     processes = set(p.name for p in self._device.ListProcesses())
@@ -67,10 +68,9 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
         (traced_local_path, traced_device_path),
         (traced_probes_local_path, traced_probes_device_path),
     ])
-    in_background = '</dev/null >/dev/null 2>&1 &'
-    self._device.RunShellCommand(traced_device_path + in_background,
+    self._device.RunShellCommand('sh -T- -c ' + traced_device_path,
                                  shell=True)
-    self._device.RunShellCommand(traced_probes_device_path + in_background,
+    self._device.RunShellCommand('nohup ' + traced_probes_device_path + '</dev/null &>/dev/null &',
                                  shell=True)
     self._perfetto_path = perfetto_device_path
 
@@ -90,7 +90,7 @@ class PerfettoTracingAgent(tracing_agent.TracingAgent):
     text_config = config.system_trace_config.GetTextConfig()
     self._device.WriteFile(self._trace_config_temp_file.name, text_config)
     start_perfetto = (
-        'cat %s | %s --background --config - --txt --out %s' % (
+        'cat %s | %s --background --config - --txt --out %s 2>/dev/null' % (
             self._trace_config_temp_file.name,
             self._perfetto_path,
             self._trace_output_temp_file.name,
