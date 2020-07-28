@@ -16,6 +16,97 @@
       "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85f80cfc_3b9444d9",
+        "filename": "telemetry/telemetry/internal/backends/browser_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-28T05:44:14Z",
+      "side": 1,
+      "message": "Why not 0?",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c987b9b3_ecdbbb97",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-28T05:44:14Z",
+      "side": 1,
+      "message": "why not 0?",
+      "range": {
+        "startLine": 17,
+        "startChar": 53,
+        "endLine": 17,
+        "endChar": 57
+      },
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fead0adb_9b682957",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-28T05:44:14Z",
+      "side": 1,
+      "message": "Can we remove this TODO? Do we have platforms that don\u0027t support screenshots?",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11268853_57ef7151",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-28T05:44:14Z",
+      "side": 1,
+      "message": "You can use WaitFor, right?\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/common/py_utils/py_utils/__init__.py;l\u003d114",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e6c42a_0fb9f9df",
+        "filename": "telemetry/telemetry/util/screenshot_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-28T05:44:14Z",
+      "side": 1,
+      "message": "let\u0027s create a fake_platform mock class to manage this for these 3 test functions.\n\nIt might also make sense to combine the 3 tests into 1.",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
