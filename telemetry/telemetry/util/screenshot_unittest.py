@@ -39,6 +39,54 @@ class ScreenshotUtilTests(unittest.TestCase):
     finally:  # Must clean up screenshot file if exists.
       os.remove(screenshot_file_path)
 
+  def testScreenshotFailureNoTimeout(self):
+    def TakeScreenshot(_):
+      TakeScreenshot.call_count += 1
+      return False
+    TakeScreenshot.call_count = 0
+
+    fake_platform = self.options.fake_possible_browser.returned_browser.platform
+    fake_platform.TakeScreenshot = TakeScreenshot
+    fake_platform.CanTakeScreenshot = lambda: True
+
+    fh = screenshot.TryCaptureScreenShot(fake_platform, timeout=None)
+    try:
+      self.assertEqual(TakeScreenshot.call_count, 1)
+    finally:
+      os.remove(fh.GetAbsPath())
+
+  def testScreenshotFailureTimeout(self):
+    def TakeScreenshot(_):
+      TakeScreenshot.call_count += 1
+      return False
+    TakeScreenshot.call_count = 0
+
+    fake_platform = self.options.fake_possible_browser.returned_browser.platform
+    fake_platform.TakeScreenshot = TakeScreenshot
+    fake_platform.CanTakeScreenshot = lambda: True
+
+    fh = screenshot.TryCaptureScreenShot(fake_platform, timeout=1)
+    try:
+      self.assertEqual(TakeScreenshot.call_count, 2)
+    finally:
+      os.remove(fh.GetAbsPath())
+
+  def testScreenshotEventualSuccessTimeout(self):
+    def TakeScreenshot(_):
+      TakeScreenshot.call_count += 1
+      return TakeScreenshot.call_count > 2
+    TakeScreenshot.call_count = 0
+
+    fake_platform = self.options.fake_possible_browser.returned_browser.platform
+    fake_platform.TakeScreenshot = TakeScreenshot
+    fake_platform.CanTakeScreenshot = lambda: True
+
+    fh = screenshot.TryCaptureScreenShot(fake_platform, timeout=10)
+    try:
+      self.assertEqual(TakeScreenshot.call_count, 3)
+    finally:
+      os.remove(fh.GetAbsPath())
+
   def testUploadScreenshotToCloudStorage(self):
     tf = tempfile.NamedTemporaryFile(
         suffix='.png', delete=False)
