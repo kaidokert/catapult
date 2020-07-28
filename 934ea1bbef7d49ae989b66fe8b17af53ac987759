@@ -77,6 +77,30 @@
     },
     {
       "key": {
+        "uuid": "fc26b583_bad753b0",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-28T20:28:30Z",
+      "side": 1,
+      "message": "See other comment.",
+      "parentUuid": "c987b9b3_ecdbbb97",
+      "range": {
+        "startLine": 17,
+        "startChar": 53,
+        "endLine": 17,
+        "endChar": 57
+      },
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fead0adb_9b682957",
         "filename": "telemetry/telemetry/util/screenshot.py",
         "patchSetId": 3
@@ -112,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "2752dc0d_662fce5f",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-28T20:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30d73ad8_9eff2ac4",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11268853_57ef7151",
         "filename": "telemetry/telemetry/util/screenshot.py",
         "patchSetId": 3
@@ -129,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "2067cf99_4a97a315",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-28T20:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11268853_57ef7151",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1e6c42a_0fb9f9df",
         "filename": "telemetry/telemetry/util/screenshot_unittest.py",
         "patchSetId": 3
@@ -143,6 +203,24 @@
       "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8130ba28_d778e21b",
+        "filename": "telemetry/telemetry/util/screenshot_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-28T20:28:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1e6c42a_0fb9f9df",
+      "revId": "934ea1bbef7d49ae989b66fe8b17af53ac987759",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
