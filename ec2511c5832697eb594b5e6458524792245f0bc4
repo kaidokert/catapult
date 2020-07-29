@@ -69,6 +69,24 @@
       "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9fc1737_9cf1f575",
+        "filename": "telemetry/telemetry/util/screenshot_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-29T18:31:42Z",
+      "side": 1,
+      "message": "Strange - seems like it could cause orphan screenshots",
+      "parentUuid": "5c5a6821_eab5121b",
+      "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }

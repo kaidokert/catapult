@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "950420f3_50b1d4bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-29T18:31:42Z",
+      "side": 1,
+      "message": "lgtm with nit\n",
+      "revId": "4db73abe28511badaa4aae09bd6b078b1764b986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d790408_ef87b692",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-29T18:31:42Z",
+      "side": 1,
+      "message": "nit: you could do (timeout or 0) here instead of on line 31",
+      "range": {
+        "startLine": 37,
+        "startChar": 67,
+        "endLine": 37,
+        "endChar": 74
+      },
+      "revId": "4db73abe28511badaa4aae09bd6b078b1764b986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
