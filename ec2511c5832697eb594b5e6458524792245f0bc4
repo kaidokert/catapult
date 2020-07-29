@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae50f928_63327bab",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-29T17:13:52Z",
+      "side": 1,
+      "message": "Done. I initially misread the WaitFor implementation and missed that it does an initial check on the given condition before going into the loop.",
+      "parentUuid": "e538ebaa_808f599a",
+      "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1556f165_67eb8771",
         "filename": "telemetry/telemetry/util/screenshot_unittest.py",
         "patchSetId": 4
@@ -33,6 +51,24 @@
       "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c5a6821_eab5121b",
+        "filename": "telemetry/telemetry/util/screenshot_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-29T17:13:52Z",
+      "side": 1,
+      "message": "Moved, although the other tests in this file have the TryCaptureScreenShot call outside of their try blocks.",
+      "parentUuid": "1556f165_67eb8771",
+      "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
