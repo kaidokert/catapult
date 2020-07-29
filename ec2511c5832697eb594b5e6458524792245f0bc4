@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e538ebaa_808f599a",
+        "filename": "telemetry/telemetry/util/screenshot.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-29T05:05:05Z",
+      "side": 1,
+      "message": "This line and the next one don\u0027t seem necessary?",
+      "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1556f165_67eb8771",
+        "filename": "telemetry/telemetry/util/screenshot_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-07-29T05:05:05Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be in the try block?",
+      "revId": "ec2511c5832697eb594b5e6458524792245f0bc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
