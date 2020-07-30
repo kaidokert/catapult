@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "23660b6a_fb45c070",
+        "filename": "dependency_manager/dependency_manager/dependency_manager_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-30T22:11:35Z",
+      "side": 1,
+      "message": "I think a low priority \"Clean up TODOs leftover from nednguyen\" bug or something along those lines that these all point to is fine. I just want *something* in Monorail.",
+      "parentUuid": "d478ab5c_e8fb1815",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 8
+      },
+      "revId": "a748731c8a912b67f92bff09a6dca6344f764a14",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bba3eca_0eea6cc0",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
