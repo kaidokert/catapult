@@ -328,7 +328,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
     if ((is_webview_apk or apk_name == 'Monochrome.apk') and
         self._platform_backend.device.build_version_sdk >=
-        version_codes.NOUGAT):
+        version_codes.NOUGAT and
+        self._platform_backend.device.build_version_sdk < version_codes.Q):
       package_name = apk_helper.GetPackageName(self._local_apk)
       logging.warn('Setting %s as WebView implementation.', package_name)
       self._platform_backend.device.SetWebViewImplementation(package_name)
