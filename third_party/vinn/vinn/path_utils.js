@@ -63,7 +63,7 @@
       return a;
     },
 
-    /* TODO(nednguyen): fix this implementation on windows */
+    /* TODO: fix this implementation on windows */
     absPath: function(a) {
       if (this.isAbs(a))
         return a;

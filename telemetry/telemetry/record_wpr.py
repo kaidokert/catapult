@@ -310,7 +310,7 @@ def Main(environment, **log_config_kwargs):
 
   binary_manager.InitDependencyManager(environment.client_configs)
 
-  # TODO(nednguyen): update WprRecorder so that it handles the difference
+  # TODO: update WprRecorder so that it handles the difference
   # between recording a benchmark vs recording a story better based on
   # the distinction between args.benchmark & args.story
   with WprRecorder(environment.top_level_dir,

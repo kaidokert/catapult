@@ -181,7 +181,7 @@ def FetchBinaryDependencies(
   # (https://github.com/catapult-project/catapult/issues/2192)
   # For now this is ok because the client configs usually don't include cloud
   # storage infos.
-  # TODO(nednguyen): remove the logic of swallowing exception once the issue is
+  # TODO: remove the logic of swallowing exception once the issue is
   # fixed on Chromium side.
   if client_configs:
     manager = dependency_manager.DependencyManager(
