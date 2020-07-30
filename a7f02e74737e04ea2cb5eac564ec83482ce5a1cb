@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a902c62_1a3ba0c5",
+        "filename": "dashboard/dashboard/revision_info_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-07-30T12:30:49Z",
+      "side": 1,
+      "message": "Is there no way to test this through a unit test? We\u0027re now three CLs deep into trying to make this work, I suspect it would be better if we knew with a unittest that this actually does what we expect it to do.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "a7f02e74737e04ea2cb5eac564ec83482ce5a1cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
