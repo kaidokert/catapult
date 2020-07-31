@@ -9,15 +9,18 @@ import("trace_viewer.gni")
 output_resource_dir = "$root_gen_dir/content/browser/tracing"
 
 action("generate_about_tracing") {
-  script = "bin/generate_about_tracing_contents"
+  script = "//build/wrap_python2"
 
-  inputs = tracing_files + tracing_python_files
+  inputs = [
+    "bin/generate_about_tracing_contents",
+    ] + tracing_files + tracing_python_files
   outputs = [
     "$output_resource_dir/about_tracing.js",
     "$output_resource_dir/about_tracing.html",
   ]
 
   args = [
+    rebase_path("bin/generate_about_tracing_contents", root_build_dir),
     "--outdir", rebase_path(output_resource_dir, root_build_dir),
   ]
 }
