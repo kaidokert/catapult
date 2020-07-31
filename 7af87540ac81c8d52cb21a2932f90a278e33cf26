@@ -16,6 +16,23 @@
       "revId": "7af87540ac81c8d52cb21a2932f90a278e33cf26",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "404730ca_0a06bc03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-31T00:04:54Z",
+      "side": 1,
+      "message": "I don\u0027t think this revert is necessary - we should be able to get equivalent behavior by resetting the artifact implementation after every test. It\u0027s a bug that that\u0027s not currently done, as it assumes that test hermeticness (hermeticism?) is handled elsewhere (in this case, because it\u0027s in a different process).",
+      "revId": "7af87540ac81c8d52cb21a2932f90a278e33cf26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
