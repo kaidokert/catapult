@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78733ac4_60fc6602",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-07-31T00:14:38Z",
+      "side": 1,
+      "message": "+rmhasan for typ change\n+johnchen for Telemetry change",
+      "revId": "81fd54b4d66a1f464ba74d786dddb5e03c0c033f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
