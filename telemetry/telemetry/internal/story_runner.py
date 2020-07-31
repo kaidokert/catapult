@@ -158,6 +158,8 @@ def _RunStoryAndProcessErrorIfNeeded(story, results, state, test):
       # create a new shared state.
       raise
     finally:
+      with results.CreateArtifact('logcat.txt') as logcat:
+        logcat.write(state.platform.GetLogCat(number_of_lines=10000))
       has_existing_exception = (sys.exc_info() != (None, None, None))
       try:
         if hasattr(state, 'browser') and state.browser:
