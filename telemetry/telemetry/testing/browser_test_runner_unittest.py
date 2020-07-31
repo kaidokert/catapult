@@ -12,7 +12,6 @@ import json
 from telemetry import decorators
 from telemetry import project_config
 from telemetry.core import util
-from telemetry.internal.util import binary_manager
 from telemetry.testing import browser_test_context
 from telemetry.testing import browser_test_runner
 from telemetry.testing import options_for_unittests
@@ -92,13 +91,12 @@ class BrowserTestRunnerTest(unittest.TestCase):
       expectations_file.close()
       extra_args.extend(['-X', expectations_file.name] +
                         ['-x=%s' % tag for tag in tags])
-    args = ([test_name,
-             '--write-full-results-to=%s' % temp_file_name,
-             '--test-filter=%s' % test_filter] + extra_args)
     try:
-      args = browser_test_runner.ProcessConfig(config, args)
-      with binary_manager.TemporarilyReplaceBinaryManager(None):
-        run_browser_tests.RunTests(args)
+      browser_test_runner.Run(
+          config,
+          [test_name,
+           '--write-full-results-to=%s' % temp_file_name,
+           '--test-filter=%s' % test_filter] + extra_args)
       with open(temp_file_name) as f:
         self._test_result = json.load(f)
       (actual_successes,
@@ -456,14 +454,13 @@ class BrowserTestRunnerTest(unittest.TestCase):
       opt_args += ['--filter-tests-after-sharding']
     if opt_test_name_prefix:
       opt_args += ['--test-name-prefix=%s' % opt_test_name_prefix]
-    args = (['SimpleShardingTest',
-             '--write-full-results-to=%s' % temp_file_name,
-             '--total-shards=%d' % total_shards,
-             '--shard-index=%d' % shard_index] + opt_args)
     try:
-      args = browser_test_runner.ProcessConfig(config, args)
-      with binary_manager.TemporarilyReplaceBinaryManager(None):
-        run_browser_tests.RunTests(args)
+      browser_test_runner.Run(
+          config,
+          ['SimpleShardingTest',
+           '--write-full-results-to=%s' % temp_file_name,
+           '--total-shards=%d' % total_shards,
+           '--shard-index=%d' % shard_index] + opt_args)
       with open(temp_file_name) as f:
         test_result = json.load(f)
       (actual_successes,
