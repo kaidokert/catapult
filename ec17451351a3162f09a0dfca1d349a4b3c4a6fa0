@@ -16,6 +16,23 @@
       "revId": "ec17451351a3162f09a0dfca1d349a4b3c4a6fa0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04f73cd7_82f201fb",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-08-03T19:44:23Z",
+      "side": 1,
+      "message": "nit: add the first pkill\u0027s stdout somewhere in the warning here? otherwise we silently swallow it, and it might contain some useful info",
+      "revId": "ec17451351a3162f09a0dfca1d349a4b3c4a6fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
