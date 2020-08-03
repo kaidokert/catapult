@@ -7,11 +7,11 @@ import logging
 import os
 import sys
 import types
-import unittest
 
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.util import path
 from telemetry.testing import options_for_unittests
+from typ import test_case
 
 
 class _MetaBrowserTestCase(type):
@@ -51,7 +51,7 @@ class _MetaBrowserTestCase(type):
     return WrappedMethod
 
 
-class BrowserTestCase(unittest.TestCase):
+class BrowserTestCase(test_case.TestCase):
   __metaclass__ = _MetaBrowserTestCase
   _possible_browser = None
   _platform = None
