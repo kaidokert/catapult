@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc03bae5_0ad99ff6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-03T20:09:09Z",
+      "side": 1,
+      "message": "+johnchen for Telemetry OWNER\n+rmhasan since this relates to typ",
+      "revId": "a2956fcda549689b682107e6a373f7d386cd0eba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
