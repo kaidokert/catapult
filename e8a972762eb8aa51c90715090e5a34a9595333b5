@@ -22,6 +22,30 @@
       "revId": "e8a972762eb8aa51c90715090e5a34a9595333b5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c388b4e_64844288",
+        "filename": "dashboard/dashboard/revision_info_client_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-08-03T00:03:49Z",
+      "side": 1,
+      "message": "No, auto-formatting can\u0027t handle a long string literal in single line.",
+      "parentUuid": "d4c403f8_00e60c8a",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 42
+      },
+      "revId": "e8a972762eb8aa51c90715090e5a34a9595333b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
