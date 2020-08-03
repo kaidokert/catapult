@@ -33,6 +33,24 @@
       "revId": "ec17451351a3162f09a0dfca1d349a4b3c4a6fa0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45465205_6b5c24c9",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-03T19:48:20Z",
+      "side": 1,
+      "message": "Done, although while debugging this, pkill never output anything other than the exit code.",
+      "parentUuid": "04f73cd7_82f201fb",
+      "revId": "ec17451351a3162f09a0dfca1d349a4b3c4a6fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
