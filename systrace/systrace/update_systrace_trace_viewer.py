@@ -109,7 +109,7 @@ def update(no_auto_update=False, no_min=False, force_update=False):
                    encoding='utf-8', mode='w') as f:
     vulcanize_trace_viewer.WriteTraceViewer(
         f,
-        config_name='full',
+        config_name='full_with_polyfill',
         minify=(not no_min),
         output_html_head_and_body=False)
     if not force_update:
