@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64a229ad_2eb820c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-04T17:13:59Z",
+      "side": 1,
+      "message": "PTAL\n\nTested to work on both P and Q.",
+      "revId": "89f86f1c3d9ff8864919fb0b662fd4c8fcc82cc0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
