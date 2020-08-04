@@ -84,12 +84,19 @@ def GenerateHTMLOutput(trace_results, output_file_name):
   html_suffix = _ReadAsset(systrace_dir, 'suffix.html')
   trace_viewer_html = _ReadAsset(systrace_dir,
                                   'systrace_trace_viewer.html')
+  webcomponent_v0_polyfill = _ReadAsset(systrace_dir, 'webcomponents.min.js')
+
+  # Add the polyfill
+  html_output = html_prefix.replace('{{WEBCOMPONENTS_V0_POLYFILL_JS}}',
+                                    webcomponent_v0_polyfill)
 
   # Open the file in binary mode to prevent python from changing the
   # line endings, then write the prefix.
   html_file = open(output_file_name, 'wb')
-  html_file.write(html_prefix.replace('{{SYSTRACE_TRACE_VIEWER_HTML}}',
+  html_file.write(html_output.replace('{{SYSTRACE_TRACE_VIEWER_HTML}}',
                                       trace_viewer_html))
+
+
 
   # Write the trace data itself. There is a separate section of the form
   # <script class="trace-data" type="application/text"> ... </script>
