@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "045c2555_c3ddebf3",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-04T07:34:25Z",
+      "side": 1,
+      "message": "Can we undo the formatting changes (or make them in a different change)?",
+      "revId": "4537e44dcbcff25d96e1417817d066f9fbd4e3a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55368b73_2ec70e85",
+        "filename": "dashboard/dashboard/add_histograms_queue_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-04T07:34:25Z",
+      "side": 1,
+      "message": "Same here, please undo the whole-file formatting to make it clearer what changes are actually being made.",
+      "revId": "4537e44dcbcff25d96e1417817d066f9fbd4e3a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cc17c85_2a44b75b",
+        "filename": "dashboard/dashboard/add_histograms_queue_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-04T07:34:25Z",
+      "side": 1,
+      "message": "This seems over-specified. Can we use one of the queries in teh graph_data module instead to find the rows, to ensure that we\u0027re still able to retrieve them using those functions?",
+      "range": {
+        "startLine": 301,
+        "startChar": 1,
+        "endLine": 301,
+        "endChar": 66
+      },
+      "revId": "4537e44dcbcff25d96e1417817d066f9fbd4e3a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
