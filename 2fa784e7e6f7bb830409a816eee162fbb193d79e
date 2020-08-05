@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9ca95a4_eca1b3a2",
+        "filename": "dashboard/dashboard/debug_alert.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-05T05:57:33Z",
+      "side": 1,
+      "message": "I suspect you want to use the rows, not the change_points.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "2fa784e7e6f7bb830409a816eee162fbb193d79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd8bd68a_2d6d6e08",
+        "filename": "dashboard/dashboard/debug_alert.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-05T05:57:33Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this just be empty?\n\nI suspect you\u0027d want to use the data from that anomaly we\u0027re debugging, instead of trying to simulate anomaly detection.",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "2fa784e7e6f7bb830409a816eee162fbb193d79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
