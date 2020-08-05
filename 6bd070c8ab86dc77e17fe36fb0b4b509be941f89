@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04ece7e1_5c2e6093",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-08-05T14:41:55Z",
+      "side": 1,
+      "message": "This fixes crbug.com/1111935. PTAL! ",
+      "revId": "6bd070c8ab86dc77e17fe36fb0b4b509be941f89",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
