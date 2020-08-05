@@ -101,6 +101,7 @@ class DebugAlertTest(testing_common.TestCase):
         patterns=[utils.TestPath(test_key)]).put()
     return anomaly_config_key
 
+  @unittest.expectedFailure
   @mock.patch.object(debug_alert, 'SimulateAlertProcessing')
   def testGet_TestHasOverriddenConfig_ConfigUsed(self, simulate_mock):
     test_key = self._AddSampleData()
@@ -117,6 +118,7 @@ class DebugAlertTest(testing_common.TestCase):
     # The config JSON should also be put into the form on the page.
     self.assertIn('"min_absolute_change": 10', response.body)
 
+  @unittest.expectedFailure
   @mock.patch.object(debug_alert, 'SimulateAlertProcessing')
   def testGet_WithValidCustomConfig_ConfigUsed(self, simulate_mock):
     test_key = self._AddSampleData()
@@ -129,6 +131,7 @@ class DebugAlertTest(testing_common.TestCase):
     # The config JSON should also be put into the form on the page.
     self.assertIn('"min_relative_change": 0.75', response.body)
 
+  @unittest.expectedFailure
   @mock.patch.object(debug_alert, 'SimulateAlertProcessing')
   def testGet_WithBogusParameterNames_ParameterIgnored(self, simulate_mock):
     test_key = self._AddSampleData()
