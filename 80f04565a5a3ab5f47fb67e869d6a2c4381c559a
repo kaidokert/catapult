@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d32fd77_da9d67f4",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-05T01:48:24Z",
+      "side": 1,
+      "message": "I can see how the original bug was introduced, and it was with having a local variable that was only used for this argument. Consider inlining the call to `utils.GetTestContainerKey(suffixed_key)` instead?\n\nThat applies to the `properties` as well.",
+      "range": {
+        "startLine": 327,
+        "startChar": 28,
+        "endLine": 327,
+        "endChar": 46
+      },
+      "revId": "80f04565a5a3ab5f47fb67e869d6a2c4381c559a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
