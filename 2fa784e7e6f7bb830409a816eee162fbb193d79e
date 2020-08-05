@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "25f32322_ca1cef9f",
+        "filename": "dashboard/dashboard/debug_alert.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-08-05T06:40:02Z",
+      "side": 1,
+      "message": "Remove all of these code. Thanks!",
+      "parentUuid": "b9ca95a4_eca1b3a2",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "2fa784e7e6f7bb830409a816eee162fbb193d79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd8bd68a_2d6d6e08",
         "filename": "dashboard/dashboard/debug_alert.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "2fa784e7e6f7bb830409a816eee162fbb193d79e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94b65ec4_53e06e5f",
+        "filename": "dashboard/dashboard/debug_alert.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-08-05T06:40:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd8bd68a_2d6d6e08",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 59
+      },
+      "revId": "2fa784e7e6f7bb830409a816eee162fbb193d79e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
