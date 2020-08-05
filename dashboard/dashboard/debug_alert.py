@@ -65,7 +65,12 @@ class DebugAlertHandler(request_handler.RequestHandler):
 
     # Get the anomaly data from the new anomaly detection module. This will
     # also be passed to the template so that it can be shown on the page.
-    change_points = SimulateAlertProcessing(chart_series, **config_dict)
+
+    # TODO(fancl): Fix SimulateAlertProcessing timeout. It was disabled
+    # because anomaly detection algorithm runs longer than 10s. We should
+    # change it to asynchronized request.
+    # change_points = SimulateAlertProcessing(chart_series, **config_dict)
+    change_points = []
     anomaly_indexes = [c.x_value for c in change_points]
     anomaly_points = [(i, chart_series[i][1]) for i in anomaly_indexes]
     anomaly_segments = _AnomalySegmentSeries(change_points)
