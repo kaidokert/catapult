@@ -78,6 +78,7 @@ class ReplayServer(object):
   """
 
   _go_binary_path = None
+  _downloader = None
 
   def __init__(self, archive_path, replay_host, http_port, https_port,
                replay_options, binary_downloader=None):
@@ -102,16 +103,9 @@ class ReplayServer(object):
     # subprocess.
     self._temp_log_file_path = None
 
-    # Assign the downloader func and binary_manager
-    downloader = None
-    if binary_downloader:
-      downloader = binary_downloader
-    else:
-      configs = [CHROME_BINARY_CONFIG, TELEMETRY_PROJECT_CONFIG]
-      downloader = binary_manager.BinaryManager(configs).FetchPath
-
+    self._SetDownloader(binary_downloader)
     self._cmd_line = self._GetCommandLine(
-        self._GetGoBinaryPath(downloader=downloader), http_port, https_port,
+        self._GetGoBinaryPath(), http_port, https_port,
         replay_options, archive_path)
 
     if RECORD in replay_options or 'record' in replay_options:
@@ -123,8 +117,21 @@ class ReplayServer(object):
     self.replay_process = None
 
   @classmethod
-  def _GetGoBinaryPath(cls, downloader):
+  def _SetDownloader(cls, downloader=None):
+    """Sets the binary downloader used to get the go binary."""
+    cls._downloader = downloader
+
+  @classmethod
+  def _GetDownloader(cls):
+    if not cls._downloader:
+      configs = [CHROME_BINARY_CONFIG, TELEMETRY_PROJECT_CONFIG]
+      cls._downloader = binary_manager.BinaryManager(configs).FetchPath
+    return cls._downloader
+
+  @classmethod
+  def _GetGoBinaryPath(cls):
     if not cls._go_binary_path:
+      downloader = cls._GetDownloader()
       cls._go_binary_path = downloader(
           'wpr_go', py_utils.GetHostOsName(), py_utils.GetHostArchName())
     return cls._go_binary_path
@@ -136,6 +143,10 @@ class ReplayServer(object):
     This allows the server to use WPRGO files retrieved from somewhere
     other than GCS, such as CIPD."""
     cls._go_binary_path = go_binary_path
+
+  @classmethod
+  def _NeedDownload(cls):
+    return not cls._go_binary_path
 
   @property
   def http_port(self):
