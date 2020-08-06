@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b8bfc6c0_8d412deb",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-08-06T04:20:15Z",
+      "side": 1,
+      "message": "sorry, I think it is a class variable and are now sure that self._downloader \u003d downloader would work directly.",
+      "parentUuid": "64d46763_5d881fc2",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 42
+      },
+      "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "110c16df_7980745b",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 5
@@ -39,6 +63,24 @@
       "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06acfb5e_20cc2d31",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-08-06T04:20:15Z",
+      "side": 1,
+      "message": "already fixed. \n\nSo when you call _GetGoBinaryPath, it first check cls._go_binary_path. In my case, this value is set, therefore cls._GetDownloader() are not getting called. \n\nin a normal case that depends on downloader. The cls._downloader is none, and the cls._downloader is initialized. This is the old code path.",
+      "parentUuid": "110c16df_7980745b",
+      "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
