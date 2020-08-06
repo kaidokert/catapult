@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9c868f9_e9821c9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-08-06T20:59:42Z",
+      "side": 1,
+      "message": "Some context:\nWhen running this on CQ, it shows error: https://logs.chromium.org/logs/chromium/buildbucket/cr-buildbucket.appspot.com/8872769111080582560/+/steps/chrome_java_test_wpr_tests__with_patch_/0/stdout\n\nThis indicates that although cls._go_binary_path is set, a binary_manager.BinaryManager(configs) call is still made, and it needs some data deps. I do not want to whitelist some uncessary data deps into the infra, and therefore refractory the code a little bit.",
+      "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
