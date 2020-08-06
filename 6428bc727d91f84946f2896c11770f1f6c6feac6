@@ -16,6 +16,23 @@
       "revId": "6428bc727d91f84946f2896c11770f1f6c6feac6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8b4a24b_2d0e24d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1267170
+      },
+      "writtenOn": "2020-08-06T17:25:59Z",
+      "side": 1,
+      "message": "Namhyung is OOO, Peter, if needed, please CP locally to unblock ",
+      "revId": "6428bc727d91f84946f2896c11770f1f6c6feac6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
