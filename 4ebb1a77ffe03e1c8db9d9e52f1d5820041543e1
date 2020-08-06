@@ -81,6 +81,24 @@
       "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd3ac82a_1dee1d6a",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-08-06T16:59:43Z",
+      "side": 1,
+      "message": "Right, for the wpr case, it will work.\nBut for the case the depends on downloader, this code will still fail for the same reason. Can you fix it in this CL as well?",
+      "parentUuid": "06acfb5e_20cc2d31",
+      "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
