@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64d46763_5d881fc2",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-08-06T00:19:10Z",
+      "side": 1,
+      "message": "Can it be simplied to \"_downloader \u003d downloader\"?",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 42
+      },
+      "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "110c16df_7980745b",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-08-06T00:19:10Z",
+      "side": 1,
+      "message": "I don\u0027t think this would fix the issue as seen in https://chromium-swarm.appspot.com/task?id\u003d4dd9a509eada3e10.\nCan you fix this?",
+      "revId": "4ebb1a77ffe03e1c8db9d9e52f1d5820041543e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
