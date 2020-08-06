@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48757b8e_6f51a466",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-08-06T13:55:01Z",
+      "side": 1,
+      "message": "(I\u0027m not too familiar with the details of systrace code and have very little opinion here. You have my OWNER approval to unblock yourself as needed, but please wait for namhyung\u0027s review)",
+      "revId": "6428bc727d91f84946f2896c11770f1f6c6feac6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
