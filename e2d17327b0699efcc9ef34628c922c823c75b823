@@ -16,6 +16,52 @@
       "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30853bb1_96564cfd",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-06T21:15:47Z",
+      "side": 1,
+      "message": "Should there be some sort of check to make sure this isn\u0027t already set? It feels wrong to just clobber whatever\u0027s there.",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 48
+      },
+      "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "652af394_daac9f2f",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-06T21:15:47Z",
+      "side": 1,
+      "message": "Is there any reason why this or _GetDownloader need to be class methods? It seems like they could be changed to instance methods, which would also address my concern above about clobbering things.",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 22
+      },
+      "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
