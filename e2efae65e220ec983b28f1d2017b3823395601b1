@@ -16,6 +16,40 @@
       "revId": "e2efae65e220ec983b28f1d2017b3823395601b1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10186ae1_8f9a1a15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-08-06T20:35:18Z",
+      "side": 1,
+      "message": "lgtm + comment",
+      "revId": "e2efae65e220ec983b28f1d2017b3823395601b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0f52373_6b001427",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-08-06T20:35:18Z",
+      "side": 1,
+      "message": "We\u0027re getting pretty desperate if we\u0027re resorting to strace :P\n\nDoes pkill do any forking? You might want to add \u0027-f\u0027 to strace if so, which I believe will also make it trace the childs.",
+      "revId": "e2efae65e220ec983b28f1d2017b3823395601b1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
