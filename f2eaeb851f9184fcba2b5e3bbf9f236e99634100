@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebcec234_b87e186a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-08-07T00:00:24Z",
+      "side": 1,
+      "message": "This seems scary to me. We may DDoS the discovery when it runs into trouble. But as a workaround maybe that\u0027s fine.",
+      "revId": "f2eaeb851f9184fcba2b5e3bbf9f236e99634100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
