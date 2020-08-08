@@ -16,6 +16,24 @@
       "revId": "2766c4b296c599f237dd2b7a128b9045727b616f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d09080c_56f5d9c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-08-08T00:09:23Z",
+      "side": 1,
+      "message": "The patch was tried in https://chromium-review.googlesource.com/c/chromium/src/+/2340321, looks like it ran into some issues on ChromeOS",
+      "parentUuid": "9f559662_12669bc4",
+      "revId": "2766c4b296c599f237dd2b7a128b9045727b616f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
