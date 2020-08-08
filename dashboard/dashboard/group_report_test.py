@@ -34,18 +34,27 @@ class GroupReportTest(testing_common.TestCase):
         [('/group_report', group_report.GroupReportHandler)])
     self.testapp = webtest.TestApp(app)
 
-  def _AddAnomalyEntities(
-      self, revision_ranges, test_key, subscriptions,
-      bug_id=None, group_id=None):
+  def _AddAnomalyEntities(self,
+                          revision_ranges,
+                          test_key,
+                          subscriptions,
+                          bug_id=None,
+                          project_id='test_project',
+                          group_id=None):
     """Adds a group of Anomaly entities to the datastore."""
     urlsafe_keys = []
     keys = []
     for start_rev, end_rev in revision_ranges:
       subscription_names = [s.name for s in subscriptions]
       anomaly_key = anomaly.Anomaly(
-          start_revision=start_rev, end_revision=end_rev,
-          test=test_key, bug_id=bug_id, subscription_names=subscription_names,
-          subscriptions=subscriptions, median_before_anomaly=100,
+          start_revision=start_rev,
+          end_revision=end_rev,
+          test=test_key,
+          bug_id=bug_id,
+          project_id=project_id,
+          subscription_names=subscription_names,
+          subscriptions=subscriptions,
+          median_before_anomaly=100,
           median_after_anomaly=200).put()
       urlsafe_keys.append(anomaly_key.urlsafe())
       keys.append(anomaly_key)
@@ -181,12 +190,13 @@ class GroupReportTest(testing_common.TestCase):
     subscription = self._Subscription()
     test_keys = self._AddTests()
     bug_data.Bug(id=123).put()
-    self._AddAnomalyEntities(
-        [(200, 300), (100, 200), (400, 500)],
-        test_keys[0], [subscription], bug_id=123)
+    self._AddAnomalyEntities([(200, 300), (100, 200), (400, 500)],
+                             test_keys[0], [subscription],
+                             bug_id=123,
+                             project_id='test')
     self._AddAnomalyEntities(
         [(150, 250)], test_keys[0], [subscription])
-    response = self.testapp.post('/group_report?bug_id=123')
+    response = self.testapp.post('/group_report?bug_id=123;project_id=test')
     alert_list = self.GetJsonValue(response, 'alert_list')
     self.assertEqual(3, len(alert_list))
 

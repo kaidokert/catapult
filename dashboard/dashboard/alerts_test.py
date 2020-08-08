@@ -117,6 +117,7 @@ class AlertsTest(testing_common.TestCase):
   def testV2(self):
     alert = anomaly.Anomaly(
         bug_id=10,
+        project_id='test_project',
         end_revision=20,
         internal_only=True,
         is_improvement=True,
@@ -124,37 +125,41 @@ class AlertsTest(testing_common.TestCase):
         median_before_anomaly=40,
         recovered=True,
         subscription_names=['Sheriff2'],
-        subscriptions=[Subscription(
-            name='Sheriff2',
-            bug_components=['component'],
-            notification_email='sullivan@google.com')],
+        subscriptions=[
+            Subscription(
+                name='Sheriff2',
+                bug_components=['component'],
+                notification_email='sullivan@google.com')
+        ],
         start_revision=5,
         test=utils.TestKey('m/b/s/m/c'),
         units='ms',
     ).put().get()
     actual = alerts.GetAnomalyDict(alert, v2=True)
     del actual['dashboard_link']
-    self.assertEqual({
-        'bug_components': ['component'],
-        'bug_id': 10,
-        'bug_labels': ['Restrict-View-Google'],
-        'descriptor': {
-            'testSuite': 's',
-            'measurement': 'm',
-            'bot': 'm:b',
-            'testCase': 'c',
-            'statistic': None,
-        },
-        'end_revision': 20,
-        'improvement': True,
-        'key': alert.key.urlsafe(),
-        'median_after_anomaly': 30,
-        'median_before_anomaly': 40,
-        'recovered': True,
-        'start_revision': 5,
-        'units': 'ms',
-        'pinpoint_bisects': [],
-    }, actual)
+    self.assertEqual(
+        {
+            'bug_components': ['component'],
+            'bug_id': 10,
+            'project_id': 'test_project',
+            'bug_labels': ['Restrict-View-Google'],
+            'descriptor': {
+                'testSuite': 's',
+                'measurement': 'm',
+                'bot': 'm:b',
+                'testCase': 'c',
+                'statistic': None,
+            },
+            'end_revision': 20,
+            'improvement': True,
+            'key': alert.key.urlsafe(),
+            'median_after_anomaly': 30,
+            'median_before_anomaly': 40,
+            'recovered': True,
+            'start_revision': 5,
+            'units': 'ms',
+            'pinpoint_bisects': [],
+        }, actual)
 
   def testGet(self):
     response = self.testapp.get('/alerts')
