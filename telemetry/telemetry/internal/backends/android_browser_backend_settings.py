@@ -292,7 +292,7 @@ ANDROID_WEBVIEW_GOOGLE = WebViewGoogleBackendSettings(
 # android-webview-google-bundle
 ANDROID_WEBVIEW_GOOGLE_BUNDLE = WebViewBundleBackendSettings(
     browser_type='android-webview-google-bundle',
-    apk_name='monochrome_bundle')
+    apk_name='system_webview_google_bundle')
 
 # TODO(crbug.com/1038137): Add reference setting for android-webview
 ANDROID_WEBVIEW_STANDALONE_GOOGLE = WebViewBackendSettings(
