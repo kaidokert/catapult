@@ -10,7 +10,7 @@ import pipes
 import select
 import signal
 import string
-import StringIO
+import io
 import subprocess
 import sys
 import time
@@ -23,7 +23,8 @@ _SafeShellChars = frozenset(string.ascii_letters + string.digits + '@%_-+=:,./')
 
 # Cache the string-escape codec to ensure subprocess can find it
 # later. Return value doesn't matter.
-codecs.lookup('string-escape')
+if sys.version_info.major == 2:
+  codecs.lookup('string-escape')
 
 
 def SingleQuote(s):
@@ -452,14 +453,15 @@ def GetCmdStatusAndOutputWithTimeout(args,
     TimeoutError on timeout.
   """
   _ValidateAndLogCommand(args, cwd, shell)
-  output = StringIO.StringIO()
+  output = io.StringIO()
   process = Popen(
       args,
       cwd=cwd,
       shell=shell,
       stdout=subprocess.PIPE,
       stderr=subprocess.STDOUT,
-      env=env)
+      env=env,
+      universal_newlines=True)
   try:
     for data in _IterProcessStdout(process, timeout=timeout):
       if logfile:
