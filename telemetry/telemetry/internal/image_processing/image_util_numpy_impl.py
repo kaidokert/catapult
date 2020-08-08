@@ -64,7 +64,7 @@ def FromPngFile(path):
 def FromPng(png_data):
   if cv2 is not None:
     file_bytes = np.asarray(bytearray(png_data), dtype=np.uint8)
-    return cv2.imdecode(file_bytes, cv2.CV_LOAD_IMAGE_COLOR)
+    return cv2.imdecode(file_bytes, cv2.CV_LOAD_IMAGE_UNCHANGED)
   else:
     warnings.warn(
         'Using pure python png decoder, which could be very slow. To speed up, '
