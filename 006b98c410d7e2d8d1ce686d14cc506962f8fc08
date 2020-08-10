@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "769ba461_e7567ccc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2020-08-10T22:44:49Z",
+      "side": 1,
+      "message": "I am trying this again, this time with setting transparency to white and then discarding the alpha channel. Most of the telemetry code assumes pictures are rgb, not rgba.\nChromium integration test: https://chromium-review.googlesource.com/c/chromium/src/+/2340321",
+      "revId": "006b98c410d7e2d8d1ce686d14cc506962f8fc08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
