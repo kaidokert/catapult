@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "16ba9ef5_d2faebb2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-08-10T11:29:35Z",
+      "side": 1,
+      "message": "Should we:\n\nBug: 1101773\n\n?",
+      "revId": "d6a04ad8b7c54b24a8e63448d369d733e6a41b4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "35b5f2d1_0c80530d",
         "filename": "dashboard/dashboard/group_report_test.py",
         "patchSetId": 6
