@@ -22,7 +22,6 @@ class WebPageReplayGoServerTest(unittest.TestCase):
         py_utils.GetHostOsName(),
         py_utils.GetHostArchName())
 
-  @decorators.Disabled('all')  # crbug.com/909746
   @decorators.Disabled('chromeos')  # crbug.com/750323
   @decorators.Disabled('win')  # crbug.com/864294
   def testSmokeStartingWebPageReplayGoServer(self):
