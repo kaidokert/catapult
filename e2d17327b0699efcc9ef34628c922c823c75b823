@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "a35e466e_919ad28a",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-08-11T02:08:59Z",
+      "side": 1,
+      "message": "changed it to instance variable.",
+      "parentUuid": "30853bb1_96564cfd",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 48
+      },
+      "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "652af394_daac9f2f",
         "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
         "patchSetId": 6
@@ -62,6 +86,30 @@
       "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ab5af62_b7c9cf11",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2020-08-11T02:08:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "652af394_daac9f2f",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 22
+      },
+      "revId": "e2d17327b0699efcc9ef34628c922c823c75b823",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
