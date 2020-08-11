@@ -56,6 +56,30 @@
       "revId": "006b98c410d7e2d8d1ce686d14cc506962f8fc08",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e61f1403_6b7e9e9d",
+        "filename": "telemetry/telemetry/internal/image_processing/image_util_numpy_impl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2020-08-11T17:28:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec7bd407_d0fbf30e",
+      "range": {
+        "startLine": 69,
+        "startChar": 3,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "006b98c410d7e2d8d1ce686d14cc506962f8fc08",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
