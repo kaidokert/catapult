@@ -151,3 +151,12 @@ wheel: <
     platform: "win_amd64"
   >
 >
+
+
+# Used by:
+#   common/py_utils/py_utils/webpagereplay_go_server_unittest.py
+wheel: <
+  name: "infra/python/wheels/pyfakefs-py2_py3"
+  version: "version:3.7.2"
+>
+
