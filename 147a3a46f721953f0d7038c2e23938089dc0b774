@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9387c8a0_d3de63cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-08-12T13:35:30Z",
+      "side": 1,
+      "message": "ptal.\n\nwe recently found that some GCs that are performed on ServiceWorker threads aren\u0027t accounted for in the metrics. This CL fixes that.",
+      "revId": "147a3a46f721953f0d7038c2e23938089dc0b774",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
