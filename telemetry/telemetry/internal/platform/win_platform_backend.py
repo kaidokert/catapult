@@ -103,6 +103,21 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
       process_info.append(pi)
     return process_info
 
+  def IsLaptop(self):
+    # use: wmic computersystem get pcsystemtype
+    # if the return value is 2, then it is mobile/laptop.
+    # line 0 is header and line 1 is value
+    pc_system_type = subprocess.Popen(
+        ['wmic', 'computersystem', 'get', 'pcsystemtype'],
+        stdout=subprocess.PIPE).communicate()[0].splitlines()[1]
+    return pc_system_type == '2'
+
+  def GetTypExpectationsTags(self):
+    tags = super(WinPlatformBackend, self).GetTypExpectationsTags()
+    if self.IsLaptop():
+      tags.append('win-low-end')
+    return tags
+
   @decorators.Cache
   def GetArchName(self):
     return platform.machine()
