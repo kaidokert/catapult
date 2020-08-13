@@ -529,7 +529,7 @@ tr.b.unittest.testSuite(function() {
     const value = actual.getHistogramNamed(
         'blink-gc-atomic-pause-mark-transitive-closure');
     assert.strictEqual(value.running.sum, 35);
-    assert.strictEqual(value.numValues, 1);
+    assert.strictEqual(value.numValues, 3);
   });
 });
 </script>
