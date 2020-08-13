@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2798fdac_acfe6727",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-13T12:38:27Z",
+      "side": 1,
+      "message": "This CL is currently attributing background events to the main thread. They have to be separated. See the comment below.",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0e05ff4_9e080382",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-13T12:38:27Z",
+      "side": 1,
+      "message": "This iterates over all events in the whole trace (includes all renderers and all thread states).\n\nHere we need to a) iterate each process individually and then b) within a process to separate the main thread from concurrent threads.\n\n(a) can be achieved by using pid for grouping. E.g.: event \u003d\u003e even.pid + \u0027-\u0027 + event.args.epoch (I don\u0027t remember the exact name of the \"pid\" field).\n\nFor (b) we probably need a version or a mode of groupAndProcessEvents that runs only on the main threads (rendererHelper.mainThread, rendererHelper.dedicatedWorkerThreads, rendererHelper.serviceWorkerThreads) and then only on the concurrent threads (rendererHelper.foregroundWorkerThreads)\n\nSee the definition of groupAndProcessEvents and https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/metrics/v8/utils.html;l\u003d233;drc\u003d9f3ce85bab94e6c5f89c7615e0cc1bdcbe5c95e5",
+      "range": {
+        "startLine": 260,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}

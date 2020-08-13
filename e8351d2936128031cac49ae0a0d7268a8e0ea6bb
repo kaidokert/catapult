@@ -46,6 +46,30 @@
       "revId": "e8351d2936128031cac49ae0a0d7268a8e0ea6bb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a056b575_cf2e0745",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-13T12:38:27Z",
+      "side": 1,
+      "message": "Thanks. Could you please update the CL description and add tests for the new metrics?",
+      "parentUuid": "e0022992_543f3e1a",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 58
+      },
+      "revId": "e8351d2936128031cac49ae0a0d7268a8e0ea6bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
