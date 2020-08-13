@@ -16,6 +16,29 @@
       "revId": "118881f6f26916b27eb7203221459ba128a6bb58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59de8dde_974f041b",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-08-13T15:09:39Z",
+      "side": 1,
+      "message": "I wonder if we instead prefer to have a drop down list of some supported monorail projects (even hardcoded), WDYT?",
+      "range": {
+        "startLine": 226,
+        "startChar": 19,
+        "endLine": 226,
+        "endChar": 23
+      },
+      "revId": "118881f6f26916b27eb7203221459ba128a6bb58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
