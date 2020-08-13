@@ -64,9 +64,9 @@ class FileBugHandler(request_handler.RequestHandler):
       self._CreateBug(owner, cc, summary, description, project, labels,
                       components, keys)
     else:
-      self._ShowBugDialog(summary, description, keys)
+      self._ShowBugDialog(summary, description, project, keys)
 
-  def _ShowBugDialog(self, summary, description, urlsafe_keys):
+  def _ShowBugDialog(self, summary, description, project, urlsafe_keys):
     """Sends a HTML page with a form for filing the bug.
 
     Args:
@@ -83,6 +83,7 @@ class FileBugHandler(request_handler.RequestHandler):
             'keys': urlsafe_keys,
             'summary': summary,
             'description': description,
+            'project': project,
             'labels': labels,
             'components': components.union(owner_components),
             'owner': '',
