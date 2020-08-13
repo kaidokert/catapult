@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2950f78_572037ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-13T09:08:36Z",
+      "side": 1,
+      "message": "+1 for keeping the existing names of the existing metrics.\n\nThe new metrics however should use the new proposed scheme:\nblink:gc:main_thread:cycle:full:sweeping\nHere \"cycle\" means per GC-cycle or per epoch.\n\nThis would allow us to keep continuity for the new metrics once we implement the naming refactoring. It would also reduce the number of dead metrics in the UI.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 58
+      },
+      "revId": "e8351d2936128031cac49ae0a0d7268a8e0ea6bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
