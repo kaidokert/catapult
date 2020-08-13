@@ -207,7 +207,8 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
       window_sizes = [arg for arg in browser_options.extra_browser_args
                       if arg.startswith('--window-size=')]
       if len(window_sizes) == 0:
-        startup_args.append('--window-size=1280,1024')
+        #startup_args.append('--window-size=1280,1024')
+        startup_args.append('--window-size=595,348')
       if self._flash_path:
         startup_args.append('--ppapi-flash-path=%s' % self._flash_path)
         # Also specify the version of Flash as a large version, so that it is
