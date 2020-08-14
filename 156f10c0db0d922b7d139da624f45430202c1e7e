@@ -189,6 +189,30 @@
       "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f882abb9_cb5b4471",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-14T11:30:28Z",
+      "side": 1,
+      "message": "Sorry, I mis-communicated. I meant that it is possible to make it per process.",
+      "parentUuid": "366c24b3_6655ae6a",
+      "range": {
+        "startLine": 260,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
