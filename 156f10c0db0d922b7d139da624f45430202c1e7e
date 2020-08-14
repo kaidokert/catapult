@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ec904c2_e87d2542",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-08-14T08:32:24Z",
+      "side": 1,
+      "message": "Actually it doesn\u0027t. None of this events are recorded on our concurrent thread.\nWe only have 3 possible concurrent events for blink: ConcurrentMarkInvokeEphemeronCallbacks, ConcurrentMarkingStep, ConcurrentSweepingStep. The first one isn\u0027t used in metrics (was added only for traces). The other 2 have their own metrics.\nIn theory it would be possible to confuse main thread and concurrent threads here, but that is not the case.\nI think any refactoring to make it immune to such possible issues should be part of the greater refactoring needed to revamp all metrics, but is not currently needed.",
+      "parentUuid": "2798fdac_acfe6727",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0e05ff4_9e080382",
         "filename": "tracing/tracing/metrics/blink/gc_metric.html",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-08-13T12:38:27Z",
       "side": 1,
       "message": "This iterates over all events in the whole trace (includes all renderers and all thread states).\n\nHere we need to a) iterate each process individually and then b) within a process to separate the main thread from concurrent threads.\n\n(a) can be achieved by using pid for grouping. E.g.: event \u003d\u003e even.pid + \u0027-\u0027 + event.args.epoch (I don\u0027t remember the exact name of the \"pid\" field).\n\nFor (b) we probably need a version or a mode of groupAndProcessEvents that runs only on the main threads (rendererHelper.mainThread, rendererHelper.dedicatedWorkerThreads, rendererHelper.serviceWorkerThreads) and then only on the concurrent threads (rendererHelper.foregroundWorkerThreads)\n\nSee the definition of groupAndProcessEvents and https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/metrics/v8/utils.html;l\u003d233;drc\u003d9f3ce85bab94e6c5f89c7615e0cc1bdcbe5c95e5",
+      "range": {
+        "startLine": 260,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9103ebbb_c368a9b0",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1356087
+      },
+      "writtenOn": "2020-08-14T08:32:24Z",
+      "side": 1,
+      "message": "(a) is done automatically because the process callback is called per epoch per process and so if 2 process both have epoch X we end up with 2 samples in the histogram for epoch X.\n\n(b) See previous comment. It might be needed for v8 but blink currently doesn\u0027t need it.",
+      "parentUuid": "a0e05ff4_9e080382",
       "range": {
         "startLine": 260,
         "startChar": 4,
