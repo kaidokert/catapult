@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f2e810c_939010ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-14T22:07:54Z",
+      "side": 1,
+      "message": "PTAL\n\nTested to work in https://chromium-review.googlesource.com/c/chromium/src/+/2355133 (although we\u0027re only planning on using this for specific Fuchsia tests that need it).",
+      "revId": "767c1758ff2c7ca3b9a00595f67c85c23ac2f61b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
