@@ -39,6 +39,30 @@
       "revId": "118881f6f26916b27eb7203221459ba128a6bb58",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "677eaa94_b0b66559",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-14T02:06:23Z",
+      "side": 1,
+      "message": "A hard-coded list would be sufficient for the use-cases at this time -- getting the list of projects from Monorail through the API would be ideal, but since they don\u0027t change as often (and because there might be internal-only project names) the simplest thing would be a curated list of supported projects for now.",
+      "parentUuid": "59de8dde_974f041b",
+      "range": {
+        "startLine": 226,
+        "startChar": 19,
+        "endLine": 226,
+        "endChar": 23
+      },
+      "revId": "118881f6f26916b27eb7203221459ba128a6bb58",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
