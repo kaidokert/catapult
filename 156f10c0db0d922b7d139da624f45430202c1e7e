@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b1d919c6_af486df9",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-14T08:54:42Z",
+      "side": 1,
+      "message": "I see, thanks. That\u0027s quite subtle and fragile point though with no way to see in the current code which is structured as generic for all threads (addDurationOfTopEvents).\n\nCould you please add a comment about this?",
+      "parentUuid": "9ec904c2_e87d2542",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a0e05ff4_9e080382",
         "filename": "tracing/tracing/metrics/blink/gc_metric.html",
         "patchSetId": 3
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "(a) is done automatically because the process callback is called per epoch per process and so if 2 process both have epoch X we end up with 2 samples in the histogram for epoch X.\n\n(b) See previous comment. It might be needed for v8 but blink currently doesn\u0027t need it.",
       "parentUuid": "a0e05ff4_9e080382",
+      "range": {
+        "startLine": 260,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "156f10c0db0d922b7d139da624f45430202c1e7e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01a3a174_84c72b26",
+        "filename": "tracing/tracing/metrics/blink/gc_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-08-14T08:54:42Z",
+      "side": 1,
+      "message": "I agree with (b).\n\nI think \"the process callback is called per epoch per process\" is not the case.\n\ngroupAndProcessEvents collects threads from all processes [1] via jsExecutionThreads(model) [2]\nThen it groups events from all processes and calls the callback for each group once.\n\n[1]: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/metrics/v8/utils.html;l\u003d267;drc\u003d9f3ce85bab94e6c5f89c7615e0cc1bdcbe5c95e5\n\n[2]\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/metrics/v8/utils.html;l\u003d237;drc\u003d9f3ce85bab94e6c5f89c7615e0cc1bdcbe5c95e5",
+      "parentUuid": "9103ebbb_c368a9b0",
       "range": {
         "startLine": 260,
         "startChar": 4,
