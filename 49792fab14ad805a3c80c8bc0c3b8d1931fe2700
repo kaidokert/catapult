@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a520081e_e47d7eab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-17T23:20:07Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "49792fab14ad805a3c80c8bc0c3b8d1931fe2700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "590317f4_bf218f69",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-17T23:20:07Z",
+      "side": 1,
+      "message": "I\u0027d prefer not to have this, but nothing else immediately came to mind for preventing us from getting past this point.",
+      "range": {
+        "startLine": 456,
+        "startChar": 4,
+        "endLine": 456,
+        "endChar": 34
+      },
+      "revId": "49792fab14ad805a3c80c8bc0c3b8d1931fe2700",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
