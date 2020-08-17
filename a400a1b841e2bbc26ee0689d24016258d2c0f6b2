@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6016af9c_aa6ec3aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-08-17T18:16:44Z",
+      "side": 1,
+      "message": "Hi John, a quick fix on the new tag for windows laptops. PTAL. Thanks!",
+      "revId": "a400a1b841e2bbc26ee0689d24016258d2c0f6b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
