@@ -26,6 +26,7 @@ from dashboard.common import timing
 from dashboard.common import utils
 from dashboard.models import graph_data
 from dashboard.models import histogram
+from dashboard.models import upload_completion_token
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
@@ -161,10 +162,17 @@ class AddHistogramsProcessHandler(request_handler.RequestHandler):
 
   def post(self):
     datastore_hooks.SetPrivilegedRequest()
+    token = None
 
     try:
       params = json.loads(self.request.body)
       gcs_file_path = params['gcs_file_path']
+
+      token_id = params.get('upload_completion_token')
+      if token_id is not None:
+        token = upload_completion_token.Token.get_by_id(token_id)
+        upload_completion_token.Token.UpdateObjectState(
+            token, upload_completion_token.State.PROCESSING)
 
       try:
         logging.debug('Loading %s', gcs_file_path)
@@ -175,13 +183,19 @@ class AddHistogramsProcessHandler(request_handler.RequestHandler):
 
         gcs_file.close()
 
-        ProcessHistogramSet(histogram_dicts)
+        ProcessHistogramSet(histogram_dicts, token)
       finally:
         cloudstorage.delete(gcs_file_path, retry_params=_RETRY_PARAMS)
+
+      upload_completion_token.Token.UpdateObjectState(
+          token, upload_completion_token.State.COMPLETED)
 
     except Exception as e:  # pylint: disable=broad-except
       logging.error('Error processing histograms: %r', e.message)
       self.response.out.write(json.dumps({'error': e.message}))
+
+      upload_completion_token.Token.UpdateObjectState(
+          token, upload_completion_token.State.FAILED)
 
 
 class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
@@ -195,9 +209,21 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
       # In prod, the data will be written to cloud storage and processed on the
       # taskqueue, so the caller will not see any errors. In dev_appserver,
       # process the data immediately so the caller will see errors.
-      ProcessHistogramSet(
-          _LoadHistogramList(StringIO.StringIO(self.request.body)))
-      return
+      # Also always create upload completion token for such requests.
+      try:
+        token_info = {
+            'token': str(uuid.uuid4()),
+            'file': None,
+        }
+        token = upload_completion_token.Token(id=token_info['token'])
+        token.UpdateStateAsync(upload_completion_token.State.PROCESSING)
+        ProcessHistogramSet(
+            _LoadHistogramList(StringIO.StringIO(self.request.body)), token)
+        token.UpdateStateAsync(upload_completion_token.State.COMPLETED)
+      except:
+        token.UpdateStateAsync(upload_completion_token.State.FAILED)
+        raise
+      return token_info
 
     with timing.WallTimeLogger('decompress'):
       try:
@@ -229,6 +255,18 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
     gcs_file.write(data_str)
     gcs_file.close()
 
+    token_info = None
+    if utils.ShouldTurnOnUploadCompletionTokenExperiment():
+      token_info = {
+          'token': str(uuid.uuid4()),
+          'file': params['gcs_file_path'],
+      }
+      params['upload_completion_token'] = token_info['token']
+      upload_completion_token.Token(
+          id=token_info['token'],
+          temporary_staging_file_path=token_info['file'],
+      ).put()
+
     retry_options = taskqueue.TaskRetryOptions(
         task_retry_limit=_TASK_RETRY_LIMIT)
     queue = taskqueue.Queue('default')
@@ -237,6 +275,7 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
             url='/add_histograms/process',
             payload=json.dumps(params),
             retry_options=retry_options))
+    return token_info
 
 
 def _LogDebugInfo(histograms):
@@ -262,7 +301,7 @@ def _LogDebugInfo(histograms):
     logging.info('No BUILD_URLS in data.')
 
 
-def ProcessHistogramSet(histogram_dicts):
+def ProcessHistogramSet(histogram_dicts, completion_token=None):
   if not isinstance(histogram_dicts, list):
     raise api_request_handler.BadRequestError(
         'HistogramSet JSON must be a list of dicts')
@@ -349,7 +388,7 @@ def ProcessHistogramSet(histogram_dicts):
 
   with timing.WallTimeLogger('_CreateHistogramTasks'):
     tasks = _CreateHistogramTasks(suite_key.id(), histograms, revision,
-                                  benchmark_description)
+                                  benchmark_description, completion_token)
 
   with timing.WallTimeLogger('_QueueHistogramTasks'):
     _QueueHistogramTasks(tasks)
@@ -378,8 +417,11 @@ def _MakeTask(params):
       _size_check=False)
 
 
-def _CreateHistogramTasks(suite_path, histograms, revision,
-                          benchmark_description):
+def _CreateHistogramTasks(suite_path,
+                          histograms,
+                          revision,
+                          benchmark_description,
+                          completion_token=None):
   tasks = []
   duplicate_check = set()
 
@@ -400,6 +442,8 @@ def _CreateHistogramTasks(suite_path, histograms, revision,
     # need for processing each histogram per task.
     task_dict = _MakeTaskDict(hist, test_path, revision, benchmark_description,
                               diagnostics)
+    if completion_token is not None:
+      completion_token.CreateMeasurement(test_path)
     tasks.append(_MakeTask([task_dict]))
 
   return tasks
