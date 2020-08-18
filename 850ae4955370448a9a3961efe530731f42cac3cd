@@ -16,6 +16,75 @@
       "revId": "850ae4955370448a9a3961efe530731f42cac3cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "526ee5b3_514bbe13",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-18T00:58:45Z",
+      "side": 1,
+      "message": "You need to add forward-compatibility for this, because it will be pickled and un-pickled. See `__setstate__` and the various properties to work around new fields.",
+      "range": {
+        "startLine": 215,
+        "startChar": 9,
+        "endLine": 215,
+        "endChar": 32
+      },
+      "revId": "850ae4955370448a9a3961efe530731f42cac3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ad676a0_1f369314",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-18T00:58:45Z",
+      "side": 1,
+      "message": "You\u0027ll need something like this for the execution timeout field because it\u0027s new.",
+      "range": {
+        "startLine": 235,
+        "startChar": 2,
+        "endLine": 237,
+        "endChar": 56
+      },
+      "revId": "850ae4955370448a9a3961efe530731f42cac3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef32cf65_7b8d4e81",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-18T00:58:45Z",
+      "side": 1,
+      "message": "Why is this a string?",
+      "range": {
+        "startLine": 39,
+        "startChar": 31,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "850ae4955370448a9a3961efe530731f42cac3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
