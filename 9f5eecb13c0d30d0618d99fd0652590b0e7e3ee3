@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a94fd94b_f510f9b8",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-08-18T02:09:41Z",
+      "side": 1,
+      "message": "I don\u0027t believe this part is correct.  It makes the `IsInternalUser` check too strict.  The `chromeperf-access` group already included this as a subgroup.",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 480,
+        "endChar": 60
+      },
+      "revId": "9f5eecb13c0d30d0618d99fd0652590b0e7e3ee3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
