@@ -476,7 +476,8 @@ def IsInternalUser():
   cached = GetCachedIsInternalUser(email)
   if cached is not None:
     return cached
-  is_internal_user = IsGroupMember(identity=email, group='chromeperf-access')
+  is_internal_user = IsGroupMember(
+      identity=email, group='project-chromeperf-api-access')
   SetCachedIsInternalUser(email, is_internal_user)
   return is_internal_user
 
