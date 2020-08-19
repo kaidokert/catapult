@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "223f9bf7_a3cb4144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "Yes, we don\u0027t have status checking API yet. I\u0027ll add it in the next cl. This one is indeed quite big already ^^",
+      "parentUuid": "1a59f9ea_584a78df",
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39639736_a9918d04",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 7
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "bca50ec3_48391318",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "I don\u0027t really like the idea to create token_info inside unpload_completion_token module, since it is response to a user. Created helper function in add_histogram.",
+      "parentUuid": "39639736_a9918d04",
+      "range": {
+        "startLine": 214,
+        "startChar": 8,
+        "endLine": 218,
+        "endChar": 69
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "add739b4_e49d7408",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 7
@@ -53,6 +95,30 @@
       "writtenOn": "2020-08-19T02:25:05Z",
       "side": 1,
       "message": "Why do you need to return the token_info?",
+      "range": {
+        "startLine": 226,
+        "startChar": 6,
+        "endLine": 226,
+        "endChar": 23
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f90d74f6_afa34f81",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "I thought about starting to return token_info only after /uploads/\u003ctoken\u003e api is added. But it would make testing much harder. So I don\u0027t think it\u0027s a big harm to start returning it now. Since, as I understand, no one cares about return values yet.\n\nOr do you mean that there is no point to return value for DevAppserver? If so - then I probably don\u0027t fully understand the use case of the dev server.",
+      "parentUuid": "add739b4_e49d7408",
       "range": {
         "startLine": 226,
         "startChar": 6,
@@ -100,6 +166,24 @@
     },
     {
       "key": {
+        "uuid": "8490480f_04a6f9c0",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "I see, thanks!",
+      "parentUuid": "aad96405_8064f1f3",
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49dd0c89_9158b911",
         "filename": "dashboard/dashboard/add_histograms_queue_test.py",
         "patchSetId": 7
@@ -120,6 +204,30 @@
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfa5b36a_43226705",
+        "filename": "dashboard/dashboard/add_histograms_queue_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "I see. I just followed existed naming of this file. If it was only histograms queue tests problem, I would refactor this file and use \u0027Domain\u0027. But it is used everywhere, so, I think, for me it is better to just stick to the current terminology. Otherwise it may confusing.",
+      "parentUuid": "49dd0c89_9158b911",
+      "range": {
+        "startLine": 638,
+        "startChar": 21,
+        "endLine": 638,
+        "endChar": 27
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
@@ -146,6 +254,30 @@
     },
     {
       "key": {
+        "uuid": "aba76f72_2191fde0",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "Well, it shouldn\u0027t affect the behavior of the function on practice 😄. But I guess \u003c\u003d will be more consistent with the description. Done.",
+      "parentUuid": "663ef297_5263fc61",
+      "range": {
+        "startLine": 542,
+        "startChar": 25,
+        "endLine": 542,
+        "endChar": 26
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15a1f9f9_69abe817",
         "filename": "dashboard/dashboard/models/upload_completion_token.py",
         "patchSetId": 7
@@ -169,6 +301,30 @@
     },
     {
       "key": {
+        "uuid": "17711653_0a934f99",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "Yes, it is much better, thanks! :)",
+      "parentUuid": "15a1f9f9_69abe817",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 57
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fd8b5b3_db8d0409",
         "filename": "dashboard/dashboard/models/upload_completion_token.py",
         "patchSetId": 7
@@ -180,6 +336,30 @@
       "writtenOn": "2020-08-19T02:25:05Z",
       "side": 1,
       "message": "This is not eventual-consistency safe to do.\n\nWhat will work is if you create Measurement instances and set the parent of the entity to the key of the Token.\n\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/creating-entity-keys#using_the_ancestor_path_in_the_key\n\nYou can remove `substates` and rely on a query to get the descendant Measurement instances instead either using ancestor queries (which has some entity group write limits) or using an indirect key from the Measurement to the Token (a reverse key mapping).\n\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/queries#ancestor",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87fa6155_3c8d65e7",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-19T15:48:03Z",
+      "side": 1,
+      "message": "I believe, it\u0027s impossible to run queries if we store data only in memcache.\n\nIt might sound silly, but why do we need eventual-consistency here? Also, we never need to get Token from Measurement, so this way looks more efficient to me. But I might be missing something. I don\u0027t have any experience with ndb.",
+      "parentUuid": "4fd8b5b3_db8d0409",
       "range": {
         "startLine": 92,
         "startChar": 2,
