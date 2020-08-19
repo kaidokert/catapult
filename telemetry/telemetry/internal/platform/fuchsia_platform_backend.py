@@ -4,7 +4,7 @@
 
 import os
 import subprocess
-
+import logging
 from telemetry.core import platform as telemetry_platform
 from telemetry.core.fuchsia_interface import CommandRunner
 from telemetry.internal.forwarders import fuchsia_forwarder
@@ -68,10 +68,19 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
     return 'fuchsia'
 
   def GetDeviceTypeName(self):
-    return 'Device type not supported in Fuchsia.'
+    device_type, _, _ = self._command_runner.RunCommand(
+        ['cat', '/config/build-info/board'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    return device_type
 
   def GetOSVersionName(self):
-    return 'OS Version not supported in Fuchsia.'
+    os_version, _, _ = self._command_runner.RunCommand(
+        ['cat', '/config/build-info/version'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    logging.warning(os_version)
+    return os_version
 
   def GetOSVersionDetailString(self):
     return ''
