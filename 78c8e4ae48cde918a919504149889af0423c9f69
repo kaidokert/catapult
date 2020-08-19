@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de763eed_5d71e11c",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-19T22:57:53Z",
+      "side": 1,
+      "message": "Nit: rc, stdout, stderr is a more standard ordering.",
+      "range": {
+        "startLine": 65,
+        "startChar": 11,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "973984df_98958b7d",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-19T22:57:53Z",
+      "side": 1,
+      "message": "Cache the results of this and GetOSVersionName so you only need to actually communicate with the device once.",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 23
+      },
+      "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0c837c2_19e09d12",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-19T22:57:53Z",
+      "side": 1,
+      "message": "You don\u0027t want to be logging every time you retrieve this.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
