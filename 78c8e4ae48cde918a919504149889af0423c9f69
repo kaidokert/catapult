@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "971025f9_df924ab9",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-08-19T23:09:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de763eed_5d71e11c",
+      "range": {
+        "startLine": 65,
+        "startChar": 11,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "973984df_98958b7d",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3a6b74f9_ab3e4556",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-08-19T23:09:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "973984df_98958b7d",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 23
+      },
+      "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0c837c2_19e09d12",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15177668_ee7926e2",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-08-19T23:09:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0c837c2_19e09d12",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "78c8e4ae48cde918a919504149889af0423c9f69",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
