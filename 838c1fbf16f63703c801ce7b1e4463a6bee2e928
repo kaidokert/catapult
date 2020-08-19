@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a59f9ea_584a78df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "Thanks for this! Well done on the first try. 😊\n\nDid I miss it, or we don\u0027t have the HTTP handler for checking the status of a completion token yet in this CL?\n\nNormally I\u0027d ask large CLs like this to be broken down into smaller ones, but this is pretty self-consistent that I\u0027m happy to keep it as is.",
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39639736_a9918d04",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "Looks like this could be a factory function somewhere so you only define it once? Maybe in the upload_completion_token module?",
+      "range": {
+        "startLine": 214,
+        "startChar": 8,
+        "endLine": 218,
+        "endChar": 69
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add739b4_e49d7408",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "Why do you need to return the token_info?",
+      "range": {
+        "startLine": 226,
+        "startChar": 6,
+        "endLine": 226,
+        "endChar": 23
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a4f2e1b_1bdaa7c8",
         "filename": "dashboard/dashboard/add_histograms_queue.py",
         "patchSetId": 7
@@ -13,6 +76,116 @@
       "writtenOn": "2020-08-18T13:45:05Z",
       "side": 1,
       "message": "I\u0027m not sure. Should we raise an exception here?",
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aad96405_8064f1f3",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "I don\u0027t think so -- raising an exception would cause the HTTP handler to return an HTTP 500 which will tell Cloud Tasks to retry the task, thereby re-doing all the subtasks which I don\u0027t think is what we want.\n\nWhat we do want is for the sub-tasks to be retried (which is what Cloud Tasks will do if they fail).",
+      "parentUuid": "8a4f2e1b_1bdaa7c8",
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49dd0c89_9158b911",
+        "filename": "dashboard/dashboard/add_histograms_queue_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "nit: We should use \u0027Domain\u0027 instead of Master here, going forward.",
+      "range": {
+        "startLine": 638,
+        "startChar": 21,
+        "endLine": 638,
+        "endChar": 27
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "663ef297_5263fc61",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "You probably want `\u003c\u003d` here. 😊",
+      "range": {
+        "startLine": 542,
+        "startChar": 25,
+        "endLine": 542,
+        "endChar": 26
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15a1f9f9_69abe817",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "I like the description, but this sentence contains a number of negatives making it a little hard to read. How about something like:\n\n\"For now, Token instances are only in memcache. Because of this, it is not guaranteed that the Token will be present by request completion.\"",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 76,
+        "endChar": 57
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fd8b5b3_db8d0409",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-19T02:25:05Z",
+      "side": 1,
+      "message": "This is not eventual-consistency safe to do.\n\nWhat will work is if you create Measurement instances and set the parent of the entity to the key of the Token.\n\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/creating-entity-keys#using_the_ancestor_path_in_the_key\n\nYou can remove `substates` and rely on a query to get the descendant Measurement instances instead either using ancestor queries (which has some entity group write limits) or using an indirect key from the Measurement to the Token (a reverse key mapping).\n\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/queries#ancestor",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
