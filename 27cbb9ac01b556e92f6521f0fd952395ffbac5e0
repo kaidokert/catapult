@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99740e59_d1844a57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-08-19T21:54:12Z",
+      "side": 1,
+      "message": "Thanks John! I\u0027m getting some weird failures on the bots, do you happen to know what\u0027s going on?",
+      "revId": "27cbb9ac01b556e92f6521f0fd952395ffbac5e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
