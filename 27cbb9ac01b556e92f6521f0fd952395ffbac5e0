@@ -34,6 +34,24 @@
       "revId": "27cbb9ac01b556e92f6521f0fd952395ffbac5e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b810a064_3fb4a144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-08-20T16:01:05Z",
+      "side": 1,
+      "message": "Just to confirm this wasn\u0027t related to my change, I ran a CQ dry run on a patch that just changes text in the README, and it still fails: https://chromium-review.googlesource.com/c/catapult/+/2366820",
+      "parentUuid": "edd86b0c_93564419",
+      "revId": "27cbb9ac01b556e92f6521f0fd952395ffbac5e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
