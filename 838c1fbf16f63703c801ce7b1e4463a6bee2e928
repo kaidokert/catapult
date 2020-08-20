@@ -465,6 +465,30 @@
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "411cbbb3_5f93407c",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-20T12:08:43Z",
+      "side": 1,
+      "message": "I think I have already done what you suggested :). Or should I rephrase the comment?\n\nAs for providing the token as a parent - yes, I understand. I\u0027ll add it when we\u0027re not constrained by Memcache. Right now I don\u0027t see any reasons to add it.",
+      "parentUuid": "be5b6006_bc8ddb01",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
