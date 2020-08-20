@@ -15,6 +15,16 @@ from dashboard.common import request_handler
 from dashboard.common import utils
 
 
+# TODO(crbug.com/1116480): This list should come from a call to a Monorail API.
+_MONORAIL_PROJECTS = [
+    'angleproject', 'aomedia', 'apvi', 'boringssl', 'chromedriver', 'chromium',
+    'crashpad', 'dawn', 'gerrit', 'git', 'gn', 'google-breakpad', 'gyp',
+    'libyuv', 'linux-syscall-support', 'monorail', 'nativeclient', 'openscreen',
+    'oss-fuzz', 'pdfium', 'pigweed', 'project-zero', 'skia', 'swiftshader',
+    'tint', 'v8', 'webm', 'webp', 'webports', 'webrtc'
+]
+
+
 class FileBugHandler(request_handler.RequestHandler):
   """Uses oauth2 to file a new bug with a set of alerts."""
 
@@ -48,6 +58,7 @@ class FileBugHandler(request_handler.RequestHandler):
 
     summary = self.request.get('summary')
     description = self.request.get('description')
+    project = self.request.get('project', 'chromium')
     labels = self.request.get_all('label')
     components = self.request.get_all('component')
     keys = self.request.get('keys')
@@ -60,11 +71,12 @@ class FileBugHandler(request_handler.RequestHandler):
       return
 
     if self.request.get('finish'):
-      self._CreateBug(owner, cc, summary, description, labels, components, keys)
+      self._CreateBug(owner, cc, summary, description, project, labels,
+                      components, keys)
     else:
-      self._ShowBugDialog(summary, description, keys)
+      self._ShowBugDialog(summary, description, project, keys)
 
-  def _ShowBugDialog(self, summary, description, urlsafe_keys):
+  def _ShowBugDialog(self, summary, description, project, urlsafe_keys):
     """Sends a HTML page with a form for filing the bug.
 
     Args:
@@ -81,14 +93,16 @@ class FileBugHandler(request_handler.RequestHandler):
             'keys': urlsafe_keys,
             'summary': summary,
             'description': description,
+            'default_project': project,
+            'projects': _MONORAIL_PROJECTS,
             'labels': labels,
             'components': components.union(owner_components),
             'owner': '',
             'cc': users.get_current_user(),
         })
 
-  def _CreateBug(self, owner, cc, summary, description, labels, components,
-                 urlsafe_keys):
+  def _CreateBug(self, owner, cc, summary, description, project, labels,
+                 components, urlsafe_keys):
     """Creates a bug, associates it with the alerts, sends a HTML response.
 
     Args:
@@ -96,6 +110,7 @@ class FileBugHandler(request_handler.RequestHandler):
       cc: CSV of email addresses to CC on the bug.
       summary: The new bug summary string.
       description: The new bug description string.
+      project: The project id in Monorail.
       labels: List of label strings for the new bug.
       components: List of component strings for the new bug.
       urlsafe_keys: Comma-separated alert keys in urlsafe format.
@@ -109,6 +124,6 @@ class FileBugHandler(request_handler.RequestHandler):
 
     http = oauth2_decorator.DECORATOR.http()
     template_params = file_bug.FileBug(http, owner, cc, summary, description,
-                                       labels, components,
+                                       project, labels, components,
                                        urlsafe_keys.split(','))
     self.RenderHtml('bug_result.html', template_params)
