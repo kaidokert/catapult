@@ -441,6 +441,30 @@
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be5b6006_bc8ddb01",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-20T11:47:12Z",
+      "side": 1,
+      "message": "Right now the ID of the measurement is not associated with the token (I only see path as the id). So you\u0027ll have to either make those as child entities instead, by providing the token as a parent in the ID. This should still work with memcache storage.\n\nMemcache does support compare-and-swap operations but not through the ndb interface.\n\nIf we didn\u0027t use memcache, the lack of a query mechanism wouldn\u0027t be a problem, so if we\u0027re being constrained by memcache storage I\u0027d suggest two things:\n\n- Document that we\u0027re doing this forward-mapping (from Token to Measurement) just because we cannot query this in Memcache.\n\n- Change this later when we\u0027re not constrained by Memcache to a reverse mapping and an eventually consistent reverse mapping query.",
+      "parentUuid": "1165b770_6dc0a908",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
