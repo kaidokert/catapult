@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c864a845_d84268ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1250067
+      },
+      "writtenOn": "2020-08-20T18:39:56Z",
+      "side": 1,
+      "message": "The CQ seams to be broken, can I skip it?",
+      "revId": "30184f10be7732ccb18fdbcc4db2d5255dd76af9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
