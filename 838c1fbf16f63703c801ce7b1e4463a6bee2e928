@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "4f816893_dd32a19d",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-20T00:47:06Z",
+      "side": 1,
+      "message": "Ah, right -- the early return here makes sense now.",
+      "parentUuid": "f90d74f6_afa34f81",
+      "range": {
+        "startLine": 226,
+        "startChar": 6,
+        "endLine": 226,
+        "endChar": 23
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a4f2e1b_1bdaa7c8",
         "filename": "dashboard/dashboard/add_histograms_queue.py",
         "patchSetId": 7
@@ -360,6 +384,30 @@
       "side": 1,
       "message": "I believe, it\u0027s impossible to run queries if we store data only in memcache.\n\nIt might sound silly, but why do we need eventual-consistency here? Also, we never need to get Token from Measurement, so this way looks more efficient to me. But I might be missing something. I don\u0027t have any experience with ndb.",
       "parentUuid": "4fd8b5b3_db8d0409",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af230673_1f871ffb",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-20T00:47:06Z",
+      "side": 1,
+      "message": "What you\u0027ll run into is the issue of race conditions with this current structure.\n\nThis list wouldn\u0027t be consistently updated when you have two different processes that see the same current state and attempt to update the list with a new metric.\n\nWe don\u0027t need eventual consistency, it\u0027s the default for Datastore. 😊\n\nThe more expensive (and correct) way to do this is with transactions, but the current Datastore instance we\u0027re on doesn\u0027t support highly concurrent transactions. So doing a reverse mapping (Measurement with a Token id sub-field) is the more correct route to avoid race conditions when updating the Token.",
+      "parentUuid": "87fa6155_3c8d65e7",
       "range": {
         "startLine": 92,
         "startChar": 2,
