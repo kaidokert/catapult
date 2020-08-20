@@ -52,6 +52,23 @@
       "revId": "7bcb1db815dc7b0000eddc09b5592eea740d3e6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54676c19_affcb969",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-08-20T22:18:43Z",
+      "side": 1,
+      "message": "npm ERR! Linux 4.18.0-041800-generic\nnpm ERR! argv \"/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/node_linux_x86_64_27ad092b0ce59d2da32090a00f717f0c31e65240/node-v10.14.1-linux-x64/bin/node\" \"/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/bin/npm-cli.js\" \"install\"\nnpm ERR! node v10.14.1\nnpm ERR! npm  v3.10.3\nnpm ERR! code EMISSINGARG\n\nnpm ERR! typeerror Error: Missing required argument #1\nnpm ERR! typeerror     at andLogAndFinish (/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/fetch-package-metadata.js:31:3)\nnpm ERR! typeerror     at fetchPackageMetadata (/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/fetch-package-metadata.js:51:22)\nnpm ERR! typeerror     at resolveWithNewModule (/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/install/deps.js:515:12)\nnpm ERR! typeerror     at /b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/install/deps.js:516:7\nnpm ERR! typeerror     at /b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/node_modules/iferr/index.js:13:50\nnpm ERR! typeerror     at /b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/fetch-package-metadata.js:37:12\nnpm ERR! typeerror     at addRequestedAndFinish (/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/fetch-package-metadata.js:67:5)\nnpm ERR! typeerror     at returnAndAddMetadata (/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/fetch-package-metadata.js:121:7)\nnpm ERR! typeerror     at pickVersionFromRegistryDocument (/b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/lib/fetch-package-metadata.js:138:20)\nnpm ERR! typeerror     at /b/s/w/ir/k/catapult/common/node_runner/node_runner/bin/node/npm_linux_x86_64_5750e968975e7f5ab8cb694f5e92a34a890e129d/node-v6.7.0-linux-x64/lib/node_modules/npm/node_modules/iferr/index.js:13:50\nnpm ERR! typeerror This is an error with npm itself. Please report this error at:\nnpm ERR! typeerror     \u003chttp://github.com/npm/npm/issues\u003e\n\nnpm ERR! Please include the following file with any support request:\nnpm ERR!     /b/s/w/ir/k/catapult/common/node_runner/node_runner/npm-debug.log\n[1/1] smoke_test.SmokeTest.testEslintFindsError failed unexpectedly:\n  Traceback (most recent call last):\n    File \"/b/s/w/ir/k/catapult/common/eslint/eslint/smoke_test.py\", line 34, in testEslintFindsError\n      self.assertTrue(\u0027is not in camel case\u0027 in output)\n  AssertionError: False is not true\n0 tests passed, 0 skipped, 1 failure.\n\nLooks like this is reported in https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1119563, I\u0027ll bump up the priority since it\u0027s blocking all CLs.",
+      "revId": "7bcb1db815dc7b0000eddc09b5592eea740d3e6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
