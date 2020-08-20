@@ -417,6 +417,30 @@
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1165b770_6dc0a908",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-20T11:33:23Z",
+      "side": 1,
+      "message": "Ah, ok, I see. I didn\u0027t think about race conditions. I understand now.\n\nHowever, in practice, we will always create all measurements in one thread. I\u0027ve refactored it a bit to reduce the possibility of accidentally causing race conditions.\n\nIf I\u0027m not mistaken, memcache doesn\u0027t support transactions. And I still don\u0027t understand how we can use reverse mapping here, since even a query to get all measurements wouldn\u0027t work.",
+      "parentUuid": "af230673_1f871ffb",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
