@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8aaa6941_17e96815",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1250067
+      },
+      "writtenOn": "2020-08-20T18:34:51Z",
+      "side": 1,
+      "message": "Why not both, https://chromium-review.googlesource.com/c/catapult/+/2367333\nI don\u0027t see why we manually have to check if it is an emulator before requesting the qemu so I would like to land both changes.",
+      "parentUuid": "9f667220_6895e0ac",
+      "revId": "8345dcbc96db05585a93261855fa2387a90f00b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50b68db7_7101d4ad",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -39,6 +57,30 @@
       "revId": "8345dcbc96db05585a93261855fa2387a90f00b0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32ae3fb7_20988509",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2723,
+      "author": {
+        "id": 1250067
+      },
+      "writtenOn": "2020-08-20T18:34:51Z",
+      "side": 1,
+      "message": "I added a comment that says \"might be an emulator\".",
+      "parentUuid": "50b68db7_7101d4ad",
+      "range": {
+        "startLine": 2723,
+        "startChar": 4,
+        "endLine": 2723,
+        "endChar": 19
+      },
+      "revId": "8345dcbc96db05585a93261855fa2387a90f00b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
