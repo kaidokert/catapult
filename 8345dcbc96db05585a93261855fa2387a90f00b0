@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f667220_6895e0ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-08-20T00:39:23Z",
+      "side": 1,
+      "message": "LGTM % comment\n\nAlternatively, feel free to give a try at making is_emulator more robust for these types of emulators.",
+      "revId": "8345dcbc96db05585a93261855fa2387a90f00b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50b68db7_7101d4ad",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2723,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-08-20T00:39:23Z",
+      "side": 1,
+      "message": "Could you leave a comment this case is expected for some types of emulators?",
+      "range": {
+        "startLine": 2723,
+        "startChar": 4,
+        "endLine": 2723,
+        "endChar": 19
+      },
+      "revId": "8345dcbc96db05585a93261855fa2387a90f00b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
