@@ -38,7 +38,7 @@ DEFAULT_TIMEOUT = 30
 DEFAULT_RETRIES = 2
 
 _ADB_VERSION_RE = re.compile(r'Android Debug Bridge version (\d+\.\d+\.\d+)')
-_EMULATOR_RE = re.compile(r'^emulator-[0-9]+$')
+_EMULATOR_RE = re.compile(r'^generic_.*$')
 _DEVICE_NOT_FOUND_RE = re.compile(r"error: device '(?P<serial>.+)' not found")
 _READY_STATE = 'device'
 _VERITY_DISABLE_RE = re.compile(r'(V|v)erity (is )?(already )?disabled'
@@ -142,6 +142,7 @@ class AdbWrapper(object):
     if not device_serial:
       raise ValueError('A device serial must be specified')
     self._device_serial = str(device_serial)
+    self._device_codename = None
 
   class PersistentShell(object):
     '''Class to use persistent shell for ADB.
@@ -1116,8 +1117,14 @@ class AdbWrapper(object):
     return output
 
   @property
+  def device_codename(self):
+    if self._device_codename is None:
+      self._device_codename = self.Shell('getprop ro.product.device').rstrip()
+    return self._device_codename
+
+  @property
   def is_emulator(self):
-    return _EMULATOR_RE.match(self._device_serial)
+    return _EMULATOR_RE.match(self.device_codename)
 
   @property
   def is_ready(self):
