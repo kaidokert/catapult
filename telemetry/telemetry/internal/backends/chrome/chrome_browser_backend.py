@@ -106,6 +106,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     # re-read and update the port and target on each retry.
     try:
       devtools_port, browser_target = self._FindDevToolsPortAndTarget()
+      print('DevTools and Target: %s, %s' % (str(devtools_port), browser_target))
     except EnvironmentError:
       return None  # Port information not ready, will retry.
 

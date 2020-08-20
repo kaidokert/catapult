@@ -9,6 +9,8 @@ import os
 import platform
 import subprocess
 import tarfile
+import requests
+import zipfile
 
 from telemetry.core import fuchsia_interface
 from telemetry.core import util
@@ -21,6 +23,7 @@ _SDK_ROOT_IN_CATAPULT = os.path.join(util.GetCatapultDir(), 'third_party',
                                      'fuchsia-sdk', 'sdk')
 _SDK_ROOT_IN_CHROMIUM = os.path.join(util.GetCatapultDir(), '..',
                                      'fuchsia-sdk', 'sdk')
+_CIPD_PATH = os.path.join('https://chrome-infra-packages.appspot.com/dl/fuchsia/sdk/gn/linux-amd64/+/latest')
 _SDK_TOOLS = [
     os.path.join('tools', 'device-finder'),
     os.path.join('tools', 'symbolize')
@@ -75,15 +78,24 @@ def _DownloadFuchsiaSDK(tar_file, dest=_SDK_ROOT_IN_CATAPULT):
     os.makedirs(dest)
   gsutil_path = os.path.join(util.GetCatapultDir(), 'third_party', 'gsutil',
                              'gsutil')
-  sdk_pkg = 'gs://fuchsia/sdk/core/linux-amd64/' + _SDK_SHA1
-  download_cmd = [gsutil_path, 'cp', sdk_pkg, tar_file]
-  subprocess.check_output(download_cmd, stderr=subprocess.STDOUT)
 
-  with tarfile.open(tar_file, 'r') as tar:
+  r = requests.get(_CIPD_PATH, allow_redirects=True, stream=True)
+  if r.status_code != 200:
+    raise ValueError('Failed to download .zip of sdk')
+
+  with open(tar_file, 'wb') as a_zip:
+    for chunk in r:
+      a_zip.write(chunk)
+
+  with zipfile.ZipFile(tar_file, 'r') as tar:
     for f in _SDK_TOOLS:
-      # tarfile only accepts POSIX paths.
-      tar.extract(f.replace(os.path.sep, '/'), dest)
+      tar.extract(f, dest)
+
   os.remove(tar_file)
+
+  for f in _SDK_TOOLS:
+    path = os.path.join(dest, f)
+    os.chmod(path, 0o755)
 
 
 def _FindFuchsiaDevice(sdk_root, is_emulator):
@@ -110,7 +122,7 @@ def _DownloadFuchsiaSDKIfNecessary():
     return _SDK_ROOT_IN_CHROMIUM
   if not os.path.exists(_SDK_ROOT_IN_CATAPULT):
     tar_file = os.path.join(_SDK_ROOT_IN_CATAPULT,
-                            'fuchsia-sdk-%s.tar' % _SDK_SHA1)
+                            'fuchsia-sdk-%s.zip' % _SDK_SHA1)
     _DownloadFuchsiaSDK(tar_file)
   return _SDK_ROOT_IN_CATAPULT
 

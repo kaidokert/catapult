@@ -82,6 +82,7 @@ class DevToolsHttp(object):
     else:
       self._conn.timeout = timeout
 
+    print('Requesting: %s' % endpoint)
     try:
       # By default, httplib avoids going through the default system proxy.
       self._conn.request('GET', endpoint)

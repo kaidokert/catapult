@@ -106,6 +106,7 @@ class InspectorWebsocket(object):
     self._SendRequest(req)
 
   def _SendRequest(self, req):
+    print('Request: %s' % (str(req)))
     if not self._socket:
       raise WebSocketDisconnected()
     try:

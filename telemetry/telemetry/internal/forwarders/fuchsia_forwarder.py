@@ -52,6 +52,7 @@ class FuchsiaSshForwarder(forwarders.Forwarder):
         local_port, remote_port, self.host_ip,
         port_forward))
 
+    print('SSH Args %s' % (str(ssh_args)))
     with tempfile.NamedTemporaryFile() as stderr_file:
       self._proc = command_runner.RunCommandPiped(ssh_args=ssh_args,
                                                   stderr=stderr_file)

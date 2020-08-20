@@ -27,7 +27,7 @@ class CommandRunner(object):
       config_path: Full path to SSH configuration.
       host: The hostname or IP address of the remote host.
       port: The port to connect to."""
-    self._config_path = config_path
+    self._config_path = '/usr/local/google/home/rohpavone/.fuchsia/sshconfig'
     self._host = host
     self._port = port
 
@@ -55,6 +55,8 @@ class CommandRunner(object):
     ssh_args.append('-oControlMaster=no')
     ssh_command = self._GetSshCommandLinePrefix() + ssh_args + ['--'] + command
     logging.debug(' '.join(ssh_command))
+
+    logging.info(' '.join(ssh_command))
     return subprocess.Popen(ssh_command, **kwargs)
 
 

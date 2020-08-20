@@ -17,6 +17,10 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
     super(FuchsiaPlatformBackend, self).__init__(device)
     self._config_dir = device.ssh_config_dir
     self._system_log_file = device.system_log_file
+    print('Platform results:')
+    print('  Host: %s\n  Port: %s\n  Config Dir: %s' % (str(device.host),
+                                                        str(device.port),
+                                                        self._config_dir))
     self._command_runner = CommandRunner(
         os.path.join(self._config_dir, 'ssh_config'),
         device.host,

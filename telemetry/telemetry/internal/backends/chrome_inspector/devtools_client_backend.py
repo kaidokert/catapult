@@ -50,6 +50,7 @@ _DEVTOOLS_CONNECTION_ERRORS = (
 
 
 def GetDevToolsBackEndIfReady(devtools_port, app_backend, browser_target=None):
+  print('Getting _DevToolsClientBackend...')
   client = _DevToolsClientBackend(app_backend)
   try:
     client.Connect(devtools_port, browser_target)
@@ -367,6 +368,7 @@ class _DevToolsClientBackend(object):
           for Chrome tracing. Can be set to 'ReportEvents'.
         timeout: Time waited for websocket to receive a response.
     """
+    print('Starting chrome tracing!')
     assert trace_config and trace_config.enable_chrome_trace
     return self._tracing_backend.StartTracing(
         trace_config.chrome_trace_config, transfer_mode, timeout)

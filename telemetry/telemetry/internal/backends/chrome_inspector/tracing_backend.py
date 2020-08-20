@@ -164,6 +164,7 @@ class TracingBackend(object):
       raise TracingUnsupportedException(
           'Chrome tracing not supported for this app.')
 
+    print('Sending StartTracing request')
     response = self._SendTracingStartRequest(
         transfer_mode=transfer_mode,
         trace_config=chrome_trace_config.GetChromeTraceConfigForDevTools(),
@@ -205,6 +206,7 @@ class TracingBackend(object):
     if trace_format is not None:
       params['streamFormat'] = trace_format
     request = {'method': 'Tracing.start', 'params': params}
+    print('@@@@@@@@@@\nTracingStart called in tracing backend: %s\n@@@@@@@@@@')
     return self._inspector_websocket.SyncRequest(request, timeout)
 
   def RecordClockSyncMarker(self, sync_id):

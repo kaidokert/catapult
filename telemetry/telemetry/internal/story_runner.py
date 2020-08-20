@@ -395,6 +395,7 @@ def RunBenchmark(benchmark, finder_options):
       benchmark_description=benchmark.Description(),
       report_progress=not finder_options.suppress_gtest_report) as results:
 
+    print('Finder options %s' % str(finder_options))
     possible_browser = browser_finder.FindBrowser(finder_options)
     if not possible_browser:
       print ('No browser of type "%s" found for running benchmark "%s".' % (

@@ -105,7 +105,9 @@ class TracingControllerBackend(object):
     telemetry_tracing_agent.RecordBenchmarkMetadata(results)
 
   def StartTracing(self, config, timeout):
+    print('In StartTracing of tracing_controller_backend')
     if self.is_tracing_running:
+      print('Tracing is already running')
       return False
 
     assert isinstance(config, tracing_config.TracingConfig)
@@ -119,10 +121,14 @@ class TracingControllerBackend(object):
       agent_classes = _TRACING_AGENT_CLASSES
 
     for agent_class in agent_classes:
+      print('Examining AgentClass: %s' % str(agent_class))
       if agent_class.IsSupported(self._platform_backend):
+        print('Agent is supported -- starting')
         agent = agent_class(self._platform_backend, config)
         if agent.StartAgentTracing(config, timeout):
           self._active_agents_instances.append(agent)
+      else:
+        print('Agent is not supported -- skipping')
 
     return True
 
@@ -192,18 +198,24 @@ class TracingControllerBackend(object):
 
   def _GetActiveChromeTracingAgent(self):
     if not self.is_tracing_running:
+      print('Tracing is not running!')
       return None
     if not self._current_state.config.enable_chrome_trace:
+      print('Enable chrome trace not set!')
       return None
     for agent in self._active_agents_instances:
+      print('Type of agent: %s' % str(type(agent)))
       if isinstance(agent, chrome_tracing_agent.ChromeTracingAgent):
         return agent
+    print('There was no ChromeTracingAgent active, so none returned')
     return None
 
   def GetChromeTraceConfig(self):
     agent = self._GetActiveChromeTracingAgent()
     if agent:
+      print('There was an agent, and it has this config: ' % agent.trace_config)
       return agent.trace_config
+    print('There was no agent and it has no config as a result')
     return None
 
   def GetChromeTraceConfigFile(self):

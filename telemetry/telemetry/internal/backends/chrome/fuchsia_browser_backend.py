@@ -46,11 +46,13 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def _ReadDevToolsPort(self, stderr):
     def TryReadingPort(f):
       if not f:
+        print('Port could not be read because there is no file')
         return None
       line = f.readline()
       tokens = re.search(r'Remote debugging port: (\d+)', line)
       self._browser_log += line
       return int(tokens.group(1)) if tokens else None
+    print('Starting to wait...')
     return py_utils.WaitFor(lambda: TryReadingPort(stderr), timeout=60)
 
   def _ConstructCmdLine(self, startup_args):
@@ -69,8 +71,10 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def Start(self, startup_args):
     browser_cmd = self._ConstructCmdLine(startup_args)
     try:
+      print('Starting Chromium now!')
       self._browser_process = self._command_runner.RunCommandPiped(
           browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      print('Browser CMD: %s' % ' '.join(browser_cmd))
 
       browser_id_file = os.path.join(self._config_dir, 'gen', 'fuchsia',
                                      'engine', 'web_engine_shell', 'ids.txt')
@@ -85,6 +89,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._dump_finder = minidump_finder.MinidumpFinder(
           self.browser.platform.GetOSName(),
           self.browser.platform.GetArchName())
+      if self._browser_process.poll():
+        print('Browser process already terminated')
+        print('STDOUT: %s\nSTDERR: %s' % (self.communicate()))
       self._devtools_port = self._ReadDevToolsPort(self._browser_process.stderr)
       self.BindDevToolsClient()
     except:
@@ -110,7 +117,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._browser_process = None
 
   def IsBrowserRunning(self):
-    return bool(self._browser_process)
+    return bool(self._browser_process.poll() is None)
 
   def GetStandardOutput(self):
     if self._browser_process:

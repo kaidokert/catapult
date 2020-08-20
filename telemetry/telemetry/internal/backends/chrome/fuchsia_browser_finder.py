@@ -47,7 +47,7 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
     pass
 
   def _GetPathsForOsPageCacheFlushing(self):
-    raise NotImplementedError()
+    return []
 
   def Create(self):
     """Start the browser process."""
