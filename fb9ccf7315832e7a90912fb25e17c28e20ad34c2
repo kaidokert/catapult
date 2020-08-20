@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19e66b82_c7a9a38d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-08-20T05:24:47Z",
+      "side": 1,
+      "message": "Test run shows this populates these fields as expected.  Backfill is in progress.",
+      "revId": "fb9ccf7315832e7a90912fb25e17c28e20ad34c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
