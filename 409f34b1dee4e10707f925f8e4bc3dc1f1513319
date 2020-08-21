@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ece9ab25_b710ef51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-21T00:41:49Z",
+      "side": 1,
+      "message": "LGTM\n\nApologies for the delay. Please watch Pinpoint closely to make sure we\u0027re not breaking other jobs.",
+      "revId": "409f34b1dee4e10707f925f8e4bc3dc1f1513319",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
