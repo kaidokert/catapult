@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5682911f_7264f07e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1350399
+      },
+      "writtenOn": "2020-08-21T17:34:35Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be appropriate to also include the product type? This allows for distinction between _user, _debug, _eng, and _arrested builds.",
+      "revId": "c9868f6f081301b9543c4f5489bb83c7fae601e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
