@@ -16,6 +16,24 @@
       "revId": "c9868f6f081301b9543c4f5489bb83c7fae601e4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d02e9fb9_34916155",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-08-21T19:07:05Z",
+      "side": 1,
+      "message": "Good idea, let me look into whether GetOSVersionName() or GetOSVersionDetailString() is more appropriate for this info and include it in a later cl. Thanks!",
+      "parentUuid": "5682911f_7264f07e",
+      "revId": "c9868f6f081301b9543c4f5489bb83c7fae601e4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
