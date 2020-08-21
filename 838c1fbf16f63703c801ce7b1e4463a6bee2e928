@@ -489,6 +489,30 @@
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51966127_bd6bddac",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-21T00:36:21Z",
+      "side": 1,
+      "message": "Is the ID unique? What happens when you have two uploads for the same test paths being processed simultaneously, won\u0027t they be using the same entity ID\u0027s (because it\u0027s just using the test path? That would be a reason to add the parent key now.",
+      "parentUuid": "411cbbb3_5f93407c",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
