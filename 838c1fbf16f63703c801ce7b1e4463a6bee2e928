@@ -513,6 +513,30 @@
       "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfe24ec5_dd00a01e",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-21T11:27:22Z",
+      "side": 1,
+      "message": "I didn\u0027t think about it. I see now. Thank you ^_^. Done",
+      "parentUuid": "51966127_bd6bddac",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 22
+      },
+      "revId": "838c1fbf16f63703c801ce7b1e4463a6bee2e928",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
