@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db004af6_ab56f050",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-24T03:31:47Z",
+      "side": 1,
+      "message": "LGTM\n\nLanding this now so that we have folks in Sydney that can watch this in production (and roll back if necessary).",
+      "revId": "ce16b832cd48e9b12b1b0dce161656ac23fb2770",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
