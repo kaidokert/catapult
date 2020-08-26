@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2362d2a9_658368a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-08-26T08:47:02Z",
+      "side": 1,
+      "message": "Can I ask you to submit it (together with https://crrev.com/c/2372423) at the beginning of your work day? So people in Australia can revert it if something goes wrong (as you have done for https://crrev.com/c/2339421).",
+      "revId": "0dff805246c0ff61c593945ad9175f490bb54b46",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
