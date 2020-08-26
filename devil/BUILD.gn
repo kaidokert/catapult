@@ -5,19 +5,15 @@
 group("devil") {
   testonly = true
   deps = []
-  data_deps = [
-    "../third_party/gsutil",
-  ]
-  data = [
-    "devil/",
-  ]
+  data_deps = [ "../third_party/gsutil" ]
+  data = [ "devil/" ]
 
   if (is_android) {
     deps += [
       ":empty_system_webview_apk",
+      "//build/android/file_hasher",
       "//buildtools/third_party/libc++($host_toolchain)",
       "//tools/android/forwarder2",
-      "//tools/android/md5sum",
     ]
   }
 }
