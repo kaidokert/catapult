@@ -63,15 +63,15 @@ _CHROMIUM_DEPS = {
         'build_path': 'clang_x64/host_forwarder',
         'target_name': 'forwarder2',
     },
-    'md5sum_device': {
+    'file_hasher_device': {
         'archs': _DEVICE_ARCHS,
-        'build_path': 'md5sum_bin',
-        'target_name': 'md5sum',
+        'build_path': 'file_hasher_bin',
+        'target_name': 'file_hasher',
     },
-    'md5sum_host': {
+    'file_hasher_host': {
         'archs': _HOST_ARCH,
-        'build_path': 'clang_x64/md5sum_bin',
-        'target_name': 'md5sum',
+        'build_path': 'clang_x64/file_hasher_bin',
+        'target_name': 'file_hasher',
     },
 }
 

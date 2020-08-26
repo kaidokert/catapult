@@ -32,9 +32,9 @@ from devil.android import device_signal
 from devil.android import decorators
 from devil.android import device_errors
 from devil.android import device_temp_file
+from devil.android import file_hasher
 from devil.android import install_commands
 from devil.android import logcat_monitor
-from devil.android import md5sum
 from devil.android.sdk import adb_wrapper
 from devil.android.sdk import intent
 from devil.android.sdk import keyevent
@@ -430,7 +430,7 @@ def _IterPushableComponents(host_path, device_path):
 class DeviceUtils(object):
 
   _MAX_ADB_COMMAND_LENGTH = 512
-  _MAX_ADB_OUTPUT_LENGTH = 32768
+  MAX_ADB_OUTPUT_LENGTH = 32768
   _LAUNCHER_FOCUSED_RE = re.compile(r'\s*mCurrentFocus.*(Launcher|launcher).*')
   _VALID_SHELL_VARIABLE = re.compile('^[a-zA-Z_][a-zA-Z0-9_]*$')
 
@@ -1986,9 +1986,9 @@ class DeviceUtils(object):
     def calculate_host_checksums():
       # Need to compute all checksums when caching.
       if self._enable_device_files_cache:
-        return md5sum.CalculateHostMd5Sums([t[0] for t in file_tuples])
+        return file_hasher.CalculateHostHashes([t[0] for t in file_tuples])
       else:
-        return md5sum.CalculateHostMd5Sums(
+        return file_hasher.CalculateHostHashes(
             [t[0] for t in possibly_stale_tuples])
 
     def calculate_device_checksums():
@@ -2005,7 +2005,7 @@ class DeviceUtils(object):
           else:
             paths_not_in_cache.add(path)
         paths = paths_not_in_cache
-      sums.update(dict(md5sum.CalculateDeviceMd5Sums(paths, self)))
+      sums.update(dict(file_hasher.CalculateDeviceHashes(list(paths), self)))
       if self._enable_device_files_cache:
         for path, checksum in sums.iteritems():
           self._cache['device_path_checksums'][path] = checksum
@@ -2020,9 +2020,9 @@ class DeviceUtils(object):
     up_to_date = set()
 
     for host_path, device_path in possibly_stale_tuples:
-      device_checksum = device_checksums.get(device_path, None)
-      host_checksum = host_checksums.get(host_path, None)
-      if device_checksum == host_checksum and device_checksum is not None:
+      device_checksum = device_checksums.get(device_path, '')
+      host_checksum = host_checksums.get(host_path, '')
+      if device_checksum and device_checksum == host_checksum:
         up_to_date.add(device_path)
       else:
         nodes_to_delete.add(device_path)
@@ -2046,14 +2046,14 @@ class DeviceUtils(object):
     ret = self._cache['package_apk_checksums'].get(package_name)
     if ret is None:
       device_paths = self._GetApplicationPathsInternal(package_name)
-      file_to_checksums = md5sum.CalculateDeviceMd5Sums(device_paths, self)
+      file_to_checksums = file_hasher.CalculateDeviceHashes(device_paths, self)
       ret = set(file_to_checksums.values())
       self._cache['package_apk_checksums'][package_name] = ret
     return ret
 
   def _ComputeStaleApks(self, package_name, host_apk_paths):
     def calculate_host_checksums():
-      return md5sum.CalculateHostMd5Sums(host_apk_paths)
+      return file_hasher.CalculateHostHashes(host_apk_paths)
 
     def calculate_device_checksums():
       return self._ComputeDeviceChecksumsForApks(package_name)
@@ -2061,7 +2061,8 @@ class DeviceUtils(object):
     host_checksums, device_checksums = reraiser_thread.RunAsync(
         (calculate_host_checksums, calculate_device_checksums))
     stale_apks = [
-        k for (k, v) in host_checksums.iteritems() if v not in device_checksums
+        k for (k, v) in host_checksums.iteritems()
+        if v and v not in device_checksums
     ]
     return stale_apks, set(host_checksums.values())
 
@@ -2376,7 +2377,7 @@ class DeviceUtils(object):
     # so only read by cat when we need root.
     if as_root and self.NeedsSU():
       if (not force_pull
-          and 0 < get_size(device_path) <= self._MAX_ADB_OUTPUT_LENGTH):
+          and 0 < get_size(device_path) <= self.MAX_ADB_OUTPUT_LENGTH):
         return _JoinLines(
             self.RunShellCommand(['cat', device_path],
                                  as_root=as_root,
