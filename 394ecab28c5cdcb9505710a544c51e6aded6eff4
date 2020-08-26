@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b09f22b2_6e7cbd09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-08-26T16:51:49Z",
+      "side": 1,
+      "message": "There\u0027s also a gsutil.py in catapult:\nhttps://chromium.googlesource.com/catapult/+/refs/heads/master/third_party/gsutil/gsutil.py\n\nThough I honestly can\u0027t speak to which is preferred :/",
+      "revId": "394ecab28c5cdcb9505710a544c51e6aded6eff4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
