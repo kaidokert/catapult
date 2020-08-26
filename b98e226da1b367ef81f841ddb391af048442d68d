@@ -16,6 +16,23 @@
       "revId": "b98e226da1b367ef81f841ddb391af048442d68d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1bb52af7_e4ba5399",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-08-26T21:23:59Z",
+      "side": 1,
+      "message": "From my understanding of this code. LGTM.",
+      "revId": "b98e226da1b367ef81f841ddb391af048442d68d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
