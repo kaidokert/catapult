@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39865ff4_ea1e69c4",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-26T05:23:07Z",
+      "side": 1,
+      "message": "It\u0027s probably worth documenting here roughly the schema of the JSON response?",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 58
+      },
+      "revId": "e140d312b3adbd13e398bf835b598319cf5663f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aec6e65_dbea7093",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-26T05:23:07Z",
+      "side": 1,
+      "message": "Probably better as an error, rather than an info message?",
+      "range": {
+        "startLine": 44,
+        "startChar": 14,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "e140d312b3adbd13e398bf835b598319cf5663f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35f16f80_d6b6904d",
+        "filename": "dashboard/dashboard/uploads_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-26T05:23:07Z",
+      "side": 1,
+      "message": "Probably better named as `SetInternalUserOAuth`?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "e140d312b3adbd13e398bf835b598319cf5663f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48ad27e6_2d1d99c3",
+        "filename": "dashboard/dashboard/uploads_info_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-26T05:23:07Z",
+      "side": 1,
+      "message": "Maybe test this in an unordered manner?",
+      "range": {
+        "startLine": 84,
+        "startChar": 24,
+        "endLine": 93,
+        "endChar": 9
+      },
+      "revId": "e140d312b3adbd13e398bf835b598319cf5663f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
