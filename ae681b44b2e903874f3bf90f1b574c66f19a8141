@@ -16,6 +16,29 @@
       "revId": "ae681b44b2e903874f3bf90f1b574c66f19a8141",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74194570_edc105a4",
+        "filename": "devil/devil/android/file_hasher.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1002411
+      },
+      "writtenOn": "2020-08-26T18:30:38Z",
+      "side": 1,
+      "message": "Other output like linker warnings we guard against could break this. Maybe use some fraction of max output like 0.9?",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 64
+      },
+      "revId": "ae681b44b2e903874f3bf90f1b574c66f19a8141",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
