@@ -1862,10 +1862,18 @@ class DeviceUtils(object):
         # sync-unaware implementation.
         logging.warning(str(e))
 
-    changed_files, missing_dirs, cache_commit_func = (self._GetChangedFiles(
-        host_device_tuples, delete_device_stale))
+    changed_files, missing_dirs, cache_commit_func, paths_to_delete = (
+        self._GetChangedFiles(host_device_tuples))
+
+    if delete_device_stale:
+      self.RemovePath(paths_to_delete, force=True, recursive=True)
 
     if changed_files:
+      # TODO(agrieve): Remove mkdir call. It's needed only on some android
+      #     versions (e.g. Pie emulator), and only when using "adb push"
+      #     to create multiple directories. Each time it fails with:
+      #     error: <snip> remote secure_mkdirs failed: Operation not permitted
+      #     And as a side-effect, one directory is created.
       if missing_dirs:
         self.RunShellCommand(['mkdir', '-p'] + list(missing_dirs),
                              check_return=True)
@@ -1912,19 +1920,19 @@ class DeviceUtils(object):
 
     return nodes
 
-  def _GetChangedFiles(self, host_device_tuples, delete_stale=False):
+  def _GetChangedFiles(self, host_device_tuples):
     """Get files to push and delete.
 
     Args:
       host_device_tuples: a list of (host_files_path, device_files_path) tuples
         to find changed files from
-      delete_stale: Whether to delete stale files
 
     Returns:
-      a three-element tuple
+      a tuple
       1st element: a list of (host_files_path, device_files_path) tuples to push
       2nd element: a list of missing device directories to mkdir
       3rd element: a cache commit function
+      4th element: list of files to on device but not on host
     """
     # The fully expanded list of host/device tuples of files to push.
     file_tuples = []
@@ -1968,48 +1976,36 @@ class DeviceUtils(object):
         device_dirs_to_push_to.add(posixpath.dirname(device_dir))
         file_tuples.append((host_path, device_dir))
 
-    if file_tuples or delete_stale:
+    def find_paths_to_delete():
       current_device_nodes = self._GetDeviceNodes(device_dirs_to_push_to)
       nodes_to_delete = current_device_nodes - expected_device_nodes
-
-    missing_dirs = device_dirs_to_push_to - current_device_nodes
-
-    if not file_tuples:
-      if delete_stale and nodes_to_delete:
-        self.RemovePath(nodes_to_delete, force=True, recursive=True)
-      return (host_device_tuples, missing_dirs, lambda: 0)
-
-    possibly_stale_device_nodes = current_device_nodes - nodes_to_delete
-    possibly_stale_tuples = (
-      [t for t in file_tuples if t[1] in possibly_stale_device_nodes])
+      missing_dirs = device_dirs_to_push_to - current_device_nodes
+      return nodes_to_delete, missing_dirs
 
     def calculate_host_checksums():
       # Need to compute all checksums when caching.
-      if self._enable_device_files_cache:
-        return file_hasher.CalculateHostHashes([t[0] for t in file_tuples])
-      else:
-        return file_hasher.CalculateHostHashes(
-            [t[0] for t in possibly_stale_tuples])
+      return file_hasher.CalculateHostHashes([t[0] for t in file_tuples])
 
     def calculate_device_checksums():
-      paths = set([t[1] for t in possibly_stale_tuples])
-      if not paths:
-        return dict()
-      sums = dict()
+      paths = [t[1] for t in file_tuples]
+      hashes = {}
       if self._enable_device_files_cache:
-        paths_not_in_cache = set()
+        paths_not_in_cache = []
         for path in paths:
           cache_entry = self._cache['device_path_checksums'].get(path)
           if cache_entry:
-            sums[path] = cache_entry
+            hashes[path] = cache_entry
           else:
-            paths_not_in_cache.add(path)
+            paths_not_in_cache.append(path)
         paths = paths_not_in_cache
-      sums.update(dict(file_hasher.CalculateDeviceHashes(list(paths), self)))
+      hashes.update(file_hasher.CalculateDeviceHashes(paths, self))
       if self._enable_device_files_cache:
-        for path, checksum in sums.iteritems():
+        for path, checksum in hashes.iteritems():
           self._cache['device_path_checksums'][path] = checksum
-      return sums
+      return hashes
+
+    paths_to_delete, missing_dirs = find_paths_to_delete()
+
     try:
       host_checksums, device_checksums = reraiser_thread.RunAsync(
           (calculate_host_checksums, calculate_device_checksums))
@@ -2017,30 +2013,22 @@ class DeviceUtils(object):
       logger.warning('Error calculating md5: %s', e)
       return (host_device_tuples, set(), lambda: 0)
 
-    up_to_date = set()
+    stale_tuples = []
 
-    for host_path, device_path in possibly_stale_tuples:
-      device_checksum = device_checksums.get(device_path, '')
-      host_checksum = host_checksums.get(host_path, '')
-      if device_checksum and device_checksum == host_checksum:
-        up_to_date.add(device_path)
-      else:
-        nodes_to_delete.add(device_path)
-
-    if delete_stale and nodes_to_delete:
-      self.RemovePath(nodes_to_delete, force=True, recursive=True)
-
-    to_push = (
-        [t for t in file_tuples if t[1] not in up_to_date])
+    for host_path, device_path in file_tuples:
+      host_checksum = host_checksums.get(host_path)
+      device_checksum = device_checksums.get(device_path)
+      if device_checksum != host_checksum:
+        stale_tuples.append((host_path, device_path))
 
     def cache_commit_func():
       if not self._enable_device_files_cache:
         return
       for host_path, device_path in file_tuples:
-        host_checksum = host_checksums.get(host_path, None)
+        host_checksum = host_checksums.get(host_path)
         self._cache['device_path_checksums'][device_path] = host_checksum
 
-    return (to_push, missing_dirs, cache_commit_func)
+    return stale_tuples, missing_dirs, cache_commit_func, paths_to_delete
 
   def _ComputeDeviceChecksumsForApks(self, package_name):
     ret = self._cache['package_apk_checksums'].get(package_name)
