@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7dbbcb9_d0cfbee1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-08-26T16:37:56Z",
+      "side": 1,
+      "message": "[eroman]:  PTAL.  This adds one TODO but removes two - is that allowed, or do we need to preserve the number of legacy values we handle, to avoid violating the law of entropy?  Though I guess writing a CL takes energy, so we\u0027re probably not violating the laws of the universe.",
+      "revId": "353e55046e4694f69a02176679f4c227f3774851",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
