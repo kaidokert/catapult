@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4afe234b_4d6fc059",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2020-08-27T19:35:35Z",
+      "side": 1,
+      "message": "Pausing until https://chromium-review.googlesource.com/c/chromium/src/+/2368772 gets sorted.",
+      "revId": "f0c521715261de4b01263d97f4d827afe70ba20b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
