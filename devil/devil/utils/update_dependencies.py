@@ -63,15 +63,15 @@ _CHROMIUM_DEPS = {
         'build_path': 'clang_x64/host_forwarder',
         'target_name': 'forwarder2',
     },
-    'md5sum_device': {
+    'file_hasher_device': {
         'archs': _DEVICE_ARCHS,
-        'build_path': 'md5sum_bin',
-        'target_name': 'md5sum',
+        'build_path': 'file_hasher_bin',
+        'target_name': 'file_hasher',
     },
-    'md5sum_host': {
+    'file_hasher_host': {
         'archs': _HOST_ARCH,
-        'build_path': 'clang_x64/md5sum_bin',
-        'target_name': 'md5sum',
+        'build_path': 'clang_x64/file_hasher_bin',
+        'target_name': 'file_hasher',
     },
 }
 
@@ -116,7 +116,7 @@ def UpdateDependency(dependency_name, dependency_info, local_path, platform):
   remote_path = '%s_%s' % (dependency_name, dependency_sha1)
   gs_dest = 'gs://%s/%s/%s' % (bucket, folder, remote_path)
   ec, gsutil_output = cmd_helper.GetCmdStatusAndOutput(
-      ['gsutil', 'cp', local_path, gs_dest])
+      ['gsutil.py', 'cp', local_path, gs_dest])
   if ec:
     raise base_error.BaseError(
         'Failed to upload %s to %s: %s' % (remote_path, gs_dest, gsutil_output))

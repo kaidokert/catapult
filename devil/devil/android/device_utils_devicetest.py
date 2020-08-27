@@ -7,6 +7,7 @@ Unit tests for the contents of device_utils.py (mostly DeviceUtils).
 The test will invoke real devices
 """
 
+import logging
 import os
 import posixpath
 import sys
@@ -304,4 +305,6 @@ class PsOutputCompatibilityTests(device_test_case.DeviceTestCase):
 
 
 if __name__ == '__main__':
+  logging.basicConfig(level=logging.INFO)
+  device_test_case.PrepareDevices()
   unittest.main()
