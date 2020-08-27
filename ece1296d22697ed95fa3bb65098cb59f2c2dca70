@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dac0464_0d672bb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-27T23:42:54Z",
+      "side": 1,
+      "message": "LGTM\n\nThanks for this!\n\nI can\u0027t say for sure whether we\u0027re using an existing index (I checked index.yaml and we do have project_id as part of some of the indices for the Anomaly entities) but we should find out when this lands in production.\n\nLanding this now while there are folks in Sydney that are awake and can verify that queries are not failing due to the indexes missing fields.",
+      "revId": "ece1296d22697ed95fa3bb65098cb59f2c2dca70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
