@@ -16,6 +16,41 @@
       "revId": "6d7a67c1c7ac3df1b9d4238326cfdeabe12166f7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9ab9e95_98e6171c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-27T23:44:28Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "6d7a67c1c7ac3df1b9d4238326cfdeabe12166f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a188c166_6111cb1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-27T23:44:28Z",
+      "side": 1,
+      "message": "Yeah, that will make two of us. 😊",
+      "parentUuid": "2389015c_b0dc7e94",
+      "revId": "6d7a67c1c7ac3df1b9d4238326cfdeabe12166f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
