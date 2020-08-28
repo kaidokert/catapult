@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00230bac_7a16a85e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1252376
+      },
+      "writtenOn": "2020-08-28T15:44:27Z",
+      "side": 1,
+      "message": "Looks good on the surface so I\u0027m giving my owner +1 to unblock you, but I\u0027m not too familiar with android clock sync code. If you know someone who is more familiar with this code, please get their eyes on this to double check. ",
+      "revId": "a9df107b8a5c1492a87c88baac1f605a1955f733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
