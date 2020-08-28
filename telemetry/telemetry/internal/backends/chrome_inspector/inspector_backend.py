@@ -688,7 +688,10 @@ class InspectorBackend(object):
       self._runtime.CrashRendererProcess(context_id, timeout)
       # Wait several seconds for these minidumps to be written, so the calling
       # code has a better chance of discovering them.
-      time.sleep(5)
+      # For some reason, the GPU process crash takes significantly longer to
+      # dump on Windows, so wait longer in that case.
+      sleep_time = 30 if sys.platform == 'win32' else 5
+      time.sleep(sleep_time)
       raise e
 
   @_HandleInspectorWebSocketExceptions
