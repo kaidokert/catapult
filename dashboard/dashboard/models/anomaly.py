@@ -27,7 +27,8 @@ UP, DOWN, UNKNOWN = (0, 1, 4)
 
 
 class Issue(ndb.Model):
-  project_id = ndb.StringProperty(default='chromium', indexed=True)
+  project_id = ndb.StringProperty(indexed=True)
+  project_id = project_id if project_id and project_id != '' else 'chromium'
   issue_id = ndb.IntegerProperty(required=True, indexed=True)
 
 
@@ -53,7 +54,8 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # This is the project to which an anomaly is associated with, in the issue
   # tracker service.
-  project_id = ndb.StringProperty(indexed=True, default='chromium')
+  project_id = ndb.StringProperty(indexed=True)
+  project_id = project_id if project_id and project_id != '' else 'chromium'
   # === DEPRECATED END   ===
 
   # AlertGroups used for grouping

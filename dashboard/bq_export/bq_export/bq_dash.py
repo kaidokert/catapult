@@ -67,6 +67,7 @@ def main():
           # TODO: 'ownership'
           'statistic': entity['statistic'],
           'bug_id': entity['bug_id'],
+          'project_id': entity.get('project_id', 'chromium'),
           'internal_only': entity['internal_only'],
           'timestamp': entity['timestamp'].isoformat(),
           'segment_size_before': entity.get('segment_size_before'),
