@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66e3fb29_77269bca",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-30T23:42:54Z",
+      "side": 1,
+      "message": "Is this necessary?",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ec73b14_e3c0c608",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-08-30T23:42:54Z",
+      "side": 1,
+      "message": "I don\u0027t think this is necessary -- it already has a default. My suspicion is that you\u0027ll want to have logic elsewhere that will check whether the string is empty, rather than forcing it here.",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 61
+      },
+      "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
