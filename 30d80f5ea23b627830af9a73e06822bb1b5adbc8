@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a906d59_9f73a138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-08-31T12:04:31Z",
+      "side": 1,
+      "message": "LGTM.\n\nHmm, I guess you should be able to test a reland of this one by playing with Developer Tools in Chrome.",
+      "revId": "30d80f5ea23b627830af9a73e06822bb1b5adbc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
