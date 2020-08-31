@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2798e2e9_4bb146f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-08-31T06:41:53Z",
+      "side": 1,
+      "message": "The last PS makes sense to me but I let the final check to Dean.",
+      "revId": "3ecea3701c103eaa3b78f31feefe4a15f435e5b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
