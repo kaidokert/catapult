@@ -45,6 +45,30 @@
       "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68e02ff0_8300f49c",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-08-31T05:01:31Z",
+      "side": 1,
+      "message": "My understanding is that the default value is only used when project_id is not in the database.\nAnd for all the bugs booked after the anomaly project_id was introduced there is a project_id that is just empty.\nThought it was kind of weird to default the None project_id to \u0027chromium\u0027 while bugs in Chromium have an empty string project_id.\nMaybe if I put the default to \u0027\u0027 instead of \u0027chromium\u0027 it would be more coherent?",
+      "parentUuid": "7ec73b14_e3c0c608",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 61
+      },
+      "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
