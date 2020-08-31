@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0a45a99_08d160e0",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-08-31T05:30:52Z",
+      "side": 1,
+      "message": "Moved the code in alerts.py.",
+      "parentUuid": "66e3fb29_77269bca",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 61
+      },
+      "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ec73b14_e3c0c608",
         "filename": "dashboard/dashboard/models/anomaly.py",
         "patchSetId": 4
@@ -69,6 +93,30 @@
       "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ef91452_72128156",
+        "filename": "dashboard/dashboard/models/anomaly.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-08-31T05:30:52Z",
+      "side": 1,
+      "message": "Moved the code in alerts.py where it looks less sketchy.",
+      "parentUuid": "68e02ff0_8300f49c",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 61
+      },
+      "revId": "30cdf38b119121743c90e5cd5defa466f430f698",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
