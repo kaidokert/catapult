@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f79cbdb8_33af0a47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-01T23:51:50Z",
+      "side": 1,
+      "message": "LGTM\n\n% one nit.",
+      "revId": "57e791947e16645b396f69aec71beb6e9e0de74c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a41779c5_96d5d75f",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-01T23:51:50Z",
+      "side": 1,
+      "message": "I\u0027m not a JS expert, but what\u0027s the difference between using a \" instead of \u0027? Can we use a \u0027 here instead and be consistent with the other strings?",
+      "range": {
+        "startLine": 207,
+        "startChar": 39,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "57e791947e16645b396f69aec71beb6e9e0de74c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
