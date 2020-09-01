@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "7d48405a_98b978e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-01T23:55:52Z",
+      "side": 1,
+      "message": "Tests?",
+      "revId": "feb0408e33605d86664839e26be60b87b6ed0ed8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13e86ad0_f5645333",
         "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
         "patchSetId": 2
@@ -47,6 +64,30 @@
       "writtenOn": "2020-09-01T21:24:45Z",
       "side": 1,
       "message": "I think we should move this comment to line 302 since here it doesn\u0027t apply anymore.",
+      "range": {
+        "startLine": 295,
+        "startChar": 2,
+        "endLine": 297,
+        "endChar": 46
+      },
+      "revId": "feb0408e33605d86664839e26be60b87b6ed0ed8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70d8ca9a_98ea6d4a",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-01T23:55:52Z",
+      "side": 1,
+      "message": "Yes, please move this TODO closer to the call to `json.loads`.",
+      "parentUuid": "2e01aa1c_5f3c58df",
       "range": {
         "startLine": 295,
         "startChar": 2,
