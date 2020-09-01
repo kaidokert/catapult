@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "c1fedaa1_32d2b907",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-01T13:10:50Z",
+      "side": 1,
+      "message": "Good point.",
+      "parentUuid": "0cc94c8d_ba7da049",
+      "range": {
+        "startLine": 110,
+        "startChar": 9,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "4da58bc35d3054aa7a5e27780b1e8d0ecfc62a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a4da851_e0fe2f5f",
         "filename": "dashboard/dashboard/templates/bug_result.html",
         "patchSetId": 7
@@ -86,6 +110,30 @@
       "revId": "4da58bc35d3054aa7a5e27780b1e8d0ecfc62a0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32892e20_cba69579",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-01T13:10:50Z",
+      "side": 1,
+      "message": "Added a pattern to the form input.\nAlso fixed the case with a bug ID specified with no project.",
+      "parentUuid": "a5b7202b_013bfe40",
+      "range": {
+        "startLine": 208,
+        "startChar": 56,
+        "endLine": 208,
+        "endChar": 70
+      },
+      "revId": "4da58bc35d3054aa7a5e27780b1e8d0ecfc62a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
