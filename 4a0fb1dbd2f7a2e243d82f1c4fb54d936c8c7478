@@ -22,6 +22,30 @@
       "revId": "4a0fb1dbd2f7a2e243d82f1c4fb54d936c8c7478",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d1dce92_7544a723",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-01T20:49:38Z",
+      "side": 1,
+      "message": "Probably not, I blindly copied what we\u0027re doing in LUCI.\nJust launched a run without it to see how it goes:\nhttps://pinpoint-dot-chromeperf.appspot.com/job/1171e4dd920000",
+      "parentUuid": "01c6f979_e9fb388c",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 29
+      },
+      "revId": "4a0fb1dbd2f7a2e243d82f1c4fb54d936c8c7478",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
