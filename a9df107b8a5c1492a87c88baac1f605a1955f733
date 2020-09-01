@@ -72,6 +72,23 @@
     },
     {
       "key": {
+        "uuid": "fc89713b_1f87d998",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1335081
+      },
+      "writtenOn": "2020-09-01T01:03:04Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "revId": "a9df107b8a5c1492a87c88baac1f605a1955f733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5c41b87_6f287fcb",
         "filename": "tracing/tracing/model/model.html",
         "patchSetId": 1
@@ -95,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "a9e71448_3106a712",
+        "filename": "tracing/tracing/model/model.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1335081
+      },
+      "writtenOn": "2020-09-01T01:03:04Z",
+      "side": 1,
+      "message": "Well, I just followed same logic in the code above (convertTimestampToModelTime).  Maybe it\u0027s better to check it from the caller not to use or draw the result.  Currently it\u0027s only user calls it with the traceEventClock and we do it only with android events so I expect it\u0027s always converted..",
+      "parentUuid": "b5c41b87_6f287fcb",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 7
+      },
+      "revId": "a9df107b8a5c1492a87c88baac1f605a1955f733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab50f950_04af9547",
         "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
         "patchSetId": 1
@@ -106,6 +147,30 @@
       "writtenOn": "2020-08-31T17:03:34Z",
       "side": 1,
       "message": "put the time base in here (I think this is unix time?). It may also be worth showing this not as milliseconds but as a proper date/time?",
+      "range": {
+        "startLine": 159,
+        "startChar": 22,
+        "endLine": 159,
+        "endChar": 35
+      },
+      "revId": "a9df107b8a5c1492a87c88baac1f605a1955f733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80172c2b_0fd084f9",
+        "filename": "tracing/tracing/ui/analysis/single_event_sub_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1335081
+      },
+      "writtenOn": "2020-09-01T01:03:04Z",
+      "side": 1,
+      "message": "Actually it\u0027s ftrace global clock which is kept in kernel.  It\u0027s printed in micro-sec resolution like 123.456789 so current milli-sec unit (123456.789 ms) would work without too much confusion.",
+      "parentUuid": "ab50f950_04af9547",
       "range": {
         "startLine": 159,
         "startChar": 22,
