@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "0cc94c8d_ba7da049",
+        "filename": "dashboard/dashboard/associate_alerts_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-01T00:59:37Z",
+      "side": 1,
+      "message": "What happens when the project_id field is missing? Do you mind making an explicit test case for that?",
+      "range": {
+        "startLine": 110,
+        "startChar": 9,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "4da58bc35d3054aa7a5e27780b1e8d0ecfc62a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8a4da851_e0fe2f5f",
         "filename": "dashboard/dashboard/templates/bug_result.html",
         "patchSetId": 7
@@ -30,6 +53,30 @@
       "writtenOn": "2020-08-31T20:16:20Z",
       "side": 1,
       "message": "Dean: Do we want a validation for this?\n\nI think this is fine, just asking in case we want to follow-up and make the UI more resilient to potential errors.",
+      "range": {
+        "startLine": 208,
+        "startChar": 56,
+        "endLine": 208,
+        "endChar": 70
+      },
+      "revId": "4da58bc35d3054aa7a5e27780b1e8d0ecfc62a0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5b7202b_013bfe40",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-01T00:59:37Z",
+      "side": 1,
+      "message": "Yes, I\u0027d prefer having a validator associated with the field. That would make it so it\u0027s harder to input invalid/malformed inputs. Or at the very least, check that splitting on \u0027:\u0027 when you only have one field doesn\u0027t cause this to break (i.e. since this is a text input field, folks can manually input a number without the project and this should still work).",
+      "parentUuid": "8a4da851_e0fe2f5f",
       "range": {
         "startLine": 208,
         "startChar": 56,
