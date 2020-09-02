@@ -22,6 +22,30 @@
       "revId": "891de3ab47e2ac21316fbdef11ceb86ab5843353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "644bf803_7b40b382",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1250067
+      },
+      "writtenOn": "2020-09-02T14:02:05Z",
+      "side": 1,
+      "message": "When you say leave the adb_wrapper property, do you mean leave it as it was originally (i.e. revert my changes) or leave it as it is now but also add the is_emulator to device_utils.py. I did the latter (but it is easy to revert to the former so let me know).",
+      "parentUuid": "7c63a575_32812dd0",
+      "range": {
+        "startLine": 1122,
+        "startChar": 30,
+        "endLine": 1122,
+        "endChar": 40
+      },
+      "revId": "891de3ab47e2ac21316fbdef11ceb86ab5843353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
