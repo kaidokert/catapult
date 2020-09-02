@@ -39,6 +39,30 @@
       "revId": "57e791947e16645b396f69aec71beb6e9e0de74c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69fde1e0_34847cad",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-02T04:27:21Z",
+      "side": 1,
+      "message": "Definitely should use \u0027.",
+      "parentUuid": "a41779c5_96d5d75f",
+      "range": {
+        "startLine": 207,
+        "startChar": 39,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "57e791947e16645b396f69aec71beb6e9e0de74c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
