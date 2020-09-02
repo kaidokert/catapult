@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fe4b148_39fca19a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-02T08:58:14Z",
+      "side": 1,
+      "message": "Javascript is not my strong suit.\nIf you have any advice to prevent these typos I\u0027m all ears. ",
+      "revId": "543f9aa8aa84399400e61ccc9b002ec4b6eecedb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
