@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ce5560d_2c3780ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-02T09:42:08Z",
+      "side": 1,
+      "message": "LGTM\n\nThere\u0027s supposed to be a test suite for the JavaScript here, but I\u0027m not sure this part is actually covered. 😞",
+      "revId": "26be5f68f9298b6be2c5c5b63aacb44f542e7b0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
