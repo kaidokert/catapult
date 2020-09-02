@@ -16,6 +16,23 @@
       "revId": "543f9aa8aa84399400e61ccc9b002ec4b6eecedb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e163e72_47f3b283",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-02T09:03:45Z",
+      "side": 1,
+      "message": "LGTM, I think it is fine to TBR Dean on this one and +2.",
+      "revId": "543f9aa8aa84399400e61ccc9b002ec4b6eecedb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
