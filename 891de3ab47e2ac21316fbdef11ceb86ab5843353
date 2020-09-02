@@ -46,6 +46,30 @@
       "revId": "891de3ab47e2ac21316fbdef11ceb86ab5843353",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "897bf879_58bb51b4",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1250067
+      },
+      "writtenOn": "2020-09-02T14:08:39Z",
+      "side": 1,
+      "message": "actually I changed my mind, I think its best to leave adb_wrapper as it was and just add the new is_emulator to device_utils.py. Let me know what you think.",
+      "parentUuid": "644bf803_7b40b382",
+      "range": {
+        "startLine": 1122,
+        "startChar": 30,
+        "endLine": 1122,
+        "endChar": 40
+      },
+      "revId": "891de3ab47e2ac21316fbdef11ceb86ab5843353",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
