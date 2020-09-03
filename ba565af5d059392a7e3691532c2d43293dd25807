@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ac6d4543_6b0e3cdf",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-03T07:49:20Z",
+      "side": 1,
+      "message": "I\u0027m less confident that I know that shorter list of projects, so I\u0027d err on keeping this whole list. As the TODO suggests this should be pulled live from the Monorail API anyway.",
+      "parentUuid": "e4f06b82_1761213d",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afe41de1_11ca2a18",
         "filename": "dashboard/dashboard/templates/bug_result.html",
         "patchSetId": 3
