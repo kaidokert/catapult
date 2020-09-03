@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0c3c7e0_6d6004b2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-09-03T23:46:11Z",
+      "side": 1,
+      "message": "Is this needed? I\u0027d assume you can check the output of `id` regardless of exit code. Then you could get rid of the AdbCommandFailedError catch.",
+      "range": {
+        "startLine": 566,
+        "startChar": 44,
+        "endLine": 566,
+        "endChar": 61
+      },
+      "revId": "1380754e17f9c3a4032353f37cf0ba242e6e42f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b7f2a43_57ad02be",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-09-03T23:46:11Z",
+      "side": 1,
+      "message": "may have lost",
+      "range": {
+        "startLine": 1497,
+        "startChar": 55,
+        "endLine": 1497,
+        "endChar": 63
+      },
+      "revId": "1380754e17f9c3a4032353f37cf0ba242e6e42f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
