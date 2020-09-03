@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9957c7d2_7e8851df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-03T07:12:23Z",
+      "side": 1,
+      "message": "ones.",
+      "range": {
+        "startLine": 9,
+        "startChar": 74,
+        "endLine": 9,
+        "endChar": 77
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4f06b82_1761213d",
+        "filename": "dashboard/dashboard/common/utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-03T07:12:23Z",
+      "side": 1,
+      "message": "Dean, do we need all these or should we just keep the list of projects that are actually using the Dashboard?",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 54
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afe41de1_11ca2a18",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-03T07:12:23Z",
+      "side": 1,
+      "message": "Do you also need:\n\n  value\u003d\"{{project}}\"\n\nhere?",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 20
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9ad853f_82400553",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-03T07:12:23Z",
+      "side": 1,
+      "message": "If the previous comment answer is \"yes\", here too. :)",
+      "range": {
+        "startLine": 236,
+        "startChar": 17,
+        "endLine": 236,
+        "endChar": 18
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
