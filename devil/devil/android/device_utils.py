@@ -611,8 +611,11 @@ class DeviceUtils(object):
 
   def _Su(self, command):
     if self.build_version_sdk >= version_codes.MARSHMALLOW:
-      return 'su 0 %s' % command
-    return 'su -c %s' % command
+      ret = 'su 0 %s' % command
+    else:
+      ret = 'su -c %s' % command
+    logging.info('_Su returns command %r', ret)
+    return ret
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def EnableRoot(self, timeout=None, retries=None):
@@ -1501,6 +1504,18 @@ class DeviceUtils(object):
       if (as_root is _FORCE_SU) or self.NeedsSU():
         # "su -c sh -c" allows using shell features in |cmd|
         cmd = self._Su('sh -c %s' % cmd_helper.SingleQuote(cmd))
+
+    def is_root():
+      out = self.adb.Shell('id')
+      if not out:
+        return None
+      return out.startswith('uid=0(root)')
+
+    if as_root:
+      logging.info('RunShellCommand: cmd as %r, large_output as %r', cmd, large_output)
+      logging.info('NeedsSU? %r', self.NeedsSU())
+      logging.info('HasRoot? %r', self.HasRoot())
+      logging.info('is_root? %r', is_root())
 
     output = handle_large_output(cmd, large_output)
 
@@ -3175,6 +3190,7 @@ class DeviceUtils(object):
       CommandTimeoutError on timeout.
       DeviceUnreachableError on missing device.
     """
+    logging.info('SetEnforce to %d', 1 if int(enabled) else 0)
     self.RunShellCommand(['setenforce', '1' if int(enabled) else '0'],
                          as_root=True,
                          check_return=True)
