@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "74b84338_8de568ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-03T08:07:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9957c7d2_7e8851df",
+      "range": {
+        "startLine": 9,
+        "startChar": 74,
+        "endLine": 9,
+        "endChar": 77
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4f06b82_1761213d",
         "filename": "dashboard/dashboard/common/utils.py",
         "patchSetId": 3
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f6f08003_e283c9a7",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-03T08:07:47Z",
+      "side": 1,
+      "message": "I think it\u0027s good, the value is actually inside the option tag.",
+      "parentUuid": "afe41de1_11ca2a18",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 20
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9ad853f_82400553",
         "filename": "dashboard/dashboard/templates/bug_result.html",
         "patchSetId": 3
@@ -115,6 +163,30 @@
       "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0c54d54_450d0777",
+        "filename": "dashboard/dashboard/templates/bug_result.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-03T08:07:47Z",
+      "side": 1,
+      "message": "Also good.",
+      "parentUuid": "b9ad853f_82400553",
+      "range": {
+        "startLine": 236,
+        "startChar": 17,
+        "endLine": 236,
+        "endChar": 18
+      },
+      "revId": "ba565af5d059392a7e3691532c2d43293dd25807",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
