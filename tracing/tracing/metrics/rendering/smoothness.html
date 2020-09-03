@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
+<link rel="import" href="/tracing/value/diagnostics/related_event_set.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.rendering', function() {
+  function addSmoothness(histograms, model, segments) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    let maxTotal = 0;
+    let maxDropped = 0;
+    const SMOOTHNESS_COUNTER_TRACE = 'SmoothnessDroppedFrame';
+    const ranges = segments.map((s) => s.boundsRange);
+    for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+      if (rendererHelper.compositorThread === undefined) continue;
+      const slices = rendererHelper.compositorThread.sliceGroup;
+      for (const slice of slices.getDescendantEventsInSortedRanges(ranges)) {
+        if (slice.title !== SMOOTHNESS_COUNTER_TRACE) continue;
+        if (maxTotal < parseInt(slice.args.total)) {
+          maxTotal = parseInt(slice.args.total);
+          maxDropped = parseInt(slice.args.smoothness);
+        }
+      }
+    }
+
+    let droppedFrameAvg = 0;
+    if (maxTotal !== 0) {
+      droppedFrameAvg = maxDropped * 100 / maxTotal;
+    }
+    histograms.createHistogram('000smoothness_avg',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        droppedFrameAvg,
+        {description: 'average dropped frames affecting smoothness',
+          summaryOptions: {}});
+  }
+
+  return {
+    addSmoothness,
+  };
+});
+
+</script>
