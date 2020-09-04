@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4d3bdc1_0b02c273",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-09-04T00:23:07Z",
+      "side": 1,
+      "message": "Thanks! I filed https://crbug.com/1124965 to track cleaning up uses of the old API.",
+      "revId": "2a5151e07152d1fb7d3ec1123d36db2502e06355",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
