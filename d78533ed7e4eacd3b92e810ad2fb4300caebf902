@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cb3833c_ea76b756",
+        "filename": "dashboard/dashboard/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-09-07T05:42:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure why this file target is marked phony, but my make-fu is pretty rusty, so I\u0027m probably forgetting something.  So long as it works well enough I don\u0027t think I care 😊",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "d78533ed7e4eacd3b92e810ad2fb4300caebf902",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
