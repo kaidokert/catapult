@@ -110,10 +110,15 @@ class FileBugHandler(request_handler.RequestHandler):
       urlsafe_keys: Comma-separated alert keys in urlsafe format.
     """
     # Only project members (@chromium.org accounts) can be owners of bugs.
-    if owner and not owner.endswith('@chromium.org'):
+    project_domain = '@%s.org' % project_id
+    if owner and not owner.endswith(project_domain) and not owner.endswith(
+        '@google.com'):
       self.RenderHtml(
-          'bug_result.html',
-          {'error': 'Owner email address must end with @chromium.org.'})
+          'bug_result.html', {
+              'error':
+                  'Owner email address must end with %s or @google.com.' %
+                  project_domain
+          })
       return
 
     http = oauth2_decorator.DECORATOR.http()
