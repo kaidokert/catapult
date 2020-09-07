@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "790ce343_259dcd9a",
+        "filename": "dashboard/dashboard/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-09-07T05:44:57Z",
+      "side": 1,
+      "message": "If the target is `histogram_pb2.py` maybe use `histogram_pb2.py` instead of `all` is better.",
+      "revId": "d78533ed7e4eacd3b92e810ad2fb4300caebf902",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cb3833c_ea76b756",
         "filename": "dashboard/dashboard/Makefile",
         "patchSetId": 1
