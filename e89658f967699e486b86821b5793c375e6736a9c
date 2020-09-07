@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4eb6ca45_22fc6fda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-07T02:16:06Z",
+      "side": 1,
+      "message": "LGTM\n\n% one comment.",
+      "revId": "e89658f967699e486b86821b5793c375e6736a9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdfdd77f_eaa93627",
+        "filename": "dashboard/dashboard/api/api_auth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-07T02:16:06Z",
+      "side": 1,
+      "message": "Changes to this file are no longer necessary.",
+      "revId": "e89658f967699e486b86821b5793c375e6736a9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
