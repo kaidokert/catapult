@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "450b389d_c02ad1b3",
+        "filename": "dashboard/dashboard/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-07T06:29:09Z",
+      "side": 1,
+      "message": "Good point, done. 😊",
+      "parentUuid": "790ce343_259dcd9a",
+      "revId": "d78533ed7e4eacd3b92e810ad2fb4300caebf902",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cb3833c_ea76b756",
         "filename": "dashboard/dashboard/Makefile",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2020-09-07T05:42:37Z",
       "side": 1,
       "message": "I\u0027m not sure why this file target is marked phony, but my make-fu is pretty rusty, so I\u0027m probably forgetting something.  So long as it works well enough I don\u0027t think I care 😊",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "d78533ed7e4eacd3b92e810ad2fb4300caebf902",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e464d8ec_a420ffe6",
+        "filename": "dashboard/dashboard/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-07T06:29:09Z",
+      "side": 1,
+      "message": "I thought ensuring that we ran the makefile in case it changed had some value, but then it seems overkill just for this anyway. Removed. 😊",
+      "parentUuid": "5cb3833c_ea76b756",
       "range": {
         "startLine": 9,
         "startChar": 8,
