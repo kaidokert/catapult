@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a183b8c_5fe124d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-09-08T01:25:56Z",
+      "side": 1,
+      "message": "Dashboard support \u0027Chromeperf-Auto-BisectOptOut\u0027 to stop auto-bisection. This CL is a complementary of opt-out auto-triage/auto-bisect in single issue, which makes auto-triage only reopening issue when it\u0027s closed by pinpoint, avoiding sheriffs keep closing duplicated/false positive issues.",
+      "revId": "7aeed278aaccb1dcc14565f88c42baf84ab8160c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
