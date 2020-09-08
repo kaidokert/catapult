@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "935d8a33_063b7b19",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-09-08T01:35:07Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this is the service account used by pingpoint.",
+      "revId": "5b3e60b197d0f11715d0e314be372ddd3a4f259a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
