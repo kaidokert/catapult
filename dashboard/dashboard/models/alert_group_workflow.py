@@ -77,6 +77,8 @@ _ALERT_GROUP_ACTIVE_WINDOW = datetime.timedelta(days=7)
 # )
 _ALERT_GROUP_TRIAGE_DELAY = datetime.timedelta(minutes=20)
 
+_PINPOINT_ACCOUNT = '425761728072.apps.googleusercontent.com'
+
 
 class InvalidPinpointRequest(Exception):
   pass
@@ -143,6 +145,8 @@ class AlertGroupWorkflow(object):
         self._group.Status.closed
     }:
       issue = self._issue_tracker.GetIssue(
+          self._group.bug.bug_id, project=self._group.bug.project)
+      issue['comments'] = self._issue_tracker.GetIssueComments(
           self._group.bug.bug_id, project=self._group.bug.project)
     return self.GroupUpdate(now, anomalies, issue)
 
@@ -230,10 +234,19 @@ class AlertGroupWorkflow(object):
     if not new_regressions:
       return
 
-    if issue.get('state') == 'closed' and any(
-        a.auto_bisect_enable
-        for a in anomalies
-        if not a.is_improvement and not a.recovered):
+    closed_by_pinpoint = False
+    for c in reversed(issue.get('comments', [])):
+      if c.get('updates', {}).get('status') in ('WontFix', 'Fixed', 'Verified',
+                                                'Invalid', 'Duplicate', 'Done'):
+        closed_by_pinpoint = (c.get('author') == _PINPOINT_ACCOUNT)
+        break
+
+    has_new_regression = any(a.auto_bisect_enable
+                             for a in anomalies
+                             if not a.is_improvement and not a.recovered)
+
+    if (issue.get('state') == 'closed' and closed_by_pinpoint
+        and has_new_regression):
       self._ReopenWithNewRegressions(all_regressions, new_regressions,
                                      subscriptions)
     else:
