@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0df97d97_7509ea46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-09T00:49:01Z",
+      "side": 1,
+      "message": "Our convention is to use the first line as the CL title, up to 50 or 60 characters long, then an empty second line, and more details starting on the third line.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 24
+      },
+      "revId": "ae9939183080120b5a05b540b10217639eedfc1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5587b68_8aa7ede0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-09T00:49:01Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "ae9939183080120b5a05b540b10217639eedfc1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
