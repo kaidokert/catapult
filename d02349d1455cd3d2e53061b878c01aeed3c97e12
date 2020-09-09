@@ -16,6 +16,29 @@
       "revId": "d02349d1455cd3d2e53061b878c01aeed3c97e12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b736a4b_9b73ed8d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-09T15:32:03Z",
+      "side": 1,
+      "message": "Since environment variables are strings, I think it is necessary to convert this into int or float before passing to WaitFor.",
+      "range": {
+        "startLine": 320,
+        "startChar": 35,
+        "endLine": 320,
+        "endChar": 75
+      },
+      "revId": "d02349d1455cd3d2e53061b878c01aeed3c97e12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
