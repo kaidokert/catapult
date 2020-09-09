@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2e4a57b_2c46df7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-09T20:37:20Z",
+      "side": 1,
+      "message": "From 40 hours to 10 minutes :)\nhttps://pinpoint-dot-chromeperf.appspot.com/job/160e0080520000",
+      "revId": "3e8635625f98412abb0b3cdaba9c33eead396d12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
