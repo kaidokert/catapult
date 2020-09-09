@@ -26,12 +26,25 @@ from dashboard.models import subscription
 from dashboard.services import crrev_service
 from dashboard.services import pinpoint_service
 
+mock.patch.object(
+    utils,
+    'ServiceAccountEmail',
+    lambda: 'service-account@chromium.org',
+).start()
+
 
 class GroupReportTestBase(testing_common.TestCase):
 
   def __init__(self, *args, **kwargs):
     super(GroupReportTestBase, self).__init__(*args, **kwargs)
     self.fake_issue_tracker = testing_common.FakeIssueTrackerService()
+    self.fake_issue_tracker.comments.append({
+        'id': 1,
+        'author': utils.ServiceAccountEmail(),
+        'updates': {
+            'status': 'WontFix',
+        },
+    })
     self.mock_get_sheriff_client = mock.MagicMock()
     self.fake_revision_info = testing_common.FakeRevisionInfoClient(
         infos={}, revisions={})
@@ -486,6 +499,32 @@ class RecoveredAlertsTests(GroupReportTestBase):
     self.assertRegexpMatches(
         self.fake_issue_tracker.add_comment_args[1],
         r'Reopened due to new regressions detected for this alert group:')
+    self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
+                             r'test_suite/measurement/other_test_case')
+
+  def testManualClosedIssuesWithNewRegressions(self, mock_get_sheriff_client):
+    # pylint: disable=no-value-for-parameter
+    self.testClosesIssueOnAllRecovered()
+    self._SetUpMocks(mock_get_sheriff_client)
+    mock_get_sheriff_client().Match.return_value = ([
+        subscription.Subscription(
+            name='sheriff', auto_triage_enable=True, auto_bisect_enable=True)
+    ], None)
+    self.fake_issue_tracker.comments.append({
+        'id': 2,
+        'author': "sheriff@chromium.org",
+        'updates': {
+            'status': 'WontFix',
+        },
+    })
+    # Then we add a new anomaly which should cause the issue to be reopened.
+    self._AddAnomaly(
+        start_revision=50,
+        end_revision=75,
+        test='master/bot/test_suite/measurement/other_test_case')
+    self._CallHandler()
+    logging.debug('Rendered:\n%s', self.fake_issue_tracker.add_comment_args[1])
+    self.assertEqual(self.fake_issue_tracker.issue["state"], 'closed')
     self.assertRegexpMatches(self.fake_issue_tracker.add_comment_args[1],
                              r'test_suite/measurement/other_test_case')
 
