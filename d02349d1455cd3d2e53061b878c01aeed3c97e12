@@ -63,6 +63,30 @@
       "revId": "d02349d1455cd3d2e53061b878c01aeed3c97e12",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc86dd03_1c5763d7",
+        "filename": "telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1161299
+      },
+      "writtenOn": "2020-09-09T15:56:04Z",
+      "side": 1,
+      "message": "Ha you\u0027re right, os.getenv(var, default) will return something with type(default) if the var doesn\u0027t exist and a string if it does, fixing this.",
+      "parentUuid": "a16ec97b_626f5621",
+      "range": {
+        "startLine": 320,
+        "startChar": 35,
+        "endLine": 320,
+        "endChar": 75
+      },
+      "revId": "d02349d1455cd3d2e53061b878c01aeed3c97e12",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
