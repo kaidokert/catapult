@@ -22,6 +22,30 @@
       "revId": "7a37b6095edb2337590b9a4e212ae6f4ec8c5880",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8208b4cd_e02b2659",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-10T22:11:45Z",
+      "side": 1,
+      "message": "Looks much better thanks !",
+      "parentUuid": "6bdd7968_20ab09a4",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 74
+      },
+      "revId": "7a37b6095edb2337590b9a4e212ae6f4ec8c5880",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
