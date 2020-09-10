@@ -11,13 +11,25 @@ import os
 from dashboard.pinpoint.models.quest import run_test
 
 
-def _StoryToGtestName(story_name):
-  gtest_name = '_'.join(word.title() for word in story_name.split('_'))
+def _StoryToGtestRegex(story_name):
   if story_name.endswith('_alice'):
-    gtest_name = gtest_name[:-len('_alice')]
+    story_name = story_name[:-len('_alice')]
+  elif story_name.endswith('_alice-video'):
+    story_name = story_name[:-len('_alice-video')]
   elif story_name.endswith('_bob'):
-    gtest_name = gtest_name[:-len('_bob')]
-  return gtest_name
+    story_name = story_name[:-len('_bob')]
+
+  if story_name in ['first_rampup', 'rampdown', 'second_rampup']:
+    return 'RampUpTest.*'
+  if story_name.startswith('real - estimated'):
+    return '*.Real_Estimated_*'
+  elif story_name.startswith('bwe_after_'):
+    return '*.Bwe_After_*'
+
+  if len(story_name) > 50:
+    story_name = story_name[:50]
+
+  return '*.%s*' % '_'.join(word.title() for word in story_name.split('_'))
 
 
 class RunWebRtcTest(run_test.RunTest):
@@ -58,7 +70,7 @@ class RunWebRtcTest(run_test.RunTest):
     # Gtests are filtered based on the story name.
     story = arguments.get('story')
     if story:
-      extra_test_args.append('--gtest_filter=*.%s' % _StoryToGtestName(story))
+      extra_test_args.append('--gtest_filter=%s' % _StoryToGtestRegex(story))
 
     extra_test_args += super(RunWebRtcTest, cls)._ExtraTestArgs(arguments)
     return extra_test_args
