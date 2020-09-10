@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cd2dacb_10868824",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-10T07:13:46Z",
+      "side": 1,
+      "message": "You can probably use a decorator to the test case class instead of doing this at global scope. Something like:\n\n```\n@mock.patch.object(utils, \u0027ServiceAccountEmail\u0027, lambda: \u0027...\u0027)\nclass GroupReportTest(...):\n  ...\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "00582b1bc93a1328c1876136b2ccb7bfea317009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "802c8ae9_4795efc9",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-10T07:13:46Z",
+      "side": 1,
+      "message": "There might be a different way to check whether an issue is \u0027closed\u0027 instead of checking explicit states?",
+      "range": {
+        "startLine": 240,
+        "startChar": 34,
+        "endLine": 240,
+        "endChar": 42
+      },
+      "revId": "00582b1bc93a1328c1876136b2ccb7bfea317009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
