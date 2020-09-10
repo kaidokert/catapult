@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bdd7968_20ab09a4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-10T21:53:12Z",
+      "side": 1,
+      "message": "I would use the \"\"\" \"\"\" format, something like:\n\n\n\"\"\"Returns the --gtest_filter to run only tests that generate data for |story_name|.\n\nWebRTC perf tests story names and gtest names are different and use different\nformats (e.g. snake case vs camel case). This function uses some heuristics to\ntry to create a gtest filter that will allow PinPoint to run only the tests it\nrequires for the bisection (instead of running all the tests in the binary).\n\nHere are the rules that compose this heuristic function:\n\n\u003cPASTE YOUR LIST\u003e\n\nIf the filter generated is wrong, PinPoint will not execute any tests, and the\nbisection will fail to find a culprit. In that case, this function or the\ntest name need to be updated.\n\"\"\"",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 74
+      },
+      "revId": "7a37b6095edb2337590b9a4e212ae6f4ec8c5880",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
