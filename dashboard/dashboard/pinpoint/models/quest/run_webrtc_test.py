@@ -11,13 +11,34 @@ import os
 from dashboard.pinpoint.models.quest import run_test
 
 
-def _StoryToGtestName(story_name):
-  gtest_name = '_'.join(word.title() for word in story_name.split('_'))
+def _StoryToGtestRegex(story_name):
+  # We try to filter only the gtests that are impacting a given story_name.
+  # Gtests name in webrtc_perf_tests are following some conventions.
+  # - For most of them the gtest name contains the story name.
+  # - Each word of the story starts with uppercases in the gtest name.
+  # - If the story name is too long, it is sometimes truncated in the gtest
+  #   name but after at least 50 characters.
+  # - The story in the gtest name can be followed by any set of character,
+  #   this is useful for TEST_F tests (it can lead to running to much tests).
+  # - Some tests simply cannot fit in these conventions (e.g. RampUpTest).
   if story_name.endswith('_alice'):
-    gtest_name = gtest_name[:-len('_alice')]
+    story_name = story_name[:-len('_alice')]
+  elif story_name.endswith('_alice-video'):
+    story_name = story_name[:-len('_alice-video')]
   elif story_name.endswith('_bob'):
-    gtest_name = gtest_name[:-len('_bob')]
-  return gtest_name
+    story_name = story_name[:-len('_bob')]
+
+  if story_name in ['first_rampup', 'rampdown', 'second_rampup']:
+    return 'RampUpTest.*'
+  if story_name.startswith('real - estimated'):
+    return '*.Real_Estimated_*'
+  elif story_name.startswith('bwe_after_'):
+    return '*.Bwe_After_*'
+
+  if len(story_name) > 50:
+    story_name = story_name[:50]
+
+  return '*.%s*' % '_'.join(word.title() for word in story_name.split('_'))
 
 
 class RunWebRtcTest(run_test.RunTest):
@@ -58,7 +79,7 @@ class RunWebRtcTest(run_test.RunTest):
     # Gtests are filtered based on the story name.
     story = arguments.get('story')
     if story:
-      extra_test_args.append('--gtest_filter=*.%s' % _StoryToGtestName(story))
+      extra_test_args.append('--gtest_filter=%s' % _StoryToGtestRegex(story))
 
     extra_test_args += super(RunWebRtcTest, cls)._ExtraTestArgs(arguments)
     return extra_test_args
