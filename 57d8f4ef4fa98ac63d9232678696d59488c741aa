@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fb56da2_158aba61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-10T13:53:29Z",
+      "side": 1,
+      "message": "LGTM\n\nNext time, Mirko and/or Jeremy can/should be able to review some of these and help with landing. 😊",
+      "revId": "57d8f4ef4fa98ac63d9232678696d59488c741aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
