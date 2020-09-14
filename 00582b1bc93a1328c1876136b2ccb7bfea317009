@@ -93,6 +93,30 @@
       "revId": "00582b1bc93a1328c1876136b2ccb7bfea317009",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "943cfdab_0edf7aef",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-14T00:42:14Z",
+      "side": 1,
+      "message": "Ah, got it.\n\nYes, it seems it\u0027s calculated from status.",
+      "parentUuid": "94ce972a_a2948d58",
+      "range": {
+        "startLine": 240,
+        "startChar": 34,
+        "endLine": 240,
+        "endChar": 42
+      },
+      "revId": "00582b1bc93a1328c1876136b2ccb7bfea317009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
