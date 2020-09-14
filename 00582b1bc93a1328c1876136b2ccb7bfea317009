@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b3c5fcda_99da5e2b",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-09-14T00:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cd2dacb_10868824",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "00582b1bc93a1328c1876136b2ccb7bfea317009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "802c8ae9_4795efc9",
         "filename": "dashboard/dashboard/models/alert_group_workflow.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-10T07:13:46Z",
       "side": 1,
       "message": "There might be a different way to check whether an issue is \u0027closed\u0027 instead of checking explicit states?",
+      "range": {
+        "startLine": 240,
+        "startChar": 34,
+        "endLine": 240,
+        "endChar": 42
+      },
+      "revId": "00582b1bc93a1328c1876136b2ccb7bfea317009",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ce972a_a2948d58",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-09-14T00:16:11Z",
+      "side": 1,
+      "message": "issues have a `state` field to check closed or open. But from document\n\nhttps://chromium.googlesource.com/infra/infra/+/refs/heads/master/appengine/monorail/doc/api.md#monorail_issues_comments_list\n\nor code\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:appengine/monorail/proto/api_pb2_v1.py;drc\u003dc5727462bfbd5be2d453724b1fd164b879028c68;l\u003d126\n\nUpdate only has `status`.\n\nDo you have any idea where we can check the state? I suppose the state in the issue response is calculated from status.",
+      "parentUuid": "802c8ae9_4795efc9",
       "range": {
         "startLine": 240,
         "startChar": 34,
