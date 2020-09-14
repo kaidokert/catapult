@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9040cc6_031c8c17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-14T21:49:48Z",
+      "side": 1,
+      "message": "Nit: to be consistent with other flags in telemetry code, this should be --use-local-wpr.",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "da12eb1c6a2ab2d4e4fb1059ec19e4b63dcdd5d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
