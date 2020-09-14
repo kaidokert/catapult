@@ -95,7 +95,7 @@ def _ArgumentParsers(environment, args, results_arg_parser):
   subparser.set_defaults(**ext_defaults)
   subparser.add_argument('--use_local_wpr', action='store_true', 
                       help='Builds and runs WPR from Catapult. ' 
-                      'Also enables WPR debug output to STDOUT.')
+                      'Also enables WPR output to STDOUT.')
 
   add_subparser(
       'list', help='list benchmarks or stories')
