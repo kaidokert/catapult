@@ -42,7 +42,6 @@ class SharedPageState(story_module.SharedState):
     if (self._device_type == 'desktop' and
         platform_module.GetHostPlatform().GetOSName() == 'chromeos'):
       self._device_type = 'chromeos'
-
     browser_options = finder_options.browser_options
     browser_options.browser_user_agent_type = self._device_type
 
@@ -59,7 +58,10 @@ class SharedPageState(story_module.SharedState):
     if self._page_test:
       self._page_test.SetOptions(self._finder_options)
 
+
     self._extra_wpr_args = browser_options.extra_wpr_args
+    if hasattr(finder_options, 'use_local_wpr') and finder_options.use_local_wpr:
+      self._extra_wpr_args.append('--use_local_wpr')
 
     profiling_mod = browser_interval_profiling_controller
     self._interval_profiling_controller = (
