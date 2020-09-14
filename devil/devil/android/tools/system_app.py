@@ -237,6 +237,7 @@ def _RelocateApp(device, package_name, relocate_to):
         posixpath.dirname(d) for _, d in relocation_map.iteritems()
     ]
     device.RunShellCommand(['mkdir', '-p'] + relocation_dirs, check_return=True)
+    logging.info('relocation_map: %r', relocation_map)
     _MoveApp(device, relocation_map)
   else:
     logger.info('No system package "%s"', package_name)
@@ -270,6 +271,7 @@ def _MoveApp(device, relocation_map):
   """
   movements = ['mv %s %s' % (k, v) for k, v in relocation_map.iteritems()]
   cmd = ' && '.join(movements)
+  logging.info('_MoveApp: %r', cmd)
   with EnableSystemAppModification(device):
     device.RunShellCommand(cmd, as_root=True, check_return=True, shell=True)
 
