@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d464a213_b2b05648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-09-15T19:58:54Z",
+      "side": 1,
+      "message": "So I found a problem - WPR files other than wpr.go are pulled from the Catapult repo defined in go.mod. Trying to figure out how to solve this...",
+      "revId": "acdf5d6b9343d7f4ec786baec40e639451eedff3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
