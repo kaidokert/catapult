@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3d4cce7e_7fccc69b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-15T18:14:07Z",
+      "side": 1,
+      "message": "Yes, I will add this information to the design doc as well. Im working on a BigQuery log-based GCP dashboard for this purposes. So we will be able to get this data after 100% roll out.",
+      "parentUuid": "101cbd5b_b279ae9b",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "4a7888b56cd3c0cf0c33019be3c1574a81442891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdc160ad_83d50652",
         "filename": "dashboard/dashboard/models/upload_completion_token.py",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "4a7888b56cd3c0cf0c33019be3c1574a81442891",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c7a21b8_38402019",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-15T18:14:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdc160ad_83d50652",
+      "range": {
+        "startLine": 14,
+        "startChar": 42,
+        "endLine": 15,
+        "endChar": 46
+      },
+      "revId": "4a7888b56cd3c0cf0c33019be3c1574a81442891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
