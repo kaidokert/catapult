@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d1ae9c86_b36361ef",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-15T17:57:41Z",
+      "side": 1,
+      "message": "Sure, I do not have any strong opinion about it. I just usually like to keep code \"flatter\" :).\nIs there any objective reasons to use if/else? or is it personal preference?",
+      "parentUuid": "c7587761_93d51237",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d709b70a_7bced3d4",
         "filename": "dashboard/dashboard/uploads_info.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-15T16:50:19Z",
       "side": 1,
       "message": "I am lacking context about this, so this might be a trivial question. Why do we handle this differently (instead of just expand the ref into a normal diagnostic)?\n\nThis might allow us to avoid the exception (also documented below).",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 40
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a00c394_3b938d3f",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-15T17:57:41Z",
+      "side": 1,
+      "message": "I just thought it would be nice to give full information about how diagnostics are stored in the histogram. One of the use cases for this api will be manual debugging. So this information might be important.\n\nI would like to hear Dean\u0027s opinion about it.",
+      "parentUuid": "d709b70a_7bced3d4",
       "range": {
         "startLine": 59,
         "startChar": 27,
@@ -68,6 +116,30 @@
       "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bff3ddf2_34fa749c",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-15T17:57:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53ff66b2_9941a40f",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 13
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
