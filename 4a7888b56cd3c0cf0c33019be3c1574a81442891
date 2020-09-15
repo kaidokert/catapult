@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "101cbd5b_b279ae9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T17:00:13Z",
+      "side": 1,
+      "message": "Are you going to make a estimate on the design doc?",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "4a7888b56cd3c0cf0c33019be3c1574a81442891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdc160ad_83d50652",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T17:00:13Z",
+      "side": 1,
+      "message": "Can you expand more on this?",
+      "range": {
+        "startLine": 14,
+        "startChar": 42,
+        "endLine": 15,
+        "endChar": 46
+      },
+      "revId": "4a7888b56cd3c0cf0c33019be3c1574a81442891",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
