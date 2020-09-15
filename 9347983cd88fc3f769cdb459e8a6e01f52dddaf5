@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a62e1840_95d2b37d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-09-15T17:08:01Z",
+      "side": 1,
+      "message": "The chrome_public_test_apk on android-pie-x86-rel uses user builds because it needs the playstore to launch \"intents\"\nAlso Pavel (CCed) uses his personal phone to do the development. See crbug.com/1052434#c39",
+      "parentUuid": "6c95a713_ea93c596",
+      "range": {
+        "startLine": 9,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9290b535_17531f45",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-15T01:13:08Z",
       "side": 1,
       "message": "Do you plan on using this exception + the _skip_root_user_build var elsewhere?\n\nIf not, it smells like yagni, and all this could be replaced by adding an \"if self.IsUserBuild():\" before the call to EnableRoot()",
+      "range": {
+        "startLine": 1506,
+        "startChar": 15,
+        "endLine": 1506,
+        "endChar": 47
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb8c153e_2bf24a2d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-09-15T17:08:01Z",
+      "side": 1,
+      "message": "\u003e Do you plan on using this exception + the _skip_root_user_build var elsewhere?\n\nI don\u0027t think so. But based the description of crrev.com/2814993004 and crbug.com/710479#c7, I think it makes sense to try rooting at least once for user build. WDYT?",
+      "parentUuid": "9290b535_17531f45",
       "range": {
         "startLine": 1506,
         "startChar": 15,
