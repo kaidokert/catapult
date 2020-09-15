@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3b7dbd05_6c02548b",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T18:50:13Z",
+      "side": 1,
+      "message": "Personal preference. Yes, I also tend to do the same but when I read code the if/else sounds easier to grasp right away. Not a big deal though.",
+      "parentUuid": "d1ae9c86_b36361ef",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d709b70a_7bced3d4",
         "filename": "dashboard/dashboard/uploads_info.py",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I just thought it would be nice to give full information about how diagnostics are stored in the histogram. One of the use cases for this api will be manual debugging. So this information might be important.\n\nI would like to hear Dean\u0027s opinion about it.",
       "parentUuid": "d709b70a_7bced3d4",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 40
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "453d4d98_aa38bcfb",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T18:50:13Z",
+      "side": 1,
+      "message": "Thanks! Leaving this open for Dean\u0027s input but sounds good to me.",
+      "parentUuid": "8a00c394_3b938d3f",
       "range": {
         "startLine": 59,
         "startChar": 27,
