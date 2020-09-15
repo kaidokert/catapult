@@ -13,6 +13,7 @@ from py_trace_event import trace_event
 from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.backends.chrome_inspector import devtools_http
+from telemetry.internal.backends.chrome_inspector import inspector_browser
 from telemetry.internal.backends.chrome_inspector import inspector_console
 from telemetry.internal.backends.chrome_inspector import inspector_log
 from telemetry.internal.backends.chrome_inspector import inspector_memory
@@ -66,7 +67,6 @@ class InspectorBackend(object):
     # created. Consider an updating strategy for this. (For an example
     # of the subtlety, see the logic for self.url property.)
     self._context = context
-
     logging.debug('InspectorBackend._Connect() to %s', self.debugger_url)
     try:
       self._websocket.Connect(self.debugger_url, timeout)
@@ -79,6 +79,7 @@ class InspectorBackend(object):
       self._serviceworker = inspector_serviceworker.InspectorServiceWorker(
           self._websocket, timeout=timeout)
       self._storage = inspector_storage.InspectorStorage(self._websocket)
+      self._browser = inspector_browser.InspectorBrowser(self._websocket)
     except (inspector_websocket.WebSocketException, exceptions.TimeoutException,
             py_utils.TimeoutException) as e:
       self._ConvertExceptionFromInspectorWebsocket(e)
@@ -694,3 +695,6 @@ class InspectorBackend(object):
   @_HandleInspectorWebSocketExceptions
   def CollectGarbage(self):
     self._page.CollectGarbage()
+
+  def CloseBrowser(self):
+    self._browser.CloseBrowser()
