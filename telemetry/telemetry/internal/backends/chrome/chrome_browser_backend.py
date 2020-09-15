@@ -54,7 +54,6 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     self._profile_directory = profile_directory
     self._supports_tab_control = supports_tab_control
     self._build_dir = build_dir
-
     self._devtools_client = None
 
     self._extensions_to_load = browser_options.extensions_to_load
