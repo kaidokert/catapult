@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7587761_93d51237",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T16:50:19Z",
+      "side": 1,
+      "message": "Can we do if/else instead of continue?",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d709b70a_7bced3d4",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T16:50:19Z",
+      "side": 1,
+      "message": "I am lacking context about this, so this might be a trivial question. Why do we handle this differently (instead of just expand the ref into a normal diagnostic)?\n\nThis might allow us to avoid the exception (also documented below).",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 40
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53ff66b2_9941a40f",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-15T16:50:19Z",
+      "side": 1,
+      "message": "Nit: s/full_info/is_full_info",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 13
+      },
+      "revId": "37185c3398d3c186e8c863a1f82ffe7af5f75acc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
