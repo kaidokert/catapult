@@ -7,7 +7,10 @@ from __future__ import absolute_import
 import logging
 
 from dashboard.api import api_request_handler
+from dashboard.models import histogram
 from dashboard.models import upload_completion_token
+from tracing.value import histogram as histogram_module
+from tracing.value.diagnostics import diagnostic_ref
 
 
 class UploadInfoHandler(api_request_handler.ApiRequestHandler):
@@ -28,16 +31,44 @@ class UploadInfoHandler(api_request_handler.ApiRequestHandler):
     if measurements:
       result['measurements'] = []
     for measurement in measurements:
-      result['measurements'].append({
+      info = {
           'name': measurement.key.id(),
           'state': upload_completion_token.StateToString(measurement.state),
-      })
+          'monitored': measurement.monitored,
+          'lastUpdated': str(measurement.update_time),
+      }
+      if measurement.histogram is not None:
+        histogram_entity = measurement.histogram.get()
+        attached_histogram = histogram_module.Histogram.FromDict(
+            histogram_entity.data)
+        info['diagnostics'] = []
+        for name, diagnostic in attached_histogram.diagnostics.items():
+          if not isinstance(diagnostic, diagnostic_ref.DiagnosticRef):
+            info['diagnostics'].append({
+                'name': name,
+                'value': diagnostic.AsDict()
+            })
+            continue
+
+          original_diagnostic_guid = diagnostic.guid
+          original_diagnostic = histogram.SparseDiagnostic.get_by_id(
+              original_diagnostic_guid)
+          info['diagnostics'].append({
+              'name': name,
+              'value': {
+                  'type': 'DiagnosticRef',
+                  'original_value': original_diagnostic.data
+              }
+          })
+
+      result['measurements'].append(info)
     return result
 
   def Get(self, *args):
     """Returns json, that describes state of the token.
 
-    Can be called by get request to /uploads/<token_id>.
+    Can be called by get request to /uploads/<token_id> or
+    /uploads/<id>/full_info.
 
     Response is json of the form:
     {
@@ -50,6 +81,30 @@ class UploadInfoHandler(api_request_handler.ApiRequestHandler):
         {
           "name": "...",
           "state": "PROCESSING|FAILED|COMPLETED",
+          "monitored": True|False,
+          "lastUpdated": "...",
+          "diagnostics": [
+            {
+              "name": "...",
+              "value": {
+                "type": "GenericSet|Breakdown|RelatedEventSet|DateRange|...",
+                "guid": "...",
+                ...
+              }
+            },
+            {
+              "name": "...",
+              "value": {
+                "type": "DiagnosticRef",
+                "original_value": {
+                  "type": "GenericSet|Breakdown|RelatedEventSet|DateRange|...",
+                  "guid": "...",
+                  ...
+                }
+              }
+            },
+            ...
+          ]
         },
         ...
       ]
@@ -63,18 +118,32 @@ class UploadInfoHandler(api_request_handler.ApiRequestHandler):
       - lastUpdated: Date and time of last update.
       - state: Aggregated state of the token and all associated measurements.
       - measurements: List of jsons, that describes measurements, associated
-        with the token. If there is no such measurements, the field will be
-        absent.
+        with the token. If there is no such measurements the field will be
+        absent. The field will be present only if /uploads/<id>/full_info api
+        was called.
         - name: The path  of the measurement. It is a fully-qualified path in
           the Dashboard.
         - state: State of the measurement.
+        - monitored: A boolean indicating whether the path is monitored by a
+          sheriff configuration.
+        - lastUpdated: Date and time of last update.
+        - diagnostics: List of diagnostics, associated to the histogram, that
+          is represented by the measurement. This field will be present in
+          response only after the histogram has been added to Datastore.
+          - name: Name of the diagnostic.
+          - value: Json representation of the diagnostic. Defined by
+            tracing.value.diagnostics.diagnostic.Diagnostic.AsDict().
+            Exception is diagnostic of type DiagnosticRef. For such diagnostic
+            the value will contain "original_value" field, that contains the
+            AsDict() representation of a refferenced diagnostic.
+            - type: Type of the diagnostic. Always present in the value.
 
     Meaning of some common error codes:
       - 403: The user is not authorized to check on the status of an upload.
       - 404: Token could not be found. It is either expired or the token is
         invalid.
     """
-    assert len(args) == 1
+    assert len(args) == 2
 
     token_id = args[0]
     token = upload_completion_token.Token.get_by_id(token_id)
@@ -82,5 +151,9 @@ class UploadInfoHandler(api_request_handler.ApiRequestHandler):
       logging.error('Upload completion token not found. Token id: %s', token_id)
       raise api_request_handler.NotFoundError
 
-    measurements = token.GetMeasurements()
+    measurements = None
+    # /uploads/<id>/full_info api was called.
+    full_info = args[1] is not None
+    if full_info:
+      measurements = token.GetMeasurements()
     return self._GenerateResponse(token, measurements)
