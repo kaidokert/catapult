@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c95a713_ea93c596",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-09-15T01:13:08Z",
+      "side": 1,
+      "message": "👀\n\nWho\u0027s running tests on user builds?",
+      "range": {
+        "startLine": 9,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9290b535_17531f45",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-09-15T01:13:08Z",
+      "side": 1,
+      "message": "Do you plan on using this exception + the _skip_root_user_build var elsewhere?\n\nIf not, it smells like yagni, and all this could be replaced by adding an \"if self.IsUserBuild():\" before the call to EnableRoot()",
+      "range": {
+        "startLine": 1506,
+        "startChar": 15,
+        "endLine": 1506,
+        "endChar": 47
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
