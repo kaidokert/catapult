@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a6cf30b_80dd6fca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-15T18:41:12Z",
+      "side": 1,
+      "message": "Fixing a few links that are broken when viewed from https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/README.md. There is a broken link to build status page at the bottom. I don\u0027t know what the right target should be so commented it out.",
+      "revId": "340683260f956189e3f256fe2de5fda379553f3f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
