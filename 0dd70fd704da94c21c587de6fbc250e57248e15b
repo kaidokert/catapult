@@ -156,6 +156,30 @@
       "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "268b05b9_98ab20a1",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-09-16T08:20:05Z",
+      "side": 1,
+      "message": "Yes, my bad. 😊\n\nI think it needs to be documented somewhere for future reference though.",
+      "parentUuid": "53cb719c_8c56d832",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
