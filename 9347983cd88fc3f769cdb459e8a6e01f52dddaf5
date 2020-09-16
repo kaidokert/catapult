@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a66d37a3_3929751a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-09-16T01:00:59Z",
+      "side": 1,
+      "message": "\u003e The chrome_public_test_apk on android-pie-x86-rel uses user builds because it needs the playstore to launch \"intents\"\n\nOh huh... TIL. Is the playstore not available on userdebug emulator builds?\n\n\u003e Also Pavel (CCed) uses his personal phone to do the development. See crbug.com/1052434#c39\n\nI wouldn\u0027t advise that.",
+      "parentUuid": "a62e1840_95d2b37d",
+      "range": {
+        "startLine": 9,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9290b535_17531f45",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
@@ -93,6 +117,30 @@
       "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0811b89_3a08417c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1506,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-09-16T01:00:59Z",
+      "side": 1,
+      "message": "So we have some user devices that silently pass \"adb root\" and some that fail \"adb root\"... that\u0027s annoying. I\u0027m having trouble coming up with something any better. So lgtm",
+      "parentUuid": "cb8c153e_2bf24a2d",
+      "range": {
+        "startLine": 1506,
+        "startChar": 15,
+        "endLine": 1506,
+        "endChar": 47
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
