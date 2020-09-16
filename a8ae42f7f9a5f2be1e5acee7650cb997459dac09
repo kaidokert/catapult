@@ -106,6 +106,30 @@
     },
     {
       "key": {
+        "uuid": "794d5a26_2781465e",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T09:05:53Z",
+      "side": 1,
+      "message": "So, there are two kinds of diagnostics:\n\n- Those that are associated per Histogram that are related to the diagnostics in the traces. That\u0027s helpful for debugging with the histogram viewer UI, but are discarded/ignored by the Dashboard.\n\n- Those that are associated per Histogram identifying how they\u0027re stored/retrieved in the Dashboard. Those are really \"dimensions\" if you think about them in a table (and in terms of aggregation). Some of those are named (things like `bot`, `master`, etc.) and are used by the Dashboard for storage and retrieval. Look for \"reserved infos\" for diagnostics that the Dashboard looks for.\n\nThe idea is we can \u0027denormalise\u0027 these dimensions and have a list of those to identify the Histogram. This is so that we can convey the useful information (which machine did this value get computed from, for what revision(s)).\n\nWe can add that data without copying everything into the response (hence the more compact format). 😊",
+      "parentUuid": "c2a60517_9443c2f3",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bfd41fde_201c3c5f",
         "filename": "dashboard/dashboard/uploads_info.py",
         "patchSetId": 3
