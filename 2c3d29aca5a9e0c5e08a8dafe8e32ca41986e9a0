@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7be1681_3e41a3c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-09-16T23:55:28Z",
+      "side": 1,
+      "message": "Updating the wpr README after fixing the go mod issues.",
+      "revId": "2c3d29aca5a9e0c5e08a8dafe8e32ca41986e9a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
