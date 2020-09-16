@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a946b42_c2bb95a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T06:03:05Z",
+      "side": 1,
+      "message": "LGTM\n\nLet\u0027s wait to land this when we\u0027ve started up the regular deletion process.\n\nCC\u0027ing Andrew who\u0027s the most knowledgeable person on the team when it comes to defining Cloud Scheduler invoked Dataflow template jobs.\n\nAndrew, let\u0027s sync on crafting the GQL queries for regularly deleting the entities this would be producing, and set up the appropriate deletion job(s).",
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea0008a9_78e9f03f",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T06:03:05Z",
+      "side": 1,
+      "message": "Do we want to update the upload token to include the error information too, instead of just raising this error now that we have a way of signalling failure?",
+      "range": {
+        "startLine": 438,
+        "startChar": 6,
+        "endLine": 439,
+        "endChar": 57
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7997450f_940bf452",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T06:03:05Z",
+      "side": 1,
+      "message": "nit: This might be easier to read if this was in the active voice.\n\n10 minutes should be enough for keeping the data in memory because processing histograms takes 3.5 minutes in the 90th percentile.",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 79
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50a517d0_26f996eb",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T06:03:05Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is true. We cannot predict how many uploads come in from the service\u0027s perspective because that\u0027s controlled by our users/uploaders.",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 76
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdabecab_28328faa",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T06:03:05Z",
+      "side": 1,
+      "message": "This might be true, but I\u0027m not sure putting this in the documentation on my we\u0027re picking 10 minutes is the right approach.",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
