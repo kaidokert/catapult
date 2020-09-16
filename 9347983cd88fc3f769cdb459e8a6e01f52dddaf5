@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "d1847b23_39a696ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2020-09-16T16:06:38Z",
+      "side": 1,
+      "message": "\u003e Is the playstore not available on userdebug emulator builds?\n\nIt is not available (And I have a design doc trying to solve that.)",
+      "parentUuid": "a66d37a3_3929751a",
+      "range": {
+        "startLine": 9,
+        "startChar": 36,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "9347983cd88fc3f769cdb459e8a6e01f52dddaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9290b535_17531f45",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 3
