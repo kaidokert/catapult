@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "88ef42da_6ae6e807",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-09-16T23:27:38Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "99fa27be0a3d5f62fa829e7071030206ad54f2d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99879e0c_17542e5b",
         "filename": "tracing/tracing/metrics/tabs_metric.html",
         "patchSetId": 2
@@ -13,6 +30,30 @@
       "writtenOn": "2020-09-16T10:02:23Z",
       "side": 1,
       "message": "Is the unit of slice start in millisecond?",
+      "range": {
+        "startLine": 58,
+        "startChar": 62,
+        "endLine": 58,
+        "endChar": 63
+      },
+      "revId": "99fa27be0a3d5f62fa829e7071030206ad54f2d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e0f434b_85693a7e",
+        "filename": "tracing/tracing/metrics/tabs_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-09-16T23:27:38Z",
+      "side": 1,
+      "message": "Yes it is!",
+      "parentUuid": "99879e0c_17542e5b",
       "range": {
         "startLine": 58,
         "startChar": 62,
