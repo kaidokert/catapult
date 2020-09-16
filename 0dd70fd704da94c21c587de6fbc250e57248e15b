@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "a933038c_6709352b",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-16T08:12:10Z",
+      "side": 1,
+      "message": "Yes, I think it\u0027s a good idea. I\u0027ll do it in another cl though. Now that I think about it, adding the error message to /uploads api should really be useful.",
+      "parentUuid": "ea0008a9_78e9f03f",
+      "range": {
+        "startLine": 438,
+        "startChar": 6,
+        "endLine": 439,
+        "endChar": 57
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7997450f_940bf452",
         "filename": "dashboard/dashboard/models/upload_completion_token.py",
         "patchSetId": 4
@@ -99,6 +123,30 @@
       "writtenOn": "2020-09-16T06:03:05Z",
       "side": 1,
       "message": "This might be true, but I\u0027m not sure putting this in the documentation on my we\u0027re picking 10 minutes is the right approach.",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53cb719c_8c56d832",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-16T08:12:10Z",
+      "side": 1,
+      "message": "Hm. Should we keep 10 minutes timeout at all?\nShould the comment be just \"10 minutes should be enough for keeping the data in memory because processing histograms takes 3.5 minutes in the 90th percentile.\"? I have added more thoughts because Mirko has asked to expand it.",
+      "parentUuid": "cdabecab_28328faa",
       "range": {
         "startLine": 16,
         "startChar": 2,
