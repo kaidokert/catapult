@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "168db1d3_26507870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-09-16T00:13:58Z",
+      "side": 1,
+      "message": "This should make \nweb_page_replay_go$  go build src/wpr.go\n\nand\n\nweb_page_replay_go$  go run src/wpr.go record--http_port\u003d8080 archive.wprgo\n\nWork with local changes again without having a catapult conflict in references",
+      "revId": "f6df8a1e5479db113983a0694134b7b54f065217",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
