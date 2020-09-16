@@ -82,6 +82,30 @@
     },
     {
       "key": {
+        "uuid": "c2a60517_9443c2f3",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1428517
+      },
+      "writtenOn": "2020-09-16T08:02:07Z",
+      "side": 1,
+      "message": "Hm, seems like I got confused. Sorry :). What was the point to add \"dimensions\" (as it is proposed in the design doc) at the first place?\n\nI thought it might be useful to see how exactly diagnostics are stored in the histogram. Since some of them are replaced with DiagnosticRef and for some the guid is being changed. I assume we can allow user to get measurements without diagnostics.\n\nPS: there is also related question about DiagnosticRef. You can find it in Patch 2.",
+      "parentUuid": "b2c87f2e_0ab3d5a1",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bfd41fde_201c3c5f",
         "filename": "dashboard/dashboard/uploads_info.py",
         "patchSetId": 3
