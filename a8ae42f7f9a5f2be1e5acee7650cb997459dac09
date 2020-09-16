@@ -16,6 +16,230 @@
       "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4363da9_e0789e83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "LGTM\n\n% suggestions on the URL pattern and comments",
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1dd84ed_7c9cee3e",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "What happens when we see the following:\n\n/uploads/odsfignaeorfgihwfull_info\n\nin the request? Is it expected to return the full information as well?\n\nOr should this be a \u0027GET\u0027 parameter instead called `full_info` so the URLs will need to include `?full_info\u003d1`?\n\nMy preference here would be the GET parameter and instead of `full_info` I\u0027d define levels of detail. Something like:\n\n`/uploads/\u003cuuid\u003e?info\u003dmeasurements,debug`\n\nAnd in the handler we can decide to pull out the details if specified.",
+      "range": {
+        "startLine": 172,
+        "startChar": 19,
+        "endLine": 172,
+        "endChar": 38
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2c87f2e_0ab3d5a1",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "This one is going to be verbose for some uploads, and is technically already available to the uploader (so the utility of returning this is questionable).",
+      "range": {
+        "startLine": 85,
+        "startChar": 10,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfd41fde_201c3c5f",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "json objects?",
+      "range": {
+        "startLine": 119,
+        "startChar": 30,
+        "endLine": 119,
+        "endChar": 35
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3409b84f_4907088a",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "remove the comma?",
+      "range": {
+        "startLine": 119,
+        "startChar": 42,
+        "endLine": 119,
+        "endChar": 76
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ffb9251_68f513b0",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "are no",
+      "range": {
+        "startLine": 120,
+        "startChar": 33,
+        "endLine": 120,
+        "endChar": 43
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee938eaa_d6691858",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "comma after \u0027measurements\u0027",
+      "range": {
+        "startLine": 120,
+        "startChar": 44,
+        "endLine": 120,
+        "endChar": 56
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "151591f8_94e74d5a",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "I rather we don\u0027t spell out the URL here, because it\u0027s bound to get stale if we decide to change the URL mapping later. Consider saying this more generically like:\n\n`This field may be absent if full information is not requested.\u0027",
+      "range": {
+        "startLine": 121,
+        "startChar": 50,
+        "endLine": 121,
+        "endChar": 73
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1002af79_3212c27e",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "\u0027invalid token\u0027 should really be a 400 (i.e. if the provided token doesn\u0027t follow the form we\u0027re expecting).",
+      "range": {
+        "startLine": 142,
+        "startChar": 67,
+        "endLine": 143,
+        "endChar": 15
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42636e72_b1a58b8d",
+        "filename": "dashboard/dashboard/uploads_info_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-16T00:05:27Z",
+      "side": 1,
+      "message": "nit: did you mean \u0027nonexistent\u0027? 😊",
+      "range": {
+        "startLine": 210,
+        "startChar": 29,
+        "endLine": 210,
+        "endChar": 39
+      },
+      "revId": "a8ae42f7f9a5f2be1e5acee7650cb997459dac09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
