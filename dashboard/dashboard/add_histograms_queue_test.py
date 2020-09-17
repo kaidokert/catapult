@@ -631,7 +631,7 @@ class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
     token_id = str(uuid.uuid4())
     test_path = 'Chromium/win7/suite/metric'
     token = upload_completion_token.Token(id=token_id).put().get()
-    token.PopulateMeasurements({test_path: False})
+    token.AddMeasurement(test_path, False).wait()
     token.UpdateStateAsync(upload_completion_token.State.COMPLETED).wait()
 
     graph_data.Bot(
@@ -671,11 +671,9 @@ class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
 
     token_id = str(uuid.uuid4())
     token = upload_completion_token.Token(id=token_id).put().get()
-    token.PopulateMeasurements({
-        test_path1: False,
-        test_path2: False,
-        test_path3: False
-    })
+    token.AddMeasurement(test_path1, False).wait()
+    token.AddMeasurement(test_path2, False).wait()
+    token.AddMeasurement(test_path3, False).wait()
     token.UpdateStateAsync(upload_completion_token.State.COMPLETED).wait()
 
     graph_data.Bot(
@@ -722,7 +720,7 @@ class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
                      mock.MagicMock(side_effect=Exception()))
   def testPostMultipleHistogram_FailToCreateFixture(self):
     token = self._CreateHistogramWithMultipleMeasurementAndAdd(status=500)
-    substates = [child.state for child in ndb.get_multi(token.substates)]
+    substates = [child.state for child in token.GetMeasurements()]
 
     self.assertEqual(token.state, upload_completion_token.State.FAILED)
     self.assertTrue(
@@ -735,10 +733,8 @@ class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
 
     token_id = str(uuid.uuid4())
     token = upload_completion_token.Token(id=token_id).put().get()
-    _, measurement2 = token.PopulateMeasurements({
-        test_path1: False,
-        test_path2: False
-    })
+    token.AddMeasurement(test_path1, False).wait()
+    measurement2 = token.AddMeasurement(test_path2, False).get_result()
     token.UpdateStateAsync(upload_completion_token.State.COMPLETED).wait()
 
     measurement2.key.delete()

@@ -79,10 +79,8 @@ class UploadInfo(testing_common.TestCase):
     test_path1 = 'Chromium/win7/suite/metric1'
     test_path2 = 'Chromium/win7/suite/metric2'
     token = upload_completion_token.Token(id=token_id).put().get()
-    measurement1, measurement2 = token.PopulateMeasurements({
-        test_path1: False,
-        test_path2: True
-    })
+    measurement1 = token.AddMeasurement(test_path1, False).get_result()
+    measurement2 = token.AddMeasurement(test_path2, True).get_result()
 
     measurement1.state = upload_completion_token.State.COMPLETED
     measurement1.put()
@@ -155,7 +153,7 @@ class UploadInfo(testing_common.TestCase):
     token_id = str(uuid.uuid4())
     test_path = 'Chromium/win7/suite/metric1'
     token = upload_completion_token.Token(id=token_id).put().get()
-    measurement, = token.PopulateMeasurements({test_path: True})
+    measurement = token.AddMeasurement(test_path, True).get_result()
     measurement.histogram = hs.key
     measurement.put()
 
@@ -190,10 +188,8 @@ class UploadInfo(testing_common.TestCase):
   def testGet_SuccessLimitedInfo(self):
     token_id = str(uuid.uuid4())
     token = upload_completion_token.Token(id=token_id).put().get()
-    token.PopulateMeasurements({
-        'Chromium/win7/suite/metric1': False,
-        'Chromium/win7/suite/metric2': True
-    })
+    token.AddMeasurement('Chromium/win7/suite/metric1', False).wait()
+    token.AddMeasurement('Chromium/win7/suite/metric2', True).wait()
     expected = {
         'token': token_id,
         'file': None,
