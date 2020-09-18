@@ -81,6 +81,7 @@ type ReplayCommand struct {
 	rulesFile                            string
 	serveResponseInChronologicalSequence bool
 	quietMode                            bool
+	exactMatchOnly                       bool
 }
 
 type RootCACommand struct {
@@ -210,6 +211,12 @@ func (r *ReplayCommand) Flags() []cli.Flag {
 			Usage: "quiets the logging output by not logging the " +
 				"ServeHTTP url call and responses",
 			Destination: &r.quietMode,
+		},
+	  cli.BoolFlag{
+			Name:        "exact_match_only",
+			Usage:       "Force WPR to only match exact urls. Do not attempt to " +
+			  "fuzzy match based on Path match without exact arguments match.",
+			Destination: &r.exactMatchOnly,
 		})
 }
 
@@ -400,6 +407,10 @@ func (r *ReplayCommand) Run(c *cli.Context) {
 	log.Printf("Opened archive %s", archiveFileName)
 
 	archive.ServeResponseInChronologicalSequence = r.serveResponseInChronologicalSequence
+	archive.ExactMatchOnly = r.exactMatchOnly
+	if archive.ExactMatchOnly {
+		log.Print("Only Serving HTTP matches if they are exact URL matches")
+	}
 
 	timeSeedMs := archive.DeterministicTimeSeedMs
 	if timeSeedMs == 0 {
