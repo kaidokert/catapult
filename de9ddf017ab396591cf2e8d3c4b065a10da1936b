@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55332e6c_4fa17fa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-09-19T00:17:04Z",
+      "side": 1,
+      "message": "Thanks for taking this.",
+      "revId": "de9ddf017ab396591cf2e8d3c4b065a10da1936b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "118d78ee_69ee2038",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-09-19T00:17:04Z",
+      "side": 1,
+      "message": "This will still print logStr even if no response is found - maybe move the DisableFuzzy  if/else inside the (bestUrl !\u003d \"\") block",
+      "revId": "de9ddf017ab396591cf2e8d3c4b065a10da1936b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9b6be8b_120854c1",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-09-19T00:17:04Z",
+      "side": 1,
+      "message": "[nit] want to add \u0027exact\u0027?- \"No exact match...\"",
+      "revId": "de9ddf017ab396591cf2e8d3c4b065a10da1936b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c98443_90fa5cc1",
+        "filename": "web_page_replay_go/src/wpr.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2020-09-19T00:17:04Z",
+      "side": 1,
+      "message": "Maybe it\u0027d be useful to note in the output log when fuzzy url matching is disabled",
+      "revId": "de9ddf017ab396591cf2e8d3c4b065a10da1936b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
