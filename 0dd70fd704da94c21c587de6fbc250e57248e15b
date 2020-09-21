@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "36b23164_9cee7aaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-21T07:49:12Z",
+      "side": 1,
+      "message": "\u003e \u003e \u003e GQL has no CURRENT_DATETIME function equivalent!\n\u003e \u003e \n\u003e \u003e Can we take it as an input from Cloud Scheduler, something that can be provided when running the template?\n\u003e \n\u003e Cloud Scheduler doesn\u0027t have any facility for that that I can find.  My custom dataflow jobs avoided this by having parameters that default to the current date.\n\u003e\n\nYikes. Yeah I spent a few minutes trying to look that up but it seems pretty simple by design.\n \n\u003e \u003e \u003e But I\u0027m assuming this would be more aggressive than we want.  What\u0027s the intended lifetime of e.g. a COMPLETED token entity?\n\u003e \u003e \n\u003e \u003e We don\u0027t provide an SLO on that, but given the current expiration of 10m, it\u0027s not going to be very long. If we\u0027re running the deletion every 3 hours I\u0027m fine with that spread of delay (anywhere between 0 to 3 hours). Even if it\u0027s a 24H delay I suspect we can live with that.\n\u003e \n\u003e If literally 0 is acceptable then we don\u0027t need the COMPLETED or FAILED states, we can just delete those entities straight away :)\n\u003e  \n\nThere\u0027s a difference between being able to observe that the token was completed and not ever being able to observe it. 😊\n\nSo let me refine that -- at least 10 minutes to ~3 hours. 😆\n\n\u003e \u003e The only real concern for us is the storage cost. If we wait too long, we\u0027ll be generating a lot of tokens, and it will take longer to cleanup the tokens too.\n\u003e \n\u003e Yep, that\u0027d be a painful spiral to be in.\n\nIndeed. The other option here is to have a streaming dataflow job that will perform the deletion, and triggering a pub/sub message every hour or some such frequency. That way we control the deletion and can trigger it as often/sparsely as we want.",
+      "parentUuid": "9e7d0db3_f565ba79",
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea0008a9_78e9f03f",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 4
