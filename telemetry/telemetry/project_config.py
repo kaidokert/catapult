@@ -21,6 +21,7 @@ class ProjectConfig(object):
       features depend on chromium source tree's presence and those won't work
       in case this is not specified.
     expectations_file: A path to expectations file.
+    test: test.
   """
   def __init__(self, top_level_dir, benchmark_dirs=None,
                benchmark_aliases=None, client_configs=None,
