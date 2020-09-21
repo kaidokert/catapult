@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f459a663_05b1d36e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-09-21T06:03:35Z",
+      "side": 1,
+      "message": "So this looks a bit frustrating.  At first it seems like this is easy: there\u0027s a Google-provided Dataflow template to perform batch deletions on the result of a GQL query, and it\u0027s straightforward to schedule that to run daily or hourly or whatever via Cloud Scheduler.\n\nBut there\u0027s one piece missing: GQL has no CURRENT_DATETIME function equivalent!  So there\u0027s no way I can see to write a query relative to the current time, just a hard-coded literal time.  So we can\u0027t simply rely on timestamps to query for expired tokens.\n\nWe can could easily enough query by state, e.g.:\n\n  SELECT __key__ FROM `Token` WHERE state IN (2, 3);\n\nBut I\u0027m assuming this would be more aggressive than we want.  What\u0027s the intended lifetime of e.g. a COMPLETED token entity?\n\nWe should also consider the advice in https://cloud.google.com/datastore/docs/best-practices#deletions, which suggests that naive solutions may be unwise.",
+      "parentUuid": "5a946b42_c2bb95a1",
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea0008a9_78e9f03f",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 4
