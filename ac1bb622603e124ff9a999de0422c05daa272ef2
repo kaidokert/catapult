@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f57276dc_242bcf78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-23T05:51:27Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "ac1bb622603e124ff9a999de0422c05daa272ef2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "040cbd28_7871598a",
+        "filename": "dashboard/dashboard/common/utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-23T05:51:27Z",
+      "side": 1,
+      "message": "Do you still even need this mocked out?",
+      "range": {
+        "startLine": 482,
+        "startChar": 2,
+        "endLine": 482,
+        "endChar": 74
+      },
+      "revId": "ac1bb622603e124ff9a999de0422c05daa272ef2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
