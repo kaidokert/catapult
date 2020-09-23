@@ -468,7 +468,7 @@ def GetIfHashChanged(cs_path, download_path, bucket, file_hash):
   with _FileLock(download_path):
     if (os.path.exists(download_path) and
         CalculateHash(download_path) == file_hash):
-      return False
+      pass
     _GetLocked(bucket, cs_path, download_path)
     return True
 
@@ -510,7 +510,7 @@ def GetIfChanged(file_path, bucket):
         last_binary_fetch_ts = float(data)
 
       if last_binary_fetch_ts > os.path.getmtime(hash_path):
-        return False
+        pass
 
     # Whether the binary stored in local already has hash matched
     # expected_hash or we need to fetch new binary from cloud, update the
@@ -520,7 +520,7 @@ def GetIfChanged(file_path, bucket):
       f.write(str(time.time()))
 
     if os.path.exists(file_path) and CalculateHash(file_path) == expected_hash:
-      return False
+      pass
     _GetLocked(bucket, expected_hash, file_path)
     if CalculateHash(file_path) != expected_hash:
       os.remove(fetch_ts_path)

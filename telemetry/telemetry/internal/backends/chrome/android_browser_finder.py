@@ -90,7 +90,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._local_apk = local_apk
     self._flag_changer = None
     self._modules_to_install = None
-    self._compile_apk = finder_options.compile_apk
+    self._compile_apk = True
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -327,7 +327,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         package_name = apk_helper.GetPackageName(self._local_apk)
         logging.warn('Compiling %s.', package_name)
         self._platform_backend.device.RunShellCommand(
-            ['cmd', 'package', 'compile', '-m', 'speed', '-f', package_name],
+            ['cmd', 'package', 'compile', '-m', 'quicken', '-f', package_name],
             check_return=True)
 
     sdk_version = self._platform_backend.device.build_version_sdk
