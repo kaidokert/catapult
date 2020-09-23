@@ -246,11 +246,6 @@ class BrowserFinderOptions(optparse.Values):
         help='Specify Android App Bundle modules to install in addition to the '
         'base module. Ignored on Non-Android platforms.')
     group.add_option(
-        '--compile-apk',
-        action='store_true',
-        help='Will compile the APK under test using dex2oat in speed mode. '
-        'Ignored on non-Android platforms.')
-    group.add_option(
         '--avd-config',
         default=None,
         help='A path to an AVD configuration to use for starting an Android '
