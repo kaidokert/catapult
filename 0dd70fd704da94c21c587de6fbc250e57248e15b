@@ -109,6 +109,24 @@
     },
     {
       "key": {
+        "uuid": "7bd84e70_8d5c4f59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-09-23T09:15:29Z",
+      "side": 1,
+      "message": "Update: after writing this simple custom job I\u0027ve belatedly realised we can probably do it with the standard bulk delete job template!  The trick is we can provide a Javascript UDF to implement the necessary filtering.  See the javascript* options: https://cloud.google.com/dataflow/docs/guides/templates/provided-utilities#template-parameters_2\n\nSo the job invocation should be pretty straightforward.  The GQL needs to include the update_time in the projection, and then the UDF can filter it based on that — assuming that whatever the JS runtime environment is lets us get the current time via “new Date()”.  I\u0027ve uploaded a simple JS file to gs://chromeperf-dataflow/gc-tokens-udf.js that ought to do this.\n\nI can\u0027t really test this until we have some live Token entities, though.  So let\u0027s land this.  If the standard bulk delete + UDF fails, I\u0027ll deploy the custom delete job instead.",
+      "parentUuid": "68fe718b_1ac668d1",
+      "revId": "0dd70fd704da94c21c587de6fbc250e57248e15b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea0008a9_78e9f03f",
         "filename": "dashboard/dashboard/add_histograms.py",
         "patchSetId": 4
