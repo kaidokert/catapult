@@ -757,8 +757,8 @@ class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
     token.UpdateStateAsync(upload_completion_token.State.COMPLETED).wait()
 
     measurement2.key.delete()
-    measurement2 = upload_completion_token.Measurement.get_by_id(
-        test_path2, parent=token.key)
+    measurement2 = upload_completion_token.Measurement.GetByPath(
+        test_path2, token_id)
     self.assertEqual(measurement2, None)
 
     graph_data.Bot(

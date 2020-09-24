@@ -1765,13 +1765,13 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
             token_info['token'], 'PROCESSING'),
         mock.call(
             'Upload completion token measurement created. Token id: %s, '
-            'measurement id: %r', token_info['token'], measurement_id),
+            'measurement test path: %r', token_info['token'], measurement_id),
         mock.call(
             'Upload completion token updated. Token id: %s, state: %s',
             token_info['token'], 'PROCESSING'),
         mock.call(
             'Upload completion token measurement updated. Token id: %s, '
-            'measurement id: %s, state: %s', token_info['token'],
+            'measurement test path: %s, state: %s', token_info['token'],
             measurement_id, 'COMPLETED'),
         mock.call(
             'Upload completion token updated. Token id: %s, state: %s',
@@ -1821,13 +1821,13 @@ class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
             token_info['token'], 'PROCESSING'),
         mock.call(
             'Upload completion token measurement created. Token id: %s, '
-            'measurement id: %r', token_info['token'], measurement_id),
+            'measurement test path: %r', token_info['token'], measurement_id),
         mock.call(
             'Upload completion token updated. Token id: %s, state: %s',
             token_info['token'], 'PROCESSING'),
         mock.call(
             'Upload completion token measurement updated. Token id: %s, '
-            'measurement id: %s, state: %s', token_info['token'],
+            'measurement test path: %s, state: %s', token_info['token'],
             measurement_id, 'COMPLETED'),
         mock.call(
             'Upload completion token of the measurement is expried. Token '
