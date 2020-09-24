@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2481cf32_30b5a691",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-24T21:56:46Z",
+      "side": 1,
+      "message": "I\"m admittedly not very familiar with how Telemetry handles stories vs. pages off-hand, but moving this from RunStory to RunpageInteractions seems like it\u0027ll inadvertently change behavior. For example, if you can run multiple page interactions per story, then won\u0027t this end up calling ValidateAndMeasurePage more times than previously?",
+      "range": {
+        "startLine": 307,
+        "startChar": 6,
+        "endLine": 309,
+        "endChar": 61
+      },
+      "revId": "526e29c1e5dd14056f7679abda90ce967fa37a99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "041789ae_eaa62e9c",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
