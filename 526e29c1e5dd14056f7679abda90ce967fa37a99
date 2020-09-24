@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba991fa0_ec155bd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-24T22:16:58Z",
+      "side": 1,
+      "message": "Tentative LGTM, although I\u0027d like to hear John\u0027s opinion since I\u0027m not very familiar with this part of the code.",
+      "revId": "526e29c1e5dd14056f7679abda90ce967fa37a99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2481cf32_30b5a691",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
@@ -46,6 +63,30 @@
       "revId": "526e29c1e5dd14056f7679abda90ce967fa37a99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b097a7_6c9e3fa9",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-24T22:16:58Z",
+      "side": 1,
+      "message": "I didn\u0027t have any particular code in mind, it just seemed like something that was potentially an issue. After looking at it some more, I don\u0027t think that\u0027s possible anymore.",
+      "parentUuid": "3b77b145_8b64c4c6",
+      "range": {
+        "startLine": 307,
+        "startChar": 6,
+        "endLine": 309,
+        "endChar": 61
+      },
+      "revId": "526e29c1e5dd14056f7679abda90ce967fa37a99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     },
     {
       "key": {
