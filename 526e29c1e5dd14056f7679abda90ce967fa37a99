@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b77b145_8b64c4c6",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2020-09-24T22:12:54Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with it, either.\n\nBased on my analysis of the code, previously it was:\n  SharedPageState.RunStory()\n    Page.Run()\n      SamplePeriod(\u0027interactions\u0027)\n        Page.RunPageInteractions()\n    PageSet.ValidateAndMeasurePage()\n\nnow it\u0027s\n  SharedPageState.RunStory()\n    Page.Run()\n      SharedPageState.RunPageInteractions()\n        SamplePeriod(\u0027interactions\u0027)\n          Page.RunPageInteractions()\n          PageSet.ValidateAndMeasurePage()\n\nThere seems no difference in the code execution flow. The only change is the scope of SamplePeriod(\u0027interactions\u0027).\n\nAbout \"running multiple page interactions per story\", do you mean Page.RunInteractions() is called multiple times per RunStory()? Can you point me the code doing this?",
+      "parentUuid": "2481cf32_30b5a691",
+      "range": {
+        "startLine": 307,
+        "startChar": 6,
+        "endLine": 309,
+        "endChar": 61
+      },
+      "revId": "526e29c1e5dd14056f7679abda90ce967fa37a99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "041789ae_eaa62e9c",
         "filename": "telemetry/telemetry/page/shared_page_state.py",
         "patchSetId": 1
