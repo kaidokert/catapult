@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cf0e238_137f1928",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-24T00:00:02Z",
+      "side": 1,
+      "message": "PTAL\n\nCurrent plan if failures pop up again is to add strace to the first attempt. If that also ends up solving the issue, I\u0027ll probably re-add the load-bearing strace to the retry while I try to find other ways of debugging. It feels wrong, but it\u0027s better than widespread test flakes.",
+      "revId": "5d93afa0b69d7e0163671812b46fb330a655c723",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
