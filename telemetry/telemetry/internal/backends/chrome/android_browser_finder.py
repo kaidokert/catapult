@@ -14,6 +14,7 @@ import subprocess
 
 from devil import base_error
 from devil.android import apk_helper
+from devil.android import device_errors
 from devil.android import flag_changer
 from devil.android.sdk import version_codes
 from py_utils import dependency_util
@@ -90,7 +91,6 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._local_apk = local_apk
     self._flag_changer = None
     self._modules_to_install = None
-    self._compile_apk = finder_options.compile_apk
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -323,12 +323,17 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', self._local_apk)
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
-      if self._compile_apk:
-        package_name = apk_helper.GetPackageName(self._local_apk)
-        logging.warn('Compiling %s.', package_name)
+      # Also compile the APK.
+      package_name = apk_helper.GetPackageName(self._local_apk)
+      logging.warn('Compiling %s.', package_name)
+      try:
         self._platform_backend.device.RunShellCommand(
-            ['cmd', 'package', 'compile', '-m', 'speed', '-f', package_name],
+            ['cmd', 'package', 'compile',
+             '-m', 'quicken', '-f', package_name],
             check_return=True)
+      except device_errors.AdbShellCommandFailedError:
+        logging.warn('Compilation failed. '
+                     'Device likely doesn\'t have cmd package compile.')
 
     sdk_version = self._platform_backend.device.build_version_sdk
     # Bundles are in the ../bin directory, so it's safer to just check the
