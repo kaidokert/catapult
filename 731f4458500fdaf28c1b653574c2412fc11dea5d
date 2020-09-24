@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "212a0e25_4b87fc04",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-09-24T23:12:45Z",
+      "side": 1,
+      "message": "Note that this query is not transactionally safe, and because the Measurement kind turns into a separate entity group you\u0027re likely to get stale (eventually consistent) information.\n\nHave you considered using transactions instead?",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 146,
+        "endChar": 71
+      },
+      "revId": "731f4458500fdaf28c1b653574c2412fc11dea5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
