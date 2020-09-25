@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
+<link rel="import" href="/tracing/value/diagnostics/related_event_set.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.rendering', function() {
+  function findMainRenderer(chromeHelper) {
+    for (const r of Object.values(chromeHelper.rendererHelpers)) {
+      if (!r.mainThread) continue;
+      if (!r.compositorThread) continue;
+      for (const slice of r.mainThread.asyncSliceGroup.slices) {
+        if (slice.title === 'first-renderer-thread') return r;
+      }
+    }
+
+    for (const r of Object.values(chromeHelper.rendererHelpers)) {
+      if (r.mainThread && r.compositorThread) return r;
+    }
+
+    return undefined;
+  }
+
+  function computeAvgSmoothness(histograms, slices) {
+    let totalVisibleDuration = 0;
+    const allDropped = new Set();
+    for (const slice of slices) {
+      if (slice.title === 'PipelineReporter') {
+        if (slice.args && slice.args.chrome_frame_reporter.affects_smoothness) {
+          allDropped.add(slice.args.chrome_frame_reporter.frame_sequence);
+        }
+      } else if (slice.title === 'NeedsBeginFrames') {
+        totalVisibleDuration += slice.duration;
+      }
+    }
+    const totalDropped = allDropped.size;
+    const totalVsyncs = totalVisibleDuration / 16.667;
+
+    histograms.createHistogram('02_smoothness_avg_trace',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        (totalDropped * 100 / totalVsyncs),
+        {description: 'average dropped frames affecting smoothness',
+          summaryOptions: {}});
+  }
+
+  function computeMaxSmoothnessOfWindow(histograms, slices, windowLength) {
+    const queue = [];
+    const allDropped = new Set();
+    let totalDropped = 0;
+    let canReport = false;
+
+    for (const slice of slices) {
+      if (slice.title === 'PipelineReporter' && slice.args) {
+        if (allDropped.has(slice.args.chrome_frame_reporter.frame_sequence)) {
+          continue;
+        }
+        allDropped.add(slice.args.chrome_frame_reporter.frame_sequence);
+
+        while (queue.length > 0 &&
+            queue[0].startTime + windowLength < slice.start) {
+          if (!canReport) {
+            canReport = true;
+            const percentDropped = (totalDropped * 100) / queue.length;
+            reportSmoothnessRW(histograms, percentDropped, windowLength);
+          }
+
+          // Remove one element from the queue
+          const front = queue.shift();
+          if (front.dropped === true) {
+            totalDropped -= 1;
+          }
+        }
+
+        let isDropped = false;
+        if (slice.args.chrome_frame_reporter.affects_smoothness) {
+          isDropped = true;
+          totalDropped += 1;
+        } else if (
+          slice.args.chrome_frame_reporter.state !== 'STATE_PRESENTED_ALL') {
+          continue;
+        }
+
+        queue.push({
+          'dropped': isDropped,
+          'startTime': slice.start
+        });
+
+        if (canReport) {
+          const percentDropped = (totalDropped * 100) / queue.length;
+          reportSmoothnessRW(histograms, percentDropped, windowLength);
+          const name = (windowLength < 1000) ? '01_frames_in_queue_0' :
+            '01_frames_in_queue_';
+          histograms.createHistogram(
+              name + windowLength + '_ms',
+              tr.b.Unit.byName.unitlessNumber_smallerIsBetter, queue.length,
+              {description: 'Number frames in the rolling window of length ' +
+              windowLength + 'ms', summaryOptions: {}});
+        }
+      }
+    }
+  }
+
+  function reportSmoothnessRW(histograms, percentDropped, windowLength) {
+    const name = (windowLength < 1000) ? '00_smoothness_rolling_window_0' :
+      '00_smoothness_rolling_window_';
+    histograms.createHistogram(
+        name + windowLength + '_ms',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter, percentDropped,
+        {description: 'percentage of dropped frames affecting' +
+          'smoothness in the window of length ' + windowLength + 'ms',
+        summaryOptions: {}});
+  }
+
+  function addSmoothness(histograms, model, segments) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    let maxTotal = 0;
+    let maxDropped = 0;
+    const SMOOTHNESS_COUNTER_TRACE = 'SmoothnessDroppedFrame';
+    const ranges = segments.map((s) => s.boundsRange);
+    for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+      if (rendererHelper.compositorThread === undefined) continue;
+      const slices = rendererHelper.compositorThread.sliceGroup;
+      for (const slice of slices.getDescendantEventsInSortedRanges(ranges)) {
+        if (slice.title !== SMOOTHNESS_COUNTER_TRACE) continue;
+        if (maxTotal < parseInt(slice.args.total)) {
+          maxTotal = parseInt(slice.args.total);
+          maxDropped = parseInt(slice.args.smoothness);
+        }
+      }
+    }
+
+    histograms.createHistogram('03_smoothness_avg',
+        tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+        (maxDropped * 100 / maxTotal),
+        {description: 'average dropped frames affecting smoothness',
+          summaryOptions: {}});
+
+    const main = findMainRenderer(chromeHelper);
+    if (main) {
+      const slices = main.compositorThread.asyncSliceGroup.slices;
+      slices.sort(function(a, b) {
+        const distance = a.start - b.start;
+        if (distance === 0 && a.title === 'PipelineReporter' && a.args &&
+          b.args && a.args.chrome_frame_reporter.frame_sequence ===
+          b.args.chrome_frame_reporter.frame_sequence) {
+          if (a.args.chrome_frame_reporter.affects_smoothness) {
+            return -1;
+          } else if (b.args.chrome_frame_reporter.affects_smoothness) {
+            return 1;
+          }
+        }
+        return distance;
+      });
+
+      computeAvgSmoothness(histograms, slices);
+
+      const WINDOW_LENGTHS = [100, 300, 500, 1000, 1500, 2000, 3000];
+      for (const windowLength of WINDOW_LENGTHS) {
+        computeMaxSmoothnessOfWindow(histograms, slices, windowLength);
+      }
+    }
+  }
+
+  return {
+    addSmoothness,
+  };
+});
+
+</script>
