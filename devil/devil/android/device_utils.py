@@ -2071,7 +2071,7 @@ class DeviceUtils(object):
     host_checksums, device_checksums = reraiser_thread.RunAsync(
         (calculate_host_checksums, calculate_device_checksums))
     stale_apks = [
-        k for (k, v) in host_checksums.iteritems() if v not in device_checksums
+        k for (k, v) in host_checksums.iteritems()
     ]
     return stale_apks, set(host_checksums.values())
 
