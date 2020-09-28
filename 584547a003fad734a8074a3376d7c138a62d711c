@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f23f3de_a6ece457",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-09-28T15:57:26Z",
+      "side": 1,
+      "message": "filed https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1132884 for the mac trybot.",
+      "revId": "584547a003fad734a8074a3376d7c138a62d711c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
