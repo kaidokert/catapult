@@ -16,6 +16,24 @@
       "revId": "8fae573e3c9d1f283e2d5fb6e5d7deb356f0a142",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d5d5f8e_492c09e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161299
+      },
+      "writtenOn": "2020-09-28T15:40:25Z",
+      "side": 1,
+      "message": "I\u0027ve made another test CL and it looks like it\u0027s just caused by a flaky bot? https://chromium-review.googlesource.com/c/catapult/+/2434988",
+      "parentUuid": "3d4d71ed_6d611ecb",
+      "revId": "8fae573e3c9d1f283e2d5fb6e5d7deb356f0a142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
