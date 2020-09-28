@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbb14786_b3a19767",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-28T22:37:29Z",
+      "side": 1,
+      "message": "Associate this with a bug.",
+      "range": {
+        "startLine": 263,
+        "startChar": 6,
+        "endLine": 263,
+        "endChar": 10
+      },
+      "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1611492f_27ccb7d7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-28T22:37:29Z",
+      "side": 1,
+      "message": "Is this actually related to the rest of the changes?",
+      "range": {
+        "startLine": 94,
+        "startChar": 51,
+        "endLine": 94,
+        "endChar": 59
+      },
+      "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff245501_c0092b2f",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-09-28T22:37:29Z",
+      "side": 1,
+      "message": "It would probably be better to actually check for the existence of a file or whether the given path is a directory or not rather than looking at the string.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
