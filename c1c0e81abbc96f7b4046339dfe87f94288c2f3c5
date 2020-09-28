@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66c2f13a_cab899af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002481
+      },
+      "writtenOn": "2020-09-28T17:51:50Z",
+      "side": 1,
+      "message": "Kindly ping johnchen@...",
+      "revId": "c1c0e81abbc96f7b4046339dfe87f94288c2f3c5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
