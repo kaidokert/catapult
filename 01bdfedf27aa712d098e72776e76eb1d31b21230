@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b04ca053_bf7c31c4",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-09-28T23:14:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb14786_b3a19767",
+      "range": {
+        "startLine": 263,
+        "startChar": 6,
+        "endLine": 263,
+        "endChar": 10
+      },
+      "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1611492f_27ccb7d7",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1e172278_85b5b59f",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-09-28T23:14:41Z",
+      "side": 1,
+      "message": "Oh forgot to mention this in the notes. Added. I think it\u0027s relevant since the config file change is also needed for handling certain devices correctly.",
+      "parentUuid": "1611492f_27ccb7d7",
+      "range": {
+        "startLine": 94,
+        "startChar": 51,
+        "endLine": 94,
+        "endChar": 59
+      },
+      "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff245501_c0092b2f",
         "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
         "patchSetId": 4
@@ -68,6 +116,30 @@
       "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd147b65_ad49f59b",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-09-28T23:14:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff245501_c0092b2f",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "01bdfedf27aa712d098e72776e76eb1d31b21230",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
