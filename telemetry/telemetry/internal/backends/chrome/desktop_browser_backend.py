@@ -313,7 +313,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       if self.browser.platform.CooperativelyShutdown(self._proc, "chrome"):
         try:
           # Use a long timeout to handle slow Windows debug
-          # (see crbug.com/815004)
+          # (see crbug.com/815004).
           # Allow specifying a custom shutdown timeout via the
           # 'CHROME_SHUTDOWN_TIMEOUT' environment variable.
           # TODO(sebmarchand): Remove this now that there's an option to shut
