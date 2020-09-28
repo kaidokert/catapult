@@ -70,6 +70,24 @@
       "revId": "8fae573e3c9d1f283e2d5fb6e5d7deb356f0a142",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a213de95_12cb1e4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-28T16:30:07Z",
+      "side": 1,
+      "message": "I submitted the CL by clicking on Gerrit dots menu and select \"Submit\".",
+      "parentUuid": "b71dd4c3_2f566179",
+      "revId": "8fae573e3c9d1f283e2d5fb6e5d7deb356f0a142",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
