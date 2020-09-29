@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aba37701_a9f0483b",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1113499
+      },
+      "writtenOn": "2020-09-29T00:07:33Z",
+      "side": 1,
+      "message": "ssh_config can be a directory or a file? Why do we need to support both cases? There should at least be a comment calling this out.\n\nCould we use a different command line switch entirely?",
+      "revId": "b7c8f9af87b83c6aafe8bc139cf6ced2fb538e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
