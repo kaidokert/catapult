@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fde6cc87_65e18810",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-29T13:56:30Z",
+      "side": 1,
+      "message": "This change breaks the \u0027Dashboard Mac Tryserver\u0027.\nhttps://ci.chromium.org/p/catapult/builders/try/Dashboard%20Mac%20Tryserver\n\nWhen it\u0027s running on Mac-10.14 machine it works fine but it consistently fails on Mac-10.15.\nMac-10.14: https://chromium-swarm.appspot.com/task?id\u003d4eb540f86a09fe10\u0026o\u003dtrue\u0026w\u003dtrue\nMac-10.15: https://chromium-swarm.appspot.com/task?id\u003d4ed9325ef749d310\u0026o\u003dtrue\u0026w\u003dtrue",
+      "revId": "3f01e83f96b0c3cc3cd4f31bc4c097c55d13bdd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
