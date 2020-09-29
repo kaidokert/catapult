@@ -16,6 +16,24 @@
       "revId": "3f01e83f96b0c3cc3cd4f31bc4c097c55d13bdd1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c64f055c_88a8943e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-09-29T16:07:45Z",
+      "side": 1,
+      "message": "The reason for this CL was there were no Mac-10.13 bots at all around that time. I do see one Mac-10.13 bot right now (and one Mac-10.14 bot), so I\u0027m OK with the revert as a workaround, but we\u0027ll need to find a better long term fix (crbug.com/1132884).",
+      "parentUuid": "fde6cc87_65e18810",
+      "revId": "3f01e83f96b0c3cc3cd4f31bc4c097c55d13bdd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
