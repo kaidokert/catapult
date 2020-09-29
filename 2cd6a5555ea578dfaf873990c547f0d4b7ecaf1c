@@ -16,6 +16,24 @@
       "revId": "2cd6a5555ea578dfaf873990c547f0d4b7ecaf1c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57f3732c_c6da14b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-29T18:13:50Z",
+      "side": 1,
+      "message": "Think it would be good to revert to unblock the commit queue while someone investigate these timeout issues on Mac-10.15.\nMaybe you could force the submit, \u0027Catapult Mac Tryserver\u0027 doesn\u0027t work on Mac-10.15 either.",
+      "parentUuid": "6b868d66_8be92251",
+      "revId": "2cd6a5555ea578dfaf873990c547f0d4b7ecaf1c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
