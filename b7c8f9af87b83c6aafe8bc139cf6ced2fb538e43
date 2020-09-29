@@ -16,6 +16,24 @@
       "revId": "b7c8f9af87b83c6aafe8bc139cf6ced2fb538e43",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "772dba50_4315e759",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-09-29T00:48:58Z",
+      "side": 1,
+      "message": "Oh this is meant to be a very temporary change as we want to transition from passing the ssh config directory to the file itself in https://source.chromium.org/chromium/chromium/src/+/master:content/test/gpu/run_gpu_integration_test_fuchsia.py. I added a TODO in browser_options explaining that one of the flags will be deleted.",
+      "parentUuid": "aba37701_a9f0483b",
+      "revId": "b7c8f9af87b83c6aafe8bc139cf6ced2fb538e43",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
