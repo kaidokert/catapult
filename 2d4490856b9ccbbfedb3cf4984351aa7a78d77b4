@@ -22,6 +22,30 @@
       "revId": "2d4490856b9ccbbfedb3cf4984351aa7a78d77b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "938edd6d_4bd22458",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_webrtc_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-09-29T11:05:52Z",
+      "side": 1,
+      "message": "It\u0027s the perf dashboard bot (webrtc-win-large-tests, webrtc-android-tests-nexus5-marshmallow, ...).\nThis code will never be reached with no configuration, I removed the default value.",
+      "parentUuid": "69073f0b_e1a2d213",
+      "range": {
+        "startLine": 62,
+        "startChar": 20,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "2d4490856b9ccbbfedb3cf4984351aa7a78d77b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
