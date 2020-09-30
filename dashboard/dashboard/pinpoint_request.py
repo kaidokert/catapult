@@ -260,6 +260,7 @@ def PinpointParamsFromBisectParams(params):
         'start_git_hash': Git hash of earlier revision.
         'end_git_hash': Git hash of later revision.
         'bug_id': Associated bug.
+        'project_id': Associated Monorail project.
     }
 
   Returns:
@@ -310,8 +311,8 @@ def PinpointParamsFromBisectParams(params):
         utils.TestKey(test_path), start_commit, end_commit)
 
   issue = anomaly.Issue(
-      project_id='chromium', issue_id=int(
-          params['bug_id'])) if params['bug_id'] else None
+      project_id=params.get('project_id', 'chromium'),
+      issue_id=int(params['bug_id'])) if params['bug_id'] else None
 
   return pinpoint_service.MakeBisectionRequest(
       test=utils.TestKey(test_path).get(),
