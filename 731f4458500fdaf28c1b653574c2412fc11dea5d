@@ -46,6 +46,30 @@
       "revId": "731f4458500fdaf28c1b653574c2412fc11dea5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc27a34c_c3e6b599",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-09-30T06:26:39Z",
+      "side": 1,
+      "message": "I think a transaction will help if you\u0027re writing to the same entity group more than once, because then the whole transaction will count as one write rather than several.\n\nI believe the relevant docs are https://cloud.google.com/datastore/docs/cloud-datastore-best-practices#entities and https://cloud.google.com/datastore/docs/concepts/structuring_for_strong_consistency#entity_group_limitations_on_transactions.\n\nI\u0027m not super confident about this, but I think it makes sense to try using transactions as first step here, because if it works it will be safe.  Whereas using separate entity groups definitely adds consistency problems.",
+      "parentUuid": "481102f1_52986930",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 146,
+        "endChar": 71
+      },
+      "revId": "731f4458500fdaf28c1b653574c2412fc11dea5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
