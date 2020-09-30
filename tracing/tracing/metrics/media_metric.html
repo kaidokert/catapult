@@ -70,6 +70,7 @@ tr.exportTo('tr.metrics', function() {
 
       processData.calculateSeekTimes(mainThread);
       processData.calculateBufferingTimes(mainThread);
+      processData.calculateVideoPlaybackQuality(mainThread);
 
       processData.addMetricToHistograms(histograms);
     }
@@ -160,6 +161,18 @@ tr.exportTo('tr.metrics', function() {
       }
     }
 
+    calculateVideoPlaybackQuality(mainThread) {
+      for (const event of mainThread.sliceGroup.getDescendantEvents()) {
+        if (event.title === 'media::VideoPlaybackRoughness') {
+          this.getPerPlaybackObject_(event.args.id)
+              .processPlaybackRoughness(event.args.roughness);
+        } else if (event.title === 'media::VideoPlaybackFreezing') {
+          this.getPerPlaybackObject_(event.args.id)
+              .processPlaybackFreezing(event.args.freezing);
+        }
+      }
+    }
+
     addMetricToHistograms(histograms) {
       for (const [id, playbackData] of this.playbackIdToDataMap_) {
         playbackData.addMetricToHistograms(histograms);
@@ -191,6 +204,8 @@ tr.exportTo('tr.metrics', function() {
       this.seekError_ = false;
       this.seekTimes_ = new Map();
       this.currentSeek_ = undefined;
+      this.roughness_ = undefined;
+      this.freezing_ = undefined;
     }
 
     // API methods for retrieving metric values. Each method returns undefined
@@ -243,6 +258,16 @@ tr.exportTo('tr.metrics', function() {
     get seekTimes() {
       if (this.seekError_ || this.currentSeek_ !== undefined) return new Map();
       return this.seekTimes_;
+    }
+
+    // Reports aggregate roughness.
+    get roughness() {
+      return this.roughness_;
+    }
+
+    // Reports aggregate freezing.
+    get freezing() {
+      return this.freezing_;
     }
 
     // API methods for processing data from trace events.
@@ -359,6 +384,20 @@ tr.exportTo('tr.metrics', function() {
       }
     }
 
+    processVideoRoughness(roughness) {
+      // Record the worst roughness.
+      if (this.roughness_ === undefined || this.roughness_ > roughness) {
+        this.roughness_ = roughness;
+      }
+    }
+
+    processVideoFreezing(freezing) {
+      // Record the worst freezing.
+      if (this.freezing_ === undefined || this.freezing_ > freezing) {
+        this.freezing_ = freezing;
+      }
+    }
+
     addMetricToHistograms(histograms) {
       this.addSample_(histograms, 'time_to_video_play',
           tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
@@ -384,6 +423,12 @@ tr.exportTo('tr.metrics', function() {
       this.addSample_(histograms, 'buffering_time',
           tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
           this.bufferingTime);
+      this.addSample_(histograms, 'roughness',
+          tr.b.Unit.byName.count_smallerIsBetter,
+          this.roughness);
+      this.addSample_(histograms, 'freezing',
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          this.freezing);
     }
 
     // @private
