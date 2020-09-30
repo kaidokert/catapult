@@ -70,6 +70,30 @@
       "revId": "731f4458500fdaf28c1b653574c2412fc11dea5d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd4aa388_1fffa20c",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2020-09-30T09:21:11Z",
+      "side": 1,
+      "message": "Hm, I actually don\u0027t see a good way to use transactions here. Can you give me a hint?\n\nIf the transaction is limited to 25 entity groups per query - we can\u0027t perform \"Measurement.query(ndb.AND(Measurement.test_path \u003d\u003d test_path, Measurement.token \u003d\u003d ndb.Key(\u0027Token\u0027, token_id))).get()\" query unless we make token and nested measurements one entity group again. Which would get us back to the \"too much contention\" problem.\n\nI think we could split all token\u0027s measurements into a 25 separate entity groups, but it seems like an over-complication. And there is no guarantee that it won\u0027t cause \"too much contention\" (sometimes token can have 1000+ measurements).\n\nActually I don\u0027t see a big problem in a stale data here. There is no way we would miss some measurement. Since we add all measurements at /add_histogram and then access them at /add_histogram_queue. We only could get stale state or error_message information, which can\u0027t affect behavior of the system. In worst case scenario we will get misleading logs at \"_LogStateChanged\". But I can just change logs, so it won\u0027t be a problem. And add a few clarification comments.\n\nDoes it make sense? Or am I missing something?",
+      "parentUuid": "dc27a34c_c3e6b599",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 146,
+        "endChar": 71
+      },
+      "revId": "731f4458500fdaf28c1b653574c2412fc11dea5d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
