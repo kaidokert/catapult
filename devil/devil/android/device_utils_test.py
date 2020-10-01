@@ -1074,6 +1074,27 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
         self.device.Install(
             mock_apk_with_fake, fake_modules=fake_modules, retries=0)
 
+  def testInstall_packageNotAvailableAfterInstall(self):
+    with self.patch_call(
+        self.call.device.product_name,
+        return_value='notflounder'), (self.patch_call(
+            self.call.device.build_version_sdk, return_value=23)), (
+                self.patch_call(self.call.device.IsApplicationInstalled,
+                                return_value=False)):
+      with self.assertCalls(
+          (self.call.device._FakeInstall(set(), None, 'test.package')),
+          (mock.call.os.path.exists(TEST_APK_PATH), True),
+          (self.call.device._GetApplicationPathsInternal(TEST_PACKAGE), []),
+          self.call.adb.Install(TEST_APK_PATH,
+                                reinstall=False,
+                                streaming=None,
+                                allow_downgrade=False)):
+        with self.assertRaisesRegexp(
+            device_errors.CommandFailedError,
+            'not installed on device after explicit install attempt'):
+          self.device.Install(
+              DeviceUtilsInstallTest.mock_apk, retries=0)
+
 
 class DeviceUtilsInstallSplitApkTest(DeviceUtilsTest):
 
