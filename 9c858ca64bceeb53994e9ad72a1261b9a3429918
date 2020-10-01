@@ -69,6 +69,24 @@
       "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14ced7dd_7a9f81b2",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-10-01T17:41:26Z",
+      "side": 1,
+      "message": "gsutil supports two different wildcards. The common wildcard \u0027*\u0027 follows the usual shell globbing rules. It matches only objects in one directory. The recursive wildcard \u0027**\u0027 matches everything including slashes, the way that you described.\n\nThe \u0027-d\u0027 option doesn\u0027t affect matching rules, it only affects what gsutil does with those objects that matched. With \u0027-d\u0027 option, gsutil just prints the path of the matched object, whether it\u0027s a file or a directory. Without this option, it additionally prints the contents of every matched directory.\n\nIn your example,\n\n  $ gsutil ls -d gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/\n\nlists only one object (the directory itself), because it\u0027s literally the only object that matched the supplied pattern. To list all files in the directory, you need to supply a pattern that matches those files:\n\n  $ gsutil ls -d gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/*\n\nSo, with \u0027-d\u0027 option the ListFiles function will do exactly what\u0027s written in its description: list all files that match the pattern (whether it\u0027s a recursive pattern or not, doesn\u0027t matter). If you need a different behavior, feel free to disregard my comment, but please update the description of what this function should do.",
+      "parentUuid": "6e00c919_bedddffb",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
