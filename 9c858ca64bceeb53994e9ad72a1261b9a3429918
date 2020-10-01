@@ -87,6 +87,24 @@
       "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2aa17394_3a53e9a5",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-01T19:08:48Z",
+      "side": 1,
+      "message": "Ah yes you\u0027re right! I didn\u0027t include * in my example and really confused myself. Sorry about that, and thank you for pointing this out.\n\nSince \"**\" already skips directories, I still don\u0027t think we need a ListFiles function that manually inspects filenames for ending slashes to skip directories. The one downside is that you can\u0027t make it list only things in the current directory and not recurse into subdirectories, but I believe for our use case all we need to do is something like \"gsutil ls \"gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_*/trace/traceEvents/**\" to get the path to our proto trace file, so if we make `List` accept an optional second `path` argument, we will not need this ListFiles function.\n\nIf I\u0027m missing something, and we actually have a real need for a ListFiles function that lists only the files in a given directory, then factoring out the common bits into `ListNonRecursive` and having a separate `ListFiles` function SGTM.",
+      "parentUuid": "14ced7dd_7a9f81b2",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
