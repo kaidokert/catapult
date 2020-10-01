@@ -229,6 +229,36 @@ def ListDirs(bucket, path=''):
       dirs.append(url[len(bucket_prefix):])
   return dirs
 
+
+def ListFiles(bucket, path=''):
+  """Returns only files matching the given path in bucket.
+
+  Args:
+    bucket: Name of cloud storage bucket to look at.
+    path: Path within the bucket to filter to. Path can include wildcards.
+      path = 'foo*' will return ['mybucket/foo1/file.txt',
+      'mybucket/foo2/file.txt, ... ] but not mybucket/foo1/ or mybucket/foo2/.
+
+  Returns:
+    A list of files. All returned path are relative to the bucket root
+    directory. For example, List('my-bucket', path='foo/') will returns results
+    of the form ['/foo/123', '/foo/124', ...], as opposed to ['123', '124',
+    ...].
+  """
+  bucket_prefix = 'gs://%s' % bucket
+  full_path = '%s/%s' % (bucket_prefix, path)
+  stdout = _RunCommand(['ls', full_path])
+  files = []
+  for url in stdout.splitlines():
+    if len(url) == 0:
+      continue
+    # The only way to identify files is by filtering for trailing slash.
+    # See https://github.com/GoogleCloudPlatform/gsutil/issues/466
+    if url[-1] != '/':
+      files.append(url[len(bucket_prefix):])
+  return files
+
+
 def Exists(bucket, remote_path):
   try:
     _RunCommand(['ls', 'gs://%s/%s' % (bucket, remote_path)])
