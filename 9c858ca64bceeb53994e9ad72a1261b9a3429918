@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f48494f9_8b7a9b8e",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-10-01T16:16:03Z",
+      "side": 1,
+      "message": "To avoid code duplication, I\u0027d suggest factoring out the common code between ListFiles and ListDirs into a helper function, something like \"ListNonRecursive\".",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5aeedc6_f52546b1",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2020-10-01T16:16:03Z",
+      "side": 1,
+      "message": "I think you still need -d here. Imagine the following bucket contents:\n\n  foo1/\n  foo1/file.txt\n  foo2/\n  foo2/file.txt\n  foo.txt\n\nWithout \u0027-d\u0027 option, ListFiles(bucket, \u0027foo*\u0027) will list not only foo.txt (which matches the pattern) but also foo1/file.txt and foo2/file.txt (which don\u0027t).",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
