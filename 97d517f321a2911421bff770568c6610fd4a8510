@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa03505c_0a4516a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-10-01T21:42:56Z",
+      "side": 1,
+      "message": "lgtm, but I\u0027d keep your ear to the ground once this rolls into chrome\n\nWouldn\u0027t be surprised if there\u0027s some wonky APK under test out there that fails this check 100% of the time.",
+      "revId": "97d517f321a2911421bff770568c6610fd4a8510",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
