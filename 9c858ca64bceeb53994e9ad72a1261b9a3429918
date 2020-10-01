@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "921e0521_5cb9b01f",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-01T16:55:23Z",
+      "side": 1,
+      "message": "As I mention in the comment below, we can\u0027t use \"-d\", so this function has more in common with the `List` function above. I thought again (sorry Julia, when we had our 1:1 I know I said something different) but I think all you need to do is add a optional second argument \"prefix\" or \"path\" or \"query\" to `List`. If you use ** in your prefix, you won\u0027t have to worry about directories [1] . This is what I get: \n\n$ gsutil ls \"gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry**\"\nOutput: \ngs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/logs.txt\ngs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace.html\ngs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/telemetry/tmps91z09.pb\ngs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/tmp945oqj.pb.gz\n\nNote that entries like \"://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/\" is automatically missing from the output.\n\nSo you can then do cloud_storage.List(\u0027chrome-telemetry-output\u0027, prefix\u003d\u002720200907T121136_19134/power.desktop/uol/retry**\u0027) or something like that to get to our trace file. \n\n---\n[1] https://cloud.google.com/storage/docs/gsutil/commands/ls#directory-by-directory,-flat,-and-recursive-listings\n\n^ This mentions using \"-r\", but I don\u0027t seem to need it when using wildcards. If we need the -r flag now (in case my local gsutil is too old  ¯\\_(ツ)_/¯), we can maybe add an optional \"recursive\" boolean flag to `List` as well.",
+      "parentUuid": "f48494f9_8b7a9b8e",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5aeedc6_f52546b1",
         "filename": "common/py_utils/py_utils/cloud_storage.py",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2020-10-01T16:16:03Z",
       "side": 1,
       "message": "I think you still need -d here. Imagine the following bucket contents:\n\n  foo1/\n  foo1/file.txt\n  foo2/\n  foo2/file.txt\n  foo.txt\n\nWithout \u0027-d\u0027 option, ListFiles(bucket, \u0027foo*\u0027) will list not only foo.txt (which matches the pattern) but also foo1/file.txt and foo2/file.txt (which don\u0027t).",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e00c919_bedddffb",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-01T16:55:23Z",
+      "side": 1,
+      "message": "I think with the -d option, `gsutil ls` only lists directories, so we won\u0027t get back \"foo.txt.\"   I just tried this locally:\n\n$ gsutil ls gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/\n\u003e\u003e gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/tmp945oqj.pb.gz\n\n$ gsutil ls -d gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/\n\u003e\u003e # blank line\n\u003e\u003e gs://chrome-telemetry-output/20200907T121136_19134/power.desktop/uol/retry_0/trace/traceEvents/\n\nI think once you use wildcards, it is impossible to ask google cloud to be \"non-recursive\" since internally it has no concept of directories - all files exist in a flat namespace and the filenames just happen to have slashes in their name. Once you use foo*, it will always match all paths that start with foo*, no matter how many subdirectories deep.",
+      "parentUuid": "c5aeedc6_f52546b1",
       "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
