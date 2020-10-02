@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8012115_b8603e28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-02T18:25:37Z",
+      "side": 1,
+      "message": "Why did you revert this? There\u0027s nothing wrong with the change, you just need to do a manual roll.\n\nWhich I was going to do ...",
+      "revId": "b494582b95e5351c5cbe358e75af393a3af1becb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
