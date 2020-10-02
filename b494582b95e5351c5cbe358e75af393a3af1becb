@@ -16,6 +16,24 @@
       "revId": "b494582b95e5351c5cbe358e75af393a3af1becb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b1f8ab69_f3a10378",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-02T18:29:37Z",
+      "side": 1,
+      "message": "Was trying to get another revert in for https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1134629, which was getting blocked due to the autoroll failing.",
+      "parentUuid": "e8012115_b8603e28",
+      "revId": "b494582b95e5351c5cbe358e75af393a3af1becb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
