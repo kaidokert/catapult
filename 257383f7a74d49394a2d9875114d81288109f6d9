@@ -16,6 +16,41 @@
       "revId": "257383f7a74d49394a2d9875114d81288109f6d9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1401b49_8a414ac9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167239
+      },
+      "writtenOn": "2020-10-02T05:46:54Z",
+      "side": 1,
+      "message": "I think you could add a test like this one: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/extras/importer/trace_event_importer_test.html;l\u003d6549;drc\u003df6100576bcc400e40bfc4768f99d22cda1bd302e\n\nYou can construct two events with the same id but different pids. I\u0027m not familiar with this code base, only the v8 side that emits the trace events, but it looks like there is some info about running tests here: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/README.md",
+      "parentUuid": "9a44c9cf_93fde860",
+      "revId": "257383f7a74d49394a2d9875114d81288109f6d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d32d03d_3bf45043",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167239
+      },
+      "writtenOn": "2020-10-02T05:46:54Z",
+      "side": 1,
+      "message": "Thanks for working on this!\noysteine@ can you help with an owners review? Or pass on to someone appropriate, thanks.\n\nLGTM from a v8 point-of-view.",
+      "revId": "257383f7a74d49394a2d9875114d81288109f6d9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
