@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f128063b_6563e162",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-05T15:29:53Z",
+      "side": 1,
+      "message": "Still LGTM.\n\nThanks for updating the CL description. The change LGTM (I was too happy trigger before).",
+      "revId": "e455d1b71295a62561f01a2b8ac345a37063a0a0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
