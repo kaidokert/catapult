@@ -22,6 +22,30 @@
       "revId": "bb11075f3e156b5cd963f2f2c51b9e40eabe3fbf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08450307_18c198cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-05T10:26:50Z",
+      "side": 1,
+      "message": "With the JS console yes.\nI tried to understand the root cause but without success.\nCreated crbug.com/1135092 for this purpose.",
+      "parentUuid": "2556f3d0_2cb25bc2",
+      "range": {
+        "startLine": 10,
+        "startChar": 43,
+        "endLine": 10,
+        "endChar": 87
+      },
+      "revId": "bb11075f3e156b5cd963f2f2c51b9e40eabe3fbf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
