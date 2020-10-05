@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "843ff485_2e12c708",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-05T10:01:43Z",
+      "side": 1,
+      "message": "How does this change affect the pop-up content?\n\nI haven\u0027t looked too deeply into the template logic, can you give me some pointers to speed up the review?",
+      "revId": "df4855f936377afd54f82e572151eb9416c1a6c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f52bf514_c4c007ef",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-05T10:01:43Z",
+      "side": 1,
+      "message": "At this stage, don\u0027t we already have these two info?",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "df4855f936377afd54f82e572151eb9416c1a6c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
