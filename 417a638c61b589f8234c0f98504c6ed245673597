@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c763477_7ab96a83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-05T09:53:58Z",
+      "side": 1,
+      "message": "LGTM but let\u0027s wait for Dean\u0027s input on this.\n\nSee the only comment I have left since I think there might be a bug in one of the retry machinery.",
+      "revId": "417a638c61b589f8234c0f98504c6ed245673597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0bd62284_47cc3c2d",
+        "filename": "dashboard/dashboard/common/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-05T09:53:58Z",
+      "side": 1,
+      "message": "This line LGTM but while reading the code I saw these two lines:\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:chromeperf/src/chromeperf/services/issue_tracker_service.py;l\u003d160;drc\u003d2a2f1d8ae8272a340cafa2e29751586869d89cdd\n\nhttps://source.chromium.org/chromium/infra/infra/+/master:chromeperf/src/chromeperf/services/issue_tracker_service.py;l\u003d165;drc\u003d2a2f1d8ae8272a340cafa2e29751586869d89cdd\n\nAnd they are not passing the project in case there is a retry, should we fix them as well?",
+      "range": {
+        "startLine": 342,
+        "startChar": 2,
+        "endLine": 343,
+        "endChar": 59
+      },
+      "revId": "417a638c61b589f8234c0f98504c6ed245673597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    }
+  ]
+}
