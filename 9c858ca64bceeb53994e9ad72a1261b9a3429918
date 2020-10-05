@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "cbe85296_03c8bca6",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1445052
+      },
+      "writtenOn": "2020-10-05T10:08:16Z",
+      "side": 1,
+      "message": "Thank you for the comments!\nI have modified the List function.",
+      "parentUuid": "921e0521_5cb9b01f",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5aeedc6_f52546b1",
         "filename": "common/py_utils/py_utils/cloud_storage.py",
         "patchSetId": 6
@@ -105,6 +123,24 @@
       "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb29fb05_16c3714d",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1445052
+      },
+      "writtenOn": "2020-10-05T10:08:16Z",
+      "side": 1,
+      "message": "Thank you for your comments!\nNo need for new ListFiles function: I have rewritten the List function.",
+      "parentUuid": "2aa17394_3a53e9a5",
+      "revId": "9c858ca64bceeb53994e9ad72a1261b9a3429918",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
