@@ -16,6 +16,24 @@
       "revId": "25c6e09018bf063da06bdd5e23b049d22326e0ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "327097ff_d72d90ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-05T16:42:56Z",
+      "side": 1,
+      "message": "Thanks for the pointer. Looks like we\u0027ll need to do a manual roll and update that.",
+      "parentUuid": "14fad28e_abd8fb3e",
+      "revId": "25c6e09018bf063da06bdd5e23b049d22326e0ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
