@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4390ae20_63f0b28a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-05T10:14:52Z",
+      "side": 1,
+      "message": "The issue_id is the id of a bisection run, in this case there is not bisection ran.\n\nThe issue_id pass to bug_result.html becomes lastSubmittedTryJobId and is tested here:\nhttps://source.chromium.org/chromium/_/chromium/catapult.git/+/d82d30da43cdc96ee5026acc1e0d7d8a33d14313:dashboard/dashboard/elements/triage-dialog.html;l\u003d124;drc\u003da02d5dc9584e3476f02a2c03b4fa186134bd0c16\n\nNot sure how it works but when no issue_id is pass then !!lastSubmittedTryJobId returns true.",
+      "parentUuid": "843ff485_2e12c708",
+      "revId": "df4855f936377afd54f82e572151eb9416c1a6c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f52bf514_c4c007ef",
         "filename": "dashboard/dashboard/associate_alerts.py",
         "patchSetId": 1
@@ -39,6 +57,30 @@
       "revId": "df4855f936377afd54f82e572151eb9416c1a6c2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5df1c49_f914b5c1",
+        "filename": "dashboard/dashboard/associate_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-05T10:14:52Z",
+      "side": 1,
+      "message": "As mentioned in the other comment, these infos are coming from a bisection run.\nIn the triaging with existing bug there is no bisection run.",
+      "parentUuid": "f52bf514_c4c007ef",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "df4855f936377afd54f82e572151eb9416c1a6c2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
