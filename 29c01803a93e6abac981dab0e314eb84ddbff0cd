@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d61b0d38_a5307838",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-05T12:17:36Z",
+      "side": 1,
+      "message": "When I triage on an existing bug with a bisect error I get the following:\n\nBug webrtc:12010 created/updated. Bisect job started. No bisect automatically started. Bot: webrtc-android-tests-nexus6-mob30k has no corresponding Pinpoint bot.\n\nLooking at the below code, it is as if {{!!lastSubmittedTryJobId}} returns true even though {{lastSubmittedTryJobId}} is an empty string...\n\nhttps://source.chromium.org/chromium/_/chromium/catapult.git/+/10850e1e5ba950f62d4ecf0479d637c67fd3f904:dashboard/dashboard/elements/triage-dialog.html;l\u003d124;bpv\u003d1;bpt\u003d0;drc\u003da02d5dc9584e3476f02a2c03b4fa186134bd0c16\n\n",
+      "revId": "29c01803a93e6abac981dab0e314eb84ddbff0cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
