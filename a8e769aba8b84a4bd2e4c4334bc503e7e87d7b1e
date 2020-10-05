@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86b21aa3_6edee3dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-10-05T20:38:15Z",
+      "side": 1,
+      "message": "Hey Sadrul,\n\nWe chatted about removing \u0027frame_lengths\u0027 when going over the current frame-related dashboard problems. This change removes it. Could you PTAL?\n\nThanks,\nJonathan",
+      "revId": "a8e769aba8b84a4bd2e4c4334bc503e7e87d7b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
