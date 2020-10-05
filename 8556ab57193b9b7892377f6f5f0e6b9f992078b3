@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fbdf3078_f5c83bd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-05T09:55:22Z",
+      "side": 1,
+      "message": "LGTM but let\u0027s mention in the CL description that we made some changes (in order to signal this is not a clean reland).",
+      "revId": "8556ab57193b9b7892377f6f5f0e6b9f992078b3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
