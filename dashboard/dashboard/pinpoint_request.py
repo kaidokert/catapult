@@ -311,7 +311,7 @@ def PinpointParamsFromBisectParams(params):
 
   issue = anomaly.Issue(
       project_id='chromium',
-      issue_id=int(params['bug_id']) if params['bug_id'] else None)
+      issue_id=int(params['bug_id']) if params['bug_id'].isnumeric() else None)
 
   return pinpoint_service.MakeBisectionRequest(
       test=utils.TestKey(test_path).get(),
