@@ -16,6 +16,23 @@
       "message": "Please take a look?",
       "revId": "ce31e87bf926e60e0ece8143c0d559e05fb17a48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95f2163a_657c246a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-06T22:03:17Z",
+      "side": 1,
+      "message": "This change is needed because otherwise Chromium Android\u0027s system for detecting\npython dependencies (//build/print_python_deps.py and the *.pydeps files) won\u0027t\nwork correctly if six.py is installed locally as part of the system python\n(which it is on most distros but apparently isn\u0027t on the linux bots).",
+      "revId": "ce31e87bf926e60e0ece8143c0d559e05fb17a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
