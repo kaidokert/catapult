@@ -39,6 +39,53 @@
       "revId": "417a638c61b589f8234c0f98504c6ed245673597",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "058acc06_f6a6b530",
+        "filename": "dashboard/dashboard/common/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-06T01:45:39Z",
+      "side": 1,
+      "message": "Yes, let\u0027s fix these too -- but I\u0027m happy to do it in another CL once we confirm that this works sufficiently.",
+      "parentUuid": "0bd62284_47cc3c2d",
+      "range": {
+        "startLine": 342,
+        "startChar": 2,
+        "endLine": 343,
+        "endChar": 59
+      },
+      "revId": "417a638c61b589f8234c0f98504c6ed245673597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f7ca17d_31d3bcfd",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-06T01:45:39Z",
+      "side": 1,
+      "message": "FWIW, Pinpoint looks for \u0027project\u0027 not \u0027project_id\u0027:\n\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/pinpoint/handlers/new.py;l\u003d72;drc\u003d292d9a8341d30f1ed73d68a0854586cbe05742fb",
+      "range": {
+        "startLine": 263,
+        "startChar": 9,
+        "endLine": 263,
+        "endChar": 19
+      },
+      "revId": "417a638c61b589f8234c0f98504c6ed245673597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": true
     }
   ]
 }
