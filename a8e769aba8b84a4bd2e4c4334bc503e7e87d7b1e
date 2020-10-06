@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "46696056_5bf3a4e8",
         "filename": "/COMMIT_MSG",
@@ -20,10 +21,34 @@
         "endChar": 21
       },
       "revId": "a8e769aba8b84a4bd2e4c4334bc503e7e87d7b1e",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aaa528b_73498605",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-10-06T17:51:52Z",
+      "side": 1,
+      "message": "I\u0027ve filed crbug.com/1135662 to cover the specifics for frame_time.html fixes.\n\nI\u0027ve set it as blocking both 894287, as well as the 1124109.",
+      "parentUuid": "46696056_5bf3a4e8",
+      "range": {
+        "startLine": 16,
+        "startChar": 14,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "a8e769aba8b84a4bd2e4c4334bc503e7e87d7b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
       "key": {
         "uuid": "86b21aa3_6edee3dd",
         "filename": "/PATCHSET_LEVEL",
@@ -37,10 +62,10 @@
       "side": 1,
       "message": "Hey Sadrul,\n\nWe chatted about removing \u0027frame_lengths\u0027 when going over the current frame-related dashboard problems. This change removes it. Could you PTAL?\n\nThanks,\nJonathan",
       "revId": "a8e769aba8b84a4bd2e4c4334bc503e7e87d7b1e",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "dd973842_40e6655a",
         "filename": "/PATCHSET_LEVEL",
@@ -54,8 +79,25 @@
       "side": 1,
       "message": "Would you mind sending out a mail to chrome-gpu-metrics@ before landing this? Thanks! LGTM",
       "revId": "a8e769aba8b84a4bd2e4c4334bc503e7e87d7b1e",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4980b260_dbd19096",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-10-06T17:51:52Z",
+      "side": 1,
+      "message": "Will do! I\u0027ll forward the design doc to that list too.",
+      "parentUuid": "dd973842_40e6655a",
+      "revId": "a8e769aba8b84a4bd2e4c4334bc503e7e87d7b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
