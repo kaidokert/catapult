@@ -280,6 +280,18 @@ _GOOGLE_FEATURES_RE = re.compile(r'^\s*com\.google\.')
 
 _EMULATOR_RE = re.compile(r'^generic_.*$')
 
+# Regular expressions for determining if a package is installed using the
+# output of `dumpsys package`. Some packages automatically append some version
+# to the package name when installing, in which case we need to look for that.
+# Matches lines like "Package [com.google.android.youtube] (c491050):".
+_STANDARD_PACKAGE_RE_STR = r'^\s*Package\s*\[%s\]\s*\(\w*\):$'
+# Matches lines like
+# "Package [org.chromium.trichromelibrary_425300033] (e476383):".
+_VERSIONED_PACKAGE_RE_STR = r'^\s*Package\s*\[%s_\d+\]\s*\(\w*\):$'
+_VERSIONED_PACKAGES = [
+    'org.chromium.trichromelibrary',
+]
+
 PS_COLUMNS = ('name', 'pid', 'ppid')
 ProcessInfo = collections.namedtuple('ProcessInfo', PS_COLUMNS)
 
@@ -777,7 +789,22 @@ class DeviceUtils(object):
     matching_packages = self.RunShellCommand(
         ['pm', 'list', 'packages', package], check_return=True)
     desired_line = 'package:' + package
-    return desired_line in matching_packages
+    found_package = desired_line in matching_packages
+    if found_package:
+      return True
+
+    # Some packages do not properly show up via `pm list packages`, so fall back
+    # to checking via `dumpsys package`.
+    if package in _VERSIONED_PACKAGES:
+      matcher = re.compile(_VERSIONED_PACKAGE_RE_STR % package)
+    else:
+      matcher = re.compile(_STANDARD_PACKAGE_RE_STR % package)
+    dumpsys_output = self.RunShellCommand(
+        ['dumpsys', 'package'], check_return=True, large_output=True)
+    for line in dumpsys_output:
+      if matcher.match(line):
+        return True
+    return False
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetApplicationPaths(self, package, timeout=None, retries=None):
@@ -1304,6 +1331,14 @@ class DeviceUtils(object):
       # Running adb install terminates running instances of the app, so to be
       # consistent, we explicitly terminate it when skipping the install.
       self.ForceStop(package_name)
+
+    # There have been cases of APKs (namely Chrome) not being detected after
+    # being explicitly installed, so perform a sanity check now and fail
+    # early if the installation somehow failed.
+    if not self.IsApplicationInstalled(package_name):
+      raise device_errors.CommandFailedError(
+          'Package %s not installed on device after explicit install attempt.' %
+          package_name)
 
     if (permissions is None
         and self.build_version_sdk >= version_codes.MARSHMALLOW):
