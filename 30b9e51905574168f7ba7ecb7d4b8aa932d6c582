@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "13f83aef_32516350",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-10-06T05:17:47Z",
+      "side": 1,
+      "message": "This is a bit ugly, but simple.  It feels like ideally we\u0027d rework the Job \u0026 JobState interfaces work in terms of richer comparison results, but that\u0027d be a large and delicate refactor, and much of this code is destined to be legacy code anyway once the execution engine is completed.",
+      "revId": "30b9e51905574168f7ba7ecb7d4b8aa932d6c582",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
