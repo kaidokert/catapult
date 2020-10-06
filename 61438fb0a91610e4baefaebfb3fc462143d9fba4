@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb7e778f_9ad6f379",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-06T22:16:42Z",
+      "side": 1,
+      "message": "PTAL\n\nAfter looking a bit more closely at the failures that prompted this, I\u0027m not 100% sure it\u0027s an issue of \"we asked this to be installed and it wasn\u0027t\", but this should still confirm whether that\u0027s the case or not. The added logic to look for packages that don\u0027t show up via \"pm list packages\" will be helpful regardless, particularly if more APKs end up having this weird behavior further down the line.",
+      "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
