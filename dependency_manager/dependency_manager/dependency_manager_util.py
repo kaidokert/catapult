@@ -7,17 +7,9 @@ import shutil
 import stat
 import subprocess
 import sys
-import zipfile_2_7_13 as zipfile
+import zipfile
 
 from dependency_manager import exceptions
-
-
-def _WinReadOnlyHandler(func, path, execinfo):
-  if not os.access(path, os.W_OK):
-    os.chmod(path, stat.S_IWRITE)
-    func(path)
-  else:
-    raise execinfo[0], execinfo[1], execinfo[2]
 
 
 def RemoveDir(dir_path):
@@ -25,7 +17,14 @@ def RemoveDir(dir_path):
   if sys.platform.startswith('win'):
     dir_path = u'\\\\?\\' + dir_path
   if os.path.isdir(dir_path):
-    shutil.rmtree(dir_path, onerror=_WinReadOnlyHandler)
+    try:
+      shutil.rmtree(dir_path)
+    except OSError as e:
+      if not os.access(dir_path, os.W_OK):
+        os.chmod(path, stat.S_IWRITE)
+        shutil.rmtree(dir_path)
+      else:
+        raise e
 
 
 def VerifySafeArchive(archive):
