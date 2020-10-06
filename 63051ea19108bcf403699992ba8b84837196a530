@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27991d25_e788c9b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-06T22:33:07Z",
+      "side": 1,
+      "message": "PTAL\n\nUnfortunately, I think the issue we\u0027re running into that prompted this is because the device is dying before we even start collecting data, but it\u0027s worth a try.",
+      "revId": "63051ea19108bcf403699992ba8b84837196a530",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
