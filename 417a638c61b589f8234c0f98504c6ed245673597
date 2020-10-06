@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": false,
       "key": {
         "uuid": "2c763477_7ab96a83",
         "filename": "/PATCHSET_LEVEL",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "LGTM but let\u0027s wait for Dean\u0027s input on this.\n\nSee the only comment I have left since I think there might be a bug in one of the retry machinery.",
       "revId": "417a638c61b589f8234c0f98504c6ed245673597",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0bd62284_47cc3c2d",
         "filename": "dashboard/dashboard/common/file_bug.py",
@@ -37,10 +38,10 @@
         "endChar": 59
       },
       "revId": "417a638c61b589f8234c0f98504c6ed245673597",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "058acc06_f6a6b530",
         "filename": "dashboard/dashboard/common/file_bug.py",
@@ -61,10 +62,34 @@
         "endChar": 59
       },
       "revId": "417a638c61b589f8234c0f98504c6ed245673597",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdaa6425_07c14332",
+        "filename": "dashboard/dashboard/common/file_bug.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-06T20:20:39Z",
+      "side": 1,
+      "message": "Fix doesn\u0027t work for now.\nI\u0027ll try to dig dipper in your other comment.",
+      "parentUuid": "058acc06_f6a6b530",
+      "range": {
+        "startLine": 342,
+        "startChar": 2,
+        "endLine": 343,
+        "endChar": 59
+      },
+      "revId": "417a638c61b589f8234c0f98504c6ed245673597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "0f7ca17d_31d3bcfd",
         "filename": "dashboard/dashboard/pinpoint_request.py",
@@ -84,8 +109,7 @@
         "endChar": 19
       },
       "revId": "417a638c61b589f8234c0f98504c6ed245673597",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
