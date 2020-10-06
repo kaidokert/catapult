@@ -22,6 +22,30 @@
       },
       "revId": "c5dc07ce59e6b3ce03897629a01dd5155cdbf94a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa8fc1d8_0b2a4150",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-06T19:02:28Z",
+      "side": 1,
+      "message": "Ah, interesting. I had assumed it wasn\u0027t in sys.path, but it didn\u0027t occur to me that it might not be in the isolate at all (and you\u0027re right, it isn\u0027t).\n\nThat leads me to worry that the `pydeps` approach won\u0027t even work right for this, but I\u0027ll dig into it more.",
+      "parentUuid": "b1b4212d_91a86b9f",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "c5dc07ce59e6b3ce03897629a01dd5155cdbf94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
