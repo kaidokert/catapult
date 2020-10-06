@@ -70,6 +70,30 @@
       },
       "revId": "c5dc07ce59e6b3ce03897629a01dd5155cdbf94a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99048670_0f9d0754",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-10-06T19:45:10Z",
+      "side": 1,
+      "message": "Sounds good",
+      "parentUuid": "dc9814a8_ee8fd014",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "c5dc07ce59e6b3ce03897629a01dd5155cdbf94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
