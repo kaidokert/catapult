@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1b4212d_91a86b9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-10-06T18:32:01Z",
+      "side": 1,
+      "message": "I have observed another issue with the use of \"six\" library. See https://ci.chromium.org/p/chrome/builders/ci/android-builder-perf/229364, where tests failed because six.py from catapult isn\u0027t included in the isolate. I\u0027m not familiar enough with isolate creation to know what the right fix is.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "c5dc07ce59e6b3ce03897629a01dd5155cdbf94a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
