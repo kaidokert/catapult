@@ -78,7 +78,7 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
           ['cat', '/config/build-info/board'],
           stdout=subprocess.PIPE,
           stderr=subprocess.PIPE)
-    return self._device_type
+    return 'fuchsia-' + self._device_type
 
   def GetOSVersionName(self):
     if not self._os_version:
@@ -140,4 +140,5 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
   # TODO(crbug.com/1084367): Use default implementation once Fuchsia has
   # OS version info.
   def GetTypExpectationsTags(self):
-    return [self.GetOSName()]
+    return [self.GetOSName(),
+            self.GetDeviceTypeName()]
