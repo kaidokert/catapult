@@ -116,6 +116,30 @@
       },
       "revId": "10e3f7bb6a356d3d9c68fbd7c8c1c4de28fd7d04",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "506f42c3_a7675407",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-07T20:07:49Z",
+      "side": 1,
+      "message": "yes, all the board names are public.",
+      "parentUuid": "9dda8fd5_ae4f08fc",
+      "range": {
+        "startLine": 30,
+        "startChar": 72,
+        "endLine": 30,
+        "endChar": 77
+      },
+      "revId": "10e3f7bb6a356d3d9c68fbd7c8c1c4de28fd7d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
