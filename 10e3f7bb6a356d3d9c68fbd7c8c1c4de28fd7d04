@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d43a74b_5d03f78e",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-07T20:06:54Z",
+      "side": 1,
+      "message": "I will use fuchsia-board, similar to chromeos.",
+      "parentUuid": "f5510863_dfeb5927",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 20
+      },
+      "revId": "10e3f7bb6a356d3d9c68fbd7c8c1c4de28fd7d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5363ac44_4e884910",
@@ -37,6 +61,30 @@
       "writtenOn": "2020-10-07T19:39:53Z",
       "side": 1,
       "message": "Is there still something blocking you from calling the parent\u0027s implementation?",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 20
+      },
+      "revId": "10e3f7bb6a356d3d9c68fbd7c8c1c4de28fd7d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8add04d6_6706c922",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-07T20:06:54Z",
+      "side": 1,
+      "message": "I think the issue is that the parent uses OSVersionName, but we want the device type.",
+      "parentUuid": "5363ac44_4e884910",
       "range": {
         "startLine": 140,
         "startChar": 2,
