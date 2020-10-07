@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d5bba69_931509a7",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-07T20:24:06Z",
+      "side": 1,
+      "message": "If there isn\u0027t anything explicitly preventing you from calling the parent\u0027s implementation (e.g. hitting a NotImplemented exception), it\u0027s better to get the parent\u0027s tags and append to them https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/platform/cros_platform_backend.py;l\u003d132?q\u003dcros_platform_backend\u0026ss\u003dchromium",
+      "parentUuid": "8add04d6_6706c922",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 20
+      },
+      "revId": "10e3f7bb6a356d3d9c68fbd7c8c1c4de28fd7d04",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dda8fd5_ae4f08fc",
         "filename": "telemetry/telemetry/story/typ_expectations.py",
         "patchSetId": 1
