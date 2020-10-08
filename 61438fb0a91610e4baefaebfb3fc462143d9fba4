@@ -135,6 +135,30 @@
       },
       "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94b3cf43_1e15a324",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-08T23:58:26Z",
+      "side": 1,
+      "message": "Is apk_helper what you\u0027re looking for? https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/devil/devil/android/apk_helper.py;l\u003d314;drc\u003d4ac015d92df8914e07695676f8368dd6f5baf958",
+      "parentUuid": "f234d425_0417f91f",
+      "range": {
+        "startLine": 284,
+        "startChar": 31,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
