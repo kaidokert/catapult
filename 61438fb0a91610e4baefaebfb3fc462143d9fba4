@@ -39,6 +39,30 @@
       },
       "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09aeaca7_6f995453",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-08T18:30:28Z",
+      "side": 1,
+      "message": "AFAIK it should be safe to try both if that\u0027s preferable to keeping a list of known packages.",
+      "parentUuid": "ae92334d_3d88f765",
+      "range": {
+        "startLine": 284,
+        "startChar": 31,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
