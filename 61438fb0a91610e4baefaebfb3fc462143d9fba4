@@ -87,6 +87,30 @@
       },
       "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2134fa_a50c013f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1109505
+      },
+      "writtenOn": "2020-10-08T21:55:41Z",
+      "side": 1,
+      "message": "It\u0027s an implementation detail but I suspect it\u0027s unlikely to change in practise. If you wanted to be very cautious the \"official\" mapping is in the Libraries: list near the beginning of the \"dumpsys package\" output; it maps all the installed libraries on the system and their versions to how they are actually stored.\n\nHowever there\u0027s a more significant issue here which is that the whole point of this is that static shared libraries can have more than one version installed at once, and thus it\u0027s somewhat meaningless to determine \"if they are installed\" without specifying an exact version you are interested in. What is this actually used for? Is it just to verify that installing it succeeded? If so then just ignoring the version will *not* achieve that, because the install could have failed but a different version might already have been installed beforehand. You really need to be considering it as a (packageName, versionCode) tuple.\n\nAnd yes, please don\u0027t hardcode the trichrome library packages if there\u0027s any way to avoid it, because there are a number of different package names as Nate mentions.",
+      "parentUuid": "198e9889_33260a59",
+      "range": {
+        "startLine": 284,
+        "startChar": 31,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
