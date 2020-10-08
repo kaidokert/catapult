@@ -111,6 +111,30 @@
       },
       "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f234d425_0417f91f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-08T23:54:54Z",
+      "side": 1,
+      "message": "\u003e You really need to be considering it as a (packageName, versionCode) tuple\nIs there a way to get the version code from the APK? If not, there\u0027s no way we can determine whether a given APK is already installed on the device.",
+      "parentUuid": "fa2134fa_a50c013f",
+      "range": {
+        "startLine": 284,
+        "startChar": 31,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
