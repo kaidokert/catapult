@@ -63,6 +63,30 @@
       },
       "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "198e9889_33260a59",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-08T19:20:52Z",
+      "side": 1,
+      "message": "Static Shared Libraries (the Android platform feature Trichrome uses) report a package name with \"some unique number\" appended to the end, as a way of allowing multiple versions of the same package to be installed simultaneously. As I understand, it\u0027s an implementation detail that \"some unique number\" happens to be the versionCode. torne@ is the expert here, although he\u0027s documented some of this here: http://go/clank-webview-legacy/building-webview/trichrome-local-development (see \"special note about the installed library\").\n\nProbably best not to hardcode the trichrome packages. Each different channel has a different package name, so your list is missing com.google.android.trichromelibrary, com.google.android.trichromelibrary.{debug,canary,dev,beta}, and possibly others.",
+      "parentUuid": "09aeaca7_6f995453",
+      "range": {
+        "startLine": 284,
+        "startChar": 31,
+        "endLine": 285,
+        "endChar": 37
+      },
+      "revId": "61438fb0a91610e4baefaebfb3fc462143d9fba4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
