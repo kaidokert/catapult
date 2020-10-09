@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f662e26_cd6b2092",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-09T01:13:43Z",
+      "side": 1,
+      "message": "Seems to work fine with Trichrome https://chromium-swarm.appspot.com/task?id\u003d4f23b89e913da510",
+      "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b90abd8_f85556d1",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-09T01:13:43Z",
+      "side": 1,
+      "message": "It\u0027s unclear whether we should be doing this for the pm list packages check too, since the only app that I\u0027m currently aware of that uses version codes (Trichrome) doesn\u0027t show up in pm list packages.",
+      "range": {
+        "startLine": 794,
+        "startChar": 4,
+        "endLine": 795,
+        "endChar": 44
+      },
+      "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
