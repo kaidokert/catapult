@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41147ee1_164038dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-09T15:11:43Z",
+      "side": 1,
+      "message": "PTAL at the Catapult side of the change?",
+      "revId": "4495d71aa37da10b5416507d3ef831466bdcce09",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
