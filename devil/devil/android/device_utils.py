@@ -280,6 +280,11 @@ _GOOGLE_FEATURES_RE = re.compile(r'^\s*com\.google\.')
 
 _EMULATOR_RE = re.compile(r'^generic_.*$')
 
+# Regular expressions for determining if a package is installed using the
+# output of `dumpsys package`.
+# Matches lines like "Package [com.google.android.youtube] (c491050):".
+_DUMPSYS_PACKAGE_RE_STR = r'^\s*Package\s*\[%s\]\s*\(\w*\):$'
+
 PS_COLUMNS = ('name', 'pid', 'ppid')
 ProcessInfo = collections.namedtuple('ProcessInfo', PS_COLUMNS)
 
@@ -763,11 +768,14 @@ class DeviceUtils(object):
     raise device_errors.CommandFailedError('Unable to fetch IMEI.')
 
   @decorators.WithTimeoutAndRetriesFromInstance()
-  def IsApplicationInstalled(self, package, timeout=None, retries=None):
+  def IsApplicationInstalled(
+      self, package, version=None, timeout=None, retries=None):
     """Determines whether a particular package is installed on the device.
 
     Args:
       package: Name of the package.
+      version: The version of the package to check for as an int, if
+          applicable.
 
     Returns:
       True if the application is installed, False otherwise.
@@ -777,7 +785,18 @@ class DeviceUtils(object):
     matching_packages = self.RunShellCommand(
         ['pm', 'list', 'packages', package], check_return=True)
     desired_line = 'package:' + package
-    return desired_line in matching_packages
+    found_package = desired_line in matching_packages
+    if found_package:
+      return True
+
+    # Some packages do not properly show up via `pm list packages`, so fall back
+    # to checking via `dumpsys package`.
+    if version != None:
+      package = '%s_%d' % (package, version)
+    matcher = re.compile(_DUMPSYS_PACKAGE_RE_STR % package)
+    dumpsys_output = self.RunShellCommand(
+        ['dumpsys', 'package'], check_return=True, large_output=True)
+    return any(matcher.match(line) for line in dumpsys_output)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetApplicationPaths(self, package, timeout=None, retries=None):
@@ -1304,6 +1323,15 @@ class DeviceUtils(object):
       # Running adb install terminates running instances of the app, so to be
       # consistent, we explicitly terminate it when skipping the install.
       self.ForceStop(package_name)
+
+    # There have been cases of APKs (namely Chrome) not being detected after
+    # being explicitly installed, so perform a sanity check now and fail
+    # early if the installation somehow failed.
+    apk_version = apk.GetVersionCode()
+    if not self.IsApplicationInstalled(package_name, apk_version):
+      raise device_errors.CommandFailedError(
+          'Package %s with version %s not installed on device after explicit '
+          'install attempt.' % (package_name, apk_version))
 
     if (permissions is None
         and self.build_version_sdk >= version_codes.MARSHMALLOW):
