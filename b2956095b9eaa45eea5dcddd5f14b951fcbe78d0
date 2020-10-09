@@ -117,6 +117,30 @@
       },
       "revId": "b2956095b9eaa45eea5dcddd5f14b951fcbe78d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e13ad78b_3570cd8c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-09T19:54:46Z",
+      "side": 1,
+      "message": "\u003e You would need to implement device_utils.GetApplicationVersionCode() (you should be able to pattern this off GetApplicationVersion)\n\nActually, this wouldn\u0027t work for Static Shared Libraries (since they can have multiple versions installed).\n\nI think it would be better to stick with the extra parameter on IsApplicationInstalled(), but just skip to the \"dumpsys package\" case if a versionCode was passed in.",
+      "parentUuid": "8d1669c5_374f8366",
+      "range": {
+        "startLine": 1331,
+        "startChar": 4,
+        "endLine": 1331,
+        "endChar": 66
+      },
+      "revId": "b2956095b9eaa45eea5dcddd5f14b951fcbe78d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
