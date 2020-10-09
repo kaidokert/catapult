@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff9e411_eb257b3f",
+        "filename": "dashboard/dashboard/mark_recovered_alerts_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-10-09T04:02:31Z",
+      "side": 1,
+      "message": "Nit: the be consistent with the rest of this argument list, this argument should be on its own line.",
+      "range": {
+        "startLine": 61,
+        "startChar": 36,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "efd12a32a0f978da1fbf8da27f12b2c2e9bfa906",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
