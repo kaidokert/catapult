@@ -93,6 +93,30 @@
       },
       "revId": "b2956095b9eaa45eea5dcddd5f14b951fcbe78d0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1669c5_374f8366",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-09T19:25:03Z",
+      "side": 1,
+      "message": "\u003e IIUC this should already catch failed upgrades if the APK has a version code.\n\nYou mean this is already implemented? Checking the versionCode is stronger than checking if a package is installed, so I don\u0027t think we need to do both (i.e., Android can\u0027t report a package\u0027s versionCode if the package was never installed).\n\n\u003e I don\u0027t believe just checking the version code is sufficient for all packages, as not all packages appear to report one. See the sample output from \"dumpsys package\" from when I was originally debuggin this: https://chromium-swarm.appspot.com/task?id\u003d4f1419c3f3229f10\n\u003e\n\u003e org.chromium.trichromelibrary has version\u003d, but none of the other APKs do.\n\nAll apps should (I think \"must\") have versionCodes (https://developer.android.com/guide/topics/manifest/manifest-element#vcode). This is reported by `adb shell dumpsys package \u003cpackagename\u003e | grep \u0027versionCode\u003d\u0027` for a package already installed on the device. `adb shell dumpsys package` should report it too, but it looks like the output was truncated on that swarming page (that only gets up to \"Permissions:\", which is a few sections before \"Packages:\").\n\nI think only Static Shared Libraries have a \"version\u003d\" in the \"Libraries:\" section because only Static Shared Libraries can have multiple versions installed side-by-side. But I assume this check is meant to handle more than just Static Shared Libraries.",
+      "parentUuid": "c6614b43_a67af6ab",
+      "range": {
+        "startLine": 1331,
+        "startChar": 4,
+        "endLine": 1331,
+        "endChar": 66
+      },
+      "revId": "b2956095b9eaa45eea5dcddd5f14b951fcbe78d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
