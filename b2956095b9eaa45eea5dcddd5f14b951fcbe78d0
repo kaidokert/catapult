@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607efbd4_7f155e9b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-09T18:28:45Z",
+      "side": 1,
+      "message": "Can you clarify this is \"versionCode\" so it\u0027s not confused with versionName? Also, it looks like this parameter is ignored if \"pm list\" returns the package, but this isn\u0027t clear from the docs.",
+      "range": {
+        "startLine": 777,
+        "startChar": 19,
+        "endLine": 777,
+        "endChar": 26
+      },
+      "revId": "b2956095b9eaa45eea5dcddd5f14b951fcbe78d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d79d88_8e7c9f89",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-09T18:28:45Z",
+      "side": 1,
+      "message": "If you want to check the install succeeded, how about just checking the versionCode of the package on the device? This would catch failed upgrades too. You would need to implement device_utils.GetApplicationVersionCode() (you should be able to pattern this off GetApplicationVersion)",
+      "range": {
+        "startLine": 1331,
+        "startChar": 4,
+        "endLine": 1331,
+        "endChar": 66
+      },
+      "revId": "b2956095b9eaa45eea5dcddd5f14b951fcbe78d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

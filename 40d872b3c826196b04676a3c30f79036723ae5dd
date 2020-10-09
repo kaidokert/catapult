@@ -110,6 +110,29 @@
       },
       "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd2fa6c_1c7f4c18",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-09T18:28:45Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think it\u0027s necessary to mention Chrome here",
+      "range": {
+        "startLine": 1330,
+        "startChar": 36,
+        "endLine": 1330,
+        "endChar": 52
+      },
+      "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
