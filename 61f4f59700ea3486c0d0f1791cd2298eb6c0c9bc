@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c162682e_945de9b7",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-10-09T22:07:55Z",
+      "side": 1,
+      "message": "I don\u0027t think this quite works. This should only be appended for static shared libraries, not all cases where we pass a versionCode parameter. At the moment, this will throw errors for every \"normal\" APK (i.e., everything other than the Trichrome library).\n\nThinking about this more, I think you could probably get what you\u0027re looking for with either:\n\n1. Relax the regex to accept an optional int suffix. Then you need to expect multiple matches and check the versionCode for each to see if there\u0027s actually a match.\n2. Go back to the last patchset, but this means the versionCode is only used for Static Shared Libraries and not for normal apps, which seems like a confusing API contract. It also means failed ugprades (for normal apps) could slip through unnoticed, which kind of defeats the purpose.\n3. You could revert the versionCode parameter from IsApplicationInstalled() and change the callsite to:\n\n  if apk.IsStaticSharedLibrary(): # You would need to implement this\n    package_name +\u003d \u0027_ \u0027 + str(apk.GetVersionCode())\n  if not self.IsApplicationInstalled(package_name):\n    ...\n\nIf you go with option (3), then you would need to implement IsStaticSharedLibrary by looking for the \"static-library\" element in the manifest. Compiling trichrome_library_apk and checking `aapt dump xmltree TrichromeLibrary.apk AndroidManifest.xml` should point you in the right direction.",
+      "range": {
+        "startLine": 798,
+        "startChar": 4,
+        "endLine": 799,
+        "endChar": 48
+      },
+      "revId": "61f4f59700ea3486c0d0f1791cd2298eb6c0c9bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
