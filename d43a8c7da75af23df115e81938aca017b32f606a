@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "832f8e26_81257f36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-10-09T16:43:44Z",
+      "side": 1,
+      "message": "Skipping checking for archives if the stories are to be skipped. PTAL.",
+      "revId": "d43a8c7da75af23df115e81938aca017b32f606a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
