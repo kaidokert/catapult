@@ -39,6 +39,53 @@
       },
       "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3033fed4_3fa70e6b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-10-09T17:48:27Z",
+      "side": 1,
+      "message": "Let\u0027s keep it confined to dumpsys for now. We can add it to `pm` later if we find we need it.",
+      "parentUuid": "7b90abd8_f85556d1",
+      "range": {
+        "startLine": 794,
+        "startChar": 4,
+        "endLine": 795,
+        "endChar": 44
+      },
+      "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b61ea2a_4881e399",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-10-09T17:48:27Z",
+      "side": 1,
+      "message": "nit: return any(matcher.match(line) for line in dumpsys_output)",
+      "range": {
+        "startLine": 799,
+        "startChar": 4,
+        "endLine": 802,
+        "endChar": 16
+      },
+      "revId": "40d872b3c826196b04676a3c30f79036723ae5dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
