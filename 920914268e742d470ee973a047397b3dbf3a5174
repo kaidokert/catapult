@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be05f70c_889cc570",
+        "filename": "netlog_viewer/netlog_viewer/events_view.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002844
+      },
+      "writtenOn": "2020-10-10T00:53:39Z",
+      "side": 1,
+      "message": "I think I don\u0027t quite understand how this works with using the same ID for the call above and for this one.\n\nI think the superClass call above depends on the new code in DivView.show that uses the parentNode, but then how does the leftPane DivView not also hit that code and use the parent node instead of the leftPane div?\n\nIf I\u0027m not misunderstanding, maybe it would be better to have DivView take the node itself instead of the node id, and then the superclass call could resolve the parentNode itself instead of having that special case inside DivView.show?",
+      "revId": "920914268e742d470ee973a047397b3dbf3a5174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
