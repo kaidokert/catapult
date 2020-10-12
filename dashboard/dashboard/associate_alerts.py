@@ -139,7 +139,8 @@ class AssociateAlertsHandler(request_handler.RequestHandler):
 
     self.RenderHtml('bug_result.html', {
         'bug_id': bug_id,
-        'project_id': project_id
+        'project_id': project_id,
+        'issue_id': '',
     })
 
   def _VerifyAnomaliesOverlap(self, alerts, bug_id, project_id):
