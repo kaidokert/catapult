@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f796c81_5801fce2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-12T15:47:37Z",
+      "side": 1,
+      "message": "Let\u0027s wait for Dean\u0027s input as well because I am lacking context about the template system. :) ",
+      "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e11c5d1_d5c55b56",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-10-12T15:47:37Z",
+      "side": 1,
+      "message": "I am not understanding this 100% but does this need an update as well?",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
