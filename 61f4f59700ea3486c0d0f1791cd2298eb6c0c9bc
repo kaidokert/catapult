@@ -22,6 +22,30 @@
       },
       "revId": "61f4f59700ea3486c0d0f1791cd2298eb6c0c9bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9721fd6_eda83640",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-12T18:33:55Z",
+      "side": 1,
+      "message": "Went with the relaxed regex approach.",
+      "parentUuid": "c162682e_945de9b7",
+      "range": {
+        "startLine": 798,
+        "startChar": 4,
+        "endLine": 799,
+        "endChar": 48
+      },
+      "revId": "61f4f59700ea3486c0d0f1791cd2298eb6c0c9bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
