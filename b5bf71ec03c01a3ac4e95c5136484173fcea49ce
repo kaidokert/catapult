@@ -39,6 +39,30 @@
       },
       "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bef69c8_d8be197b",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-12T15:55:27Z",
+      "side": 1,
+      "message": "From my understanding, this is simply done so that \u0027bug_id\u0027, \u0027name\u0027 and \u0027user\u0027 are not displayed in the \u0027Arguments\u0027 list on the left of a job page.\ne.g. https://pinpoint-dot-chromeperf.appspot.com/job/17e93972520000",
+      "parentUuid": "4e11c5d1_d5c55b56",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 9
+      },
+      "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
