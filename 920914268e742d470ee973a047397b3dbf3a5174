@@ -16,6 +16,24 @@
       "message": "I think I don\u0027t quite understand how this works with using the same ID for the call above and for this one.\n\nI think the superClass call above depends on the new code in DivView.show that uses the parentNode, but then how does the leftPane DivView not also hit that code and use the parent node instead of the leftPane div?\n\nIf I\u0027m not misunderstanding, maybe it would be better to have DivView take the node itself instead of the node id, and then the superclass call could resolve the parentNode itself instead of having that special case inside DivView.show?",
       "revId": "920914268e742d470ee973a047397b3dbf3a5174",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14230d81_bb26360c",
+        "filename": "netlog_viewer/netlog_viewer/events_view.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-12T18:58:40Z",
+      "side": 1,
+      "message": "Correct, this is a broken abstraction.\n\nEventsView.show() will toggle visibility on the events-view element, and will also end up toggling visibility on that same element when calling this.splitterView_.show(). The visibility states are however in agreement, so this shouldn\u0027t be a bug\n\nMy thinking with this CL was to do the minimum to get it working so I can keep it scoped as much as possible to the setGeometry() removal. I will certainly be following up to then do a further removal of View and address how \"show()\" works. It can become a concept specific to the \"main tab\" things, but also overlaps with proper componentization so might be tackled differently.",
+      "parentUuid": "be05f70c_889cc570",
+      "revId": "920914268e742d470ee973a047397b3dbf3a5174",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
