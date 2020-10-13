@@ -68,7 +68,13 @@ found in the LICENSE file.
             <td><a href='/job/[[item.job_id]]'>[[item.name]]</a></td>
             <td><a href='[[configurationLink(item.configuration)]]'>[[formatConfiguration(item.configuration)]]</a></td>
             <td>[[item.user]]</td>
-            <td><a href="https://crbug.com/[[item.bug_id]]">[[item.bug_id]]</a></td>
+            <td>
+              <template is="dom-if" if="[[item.bug_id]]">
+                <a href="https://crbug.com/[[item.arguments.project]]/[[item.bug_id]]">
+                  [[item.arguments.project]]:[[item.bug_id]]
+                </a>
+              </template>
+            </td>
             <td>[[formatDate(item.created)]]</td>
             <td>[[formatComparisonMode(item.comparison_mode)]]</td>
             <td>
