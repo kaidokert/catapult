@@ -40,6 +40,7 @@ for path in (dir_above_typ, dir_cov):
 
 from typ import artifacts
 from typ import json_results
+from typ import result_sink
 from typ.arg_parser import ArgumentParser
 from typ.expectations_parser import TestExpectations, Expectation
 from typ.host import Host
@@ -624,9 +625,13 @@ class Runner(object):
                                                       int(h.time()),
                                                       all_tests, result_set,
                                                       self.path_delimiter)
+        rdb_retcode = result_sink.ResultSinkReporter().report_full_results(
+            self.metadata, result_set, self.artifact_output_dir,
+            self.expectations.tags, ninja_target=self.args.ninja_target)
+        retcode = (rdb_retcode
+                   | json_results.exit_code_from_full_results(full_results))
 
-        return (json_results.exit_code_from_full_results(full_results),
-                full_results)
+        return (retcode, full_results)
 
     def _run_one_set(self, stats, result_set, test_set, jobs, pool):
         self._skip_tests(stats, result_set, test_set.tests_to_skip)
