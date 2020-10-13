@@ -89,6 +89,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "654a717b_2ff9bf6b",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-13T09:00:22Z",
+      "side": 1,
+      "message": "Earlier I tried with \u0027job.project\u0027 which is \u0027null\u0027, it displayed an empty string.\nThe links were still working, it simply showed a \u0027:\u0027 in front of the bug_id.",
+      "parentUuid": "cf1ace14_d3ee4f0b",
+      "range": {
+        "startLine": 38,
+        "startChar": 39,
+        "endLine": 38,
+        "endChar": 79
+      },
+      "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e11c5d1_d5c55b56",
