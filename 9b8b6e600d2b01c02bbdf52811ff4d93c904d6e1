@@ -118,6 +118,63 @@
       "message": "Ah my apologies I wasn\u0027t properly filtering for catapult reviews and missed this, lgtm.",
       "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4509376b_d86ec2c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-13T17:29:07Z",
+      "side": 1,
+      "message": "Seems fine to land this. I\u0027m also not very familiar with this code. I have two questions for my own understanding in the future. ",
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e4777db_12349aa6",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 6640,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-13T17:29:07Z",
+      "side": 1,
+      "message": "Where do these timestamps come from?",
+      "range": {
+        "startLine": 6636,
+        "startChar": 0,
+        "endLine": 6640,
+        "endChar": 0
+      },
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610c633d_474fb7d2",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 6662,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-13T17:29:07Z",
+      "side": 1,
+      "message": "I see that there are four samples, all of which have id 123, but two have pid 1 and two have pid 2. My intuition was that before this CL, if there were clashes in id we would throw an error. After this CL, we scope each id to the right pid, but to me it looks like we still have clashes in pid1-id123 (twice) and pid2-id123 (twice). Clearly I have the wrong mental model of what\u0027s going on here; could you help me understand?",
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
