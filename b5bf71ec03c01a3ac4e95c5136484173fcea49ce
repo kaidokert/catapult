@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b952d582_bbed1fef",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-13T06:59:01Z",
+      "side": 1,
+      "message": "Thanks for spotting this.\nI\u0027m mixing python and javascript to get the best of both languages.",
+      "parentUuid": "35c1200a_1e474971",
+      "range": {
+        "startLine": 38,
+        "startChar": 39,
+        "endLine": 38,
+        "endChar": 79
+      },
+      "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e11c5d1_d5c55b56",
