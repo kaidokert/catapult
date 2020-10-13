@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35c1200a_1e474971",
+        "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-13T00:25:42Z",
+      "side": 1,
+      "message": "does this actually work in JavaScript? Because when I try it on the developer console for an object, there\u0027s no `get` function associated with it.",
+      "range": {
+        "startLine": 38,
+        "startChar": 39,
+        "endLine": 38,
+        "endChar": 79
+      },
+      "revId": "b5bf71ec03c01a3ac4e95c5136484173fcea49ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e11c5d1_d5c55b56",
         "filename": "dashboard/dashboard/pinpoint/elements/job-page/job-details.html",
         "patchSetId": 1
