@@ -101,6 +101,23 @@
       "message": "Thanks! adding a pid lgtm. Though I am not really familiar with this code and not an owner. ",
       "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f211993_9a8295e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115989
+      },
+      "writtenOn": "2020-10-13T17:21:13Z",
+      "side": 1,
+      "message": "Ah my apologies I wasn\u0027t properly filtering for catapult reviews and missed this, lgtm.",
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
