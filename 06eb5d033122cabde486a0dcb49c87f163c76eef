@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "06eb5d033122cabde486a0dcb49c87f163c76eef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc68d4d_63177aab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-14T00:16:04Z",
+      "side": 1,
+      "message": "https://chromium-swarm.appspot.com/task?id\u003d4f3d2d3378773010 is an example of this in use - I ran it with [\u0027qualcomm\u0027] being passed in for the ignored tags list, which becomes absent from the list of tags that it complains about.",
+      "revId": "06eb5d033122cabde486a0dcb49c87f163c76eef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
