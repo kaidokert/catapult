@@ -491,6 +491,10 @@ tr.exportTo('tr.metrics.sh', function() {
     const navigationStartSamples = timeToFCPEntries.map(entry => {
       return { value: entry.navigationStartEvent.start};
     });
+    const navigationTimingAccess = findAllEvents(rendererHelper, 'blink',
+        'getEntriesByType(navigation)');
+    const navigationTimingAccessToSecondEntry = findAllEvents(rendererHelper,
+        'blink', 'NavigationTiming array - second item accessed');
 
     return {
       frameToNavStartEvents,
@@ -504,6 +508,8 @@ tr.exportTo('tr.metrics.sh', function() {
       largestTextPaintSamples,
       layoutShiftSamples,
       navigationStartSamples,
+      navigationTimingAccess,
+      navigationTimingAccessToSecondEntry,
     };
   }
 
@@ -703,6 +709,29 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'navigationStart',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const navigationTimingAccessHistogram = histograms.createHistogram(
+        'navigationTimingAccess', tr.b.Unit.byName.count, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          summaryOptions: {
+            count: true,
+            max: false,
+            min: false,
+            sum: false,
+          },
+          description: 'NavigationTimingAccess',
+        });
+    const navigationTimingAccessToSecondEntryHistogram =
+      histograms.createHistogram(
+          'navigationTimingAccessToSecondEntry', tr.b.Unit.byName.count, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            summaryOptions: {
+              count: true,
+              max: false,
+              min: false,
+              sum: false,
+            },
+            description: 'NavigationTimingAccessToSecondEntry',
+          });
     tr.metrics.sh.rectsBasedSpeedIndexMetric(histograms, model);
 
     const chromeHelper = model.getOrCreateHelper(
@@ -752,6 +781,14 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.navigationStartSamples,
           navigationStartHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.navigationTimingAccess,
+          navigationTimingAccessHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.navigationTimingAccessToSecondEntry,
+          navigationTimingAccessToSecondEntryHistogram,
           histograms);
     }
 

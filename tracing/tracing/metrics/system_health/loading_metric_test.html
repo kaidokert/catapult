@@ -49,6 +49,66 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(801, hist.running.mean);
   });
 
+  test('navigationTimingAccess', function() {
+    const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
+      const rendererProcess = model.rendererProcess;
+      const mainThread = model.rendererMain;
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink',
+        title: 'getEntriesByType(navigation)',
+        start: 2000,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      rendererProcess.objects.addSnapshot('ptr', 'loading', 'FrameLoader', 300,
+          {
+            isLoadingMainFrame: true,
+            frame: {id_ref: '0xdeadbeef'},
+            documentLoaderURL: 'http://example.com'
+          });
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    const hist = histograms.getHistogramNamed('navigationTimingAccess');
+    const hist2 =
+      histograms.getHistogramNamed('navigationTimingAccessToSecondEntry');
+    assert.strictEqual(1, hist.sampleValues.length);
+    assert.strictEqual(0, hist2.sampleValues.length);
+  });
+
+  test('navigationTimingAccessToSecondEntry', function() {
+    const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
+      const rendererProcess = model.rendererProcess;
+      const mainThread = model.rendererMain;
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink',
+        title: 'getEntriesByType(navigation)',
+        start: 2000,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'blink',
+        title: 'NavigationTiming array - second item accessed',
+        start: 2000,
+        duration: 0.0,
+        args: {frame: '0xdeadbeef'}
+      }));
+      rendererProcess.objects.addSnapshot('ptr', 'loading', 'FrameLoader', 300,
+          {
+            isLoadingMainFrame: true,
+            frame: {id_ref: '0xdeadbeef'},
+            documentLoaderURL: 'http://example.com'
+          });
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.sh.loadingMetric(histograms, model);
+    const hist = histograms.getHistogramNamed('navigationTimingAccess');
+    const hist2 =
+      histograms.getHistogramNamed('navigationTimingAccessToSecondEntry');
+    assert.strictEqual(1, hist.sampleValues.length);
+    assert.strictEqual(1, hist2.sampleValues.length);
+  });
 
   test('timeToFirstContentfulPaint', function() {
     const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
