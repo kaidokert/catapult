@@ -184,6 +184,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e90f506c_90f5ff20",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 6640,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-14T16:14:41Z",
+      "side": 1,
+      "message": "Sorry I meant how do we deduce these timestamps from the test data below (as in, are we using the ts of the trace events, or those \u0027timeDeltas\u0027 field in the samples etc) because it\u0027s super not obvious to me where these values come from just by reading this test. I was wondering if you had figured it out and could share your understanding, but if you don\u0027t know that\u0027s also ok.",
+      "parentUuid": "f2d64247_44bb51b7",
+      "range": {
+        "startLine": 6636,
+        "startChar": 0,
+        "endLine": 6640,
+        "endChar": 0
+      },
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "610c633d_474fb7d2",
@@ -233,6 +257,24 @@
       "side": 1,
       "message": "Yep, ID is per-v8::CPUProfiler instance (normally 1 per isolate but it\u0027s possible to have more). These are unique within a process but v8 can\u0027t create unique IDs across multiple processes it doesn\u0027t know about. So we combine PID + ID to create a unique ID for each profiler across every process. Each entry here is one JS Sample. This models the situation where we have two renderer processes each with an Isolate, and both are involved in the same tracing session with JS profiling turned on.",
       "parentUuid": "41bcb5b4_8544d288",
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd7c9023_b6ae60bb",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 6662,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-14T16:14:41Z",
+      "side": 1,
+      "message": "Ah I see, that makes sense. Thanks!",
+      "parentUuid": "f9dba55e_3609ffbf",
       "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
