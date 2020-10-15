@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f0dfe8a_0618604e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-15T08:48:25Z",
+      "side": 1,
+      "message": "Maybe I should try first by replacing the {{ with [[ but I had a feeling it wasn\u0027t going to work.",
+      "revId": "bc2827f08841ef3c623b5e5fe758157445b65d9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
