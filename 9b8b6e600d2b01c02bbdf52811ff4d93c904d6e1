@@ -232,6 +232,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "776b5d83_16eaf2d9",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 6640,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-15T12:27:51Z",
+      "side": 1,
+      "message": "Got it, thanks!",
+      "parentUuid": "d9552c76_4c36a825",
+      "range": {
+        "startLine": 6636,
+        "startChar": 0,
+        "endLine": 6640,
+        "endChar": 0
+      },
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "610c633d_474fb7d2",
