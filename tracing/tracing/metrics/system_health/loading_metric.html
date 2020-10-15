@@ -491,6 +491,21 @@ tr.exportTo('tr.metrics.sh', function() {
     const navigationStartSamples = timeToFCPEntries.map(entry => {
       return { value: entry.navigationStartEvent.start};
     });
+    const navigationTimingAccessEvents = findAllEvents(rendererHelper,
+        'loading', 'NavigationTiming::GotArray');
+    const navigationTimingAccessSamples = [];
+    if (navigationTimingAccessEvents.length) {
+      navigationTimingAccessSamples.push(
+          {value: navigationTimingAccessEvents.length});
+    }
+    const navigationTimingAccessToSecondEntryEvents =
+        findAllEvents(rendererHelper, 'loading',
+            'NavigationTiming::SecondArrayAccessed');
+    const navigationTimingAccessToSecondEntrySamples = [];
+    if (navigationTimingAccessToSecondEntryEvents.length) {
+      navigationTimingAccessToSecondEntrySamples.push(
+          {value: navigationTimingAccessToSecondEntryEvents.length});
+    }
 
     return {
       frameToNavStartEvents,
@@ -504,6 +519,8 @@ tr.exportTo('tr.metrics.sh', function() {
       largestTextPaintSamples,
       layoutShiftSamples,
       navigationStartSamples,
+      navigationTimingAccessSamples,
+      navigationTimingAccessToSecondEntrySamples,
     };
   }
 
@@ -703,6 +720,29 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'navigationStart',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const navigationTimingAccessHistogram = histograms.createHistogram(
+        'navigationTimingAccess', tr.b.Unit.byName.count, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          summaryOptions: {
+            count: true,
+            max: false,
+            min: false,
+            sum: false,
+          },
+          description: 'NavigationTimingAccess',
+        });
+    const navigationTimingAccessToSecondEntryHistogram =
+      histograms.createHistogram(
+          'navigationTimingAccessToSecondEntry', tr.b.Unit.byName.count, [], {
+            binBoundaries: LOADING_METRIC_BOUNDARIES,
+            summaryOptions: {
+              count: true,
+              max: false,
+              min: false,
+              sum: false,
+            },
+            description: 'NavigationTimingAccessToSecondEntry',
+          });
     tr.metrics.sh.rectsBasedSpeedIndexMetric(histograms, model);
 
     const chromeHelper = model.getOrCreateHelper(
@@ -752,6 +792,14 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.navigationStartSamples,
           navigationStartHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.navigationTimingAccessSamples,
+          navigationTimingAccessHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.navigationTimingAccessToSecondEntrySamples,
+          navigationTimingAccessToSecondEntryHistogram,
           histograms);
     }
 
