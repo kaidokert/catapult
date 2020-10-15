@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07126047_942a42d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T21:06:42Z",
+      "side": 1,
+      "message": "Not yet ready for full review, but there are a few questions that need answering.",
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681f2fa3_74520570",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T21:06:42Z",
+      "side": 1,
+      "message": "Thoughts Dirk? It seems that typ has very little informational logging, so omitting this would be consistent, but I feel like it\u0027s information worth surfacing.",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd1ea5d_3929852e",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T21:06:42Z",
+      "side": 1,
+      "message": "How important is this actually? go/resultsink says \"testLocation field should be set for Chromium test results, since it is required to break down flaky tests by monorail component.\", but the current results converted from JSON just use \"//\" + the test name for this, e.g. https://results.api.cr.dev/rpcexplorer/services/luci.resultdb.v1.ResultDB/QueryTestResults?request\u003d{%20%20%20%20%22invocations%22:%20[%20%20%20%20%20%20%20%20%22invocations/task-chromium-swarm.appspot.com-4f46ba6c58c02111%22%20%20%20%20],%20%20%20%20%22readMask%22:%20%22*%22}\n\nI ask because AFAICT there isn\u0027t currently a good way to get the correct test file location in typ to populate this.",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 39
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
