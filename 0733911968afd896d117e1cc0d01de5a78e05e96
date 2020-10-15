@@ -88,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "956b2a24_b4103405",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T23:36:31Z",
+      "side": 1,
+      "message": "Thanks!.",
+      "parentUuid": "c3261ea8_3f94c7aa",
+      "range": {
+        "startLine": 71,
+        "startChar": 18,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67348a9e_b7c1f101",
@@ -206,6 +230,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "253e15ab_383159d0",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T23:36:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "22088f83_5db5d458",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 39
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0c62818_7bee62bb",
@@ -290,6 +338,30 @@
       "side": 1,
       "message": "We could pretty easily add the tests\u0027s stdout and stderr, but the issue with that is that it\u0027s potentially very verbose depending on the test. AFAIK there\u0027s no good way to get just the \"Test X failed for reason Y\" text.\n\nI based this off the current behavior of report nothing that we\u0027re getting with the conversion from JSON, e.g. notice the lack of \"summaryHtml\" keys in https://results.api.cr.dev/rpcexplorer/services/luci.resultdb.v1.ResultDB/QueryTestResults?request\u003d{%20%20%20%20%22invocations%22:%20[%20%20%20%20%20%20%20%20%22invocations/task-chromium-swarm.appspot.com-4f46ba6c58c02111%22%20%20%20%20],%20%20%20%20%22readMask%22:%20%22*%22}.\n\nOn a somewhat related note, I notice that a \"duration\" key exists in those results - should we be adding that here as well? It\u0027s not mentioned in go/resultsink.",
       "parentUuid": "48c598b0_7302a96e",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1cd01e_f54a8878",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T23:36:31Z",
+      "side": 1,
+      "message": "For summaryHtml: Are stdout/stderr uploaded to ResultSink as artifacts? If so maybe that\u0027s good enough.\n\nAnd https://screenshot.googleplex.com/8sXLVCmS3ye4Vjb is an example on how summaryHtml will be displayed on the UI. It\u0027ll help developers to easily find the information they need to debug the test failure. summaryHtml has a size limit to 4KiB.\n\nFor duration: yes it would be nice if you could add durations too. I think we didn\u0027t mention it in go/result-sink because it\u0027s not required, but we should probably include it in the example at least.",
+      "parentUuid": "475a95a6_fa648f71",
       "range": {
         "startLine": 184,
         "startChar": 13,
