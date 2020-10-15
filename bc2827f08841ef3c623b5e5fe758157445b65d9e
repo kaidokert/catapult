@@ -16,6 +16,23 @@
       "message": "Maybe I should try first by replacing the {{ with [[ but I had a feeling it wasn\u0027t going to work.",
       "revId": "bc2827f08841ef3c623b5e5fe758157445b65d9e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b76f7774_a4b27d73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-15T09:45:21Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "bc2827f08841ef3c623b5e5fe758157445b65d9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
