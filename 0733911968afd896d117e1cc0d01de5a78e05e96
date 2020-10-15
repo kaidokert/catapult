@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3261ea8_3f94c7aa",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:22:15Z",
+      "side": 1,
+      "message": "Yes. As a concrete example, given the following string from https://ci.chromium.org/ui/inv/build-8866337584175037648/test-results:\n\nninja://chrome/test:telemetry_gpu_integration_test/gpu_tests.context_lost_integration_test.ContextLostIntegrationTest.ContextLost_WorkerRAFAfterGPUCrash\n\n\"ninja://chrome/test:telemetry_gpu_integration_test\" is what we expect the sink to automatically add.\n\n\"gpu_tests.context_lost_integration_test.ContextLostIntegrationTest.\" is test_name_prefix (see \"test_name_prefix\" in https://isolateserver.appspot.com/browse?namespace\u003ddefault-gzip\u0026digest\u003d170a88b42af9c4fcc38433d16ecbced8221b5d97\u0026as\u003doutput.json as an example of this being included in the current JSON)\n\n\"ContextLost_WorkerRAFAfterGPUCrash\" is the test name.",
+      "parentUuid": "81c376db_8139657b",
+      "range": {
+        "startLine": 71,
+        "startChar": 18,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67348a9e_b7c1f101",
         "filename": "third_party/typ/typ/result_sink.py",
         "patchSetId": 5
@@ -77,6 +101,30 @@
       "writtenOn": "2020-10-15T22:09:28Z",
       "side": 1,
       "message": "Will this be fixed in the future so that typ can stream test results to resultsink?",
+      "range": {
+        "startLine": 79,
+        "startChar": 22,
+        "endLine": 79,
+        "endChar": 58
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d28f8af5_4876da9a",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:22:15Z",
+      "side": 1,
+      "message": "Actually, after looking at it again, I don\u0027t see any reason why we can\u0027t do so now. I originally thought we were missing some necessary information (test name prefix? tags? I don\u0027t remember now), but it looks like _Child has everything we need https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/third_party/typ/typ/runner.py;l\u003d929?q\u003dtyp%2Frunner.py\u0026ss\u003dchromium\n\nI\u0027ll see about updating to that in a later patchset.",
+      "parentUuid": "67348a9e_b7c1f101",
       "range": {
         "startLine": 79,
         "startChar": 22,
@@ -136,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22088f83_5db5d458",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:22:15Z",
+      "side": 1,
+      "message": "\u003e I assume typ would not know the monorail components (or team owning the test suite) for the test suite it runs, but it may worth to ask.\n\nYou\u0027re correct - typ wouldn\u0027t know that.",
+      "parentUuid": "44976886_8aa019cd",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 39
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0c62818_7bee62bb",
         "filename": "third_party/typ/typ/result_sink.py",
         "patchSetId": 5
@@ -147,6 +219,30 @@
       "writtenOn": "2020-10-15T22:09:28Z",
       "side": 1,
       "message": "I\u0027m wondering if it makes sense to use a special error code so that it\u0027s easier to identify failed tasks because of issue uploading test results?",
+      "range": {
+        "startLine": 160,
+        "startChar": 48,
+        "endLine": 160,
+        "endChar": 49
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbbc08c6_dab0b25b",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:22:15Z",
+      "side": 1,
+      "message": "I think typ currently really only returns 0 or 1. Previously, it was pretty much just based off of this method https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/third_party/typ/typ/json_results.py;l\u003d123.\n\nI wouldn\u0027t be opposed to returning a special error code for this, but I\u0027ll defer to Dirk on that.",
+      "parentUuid": "d0c62818_7bee62bb",
       "range": {
         "startLine": 160,
         "startChar": 48,
@@ -182,6 +278,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "475a95a6_fa648f71",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:22:15Z",
+      "side": 1,
+      "message": "We could pretty easily add the tests\u0027s stdout and stderr, but the issue with that is that it\u0027s potentially very verbose depending on the test. AFAIK there\u0027s no good way to get just the \"Test X failed for reason Y\" text.\n\nI based this off the current behavior of report nothing that we\u0027re getting with the conversion from JSON, e.g. notice the lack of \"summaryHtml\" keys in https://results.api.cr.dev/rpcexplorer/services/luci.resultdb.v1.ResultDB/QueryTestResults?request\u003d{%20%20%20%20%22invocations%22:%20[%20%20%20%20%20%20%20%20%22invocations/task-chromium-swarm.appspot.com-4f46ba6c58c02111%22%20%20%20%20],%20%20%20%20%22readMask%22:%20%22*%22}.\n\nOn a somewhat related note, I notice that a \"duration\" key exists in those results - should we be adding that here as well? It\u0027s not mentioned in go/resultsink.",
+      "parentUuid": "48c598b0_7302a96e",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50436ec6_07a1c3ef",
         "filename": "third_party/typ/typ/tests/result_sink_test.py",
         "patchSetId": 5
@@ -193,6 +313,30 @@
       "writtenOn": "2020-10-15T22:09:28Z",
       "side": 1,
       "message": "Nit: trailing spaces.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 4
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05857c1e_1418a70f",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:22:15Z",
+      "side": 1,
+      "message": "Done, but haven\u0027t uploaded the new patchset yet.",
+      "parentUuid": "50436ec6_07a1c3ef",
       "range": {
         "startLine": 135,
         "startChar": 0,
