@@ -374,6 +374,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2669bf4_e7181af6",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-15T23:41:29Z",
+      "side": 1,
+      "message": "\u003e For summaryHtml: Are stdout/stderr uploaded to ResultSink as artifacts?\nNope.\n\nI\u0027ll see about adding in the output and checking how verbose it is for the GPU tests, which I think are a pretty good example of a worst-case scenario.\n\n\u003e For duration: yes it would be nice if you could add durations too.\nAck, I\u0027ll add them in.",
+      "parentUuid": "0f1cd01e_f54a8878",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50436ec6_07a1c3ef",
         "filename": "third_party/typ/typ/tests/result_sink_test.py",
         "patchSetId": 5
