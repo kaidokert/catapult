@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4ba6500_1e0fe2af",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-10-15T04:46:38Z",
+      "side": 1,
+      "message": "Maybe exclusive is better?",
+      "revId": "a549c6d311384533469daa0e122a1882506c968c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
