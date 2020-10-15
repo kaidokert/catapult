@@ -43,6 +43,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81c376db_8139657b",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T22:09:28Z",
+      "side": 1,
+      "message": "Is this different from the `test_id_prefix` sink would add to each test name? Could you give me some examples?",
+      "range": {
+        "startLine": 71,
+        "startChar": 18,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67348a9e_b7c1f101",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T22:09:28Z",
+      "side": 1,
+      "message": "Will this be fixed in the future so that typ can stream test results to resultsink?",
+      "range": {
+        "startLine": 79,
+        "startChar": 22,
+        "endLine": 79,
+        "endChar": 58
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bd1ea5d_3929852e",
         "filename": "third_party/typ/typ/result_sink.py",
         "patchSetId": 5
@@ -59,6 +105,99 @@
         "startChar": 8,
         "endLine": 151,
         "endChar": 39
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44976886_8aa019cd",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T22:09:28Z",
+      "side": 1,
+      "message": "\u003e How important is this actually? go/resultsink says \"testLocation field should be set for Chromium test results, since it is required to break down flaky tests by monorail component.\",\n\nAs you quoted, it\u0027s important for analyses that wants to have data broken down in monorail components or teams.\n\n\u003e but the current results converted from JSON just use \"//\" + the test name for this, e.g. https://results.api.cr.dev/rpcexplorer/services/luci.resultdb.v1.ResultDB/QueryTestResults?request\u003d{%20%20%20%20%22invocations%22:%20[%20%20%20%20%20%20%20%20%22invocations/task-chromium-swarm.appspot.com-4f46ba6c58c02111%22%20%20%20%20],%20%20%20%20%22readMask%22:%20%22*%22}\n\u003e \nI think the location in the example you provided is wrong, I\u0027ll debug it.\n\n\u003e I ask because AFAICT there isn\u0027t currently a good way to get the correct test file location in typ to populate this.\n\nActually we\u0027re making some changes(crbug.com/1137513) in ResultDB to add a new field test_metadata which contains metadata of the test case, such as the original test name, test location, monorail components and so on. \n\nI assume typ would not know the monorail components (or team owning the test suite) for the test suite it runs, but it may worth to ask. I mean if it can know (for example by adding an arg to pass in the info?), then we\u0027d happy to take it and you don\u0027t need to bother finding test locations.",
+      "parentUuid": "2bd1ea5d_3929852e",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 39
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0c62818_7bee62bb",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T22:09:28Z",
+      "side": 1,
+      "message": "I\u0027m wondering if it makes sense to use a special error code so that it\u0027s easier to identify failed tasks because of issue uploading test results?",
+      "range": {
+        "startLine": 160,
+        "startChar": 48,
+        "endLine": 160,
+        "endChar": 49
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c598b0_7302a96e",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T22:09:28Z",
+      "side": 1,
+      "message": "As mentioned in go/result-sink#test-result-json-object, summaryHtml is critical for the test result to be meaningful and actionable. Especially if the test result is unexpected. Do you think there\u0027s anything to add to summaryHtml? For example failure logs?",
+      "range": {
+        "startLine": 184,
+        "startChar": 13,
+        "endLine": 184,
+        "endChar": 24
+      },
+      "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50436ec6_07a1c3ef",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1157909
+      },
+      "writtenOn": "2020-10-15T22:09:28Z",
+      "side": 1,
+      "message": "Nit: trailing spaces.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 4
       },
       "revId": "0733911968afd896d117e1cc0d01de5a78e05e96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
