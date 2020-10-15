@@ -16,6 +16,206 @@
       "message": "What do you think of this approach for displaying added/removed field trials during the course of the capture?\n",
       "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bac3a7b_ca6f47ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "Nice!",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb039540_f352dc9a",
+        "filename": "netlog_viewer/netlog_viewer/import_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "Interesting, this is not an idiom I have seen before.\n\nCan you move this to a stylesheet, and then add a comment explaining its intent? (I presume this is to hide the text to the right of the file picker button).\n\nFor consistency with the other \"views\", I suggest adding an import_view.css file (which we apparently don\u0027t have), and then selector for #import-view-load-log-file.",
+      "range": {
+        "startLine": 6,
+        "startChar": 63,
+        "endLine": 6,
+        "endChar": 80
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88335334_36db188d",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "Oh neat, I didn\u0027t realize you could use this notation outside of a class definition.\n\n(We should at some point also switch these all to use class notation too, and remove the commas)",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8309dcb7_cd21ce13",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "nit: the code is mostly using the convention that private methods end with a trailing underscore. I suggest matching here (name this displayTrials_)",
+      "range": {
+        "startLine": 98,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74e616b_a2bbc44e",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "same comment as above.",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0935b769_d4ff0ef1",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "[optional] nit: I suggest naming the arguments \"trialsAtStart\" and \"trialsAtEnd\"",
+      "range": {
+        "startLine": 116,
+        "startChar": 10,
+        "endLine": 116,
+        "endChar": 59
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9c5705_96d560a6",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "In terms of UI I propose modeling this a slightly differently:\n\nMy sense is that the active field trials captured at the end of the dump is the most relevant, and what we should emphasize.\n\nSo for the generic \"active field trials\" how about displaying display listAtEnd (if defined), otherwise listAtStart (in the case of legacy capturess).\n\nAs for the bonus \"here is what changed\" stuff, that is great, and can be explained as \"trials activated during capture\" and \"trials deactivated during capture\" (although I suspect the latter probably isn\u0027t going to arise).\n\nWDYT?",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ca9dd39_4ea80615",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "optional: I suggest pulling the type checking to the top of the function (or even the caller), so can rely on truthiness tests for the rest of the function.\n\n  if (listAtEnd \u0026\u0026 listAtEnd.constructor !\u003d\u003d Array)\n    listAtEnd \u003d undefined;\n  if (listAtStart \u0026\u0026 listAtStart.constructor !\u003d\u003d Array)\n    listAtStart \u003d undefined;",
+      "range": {
+        "startLine": 130,
+        "startChar": 10,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "526684bd_5216fefa",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "[optional]: This is O(n^2) in the number of trials, which I agree shouldn\u0027t be a problem in normal cases, but it is easy enough to play it safe:\n\nlet listAtStartSet \u003d new Set(listAtStart);\nlet listAtEndSet \u003d new Set(listAtEnd);\n\n// When filtering, use Set.has(item)",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d38db1e_52256f27",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-15T22:02:11Z",
+      "side": 1,
+      "message": "[optional]: How about a shorter code pattern of set textContent and node display unconditionally?\n\n$(...).textContent \u003d listAdded.join(\u0027 \u0027);\nsetNodeDisplay(row_added, listAdded.length \u003e 0);\n\n(can use same pattern for listRemoved below)",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
