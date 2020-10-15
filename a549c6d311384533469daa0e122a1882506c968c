@@ -16,6 +16,64 @@
       "message": "Maybe exclusive is better?",
       "revId": "a549c6d311384533469daa0e122a1882506c968c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34204946_bd832c06",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-10-15T05:08:14Z",
+      "side": 1,
+      "message": "And/or a brief comment?\n\n# Sets of Monorail labels that are mutually exclusive, i.e. when setting one we must also make sure to unset any others in the same set.",
+      "parentUuid": "e4ba6500_1e0fe2af",
+      "revId": "a549c6d311384533469daa0e122a1882506c968c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d9f4e39_87c698e1",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-10-15T05:08:14Z",
+      "side": 1,
+      "message": "At some point we should chat to the Monorail team about this use case.  Monorail has a concept of custom fields, which can have types like ENUM (and be single-valued or multi-valued).   See https://bugs.chromium.org/p/chromium/adminLabels.  And I believe custom fields can be ACLed to be written only by certain users (and project admins), so maybe would work for robot accounts.\n\nSo it feels like Monorail almost already has the machinery to manage some of this for us… not sure there\u0027s a lot of value for us or Monorail in using something more complex than simple labels, but it\u0027s probably worth a chat to explore someday.  Normally I\u0027d say it\u0027d make a good chat to have the next time our team or theirs travels to the same location…",
+      "revId": "a549c6d311384533469daa0e122a1882506c968c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed553519_cef58cd7",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-10-15T05:08:14Z",
+      "side": 1,
+      "message": "So this always sends a modification that removes the other labels, without looking if they are already set in Monorail?  Fair enough :)\n\nMaybe worth a brief comment to make this explicit?\n\nOh, although I think this API has slightly surprising behaviour.  I\u0027d expect a call like ComputeLabelUpdates([\u0027Pinpoint-No-Repro\u0027]) not to remove any existing Pinpoint-Job-* labels, but it looks like this implementation will remove all of the Pinpoint-Job-* labels too if none are specified?  That\u0027s definitely worth calling out, because I think it\u0027s easy to assume it wouldn\u0027t do that.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "a549c6d311384533469daa0e122a1882506c968c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
