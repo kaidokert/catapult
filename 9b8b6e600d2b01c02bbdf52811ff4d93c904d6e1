@@ -208,6 +208,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9552c76_4c36a825",
+        "filename": "tracing/tracing/extras/importer/trace_event_importer_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 6640,
+      "author": {
+        "id": 1167239
+      },
+      "writtenOn": "2020-10-15T06:50:11Z",
+      "side": 1,
+      "message": "Both profiles start at 10 (ms) due to \u0027startTime\u0027: 10 on the first events. Then the time deltas array on the next events should be interpreted as startTime + timeDeltas[0] --\u003e The timestamp of the first sample, startTime + timeDeltas[0] + timeDeltas[1] --\u003e The timestamp of the 2nd sample, etc.",
+      "parentUuid": "e90f506c_90f5ff20",
+      "range": {
+        "startLine": 6636,
+        "startChar": 0,
+        "endLine": 6640,
+        "endChar": 0
+      },
+      "revId": "9b8b6e600d2b01c02bbdf52811ff4d93c904d6e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "610c633d_474fb7d2",
