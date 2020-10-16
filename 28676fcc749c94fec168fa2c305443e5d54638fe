@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7cd256_c31654a1",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-16T21:32:14Z",
+      "side": 1,
+      "message": "switched to fuchsia-device-address, i picked host because that s the flag our test infra uses, but I agree it\u0027s sort of unclear what it\u0027s referring to.",
+      "parentUuid": "6453cc03_02ea60af",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 268,
+        "endChar": 61
+      },
+      "revId": "28676fcc749c94fec168fa2c305443e5d54638fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0759be66_5e0f5e08",
@@ -37,6 +61,30 @@
       "writtenOn": "2020-10-16T20:53:26Z",
       "side": 1,
       "message": "Nit: You can use get_mock.assert_not_called(), etc.",
+      "range": {
+        "startLine": 186,
+        "startChar": 7,
+        "endLine": 187,
+        "endChar": 50
+      },
+      "revId": "28676fcc749c94fec168fa2c305443e5d54638fe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7e35551_94d378d2",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-16T21:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0759be66_5e0f5e08",
       "range": {
         "startLine": 186,
         "startChar": 7,
