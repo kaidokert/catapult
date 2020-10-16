@@ -119,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef36f7e5_c3db7a2f",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2020-10-16T17:02:41Z",
+      "side": 1,
+      "message": "The parenthetical aside was an observation that this code is a decade old, and predates the availability of ECMAScript classes.\n\nThe shenanigans we do with assigning prototype and __proto__, can be done idiomatically now with \"class\" and \"extends\" keywords.",
+      "parentUuid": "ae0c13dc_daa07c25",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8309dcb7_cd21ce13",
         "filename": "netlog_viewer/netlog_viewer/import_view.js",
         "patchSetId": 1
