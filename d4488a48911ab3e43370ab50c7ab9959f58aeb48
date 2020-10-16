@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ddff772_c24b8269",
+        "filename": "netlog_viewer/netlog_viewer/import_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb039540_f352dc9a",
+      "range": {
+        "startLine": 6,
+        "startChar": 63,
+        "endLine": 6,
+        "endChar": 80
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88335334_36db188d",
@@ -77,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae0c13dc_daa07c25",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Shorthand method declaration[1] is what chrome/browser/resources/net_internals/events_view.js uses, so I just copied that over from there.\n\nI\u0027m afraid I don\u0027t understand your parenthetical suggestion. If by \"these all\" you mean all of the methods, I did make that change for the existing methods in this file. The commas after the bodies are still required for shorthand method definitions in object literals (unlike in class definitions which don\u0027t allow commas).\n\n[1] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions",
+      "parentUuid": "88335334_36db188d",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8309dcb7_cd21ce13",
         "filename": "netlog_viewer/netlog_viewer/import_view.js",
         "patchSetId": 1
@@ -88,6 +130,30 @@
       "writtenOn": "2020-10-15T22:02:11Z",
       "side": 1,
       "message": "nit: the code is mostly using the convention that private methods end with a trailing underscore. I suggest matching here (name this displayTrials_)",
+      "range": {
+        "startLine": 98,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d49c412_fad25e40",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8309dcb7_cd21ce13",
       "range": {
         "startLine": 98,
         "startChar": 11,
@@ -121,6 +187,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e2fb3ea_f145252a",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e74e616b_a2bbc44e",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0935b769_d4ff0ef1",
@@ -134,6 +224,30 @@
       "writtenOn": "2020-10-15T22:02:11Z",
       "side": 1,
       "message": "[optional] nit: I suggest naming the arguments \"trialsAtStart\" and \"trialsAtEnd\"",
+      "range": {
+        "startLine": 116,
+        "startChar": 10,
+        "endLine": 116,
+        "endChar": 59
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d1a2e9b_f9f63d1d",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0935b769_d4ff0ef1",
       "range": {
         "startLine": 116,
         "startChar": 10,
@@ -161,6 +275,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49538055_f0ab1a57",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d9c5705_96d560a6",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ca9dd39_4ea80615",
@@ -174,6 +306,30 @@
       "writtenOn": "2020-10-15T22:02:11Z",
       "side": 1,
       "message": "optional: I suggest pulling the type checking to the top of the function (or even the caller), so can rely on truthiness tests for the rest of the function.\n\n  if (listAtEnd \u0026\u0026 listAtEnd.constructor !\u003d\u003d Array)\n    listAtEnd \u003d undefined;\n  if (listAtStart \u0026\u0026 listAtStart.constructor !\u003d\u003d Array)\n    listAtStart \u003d undefined;",
+      "range": {
+        "startLine": 130,
+        "startChar": 10,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31219ade_c9ddb2ec",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ca9dd39_4ea80615",
       "range": {
         "startLine": 130,
         "startChar": 10,
@@ -201,6 +357,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5589161c_9413fc74",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "526684bd_5216fefa",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d38db1e_52256f27",
@@ -214,6 +388,24 @@
       "writtenOn": "2020-10-15T22:02:11Z",
       "side": 1,
       "message": "[optional]: How about a shorter code pattern of set textContent and node display unconditionally?\n\n$(...).textContent \u003d listAdded.join(\u0027 \u0027);\nsetNodeDisplay(row_added, listAdded.length \u003e 0);\n\n(can use same pattern for listRemoved below)",
+      "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dfb77f0_b898a937",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T06:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d38db1e_52256f27",
       "revId": "d4488a48911ab3e43370ab50c7ab9959f58aeb48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
