@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fff6005_fb8bcb93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T18:25:16Z",
+      "side": 1,
+      "message": "Thanks for the review. I was feeling dirty about that nested ternary. :)",
+      "revId": "658c8144ad48dd7a28a2af364a49907bf04385b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

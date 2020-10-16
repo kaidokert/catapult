@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b71128_9a64db39",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T18:25:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c92d52_b6f6d6a2",
+      "range": {
+        "startLine": 118,
+        "startChar": 29,
+        "endLine": 118,
+        "endChar": 41
+      },
+      "revId": "0f32c93ba2a439e59093094c2b368282e6e10108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6500a4e6_b25d5e6a",
@@ -54,6 +78,30 @@
       "writtenOn": "2020-10-16T17:02:41Z",
       "side": 1,
       "message": "Could this be written more succinctly with:\n\n(trialsAtEnd || trialsAtStart || []).join(\u0027 \u0027);",
+      "range": {
+        "startLine": 120,
+        "startChar": 10,
+        "endLine": 120,
+        "endChar": 23
+      },
+      "revId": "0f32c93ba2a439e59093094c2b368282e6e10108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dde1cfb6_04b44320",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T18:25:16Z",
+      "side": 1,
+      "message": "Done. JavaScript is delightful.",
+      "parentUuid": "6500a4e6_b25d5e6a",
       "range": {
         "startLine": 120,
         "startChar": 10,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3056e3e_bb3037c7",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T18:25:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15456a3f_0c60cbd0",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 125,
+        "endChar": 21
+      },
+      "revId": "0f32c93ba2a439e59093094c2b368282e6e10108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "028f98ab_fb9d1a50",
@@ -100,6 +172,24 @@
       "writtenOn": "2020-10-16T17:02:41Z",
       "side": 1,
       "message": "optional: Extracting a nested helper could avoid some duplication:\n\nfunction updateTrialsDiff(trialsBefore, trialsAfter, cell, row) {\n   .. do the diff..\n   .. set cell.textContent ..\n   .. set display on row ...\n}\n\nupdateTrialsDiff(trialsAtStart, trialsAtEnd, ..., row_added);\nupdateTrialsDiff(trialsAtEnd, trialsAtStart, ..., row_removed);",
+      "revId": "0f32c93ba2a439e59093094c2b368282e6e10108",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a18d4de_78e7c3b2",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-10-16T18:25:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "028f98ab_fb9d1a50",
       "revId": "0f32c93ba2a439e59093094c2b368282e6e10108",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
