@@ -16,6 +16,24 @@
       "message": "The basic idea of this patch seems fine, but you need to use the methods on the \u0027host\u0027 object (and the fake_host) object in order to talk to the filesystem / environment / issue http requests / etc, rather than using `mock` and the associated libraries.\n\nIt\u0027s debatable whether the host approach is the right one (vs. using mock + direct access), but for now we should use host for consistency with the rest of the code.\n\nI would also prefer to avoid using the `requests` library if we only need it for the one call; it adds a rather large dependency on typ just for that.",
       "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2077aa4_c28ec005",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-19T19:43:59Z",
+      "side": 1,
+      "message": "\u003e The basic idea of this patch seems fine, but you need to use the methods on the \u0027host\u0027 object (and the fake_host) object in order to talk to the filesystem / environment / issue http requests / etc, rather than using `mock` and the associated libraries.\n\nAck, will update.\n\n\u003e It\u0027s debatable whether the host approach is the right one (vs. using mock + direct access), but for now we should use host for consistency with the rest of the code.\n\nI\u0027m personally in favor of moving towards using mock in the future.\n\n\u003e I would also prefer to avoid using the `requests` library if we only need it for the one call; it adds a rather large dependency on typ just for that.\n\nAck, I\u0027ll see about moving to use the built in httplib/http.client module.",
+      "parentUuid": "648958ab_fe98b56a",
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
