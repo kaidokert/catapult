@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "daa2258f_776de17d",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-19T19:11:20Z",
+      "side": 1,
+      "message": "The stacktrace is the most useful, but I don\u0027t think there\u0027s a good way to extract that. For the GPU tests, the stack trace is pretty much the only thing in the output, so it\u0027s not going to end up truncated due to less useful information.",
+      "parentUuid": "1c9dee0b_1fa7919d",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 68
+      },
+      "revId": "594751688e767127bf26586cd5449c8df771dd37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "58052333_5885d853",
@@ -54,6 +78,30 @@
       "writtenOn": "2020-10-19T18:55:20Z",
       "side": 1,
       "message": "JFYI, I\u0027m working on adding a new field test_metadata to resultdb (crbug.com/1137513), which is used to store information for the test instead of its result, for example test_name and test_location. After the field is added, I may need your help to add it for typ.",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 107,
+        "endChar": 22
+      },
+      "revId": "594751688e767127bf26586cd5449c8df771dd37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dcdfda4_31e0342f",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-19T19:11:20Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "58052333_5885d853",
       "range": {
         "startLine": 107,
         "startChar": 13,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6266f707_58e5ed15",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-19T19:11:20Z",
+      "side": 1,
+      "message": "Removed, was leftover from debugging.",
+      "parentUuid": "2d2fcc30_3a4f39d5",
+      "range": {
+        "startLine": 182,
+        "startChar": 8,
+        "endLine": 182,
+        "endChar": 48
+      },
+      "revId": "594751688e767127bf26586cd5449c8df771dd37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d4c67af_a8e035db",
@@ -110,6 +182,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9344db9_9d91a95b",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-19T19:11:20Z",
+      "side": 1,
+      "message": "Nope, ResultSink was complaining about it not having a unit.",
+      "parentUuid": "2d4c67af_a8e035db",
+      "range": {
+        "startLine": 221,
+        "startChar": 24,
+        "endLine": 221,
+        "endChar": 43
+      },
+      "revId": "594751688e767127bf26586cd5449c8df771dd37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f76924b_56e1904f",
@@ -123,6 +219,30 @@
       "writtenOn": "2020-10-19T18:55:20Z",
       "side": 1,
       "message": "result.result_sink_retcode \u003d child.result_sink_reporter.report_individual_test_result(\n            child.test_name_prefix, result, child.artifact_output_dir,\n            child.expectations.tags if child.expectations else [])\n\n?",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1090,
+        "endChar": 42
+      },
+      "revId": "594751688e767127bf26586cd5449c8df771dd37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52381ccc_3b177fa6",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-19T19:11:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f76924b_56e1904f",
       "range": {
         "startLine": 1087,
         "startChar": 0,
