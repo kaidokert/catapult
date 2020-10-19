@@ -54,6 +54,28 @@ wheel: <
   name: "infra/python/wheels/coverage/${vpython_platform}"
   version: "version:4.3.4"
 >
+wheel: <
+  name: "infra/python/wheels/requests-py2_py3"
+  version: "version:2.13.0"
+>
+# Needed by mock.
+wheel: <
+  name: "infra/python/wheels/pbr-py2_py3"
+  version: "version:3.0.0"
+>
+# Needed by mock.
+wheel: <
+  name: "infra/python/wheels/funcsigs-py2_py3"
+  version: "version:1.0.2"
+>
+wheel: <
+  name: "infra/python/wheels/mock-py2_py3"
+  version: "version:2.0.0"
+>
+wheel: <
+  name: "infra/python/wheels/pyfakefs-py2_py3"
+  version: "version:3.7.2"
+>
 
 # Used by:
 #   telemetry/
