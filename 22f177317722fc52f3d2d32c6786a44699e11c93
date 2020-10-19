@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "413fd666_88134ef4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1113499
+      },
+      "writtenOn": "2020-10-19T22:54:57Z",
+      "side": 1,
+      "message": "Requires crrev.com/c/2424514 to be landed first.",
+      "revId": "22f177317722fc52f3d2d32c6786a44699e11c93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
