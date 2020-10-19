@@ -34,6 +34,167 @@
       "parentUuid": "648958ab_fe98b56a",
       "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79460332_30be204a",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "artifact_output_dir can be a relative path, and it\u0027s joined with os.getcwd() at L117.\nDoesn\u0027t it imply that artifiact_output_dir can be an empty string if artifact paths are relative to the cwd?\n\nIf the directory should be a non-empty string, and \u0027.\u0027 should be used to point the cwd, then please describe the requirement in the doc string.\n\nAlso, could this assertion be checked always? It is executed only if result.artifacts have. It may not make it hard to detect this assertion failure in an early stage. It\u0027d be the best to perform the assertion unconditionally. If it\u0027s necessary, please document in the doc string.",
+      "range": {
+        "startLine": 115,
+        "startChar": 19,
+        "endLine": 115,
+        "endChar": 38
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2f4fb49_1c33baa0",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "could this behaviour be documented in the docstring?",
+      "range": {
+        "startLine": 118,
+        "startChar": 24,
+        "endLine": 118,
+        "endChar": 36
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e65ed03_4af8ccc6",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "nit; I\u0027m not sure what\u0027s the common indent style used in typ, but I expect that the indent could be changed\n\nfrom\n```\ntruncated_summary \u003d (html_summary[...]\n        + TRUNCATED_SUMMARY_MESSAGE)\n```\n\nto\n\n```\ntruncated_summary \u003d (html_summary([...] +\n                     TRUNCATED_SUMMARY_MESSAGE)\n```",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 142,
+        "endChar": 48
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1402258c_e778dffb",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "This can possibly cause assertion failures by run-time values, and it\u0027d be hard to catch this, because this assertion is performed only if the total length \u003e the max lenght.\n\nPlease run this assertion unconditionally to prohibit any artifacts named with the special name, or auto-correct the artifact name like \"$artifact_name - summary\"\nJFYI, artifact name allows [[:print:]] characters.\nhttps://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/resultdb/proto/v1/artifact.proto;l\u003d45",
+      "range": {
+        "startLine": 143,
+        "startChar": 19,
+        "endLine": 143,
+        "endChar": 40
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637c1401_d9062c7e",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "I don\u0027t think any tests would have been tolerant from ResultSink failures. ResultSink can fail if\n(1) the request validation failed, or\n(2) the OS is out of resources and the listening socket cannot accept any more connections\n\n-----------------\n(2) would not happen in normal operations, because requests maintain the connection pool, and should utilize the existing socket connections.\nIf (1) happens, it\u0027d be the best to raise an exception to stop the test-harness so that\n- the exception logs would appear at the bottom of the Swarming Task logs,\n- the test can be stopped early without having to execute all the other tests.\n\nThat\u0027s why the snippet at go/result-sink#hello-resultsink invokes res.raise_for_status() at the end. Having said that, I can see there is an existing error handling flow with exit_code_from_full_results. Please feel free to disagree if returning an error code is more appropriate than raising an exception in typ.",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 49
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45f89e7_0b877c61",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "I wonder if _create_json_test_result() can be merged into _report_test_result(). They take an identical set of params, and both names start with \"_\". I\u0027m not sure how much value _create_json_test_result() adds.",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1a0277d_1a699b2e",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-19T22:03:17Z",
+      "side": 1,
+      "message": "Can be one-liner and micro-level cheaper, as it will stop the iteration at the first occurrence.\n\n```\nreturn int(any(r.ret for r in result_set.results))\n```",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
