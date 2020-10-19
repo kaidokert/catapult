@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "648958ab_fe98b56a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-19T19:29:17Z",
+      "side": 1,
+      "message": "The basic idea of this patch seems fine, but you need to use the methods on the \u0027host\u0027 object (and the fake_host) object in order to talk to the filesystem / environment / issue http requests / etc, rather than using `mock` and the associated libraries.\n\nIt\u0027s debatable whether the host approach is the right one (vs. using mock + direct access), but for now we should use host for consistency with the rest of the code.\n\nI would also prefer to avoid using the `requests` library if we only need it for the one call; it adds a rather large dependency on typ just for that.",
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
