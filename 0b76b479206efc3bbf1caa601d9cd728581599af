@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38eb12f1_08691cfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-10-20T10:36:50Z",
+      "side": 1,
+      "message": "At least this solution requires not much change in the code.\nWhat do you think ?\nAlso should I create a new bug ?",
+      "revId": "0b76b479206efc3bbf1caa601d9cd728581599af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
