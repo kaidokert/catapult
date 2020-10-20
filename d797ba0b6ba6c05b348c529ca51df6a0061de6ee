@@ -46,6 +46,30 @@
       },
       "revId": "d797ba0b6ba6c05b348c529ca51df6a0061de6ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34963675_1a41612a",
+        "filename": "tracing/tracing/extras/vsync/vsync_auditor.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:44:43Z",
+      "side": 1,
+      "message": "LGTM as-is. Further improving this to support multiple displays would be a nice improvement, but don\u0027t want to block on that.",
+      "parentUuid": "719dc429_1ccf9c3a",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 13
+      },
+      "revId": "d797ba0b6ba6c05b348c529ca51df6a0061de6ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
