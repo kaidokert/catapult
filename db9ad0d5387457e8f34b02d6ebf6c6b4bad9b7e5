@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff43acd0_76c86980",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-20T19:28:50Z",
+      "side": 1,
+      "message": "Locally it is three different patches, but it seems like \u0027repo upload\u0027 squashed them together, which was not my intention.  I may be doing something wrong, but haven\u0027t seen this problem with (for ex) ChromeOS repos.\n\n```\ncommit 4cef0d7cf9517f98df9accd91e05ef538be6ed95\nAuthor:     Rob Clark \u003crobdclark@chromium.org\u003e\nAuthorDate: Thu Oct 8 10:39:24 2020 -0700\nCommit:     Rob Clark \u003crobdclark@chromium.org\u003e\nCommitDate: Sat Oct 10 17:31:59 2020 -0700\n\n    Add/fix drm based vblank recognition\n    \n    The event name is \"vblank:N\" where N is the crtc index.  So the primary\n    display would be \"vblank:0\".\n\ncommit e171b480e39a1cbbc441cf806d40e31d0795a961\nAuthor:     Rob Clark \u003crobdclark@chromium.org\u003e\nAuthorDate: Wed Oct 7 15:56:25 2020 -0700\nCommit:     Rob Clark \u003crobdclark@chromium.org\u003e\nCommitDate: Sat Oct 10 17:31:59 2020 -0700\n\n    Add msm gpu trace support\n    \n    Add support for drm/msm tracepoints, to extract GPU freq and see running\n    (and queued) duration for submits (jobs).\n\ncommit d58b3b6419ee3400faefe76246f7ccc7afc68230\nAuthor:     Rob Clark \u003crobdclark@chromium.org\u003e\nAuthorDate: Fri Oct 9 10:15:51 2020 -0700\nCommit:     Rob Clark \u003crobdclark@chromium.org\u003e\nCommitDate: Sat Oct 10 17:31:58 2020 -0700\n\n    Add way to have a hidden container slice\n    \n    I want to group two async slices, one for the time a job is queued, and\n    another for the time a job is running.  Subslices can achive this, but\n    in this case I don\u0027t want to see the container slice.\n\n```\n\nPlease let me know if there is a different way I should upload the CL.",
+      "parentUuid": "c39f3b53_8aae96c1",
+      "revId": "db9ad0d5387457e8f34b02d6ebf6c6b4bad9b7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff764427_ccedd36a",
