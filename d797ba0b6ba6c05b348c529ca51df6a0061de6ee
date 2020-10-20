@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ca5fe0_d867c757",
+        "filename": "tracing/tracing/extras/vsync/vsync_auditor.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:35:13Z",
+      "side": 1,
+      "message": "Are there any cases where we wouldn\u0027t necessarily want to use the primary display? For example, what if a developer was running a test locally and the window happened to be on a secondary display?",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 13
+      },
+      "revId": "d797ba0b6ba6c05b348c529ca51df6a0061de6ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
