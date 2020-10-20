@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522a983c_b60b6215",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T17:59:53Z",
+      "side": 1,
+      "message": "PTAL\n\n/var/log/dmesg supposedly might contain other information (although unsure if it\u0027s the same information as running dmesg itself), but that can\u0027t be accessed due to permissions. Same with /var/log/kern.log, but it\u0027s not even accessible from the docker containers.",
+      "revId": "be042142d0d4afebcc46722549b5df5e2270d7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
