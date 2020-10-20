@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c56a3539_bbb42dd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T19:31:41Z",
+      "side": 1,
+      "message": "`git cl upload` (and I guess `repo upload`?) upload the current state of the branch to the associated CL (or a new one if no CL is associated with the branch). If you want separate CLs, have each patch on its own branch.",
+      "parentUuid": "ff43acd0_76c86980",
+      "revId": "db9ad0d5387457e8f34b02d6ebf6c6b4bad9b7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff764427_ccedd36a",
