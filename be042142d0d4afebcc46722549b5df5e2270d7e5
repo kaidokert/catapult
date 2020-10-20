@@ -39,6 +39,30 @@
       },
       "revId": "be042142d0d4afebcc46722549b5df5e2270d7e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4efb233_5a6f110c",
+        "filename": "devil/devil/android/forwarder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T18:44:04Z",
+      "side": 1,
+      "message": "I was able to do so locally and on a swarming bot without having to use sudo.",
+      "parentUuid": "2d358c7d_f1d25807",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 21
+      },
+      "revId": "be042142d0d4afebcc46722549b5df5e2270d7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
