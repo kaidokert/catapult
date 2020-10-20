@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23c880fe_c0fa1038",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:32:47Z",
+      "side": 1,
+      "message": "Any associated bug?",
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8a3cfd_e85f83f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:32:47Z",
+      "side": 1,
+      "message": "Again, I\u0027ll defer to oysteine@ for an in-depth review since I\u0027m not familiar with this part of the code.",
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed489362_69bb37ed",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:32:47Z",
+      "side": 1,
+      "message": "Nit: I believe \"num\" would be preferred over just \"n\".",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf40014_8a3f9e0a",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:32:47Z",
+      "side": 1,
+      "message": "Is there a way to suppress this for a block? I know Python does, but not sure about HTML/JavaScript.",
+      "range": {
+        "startLine": 17,
+        "startChar": 139,
+        "endLine": 17,
+        "endChar": 165
+      },
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
