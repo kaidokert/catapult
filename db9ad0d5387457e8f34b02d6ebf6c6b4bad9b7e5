@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c39f3b53_8aae96c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T18:09:05Z",
+      "side": 1,
+      "message": "Based on the CL description, this contains a number of seemingly unrelated changes. Can you break it up into distinct CLs for each one if that\u0027s the case? If they are actually related, can you update the CL description indicating how?",
+      "revId": "db9ad0d5387457e8f34b02d6ebf6c6b4bad9b7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
