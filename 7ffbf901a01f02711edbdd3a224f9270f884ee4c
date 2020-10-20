@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26932fc7_1b203599",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:27:02Z",
+      "side": 1,
+      "message": "I\u0027ll defer to oysteine@ for this since it\u0027s been more than a year since I\u0027ve looked at tracing-related code and I wasn\u0027t very familiar with it back then, either.",
+      "revId": "7ffbf901a01f02711edbdd3a224f9270f884ee4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
