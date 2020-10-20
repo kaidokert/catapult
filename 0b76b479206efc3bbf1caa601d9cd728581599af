@@ -33,6 +33,24 @@
       "message": "LGTM\n\nPlease ship it!",
       "revId": "0b76b479206efc3bbf1caa601d9cd728581599af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d968b43_6ce53268",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-20T11:43:53Z",
+      "side": 1,
+      "message": "Yes, thanks! I think using that bug is the right thing to do for now. 😊",
+      "parentUuid": "38eb12f1_08691cfd",
+      "revId": "0b76b479206efc3bbf1caa601d9cd728581599af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
