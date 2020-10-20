@@ -293,3 +293,9 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
   @property
   def supports_memory_metrics(self):
     return True
+
+  def OpenTabSearch(self, timeout):
+    self.devtools_client.OpenTabSearch(timeout)
+
+  def CloseTabSearch(self, timeout):
+    self.devtools_client.CloseTabSearch(timeout)

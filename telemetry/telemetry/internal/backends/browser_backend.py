@@ -412,3 +412,9 @@ class BrowserBackend(app_backend.AppBackend):
 
   def ExitOverviewMode(self, timeout): # pylint: disable=unused-argument
     raise exceptions.StoryActionError('Overview mode is not supported')
+
+  def OpenTabSearch(self, timeout): # pylint: disable=unused-argument
+    raise exceptions.StoryActionError('Tab search not supported')
+
+  def CloseTabSearch(self, timeout): # pylint: disable=unused-argument
+    raise exceptions.StoryActionError('Tab search not supported')

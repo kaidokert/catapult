@@ -317,6 +317,24 @@ class _DevToolsClientBackend(object):
           'Unable to activate tab, tab id not found: %s' % tab_id)
       raise error, None, sys.exc_info()[2]
 
+  def OpenTabSearch(self, timeout):
+    request = {
+        'method': 'Browser.executeBrowserCommand',
+        'params': {
+            'commandId': 'openTabSearch',
+        }
+    }
+    self._browser_websocket.SyncRequest(request, timeout)
+
+  def CloseTabSearch(self, timeout):
+    request = {
+        'method': 'Browser.executeBrowserCommand',
+        'params': {
+            'commandId': 'closeTabSearch',
+        }
+    }
+    self._browser_websocket.SyncRequest(request, timeout)
+
   def GetUrl(self, tab_id):
     """Returns the URL of the tab with |tab_id|, as reported by devtools.
 
