@@ -260,6 +260,14 @@ class Browser(app.App):
       self, timeout=web_contents.DEFAULT_WEB_CONTENTS_TIMEOUT):
     self._browser_backend.ExitOverviewMode(timeout)
 
+  def OpenTabSearch(
+      self, timeout=web_contents.DEFAULT_WEB_CONTENTS_TIMEOUT):
+    self._browser_backend.OpenTabSearch(timeout)
+
+  def CloseTabSearch(
+      self, timeout=web_contents.DEFAULT_WEB_CONTENTS_TIMEOUT):
+    self._browser_backend.CloseTabSearch(timeout)
+
   @property
   def supports_cpu_metrics(self):
     return self._browser_backend.supports_cpu_metrics
