@@ -22,6 +22,30 @@
       },
       "revId": "d797ba0b6ba6c05b348c529ca51df6a0061de6ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "719dc429_1ccf9c3a",
+        "filename": "tracing/tracing/extras/vsync/vsync_auditor.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-20T20:42:30Z",
+      "side": 1,
+      "message": "Possibly.. although I think you\u0027d want them on separate timelines?  Or at least have some way to differentiate (maybe different colors?)\n\nHaving at least the primary display covers at least 90% of the use-cases (for me at least), and is a big improvement about not seeing any vblanks on the timeline.\n\nIf someone thinks multi-display vsyncs would be useful I can have a closer look at the vsync_auditor code and try to add this.  But I only have a setup to test this with linux/drm.",
+      "parentUuid": "a5ca5fe0_d867c757",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 13
+      },
+      "revId": "d797ba0b6ba6c05b348c529ca51df6a0061de6ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
