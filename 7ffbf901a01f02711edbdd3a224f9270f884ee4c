@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e21f0b_48263d8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-20T20:38:52Z",
+      "side": 1,
+      "message": "\u003e Is one bug for the three CLs ok?\nYes, assuming they\u0027re all actually somewhat related.\n\nAlternatively, you can just mention in the description what the associated Buganizer bug is. Pretty much the only benefit of the \"Bug:\" line over that is that an automated comment would be posted on the bug linking the CL to it. That\u0027s not really a benefit if the bug gets created as a bit of a throwaway.",
+      "parentUuid": "22e90c68_78a95e50",
+      "revId": "7ffbf901a01f02711edbdd3a224f9270f884ee4c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "26932fc7_1b203599",
