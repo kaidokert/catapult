@@ -16,6 +16,23 @@
       "message": "At least this solution requires not much change in the code.\nWhat do you think ?\nAlso should I create a new bug ?",
       "revId": "0b76b479206efc3bbf1caa601d9cd728581599af",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a54db45_0991426e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-20T11:42:51Z",
+      "side": 1,
+      "message": "LGTM\n\nPlease ship it!",
+      "revId": "0b76b479206efc3bbf1caa601d9cd728581599af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
