@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5d35e2_694a0cb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-20T19:48:23Z",
+      "side": 1,
+      "message": "Sorry, I didn\u0027t see any response initially with fewer reviewers, but this is my first venture into catapult so I probably didn\u0027t know who I should have added.",
+      "parentUuid": "7095d613_8a3d280a",
+      "revId": "db9ad0d5387457e8f34b02d6ebf6c6b4bad9b7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff764427_ccedd36a",
@@ -107,6 +125,30 @@
       "writtenOn": "2020-10-20T18:46:31Z",
       "side": 1,
       "message": "nit: Multi-line comment please.",
+      "range": {
+        "startLine": 80,
+        "startChar": 81,
+        "endLine": 80,
+        "endChar": 83
+      },
+      "revId": "db9ad0d5387457e8f34b02d6ebf6c6b4bad9b7e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec6bf886_491cfefd",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-20T19:48:23Z",
+      "side": 1,
+      "message": "This line was an example of a trace that the regex is matching, which is why I did not split it.  But if splitting it is still preferred, I can do that.\n\nAlso, in case it is useful, I uploaded an example trace to drive:\n\nhttps://drive.google.com/file/d/1oYv9rIIGodmOj2hwY45BpsI_jN1ZxYiW/view?usp\u003dsharing",
+      "parentUuid": "d8a33e47_babca6f2",
       "range": {
         "startLine": 80,
         "startChar": 81,
