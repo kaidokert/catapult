@@ -287,9 +287,15 @@ class AdbWrapper(object):
       env.update(additional_env)
     try:
       adb_cmd = cls._BuildAdbCmd(args, device_serial, cpu_affinity=cpu_affinity)
+      logger.info(adb_cmd)
       status, output = cmd_helper.GetCmdStatusAndOutputWithTimeout(adb_cmd,
                                                                    timeout,
                                                                    env=env)
+      t_adb_cmd = cls._BuildAdbCmd(['shell', 'ls', '-ld', '/data/user/0/*.chrome'], device_serial, cpu_affinity=cpu_affinity)
+      t_status, t_output = cmd_helper.GetCmdStatusAndOutputWithTimeout(t_adb_cmd,
+                                                                   timeout,
+                                                                   env=env)
+      logger.info('--- %d: %s ---', t_status, t_output)
     except OSError as e:
       if e.errno in (errno.ENOENT, errno.ENOEXEC):
         raise device_errors.NoAdbError(msg=str(e))
