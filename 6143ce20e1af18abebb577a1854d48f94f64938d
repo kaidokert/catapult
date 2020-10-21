@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "300c45f5_7deb2cec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-21T10:40:36Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "6143ce20e1af18abebb577a1854d48f94f64938d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf4726f1_bae8d101",
+        "filename": "dashboard/dashboard/models/upload_completion_token.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-21T10:40:36Z",
+      "side": 1,
+      "message": "Still need `put_async()`? Or did you just need `put()`?",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 20
+      },
+      "revId": "6143ce20e1af18abebb577a1854d48f94f64938d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
