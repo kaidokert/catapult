@@ -22,6 +22,30 @@
       },
       "revId": "2cc4096401b18ef358143ea0dce1273eddc5ceb4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b26ebf9_7d8be769",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-21T06:58:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99c3a68a_19eb94fc",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "2cc4096401b18ef358143ea0dce1273eddc5ceb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
