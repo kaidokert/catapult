@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c3a68a_19eb94fc",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-21T00:10:45Z",
+      "side": 1,
+      "message": "Please associate with some sort of bug.\n\nInstead of an empty string, you could also return something like \"Fuchsia \u003c 1.0\", although you\u0027d still probably want an associated bug to update it once Fuchsia starts having proper versions.\n\nNo strong preference, though.",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "2cc4096401b18ef358143ea0dce1273eddc5ceb4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
