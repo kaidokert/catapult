@@ -16,6 +16,46 @@
       "message": "Fixing Pinpoint test failures on Sunfish devices. PTAL. Thanks.",
       "revId": "120cdc6a30aa88b73402b92d3773ec62d557a8bf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3312cc4_18163bd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-10-22T18:58:12Z",
+      "side": 1,
+      "message": "LGTM with one comment.",
+      "revId": "120cdc6a30aa88b73402b92d3773ec62d557a8bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca415617_ac7ecf21",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-10-22T18:58:12Z",
+      "side": 1,
+      "message": "Should we add a log for debugging purpose?",
+      "range": {
+        "startLine": 2108,
+        "startChar": 8,
+        "endLine": 2108,
+        "endChar": 58
+      },
+      "revId": "120cdc6a30aa88b73402b92d3773ec62d557a8bf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
