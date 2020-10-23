@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ba5b831_07e8fd29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a2077aa4_c28ec005",
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79460332_30be204a",
@@ -49,6 +67,30 @@
       "writtenOn": "2020-10-19T22:03:17Z",
       "side": 1,
       "message": "artifact_output_dir can be a relative path, and it\u0027s joined with os.getcwd() at L117.\nDoesn\u0027t it imply that artifiact_output_dir can be an empty string if artifact paths are relative to the cwd?\n\nIf the directory should be a non-empty string, and \u0027.\u0027 should be used to point the cwd, then please describe the requirement in the doc string.\n\nAlso, could this assertion be checked always? It is executed only if result.artifacts have. It may not make it hard to detect this assertion failure in an early stage. It\u0027d be the best to perform the assertion unconditionally. If it\u0027s necessary, please document in the doc string.",
+      "range": {
+        "startLine": 115,
+        "startChar": 19,
+        "endLine": 115,
+        "endChar": 38
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380eaecb_6f065d7b",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "\u003e If the directory should be a non-empty string, and \u0027.\u0027 should be used to point the cwd, then please describe the requirement in the doc string.\n\nDone.\n\n\u003e Also, could this assertion be checked always?\n\nNo, it\u0027s valid for a test to not support artifacts, and thus have no artifact_output_dir. We could instead unconditionally check for (not result.artifacts or artifact_output_dir) if that\u0027s preferred.",
+      "parentUuid": "79460332_30be204a",
       "range": {
         "startLine": 115,
         "startChar": 19,
@@ -82,6 +124,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c61e99_f80fdb46",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2f4fb49_1c33baa0",
+      "range": {
+        "startLine": 118,
+        "startChar": 24,
+        "endLine": 118,
+        "endChar": 36
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e65ed03_4af8ccc6",
@@ -105,6 +171,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b104169_55b9a848",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "Done, missed since Catapult doesn\u0027t seem to support `git cl format`.",
+      "parentUuid": "9e65ed03_4af8ccc6",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 142,
+        "endChar": 48
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1402258c_e778dffb",
@@ -118,6 +208,30 @@
       "writtenOn": "2020-10-19T22:03:17Z",
       "side": 1,
       "message": "This can possibly cause assertion failures by run-time values, and it\u0027d be hard to catch this, because this assertion is performed only if the total length \u003e the max lenght.\n\nPlease run this assertion unconditionally to prohibit any artifacts named with the special name, or auto-correct the artifact name like \"$artifact_name - summary\"\nJFYI, artifact name allows [[:print:]] characters.\nhttps://source.chromium.org/chromium/infra/infra/+/master:go/src/go.chromium.org/luci/resultdb/proto/v1/artifact.proto;l\u003d45",
+      "range": {
+        "startLine": 143,
+        "startChar": 19,
+        "endLine": 143,
+        "endChar": 40
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7baa1c88_b82dc689",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "Done, asserted unconditionally.",
+      "parentUuid": "1402258c_e778dffb",
       "range": {
         "startLine": 143,
         "startChar": 19,
@@ -153,6 +267,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca619d6f_6ca28deb",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "I\u0027m fine with raising an exception, but I\u0027ll defer to Dirk in case he has any opinions on how typ should behave here.",
+      "parentUuid": "637c1401_d9062c7e",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 49
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d45f89e7_0b877c61",
         "filename": "third_party/typ/typ/result_sink.py",
         "patchSetId": 7
@@ -176,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1eb0cf9_93803bd1",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "It\u0027s mildly more convenient for testing since we don\u0027t need to deal with the POST request when testing _create_json_test_result, but I also don\u0027t have a particularly strong opinion in this case. Leaving as-is for now, but will change if others have a stronger opinion for merging.",
+      "parentUuid": "d45f89e7_0b877c61",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1a0277d_1a699b2e",
         "filename": "third_party/typ/typ/result_sink.py",
         "patchSetId": 7
@@ -187,6 +349,30 @@
       "writtenOn": "2020-10-19T22:03:17Z",
       "side": 1,
       "message": "Can be one-liner and micro-level cheaper, as it will stop the iteration at the first occurrence.\n\n```\nreturn int(any(r.ret for r in result_set.results))\n```",
+      "range": {
+        "startLine": 242,
+        "startChar": 4,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "fa3860bbf2231d1061d1f3966a4550381a93695d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69d7245c_be3d7a0f",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T00:35:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1a0277d_1a699b2e",
       "range": {
         "startLine": 242,
         "startChar": 4,
