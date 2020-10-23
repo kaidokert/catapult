@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4019596e_b7e018c3",
+        "filename": ".vpython",
+        "patchSetId": 8
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-23T19:04:16Z",
+      "side": 1,
+      "message": "I don\u0027t think you need this any more?",
+      "revId": "72a44681992e447165cbb84f4cd28adef9897cfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e36870_fc259eec",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-23T19:04:16Z",
+      "side": 1,
+      "message": "Nit: I don\u0027t think you\u0027re using tempfile any more.",
+      "revId": "72a44681992e447165cbb84f4cd28adef9897cfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1982d0d4_ffb52f19",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-23T19:04:16Z",
+      "side": 1,
+      "message": "Does this have to be an absolute path?",
+      "revId": "72a44681992e447165cbb84f4cd28adef9897cfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
