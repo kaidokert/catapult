@@ -54,6 +54,11 @@ wheel: <
   name: "infra/python/wheels/coverage/${vpython_platform}"
   version: "version:4.3.4"
 >
+# Needed by mock.
+wheel: <
+  name: "infra/python/wheels/pbr-py2_py3"
+  version: "version:3.0.0"
+>
 
 # Used by:
 #   telemetry/
