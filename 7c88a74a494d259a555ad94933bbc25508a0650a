@@ -39,6 +39,47 @@
       },
       "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050ea242_2d45b932",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-23T20:02:44Z",
+      "side": 1,
+      "message": "Running the tests locally without a LUCI_CONTEXT should be perfectly fine, so I wouldn\u0027t want to log an error unconditionally in that case.\n\nWe should either have to explicitly have a flag to enable ResultSink integration, in which case it would be then fine to complain here, or we should not log here.",
+      "parentUuid": "f2bb2130_46d5e4c1",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 81
+      },
+      "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f06ae499_a894e79c",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-10-23T20:02:44Z",
+      "side": 1,
+      "message": "I don\u0027t actually know if there\u0027s a case where LUCI_CONTEXT would be set and we wouldn\u0027t expect this field to exist, so maybe that\u0027s a question for Scott. \n\nIf this is an error, we should hard-error-out rather than silently ignoring it.\n\nIf this isn\u0027t an error, then I wouldn\u0027t want to log anything.",
+      "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
