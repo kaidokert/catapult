@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75c14cb2_662cfd5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2020-10-23T17:21:35Z",
+      "side": 1,
+      "message": "Hi, John\n\nCould you help me to review this CL?\nPlease let me know if the approach is reasonable.\n\nIf you want to test it with our use case. Here are the steps:\n1. Have src-internal checked out\n2. Add enable_tab_search \u003d true in args.gn\n3. Checkout the following CL from src\nhttps://chromium-review.googlesource.com/c/chromium/src/+/2461224\n4. Build chrome\n5. Run tools/perf/run_benchmark run tab_search --browser-executable\u003dout/Default/chrome --story-filter\u003dtab_search:us_top10:2020\n\nIf you have any questions/concerns, feel free to leave comments or ping me directly on chat.\nThanks!",
+      "revId": "f1afa076854013ec3157ef8c5f3e9bc185169ab5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
