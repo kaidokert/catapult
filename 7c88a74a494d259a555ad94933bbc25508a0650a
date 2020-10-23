@@ -65,6 +65,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8b7989e_ad192b89",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T20:20:10Z",
+      "side": 1,
+      "message": "go/resultsink specifically calls out that it shouldn\u0027t be necessary to pass in a flag to enable ResultSink functionality. I\u0027ve removed the logging.",
+      "parentUuid": "050ea242_2d45b932",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 81
+      },
+      "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f06ae499_a894e79c",
@@ -78,6 +102,24 @@
       "writtenOn": "2020-10-23T20:02:44Z",
       "side": 1,
       "message": "I don\u0027t actually know if there\u0027s a case where LUCI_CONTEXT would be set and we wouldn\u0027t expect this field to exist, so maybe that\u0027s a question for Scott. \n\nIf this is an error, we should hard-error-out rather than silently ignoring it.\n\nIf this isn\u0027t an error, then I wouldn\u0027t want to log anything.",
+      "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41bb78a6_b7588d16",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T20:20:10Z",
+      "side": 1,
+      "message": "It\u0027s not an error, at least not yet. ResultSink isn\u0027t enabled everywhere yet (still being turned on experimentally on certain builders), so at least until it\u0027s always on, we shouldn\u0027t treat this as an error.\n\nRemoved the logging.",
+      "parentUuid": "f06ae499_a894e79c",
       "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
