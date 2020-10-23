@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34035f6_81baf610",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T19:23:15Z",
+      "side": 1,
+      "message": "Addressed dpranke@\u0027s comments, although there\u0027s still one comment I\u0027d like your input on.",
+      "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2bb2130_46d5e4c1",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-23T19:23:15Z",
+      "side": 1,
+      "message": "Reposting an earlier comment for visibility:\n\nIt seems that typ has very little informational logging, so omitting this would be consistent, but I feel like it\u0027s information worth surfacing.",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 81
+      },
+      "revId": "7c88a74a494d259a555ad94933bbc25508a0650a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
