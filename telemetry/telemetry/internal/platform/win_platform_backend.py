@@ -17,20 +17,61 @@ from telemetry.internal.platform import desktop_platform_backend
 
 try:
   import pywintypes  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import pywintypes')
+
+try:
   import win32api  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import win32api')
+
+try:
   from win32com.shell import shell  # pylint: disable=no-name-in-module
+except ImportError:
+  print('Unable to import shell')
+
+try:
   from win32com.shell import shellcon  # pylint: disable=no-name-in-module
+except ImportError:
+  print('Unable to import shellcon')
+
+try:
   import win32con  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import win32con')
+
+try:
   import win32gui  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import win32gui')
+
+try:
   import win32process  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import win32process')
+
+try:
   import win32ui  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import win32ui')
+
+try:
   import winerror  # pylint: disable=import-error
+except ImportError:
+  print('Unable to import winerror')
+
+try:
   try:
     import winreg  # pylint: disable=import-error
   except ImportError:
     import _winreg as winreg  # pylint: disable=import-error,wrong-import-order
+except ImportError:
+  print('Unable to import winreg')
+
+try:
   import win32security  # pylint: disable=import-error
 except ImportError:
+  print('Unable to import win32security')
   pywintypes = None
   shell = None
   shellcon = None
@@ -45,6 +86,7 @@ except ImportError:
   winerror = None
   winreg = None
 
+import testing.testing
 
 try:
   from PIL import Image  # pylint: disable=import-error
