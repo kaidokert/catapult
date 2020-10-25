@@ -15,35 +15,22 @@ from telemetry.core import os_version as os_version_module
 from telemetry import decorators
 from telemetry.internal.platform import desktop_platform_backend
 
+logging.warning('Starting imports')
+import pywintypes  # pylint: disable=import-error
+import win32api  # pylint: disable=import-error
+from win32com.shell import shell  # pylint: disable=no-name-in-module
+from win32com.shell import shellcon  # pylint: disable=no-name-in-module
+import win32con  # pylint: disable=import-error
+import win32gui  # pylint: disable=import-error
+import win32process  # pylint: disable=import-error
+import win32ui  # pylint: disable=import-error
+import winerror  # pylint: disable=import-error
 try:
-  import pywintypes  # pylint: disable=import-error
-  import win32api  # pylint: disable=import-error
-  from win32com.shell import shell  # pylint: disable=no-name-in-module
-  from win32com.shell import shellcon  # pylint: disable=no-name-in-module
-  import win32con  # pylint: disable=import-error
-  import win32gui  # pylint: disable=import-error
-  import win32process  # pylint: disable=import-error
-  import win32ui  # pylint: disable=import-error
-  import winerror  # pylint: disable=import-error
-  try:
-    import winreg  # pylint: disable=import-error
-  except ImportError:
-    import _winreg as winreg  # pylint: disable=import-error,wrong-import-order
-  import win32security  # pylint: disable=import-error
+  import winreg  # pylint: disable=import-error
 except ImportError:
-  pywintypes = None
-  shell = None
-  shellcon = None
-  win32api = None
-  win32con = None
-  win32file = None
-  win32gui = None
-  win32pipe = None
-  win32process = None
-  win32security = None
-  win32ui = None
-  winerror = None
-  winreg = None
+  import _winreg as winreg  # pylint: disable=import-error,wrong-import-order
+import win32security  # pylint: disable=import-error
+logging.warning('Finished imports')
 
 
 try:
