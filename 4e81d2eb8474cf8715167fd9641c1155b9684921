@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb0a5ec_3cbc01e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-10-25T23:18:47Z",
+      "side": 1,
+      "message": "Addressing Catapult CQ failures from crbug.com/1141914. PTAL. There are also other issues causing Catapult Windows Tryserver to fail, and I\u0027ll handle them separately.",
+      "revId": "4e81d2eb8474cf8715167fd9641c1155b9684921",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
