@@ -69,6 +69,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if startup_args:
       browser_cmd.append('--')
       browser_cmd.extend(startup_args)
+      browser_cmd.extend(['--enable-low-end-device-mode', '--force-gpu-mem-available-mb=64', '--force-gpu-mem-discardable-limit-mb=32', '--force-max-texture-size=2048', '--gpu-rasterization-msaa-sample-count=0', '--min-height-for-gpu-raster-tile=128', '--webgl-msaa-sample-count=0', '--max-decoded-image-size-mb=10'])
     return browser_cmd
 
   def Start(self, startup_args):
