@@ -30,7 +30,8 @@ try:
   except ImportError:
     import _winreg as winreg  # pylint: disable=import-error,wrong-import-order
   import win32security  # pylint: disable=import-error
-except ImportError:
+except ImportError as e:
+  logging.warning('import error due to: %s', e)
   pywintypes = None
   shell = None
   shellcon = None
@@ -45,6 +46,7 @@ except ImportError:
   winerror = None
   winreg = None
 
+logging.warning('win32gui = %s', win32gui)
 
 try:
   from PIL import Image  # pylint: disable=import-error
