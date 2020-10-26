@@ -16,6 +16,46 @@
       "message": "Should be ready to land once ddoman@ signs off, although might not be landable until https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1141914 gets fixed.",
       "revId": "1d4048ad642f4d0b2a17fef275d4f7eed640d7e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fba2bdd7_c997b14e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-26T20:41:43Z",
+      "side": 1,
+      "message": "I don\u0027t have a permission to stamp on this CL, but LGTM % a possible improvement.",
+      "revId": "1d4048ad642f4d0b2a17fef275d4f7eed640d7e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a8f8446_d0b37a87",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-10-26T20:41:43Z",
+      "side": 1,
+      "message": "I think we can save this connection object to avoid a new TCP connection established each time.",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 58
+      },
+      "revId": "1d4048ad642f4d0b2a17fef275d4f7eed640d7e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
