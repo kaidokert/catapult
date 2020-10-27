@@ -139,6 +139,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a81e072_5af7fd50",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T22:04:48Z",
+      "side": 1,
+      "message": "Looks like the most recent patchset doesn\u0027t have this addition.",
+      "parentUuid": "ceee5db7_18631fa5",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71b3b926_dec929af",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 6
@@ -203,6 +227,24 @@
       "side": 1,
       "message": "I should actually condense this to one statement - a return.\n\nNothing currently uses this but \"Create\", but this follows what other browsers do so that args can be added here for startup. However, this change isn\u0027t necessary and I can do without it if you prefer it that way.",
       "parentUuid": "88aeed50_83919469",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ecab3ac_5a80b57a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T22:04:48Z",
+      "side": 1,
+      "message": "Keeping your changes SGTM.",
+      "parentUuid": "22bdeb46_ae4ab754",
       "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
