@@ -20,6 +20,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86ef0693_4f9dedc7",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T18:48:47Z",
+      "side": 1,
+      "message": "To add to this, this third_party refers to Catapult\u0027s third_party, not Chromium\u0027s.",
+      "parentUuid": "68cfba43_63b10b39",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4efbdf53_40687b41",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T18:48:47Z",
+      "side": 1,
+      "message": "Are there any potential cases where you would want some level of detail other than light? If so, probably better to still take a detail_level argument, but default to light.",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71b3b926_dec929af",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 6
@@ -48,6 +89,52 @@
       "writtenOn": "2020-10-27T18:28:30Z",
       "side": 1,
       "message": "Is there anything else using this method?",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec59012d_d283b77d",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T18:48:47Z",
+      "side": 1,
+      "message": "Nit: Update the docstring to describe what detail_level is.",
+      "range": {
+        "startLine": 427,
+        "startChar": 37,
+        "endLine": 427,
+        "endChar": 54
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be7ff3eb_de879562",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T18:48:47Z",
+      "side": 1,
+      "message": "Is Fuchsia actually considered a mobile OS?",
+      "range": {
+        "startLine": 182,
+        "startChar": 55,
+        "endLine": 182,
+        "endChar": 62
+      },
       "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }

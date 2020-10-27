@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb1c56d_7b22fa83",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_report_events_tracing_agent.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T18:48:47Z",
+      "side": 0,
+      "message": "I would leave this unless you actually need to use config. At least at one point, Telemetry\u0027s presubmit complained about unused variables, and the del is just a simple way to work around that in methods like this.",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 65
+      },
+      "revId": "5d3967cb630c3806ad93303b9e14ca59eedeef99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
