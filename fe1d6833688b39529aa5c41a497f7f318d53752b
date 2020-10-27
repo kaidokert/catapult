@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "944f2ad7_a85ae1cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1350399
+      },
+      "writtenOn": "2020-10-27T17:40:02Z",
+      "side": 1,
+      "message": "Added Brian as an owner to review, and Chong as he\u0027s familiar with the Fuchsia Telemetry backend.",
+      "revId": "fe1d6833688b39529aa5c41a497f7f318d53752b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a854ff9_558321b8",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1350399
+      },
+      "writtenOn": "2020-10-27T17:40:02Z",
+      "side": 1,
+      "message": "Will this change cause Telemetry tests to run automatically, or simply allow mobile tests to run with Fuchsia? I\u0027m only looking for the latter. If this causes otherwise, I\u0027ll revert it.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 75
+      },
+      "revId": "fe1d6833688b39529aa5c41a497f7f318d53752b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
