@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c9c4c06_451102d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T23:55:16Z",
+      "side": 1,
+      "message": "LGTM % comment.",
+      "revId": "29b4bf0b95cfdbd418299f92cbcee8047b34941b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ba9114_d302708f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T23:55:16Z",
+      "side": 1,
+      "message": "The preferred way to handle defaults is to have this set to None then use \"detail_level or \u0027light\u0027\" when you actually use it. This way, if something else passes in its default None value for an argument, the underlying method still sets the default correctly.",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 57
+      },
+      "revId": "29b4bf0b95cfdbd418299f92cbcee8047b34941b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
