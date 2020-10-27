@@ -167,7 +167,10 @@ class Measurement(internal_only_model.InternalOnlyModel):
             'Token id: %s, measurement test path: %s', token_id, test_path)
       return
     obj.state = state
-    obj.error_message = error_message
+    if error_message is not None:
+      # In some cases the error_message (e.message field) can actually be not
+      # a string.
+      obj.error_message = str(error_message)
     yield obj.put_async()
     logging.info(
         'Upload completion token measurement updated. Token id: %s, '
