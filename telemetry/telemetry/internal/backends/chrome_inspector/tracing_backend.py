@@ -135,6 +135,7 @@ class TracingBackend(object):
     # confirm the fact that startup tracing is in place. In fact, it would be
     # an error if this request succeeds.
     error_message = response.get('error', {}).get('message', '')
+    logging.info('response: %s' % (str(response)))
     if not re.match(r'Tracing.*already.*started', error_message):
       raise TracingUnexpectedResponseException(
           'Tracing.start failed to confirm startup tracing:\n' +
@@ -163,7 +164,6 @@ class TracingBackend(object):
     if not self.IsTracingSupported():
       raise TracingUnsupportedException(
           'Chrome tracing not supported for this app.')
-
     response = self._SendTracingStartRequest(
         transfer_mode=transfer_mode,
         trace_config=chrome_trace_config.GetChromeTraceConfigForDevTools(),
@@ -205,6 +205,7 @@ class TracingBackend(object):
     if trace_format is not None:
       params['streamFormat'] = trace_format
     request = {'method': 'Tracing.start', 'params': params}
+    logging.info('Tracing request: %s' % str(request))
     return self._inspector_websocket.SyncRequest(request, timeout)
 
   def RecordClockSyncMarker(self, sync_id):
@@ -239,11 +240,13 @@ class TracingBackend(object):
     self._is_tracing_running = False
     self._can_collect_data = True
 
-  def DumpMemory(self, timeout=None):
+  def DumpMemory(self, timeout=None, detail_level=None):
     """Dumps memory.
 
     Args:
       timeout: If not specified defaults to 20 minutes.
+      detail_level: Level of detail in memory dump. One of ['background',
+        'light', 'detailed']. Default is 'detailed'.
 
     Returns:
       GUID of the generated dump if successful, None otherwise.
@@ -255,7 +258,11 @@ class TracingBackend(object):
       TracingUnexpectedResponseException: If the response contains an error
       or does not contain the expected result.
     """
-    request = {'method': 'Tracing.requestMemoryDump'}
+    params = {}
+    if detail_level:
+      assert detail_level in ['background', 'light', 'detailed']
+      params = {'levelOfDetail': detail_level}
+    request = {'method': 'Tracing.requestMemoryDump', 'params': params}
     if timeout is None:
       timeout = 1200  # 20 minutes.
     try:
