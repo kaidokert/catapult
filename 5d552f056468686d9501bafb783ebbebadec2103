@@ -16,6 +16,23 @@
       "message": "LGTM, I am not triggering Auto-Submit since it is late in the evening. :) ",
       "revId": "5d552f056468686d9501bafb783ebbebadec2103",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b76f109_35f55eb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-27T23:37:15Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "5d552f056468686d9501bafb783ebbebadec2103",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
