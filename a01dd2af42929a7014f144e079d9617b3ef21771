@@ -34,6 +34,24 @@
       "parentUuid": "91da1d96_49973a0f",
       "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "163e8483_f89027be",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-10-27T19:47:42Z",
+      "side": 1,
+      "message": "in example #1, close() is called after calling request() like here\nhttps://docs.python.org/2/library/httplib.html#examples\n\nrequest() docs don\u0027t say that it closes the connection (and I would be surprised if it did)",
+      "parentUuid": "3d03e2f6_898a64d1",
+      "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
