@@ -16,6 +16,24 @@
       "message": "connection is never closed. We should probably close it: I am worried that ResultSink would have a lot of incoming concurrent connections that don\u0027t die and keep using system resources (ports)",
       "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d03e2f6_898a64d1",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T18:56:55Z",
+      "side": 1,
+      "message": "ResultDB isn\u0027t enable for any typ tests AFAIK, so shouldn\u0027t be an immediate issue. I\u0027ll take another look in the follow-up CL that adds the typ expectation as a ResultDB tag, although I don\u0027t know if HTTPConnection.close() is relevant in this use case - it seems like .connect() and .close() might only be used if using the step-by-step approach using .putrequest(), .putheader(), .endheaders(), and .send() instead of the one call to .request() https://docs.python.org/2/library/httplib.html#httpconnection-objects.",
+      "parentUuid": "91da1d96_49973a0f",
+      "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
