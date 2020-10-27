@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91da1d96_49973a0f",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-10-27T18:48:32Z",
+      "side": 1,
+      "message": "connection is never closed. We should probably close it: I am worried that ResultSink would have a lot of incoming concurrent connections that don\u0027t die and keep using system resources (ports)",
+      "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
