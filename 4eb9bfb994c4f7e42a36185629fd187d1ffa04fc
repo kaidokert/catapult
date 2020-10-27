@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68cfba43_63b10b39",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-27T18:28:30Z",
+      "side": 1,
+      "message": "I think this will complain if the fuchsia SDK is part of Chromium and thus Catapult doesn\u0027t download its own, which will result in the non-existence of this directory.",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71b3b926_dec929af",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-27T18:28:30Z",
+      "side": 1,
+      "message": "Not sure if it\u0027s a good idea to start tracing every time a browser is started. Does startup tracing sometimes not work?",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88aeed50_83919469",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-27T18:28:30Z",
+      "side": 1,
+      "message": "Is there anything else using this method?",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
