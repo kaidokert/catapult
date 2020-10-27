@@ -424,7 +424,7 @@ class _DevToolsClientBackend(object):
     self._CreateSystemInfoBackendIfNeeded()
     return self._system_info_backend.GetSystemInfo(timeout)
 
-  def DumpMemory(self, timeout=None):
+  def DumpMemory(self, timeout=None, detail_level=None):
     """Dumps memory.
 
     Returns:
@@ -437,7 +437,9 @@ class _DevToolsClientBackend(object):
       TracingUnexpectedResponseException: If the response contains an error
       or does not contain the expected result.
     """
-    return self._tracing_backend.DumpMemory(timeout=timeout)
+    return self._tracing_backend.DumpMemory(
+        timeout=timeout,
+        detail_level=detail_level)
 
   def SetMemoryPressureNotificationsSuppressed(self, suppressed, timeout=30):
     """Enable/disable suppressing memory pressure notifications.
