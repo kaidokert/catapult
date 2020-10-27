@@ -98,6 +98,7 @@ class TracingControllerBackend(object):
     self._platform_backend = platform_backend
     self._current_state = None
     self._active_agents_instances = []
+    self._inactive_agents_instances = []
     self._is_tracing_controllable = True
 
   def RecordBenchmarkMetadata(self, results):
@@ -118,8 +119,10 @@ class TracingControllerBackend(object):
     else:
       agent_classes = _TRACING_AGENT_CLASSES
 
+    print('StartTracing: Config to start with: %s' % config)
     for agent_class in agent_classes:
       if agent_class.IsSupported(self._platform_backend):
+        print('StartTracing for %s'  % str(agent_class))
         agent = agent_class(self._platform_backend, config)
         if agent.StartAgentTracing(config, timeout):
           self._active_agents_instances.append(agent)
@@ -190,11 +193,17 @@ class TracingControllerBackend(object):
   def is_chrome_tracing_running(self):
     return self._GetActiveChromeTracingAgent() is not None
 
+  @property
+  def current_state(self):
+    return self._current_state
+  
+
   def _GetActiveChromeTracingAgent(self):
     if not self.is_tracing_running:
       return None
     if not self._current_state.config.enable_chrome_trace:
       return None
+
     for agent in self._active_agents_instances:
       if isinstance(agent, chrome_tracing_agent.ChromeTracingAgent):
         return agent
@@ -208,7 +217,7 @@ class TracingControllerBackend(object):
 
   def GetChromeTraceConfigFile(self):
     agent = self._GetActiveChromeTracingAgent()
-    if agent:
+    if agent:  
       return agent.trace_config_file
     return None
 

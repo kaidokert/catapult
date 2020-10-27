@@ -47,7 +47,8 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
     pass
 
   def _GetPathsForOsPageCacheFlushing(self):
-    raise NotImplementedError()
+    # There is no page write-back on Fuchsia, so there is nothing to flush.
+    return []
 
   def Create(self):
     """Start the browser process."""
@@ -55,8 +56,8 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
       local_first_binary_manager.LocalFirstBinaryManager.Init(
           self._build_dir, None, 'linux', platform.machine())
 
-    startup_args = chrome_startup_args.GetFromBrowserOptions(
-        self._browser_options)
+    startup_args = self.GetBrowserStartupArgs(self._browser_options)
+
     browser_backend = fuchsia_browser_backend.FuchsiaBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory)
@@ -67,6 +68,19 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
     except Exception:
       browser_backend.Close()
       raise
+
+  def GetBrowserStartupArgs(self, browser_options):
+    startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
+
+    # trace_config_file = (self._platform_backend.tracing_controller_backend
+    #                      .GetChromeTraceConfigFile())
+    # if trace_config_file:
+    #   startup_args.append('--trace-config-file=%s' % trace_config_file)
+
+    startup_args.append('--enable-logging')
+    startup_args.append('--v=2')
+
+    return startup_args
 
   def CleanUpEnvironment(self):
     if self._browser_options is None:

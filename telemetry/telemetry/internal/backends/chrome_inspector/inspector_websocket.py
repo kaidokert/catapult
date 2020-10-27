@@ -106,6 +106,7 @@ class InspectorWebsocket(object):
     self._SendRequest(req)
 
   def _SendRequest(self, req):
+    logging.info('making requestion: %s', str(req))
     if not self._socket:
       raise WebSocketDisconnected()
     try:
@@ -113,8 +114,8 @@ class InspectorWebsocket(object):
       self._next_request_id += 1
       data = json.dumps(req)
       self._socket.send(data)
-      if logging.getLogger().isEnabledFor(logging.DEBUG):
-        logging.debug('sent [%s]', json.dumps(req, indent=2, sort_keys=True))
+      if logging.getLogger().isEnabledFor(logging.INFO):
+        logging.info('sent [%s]', json.dumps(req, indent=2, sort_keys=True))
     except websocket.WebSocketException as err:
       raise WebSocketException(err)
 

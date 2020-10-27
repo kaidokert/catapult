@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import logging
+import traceback
 
 from py_utils import cloud_storage
 from py_utils import exc_util
@@ -35,6 +36,7 @@ class Browser(app.App):
                find_existing=False):
     super(Browser, self).__init__(app_backend=backend,
                                   platform_backend=platform_backend)
+    traceback.print_stack()
     try:
       self._browser_backend = backend
       self._platform_backend = platform_backend
@@ -44,6 +46,7 @@ class Browser(app.App):
       if find_existing:
         self._browser_backend.BindDevToolsClient()
       else:
+        logging.info('Starting browser!')
         self._browser_backend.Start(startup_args)
       self._LogBrowserInfo()
     except Exception:

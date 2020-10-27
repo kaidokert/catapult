@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import logging
+import traceback
 import os
 import re
 import select
@@ -45,7 +46,13 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return None
 
   def _FindDevToolsPortAndTarget(self):
+    print('Finding _FindDevToolsPortAndTarget called...')
+    print('Port: %d' % self._devtools_port)
     return self._devtools_port, None
+
+  def DumpMemory(self, timeout=None):
+    return self.devtools_client.DumpMemory(
+      timeout=timeout, detail_level='light')
 
   def _ReadDevToolsPort(self, stderr):
     def TryReadingPort(f):
@@ -89,8 +96,19 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._dump_finder = minidump_finder.MinidumpFinder(
           self.browser.platform.GetOSName(),
           self.browser.platform.GetArchName())
+
       self._devtools_port = self._ReadDevToolsPort(self._browser_process.stderr)
       self.BindDevToolsClient()
+
+      # Start tracing if startup tracing didn't get one started.
+      if not self._platform_backend.tracing_controller_backend.GetChromeTraceConfig():
+        current_state = self._platform_backend.tracing_controller_backend.current_state
+        if current_state:
+          self._platform_backend.tracing_controller_backend.StopTracing()
+        self._platform_backend.tracing_controller_backend.StartTracing(
+          current_state.config,
+          current_state.timeout)
+
     except:
       logging.info('The browser failed to start. Output of the browser: \n%s' %
                    self.GetStandardOutput())

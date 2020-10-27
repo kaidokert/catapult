@@ -136,6 +136,7 @@ class _DevToolsClientBackend(object):
     return self._tracing_backend.is_tracing_running
 
   def Connect(self, devtools_port, browser_target):
+    print('Connecting DevToolsClientBackend')
     try:
       self._Connect(devtools_port, browser_target)
     except:
@@ -170,6 +171,7 @@ class _DevToolsClientBackend(object):
     Raises:
       Any of _DEVTOOLS_CONNECTION_ERRORS if failed to establish the connection.
     """
+    print('Connecting to DevTools backend in _Connect')
     self._browser_target = browser_target or '/devtools/browser'
     self._SetUpPortForwarding(devtools_port)
 
@@ -192,6 +194,7 @@ class _DevToolsClientBackend(object):
     # this config to initialize itself correctly.
     trace_config = (
         self.platform_backend.tracing_controller_backend.GetChromeTraceConfig())
+    print('Getting a trace config: %s'  % str(trace_config))
     self._tracing_backend = tracing_backend.TracingBackend(
         self._browser_websocket, trace_config)
 
@@ -424,7 +427,7 @@ class _DevToolsClientBackend(object):
     self._CreateSystemInfoBackendIfNeeded()
     return self._system_info_backend.GetSystemInfo(timeout)
 
-  def DumpMemory(self, timeout=None):
+  def DumpMemory(self, timeout=None, detail_level=None):
     """Dumps memory.
 
     Returns:
@@ -437,7 +440,10 @@ class _DevToolsClientBackend(object):
       TracingUnexpectedResponseException: If the response contains an error
       or does not contain the expected result.
     """
-    return self._tracing_backend.DumpMemory(timeout=timeout)
+    logging.info('Dumping memory...')
+    return self._tracing_backend.DumpMemory(
+      timeout=timeout,
+      detail_level=detail_level)
 
   def SetMemoryPressureNotificationsSuppressed(self, suppressed, timeout=30):
     """Enable/disable suppressing memory pressure notifications.

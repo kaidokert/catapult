@@ -137,6 +137,13 @@ class FuchsiaPlatformBackend(platform_backend.PlatformBackend):
   def TakeScreenshot(self, file_path):
     return None
 
+  def WriteFile(self, file_path, contents):
+    contents = str(contents).replace("'", "\\'")
+    self.command_runner.RunCommand(('echo \'%s\' > %s' % (contents, file_path)).split(' '))
+
+  def RemovePath(self, path):
+    self.command_runner.RunCommand(('rm -rf %s' % path).split(' '))
+
   def GetTypExpectationsTags(self):
     tags = super(FuchsiaPlatformBackend, self).GetTypExpectationsTags()
     tags.append(self.GetDeviceTypeName())

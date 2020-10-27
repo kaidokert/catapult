@@ -151,12 +151,15 @@ class ActionRunner(object):
     Returns:
       GUID of the generated dump if one was triggered, None otherwise.
     """
+    logging.info('Measuring memory in action_runner.py')
     if not self.tab.browser.platform.tracing_controller.is_tracing_running:
       logging.warning('Tracing is off. No memory dumps are being recorded.')
       return None
     if deterministic_mode:
+      logging.info('deterministic_mode: forcing garbage collection')
       self.Wait(_MEMORY_DUMP_WAIT_TIME)
       self.ForceGarbageCollection()
+    
     dump_id = self.tab.browser.DumpMemory()
     if not dump_id:
       raise exceptions.StoryActionError('Unable to obtain memory dump')

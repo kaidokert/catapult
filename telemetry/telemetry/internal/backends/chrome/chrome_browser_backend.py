@@ -106,6 +106,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     # details of an older agent that no longer exists. It's thus important to
     # re-read and update the port and target on each retry.
     try:
+      print('Getting DevTools client in _GetDevToolsClient')
       devtools_port, browser_target = self._FindDevToolsPortAndTarget()
     except EnvironmentError:
       return None  # Port information not ready, will retry.
@@ -125,6 +126,7 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
       self._devtools_client = None
 
     try:
+      print('Getting DevTools client in BindDevToolsClient')
       self._devtools_client = py_utils.WaitFor(
           self._GetDevToolsClient,
           timeout=self.browser_options.browser_startup_timeout)

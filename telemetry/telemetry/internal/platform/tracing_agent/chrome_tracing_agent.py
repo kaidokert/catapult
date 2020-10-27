@@ -56,19 +56,26 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     devtools_clients = (
         chrome_tracing_devtools_manager
         .GetActiveDevToolsClients(self._platform_backend))
+    logging.info('Examining active devtools clients')
     if not devtools_clients:
+      logging.info('No devtools clients')
       return False
     for client in devtools_clients:
+      logging.info('Devtools client examined: %s' % client)
       if client.is_tracing_running:
+        logging.info('Devtools client trace already running')  
         raise ChromeTracingStartedError(
             'Tracing is already running on devtools at port %s on platform'
             'backend %s.' % (client.remote_port, self._platform_backend))
+      logging.info('Starting chrome tracing')  
       client.StartChromeTracing(config, transfer_mode=self._GetTransferMode(),
                                 timeout=timeout)
     return True
 
   def StartAgentTracing(self, config, timeout):
+    logging.info('Starting tracing with config and timeout')
     if not config.enable_chrome_trace:
+      logging.info('enable_chrome_trace is disabled.')
       return False
 
     if self._trace_config:
@@ -86,12 +93,17 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     # this point to use it for enabling tracing upon browser startup. For the
     # latter, we invoke start tracing command through devtools for browsers that
     # are already started and tracked by chrome_tracing_devtools_manager.
+    logging.info('Fetching startup tracing config')
     started_startup_tracing = self._StartStartupTracing(config)
+    logging.info('Startup Config: %s', started_startup_tracing)
 
     started_devtools_tracing = self._StartDevToolsTracing(config, timeout)
+    logging.info('Devtools Config: %s', started_devtools_tracing)   
     if started_startup_tracing or started_devtools_tracing:
+      logging.info('Have at least one config')
       self._trace_config = config
       return True
+    logging.info('No configs found')
     return False
 
   def SupportsExplicitClockSync(self):

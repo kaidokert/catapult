@@ -10,13 +10,16 @@ _platform_backends_to_devtools_clients_maps = {}
 
 def _RemoveStaleDevToolsClient(platform_backend):
   """Removes DevTools clients that are no longer connectable."""
+  print('Removing stale devtools clients!')
   devtools_clients_map = _platform_backends_to_devtools_clients_maps.get(
       platform_backend, {})
+  print('Map contents: %s' % str(devtools_clients_map))
   devtools_clients_map = {
       port: client
       for port, client in devtools_clients_map.iteritems()
       if client.IsAlive()
       }
+  print('Map contents after checking for active: %s' % str(devtools_clients_map))
   _platform_backends_to_devtools_clients_maps[platform_backend] = (
       devtools_clients_map)
 
@@ -26,6 +29,7 @@ def RegisterDevToolsClient(devtools_client_backend):
 
   This should only be called from DevToolsClientBackend when it is initialized.
   """
+  print('RegisterDevToolsClient registering: %s' % str(devtools_client_backend))
   remote_port = str(devtools_client_backend.remote_port)
   platform_clients = _platform_backends_to_devtools_clients_maps.setdefault(
       devtools_client_backend.platform_backend, {})
