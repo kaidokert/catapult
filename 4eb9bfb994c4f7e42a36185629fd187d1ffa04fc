@@ -161,6 +161,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "028108ae_d5deaefa",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T23:50:08Z",
+      "side": 1,
+      "message": "Sorry, commented, then removed. Added back. Had to update superclass methods to match arguments.",
+      "parentUuid": "0a81e072_5af7fd50",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71b3b926_dec929af",
