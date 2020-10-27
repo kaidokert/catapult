@@ -196,6 +196,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d24ce71a_24e0adf3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2020-10-27T22:09:29Z",
+      "side": 1,
+      "message": "Implementation looks good, can u fix the comment to something like what u wrote above but shorter?",
+      "parentUuid": "9721c35f_8f5884f9",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88aeed50_83919469",
