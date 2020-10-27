@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cdd2497_feb52e0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-10-27T16:38:58Z",
+      "side": 1,
+      "message": "This CL appears to be causing test failures while rolling into Chromium repo. For example, please see https://ci.chromium.org/p/chromium/builders/try/fuchsia_x64/708831.",
+      "revId": "5d3967cb630c3806ad93303b9e14ca59eedeef99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
