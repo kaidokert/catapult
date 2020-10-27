@@ -56,6 +56,30 @@
       },
       "revId": "1d4048ad642f4d0b2a17fef275d4f7eed640d7e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eab3fcf4_4a4c2184",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T00:34:12Z",
+      "side": 1,
+      "message": "I tried, but it appears we\u0027re only able to make one request per connection. We end up getting a ResponseNotReady exception when we check if any POSTs past the first succeeded, and according to https://stackoverflow.com/questions/3231543/python-httplib-responsenotready, we shouldn\u0027t reuse the same connection.",
+      "parentUuid": "1a8f8446_d0b37a87",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 58
+      },
+      "revId": "1d4048ad642f4d0b2a17fef275d4f7eed640d7e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
