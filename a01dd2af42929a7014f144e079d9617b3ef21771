@@ -52,6 +52,24 @@
       "parentUuid": "3d03e2f6_898a64d1",
       "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6869b451_a7347cf7",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T20:23:38Z",
+      "side": 1,
+      "message": "Ack, will investigate in a follow-up.",
+      "parentUuid": "163e8483_f89027be",
+      "revId": "a01dd2af42929a7014f144e079d9617b3ef21771",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
