@@ -19,8 +19,6 @@ class ChromeReportEventsTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
     return 'ReportEvents'
 
   def _StartStartupTracing(self, config):
-    del config
-    # Fuchsia doesn't support starting tracing with a config file
     return False
 
   def _RemoveTraceConfigFile(self):
