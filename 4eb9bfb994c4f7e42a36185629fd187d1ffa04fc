@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d13c2554_c62fa6c0",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-27T20:23:08Z",
+      "side": 1,
+      "message": "I\u0027m confused why it thinks it\u0027s necessary in the first place - AFAICT you didn\u0027t add any sort of dependency on the SDK. Did you perhaps accidentally download the SDK to that directory or something? If so, see about deleting that directory.",
+      "parentUuid": "4331c756_4564169f",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4efbdf53_40687b41",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 6
