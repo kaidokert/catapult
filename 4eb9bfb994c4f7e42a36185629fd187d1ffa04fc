@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4331c756_4564169f",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 1,
+      "message": "Presubmit was complaining with: \u0027Please rerun generate_telemetry_build.py\u0027, and this is the result of that. How can I suppress this or fix this error?",
+      "parentUuid": "68cfba43_63b10b39",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4efbdf53_40687b41",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
         "patchSetId": 6
@@ -49,6 +67,30 @@
       "writtenOn": "2020-10-27T18:48:47Z",
       "side": 1,
       "message": "Are there any potential cases where you would want some level of detail other than light? If so, probably better to still take a detail_level argument, but default to light.",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 45
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceee5db7_18631fa5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 1,
+      "message": "Adding option in case this changes in the future, but for now there is no plan to have other detail levels.",
+      "parentUuid": "4efbdf53_40687b41",
       "range": {
         "startLine": 52,
         "startChar": 25,
@@ -78,6 +120,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9721c35f_8f5884f9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 1,
+      "message": "So this checks that:\n\n1. A ChromeTraceConfig is or isn\u0027t present - if not present, then it failed to start or never was started in the first place.\n2. Checks that it had a current_state - if it\u0027s not None, then that means it was started, but failed to find an active trace agent (from condition #1). \n\nI can guard `StartTracing` with both `not GetChromeTraceConfig` and `current_state is not None`, which would indicate that Tracing was supposed to start, but failed.\n\nStartup tracing does not work AFAICT.",
+      "parentUuid": "71b3b926_dec929af",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88aeed50_83919469",
         "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
         "patchSetId": 6
@@ -89,6 +149,24 @@
       "writtenOn": "2020-10-27T18:28:30Z",
       "side": 1,
       "message": "Is there anything else using this method?",
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22bdeb46_ae4ab754",
+        "filename": "telemetry/telemetry/internal/backends/chrome/fuchsia_browser_finder.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 1,
+      "message": "I should actually condense this to one statement - a return.\n\nNothing currently uses this but \"Create\", but this follows what other browsers do so that args can be added here for startup. However, this change isn\u0027t necessary and I can do without it if you prefer it that way.",
+      "parentUuid": "88aeed50_83919469",
       "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -116,6 +194,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df90e387_356dce07",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec59012d_d283b77d",
+      "range": {
+        "startLine": 427,
+        "startChar": 37,
+        "endLine": 427,
+        "endChar": 54
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be7ff3eb_de879562",
@@ -129,6 +231,30 @@
       "writtenOn": "2020-10-27T18:48:47Z",
       "side": 1,
       "message": "Is Fuchsia actually considered a mobile OS?",
+      "range": {
+        "startLine": 182,
+        "startChar": 55,
+        "endLine": 182,
+        "endChar": 62
+      },
+      "revId": "4eb9bfb994c4f7e42a36185629fd187d1ffa04fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9698d3c3_cd40b826",
+        "filename": "telemetry/telemetry/story/expectations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 1,
+      "message": "Messaged privately. Will add comment.",
+      "parentUuid": "be7ff3eb_de879562",
       "range": {
         "startLine": 182,
         "startChar": 55,

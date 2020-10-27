@@ -22,6 +22,30 @@
       },
       "revId": "5d3967cb630c3806ad93303b9e14ca59eedeef99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bcaceff_240e99ca",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_report_events_tracing_agent.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-10-27T19:46:54Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "aeb1c56d_7b22fa83",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 65
+      },
+      "revId": "5d3967cb630c3806ad93303b9e14ca59eedeef99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
