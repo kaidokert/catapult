@@ -49,13 +49,15 @@ TRUNCATED_SUMMARY_MESSAGE = ('...Full output in "%s" artifact.</pre>' %
 
 
 class ResultSinkReporter(object):
-    def __init__(self, host):
+    def __init__(self, host, disable=False):
         """Class for interacting with ResultDB's ResultSink.
 
         Args:
             host: A host.Host or host_fake.FakeHost instance.
+            disable: Whether to explicitly disable ResultSink integration.
         """
         self._host = host
+        self._disable = disable
         self._sink = None
 
         luci_context_file = self._host.getenv('LUCI_CONTEXT')
@@ -76,7 +78,7 @@ class ResultSinkReporter(object):
 
     @property
     def resultdb_supported(self):
-        return self._sink is not None
+        return self._sink is not None and not self._disable
 
     def report_individual_test_result(
             self, test_name_prefix, result, artifact_output_dir,
