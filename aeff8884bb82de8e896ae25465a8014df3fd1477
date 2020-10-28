@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e73ab18_ba4cfcf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-10-28T00:14:12Z",
+      "side": 1,
+      "message": "Updating Chrome builds used in tests. PTAL.",
+      "revId": "aeff8884bb82de8e896ae25465a8014df3fd1477",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
