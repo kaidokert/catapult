@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "863f3aa1_2a59a864",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-10-28T02:46:47Z",
+      "side": 1,
+      "message": "Using real Canary and Stable builds from today didn\u0027t work. See https://chromium-review.googlesource.com/c/catapult/+/2504366/1. On Windows, Dashboard Dev Server Tests Canary failed 4 out of 4 runs. On Mac, Dashboard Dev Server Tests Stable failed 2 out of 2 runs. These failures will need to be investigated further.\n\nTo quickly unblock CQ, I\u0027ve reduced the scope of this CL to only update Windows, using the current Stable in place of Canary (https://chromium-review.googlesource.com/c/catapult/+/2504366/2). With this, Dashboard Dev Server Tests Canary succeeded 4 out of 4 runs (ignore the first run displayed on Gerrit, the Chrome build wasn\u0027t uploaded correctly). We did have one failure in Dashboard Python Tests, but that didn\u0027t appear to be related to the update Chrome binary. While the current CL isn\u0027t perfect, I think it is an improvement over current status quo, and will make CQ more usable.",
+      "revId": "d4d595006daa3f2b5ffa29ba3493b821d8c7aec1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
