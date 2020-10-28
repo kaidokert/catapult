@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7583378_95015bfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-28T22:53:51Z",
+      "side": 1,
+      "message": "LGTM\n\nBut this looks like a regression -- is it possible we should update the npm package instead so it supports sha512 hashes?",
+      "revId": "ff02578e5c0c826a8a246946b3381f7672225da6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea6fec1_f6cbb8c6",
+        "filename": "common/node_runner/node_runner/package-lock.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-28T22:53:51Z",
+      "side": 1,
+      "message": "Why are we using sha1?",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 57
+      },
+      "revId": "ff02578e5c0c826a8a246946b3381f7672225da6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
