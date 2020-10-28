@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5494bf7_c7435d6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-10-28T22:34:40Z",
+      "side": 1,
+      "message": "PTAL\n\nWhen combined with https://chromium-review.googlesource.com/c/chromium/src/+/2505776, all the GPU presubmit issues we were seeing are resolved. Will have to wait for https://chromium-review.googlesource.com/c/catapult/+/2506086 to land then rebase/re-enable the unittests before landing this, though.",
+      "revId": "2f6229bbf25d117c302e7c7dce1b35c846801592",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
