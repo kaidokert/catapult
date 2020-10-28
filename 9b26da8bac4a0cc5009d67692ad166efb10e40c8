@@ -16,6 +16,24 @@
       "message": "Dean: Do you know what the expected process for third party additions is in catapult repo?\n\nIn this case, the third party code is not included in Chrome proper, as this is only a tool deployed to https://netlog-viewer.appspot.com/\n\nShould we be following the same steps/approvals as in https://chromium.googlesource.com/chromium/src.git/+/master/docs/adding_to_third_party.md, or is there a lighter weight process?\n\nThanks!",
       "revId": "9b26da8bac4a0cc5009d67692ad166efb10e40c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d6c25b_634ff5ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-28T03:06:01Z",
+      "side": 1,
+      "message": "We follow the same process documented there but with approval from catapult OWNERS -- i.e. we ask that relevant licenses are preserved, README is specified, etc.\n\nOne thing we do is have the third_party dependencies be all placed in the third_party directory in catapult, which contains all the vendored dependencies we have (instead of having a subdirectory in the dashboard codebase).",
+      "parentUuid": "86fc692e_4c73b159",
+      "revId": "9b26da8bac4a0cc5009d67692ad166efb10e40c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
