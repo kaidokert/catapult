@@ -82,6 +82,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e684ba9c_1ac973c2",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-29T18:58:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4803461_b7ea9d96",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16e9cc80_f0ebbc9e",
@@ -95,6 +119,30 @@
       "writtenOn": "2020-10-26T18:11:50Z",
       "side": 1,
       "message": "This could be probably be inlined with the if() to be consistent with the other early-outs.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 8
+      },
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e667d0_979ff814",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-29T18:58:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16e9cc80_f0ebbc9e",
       "range": {
         "startLine": 90,
         "startChar": 0,
@@ -128,6 +176,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9318bec2_a3111242",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-29T18:58:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4d3dfd8_a74ff17d",
+      "range": {
+        "startLine": 97,
+        "startChar": 12,
+        "endLine": 97,
+        "endChar": 19
+      },
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f99d6849_99aab12b",
@@ -141,6 +213,30 @@
       "writtenOn": "2020-10-26T18:11:50Z",
       "side": 1,
       "message": "nit: onGpu?",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 17
+      },
+      "revId": "ad3bf093f33e258bb4f6f7f3ffc01a4037f1ed03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7572ab4e_93328fe1",
+        "filename": "tracing/tracing/extras/importer/linux_perf/msm_parser.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1363554
+      },
+      "writtenOn": "2020-10-29T18:58:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f99d6849_99aab12b",
       "range": {
         "startLine": 153,
         "startChar": 12,
