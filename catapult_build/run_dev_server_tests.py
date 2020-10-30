@@ -204,8 +204,6 @@ def RunTests(args, chrome_path):
         '--window-size=1280,1024',
         '--enable-logging', '--v=1',
         '--enable-features=ForceWebRequestProxyForTest',
-        '--enable-blink-features=CustomElementsV0,'
-        'HTMLImports,ShadowDOMV0',
         '--force-device-scale-factor=1',
         ('http://localhost:%s/%s/tests.html?' % (port, args.tests)) +
         'headless=true&testTypeToRun=all',
