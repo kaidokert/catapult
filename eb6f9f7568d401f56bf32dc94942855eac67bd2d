@@ -16,6 +16,24 @@
       "message": "LGTM\n\nHowever, I\u0027m not very well-versed about the testing framework here. I\u0027m only familiar with karma-style tests and only very superficially.\n\nJust for my information, is there an explanation somewhere else why we\u0027re not just using karma? Or if we are, what\u0027s going on here?",
       "revId": "eb6f9f7568d401f56bf32dc94942855eac67bd2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5081c994_51dabc54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-30T02:21:08Z",
+      "side": 1,
+      "message": "We\u0027re internally using Chai (https://www.chaijs.com/), with some wrapper around it. This decision was made many years ago by the original catapult developers, and I don\u0027t know the actual details of why this was picked. I can imagine using pretty much anything newer would be better, but the testing system is very tied to various internal details at this point and not worth the effort of replacing.",
+      "parentUuid": "d3770277_ed48d8d1",
+      "revId": "eb6f9f7568d401f56bf32dc94942855eac67bd2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
