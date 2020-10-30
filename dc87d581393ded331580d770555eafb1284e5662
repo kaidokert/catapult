@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae12d043_2a81ea13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-30T03:24:36Z",
+      "side": 1,
+      "message": "Dean, I found that the dashboard tests don\u0027t work if I remove the webcomponent-v0 enabling chrome flag. I looked into it a little bit, and the first problem is we\u0027re loading HTMLImports.js polyfill in dashboard/tests.html - we shouldn\u0027t do that if we\u0027re already loading the full webcomponents.js polyfill. I removed that (not in this CL), but then some test failed, and somehow the whole test runner crashed. It seemed to me some test is replacing window.XMLHTTPRequest with a mock, but that mock is not getting cleared properly. I didn\u0027t look in further, so I don\u0027t know yet exactly how many tests are failing under the polyfill for dashboard. ",
+      "revId": "dc87d581393ded331580d770555eafb1284e5662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
