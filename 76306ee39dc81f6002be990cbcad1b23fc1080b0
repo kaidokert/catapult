@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd1bf5ad_8bd9f502",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-10-30T02:07:17Z",
+      "side": 1,
+      "message": "You\u0027re right - I have no idea why my git cl presubmit did that. I cleaned out my repo and looks like the issue has fixed itself. I may have had a stale binary somewhere. ",
+      "revId": "76306ee39dc81f6002be990cbcad1b23fc1080b0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
