@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3770277_ed48d8d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-30T02:14:25Z",
+      "side": 1,
+      "message": "LGTM\n\nHowever, I\u0027m not very well-versed about the testing framework here. I\u0027m only familiar with karma-style tests and only very superficially.\n\nJust for my information, is there an explanation somewhere else why we\u0027re not just using karma? Or if we are, what\u0027s going on here?",
+      "revId": "eb6f9f7568d401f56bf32dc94942855eac67bd2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
