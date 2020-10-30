@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+Copyright 2020 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.webui', function() {
+  function webuiMetric(histograms, model, opt_options) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    if (!chromeHelper) {
+      // Chrome isn't present.
+      return;
+    }
+
+    const WEBUI_TITLE_PREFIX = 'webui:';
+    const traces = {};
+    for (const helper of chromeHelper.browserHelpers) {
+      if (!helper.mainThread) continue;
+      for (const slice of helper.mainThread.sliceGroup.slices) {
+        if (!slice.error && slice.title.startsWith(WEBUI_TITLE_PREFIX)) {
+          if (!traces[slice.title]) {
+            traces[slice.title] = [];
+          }
+          traces[slice.title].push(slice.duration);
+        }
+      }
+    }
+
+    const BENCHMARK_BEGIN = 'benchmark_begin';
+    const BENCHMARK_END = 'benchmark_end';
+    const marks = {};
+    for (const pid in chromeHelper.rendererHelpers) {
+      const helper = chromeHelper.rendererHelpers[pid];
+      for (const event of helper.mainThread.sliceGroup.childEvents()) {
+        const navId = getNavigationId(event);
+        if (!navId) continue;
+        if (event.category.includes('blink.user_timing')) {
+          const {title} = event;
+          const index = title.lastIndexOf(':');
+          if (index === -1) {
+            continue;
+          }
+          const name = title.substring(0, index);
+          const lastPart = title.substring(index + 1);
+          if (lastPart === BENCHMARK_BEGIN) {
+            marks[name] = event;
+          } else if (lastPart === BENCHMARK_END) {
+            if (!marks[name]) {
+              throw new Error(`Missing ${name}:${BENCHMARK_BEGIN}`);
+            }
+            const range = tr.b.math.Range.fromExplicitRange(
+                marks[name].start, event.start);
+            if (!traces[name]) {
+              traces[name] = [];
+            }
+            traces[name].push(range.duration);
+            delete marks[name];
+          }
+        }
+      }
+    }
+
+    for (const name in traces) {
+      histograms.createHistogram(name,
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          traces[name]);
+    }
+  }
+
+  function getNavigationId(event) {
+    return event.args.data && event.args.data.navigationId;
+  }
+
+  tr.metrics.MetricRegistry.register(webuiMetric, {
+    supportsRangeOfInterest: false,
+  });
+
+  return {
+    webuiMetric,
+  };
+});
+</script>
