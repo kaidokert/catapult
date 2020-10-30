@@ -34,6 +34,24 @@
       "parentUuid": "d3770277_ed48d8d1",
       "revId": "eb6f9f7568d401f56bf32dc94942855eac67bd2d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "962acda3_3a10d57b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-10-30T02:39:29Z",
+      "side": 1,
+      "message": "Thanks, that makes sense to me.\n\nFWIW, my experience was with Karma+Jasmine. Since a lot of this is best-effort supported, I understand that the cost of migrating is too much to bear. 😞",
+      "parentUuid": "5081c994_51dabc54",
+      "revId": "eb6f9f7568d401f56bf32dc94942855eac67bd2d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
