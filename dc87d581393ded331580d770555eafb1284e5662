@@ -16,6 +16,41 @@
       "message": "Dean, I found that the dashboard tests don\u0027t work if I remove the webcomponent-v0 enabling chrome flag. I looked into it a little bit, and the first problem is we\u0027re loading HTMLImports.js polyfill in dashboard/tests.html - we shouldn\u0027t do that if we\u0027re already loading the full webcomponents.js polyfill. I removed that (not in this CL), but then some test failed, and somehow the whole test runner crashed. It seemed to me some test is replacing window.XMLHTTPRequest with a mock, but that mock is not getting cleared properly. I didn\u0027t look in further, so I don\u0027t know yet exactly how many tests are failing under the polyfill for dashboard. ",
       "revId": "dc87d581393ded331580d770555eafb1284e5662",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "836f85ba_c15ee43e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-01T23:19:33Z",
+      "side": 1,
+      "message": "Thanks Deep -- do you mind filing an issue against Speed\u003eDashboard on that? We scheduled time in 2021 to deal with the UX and an update on the Dashboard\u0027s UI is part of that work. In the meantime, it might make sense for us to delete the Dashboard UI tests for now and just call a code freeze until we can fix the issues effectively.\n\nLet us (speed tooling) do the deletion so we can communicate that thoroughly.",
+      "parentUuid": "ae12d043_2a81ea13",
+      "revId": "dc87d581393ded331580d770555eafb1284e5662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "472836fb_8ab682b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-01T23:19:33Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "dc87d581393ded331580d770555eafb1284e5662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
