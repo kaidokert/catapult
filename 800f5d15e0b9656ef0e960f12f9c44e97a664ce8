@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2216651d_3b941051",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1329751
+      },
+      "writtenOn": "2020-11-02T01:30:32Z",
+      "side": 1,
+      "message": "Brian or Dean, PTAL.\n\nMirko FYI.",
+      "revId": "800f5d15e0b9656ef0e960f12f9c44e97a664ce8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
