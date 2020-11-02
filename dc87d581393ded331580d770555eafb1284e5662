@@ -51,6 +51,24 @@
       "message": "LGTM",
       "revId": "dc87d581393ded331580d770555eafb1284e5662",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "335369b0_c839baa5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-11-02T18:07:46Z",
+      "side": 1,
+      "message": "Sgtm - Filed crbug.com/1144760",
+      "parentUuid": "836f85ba_c15ee43e",
+      "revId": "dc87d581393ded331580d770555eafb1284e5662",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
