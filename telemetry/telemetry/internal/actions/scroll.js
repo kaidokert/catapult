@@ -33,6 +33,7 @@
     return !!(window.chrome &&
               chrome.gpuBenchmarking &&
               chrome.gpuBenchmarking.smoothScrollBy &&
+              chrome.gpuBenchmarking.smoothScrollByXY &&
               chrome.gpuBenchmarking.visualViewportHeight &&
               chrome.gpuBenchmarking.visualViewportWidth);
   }
