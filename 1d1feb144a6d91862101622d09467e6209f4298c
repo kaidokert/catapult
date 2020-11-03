@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd0844a_aaf6a2ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-03T01:12:07Z",
+      "side": 1,
+      "message": "+rmhasan for typ owners\n+nodir to comment on the non-string tag comment.",
+      "revId": "1d1feb144a6d91862101622d09467e6209f4298c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e9313ba_9799d009",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-03T01:12:07Z",
+      "side": 1,
+      "message": "typ technically supports multiple expectations for a test, although AFAIK no GPU test uses this. It would be better if we could just report the list as-is, but AFAIK ResultDB doesn\u0027t support non-string values for tags.",
+      "range": {
+        "startLine": 116,
+        "startChar": 31,
+        "endLine": 116,
+        "endChar": 56
+      },
+      "revId": "1d1feb144a6d91862101622d09467e6209f4298c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
