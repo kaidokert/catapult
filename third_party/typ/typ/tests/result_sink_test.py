@@ -79,12 +79,15 @@ def CreateExpectedTestResult(
                         or '<pre>stdout: stdout\nstderr: stderr</pre>'),
         'artifacts': artifacts or {},
         'tags': tags or [
+            {'key': 'typ_expectation', 'value': 'PASS'},
             {'key': 'typ_tags', 'value': 'foo_tag bar_tag'},
-            {'key': 'test_name', 'value': test_id}],
+            {'key': 'test_name', 'value': test_id},],
     }
 
 
 class ResultSinkReporterTest(unittest.TestCase):
+    maxDiff = None
+
     def setUp(self):
         self._host = host_fake.FakeHost()
         self._luci_context_file = '/tmp/luci_context_file.json'

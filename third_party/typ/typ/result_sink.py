@@ -113,6 +113,7 @@ class ResultSinkReporter(object):
         result_is_expected = result.actual in result.expected
         tags_dict = {
             'test_name': test_id,
+            'typ_expectation': ' '.join(result.expected),
         }
         if expectation_tags:
             tags_dict['typ_tags'] = ' '.join(expectation_tags)
@@ -210,7 +211,9 @@ class ResultSinkReporter(object):
                 self._url,
                 body=content,
                 headers=self._headers)
-        return 0 if connection.getresponse().status == httplib.OK else 1
+        retval = 0 if connection.getresponse().status == httplib.OK else 1
+        connection.close()
+        return retval
 
 
 def _create_json_test_result(
