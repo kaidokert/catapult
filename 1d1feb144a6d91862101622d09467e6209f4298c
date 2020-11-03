@@ -39,6 +39,30 @@
       },
       "revId": "1d1feb144a6d91862101622d09467e6209f4298c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c868c1_b9417c87",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1114299
+      },
+      "writtenOn": "2020-11-03T01:17:28Z",
+      "side": 1,
+      "message": "resultdb support multiple values per key. consider replacing the dict with a list of key-value tuples",
+      "parentUuid": "5e9313ba_9799d009",
+      "range": {
+        "startLine": 116,
+        "startChar": 31,
+        "endLine": 116,
+        "endChar": 56
+      },
+      "revId": "1d1feb144a6d91862101622d09467e6209f4298c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
