@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de6dfebf_905321c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2020-11-03T22:14:14Z",
+      "side": 1,
+      "message": "Hi, John\n\nCould you help me to review this CL? Thanks!\n\nUnit test:\nhttp://127.0.0.1:8003/tracing/tests.html?testSuiteName\u003dtracing.metrics.webui_metric_test\n\nBenchmark test:\nhttps://chromium-review.googlesource.com/c/chromium/src/+/2461224",
+      "revId": "2c73af30355b42e9ce75cf11048080de47eafe81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
