@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed196ce5_0ddd7c9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2020-11-03T22:55:08Z",
+      "side": 1,
+      "message": "Note: Only change is moving a bracket in fuchsia_browser_backend.py to contain the whole conditional statement instead of not\u0027ing part of it.\n\nSee https://chromium-review.googlesource.com/c/chromium/src/+/2515440 for fuchsia_x64 tests now passing.",
+      "revId": "03136bf02c54a7120147671238aa1c4f0d790a9b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
