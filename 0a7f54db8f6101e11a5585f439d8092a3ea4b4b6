@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6aa6628_4d9cc481",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1374169
+      },
+      "writtenOn": "2020-11-03T21:00:59Z",
+      "side": 1,
+      "message": "LGTM!",
+      "revId": "0a7f54db8f6101e11a5585f439d8092a3ea4b4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7404466c_479d4a7c",
+        "filename": "tracing/tracing/metrics/webui_metric.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1374169
+      },
+      "writtenOn": "2020-11-03T21:00:59Z",
+      "side": 1,
+      "message": "nit: Does it work if we do a \"for of\" loop over Object.values(chromeHelper.rendererHelpers) here to eliminate pid? This also iterates only over the object\u0027s own property values, not the prototype chain.\n\nIf we go with \"for in\" do we need to check hasOwnProperty()?\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty#Iterating_over_the_properties_of_an_object",
+      "revId": "0a7f54db8f6101e11a5585f439d8092a3ea4b4b6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
