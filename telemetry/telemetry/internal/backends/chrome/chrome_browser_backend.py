@@ -77,6 +77,10 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
     return self._devtools_client
 
   @property
+  def devtools_client_os(self):
+    return self._devtools_client
+
+  @property
   @decorators.Cache
   def extension_backend(self):
     if not self.supports_extensions:
