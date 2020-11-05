@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13725ca0_0990e153",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2020-11-05T16:34:50Z",
+      "side": 1,
+      "message": "I worry that those logs might bring too much noisy. But I don\u0027t see a better way to get this information.",
+      "revId": "7ee3dcf74601d71d840176a2d32422c193cd9f61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
