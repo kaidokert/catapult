@@ -13,6 +13,7 @@ from telemetry.core import cros_interface
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import chrome_startup_args
 from telemetry.internal.backends.chrome import cros_browser_backend
+from telemetry.internal.backends.chrome import lacros_browser_backend
 from telemetry.internal.backends.chrome import cros_browser_with_oobe
 from telemetry.internal.browser import browser
 from telemetry.internal.browser import browser_finder_exceptions
@@ -134,17 +135,25 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
-    browser_backend = cros_browser_backend.CrOSBrowserBackend(
+    os_browser_backend = cros_browser_backend.CrOSBrowserBackend(
+        self._platform_backend, self._browser_options,
+        self.browser_directory, self.profile_directory,
+        self._is_guest, self._DEFAULT_CHROME_ENV,
+        build_dir=self._build_dir)
+    lacros_chrome_browser_backend = lacros_browser_backend.LaCrOSBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
         self._is_guest, self._DEFAULT_CHROME_ENV,
         build_dir=self._build_dir)
 
-    if self._browser_options.create_browser_with_oobe:
-      return cros_browser_with_oobe.CrOSBrowserWithOOBE(
-          browser_backend, self._platform_backend, startup_args)
+    # if self._browser_options.create_browser_with_oobe:
+    #  return cros_browser_with_oobe.CrOSBrowserWithOOBE(
+    #      os_browser_backend, self._platform_backend, startup_args)
+    self._os_browser = browser.Browser(
+        os_browser_backend, self._platform_backend, startup_args)
+
     return browser.Browser(
-        browser_backend, self._platform_backend, startup_args)
+        lacros_chrome_browser_backend, self._platform_backend, startup_args)
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)

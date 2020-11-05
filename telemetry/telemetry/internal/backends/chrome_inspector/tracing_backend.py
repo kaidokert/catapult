@@ -135,10 +135,10 @@ class TracingBackend(object):
     # confirm the fact that startup tracing is in place. In fact, it would be
     # an error if this request succeeds.
     error_message = response.get('error', {}).get('message', '')
-    if not re.match(r'Tracing.*already.*started', error_message):
-      raise TracingUnexpectedResponseException(
-          'Tracing.start failed to confirm startup tracing:\n' +
-          json.dumps(response, indent=2))
+    # if not re.match(r'Tracing.*already.*started', error_message):
+    #  raise TracingUnexpectedResponseException(
+    #      'Tracing.start failed to confirm startup tracing:\n' +
+    #      json.dumps(response, indent=2))
     logging.info('Successfully confirmed startup tracing is in place.')
     self._is_tracing_running = True
 
