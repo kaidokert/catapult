@@ -128,18 +128,8 @@ class TracingBackend(object):
     # This also ensures that tracing data from early startup is flushed to the
     # tracing service before the thread-local buffers for startup tracing are
     # exhausted (crbug.com/914092).
-    response = self._SendTracingStartRequest(
+    self._SendTracingStartRequest(
         trace_format=config.chrome_trace_config.trace_format)
-    # Note: we do in fact expect an "error" response as the call, in addition
-    # to updating the transfer settings for trace collection, also serves to
-    # confirm the fact that startup tracing is in place. In fact, it would be
-    # an error if this request succeeds.
-    error_message = response.get('error', {}).get('message', '')
-    if not re.match(r'Tracing.*already.*started', error_message):
-      raise TracingUnexpectedResponseException(
-          'Tracing.start failed to confirm startup tracing:\n' +
-          json.dumps(response, indent=2))
-    logging.info('Successfully confirmed startup tracing is in place.')
     self._is_tracing_running = True
 
   def StartTracing(self, chrome_trace_config, transfer_mode=None, timeout=20):
