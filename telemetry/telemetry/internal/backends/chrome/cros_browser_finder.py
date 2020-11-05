@@ -13,6 +13,7 @@ from telemetry.core import cros_interface
 from telemetry.core import platform as platform_module
 from telemetry.internal.backends.chrome import chrome_startup_args
 from telemetry.internal.backends.chrome import cros_browser_backend
+from telemetry.internal.backends.chrome import lacros_browser_backend
 from telemetry.internal.backends.chrome import cros_browser_with_oobe
 from telemetry.internal.browser import browser
 from telemetry.internal.browser import browser_finder_exceptions
@@ -40,7 +41,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
   ]
 
   def __init__(self, browser_type, finder_options, cros_platform, is_guest):
-    super(PossibleCrOSBrowser, self).__init__(browser_type, 'cros', True)
+    super(PossibleCrOSBrowser, self).__init__(browser_type, 'lacros' if browser_type is not 'lacros-chrome' else 'cros', True)
     assert browser_type in FindAllBrowserTypes(), (
         'Please add %s to cros_browser_finder.FindAllBrowserTypes()' %
         browser_type)
@@ -134,7 +135,7 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
     startup_args = self.GetBrowserStartupArgs(self._browser_options)
 
-    browser_backend = cros_browser_backend.CrOSBrowserBackend(
+    os_browser_backend = cros_browser_backend.CrOSBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
         self._is_guest, self._DEFAULT_CHROME_ENV,
@@ -142,9 +143,20 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
 
     if self._browser_options.create_browser_with_oobe:
       return cros_browser_with_oobe.CrOSBrowserWithOOBE(
-          browser_backend, self._platform_backend, startup_args)
-    return browser.Browser(
-        browser_backend, self._platform_backend, startup_args)
+         os_browser_backend, self._platform_backend, startup_args)
+    self._os_browser = browser.Browser(
+        os_browser_backend, self._platform_backend, startup_args)
+
+    if self._app_type == 'lacros-chrome':
+      lacros_chrome_browser_backend = lacros_browser_backend.LaCrOSBrowserBackend(
+          self._platform_backend, self._browser_options,
+          self.browser_directory, self.profile_directory,
+          self._is_guest, self._DEFAULT_CHROME_ENV,
+          build_dir=self._build_dir)
+      return browser.Browser(
+          lacros_chrome_browser_backend, self._platform_backend, startup_args)
+    else:
+      return self._os_browser
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
@@ -220,6 +232,7 @@ def FindAllBrowserTypes():
       'cros-chrome-guest',
       'system',
       'system-guest',
+      'lacros-chrome'
   ]
 
 
@@ -269,6 +282,8 @@ def FindAllAvailableBrowsers(finder_options, device):
   browsers.extend([
       PossibleCrOSBrowser(
           'cros-chrome', finder_options, plat, is_guest=False),
+      PossibleCrOSBrowser(
+          'lacros-chrome', finder_options, plat, is_guest=False),
       PossibleCrOSBrowser(
           'cros-chrome-guest', finder_options, plat, is_guest=True)
   ])
