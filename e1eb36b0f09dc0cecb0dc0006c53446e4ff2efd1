@@ -16,6 +16,69 @@
       "message": "An external user was complaining about Telemetry doesn\u0027t work on Android with Mac host, and that led me to some outdated docs. Updating to avoid confusions. PTAL.",
       "revId": "e1eb36b0f09dc0cecb0dc0006c53446e4ff2efd1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8375458_4705d8fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-11-10T23:18:01Z",
+      "side": 1,
+      "message": "LGTM with minor comments.",
+      "revId": "e1eb36b0f09dc0cecb0dc0006c53446e4ff2efd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "694b9818_f916a0e8",
+        "filename": "telemetry/docs/run_benchmarks_locally.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-11-10T23:18:01Z",
+      "side": 1,
+      "message": "No need to newline.",
+      "range": {
+        "startLine": 41,
+        "startChar": 20,
+        "endLine": 42,
+        "endChar": 5
+      },
+      "revId": "e1eb36b0f09dc0cecb0dc0006c53446e4ff2efd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2d69499_c77501e0",
+        "filename": "telemetry/docs/run_benchmarks_locally.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-11-10T23:18:01Z",
+      "side": 1,
+      "message": "may not be?",
+      "range": {
+        "startLine": 46,
+        "startChar": 40,
+        "endLine": 46,
+        "endChar": 46
+      },
+      "revId": "e1eb36b0f09dc0cecb0dc0006c53446e4ff2efd1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
