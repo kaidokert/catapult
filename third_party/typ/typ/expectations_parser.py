@@ -479,6 +479,8 @@ class TestExpectations(object):
             parser = TaggedTestListParser(raw_data, conflict_resolution)
         except ParseError as e:
             return 1, str(e)
+        # TODO(crbug.com/1148060): Properly update self._tags as well using
+        # self.set_tags().
         self.tag_sets = parser.tag_sets
         self._tags_conflict = tags_conflict
         # TODO(crbug.com/83560) - Add support for multiple policies
