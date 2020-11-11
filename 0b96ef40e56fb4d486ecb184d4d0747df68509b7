@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "420a1a63_ce7c058a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-11T01:21:20Z",
+      "side": 1,
+      "message": "TBRing since it\u0027s a simple fix, there\u0027s an added test + I confirmed locally that the results still show up properly in the ResultDB UI, and this is causing some issues on the CQ (although those should be mitigated with a src-side change).",
+      "revId": "0b96ef40e56fb4d486ecb184d4d0747df68509b7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
