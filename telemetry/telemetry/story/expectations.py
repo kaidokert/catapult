@@ -177,8 +177,9 @@ WIN_10 = _TestConditionByWinVersion(os_version_module.WIN10, 'Win 10')
 ALL_LINUX = _TestConditionByPlatformList(['linux'], 'Linux')
 ALL_CHROMEOS = _TestConditionByPlatformList(['chromeos'], 'ChromeOS')
 ALL_ANDROID = _TestConditionByPlatformList(['android'], 'Android')
+# Fuchsia setup, while similar to mobile, renders, Desktop pages.
 ALL_DESKTOP = _TestConditionByPlatformList(
-    ['mac', 'linux', 'win', 'chromeos'], 'Desktop')
+    ['mac', 'linux', 'win', 'chromeos', 'fuchsia'], 'Desktop')
 ALL_MOBILE = _TestConditionByPlatformList(['android'], 'Mobile')
 ANDROID_NEXUS5 = _TestConditionByAndroidModel('Nexus 5')
 _ANDROID_NEXUS5X = _TestConditionByAndroidModel('Nexus 5X')
