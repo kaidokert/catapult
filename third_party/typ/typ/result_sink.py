@@ -82,8 +82,7 @@ class ResultSinkReporter(object):
         return self._sink is not None
 
     def report_individual_test_result(
-            self, test_name_prefix, result, artifact_output_dir,
-            expectation_tags):
+            self, test_name_prefix, result, artifact_output_dir, expectations):
         """Reports typ results for a single test to ResultSink.
 
         Inputs are typically similar to what is passed to
@@ -99,8 +98,8 @@ class ResultSinkReporter(object):
                     artifacts are saved on disk. If a relative path, will be
                     automatically joined with the cwd. Use '.' instead of '' to
                     point to the cwd.
-            expectation_tags: A list of typ expectation tags that apply to the
-                    run tests.
+            expectations: An expectations_parser.TestExpectations instance, or
+                    None if one is not available.
 
         Returns:
             0 if the result was reported successfully or ResultDB is not
@@ -109,13 +108,18 @@ class ResultSinkReporter(object):
         if not self.resultdb_supported:
             return 0
 
+        expectation_tags = expectations.tags if expectations else []
+
         test_id = test_name_prefix + result.name
+        typ_expected_results =(
+                expectations.expectations_for(result.name).raw_results
+                if expectations else ['Pass'])
         result_is_expected = result.actual in result.expected
 
         tag_list = [
             ('test_name', test_id),
         ]
-        for expectation in result.expected:
+        for expectation in typ_expected_results:
             tag_list.append(('typ_expectation', expectation))
         if expectation_tags:
             for tag in expectation_tags:
