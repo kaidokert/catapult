@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a30169_2bf57975",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-11-11T21:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9543945_23d1bfe4",
+      "range": {
+        "startLine": 224,
+        "startChar": 36,
+        "endLine": 224,
+        "endChar": 40
+      },
+      "revId": "590b4e0d25e4aed953a83f46f556d2c65ebffd27",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c35ee01_b0a00da7",
@@ -71,6 +95,30 @@
       "writtenOn": "2020-11-11T21:11:44Z",
       "side": 1,
       "message": "Nit: This can be moved inside the if statement.",
+      "range": {
+        "startLine": 231,
+        "startChar": 2,
+        "endLine": 231,
+        "endChar": 43
+      },
+      "revId": "590b4e0d25e4aed953a83f46f556d2c65ebffd27",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20ec90db_99f1e731",
+        "filename": "telemetry/telemetry/internal/story_runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2020-11-11T21:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c35ee01_b0a00da7",
       "range": {
         "startLine": 231,
         "startChar": 2,
