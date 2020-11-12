@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8728bbe3_0acdfa8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2020-11-12T00:40:18Z",
+      "side": 1,
+      "message": "Matt-- With Eric Roman\u0027s departure, are you willing to pick up this review?\n\nDean-- I\u0027ve moved the jsmin library to the Catapult 3rd party folder; was this correct? \n\nI\u0027ll need to learn how to update the HTML to refer to it from the Netlog subfolder as I *assume* that just using ../../ in the path isn\u0027t going to work when deploying it.",
+      "revId": "1a33e33a57f5bac181d35bfeef7d10bbadc9ec30",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
