@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f77be07_a3a829f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T20:57:15Z",
+      "side": 1,
+      "message": "Could you also try running telemetry_sanity? It should be in /usr/local/autotest/bin on your device.\n\nhttps://source.corp.google.com/chromeos_public/src/third_party/autotest/files/client/bin/telemetry_sanity.py",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
