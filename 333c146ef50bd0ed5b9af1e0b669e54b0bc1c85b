@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "333c146ef50bd0ed5b9af1e0b669e54b0bc1c85b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6cfb72f_89671969",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2020-11-12T23:53:42Z",
+      "side": 1,
+      "message": "RetryOnFailure isn\u0027t really a result, it just tells the GPU test harness to retry certain tests until they pass or n retries have been done. This tag is similar to the slow web test tag which tells the test harness to make a longer timeout for the test.  Their purpose is to signal actions to the test harness. The expected result is Pass for these tags. Can we separately send raw tags to result sink alongside a list of actual expected results?",
+      "revId": "333c146ef50bd0ed5b9af1e0b669e54b0bc1c85b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
