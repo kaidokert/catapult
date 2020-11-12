@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf3f20a4_e337371b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-12T21:40:16Z",
+      "side": 1,
+      "message": "Should this be \u0027lacros\u0027 for consistency since the alternative is just \u0027cros\u0027, not \u0027cros-chrome\u0027?",
+      "range": {
+        "startLine": 46,
+        "startChar": 37,
+        "endLine": 46,
+        "endChar": 50
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0a6c4f_94cf1be6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-12T21:40:16Z",
+      "side": 1,
+      "message": "Does \"os_browser\" really make sense in the context of LaCrOs? I was under the impression that the point of LaCrOs was to completely separate the browser from the OS, so there should only be one browser in either case.\n\nAs an extension of that, I was under the impression that LaCrOs was supposed to be pretty much a drop-in replacement from the user\u0027s perspective, which I would think would mean it\u0027s essentially a drop-in replacement for Telemetry as well.",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c30df502_c483c393",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-12T21:40:16Z",
+      "side": 1,
+      "message": "Assuming we do actually need a separate LaCrOS and regular CrOS browser backend, I think it would be better to have an abstract base CrOS browser backend class, as there is at least some overlap between the two (e.g. _FindDevToolsPortAndTarget)",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad6ab6b7_2126b6ab",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-12T21:40:16Z",
+      "side": 1,
+      "message": "Nit: Move this check to a helper method like \"IsCrosBrowser\" or similar.",
+      "range": {
+        "startLine": 71,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

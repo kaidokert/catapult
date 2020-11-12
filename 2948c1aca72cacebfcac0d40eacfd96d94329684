@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc345dbc_6ee3d0b1",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-12T21:40:16Z",
+      "side": 0,
+      "message": "Is there a particular reason why this was removed? It does seem a bit hacky (checking that something successfully failed), but it does seem like a legitimate check that\u0027s worth keeping around.",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 71
+      },
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
