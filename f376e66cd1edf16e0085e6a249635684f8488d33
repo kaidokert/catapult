@@ -16,6 +16,199 @@
       "message": "Could you also try running telemetry_sanity? It should be in /usr/local/autotest/bin on your device.\n\nhttps://source.corp.google.com/chromeos_public/src/third_party/autotest/files/client/bin/telemetry_sanity.py",
       "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70a89f46_5d66983f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "Add comment",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d32471_f81ce6f1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "how is guest browser specified?",
+      "range": {
+        "startLine": 157,
+        "startChar": 10,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0be2d4_6042ed35",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "Don\u0027t we need a lacros-chrome-guest?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3c92f83_31ebaae4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "There\u0027s a lot of copy/paste with CrOSBrowserBackend - does it make sense to have a base class with common functions?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a397f7_3cfe3dce",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "lacros chrome knows to create this file, is that right?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cfe120d_69177d58",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "Can we file a bug and note it here? Doesn\u0027t seem like we want this to be long-term behavior",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2509820c_b558f4e3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "You can probably use WaitFor: \nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/common/py_utils/py_utils/__init__.py;l\u003d114",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8954cdb4_429f4dc0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "Use WaitFor",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a9672f_1a07da48",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "I assume a bug will get filed",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9abcfb7d_ad890b7b",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "Should this be in a separate CL or is it related?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a6f8c8_4ca35ba3",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-12T21:14:06Z",
+      "side": 1,
+      "message": "Are you supporting remote and local, or just one of them?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
