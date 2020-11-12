@@ -117,6 +117,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6178b0bf_fb24026a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:58:39Z",
+      "side": 1,
+      "message": "This needs to be figured out. Let\u0027s discuss in the thread further up in this file.",
+      "parentUuid": "4f0be2d4_6042ed35",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3c92f83_31ebaae4",
@@ -222,6 +240,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a655de4_30b4d4d2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:58:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c94751b_b0598b12",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2509820c_b558f4e3",
@@ -235,6 +271,24 @@
       "writtenOn": "2020-11-12T21:14:06Z",
       "side": 1,
       "message": "You can probably use WaitFor: \nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/common/py_utils/py_utils/__init__.py;l\u003d114",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b909a045_42126889",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:58:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2509820c_b558f4e3",
       "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -256,6 +310,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d395b5c_170296cb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:58:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8954cdb4_429f4dc0",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42a9672f_1a07da48",
@@ -269,6 +341,24 @@
       "writtenOn": "2020-11-12T21:14:06Z",
       "side": 1,
       "message": "I assume a bug will get filed",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a99124_9e925bd4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:58:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42a9672f_1a07da48",
       "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -321,6 +411,24 @@
       "writtenOn": "2020-11-12T21:14:06Z",
       "side": 1,
       "message": "Are you supporting remote and local, or just one of them?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5358d96_52927539",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:58:39Z",
+      "side": 1,
+      "message": "So far I\u0027ve only tried remote. I can take a crack at local - do you have an example for how I can run a local test for regular ChromeOS?",
+      "parentUuid": "42a6f8c8_4ca35ba3",
       "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
