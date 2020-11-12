@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11fdcb58_6647003c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T22:13:49Z",
+      "side": 1,
+      "message": "As of right now, that\u0027s not being consumed. Is this relevant here (if not, I\u0027ll remove it)?",
+      "parentUuid": "38d32471_f81ce6f1",
+      "range": {
+        "startLine": 157,
+        "startChar": 10,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f0be2d4_6042ed35",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 11
