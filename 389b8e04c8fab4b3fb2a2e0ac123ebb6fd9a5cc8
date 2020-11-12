@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c822b9ec_c9eb6cbd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T23:55:19Z",
+      "side": 1,
+      "message": "LaCrOs is split into two components - ash-chrome (the UI) and lacros-chrome (the browser). Presumably, we will swap out cros (the current single-entity UI + browser) with ash-chrome in the future.",
+      "parentUuid": "cf3f20a4_e337371b",
+      "range": {
+        "startLine": 46,
+        "startChar": 37,
+        "endLine": 46,
+        "endChar": 50
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e0a6c4f_94cf1be6",
         "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
         "patchSetId": 13
@@ -37,6 +61,30 @@
       "writtenOn": "2020-11-12T21:40:16Z",
       "side": 1,
       "message": "Does \"os_browser\" really make sense in the context of LaCrOs? I was under the impression that the point of LaCrOs was to completely separate the browser from the OS, so there should only be one browser in either case.\n\nAs an extension of that, I was under the impression that LaCrOs was supposed to be pretty much a drop-in replacement from the user\u0027s perspective, which I would think would mean it\u0027s essentially a drop-in replacement for Telemetry as well.",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76170143_73ff15e0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T23:55:19Z",
+      "side": 1,
+      "message": "That was my original impression as well. However, as far as I can tell, it appears that lacros is launched on top of (alongside?) already-existing ChromeOS. We still need to be able to control both (current-chromeOS for login/logout, lacros-chrome for actual testing), resulting in a bit of extra logic.\n\nMore info: https://docs.google.com/document/d/1RqTYgNmxqtaTeGQy5FAZv6SkdFo4e8lZCyW-jP44dIo/edit#heading\u003dh.233nizhz3m3f",
+      "parentUuid": "0e0a6c4f_94cf1be6",
       "range": {
         "startLine": 150,
         "startChar": 4,
