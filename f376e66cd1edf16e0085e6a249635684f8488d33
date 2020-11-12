@@ -92,6 +92,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4961fcce_11b5dcdc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T21:22:54Z",
+      "side": 1,
+      "message": "That was the approach I originally took. The part where that gets shaky is each ChromeBrowserBackend has its own devtools client, and we need to hold onto both (one to control the OS, one to control lacros-chrome).",
+      "parentUuid": "b3c92f83_31ebaae4",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50a397f7_3cfe3dce",
@@ -105,6 +123,24 @@
       "writtenOn": "2020-11-12T21:14:06Z",
       "side": 1,
       "message": "lacros chrome knows to create this file, is that right?",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f637cd71_48e35a2e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T21:22:54Z",
+      "side": 1,
+      "message": "That is correct.",
+      "parentUuid": "50a397f7_3cfe3dce",
       "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
