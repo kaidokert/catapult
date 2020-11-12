@@ -46,6 +46,30 @@
       },
       "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ab4375_d212af86",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-12T23:47:53Z",
+      "side": 0,
+      "message": "The place where this is ultimately called from https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py;l\u003d195?q\u003dTracingBackend%5C(%20file:telemetry is aware of the platform backend, so it would be possible to keep this check for non-LaCrOS backends and change the check on LaCrOS to ensure that there is no error message.",
+      "parentUuid": "874ccf26_9aadee7c",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 71
+      },
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
