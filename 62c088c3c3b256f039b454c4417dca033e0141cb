@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9df080f0_6f9de66c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Great progress! Please see comments below.",
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af45c2ac_c9c620f0",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Please keep the imports alphabetical.",
+      "range": {
+        "startLine": 16,
+        "startChar": 47,
+        "endLine": 16,
+        "endChar": 69
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe7b326_9ca09939",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Is this correct? It appears backward to me.",
+      "range": {
+        "startLine": 44,
+        "startChar": 60,
+        "endLine": 44,
+        "endChar": 107
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dec2233f_3b96df20",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Please limit line length to 80.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 125
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f87b9553_da35e81b",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Please keep alphabetical order. Also, the last item should still be followed by a comma, to make future addition easier.",
+      "range": {
+        "startLine": 236,
+        "startChar": 6,
+        "endLine": 236,
+        "endChar": 21
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d890cd95_5fd13dc8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Nit: 2020. (Convention is to use current year for new files, but not updating existing files.)",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1197472a_903608f6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Imports from standard Python library should all go into the first section, and arranged in alphabetical order. The remaining sections are for importing modules we created.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99f4c33b_e2bd24c4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Already imported.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc374ae2_d4f7d23f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Better to use \u0027\\\\;\u0027",
+      "range": {
+        "startLine": 101,
+        "startChar": 43,
+        "endLine": 101,
+        "endChar": 47
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d40ada41_2ff7e550",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "I\u0027m curious why this needs to be done on a separate thread, while CrOSBrowserbackend doesn\u0027t?",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 10
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f756efdf_286a5e60",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "or lacros-chrome",
+      "range": {
+        "startLine": 75,
+        "startChar": 33,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26030a5d_bb5472b0",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-12T00:06:07Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 384,
+        "startChar": 11,
+        "endLine": 384,
+        "endChar": 113
+      },
+      "revId": "62c088c3c3b256f039b454c4417dca033e0141cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
