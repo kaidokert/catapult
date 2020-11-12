@@ -22,6 +22,30 @@
       },
       "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "874ccf26_9aadee7c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-12T23:39:08Z",
+      "side": 0,
+      "message": "Replied in a different comment - this check behaves differently for the regular OS port vs. the LaCrOs port.",
+      "parentUuid": "fc345dbc_6ee3d0b1",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 71
+      },
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
