@@ -70,6 +70,30 @@
       },
       "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406f71d3_113a2f01",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T00:06:55Z",
+      "side": 0,
+      "message": "Will do.",
+      "parentUuid": "63ab4375_d212af86",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 71
+      },
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
