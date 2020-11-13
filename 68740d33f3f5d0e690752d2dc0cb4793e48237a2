@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7112b34f_5079fa85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T00:37:53Z",
+      "side": 1,
+      "message": "(a) is an open question. For my testing, I manually deploy_chrome\u0027d ash-chrome and lacros-chrome. I\u0027m guessing this is easily automatable.\n\nFor (b), this CL launches whatever was deploy_chrome\u0027d via mojo_connection_lacross_launcher.py.",
+      "parentUuid": "790ba3a4_680d3b71",
+      "revId": "68740d33f3f5d0e690752d2dc0cb4793e48237a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab4d469e_203d1241",
