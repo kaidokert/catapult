@@ -94,6 +94,30 @@
       },
       "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7522984d_ca6ff1d0",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-13T18:55:57Z",
+      "side": 1,
+      "message": "Unfortunately, I\u0027m unable to reproduce this locally, so confirming how many TIME_WAIT sockets are used on Mac with httplib vs. requests will be a bit awkward. Switching to requests.Session() SGTM though since it should be the most efficient for this sort of use case.",
+      "parentUuid": "7ee025b1_c05189f8",
+      "range": {
+        "startLine": 207,
+        "startChar": 14,
+        "endLine": 207,
+        "endChar": 28
+      },
+      "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
