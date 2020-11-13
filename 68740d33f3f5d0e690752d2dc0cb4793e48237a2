@@ -72,6 +72,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f112cd25_3dd18b57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T02:00:41Z",
+      "side": 1,
+      "message": "As it\u0027s currently implemented, we don\u0027t interact with ash beyond what mojo_connection_lacross_launcher.py does.",
+      "parentUuid": "f89ff7a1_1de4ccec",
+      "revId": "68740d33f3f5d0e690752d2dc0cb4793e48237a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab4d469e_203d1241",
