@@ -17,6 +17,7 @@ import json
 import os
 import unittest
 
+from typ import expectations_parser
 from typ import json_results
 from typ import result_sink
 from typ.fakes import host_fake
@@ -81,9 +82,33 @@ def CreateExpectedTestResult(
         'tags': tags or [
             {'key': 'test_name', 'value': test_id},
             {'key': 'typ_expectation', 'value': 'PASS'},
-            {'key': 'typ_tag', 'value': 'foo_tag'},
-            {'key': 'typ_tag', 'value': 'bar_tag'},],
+            {'key': 'raw_typ_expectation', 'value': 'Pass'},
+            {'key': 'typ_tag', 'value': 'bar_tag'},
+            {'key': 'typ_tag', 'value': 'foo_tag'},],
     }
+
+
+def CreateTestExpectations(expectation_definitions=None):
+    expectation_definitions = expectation_definitions or [{'name': 'test_name'}]
+    tags = set()
+    results = set()
+    lines = []
+    for ed in expectation_definitions:
+        name = ed['name']
+        t = ed.get('tags', ['foo_tag', 'bar_tag'])
+        r = ed.get('results', ['Pass'])
+        str_t = '[ ' + ' '.join(t) + ' ]' if t else ''
+        str_r = '[ ' + ' '.join(r) + ' ]'
+        lines.append('%s %s %s' % (str_t, name, str_r))
+        tags |= set(t)
+        results |= set(r)
+    data = '# tags: [ %s ]\n# results: [ %s ]\n%s' % (
+            ' '.join(tags), ' '.join(results), '\n'.join(lines))
+    # TODO(crbug.com/1148060): Remove the passing in of tags to the constructor
+    # once tags are properly updated through parse_tagged_list().
+    expectations = expectations_parser.TestExpectations(list(tags))
+    expectations.parse_tagged_list(data)
+    return expectations
 
 
 class ResultSinkReporterTest(unittest.TestCase):
@@ -135,9 +160,28 @@ class ResultSinkReporterTest(unittest.TestCase):
         rsr._post = StubWithRetval(2)
         retval = rsr.report_individual_test_result(
                 'test_name_prefix.', result, ARTIFACT_DIR,
-                ['foo_tag', 'bar_tag'])
+                CreateTestExpectations())
         self.assertEqual(retval, 2)
         expected_result = CreateExpectedTestResult()
+        self.assertEqual(GetTestResultFromPostedJson(rsr._post.args[0]),
+                         expected_result)
+
+    def testReportIndividualTestResultNoTestExpectations(self):
+        self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
+        rsr = result_sink.ResultSinkReporter(self._host)
+        result = CreateResult({
+            'name': 'test_name',
+            'actual': 'PASS',
+        })
+        rsr._post = StubWithRetval(2)
+        retval = rsr.report_individual_test_result(
+                'test_name_prefix.', result, ARTIFACT_DIR, None)
+        self.assertEqual(retval, 2)
+        expected_result = CreateExpectedTestResult(tags=[
+            {'key': 'test_name', 'value': 'test_name_prefix.test_name'},
+            {'key': 'typ_expectation', 'value': 'PASS'},
+            {'key': 'raw_typ_expectation', 'value': 'Pass'},
+        ])
         self.assertEqual(GetTestResultFromPostedJson(rsr._post.args[0]),
                          expected_result)
 
@@ -153,7 +197,7 @@ class ResultSinkReporterTest(unittest.TestCase):
         rsr._post = StubWithRetval(0)
         rsr.report_individual_test_result(
                 'test_name_prefix.', result, ARTIFACT_DIR,
-                ['foo_tag', 'bar_tag'])
+                CreateTestExpectations())
 
         test_result = GetTestResultFromPostedJson(rsr._post.args[0])
         truncated_summary = '<pre>stdout: %s%s' % (
@@ -184,7 +228,7 @@ class ResultSinkReporterTest(unittest.TestCase):
         rsr._post = StubWithRetval(0)
         rsr.report_individual_test_result(
                 'test_name_prefix.', result, ARTIFACT_DIR,
-                ['foo_tag', 'bar_tag'])
+                CreateTestExpectations())
 
         test_result = GetTestResultFromPostedJson(rsr._post.args[0])
         truncated_summary = '<pre>stdout: %s%s' % (
@@ -221,7 +265,7 @@ class ResultSinkReporterTest(unittest.TestCase):
         with self.assertRaises(AssertionError):
             rsr.report_individual_test_result(
                     'test_name_prefix', result, ARTIFACT_DIR,
-                    ['foo_tag', 'bar_tag'])
+                    CreateTestExpectations())
 
     def testReportIndividualTestResultSingleArtifact(self):
         self.setLuciContextWithContent(DEFAULT_LUCI_CONTEXT)
@@ -236,7 +280,7 @@ class ResultSinkReporterTest(unittest.TestCase):
         })
         retval = rsr.report_individual_test_result(
                 'test_name_prefix.', results, ARTIFACT_DIR,
-                ['foo_tag', 'bar_tag'])
+                CreateTestExpectations())
         self.assertEqual(retval, 2)
 
         test_result = GetTestResultFromPostedJson(rsr._post.args[0])
@@ -263,7 +307,7 @@ class ResultSinkReporterTest(unittest.TestCase):
         })
         retval = rsr.report_individual_test_result(
                 'test_name_prefix.', results, ARTIFACT_DIR,
-                ['foo_tag', 'bar_tag'])
+                CreateTestExpectations())
         self.assertEqual(retval, 2)
 
         test_result = GetTestResultFromPostedJson(rsr._post.args[0])
