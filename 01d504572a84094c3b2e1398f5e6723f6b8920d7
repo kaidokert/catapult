@@ -22,6 +22,30 @@
       },
       "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4662f380_2023fb27",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-13T18:33:52Z",
+      "side": 1,
+      "message": "Strange, the current approach seemed to fix the issue on swarming (see the information in https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1147992#c10).",
+      "parentUuid": "1f4a682d_a3a4221a",
+      "range": {
+        "startLine": 207,
+        "startChar": 14,
+        "endLine": 207,
+        "endChar": 28
+      },
+      "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
