@@ -46,6 +46,30 @@
       },
       "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c295e526_8199f085",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-11-13T18:49:28Z",
+      "side": 1,
+      "message": "It\u0027s possible that urllib3 or requests set different sockopts. When I was debugging blink_web_tests for crbug.com/1141606, I observed that\n- urllib2 created a connection for each of the post request, \n- +100 of TIME_WAIT socket were in the output of netstat, and\n- the entire test performance seemed to be very slow.\n\nDepending on the socket buffer size, many of TIME_WAIT sockets can slow down the entire system performance because it occupies kernel spaces. I suspected that TIME_WAIT socket was costier in Window 7 than Ubuntu.\n\nMy gut feeling is that urllib3 is possibly setting a different sockopt or shutting down the socket instead of close() conditionally or magically. Thus, urllib3 on Mac could reduce # of TIME_WAIT sockets created in certain conditions.\n\nI\u0027m sorry that I am giving you uncertain information, but I couldn\u0027t debug any deeper it was a Windows vm. Perhaps, you have more tools on Mac. Could you run those and check TIME_WAIT sockets?",
+      "parentUuid": "4662f380_2023fb27",
+      "range": {
+        "startLine": 207,
+        "startChar": 14,
+        "endLine": 207,
+        "endChar": 28
+      },
+      "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
