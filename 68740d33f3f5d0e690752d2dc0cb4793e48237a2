@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f89ff7a1_1de4ccec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-13T00:51:23Z",
+      "side": 1,
+      "message": "\u003e How does telemetry get the appropriate binary onto the chromeOS device. Maybe it doesn\u0027t and we need another wrapper script?\n\nCorrect - Telemetry does not handle browser deployment on CrOS. We depend on the CrOS test wrapper scripts to handle that before Telemetry ever gets run.\n\n\u003e Depends on (a) -- how do we launch Lacros?\nWe assume that device is already on and the \"launching\" of the browser is handled here https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/internal/backends/chrome/cros_browser_backend.py;l\u003d82 - AFAICT it\u0027s largely just logging in.\n\n\u003e  In a post-lacros world, there are two chrome binaries, which we call \u0027ash\u0027 and \u0027lacros\u0027 for simplicity. \u0027ash\u0027 controls login, window manager, ARC++ glue, etc. \u0027lacros\u0027 is the web browser.\n\n\u003e I imagine that telemetry would need to communicate with \u0027ash\u0027 to perform login/logout\nAnd that telemetry would otherwise communicate with \u0027lacros\u0027 as a web browser, as on other OSes.\n\nThat sounds to me like the ash interaction would belong in the platform backend, not the browser backend.",
+      "parentUuid": "406d8db6_40b40907",
+      "revId": "68740d33f3f5d0e690752d2dc0cb4793e48237a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab4d469e_203d1241",
