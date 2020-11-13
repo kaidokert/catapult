@@ -100,6 +100,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "290e7380_9672a251",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T20:42:10Z",
+      "side": 1,
+      "message": "Turns out it\u0027s not relevant, so removed.",
+      "parentUuid": "11fdcb58_6647003c",
+      "range": {
+        "startLine": 157,
+        "startChar": 10,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f0be2d4_6042ed35",

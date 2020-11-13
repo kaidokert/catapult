@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "673e8ed3_8ab6d750",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T20:42:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c822b9ec_c9eb6cbd",
+      "range": {
+        "startLine": 46,
+        "startChar": 37,
+        "endLine": 46,
+        "endChar": 50
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e0a6c4f_94cf1be6",
@@ -95,6 +119,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "199822e0_db7f7dab",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T20:42:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76170143_73ff15e0",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c30df502_c483c393",
@@ -118,6 +166,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c902575_85cf2aea",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T20:42:10Z",
+      "side": 1,
+      "message": "Good point. Added a TODO, I\u0027ll refactor this in a subsequent CL, after we determine this CL is what we want.",
+      "parentUuid": "c30df502_c483c393",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad6ab6b7_2126b6ab",
@@ -131,6 +203,30 @@
       "writtenOn": "2020-11-12T21:40:16Z",
       "side": 1,
       "message": "Nit: Move this check to a helper method like \"IsCrosBrowser\" or similar.",
+      "range": {
+        "startLine": 71,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "389b8e04c8fab4b3fb2a2e0ac123ebb6fd9a5cc8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8e6a5c_424c9aa1",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T20:42:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad6ab6b7_2126b6ab",
       "range": {
         "startLine": 71,
         "startChar": 7,

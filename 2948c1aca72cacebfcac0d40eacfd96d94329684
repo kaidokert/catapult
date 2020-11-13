@@ -94,6 +94,30 @@
       },
       "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5047f544_54502292",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T20:42:10Z",
+      "side": 0,
+      "message": "Actually, we\u0027re reusing the same platform backend between the two. We could either pass how we should do that check through BindDevToolsClient(), or add an attribute to ChromeBrowserBackend... but both of these are also gross.",
+      "parentUuid": "406f71d3_113a2f01",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 71
+      },
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
