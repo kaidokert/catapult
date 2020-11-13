@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "790ba3a4_680d3b71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115906
+      },
+      "writtenOn": "2020-11-13T00:32:41Z",
+      "side": 1,
+      "message": "A couple of thoughts from the Lacros perspective -- hopefully this answers the outstanding questions, which appear to be variations on similar themes.\n\n(1) Lacros is in development and is not expected to launch until mid 2022 [earliest]. I assume there are existing ChromeOS telemetry users -- those should continue to work [as if lacros did not exist]\n\n(2) In a post-lacros world, there are two chrome binaries, which we call \u0027ash\u0027 and \u0027lacros\u0027 for simplicity. \u0027ash\u0027 controls login, window manager, ARC++ glue, etc. \u0027lacros\u0027 is the web browser.\n\nI imagine that telemetry would need to communicate with \u0027ash\u0027 to perform login/logout\nAnd that telemetry would otherwise communicate with \u0027lacros\u0027 as a web browser, as on other OSes.\n\n(3) There are two ways to launch lacros on a ChromeOS device. One is by clicking the icon on the dock [or alternatively, invoking the underlying logic]. The other is to launch Lacros directly from a bash/ssh terminal. The latter requires special glue to hook up the crosapi mojo connection between ash and lacros. This glue is here: https://source.chromium.org/chromium/chromium/src/+/master:build/lacros/mojo_connection_lacros_launcher.py?q\u003dlacros%20launcher\u0026ss\u003dchromium\nIt\u0027s targeted at Linux, but the comments seem to imply that it may also be usable on Chrome-OS devices. The main requirement is that ash is launched with --lacros-mojo-socket-for-testing\u003d/tmp/lacros.sock, and that lacros is launched with this wrapper.\n\nI think the open questions are:\n\n(a) How does telemetry get the appropriate binary onto the chromeOS device. Maybe it doesn\u0027t and we need another wrapper script?\n(b) Depends on (a) -- how do we launch Lacros?, see the two options outlined in (3)",
+      "revId": "68740d33f3f5d0e690752d2dc0cb4793e48237a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab4d469e_203d1241",
