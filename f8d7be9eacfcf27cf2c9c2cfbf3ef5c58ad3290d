@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd9b65d_285b8312",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-13T00:41:40Z",
+      "side": 1,
+      "message": "It would be valid for a user to specify an empty list for tags, in which case the default wouldn\u0027t be used but we\u0027d have an empty list.",
+      "parentUuid": "f2a5a393_8fd7c8f8",
+      "revId": "f8d7be9eacfcf27cf2c9c2cfbf3ef5c58ad3290d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97256532_657e2725",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "994e4db2_03c68a7b",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-13T00:41:40Z",
+      "side": 1,
+      "message": "Done, also replaced other instances of \u0027PASS\u0027.",
+      "parentUuid": "97256532_657e2725",
+      "revId": "f8d7be9eacfcf27cf2c9c2cfbf3ef5c58ad3290d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f419f35_fa19bb5a",
@@ -48,6 +84,24 @@
       "writtenOn": "2020-11-13T00:26:35Z",
       "side": 1,
       "message": "Nit, Use the json_results.ResultType.Pass constant.",
+      "revId": "f8d7be9eacfcf27cf2c9c2cfbf3ef5c58ad3290d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6d9c1fe_e227d5a3",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-13T00:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f419f35_fa19bb5a",
       "revId": "f8d7be9eacfcf27cf2c9c2cfbf3ef5c58ad3290d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
