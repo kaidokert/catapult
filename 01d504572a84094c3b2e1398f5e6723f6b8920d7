@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f4a682d_a3a4221a",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2020-11-13T18:31:23Z",
+      "side": 1,
+      "message": "requests.post creates and closes a new set of connections each time being invoked. \n- https://github.com/psf/requests/blob/master/requests/api.py#L57-L60\n\nTo utilize a connection pool, requests.Session() should be used.\n- https://requests.readthedocs.io/en/master/user/advanced/#session-objects",
+      "range": {
+        "startLine": 207,
+        "startChar": 14,
+        "endLine": 207,
+        "endChar": 28
+      },
+      "revId": "01d504572a84094c3b2e1398f5e6723f6b8920d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
