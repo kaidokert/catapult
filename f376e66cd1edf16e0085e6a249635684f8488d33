@@ -398,6 +398,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13853bbc_4fe3a591",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-13T00:10:51Z",
+      "side": 1,
+      "message": "To be resolved - see Brian\u0027s comment.",
+      "parentUuid": "abd427cb_30f9f78c",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42a6f8c8_4ca35ba3",
