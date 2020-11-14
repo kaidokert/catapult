@@ -1,6 +1,7 @@
-# UUID                          	Group Name
+# UUID                                  	Group Name
 #
-cria:project-catapult-committers	cria/project-catapult-committers
-global:Change-Owner             	Change Owner
-global:Registered-Users         	Logged-in Public Users
-mdb:chrome-git-admins           	mdb/chrome-git-admins
+4d4288efd7d780ff5a35b8cc13fa6ff0f62c06cc	chrome-commit-bot
+cria:project-catapult-committers        	cria/project-catapult-committers
+global:Change-Owner                     	Change Owner
+global:Registered-Users                 	Logged-in Public Users
+mdb:chrome-git-admins                   	mdb/chrome-git-admins
