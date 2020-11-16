@@ -22,6 +22,30 @@
       },
       "revId": "d249e10c72b20dec0c3f3bca6c84f4c06f2dea87",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3b45c4_42db1102",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-16T23:27:21Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "c35068a4_0c9ff17e",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 65
+      },
+      "revId": "d249e10c72b20dec0c3f3bca6c84f4c06f2dea87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
