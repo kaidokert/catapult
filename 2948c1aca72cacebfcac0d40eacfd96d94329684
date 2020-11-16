@@ -120,6 +120,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2720ce16_23c488ae",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-16T21:30:21Z",
+      "side": 0,
+      "message": "Readded the check - it appears to work in all circumstances now (I must have had a bug earlier on).",
+      "parentUuid": "5047f544_54502292",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 71
+      },
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51b7de97_6933dc66",
@@ -133,6 +157,24 @@
       "writtenOn": "2020-11-16T16:50:24Z",
       "side": 0,
       "message": "Are you sure this isn\u0027t used by other platforms? \n\nThis code was added here:\nhttps://chromium-review.googlesource.com/c/catapult/+/1878287\n\nBug:\nhttps://bugs.chromium.org/p/chromium/issues/detail?id\u003d1011232\n\nThis isn\u0027t a chromeos specific fix.",
+      "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4af6e0_2d0e230a",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/tracing_backend.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-16T21:30:21Z",
+      "side": 0,
+      "message": "Interestingly, when I reverted this change, both lacros and cros continued to work.",
+      "parentUuid": "51b7de97_6933dc66",
       "revId": "2948c1aca72cacebfcac0d40eacfd96d94329684",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
