@@ -34,6 +34,24 @@
       "parentUuid": "f136ee4a_18467c95",
       "revId": "2f34bc0bced22a70623c90172d8cad97c00b1e23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4045286_6de0d359",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-16T23:59:36Z",
+      "side": 1,
+      "message": "And to confirm - currently-existing cros tests still work (tested with testBrowserCreation).",
+      "parentUuid": "5af6800d_9e1b25fb",
+      "revId": "2f34bc0bced22a70623c90172d8cad97c00b1e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
