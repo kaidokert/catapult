@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b594acf_025de9b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-16T23:26:57Z",
+      "side": 1,
+      "message": "My Chromebook does not have any of my Telemetry changes on it, yet this is still failing [1].\n\nWith that being said, I will investigate this when I investigate running Telemetry-on-Lacros locally (as described in #14).\n\nhttps://paste.googleplex.com/6431906011807744",
+      "parentUuid": "0f77be07_a3a829f7",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70a89f46_5d66983f",
@@ -471,6 +489,24 @@
       "side": 1,
       "message": "So far I\u0027ve only tried remote. I can take a crack at local - do you have an example for how I can run a local test for regular ChromeOS?",
       "parentUuid": "42a6f8c8_4ca35ba3",
+      "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7ab8cbb_65fc9868",
+        "filename": "telemetry/telemetry/internal/browser/browser_finder.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-16T23:26:57Z",
+      "side": 1,
+      "message": "Addressed in https://chromium-review.googlesource.com/c/catapult/+/2521435/comment/f136ee4a_18467c95/.",
+      "parentUuid": "a5358d96_52927539",
       "revId": "f376e66cd1edf16e0085e6a249635684f8488d33",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
