@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f136ee4a_18467c95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-16T16:50:24Z",
+      "side": 1,
+      "message": "A better way to test this is to run the telemetry unittests. The catapult cq doesn\u0027t run these unittests on chromeos, so you will be able to land this CL, and then it will get reverted if it fails those unittests in the rollup CL into the chromium repo. So I\u0027d recommend running them all locally before you land.\n\nI use testBrowserCreation as a simple test that tests basic operation, and that\u0027s convenient for rapid development, since the entire suite takes a while.\n\nInstructions for running telemetry tests:\nhttps://chromium.googlesource.com/chromiumos/docs/+/master/cros_vm.md#run-telemetry-tests\n\nTo run tests in local mode, you will need to copy your modified files (or all catapult files) to /usr/local/telemetry/src/third_party/catapult/ on the device, before following the local instructions.\n\nIf you can\u0027t get the local case working right away and want to do it in a follow-up CL, that should be fine.\n\nYou need to do [remote,local] for [non-guest, guest] for full support (in separate CLs if you prefer)",
+      "revId": "2f34bc0bced22a70623c90172d8cad97c00b1e23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
