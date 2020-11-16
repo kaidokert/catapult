@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c35068a4_0c9ff17e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-16T22:45:38Z",
+      "side": 1,
+      "message": "Nit: Move this into the else scope since it\u0027s not used anywhere else.",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 65
+      },
+      "revId": "d249e10c72b20dec0c3f3bca6c84f4c06f2dea87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
