@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc4d829_752bf205",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2020-11-17T17:51:15Z",
+      "side": 1,
+      "message": "Hey Deep,\n\nWe are working on a series of changes to improve the results produced by uma_metric.html. With the eventual goal of having chromium being able to better control it\u0027s emitting of these histograms.\n\nAs a part of this we shifted the histogram delta calculation to chromium. Which makes the path in uma_metric.html unnecessary. So this change removes that portion of the code.\n\nCould you PTAL?\n\nThanks,\nJonathan",
+      "revId": "91c9839fa3e5ac5d4956e3121bde487afe277b77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
