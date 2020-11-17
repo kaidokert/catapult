@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e1b939f_adee65f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-11-17T20:59:18Z",
+      "side": 1,
+      "message": "As noted in the downstream breakages, using `requests` for typ had the side effect of suddenly causing things that used typ to now require vpython, which isn\u0027t necessarily great.\n\nWe probably need to figure out to what extent we should assume and require vpython across the board, so that we can either safely assume it or have tooling that checks that this sort of thing doesn\u0027t regress.\n\nWe should also figure out what we need in either presubmits or the CQ to catch this sort of breakage, i.e., how did this actually get rolled in?\n\nAs a side note, anyone know if there is a way to do connection pooling with the python standard library, so that we wouldn\u0027t need requests? Or would we have to roll our own pooling code?",
+      "revId": "ecb7a9bbb81652ca660c516b4b6db38c2b1c722c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "960c3fa7_952b1729",
