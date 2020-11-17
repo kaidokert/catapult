@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9ed452_25f76f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-17T21:08:18Z",
+      "side": 1,
+      "message": "AFAICT there isn\u0027t a way to use connection pooling with builtin modules without rolling our own solution.\n\nIf we want to soften the dependency on requests, I could have it try to use requests and fall back to httplib if it isn\u0027t available.\n\nAs for how this got rolled in, that\u0027s because it broke due to a particular script (wtp_import.py) having its own vpython spec which didn\u0027t have requests listed. This prevent vpython from using the top level Chromium spec. wtp_import isn\u0027t tested on the CQ, so it was only caught after landing.",
+      "parentUuid": "1e1b939f_adee65f0",
+      "revId": "ecb7a9bbb81652ca660c516b4b6db38c2b1c722c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "960c3fa7_952b1729",
