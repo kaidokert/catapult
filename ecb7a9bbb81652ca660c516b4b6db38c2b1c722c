@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79844978_94ff28c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2020-11-17T21:33:11Z",
+      "side": 1,
+      "message": "Ah, it was the import script itself. Makes sense, thanks.",
+      "parentUuid": "fb9ed452_25f76f5f",
+      "revId": "ecb7a9bbb81652ca660c516b4b6db38c2b1c722c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "960c3fa7_952b1729",
