@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "960c3fa7_952b1729",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1231539
+      },
+      "writtenOn": "2020-11-17T20:21:49Z",
+      "side": 1,
+      "message": "Drive-by (when you reland the CL): the indentation here should be 4 spaces.",
+      "revId": "ecb7a9bbb81652ca660c516b4b6db38c2b1c722c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
