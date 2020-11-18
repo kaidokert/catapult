@@ -229,9 +229,11 @@ def RunStorySet(test, story_set, finder_options, results,
     ValidateStory(s)
 
   if found_possible_browser:
+    logging.info('Yes we have pass in browser')
     possible_browser = found_possible_browser
     finder_options.browser_options.browser_type = possible_browser.browser_type
   else:
+    logging.info('no pass in browser')
     possible_browser = _GetPossibleBrowser(finder_options)
   platform_tags = possible_browser.GetTypExpectationsTags()
   logging.info('The following expectations condition tags were generated %s',
