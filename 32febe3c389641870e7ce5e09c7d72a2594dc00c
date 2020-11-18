@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf389e7_8be048d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1164104
+      },
+      "writtenOn": "2020-11-18T04:43:18Z",
+      "side": 1,
+      "message": "Nit: Lacros. Please see email thread: https://groups.google.com/a/google.com/g/lacros-team/c/bAvtR9G2Xx8/m/G5-v4DeoCwAJ (Capitalization nit: Prefer \"Lacros\" to \"LaCrOS\")",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d534d2_35d65322",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1164104
+      },
+      "writtenOn": "2020-11-18T04:43:18Z",
+      "side": 1,
+      "message": "Same here and other places.",
+      "range": {
+        "startLine": 32,
+        "startChar": 45,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b78107a2_42413efe",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1164104
+      },
+      "writtenOn": "2020-11-18T04:43:18Z",
+      "side": 1,
+      "message": "The above line is already waiting for a certain condition, why do we need another sleep?",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 17
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a39990f7_40684b7e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1164104
+      },
+      "writtenOn": "2020-11-18T04:43:18Z",
+      "side": 1,
+      "message": "How is this determined? If it\u0027s some heuristic value used in multiple places, can we make it a constant?",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 13
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
