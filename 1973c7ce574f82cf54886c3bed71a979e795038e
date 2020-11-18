@@ -33,6 +33,24 @@
       "message": "LGTM % questions\n\n1) Are the alert groups required to be all-caps?\n2) Can they be more descriptive (e.g. \"cpu usage\")?\n3) Will the documentation be updated in a different CL?",
       "revId": "1973c7ce574f82cf54886c3bed71a979e795038e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a22267a4_b07d07fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-11-18T21:37:11Z",
+      "side": 1,
+      "message": "Thanks for the review! \n\n\u003e\u003e 1) Are the alert groups required to be all-caps?\nNot really - I changed them to python style snake case so it looks less like the groups are screaming. I actually like it better this way.\n\n\u003e\u003e 2) Can they be more descriptive (e.g. \"cpu usage\")?\nYup - changed + added comments in alert_group.html to set precedent about writing a brief description of what this group is all about. \n\n\u003e\u003e 3) Will the documentation be updated in a different CL?\nTotally forgot about docs. Added in this CL. \n\nI\u0027ll wait for another round of review from you.",
+      "parentUuid": "830f25bb_845cc8bc",
+      "revId": "1973c7ce574f82cf54886c3bed71a979e795038e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
