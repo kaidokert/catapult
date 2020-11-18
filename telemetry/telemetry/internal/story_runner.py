@@ -224,17 +224,20 @@ def RunStorySet(test, story_set, finder_options, results,
       need to find again if this is given.
     expectations: Benchmark expectations used to determine disabled stories.
   """
+  logging.info('aaa')
   stories = story_set.stories
   for s in stories:
     ValidateStory(s)
 
   if found_possible_browser:
+    logging.info('Yes we have pass in browser')
     possible_browser = found_possible_browser
     finder_options.browser_options.browser_type = possible_browser.browser_type
   else:
+    logging.info('no pass in browser')
     possible_browser = _GetPossibleBrowser(finder_options)
   platform_tags = possible_browser.GetTypExpectationsTags()
-  logging.info('The following expectations condition tags were generated %s',
+  logging.info('The aaa following expectations condition tags were generated %s',
                str(platform_tags))
   abridged_story_set_tag = story_set.GetAbridgedStorySetTagFilter()
   story_filter = story_filter_module.StoryFilterFactory.BuildStoryFilter(

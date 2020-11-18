@@ -135,7 +135,7 @@ def FindBrowser(options):
                          key=lambda b: b.last_modification_time)
 
   if chosen_browser:
-    logging.info('Chose browser: %r', chosen_browser)
+    logging.info('Chose browser aaa: %r', chosen_browser)
     chosen_browser.UpdateExecutableIfNeeded()
 
   return chosen_browser
