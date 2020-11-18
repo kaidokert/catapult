@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7e879c_671f915f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-11-18T00:32:59Z",
+      "side": 1,
+      "message": "Self-approving for TBR since this is identical to the original CL. The fix was made in https://chromium-review.googlesource.com/c/chromium/src/+/2544937",
+      "revId": "ee0fbb50848cd862d2cc15841ed6b6f35095a247",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
