@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e33146b_71935acd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-18T17:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf389e7_8be048d4",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7d534d2_35d65322",
@@ -37,6 +61,30 @@
       "writtenOn": "2020-11-18T04:43:18Z",
       "side": 1,
       "message": "Same here and other places.",
+      "range": {
+        "startLine": 32,
+        "startChar": 45,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07303d57_94406373",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-18T17:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d534d2_35d65322",
       "range": {
         "startLine": 32,
         "startChar": 45,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea77ecc2_7cea0f71",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-18T17:12:48Z",
+      "side": 1,
+      "message": "It appears the condition we\u0027re waiting for doesn\u0027t indicate Chrome is done loading. Added a bug.",
+      "parentUuid": "b78107a2_42413efe",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 17
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a39990f7_40684b7e",
@@ -83,6 +155,30 @@
       "writtenOn": "2020-11-18T04:43:18Z",
       "side": 1,
       "message": "How is this determined? If it\u0027s some heuristic value used in multiple places, can we make it a constant?",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 13
+      },
+      "revId": "32febe3c389641870e7ce5e09c7d72a2594dc00c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de8e3e87_491cfd62",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-11-18T17:12:48Z",
+      "side": 1,
+      "message": "This is copied over from CrosBrowserBackend. It looks to be an arbitrary value.\n\nI\u0027m going to unify things a little bit in a follow up CL, so there will only be one definition for this.",
+      "parentUuid": "a39990f7_40684b7e",
       "range": {
         "startLine": 192,
         "startChar": 11,
