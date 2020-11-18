@@ -5,6 +5,7 @@
 """Finds browsers that can be controlled by telemetry."""
 
 import logging
+import traceback
 
 from telemetry import decorators
 from telemetry.internal.backends.chrome import android_browser_finder
@@ -135,7 +136,9 @@ def FindBrowser(options):
                          key=lambda b: b.last_modification_time)
 
   if chosen_browser:
-    logging.info('Chose browser: %r', chosen_browser)
+    logging.info('Chose browser aaa: %r', chosen_browser)
+    for line in traceback.format_stack():
+      logging.info(line.strip())
     chosen_browser.UpdateExecutableIfNeeded()
 
   return chosen_browser
