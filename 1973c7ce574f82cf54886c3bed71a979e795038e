@@ -16,6 +16,23 @@
       "message": "Hi! This CL implements alert grouping for TBMv2. PTAL!",
       "revId": "1973c7ce574f82cf54886c3bed71a979e795038e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "830f25bb_845cc8bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-18T03:35:58Z",
+      "side": 1,
+      "message": "LGTM % questions\n\n1) Are the alert groups required to be all-caps?\n2) Can they be more descriptive (e.g. \"cpu usage\")?\n3) Will the documentation be updated in a different CL?",
+      "revId": "1973c7ce574f82cf54886c3bed71a979e795038e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
