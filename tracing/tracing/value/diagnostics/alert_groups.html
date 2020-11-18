@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+Copyright 2020 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/base.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.v.d', function() {
+  // All alert groups used in TBMv2 metrics. If you add a new group, add it
+  // here first to make sure you're not accidentally reusing a name.
+  // The keys and values are same here by convention.
+  const ALERT_GROUPS = {
+    CPU: 'CPU',
+    LOADING_PAINT: 'LOADING_PAINT',
+    LOADING_INTERACTIVITY: 'LOADING_INTERACTIVITY',
+    LOADING_LAYOUT: 'LOADING_LAYOUT',
+  };
+
+  return {
+    ALERT_GROUPS,
+  };
+});
+</script>
