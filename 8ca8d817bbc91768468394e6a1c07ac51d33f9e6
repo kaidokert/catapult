@@ -16,6 +16,41 @@
       "message": "Do you know if this issue is affecting other catapult modules? Let me know if you think there\u0027s a better way to fix this, but I thought I would upload this in case someone needs a quick workaround.",
       "revId": "8ca8d817bbc91768468394e6a1c07ac51d33f9e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "179f03b8_8b5a4785",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-11-19T22:37:10Z",
+      "side": 1,
+      "message": "Maybe, but ideally everything is vpython shebang\u0027ed by now anyway. We did a first pass when we were rolling out vpython. So now we\u0027re probably just seeing scripts we missed as new vpython uses pop up.",
+      "parentUuid": "aabd7f65_7fbe185e",
+      "revId": "8ca8d817bbc91768468394e6a1c07ac51d33f9e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e58b317f_f381870a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-11-19T22:37:10Z",
+      "side": 1,
+      "message": "How about taking care of run_py_devicetests too while we\u0027re here?",
+      "revId": "8ca8d817bbc91768468394e6a1c07ac51d33f9e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
