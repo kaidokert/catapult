@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76d3a2e7_803b9764",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-19T01:08:58Z",
+      "side": 1,
+      "message": "LGTM\n\nThanks!\n\nAt some point we\u0027ll need to update the proto definition as well to support WebRTC\u0027s use of the protocol buffer for histograms. It shouldn\u0027t need to be done by you though, CC\u0027ing mbonadei@ and jleconte@ for that.",
+      "revId": "067f4ce64da9b521b3e0c832e2d0a5d7e3c1c467",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
