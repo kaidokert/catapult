@@ -51,6 +51,24 @@
       "message": "How about taking care of run_py_devicetests too while we\u0027re here?",
       "revId": "8ca8d817bbc91768468394e6a1c07ac51d33f9e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "954d86a4_308ae326",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-11-19T23:45:23Z",
+      "side": 1,
+      "message": "Done. I also updated generate_md_docs, although that script was already working for me with regular \"python\" (2.7.18).",
+      "parentUuid": "e58b317f_f381870a",
+      "revId": "8ca8d817bbc91768468394e6a1c07ac51d33f9e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
