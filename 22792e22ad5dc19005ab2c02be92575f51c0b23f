@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "eba2d3fd_14f54978",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-19T18:23:04Z",
+      "side": 1,
+      "message": "Nit: Please add an empty line before this.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 130
+      },
+      "revId": "22792e22ad5dc19005ab2c02be92575f51c0b23f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "63de57e9_7a22d341",
@@ -14,6 +37,23 @@
       "writtenOn": "2020-11-19T18:20:17Z",
       "side": 1,
       "message": "Fixing the issue that FindBrowser is call twice. PTAL.",
+      "revId": "22792e22ad5dc19005ab2c02be92575f51c0b23f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e2c030_ca596eb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-11-19T18:23:04Z",
+      "side": 1,
+      "message": "LGTM with a nit.",
       "revId": "22792e22ad5dc19005ab2c02be92575f51c0b23f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
