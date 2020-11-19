@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aabd7f65_7fbe185e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-11-19T22:30:01Z",
+      "side": 1,
+      "message": "Do you know if this issue is affecting other catapult modules? Let me know if you think there\u0027s a better way to fix this, but I thought I would upload this in case someone needs a quick workaround.",
+      "revId": "8ca8d817bbc91768468394e6a1c07ac51d33f9e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
