@@ -22,6 +22,30 @@
       },
       "revId": "7fc8b7c8f7518beabba20ff66f8fc3bd79fabc19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57f78a82_774bbb43",
+        "filename": ".vpython",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2020-11-20T22:00:01Z",
+      "side": 1,
+      "message": "Yeah, it appears to be. Though the errors are pretty obscure. (Why would adding a new wheel to the python venv environment cause that?)\n\nIt could be that the wheel here is different from the protoc version we install on these bots:\nhttps://source.chromium.org/chromium/chromium/tools/build/+/master:recipes/recipes/catapult.py;drc\u003df946f76947daa884a89e3c6ea922be6cedb8bf0f;l\u003d71\n\nI tried bumping that version and patched that into a led run with this CL:\nhttps://ci.chromium.org/swarming/task/50007bc2f57f4310?server\u003dchromium-swarm.appspot.com\n\nLet\u0027s see if that fixes it? If not, I\u0027ll have to think about this some more.",
+      "parentUuid": "2377fa1e_60a01eeb",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "7fc8b7c8f7518beabba20ff66f8fc3bd79fabc19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
