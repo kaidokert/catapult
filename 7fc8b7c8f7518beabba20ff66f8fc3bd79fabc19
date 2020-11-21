@@ -46,6 +46,30 @@
       },
       "revId": "7fc8b7c8f7518beabba20ff66f8fc3bd79fabc19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef2066b_2295307b",
+        "filename": ".vpython",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-11-21T09:57:17Z",
+      "side": 1,
+      "message": "It looks like it doesn\u0027t fix, but you have given me a hint. Maybe on the bots where I see the problem we are doing something similar to https://source.chromium.org/chromium/chromium/tools/build/+/master:recipes/recipes/catapult.py;drc\u003df946f76947daa884a89e3c6ea922be6cedb8bf0f;l\u003d71.\n\nI will look into that.",
+      "parentUuid": "57f78a82_774bbb43",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "7fc8b7c8f7518beabba20ff66f8fc3bd79fabc19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
