@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1c0c4de_840e4781",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-11-21T19:26:10Z",
+      "side": 1,
+      "message": "I think this might be a good workaround for https://chromium-review.googlesource.com/c/catapult/+/2550920.",
+      "revId": "caaf5da417121f68987ae8747d1a179723587fa3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
