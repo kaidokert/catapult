@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ddc605f_d974de5a",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-24T04:23:45Z",
+      "side": 1,
+      "message": "This looks subtle enough that I\u0027d expect we have a test for this somewhere?",
+      "range": {
+        "startLine": 687,
+        "startChar": 2,
+        "endLine": 688,
+        "endChar": 15
+      },
+      "revId": "75fa680eca33955d5c6b23753a00435d75a53676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
