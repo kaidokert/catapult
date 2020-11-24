@@ -22,6 +22,30 @@
       },
       "revId": "75fa680eca33955d5c6b23753a00435d75a53676",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "140a9775_5b5c62ee",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-11-24T06:42:45Z",
+      "side": 1,
+      "message": "Ops...And it actually doesn\u0027t fix the bug. Thanks!",
+      "parentUuid": "2ddc605f_d974de5a",
+      "range": {
+        "startLine": 687,
+        "startChar": 2,
+        "endLine": 688,
+        "endChar": 15
+      },
+      "revId": "75fa680eca33955d5c6b23753a00435d75a53676",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
