@@ -306,6 +306,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', apk)
       self.platform.InstallApplication(apk)
 
+    sdk_version = self._platform_backend.device.build_version_sdk
     apk_name = self._backend_settings.GetApkName(
         self._platform_backend.device)
     is_webview_apk = apk_name is not None and ('SystemWebView' in apk_name or
@@ -323,15 +324,23 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', self._local_apk)
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
-      if self._compile_apk:
+
+      # "cmd pacakge compile" added in Nougat.
+      if sdk_version >= version_codes.NOUGAT:
         package_name = apk_helper.GetPackageName(self._local_apk)
         logging.warn('Compiling %s.', package_name)
+        # Compiling is important on N+ because the OS does not do this upon
+        # installation, but rather allows apps to run unoptimized until the next
+        # maintenance window.
         self._platform_backend.device.RunShellCommand(
             ['cmd', 'package', 'compile', '-m', self._compile_apk, '-f',
              package_name],
             check_return=True)
+      elif self._compile_apk != 'speed':
+        # "speed" is the default on Android L & M.
+        raise exceptions.InitializationError(
+            '--compile-apk requires device with sdk_version >= Nougat')
 
-    sdk_version = self._platform_backend.device.build_version_sdk
     # Bundles are in the ../bin directory, so it's safer to just check the
     # correct name is part of the path.
     is_monochrome = apk_name is not None and (apk_name == 'Monochrome.apk' or
