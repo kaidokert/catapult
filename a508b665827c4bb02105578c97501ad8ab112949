@@ -16,6 +16,29 @@
       "message": "Nice debugging session Andrey! This was not easy to catch! LGTM but I let Dean +2.",
       "revId": "a508b665827c4bb02105578c97501ad8ab112949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d1fe57_d4a4817d",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-25T20:11:51Z",
+      "side": 1,
+      "message": "We really should be using https://en.cppreference.com/w/cpp/numeric/math/islessequal here to avoid having to deal with NaN issues.",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "a508b665827c4bb02105578c97501ad8ab112949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
