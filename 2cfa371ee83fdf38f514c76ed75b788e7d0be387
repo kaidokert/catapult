@@ -16,6 +16,24 @@
       "message": "Hey Clark - can you think of any reason we wouldn\u0027t want to enable this by default?",
       "revId": "2cfa371ee83fdf38f514c76ed75b788e7d0be387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f704d46b_1b403d6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-11-25T04:40:14Z",
+      "side": 1,
+      "message": "There was some discussion of this in crbug.com/1034044, and it looks like the reason it wasn\u0027t enabled by default was because it took an extra 30s per shard and didn\u0027t affect results much at the time. Maybe this tradeoff is different now since it does change the results with isolated splits enabled?\n\nAlso, I don\u0027t think I\u0027ve ever gotten --compile-apk\u003dspeed to work on android-go-perf without timing out, so this would probably need to only be on by default for the pixel2 bots.\n\nI think the ideal setup (on supported platforms) would be:\n- compile with \"speed\" by default if the APK is set as the WebView provider\n- compile with \"speed-profile\" by default for other APKs. This actually doesn\u0027t matter much until we do more testing on Q+ though.\n\nMaybe the most practical thing to do here is default to speed on pixel2 bots only, and not compile on others. Not sure if there\u0027s an easy way to do that though.",
+      "parentUuid": "55dbfbd5_9d2cce18",
+      "revId": "2cfa371ee83fdf38f514c76ed75b788e7d0be387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
