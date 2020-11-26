@@ -36,25 +36,35 @@ tr.exportTo('tr.metrics.blink', function() {
   // only on the main thread.
   const BLINK_NON_AGGREGATED_GC_EVENTS_NEW_NAMES_MAP = {
     'BlinkGC.AtomicPauseMarkEpilogue':
-        'blink:gc:main_thread:cycle:full:atomic:mark:epilogue',
+        ['v8:gc:main_thread:event:full:atomic:mark:epilogue:cpp',
+          'v8:gc:main_thread:cycle:full:atomic:mark:epilogue:cpp'],
     'BlinkGC.AtomicPauseMarkPrologue':
-        'blink:gc:main_thread:cycle:full:atomic:mark:prologue',
+        ['v8:gc:main_thread:event:full:atomic:mark:prologue:cpp',
+          'v8:gc:main_thread:cycle:full:atomic:mark:prologue:cpp'],
     'BlinkGC.AtomicPauseMarkRoots':
-        'blink:gc:main_thread:cycle:full:atomic:mark:roots',
+        ['v8:gc:main_thread:event:full:atomic:mark:roots:cpp',
+          'v8:gc:main_thread:cycle:full:atomic:mark:roots:cpp'],
     'BlinkGC.IncrementalMarkingStartMarking':
-        'blink:gc:main_thread:cycle:full:incremental:mark:start',
+        ['v8:gc:main_thread:event:full:incremental:mark:start:cpp',
+          'v8:gc:main_thread:cycle:full:incremental:mark:start:cpp'],
     'BlinkGC.IncrementalMarkingStep':
-        'blink:gc:main_thread:cycle:full:incremental:mark:step',
+        ['v8:gc:main_thread:event:full:incremental:mark:step:cpp',
+          'v8:gc:main_thread:cycle:full:incremental:mark:step:cpp'],
     'BlinkGC.UnifiedMarkingStep':
-        'unified:gc:main_thread:cycle:full:mark:step',
+        ['v8:gc:main_thread:event:full:mark:step',
+          'v8:gc:main_thread:cycle:full:mark:step'],
     'BlinkGC.CompleteSweep':
-        'blink:gc:main_thread:cycle:full:sweep:complete',
+        ['v8:gc:main_thread:event:full:sweep:complete:cpp',
+          'v8:gc:main_thread:cycle:full:sweep:complete:cpp'],
     'BlinkGC.LazySweepInIdle':
-        'blink:gc:main_thread:cycle:full:sweep:idle',
+        ['v8:gc:main_thread:event:full:sweep:idle:cpp',
+          'v8:gc:main_thread:cycle:full:sweep:idle:cpp'],
     'BlinkGC.LazySweepOnAllocation':
-        'blink:gc:main_thread:cycle:full:sweep:on_allocation',
+        ['v8:gc:main_thread:event:full:sweep:on_allocation:cpp',
+          'v8:gc:main_thread:cycle:full:sweep:on_allocation:cpp'],
     'BlinkGC.AtomicPauseSweepAndCompact':
-        'blink:gc:main_thread:cycle:full:atomic:sweep:compact'
+        ['v8:gc:main_thread:event:full:atomic:sweep:compact:cpp',
+          'v8:gc:main_thread:cycle:full:atomic:sweep:compact:cpp'],
   };
 
   // All events that should be summed up to 'blink-gc-mark-roots'.
@@ -255,13 +265,15 @@ tr.exportTo('tr.metrics.blink', function() {
    * - blink-gc-incremental-start
    */
   function addDurationOfTopEvents(histograms, model) {
-    const nameToNumeric = {};
+    const oldNameToNumeric = {};
+    const newNameToNumeric = {};
     const nameToEpochNumeric = {};
     for (const name of blinkGarbageCollectionEventNames()) {
-      nameToNumeric[name] = createNumericForEventTime(name);
+      oldNameToNumeric[name] = createNumericForEventTime(name);
     }
-    for (const name of blinkGarbageCollectionEventNewNames()) {
-      nameToEpochNumeric[name] = createNumericForEventTime(name);
+    for (const names of blinkGarbageCollectionEventNewNames()) {
+      newNameToNumeric[names[0]] = createNumericForEventTime(names[0]);
+      nameToEpochNumeric[names[1]] = createNumericForEventTime(names[1]);
     }
     tr.metrics.v8.utils.groupAndProcessEvents(model,
         isNonForcedNonAggregatedBlinkGarbageCollectionEvent,
@@ -269,11 +281,12 @@ tr.exportTo('tr.metrics.blink', function() {
         function(epoch, events) {
           const namesToPerEpochDurations = {};
           for (const event of events) {
-            nameToNumeric[blinkGarbageCollectionEventName(event)]
+            oldNameToNumeric[blinkGarbageCollectionEventName(event)]
                 .addSample(event.cpuDuration);
-            const name = blinkGarbageCollectionEventNewName(event);
-            namesToPerEpochDurations[name] =
-                (namesToPerEpochDurations[name] || 0) + event.cpuDuration;
+            const names = blinkGarbageCollectionEventNewName(event);
+            newNameToNumeric[names[0]].addSample(event.cpuDuration);
+            namesToPerEpochDurations[names[1]] =
+                (namesToPerEpochDurations[names[1]] || 0) + event.cpuDuration;
           }
           for (const name in namesToPerEpochDurations) {
             nameToEpochNumeric[name].addSample(namesToPerEpochDurations[name]);
@@ -281,26 +294,31 @@ tr.exportTo('tr.metrics.blink', function() {
         }
     );
     for (const name of blinkGarbageCollectionEventNames()) {
-      histograms.addHistogram(nameToNumeric[name]);
+      histograms.addHistogram(oldNameToNumeric[name]);
     }
-    for (const name of blinkGarbageCollectionEventNewNames()) {
-      histograms.addHistogram(nameToEpochNumeric[name]);
+    for (const names of blinkGarbageCollectionEventNewNames()) {
+      histograms.addHistogram(newNameToNumeric[names[0]]);
+      histograms.addHistogram(nameToEpochNumeric[names[1]]);
     }
   }
 
-  function addIndividualDurationsOfEvents(histograms, model, name, filter) {
-    const cpuDuration = createNumericForEventTime(name);
+  function addIndividualDurationsOfEvents(
+      histograms, model, oldName, newName, filter) {
+    const oldCpuDuration = createNumericForEventTime(oldName);
+    const newCpuDuration = createNumericForEventTime(newName);
     tr.metrics.v8.utils.groupAndProcessEvents(model,
         filter,
-        event => name,
+        event => oldName,
         function(group, events) {
           for (const event of events) {
-            cpuDuration.addSample(event.cpuDuration);
+            oldCpuDuration.addSample(event.cpuDuration);
+            newCpuDuration.addSample(event.cpuDuration);
           }
         },
-        [name]
+        [oldName]
     );
-    histograms.addHistogram(cpuDuration);
+    histograms.addHistogram(oldCpuDuration);
+    histograms.addHistogram(newCpuDuration);
   }
 
   function addPerEpochDurationsOfEvents(histograms, model, name, filter) {
@@ -323,9 +341,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addDurationOfAtomicPause(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-atomic-pause',
+        'v8:gc:main_thread:event:full:atomic:cpp',
         isNonForcedBlinkGarbageCollectionAtomicPauseEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:atomic',
+        'v8:gc:main_thread:cycle:full:atomic:cpp',
         isNonForcedBlinkGarbageCollectionAtomicPauseEvent);
   }
 
@@ -336,9 +355,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addDurationOfAtomicPauseTransitiveClosure(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-atomic-pause-mark-transitive-closure',
+        'v8:gc:main_thread:event:full:atomic:mark:transitive_closure:cpp',
         isNonForcedBlinkGarbageCollectionAtomicPauseTransitiveColsureEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:atomic:mark:transitive_closure',
+        'v8:gc:main_thread:cycle:full:atomic:mark:transitive_closure:cpp',
         isNonForcedBlinkGarbageCollectionAtomicPauseTransitiveColsureEvent);
   }
 
@@ -349,9 +369,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfTopEvents(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-total',
+        'v8:gc:main_thread:event:full:cpp',
         isNonForcedBlinkGarbageCollectionEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full',
+        'v8:gc:main_thread:cycle:full:cpp',
         isNonForcedBlinkGarbageCollectionEvent);
   }
 
@@ -362,9 +383,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfRootsMarking(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-mark-roots',
+        'v8:gc:main_thread:event:full:mark:roots:cpp',
         isNonForcedBlinkGarbageCollectionRootsMarkingEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:mark:roots',
+        'v8:gc:main_thread:cycle:full:mark:roots:cpp',
         isNonForcedBlinkGarbageCollectionRootsMarkingEvent);
   }
 
@@ -375,9 +397,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfMarkingTransitiveClosure(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-mark-transitive-closure',
+        'v8:gc:main_thread:event:full:mark:transitive_closure:cpp',
         isNonForcedBlinkGarbageCollectionMarkingTransitiveColsureEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:mark:transitive_closure',
+        'v8:gc:main_thread:cycle:full:mark:transitive_closure:cpp',
         isNonForcedBlinkGarbageCollectionMarkingTransitiveColsureEvent);
   }
 
@@ -388,9 +411,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfForegroundMarking(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-mark-foreground',
+        'v8:gc:main_thread:event:full:mark:cpp',
         isNonForcedBlinkGarbageCollectionForegroundMarkingEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:mark',
+        'v8:gc:main_thread:cycle:full:mark:cpp',
         isNonForcedBlinkGarbageCollectionForegroundMarkingEvent);
   }
 
@@ -401,9 +425,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfForcedForegroundMarking(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-mark-foreground-forced',
+        'v8:gc:main_thread:event:full:mark:forced:cpp',
         isNonForcedBlinkGarbageCollectionForcedForegroundMarkEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:mark:forced',
+        'v8:gc:main_thread:cycle:full:mark:forced:cpp',
         isNonForcedBlinkGarbageCollectionForcedForegroundMarkEvent);
   }
 
@@ -414,9 +439,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfBackgroundMarking(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-mark-background',
+        'v8:gc:background_threads:event:full:mark:cpp',
         isNonForcedBlinkGarbageCollectionBackgroundMarkingEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:concurrent_thread:cycle:full:mark',
+        'v8:gc:background_threads:cycle:full:mark:cpp',
         isNonForcedBlinkGarbageCollectionBackgroundMarkingEvent);
   }
 
@@ -427,9 +453,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfForegroundSweeping(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-sweep-foreground',
+        'v8:gc:main_thread:event:full:sweep:cpp',
         isNonForcedBlinkGarbageCollectionForegroundSweepingEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:main_thread:cycle:full:sweep',
+        'v8:gc:main_thread:cycle:full:sweep:cpp',
         isNonForcedBlinkGarbageCollectionForegroundSweepingEvent);
   }
 
@@ -440,9 +467,10 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfBackgroundSweeping(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'blink-gc-sweep-background',
+        'v8:gc:background_threads:event:full:sweep:cpp',
         isNonForcedBlinkGarbageCollectionBackgroundSweepingEvent);
     addPerEpochDurationsOfEvents(histograms, model,
-        'blink:gc:concurrent_thread:cycle:full:sweep',
+        'v8:gc:background_threads:cycle:full:sweep:cpp',
         isNonForcedBlinkGarbageCollectionBackgroundSweepingEvent);
   }
 
@@ -458,6 +486,7 @@ tr.exportTo('tr.metrics.blink', function() {
   function addTotalDurationOfBlinkAndV8TopEvents(histograms, model) {
     addIndividualDurationsOfEvents(histograms, model,
         'unified-gc-total',
+        'v8:gc:main_thread:event:full',
         isV8OrBlinkTopLevelGarbageCollectionEvent);
     // No epoch durations because v8 events don't provide an epoch id.
   }

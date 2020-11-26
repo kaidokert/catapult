@@ -78,32 +78,77 @@ tr.b.unittest.testSuite(function() {
     }
   });
 
+  test('topEventsNewNames', function() {
+    const events = {
+      'BlinkGC.AtomicPauseMarkEpilogue':
+        'v8:gc:main_thread:event:full:atomic:mark:epilogue:cpp',
+      'BlinkGC.AtomicPauseMarkPrologue':
+          'v8:gc:main_thread:event:full:atomic:mark:prologue:cpp',
+      'BlinkGC.AtomicPauseMarkRoots':
+          'v8:gc:main_thread:event:full:atomic:mark:roots:cpp',
+      'BlinkGC.IncrementalMarkingStartMarking':
+          'v8:gc:main_thread:event:full:incremental:mark:start:cpp',
+      'BlinkGC.IncrementalMarkingStep':
+          'v8:gc:main_thread:event:full:incremental:mark:step:cpp',
+      'BlinkGC.UnifiedMarkingStep':
+          'v8:gc:main_thread:event:full:mark:step',
+      'BlinkGC.CompleteSweep':
+          'v8:gc:main_thread:event:full:sweep:complete:cpp',
+      'BlinkGC.LazySweepInIdle':
+          'v8:gc:main_thread:event:full:sweep:idle:cpp',
+      'BlinkGC.LazySweepOnAllocation':
+          'v8:gc:main_thread:event:full:sweep:on_allocation:cpp',
+      'BlinkGC.AtomicPauseSweepAndCompact':
+          'v8:gc:main_thread:event:full:atomic:sweep:compact:cpp',
+      'BlinkGC.AtomicPauseMarkTransitiveClosure':
+            'v8:gc:main_thread:event:full:atomic:mark:transitive_closure:cpp',
+      'BlinkGC.VisitRoots':
+          'v8:gc:main_thread:event:full:mark:roots:cpp'
+    };
+    for (const [timelineName, telemetryName] of Object.entries(events)) {
+      const slices = [
+        {
+          title: timelineName, args: {}, start: 100, end: 200,
+          cpuStart: 100, cpuEnd: 200
+        }
+      ];
+      const actual = run(slices);
+
+      const value = actual.getHistogramNamed(telemetryName);
+      assert.strictEqual(value.running.sum, 100);
+      assert.strictEqual(value.numValues, 1);
+      assert.strictEqual(value.average, 100);
+      assert.strictEqual(value.running.max, 100);
+      assert.closeTo(value.getApproximatePercentile(0.90), 100, 1);
+    }
+  });
+
   test('topEventsPerEpoch', function() {
     const events = {
       'BlinkGC.AtomicPauseMarkEpilogue':
-        'blink:gc:main_thread:cycle:full:atomic:mark:epilogue',
+        'v8:gc:main_thread:cycle:full:atomic:mark:epilogue:cpp',
       'BlinkGC.AtomicPauseMarkPrologue':
-          'blink:gc:main_thread:cycle:full:atomic:mark:prologue',
+          'v8:gc:main_thread:cycle:full:atomic:mark:prologue:cpp',
       'BlinkGC.AtomicPauseMarkRoots':
-          'blink:gc:main_thread:cycle:full:atomic:mark:roots',
+          'v8:gc:main_thread:cycle:full:atomic:mark:roots:cpp',
       'BlinkGC.IncrementalMarkingStartMarking':
-          'blink:gc:main_thread:cycle:full:incremental:mark:start',
+          'v8:gc:main_thread:cycle:full:incremental:mark:start:cpp',
       'BlinkGC.IncrementalMarkingStep':
-          'blink:gc:main_thread:cycle:full:incremental:mark:step',
+          'v8:gc:main_thread:cycle:full:incremental:mark:step:cpp',
       'BlinkGC.UnifiedMarkingStep':
-          'unified:gc:main_thread:cycle:full:mark:step',
+          'v8:gc:main_thread:cycle:full:mark:step',
       'BlinkGC.CompleteSweep':
-          'blink:gc:main_thread:cycle:full:sweep:complete',
+          'v8:gc:main_thread:cycle:full:sweep:complete:cpp',
       'BlinkGC.LazySweepInIdle':
-          'blink:gc:main_thread:cycle:full:sweep:idle',
+          'v8:gc:main_thread:cycle:full:sweep:idle:cpp',
       'BlinkGC.LazySweepOnAllocation':
-          'blink:gc:main_thread:cycle:full:sweep:on_allocation',
+          'v8:gc:main_thread:cycle:full:sweep:on_allocation:cpp',
       'BlinkGC.AtomicPauseSweepAndCompact':
-          'blink:gc:main_thread:cycle:full:atomic:sweep:compact',
+          'v8:gc:main_thread:cycle:full:atomic:sweep:compact:cpp',
       'BlinkGC.AtomicPauseMarkTransitiveClosure':
-            'blink:gc:main_thread:cycle:full:atomic:mark:transitive_closure',
+            'v8:gc:main_thread:cycle:full:atomic:mark:transitive_closure:cpp',
       'BlinkGC.VisitRoots':
-          'blink:gc:main_thread:cycle:full:mark:roots'
+          'v8:gc:main_thread:cycle:full:mark:roots:cpp'
     };
     for (const [timelineName, telemetryName] of Object.entries(events)) {
       const slices = [
@@ -194,8 +239,14 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.numValues, 9);
     assert.strictEqual(value.running.max, 80);
 
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:cpp');
+    assert.strictEqual(valueNewName.running.sum, 330);
+    assert.strictEqual(valueNewName.numValues, 9);
+    assert.strictEqual(valueNewName.running.max, 80);
+
     const valuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:main_thread:cycle:full');
+        'v8:gc:main_thread:cycle:full:cpp');
     assert.strictEqual(valuePerEpoch.running.sum, 330);
     assert.strictEqual(valuePerEpoch.numValues, 2);
     assert.strictEqual(valuePerEpoch.running.max, 180);
@@ -245,8 +296,15 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.average, 90);
     assert.strictEqual(value.running.max, 90);
 
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:sweep:cpp');
+    assert.strictEqual(valueNewName.running.sum, 270);
+    assert.strictEqual(valueNewName.numValues, 3);
+    assert.strictEqual(valueNewName.average, 90);
+    assert.strictEqual(valueNewName.running.max, 90);
+
     const valuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:main_thread:cycle:full:sweep');
+        'v8:gc:main_thread:cycle:full:sweep:cpp');
     assert.strictEqual(valuePerEpoch.running.sum, 270);
     assert.strictEqual(valuePerEpoch.numValues, 2);
     assert.strictEqual(valuePerEpoch.average, 135);
@@ -281,8 +339,15 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.average, 75);
     assert.strictEqual(value.running.max, 100);
 
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:background_threads:event:full:sweep:cpp');
+    assert.strictEqual(valueNewName.running.sum, 150);
+    assert.strictEqual(valueNewName.numValues, 2);
+    assert.strictEqual(valueNewName.average, 75);
+    assert.strictEqual(valueNewName.running.max, 100);
+
     const valuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:concurrent_thread:cycle:full:sweep');
+        'v8:gc:background_threads:cycle:full:sweep:cpp');
     assert.strictEqual(valuePerEpoch.running.sum, 150);
     assert.strictEqual(valuePerEpoch.numValues, 2);
     assert.strictEqual(valuePerEpoch.average, 75);
@@ -362,29 +427,57 @@ tr.b.unittest.testSuite(function() {
     assert.closeTo(closueValue.average, 9, 1e-6);
     assert.strictEqual(closueValue.running.max, 10);
 
+    const foregroundValueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:mark:cpp');
+    assert.strictEqual(foregroundValueNewName.running.sum, 63);
+    assert.strictEqual(foregroundValueNewName.numValues, 7);
+    assert.closeTo(foregroundValueNewName.average, 9, 1e-6);
+    assert.strictEqual(foregroundValueNewName.running.max, 10);
+
+    const backgroundValueNewName = actual.getHistogramNamed(
+        'v8:gc:background_threads:event:full:mark:cpp');
+    assert.strictEqual(backgroundValueNewName.running.sum, 14);
+    assert.strictEqual(backgroundValueNewName.numValues, 2);
+    assert.closeTo(backgroundValueNewName.average, 7, 1e-6);
+    assert.strictEqual(backgroundValueNewName.running.max, 10);
+
+    const rootsValueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:mark:roots:cpp');
+    assert.strictEqual(rootsValueNewName.running.sum, 10);
+    assert.strictEqual(rootsValueNewName.numValues, 1);
+    assert.closeTo(rootsValueNewName.average, 10, 1e-6);
+    assert.strictEqual(rootsValueNewName.running.max, 10);
+
+    const closueValueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:mark:transitive_closure:cpp');
+    assert.strictEqual(closueValueNewName.running.sum, 27);
+    assert.strictEqual(closueValueNewName.numValues, 3);
+    assert.closeTo(closueValueNewName.average, 9, 1e-6);
+    assert.strictEqual(closueValueNewName.running.max, 10);
+
     const foregroundValuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:main_thread:cycle:full:mark');
+        'v8:gc:main_thread:cycle:full:mark:cpp');
     assert.strictEqual(foregroundValuePerEpoch.running.sum, 63);
     assert.strictEqual(foregroundValuePerEpoch.numValues, 3);
     assert.closeTo(foregroundValuePerEpoch.average, 21, 1e-6);
     assert.strictEqual(foregroundValuePerEpoch.running.max, 40);
 
     const backgroundValuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:concurrent_thread:cycle:full:mark');
+        'v8:gc:background_threads:cycle:full:mark:cpp');
     assert.strictEqual(backgroundValuePerEpoch.running.sum, 14);
     assert.strictEqual(backgroundValuePerEpoch.numValues, 2);
     assert.closeTo(backgroundValuePerEpoch.average, 7, 1e-6);
     assert.strictEqual(backgroundValuePerEpoch.running.max, 10);
 
     const rootsValuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:main_thread:cycle:full:mark:roots');
+        'v8:gc:main_thread:cycle:full:mark:roots:cpp');
     assert.strictEqual(rootsValuePerEpoch.running.sum, 10);
     assert.strictEqual(rootsValuePerEpoch.numValues, 1);
     assert.closeTo(rootsValuePerEpoch.average, 10, 1e-6);
     assert.strictEqual(rootsValuePerEpoch.running.max, 10);
 
     const closueValuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:main_thread:cycle:full:mark:transitive_closure');
+        'v8:gc:main_thread:cycle:full:mark:transitive_closure:cpp');
     assert.strictEqual(closueValuePerEpoch.running.sum, 27);
     assert.strictEqual(closueValuePerEpoch.numValues, 2);
     assert.closeTo(closueValuePerEpoch.average, 13.5, 1e-6);
@@ -434,6 +527,12 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.sum, 200);
     assert.strictEqual(value.numValues, 6);
     assert.strictEqual(value.running.max, 100);
+
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full');
+    assert.strictEqual(valueNewName.running.sum, 200);
+    assert.strictEqual(valueNewName.numValues, 6);
+    assert.strictEqual(valueNewName.running.max, 100);
   });
 
   test('totalTimeForUnifiedGCBlinkNestedInV8', function() {
@@ -468,6 +567,13 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.numValues, 2);
     assert.strictEqual(value.average, 105);
     assert.strictEqual(value.running.max, 200);
+
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full');
+    assert.strictEqual(valueNewName.running.sum, 210);
+    assert.strictEqual(valueNewName.numValues, 2);
+    assert.strictEqual(valueNewName.average, 105);
+    assert.strictEqual(valueNewName.running.max, 200);
   });
 
   function getSlicesWithForcedV8GCs() {
@@ -525,6 +631,12 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.sum, 60);
     assert.strictEqual(value.numValues, 6);
     assert.strictEqual(value.running.max, 10);
+
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full');
+    assert.strictEqual(valueNewName.running.sum, 60);
+    assert.strictEqual(valueNewName.numValues, 6);
+    assert.strictEqual(valueNewName.running.max, 10);
   });
 
   test('ignoreForcedV8GCEventsForBlinkMetric', function() {
@@ -535,6 +647,12 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.sum, 60);
     assert.strictEqual(value.numValues, 6);
     assert.strictEqual(value.running.max, 10);
+
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:cpp');
+    assert.strictEqual(valueNewName.running.sum, 60);
+    assert.strictEqual(valueNewName.numValues, 6);
+    assert.strictEqual(valueNewName.running.max, 10);
   });
 
   function getSlicesWithForcedBlinkGCs() {
@@ -597,6 +715,12 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.sum, 50);
     assert.strictEqual(value.numValues, 5);
     assert.strictEqual(value.running.max, 10);
+
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full');
+    assert.strictEqual(valueNewName.running.sum, 50);
+    assert.strictEqual(valueNewName.numValues, 5);
+    assert.strictEqual(valueNewName.running.max, 10);
   });
 
   test('ignoreForcedBlinkGCEventsForBlinkMetric', function() {
@@ -607,6 +731,12 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.sum, 50);
     assert.strictEqual(value.numValues, 5);
     assert.strictEqual(value.running.max, 10);
+
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:cpp');
+    assert.strictEqual(valueNewName.running.sum, 50);
+    assert.strictEqual(valueNewName.numValues, 5);
+    assert.strictEqual(valueNewName.running.max, 10);
   });
 
   test('testAggregatedAtomicPauseTransitiveColsure', function() {
@@ -632,8 +762,13 @@ tr.b.unittest.testSuite(function() {
     assert.strictEqual(value.running.sum, 35);
     assert.strictEqual(value.numValues, 3);
 
+    const valueNewName = actual.getHistogramNamed(
+        'v8:gc:main_thread:event:full:atomic:mark:transitive_closure:cpp');
+    assert.strictEqual(valueNewName.running.sum, 35);
+    assert.strictEqual(valueNewName.numValues, 3);
+
     const valuePerEpoch = actual.getHistogramNamed(
-        'blink:gc:main_thread:cycle:full:atomic:mark:transitive_closure');
+        'v8:gc:main_thread:cycle:full:atomic:mark:transitive_closure:cpp');
     assert.strictEqual(valuePerEpoch.running.sum, 35);
     assert.strictEqual(valuePerEpoch.numValues, 2);
   });
