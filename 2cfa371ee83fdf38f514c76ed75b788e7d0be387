@@ -34,6 +34,41 @@
       "parentUuid": "55dbfbd5_9d2cce18",
       "revId": "2cfa371ee83fdf38f514c76ed75b788e7d0be387",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "666f6028_61a3d811",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2020-11-26T15:33:51Z",
+      "side": 1,
+      "message": "(not ready for another look yet)",
+      "revId": "2cfa371ee83fdf38f514c76ed75b788e7d0be387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a93182ba_f2307814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2020-11-26T15:33:51Z",
+      "side": 1,
+      "message": "Good point about android go devices. They actually don\u0027t even use \"speed\", they use \"quicken\" to save space. I\u0027ll change this to use \"quicken\" for them.\nI\u0027ll also see if I can use speed-profile for trichrome.",
+      "parentUuid": "f704d46b_1b403d6d",
+      "revId": "2cfa371ee83fdf38f514c76ed75b788e7d0be387",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
