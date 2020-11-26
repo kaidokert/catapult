@@ -63,6 +63,30 @@
       },
       "revId": "a508b665827c4bb02105578c97501ad8ab112949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e951120a_6e30aa02",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-26T09:28:44Z",
+      "side": 1,
+      "message": "In Chromium and other places, we build with exceptions off. Raising an exception would cause a call to std::terminate() in those cases.\n\nBasically the risk is not worth it here and in all the places we\u0027re doing comparisons and operations with floating point. I\u0027m not asking you fix all the cases, I\u0027m suggesting since you\u0027re changing this one that we actually use something provided by the standard for safety.",
+      "parentUuid": "32da55ee_d058689c",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "a508b665827c4bb02105578c97501ad8ab112949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
