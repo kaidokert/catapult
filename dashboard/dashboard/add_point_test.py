@@ -491,6 +491,14 @@ class AddPointTest(testing_common.TestCase):
     self.assertIn(
         'Bad value for "revision", should be numerical.\n', response.body)
 
+  def testPost_InvalidZeroRevision_Rejected(self):
+    point = copy.deepcopy(_SAMPLE_POINT)
+    point['revision'] = '0'
+    response = self.testapp.post(
+        '/add_point', {'data': json.dumps([point])}, status=400)
+    self.assertIn(
+        'should not <= 0', response.body)
+
   def testPost_InvalidSupplementalRevision_DropsRevision(self):
     point = copy.deepcopy(_SAMPLE_POINT)
     point['supplemental_columns'] = {
