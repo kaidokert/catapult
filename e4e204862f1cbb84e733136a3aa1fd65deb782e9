@@ -39,6 +39,30 @@
       },
       "revId": "e4e204862f1cbb84e733136a3aa1fd65deb782e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b82272_875d59fb",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-11-26T06:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d331dbb_d199274c",
+      "range": {
+        "startLine": 658,
+        "startChar": 36,
+        "endLine": 658,
+        "endChar": 46
+      },
+      "revId": "e4e204862f1cbb84e733136a3aa1fd65deb782e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
