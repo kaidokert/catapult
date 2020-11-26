@@ -16,6 +16,23 @@
       "message": "Eric Lawrence:  Sure, I\u0027m happy to review this, once you\u0027ve gone through the process to get approval for landing the third party code.  I\u0027m currently too busy to offer any help getting this through the approval process, which I\u0027m not familiar with.",
       "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d079137_4a8f8c43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-26T03:50:11Z",
+      "side": 1,
+      "message": "I\u0027m going to pull in some folks that might know how to navigate this better.\n\nI see that the license is MIT and GPLv3. I think that\u0027s an issue but I\u0027m not a lawyer.\n\n@jclinton do you know who might be good to review this dependency?",
+      "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
