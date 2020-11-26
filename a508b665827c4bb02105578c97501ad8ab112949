@@ -39,6 +39,30 @@
       },
       "revId": "a508b665827c4bb02105578c97501ad8ab112949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32da55ee_d058689c",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2020-11-26T08:48:15Z",
+      "side": 1,
+      "message": "It is written that the only difference between \u003c\u003d and islessequal is that the operator may raise FE_INVALID if one or both of the arguments is NaN. I don\u0027t see why would we want to not raise an exception.\n\nOn practice, value should never be NaN. It is checked here [1]. If it is NaN - it means something is wrong. So I think we should raise.\n\nAlso, the issue I\u0027m fixing has nothing to do with the \"value\" being NaN. Its about value being zero, which leads to \"(std::log(std::abs(value)) - meanlogs_)\" being NaN (as I wrote (-inf) - (-inf)). And the issue is that NaN in histogram that we upload can\u0027t be handled by /add_histogram api.\n\n[1]: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/value/histogram.cc;l\u003d94",
+      "parentUuid": "44d1fe57_d4a4817d",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "a508b665827c4bb02105578c97501ad8ab112949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
