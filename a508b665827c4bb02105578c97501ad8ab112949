@@ -159,6 +159,30 @@
       },
       "revId": "a508b665827c4bb02105578c97501ad8ab112949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70b98154_874cac07",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-27T10:20:18Z",
+      "side": 1,
+      "message": "I would have preferred an explicit dependency rather than an implicit one. The style guides for Chromium and Google actually say so. 😊",
+      "parentUuid": "137ec09e_21d12689",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "a508b665827c4bb02105578c97501ad8ab112949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
