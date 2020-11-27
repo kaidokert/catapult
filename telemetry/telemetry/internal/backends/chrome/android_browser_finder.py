@@ -306,42 +306,67 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', apk)
       self.platform.InstallApplication(apk)
 
-    apk_name = self._backend_settings.GetApkName(
-        self._platform_backend.device)
-    is_webview_apk = apk_name is not None and ('SystemWebView' in apk_name or
-                                               'system_webview' in apk_name or
-                                               'TrichromeWebView' in apk_name or
-                                               'trichrome_webview' in apk_name)
+    device = self._platform_backend.device
+    sdk_version = device.build_version_sdk
+    apk_name = self._backend_settings.GetApkName(device) or ''
+    # TitleCase for apks, snake_case for bundles.
+    is_webview_apk = ('SystemWebView' in apk_name or
+                      'system_webview' in apk_name or
+                      'TrichromeWebView' in apk_name or
+                      'trichrome_webview' in apk_name)
+    # Bundles are in the ../bin directory, so it's safer to just check the
+    # correct name is part of the path.
+    is_monochrome = 'monochrome' in apk_name.lower()
+
     # The WebView fallback logic prevents sideloaded WebView APKs from being
     # installed and set as the WebView implementation correctly. Disable the
     # fallback logic before installing the WebView APK to make sure the fallback
     # logic doesn't interfere.
     if is_webview_apk:
-      self._platform_backend.device.SetWebViewFallbackLogic(False)
+      device.SetWebViewFallbackLogic(False)
 
     if self._local_apk:
       logging.warn('Installing %s on device if needed.', self._local_apk)
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
-      if self._compile_apk:
+
+      compile_mode = self._compile_apk
+      if not compile_mode:
+        if sdk_version < version_codes.NOUGAT:
+          # Only supported mode.
+          compile_mode = 'speed'
+        elif is_webview_apk or is_monochrome:
+          # WebView means APK is "shared", and thus profiles are disabled.
+          compile_mode = 'speed'
+        elif self._platform_backend.IsAndroidGo():
+          # Android Go devices use "quicken" to save on disk space.
+          compile_mode = 'quicken'
+        else:
+          compile_mode = 'speed-profile'
+
+      if sdk_version < version_codes.NOUGAT:
+        # "cmd package compile" added in Nougat. Before Nougat, all apps get
+        # "speed" by default.
+        if compile_mode != 'speed':
+          raise exceptions.InitializationError(
+              '--compile-apk requires device with sdk_version >= Nougat')
+      else:
         package_name = apk_helper.GetPackageName(self._local_apk)
         logging.warn('Compiling %s.', package_name)
-        self._platform_backend.device.RunShellCommand(
-            ['cmd', 'package', 'compile', '-m', self._compile_apk, '-f',
+        # Compiling is important on N+ because the OS does not do this upon
+        # installation, but rather allows apps to run unoptimized until the next
+        # maintenance window.
+        device.RunShellCommand(
+            ['cmd', 'package', 'compile', '-m', compile_mode, '-f',
              package_name],
             check_return=True)
 
-    sdk_version = self._platform_backend.device.build_version_sdk
-    # Bundles are in the ../bin directory, so it's safer to just check the
-    # correct name is part of the path.
-    is_monochrome = apk_name is not None and (apk_name == 'Monochrome.apk' or
-                                              'monochrome_bundle' in apk_name)
     if ((is_webview_apk or
          (is_monochrome and sdk_version < version_codes.Q)) and
         sdk_version >= version_codes.NOUGAT):
       package_name = apk_helper.GetPackageName(self._local_apk)
       logging.warn('Setting %s as WebView implementation.', package_name)
-      self._platform_backend.device.SetWebViewImplementation(package_name)
+      device.SetWebViewImplementation(package_name)
 
   def GetTypExpectationsTags(self):
     tags = super(PossibleAndroidBrowser, self).GetTypExpectationsTags()
