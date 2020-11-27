@@ -60,6 +60,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9e2f9991_c1b8d5d2",
+        "filename": "dashboard/bq_export/bq_export/bq_rows.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-11-27T01:08:19Z",
+      "side": 1,
+      "message": "No difference.\n\nhttps://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema says:\n\n“Possible values include …, FLOAT, FLOAT64 (same as FLOAT), …”",
+      "parentUuid": "5c78b242_b36f26ff",
+      "range": {
+        "startLine": 103,
+        "startChar": 23,
+        "endLine": 103,
+        "endChar": 28
+      },
+      "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b5610ccc_0c9a2799",
         "filename": "dashboard/bq_export/bq_export/bq_rows.py",
         "patchSetId": 7
