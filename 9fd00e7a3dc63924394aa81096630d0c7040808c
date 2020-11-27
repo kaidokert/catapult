@@ -16,6 +16,92 @@
       "message": "This isn\u0027t deployed yet.  I\u0027m running backfills to a temporary table first, rather than updating the schema on all the manually clustered tables.\n\nIt\u0027s possible add the new column to the schema without first backfilling, but given we also want to fix the clustering (for efficiency, but also it makes testing and table management like these schema changes much easier), we may as well just get it all done now.",
       "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52af2b0f_1d261daf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-27T00:38:56Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c78b242_b36f26ff",
+        "filename": "dashboard/bq_export/bq_export/bq_rows.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-27T00:38:56Z",
+      "side": 1,
+      "message": "I\u0027m not too familiar with BigQuery\u0027s types, but is there a difference between single-precision floating point and double-precision floating point values/storage? If so we might want to actually use the double-precision floats because we\u0027re generating these values from Python which only has double-precision native floats.",
+      "range": {
+        "startLine": 103,
+        "startChar": 23,
+        "endLine": 103,
+        "endChar": 28
+      },
+      "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5610ccc_0c9a2799",
+        "filename": "dashboard/bq_export/bq_export/bq_rows.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-27T00:38:56Z",
+      "side": 1,
+      "message": "This is probably my favourite transform of all. 😊",
+      "range": {
+        "startLine": 248,
+        "startChar": 13,
+        "endLine": 248,
+        "endChar": 25
+      },
+      "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "704fda32_07f889b9",
+        "filename": "dashboard/bq_export/bq_export/bq_rows.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-11-27T00:38:56Z",
+      "side": 1,
+      "message": "Thank you for removing \u0027master\u0027 here. 👍",
+      "range": {
+        "startLine": 253,
+        "startChar": 22,
+        "endLine": 253,
+        "endChar": 31
+      },
+      "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
