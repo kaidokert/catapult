@@ -183,6 +183,30 @@
       },
       "revId": "a508b665827c4bb02105578c97501ad8ab112949",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7124acea_8935d864",
+        "filename": "tracing/tracing/value/running_statistics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2020-11-27T10:26:51Z",
+      "side": 1,
+      "message": "Ok, I see, didn\u0027t know that :). Fixed. Thank you for pointing to it.",
+      "parentUuid": "70b98154_874cac07",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "a508b665827c4bb02105578c97501ad8ab112949",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
