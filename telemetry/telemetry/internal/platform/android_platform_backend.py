@@ -208,6 +208,9 @@ class AndroidPlatformBackend(
     description = self._device.GetProp('ro.build.description', cache=True)
     return description and 'svelte' in description
 
+  def IsAndroidGo(self):
+    return self.GetDeviceTypeName() == 'gobo'
+
   def IsLowEnd(self):
     return self.IsSvelte() or self.GetDeviceTypeName() in ('gobo', 'W6210')
 

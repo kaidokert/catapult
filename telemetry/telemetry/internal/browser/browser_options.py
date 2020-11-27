@@ -248,7 +248,9 @@ class BrowserFinderOptions(optparse.Values):
     group.add_option(
         '--compile-apk',
         help='Compiles the APK under test using dex2oat in the specified mode. '
-        'Ignored on non-Android platforms.')
+        'Ignored on non-Android platforms. Default varies based on: '
+        'Android <N: "speed", Android Go: "quicken", '
+        'WebView or Monochrome: "speed", Otherwise: "speed-profile"')
     group.add_option(
         '--avd-config',
         default=None,
