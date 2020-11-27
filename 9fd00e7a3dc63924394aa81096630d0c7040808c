@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c36e00ad_c0171df6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2020-11-27T00:04:24Z",
+      "side": 1,
+      "message": "This isn\u0027t deployed yet.  I\u0027m running backfills to a temporary table first, rather than updating the schema on all the manually clustered tables.\n\nIt\u0027s possible add the new column to the schema without first backfilling, but given we also want to fix the clustering (for efficiency, but also it makes testing and table management like these schema changes much easier), we may as well just get it all done now.",
+      "revId": "9fd00e7a3dc63924394aa81096630d0c7040808c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
