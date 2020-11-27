@@ -535,6 +535,301 @@ tr.exportTo('tr.metrics.v8.utils', function() {
     }
   }
 
+  function assert(condition, message) {
+    if (!condition) {
+      throw new Error(message);
+    }
+  }
+
+  const EPSILON = 1e-6;
+
+  function covers(event1, event2) {
+    return (event1.start - EPSILON <= event2.start &&
+            event2.end <= event1.end + EPSILON);
+  }
+
+  function groupBy(events, group_callback) {
+    const eventsByGroup = new Map();
+    for (const e of events) {
+      const group = group_callback(e);
+      if (eventsByGroup.has(group)) {
+        eventsByGroup.get(group).push(e);
+      } else {
+        eventsByGroup.set(group, [e]);
+      }
+    }
+    return eventsByGroup;
+  }
+
+
+  const V8_FULL_ATOMIC_EVENTS = [
+    'V8.GCCompactor',
+    'V8.GCFinalizeMC',
+    'V8.GCFinalizeMCReduceMemory',
+  ];
+
+  const V8_FULL_MARK_EVENTS = [
+    'V8.GC_MC_MARK',
+    'V8.GC_MC_BACKGROUND_MARKING',
+    'V8.GCIncrementalMarkingStart',
+    'V8.GCIncrementalMarking',
+    'V8.GCIncrementalMarkingFinalize',
+  ];
+
+  const V8_FULL_COMPACT_EVENTS = [
+    'V8.GC_MC_EVACUATE',
+    'V8.GC_MC_BACKGROUND_EVACUATE_COPY',
+    'V8.GC_MC_BACKGROUND_EVACUATE_UPDATE_POINTERS',
+  ];
+
+  const V8_FULL_SWEEP_EVENTS = [
+    'V8.GC_MC_SWEEP',
+    'V8.GC_MC_BACKGROUND_SWEEPING',
+    'V8.GC_BACKGROUND_ARRAY_BUFFER_SWEEP',
+    'V8.GC_BACKGROUND_UNMAPPER',
+  ];
+
+  const V8_YOUNG_EVENTS = [
+    'V8.GCScavenger',
+    'V8.GC_SCAVENGER_BACKGROUND_SCAVENGE_PARALLEL',
+  ];
+
+  const GC_METRIC_RULES = [
+    {
+      events: V8_FULL_ATOMIC_EVENTS,
+      contribute_to: 'full:atomic',
+    },
+    {
+      events: V8_FULL_MARK_EVENTS,
+      inside: V8_FULL_ATOMIC_EVENTS,
+      contribute_to: 'full:atomic:mark',
+    },
+    {
+      events: V8_FULL_MARK_EVENTS,
+      outside: V8_FULL_ATOMIC_EVENTS,
+      contribute_to: 'full:incremental:mark',
+    },
+    {
+      events: V8_FULL_COMPACT_EVENTS,
+      inside: V8_FULL_ATOMIC_EVENTS,
+      contribute_to: 'full:atomic:compact',
+    },
+    {
+      events: V8_FULL_SWEEP_EVENTS,
+      inside: V8_FULL_ATOMIC_EVENTS,
+      contribute_to: 'full:atomic:sweep',
+    },
+    {
+      events: V8_FULL_SWEEP_EVENTS,
+      outside: V8_FULL_ATOMIC_EVENTS,
+      contribute_to: 'full:incremental:sweep',
+    },
+    {
+      events: V8_YOUNG_EVENTS,
+      contribute_to: 'young:atomic',
+    },
+  ];
+
+  function names(rules) {
+    const result = [];
+    for (const rule of rules) {
+      result.concat(rule.event);
+      if (rule.inside)
+        result.concat(rule.inside);
+      if (rule.outside)
+        result.concat(rule.outside);
+    }
+    return result;
+  }
+
+  const GC_EVENT_NAMES = new Set(names(GC_METRIC_RULES));
+
+  const GC_METRICS = [
+    'v8:gc:cycle:full',
+    'v8:gc:cycle:full:mark',
+    'v8:gc:cycle:full:weak',
+    'v8:gc:cycle:full:sweep',
+    'v8:gc:cycle:full:compact',
+    'v8:gc:cycle:main_thread:full',
+    'v8:gc:cycle:main_thread:full:mark',
+    'v8:gc:cycle:main_thread:full:weak',
+    'v8:gc:cycle:main_thread:full:sweep',
+    'v8:gc:cycle:main_thread:full:compact',
+    'v8:gc:event:main_thread:full:atomic',
+    'v8:gc:event:main_thread:full:atomic:mark',
+    'v8:gc:event:main_thread:full:atomic:weak',
+    'v8:gc:event:main_thread:full:atomic:sweep',
+    'v8:gc:event:main_thread:full:atomic:compact',
+    'v8:gc:event:main_thread:full:incremental',
+    'v8:gc:event:main_thread:full:incremental:mark',
+    'v8:gc:event:main_thread:full:incremental:sweep',
+    'v8:gc:cycle:young',
+    'v8:gc:cycle:main_thread:young',
+    'v8:gc:event:main_thread:young',
+  ];
+
+  function flatten(events) {
+    function compareWithEpsilon(a, b) {
+      if (a.start < b.start - EPSILON) return -1;
+      if (a.start > b.start + EPSILON) return 1;
+      return b.end - a.end; 
+    }
+    events.sort(compareWithEpsilon);
+    let last = events[0];
+    const result = [last];
+    for (const e of events) {
+      if (e.end > last.end + EPSILON) {
+        assert(e.start >= last.end - EPSILON,
+          `Overlapping events: ${e.name} and ${last.name}`);
+        result.push(e);
+        last = e;
+      }
+    }
+    return result;
+  }
+  const timeDurationInMs_smallerIsBetter =
+      tr.b.Unit.byName.timeDurationInMs_smallerIsBetter;
+  // 0.1 steps from 0 to 20 since it is the most common range.
+  // Exponentially increasing steps from 20 to 200.
+  const CUSTOM_BOUNDARIES = tr.v.HistogramBinBoundaries.createLinear(0, 20, 200)
+      .addExponentialBins(200, 100);
+
+  class Metric {
+    constructor(name) {
+      const parts = name.split(':');
+      this.name = name;
+      this.main_thread = parts[3] === 'main_thread';
+      this.background_threads = parts[3] === 'background_threads';
+      if (!this.main_thread && !this.background_threads) {
+        this.main_thread = true;
+        this.background_threads = true;
+        this.phases = parts.slice(3);
+      } else {
+        this.phases = parts.slice(4);
+      }
+      this.cycle = parts[2] === 'cycle';
+      this.event = parts[2] === 'event';
+      assert(this.cycle !== this.event);
+      this.histogram = new tr.v.Histogram(timeDurationInMs_smallerIsBetter, CUSTOM_BOUNDARIES);
+      this.histogram.customizeSummaryOptions({
+        avg: true,
+        count: true,
+        max: true,
+        min: false,
+        std: false,
+        sum: true,
+      });
+    }
+
+    subsumes(phases) {
+      let matched = 0;
+      for (const phase of phases.split(':')) {
+        if (phase === this.phases[matched]) {
+          ++matched;
+          if (matched == this.phases.length) {
+            // The given phases are more specific than this metric. 
+            return true;
+          }
+        }
+      }
+      return matched == phases.length;
+    }
+
+    contributingEvents(rules, events) {
+      const eventsByName = groupBy(events, e => e.name);
+
+      function matches(rule, event) {
+        function checkCover(name) {
+          if (!eventsByName.has(name)) return false;
+          return eventsByName.get(name).some(e => covers(e, event));
+        }
+        if (!rule.event.includes(event.name)) {
+          return false;
+        }
+        if (rule.inside && !rule.inside.some(checkCover)) {
+          return false;
+        }
+        if (rule.outside && rule.outside.some(checkCover)) {
+          return false;
+        }
+        return true;
+      }
+
+      const result = [];
+      for (const event of events) {
+        const matching = rules.filter(r => matches(r, event));
+        if (matching.length === 0) {
+          continue;
+        }
+        assert(matching.length === 1,
+            `${event.name} matches more than one rule: ` +
+            JSON.stringify(matching));
+        if (this.subsumes(matching[0].contribute_to)) {
+          result.push(event);
+        }
+      }
+      return result;
+    }
+
+    apply(rules, events, threadTypes) {
+      const filtered = this.contributingEvents(rules, events);
+      eventsByThread = groupBy(filtered, e => e.parent.tid);
+      for (const [tid, threadEvents] of eventsByThread) {
+        this.addSample(flatten(threadEvents), threadTypes.get(tid));
+      }
+    }
+
+    addSample(events, threadType) {
+      if (threadType === 'main' && !this.main_thread) return;
+      if (threadType === 'background' && !this.background_threads) return;
+      if (this.cycle) {
+        let sum = 0;
+        for (const event of events) {
+          sum += event.duration;
+        }
+        this.histogram.addSample(sum);
+      } else {
+        assert(this.event);
+        for (const event of events) {
+          this.histogram.addSample(event.duration);
+        }
+      }
+    }
+  };
+
+  function main() {
+    function jsExecutionThreads(rendererHelper) {
+      const mainThreads = [rendererHelper.mainThread];
+      mainThreads = mainThreads.concat(rendererHelper.dedicatedWorkerThreads);
+      mainThreads = mainThreads.concat(rendererHelper.serviceWorkerThreads);
+      const backgroundThreads = rendererHelper.foregroundWorkerThreads;
+      const threadTypes = new Map();
+      for (const thread of mainThreads) {
+        threadTypes.set(thread.tid, 'main');
+      }
+      for (const thread of backgroundThreads) {
+        threadTypes.set(thread.tid, 'background');
+      }
+      return [mainThreads.concat(backgroundThreads), threadTypes];
+    }
+    for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+      if (rendererHelper.isChromeTracingUI) continue;
+      const [threads, threadTypes] = jsExecutionThreads(rendererHelper);
+      const events = [];
+      for (const thread of threads) {
+        for (const event of thread.sliceGroup.childEvents()) {
+          if (gcEventNames.has(event.name)) {
+            events.push(event);
+          }
+        }
+      }
+      for (const cycleEvents of groupByEpoch(events).values()) {
+        for (const metric of metrics) {
+          metric.apply(rules, cycleEvents, threadTypes);
+        }
+      }
+    }
+  }
 
   return {
     addMutatorUtilization,
