@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42bfc891_60ec5d9a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-28T01:08:16Z",
+      "side": 1,
+      "message": "Wouldn\u0027t a symlink work as well? And save space? chrome is pretty big.",
+      "revId": "ae003f552e4e16247758303d671076690c405c45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b5a4948_4ec32a56",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2020-11-28T01:08:16Z",
+      "side": 1,
+      "message": "You can get rid of this, right? You just waited for IsDevtoolsUp",
+      "revId": "ae003f552e4e16247758303d671076690c405c45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
