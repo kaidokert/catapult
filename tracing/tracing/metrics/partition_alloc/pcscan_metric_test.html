@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+Copyright 2016 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/metrics/partition_alloc/pcscan_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  function makeTestModel() {
+    return tr.c.TestUtils.newModel(function(model) {
+      const mainThread = model.getOrCreateProcess(1).getOrCreateThread(2);
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'partition_alloc',
+        title: 'PCScan',
+        start: 200,
+        duration: 100,
+        cpuStart: 200,
+        cpuDuration: 100
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'partition_alloc',
+        title: 'PCScan.Clear',
+        start: 200,
+        duration: 16,
+        cpuStart: 200,
+        cpuDuration: 16
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'partition_alloc',
+        title: 'PCScan.Scan',
+        start: 216,
+        duration: 32,
+        cpuStart: 216,
+        cpuDuration: 32
+      }));
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+        cat: 'partition_alloc',
+        title: 'PCScan.Sweep',
+        start: 248,
+        duration: 42,
+        cpuStart: 248,
+        cpuDuration: 42
+      }));
+    });
+  }
+
+  test('pcscanMetric', function() {
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.pa.pcscanMetric(histograms, makeTestModel());
+    assert.closeTo(100, histograms.getHistogramNamed(
+        'pa:pcscan').average, 1e-2);
+    assert.closeTo(16, histograms.getHistogramNamed(
+        'pa:pcscan:clear').average, 1e-2);
+    assert.closeTo(32, histograms.getHistogramNamed(
+        'pa:pcscan:scan').average, 1e-2);
+    assert.closeTo(42, histograms.getHistogramNamed(
+        'pa:pcscan:sweep').average, 1e-2);
+  });
+});
+</script>

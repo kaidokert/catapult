@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Copyright 2020 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/base/math/range.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+'use strict';
+
+tr.exportTo('tr.metrics.pa', function() {
+  function pcscanMetric(histograms, model) {
+    function createNumericForEventTime(name, desc) {
+      const n = new tr.v.Histogram(name,
+          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter);
+      n.description = desc;
+      n.customizeSummaryOptions({
+        avg: true,
+        count: true,
+        max: true,
+        min: true,
+        std: true,
+        sum: true});
+      return n;
+    }
+
+    const scanHist = createNumericForEventTime('pa:pcscan:scan',
+      'Time for scanning heap for quarantine pointers');
+    const sweepHist = createNumericForEventTime('pa:pcscan:sweep',
+      'Time for sweeping quarantine');
+    const clearHist = createNumericForEventTime('pa:pcscan:clear',
+      'Time for clearing quarantine entries');
+    const totalHist = createNumericForEventTime('pa:pcscan',
+      'Total time for PCScan execution');
+
+    // TODO(bikineev): Scan only needed threads (the dedicated scanning thread
+    // and foreground worker threads).
+    for (const slice of model.getDescendantEvents()) {
+      if (!(slice instanceof tr.model.ThreadSlice)) continue;
+      if (slice.category !== 'partition_alloc') continue;
+
+      if (slice.title === 'PCScan.Scan') {
+        scanHist.addSample(slice.duration);
+      }
+      if (slice.title === 'PCScan.Sweep') {
+        sweepHist.addSample(slice.duration);
+      }
+      if (slice.title === 'PCScan.Clear') {
+        clearHist.addSample(slice.duration);
+      }
+      if (slice.title === 'PCScan') {
+        totalHist.addSample(slice.duration);
+      }
+    }
+
+    histograms.addHistogram(scanHist);
+    histograms.addHistogram(sweepHist);
+    histograms.addHistogram(clearHist);
+    histograms.addHistogram(totalHist);
+  }
+
+  tr.metrics.MetricRegistry.register(pcscanMetric);
+
+  return {
+    pcscanMetric,
+  };
+});
+
+</script>
