@@ -129,8 +129,8 @@ tr.exportTo('tr.metrics', function() {
         if (events.length === 1) {
           mergeBins_(values, endValues, name);
         } else {
-          throw new Error('There should be at most one snapshot of UMA ' +
-                          `histogram for ${name} in each process.`);
+          // throw new Error('There should be at most one snapshot of UMA ' +
+          //                 `histogram for ${name} in each process.`);
         }
       }
     }

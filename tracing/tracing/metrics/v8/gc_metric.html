@@ -25,17 +25,18 @@ tr.exportTo('tr.metrics.v8', function() {
 
   function gcMetric(histograms, model, options) {
     options = options || {};
-    addDurationOfTopEvents(histograms, model);
-    addTotalDurationOfTopEvents(histograms, model);
-    if (options.include_sub_events) {
-      addDurationOfSubEvents(histograms, model);
-    }
-    addPercentageInV8ExecuteOfTopEvents(histograms, model);
-    addTotalPercentageInV8Execute(histograms, model);
-    addMarkCompactorMutatorUtilization(histograms, model);
-    addTotalMarkCompactorTime(histograms, model);
-    addTotalMarkCompactorMarkingTime(histograms, model);
-    addScavengerSurvivedFromStackEvents(histograms, model);
+    // addDurationOfTopEvents(histograms, model);
+    // addTotalDurationOfTopEvents(histograms, model);
+    // if (options.include_sub_events) {
+    //   addDurationOfSubEvents(histograms, model);
+    // }
+    // addPercentageInV8ExecuteOfTopEvents(histograms, model);
+    // addTotalPercentageInV8Execute(histograms, model);
+    // addMarkCompactorMutatorUtilization(histograms, model);
+    // addTotalMarkCompactorTime(histograms, model);
+    // addTotalMarkCompactorMarkingTime(histograms, model);
+    // addScavengerSurvivedFromStackEvents(histograms, model);
+    addGarbageCollectionMetrics(histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(gcMetric);
@@ -375,6 +376,44 @@ tr.exportTo('tr.metrics.v8', function() {
         [100],
         rendererHelpers,
         histograms);
+  }
+
+
+  function groupByEpoch(events) {
+    let result = new Map();
+    result.set(0, events);
+    return result;
+  }
+
+  function addGarbageCollectionMetrics(histograms, model) {
+    const metrics = tr.metrics.v8.utils.GC_METRICS.map(name => {
+      return new tr.metrics.v8.utils.Metric(name);
+    });
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+      if (rendererHelper.isChromeTracingUI) continue;
+      const [threads, threadTypes] =
+          tr.metrics.v8.utils.jsExecutionThreadsWithTypes(rendererHelper);
+      const events = [];
+      for (const thread of threads) {
+        for (const event of thread.sliceGroup.childEvents()) {
+          if (tr.metrics.v8.utils.GC_EVENT_NAMES.has(event.title)) {
+            events.push(event);
+          }
+        }
+      }
+      for (const cycleEvents of groupByEpoch(events).values()) {
+        for (const metric of metrics) {
+          metric.apply(
+              tr.metrics.v8.utils.GC_METRIC_RULES,
+              cycleEvents, threadTypes);
+        }
+      }
+    }
+    for (const metric of metrics) {
+      histograms.addHistogram(metric.histogram);
+    }
   }
 
   return {
