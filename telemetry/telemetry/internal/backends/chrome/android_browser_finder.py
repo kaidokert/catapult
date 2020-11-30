@@ -323,13 +323,13 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
       logging.warn('Installing %s on device if needed.', self._local_apk)
       self.platform.InstallApplication(
           self._local_apk, modules=self._modules_to_install)
-      if self._compile_apk:
-        package_name = apk_helper.GetPackageName(self._local_apk)
-        logging.warn('Compiling %s.', package_name)
-        self._platform_backend.device.RunShellCommand(
-            ['cmd', 'package', 'compile', '-m', self._compile_apk, '-f',
-             package_name],
-            check_return=True)
+
+      package_name = apk_helper.GetPackageName(self._local_apk)
+      logging.warn('Compiling %s.', package_name)
+      self._platform_backend.device.RunShellCommand(
+          ['cmd', 'package', 'compile', '-m', 'speed-profile', '-f',
+           package_name],
+          check_return=True)
 
     sdk_version = self._platform_backend.device.build_version_sdk
     # Bundles are in the ../bin directory, so it's safer to just check the
