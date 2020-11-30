@@ -16,6 +16,52 @@
       "message": "Ready for another look",
       "revId": "1d68c7c4de63eb4ca1e610bce51bd096778e0f36",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d2ac72c_affc4d11",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-11-30T16:30:06Z",
+      "side": 1,
+      "message": "do we want to support running tests without compiling at all? Not sure how useful it would be since this is probably not a very common configuration for users.",
+      "range": {
+        "startLine": 334,
+        "startChar": 13,
+        "endLine": 334,
+        "endChar": 25
+      },
+      "revId": "1d68c7c4de63eb4ca1e610bce51bd096778e0f36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c3c78b_37f297e5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-11-30T16:30:06Z",
+      "side": 1,
+      "message": "I have a slight preference for using \"speed-profile\" for monochrome on Q+, since monochrome can\u0027t be a webview provider on Q+ (basically match the logic for when SetWebViewImplementation is called to set \"speed\" compile). This is mostly because we don\u0027t currently build and upload trichrome on perf bots, so monochrome is used on Q.",
+      "range": {
+        "startLine": 340,
+        "startChar": 10,
+        "endLine": 340,
+        "endChar": 32
+      },
+      "revId": "1d68c7c4de63eb4ca1e610bce51bd096778e0f36",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
