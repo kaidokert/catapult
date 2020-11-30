@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8721f56e_66f831d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344750
+      },
+      "writtenOn": "2020-11-30T20:34:35Z",
+      "side": 1,
+      "message": "Thanks, added a high-level comment.",
+      "revId": "a15881c19681c7c756e96ca12e4f594bcfa2bbd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2ed0553_8b94875f",
@@ -24,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d70e86_51dafe24",
+        "filename": "tracing/tracing/metrics/partition_alloc/pcscan_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1344750
+      },
+      "writtenOn": "2020-11-30T20:34:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2ed0553_8b94875f",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 39
+      },
+      "revId": "a15881c19681c7c756e96ca12e4f594bcfa2bbd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d876dfb_4bc16d82",
@@ -37,6 +78,30 @@
       "writtenOn": "2020-11-30T19:49:24Z",
       "side": 1,
       "message": "nit: 2020",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "a15881c19681c7c756e96ca12e4f594bcfa2bbd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a57c32b_9fc532a8",
+        "filename": "tracing/tracing/metrics/partition_alloc/pcscan_metric_test.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1344750
+      },
+      "writtenOn": "2020-11-30T20:34:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d876dfb_4bc16d82",
       "range": {
         "startLine": 3,
         "startChar": 10,
