@@ -36,6 +36,47 @@ tr.exportTo('tr.metrics.v8', function() {
     addTotalMarkCompactorTime(histograms, model);
     addTotalMarkCompactorMarkingTime(histograms, model);
     addScavengerSurvivedFromStackEvents(histograms, model);
+    const metrics = [
+      'v8:gc:cycle:full',
+      'v8:gc:cycle:full:cpp',
+      'v8:gc:cycle:full:mark',
+      'v8:gc:cycle:full:mark:cpp',
+      'v8:gc:cycle:full:weak',
+      'v8:gc:cycle:full:weak:cpp',
+      'v8:gc:cycle:full:sweep',
+      'v8:gc:cycle:full:sweep:cpp',
+      'v8:gc:cycle:full:compact',
+      'v8:gc:cycle:full:compact:cpp',
+      'v8:gc:cycle:main_thread:full',
+      'v8:gc:cycle:main_thread:full:cpp',
+      'v8:gc:cycle:main_thread:full:mark',
+      'v8:gc:cycle:main_thread:full:mark:cpp',
+      'v8:gc:cycle:main_thread:full:weak',
+      'v8:gc:cycle:main_thread:full:weak:cpp',
+      'v8:gc:cycle:main_thread:full:sweep',
+      'v8:gc:cycle:main_thread:full:sweep:cpp',
+      'v8:gc:cycle:main_thread:full:compact',
+      'v8:gc:cycle:main_thread:full:compact:cpp',
+      'v8:gc:event:main_thread:full:atomic',
+      'v8:gc:event:main_thread:full:atomic:cpp',
+      'v8:gc:event:main_thread:full:atomic:mark',
+      'v8:gc:event:main_thread:full:atomic:mark:cpp',
+      'v8:gc:event:main_thread:full:atomic:weak',
+      'v8:gc:event:main_thread:full:atomic:weak:cpp',
+      'v8:gc:event:main_thread:full:atomic:sweep',
+      'v8:gc:event:main_thread:full:atomic:sweep:cpp',
+      'v8:gc:event:main_thread:full:atomic:compact',
+      'v8:gc:event:main_thread:full:atomic:compact:cpp',
+      'v8:gc:event:main_thread:full:incremental',
+      'v8:gc:event:main_thread:full:incremental:cpp',
+      'v8:gc:event:main_thread:full:incremental:mark',
+      'v8:gc:event:main_thread:full:incremental:mark:cpp',
+      'v8:gc:event:main_thread:full:incremental:sweep',
+      'v8:gc:event:main_thread:full:incremental:sweep:cpp',
+      'v8:gc:cycle:young',
+      'v8:gc:cycle:main_thread:young',
+    ];
+    addGarbageCollectionMetrics(metrics, histograms, model);
   }
 
   tr.metrics.MetricRegistry.register(gcMetric);
@@ -377,9 +418,85 @@ tr.exportTo('tr.metrics.v8', function() {
         histograms);
   }
 
+
+  function groupByEpoch(events) {
+    function isV8Event(event) {
+      return event.category && event.category.includes('v8');
+    }
+    function getEpoch(event) {
+      const result = {v8: null, cpp: null};
+      while (event) {
+        if ('epoch' in event.args) {
+          if (isV8Event(event)) {
+            result.v8 = event.args.epoch;
+          } else {
+            result.cpp = event.args.epoch;
+          }
+        }
+        event = event.parentSlice;
+      }
+      return result;
+    }
+    const cppToV8 = new Map();
+    for (const event of events) {
+      const epoch = getEpoch(event);
+      if (epoch.cpp !== null && epoch.v8 !== null) {
+        cppToV8.set(epoch.cpp, epoch.v8);
+      }
+    }
+    const result = new Map();
+    for (const event of events) {
+      const epoch = getEpoch(event);
+      if (epoch.cpp === null && epoch.v8 === null) {
+        continue;
+      }
+      const key = epoch.v8 === null ? cppToV8.get(epoch.cpp) : epoch.v8;
+      if (result.has(key)) {
+        result.get(key).push(event);
+      } else {
+        result.set(key, [event]);
+      }
+    }
+    return result;
+  }
+
+  function addGarbageCollectionMetrics(metricNames, histograms, model) {
+    const metrics = metricNames.map(name => {
+      return new tr.metrics.v8.utils.Metric(name);
+    });
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+      if (rendererHelper.isChromeTracingUI) continue;
+      const [threads, threadTypes] =
+          tr.metrics.v8.utils.jsExecutionThreadsWithTypes(rendererHelper);
+      const events = [];
+      for (const thread of threads) {
+        for (const event of thread.sliceGroup.childEvents()) {
+          if (tr.metrics.v8.utils.GC_EVENT_NAMES.has(event.title) &&
+              !tr.metrics.v8.utils.isForcedGarbageCollectionEvent(event)) {
+            events.push(event);
+          }
+        }
+      }
+      for (const cycleEvents of groupByEpoch(events).values()) {
+        for (const metric of metrics) {
+          metric.apply(
+              tr.metrics.v8.utils.GC_METRIC_RULES,
+              cycleEvents, threadTypes);
+        }
+      }
+    }
+    for (const metric of metrics) {
+      histograms.addHistogram(metric.histogram);
+    }
+  }
+
   return {
     gcMetric,
     WINDOW_SIZE_MS,  // For testing purposes only.
+    addGarbageCollectionMetrics, // For testing purposes only.
   };
 });
 </script>
+
