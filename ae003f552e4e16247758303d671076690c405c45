@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc177793_4617f954",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-12-01T17:13:02Z",
+      "side": 1,
+      "message": "That is a good idea, I will investigate and make a followup CL.",
+      "parentUuid": "42bfc891_60ec5d9a",
+      "revId": "ae003f552e4e16247758303d671076690c405c45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b5a4948_4ec32a56",
@@ -31,6 +49,24 @@
       "writtenOn": "2020-11-28T01:08:16Z",
       "side": 1,
       "message": "You can get rid of this, right? You just waited for IsDevtoolsUp",
+      "revId": "ae003f552e4e16247758303d671076690c405c45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2e8bb57_dc23183c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/lacros_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2020-12-01T17:13:02Z",
+      "side": 1,
+      "message": "No, after doing some experiments, it appears IsDevtoolsUp doesn\u0027t indicate it\u0027s immediately ready. I do have a bug to try to find a better condition.",
+      "parentUuid": "7b5a4948_4ec32a56",
       "revId": "ae003f552e4e16247758303d671076690c405c45",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
