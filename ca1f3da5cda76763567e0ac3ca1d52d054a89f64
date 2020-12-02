@@ -18,6 +18,41 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ea3aebe_4027e64b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "TBMv3 is still not available to use generally, but I\u0027m expecting it to be by Q1. We\u0027re fishfooding it internally in the Chrometto team as we fix various issues. \n\nThis rule based logic is super cool - I might try to implement this in SQL and report back what it feels like. We will also have a way to implementing metrics imperatively in C++, so if SQL is not ergonomic enough you can drop down to C++ to implement this.",
+      "parentUuid": "4c7f9840_008644d1",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce6e552c_adc78acc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "Very cool! Left some comments. ",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67847a17_3af8a19b",
@@ -31,6 +66,30 @@
       "writtenOn": "2020-12-02T13:24:11Z",
       "side": 1,
       "message": "Review guide: this is needed for testing. Otherwise, we cannot add tests for non-main-thread cases.\n\nThe thread name matches: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/model/helpers/chrome_renderer_helper.html;l\u003d35;drc\u003d9f3ce85bab94e6c5f89c7615e0cc1bdcbe5c95e5",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b8e6e8_6879c749",
+        "filename": "tracing/tracing/extras/chrome/chrome_test_utils.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "67847a17_3af8a19b",
       "range": {
         "startLine": 37,
         "startChar": 6,
@@ -112,6 +171,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "928b7baf_796a1789",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "\u003e\u003e \"per-cycle metrics get _avg and _max\"\ndid you mean to do \"sum: !perCycle\"?",
+      "parentUuid": "6a69523a_9afe81f2",
+      "range": {
+        "startLine": 316,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 22
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b501d3_3b7d9891",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "Is this technically \"more or equally general\"? If it is, could we at least note it in the comments?\n\nAlso, is the ordering of phases significant, i.e. is A:B different from B:A? If it\u0027s not, could we do something simpler to understand like this? \nphasesSet \u003d new Set(phases.split(\u0027:\u0027));\nreturn this.phases_.every(phase \u003d\u003e phasesSet.has(phase));",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "719df59f_4c300181",
         "filename": "tracing/tracing/metrics/v8/gc_metric.html",
         "patchSetId": 12
@@ -128,6 +228,86 @@
         "startChar": 13,
         "endLine": 572,
         "endChar": 61
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c414008c_5c92d80f",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "Should you check and throw an error if result.v8 is already set? This means a parent slice has a different v8/cpp epoch than a descendant, which would point to a bug in tracing code. If you think that class of bugs is extremely unlikely to happen you can leave it as it is.",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "436b5bd4_0631236b",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "Is there any way one cpp epoch can correspond to two different v8 epochs, perhaps in separate slices? Should this be an assertion to detect bugs?",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79b883b2_cc58b2f6",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "Is it possible for cppToV8.get(epoch.cpp) to be undefined? Should we check for that?",
+      "range": {
+        "startLine": 608,
+        "startChar": 38,
+        "endLine": 608,
+        "endChar": 60
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13c3fb8_fd640703",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "What does this do? How can an event be falsey?",
+      "range": {
+        "startLine": 646,
+        "startChar": 48,
+        "endLine": 646,
+        "endChar": 53
       },
       "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
@@ -152,6 +332,23 @@
         "endLine": 692,
         "endChar": 42
       },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af99fc2c_a7eef6fe",
+        "filename": "tracing/tracing/metrics/v8/gc_metric_test.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2020-12-02T18:10:42Z",
+      "side": 1,
+      "message": "(Here and elsewhere) I think the third arg to strictEqual is the error message, not delta: https://www.chaijs.com/api/assert/#method_strictequal\n\nYou probably meant to use closeTo? https://www.chaijs.com/api/assert/#method_closeto",
       "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
