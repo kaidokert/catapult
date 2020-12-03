@@ -195,6 +195,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7070ffa1_2b0bfd43",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "Thanks! My comment was incorrect: per-cycle metrics have sum, per-event metrics have only avg and max. (Reasoning: per-cycle metrics are more complete, they capture also the background threads).",
+      "parentUuid": "928b7baf_796a1789",
+      "range": {
+        "startLine": 316,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 22
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96b501d3_3b7d9891",
         "filename": "tracing/tracing/metrics/v8/gc_metric.html",
         "patchSetId": 12
@@ -206,6 +230,24 @@
       "writtenOn": "2020-12-02T18:10:42Z",
       "side": 1,
       "message": "Is this technically \"more or equally general\"? If it is, could we at least note it in the comments?\n\nAlso, is the ordering of phases significant, i.e. is A:B different from B:A? If it\u0027s not, could we do something simpler to understand like this? \nphasesSet \u003d new Set(phases.split(\u0027:\u0027));\nreturn this.phases_.every(phase \u003d\u003e phasesSet.has(phase));",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9edf228f_2172cbaa",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "Great observation! Done.",
+      "parentUuid": "96b501d3_3b7d9891",
       "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -250,6 +292,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a3ed0c_f2737476",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "Done. Added a check that if we already saw an epoch, then all ancestors should have the same epoch. This would allows us to set the epoch for some nested V8 events without breaking this code.",
+      "parentUuid": "c414008c_5c92d80f",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "436b5bd4_0631236b",
@@ -263,6 +323,24 @@
       "writtenOn": "2020-12-02T18:10:42Z",
       "side": 1,
       "message": "Is there any way one cpp epoch can correspond to two different v8 epochs, perhaps in separate slices? Should this be an assertion to detect bugs?",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b254a90_e6571b0a",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "436b5bd4_0631236b",
       "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -290,6 +368,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5449ad2_7127b0d5",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79b883b2_cc58b2f6",
+      "range": {
+        "startLine": 608,
+        "startChar": 38,
+        "endLine": 608,
+        "endChar": 60
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a13c3fb8_fd640703",
@@ -303,6 +405,30 @@
       "writtenOn": "2020-12-02T18:10:42Z",
       "side": 1,
       "message": "What does this do? How can an event be falsey?",
+      "range": {
+        "startLine": 646,
+        "startChar": 48,
+        "endLine": 646,
+        "endChar": 53
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce90cc79_002151bc",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "This was a left-over from an old check. Removed.",
+      "parentUuid": "a13c3fb8_fd640703",
       "range": {
         "startLine": 646,
         "startChar": 48,
@@ -349,6 +475,24 @@
       "writtenOn": "2020-12-02T18:10:42Z",
       "side": 1,
       "message": "(Here and elsewhere) I think the third arg to strictEqual is the error message, not delta: https://www.chaijs.com/api/assert/#method_strictequal\n\nYou probably meant to use closeTo? https://www.chaijs.com/api/assert/#method_closeto",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c0811bf_db7d0feb",
+        "filename": "tracing/tracing/metrics/v8/gc_metric_test.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:46:34Z",
+      "side": 1,
+      "message": "Thanks! Done.",
+      "parentUuid": "af99fc2c_a7eef6fe",
       "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
