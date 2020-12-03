@@ -118,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "080f069f_dfc65e7f",
+        "filename": "tracing/tracing/extras/chrome/chrome_test_utils.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "35b8e6e8_6879c749",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21aaaba9_330b9fda",
@@ -141,6 +165,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e41d05b_d91196a1",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "21aaaba9_330b9fda",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 27
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03096a58_6958f818",
@@ -154,6 +202,30 @@
       "writtenOn": "2020-12-02T13:24:11Z",
       "side": 1,
       "message": "Review guide: should we keep using the prefixes for trace events?\nWe could also use categories (\"v8\" vs \"cpp.gc\") to disambiguate, but that would make rules more verbose: instead of writing \u0027V8.GCCompactor\u0027 we would write { title: \u0027V8.GCCompactor\u0027, category : \u0027v8\u0027 } in all event lists.",
+      "range": {
+        "startLine": 170,
+        "startChar": 60,
+        "endLine": 170,
+        "endChar": 78
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bb670b6_42481c55",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "It seems okay to keep using prefixes here. IMHO, it has the added benefit to allow easy distinguishing in the viewer as well.",
+      "parentUuid": "03096a58_6958f818",
       "range": {
         "startLine": 170,
         "startChar": 60,
@@ -235,6 +307,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ffb6d6_597e5f1c",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7070ffa1_2b0bfd43",
+      "range": {
+        "startLine": 316,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 22
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96b501d3_3b7d9891",
@@ -283,6 +379,30 @@
       "writtenOn": "2020-12-02T13:24:11Z",
       "side": 1,
       "message": "Review guide: we could also change this for check event.title prefix for e.g. V8GC.",
+      "range": {
+        "startLine": 572,
+        "startChar": 13,
+        "endLine": 572,
+        "endChar": 61
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6366d4cd_54263391",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "719df59f_4c300181",
       "range": {
         "startLine": 572,
         "startChar": 13,
@@ -470,6 +590,30 @@
       "writtenOn": "2020-12-02T13:24:11Z",
       "side": 1,
       "message": "Review guide: all functions below and almost all functions in utils.html can be removed once we compete the transition.",
+      "range": {
+        "startLine": 692,
+        "startChar": 2,
+        "endLine": 692,
+        "endChar": 42
+      },
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26f2ab47_7c8589b4",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 12
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dcd9aba7_604201bc",
       "range": {
         "startLine": 692,
         "startChar": 2,

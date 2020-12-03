@@ -16,6 +16,161 @@
       "message": "LGTM! Thanks. \n\nI saw there are a few more questions you asked in comments. I didn\u0027t have an opinion on those so I\u0027m assuming those are for mlippautz@. If you want my opinion on anything let me know! ",
       "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcfdc892_22d085f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "LGTM, awesome!",
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c628c1d_151db150",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "CppGC",
+      "range": {
+        "startLine": 167,
+        "startChar": 61,
+        "endLine": 167,
+        "endChar": 66
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f8ce33_d2350755",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "It\u0027s pretty cool how `inside` and `outside` work to match here and above :)",
+      "range": {
+        "startLine": 242,
+        "startChar": 15,
+        "endLine": 242,
+        "endChar": 36
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c37e8ebc_557015cc",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Maybe introduce ThreadType.ALL_THREADS?",
+      "range": {
+        "startLine": 296,
+        "startChar": 21,
+        "endLine": 296,
+        "endChar": 25
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f67c8cb3_6c6ab3c9",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Since this comes also up below, maybe add helper isPerCycleMetic()?",
+      "range": {
+        "startLine": 307,
+        "startChar": 12,
+        "endLine": 307,
+        "endChar": 20
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e82b3d57_cc23bf2e",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "We \n1. get all events including nested ones here;\n2. flatten (drop everything nested) below around l408;\n\nFor my understanding: This would allow summing up sub phases if there\u0027s no enclosing top level event, right?",
+      "range": {
+        "startLine": 398,
+        "startChar": 28,
+        "endLine": 398,
+        "endChar": 46
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3db07c86_05ce7005",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2020-12-03T15:10:10Z",
+      "side": 1,
+      "message": "Cool! Was not sure about whether we filter incremental events of forced GCs but this should do.",
+      "range": {
+        "startLine": 661,
+        "startChar": 14,
+        "endLine": 661,
+        "endChar": 49
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
