@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba23bbfe_46431a30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-03T10:48:00Z",
+      "side": 1,
+      "message": "Ack. It\u0027s great that we will have a C++ fallback.",
+      "parentUuid": "6ea3aebe_4027e64b",
+      "revId": "ca1f3da5cda76763567e0ac3ca1d52d054a89f64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67847a17_3af8a19b",
