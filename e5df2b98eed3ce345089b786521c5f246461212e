@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea7ca63c_8ce3ca54",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-04T13:34:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c628c1d_151db150",
+      "range": {
+        "startLine": 167,
+        "startChar": 61,
+        "endLine": 167,
+        "endChar": 66
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59f8ce33_d2350755",
@@ -71,6 +95,30 @@
       "writtenOn": "2020-12-03T15:10:10Z",
       "side": 1,
       "message": "It\u0027s pretty cool how `inside` and `outside` work to match here and above :)",
+      "range": {
+        "startLine": 242,
+        "startChar": 15,
+        "endLine": 242,
+        "endChar": 36
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6815e715_a34bebc9",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-04T13:34:09Z",
+      "side": 1,
+      "message": "Ack :)",
+      "parentUuid": "59f8ce33_d2350755",
       "range": {
         "startLine": 242,
         "startChar": 15,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a7825d7_7c6b2c07",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-04T13:34:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c37e8ebc_557015cc",
+      "range": {
+        "startLine": 296,
+        "startChar": 21,
+        "endLine": 296,
+        "endChar": 25
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f67c8cb3_6c6ab3c9",
@@ -127,6 +199,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7c9c324_317dc4f8",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-04T13:34:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f67c8cb3_6c6ab3c9",
+      "range": {
+        "startLine": 307,
+        "startChar": 12,
+        "endLine": 307,
+        "endChar": 20
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e82b3d57_cc23bf2e",
@@ -140,6 +236,30 @@
       "writtenOn": "2020-12-03T15:10:10Z",
       "side": 1,
       "message": "We \n1. get all events including nested ones here;\n2. flatten (drop everything nested) below around l408;\n\nFor my understanding: This would allow summing up sub phases if there\u0027s no enclosing top level event, right?",
+      "range": {
+        "startLine": 398,
+        "startChar": 28,
+        "endLine": 398,
+        "endChar": 46
+      },
+      "revId": "e5df2b98eed3ce345089b786521c5f246461212e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36118ed7_3564f13d",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 14
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1002405
+      },
+      "writtenOn": "2020-12-04T13:34:09Z",
+      "side": 1,
+      "message": "Yes. It also simplifies contributingEvents because it doesn\u0027t have to worry about nesting.",
+      "parentUuid": "e82b3d57_cc23bf2e",
       "range": {
         "startLine": 398,
         "startChar": 28,
