@@ -43,6 +43,12 @@ tr.b.unittest.testSuite(function() {
     browserMainThread.asyncSliceGroup.push(
         tr.c.TestUtils.newAsyncSliceEx({
           cat: 'startup',
+          title: 'Startup.LoadTime.ProcessCreateToApplicationStart',
+          start: (offset + 5000),
+          duration: (incrementForMetrics + 100)}));
+    browserMainThread.asyncSliceGroup.push(
+        tr.c.TestUtils.newAsyncSliceEx({
+          cat: 'startup',
           title: 'Startup.BrowserMessageLoopStartTime',
           start: (offset + 6800.125),
           duration: (incrementForMetrics + 1700.0625)}));
@@ -126,6 +132,7 @@ tr.b.unittest.testSuite(function() {
     verifyHistogram(histograms, 'navigation_commit_time', 1, 4200.875);
     verifyHistogram(histograms, 'experimental_content_start_time', 1, 2700);
     verifyHistogram(histograms, 'first_contentful_paint_time', 1, 1600);
+    verifyHistogram(histograms, 'experimental_process_create_to_app_start_time', 1, 100);
   });
 
   // Emulates loss of the initial message loop start event. Checks that this
@@ -216,6 +223,7 @@ tr.b.unittest.testSuite(function() {
     verifyHistogram(histograms, 'experimental_content_start_time', 0,
         undefined);
     verifyHistogram(histograms, 'first_contentful_paint_time', 1, 2);
+    verifyHistogram(histograms, 'experimental_process_create_to_app_start_time', 0, undefined);
   });
 
   // Checks the metrics after adding an offset to events in the model, and
@@ -229,6 +237,7 @@ tr.b.unittest.testSuite(function() {
     verifyHistogram(histograms, 'navigation_commit_time', 1, 4214.875);
     verifyHistogram(histograms, 'experimental_content_start_time', 1, 2707);
     verifyHistogram(histograms, 'first_contentful_paint_time', 1, 1607);
+    verifyHistogram(histograms, 'experimental_process_create_to_app_start_time', 1, 107);
   });
 
   test('androidStartupMetric_twoSessions', function() {
@@ -255,6 +264,7 @@ tr.b.unittest.testSuite(function() {
         2, 2700, 2700 + delta);
     verifyHistogramRange(histograms, 'first_contentful_paint_time',
         2, 1600, 1600 + delta);
+    verifyHistogram(histograms, 'experimental_process_create_to_app_start_time', 2, 100, 100 + delta);
   });
 });
 </script>
