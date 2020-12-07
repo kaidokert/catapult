@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "5ff373dbfcf27b53721d7530bb0730f6ccaec28f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0634fe52_59fe50e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-12-07T20:04:45Z",
+      "side": 1,
+      "message": "Looks like pylint isn\u0027t happy with vpython - it works in Chromium, so there should be a way to fix it. Worst case, I can add pylint ignores to each of the affected imports.",
+      "revId": "5ff373dbfcf27b53721d7530bb0730f6ccaec28f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
