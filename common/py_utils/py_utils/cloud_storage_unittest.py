@@ -36,13 +36,13 @@ class BaseFakeFsUnitTest(fake_filesystem_unittest.TestCase):
     self.original_environ = os.environ.copy()
     os.environ['DISABLE_CLOUD_STORAGE_IO'] = ''
     self.setUpPyfakefs()
-    self.fs.CreateFile(
+    self.fs.create_file(
         os.path.join(py_utils.GetCatapultDir(),
                      'third_party', 'gsutil', 'gsutil'))
 
   def CreateFiles(self, file_paths):
     for f in file_paths:
-      self.fs.CreateFile(f)
+      self.fs.create_file(f)
 
   def tearDown(self):
     self.tearDownPyfakefs()

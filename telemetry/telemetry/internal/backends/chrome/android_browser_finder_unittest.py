@@ -75,7 +75,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
 
   def testCanLaunchAlwaysTrueReturnsAllExceptExact(self):
     self.finder_options.browser_type = 'any'
-    self.fs.CreateFile(self.expected_reference_build)
+    self.fs.create_file(self.expected_reference_build)
     all_types = set(
         android_browser_finder.FindAllBrowserTypes())
     expected_types = all_types - set(('exact',))
@@ -86,9 +86,9 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
         set([b.browser_type for b in possible_browsers]))
 
   def testCanLaunchAlwaysTrueWithExactApkReturnsAll(self):
-    self.fs.CreateFile(
+    self.fs.create_file(
         '/foo/ContentShell.apk')
-    self.fs.CreateFile(self.expected_reference_build)
+    self.fs.create_file(self.expected_reference_build)
     self.finder_options.browser_type = 'any'
     self.finder_options.browser_executable = '/foo/ContentShell.apk'
     self._get_package_name_mock.return_value = 'org.chromium.content_shell_apk'
@@ -102,7 +102,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
         set([b.browser_type for b in possible_browsers]))
 
   def testErrorWithUnknownExactApk(self):
-    self.fs.CreateFile(
+    self.fs.create_file(
         '/foo/ContentShell.apk')
     self.finder_options.browser_executable = '/foo/ContentShell.apk'
     self._get_package_name_mock.return_value = 'org.unknown.app'
@@ -120,7 +120,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
                       self.finder_options, self.fake_platform)
 
   def testErrorWithUnrecognizedApkName(self):
-    self.fs.CreateFile(
+    self.fs.create_file(
         '/foo/unknown.apk')
     self.finder_options.browser_executable = '/foo/unknown.apk'
     self._get_package_name_mock.return_value = 'org.foo.bar'
@@ -130,7 +130,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
           self.finder_options, self.fake_platform)
 
   def testCanLaunchExactWithUnrecognizedApkNameButKnownPackageName(self):
-    self.fs.CreateFile(
+    self.fs.create_file(
         '/foo/MyFooBrowser.apk')
     self._get_package_name_mock.return_value = 'org.chromium.chrome'
     self.finder_options.browser_executable = '/foo/MyFooBrowser.apk'
@@ -173,7 +173,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
 
   def testModulesPassedToInstallApplicationForBundle(self):
     self.finder_options.modules_to_install = ['base']
-    self.fs.CreateFile('foo_bundle')
+    self.fs.create_file('foo_bundle')
     possible_browser = android_browser_finder.PossibleAndroidBrowser(
         'android-chromium-bundle', self.finder_options, self.fake_platform,
         android_browser_backend_settings.ANDROID_CHROMIUM_BUNDLE, 'foo_bundle')
@@ -184,7 +184,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
 
   def testAndroid_Not_WebviewTagInTypExpectationsTags(self):
     self.finder_options.modules_to_install = ['base']
-    self.fs.CreateFile('foo_bundle')
+    self.fs.create_file('foo_bundle')
     with mock.patch.object(self.fake_platform,
                            'GetTypExpectationsTags', return_value=['android']):
       possible_browser = android_browser_finder.PossibleAndroidBrowser(
@@ -198,7 +198,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
 
   def testAndroidWebviewTagInTypExpectationsTags(self):
     self.finder_options.modules_to_install = ['base']
-    self.fs.CreateFile('foo_bundle')
+    self.fs.create_file('foo_bundle')
     with mock.patch.object(self.fake_platform,
                            'GetTypExpectationsTags', return_value=['android']):
       possible_browser = android_browser_finder.PossibleAndroidBrowser(
@@ -212,7 +212,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
 
   def testAndroidWeblayerTagInTypExpectationsTags(self):
     self.finder_options.modules_to_install = ['base']
-    self.fs.CreateFile('foo_bundle')
+    self.fs.create_file('foo_bundle')
     with mock.patch.object(self.fake_platform,
                            'GetTypExpectationsTags', return_value=['android']):
       possible_browser = android_browser_finder.PossibleAndroidBrowser(

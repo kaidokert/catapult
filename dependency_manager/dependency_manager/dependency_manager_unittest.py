@@ -419,7 +419,7 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     # Local path exists.
     dep_manager._lookup_dict = {'dep': {'platform' : self.dep_info},
                                 'dep2': mock.MagicMock()}
-    self.fs.CreateFile('path1')
+    self.fs.create_file('path1')
     found_path = dep_manager.FetchPath('dep', 'platform')
 
     self.assertEqual('path1', found_path)
@@ -434,7 +434,7 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     self.assertFalse(cs_path_mock.call_args)
     cs_path = 'cs_path'
     def FakeCSPath():
-      self.fs.CreateFile(cs_path)
+      self.fs.create_file(cs_path)
       return cs_path
     cs_path_mock.side_effect = FakeCSPath
 
@@ -497,7 +497,7 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     dep_manager._lookup_dict = {'dependency' : {'platform': self.dep_info},
                                 'dep1': mock.MagicMock(),
                                 'dep2': mock.MagicMock()}
-    self.fs.CreateFile('path1')
+    self.fs.create_file('path1')
     found_path = dep_manager.LocalPath('dependency', 'platform')
 
     self.assertEqual('path1', found_path)

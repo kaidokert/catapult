@@ -115,9 +115,9 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
   def setUp(self):
     self.setUpPyfakefs()
     self.config_path = '/test/dep_config.json'
-    self.fs.CreateFile(self.config_path, contents='{}')
+    self.fs.create_file(self.config_path, contents='{}')
     self.download_path = '/foo/download_path'
-    self.fs.CreateFile(
+    self.fs.create_file(
         self.download_path, contents='1010110', st_mode=stat.S_IWOTH)
     self.cs_info = cloud_storage_info.CloudStorageInfo(
         'cs_bucket', 'cs_hash', self.download_path, 'cs_remote_path',
@@ -132,7 +132,7 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
     def _GetIfHashChangedMock(cs_path, download_path, bucket, file_hash):
       del cs_path, bucket, file_hash
       if not os.path.exists(download_path):
-        self.fs.CreateFile(download_path, contents='1010001010101010110101')
+        self.fs.create_file(download_path, contents='1010001010101010110101')
     cs_get_mock.side_effect = _GetIfHashChangedMock
     # All of the needed information is given, and the downloaded path exists
     # after calling cloud storage.
@@ -156,7 +156,7 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
     def _GetIfHashChangedMock(cs_path, download_path, bucket, file_hash):
       del cs_path, bucket, file_hash
       if not os.path.exists(download_path):
-        self.fs.CreateFile(download_path, contents='1010001010101010110101')
+        self.fs.create_file(download_path, contents='1010001010101010110101')
     cs_get_mock.side_effect = _GetIfHashChangedMock
 
     unzip_path = os.path.join(
@@ -165,9 +165,9 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
     dep_path = os.path.join(unzip_path, path_within_archive)
     def _UnzipFileMock(archive_file, unzip_location, tmp_location=None):
       del archive_file, tmp_location
-      self.fs.CreateFile(dep_path)
-      self.fs.CreateFile(os.path.join(unzip_location, 'extra', 'path'))
-      self.fs.CreateFile(os.path.join(unzip_location, 'another_extra_path'))
+      self.fs.create_file(dep_path)
+      self.fs.create_file(os.path.join(unzip_location, 'extra', 'path'))
+      self.fs.create_file(os.path.join(unzip_location, 'another_extra_path'))
     unzip_mock.side_effect = _UnzipFileMock
 
     # Create a stale directory that's expected to get deleted
@@ -176,7 +176,7 @@ class TestGetRemotePath(fake_filesystem_unittest.TestCase):
     stale_path = os.path.join(
         os.path.dirname(self.download_path), 'unzip_dir_stale')
     self.fs.CreateDirectory(stale_path)
-    self.fs.CreateFile(os.path.join(stale_path, 'some_file'))
+    self.fs.create_file(os.path.join(stale_path, 'some_file'))
 
     self.assertFalse(os.path.exists(dep_path))
     zip_info = archive_info.ArchiveInfo(

@@ -49,8 +49,8 @@ KEYBOARD_RD = (
 
 def AddDevice(fs, dev_name, product_name,
               vendor_id, product_id, report_descriptor_b64):
-  uevent = fs.CreateFile('/sys/class/hidraw/%s/device/uevent' % dev_name)
-  rd = fs.CreateFile('/sys/class/hidraw/%s/device/report_descriptor' % dev_name)
+  uevent = fs.create_file('/sys/class/hidraw/%s/device/uevent' % dev_name)
+  rd = fs.create_file('/sys/class/hidraw/%s/device/report_descriptor' % dev_name)
   report_descriptor = base64.b64decode(report_descriptor_b64)
   rd.SetContents(report_descriptor)
 
