@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2b35c085_72782d21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-12-07T16:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b7d02a1_d28d63d1",
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "916805e0_3176ac7f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -75,6 +93,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bc1e900_de963daf",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-12-07T16:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35134b23_cb54ccfc",
+      "range": {
+        "startLine": 95,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 28
+      },
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a26cd06_2b7fca5b",
@@ -98,6 +140,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa7fb66_02b7d0b1",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-12-07T16:47:59Z",
+      "side": 1,
+      "message": "Sgtm, removed experimental_ prefix.",
+      "parentUuid": "9a26cd06_2b7fca5b",
+      "range": {
+        "startLine": 163,
+        "startChar": 9,
+        "endLine": 163,
+        "endChar": 21
+      },
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6ba5a70_0971c6a0",
@@ -111,6 +177,30 @@
       "writtenOn": "2020-12-07T12:51:42Z",
       "side": 1,
       "message": "please rename startEvent to loopStartEvent to make it more easily distringuished from the applicationStartEvent",
+      "range": {
+        "startLine": 174,
+        "startChar": 12,
+        "endLine": 174,
+        "endChar": 22
+      },
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4fa37d6_aa8a910f",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1287199
+      },
+      "writtenOn": "2020-12-07T16:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6ba5a70_0971c6a0",
       "range": {
         "startLine": 174,
         "startChar": 12,
