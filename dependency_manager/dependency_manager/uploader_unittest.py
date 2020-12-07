@@ -14,7 +14,7 @@ class CloudStorageUploaderTest(fake_filesystem_unittest.TestCase):
     self.setUpPyfakefs()
     self.bucket = 'cloud_storage_bucket'
     self.local_path = os.path.abspath(os.path.join('path', 'to', 'dependency'))
-    self.fs.CreateFile(self.local_path)
+    self.fs.create_file(self.local_path)
     self.remote_path = 'config_folder/remote_path'
 
   def testCloudStorageUploaderMissingData(self):
@@ -60,7 +60,7 @@ class CloudStorageUploaderTest(fake_filesystem_unittest.TestCase):
 
   def testCloudStorageUploaderInequality(self):
     new_local_path = os.path.abspath(os.path.join('new', 'local', 'path'))
-    self.fs.CreateFile(new_local_path)
+    self.fs.create_file(new_local_path)
     new_bucket = 'new_bucket'
     new_remote_path = 'new_remote/path'
 

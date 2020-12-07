@@ -24,9 +24,6 @@ class LocalPathInfoTest(fake_filesystem_unittest.TestCase):
   def setUp(self):
     self.setUpPyfakefs()
 
-  def tearDown(self):
-    self.tearDownPyfakefs()
-
   def testEmptyInstance(self):
     path_info = dependency_manager.LocalPathInfo(None)
     self.assertIsNone(path_info.GetLocalPath())

@@ -184,7 +184,7 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     self._finder_options.chrome_root = '/src/'
 
   def CreateBrowser(self, path):
-    self.fs.CreateFile(path)
+    self.fs.create_file(path)
     os.chmod(path, stat.S_IXUSR)
 
   def DoFindAll(self):
@@ -213,7 +213,7 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
         os.environ['CHROMIUM_OUTPUT_DIR'] = output_dir_env
 
   def testFindAllFailsIfNotExecutable(self):
-    self.fs.CreateFile('/src/out/Release/chrome')
+    self.fs.create_file('/src/out/Release/chrome')
 
     self.assertFalse(self.DoFindAllTypes())
 
@@ -230,7 +230,7 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     self.assertIn('does not exist or is not executable', str(cm.exception))
 
   def testErrorWithNonExecutable(self):
-    self.fs.CreateFile('/foo/another_browser')
+    self.fs.create_file('/foo/another_browser')
     self._finder_options.browser_executable = '/foo/another_browser'
     with self.assertRaises(exceptions.PathMissingError) as cm:
       self.DoFindAllTypes()

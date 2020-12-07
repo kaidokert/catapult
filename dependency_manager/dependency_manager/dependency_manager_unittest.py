@@ -16,6 +16,7 @@ from dependency_manager import exceptions
 class DependencyManagerTest(fake_filesystem_unittest.TestCase):
 
   def setUp(self):
+    self.setUpPyfakefs()
     self.lp_info012 = dependency_manager.LocalPathInfo(
         ['path0', 'path1', 'path2'])
     self.cloud_storage_info = dependency_manager.CloudStorageInfo(
@@ -24,10 +25,6 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     self.dep_info = dependency_manager.DependencyInfo(
         'dep', 'platform', 'config_file', local_path_info=self.lp_info012,
         cloud_storage_info=self.cloud_storage_info)
-    self.setUpPyfakefs()
-
-  def tearDown(self):
-    self.tearDownPyfakefs()
 
   # TODO(crbug.com/1111556): add a test that construct
   # dependency_manager.DependencyManager from a list of DependencyInfo.
@@ -401,12 +398,11 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     with self.assertRaises(exceptions.NoPathFoundError):
       dep_manager.FetchPath('dep', 'plat_arch_x86')
 
-  @mock.patch('os.path')
   @mock.patch(
       'dependency_manager.DependencyManager._GetDependencyInfo')
   @mock.patch(
       'dependency_manager.dependency_info.DependencyInfo.GetRemotePath')  # pylint: disable=line-too-long
-  def testFetchPathLocalFile(self, cs_path_mock, dep_info_mock, path_mock):
+  def testFetchPathLocalFile(self, cs_path_mock, dep_info_mock):
     dep_manager = dependency_manager.DependencyManager([])
     self.assertFalse(cs_path_mock.call_args)
     cs_path = 'cs_path'
@@ -419,7 +415,7 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     # Local path exists.
     dep_manager._lookup_dict = {'dep': {'platform' : self.dep_info},
                                 'dep2': mock.MagicMock()}
-    self.fs.CreateFile('path1')
+    self.fs.create_file('path1')
     found_path = dep_manager.FetchPath('dep', 'platform')
 
     self.assertEqual('path1', found_path)
@@ -434,7 +430,7 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     self.assertFalse(cs_path_mock.call_args)
     cs_path = 'cs_path'
     def FakeCSPath():
-      self.fs.CreateFile(cs_path)
+      self.fs.create_file(cs_path)
       return cs_path
     cs_path_mock.side_effect = FakeCSPath
 
@@ -497,7 +493,7 @@ class DependencyManagerTest(fake_filesystem_unittest.TestCase):
     dep_manager._lookup_dict = {'dependency' : {'platform': self.dep_info},
                                 'dep1': mock.MagicMock(),
                                 'dep2': mock.MagicMock()}
-    self.fs.CreateFile('path1')
+    self.fs.create_file('path1')
     found_path = dep_manager.LocalPath('dependency', 'platform')
 
     self.assertEqual('path1', found_path)
