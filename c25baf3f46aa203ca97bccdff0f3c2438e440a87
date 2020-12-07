@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "916805e0_3176ac7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2020-12-07T12:51:42Z",
+      "side": 1,
+      "message": "lgtm, awesome, thank you, I wanted to do it for some time, but never got to it.",
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35134b23_cb54ccfc",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2020-12-07T12:51:42Z",
+      "side": 1,
+      "message": "perhaps, for symmetry also fallback to scanning if totals do not match the browser starts?",
+      "range": {
+        "startLine": 95,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 28
+      },
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a26cd06_2b7fca5b",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2020-12-07T12:51:42Z",
+      "side": 1,
+      "message": "IMO the usefulness of this metric has already been proven outside of Telemetry. It would be good to graduate it from experimental and make an alert for it soon-ish. I\u0027m leaning towards  the only remaining check being to \u0027look at\u0027 noise on the bots. Seems that this is speculatively very near non-experimental state, so requesting to remove \u0027experimental_\u0027 now, this would avoid another change and historical data backfill on the dashboard (unlikely needed, but still).\n\nFeel free to leave it as is, especially if you have more checks in mind than the above.",
+      "range": {
+        "startLine": 163,
+        "startChar": 9,
+        "endLine": 163,
+        "endChar": 21
+      },
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ba5a70_0971c6a0",
+        "filename": "tracing/tracing/metrics/android_startup_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2020-12-07T12:51:42Z",
+      "side": 1,
+      "message": "please rename startEvent to loopStartEvent to make it more easily distringuished from the applicationStartEvent",
+      "range": {
+        "startLine": 174,
+        "startChar": 12,
+        "endLine": 174,
+        "endChar": 22
+      },
+      "revId": "c25baf3f46aa203ca97bccdff0f3c2438e440a87",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
