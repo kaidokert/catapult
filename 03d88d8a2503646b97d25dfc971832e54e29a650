@@ -104,6 +104,24 @@
       "parentUuid": "6efe18f8_6d42ec75",
       "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b0122c_ac666a90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-12-08T23:00:42Z",
+      "side": 1,
+      "message": "\u003e Thanks, Dean! Can you help me understand what my next steps are? \n\u003e \n\u003e 1) Do I need to add chromium-third-party@google.com as a reviewer for the license question? \n\u003e \n\nNo, I\u0027ll need to send an email internally to get someone on the team to have a look.\n\n\u003e 2) Do I need to find a Googler to ask to send this CL to go/chrome-eng-review ?\n\u003e \n\nYes, and you\u0027ve found at least one. 😊\n\n\u003e thanks!\n\nMy pleasure -- apologies for the delay here though, thanks for bearing with me here.",
+      "parentUuid": "cbed495e_0e6247bc",
+      "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
