@@ -12,6 +12,7 @@ import os
 import sys
 import time
 import platform
+import stat
 
 
 def GetCatapultDir():
@@ -52,13 +53,22 @@ def _ExecutableExtensions():
 
 
 def IsExecutable(path):
-  if os.path.isfile(path):
+  if _IsFile(path):
     if hasattr(os, 'name') and os.name == 'nt':
       return path.split('.')[-1].upper() in _ExecutableExtensions()
     else:
       return os.access(path, os.X_OK)
   else:
     return False
+
+
+def _IsFile(path):
+  # This should be equivalent to os.path.isfile(), but for some reason that
+  # returns False when used on fake files from pyfakefs 3.7.2.
+  if (os.path.exists(path)
+      and os.stat(path).st_mode & (stat.S_IFLNK | stat.S_IFREG)):
+    return True
+  return False
 
 
 def _AddDirToPythonPath(*path_parts):
@@ -73,8 +83,6 @@ _AddDirToPythonPath(os.path.join(GetCatapultDir(), 'dependency_manager'))
 _AddDirToPythonPath(os.path.join(GetCatapultDir(), 'third_party', 'mock'))
 # mox3 is needed for pyfakefs usage, but not for pylint.
 _AddDirToPythonPath(os.path.join(GetCatapultDir(), 'third_party', 'mox3'))
-_AddDirToPythonPath(
-    os.path.join(GetCatapultDir(), 'third_party', 'pyfakefs'))
 
 from devil.utils import timeout_retry  # pylint: disable=wrong-import-position
 from devil.utils import reraiser_thread  # pylint: disable=wrong-import-position

@@ -4,6 +4,7 @@
 
 # pylint: disable=unused-argument
 
+import glob
 import os
 import unittest
 
@@ -11,7 +12,6 @@ from py_utils import cloud_storage
 import mock
 from pyfakefs import fake_filesystem_unittest
 from pyfakefs import fake_filesystem
-from pyfakefs import fake_filesystem_glob
 
 import dependency_manager
 from dependency_manager import uploader
@@ -61,7 +61,7 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
         'path', 'to', 'config', 'file'))
 
     self.new_dep_path = 'path/to/new/dep'
-    self.fs.CreateFile(self.new_dep_path)
+    self.fs.create_file(self.new_dep_path)
     self.new_dep_hash = 'A23B56B7F23E798601F'
     self.new_dependencies = {
         'dep1': {'cloud_storage_bucket': 'bucket1',
@@ -103,7 +103,7 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       '}', '}']
 
     self.final_dep_path = 'path/to/final/dep'
-    self.fs.CreateFile(self.final_dep_path)
+    self.fs.create_file(self.final_dep_path)
     self.final_dep_hash = 'B34662F23B56B7F98601F'
     self.final_bucket = 'bucket2'
     self.final_remote_path = 'dep1_%s' % self.final_dep_hash
@@ -146,9 +146,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       '}', '}']
 
 
-  def tearDown(self):
-    self.tearDownPyfakefs()
-
   # Init is not meant to be overridden, so we should be mocking the
   # base_config's json module, even in subclasses.
   def testCreateEmptyConfig(self):
@@ -161,7 +158,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     file_module = fake_filesystem.FakeFileOpen(self.fs)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual({}, config._config_data)
     self.assertEqual(self.file_path, config._config_path)
 
@@ -204,7 +200,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     file_module = fake_filesystem.FakeFileOpen(self.fs)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
   def testWriteNonEmptyConfigToFile(self):
     self.assertFalse(os.path.exists(self.file_path))
@@ -215,12 +210,11 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     file_module = fake_filesystem.FakeFileOpen(self.fs)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
   @mock.patch('dependency_manager.uploader.cloud_storage')
   def testExecuteUpdateJobsNoOp(self, uploader_cs_mock):
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
 
     self.assertFalse(config.ExecuteUpdateJobs())
@@ -231,15 +225,14 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
   @mock.patch('dependency_manager.uploader.cloud_storage')
   def testExecuteUpdateJobsFailureOnInsertNoCSCollision(
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = False
     uploader_cs_mock.Insert.side_effect = cloud_storage.CloudStorageError
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -264,7 +257,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(1, len(config._pending_uploads))
     self.assertEqual(self.new_pending_upload, config._pending_uploads[0])
     self.assertEqual(expected_insert_calls,
@@ -281,8 +273,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = True
     uploader_cs_mock.Insert.side_effect = cloud_storage.CloudStorageError
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -312,7 +304,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(1, len(config._pending_uploads))
     self.assertEqual(self.new_pending_upload, config._pending_uploads[0])
     self.assertEqual(expected_insert_calls,
@@ -329,8 +320,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = True
     uploader_cs_mock.Insert.side_effect = cloud_storage.CloudStorageError
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -354,7 +345,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(1, len(config._pending_uploads))
     self.assertEqual(self.new_pending_upload, config._pending_uploads[0])
     self.assertEqual(expected_insert_calls,
@@ -371,8 +361,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = True
     uploader_cs_mock.Copy.side_effect = cloud_storage.CloudStorageError
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -398,7 +388,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(1, len(config._pending_uploads))
     self.assertEqual(self.new_pending_upload, config._pending_uploads[0])
     self.assertEqual(expected_insert_calls,
@@ -416,8 +405,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     uploader_cs_mock.Exists.return_value = False
     uploader_cs_mock.Insert.side_effect = [
         True, cloud_storage.CloudStorageError]
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -450,7 +439,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -466,8 +454,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     uploader_cs_mock.Exists.return_value = True
     uploader_cs_mock.Insert.side_effect = [
         True, cloud_storage.CloudStorageError]
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -511,7 +499,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -527,8 +514,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     uploader_cs_mock.Exists.side_effect = [True, False, True]
     uploader_cs_mock.Insert.side_effect = [
         True, cloud_storage.CloudStorageError]
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -566,7 +553,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -582,8 +568,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     uploader_cs_mock.Exists.side_effect = [True, False, True]
     uploader_cs_mock.Insert.side_effect = [
         True, cloud_storage.CloudStorageError]
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -610,7 +596,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -627,8 +612,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     uploader_cs_mock.Insert.return_value = True
     uploader_cs_mock.Copy.side_effect = [
         True, cloud_storage.CloudStorageError, True]
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -666,7 +651,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -681,8 +665,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.side_effect = [False, True, False]
     uploader_cs_mock.Copy.side_effect = cloud_storage.CloudStorageError
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -714,7 +698,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -729,8 +712,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.side_effect = [False, True, False]
     uploader_cs_mock.Copy.side_effect = cloud_storage.CloudStorageError
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -760,7 +743,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -774,8 +756,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   def testExecuteUpdateJobsSuccessOnePendingDepNoCloudStorageCollision(
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = False
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._pending_uploads = [self.new_pending_upload]
@@ -797,7 +779,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.new_expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertFalse(config._pending_uploads)
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
@@ -812,8 +793,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   def testExecuteUpdateJobsSuccessOnePendingDepCloudStorageCollision(
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = True
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._pending_uploads = [self.new_pending_upload]
@@ -836,7 +817,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.new_expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertFalse(config._pending_uploads)
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
@@ -849,8 +829,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   def testExecuteUpdateJobsErrorOnePendingDepCloudStorageCollisionNoForce(
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.return_value = True
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.new_dependencies.copy()
     config._is_dirty = True
@@ -874,7 +854,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
     self.assertEqual(expected_exists_calls,
@@ -886,8 +865,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   def testExecuteUpdateJobsSuccessMultiplePendingDepsOneCloudStorageCollision(
       self, uploader_cs_mock):
     uploader_cs_mock.Exists.side_effect = [False, True]
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     config._config_data = self.final_dependencies.copy()
     config._pending_uploads = [self.new_pending_upload,
@@ -918,7 +897,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.final_expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
     self.assertFalse(config._pending_uploads)
     self.assertEqual(expected_insert_calls,
                      uploader_cs_mock.Insert.call_args_list)
@@ -930,8 +908,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   @mock.patch('dependency_manager.uploader.cloud_storage')
   def testUpdateCloudStorageDependenciesReadOnlyConfig(
       self, uploader_cs_mock):
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path)
     with self.assertRaises(dependency_manager.ReadWriteError):
       config.AddCloudStorageDependencyUpdateJob(
@@ -949,8 +927,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   @mock.patch('dependency_manager.uploader.cloud_storage')
   def testUpdateCloudStorageDependenciesMissingDependency(
       self, uploader_cs_mock):
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     self.assertRaises(ValueError, config.AddCloudStorageDependencyUpdateJob,
                       'dep', 'plat', 'path')
@@ -966,8 +944,8 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
   def testUpdateCloudStorageDependenciesWrite(
       self, base_config_cs_mock, uploader_cs_mock):
     expected_dependencies = self.dependencies
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
     self.assertFalse(config._IsDirty())
     self.assertEqual(expected_dependencies, config._config_data)
@@ -985,7 +963,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     expected_file_lines = list(self.new_expected_file_lines)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
     expected_dependencies = self.final_dependencies
     base_config_cs_mock.CalculateHash.return_value = self.final_dep_hash
@@ -999,14 +976,13 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     file_module = fake_filesystem.FakeFileOpen(self.fs)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
   @mock.patch('dependency_manager.uploader.cloud_storage')
   @mock.patch('dependency_manager.base_config.cloud_storage')
   def testUpdateCloudStorageDependenciesNoWrite(
       self, base_config_cs_mock, uploader_cs_mock):
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
     config = dependency_manager.BaseConfig(self.file_path, writable=True)
 
     self.assertRaises(ValueError, config.AddCloudStorageDependencyUpdateJob,
@@ -1034,7 +1010,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     file_module = fake_filesystem.FakeFileOpen(self.fs)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
     expected_dependencies = self.final_dependencies
     base_config_cs_mock.CalculateHash.return_value = self.final_dep_hash
@@ -1047,7 +1022,6 @@ class BaseConfigCreationAndUpdateUnittests(fake_filesystem_unittest.TestCase):
     file_module = fake_filesystem.FakeFileOpen(self.fs)
     for line in file_module(self.file_path):
       self.assertEqual(expected_file_lines.pop(0), line.strip())
-    self.fs.CloseOpenFile(file_module(self.file_path))
 
 
 class BaseConfigDataManipulationUnittests(fake_filesystem_unittest.TestCase):
@@ -1116,8 +1090,8 @@ class BaseConfigDataManipulationUnittests(fake_filesystem_unittest.TestCase):
             '"plat2": {', '"cloud_storage_hash": "hash22",',
               '"download_path": "../../relative/dep2/path2"', '}', '}', '}',
       '}', '}']
-    self.fs.CreateFile(self.file_path,
-                       contents='\n'.join(self.expected_file_lines))
+    self.fs.create_file(self.file_path,
+                        contents='\n'.join(self.expected_file_lines))
 
   def testContaining(self):
     config = dependency_manager.BaseConfig(self.file_path)
@@ -1550,17 +1524,20 @@ class BaseConfigTest(unittest.TestCase):
         'dep_all_the_variables_0123456789abcdef0123456789abcdef012345678',
         # "Hash" component not comprised of hex (not a valid SHA1 hash).
         'dep_all_the_variables_0123456789gggggg0123456789gggggg01234567']))
+    cwd = os.getcwd()
 
-    # Create a fake filesystem just for glob to use
-    fake_fs = fake_filesystem.FakeFilesystem()
-    fake_glob = fake_filesystem_glob.FakeGlobModule(fake_fs)
-    for stale_dir in set.union(should_match, should_not_match):
-      fake_fs.CreateDirectory(stale_dir)
-      fake_fs.CreateFile(os.path.join(stale_dir, 'some_file'))
+    with fake_filesystem_unittest.Patcher() as patcher:
+      # Create a fake filesystem just for glob to use
+      #fake_fs = fake_filesystem.FakeFilesystem()
+      fake_fs = patcher.fs
+      for stale_dir in set.union(should_match, should_not_match):
+        fake_fs.create_dir(stale_dir)
+        fake_fs.create_file(os.path.join(stale_dir, 'some_file'))
 
-    for dep_info in config.IterDependencyInfo():
-      if dep_info.platform == 'all_the_variables':
-        cs_info = dep_info.cloud_storage_info
-        actual_glob = cs_info._archive_info._stale_unzip_path_glob
-        actual_matches = set(fake_glob.glob(actual_glob))
-        self.assertItemsEqual(should_match, actual_matches)
+      os.chdir(cwd)
+      for dep_info in config.IterDependencyInfo():
+        if dep_info.platform == 'all_the_variables':
+          cs_info = dep_info.cloud_storage_info
+          actual_glob = cs_info._archive_info._stale_unzip_path_glob
+          actual_matches = set(glob.glob(actual_glob))
+          self.assertItemsEqual(should_match, actual_matches)

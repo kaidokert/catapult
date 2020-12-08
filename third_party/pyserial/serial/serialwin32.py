@@ -54,7 +54,7 @@ class Win32Serial(SerialBase):
         except ValueError:
             # for like COMnotanumber
             pass
-        self.hComPort = win32.CreateFile(port,
+        self.hComPort = win32.create_file(port,
                win32.GENERIC_READ | win32.GENERIC_WRITE,
                0, # exclusive access
                None, # no security
