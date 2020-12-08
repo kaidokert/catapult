@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac7d13e3_ad5778d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-12-08T20:54:06Z",
+      "side": 1,
+      "message": "This breaks many more things than I anticipated, so I\u0027ll chip away at this over time and get a Chromium-side workaround in now for the current issue that prompted this.",
+      "revId": "34036439c73755b5dbc78b9e40082f94163e34ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
