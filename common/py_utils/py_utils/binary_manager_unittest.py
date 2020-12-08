@@ -146,7 +146,7 @@ class BinaryManagerTest(fake_filesystem_unittest.TestCase):
 
     self.base_config = os.path.join(os.path.dirname(__file__),
                                     'example_config.json')
-    self.fs.CreateFile(self.base_config, contents=json.dumps(fake_config))
+    self.fs.create_file(self.base_config, contents=json.dumps(fake_config))
     linux_file = os.path.join(
         os.path.dirname(self.base_config),
         os.path.join('..', '..', 'example', 'location2', 'linux', 'dep_2'))
@@ -155,11 +155,8 @@ class BinaryManagerTest(fake_filesystem_unittest.TestCase):
         '..', '..', 'example', 'location', 'android_x86', 'l', 'dep_2')
     self.expected_dep2_linux_file = os.path.abspath(linux_file)
     self.expected_dep2_android_file = os.path.abspath(android_file)
-    self.fs.CreateFile(self.expected_dep2_linux_file)
-    self.fs.CreateFile(self.expected_dep2_android_file)
-
-  def tearDown(self):
-    self.tearDownPyfakefs()
+    self.fs.create_file(self.expected_dep2_linux_file)
+    self.fs.create_file(self.expected_dep2_android_file)
 
   def testInitializationNoConfig(self):
     with self.assertRaises(ValueError):

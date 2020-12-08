@@ -225,7 +225,7 @@ class PossibleDesktopBrowser(possible_browser.PossibleBrowser):
     if trace_config_file:
       startup_args.append('--trace-config-file=%s' % trace_config_file)
 
-    if sys.platform.startswith('linux'):
+    if IsLinux():
       # All linux tests should use the --password-store=basic
       # flag, which stops Chrome from reaching the system's Keyring or
       # KWallet. These are stateful system libraries, which can hurt tests
@@ -307,7 +307,7 @@ def FindAllAvailableBrowsers(finder_options, device):
     return []
 
   has_x11_display = True
-  if sys.platform.startswith('linux') and os.getenv('DISPLAY') is None:
+  if IsLinux() and os.getenv('DISPLAY') is None:
     has_x11_display = False
 
   os_name = platform_module.GetHostPlatform().GetOSName()
@@ -318,14 +318,14 @@ def FindAllAvailableBrowsers(finder_options, device):
     flash_path = None
 
   chromium_app_names = []
-  if sys.platform == 'darwin':
+  if IsMac():
     chromium_app_names.append('Chromium.app/Contents/MacOS/Chromium')
     chromium_app_names.append('Google Chrome.app/Contents/MacOS/Google Chrome')
     content_shell_app_name = 'Content Shell.app/Contents/MacOS/Content Shell'
-  elif sys.platform.startswith('linux'):
+  elif IsLinux():
     chromium_app_names.append('chrome')
     content_shell_app_name = 'content_shell'
-  elif sys.platform.startswith('win'):
+  elif IsWin():
     chromium_app_names.append('chrome.exe')
     content_shell_app_name = 'content_shell.exe'
   else:
@@ -380,7 +380,7 @@ def FindAllAvailableBrowsers(finder_options, device):
         'chrome_stable', os_name, arch_name)
 
   # Mac-specific options.
-  if sys.platform == 'darwin':
+  if IsMac():
     mac_canary_root = '/Applications/Google Chrome Canary.app/'
     mac_canary = mac_canary_root + 'Contents/MacOS/Google Chrome Canary'
     mac_system_root = '/Applications/Google Chrome.app'
@@ -403,7 +403,7 @@ def FindAllAvailableBrowsers(finder_options, device):
                                              reference_root))
 
   # Linux specific options.
-  if sys.platform.startswith('linux'):
+  if IsLinux():
     versions = {
         'system': os.path.split(os.path.realpath('/usr/bin/google-chrome'))[0],
         'stable': '/opt/google/chrome',
@@ -423,7 +423,7 @@ def FindAllAvailableBrowsers(finder_options, device):
                                              reference_root))
 
   # Win32-specific options.
-  if sys.platform.startswith('win'):
+  if IsWin():
     app_paths = [
         ('system', os.path.join('Google', 'Chrome', 'Application')),
         ('canary', os.path.join('Google', 'Chrome SxS', 'Application')),
@@ -453,3 +453,15 @@ def FindAllAvailableBrowsers(finder_options, device):
     return []
 
   return browsers
+
+
+def IsLinux():
+  return sys.platform.startswith('linux')
+
+
+def IsMac():
+  return sys.platform == 'darwin'
+
+
+def IsWin():
+  return sys.platform.startswith('win32')

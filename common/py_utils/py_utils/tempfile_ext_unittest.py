@@ -14,9 +14,6 @@ class NamedTemporaryDirectoryTest(fake_filesystem_unittest.TestCase):
   def setUp(self):
     self.setUpPyfakefs()
 
-  def tearDown(self):
-    self.tearDownPyfakefs()
-
   def testBasic(self):
     with tempfile_ext.NamedTemporaryDirectory() as d:
       self.assertTrue(os.path.exists(d))
@@ -35,7 +32,7 @@ class NamedTemporaryDirectoryTest(fake_filesystem_unittest.TestCase):
 
   def testDir(self):
     test_dir = '/baz'
-    self.fs.CreateDirectory(test_dir)
+    self.fs.create_dir(test_dir)
     with tempfile_ext.NamedTemporaryDirectory(dir=test_dir) as d:
       self.assertEquals(test_dir, os.path.dirname(d))
 
@@ -43,9 +40,6 @@ class NamedTemporaryDirectoryTest(fake_filesystem_unittest.TestCase):
 class TemporaryFilesTest(fake_filesystem_unittest.TestCase):
   def setUp(self):
     self.setUpPyfakefs()
-
-  def tearDown(self):
-    self.tearDownPyfakefs()
 
   def testNamedTemporaryFile(self):
     with tempfile_ext.NamedTemporaryFile() as f:

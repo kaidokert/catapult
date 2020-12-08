@@ -24,6 +24,13 @@
 
 python_version: "2.7"
 
+# Used by:
+#   telemetry/
+#   dependency_manager/
+wheel: <
+  name: "infra/python/wheels/pyfakefs-py2_py3"
+  version: "version:3.7.2"
+>
 
 # Used by:
 #   dashboard/

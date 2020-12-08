@@ -36,16 +36,15 @@ class BaseFakeFsUnitTest(fake_filesystem_unittest.TestCase):
     self.original_environ = os.environ.copy()
     os.environ['DISABLE_CLOUD_STORAGE_IO'] = ''
     self.setUpPyfakefs()
-    self.fs.CreateFile(
+    self.fs.create_file(
         os.path.join(py_utils.GetCatapultDir(),
                      'third_party', 'gsutil', 'gsutil'))
 
   def CreateFiles(self, file_paths):
     for f in file_paths:
-      self.fs.CreateFile(f)
+      self.fs.create_file(f)
 
   def tearDown(self):
-    self.tearDownPyfakefs()
     os.environ = self.original_environ
 
   def _FakeRunCommand(self, cmd):
@@ -216,7 +215,7 @@ class CloudStorageFakeFsUnitTest(BaseFakeFsUnitTest):
   def testDisableCloudStorageIo(self, unused_lock_mock):
     os.environ['DISABLE_CLOUD_STORAGE_IO'] = '1'
     dir_path = 'real_dir_path'
-    self.fs.CreateDirectory(dir_path)
+    self.fs.create_dir(dir_path)
     file_path = os.path.join(dir_path, 'file1')
     file_path_sha = file_path + '.sha1'
 
