@@ -8,7 +8,7 @@ import os
 import unittest
 
 from py_utils import cloud_storage
-import mock
+import mock  # pylint: disable=import-error
 from pyfakefs import fake_filesystem_unittest
 from pyfakefs import fake_filesystem
 from pyfakefs import fake_filesystem_glob

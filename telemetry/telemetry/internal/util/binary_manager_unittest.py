@@ -6,7 +6,7 @@ import unittest
 
 from telemetry.core import exceptions
 from telemetry.internal.util import binary_manager
-import mock
+import mock  # pylint: disable=import-error
 
 
 class BinaryManagerTest(unittest.TestCase):
