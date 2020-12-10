@@ -191,6 +191,69 @@
       "message": "Sorry for the delay!  I was waiting to get approval for landing this before reviewing.  I should get to this today or tomorrow.",
       "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef7a7466_c3398818",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-12-10T18:33:45Z",
+      "side": 1,
+      "message": "LGTM!  I haven\u0027t deployed a new version of the viewer before, so I\u0027ll need to figure out the process for that.  I have the requisite permissions instructions, just need to find an follow them.",
+      "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eeff7bd_c3193c1a",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-12-10T18:33:45Z",
+      "side": 1,
+      "message": "nit: single quotes",
+      "range": {
+        "startLine": 233,
+        "startChar": 62,
+        "endLine": 233,
+        "endChar": 63
+      },
+      "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6929f1c6_d32a5ee5",
+        "filename": "netlog_viewer/netlog_viewer/import_view.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2020-12-10T18:33:45Z",
+      "side": 1,
+      "message": "nit:  Single quotes (console.log line below as well)",
+      "range": {
+        "startLine": 240,
+        "startChar": 28,
+        "endLine": 240,
+        "endChar": 29
+      },
+      "revId": "03d88d8a2503646b97d25dfc971832e54e29a650",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
