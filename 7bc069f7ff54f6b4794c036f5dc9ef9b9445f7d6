@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96f7bb2_fbdb8ed7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1178490
+      },
+      "writtenOn": "2020-12-11T14:28:40Z",
+      "side": 1,
+      "message": "I leave this one to Dean because I am not sure.",
+      "revId": "7bc069f7ff54f6b4794c036f5dc9ef9b9445f7d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
