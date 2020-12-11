@@ -22,6 +22,30 @@
       },
       "revId": "22b31909d62227d0f4ad2f93dedb85be61cac925",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "055dba70_4316778c",
+        "filename": "dashboard/dashboard/elements/pinpoint-job-dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-12-11T14:33:16Z",
+      "side": 1,
+      "message": "I\u0027ve seen this \u0027null\u0027 multiple times when a Polymere variable is null.\nNot sure if javascript or something else is doing this but it seems out of my reach.",
+      "parentUuid": "9c6bfcd4_89f74f2d",
+      "range": {
+        "startLine": 199,
+        "startChar": 27,
+        "endLine": 199,
+        "endChar": 33
+      },
+      "revId": "22b31909d62227d0f4ad2f93dedb85be61cac925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
