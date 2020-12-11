@@ -196,6 +196,10 @@ Polymer({
       this.error = e;
     }
 
+    if (this.project_id == 'null') {
+      this.project_id = 'chromium';
+    }
+
     this.loading = false;
   },
 
