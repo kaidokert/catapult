@@ -111,6 +111,30 @@
       },
       "revId": "22b31909d62227d0f4ad2f93dedb85be61cac925",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0033ff7b_f0c80cfb",
+        "filename": "dashboard/dashboard/elements/pinpoint-job-dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-12-14T09:29:31Z",
+      "side": 1,
+      "message": "Thanks, I made a new fix that makes more sense.",
+      "parentUuid": "0842af39_40a65ee3",
+      "range": {
+        "startLine": 199,
+        "startChar": 27,
+        "endLine": 199,
+        "endChar": 33
+      },
+      "revId": "22b31909d62227d0f4ad2f93dedb85be61cac925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
