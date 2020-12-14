@@ -16,6 +16,24 @@
       "message": "Is this CL ready for review? There appears to be no additional changes beyond the original CL.",
       "revId": "dcce5ea91dada3576f570710ad1a1277cc25c4ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a50c4e_768ab786",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2020-12-14T19:24:16Z",
+      "side": 1,
+      "message": "Yes - I tested the Chromium-side fix in https://chromium-review.googlesource.com/c/chromium/src/+/2587756 and it looks likes everything is happy, so I\u0027ll reland this without any changes once that fix is in.",
+      "parentUuid": "f0e412a9_e27a5c52",
+      "revId": "dcce5ea91dada3576f570710ad1a1277cc25c4ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
