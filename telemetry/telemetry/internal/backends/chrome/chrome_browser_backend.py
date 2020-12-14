@@ -92,6 +92,12 @@ class ChromeBrowserBackend(browser_backend.BrowserBackend):
   def HasDevToolsConnection(self):
     return self._devtools_client and self._devtools_client.IsAlive()
 
+  def StartDebuggerOutput(self):
+    self.devtools_client.StartDebuggerOutput()
+
+  def StopDebuggerOutput(self, path):
+    self.devtools_client.StopDebuggerOutput(path)
+
   def _FindDevToolsPortAndTarget(self):
     """Clients should return a (devtools_port, browser_target) pair.
 

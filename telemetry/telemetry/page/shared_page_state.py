@@ -83,6 +83,7 @@ class SharedPageState(story_module.SharedState):
     self.platform.Initialize()
     self._video_recording_enabled = (self._finder_options.capture_screen_video
                                      and self.platform.CanRecordVideo())
+    self._enable_debugger_output = self._finder_options.enable_debugger_output
 
   @property
   def interval_profiling_controller(self):
@@ -309,10 +310,15 @@ class SharedPageState(story_module.SharedState):
             page, action_runner.tab, self._page_test_results)
 
   def RunStory(self, results):
+    if self._enable_debugger_output:
+      self.browser.StartDebuggerOutput()
     self._PreparePage()
     self._page_test_results = results
     self._current_page.Run(self)
     self._page_test_results = None
+    if self._enable_debugger_output:
+      with results.CaptureArtifact('debug-stream.txt') as debug_path:
+        self.browser.StopDebuggerOutput(debug_path)
 
   def TearDownState(self):
     self._StopBrowser()

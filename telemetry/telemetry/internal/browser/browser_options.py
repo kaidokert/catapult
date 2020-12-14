@@ -67,6 +67,7 @@ class BrowserFinderOptions(optparse.Values):
     self.interval_profiling_frequency = 1000
     self.interval_profiler_options = ''
     self.capture_screen_video = False
+    self.enable_debugger_output = False
 
     self.experimental_system_tracing = False
     self.experimental_system_data_sources = False
@@ -198,6 +199,10 @@ class BrowserFinderOptions(optparse.Values):
         dest='capture_screen_video', action='store_true',
         help='Capture the screen during the test and save it to a video file '
              '(note that it is supported only on some platforms)')
+    group.add_option(
+        '--enable-debugger-output',
+        dest='enable_debugger_output', action='store_true',
+        help='Enable debugger output')
     parser.add_option_group(group)
 
     # Platform options

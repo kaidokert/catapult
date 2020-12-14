@@ -109,6 +109,8 @@ class TracingBackend(object):
     self._inspector_websocket = inspector_socket
     self._inspector_websocket.RegisterDomain(
         self._TRACING_DOMAIN, self._NotificationHandler)
+    self._inspector_websocket.RegisterDomain(
+        'Graphics', self._NotificationHandlerGraphics)
     self._is_tracing_running = False
     self._can_collect_data = False
     self._has_received_all_tracing_data = False
@@ -116,6 +118,7 @@ class TracingBackend(object):
     self._data_loss_occurred = False
     if startup_tracing_config is not None:
       self._TakeOwnershipOfTracingSession(startup_tracing_config)
+    self._debug_frames = []
 
   @property
   def is_tracing_running(self):
@@ -176,6 +179,21 @@ class TracingBackend(object):
     logging.info('Successfully started tracing.')
     self._is_tracing_running = True
     return True
+
+  def StartDebuggerOutput(self, timeout=20):
+    self._debug_frames = []
+    request = {
+        'method': 'Graphics.startStream',
+    }
+    self._inspector_websocket.SyncRequest(request, timeout)
+
+  def StopDebuggerOutput(self, path, timeout=20):
+    request = {
+        'method': 'Graphics.stopStream',
+    }
+    self._inspector_websocket.SyncRequest(request, timeout)
+    with open(path, 'w') as f:
+      f.write(json.dumps(self._debug_frames))
 
   def _SendTracingStartRequest(self, transfer_mode=None, trace_config=None,
                                trace_format=None, timeout=20):
@@ -358,6 +376,11 @@ class TracingBackend(object):
     finally:
       self._trace_data_builder = None
     logging.info('Successfully collected all trace data.')
+
+  def _NotificationHandlerGraphics(self, res):
+    if res.get('method') != 'Graphics.debugFrame':
+      return
+    self._debug_frames.append(res)
 
   def _NotificationHandler(self, res):
     if res.get('method') == 'Tracing.dataCollected':

@@ -366,6 +366,12 @@ class _DevToolsClientBackend(object):
       self._system_info_backend = system_info_backend.SystemInfoBackend(
           self.browser_target_url)
 
+  def StartDebuggerOutput(self):
+    self._tracing_backend.StartDebuggerOutput()
+
+  def StopDebuggerOutput(self, path):
+    self._tracing_backend.StopDebuggerOutput(path)
+
   def StartChromeTracing(self, trace_config, transfer_mode=None, timeout=20):
     """
     Args:

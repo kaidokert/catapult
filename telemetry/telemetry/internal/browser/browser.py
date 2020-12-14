@@ -171,6 +171,12 @@ class Browser(app.App):
   def GetLogFileContents(self):
     return self._browser_backend.GetLogFileContents()
 
+  def StartDebuggerOutput(self):
+    return self._browser_backend.StartDebuggerOutput()
+
+  def StopDebuggerOutput(self, path):
+    return self._browser_backend.StopDebuggerOutput(path)
+
   def GetMostRecentMinidumpPath(self):
     """Returns the path to the most recent minidump."""
     return self._browser_backend.GetMostRecentMinidumpPath()
