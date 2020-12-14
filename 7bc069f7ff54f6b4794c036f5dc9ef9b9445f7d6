@@ -16,6 +16,40 @@
       "message": "I leave this one to Dean because I am not sure.",
       "revId": "7bc069f7ff54f6b4794c036f5dc9ef9b9445f7d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af0d721d_d3bdf7ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-12-14T00:15:27Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "7bc069f7ff54f6b4794c036f5dc9ef9b9445f7d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad7d75d3_1dcbc217",
+        "filename": "dashboard/dashboard/elements/chart-slider.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-12-14T00:15:27Z",
+      "side": 1,
+      "message": "There might be a better way to check whether the chart is visible than checking whether the width() or height() are zero.",
+      "revId": "7bc069f7ff54f6b4794c036f5dc9ef9b9445f7d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
