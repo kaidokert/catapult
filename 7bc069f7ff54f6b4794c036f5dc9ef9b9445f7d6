@@ -50,6 +50,24 @@
       "message": "There might be a better way to check whether the chart is visible than checking whether the width() or height() are zero.",
       "revId": "7bc069f7ff54f6b4794c036f5dc9ef9b9445f7d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3401e4d7_55252fd2",
+        "filename": "dashboard/dashboard/elements/chart-slider.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2020-12-14T08:28:20Z",
+      "side": 1,
+      "message": "Checking the placeholder width and height is done in several places.\nDidn\u0027t find a better way.",
+      "parentUuid": "ad7d75d3_1dcbc217",
+      "revId": "7bc069f7ff54f6b4794c036f5dc9ef9b9445f7d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
