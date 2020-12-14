@@ -34,6 +34,23 @@
       "parentUuid": "f0e412a9_e27a5c52",
       "revId": "dcce5ea91dada3576f570710ad1a1277cc25c4ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "575f477d_f3d937d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-12-14T19:26:08Z",
+      "side": 1,
+      "message": "Thanks for the clarification. LGTM then.",
+      "revId": "dcce5ea91dada3576f570710ad1a1277cc25c4ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
