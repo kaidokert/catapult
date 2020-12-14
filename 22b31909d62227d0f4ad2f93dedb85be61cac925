@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe6b46d0_c0b17ff0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-12-14T00:13:11Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "22b31909d62227d0f4ad2f93dedb85be61cac925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c6bfcd4_89f74f2d",
@@ -62,6 +79,30 @@
       "side": 1,
       "message": "Got it, the change sounds good to me.\n\n+1 but let\u0027s wait for Dean\u0027s review as well.",
       "parentUuid": "055dba70_4316778c",
+      "range": {
+        "startLine": 199,
+        "startChar": 27,
+        "endLine": 199,
+        "endChar": 33
+      },
+      "revId": "22b31909d62227d0f4ad2f93dedb85be61cac925",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0842af39_40a65ee3",
+        "filename": "dashboard/dashboard/elements/pinpoint-job-dialog.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-12-14T00:13:11Z",
+      "side": 1,
+      "message": "You\u0027ll have to look at where this component is being used, because these properties are being set (i.e. they\u0027re provided at the point where the component is used). I would not be surprised if there was some API that was returning a string version of a python `None` which would translate into a string `null` which is being provided to this component.",
+      "parentUuid": "5f3c7a64_2cd38ced",
       "range": {
         "startLine": 199,
         "startChar": 27,
