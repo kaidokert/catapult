@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc7ee7b1_b1b1025a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1130490
+      },
+      "writtenOn": "2020-12-14T18:34:57Z",
+      "side": 1,
+      "message": "This exposes some video quality metrics to telemetry, to help, nominally, with catching regressions due to power savings.  Also useful more broadly to videostack, though.\n\nI\u0027ve never modified catapult before, so apologies if i\u0027ve gotten this all wrong.  :)\n\nThe corresponding change in chromium to emit these metrics is https://chromium-review.googlesource.com/c/chromium/src/+/2441018 .  TL;DR: TRACE_EVENT2 on an thread without a predictable name.\n\nthanks\n-fl\n",
+      "revId": "303f13d35cd74135cd701c60772b97b5028c9aeb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
