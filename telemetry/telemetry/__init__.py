@@ -65,7 +65,6 @@ _AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'altgraph')
 _AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'modulegraph')
 _AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'mox3')
 _AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'png')
-_AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'pyfakefs')
 _AddDirToPythonPath(util.GetTelemetryThirdPartyDir(), 'websocket-client')
 
 # Install Telemtry global hooks.

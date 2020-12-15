@@ -1,10 +1,14 @@
 # Copyright 2013 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+import ntpath
 import os
+import posixpath
 import stat
+import sys
 import unittest
 
+import mock
 from pyfakefs import fake_filesystem_unittest
 
 from telemetry import decorators
@@ -17,29 +21,23 @@ from telemetry.internal.platform import desktop_device
 from telemetry.testing import system_stub
 
 
+WINDOWS_PATHEXT = ['.exe', '.bat']
+
+
 # This file verifies the logic for finding a browser instance on all platforms
 # at once. It does so by providing stubs for the OS/sys/subprocess primitives
 # that the underlying finding logic usually uses to locate a suitable browser.
 # We prefer this approach to having to run the same test on every platform on
 # which we want this code to work.
 
-class FindTestBase(unittest.TestCase):
+class FindTestBase(fake_filesystem_unittest.TestCase):
   def setUp(self):
+    self.setUpPyfakefs()
     self._finder_options = browser_options.BrowserFinderOptions()
-    self._finder_options.chrome_root = '../../../'
-    self._finder_stubs = system_stub.Override(desktop_browser_finder,
-                                              ['os', 'subprocess', 'sys'])
-    self._path_stubs = system_stub.Override(
-        desktop_browser_finder.path_module, ['os', 'sys'])
-    self._catapult_path_stubs = system_stub.Override(
-        desktop_browser_finder.path_module.catapult_util, ['os', 'sys'])
-    self._util_stubs = system_stub.Override(util, ['os', 'sys'])
 
   def tearDown(self):
-    self._finder_stubs.Restore()
-    self._path_stubs.Restore()
-    self._catapult_path_stubs.Restore()
-    self._util_stubs.Restore()
+    os.path = self._old_path
+    os.name = self._old_name
 
   @property
   def _files(self):
@@ -56,68 +54,115 @@ class FindTestBase(unittest.TestCase):
   def CanFindAvailableBrowsers(self):
     return desktop_browser_finder.CanFindAvailableBrowsers()
 
+  def _SetupPlatformMocks(self, mock_type):
+    self.assertIn(mock_type, ['win', 'linux', 'mac'])
 
-class FindSystemTest(FindTestBase):
+    self._win_patcher = mock.patch.object(desktop_browser_finder, 'IsWin')
+    self._win_mock = self._win_patcher.start()
+    self.addCleanup(self._win_patcher.stop)
+    self._linux_patcher = mock.patch.object(desktop_browser_finder, 'IsLinux')
+    self._linux_mock = self._linux_patcher.start()
+    self.addCleanup(self._linux_patcher.stop)
+    self._mac_patcher = mock.patch.object(desktop_browser_finder, 'IsMac')
+    self._mac_mock = self._mac_patcher.start()
+    self.addCleanup(self._mac_patcher.stop)
+
+    self._environ_patcher = mock.patch.dict(os.environ, {}, clear=True)
+    self._environ_mock = self._environ_patcher.start()
+    self.addCleanup(self._environ_patcher.stop)
+
+    # The version of mock that Catapult currently uses seems to have issues
+    # with mocking module variables, so we monkey patching seems to be the
+    # only way to currently do this.
+    self._old_path = os.path
+    self._old_name = os.name
+
+    if mock_type == 'win':
+      self._win_mock.return_value = True
+      self._linux_mock.return_value = False
+      self._mac_mock.return_value = False
+      self.fs.is_windows_fs = True
+      os.name = 'nt'
+      os.path = ntpath
+      os.environ['PATHEXT'] = ';'.join(WINDOWS_PATHEXT)
+      self._finder_options.chrome_root = 'C:\\chrome'
+    elif mock_type == 'linux':
+      self._win_mock.return_value = False
+      self._linux_mock.return_value = True
+      self._mac_mock.return_value = False
+      self.fs.is_windows_fs = False
+      os.name = 'posix'
+      os.path = posixpath
+      self._finder_options.chrome_root = '/chrome'
+    else:
+      self._win_mock.return_value = False
+      self._linux_mock = False
+      self._mac_mock.return_value = True
+      self.fs.is_windows_fs = True
+      os.name = 'posix'
+      os.path = posixpath
+      self._finder_options.chrome_root = '/chrome'
+
+
+class WindowsFindSystemTest(FindTestBase):
   def setUp(self):
-    super(FindSystemTest, self).setUp()
-    self._finder_stubs.sys.platform = 'win32'
-    self._path_stubs.sys.platform = 'win32'
-    self._util_stubs.sys.platform = 'win32'
+    super(WindowsFindSystemTest, self).setUp()
+    self._SetupPlatformMocks('win')
 
   def testFindProgramFiles(self):
     if not self.CanFindAvailableBrowsers():
       return
 
-    self._files.append(
+    os.environ['PROGRAMFILES'] = 'C:\\Program Files'
+    self.fs.create_file(
         'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
-    self._path_stubs.os.program_files = 'C:\\Program Files'
     self.assertIn('system', self.DoFindAllTypes())
 
   def testFindProgramFilesX86(self):
     if not self.CanFindAvailableBrowsers():
       return
 
-    self._files.append(
+    os.environ['PROGRAMFILES(X86)'] = 'C:\\Program Files(x86)'
+    self.fs.create_file(
         'C:\\Program Files(x86)\\Google\\Chrome\\Application\\chrome.exe')
-    self._path_stubs.os.program_files_x86 = 'C:\\Program Files(x86)'
     self.assertIn('system', self.DoFindAllTypes())
 
   def testFindLocalAppData(self):
     if not self.CanFindAvailableBrowsers():
       return
 
-    self._files.append(
+    os.environ['LOCALAPPDATA'] = 'C:\\Local App Data'
+    self.fs.create_file(
         'C:\\Local App Data\\Google\\Chrome\\Application\\chrome.exe')
-    self._path_stubs.os.local_app_data = 'C:\\Local App Data'
     self.assertIn('system', self.DoFindAllTypes())
 
 
-class FindLocalBuildsTest(FindTestBase):
+class WindowsFindLocalBuildsTest(FindTestBase):
   def setUp(self):
-    super(FindLocalBuildsTest, self).setUp()
-    self._finder_stubs.sys.platform = 'win32'
-    self._path_stubs.sys.platform = 'win32'
-    self._util_stubs.sys.platform = 'win32'
+    super(WindowsFindLocalBuildsTest, self).setUp()
+    self._SetupPlatformMocks('win')
 
   def testFindBuild(self):
     if not self.CanFindAvailableBrowsers():
       return
 
-    self._files.append('..\\..\\..\\build\\Release\\chrome.exe')
+    self.fs.create_file('C:\\chrome\\build\\Release\\chrome.exe')
     self.assertIn('release', self.DoFindAllTypes())
 
   def testFindOut(self):
     if not self.CanFindAvailableBrowsers():
       return
 
-    self._files.append('..\\..\\..\\out\\Release\\chrome.exe')
+    #self._files.append('..\\..\\..\\out\\Release\\chrome.exe')
+    self.fs.create_file('C:\\chrome\\out\\Release\\chrome.exe')
     self.assertIn('release', self.DoFindAllTypes())
 
   def testFindXcodebuild(self):
     if not self.CanFindAvailableBrowsers():
       return
 
-    self._files.append('..\\..\\..\\xcodebuild\\Release\\chrome.exe')
+    #self._files.append('..\\..\\..\\xcodebuild\\Release\\chrome.exe')
+    self.fs.create_file('C:\\chrome\\xcodebuild\\Release\\chrome.exe')
     self.assertIn('release', self.DoFindAllTypes())
 
 
@@ -179,13 +224,14 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     if not platform.GetHostPlatform().GetOSName() == 'linux':
       self.skipTest('Not running on Linux')
     self.setUpPyfakefs()
+    self.fs.create_dir('/usr/bin')
 
     self._finder_options = browser_options.BrowserFinderOptions()
     self._finder_options.chrome_root = '/src/'
 
   def CreateBrowser(self, path):
-    self.fs.CreateFile(path)
-    os.chmod(path, stat.S_IXUSR)
+    self.fs.create_file(path)
+    os.chmod(path, stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
   def DoFindAll(self):
     return desktop_browser_finder.FindAllAvailableBrowsers(
@@ -213,7 +259,7 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
         os.environ['CHROMIUM_OUTPUT_DIR'] = output_dir_env
 
   def testFindAllFailsIfNotExecutable(self):
-    self.fs.CreateFile('/src/out/Release/chrome')
+    self.fs.create_file('/src/out/Release/chrome')
 
     self.assertFalse(self.DoFindAllTypes())
 
@@ -230,7 +276,7 @@ class LinuxFindTest(fake_filesystem_unittest.TestCase):
     self.assertIn('does not exist or is not executable', str(cm.exception))
 
   def testErrorWithNonExecutable(self):
-    self.fs.CreateFile('/foo/another_browser')
+    self.fs.create_file('/foo/another_browser')
     self._finder_options.browser_executable = '/foo/another_browser'
     with self.assertRaises(exceptions.PathMissingError) as cm:
       self.DoFindAllTypes()

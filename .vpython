@@ -41,6 +41,14 @@ wheel: <
 >
 
 # Used by:
+#   telemetry/
+#   dependency_manager/
+wheel: <
+  name: "infra/python/wheels/pyfakefs-py2_py3"
+  version: "version:3.7.2"
+>
+
+# Used by:
 #   dashboard/
 wheel: <
   name: "infra/python/wheels/flask-py2_py3"

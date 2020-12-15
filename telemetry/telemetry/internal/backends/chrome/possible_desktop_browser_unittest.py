@@ -63,7 +63,7 @@ class PossibleDesktopBrowserTest(unittest.TestCase):
         self.assertFalse(
             os.path.exists(devtools_file_path),
             "SetUpEnvironment should delete the devtools file")
-        fs_patcher.fs.CreateFile(devtools_file_path)
+        fs_patcher.fs.create_file(devtools_file_path)
         self.assertTrue(
             os.path.exists(devtools_file_path),
             "Smoke check to make sure that CreateFile worked")
