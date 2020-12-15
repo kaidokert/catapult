@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "587b7357_30f07548",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2020-12-15T15:41:38Z",
+      "side": 1,
+      "message": "Hi, John\n\nPlease review this CL. It fixed the new tab error according the pinpoint jobs. There are other errors from time to time on collecting traces but I\u0027m going to address it in another CL for better measurement.",
+      "revId": "67bd1d0a1aa903b53c535b73535af6423ee4548e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
