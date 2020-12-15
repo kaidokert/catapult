@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f2e11bd_651c1da3",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2020-12-15T07:01:30Z",
+      "side": 0,
+      "message": "Just wondering -- are we changing the data because we no longer have multiple change points in the original data? Have you considered adding a test case instead, and updating this test case to not be a multiple change point case?",
+      "revId": "f22b977bc4c0d3ed4c4d85a50ec3f25f608c4b45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
