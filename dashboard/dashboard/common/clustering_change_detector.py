@@ -233,6 +233,14 @@ def ClusterAndFindSplit(values, rand=None):
     segment = values[start:end]
     partition_point, _ = ChangePointEstimator(segment)
 
+    # ChangePointEstimator doesn't work well if left and right parts are
+    # unbalanced. Rerun the estimator in a small range to improve the result.
+    partition_start = max(partition_point - 10, 0)
+    partition_end = min(partition_point + 10, end)
+    partition_point, _ = ChangePointEstimator(
+        segment[partition_start:partition_end])
+    partition_point += partition_start
+
     # Compare the left and right part divided by the possible change point
     comparison, cluster_a, cluster_b = ClusterAndCompare(
         segment, partition_point)
