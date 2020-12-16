@@ -15,6 +15,11 @@ CATAPULT_ROOT_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..'))
 DEPENDENCY_MANAGER_PATH = os.path.join(CATAPULT_ROOT_PATH, 'dependency_manager')
 PYMOCK_PATH = os.path.join(CATAPULT_ROOT_PATH, 'third_party', 'mock')
+PYMOCK_AND_DEPS_PATHS = [
+    PYMOCK_PATH,
+    os.path.join(CATAPULT_ROOT_PATH, 'third_party', 'funcsigs'),
+    os.path.join(CATAPULT_ROOT_PATH, 'third_party', 'pbr'),
+]
 
 
 @contextlib.contextmanager
@@ -25,6 +30,18 @@ def SysPath(path):
     sys.path.remove(path)
   else:
     sys.path.pop()
+
+
+@contextlib.contextmanager
+def SysPaths(paths):
+  sys.path.extend(paths)
+  yield
+  if sys.path[-1 * len(paths):] != paths:
+    for p in paths:
+      sys.path.remove(p)
+  else:
+    for _ in xrange(len(paths)):
+      sys.path.pop()
 
 
 with SysPath(DEPENDENCY_MANAGER_PATH):

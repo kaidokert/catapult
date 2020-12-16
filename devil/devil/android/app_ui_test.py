@@ -11,7 +11,7 @@ from devil.android import app_ui
 from devil.android import device_errors
 from devil.utils import geometry
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock  # pylint: disable=import-error
 
 MOCK_XML_LOADING = '''

@@ -12,7 +12,7 @@ from devil.android import apk_helper
 from devil.android.ndk import abis
 from devil.utils import mock_calls
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock  # pylint: disable=import-error
 
 # pylint: disable=line-too-long

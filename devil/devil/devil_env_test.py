@@ -6,23 +6,76 @@
 # pylint: disable=protected-access
 
 import logging
+import os
 import sys
 import unittest
 
 from devil import devil_env
 
-_sys_path_before = list(sys.path)
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
-  _sys_path_with_pymock = list(sys.path)
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock  # pylint: disable=import-error
-_sys_path_after = list(sys.path)
 
 
 class DevilEnvTest(unittest.TestCase):
-  def testSysPath(self):
-    self.assertEquals(_sys_path_before, _sys_path_after)
-    self.assertEquals(_sys_path_before + [devil_env.PYMOCK_PATH],
-                      _sys_path_with_pymock)
+  def testSysPathPop(self):
+    # Test popping at the end of the list.
+    path_to_add = os.path.join(devil_env.CATAPULT_ROOT_PATH, 'notarealdir')
+    sys_path_before = list(sys.path)
+    with devil_env.SysPath(path_to_add):
+      sys_path_during = list(sys.path)
+    sys_path_after = list(sys.path)
+    self.assertEqual(sys_path_before, sys_path_after)
+    self.assertEqual(sys_path_before + [path_to_add], sys_path_during)
+
+  def testSysPathRemove(self):
+    # Test removing mid-list.
+    path_to_add = os.path.join(devil_env.CATAPULT_ROOT_PATH, 'notarealdir')
+    additional_path = os.path.join(devil_env.CATAPULT_ROOT_PATH, 'fakedir')
+
+    try:
+      sys_path_before = list(sys.path)
+      with devil_env.SysPath(path_to_add):
+        sys_path_during = list(sys.path)
+        sys.path.append(additional_path)
+      sys_path_after = list(sys.path)
+      self.assertEqual(sys_path_before + [additional_path], sys_path_after)
+      self.assertEqual(sys_path_before + [path_to_add], sys_path_during)
+    finally:
+      if additional_path in sys.path:
+        sys.path.remove(additional_path)
+
+  def testSysPathsPop(self):
+    # Test popping at the end of the list.
+    paths_to_add = [
+        os.path.join(devil_env.CATAPULT_ROOT_PATH, 'notarealdir'),
+        os.path.join(devil_env.CATAPULT_ROOT_PATH, 'fakedir'),
+    ]
+    sys_path_before = list(sys.path)
+    with devil_env.SysPaths(paths_to_add):
+      sys_path_during = list(sys.path)
+    sys_path_after = list(sys.path)
+    self.assertEqual(sys_path_before, sys_path_after)
+    self.assertEqual(sys_path_before + paths_to_add, sys_path_during)
+
+  def testSysPathsRemove(self):
+    # Test removing mid-list.
+    paths_to_add = [
+        os.path.join(devil_env.CATAPULT_ROOT_PATH, 'notarealdir'),
+        os.path.join(devil_env.CATAPULT_ROOT_PATH, 'fakedir'),
+    ]
+    additional_path = os.path.join(devil_env.CATAPULT_ROOT_PATH, 'anotherfake')
+
+    try:
+      sys_path_before = list(sys.path)
+      with devil_env.SysPaths(paths_to_add):
+        sys_path_during = list(sys.path)
+        sys.path.append(additional_path)
+      sys_path_after = list(sys.path)
+      self.assertEqual(sys_path_before + [additional_path], sys_path_after)
+      self.assertEqual(sys_path_before + paths_to_add, sys_path_during)
+    finally:
+      if additional_path in sys.path:
+        sys.path.remove(additional_path)
 
   def testGetEnvironmentVariableConfig_configType(self):
     with mock.patch('os.environ.get',
