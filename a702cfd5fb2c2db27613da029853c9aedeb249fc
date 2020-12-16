@@ -39,6 +39,30 @@
       },
       "revId": "a702cfd5fb2c2db27613da029853c9aedeb249fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e38b367_be378966",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2020-12-16T00:33:40Z",
+      "side": 1,
+      "message": "It should be same as min_segment_size, which really means minimal cluster size defined in E-Divisive. But it will be a seperate CL later to replace the min_segment_size with the concept of minimal cluster size.",
+      "parentUuid": "453d748b_5a566015",
+      "range": {
+        "startLine": 238,
+        "startChar": 44,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "a702cfd5fb2c2db27613da029853c9aedeb249fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
