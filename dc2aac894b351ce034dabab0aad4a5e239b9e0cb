@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "496ba213_3d091af4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2020-12-17T15:58:59Z",
+      "side": 1,
+      "message": "Adding some logging during APK install to help debugging a bug. PTAL.",
+      "revId": "dc2aac894b351ce034dabab0aad4a5e239b9e0cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
