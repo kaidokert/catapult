@@ -16,6 +16,24 @@
       "message": "the most recent patchset additionally:\n\n- updates six to 1.15.0, matching chromium\n- adds a .vpython3 with just six 1.15.0, also matching chromium, to allow devil/bin/run_py3_tests to work outside of a chromium checkout",
       "revId": "2807ed449dcab1160551f941ee8d71ccf4e17258",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3812415c_1d9873d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-12-22T21:11:15Z",
+      "side": 1,
+      "message": "still lgtm",
+      "parentUuid": "6fb63f9d_454b3259",
+      "revId": "2807ed449dcab1160551f941ee8d71ccf4e17258",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
