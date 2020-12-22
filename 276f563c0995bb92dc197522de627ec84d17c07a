@@ -22,6 +22,30 @@
       },
       "revId": "276f563c0995bb92dc197522de627ec84d17c07a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f65ceae_00dd13a3",
+        "filename": "dependency_manager/dependency_manager/dependency_manager_util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2020-12-22T20:03:06Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "ef41865e_2992e5b1",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "276f563c0995bb92dc197522de627ec84d17c07a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
