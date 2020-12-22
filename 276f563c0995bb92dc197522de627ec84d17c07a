@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef41865e_2992e5b1",
+        "filename": "dependency_manager/dependency_manager/dependency_manager_util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2020-12-22T17:33:25Z",
+      "side": 1,
+      "message": "Looks like this needs a lint suppression:\n\n  ************* Module dependency_manager.dependency_manager_util\n  C: 16, 2: standard import \"import zipfile\" comes before \"import six\" (wrong-import-order)",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "276f563c0995bb92dc197522de627ec84d17c07a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
