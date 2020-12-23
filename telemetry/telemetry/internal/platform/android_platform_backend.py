@@ -391,12 +391,35 @@ class AndroidPlatformBackend(
     cache.DropRamCaches()
 
   def FlushSystemCacheForDirectory(self, directory):
-    binary_manager.ReinstallAndroidHelperIfNeeded(
-        'clear_system_cache', _DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION,
-        self._device)
-    self._device.RunShellCommand(
-        [_DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION, '--recurse', directory],
-        as_root=True, check_return=True)
+    try:
+      binary_manager.ReinstallAndroidHelperIfNeeded(
+          'clear_system_cache', _DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION,
+          self._device)
+      self._device.RunShellCommand(
+          [_DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION, '--recurse', directory],
+          as_root=True, check_return=True)
+    finally:
+      logging.info('Retrieving logcat')
+      if not psutil:
+        logging.info('psutil not available')
+      else:
+        parent_argv = psutil.Process().parent().cmdline()
+        output_file = None
+        for i in range(len(parent_argv)):
+          if (parent_argv[i] == '--isolated-script-test-output' and
+              i + 1 < len(parent_argv)):
+            output_file = parent_argv[i + 1]
+          elif parent_argv[i].startswith('--isolated-script-test-output='):
+            output_file = parent_argv[i].split('=', 1)[1]
+        if output_file is None:
+          logging.info('Unable to discover output dir')
+        else:
+          output_file = os.path.join(os.path.dirname(output_file), 'logcat.txt')
+          if os.path.exists(output_file):
+            logging.info('Logcat file already exists')
+          else:
+            with open(output_file, 'w') as f:
+              f.write('\n'.join(self._device.adb.Logcat(dump=True)) + '\n')
 
   def FlushDnsCache(self):
     self._device.RunShellCommand(
