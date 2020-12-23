@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0492ed5e_80e56c3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2020-12-23T19:45:36Z",
+      "side": 1,
+      "message": "Trichrome is failing for me today because of this:\n\n$ bin/trichrome_chrome_bundle run\n...\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/device_utils.py\", line 1189, in Install\n    permissions\u003dpermissions)\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/device_utils.py\", line 1345, in _InstallInternal\n    \u0027ls /data/data/\u0027 +  package_name, expect_status\u003dNone))\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py\", line 609, in Shell\n    output \u003d self._RunDeviceAdbCmd(args, timeout, retries, check_error\u003dFalse)\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py\", line 339, in _RunDeviceAdbCmd\n    check_error\u003dcheck_error)\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/decorators.py\", line 54, in timeout_retry_wrapper\n    return impl()\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/decorators.py\", line 49, in impl\n    return f(*args, **kwargs)\n  File \"/usr/local/google/code/clankium1/src/third_party/catapult/devil/devil/android/sdk/adb_wrapper.py\", line 314, in _RunAdbCmd\n    device_serial)\ndevil.android.device_errors.AdbCommandFailedError: (device: FA6AK0304925) adb shell \u0027ls /data/data/org.chromium.trichromelibrary\u0027: failed with exit status 1 and output:\n- ls: /data/data/org.chromium.trichromelibrary: No such file or directory\n\n\nNote that for trichrome library, the path looks like:\n/data/data/org.chromium.trichromelibrary_436300030\n\nWhere the number is the versionCode of the apk.\n\nProbably should revert this.",
+      "revId": "6a13cf40462d74397f85498e1597839b2fd9ea20",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
