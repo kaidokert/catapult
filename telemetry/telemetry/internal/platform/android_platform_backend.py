@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import sys
 import threading
 import time
 
@@ -397,6 +398,10 @@ class AndroidPlatformBackend(
     self._device.RunShellCommand(
         [_DEVICE_CLEAR_SYSTEM_CACHE_TOOL_LOCATION, '--recurse', directory],
         as_root=True, check_return=True)
+    output_dir = [s[13:] for s in sys.argv if s.startswith('--output-dir=')]
+    if output_dir and not os.path.exists(output_dir + '/logcat.txt'):
+      with open(output_dir + '/logcat.txt', 'w') as f:
+        f.write('\n'.join(self._device.adb.Logcat(dump=True)))
 
   def FlushDnsCache(self):
     self._device.RunShellCommand(
