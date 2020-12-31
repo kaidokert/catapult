@@ -94,10 +94,16 @@ def PermutationTest(sequence, rand=None):
   def RandomPermutations(sequence, count):
     pool = tuple(sequence)
     length = len(sequence)
+    if length <= _MAX_SUBSAMPLING_LENGTH:
+      yield pool
+      return
+
     i = 0
     while i < count:
       i += 1
-      yield tuple(rand.sample(pool, min(length, _MAX_SUBSAMPLING_LENGTH)))
+      indexes = sorted(
+          rand.sample(range(length), min(length, _MAX_SUBSAMPLING_LENGTH)))
+      yield [pool[idx] for idx in indexes]
 
   sames = 0
   differences = 0
