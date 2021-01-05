@@ -16,6 +16,23 @@
       "message": "Happy new year! This is an upstream of a small trace viewer fix. Need an owner review.",
       "revId": "d46bca479014c81184328d80afea02b4f1d6c0a2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d13c3f3_45cef78e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2021-01-05T17:14:13Z",
+      "side": 1,
+      "message": "Happy new year! LGTM.",
+      "revId": "d46bca479014c81184328d80afea02b4f1d6c0a2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
