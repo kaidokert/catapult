@@ -248,7 +248,7 @@ class _ChromeOSController(_PlatformController):
     self._platform_backend = possible_browser._platform_backend
     # Default to system-wide profile collection as only system-wide profiling
     # is supported on ChromeOS.
-    self._perf_command = [self.PERF_BINARY_PATH] + profiler_options + ['-a']
+    self._perf_command = [self.PERF_BINARY_PATH] + profiler_options
     self._PrepareHostForProfiling()
     self._ValidatePerfCommand()
     self._device_results = []
@@ -321,22 +321,38 @@ class _ChromeOSController(_PlatformController):
     """Collects CPU profiles for the giving period."""
     out_file = self.DEVICE_OUT_FILE_PATTERN.format(period=period)
     platform_backend = action_runner.tab.browser._platform_backend
-    ssh_process = platform_backend.StartCommand(
-        self._perf_command + ['-o', out_file])
+    logging.warning('GetPid(): %s',
+                    action_runner.tab.browser._browser_backend.GetPid())
+    list_proc = platform_backend.cri.ListProcesses()
+    chrome_proc = [(p[0], p[1].split()[:2])
+                   for p in list_proc
+                   if os.path.split(p[1].split()[0])[-1] == 'chrome']
+    logging.warning('list of chrome processes:\n%s', chrome_proc)
+    # Last process in the list, first entry is PID.
+    last_renderer_pid = str(chrome_proc[-1][0])
+    logging.warning('Target renderer: %s', last_renderer_pid)
+    perf_command = self._perf_command + ['-o', out_file]
+    # Add PID target for non-system-wide tracing.
+    if '-a' not in perf_command:
+      perf_command.extend(['-p', last_renderer_pid])
+    ssh_process = platform_backend.StartCommand(perf_command)
     success = False
     try:
       yield
       success = True
     finally:
       success = self._StopProfiling(ssh_process) and success
-      self._device_results.append((period, out_file, success))
+      self._device_results.append((last_renderer_pid, out_file, success))
 
   def _CreateArtifacts(self, file_safe_name, results):
-    for period, device_file, ok in self._device_results:
+    for pid, device_file, ok in self._device_results:
       if not ok:
         continue
       with results.CaptureArtifact(
-          'perf-%s-%s.perf.data' % (file_safe_name, period)) as dest_file:
+          'perf-%s-%s.perf.data' % (file_safe_name, pid)) as dest_file:
+        logging.warning('device results: %s', self._device_results)
+        logging.warning('copying device_file %s to destination %s',
+                        device_file, dest_file)
         self._platform_backend.GetFile(device_file, dest_file)
 
   def GetResults(self, _, results):
