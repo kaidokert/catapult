@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0716f1ef_861caa81",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-01-05T22:00:00Z",
+      "side": 1,
+      "message": "Probably a good idea to enclose in quotes.",
+      "range": {
+        "startLine": 443,
+        "startChar": 39,
+        "endLine": 443,
+        "endChar": 41
+      },
+      "revId": "cf37239cf4a8d56b0901ca850c4a83ff67682357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c59f5974_1dd822ba",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-01-05T22:00:00Z",
+      "side": 1,
+      "message": "Should be output_path?",
+      "range": {
+        "startLine": 469,
+        "startChar": 26,
+        "endLine": 469,
+        "endChar": 33
+      },
+      "revId": "cf37239cf4a8d56b0901ca850c4a83ff67682357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "326a0756_25046c6a",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-01-05T22:00:00Z",
+      "side": 1,
+      "message": "Better to use absolute path instead of relative path.",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 45
+      },
+      "revId": "cf37239cf4a8d56b0901ca850c4a83ff67682357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
