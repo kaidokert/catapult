@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2320425f_2cde6edb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2021-01-05T21:23:33Z",
+      "side": 1,
+      "message": "sadrul, john: PTAL\n\nThis is only first part, so things are not wired up yet",
+      "revId": "55dd26b234f39578ce1d81b4fa63ed56ec9bd9af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
