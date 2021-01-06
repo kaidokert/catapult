@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0702bda9_598216b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-01-06T15:28:29Z",
+      "side": 1,
+      "message": "I landed another change on this one. Reverted that in https://chromium-review.googlesource.com/c/catapult/+/2612522",
+      "revId": "5ccae35340f680303f474ffee70f921632fc997e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
