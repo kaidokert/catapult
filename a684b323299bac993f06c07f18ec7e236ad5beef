@@ -16,6 +16,23 @@
       "message": "PTAL! Another upstream CL.",
       "revId": "a684b323299bac993f06c07f18ec7e236ad5beef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7623e2e0_c05c6020",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2021-01-06T14:51:55Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "a684b323299bac993f06c07f18ec7e236ad5beef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
