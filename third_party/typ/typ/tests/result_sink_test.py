@@ -368,3 +368,11 @@ class ResultSinkReporterTest(unittest.TestCase):
                 },
             ],
         })
+
+    def testCreateJsonFormatsWithDurationInScientificNotation(self):
+        retval = result_sink._create_json_test_result(
+            'test_id', json_results.ResultType.Pass, True,
+            {'artifact': {'filePath': 'somepath'}},
+            [('tag_key', 'tag_value')], '<pre>summary</pre>', 1e-10)
+
+        self.assertEqual(retval.duration, '0.000000000s')
