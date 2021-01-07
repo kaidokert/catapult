@@ -22,6 +22,7 @@ import sys
 import tempfile
 import time
 import threading
+import traceback
 import uuid
 
 from devil import base_error
@@ -1277,6 +1278,10 @@ class DeviceUtils(object):
                        allow_downgrade=False,
                        reinstall=False,
                        permissions=None):
+    logger.info(
+      'apk=%s, apk_paths=%s, allow_downgrade=%s, reinstall=%s, permissions=%s',
+      apk, apk_paths, allow_downgrade, reinstall, permissions)
+    logger.info('%s', traceback.extract_stack())
     if not apk_paths:
       raise device_errors.CommandFailedError('Did not get any APKs to install')
 
