@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5156f05_5da0c14d",
+        "filename": "telemetry/telemetry/web_perf/timeline_based_measurement.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-01-07T00:14:30Z",
+      "side": 1,
+      "message": "This API change is risky, as it will cause any existing code that uses the old API to fail. Since some of the callers are in chromium repo, it\u0027s hard to update all callers.\n\nProbably a good idea to add a default value (story\u003dNone), at least initially.",
+      "range": {
+        "startLine": 134,
+        "startChar": 33,
+        "endLine": 134,
+        "endChar": 40
+      },
+      "revId": "857a211498b81aaab142456ee4313f252dfaf3be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
