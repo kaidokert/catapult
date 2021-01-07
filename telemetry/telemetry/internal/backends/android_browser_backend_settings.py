@@ -169,15 +169,15 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
     all_apks = []
     # Try to find the WebView embedder next to the local APK found.
     if apk_path is not None:
-      embedder_apk_path = os.path.join(
-          os.path.dirname(apk_path), self.embedder_apk_name)
-      if os.path.exists(embedder_apk_path):
-        all_apks.append(embedder_apk_path)
       if self.additional_apk_name is not None:
         additional_apk_path = os.path.join(
             os.path.dirname(apk_path), self.additional_apk_name)
         if os.path.exists(additional_apk_path):
           all_apks.append(additional_apk_path)
+      embedder_apk_path = os.path.join(
+          os.path.dirname(apk_path), self.embedder_apk_name)
+      if os.path.exists(embedder_apk_path):
+        all_apks.append(embedder_apk_path)
     return all_apks
 
   def IsWebView(self):
