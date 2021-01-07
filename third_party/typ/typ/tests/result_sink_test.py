@@ -368,3 +368,17 @@ class ResultSinkReporterTest(unittest.TestCase):
                 },
             ],
         })
+
+    def testCreateJsonWithVerySmallDuration(self):
+        retval = result_sink._create_json_test_result(
+            'test_id', json_results.ResultType.Pass, True,
+            {'artifact': {'filePath': 'somepath'}},
+            [('tag_key', 'tag_value')], '<pre>summary</pre>', 1e-10)
+        self.assertEqual(retval.duration, '0.000000000s')
+
+    def testCreateJsonFormatsWithVeryLongDuration(self):
+        retval = result_sink._create_json_test_result(
+            'test_id', json_results.ResultType.Pass, True,
+            {'artifact': {'filePath': 'somepath'}},
+            [('tag_key', 'tag_value')], '<pre>summary</pre>', 1e+16)
+        self.assertEqual(retval.duration, '10000000000000000.000000000s')
