@@ -9,7 +9,7 @@ from devil.android import device_utils
 from devil.android.perf import perf_control
 from devil.android.sdk import adb_wrapper
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock
 
 

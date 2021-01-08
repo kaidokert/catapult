@@ -10,7 +10,7 @@ from devil import devil_env
 from devil.android import device_errors
 from devil.android import md5sum
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock  # pylint: disable=import-error
 
 TEST_OUT_DIR = os.path.join('test', 'out', 'directory')

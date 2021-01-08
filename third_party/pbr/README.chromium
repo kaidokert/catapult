@@ -1,0 +1,11 @@
+Name: pbr
+URL: https://pypi.python.org/pypi/pbr
+Version: 3.0.0
+License: Apache License 2.0
+
+Description:
+PBR is a library that injects some useful and sensible default behaviors into your setuptools run.
+
+Local Modifications:
+Removed everything except for the core source files (including setup script and documentation).
+

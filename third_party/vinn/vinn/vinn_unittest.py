@@ -11,7 +11,11 @@ import tempfile
 import unittest
 
 sys.path.append(
+    os.path.join(os.path.dirname(__file__), '..', '..', 'funcsigs'))
+sys.path.append(
     os.path.join(os.path.dirname(__file__), '..', '..', 'mock'))
+sys.path.append(
+    os.path.join(os.path.dirname(__file__), '..', '..', 'pbr'))
 import mock
 
 import vinn

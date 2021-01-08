@@ -18,7 +18,7 @@ from devil.android.sdk import adb_wrapper
 from devil.android.sdk import version_codes
 from devil.android.tools import system_app
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock
 
 _PACKAGE_NAME = 'com.android'
