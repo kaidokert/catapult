@@ -12,7 +12,7 @@ from devil import devil_env
 from devil.utils import lazy
 from devil.utils import timeout_retry
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock
 
 

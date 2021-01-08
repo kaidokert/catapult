@@ -20,7 +20,7 @@ from devil.android import fastboot_utils
 from devil.android.sdk import fastboot
 from devil.utils import mock_calls
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock  # pylint: disable=import-error
 
 _BOARD = 'board_type'

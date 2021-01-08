@@ -26,6 +26,8 @@ def _GetPathsToPrepend(input_api):
       project_dir,
       input_api.os_path.join(catapult_dir, 'dependency_manager'),
       input_api.os_path.join(catapult_dir, 'devil'),
+      input_api.os_path.join(catapult_dir, 'third_party', 'funcsigs'),
       input_api.os_path.join(catapult_dir, 'third_party', 'mock'),
+      input_api.os_path.join(catapult_dir, 'third_party', 'pbr'),
       input_api.os_path.join(catapult_dir, 'third_party', 'pyfakefs'),
   ]

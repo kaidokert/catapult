@@ -14,7 +14,7 @@ from devil.android import device_utils
 from devil.android.sdk import shared_prefs
 from devil.android.sdk import version_codes
 
-with devil_env.SysPath(devil_env.PYMOCK_PATH):
+with devil_env.SysPaths(devil_env.PYMOCK_AND_DEPS_PATHS):
   import mock  # pylint: disable=import-error
 
 INITIAL_XML = ("<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n"
