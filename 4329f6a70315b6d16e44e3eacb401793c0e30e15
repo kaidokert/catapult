@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "324abffb_e3937b11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2021-01-11T16:58:42Z",
+      "side": 1,
+      "message": "Hi, John\n\nPlease review this CL. The previously failed benchmarks are verified fixed according to the pinpoint jobs. Thanks.",
+      "revId": "4329f6a70315b6d16e44e3eacb401793c0e30e15",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
