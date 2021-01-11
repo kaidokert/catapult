@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c987956_99b1fc07",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-11T02:11:32Z",
+      "side": 1,
+      "message": "This changes the meaning of the sampling, which is counter to what we\u0027re trying to do with the permutation testing. The original implementation resamples the sequence to at most `_MAX_SUBSAMPLING_LENGTH` to see whether we can find a re-arrangement of the data in `sequence` that might indicate there\u0027s potentially a hidden change-point from \"noise\".\n\nThis version preserves the ordering of the indices, which isn\u0027t really what we want -- the point of the permutation is to re-arrange the values to determine whether we can potentially test that there may be a significant difference in the distribution of the samples in a sequence. I think the bug in our E-Divisive implementation is that we\u0027re actually using E-Divisive again on the permutations, instead of using a statistical test of significance on resampling for a sub-range. We might not actually need to run the full E-Divisive again, but instead use the U-test to check that a good percentage of the permutations have detectable differences at some alpha.\n\nCan we try that instead? We can generate permutation pairs, and in the loop compare whether two permutations have significantly different distributions at some threshold (say p-value \u003c\u003d 0.05, could be configured later) and count the number of times it happens. That should also be easy to test and could be much faster.\n\nhttps://en.wikipedia.org/wiki/Resampling_(statistics)",
+      "range": {
+        "startLine": 104,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 75
+      },
+      "revId": "0c0812238c5109dfddb64cf9634de50140eeab6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5334d2da_444f60c5",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-11T02:11:32Z",
+      "side": 1,
+      "message": "This changes the result from a tuple to a list. Is that intended?",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 42
+      },
+      "revId": "0c0812238c5109dfddb64cf9634de50140eeab6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
