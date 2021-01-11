@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a96aeb8b_dae680c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-11T02:13:20Z",
+      "side": 1,
+      "message": "LGTM\n\nGreat catch! However, see my comment on the parent CL on how to further improve the permutation testing.",
+      "revId": "17f78a5f1c34bd6e8298538e7eb6544fba65e9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
