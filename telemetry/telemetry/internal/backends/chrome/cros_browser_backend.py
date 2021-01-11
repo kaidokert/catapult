@@ -89,6 +89,8 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     # Remove the stale file with the devtools port / browser target
     # prior to restarting chrome.
     self._cri.RmRF(self._GetDevToolsActivePortPath())
+    # Remove old debug messages
+    self._cri.RmRF('/var/log/messages*')
 
     self._dump_finder = minidump_finder.MinidumpFinder(
         self._platform_backend.platform.GetOSName(),
@@ -218,6 +220,7 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     """
     self._CollectBrowserLogs(log_level)
     self._CollectUiLogs(log_level)
+    self._CollectMessages(log_level)
     return super(CrOSBrowserBackend, self).CollectDebugData(log_level)
 
   def _CollectBrowserLogs(self, log_level):
@@ -272,6 +275,27 @@ class CrOSBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         'ui_logs', 'ui_log-%s' % artifact_logger.GetTimestampSuffix())
     logging.log(log_level, 'Saving UI log as artifact %s', artifact_name)
     artifact_logger.CreateArtifact(artifact_name, ui_log)
+
+  def _CollectMessages(self, log_level): 
+    """Helper function to collect /var/log/message.
+
+    Args:
+      log_level: The logging level to use from the logging module, e.g.
+          logging.ERROR.
+    """
+    # /var/log/chrome/chrome is the log for the current browser, but in case
+    # there's something useful in the previous browser's logs, merge chrome
+    # and chrome.PREVIOUS.
+    try:
+      messages = self._cri.GetFileContents('/var/log/messages')
+    except OSError:
+      logging.log(log_level, 'Unexpectedly did not find messages')
+      return
+
+    artifact_name = posixpath.join(
+        'messages', 'messages-%s' % artifact_logger.GetTimestampSuffix())
+    logging.log(log_level, 'Saving messages as artifact %s', artifact_name)
+    artifact_logger.CreateArtifact(artifact_name, messages)
 
   @property
   def screenshot_timeout(self):
