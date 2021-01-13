@@ -105,16 +105,12 @@ def PermutationTest(sequence, rand=None):
   for permutation in RandomPermutations(
       sequence,
       min(_MAX_PERMUTATION_TESTING_ITERATIONS, math.factorial(len(sequence)))):
-    change_point, found = ChangePointEstimator(permutation)
-    if not found:
-      sames += 1
-      continue
     comparison, unused_a, unused_b = ClusterAndCompare(permutation,
-                                                       change_point)
+                                                       len(permutation) // 2)
     if comparison.result == pinpoint_compare.SAME:
       sames += 1
-    elif comparison.result == pinpoint_compare.UNKNOWN:
-      unknowns += 1
+    #elif comparison.result == pinpoint_compare.UNKNOWN:
+    #  unknowns += 1
     else:
       differences += 1
 
