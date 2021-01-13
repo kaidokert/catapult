@@ -22,6 +22,30 @@
       },
       "revId": "94c393a210c2dd3e26a3296a2f9804a52b14593a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8952a96b_f20989e2",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-01-13T15:04:28Z",
+      "side": 1,
+      "message": "1. RandomSampler maybe better because sampler includes the meaning of subset...\n2. Done.",
+      "parentUuid": "0db5322c_e478bf60",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 22
+      },
+      "revId": "94c393a210c2dd3e26a3296a2f9804a52b14593a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bded807_5418bdcb",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-01-13T15:04:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c987956_99b1fc07",
+      "range": {
+        "startLine": 104,
+        "startChar": 6,
+        "endLine": 105,
+        "endChar": 75
+      },
+      "revId": "0c0812238c5109dfddb64cf9634de50140eeab6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5334d2da_444f60c5",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-01-11T02:11:32Z",
       "side": 1,
       "message": "This changes the result from a tuple to a list. Is that intended?",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 42
+      },
+      "revId": "0c0812238c5109dfddb64cf9634de50140eeab6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7477ac5d_3938c321",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-01-13T15:04:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5334d2da_444f60c5",
       "range": {
         "startLine": 106,
         "startChar": 6,
