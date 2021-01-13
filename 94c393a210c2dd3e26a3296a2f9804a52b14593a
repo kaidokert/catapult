@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db5322c_e478bf60",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-13T07:23:23Z",
+      "side": 1,
+      "message": "Yeah, not quite. What might make this work is the following:\n\n1. Change the `RandomPermutations` function into one that returns a sequence with at most `_MAX_SUBSAMPLING_LENGTH` elements. A better name would be `RandomSubsampler`.\n\n2. Generate enough subsample pairs so that you can compare an A subsample and B subsample from the same cluster.\n\nIt\u0027d look something like:\n\n```\nsub_a \u003d None\nfor sub_b in RandomSubsampler(...):\n  if not sub_a:\n    sub_a \u003d sub_b\n    continue\n  comparison \u003d pinpoint_compare.Compare(sub_a, sub_b, ...)\n  if comparison.result \u003d\u003d pinpoint_compare.SAME:\n    sames +\u003d 1\n  else:\n    differences +\u003d 1\n```",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 115,
+        "endChar": 22
+      },
+      "revId": "94c393a210c2dd3e26a3296a2f9804a52b14593a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
