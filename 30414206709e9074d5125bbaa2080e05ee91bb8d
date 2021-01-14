@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53c02465_00088ff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-14T04:53:30Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "30414206709e9074d5125bbaa2080e05ee91bb8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b5eac18_0bfe48e9",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-14T04:53:30Z",
+      "side": 1,
+      "message": "For type safety you probably want `1. - probability` instead?",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 10
+      },
+      "revId": "30414206709e9074d5125bbaa2080e05ee91bb8d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
