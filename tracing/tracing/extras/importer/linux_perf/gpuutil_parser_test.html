@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2013 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/extras/importer/linux_perf/ftrace_importer.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  function newModel(events) {
+    return tr.c.TestUtils.newModelWithEvents([events], {
+      shiftWorldToZero: false
+    });
+  }
+
+  test('gpuUtilImport', function() {
+    const lines = [
+'<idle>-0       [007] d.h1   242.898301: gpu_util: gpu_util=15\n',
+'<idle>-0       [007] d.h1   242.998322: gpu_util: gpu_util=16\n'
+    ];
+    const m = newModel(lines.join('\n'));
+    assert.isFalse(m.hasImportWarnings);
+
+    const threads = m.getAllThreads();
+    assert.strictEqual(threads.length, 1);
+
+    const thread = threads[0];
+    assert.strictEqual(thread.sliceGroup.slices[0].args.gpu_util, 15);
+
+    assert.strictEqual(thread.sliceGroup.slices[1].args.gpu_util, 16);
+  });
+});
+
+</script>
+
