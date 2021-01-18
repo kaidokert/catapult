@@ -211,6 +211,7 @@ tracing_js_html_files = [
   "tracing/metrics/rendering/pixels.html",
   "tracing/metrics/rendering/queueing_duration.html",
   "tracing/metrics/rendering/rendering_metric.html",
+  "tracing/metrics/rendering/smoothness_validity_metrics.html",
   "tracing/metrics/reported_by_page_metric.html",
   "tracing/metrics/sample_exception_metric.html",
   "tracing/metrics/sample_metric.html",
