@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dffa45d5_448695d3",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2021-01-18T17:19:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0716f1ef_861caa81",
+      "range": {
+        "startLine": 443,
+        "startChar": 39,
+        "endLine": 443,
+        "endChar": 41
+      },
+      "revId": "cf37239cf4a8d56b0901ca850c4a83ff67682357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c59f5974_1dd822ba",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af10c53_4785e86f",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2021-01-18T17:19:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c59f5974_1dd822ba",
+      "range": {
+        "startLine": 469,
+        "startChar": 26,
+        "endLine": 469,
+        "endChar": 33
+      },
+      "revId": "cf37239cf4a8d56b0901ca850c4a83ff67682357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "326a0756_25046c6a",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-01-05T22:00:00Z",
       "side": 1,
       "message": "Better to use absolute path instead of relative path.",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 45
+      },
+      "revId": "cf37239cf4a8d56b0901ca850c4a83ff67682357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc89fca_f16d152f",
+        "filename": "telemetry/telemetry/internal/platform/mac_platform_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1003154
+      },
+      "writtenOn": "2021-01-18T17:19:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "326a0756_25046c6a",
       "range": {
         "startLine": 129,
         "startChar": 31,
