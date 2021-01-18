@@ -73,7 +73,7 @@ def _intern_event_name(event_name, trace_packet, tid):
   return event_names[event_name]
 
 
-def write_thread_descriptor_event(output, pid, tid, ts):
+def write_thread_descriptor_event(output, pid, tid, ts, telemetry_events=True):
   """Write the first event in a sequence.
 
   Call this function before writing any other events.
@@ -88,7 +88,8 @@ def write_thread_descriptor_event(output, pid, tid, ts):
   thread_descriptor_packet = proto.TracePacket()
   thread_descriptor_packet.trusted_packet_sequence_id = _get_sequence_id(tid)
   thread_descriptor_packet.timestamp = int(ts * 1e3)
-  thread_descriptor_packet.timestamp_clock_id = CLOCK_TELEMETRY
+  thread_descriptor_packet.timestamp_clock_id = (
+      CLOCK_TELEMETRY if telemetry_events else CLOCK_BOOTTIME)
 
   thread_descriptor_packet.thread_descriptor = proto.ThreadDescriptor()
   thread_descriptor_packet.thread_descriptor.pid = pid
@@ -102,7 +103,7 @@ def write_thread_descriptor_event(output, pid, tid, ts):
   proto.write_trace_packet(output, thread_descriptor_packet)
 
 
-def write_event(output, ph, category, name, ts, args, tid):
+def write_event(output, ph, category, name, ts, args, tid, telemetry_events=True):
   """Write a trace event.
 
   Note that this function is NOT thread-safe.
@@ -119,7 +120,8 @@ def write_event(output, ph, category, name, ts, args, tid):
   packet = proto.TracePacket()
   packet.trusted_packet_sequence_id = _get_sequence_id(tid)
   packet.timestamp = int(ts * 1e3)
-  packet.timestamp_clock_id = CLOCK_TELEMETRY
+  packet.timestamp_clock_id = (
+      CLOCK_TELEMETRY if telemetry_events else CLOCK_BOOTTIME)
 
   packet.track_event = proto.TrackEvent()
   packet.track_event.category_iids = [_intern_category(category, packet, tid)]

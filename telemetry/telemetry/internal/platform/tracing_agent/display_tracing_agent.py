@@ -27,6 +27,6 @@ class DisplayTracingAgent(tracing_agent.TracingAgent):
   def CollectAgentTraceData(self, trace_data_builder, timeout=None):
     # TODO: Move stopping to StopAgentTracing.
     del timeout
-    surface_flinger_trace_data = self._platform_backend.StopDisplayTracing()
-    trace_data_builder.AddTraceFor(
-        trace_data.CHROME_TRACE_PART, surface_flinger_trace_data)
+    surface_flinger_trace_file = self._platform_backend.StopDisplayTracing()
+    trace_data_builder.AddTraceFileFor(
+        trace_data.CHROME_TRACE_PART, surface_flinger_trace_file)

@@ -7,6 +7,7 @@ import os
 import posixpath
 import re
 import subprocess
+import tempfile
 import threading
 import time
 
@@ -34,6 +35,9 @@ from devil.android.sdk import shared_prefs
 from devil.android.tools import provision_devices
 from devil.android.tools import system_app
 from devil.android.tools import video_recorder
+
+from py_trace_event.trace_event_impl import perfetto_trace_writer
+
 
 try:
   # devil.android.forwarder uses fcntl, which doesn't exist on Windows.
@@ -245,22 +249,44 @@ class AndroidPlatformBackend(
       pid = self._surface_stats_collector.GetSurfaceFlingerPid()
     finally:
       self._surface_stats_collector = None
-    # TODO(sullivan): should this code be inline, or live elsewhere?
-    events = [_BuildEvent(
-        '__metadata', 'process_name', 'M', pid, 0, {'name': 'SurfaceFlinger'})]
-    for ts in timestamps:
-      events.append(_BuildEvent('SurfaceFlinger', 'vsync_before', 'I', pid, ts,
-                                {'data': {'frame_count': 1}}))
 
-    return {
-        'traceEvents': events,
-        'metadata': {
-            'clock-domain': 'LINUX_CLOCK_MONOTONIC',
-            'surface_flinger': {
-                'refresh_period': refresh_period,
-            },
-        }
-    }
+    trace_file = tempfile.NamedTemporaryFile(delete=False, suffix='.pb')
+    perfetto_trace_writer.write_thread_descriptor_event(
+        output=trace_file,
+        pid=pid,
+        tid=0,  # FIXME
+        ts=timestamps[0],
+        telemetry_events=False,
+    )
+    perfetto_trace_writer.write_event(
+        output=trace_file,
+        ph="M",
+        category="__metadata",
+        name="process_name",
+        ts=timestamps[0],
+        args={'name': 'SurfaceFlinger'},
+        tid=0,
+        telemetry_events=False,
+    )
+
+    for ts in timestamps:
+      perfetto_trace_writer.write_event(
+          output=trace_file,
+          ph='I',
+          category='SurfaceFlinger',
+          name='vsync_before',
+          ts=ts,
+          args={'data': {'frame_count': 1}},
+          tid=0,
+          telemetry_events=False,
+      )
+
+    perfetto_trace_writer.write_chrome_metadata(
+        output=trace_file,
+        clock_domain='LINUX_CLOCK_MONOTONIC',
+        # TODO: surface_flinger.refresh period
+    )
+    return trace_file.name
 
   def CanTakeScreenshot(self):
     return True
