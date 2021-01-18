@@ -492,6 +492,36 @@ tr.exportTo('tr.metrics.sh', function() {
     const navigationStartSamples = timeToFCPEntries.map(entry => {
       return { value: entry.navigationStartEvent.start};
     });
+    const paintTimingObserverAccessEvents = findAllEvents(rendererHelper,
+        'loading', 'PerfObserver::GotArray');
+    const paintTimingObserverAccessSamples = [];
+    if (paintTimingObserverAccessEvents.length) {
+      paintTimingObserverAccessSamples.push(
+          {value: paintTimingObserverAccessEvents.length});
+    }
+    const paintTimingObserverAccessLastEvents =
+        findAllEvents(rendererHelper, 'loading',
+            'PerfObserver::LastEntryAccessed');
+    const paintTimingObserverAccessLastSamples = [];
+    if (paintTimingObserverAccessLastEvents.length) {
+      paintTimingObserverAccessLastSamples.push(
+          {value: paintTimingObserverAccessLastEvents.length});
+    }
+    const paintTimingTimelineAccessEvents = findAllEvents(rendererHelper,
+        'loading', 'PerfTimeline::GotArray');
+    const paintTimingTimelineAccessSamples = [];
+    if (paintTimingTimelineAccessEvents.length) {
+      paintTimingTimelineAccessSamples.push(
+          {value: paintTimingTimelineAccessEvents.length});
+    }
+    const paintTimingTimelineAccessLastEvents =
+        findAllEvents(rendererHelper, 'loading',
+            'PerfTimeline::LastEntryAccessed');
+    const paintTimingTimelineAccessLastSamples = [];
+    if (paintTimingTimelineAccessLastEvents.length) {
+      paintTimingTimelineAccessLastSamples.push(
+          {value: paintTimingTimelineAccessLastEvents.length});
+    }
 
     return {
       frameToNavStartEvents,
@@ -505,6 +535,10 @@ tr.exportTo('tr.metrics.sh', function() {
       largestTextPaintSamples,
       layoutShiftSamples,
       navigationStartSamples,
+      paintTimingObserverAccessSamples,
+      paintTimingObserverAccessLastSamples,
+      paintTimingTimelineAccessSamples,
+      paintTimingTimelineAccessLastSamples,
     };
   }
 
@@ -715,6 +749,50 @@ tr.exportTo('tr.metrics.sh', function() {
           description: 'navigationStart',
           summaryOptions: SUMMARY_OPTIONS,
         });
+    const paintTimingObserverAccessHistogram = histograms.createHistogram(
+        'paintTimingObserverAccess', tr.b.Unit.byName.count, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          summaryOptions: {
+            count: true,
+            max: false,
+            min: false,
+            sum: false,
+          },
+          description: 'paintTimingObserverAccess',
+        });
+    const paintTimingObserverLastAccessHistogram = histograms.createHistogram(
+        'paintTimingObserverLastAccess', tr.b.Unit.byName.count, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          summaryOptions: {
+            count: true,
+            max: false,
+            min: false,
+            sum: false,
+          },
+          description: 'paintTimingObserverLastAccess',
+        });
+    const paintTimingTimelineAccessHistogram = histograms.createHistogram(
+        'paintTimingTimelineAccess', tr.b.Unit.byName.count, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          summaryOptions: {
+            count: true,
+            max: false,
+            min: false,
+            sum: false,
+          },
+          description: 'paintTimingTimelineAccess',
+        });
+    const paintTimingTimelineLastAccessHistogram = histograms.createHistogram(
+        'paintTimingTimelineLastAccess', tr.b.Unit.byName.count, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          summaryOptions: {
+            count: true,
+            max: false,
+            min: false,
+            sum: false,
+          },
+          description: 'paintTimingTimelineLastAccess',
+        });
     tr.metrics.sh.rectsBasedSpeedIndexMetric(histograms, model);
 
     const chromeHelper = model.getOrCreateHelper(
@@ -764,6 +842,22 @@ tr.exportTo('tr.metrics.sh', function() {
       addSamplesToHistogram(
           samplesSet.navigationStartSamples,
           navigationStartHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.paintTimingObserverAccessSamples,
+          paintTimingObserverAccessHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.paintTimingObserverAccessLastSamples,
+          paintTimingObserverLastAccessHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.paintTimingTimelineAccessSamples,
+          paintTimingTimelineAccessHistogram,
+          histograms);
+      addSamplesToHistogram(
+          samplesSet.paintTimingTimelineAccessLastSamples,
+          paintTimingTimelineLastAccessHistogram,
           histograms);
     }
 
