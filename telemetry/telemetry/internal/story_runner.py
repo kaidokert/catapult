@@ -260,6 +260,7 @@ def RunStorySet(test, story_set, finder_options, results,
       print format_string % (s.name, ','.join(s.tags) if include_tags else '')
     return
 
+  finder_options.use_live_sites = True
   if (not finder_options.use_live_sites and
       finder_options.browser_options.wpr_mode != wpr_modes.WPR_RECORD):
     # Get the serving dirs of the filtered stories.
