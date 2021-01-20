@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1341443_cd726444",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-01-20T18:17:54Z",
+      "side": 1,
+      "message": "This is a pretty big hammer. Is there some context as to why we need to increase the timeout universally?",
+      "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
