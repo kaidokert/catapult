@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import multiprocessing
 import sys
 import unittest
 
@@ -20,7 +21,7 @@ from typ.host import Host
 from typ.pool import make_pool, _MessageType, _ProcessPool, _loop
 
 
-def _pre(host, worker_num, context):  # pylint: disable=W0613
+def _pre(host, worker_num, context, failure_queue):  # pylint: disable=W0613
     context['pre'] = True
     return context
 
@@ -51,7 +52,8 @@ class TestPool(test_case.TestCase):
     def run_basic_test(self, jobs):
         host = Host()
         context = {'pre': False, 'post': False}
-        pool = make_pool(host, jobs, _echo, context, _pre, _post)
+        pool = make_pool(host, jobs, _echo, context, _pre, _post,
+                         multiprocessing.Queue())
         pool.send('hello')
         pool.send('world')
         msg1 = pool.get()
@@ -67,21 +69,24 @@ class TestPool(test_case.TestCase):
 
     def run_through_loop(self, callback=None, pool=None):
         callback = callback or _stub
+        failure_queue = multiprocessing.Queue()
         if pool:
             host = pool.host
         else:
             host = Host()
-            pool = _ProcessPool(host, 0, _stub, None, _stub, _stub)
+            pool = _ProcessPool(host, 0, _stub, None, _stub, _stub,
+                                failure_queue)
             pool.send('hello')
 
         worker_num = 1
         _loop(pool.requests, pool.responses, host, worker_num, callback,
-              None, _stub, _stub, should_loop=False)
+              None, _stub, _stub, failure_queue, should_loop=False)
         return pool
 
     def test_async_close(self):
         host = Host()
-        pool = make_pool(host, 1, _echo, None, _stub, _stub)
+        pool = make_pool(host, 1, _echo, None, _stub, _stub,
+                         multiprocessing.Queue())
         pool.join()
 
     def test_basic_one_job(self):
@@ -93,7 +98,8 @@ class TestPool(test_case.TestCase):
     def test_join_discards_messages(self):
         host = Host()
         context = {'pre': False, 'post': False}
-        pool = make_pool(host, 2, _echo, context, _pre, _post)
+        pool = make_pool(host, 2, _echo, context, _pre, _post,
+                         multiprocessing.Queue())
         pool.send('hello')
         pool.close()
         pool.join()
@@ -102,7 +108,8 @@ class TestPool(test_case.TestCase):
     @unittest.skipIf(sys.version_info.major == 3, 'fails under python3')
     def test_join_gets_an_error(self):
         host = Host()
-        pool = make_pool(host, 2, _error, None, _stub, _stub)
+        pool = make_pool(host, 2, _error, None, _stub, _stub,
+                         multiprocessing.Queue())
         pool.send('hello')
         pool.close()
         try:
@@ -112,7 +119,8 @@ class TestPool(test_case.TestCase):
 
     def test_join_gets_an_interrupt(self):
         host = Host()
-        pool = make_pool(host, 2, _interrupt, None, _stub, _stub)
+        pool = make_pool(host, 2, _interrupt, None, _stub, _stub,
+                         multiprocessing.Queue())
         pool.send('hello')
         pool.close()
         self.assertRaises(KeyboardInterrupt, pool.join)
@@ -158,15 +166,16 @@ class TestPool(test_case.TestCase):
         host = Host()
         jobs = 2
         self.assertRaises(Exception, make_pool,
-                          host, jobs, _stub, unpicklable_fn, None, None)
+                          host, jobs, _stub, unpicklable_fn, None, None, None)
         self.assertRaises(Exception, make_pool,
-                          host, jobs, _stub, None, unpicklable_fn, None)
+                          host, jobs, _stub, None, unpicklable_fn, None, None)
         self.assertRaises(Exception, make_pool,
-                          host, jobs, _stub, None, None, unpicklable_fn)
+                          host, jobs, _stub, None, None, unpicklable_fn, None)
 
     def test_no_close(self):
         host = Host()
         context = {'pre': False, 'post': False}
-        pool = make_pool(host, 2, _echo, context, _pre, _post)
+        pool = make_pool(host, 2, _echo, context, _pre, _post,
+                         multiprocessing.Queue())
         final_contexts = pool.join()
         self.assertEqual(final_contexts, [])

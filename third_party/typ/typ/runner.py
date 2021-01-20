@@ -16,6 +16,7 @@ import fnmatch
 import importlib
 import inspect
 import json
+import multiprocessing
 import os
 import pdb
 import sys
@@ -154,6 +155,7 @@ class Runner(object):
         self.metadata = {}
         self.path_delimiter = json_results.DEFAULT_TEST_SEPARATOR
         self.artifact_output_dir = None
+        self.failure_queue = multiprocessing.Queue()
 
         # initialize self.args to the defaults.
         parser = ArgumentParser(self.host)
@@ -580,7 +582,7 @@ class Runner(object):
 
         child = _Child(self)
         pool = make_pool(h, jobs, _run_one_test, child,
-                         _setup_process, _teardown_process)
+                         _setup_process, _teardown_process, self.failure_queue)
 
         self._run_one_set(self.stats, result_set, test_set, jobs, pool)
 
@@ -661,6 +663,18 @@ class Runner(object):
                 pool.send(test_input)
                 running_jobs.add(test_input.name)
                 self._print_test_started(stats, test_input)
+
+            while not self.failure_queue.empty():
+                stats.failed += self.failure_queue.get()
+
+            if (self.args.typ_max_failures is not None
+                and stats.failed >= self.args.typ_max_failures):
+                print('\nAborting, waiting for processes to close')
+                pool.close()
+                pool.join()
+                raise RuntimeError(
+                    'Encountered %d failures with max of %d set, aborting.' % (
+                    stats.failed, self.args.typ_max_failures))
 
             result, should_retry_on_failure = pool.get()
             if (self.args.retry_only_retry_on_failure_tests and
@@ -894,7 +908,8 @@ class Runner(object):
           return False
         test_name = test_case.id()[len(self.args.test_name_prefix):]
         if self.has_expectations:
-            expected_results = self.expectations.expectations_for(test_name).results
+            expected_results = self.expectations.expectations_for(
+                    test_name).results
         else:
             expected_results = {ResultType.Pass}
         return (
@@ -952,13 +967,15 @@ class _Child(object):
         self.artifact_output_dir = parent.artifact_output_dir
         self.result_sink_reporter = None
         self.disable_resultsink = parent.args.disable_resultsink
+        self.failure_queue = None
 
 
-def _setup_process(host, worker_num, child):
+def _setup_process(host, worker_num, child, failure_queue):
     child.host = host
     child.result_sink_reporter = result_sink.ResultSinkReporter(
             host, child.disable_resultsink)
     child.worker_num = worker_num
+    child.failure_queue = failure_queue
     # pylint: disable=protected-access
 
     if child.coverage:  # pragma: no cover
@@ -1007,11 +1024,11 @@ def _run_one_test(child, test_input):
     # but could come up when testing non-typ code as well.
     h.capture_output(divert=not child.passthrough)
     if child.has_expectations:
-      expectation = child.expectations.expectations_for(test_name)
-      expected_results, should_retry_on_failure = (
-          expectation.results, expectation.should_retry_on_failure)
+        expectation = child.expectations.expectations_for(test_name)
+        expected_results, should_retry_on_failure = (
+            expectation.results, expectation.should_retry_on_failure)
     else:
-      expected_results, should_retry_on_failure = {ResultType.Pass}, False
+        expected_results, should_retry_on_failure = {ResultType.Pass}, False
     ex_str = ''
     try:
         orig_skip = unittest.skip
@@ -1050,6 +1067,7 @@ def _run_one_test(child, test_input):
             err += '\n  ' + '\n  '.join(ex_str.splitlines())
 
         h.restore_output()
+        child.failure_queue.put(1)
         return (Result(test_name, ResultType.Failure, started, took=0,
                        worker=child.worker_num, unexpected=True, code=1,
                        err=err, pid=pid), False)
@@ -1089,6 +1107,8 @@ def _run_one_test(child, test_input):
             child.result_sink_reporter.report_individual_test_result(
                 child.test_name_prefix, result, child.artifact_output_dir,
                 child.expectations)
+    if result.actual not in result.expected:
+        child.failure_queue.put(1)
     return (result, should_retry_on_failure)
 
 

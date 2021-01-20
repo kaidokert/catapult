@@ -20,12 +20,14 @@ import traceback
 from typ.host import Host
 
 
-def make_pool(host, jobs, callback, context, pre_fn, post_fn):
+def make_pool(host, jobs, callback, context, pre_fn, post_fn, failure_queue):
     _validate_args(context, pre_fn, post_fn)
     if jobs > 1:
-        return _ProcessPool(host, jobs, callback, context, pre_fn, post_fn)
+        return _ProcessPool(host, jobs, callback, context, pre_fn, post_fn,
+                            failure_queue)
     else:
-        return _AsyncPool(host, jobs, callback, context, pre_fn, post_fn)
+        return _AsyncPool(host, jobs, callback, context, pre_fn, post_fn,
+                          failure_queue)
 
 
 class _MessageType(object):
@@ -57,7 +59,8 @@ def _validate_args(context, pre_fn, post_fn):
 
 class _ProcessPool(object):
 
-    def __init__(self, host, jobs, callback, context, pre_fn, post_fn):
+    def __init__(self, host, jobs, callback, context, pre_fn, post_fn,
+                 failure_queue):
         self.host = host
         self.jobs = jobs
         self.requests = multiprocessing.Queue()
@@ -71,7 +74,7 @@ class _ProcessPool(object):
                                         args=(self.requests, self.responses,
                                               host.for_mp(), worker_num,
                                               callback, context,
-                                              pre_fn, post_fn))
+                                              pre_fn, post_fn, failure_queue))
             w.start()
             self.workers.append(w)
 
@@ -153,10 +156,10 @@ class _ProcessPool(object):
 # 'Too many arguments' pylint: disable=R0913
 
 def _loop(requests, responses, host, worker_num,
-          callback, context, pre_fn, post_fn, should_loop=True):
+          callback, context, pre_fn, post_fn, failure_queue, should_loop=True):
     host = host or Host()
     try:
-        context_after_pre = pre_fn(host, worker_num, context)
+        context_after_pre = pre_fn(host, worker_num, context, failure_queue)
         keep_looping = True
         while keep_looping:
             message_type, args = requests.get(block=True)
@@ -177,7 +180,8 @@ def _loop(requests, responses, host, worker_num,
 
 class _AsyncPool(object):
 
-    def __init__(self, host, jobs, callback, context, pre_fn, post_fn):
+    def __init__(self, host, jobs, callback, context, pre_fn, post_fn,
+                 failure_queue):
         self.host = host or Host()
         self.jobs = jobs
         self.callback = callback
@@ -185,7 +189,8 @@ class _AsyncPool(object):
         self.msgs = []
         self.closed = False
         self.post_fn = post_fn
-        self.context_after_pre = pre_fn(self.host, 1, self.context)
+        self.context_after_pre = pre_fn(self.host, 1, self.context,
+                                        failure_queue)
         self.final_context = None
 
     def send(self, msg):
