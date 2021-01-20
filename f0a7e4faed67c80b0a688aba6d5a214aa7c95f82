@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9362c864_f179e23b",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-01-20T13:45:25Z",
+      "side": 1,
+      "message": "Right -- putting parentheses there makes it explicit this is what you mean, instead of it being an accident (even if it\u0027s redundant based on language rules).",
+      "parentUuid": "7b5c1c96_9eeeef19",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 65
+      },
+      "revId": "f0a7e4faed67c80b0a688aba6d5a214aa7c95f82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d481304_bd20aedf",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
