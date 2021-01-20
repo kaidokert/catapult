@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b5c1c96_9eeeef19",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-01-20T13:38:05Z",
+      "side": 1,
+      "message": "I guess this is intended if I understand correctly? Here what we want is the change point in the middle of the range. So (_MAX_SUBSAMPLING_LENGTH // 2) before and also after it.",
+      "parentUuid": "c7651f0f_c85f07ce",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 65
+      },
+      "revId": "f0a7e4faed67c80b0a688aba6d5a214aa7c95f82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d481304_bd20aedf",
         "filename": "dashboard/dashboard/common/clustering_change_detector.py",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2021-01-20T05:15:07Z",
       "side": 1,
       "message": "What is the \"A:\" for?",
+      "range": {
+        "startLine": 222,
+        "startChar": 9,
+        "endLine": 222,
+        "endChar": 11
+      },
+      "revId": "f0a7e4faed67c80b0a688aba6d5a214aa7c95f82",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4249c98c_9fbb9c25",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-01-20T13:38:05Z",
+      "side": 1,
+      "message": "Ops. Fixed!",
+      "parentUuid": "2d481304_bd20aedf",
       "range": {
         "startLine": 222,
         "startChar": 9,
