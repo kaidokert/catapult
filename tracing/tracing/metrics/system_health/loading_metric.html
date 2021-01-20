@@ -702,6 +702,20 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
           alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_PAINT],
         });
+    const throttledCountHistogram = histograms.createHistogram(
+        'throttledCount', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
+          description: 'TBD',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
+    const throttledDurationHistogram  = histograms.createHistogram(
+        'throttledDuration', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'TBD',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
     const layoutShiftHistogram = histograms.createHistogram(
         'mainFrameCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
           binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
@@ -726,10 +740,16 @@ tr.exportTo('tr.metrics.sh', function() {
       const samplesSet =
           collectLoadingMetricsForRenderer(rendererHelper);
 
-      const lcpSamples = findLargestContentfulPaintHistogramSamples(
-          chromeHelper.browserHelper.mainThread.sliceGroup.slices);
+      const allBrowserEvents = chromeHelper.browserHelper.mainThread.sliceGroup.slices;
+      const lcpSamples = findLargestContentfulPaintHistogramSamples(allBrowserEvents);
       addSamplesToHistogram(
           lcpSamples, largestContentfulPaintHistogram, histograms);
+
+      const lcp = new tr.e.chrome.LargestContentfulPaint(allBrowserEvents);
+      const { throttledCountSamples, throttledDurationSamples } = lcp.findThrottles(chromeHelper.browserHelper);
+
+      addSamplesToHistogram(throttledCountSamples, throttledCountHistogram, histograms);
+      addSamplesToHistogram(throttledDurationSamples, throttledDurationHistogram, histograms);
 
       addSamplesToHistogram(
           samplesSet.firstPaintSamples, firstPaintHistogram, histograms);
