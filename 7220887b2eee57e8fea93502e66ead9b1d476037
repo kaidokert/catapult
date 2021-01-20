@@ -34,6 +34,24 @@
       "parentUuid": "c1341443_cd726444",
       "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b758c8a8_6bcb5d94",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-01-20T22:33:22Z",
+      "side": 1,
+      "message": "If we\u0027re just running into issues with install, then I\u0027d prefer if we confined it to that for now.\n\nFor every one execution of these methods on a dev\u0027s workstation, the same thing gets executed 100s and prob 1000s of times on the bots. And a few of those instances are likely running on misbehaving devices that exhaust all retries + timeouts. So my concern is that we\u0027d be increasing the time-to-fail in those worst cases.\n\nThough of course, bots are meant to be abused. So if we have evidence that a flat bump like this will improve dev\u0027s lives, then I wouldn\u0027t be opposed :)",
+      "parentUuid": "3a94e212_8e4ae880",
+      "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
