@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c88ab5c_7b242750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-01-20T01:46:47Z",
+      "side": 1,
+      "message": "+bpastene for owners",
+      "revId": "de1b8d1b6494b4deb42ed4e914bda931ef600411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8e38744_0f62eff9",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-01-20T01:46:47Z",
+      "side": 1,
+      "message": "nit: Make a new \"DEFAULT_LONG_TIMEOUT\" for these?",
+      "range": {
+        "startLine": 555,
+        "startChar": 19,
+        "endLine": 555,
+        "endChar": 39
+      },
+      "revId": "de1b8d1b6494b4deb42ed4e914bda931ef600411",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
