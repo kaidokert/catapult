@@ -88,6 +88,24 @@
       "parentUuid": "5ccbdc90_f2c8e5be",
       "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d33941_fbe49e60",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-01-21T18:50:49Z",
+      "side": 1,
+      "message": "Thanks, lgtm\n\nAlso +1 to everything Andrew said. Especially the bit about it not being as easy ;)",
+      "parentUuid": "653f9e99_3dcc6c2b",
+      "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
