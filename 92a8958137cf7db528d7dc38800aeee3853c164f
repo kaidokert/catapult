@@ -16,6 +16,24 @@
       "message": "@Pan: thanks for addressing this issue, I really appreciate it!\n\nJust double checking, will it address the issue reported in:\nhttps://bugs.chromium.org/p/chromium/issues/detail?id\u003d1150237#c7\n\nLGTM, but needs approval by an OWNER in this subsystem.\n",
       "revId": "92a8958137cf7db528d7dc38800aeee3853c164f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0982ddc2_5db97ab8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2021-01-21T20:08:12Z",
+      "side": 1,
+      "message": "Sure. Sorry to broke those tests.\nSince this CL restore the old behavior, it should fix that issue. But I don\u0027t have a device with user build.\nWould you like to verify on your side before I land this CL?",
+      "parentUuid": "21ef0f4a_86c58de5",
+      "revId": "92a8958137cf7db528d7dc38800aeee3853c164f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
