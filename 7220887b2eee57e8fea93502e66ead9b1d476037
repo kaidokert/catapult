@@ -70,6 +70,24 @@
       "parentUuid": "b758c8a8_6bcb5d94",
       "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "653f9e99_3dcc6c2b",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1286337
+      },
+      "writtenOn": "2021-01-21T18:26:04Z",
+      "side": 1,
+      "message": "I\u0027ve upped Push + Install and left the rest the same.",
+      "parentUuid": "5ccbdc90_f2c8e5be",
+      "revId": "7220887b2eee57e8fea93502e66ead9b1d476037",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
