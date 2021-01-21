@@ -481,7 +481,6 @@ class DeviceUtils(object):
     self._cache = {}
     self._client_caches = {}
     self._cache_lock = threading.RLock()
-    self._skip_root_user_build = None
     assert hasattr(self, decorators.DEFAULT_TIMEOUT_ATTR)
     assert hasattr(self, decorators.DEFAULT_RETRIES_ATTR)
 
@@ -1094,6 +1093,8 @@ class DeviceUtils(object):
              retries=None):
     """Reboot the device.
 
+    When |block| is True, it will try to restore the root status if applicable.
+
     Args:
       block: A boolean indicating if we should wait for the reboot to complete.
       wifi: A boolean indicating if we should wait for wifi to be enabled after
@@ -1113,11 +1114,21 @@ class DeviceUtils(object):
     def device_offline():
       return not self.IsOnline()
 
+    should_restore_root = self.HasRoot()
+    logging.info('device_utils, before reboot, should_restore_root: %s', should_restore_root)
+    logging.info('device_utils, before reboot, needs_su: %s', self.NeedsSU())
+    logging.info('device_utils, before reboot, has_root: %s', self.HasRoot())
     self.adb.Reboot()
     self.ClearCache()
     timeout_retry.WaitFor(device_offline, wait_period=1)
     if block:
       self.WaitUntilFullyBooted(wifi=wifi, decrypt=decrypt)
+      logging.info('device_utils, after reboot, needs_su: %s', self.NeedsSU())
+      logging.info('device_utils, after reboot, has_root: %s', self.HasRoot())
+      if should_restore_root:
+        self.EnableRoot()
+        logging.info('device_utils, after reboot & enable_root, needs_su: %s', self.NeedsSU())
+        logging.info('device_utils, after reboot & enable_root, has_root: %s', self.HasRoot())
 
   INSTALL_DEFAULT_TIMEOUT = 8 * _DEFAULT_TIMEOUT
   MODULES_SRC_DIRECTORY_PATH = '/data/local/tmp/modules'
@@ -1543,24 +1554,9 @@ class DeviceUtils(object):
     if run_as:
       cmd = 'run-as %s sh -c %s' % (cmd_helper.SingleQuote(run_as),
                                     cmd_helper.SingleQuote(cmd))
-    if as_root:
-      # Explicitly check the root status as the device may have lost it after
-      # reboot.
-      # For devices with user build, if the first root attempt fails, a warning
-      # will be issued and the following root attempts will be skipped because
-      # some commands that set as_root as True may still work without the root
-      # privilege.
-      if not self.HasRoot() and not self._skip_root_user_build:
-        try:
-          self.EnableRoot()
-        except device_errors.RootUserBuildError as e:
-          logger.warning('%s The adb shell command to run may fail with '
-                         'permission issues.', str(e))
-          self._skip_root_user_build = True
-
-      if (as_root is _FORCE_SU) or self.NeedsSU():
-        # "su -c sh -c" allows using shell features in |cmd|
-        cmd = self._Su('sh -c %s' % cmd_helper.SingleQuote(cmd))
+    if (as_root is _FORCE_SU) or (as_root and self.NeedsSU()):
+      # "su -c sh -c" allows using shell features in |cmd|
+      cmd = self._Su('sh -c %s' % cmd_helper.SingleQuote(cmd))
 
     output = handle_large_output(cmd, large_output)
 
