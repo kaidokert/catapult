@@ -77,6 +77,12 @@ _ALERT_GROUP_ACTIVE_WINDOW = datetime.timedelta(days=7)
 # )
 _ALERT_GROUP_TRIAGE_DELAY = datetime.timedelta(minutes=20)
 
+# Metrics that should be blocking if they regress.
+_CHROME_HEALTH_METRICS = [
+    'largestContentfulPaint', 'timeToFirstContentfulPaint',
+    'mainFrameCumulativeLayoutShift', 'totalBlockingTime'
+]
+
 
 class InvalidPinpointRequest(Exception):
   pass
@@ -326,6 +332,14 @@ class AlertGroupWorkflow(object):
       benchmarks_dict[name] = benchmark
     return benchmarks_dict.values()
 
+  def _HasChromeHealthMetric(self, regressions):
+    for r in regressions:
+      if any(
+          metric in utils.TestPath(r.test)
+          for metric in _CHROME_HEALTH_METRICS):
+        return True
+    return False
+
   def _ComputeBugUpdate(self, subscriptions, regressions):
     components = list(
         set(c for s in subscriptions for c in s.bug_components)
@@ -336,6 +350,9 @@ class AlertGroupWorkflow(object):
         | set(['Chromeperf-Auto-Triaged']))
     # We layer on some default labels if they don't conflict with any of the
     # provided ones.
+    if self._HasChromeHealthMetric(regressions):
+      labels.append('Pri-1')
+      labels.append('Chrome-Health-Blocking')
     if not any(l.startswith('Pri-') for l in labels):
       labels.append('Pri-2')
     if not any(l.startswith('Type-') for l in labels):
