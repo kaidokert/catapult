@@ -117,6 +117,30 @@
       },
       "revId": "0b91b63b228cbd5ca702836374fab60013a98613",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e483a6ff_03dd21b2",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1415903
+      },
+      "writtenOn": "2021-01-25T20:19:41Z",
+      "side": 1,
+      "message": "consider updating the commit message and/or title to reflect that this change would make the metrics release blocking as it is not currently clear.",
+      "parentUuid": "f3bdd959_1ad45fa8",
+      "range": {
+        "startLine": 80,
+        "startChar": 25,
+        "endLine": 80,
+        "endChar": 33
+      },
+      "revId": "0b91b63b228cbd5ca702836374fab60013a98613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
