@@ -16,6 +16,24 @@
       "message": "are we confident in the output of the metrics to implement this change now vs. in a few weeks/months once there is more progress made on the noise reduction effort?\n\nit would be helpful to learn the current baseline of how the metrics perform to ensure that they have low/no noise. the intent would be to avoid a poor developer experience if for example the metrics are noisey 50% of the time, there could be an argument made to wait until the benchmarking and speed tooling team make more progress on the noise reduction effort rather than rolling this out now as developers could get frustrated if 50% of changes that regress [using the same % as above] are blocked to stable when the culprit is noise vs. a true regression.",
       "revId": "34a879da8961d3409964fc533c3affb188f0c9d6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197d4322_1b5c2c9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-01-25T22:43:17Z",
+      "side": 1,
+      "message": "Another related question - as of right now, bugs for which Pinpoint is unable to find a culprit are automatically closed. What percentage of the bugs we find a culprit for are useful?",
+      "parentUuid": "70ccab82_d621856a",
+      "revId": "34a879da8961d3409964fc533c3affb188f0c9d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
