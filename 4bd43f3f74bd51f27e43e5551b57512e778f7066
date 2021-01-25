@@ -16,6 +16,40 @@
       "message": "PTAL",
       "revId": "4bd43f3f74bd51f27e43e5551b57512e778f7066",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98f7dc96_d3e2a509",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-01-25T22:54:26Z",
+      "side": 1,
+      "message": "Instead of using another multiprocessing queue to send 1\u0027s back to main process, you can just use this result object returned from a child process to tally unexpected failures from child processes.",
+      "revId": "4bd43f3f74bd51f27e43e5551b57512e778f7066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7e2e3e_3bfeee92",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-01-25T22:54:26Z",
+      "side": 1,
+      "message": "You probably shouldn\u0027t do this for unexpected passes.",
+      "revId": "4bd43f3f74bd51f27e43e5551b57512e778f7066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
