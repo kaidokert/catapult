@@ -315,6 +315,31 @@ class GroupReportTest(GroupReportTestBase):
     self.assertIsNone(self.fake_issue_tracker.new_bug_args)
     self.assertIsNone(self.fake_issue_tracker.new_bug_kwargs)
 
+  def testTriageChromeHealth(self, mock_get_sheriff_client):
+    self._SetUpMocks(mock_get_sheriff_client)
+    self._CallHandler()
+    # Add anomalies.
+    a = self._AddAnomaly(
+        test='master/bot/test_suite/largestContentfulPaint/test_case')
+    # Create Group.
+    self._CallHandler()
+    # Update Group to associate alerts.
+    self._CallHandler()
+    # Set Create timestamp to 2 hours ago.
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    group.created = datetime.datetime.utcnow() - datetime.timedelta(hours=2)
+    group.put()
+    # Submit issue.
+    self._CallHandler()
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    self.assertEqual(group.status, alert_group.AlertGroup.Status.triaged)
+    self.assertItemsEqual(self.fake_issue_tracker.new_bug_kwargs['labels'], [
+        'Pri-1', 'Chrome-Health-Metrics', 'ReleaseBlock-Stable', 
+        'Restrict-View-Google', 'Type-Bug-Regression', 
+        'Chromeperf-Auto-Triaged'
+    ])
+    logging.debug('Rendered:\n%s', self.fake_issue_tracker.new_bug_args[1])
+
   # TODO(dberris): Re-enable this when we start supporting multiple benchmarks
   # in the same alert group in the future.
   @unittest.expectedFailure
