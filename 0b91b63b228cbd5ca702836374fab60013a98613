@@ -189,6 +189,30 @@
       },
       "revId": "0b91b63b228cbd5ca702836374fab60013a98613",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebf364cd_9d09b0ad",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1116050
+      },
+      "writtenOn": "2021-01-26T14:45:17Z",
+      "side": 1,
+      "message": "We should probably run this by amineer@.\n\nPossibly by cc\u0027ing him on the relevant docs, but on the code review would also suffice.\n\nI\u0027d recommend also updating the CL title and description to make it clear this makes them Release-Block-Stable, as well as priority 1.",
+      "parentUuid": "f3bdd959_1ad45fa8",
+      "range": {
+        "startLine": 80,
+        "startChar": 25,
+        "endLine": 80,
+        "endChar": 33
+      },
+      "revId": "0b91b63b228cbd5ca702836374fab60013a98613",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
