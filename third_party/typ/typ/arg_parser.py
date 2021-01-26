@@ -198,6 +198,13 @@ class ArgumentParser(argparse.ArgumentParser):
                               help=('Retries are only for tests that have the'
                                     ' RetryOnFailure tag in the test'
                                     ' expectations file'))
+            self.add_argument('--typ-max-failures',
+                              type=int, default=None,
+                              help=('Maximum number of failures that can occur '
+                                    'before exiting the suite early. NOTE: '
+                                    'No-op on Windows when using more than one '
+                                    'job due to how multiprocessing is '
+                                    'handled.'))
             self.add_argument('--terminal-width', type=int,
                               default=self._host.terminal_width(),
                               help=argparse.SUPPRESS)
