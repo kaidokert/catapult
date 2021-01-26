@@ -16,6 +16,24 @@
       "message": "A couple of other ideas that are floating around:\n\n- Don\u0027t tag anything as ReleaseBlock-Stable yet. Instead, we should experiment with a non-blocking tag, then promote to blocking once we\u0027re convinced the tagged bugs are useful.\n- Don\u0027t tag bugs when they\u0027re filed. Instead, tag them when Pinpoint finishes running, and only if Pinpoint finds a culprit. That is, don\u0027t tag runs that get automatically closed as WontFix due to no culprit being found.",
       "revId": "f7aee77edf5506fab846646f95336209a832d5fb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6e34722_843e0814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-01-26T19:17:44Z",
+      "side": 1,
+      "message": ".",
+      "parentUuid": "2b30f7ee_3c905639",
+      "revId": "f7aee77edf5506fab846646f95336209a832d5fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
