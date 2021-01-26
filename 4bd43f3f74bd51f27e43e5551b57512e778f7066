@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d150e17_eec09f1f",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-01-26T00:07:36Z",
+      "side": 1,
+      "message": "Done. As a side-effect, should work properly on Windows now.",
+      "parentUuid": "98f7dc96_d3e2a509",
+      "revId": "4bd43f3f74bd51f27e43e5551b57512e778f7066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec7e2e3e_3bfeee92",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-01-25T22:54:26Z",
       "side": 1,
       "message": "You probably shouldn\u0027t do this for unexpected passes.",
+      "revId": "4bd43f3f74bd51f27e43e5551b57512e778f7066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a36b444_96c6c486",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-01-26T00:07:36Z",
+      "side": 1,
+      "message": "Done, handled by checking is_regression.",
+      "parentUuid": "ec7e2e3e_3bfeee92",
       "revId": "4bd43f3f74bd51f27e43e5551b57512e778f7066",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
