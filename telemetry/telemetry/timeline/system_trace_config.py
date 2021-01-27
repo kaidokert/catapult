@@ -88,6 +88,7 @@ class SystemTraceConfig(object):
             config {
                 name: "linux.ftrace"
                 ftrace_config {
+                    atrace_categories: "gfx"
                     ftrace_events: "power/suspend_resume"
       """
 

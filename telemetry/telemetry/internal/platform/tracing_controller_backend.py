@@ -36,7 +36,8 @@ _TRACING_AGENT_CLASSES = (
 
 _EXPERIMENTAL_TRACING_AGENTS = (
     telemetry_tracing_agent.TelemetryTracingAgent,
-    perfetto_tracing_agent.PerfettoTracingAgent
+    perfetto_tracing_agent.PerfettoTracingAgent,
+    display_tracing_agent.DisplayTracingAgent,
 )
 
 
