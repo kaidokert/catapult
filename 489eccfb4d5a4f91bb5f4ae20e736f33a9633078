@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "489eccfb4d5a4f91bb5f4ae20e736f33a9633078",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fbaefbb_bd0ff8af",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-02-01T05:40:14Z",
+      "side": 1,
+      "message": "Inconsequential nit: in my ideal world this file would spell “Label” correctly in the test data 😊.",
+      "range": {
+        "startLine": 153,
+        "startChar": 15,
+        "endLine": 153,
+        "endChar": 21
+      },
+      "revId": "489eccfb4d5a4f91bb5f4ae20e736f33a9633078",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
