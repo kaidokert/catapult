@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b28e14c9_15cc51fd",
+        "filename": "devil/devil/utils/decorators_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-02-02T19:44:27Z",
+      "side": 1,
+      "message": "nit: update",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "94932011c097f367fbdd5bae5b7afb33abe1e74e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
