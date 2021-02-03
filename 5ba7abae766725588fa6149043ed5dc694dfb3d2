@@ -16,6 +16,24 @@
       "message": "I would have higher confidence in this change if there were test cases associated with anomalies that have alert groupings. In particular, I\u0027d like to see test cases that cover some edge cases:\n\n- Given anomaly A in {\u0027groupA\u0027, \u0027groupB\u0027} and anomaly B in {\u0027groupB\u0027, \u0027groupC\u0027}\n  Then I\u0027d expect there would be three groups generated: \u0027groupA\u0027, \u0027groupB\u0027, \u0027groupC\u0027\n\n- Given anomaly A in {\u0027groupA\u0027} and anomaly B with no alert group but had the same benchmark as group A\n  Then I\u0027d expect there would be two different groups -- i.e. A wouldn\u0027t be in the same group as B",
       "revId": "5ba7abae766725588fa6149043ed5dc694dfb3d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0555873_458c2eba",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-03T15:20:20Z",
+      "side": 1,
+      "message": "Thanks. Added a test for these cases.",
+      "parentUuid": "0e4ea695_fb3a86fe",
+      "revId": "5ba7abae766725588fa6149043ed5dc694dfb3d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
