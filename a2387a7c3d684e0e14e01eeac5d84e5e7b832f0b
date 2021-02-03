@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de21c1f_c5c3d623",
+        "filename": "dashboard/dashboard/alert_groups_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-03T23:32:04Z",
+      "side": 1,
+      "message": "Why does a1 and a2 group with a3? Is \u0027test_suite\u0027 a default grouping? It\u0027s not clear in the test case that `self._AddAnomaly()` will put default alert groups -- maybe make that more explicit at least in this test case?",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 56
+      },
+      "revId": "a2387a7c3d684e0e14e01eeac5d84e5e7b832f0b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
