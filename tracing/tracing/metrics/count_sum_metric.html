@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Copyright 2021 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/metrics/metric_registry.html">
+
+<script>
+'use strict';
+
+/**
+ * This metric is used for custom benchmarks which need to record counts
+ * or sums of events in traces. This is useful for one-off cluster telemetry
+ * analysis.
+ * For trace events with category "CountAndSum", it records two metrics:
+ * - [title]_count: the count of trace events with that title.
+ * - [title]_sum: the sum of values of trace events with that title.
+ * The sum metric is only present if the trace event has a value.
+ */
+tr.exportTo('tr.metrics', function() {
+  function countSumMetric(histograms, model, opt_options) {
+    const chromeHelper = model.getOrCreateHelper(
+        tr.model.helpers.ChromeModelHelper);
+    if (!chromeHelper) {
+      // Chrome isn't present.
+      return;
+    }
+
+    const CATEGORY = 'CountAndSum';
+    const counts = new Map();
+    const sums = new Map();
+    // Collect trace events.
+    for (const helper of chromeHelper.browserHelpers) {
+      if (!helper.mainThread) continue;
+      for (const slice of helper.mainThread.sliceGroup.slices.concat(
+          helper.mainThread.asyncSliceGroup.slices)) {
+        if (!slice.error &&
+            tr.b.getCategoryParts(event.category).includes(CATEGORY)) {
+          if (!counts.has(slice.title)) {
+            counts.set(slice.title, 0);
+          }
+          counts.set(slice.title, counts.get(slice.title) + 1);
+          if (slice.value) {
+            if (!sums.has(slice.title)) {
+              sums.set(slice.title, 0);
+            }
+            sums.set(slice.title, sums.get(slice.title) + slice.value);
+          }
+        }
+      }
+    }
+
+    // Generate histograms.
+    counts.forEach((value, key) => {
+      histograms.createHistogram(
+          'count_' + key, tr.b.Unit.byName.count, value);
+    });
+    sums.forEach((value, key) => {
+      histograms.createHistogram(
+          'sum_' + key, tr.b.Unit.byName.unitlessNumber, value);
+    });
+  }
+
+  tr.metrics.MetricRegistry.register(countSumMetric, {
+    supportsRangeOfInterest: false,
+  });
+
+  return {
+    countSumMetric,
+  };
+});
+</script>
