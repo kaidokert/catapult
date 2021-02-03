@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+Copyright 2020 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/metrics/count_sum_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('countSumMetric_general', function() {
+    const RENDERER_PROCESS_ID = 2345;
+    const rendererProcess = model.getOrCreateProcess(RENDERER_PROCESS_ID);
+    const mainThread = rendererProcess.getOrCreateThread(23);
+    mainThread.name = 'CrRendererMain';
+    [
+      {
+        cat: 'CountAndSum',
+        title: 'A',
+        value: 5,
+      },
+      {
+        cat: 'CountAndSum',
+        title: 'A',
+        value: 6,
+      },
+      {
+        cat: 'CountAndSum',
+        title: 'B',
+      },
+      {
+        cat: 'CountAndSum',
+        title: 'B',
+      },
+      {
+        cat: 'CountAndSum',
+        title: 'B',
+      },
+      {
+        cat: 'donotcount',
+        title: 'metric3',
+        start: 4,
+        value: 4,
+      }
+    ].forEach(slice => {
+      mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx(slice));
+    });
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.countSumMetric(histograms, model);
+    const histAc = histograms.getHistogramNamed('count_A');
+    assert.strictEqual(histAc.numValues, 1);
+    assert.strictEqual(histAc.running.mean, 2);
+    const histAs = histograms.getHistogramNamed('sum_A');
+    assert.strictEqual(histAs.numValues, 1);
+    assert.strictEqual(histAs.running.mean, 11);
+    const histBc = histograms.getHistogramNamed('count_B');
+    assert.strictEqual(histBc.numValues, 1);
+    assert.strictEqual(histBc.running.mean, 3);
+    assert.isUndefined(histograms.getHistogramNamed('sum_B'));
+    assert.isUndefined(histograms.getHistogramNamed('count_donotcount'));
+    assert.isUndefined(histograms.getHistogramNamed('sum_donotcount'));
+  });
+});
