@@ -90,8 +90,7 @@ class AlertGroup(ndb.Model):
 
   @classmethod
   def GetGroupsForAnomaly(cls, anomaly_entity, subscriptions):
-    # TODO(fancl): Support multiple group name
-    name = anomaly_entity.benchmark_name
+    name = anomaly_entity.alert_grouping or anomaly_entity.benchmark_name
     revision = RevisionRange(
         repository='chromium',
         start=anomaly_entity.start_revision,
