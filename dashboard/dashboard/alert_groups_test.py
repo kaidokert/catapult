@@ -174,6 +174,28 @@ class GroupReportTest(GroupReportTestBase):
     group = alert_group.AlertGroup.Get('other', None)[0]
     self.assertItemsEqual(group.anomalies, [a3])
 
+  def testMultipleAltertsGroupingOverrideSuite(self, mock_get_sheriff_client):
+    self._SetUpMocks(mock_get_sheriff_client)
+    self.testapp.get('/alert_groups_update')
+    self.ExecuteDeferredTasks('default')
+    # Add anomalies
+    a1 = self._AddAnomaly()
+    a2 = self._AddAnomaly(start_revision=50, end_revision=150)
+    a3 = self._AddAnomaly(
+        test='master/bot/other/measurement/test_case',
+        alert_grouping=['test_suite', 'test_suite_other'],
+    )
+    a4 = self._AddAnomaly(median_before_anomaly=0)
+    # Create Group
+    self._CallHandler()
+    # Update Group to associate alerts
+    self._CallHandler()
+    group = alert_group.AlertGroup.Get('test_suite', None)[0]
+    self.assertItemsEqual(group.anomalies, [a1, a2, a3, a4])
+    group = alert_group.AlertGroup.Get('test_suite_other', None)[0]
+    self.assertItemsEqual(group.anomalies, [a3])
+
+
   def testMultipleAltertsGroupingMultipleSheriff(self, mock_get_sheriff_client):
     self._SetUpMocks(mock_get_sheriff_client)
     mock_get_sheriff_client().Match.return_value = ([
