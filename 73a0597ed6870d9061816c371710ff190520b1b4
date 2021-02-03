@@ -22,6 +22,30 @@
       },
       "revId": "73a0597ed6870d9061816c371710ff190520b1b4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c539087f_ccaa66e0",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-02-03T20:07:25Z",
+      "side": 1,
+      "message": "Hm yeah I don\u0027t think this would work with OOPIF. I\u0027m not sure if we have sufficient trace data to construct the frame tree in the metrics; I remember several times we just decided to ignore oopif because it didn\u0027t affect mobile phones much, but I\u0027m not sure if that\u0027s still the case.\n\nIf we want to get all the right renderer processes, the blame context may be relevant?  https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/tracing/tracing/extras/chrome/blame_context/blame_context.html \nI\u0027ve never used it so I\u0027m not sure how reliable it is. \n\nThe other option is to emit these trace events on the browser process. This is roughly what LCP seems to be doing.",
+      "parentUuid": "1c3de632_5807e3e5",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 65
+      },
+      "revId": "73a0597ed6870d9061816c371710ff190520b1b4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
