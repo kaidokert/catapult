@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb1e5569_46b54251",
+        "filename": "tracing/tracing/metrics/count_sum_metric.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2021-02-04T15:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9623db66_6d07bc0c",
+      "revId": "397b5c4941f922e9875e861a7bad0b54da1e54cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c59c5ab5_46605926",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-02-04T15:51:36Z",
       "side": 1,
       "message": "Missing a test for count_D/sum_D undefined?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 53
+      },
+      "revId": "397b5c4941f922e9875e861a7bad0b54da1e54cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef6a1c8_653610e5",
+        "filename": "tracing/tracing/metrics/count_sum_metric_test.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2021-02-04T15:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c59c5ab5_46605926",
       "range": {
         "startLine": 38,
         "startChar": 0,
