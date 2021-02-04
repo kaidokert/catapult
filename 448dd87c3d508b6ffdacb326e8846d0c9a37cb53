@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecc9da9_837d2c88",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-02-04T22:58:46Z",
+      "side": 1,
+      "message": "distutils appears to be standard (https://docs.python.org/3/library/distutils.html), but I\u0027m not confident about spawn based on looking for it in the python documentation.",
+      "parentUuid": "804b44fb_c999a044",
+      "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0749dcea_d73a2144",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "\u003e after we rewrite dependency management\n\nContext?",
       "parentUuid": "0749dcea_d73a2144",
+      "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d86a566e_c60e8358",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-02-04T22:58:46Z",
+      "side": 1,
+      "message": "it\u0027s a longtime pipe dream of mine (kinda like wheeling). Some day.",
+      "parentUuid": "a2aac000_92d813d0",
       "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
