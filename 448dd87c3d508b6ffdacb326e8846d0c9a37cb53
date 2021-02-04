@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "804b44fb_c999a044",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-02-04T22:28:38Z",
+      "side": 1,
+      "message": "I had thought it was a standard python lib? I successfully imported it locally on both py2 and py3, with both vpython and normal python.",
+      "parentUuid": "92ab1c2a_cfbb9478",
+      "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0749dcea_d73a2144",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-02-04T22:21:33Z",
       "side": 1,
       "message": "This (to me) feels like something that should be handled by devil_env after we rewrite dependency management. I don\u0027t think we want devil to bring its own java, but a client who wants to use java should have to explicitly tell devil the path.",
+      "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2aac000_92d813d0",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-02-04T22:28:38Z",
+      "side": 1,
+      "message": "\u003e after we rewrite dependency management\n\nContext?",
+      "parentUuid": "0749dcea_d73a2144",
       "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
