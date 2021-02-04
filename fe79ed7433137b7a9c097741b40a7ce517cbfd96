@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f200cc3_2698f864",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001913
+      },
+      "writtenOn": "2021-02-04T21:57:26Z",
+      "side": 1,
+      "message": "This is a follow up to https://chromium-review.googlesource.com/c/catapult/+/2670248.\n\nIt computes cumulative layout shift across all renderer processes. That means it computes cumulative layout shift for all navigations in benchmarks that have multiple navigations. We don\u0027t have plans for multi-navigation cluster telemetry cases, and for regression testing use cases I think this should be okay (the default approach would be a sample for each navigation, but the dashboard would show a summarized view of that anyway).",
+      "revId": "fe79ed7433137b7a9c097741b40a7ce517cbfd96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
