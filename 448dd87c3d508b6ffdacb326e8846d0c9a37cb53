@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "02e72b7c_07300fe3",
+        "filename": "devil/devil/android/sdk/bundletool.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-02-04T23:06:10Z",
+      "side": 1,
+      "message": "using the search box in that page:\nhttps://docs.python.org/3/distutils/apiref.html?highlight\u003dspawn#module-distutils.spawn\n\nSame story w/ 2.7:\nhttps://docs.python.org/2.7/distutils/apiref.html#module-distutils.spawn\n\nSeems standard to me? And fwiw, that pylint complaint appears to be a bug with pylint interacting with venv: https://github.com/PyCQA/pylint/issues/73",
+      "parentUuid": "eecc9da9_837d2c88",
+      "revId": "448dd87c3d508b6ffdacb326e8846d0c9a37cb53",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0749dcea_d73a2144",
