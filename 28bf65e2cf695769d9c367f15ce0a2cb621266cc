@@ -16,6 +16,23 @@
       "message": "Please take a look.",
       "revId": "28bf65e2cf695769d9c367f15ce0a2cb621266cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "425ab36a_2dc9ed2f",
+        "filename": "devil/devil/android/app_ui.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1254157
+      },
+      "writtenOn": "2021-02-05T12:31:15Z",
+      "side": 1,
+      "message": "Here is the relevant link for uiautomator code: https://android.googlesource.com/platform/frameworks/testing/+/master/uiautomator/cmds/uiautomator/src/com/android/commands/uiautomator/DumpCommand.java#90",
+      "revId": "28bf65e2cf695769d9c367f15ce0a2cb621266cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
