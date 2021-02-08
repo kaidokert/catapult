@@ -52,6 +52,7 @@ tr.exportTo('tr.e.chrome', function() {
       this.size = size;
       this.type = type;
       this.inMainFrame = inMainFrame;
+      this.event = event;
     }
 
     static isLcpCandidateEvent(event) {
@@ -128,6 +129,46 @@ tr.exportTo('tr.e.chrome', function() {
       }
 
       return finalLcpEventOfEachNavigation;
+    }
+
+    findThrottles(browserHelper) {
+      const lcpCandidates = this.findCandidates();
+
+      const throttledCountSamples = [];
+      const throttledDurationSamples = [];
+
+      for (const c of lcpCandidates) {
+        const navStart = browserHelper.getAllAsyncSlicesMatching(
+          (e) =>
+            e.title === "NavigationRequest" &&
+            e.args.navigation_request.frame_tree_node === 1 &&
+            e.args.navigation_request.url !== "about:blank")[0];
+        const navStartToEventRange = tr.b.math.Range.fromExplicitRange(
+            navStart.start, navStart.start + c.durationInMilliseconds);
+
+        let throttledCount = 0;
+        let throttledDuration = 0;
+
+        const throttleEvents = browserHelper.getAllAsyncSlicesMatching((e) => e.title === "TabLoadingFrameNavigationScheduler::Throttle")
+        for (const e of throttleEvents) {
+          if (!navStartToEventRange.intersectsExplicitRangeInclusive(e.start, e.end)) {
+            continue;
+          }
+          throttledCount ++;
+          throttledDuration += navStartToEventRange.findExplicitIntersectionDuration(e.start, e.end);
+        }
+        throttledCountSamples.push({
+          value: throttledCount,
+        });
+        throttledDurationSamples.push({
+          value: throttledDuration,
+        });
+      }
+
+      return {
+        throttledCountSamples: throttledCountSamples,
+        throttledDurationSamples: throttledDurationSamples,
+      };
     }
   }
 
