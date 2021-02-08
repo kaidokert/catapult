@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "257b6d9e_c01c8ad9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-08T23:27:11Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "c13415f4c6e2b0051e9e9db5fd0901d4beac2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "785cf8f9_ec7447f8",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-08T23:27:11Z",
+      "side": 1,
+      "message": "You can add \u0027choices\u003d[...]` to constrain the allowable values here.\n\nhttps://cloud.google.com/appengine/docs/standard/python/ndb/entity-property-reference#options",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 74
+      },
+      "revId": "c13415f4c6e2b0051e9e9db5fd0901d4beac2222",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
