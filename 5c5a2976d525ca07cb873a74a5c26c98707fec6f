@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32a5440d_9117f6bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-08T07:50:02Z",
+      "side": 1,
+      "message": "This CL seems incomplete. How do the alert groupings that are in the histograms loaded into the sparse diagnostics for a TestMetadata (and into an Anomaly entity)?",
+      "revId": "5c5a2976d525ca07cb873a74a5c26c98707fec6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
