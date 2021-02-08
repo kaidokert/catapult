@@ -742,3 +742,21 @@ class SparseDiagnosticTest(testing_common.TestCase):
         (1, 14, [u'm1']),
         (15, sys.maxsize, [u'm3']),
     ])
+
+  def testFindOrInsertDiagnostics_OutOfOrder_Invalid(self):
+    test_key = utils.TestKey('M/B/S')
+
+    self._AddGenericDiagnostic('foo', 'm1', test_key, 1)
+    invalid = self._AddGenericDiagnostic('foo', 'm2', test_key, 5).get()
+    invalid.data = '{'
+    invalid.put()
+
+    e = self._CreateGenericDiagnostic('foo', 'm3', test_key, 3)
+
+    guid_mapping = (
+        histogram.SparseDiagnostic.FindOrInsertDiagnostics(
+            [e], test_key, e.start_revision, e.start_revision).get_result())
+
+    self._CheckExpectations(e, guid_mapping, [
+        (1, sys.maxsize, [u'm1']),
+    ])
