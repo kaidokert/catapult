@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25bf0aca_2ff4402a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-09T05:58:56Z",
+      "side": 1,
+      "message": "It shocked me that javascript can\u0027t convert a ISO local time string...",
+      "revId": "b6c02f7376497e5ffaecea2c4abcbba061574043",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
