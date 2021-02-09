@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aed79a0_9c94581f",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-09T05:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5c51083_60d77438",
+      "range": {
+        "startLine": 977,
+        "startChar": 8,
+        "endLine": 980,
+        "endChar": 8
+      },
+      "revId": "dfff00bd3a631a1ed44c0a8aeaed27fe389d71b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa932d65_808918bf",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-02-09T05:06:00Z",
       "side": 1,
       "message": "This should probably be a different test case.",
+      "range": {
+        "startLine": 1018,
+        "startChar": 6,
+        "endLine": 1021,
+        "endChar": 7
+      },
+      "revId": "dfff00bd3a631a1ed44c0a8aeaed27fe389d71b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ecd55bd_64adb0fb",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-09T05:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa932d65_808918bf",
       "range": {
         "startLine": 1018,
         "startChar": 6,
