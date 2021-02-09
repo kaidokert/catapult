@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d5f866_d3f83e88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-09T05:06:00Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "dfff00bd3a631a1ed44c0a8aeaed27fe389d71b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c51083_60d77438",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-09T05:06:00Z",
+      "side": 1,
+      "message": "Can we make this a different test-case?",
+      "range": {
+        "startLine": 977,
+        "startChar": 8,
+        "endLine": 980,
+        "endChar": 8
+      },
+      "revId": "dfff00bd3a631a1ed44c0a8aeaed27fe389d71b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa932d65_808918bf",
+        "filename": "dashboard/dashboard/add_histograms_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-09T05:06:00Z",
+      "side": 1,
+      "message": "This should probably be a different test case.",
+      "range": {
+        "startLine": 1018,
+        "startChar": 6,
+        "endLine": 1021,
+        "endChar": 7
+      },
+      "revId": "dfff00bd3a631a1ed44c0a8aeaed27fe389d71b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
