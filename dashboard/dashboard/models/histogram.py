@@ -239,6 +239,14 @@ def _FindOrInsertNamedDiagnosticsOutOfOrder(new_diagnostic, old_diagnostics,
   new_guid = new_diagnostic.key.id()
   guid_mapping = {}
 
+  # It happens when all old diagnostics are invalid and are not added to the
+  # list.
+  if len(old_diagnostics) == 0:
+    new_diagnostic.put_async()
+    guid_mapping[new_guid] = new_diagnostic.data
+    yield new_diagnostic.put_async()
+    raise ndb.Return(guid_mapping)
+
   for i in itertools.islice(itertools.count(0), len(old_diagnostics)):
     cur = old_diagnostics[i]
 
@@ -464,7 +472,8 @@ def _FindOrInsertDiagnosticsOutOfOrder(new_entities, test, rev):
   diagnostics_by_name = collections.defaultdict(list)
 
   for d in diagnostic_entities:
-    diagnostics_by_name[d.name].append(d)
+    if d.IsValid():
+      diagnostics_by_name[d.name].append(d)
 
   futures = []
 
