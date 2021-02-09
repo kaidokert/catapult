@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01c299a8_21d685b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-09T11:17:40Z",
+      "side": 1,
+      "message": "LGTM\n\nGreat find!",
+      "revId": "3050da3a616bd4c22c034a593c68164d334c76f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78084e4a_be6f2c1f",
+        "filename": "dashboard/dashboard/models/histogram_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-09T11:17:40Z",
+      "side": 1,
+      "message": "tip: you can add a trailing `,` to the arguments to let yapf format this nicer.",
+      "range": {
+        "startLine": 759,
+        "startChar": 59,
+        "endLine": 761,
+        "endChar": 60
+      },
+      "revId": "3050da3a616bd4c22c034a593c68164d334c76f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6be01a_9be08612",
+        "filename": "dashboard/dashboard/models/histogram_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-09T11:17:40Z",
+      "side": 1,
+      "message": "same tip applies here.",
+      "range": {
+        "startLine": 779,
+        "startChar": 59,
+        "endLine": 781,
+        "endChar": 60
+      },
+      "revId": "3050da3a616bd4c22c034a593c68164d334c76f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
