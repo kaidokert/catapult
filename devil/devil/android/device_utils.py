@@ -1504,7 +1504,8 @@ class DeviceUtils(object):
         with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
           self._WriteFileWithPush(script.name, cmd)
           logger.debug('Large shell command will be run from file: %s ...',
-                       cmd[:self._MAX_ADB_COMMAND_LENGTH])
+                       cmd)
+                       #cmd[:self._MAX_ADB_COMMAND_LENGTH])
           return handle_check_return('sh %s' % script.name_quoted)
 
     def handle_large_output(cmd, large_output_mode):
@@ -2223,13 +2224,21 @@ class DeviceUtils(object):
           self.adb, suffix='.zip') as device_temp:
         self.adb.Push(zip_path, device_temp.name)
 
-        quoted_dirs = ' '.join(cmd_helper.SingleQuote(d) for d in dirs)
-        self.RunShellCommand(
-            'unzip %s&&chmod -R 777 %s' % (device_temp.name, quoted_dirs),
-            shell=True,
-            as_root=True,
-            env={'PATH': '%s:$PATH' % install_commands.BIN_DIR},
-            check_return=True)
+        with device_temp_file.DeviceTempFile(self.adb) as dirs_temp:
+          self._WriteFileWithPush(dirs_temp.name, ' '.join(dirs))
+
+          cmd = ('unzip %s && '
+                # Read dir names from the file "dirs_temp". This can
+                # avoid errors like crbug.com/1174331 when the dir list is too
+                # long.
+                 'cat %s | xargs chmod -R 777') % (
+                    device_temp.name, dirs_temp.name)
+          self.RunShellCommand(
+              cmd,
+              shell=True,
+              as_root=True,
+              env={'PATH': '%s:$PATH' % install_commands.BIN_DIR},
+              check_return=True)
 
     return True
 
