@@ -137,9 +137,9 @@ class LacrosBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     thread.start_new_thread(self._LaunchLacrosChromeHelper, (startup_args,))
     py_utils.WaitFor(self._IsDevtoolsUp, 40)
     self._is_browser_running = self._IsDevtoolsUp()
-    # TODO(crbug/1150455) - Find another condtion to wait on.
+    # TODO(crbug/1150455) - Find another condition to wait on.
     time.sleep(1)
-    print 'Is Lacros up? ' + str(self._is_browser_running)
+    logging.info('Is Lacros up? ' + str(self._is_browser_running))
 
   def Start(self, startup_args):
     self._cri.OpenConnection()
