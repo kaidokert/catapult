@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db22399f_38bcedc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2021-02-11T13:40:04Z",
+      "side": 1,
+      "message": "tricky :) ",
+      "revId": "36e658ccb0e498985c5067b57117d8a1d16b634e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7cb5351_01c54732",
+        "filename": "tracing/tracing/metrics/v8/gc_metric.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2021-02-11T13:40:04Z",
+      "side": 1,
+      "message": ", essentially mapping the event back to the previous V8 cycle.",
+      "range": {
+        "startLine": 646,
+        "startChar": 36,
+        "endLine": 646,
+        "endChar": 37
+      },
+      "revId": "36e658ccb0e498985c5067b57117d8a1d16b634e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
