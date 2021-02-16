@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33df0f5_a8fccbe4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-02-16T21:50:11Z",
+      "side": 1,
+      "message": "You\u0027re going to need to manually roll the CL into chromium to update pydeps :/",
+      "revId": "25eaf94a27c5e76728fe0c7fb4e83fe77b598961",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
