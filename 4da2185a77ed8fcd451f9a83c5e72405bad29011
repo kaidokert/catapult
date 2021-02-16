@@ -16,6 +16,23 @@
       "message": "CL needed to disable test on Pixel 4. PTAL",
       "revId": "4da2185a77ed8fcd451f9a83c5e72405bad29011",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a9a56f0_76693983",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-02-16T05:16:03Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "4da2185a77ed8fcd451f9a83c5e72405bad29011",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
