@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "842befe1_a266eced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-16T01:14:44Z",
+      "side": 1,
+      "message": "LGTM % suggestions\n\nPlease feel free to add TODO\u0027s instead if you think the value bringing in SparseDiagnostics isn\u0027t worth the trouble for now.\n\nAlso, testing might be useful here since we\u0027ve got quite a bit of diversity for the data we have in the Dashboard, but not critical since the proof of the data being in BigQuery is sufficient to satisfy the \"does it work\" question. 😊",
+      "revId": "ea133236f3ff40452ed42659a30cf7fc05533f5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3c6b3b_db38fe58",
+        "filename": "dashboard/bq_export/bq_export/bq_testmetadata.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-16T01:14:44Z",
+      "side": 1,
+      "message": "I don\u0027t know how far you want to go with this, so it\u0027d be good to understand what the options are here.\n\nWe can use the SparseDiagnostics entities to reconstruct what these fields are -- we know a lot about the structure of the diagnostics from those entities. For example, \u0027master\u0027 (we shouldn\u0027t use this term BTW, let\u0027s use `bot_group` or `domain`) is something we can pull from the sparse diagnostics associated with a TestMetadata key.\n\nIn some cases there\u0027s more information in the sparse diagnostics than there are in the test path -- we can for example use \"label groups\" more precisely. If possible we can even use the `reserved_infos` module that helps us see the diagnostic names that map to values that are relevant to a histogram that end up in SparseDiagnostic entities.",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 40
+      },
+      "revId": "ea133236f3ff40452ed42659a30cf7fc05533f5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ab25681_c4a372ae",
+        "filename": "dashboard/bq_export/bq_export/bq_testmetadata.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-16T01:14:44Z",
+      "side": 1,
+      "message": "If you used the SparseDiagnostic entities, you can \"merge\" on the TestMetadata key to get the diagnostics associated with those.\n\nSparseDiagnostic: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/models/histogram.py;l\u003d84;drc\u003d5a9101b4d4e03c6aa38fc577390a470288708d63\n\nderives from JsonModel:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/models/histogram.py;l\u003d66;drc\u003d5a9101b4d4e03c6aa38fc577390a470288708d63\n\nwhich has a reference to a TestMetadata:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/models/histogram.py;l\u003d72;drc\u003d5a9101b4d4e03c6aa38fc577390a470288708d63",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 50
+      },
+      "revId": "ea133236f3ff40452ed42659a30cf7fc05533f5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
