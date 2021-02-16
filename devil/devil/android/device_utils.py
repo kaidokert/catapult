@@ -3054,11 +3054,14 @@ class DeviceUtils(object):
     calling |ps|, and implements support for filtering the output by a given
     |pattern|, but does not do any output parsing.
     """
+    logger.info('Running ps with pattern %s.', pattern)
     try:
       ps_cmd = 'ps'
       # ps behavior was changed in Android O and above, http://crbug.com/686716
       if self.build_version_sdk >= version_codes.OREO:
         ps_cmd = 'ps -e'
+      logger.info('%s', self.RunShellCommand(
+          ps_cmd.split(), check_return=True, large_output=True))
       if pattern:
         return self._RunPipedShellCommand(
             '%s | grep -F %s' % (ps_cmd, cmd_helper.SingleQuote(pattern)))
