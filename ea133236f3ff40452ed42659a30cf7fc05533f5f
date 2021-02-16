@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a00d2bd8_37e1379e",
+        "filename": "dashboard/bq_export/bq_export/bq_testmetadata.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-02-16T04:33:41Z",
+      "side": 1,
+      "message": "Renamed to bot_group.  Added TODO for extracting more info from SparseDiagnostics.",
+      "parentUuid": "1c3c6b3b_db38fe58",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 40
+      },
+      "revId": "ea133236f3ff40452ed42659a30cf7fc05533f5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ab25681_c4a372ae",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-02-16T01:14:44Z",
       "side": 1,
       "message": "If you used the SparseDiagnostic entities, you can \"merge\" on the TestMetadata key to get the diagnostics associated with those.\n\nSparseDiagnostic: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/models/histogram.py;l\u003d84;drc\u003d5a9101b4d4e03c6aa38fc577390a470288708d63\n\nderives from JsonModel:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/models/histogram.py;l\u003d66;drc\u003d5a9101b4d4e03c6aa38fc577390a470288708d63\n\nwhich has a reference to a TestMetadata:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/models/histogram.py;l\u003d72;drc\u003d5a9101b4d4e03c6aa38fc577390a470288708d63",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 50
+      },
+      "revId": "ea133236f3ff40452ed42659a30cf7fc05533f5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a87a8d3c_e8c71b7b",
+        "filename": "dashboard/bq_export/bq_export/bq_testmetadata.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-02-16T04:33:41Z",
+      "side": 1,
+      "message": "Added TODO.",
+      "parentUuid": "2ab25681_c4a372ae",
       "range": {
         "startLine": 87,
         "startChar": 2,
