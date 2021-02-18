@@ -170,6 +170,10 @@ def ChangePointEstimator(sequence):
       max_index = index
   return (max_index + margin, max_estimate, True)
 
+def ExtendChangePointRange(change_point, _sequence):
+  # TODO(fancl): Implement
+  return (change_point, change_point)
+
 
 def ClusterAndFindSplit(values, rand=None):
   """Finds a list of indices where we can detect significant changes.
@@ -225,7 +229,9 @@ def ClusterAndFindSplit(values, rand=None):
         probability >= _MIN_SIGNIFICANCE, probability)
     if probability < _MIN_SIGNIFICANCE:
       continue
-    candidate_indices.add(start + partition_point)
+    lower, upper = ExtendChangePointRange(partition_point, segment)
+    candidate_indices.add(
+        (start + partition_point, (start + lower, start + upper)))
 
     exploration_queue.append((start, start + partition_point))
     exploration_queue.append((start + partition_point, end))
