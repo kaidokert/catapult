@@ -110,7 +110,10 @@ def _MakeSampleChangePoint(x_value, median_before, median_after):
       std_dev_before=None,
       t_statistic=None,
       degrees_of_freedom=None,
-      p_value=None)
+      p_value=None,
+      extended_start=x_value,
+      extended_end=x_value,
+  )
 
 
 class EndRevisionMatcher(object):
