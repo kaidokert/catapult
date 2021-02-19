@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4b0ac6_ec03f6a8",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-19T00:20:25Z",
+      "side": 1,
+      "message": "Here we should somehow provide a tolerance (𝛼) which should allow us to find segments where the likely change points could be. We don\u0027t have to return all the segments, but I\u0027d settle for segment where the estimator meets the following criteria:\n\nP(start(range)) \u003e\u003d 1.0 - alpha\nP(end(range)) \u003e\u003d 1.0 - alpha\n\nImplementation wise this turns out to be something we can apply to the whole segment, so we\u0027ll end up with a boolean list/array where the probability that the index is a change-point is above the provided tolerance.",
+      "range": {
+        "startLine": 224,
+        "startChar": 28,
+        "endLine": 224,
+        "endChar": 57
+      },
+      "revId": "82fba583ce07db013115d91e64a535c05d7169da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72cb630c_08cb7f3f",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-19T00:20:25Z",
+      "side": 1,
+      "message": "I think we should think about changing `ChangePointEstimator` instead to return a tuple indicating a range (and not call it a `partition_point`).",
+      "range": {
+        "startLine": 232,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 66
+      },
+      "revId": "82fba583ce07db013115d91e64a535c05d7169da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2533c6eb_d7ecdb15",
+        "filename": "dashboard/dashboard/find_change_points.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-19T00:20:25Z",
+      "side": 1,
+      "message": "Is this permanent or temporary? Why don\u0027t we use the `window_start` and `window_end` fields instead?",
+      "range": {
+        "startLine": 186,
+        "startChar": 6,
+        "endLine": 187,
+        "endChar": 35
+      },
+      "revId": "82fba583ce07db013115d91e64a535c05d7169da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
