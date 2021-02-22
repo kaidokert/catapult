@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
+<link rel="import" href="/tracing/value/diagnostics/related_event_set.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+    'use strict';
+
+    tr.exportTo('tr.metrics.rendering', function() {
+
+      function addSmoothnessValidity(histograms, model, segments) {
+        const chromeHelper = model.getOrCreateHelper(
+            tr.model.helpers.ChromeModelHelper);
+        let VALID_SEQUENCES = [
+          "TouchScroll",
+          "WheelScroll",
+          "ScrollbarScroll",
+          "RAF",
+          "CanvasAnimation",
+          "CompositorAnimation",
+          "MainThreadAnimation",
+          "JSAnimation",
+          "PinchZoom",
+          "Video",
+        ]
+
+        let total_pipeline_reporters = 0;
+        let dropped_pipeline_reporters = 0;
+        let affecting_smoothness_pipeline_reporters = 0
+        let invalid_pipeline_reporters = 0;
+
+        let frame_sequence_trackers = []
+        let pipeline_reporters = []
+
+        for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+          if (rendererHelper.compositorThread === undefined) continue;
+          const slices = rendererHelper.compositorThread.asyncSliceGroup.slices;
+          for (const slice of slices) {
+            if (slice.title !== 'TrackerValidation' ||
+              !VALID_SEQUENCES.includes(slice.args.name)) continue;
+            frame_sequence_trackers.push(slice);
+          }
+
+          for (const slice of slices) {
+            if (slice.title !== 'PipelineReporter') continue;
+            pipeline_reporters.push(slice);
+          }
+        }
+
+        pipeline_reporters.sort(function (a, b) {
+          return (a.start < b.start);
+        });
+        let possible_parent_start = 0;
+        let possible_parent_end = 0;
+
+        for (const pr of pipeline_reporters) {
+          total_pipeline_reporters += 1;
+          let end = pr.start + pr.duration;
+
+          if (end > possible_parent_end) {
+            possible_parent_end = end;
+            possible_parent_start = pr.start;
+          }
+
+          if (pr.args && pr.args.chrome_frame_reporter.state == 'STATE_DROPPED')
+            dropped_pipeline_reporters += 1;
+
+          if (pr.args && pr.args.chrome_frame_reporter.affects_smoothness)
+            affecting_smoothness_pipeline_reporters += 1;
+
+          if (pr.args && pr.args.chrome_frame_reporter.state == 'STATE_DROPPED'
+                && pr.args.chrome_frame_reporter.affects_smoothness) {
+            let is_in_fst = false;
+            for (const fst of frame_sequence_trackers) {
+              if ((end >= fst.start && pr.start < fst.start + fst.duration) ||
+                  (pr.start >= possible_parent_start && end < possible_parent_end)) {
+                is_in_fst = true;
+                break;
+              }
+            }
+            if (!is_in_fst) {
+              invalid_pipeline_reporters += 1;
+              histograms.createHistogram('04_invalid_pipeline_start_time',
+              tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+              pr.start,
+              {description: 'Start time of invalid pipeline reporter',
+                summaryOptions: {}});
+            }
+          }
+        }
+
+        histograms.createHistogram('00_pipeline_reporter_total',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_pipeline_reporters,
+            {description: 'Number of pipeline reporters in trace',
+              summaryOptions: {}});
+
+        histograms.createHistogram('01_pipeline_reporter_dropped',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            dropped_pipeline_reporters,
+            {description: 'Number of pipeline reporters with dropped status',
+              summaryOptions: {}});
+
+        histograms.createHistogram('02_pipeline_reporter_affecting_smoothness',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            affecting_smoothness_pipeline_reporters,
+            {description: 'Number of pipeline reporters with affecting smoothness status',
+              summaryOptions: {}});
+
+        histograms.createHistogram('03_invalid_pipeline',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            invalid_pipeline_reporters,
+            {description: 'Number of invalid pipeline reporters ',
+              summaryOptions: {}});
+
+        histograms.createHistogram('10_frame_sequence_tracker_count',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            frame_sequence_trackers.length,
+            {description: 'Number of valid frame_sequence_trackers',
+              summaryOptions: {}});
+      }
+
+      return {
+        addSmoothnessValidity,
+      };
+    });
+</script>
