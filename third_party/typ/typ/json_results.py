@@ -165,12 +165,10 @@ def _results_for_test(test_name, results):
     times = []
     for r in results.results:
         if r.name == test_name:
-            if r.actual == ResultType.Failure:
-                actuals.append('FAIL')
-            elif r.actual == ResultType.Pass:
-                actuals.append('PASS')
-            elif r.actual == ResultType.Skip:
-                actuals.append('SKIP')
+            if r.actual in ResultType.values:
+                actuals.append(r.actual)
+            else:
+                raise ValueError('%r is not a valid result' % r.actual)
 
             # The time a test takes is a floating point number of seconds;
             # if we were to encode this unmodified, then when we converted it
