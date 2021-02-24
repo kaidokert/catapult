@@ -170,6 +170,19 @@ def ChangePointEstimator(sequence):
       max_index = index
   return (max_index + margin, max_estimate, True)
 
+def ExtendChangePointRange(change_point, sequence):
+  max_estimate = Estimator(sequence, change_point)
+
+  def FindBoudary(s):
+    for index in range(0, len(s)):
+      if Estimator(sequence, index) < 0.95*max_estimate:
+        return index - 1
+    return len(s) - 1
+
+  left = change_point - FindBoudary(sequence[change_point::-1])
+  right = change_point + FindBoudary(sequence[change_point:])
+  return (left, right)
+
 
 def ClusterAndFindSplit(values, rand=None):
   """Finds a list of indices where we can detect significant changes.
@@ -225,7 +238,12 @@ def ClusterAndFindSplit(values, rand=None):
         probability >= _MIN_SIGNIFICANCE, probability)
     if probability < _MIN_SIGNIFICANCE:
       continue
-    candidate_indices.add(start + partition_point)
+    lower, upper = ExtendChangePointRange(partition_point, segment)
+    if lower != partition_point or upper != partition_point:
+      logging.debug('Extending change range from %d to %d-%d.',
+                    partition_point, lower, upper)
+    candidate_indices.add(
+        (start + partition_point, (start + lower, start + upper)))
 
     exploration_queue.append((start, start + partition_point))
     exploration_queue.append((start + partition_point, end))
