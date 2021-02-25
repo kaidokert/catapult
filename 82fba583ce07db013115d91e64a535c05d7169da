@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28c6c4ad_13683668",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-25T23:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af4b0ac6_ec03f6a8",
+      "range": {
+        "startLine": 224,
+        "startChar": 28,
+        "endLine": 224,
+        "endChar": 57
+      },
+      "revId": "82fba583ce07db013115d91e64a535c05d7169da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72cb630c_08cb7f3f",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-02-19T00:20:25Z",
       "side": 1,
       "message": "I think we should think about changing `ChangePointEstimator` instead to return a tuple indicating a range (and not call it a `partition_point`).",
+      "range": {
+        "startLine": 232,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 66
+      },
+      "revId": "82fba583ce07db013115d91e64a535c05d7169da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c675088a_420ca988",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-25T23:18:24Z",
+      "side": 1,
+      "message": "I found it may be more complex than P(start(range)) \u003e\u003d 1.0 - alpha. Maybe keep it isolated in a seperate function is better for tweaking algorithm.",
+      "parentUuid": "72cb630c_08cb7f3f",
       "range": {
         "startLine": 232,
         "startChar": 4,
