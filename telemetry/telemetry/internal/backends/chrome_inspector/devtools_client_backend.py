@@ -54,6 +54,7 @@ def GetDevToolsBackEndIfReady(devtools_port, app_backend, browser_target=None):
   try:
     client.Connect(devtools_port, browser_target)
     logging.info('DevTools agent ready at %s', client)
+    logging.info('Chrome version %s', client.GetVersion())
   except _DEVTOOLS_CONNECTION_ERRORS as exc:
     logging.info('DevTools agent at %s not ready yet: %s', client, exc)
     client = None
