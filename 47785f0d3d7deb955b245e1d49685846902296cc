@@ -69,6 +69,24 @@
       "parentUuid": "5cd5fb5f_6268ae51",
       "revId": "47785f0d3d7deb955b245e1d49685846902296cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5733b909_199a5a68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-02-26T04:13:42Z",
+      "side": 1,
+      "message": "You can\u0027t do a chromium/src dry run on this change because all the .pydeps files will need to be updated when you roll catapult into chrome.",
+      "parentUuid": "8f0dd1d9_be542760",
+      "revId": "47785f0d3d7deb955b245e1d49685846902296cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
