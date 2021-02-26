@@ -236,7 +236,7 @@ def FindTraceUrls(histograms):
 
   sorted_urls = sorted(unique_trace_urls)
 
-  return [{'name': t.split('/')[-1], 'url': t} for t in sorted_urls]
+  return [{'name': t.split('/')[-3], 'url': t} for t in sorted_urls]
 
 
 def _GetValuesOrStatistic(statistic, hist):
