@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bea37ff4_e709c6a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-26T23:05:26Z",
+      "side": 1,
+      "message": "LGTM\n\nI suspect this is good enough for most cases that it\u0027s better to land this than wait for a better solution.",
+      "revId": "997cae78fdff106f9d4eac2b679f697eed152bf8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
