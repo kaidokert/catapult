@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d959b59_95106c7f",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-26T01:28:03Z",
+      "side": 1,
+      "message": "Could this be done in a single pass instead? What we seem to be looking for is a contiguous set of indices where the estimator is within a certain level of tolerance. Something like:\n\n```\nestimates \u003d [Estimator(sequence, i) \u003e _CHANGE_CHANGE_TOLERANCE * max_estimate for i in range(0, len(sequence)]\nstart, end \u003d _FindContiguousTrue(estimates, change_point)\nreturn (start, end)\n```\n\nAlso, if the max_estimate is 1000 and the tolerance is 10%, then shouldn\u0027t we be looking for estimates that are \u003e 90% of 1000?\n\nI would have expected that we\u0027d normalize the estimate to [0 .. 1.] as a probability, then find the contiguous range of probabilities where we likely have a culprit.\n\nThis also begs the question, we\u0027re already doing the scoring with the estimator but only returning the change point. Why don\u0027t we change the estimator to return the full range of (normalized) estimates along with the highest estimate of where there\u0027s a potential change point?",
+      "range": {
+        "startLine": 182,
+        "startChar": 2,
+        "endLine": 190,
+        "endChar": 11
+      },
+      "revId": "1ad10af51ea015373ce3eaacc94705dfae0a6f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

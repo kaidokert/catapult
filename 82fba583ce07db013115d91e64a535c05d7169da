@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4093b33c_aae6fed3",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-26T01:28:03Z",
+      "side": 1,
+      "message": "Can you say more? We\u0027re doing the same work, just changing the result of the function type (instead of adding a function that will do the same work, we should change the function that\u0027s doing the estimation to return the more useful information instead)?",
+      "parentUuid": "c675088a_420ca988",
+      "range": {
+        "startLine": 232,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 66
+      },
+      "revId": "82fba583ce07db013115d91e64a535c05d7169da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2533c6eb_d7ecdb15",
         "filename": "dashboard/dashboard/find_change_points.py",
         "patchSetId": 2
