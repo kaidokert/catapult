@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97acb6c8_9aa556d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-02-26T17:34:20Z",
+      "side": 1,
+      "message": "The dry run on Chromium/src all passed except the presubmit check",
+      "revId": "b4237ea85556069ec7591203d651e143d6bda09b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
