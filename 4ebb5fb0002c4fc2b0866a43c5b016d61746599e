@@ -16,6 +16,23 @@
       "message": "LGTM, though should also wait for Dean to take a look.",
       "revId": "4ebb5fb0002c4fc2b0866a43c5b016d61746599e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6907c625_04188608",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-26T23:01:27Z",
+      "side": 1,
+      "message": "LGTM\n\nLooks much simpler than I originally thought!",
+      "revId": "4ebb5fb0002c4fc2b0866a43c5b016d61746599e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
