@@ -302,6 +302,77 @@ tr.exportTo('tr.metrics.sh', function() {
     return foundMainFrame ? [{value: total}] : [];
   }
 
+  function getFirstPaintFirstLayoutShiftDiffs(chromeHelper) {
+    let frameMap = {};
+    for (const pid in chromeHelper.rendererHelpers) {
+      const rendererHelper = chromeHelper.rendererHelpers[pid];
+      if (rendererHelper.isChromeTracingUI) continue;
+
+      const frameToNavStartEvents =
+        EventFinderUtils.getSortedMainThreadEventsByFrame(
+            rendererHelper, 'navigationStart', 'blink.user_timing');
+      const navIdToNavStartEvents =
+        EventFinderUtils.getSortedMainThreadEventsByNavId(
+            rendererHelper, 'navigationStart', 'blink.user_timing');
+      const firstPaintEvents = findTimeToXEntries(
+          'loading', 'firstPaint', rendererHelper, frameToNavStartEvents,
+          navIdToNavStartEvents);
+
+      for (const { targetEvent, navigationStartEvent, url } of firstPaintEvents) {
+        const navStart = navigationStartEvent.start;
+        const firstPaint = targetEvent.start;
+        const frame = navigationStartEvent.args.frame;
+        const entry = { navStart: navStart, firstPaint: firstPaint };
+        if (!frameMap[frame]) {
+          frameMap[frame] = [entry];
+        } else {
+          let found = false;
+          for (let i = 0; i < frameMap[frame].length; i++) {
+            if (frameMap[frame][i].navStart > navStart) {
+              found = true;
+              frameMap[frame].splice(i, 0, entry);
+              break;
+            }
+          }
+          if (!found) {
+            frameMap.push(entry);
+          }
+        }
+      }
+
+      tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
+          rendererHelper, 'LayoutShiftPaint', 'loading').forEach((events) => {
+          // Add up the scores for main frames and weighted scores for subframes
+          for (const event of events) {
+            const frame = event.args.frame;
+            const start = event.start;
+            if (!frameMap[frame]) {
+              continue;
+            }
+            for (let i = 0; i < frameMap[frame].length; i++) {
+              if (start > frameMap[frame][i].navStart &&
+                 (i == frameMap[frame].length - 1 || start < frameMap[frame][i].navStart)) {
+                if (!frameMap[frame][i].layoutShiftPaint || frameMap[frame][i].layoutShiftPaint > start) {
+                  frameMap[frame][i].layoutShiftPaint = start;
+                }
+              }
+            }
+          }
+        });
+    }
+    let samples = [];
+    for (let key in frameMap) {
+      const navs = frameMap[key];
+      for (let nav of navs) {
+        if (!nav.firstPaint || !nav.layoutShiftPaint) {
+          continue;
+        }
+        samples.push({value: nav.layoutShiftPaint - nav.firstPaint});
+      }
+    }
+    return samples;
+  }
+
   function addFirstMeaningfulPaintSample(samples, rendererHelper,
       navigationStart, fmpMarkerEvent, url) {
     const navStartToFMPRange = tr.b.math.Range.fromExplicitRange(
@@ -741,6 +812,13 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
           alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
         });
+    const shiftPaintDiffHistogram = histograms.createHistogram(
+        'firstLayoutShiftFirstPaintDiff', timeDurationInMs_smallerIsBetter, [], {
+          binBoundaries: LOADING_METRIC_BOUNDARIES,
+          description: 'Difference between first layout shift paint and first paint per frame',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
     const navigationStartHistogram = histograms.createHistogram(
         'navigationStart', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
@@ -756,6 +834,13 @@ tr.exportTo('tr.metrics.sh', function() {
     addSamplesToHistogram(
         allLayoutShiftSamples,
         allLayoutShiftHistogram,
+        histograms);
+
+    const shiftPaintDiffSamples = getFirstPaintFirstLayoutShiftDiffs(
+        chromeHelper);
+    addSamplesToHistogram(
+        shiftPaintDiffSamples,
+        shiftPaintDiffHistogram,
         histograms);
 
     for (const pid in chromeHelper.rendererHelpers) {
