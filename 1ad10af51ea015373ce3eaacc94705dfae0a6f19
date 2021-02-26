@@ -22,6 +22,30 @@
       },
       "revId": "1ad10af51ea015373ce3eaacc94705dfae0a6f19",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43bf7f12_d0f33e76",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-02-26T02:12:25Z",
+      "side": 1,
+      "message": "We are doing mush less than a single pass in most case. We only do a single pass in worst case (touch both edges).\n\nI realized we need some sort of normalization. The distribution is largely affected by the lenghth of sequence. That may be a seperate change.",
+      "parentUuid": "7d959b59_95106c7f",
+      "range": {
+        "startLine": 182,
+        "startChar": 2,
+        "endLine": 190,
+        "endChar": 11
+      },
+      "revId": "1ad10af51ea015373ce3eaacc94705dfae0a6f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
