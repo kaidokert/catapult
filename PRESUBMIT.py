@@ -94,8 +94,10 @@ def CheckChangeLogBug(input_api, output_api):
 
 def CheckChange(input_api, output_api):
   results = []
+
   try:
     sys.path += [input_api.PresubmitLocalPath()]
+
 
     from catapult_build import bin_checks
     from catapult_build import html_checks
@@ -109,6 +111,9 @@ def CheckChange(input_api, output_api):
     results += CheckChangeLogBug(input_api, output_api)
     results += js_checks.RunChecks(
         input_api, output_api, excluded_paths=_EXCLUDED_PATHS)
+    results += input_api.RunTests(
+      input_api.canned_checks.CheckPatchFormatted(input_api, output_api,
+        check_js=True))
     results += html_checks.RunChecks(
         input_api, output_api, excluded_paths=_EXCLUDED_PATHS)
     results += repo_checks.RunChecks(input_api, output_api)
