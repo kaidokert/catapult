@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "262a135d_c537204d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-26T04:28:05Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "1ad10af51ea015373ce3eaacc94705dfae0a6f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d959b59_95106c7f",
@@ -38,6 +55,30 @@
       "side": 1,
       "message": "We are doing mush less than a single pass in most case. We only do a single pass in worst case (touch both edges).\n\nI realized we need some sort of normalization. The distribution is largely affected by the lenghth of sequence. That may be a seperate change.",
       "parentUuid": "7d959b59_95106c7f",
+      "range": {
+        "startLine": 182,
+        "startChar": 2,
+        "endLine": 190,
+        "endChar": 11
+      },
+      "revId": "1ad10af51ea015373ce3eaacc94705dfae0a6f19",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da85876b_616e33f8",
+        "filename": "dashboard/dashboard/common/clustering_change_detector.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-02-26T04:28:05Z",
+      "side": 1,
+      "message": "Sync\u0027ed offline -- we should explore log normalization to flatten out spikes in the estimate distribution when finding which ones are outside the threshold.",
+      "parentUuid": "43bf7f12_d0f33e76",
       "range": {
         "startLine": 182,
         "startChar": 2,
