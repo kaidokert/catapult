@@ -87,6 +87,24 @@
       "parentUuid": "8f0dd1d9_be542760",
       "revId": "47785f0d3d7deb955b245e1d49685846902296cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb6d7873_1029f52e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-02-26T04:57:59Z",
+      "side": 1,
+      "message": "Thank you Dirk. But I did update the pydeps files in the dry run CL. I thought roll catapult into chrome is done automatically?",
+      "parentUuid": "5733b909_199a5a68",
+      "revId": "47785f0d3d7deb955b245e1d49685846902296cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
