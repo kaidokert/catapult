@@ -460,6 +460,8 @@ class ReadValueTest(_ReadValueExecutionTest):
     hist2 = histogram_module.Histogram('hist2', 'count')
     hist2.diagnostics[reserved_infos.TRACE_URLS.name] = (
         generic_set.GenericSet(['trace_url3']))
+    hist2.diagnostics[reserved_infos.STORIES.name] = (
+        generic_set.GenericSet(['story3']))
     hist3 = histogram_module.Histogram('hist3', 'count')
     hist3.diagnostics[reserved_infos.TRACE_URLS.name] = (
         generic_set.GenericSet(['trace_url2']))
@@ -490,7 +492,7 @@ class ReadValueTest(_ReadValueExecutionTest):
                 },
                 {
                     'key': 'trace',
-                    'value': 'trace_url3',
+                    'value': 'story3',
                     'url': 'trace_url3',
                 },
             ],
