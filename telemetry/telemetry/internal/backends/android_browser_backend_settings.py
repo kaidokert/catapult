@@ -232,7 +232,7 @@ class WebLayerBackendSettings(WebViewBackendSettings):
   def GetApkName(self, device):
     del device # Unused
     assert self.apk_name is None
-    return 'Monochrome.apk'
+    return 'TrichromeWebViewGoogle.apk'
 
   def IsWebView(self):
     return False
