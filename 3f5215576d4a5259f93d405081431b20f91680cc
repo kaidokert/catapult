@@ -51,6 +51,24 @@
       "parentUuid": "8335069a_5116557b",
       "revId": "3f5215576d4a5259f93d405081431b20f91680cc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b1f0646_c2542de4",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-01T22:43:32Z",
+      "side": 1,
+      "message": "\u003e From the document (both py2.7 and py3.9), it says \"encoding and decoding of data is made transparently\", so the decode is not necessary.\n\nHm. I\u0027m not quite sure what that means.\n\n\u003e I tried this piece of code in py2, previously type(str_output) is \u0027str\u0027, after this change, its type is unicode. Could this be a problem?\n\nPossibly?\n\n\u003e Do we know what is the type of data as of now?\n\nI do not; I\u0027d have to look at the code more to try and trace what inputs might be possible.",
+      "parentUuid": "406a9107_15ef1d98",
+      "revId": "3f5215576d4a5259f93d405081431b20f91680cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
