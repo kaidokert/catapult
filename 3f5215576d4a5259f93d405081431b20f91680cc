@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c88a4b_37c3b6ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-01T23:00:12Z",
+      "side": 1,
+      "message": "Thanks Dirk. I updated it a little bit to keep the return type same for py2\u0027 case",
+      "parentUuid": "5a202fa4_4dfe7ed6",
+      "revId": "3f5215576d4a5259f93d405081431b20f91680cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8335069a_5116557b",
