@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b29c0a_4af6d623",
+        "filename": ".vpython3",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-01T17:07:51Z",
+      "side": 1,
+      "message": "Do we need the other wheels from the .vpython file? It looks like most of these are \"*-py2_py3\" wheels (which I assume are not relevant in py3), but some of them appear different (ex. \"infra/python/wheels/psutil/${vpython_platform}\")",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 35
+      },
+      "revId": "c629677206522ad1ebf5cab61378a9ce472649c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
