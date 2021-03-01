@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3be5d3dd_fc9e1509",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-01T19:39:46Z",
+      "side": 1,
+      "message": "suggestion for follow-up: does it make sense to let the caller configure this?",
+      "range": {
+        "startLine": 163,
+        "startChar": 45,
+        "endLine": 163,
+        "endChar": 63
+      },
+      "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
