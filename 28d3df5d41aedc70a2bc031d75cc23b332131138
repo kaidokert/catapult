@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1caf3357_ec9a10ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-01T23:49:05Z",
+      "side": 1,
+      "message": "Let\u0027s wait for crrev.com/c/2725202 before moving forward with this ",
+      "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
