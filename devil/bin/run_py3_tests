@@ -15,9 +15,31 @@ _DEVIL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 sys.path.append(_DEVIL_PATH)
 import devil.devil_env_test
+import devil.utils.cmd_helper_test
+import devil.utils.decorators_test
+import devil.utils.find_usb_devices_test
+import devil.utils.geometry_test
+import devil.utils.lsusb_test
+import devil.utils.markdown_test
+import devil.utils.mock_calls_test
+import devil.utils.parallelizer_test
+import devil.utils.reraiser_thread_unittest
+import devil.utils.timeout_retry_unittest
+import devil.utils.zip_utils_test
 
 PY3_COMPATIBLE_TESTS = [
     devil.devil_env_test,
+    devil.utils.cmd_helper_test,
+    devil.utils.decorators_test,
+    devil.utils.find_usb_devices_test,
+    devil.utils.geometry_test,
+    devil.utils.lsusb_test,
+    devil.utils.markdown_test,
+    devil.utils.mock_calls_test,
+    devil.utils.parallelizer_test,
+    devil.utils.reraiser_thread_unittest,
+    devil.utils.timeout_retry_unittest,
+    devil.utils.zip_utils_test,
 ]
 
 
