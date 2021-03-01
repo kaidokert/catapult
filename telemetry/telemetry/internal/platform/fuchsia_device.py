@@ -22,11 +22,19 @@ _SDK_ROOT_IN_CATAPULT = os.path.join(util.GetCatapultDir(), 'third_party',
 _SDK_ROOT_IN_CHROMIUM = os.path.join(util.GetCatapultDir(), '..',
                                      'fuchsia-sdk', 'sdk')
 _SDK_TOOLS = [
-    os.path.join('tools', 'device-finder'),
-    os.path.join('tools', 'symbolize')
+    os.path.join('tools', 'x64', 'ffx'),
+    os.path.join('tools', 'x64', 'symbolize')
 ]
 
 
+# TODO(omerlevran): Remove before submitting.
+os.environ["FUCHSIA_ANALYTICS_DISABLED"] = '1'
+
+logging.warning('*******************Getting ENV VARIABLES FOR FFX*********************************')
+for x in ['SWARMING_BOT_ID', 'CODEBUILD_BUILD_ID', 'CIRCLECI']:
+  if os.getenv(x) is not None:
+    logging.warning(x, os.getenv(x))
+logging.warning('*******************Done getting ENV VARIABLES FOR FFX*********************************')
 class FuchsiaDevice(device.Device):
 
   def __init__(self, target_name, host, ssh_config,
@@ -87,13 +95,13 @@ def _DownloadFuchsiaSDK(tar_file, dest=_SDK_ROOT_IN_CATAPULT):
 
 
 def _FindFuchsiaDevice(sdk_root, is_emulator):
-  dev_finder_path = os.path.join(sdk_root, 'tools', 'device-finder')
+  ffx_path = os.path.join(sdk_root, 'tools', 'x64', 'ffx')
   if is_emulator:
     logging.warning('Fuchsia emulators not supported at this time.')
     return None
-  finder_cmd = [dev_finder_path, 'list', '-full', '-netboot',
-                '-timeout', str(_LIST_DEVICES_TIMEOUT_SECS) + 's']
-  device_list, _ = cmd_util.GetAllCmdOutput(finder_cmd)
+  ffx_cmd = [ffx_path, '-T',
+             str(_LIST_DEVICES_TIMEOUT_SECS), 'target', 'list', '--format', 's']
+  device_list, _ = cmd_util.GetAllCmdOutput(ffx_cmd)
   if not device_list:
     logging.warning('No Fuchsia device found. Ensure your device is set up '
                     'and can be connected to.')
