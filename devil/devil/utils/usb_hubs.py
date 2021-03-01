@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import six
+
 PLUGABLE_7PORT_LAYOUT = {1: 7, 2: 6, 3: 5, 4: {1: 4, 2: 3, 3: 2, 4: 1}}
 
 PLUGABLE_7PORT_USB3_LAYOUT = {1: {1: 1, 2: 2, 3: 3, 4: 4}, 2: 5, 3: 6, 4: 7}
@@ -73,7 +75,7 @@ class HubType(object):
       A series of (int, USBNode) tuples giving a physical port
       and the Node connected to it.
     """
-    for (virtual, physical) in mapping.iteritems():
+    for (virtual, physical) in six.iteritems(mapping):
       if node.HasPort(virtual):
         if isinstance(physical, dict):
           for res in self._GppHelper(node.PortToDevice(virtual), physical):
