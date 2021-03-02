@@ -117,6 +117,30 @@
       },
       "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a599ecf0_f898358e",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-02T03:48:56Z",
+      "side": 1,
+      "message": "Looks like telemetry has a vendored copy of six at 1.10.0: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/third_party/six/six.py;drc\u003d08027af50264af540687776bc666301a1e1d3978;l\u003d32\n\nIt adds it to its path here: https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/telemetry/telemetry/__init__.py;drc\u003d92c77100518eb763855f8b0ef8ba9ce6b29ac9f5;l\u003d60",
+      "parentUuid": "47b98906_17f6e2cd",
+      "range": {
+        "startLine": 274,
+        "startChar": 31,
+        "endLine": 274,
+        "endChar": 44
+      },
+      "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
