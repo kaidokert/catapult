@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b8e8f1_58112387",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-02T02:05:18Z",
+      "side": 1,
+      "message": "Perhaps. The caller could also decode the stream on their own if they want it decoded.",
+      "parentUuid": "3be5d3dd_fc9e1509",
+      "range": {
+        "startLine": 163,
+        "startChar": 45,
+        "endLine": 163,
+        "endChar": 63
+      },
+      "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e946005_d9ef3cbf",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-01T23:48:55Z",
       "side": 1,
       "message": "ensure_binary, or ensure_string?",
+      "range": {
+        "startLine": 274,
+        "startChar": 31,
+        "endLine": 274,
+        "endChar": 44
+      },
+      "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8089c467_99253493",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-02T02:05:18Z",
+      "side": 1,
+      "message": "ensure_binary. My intent is for cmd_helper to return bytes in py3.",
+      "parentUuid": "9e946005_d9ef3cbf",
       "range": {
         "startLine": 274,
         "startChar": 31,
