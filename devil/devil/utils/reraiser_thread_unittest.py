@@ -6,6 +6,8 @@
 import threading
 import unittest
 
+import six
+
 from devil.utils import reraiser_thread
 from devil.utils import watchdog_timer
 
@@ -50,8 +52,9 @@ class TestReraiserThreadGroup(unittest.TestCase):
     def f(i):
       ran[i] = True
 
-    group = reraiser_thread.ReraiserThreadGroup(
-        [reraiser_thread.ReraiserThread(f, args=[i]) for i in range(5)])
+    group = reraiser_thread.ReraiserThreadGroup([
+        reraiser_thread.ReraiserThread(f, args=[i]) for i in six.moves.range(5)
+    ])
     group.StartAll()
     group.JoinAll()
     for v in ran:
@@ -64,7 +67,7 @@ class TestReraiserThreadGroup(unittest.TestCase):
       ran[i] = True
 
     group = reraiser_thread.ReraiserThreadGroup()
-    for i in xrange(5):
+    for i in six.moves.range(5):
       group.Add(reraiser_thread.ReraiserThread(f, args=[i]))
     group.StartAll()
     group.JoinAll()
@@ -76,7 +79,7 @@ class TestReraiserThreadGroup(unittest.TestCase):
       raise TestException
 
     group = reraiser_thread.ReraiserThreadGroup(
-        [reraiser_thread.ReraiserThread(f) for _ in xrange(5)])
+        [reraiser_thread.ReraiserThread(f) for _ in six.moves.range(5)])
     group.StartAll()
     with self.assertRaises(TestException):
       group.JoinAll()
