@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1540468c_a7dd2ffe",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-02T22:21:17Z",
+      "side": 1,
+      "message": "When I tested locally, if I make a change like this, at line 470 it will complain \"TypeError: string argument expected, got \u0027bytes\u0027\"",
+      "range": {
+        "startLine": 458,
+        "startChar": 15,
+        "endLine": 458,
+        "endChar": 23
+      },
+      "revId": "1e17454b0b2c65f3170ce959a0cb582db5462efd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
