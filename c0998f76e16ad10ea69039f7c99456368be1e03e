@@ -34,6 +34,24 @@
       "parentUuid": "26774342_821489fb",
       "revId": "c0998f76e16ad10ea69039f7c99456368be1e03e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "108ae4c4_8257bd63",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2021-03-02T22:42:05Z",
+      "side": 1,
+      "message": "Actually it looks like the timeout flag must be before the command, in which case I\u0027d recommend putting the timeout value and the -T flag on the same line.",
+      "parentUuid": "26774342_821489fb",
+      "revId": "c0998f76e16ad10ea69039f7c99456368be1e03e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
