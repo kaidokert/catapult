@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9ad5cc7_b8480d11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-02T21:48:08Z",
+      "side": 1,
+      "message": "One of the CLs to enable installing Trichrome bundle on Pixel 4. PTAL.",
+      "revId": "6f6488e2ec2eb335f2f5b3b69a892cd64859291e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
