@@ -13,6 +13,8 @@ import logging
 from apiclient import discovery
 from apiclient import errors
 
+from dashboard.common import utils
+
 _DISCOVERY_URI = ('https://monorail-prod.appspot.com'
                   '/_ah/api/discovery/v1/apis/{api}/{apiVersion}/rest')
 
@@ -39,18 +41,23 @@ class IssueTrackerService(object):
     """
     http.timeout = 30
 
-    # Retry connecting at least 3 times.
-    attempt = 1
-    while attempt != MAX_DISCOVERY_RETRIES:
+    def GetService():
       try:
-        self._service = discovery.build(
-            'monorail', 'v1', discoveryServiceUrl=_DISCOVERY_URI, http=http)
-        break
+        return discovery.build(
+            'monorail',
+            'v1',
+            discoveryServiceUrl=_DISCOVERY_URI,
+            http=http,
+        )
       except httplib.HTTPException as e:
-        logging.error('Attempt #%d: %s', attempt, e)
-        if attempt == MAX_DISCOVERY_RETRIES:
-          raise
-      attempt += 1
+        logging.error('Attempt failed: %s', e)
+        raise
+
+    try:
+      self._service = utils.Retries(MAX_DISCOVERY_RETRIES, GetService)
+    except Exception as e:  # pylint: disable=broad-except
+      logging.error('Failed discovery: %s', e)
+      raise
 
   def AddBugComment(self,
                     bug_id,

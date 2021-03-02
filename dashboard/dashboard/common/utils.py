@@ -623,6 +623,17 @@ def ServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
   return http
 
 
+def DefaultServiceAccountHttp(scope=EMAIL_SCOPE, timeout=None):
+  """Returns the Credentials of the service account if available."""
+  assert scope, "ServiceAccountHttp scope must not be None."
+
+  client.logger.setLevel(logging.WARNING)
+  credentials = client.GoogleCredentials.get_application_default()
+  http = httplib2.Http(timeout=timeout)
+  credentials.authorize(http)
+  return http
+
+
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, xg=True)
 def IsValidSheriffUser():
   """Checks whether the user should be allowed to triage alerts."""
@@ -826,3 +837,24 @@ def IsMonitored(sheriff_client, test_path):
   if subscriptions:
     return True
   return False
+
+
+class Error(Exception):
+  pass
+
+
+class RetriesExceeded(Error):
+  pass
+
+
+def Retries(count, f):
+  """Runs the function f at most count times."""
+  attempt = 1
+  while attempt != count:
+    try:
+      return f()
+    except Exception as e:  # pylint: disable=broad-except
+      logging.warn('Try #%d: %s', attempt, e)
+      if attempt == count:
+        raise
+    attempt += 1

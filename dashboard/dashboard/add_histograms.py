@@ -29,12 +29,13 @@ from dashboard.common import utils
 from dashboard.models import graph_data
 from dashboard.models import histogram
 from dashboard.models import upload_completion_token
+from dashboard.services import pubsub
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic
 from tracing.value.diagnostics import reserved_infos
 
+HISTOGRAMS_PUBSUB_TOPIC = 'projects/chromeperf/topics/histograms'
 TASK_QUEUE_NAME = 'histograms-queue'
-
 _RETRY_PARAMS = cloudstorage.RetryParams(backoff_factor=1.1)
 _TASK_RETRY_LIMIT = 4
 _ZLIB_BUFFER_SIZE = 4096
@@ -400,6 +401,11 @@ def _CreateHistogramTasks(suite_path,
   duplicate_check = set()
   measurement_add_futures = []
   sheriff_client = sheriff_config_client.GetSheriffConfigClient()
+  http = utils.DefaultServiceAccountHttp()
+  pubsub_client = pubsub.PubSubClient.GetClient(
+      HISTOGRAMS_PUBSUB_TOPIC,
+      http=http,
+  )
 
   for hist in histograms:
     diagnostics = FindHistogramLevelSparseDiagnostics(hist)
@@ -419,6 +425,19 @@ def _CreateHistogramTasks(suite_path,
     task_dict = _MakeTaskDict(hist, test_path, revision, benchmark_description,
                               diagnostics, completion_token)
     tasks.append(_MakeTask([task_dict]))
+
+    # Now that we have a fully-formed task, we'll 'tee' this off to a PubSub
+    # topic to allow alternate histogram processing.
+    try:
+      pubsub_client.Post(json.dumps(task_dict))
+    except Exception as e:  # pylint: disable=broad-except
+      # FIXME: Handle the exceptions better, log for now so we don't fail hard
+      # in production.
+      logging.warn(
+          'Error posting to topic "%s": %s',
+          HISTOGRAMS_PUBSUB_TOPIC,
+          e,
+      )
 
     if completion_token is not None:
       measurement_add_futures.append(

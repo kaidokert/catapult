@@ -30,6 +30,7 @@ from dashboard.models import graph_data
 from dashboard.models import histogram
 from dashboard.models import upload_completion_token
 from dashboard.sheriff_config_client import SheriffConfigClient
+from dashboard.services import pubsub
 from tracing.value import histogram as histogram_module
 from tracing.value import histogram_set
 from tracing.value.diagnostics import breakdown
@@ -160,6 +161,12 @@ class BufferedFakeFile(object):
     return self
 
 
+class FakePubSubClient(object):
+
+  def Post(self, _):
+    pass
+
+
 class AddHistogramsBaseTest(testing_common.TestCase):
 
   def setUp(self):
@@ -191,9 +198,15 @@ class AddHistogramsBaseTest(testing_common.TestCase):
     self.mock_error = patcher.start()
     self.addCleanup(patcher.stop)
 
+    patcher = mock.patch.object(utils.client, 'GoogleCredentials')
+    self.mock_credentials = patcher.start()
+    self.addCleanup(patcher.stop)
+
   def PostAddHistogram(self, data, status=200):
     mock_obj = mock.MagicMock(wraps=BufferedFakeFile())
     self.mock_cloudstorage.open.return_value = mock_obj
+    self.mock_credentials.get_application_default.return_value = (
+        mock.MagicMock())
 
     r = self.testapp.post('/add_histograms', data, status=status)
     self.ExecuteTaskQueueTasks('/add_histograms/process', 'default')
@@ -217,6 +230,8 @@ class AddHistogramsBaseTest(testing_common.TestCase):
                    mock.MagicMock(return_value=None))
 @mock.patch.object(SheriffConfigClient, 'Match',
                    mock.MagicMock(return_value=([], None)))
+@mock.patch.object(pubsub.PubSubClient, 'GetClient',
+                   mock.MagicMock(return_value=FakePubSubClient()))
 class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
 
   def setUp(self):
@@ -817,11 +832,12 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     }
     self._CheckOutOfOrderExpectations(expected)
 
-
 @mock.patch.object(SheriffConfigClient, '__init__',
                    mock.MagicMock(return_value=None))
 @mock.patch.object(SheriffConfigClient, 'Match',
                    mock.MagicMock(return_value=([], None)))
+@mock.patch.object(pubsub.PubSubClient, 'GetClient',
+                   mock.MagicMock(return_value=FakePubSubClient()))
 class AddHistogramsTest(AddHistogramsBaseTest):
 
   def setUp(self):
@@ -1600,6 +1616,8 @@ class AddHistogramsTest(AddHistogramsBaseTest):
                    mock.MagicMock(return_value=None))
 @mock.patch.object(SheriffConfigClient, 'Match',
                    mock.MagicMock(return_value=([], None)))
+@mock.patch.object(pubsub.PubSubClient, 'GetClient',
+                   mock.MagicMock(return_value=FakePubSubClient()))
 class AddHistogramsUploadCompleteonTokenTest(AddHistogramsBaseTest):
 
   def setUp(self):
@@ -1991,3 +2009,57 @@ class DecompressFileWrapperTest(testing_common.TestCase):
     with BufferedFakeFile('[{"key": "complete list"}]') as input_file:
       dicts = add_histograms._LoadHistogramList(input_file)
       self.assertSequenceEqual([{u'key': u'complete list'}], dicts)
+
+
+@mock.patch.object(SheriffConfigClient, '__init__',
+                   mock.MagicMock(return_value=None))
+@mock.patch.object(SheriffConfigClient, 'Match',
+                   mock.MagicMock(return_value=([], None)))
+@mock.patch.object(utils, 'DefaultServiceAccountHttp',
+                   mock.MagicMock(return_value=None))
+class PubSubHistogramsTest(AddHistogramsBaseTest):
+
+  def setUp(self):
+    super(PubSubHistogramsTest, self).setUp()
+
+  @mock.patch.object(add_histograms_queue.graph_revisions,
+                     'AddRowsToCacheAsync')
+  @mock.patch.object(add_histograms_queue.find_anomalies, 'ProcessTestsAsync')
+  @mock.patch.object(add_histograms.pubsub, 'PubSubClient')
+  def testHistogramIsPublished(self, mock_pubsub, mock_process_test,
+                               mock_graph_revisions):
+    mock_instance = mock.MagicMock()
+    mock_pubsub.GetClient = mock.MagicMock(return_value=mock_instance)
+    hs = _CreateHistogram(
+        master='master',
+        bot='bot',
+        benchmark='benchmark',
+        commit_position=123,
+        benchmark_description='Benchmark description.',
+        samples=[1, 2, 3])
+    data = json.dumps(hs.AsDicts())
+    post_histogram_res = self.PostAddHistogram({'data': data})
+    self.assertEqual(json.loads(post_histogram_res.body), None)
+    self.ExecuteTaskQueueTasks(
+        '/add_histograms_queue',
+        add_histograms.TASK_QUEUE_NAME,
+    )
+    diagnostics = histogram.SparseDiagnostic.query().fetch()
+    self.assertEqual(4, len(diagnostics))
+    histograms = histogram.Histogram.query().fetch()
+    self.assertEqual(1, len(histograms))
+    tests = graph_data.TestMetadata.query().fetch()
+    self.assertEqual('Benchmark description.', tests[0].description)
+
+    # Verify that an anomaly processing was called.
+    self.assertEqual(mock_process_test.call_count, 1)
+    rows = graph_data.Row.query().fetch()
+
+    # We want to verify that the method was called with all rows that have
+    # been added, but the ordering will be different because we produce
+    # the rows by iterating over a dict.
+    mock_graph_revisions.assert_called_once_with(mock.ANY)
+    self.assertEqual(len(mock_graph_revisions.mock_calls[0][1][0]), len(rows))
+
+    # We also want to verify that the histogram was published to PubSub.
+    mock_instance.Post.assert_called_once_with(mock.ANY)
