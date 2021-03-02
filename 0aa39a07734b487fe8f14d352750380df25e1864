@@ -93,6 +93,30 @@
       },
       "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47b98906_17f6e2cd",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-02T02:16:09Z",
+      "side": 1,
+      "message": "... though it looks like the telemetry tests are failing similarly to how pylint was failing. Earlier versions of six didn\u0027t have ensure_binary.\n\nWill track down the version mismatch there and probably upload as a separate parent CL.",
+      "parentUuid": "8089c467_99253493",
+      "range": {
+        "startLine": 274,
+        "startChar": 31,
+        "endLine": 274,
+        "endChar": 44
+      },
+      "revId": "0aa39a07734b487fe8f14d352750380df25e1864",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
