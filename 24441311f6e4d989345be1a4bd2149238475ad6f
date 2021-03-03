@@ -69,6 +69,24 @@
       "parentUuid": "b10d5bfd_f60caaab",
       "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122555b8_4fb343cd",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-03T22:28:15Z",
+      "side": 1,
+      "message": "The code doesn\u0027t use the install script to do the actual installation. We use it to extract APKs (https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/devil/devil/android/apk_helper.py;l\u003d594), and then install those APKs. Not sure why it was written that way -- it dated before my time. Might worth some investigation in the future, but that would be for the future.\n\nPinpoint job showed that install fails without explicitly specifying additional_apk_name\u003d\u0027../apks/TrichromeLibraryGoogle.apk\u0027.",
+      "parentUuid": "9afe362c_94a0b572",
+      "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
