@@ -60,6 +60,8 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     # accordingly, and normal users can pass --chromium-output-dir to have
     # this set in browser_options.
     self._build_dir = os.environ.get('CHROMIUM_OUTPUT_DIR')
+    self._download_dir = cri.RunCmdOnDevice(
+        ['mktemp', '-d', '/tmp/download'])[0].rstrip()
 
   def __repr__(self):
     return 'PossibleCrOSBrowser(browser_type=%s)' % self.browser_type
@@ -125,6 +127,9 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
     cri.RunCmdOnDevice(
         ['mv', self._existing_minidump_dir, self._CROS_MINIDUMP_DIR])
 
+    # Remove download dir
+    cri.RmRF(self._download_dir)
+
   def Create(self):
     # Init the LocalFirstBinaryManager if this is the first time we're creating
     # a browser.
@@ -155,11 +160,14 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
           self._DEFAULT_CHROME_ENV,
           os_browser_backend,
           build_dir=self._build_dir)
-      return browser.Browser(
+      new_browser = browser.Browser(
           lacros_chrome_browser_backend, self._platform_backend, startup_args)
+      lacros_browser_backend.SetDownloadBehavior('allow', self._download_dir)
     else:
-      return browser.Browser(
+      new_browser = browser.Browser(
           os_browser_backend, self._platform_backend, startup_args)
+      os_browser_backend.SetDownloadBehavior('allow', self._download_dir)
+    return new_browser
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
