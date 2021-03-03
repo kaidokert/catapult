@@ -16,6 +16,46 @@
       "message": "Fixing handling of Trichrome WebView bundle. PTAL. (There is a separate CL for fixing Trichrome Chrome bundle.)",
       "revId": "5a41bfdf369966475590821767e46007ad0b8569",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbbb51b9_a500aecd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-03-03T23:07:42Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "5a41bfdf369966475590821767e46007ad0b8569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8adff96_7a8211ca",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-03-03T23:07:42Z",
+      "side": 1,
+      "message": "nit: Should we update this as well?",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 51
+      },
+      "revId": "5a41bfdf369966475590821767e46007ad0b8569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
