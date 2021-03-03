@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2305e3ac_66f64d02",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1109505
+      },
+      "writtenOn": "2021-03-03T21:18:17Z",
+      "side": 1,
+      "message": "I\u0027m not familiar with this script but it looks somewhat weird that the additional APK is a path when the other APK is what looks like a build target name? The build target for this is trichrome_library_google_apk if that helps?",
+      "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
