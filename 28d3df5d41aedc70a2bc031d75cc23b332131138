@@ -16,6 +16,24 @@
       "message": "Let\u0027s wait for crrev.com/c/2725202 before moving forward with this ",
       "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f650ec_5a59ed68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-03T23:38:20Z",
+      "side": 1,
+      "message": "Ben, I suggest we move ahead with this CL. Looks like there is no status update on crrev.com/c/2725202? I tested this change with run_android_wpt.py, it works on both py2 and py3",
+      "parentUuid": "1caf3357_ec9a10ac",
+      "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
