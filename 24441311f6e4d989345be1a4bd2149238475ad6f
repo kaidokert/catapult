@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a86b00c8_e409df43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-03T21:46:46Z",
+      "side": 1,
+      "message": "Richard: Please check that ANDROID_TRICHROME_BUNDLE setting includes the right bundle and library APK.\n\nWenbin: Please check the script code.\n\nThanks!",
+      "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2305e3ac_66f64d02",
