@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab690632_cb04d845",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-03-03T23:38:18Z",
+      "side": 1,
+      "message": "Looking at another related CL: crrev.com/c/2728570\n\nIn this CL the relative path logic is in the FindSupportApks, while in another CL the relative path is directly in the file name. Should we follow the same pattern?",
+      "range": {
+        "startLine": 217,
+        "startChar": 38,
+        "endLine": 217,
+        "endChar": 43
+      },
+      "revId": "5a41bfdf369966475590821767e46007ad0b8569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8adff96_7a8211ca",
         "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
         "patchSetId": 3
