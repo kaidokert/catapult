@@ -87,6 +87,24 @@
       "parentUuid": "9afe362c_94a0b572",
       "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe13f915_a40f8524",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1109505
+      },
+      "writtenOn": "2021-03-03T22:32:03Z",
+      "side": 1,
+      "message": "Ah, ok; probably this was just added on when bundle support came along to avoid having to teach it how to invoke bundletool and it previously didn\u0027t care about the wrapper scripts at all. So yeah probably it should use the wrapper scripts to do the actual installations instead of doing it itself, but that\u0027s a different change.",
+      "parentUuid": "122555b8_4fb343cd",
+      "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
