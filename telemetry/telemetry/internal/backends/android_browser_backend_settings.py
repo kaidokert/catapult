@@ -325,7 +325,7 @@ ANDROID_WEBVIEW_TRICHROME_GOOGLE = WebViewBackendSettings(
     additional_apk_name='TrichromeLibraryGoogle.apk',
     browser_type='android-webview-trichrome-google')
 
-ANDROID_WEBVIEW_TRICHROME_GOOGLE_BUNDLE = WebViewBackendSettings(
+ANDROID_WEBVIEW_TRICHROME_GOOGLE_BUNDLE = WebViewBundleBackendSettings(
     apk_name='trichrome_webview_google_bundle',
     additional_apk_name='TrichromeLibraryGoogle.apk',
     browser_type='android-webview-trichrome-google-bundle')
