@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1bfefaa_23963dbb",
+        "filename": "devil/devil/devil_env.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-04T19:35:13Z",
+      "side": 1,
+      "message": "Let\u0027s add a test for this func now, and cover linux \u0026 linux2 scenarios",
+      "revId": "5a36ae4cba3280b35fd03971a1cd2eac460d7328",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
