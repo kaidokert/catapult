@@ -52,6 +52,24 @@
       "parentUuid": "7353197e_876c9dcc",
       "revId": "e1731ec7e0bd01124c3bf6e563b6e995f95661d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "333f17a8_18e04faa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-04T01:42:45Z",
+      "side": 1,
+      "message": "sure, but that sound like to me a hack. I am not sure if this will have issue for windows, mac, etc. Maybe this lib is not used for those platforms?\nIn the json file, platform for some items are put as \u0027default\u0027. If we really think we do not care about platform, let\u0027s change that to default?",
+      "parentUuid": "190a155d_bf4ab557",
+      "revId": "e1731ec7e0bd01124c3bf6e563b6e995f95661d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
