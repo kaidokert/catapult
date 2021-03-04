@@ -70,6 +70,24 @@
       "parentUuid": "d643450c_4592694f",
       "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ef4f89d_cc048677",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-04T02:04:59Z",
+      "side": 1,
+      "message": "that said, I would certainly appreciate being CCed if you intend to do further work that would affect the py2-\u003epy3 migration in devil.",
+      "parentUuid": "4aabd980_552a434e",
+      "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
