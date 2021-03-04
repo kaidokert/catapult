@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5f8681_0664bcaf",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-04T01:59:37Z",
+      "side": 1,
+      "message": "Good point. I\u0027ll update the other CL to be more like this one.",
+      "parentUuid": "ab690632_cb04d845",
+      "range": {
+        "startLine": 217,
+        "startChar": 38,
+        "endLine": 217,
+        "endChar": 43
+      },
+      "revId": "5a41bfdf369966475590821767e46007ad0b8569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8adff96_7a8211ca",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-03-03T23:07:42Z",
       "side": 1,
       "message": "nit: Should we update this as well?",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 51
+      },
+      "revId": "5a41bfdf369966475590821767e46007ad0b8569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e87893_9b70d8d3",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-04T01:59:37Z",
+      "side": 1,
+      "message": "Yes. I was planning to defer WebLayer to a different CL, as we also need to add another browser type for Pixel 4, and right now I haven\u0027t yet figured out the exact settings needed for that. But I think it\u0027s safe to update this function first, so I\u0027m going to do that now.\n\nIn the long term, we should have some refactoring...",
+      "parentUuid": "a8adff96_7a8211ca",
       "range": {
         "startLine": 255,
         "startChar": 2,
