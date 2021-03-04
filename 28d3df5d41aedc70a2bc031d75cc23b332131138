@@ -52,6 +52,24 @@
       "parentUuid": "a6f650ec_5a59ed68",
       "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aabd980_552a434e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-04T01:17:55Z",
+      "side": 1,
+      "message": "ack. This impacts my work in that it\u0027s less for me to do :)",
+      "parentUuid": "d643450c_4592694f",
+      "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
