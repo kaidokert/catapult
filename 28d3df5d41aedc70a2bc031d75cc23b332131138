@@ -34,6 +34,24 @@
       "parentUuid": "1caf3357_ec9a10ac",
       "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d643450c_4592694f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-04T00:12:50Z",
+      "side": 1,
+      "message": "I\u0027d still much prefer to simply wait for crrev.com/c/2725202. I worry that piecemeal transitions like this put us in a half-way state that makes crbug.com/1007101 overall more difficult.\n\nBut if this absolutely needs to go in ASAP, then of course it can. But let\u0027s wait for John\u0027s ACK, as this would directly impact his work.",
+      "parentUuid": "a6f650ec_5a59ed68",
+      "revId": "28d3df5d41aedc70a2bc031d75cc23b332131138",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
