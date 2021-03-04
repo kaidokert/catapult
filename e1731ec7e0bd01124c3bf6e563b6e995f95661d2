@@ -70,6 +70,24 @@
       "parentUuid": "190a155d_bf4ab557",
       "revId": "e1731ec7e0bd01124c3bf6e563b6e995f95661d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a1102bd_86ab039e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-04T02:21:34Z",
+      "side": 1,
+      "message": "I think we care about the platform, I just don\u0027t think it makes sense to have two different entries pointing to the same things based on a detail of Python\u0027s implementation. So I would be fine with `sys.platform if not sys.platform.startswith(\u0027linux\u0027) else \u0027linux\u0027` or something like that as well.",
+      "parentUuid": "333f17a8_18e04faa",
+      "revId": "e1731ec7e0bd01124c3bf6e563b6e995f95661d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
