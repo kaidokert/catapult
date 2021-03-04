@@ -52,6 +52,19 @@ class DevilEnvTest(unittest.TestCase):
         },
     }, env_config.get('dependencies'))
 
+  def testGetPlatform(self):
+    def mock_machine():
+      return 'x86_64'
+
+    with mock.patch('sys.platform', mock.Mock(return_value='linux2')), \
+         mock.patch('platform.machine', mock.Mock(side_effect=mock_machine)):
+      platform = devil_env.GetPlatform()
+      self.assertEquals(platform, 'linux2_x86_64')
+
+    with mock.patch('sys.platform', mock.Mock(return_value='linux')), \
+         mock.patch('platform.machine', mock.Mock(side_effect=mock_machine)):
+      platform = devil_env.GetPlatform()
+      self.assertEquals(platform, 'linux2_x86_64')
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.DEBUG)
