@@ -11,6 +11,8 @@ import sys
 import tempfile
 import threading
 
+import six
+
 CATAPULT_ROOT_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', '..'))
 DEPENDENCY_MANAGER_PATH = os.path.join(CATAPULT_ROOT_PATH, 'dependency_manager')
@@ -36,7 +38,8 @@ _ANDROID_BUILD_TOOLS = {'aapt', 'dexdump', 'split-select'}
 _DEVIL_DEFAULT_CONFIG = os.path.abspath(
     os.path.join(os.path.dirname(__file__), 'devil_dependencies.json'))
 
-_LEGACY_ENVIRONMENT_VARIABLES = {
+if six.PY2:
+  _LEGACY_ENVIRONMENT_VARIABLES = {
     'ADB_PATH': {
         'dependency_name': 'adb',
         'platform': 'linux2_x86_64',
@@ -45,8 +48,18 @@ _LEGACY_ENVIRONMENT_VARIABLES = {
         'dependency_name': 'android_sdk',
         'platform': 'linux2_x86_64',
     },
-}
-
+  }
+else:
+  _LEGACY_ENVIRONMENT_VARIABLES = {
+    'ADB_PATH': {
+        'dependency_name': 'adb',
+        'platform': 'linux_x86_64',
+    },
+    'ANDROID_SDK_ROOT': {
+        'dependency_name': 'android_sdk',
+        'platform': 'linux_x86_64',
+    },
+  }
 
 def EmptyConfig():
   return {'config_type': 'BaseConfig', 'dependencies': {}}

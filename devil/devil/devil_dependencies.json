@@ -8,6 +8,10 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "87bd288daab30624e41faa62aa2c1d5bac3e60aa",
           "download_path": "../bin/deps/linux2/x86_64/bin/aapt"
+        },
+        "linux_x86_64": {
+          "cloud_storage_hash": "87bd288daab30624e41faa62aa2c1d5bac3e60aa",
+          "download_path": "../bin/deps/linux2/x86_64/bin/aapt"
         }
       }
     },
@@ -18,6 +22,10 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "528d0e88a0d876b0549840f0797beffca4a6a796",
           "download_path": "../bin/deps/linux2/x86_64/bin/adb"
+        },
+        "linux_x86_64": {
+          "cloud_storage_hash": "528d0e88a0d876b0549840f0797beffca4a6a796",
+          "download_path": "../bin/deps/linux2/x86_64/bin/adb"
         }
       }
     },
@@ -26,6 +34,10 @@
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
         "linux2_x86_64": {
+          "cloud_storage_hash": "9b986774ad27288a6777ebfa9a08fd8a52003008",
+          "download_path": "../bin/deps/linux2/x86_64/lib64/libc++.so"
+        },
+        "linux_x86_64": {
           "cloud_storage_hash": "9b986774ad27288a6777ebfa9a08fd8a52003008",
           "download_path": "../bin/deps/linux2/x86_64/lib64/libc++.so"
         }
@@ -48,6 +60,10 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "6efb1501c7c49e6ae84cc467648930eaf9f6a9e5",
           "download_path": "../bin/deps/linux2/x86_64/lib.java/chromium_commands.dex.jar"
+        },
+        "linux_x86_64": {
+          "cloud_storage_hash": "6efb1501c7c49e6ae84cc467648930eaf9f6a9e5",
+          "download_path": "../bin/deps/linux2/x86_64/lib.java/chromium_commands.dex.jar"
         }
       }
     },
@@ -56,6 +72,10 @@
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
         "linux2_x86_64": {
+          "cloud_storage_hash": "c3fdf75afe8eb4062d66703cb556ee1e2064b8ae",
+          "download_path": "../bin/deps/linux2/x86_64/bin/dexdump"
+        },
+        "linux_x86_64": {
           "cloud_storage_hash": "c3fdf75afe8eb4062d66703cb556ee1e2064b8ae",
           "download_path": "../bin/deps/linux2/x86_64/bin/dexdump"
         }
@@ -80,6 +100,10 @@
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
         "linux2_x86_64": {
+          "cloud_storage_hash": "fe84a6714192f6596bf09215caeea34ed937a42b",
+          "download_path": "../bin/deps/linux2/x86_64/bin/fastboot"
+        },
+        "linux_x86_64": {
           "cloud_storage_hash": "fe84a6714192f6596bf09215caeea34ed937a42b",
           "download_path": "../bin/deps/linux2/x86_64/bin/fastboot"
         }
@@ -114,6 +138,10 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "334c172dd90bae568cbff9465130f1245a35cade",
           "download_path": "../bin/deps/linux2/x86_64/forwarder_host"
+        },
+        "linux_x86_64": {
+          "cloud_storage_hash": "334c172dd90bae568cbff9465130f1245a35cade",
+          "download_path": "../bin/deps/linux2/x86_64/forwarder_host"
         }
       }
     },
@@ -146,6 +174,10 @@
         "linux2_x86_64": {
           "cloud_storage_hash": "f2428a52730c6593267678c75f95cdc7dffb58df",
           "download_path": "../bin/deps/linux2/x86_64/bin/md5sum_host"
+        },
+        "linux_x86_64": {
+          "cloud_storage_hash": "f2428a52730c6593267678c75f95cdc7dffb58df",
+          "download_path": "../bin/deps/linux2/x86_64/bin/md5sum_host"
         }
       }
     },
@@ -154,6 +186,10 @@
       "cloud_storage_bucket": "chromium-telemetry",
       "file_info": {
         "linux2_x86_64": {
+          "cloud_storage_hash": "c116fd0d7ff089561971c078317b75b90f053207",
+          "download_path": "../bin/deps/linux2/x86_64/bin/split-select"
+        },
+        "linux_x86_64": {
           "cloud_storage_hash": "c116fd0d7ff089561971c078317b75b90f053207",
           "download_path": "../bin/deps/linux2/x86_64/bin/split-select"
         }
