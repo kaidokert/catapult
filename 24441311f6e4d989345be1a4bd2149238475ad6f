@@ -130,6 +130,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ee6b67a_d3c88bb6",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-04T02:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57915065_0abd376c",
+      "range": {
+        "startLine": 383,
+        "startChar": 25,
+        "endLine": 383,
+        "endChar": 28
+      },
+      "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef83e871_f62e1b15",
@@ -143,6 +167,30 @@
       "writtenOn": "2021-03-03T23:48:02Z",
       "side": 1,
       "message": "Is it possible that requires_embedder is False but webview_embedder_apk exist? It looks to me that the has_additional_apk is only for triggering FindSupportApks.",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 109,
+        "endChar": 50
+      },
+      "revId": "24441311f6e4d989345be1a4bd2149238475ad6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc4c8732_bc688630",
+        "filename": "telemetry/telemetry/internal/backends/chrome/android_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-03-04T02:30:54Z",
+      "side": 1,
+      "message": "Users shouldn\u0027t specify webview_embedder_apk if requires_embedder is False. To handle this correctly, we\u0027ll need to refactor FindSupportApks, since currently what it returns can include embedder and/or additional APKs, and no reliable way to separate the two. I think that\u0027s a technical debt for the future.",
+      "parentUuid": "ef83e871_f62e1b15",
       "range": {
         "startLine": 109,
         "startChar": 8,
