@@ -82,6 +82,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f638c3ab_23d13c63",
+        "filename": "telemetry/telemetry/internal/backends/android_browser_backend_settings.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-03-04T02:01:33Z",
+      "side": 1,
+      "message": "SGTM. Thanks!",
+      "parentUuid": "ec5f8681_0664bcaf",
+      "range": {
+        "startLine": 217,
+        "startChar": 38,
+        "endLine": 217,
+        "endChar": 43
+      },
+      "revId": "5a41bfdf369966475590821767e46007ad0b8569",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8adff96_7a8211ca",
