@@ -16,6 +16,75 @@
       "message": "Added unit test, pls help review again.",
       "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea95b84_5c66bc02",
+        "filename": "devil/devil/devil_env_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-04T23:22:13Z",
+      "side": 1,
+      "message": "How about a small test case for the \"android_%s\" return value while we\u0027re here? This CL isn\u0027t really impacting it, but it\u0027s always nice to leave the campground a little cleaner than you found it.",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66837011_6c918a4d",
+        "filename": "devil/devil/devil_env_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-04T23:22:13Z",
+      "side": 1,
+      "message": "We generally prefer avoiding line continuations via \\, and instead go with nested with statements:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/devil/devil/android/fastboot_utils_test.py;drc\u003d92c77100518eb763855f8b0ef8ba9ce6b29ac9f5;l\u003d354\n(There\u0027s prob some mention of this in the official py style guide)",
+      "range": {
+        "startLine": 59,
+        "startChar": 71,
+        "endLine": 59,
+        "endChar": 72
+      },
+      "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b29de0_7eae3706",
+        "filename": "devil/devil/devil_env_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-04T23:22:13Z",
+      "side": 1,
+      "message": "just embed the value of \u0027x86_64\u0027 as a return_value here instead of side_effect. hard-coding it twice isn\u0027t terrible",
+      "range": {
+        "startLine": 60,
+        "startChar": 50,
+        "endLine": 60,
+        "endChar": 74
+      },
+      "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
