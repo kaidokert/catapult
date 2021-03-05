@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0b0f20f_8bd7777c",
+        "filename": "devil/devil/devil_env_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-05T00:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dea95b84_5c66bc02",
+      "range": {
+        "startLine": 55,
+        "startChar": 6,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66837011_6c918a4d",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af0b3e55_94898952",
+        "filename": "devil/devil/devil_env_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-05T00:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66837011_6c918a4d",
+      "range": {
+        "startLine": 59,
+        "startChar": 71,
+        "endLine": 59,
+        "endChar": 72
+      },
+      "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50b29de0_7eae3706",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-03-04T23:22:13Z",
       "side": 1,
       "message": "just embed the value of \u0027x86_64\u0027 as a return_value here instead of side_effect. hard-coding it twice isn\u0027t terrible",
+      "range": {
+        "startLine": 60,
+        "startChar": 50,
+        "endLine": 60,
+        "endChar": 74
+      },
+      "revId": "231707baeadf2429af4b233bb2e1ad93859124f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33bc6df3_4654fa72",
+        "filename": "devil/devil/devil_env_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-05T00:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50b29de0_7eae3706",
       "range": {
         "startLine": 60,
         "startChar": 50,
