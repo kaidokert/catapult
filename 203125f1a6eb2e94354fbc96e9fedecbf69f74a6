@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd90b7b_af0adb85",
+        "filename": "devil/devil/devil_env.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-06T02:50:15Z",
+      "side": 1,
+      "message": "Re our chat about us conflicting: this is the kind of thing I mean, with https://chromium-review.googlesource.com/c/catapult/+/2730250.",
+      "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9bc5fc0_18c91e0a",
