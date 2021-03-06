@@ -70,6 +70,47 @@
       "parentUuid": "2b94ed91_c9a29a50",
       "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b7d1d69_5d0d4fe2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-06T02:11:36Z",
+      "side": 1,
+      "message": "Switch things to run under vpython. This is the motivation behind e.g. https://chromium-review.googlesource.com/c/chromium/src/+/2738339 and https://chromium-review.googlesource.com/c/chromium/src/+/2734254.",
+      "parentUuid": "cd729880_49165650",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a63c4a4b_ac50743b",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-06T02:11:36Z",
+      "side": 1,
+      "message": "This is what I\u0027m referring to re vendored six.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
