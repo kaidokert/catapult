@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47fe9c54_5fbfe450",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-06T01:35:11Z",
+      "side": 1,
+      "message": "Perhaps I missed it in the original CL -- why is this adding another dependency on the vendored catapult?",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
