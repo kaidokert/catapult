@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bfcebb8_78c2e6f5",
+        "filename": "devil/devil/android/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-08T00:27:32Z",
+      "side": 1,
+      "message": "Thanks Dirk. Because six is already used in this file, so I guess continue to use it did not introduce additional cost/complexity.\n\nProbably not an issue, but it is said \"items() is inefficient on Py2\"",
+      "parentUuid": "63a89146_a82688a4",
+      "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1cd90b7b_af0adb85",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-03-06T02:43:43Z",
       "side": 1,
       "message": "why this change?",
+      "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb3dde7_f1f1827c",
+        "filename": "devil/devil/devil_env.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-08T00:27:32Z",
+      "side": 1,
+      "message": "The default mode is \u0027w+b\u0027, so the file opened is in binary mode. Then at line 123, write will expect a byte array. json.dumps returns \u0027str\u0027, so type mismatch in py3",
+      "parentUuid": "b9bc5fc0_18c91e0a",
       "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
