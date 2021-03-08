@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "83643458_98c874e3",
+        "filename": "devil/devil/android/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-08T20:25:20Z",
+      "side": 1,
+      "message": "It can be true that items() can be slow for really large dicts, but it\u0027s rarely an issue.",
+      "parentUuid": "0bfcebb8_78c2e6f5",
+      "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "1cd90b7b_af0adb85",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "The default mode is \u0027w+b\u0027, so the file opened is in binary mode. Then at line 123, write will expect a byte array. json.dumps returns \u0027str\u0027, so type mismatch in py3",
       "parentUuid": "b9bc5fc0_18c91e0a",
+      "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa910bd_bb4a3913",
+        "filename": "devil/devil/devil_env.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-08T20:25:20Z",
+      "side": 1,
+      "message": "Mostly what I meant is, why are you changing this as part of this CL, since the CL description only mentions the .items() change. \n\nIf you want to keep it, please make the description a bit more generic so others aren\u0027t also surprised.\n\nApart from that, don\u0027t use \u0027wt\u0027; it\u0027s obscure. Use mode\u003d\u0027w\u0027 instead.",
+      "parentUuid": "aeb3dde7_f1f1827c",
       "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
