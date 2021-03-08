@@ -128,6 +128,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "719d3bb8_ec57dac8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-08T23:23:47Z",
+      "side": 1,
+      "message": "Being consistent would def be nice. But I worry about the uses of devil (and by association catapult) outside of chromium. eg:\nhttp://shortn/_0fBr68RQTP\n\nWere we to tear out six.py from catapult, I worry we\u0027d get reports from those users that devil/catapult no longer works, and that they have no familiarity with vpython.\n\n@john: When\u0027s the last time you recall hearing from the android-sdk folks about using devil? (IIRC, devil for one reason or another gets packaged up into the SDK). I\u0027m wondering if we can intentionally make vpython a hard-dependency and see who comes complaining.",
+      "parentUuid": "c5e84528_c7a5ec2f",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
