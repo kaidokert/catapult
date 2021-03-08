@@ -92,6 +92,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4a30478a_6c1009e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-08T20:27:38Z",
+      "side": 1,
+      "message": "These files aren\u0027t required during a build, then?\n\nIMO if six is checked-in (which it is), then we should use it instead of switching to vpython, if that\u0027s the only reason to use vpython, to avoid confusion.\n\nIf you can completely remove the checked-in copy of six (and not force files needed during the build to use vpython), that\u0027s fine to. \n\nBut don\u0027t do things two different ways.",
+      "parentUuid": "6b7d1d69_5d0d4fe2",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
