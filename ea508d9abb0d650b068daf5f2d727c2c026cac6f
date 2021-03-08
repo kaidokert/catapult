@@ -110,6 +110,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c5e84528_c7a5ec2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-08T21:09:58Z",
+      "side": 1,
+      "message": "weizhong and I discussed this in chat on Friday -- my inclination would be to remove the vendored copy of six and be consistent with how we\u0027re using six across catapult and chromium. I haven\u0027t discussed this with the catapult owners, though.",
+      "parentUuid": "4a30478a_6c1009e5",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
