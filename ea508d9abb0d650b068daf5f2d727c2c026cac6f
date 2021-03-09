@@ -289,6 +289,42 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "eff21ca4_09ebaee9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-09T18:24:17Z",
+      "side": 1,
+      "message": "I don\u0027t want to be too redundant here, but are we sure cmd_helper.py isn\u0027t pulled in (at least indirectly) by some of the build scripts? I kinda thought it was.",
+      "parentUuid": "2cc24eed_16223c96",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18f5a406_4b38e882",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-09T18:24:17Z",
+      "side": 1,
+      "message": "In fairness: Weizhong is not an owner or a maintainer of this code, but he\u0027s blocked on it becoming python3-compatible in order to be able to the WPT work.\n\nWe shouldn\u0027t be hard on him because the actual owners are way late on doing so (or gone).",
+      "parentUuid": "9ac9ccaa_1e95a1db",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
