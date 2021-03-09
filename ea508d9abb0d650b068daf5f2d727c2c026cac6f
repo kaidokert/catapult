@@ -254,6 +254,41 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2cc24eed_16223c96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-09T17:57:11Z",
+      "side": 1,
+      "message": "As for six usage in catapult, +dberris/johnchen: We\u0027re interested in removing the vendored copy of six.py checked-into catapult \u0026 switching users over to getting it via vpython.\n\nAny objections? Most every dev/bot in chrome-land should have vpython widely available, so it\u0027ll be mostly transparent for all of us.",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ac9ccaa_1e95a1db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-09T17:57:11Z",
+      "side": 1,
+      "message": "John\u0027s already summed things up well. These CLs are making shortsighted decisions that potentially place a burden on the owners of this code and/or whoever drives down crbug.com/1007101. If you\u0027re committing to picking bug 1007101 up, driving it to completion, and coming to a decision wrt six usage, then pushing these CLs through as-is would be more acceptable.",
+      "parentUuid": "896db561_d6fbb6d0",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
