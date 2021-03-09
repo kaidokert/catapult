@@ -325,6 +325,42 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f48226a6_6575dfb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-09T20:57:46Z",
+      "side": 1,
+      "message": "I thought the build-involved scripts largely used something in //build/android/gyp/util. It\u0027s possible that build steps that call a binary from the android SDK use devil, though (e.g. maybe aapt or dexdump from https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/devil/devil/android/sdk/ ?)",
+      "parentUuid": "eff21ca4_09ebaee9",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a482575_13ee5e4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-09T20:57:46Z",
+      "side": 1,
+      "message": "\u003e In fairness: Weizhong is not an owner or a maintainer of this code, but he\u0027s blocked on it becoming python3-compatible in order to be able to the WPT work.\n\u003e \n\u003e We shouldn\u0027t be hard on him because the actual owners are way late on doing so (or gone).\n\nI\u0027ve spoken my piece regarding why I disagree with this CL, and the fact that the actual owners (me included) are late in making this code py3-compatible does not change my opinion on that.\n\nAdditionally, I feel that singling out devil owners for being late is fair in the abstract but feels a bit harsh in the context of chromium\u0027s py3 migration at large.",
+      "parentUuid": "18f5a406_4b38e882",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
