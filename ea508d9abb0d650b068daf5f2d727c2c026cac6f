@@ -395,6 +395,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e4831f_292c23ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-09T21:24:40Z",
+      "side": 1,
+      "message": "Apologies for the delay here, it wasn\u0027t clear to me what this was meant to do so I hadn\u0027t looked.\n\nIf you need top-level owners approval, I can give it. We will need to make sure there\u0027s a plan to move this forward though and remove the vendored six completely (this is my preference too). I\u0027m happy to do reviews at a higher priority if there\u0027s consensus that this is what we want for the long term (which I think we do).\n\nI understand this might be technical debt but we already have a pile of technical debt we need to deal with anyway. As long as this change is going to unblock users that need it now then I\u0027m fine with accepting some of the technical debt. The longer-term transition to py3 must happen and that must include using something supported like vpython and/or depot_tools -- even if it means we\u0027ll require independent users of catapult to pull in those dependencies moving forward.",
+      "parentUuid": "92d219d5_0194990d",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a63c4a4b_ac50743b",
