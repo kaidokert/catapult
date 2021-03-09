@@ -164,6 +164,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "652e325c_08cfc56e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-09T01:02:26Z",
+      "side": 1,
+      "message": "I think this discussion is pertinent to this CL and would prefer not landing it until we make a decision here. With this and your other CLs, you\u0027re duplicating work that I\u0027ve mostly already written and linked to, and you\u0027re doing so in a way that adds technical debt that I don\u0027t agree with. It\u0027s ok to make those tradeoffs at times, but if I\u0027m on the hook for devil\u0027s migration to py3, this isn\u0027t one I want to make. If you want to be on the hook for the overall migration (i.e., take over ownership of crbug.com/1007101), then I\u0027m fine with you making these decisions in consulation with other devil owners.",
+      "parentUuid": "45b8bb13_96aa6dbc",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
