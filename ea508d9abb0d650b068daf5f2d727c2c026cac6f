@@ -218,6 +218,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8e48d8e9_f838b530",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-09T01:40:17Z",
+      "side": 1,
+      "message": "Estimations: I would imagine a decision would be this week. I have no idea when 1007101 will be done if I remain the owner. As mentioned on the bug, I can\u0027t work on it as anything more than a P3 -- that\u0027s a large motivation for me offering it to you.\n\n@Ben: I don\u0027t recall the last time I heard from android-sdk folks, but it definitely would\u0027ve been before 2020. I don\u0027t think having the default flow use six via vpython would strictly make vpython a hard dependency, though it would obviously require clients to either use vpython or handle installing six on their own.",
+      "parentUuid": "5435fae7_68777236",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
