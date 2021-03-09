@@ -236,6 +236,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "896db561_d6fbb6d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-09T01:52:14Z",
+      "side": 1,
+      "message": "John, I am not asking for a fix for 1007101. I am asking when my changes can get in. I want to know what is blocking that, the decision on vpython, or 1007101? I believe there is a way to coordinate between the long term important thing and short term urgent stuff.\n\nWhat information is still missing before we can make a decision?",
+      "parentUuid": "8e48d8e9_f838b530",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
