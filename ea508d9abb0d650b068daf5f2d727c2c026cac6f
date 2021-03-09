@@ -413,6 +413,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "544218b1_4df4a6c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-09T22:32:36Z",
+      "side": 1,
+      "message": "Thanks for confirming, Dean. It sounds like we\u0027re all generally in consensus of moving off the vendored six.\n\nAfter speaking with Weizhong, he\u0027s agreed to take over crbug.com/1007101 from John and finish out the migration. ie: moving devil users in chromium to vpython and tearing out sys.path manipulations from devil. And in the meantime, we can move forward with this + Weizhong\u0027s other devil CLs to unblock the weblayer fyi builder.\n\nDoes that sound OK with everyone? Holding my CR+1 just in case there are further objections. (But will CR+1 by eod if no one speaks up.)",
+      "parentUuid": "d7e4831f_292c23ff",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a63c4a4b_ac50743b",
