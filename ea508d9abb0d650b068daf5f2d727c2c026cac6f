@@ -361,6 +361,42 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "93f0e933_0d2a8c3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-09T21:14:10Z",
+      "side": 1,
+      "message": "There are a bunch of references in //build/android and even //build/android/gyp to stuff in devil, e.g.:\n\nhttps://source.chromium.org/chromium/chromium/src/+/master:build/android/gyp/create_app_bundle.pydeps;l\u003d14\n\nWould it be helpful for me to chase down build-time references to confirm that they exist?",
+      "parentUuid": "f48226a6_6575dfb3",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92d219d5_0194990d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-09T21:14:10Z",
+      "side": 1,
+      "message": "I am not suggesting we should land bad changes. I\u0027m just asking that we neither get too made at Weizhong for trying to make progress nor that we ask them to take on work they shouldn\u0027t have to take on to become unblocked.\n\nI\u0027m singling out devil here because we\u0027re talking about devil and we\u0027re at the point where this is causing problems for other teams. The fact that we\u0027ve been late until now does not mean it\u0027s okay for this to be late indefinitely into the future.\n\nI do not expect you (jbudorick) to have to find the time to work on this now. But we (the collective owners of this code) do need to figure out to resolve this in a timely manner.",
+      "parentUuid": "3a482575_13ee5e4e",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
