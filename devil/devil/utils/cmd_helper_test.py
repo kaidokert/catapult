@@ -9,6 +9,8 @@ import subprocess
 import sys
 import time
 
+import six
+
 from devil import devil_env
 from devil.utils import cmd_helper
 
@@ -30,7 +32,7 @@ class CmdHelperSingleQuoteTest(unittest.TestCase):
   def testSingleQuote_dontExpand(self):
     test_string = 'hello $TEST_VAR'
     cmd = 'TEST_VAR=world; echo %s' % cmd_helper.SingleQuote(test_string)
-    self.assertEquals(test_string,
+    self.assertEquals(six.ensure_binary(test_string),
                       cmd_helper.GetCmdOutput(cmd, shell=True).rstrip())
 
 
@@ -48,7 +50,7 @@ class CmdHelperDoubleQuoteTest(unittest.TestCase):
   def testSingleQuote_doExpand(self):
     test_string = 'hello $TEST_VAR'
     cmd = 'TEST_VAR=world; echo %s' % cmd_helper.DoubleQuote(test_string)
-    self.assertEquals('hello world',
+    self.assertEquals(six.ensure_binary('hello world'),
                       cmd_helper.GetCmdOutput(cmd, shell=True).rstrip())
 
 
