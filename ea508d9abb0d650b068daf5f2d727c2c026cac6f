@@ -182,6 +182,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2698ede5_f9496958",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-09T01:07:42Z",
+      "side": 1,
+      "message": "To be clear: I defer to John and Ben here. I am fine with whatever they want to do.",
+      "parentUuid": "652e325c_08cfc56e",
+      "revId": "ea508d9abb0d650b068daf5f2d727c2c026cac6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a63c4a4b_ac50743b",
         "filename": "devil/devil/utils/cmd_helper.py",
         "patchSetId": 5
