@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "09e2f988_ceb5080f",
+        "filename": "devil/devil/android/decorators.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-10T01:01:09Z",
+      "side": 1,
+      "message": "Yeah, prefer to use just items() unless the iterable is sufficiently large enough to make perf concerns real (which they often aren\u0027t)\n\nBut it\u0027s fine either way",
+      "parentUuid": "83643458_98c874e3",
+      "revId": "203125f1a6eb2e94354fbc96e9fedecbf69f74a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1cd90b7b_af0adb85",
         "filename": "devil/devil/devil_env.py",
         "patchSetId": 1
