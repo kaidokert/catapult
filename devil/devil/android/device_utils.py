@@ -133,6 +133,7 @@ _PERMISSIONS_DENYLIST_RE = re.compile('|'.join(
         'android.permission.INTERNET',
         'android.permission.KILL_BACKGROUND_PROCESSES',
         'android.permission.MANAGE_ACCOUNTS',
+        'android.permission.MANAGE_EXTERNAL_STORAGE',
         'android.permission.MODIFY_AUDIO_SETTINGS',
         'android.permission.NFC',
         'android.permission.QUERY_ALL_PACKAGES',
@@ -3753,6 +3754,18 @@ class DeviceUtils(object):
     if not permissions:
       return
 
+    # For Andorid-11(R), enable MANAGE_EXTERNAL_STORAGE for testing.
+    # See https://bit.ly/2MBjBIM for details.
+    if ('android.permission.MANAGE_EXTERNAL_STORAGE' in permissions
+        and self.build_version_sdk >= version_codes.R):
+      script_manage_ext_storage = ';'.join([
+          'appops set "$p" MANAGE_EXTERNAL_STORAGE allow',
+          'echo "{sep}MANAGE_EXTERNAL_STORAGE{sep}$?{sep}"',
+      ])
+    else:
+      script_manage_ext_storage = 'echo'
+
+
     permissions = set(p for p in permissions
                       if not _PERMISSIONS_DENYLIST_RE.match(p))
 
@@ -3761,8 +3774,12 @@ class DeviceUtils(object):
       permissions.add('android.permission.READ_EXTERNAL_STORAGE')
 
     script = ';'.join([
-        'p={package}', 'for q in {permissions}', 'do pm grant "$p" "$q"',
-        'echo "{sep}$q{sep}$?{sep}"', 'done'
+        'p={package}',
+        script_manage_ext_storage,
+        'for q in {permissions}',
+        'do pm grant "$p" "$q"',
+        'echo "{sep}$q{sep}$?{sep}"',
+        'done',
     ]).format(
         package=cmd_helper.SingleQuote(package),
         permissions=' '.join(
