@@ -9,6 +9,8 @@ import itertools
 import threading
 import unittest
 
+import six
+
 from devil import devil_env
 from devil.android import logcat_monitor
 from devil.android.sdk import adb_wrapper
@@ -44,7 +46,7 @@ class LogcatMonitorTest(unittest.TestCase):
   ]
 
   def assertIterEqual(self, expected_iter, actual_iter):
-    for expected, actual in itertools.izip_longest(expected_iter, actual_iter):
+    for expected, actual in six.moves.zip_longest(expected_iter, actual_iter):
       self.assertIsNotNone(
           expected,
           msg='actual has unexpected elements starting with %s' % str(actual))

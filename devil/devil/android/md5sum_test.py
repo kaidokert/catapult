@@ -6,6 +6,8 @@
 import os
 import unittest
 
+import six
+
 from devil import devil_env
 from devil.android import device_errors
 from devil.android import md5sum
@@ -112,7 +114,7 @@ class Md5SumTest(unittest.TestCase):
 
   def testCalculateDeviceMd5Sums_generator(self):
     test_path = ('/storage/emulated/legacy/test/file%d.dat' % n
-                 for n in xrange(0, 2))
+                 for n in six.moves.range(0, 2))
 
     device = mock.NonCallableMock()
     device_md5sum_output = [

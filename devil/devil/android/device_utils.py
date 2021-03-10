@@ -24,6 +24,8 @@ import time
 import threading
 import uuid
 
+import six
+
 from devil import base_error
 from devil import devil_env
 from devil.utils import cmd_helper
@@ -376,7 +378,7 @@ def _CreateAdbWrapper(device):
 
 
 def _FormatPartialOutputError(output):
-  lines = output.splitlines() if isinstance(output, basestring) else output
+  lines = output.splitlines() if isinstance(output, six.string_types) else output
   message = ['Partial output found:']
   if len(lines) > 11:
     message.extend('- %s' % line for line in lines[:5])
@@ -468,7 +470,7 @@ class DeviceUtils(object):
         operation should be retried on failure if no explicit value is provided.
     """
     self.adb = None
-    if isinstance(device, basestring):
+    if isinstance(device, six.string_types):
       self.adb = _CreateAdbWrapper(device)
     elif isinstance(device, adb_wrapper.AdbWrapper):
       self.adb = device
@@ -495,7 +497,7 @@ class DeviceUtils(object):
     """Checks whether |other| refers to the same device as |self|.
 
     Args:
-      other: The object to compare to. This can be a basestring, an instance
+      other: The object to compare to. This can be a string type, an instance
         of adb_wrapper.AdbWrapper, or an instance of DeviceUtils.
     Returns:
       Whether |other| refers to the same device as |self|.
@@ -1533,7 +1535,7 @@ class DeviceUtils(object):
           else:
             raise
 
-    if isinstance(cmd, basestring):
+    if isinstance(cmd, six.string_types):
       if not shell:
         # TODO(crbug.com/1029769): Make this an error instead.
         logger.warning(
@@ -1543,7 +1545,7 @@ class DeviceUtils(object):
     else:
       cmd = ' '.join(cmd_helper.SingleQuote(s) for s in cmd)
     if env:
-      env = ' '.join(env_quote(k, v) for k, v in env.iteritems())
+      env = ' '.join(env_quote(k, v) for k, v in six.iteritems(env))
       cmd = '%s %s' % (env, cmd)
     if cwd:
       cmd = 'cd %s && %s' % (cmd_helper.SingleQuote(cwd), cmd)
@@ -1740,7 +1742,7 @@ class DeviceUtils(object):
       cmd.append('-w')
     if raw:
       cmd.append('-r')
-    for k, v in extras.iteritems():
+    for k, v in six.iteritems(extras):
       cmd.extend(['-e', str(k), str(v)])
     cmd.append(component)
 
@@ -2059,7 +2061,7 @@ class DeviceUtils(object):
         paths = paths_not_in_cache
       sums.update(dict(md5sum.CalculateDeviceMd5Sums(paths, self)))
       if self._enable_device_files_cache:
-        for path, checksum in sums.iteritems():
+        for path, checksum in six.iteritems(sums):
           self._cache['device_path_checksums'][path] = checksum
       return sums
     try:
@@ -2118,7 +2120,7 @@ class DeviceUtils(object):
     host_checksums, device_checksums = reraiser_thread.RunAsync(
         (calculate_host_checksums, calculate_device_checksums))
     stale_apks = [
-        k for (k, v) in host_checksums.iteritems() if v not in device_checksums
+        k for (k, v) in six.iteritems(host_checksums) if v not in device_checksums
     ]
     return stale_apks, set(host_checksums.values())
 
@@ -2269,7 +2271,7 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
     paths = device_paths
-    if isinstance(paths, basestring):
+    if isinstance(paths, six.string_types):
       paths = (paths, )
     if not paths:
       return True
@@ -2328,7 +2330,7 @@ class DeviceUtils(object):
       args.append('-f')
     if recursive:
       args.append('-r')
-    if isinstance(device_path, basestring):
+    if isinstance(device_path, six.string_types):
       args.append(device_path if not rename else _RenamePath(device_path))
     else:
       args.extend(
@@ -2966,7 +2968,7 @@ class DeviceUtils(object):
     """
     assert isinstance(
         property_name,
-        basestring), ("property_name is not a string: %r" % property_name)
+        six.string_types), ("property_name is not a string: %r" % property_name)
 
     if cache:
       # It takes ~120ms to query a single property, and ~130ms to query all
@@ -3010,8 +3012,8 @@ class DeviceUtils(object):
     """
     assert isinstance(
         property_name,
-        basestring), ("property_name is not a string: %r" % property_name)
-    assert isinstance(value, basestring), "value is not a string: %r" % value
+        six.string_types), ("property_name is not a string: %r" % property_name)
+    assert isinstance(value, six.string_types), "value is not a string: %r" % value
 
     self.RunShellCommand(['setprop', property_name, value], check_return=True)
     prop_cache = self._cache['getprop']
@@ -3095,7 +3097,7 @@ class DeviceUtils(object):
     for line in self._GetPsOutput(process_name):
       row = line.split()
       try:
-        row = {k: row[i] for k, i in _PS_COLUMNS.iteritems()}
+        row = {k: row[i] for k, i in six.iteritems(_PS_COLUMNS)}
         if row['pid'] == 'PID' or process_name not in row['name']:
           # Skip over header and non-matching processes.
           continue
@@ -3556,10 +3558,10 @@ class DeviceUtils(object):
     # When using a cache across script invokations, verify that apps have
     # not been uninstalled.
     self._cache['package_apk_paths_to_verify'] = set(
-        self._cache['package_apk_paths'].iterkeys())
+        six.iterkeys(self._cache['package_apk_paths']))
 
     package_apk_checksums = obj.get('package_apk_checksums', {})
-    for k, v in package_apk_checksums.iteritems():
+    for k, v in six.iteritems(package_apk_checksums):
       package_apk_checksums[k] = set(v)
     self._cache['package_apk_checksums'] = package_apk_checksums
     device_path_checksums = obj.get('device_path_checksums', {})
@@ -3583,7 +3585,7 @@ class DeviceUtils(object):
     obj['package_apk_paths'] = self._cache['package_apk_paths']
     obj['package_apk_checksums'] = self._cache['package_apk_checksums']
     # JSON can't handle sets.
-    for k, v in obj['package_apk_checksums'].iteritems():
+    for k, v in six.iteritems(obj['package_apk_checksums']):
       obj['package_apk_checksums'][k] = list(v)
     obj['device_path_checksums'] = self._cache['device_path_checksums']
     return json.dumps(obj, separators=(',', ':'))

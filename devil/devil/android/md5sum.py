@@ -6,7 +6,8 @@ import base64
 import gzip
 import os
 import re
-import StringIO
+
+import six
 
 from devil import devil_env
 from devil.android import device_errors
@@ -38,7 +39,7 @@ def CalculateHostMd5Sums(paths):
   Returns:
     A dict mapping file paths to their respective md5sum checksums.
   """
-  if isinstance(paths, basestring):
+  if isinstance(paths, six.string_types):
     paths = [paths]
   paths = list(paths)
 
@@ -47,13 +48,13 @@ def CalculateHostMd5Sums(paths):
     raise IOError('File not built: %s' % md5sum_bin_host_path)
   out = ""
   for i in range(0, len(paths), _MAX_PATHS_PER_INVOCATION):
-    mem_file = StringIO.StringIO()
-    compressed = gzip.GzipFile(fileobj=mem_file, mode="wb")
-    compressed.write(";".join(
-        [os.path.realpath(p) for p in paths[i:i+_MAX_PATHS_PER_INVOCATION]]))
+    mem_file = six.BytesIO()
+    compressed = gzip.GzipFile(fileobj=mem_file, mode='wb')
+    compressed.write(bytes(';'.join(
+        [os.path.realpath(p) for p in paths[i:i+_MAX_PATHS_PER_INVOCATION]]), encoding='utf-8'))
     compressed.close()
     compressed_paths = base64.b64encode(mem_file.getvalue())
-    out += cmd_helper.GetCmdOutput([md5sum_bin_host_path, "-gz", compressed_paths])
+    out += cmd_helper.GetCmdOutput([md5sum_bin_host_path, '-gz', compressed_paths])
 
   return dict(zip(paths, out.splitlines()))
 
@@ -72,7 +73,7 @@ def CalculateDeviceMd5Sums(paths, device):
   if not paths:
     return {}
 
-  if isinstance(paths, basestring):
+  if isinstance(paths, six.string_types):
     paths = [paths]
   paths = list(paths)
 
@@ -97,9 +98,9 @@ def CalculateDeviceMd5Sums(paths, device):
   # Make sure it can find libbase.so
   md5sum_script += 'export LD_LIBRARY_PATH=%s;' % MD5SUM_DEVICE_LIB_PATH
   for i in range(0, len(paths), _MAX_PATHS_PER_INVOCATION):
-    mem_file = StringIO.StringIO()
-    compressed = gzip.GzipFile(fileobj=mem_file, mode="wb")
-    compressed.write(";".join(paths[i:i+_MAX_PATHS_PER_INVOCATION]))
+    mem_file = six.BytesIO()
+    compressed = gzip.GzipFile(fileobj=mem_file, mode='wb')
+    compressed.write(bytes(';'.join(paths[i:i+_MAX_PATHS_PER_INVOCATION]), encoding='utf-8'))
     compressed.close()
     compressed_paths = base64.b64encode(mem_file.getvalue())
     md5sum_script += '$a -gz %s;' % compressed_paths

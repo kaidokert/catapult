@@ -11,6 +11,7 @@ Unit tests for the contents of device_utils.py (mostly DeviceUtils).
 
 import collections
 import contextlib
+import io
 import json
 import logging
 import os
@@ -18,6 +19,8 @@ import posixpath
 import stat
 import sys
 import unittest
+
+import six
 
 from devil import devil_env
 from devil.android import device_errors
@@ -167,7 +170,7 @@ class DeviceUtilsRestartServerTest(mock_calls.TestCase):
 
 class MockTempFile(object):
   def __init__(self, name='/tmp/some/file'):
-    self.file = mock.MagicMock(spec=file)
+    self.file = mock.MagicMock(spec=io.FileIO)
     self.file.name = name
     self.file.name_quoted = cmd_helper.SingleQuote(name)
 
@@ -2594,8 +2597,8 @@ class DeviceUtilsStatDirectoryTest(DeviceUtilsTest):
     self.getStatEntries(path_given='/foo/bar', path_listed='/foo/bar/')
 
   def testStatDirectory_fileList(self):
-    self.assertItemsEqual(self.getStatEntries().keys(), self.FILENAMES)
-    self.assertItemsEqual(self.getListEntries(), self.FILENAMES)
+    six.assertCountEqual(self, self.getStatEntries().keys(), self.FILENAMES)
+    six.assertCountEqual(self, self.getListEntries(), self.FILENAMES)
 
   def testStatDirectory_fileModes(self):
     expected_modes = (
@@ -3880,7 +3883,7 @@ class IterPushableComponentsTest(unittest.TestCase):
       expected = [(layout.basic_file, device_path, True)]
       actual = list(
           device_utils._IterPushableComponents(layout.basic_file, device_path))
-      self.assertItemsEqual(expected, actual)
+      six.assertCountEqual(self, expected, actual)
 
   def testSymlinkFile(self):
     with self.sampleLayout() as layout:
@@ -3890,7 +3893,7 @@ class IterPushableComponentsTest(unittest.TestCase):
       actual = list(
           device_utils._IterPushableComponents(layout.symlink_file,
                                                device_path))
-      self.assertItemsEqual(expected, actual)
+      six.assertCountEqual(self, expected, actual)
 
   def testDirectoryWithNoSymlink(self):
     with self.sampleLayout() as layout:
@@ -3900,7 +3903,7 @@ class IterPushableComponentsTest(unittest.TestCase):
       actual = list(
           device_utils._IterPushableComponents(layout.dir_without_symlinks,
                                                device_path))
-      self.assertItemsEqual(expected, actual)
+      six.assertCountEqual(self, expected, actual)
 
   def testDirectoryWithSymlink(self):
     with self.sampleLayout() as layout:
@@ -3917,7 +3920,7 @@ class IterPushableComponentsTest(unittest.TestCase):
       actual = list(
           device_utils._IterPushableComponents(layout.dir_with_symlinks,
                                                device_path))
-      self.assertItemsEqual(expected, actual)
+      six.assertCountEqual(self, expected, actual)
 
   def testSymlinkDirectory(self):
     with self.sampleLayout() as layout:
@@ -3926,7 +3929,7 @@ class IterPushableComponentsTest(unittest.TestCase):
       expected = [(os.path.realpath(layout.symlink_dir), device_path, False)]
       actual = list(
           device_utils._IterPushableComponents(layout.symlink_dir, device_path))
-      self.assertItemsEqual(expected, actual)
+      six.assertCountEqual(self, expected, actual)
 
   def testDirectoryWithNestedSymlink(self):
     with self.sampleLayout() as layout:
@@ -3954,7 +3957,7 @@ class IterPushableComponentsTest(unittest.TestCase):
       ]
       actual = list(
           device_utils._IterPushableComponents(layout.root, device_path))
-      self.assertItemsEqual(expected, actual)
+      six.assertCountEqual(self, expected, actual)
 
 
 class DeviceUtilsGetTracingPathTest(DeviceUtilsTest):

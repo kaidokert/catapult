@@ -15,6 +15,19 @@ _DEVIL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 sys.path.append(_DEVIL_PATH)
 import devil.devil_env_test
+import devil.android.apk_helper_test
+import devil.android.app_ui_test
+import devil.android.battery_utils_test
+import devil.android.cpu_temperature_test
+import devil.android.decorators_test
+import devil.android.device_denylist_test
+import devil.android.device_errors_test
+import devil.android.device_test_case
+import devil.android.device_utils_test
+import devil.android.fastboot_utils_test
+import devil.android.flag_changer_test
+import devil.android.logcat_monitor_test
+import devil.android.md5sum_test
 import devil.utils.cmd_helper_test
 import devil.utils.decorators_test
 import devil.utils.find_usb_devices_test
@@ -29,6 +42,19 @@ import devil.utils.zip_utils_test
 
 PY3_COMPATIBLE_TESTS = [
     devil.devil_env_test,
+    devil.android.apk_helper_test,
+    devil.android.app_ui_test,
+    devil.android.battery_utils_test,
+    devil.android.cpu_temperature_test,
+    devil.android.decorators_test,
+    devil.android.device_denylist_test,
+    devil.android.device_errors_test,
+    devil.android.device_test_case,
+    devil.android.device_utils_test,
+    devil.android.fastboot_utils_test,
+    devil.android.flag_changer_test,
+    devil.android.logcat_monitor_test,
+    devil.android.md5sum_test,
     devil.utils.cmd_helper_test,
     devil.utils.decorators_test,
     devil.utils.find_usb_devices_test,
