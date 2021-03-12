@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6644b957_c79cb0dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2021-03-12T01:47:50Z",
+      "side": 1,
+      "message": "This CL is verified by the dry run in https://crrev.com/c/2645424/7 and works fine on the existing android builders (except for android-11-x86-fyi-rel, which is known to be broken right now.)",
+      "revId": "92a14a829adb0fb7bbd2dadf008ffa0980be958b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
