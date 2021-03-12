@@ -278,7 +278,7 @@ tr.exportTo('tr.metrics.sh', function() {
     return sample ? [sample] : [];
   }
 
-  function findAllLayoutShiftSamples(chromeHelper) {
+  function findAllSamples(chromeHelper, name) {
     let total = 0;
     let foundMainFrame = false;
     for (const pid in chromeHelper.rendererHelpers) {
@@ -286,7 +286,7 @@ tr.exportTo('tr.metrics.sh', function() {
       if (rendererHelper.isChromeTracingUI) continue;
 
       tr.e.chrome.EventFinderUtils.getSortedMainThreadEventsByFrame(
-          rendererHelper, 'LayoutShift', 'loading').forEach((events) => {
+          rendererHelper, name, 'loading').forEach((events) => {
         // Add up the scores for main frames and weighted scores for subframes.
         for (const event of events) {
           const evData = event.args.data;
@@ -741,6 +741,34 @@ tr.exportTo('tr.metrics.sh', function() {
           summaryOptions: SUMMARY_OPTIONS,
           alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
         });
+    const allPreFCPLayoutShiftHistogram = histograms.createHistogram(
+        'overallPreFCPCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
+          description: 'Document Cumulative Layout Shift Score with iframes',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
+    const allPreFPLayoutShiftHistogram = histograms.createHistogram(
+        'overallPreFPCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
+          description: 'Document Cumulative Layout Shift Score with iframes',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
+    const allImmediatelyPostFCPLayoutShiftHistogram = histograms.createHistogram(
+        'immediatelyPostFCPCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
+          description: 'Document Cumulative Layout Shift Score with iframes',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
+    const allImmediatelyPostFPLayoutShiftHistogram = histograms.createHistogram(
+        'immediatelyPostFPCumulativeLayoutShift', unitlessNumber_smallerIsBetter, [], {
+          binBoundaries: LAYOUT_SHIFT_SCORE_BOUNDARIES,
+          description: 'Document Cumulative Layout Shift Score with iframes',
+          summaryOptions: SUMMARY_OPTIONS,
+          alertGrouping: [tr.v.d.ALERT_GROUPS.LOADING_LAYOUT],
+        });
     const navigationStartHistogram = histograms.createHistogram(
         'navigationStart', timeDurationInMs_smallerIsBetter, [], {
           binBoundaries: LOADING_METRIC_BOUNDARIES,
@@ -752,12 +780,35 @@ tr.exportTo('tr.metrics.sh', function() {
     const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
 
-    const allLayoutShiftSamples = findAllLayoutShiftSamples(chromeHelper);
+    const allLayoutShiftSamples = findAllSamples(chromeHelper, 'LayoutShift');
     addSamplesToHistogram(
         allLayoutShiftSamples,
         allLayoutShiftHistogram,
         histograms);
 
+    const allPreFCPLayoutShiftSamples = findAllSamples(chromeHelper, 'Pre-FCP LayoutShift');
+    addSamplesToHistogram(
+        allPreFCPLayoutShiftSamples,
+        allPreFCPLayoutShiftHistogram,
+        histograms);
+
+    const allImmediatelyPostFCPLayoutShiftSamples = findAllSamples(chromeHelper, 'Immediately post FCP LayoutShift');
+    addSamplesToHistogram(
+        allImmediatelyPostFCPLayoutShiftSamples,
+        allImmediatelyPostFCPLayoutShiftHistogram,
+        histograms);
+
+    const allPreFPLayoutShiftSamples = findAllSamples(chromeHelper, 'Pre-FP LayoutShift');
+    addSamplesToHistogram(
+        allPreFPLayoutShiftSamples,
+        allPreFPLayoutShiftHistogram,
+        histograms);
+
+    const allImmediatelyPostFPLayoutShiftSamples = findAllSamples(chromeHelper, 'Immediately post FP LayoutShift');
+    addSamplesToHistogram(
+        allImmediatelyPostFPLayoutShiftSamples,
+        allImmediatelyPostFPLayoutShiftHistogram,
+        histograms);
     for (const pid in chromeHelper.rendererHelpers) {
       const rendererHelper = chromeHelper.rendererHelpers[pid];
       if (rendererHelper.isChromeTracingUI) continue;
