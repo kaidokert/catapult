@@ -16,6 +16,29 @@
       "message": "This CL is verified by the dry run in https://crrev.com/c/2645424/7 and works fine on the existing android builders (except for android-11-x86-fyi-rel, which is known to be broken right now.)",
       "revId": "92a14a829adb0fb7bbd2dadf008ffa0980be958b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1afaa16a_c1130bc5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3762,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-12T18:17:46Z",
+      "side": 1,
+      "message": "use {package} instead to use the string format below",
+      "range": {
+        "startLine": 3762,
+        "startChar": 22,
+        "endLine": 3762,
+        "endChar": 24
+      },
+      "revId": "92a14a829adb0fb7bbd2dadf008ffa0980be958b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
