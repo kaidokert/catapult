@@ -3,8 +3,6 @@
 # found in the LICENSE file.
 """This module wraps the Android Asset Packaging Tool."""
 
-import six
-
 from devil.android.sdk import build_tools
 from devil.utils import cmd_helper
 from devil.utils import lazy
@@ -38,6 +36,6 @@ def Dump(what, apk, assets=None):
     assets: List of assets in apk you want to dump information for.
   """
   assets = assets or []
-  if isinstance(assets, six.string_types):
+  if isinstance(assets, basestring):
     assets = [assets]
   return _RunAaptCmd(['dump', what, apk] + assets).splitlines()

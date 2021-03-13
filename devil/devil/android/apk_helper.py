@@ -11,8 +11,6 @@ import shutil
 import tempfile
 import zipfile
 
-import six
-
 from devil import base_error
 from devil.android.ndk import abis
 from devil.android.sdk import aapt
@@ -71,7 +69,7 @@ def GetInstrumentationName(apk_path):
 
 def ToHelper(path_or_helper):
   """Creates an ApkHelper unless one is already given."""
-  if not isinstance(path_or_helper, six.string_types):
+  if not isinstance(path_or_helper, basestring):
     return path_or_helper
   elif path_or_helper.endswith('.apk'):
     return ApkHelper(path_or_helper)
@@ -88,7 +86,7 @@ def ToSplitHelper(path_or_helper, split_apks):
     if sorted(path_or_helper.split_apk_paths) != sorted(split_apks):
       raise ApkHelperError('Helper has different split APKs')
     return path_or_helper
-  elif (isinstance(path_or_helper, six.string_types)
+  elif (isinstance(path_or_helper, basestring)
         and path_or_helper.endswith('.apk')):
     return SplitApkHelper(path_or_helper, split_apks)
 
@@ -111,7 +109,7 @@ def _ParseManifestFromApk(apk_path):
   node_stack = [parsed_manifest]
   indent = '  '
 
-  if aapt_output[0].decode('utf8').startswith('N'):
+  if aapt_output[0].startswith('N'):
     # if the first line is a namespace then the root manifest is indented, and
     # we need to add a dummy namespace node, then skip the first line (we dont
     # care about namespaces).
@@ -126,7 +124,6 @@ def _ParseManifestFromApk(apk_path):
 
     # If namespaces are stripped, aapt still outputs the full url to the
     # namespace and appends it to the attribute names.
-    line = line.decode('utf8')
     line = line.replace('http://schemas.android.com/apk/res/android:',
                         'android:')
 

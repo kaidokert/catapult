@@ -24,8 +24,6 @@ import time
 import threading
 import uuid
 
-import six
-
 from devil import base_error
 from devil import devil_env
 from devil.utils import cmd_helper
@@ -378,7 +376,7 @@ def _CreateAdbWrapper(device):
 
 
 def _FormatPartialOutputError(output):
-  lines = output.splitlines() if isinstance(output, six.string_types) else output
+  lines = output.splitlines() if isinstance(output, basestring) else output
   message = ['Partial output found:']
   if len(lines) > 11:
     message.extend('- %s' % line for line in lines[:5])
@@ -470,7 +468,7 @@ class DeviceUtils(object):
         operation should be retried on failure if no explicit value is provided.
     """
     self.adb = None
-    if isinstance(device, six.string_types):
+    if isinstance(device, basestring):
       self.adb = _CreateAdbWrapper(device)
     elif isinstance(device, adb_wrapper.AdbWrapper):
       self.adb = device
@@ -1535,7 +1533,7 @@ class DeviceUtils(object):
           else:
             raise
 
-    if isinstance(cmd, six.string_types):
+    if isinstance(cmd, basestring):
       if not shell:
         # TODO(crbug.com/1029769): Make this an error instead.
         logger.warning(
@@ -2271,7 +2269,7 @@ class DeviceUtils(object):
       DeviceUnreachableError on missing device.
     """
     paths = device_paths
-    if isinstance(paths, six.string_types):
+    if isinstance(paths, basestring):
       paths = (paths, )
     if not paths:
       return True
@@ -2330,7 +2328,7 @@ class DeviceUtils(object):
       args.append('-f')
     if recursive:
       args.append('-r')
-    if isinstance(device_path, six.string_types):
+    if isinstance(device_path, basestring):
       args.append(device_path if not rename else _RenamePath(device_path))
     else:
       args.extend(
@@ -2968,7 +2966,7 @@ class DeviceUtils(object):
     """
     assert isinstance(
         property_name,
-        six.string_types), ("property_name is not a string: %r" % property_name)
+        basestring), ("property_name is not a string: %r" % property_name)
 
     if cache:
       # It takes ~120ms to query a single property, and ~130ms to query all
@@ -3012,8 +3010,8 @@ class DeviceUtils(object):
     """
     assert isinstance(
         property_name,
-        six.string_types), ("property_name is not a string: %r" % property_name)
-    assert isinstance(value, six.string_types), "value is not a string: %r" % value
+        basestring), ("property_name is not a string: %r" % property_name)
+    assert isinstance(value, basestring), "value is not a string: %r" % value
 
     self.RunShellCommand(['setprop', property_name, value], check_return=True)
     prop_cache = self._cache['getprop']
@@ -3718,7 +3716,7 @@ class DeviceUtils(object):
       else:
         reset_usb.reset_all_android_devices()
 
-    for attempt in range(retries + 1):
+    for attempt in xrange(retries + 1):
       try:
         return _get_devices()
       except device_errors.NoDevicesError:
