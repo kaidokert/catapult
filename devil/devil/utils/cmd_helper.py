@@ -10,10 +10,18 @@ import pipes
 import select
 import signal
 import string
-import StringIO
 import subprocess
 import sys
 import time
+
+CATAPULT_ROOT_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+SIX_PATH = os.path.join(CATAPULT_ROOT_PATH, 'third_party', 'six')
+
+if SIX_PATH not in sys.path:
+  sys.path.append(SIX_PATH)
+
+import six
 
 from devil import base_error
 
@@ -23,7 +31,8 @@ _SafeShellChars = frozenset(string.ascii_letters + string.digits + '@%_-+=:,./')
 
 # Cache the string-escape codec to ensure subprocess can find it
 # later. Return value doesn't matter.
-codecs.lookup('string-escape')
+if six.PY2:
+  codecs.lookup('string-escape')
 
 
 def SingleQuote(s):
@@ -102,6 +111,7 @@ def Popen(args,
           cwd=None,
           env=None):
   # preexec_fn isn't supported on windows.
+  # pylint: disable=unexpected-keyword-arg
   if sys.platform == 'win32':
     close_fds = (stdin is None and stdout is None and stderr is None)
     preexec_fn = None
@@ -109,7 +119,8 @@ def Popen(args,
     close_fds = True
     preexec_fn = lambda: signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
-  return subprocess.Popen(
+  if six.PY2:
+    return subprocess.Popen(
       args=args,
       cwd=cwd,
       stdin=stdin,
@@ -118,7 +129,23 @@ def Popen(args,
       shell=shell,
       close_fds=close_fds,
       env=env,
-      preexec_fn=preexec_fn)
+      preexec_fn=preexec_fn
+    )
+  else:
+    return subprocess.Popen(
+      args=args,
+      cwd=cwd,
+      stdin=stdin,
+      stdout=stdout,
+      stderr=stderr,
+      shell=shell,
+      close_fds=close_fds,
+      env=env,
+      preexec_fn=preexec_fn,
+      universal_newlines=True,
+      encoding='utf-8',
+      errors='ignore'
+    )
 
 
 def Call(args, stdout=None, stderr=None, shell=None, cwd=None, env=None):
@@ -165,7 +192,7 @@ def GetCmdOutput(args, cwd=None, shell=False, env=None):
 
 
 def _ValidateAndLogCommand(args, cwd, shell):
-  if isinstance(args, basestring):
+  if isinstance(args, six.string_types):
     if not shell:
       raise Exception('string args must be run with shell=True')
   else:
@@ -316,7 +343,10 @@ def _IterProcessStdoutFcntl(process,
       read_fds, _, _ = select.select([child_fd], [], [],
                                      iter_aware_poll_interval)
       if child_fd in read_fds:
-        data = os.read(child_fd, buffer_size)
+        if six.PY2:
+          data = os.read(child_fd, buffer_size)
+        else:
+          data = process.stdout.readline()
         if not data:
           break
         yield data
@@ -328,7 +358,10 @@ def _IterProcessStdoutFcntl(process,
           read_fds, _, _ = select.select([child_fd], [], [],
                                          iter_aware_poll_interval)
           if child_fd in read_fds:
-            data = os.read(child_fd, buffer_size)
+            if six.PY2:
+              data = os.read(child_fd, buffer_size)
+            else:
+              data = process.stdout.readline()
             if data:
               yield data
               continue
@@ -365,7 +398,10 @@ def _IterProcessStdoutQueue(process,
     # TODO(jbudorick): Pick an appropriate read size here.
     while True:
       try:
-        output_chunk = os.read(process.stdout.fileno(), buffer_size)
+        if six.PY2:
+          output_chunk = os.read(process.stdout.fileno(), buffer_size)
+        else:
+          output_chunk = process.stdout.readline()
       except IOError:
         break
       stdout_queue.put(output_chunk, True)
@@ -452,7 +488,7 @@ def GetCmdStatusAndOutputWithTimeout(args,
     TimeoutError on timeout.
   """
   _ValidateAndLogCommand(args, cwd, shell)
-  output = StringIO.StringIO()
+  output = six.StringIO()
   process = Popen(
       args,
       cwd=cwd,
