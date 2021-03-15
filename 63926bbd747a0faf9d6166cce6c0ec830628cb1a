@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52aedaf1_cbc03da9",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-15T22:10:35Z",
+      "side": 1,
+      "message": "This test is actually running the command? Generally unwise, as it\u0027s usually difficult to make assumptions about developer\u0027s machine (eg: windows vs linux)\n\nWhat are these two tests providing that testIterCmdOutputLines_unicode isn\u0027t? I would delete them both in favor of testIterCmdOutputLines_unicode",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "705eca6e_5f01802b",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-15T22:10:35Z",
+      "side": 1,
+      "message": "Any exception raised during the test causes the test to fail. So this assertion is unnecessary.",
+      "range": {
+        "startLine": 201,
+        "startChar": 4,
+        "endLine": 201,
+        "endChar": 25
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a83695_bb9fd2cc",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-15T22:10:35Z",
+      "side": 1,
+      "message": "Same re. assertions",
+      "range": {
+        "startLine": 231,
+        "startChar": 4,
+        "endLine": 231,
+        "endChar": 25
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
