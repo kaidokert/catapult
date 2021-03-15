@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85f0e9fb_e1ad800d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-15T01:54:28Z",
+      "side": 1,
+      "message": "Test roll passed, pls help review",
+      "revId": "71f2991c33f39bc9d685f44d847c0877352f99dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
