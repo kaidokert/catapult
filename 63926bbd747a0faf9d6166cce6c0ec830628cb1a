@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1d9913d_396e9345",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-15T22:41:34Z",
+      "side": 1,
+      "message": "I tried. These cases will pass on windows. Just that it will not trigger any meaningful test, because \u0027\\x80\u0027 will not be treated as binary data.\n\nI am ok to delete this test.",
+      "parentUuid": "b5095368_639dafe1",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "705eca6e_5f01802b",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 6
