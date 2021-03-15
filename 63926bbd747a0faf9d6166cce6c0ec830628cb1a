@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5095368_639dafe1",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-15T22:31:19Z",
+      "side": 1,
+      "message": "GetCmdStatusAndOutput did not call into _IterCmdOutputLines, so the other test will not cover this path.\n\nTo the beginning of this file, there actually are other tests call to \u0027echo\u0027, so should be fine?\n\nI suggest we keep this case.",
+      "parentUuid": "52aedaf1_cbc03da9",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "705eca6e_5f01802b",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-15T22:10:35Z",
       "side": 1,
       "message": "Any exception raised during the test causes the test to fail. So this assertion is unnecessary.",
+      "range": {
+        "startLine": 201,
+        "startChar": 4,
+        "endLine": 201,
+        "endChar": 25
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f001568_61999962",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-15T22:31:19Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "705eca6e_5f01802b",
       "range": {
         "startLine": 201,
         "startChar": 4,
