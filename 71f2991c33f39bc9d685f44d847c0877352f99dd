@@ -52,6 +52,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd8a2c6_7b93c8e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-15T18:21:22Z",
+      "side": 1,
+      "message": "What made CL:2757317 be reverted? Now would be a good opportunity to add a test case in cmd_helper_test that replicates it and ensure it now passes w/ these changes ",
+      "revId": "71f2991c33f39bc9d685f44d847c0877352f99dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c01416b9_0feb4972",
