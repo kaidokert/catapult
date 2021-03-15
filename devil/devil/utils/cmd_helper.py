@@ -10,10 +10,18 @@ import pipes
 import select
 import signal
 import string
-import StringIO
 import subprocess
 import sys
 import time
+
+CATAPULT_ROOT_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+SIX_PATH = os.path.join(CATAPULT_ROOT_PATH, 'third_party', 'six')
+
+if SIX_PATH not in sys.path:
+  sys.path.append(SIX_PATH)
+
+import six
 
 from devil import base_error
 
@@ -23,7 +31,8 @@ _SafeShellChars = frozenset(string.ascii_letters + string.digits + '@%_-+=:,./')
 
 # Cache the string-escape codec to ensure subprocess can find it
 # later. Return value doesn't matter.
-codecs.lookup('string-escape')
+if six.PY2:
+  codecs.lookup('string-escape')
 
 
 def SingleQuote(s):
@@ -109,7 +118,8 @@ def Popen(args,
     close_fds = True
     preexec_fn = lambda: signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
-  return subprocess.Popen(
+  if six.PY2:
+    return subprocess.Popen(
       args=args,
       cwd=cwd,
       stdin=stdin,
@@ -118,8 +128,8 @@ def Popen(args,
       shell=shell,
       close_fds=close_fds,
       env=env,
-      preexec_fn=preexec_fn)
-
+      preexec_fn=preexec_fn
+    )
 
 def Call(args, stdout=None, stderr=None, shell=None, cwd=None, env=None):
   pipe = Popen(
@@ -165,7 +175,7 @@ def GetCmdOutput(args, cwd=None, shell=False, env=None):
 
 
 def _ValidateAndLogCommand(args, cwd, shell):
-  if isinstance(args, basestring):
+  if isinstance(args, six.string_types):
     if not shell:
       raise Exception('string args must be run with shell=True')
   else:
@@ -319,6 +329,8 @@ def _IterProcessStdoutFcntl(process,
         data = os.read(child_fd, buffer_size)
         if not data:
           break
+        if six.PY3:
+          data = data.decode('utf-8', errors='ignore')
         yield data
 
       if process.poll() is not None:
@@ -330,6 +342,8 @@ def _IterProcessStdoutFcntl(process,
           if child_fd in read_fds:
             data = os.read(child_fd, buffer_size)
             if data:
+              if six.PY3:
+                data = data.decode('utf-8', errors='ignore')
               yield data
               continue
           break
@@ -366,6 +380,8 @@ def _IterProcessStdoutQueue(process,
     while True:
       try:
         output_chunk = os.read(process.stdout.fileno(), buffer_size)
+        if six.PY3:
+          output_chunk = output_chunk.decode('utf-8', errors='ignore')
       except IOError:
         break
       stdout_queue.put(output_chunk, True)
@@ -452,7 +468,7 @@ def GetCmdStatusAndOutputWithTimeout(args,
     TimeoutError on timeout.
   """
   _ValidateAndLogCommand(args, cwd, shell)
-  output = StringIO.StringIO()
+  output = six.StringIO()
   process = Popen(
       args,
       cwd=cwd,
