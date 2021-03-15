@@ -87,6 +87,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3a637b9_22da8951",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-15T18:56:09Z",
+      "side": 1,
+      "message": "\u003e That is due to some decode error. In the new change, I did not try to update behavior for py2 side. so should be fine.\n\u003e \n\u003e Test case: maybe two cases here, one command that output ascii code, and one outputs unicode, and we check there is no exception?\n\nIf that triggers the previous failure, then it sgtm.",
+      "parentUuid": "1cc00303_71755b24",
+      "revId": "71f2991c33f39bc9d685f44d847c0877352f99dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c01416b9_0feb4972",
