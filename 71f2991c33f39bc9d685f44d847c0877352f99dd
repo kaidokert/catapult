@@ -16,6 +16,40 @@
       "message": "Test roll passed, pls help review",
       "revId": "71f2991c33f39bc9d685f44d847c0877352f99dd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913aeacc_23a2581e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-15T17:58:50Z",
+      "side": 1,
+      "message": "Most of the changes look fine, but I suspect the changes in cmd_helper.py aren\u0027t.",
+      "revId": "71f2991c33f39bc9d685f44d847c0877352f99dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c01416b9_0feb4972",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-15T17:58:50Z",
+      "side": 1,
+      "message": "This change (and the one below) look unlikely to be correct for me.\n\nPresumably the whole reason we\u0027re calling os.read in the first place is because we can\u0027t read things a line at a time.",
+      "revId": "71f2991c33f39bc9d685f44d847c0877352f99dd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
