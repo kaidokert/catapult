@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bfc7ca1_1a87fdc2",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T18:06:39Z",
+      "side": 1,
+      "message": "The reason I move it here is that, otherwise I got a pylint error in testIterCmdOutputLines_unicode. It says self not used, testIterCmdOutputLines_unicode does not need to be in a class.",
+      "parentUuid": "ee4afe5a_19db831d",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 3
+      },
+      "revId": "4f2594cffc23fe3b2f1dea7464eabaf10ae63e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "093a77b2_e1b2dd3e",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 10
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-16T17:44:52Z",
       "side": 1,
       "message": "Why iterate if we\u0027re ignoring the lines? Just replace the for loop with a single call:\n  cmd_helper._IterCmdOutputLines(mock_proc, \u0027mock_proc\u0027)\n\nShould also assert on some behavior. ie:\n  self.assertEqual(lines[1], \"Hello\")",
+      "range": {
+        "startLine": 215,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 12
+      },
+      "revId": "4f2594cffc23fe3b2f1dea7464eabaf10ae63e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80125aa7_24465d07",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T18:06:39Z",
+      "side": 1,
+      "message": "_IterCmdOutputLines is a generator. Loop through it just to trigger all the processing at cmd_helper.py side. Let me try to save all the lines, and do the assert as you suggested.",
+      "parentUuid": "093a77b2_e1b2dd3e",
       "range": {
         "startLine": 215,
         "startChar": 8,
