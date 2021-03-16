@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8332a13d_88ef4062",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-03-16T15:26:52Z",
+      "side": 1,
+      "message": "Split out from https://chromium-review.googlesource.com/c/catapult/+/2730250, since this shouldn\u0027t break anything.",
+      "revId": "4bf754341b99428723fdcf76a84e76a0261651d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
