@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3ae795e_0921a571",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T19:01:46Z",
+      "side": 1,
+      "message": "Done, But I still added a self.AssertTrue line, due to the \"self not used\" pylint problem.",
+      "parentUuid": "c5f8e317_85edd50b",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "705eca6e_5f01802b",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 6

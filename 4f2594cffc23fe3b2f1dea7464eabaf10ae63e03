@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ade3bce_ebc751a9",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T19:01:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bfc7ca1_1a87fdc2",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 3
+      },
+      "revId": "4f2594cffc23fe3b2f1dea7464eabaf10ae63e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "093a77b2_e1b2dd3e",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "_IterCmdOutputLines is a generator. Loop through it just to trigger all the processing at cmd_helper.py side. Let me try to save all the lines, and do the assert as you suggested.",
       "parentUuid": "093a77b2_e1b2dd3e",
+      "range": {
+        "startLine": 215,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 12
+      },
+      "revId": "4f2594cffc23fe3b2f1dea7464eabaf10ae63e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d93883e_aaedb4f1",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T19:01:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80125aa7_24465d07",
       "range": {
         "startLine": 215,
         "startChar": 8,

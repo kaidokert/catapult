@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "201c8467_980e8a51",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T19:01:46Z",
+      "side": 1,
+      "message": "For unicode case, it is possible that some text will be dropped, if the output can not be correctly decoded.\n\nThe problem here is that we don\u0027t know what is the encoding of the output. Do you think if we should mention this some where as a contact with our user?",
+      "parentUuid": "9c4b7c19_f6c41078",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "49685d24337d1c7de0091f2af43a17af6fee4f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "444742dc_b100b67d",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-16T17:44:52Z",
       "side": 1,
       "message": "Superfluous comment",
+      "range": {
+        "startLine": 228,
+        "startChar": 4,
+        "endLine": 228,
+        "endChar": 45
+      },
+      "revId": "49685d24337d1c7de0091f2af43a17af6fee4f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "119f2746_9a610110",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T19:01:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "444742dc_b100b67d",
       "range": {
         "startLine": 228,
         "startChar": 4,
