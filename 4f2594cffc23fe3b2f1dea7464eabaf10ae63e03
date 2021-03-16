@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee4afe5a_19db831d",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-16T17:44:52Z",
+      "side": 1,
+      "message": "If this isn\u0027t being used in more than one test, move its definition into the test",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 3
+      },
+      "revId": "4f2594cffc23fe3b2f1dea7464eabaf10ae63e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "093a77b2_e1b2dd3e",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-16T17:44:52Z",
+      "side": 1,
+      "message": "Why iterate if we\u0027re ignoring the lines? Just replace the for loop with a single call:\n  cmd_helper._IterCmdOutputLines(mock_proc, \u0027mock_proc\u0027)\n\nShould also assert on some behavior. ie:\n  self.assertEqual(lines[1], \"Hello\")",
+      "range": {
+        "startLine": 215,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 12
+      },
+      "revId": "4f2594cffc23fe3b2f1dea7464eabaf10ae63e03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

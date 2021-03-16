@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5f8e317_85edd50b",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-16T17:44:52Z",
+      "side": 1,
+      "message": "\u003e To the beginning of this file, there actually are other tests call to \u0027echo\u0027, so should be fine?\n\nEek; fair point. (That\u0027d be an area for clean-up, but shouldn\u0027t block this CL.)\n\n\u003e GetCmdStatusAndOutput did not call into _IterCmdOutputLines, so the other test will not cover this path\n\nThen let\u0027s keep these tests. I was hoping it was a single decode() call that we could cover in a single test, but that doesn\u0027t seem to be the case.\n\nThat said, let\u0027s move this class to somewhere around line 37. We should let _MockProcess and CmdHelperIterCmdOutputLinesTest continue to live side by side given how related they are.",
+      "parentUuid": "b1d9913d_396e9345",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 29
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "705eca6e_5f01802b",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 6
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "Will do",
       "parentUuid": "705eca6e_5f01802b",
+      "range": {
+        "startLine": 201,
+        "startChar": 4,
+        "endLine": 201,
+        "endChar": 25
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f9379d0_410a1ff7",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-16T17:44:52Z",
+      "side": 1,
+      "message": "When you\u0027ve addressed a CL comment, make sure to click the \"Resolved\" checkbox. Otherwise the thread will continue to show up",
+      "parentUuid": "8f001568_61999962",
       "range": {
         "startLine": 201,
         "startChar": 4,
