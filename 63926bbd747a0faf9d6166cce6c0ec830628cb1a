@@ -140,6 +140,30 @@
       },
       "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e8d1b25_f720a563",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-16T17:13:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08a83695_bb9fd2cc",
+      "range": {
+        "startLine": 231,
+        "startChar": 4,
+        "endLine": 231,
+        "endChar": 25
+      },
+      "revId": "63926bbd747a0faf9d6166cce6c0ec830628cb1a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
