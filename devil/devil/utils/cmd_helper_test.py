@@ -197,6 +197,9 @@ class CmdHelperIterCmdOutputLinesTest(unittest.TestCase):
   _SIMPLE_OUTPUT_SEQUENCE = [
       _ProcessOutputEvent(read_contents='1\n2\n'),
   ]
+  _UNICODE_OUTPUT_SEQUENCE = [
+      _ProcessOutputEvent(read_contents='\x80\x31\nHello\n\xE2\x98\xA0')
+  ]
 
   def testIterCmdOutputLines_success(self):
     with _MockProcess(
@@ -204,6 +207,13 @@ class CmdHelperIterCmdOutputLinesTest(unittest.TestCase):
       for num, line in enumerate(
           cmd_helper._IterCmdOutputLines(mock_proc, 'mock_proc'), 1):
         self.assertEquals(num, int(line))
+
+  def testIterCmdOutputLines_unicode(self):
+    with _MockProcess(
+        output_sequence=self._UNICODE_OUTPUT_SEQUENCE) as mock_proc:
+      for _ in cmd_helper._IterCmdOutputLines(mock_proc, 'mock_proc'):
+        pass
+    # case is passed if there is no exception
 
   def testIterCmdOutputLines_exitStatusFail(self):
     with self.assertRaises(subprocess.CalledProcessError):
