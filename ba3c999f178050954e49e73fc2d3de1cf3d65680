@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a7a6c41_8f399268",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-17T23:50:47Z",
+      "side": 1,
+      "message": "Are you positive that these tests are run when invoking `./bin/run_py3_tests` ?",
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b84949d3_49ba6769",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 13
