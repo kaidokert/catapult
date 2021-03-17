@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba67d052_51d8257a",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-17T16:23:31Z",
+      "side": 1,
+      "message": "Hi Ben, some further argument here. I would say this CL is good in that 1) it did not touch py2 behavior, so won\u0027t break any existing test(won\u0027t drop any text in py2). 2) in py3 if people cares about the output from the subprocess(e.g. \u0027adb devices\u0027), the output probably is in \u0027ascii\u0027, so no text will get dropped. 3) decoding error can not be avoided, for example, \u0027adb logcat\u0027 can output text with many different encoding, because the output comes from many different applications.\n\nAs we are still working on the switch to py3, if we met issue in future when other tools switch to py3, we will gain more knowledge then and see if there is a better approach. For now I suggest let\u0027s get this in first.",
+      "parentUuid": "201c8467_980e8a51",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "49685d24337d1c7de0091f2af43a17af6fee4f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "444742dc_b100b67d",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 7
