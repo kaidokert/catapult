@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb14023e_0208364f",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-17T19:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6690f6de_6a2e6dc8",
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6fa630f_a24212eb",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-03-17T19:14:35Z",
       "side": 1,
       "message": "This is pointless. What does GetCmdStatusAndOutput() return that you can assert on?",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7256cce5_f86a19e8",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-17T19:49:58Z",
+      "side": 1,
+      "message": "No exception, right? If I delete this line, there will be a pylint error, saying \"self\" not used. let me disable that pylint error instead.",
+      "parentUuid": "a6fa630f_a24212eb",
       "range": {
         "startLine": 47,
         "startChar": 4,
@@ -81,6 +123,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "787731f8_6c63f761",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-17T19:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1eff37c9_0bda4bfb",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 54
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4f15004_b0377ece",
@@ -104,6 +170,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "207b02e6_f0a5f1d1",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-17T19:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4f15004_b0377ece",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 13
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a9839ab_d3fff49a",
@@ -117,6 +207,24 @@
       "writtenOn": "2021-03-17T19:14:35Z",
       "side": 1,
       "message": "Replace this with:\n  lines \u003d list(cmd_helper._IterCmdOutputLines(...))\n\n?",
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4cbf6bc_b0db0d5f",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-17T19:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a9839ab_d3fff49a",
       "revId": "41c10514efa50109f3542036544069adf29985ae",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
