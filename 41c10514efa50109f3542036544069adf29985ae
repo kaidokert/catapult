@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fda1eb77_cf49f311",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-17T23:42:17Z",
+      "side": 1,
+      "message": "Instead of this, can we assert the output looks right?",
+      "parentUuid": "7256cce5_f86a19e8",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1eff37c9_0bda4bfb",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 12

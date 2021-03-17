@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84949d3_49ba6769",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-17T23:42:17Z",
+      "side": 1,
+      "message": "nit: alphabetical",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f858b6c6_40578a8d",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-17T23:42:17Z",
+      "side": 1,
+      "message": "If decoding is important, how about moving this logic into a helper function? Then we can just replace \"os.read\" calls with the helper method.",
+      "range": {
+        "startLine": 398,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 70
+      },
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
