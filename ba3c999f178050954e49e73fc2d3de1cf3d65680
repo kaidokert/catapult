@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38759c9f_6b5c89aa",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T17:47:34Z",
+      "side": 1,
+      "message": "I don\u0027t know. If I run \"vpython3 run_py_test cmd_helper_tests.py\" it did report some errors. I would say it is not this CL\u0027s intention to make cmd_helper.py completely py3 compatible. This should be covered by 1007101 (and that is my job). I would suggest we get this CL in asap, so that I can move on to next task, and that actually make things move faster.",
+      "parentUuid": "0a095d6f_4015761a",
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b84949d3_49ba6769",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 13
