@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c0b2801_44a9c94f",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T19:10:59Z",
+      "side": 1,
+      "message": "Find you actually add that in the code. It is my bad to put the import at a wrong place. Fixing that now the test runs, but with below error:\nERROR: testIterCmdOutputLines_delay (devil.utils.cmd_helper_test.CmdHelperIterCmdOutputLinesTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/usr/local/google/code/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper_test.py\", line 265, in testIterCmdOutputLines_delay\n    for num, line in enumerate(\n  File \"/usr/local/google/code/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper.py\", line 573, in _IterCmdOutputLines\n    for data in _IterProcessStdout(\n  File \"/usr/local/google/code/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper.py\", line 357, in _IterProcessStdoutFcntl\n    data \u003d _read_and_decode(child_fd, buffer_size)\n  File \"/usr/local/google/code/chromium/src/third_party/catapult/devil/devil/utils/cmd_helper.py\", line 321, in _read_and_decode\n    data \u003d data.decode(\u0027utf-8\u0027, errors\u003d\u0027ignore\u0027)\nAttributeError: \u0027str\u0027 object has no attribute \u0027decode\u0027\n\nI believe this is due to the Mock in the unit test is wrong. Because from py3 document, os.read always returns bytestring:\nos.read(fd, n)\nRead at most n bytes from file descriptor fd.\n\nReturn a bytestring containing the bytes read. If the end of the file referred to by fd has been reached, an empty bytes object is returned\n\nI suggest we go ahead with this change, leave the fix for the unittest for future.",
+      "parentUuid": "467aeb0f_eef924be",
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b84949d3_49ba6769",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 13
