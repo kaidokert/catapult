@@ -150,6 +150,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5dd85060_96296f2b",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-18T17:17:21Z",
+      "side": 1,
+      "message": "Are different results intentional?",
+      "parentUuid": "7b75ad61_39ab3023",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1eff37c9_0bda4bfb",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 12

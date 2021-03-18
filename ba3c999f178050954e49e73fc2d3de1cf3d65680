@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a095d6f_4015761a",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-18T17:17:21Z",
+      "side": 1,
+      "message": "Hmmm that doesn\u0027t seem right. It would be great if we could get this test running under py3 so we can validate the changes here. How many tests fail if you get this running under py3?",
+      "parentUuid": "fdbbd587_8ad7eca7",
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b84949d3_49ba6769",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 13
