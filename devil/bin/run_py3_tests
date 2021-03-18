@@ -17,7 +17,8 @@ sys.path.append(_DEVIL_PATH)
 
 PY3_COMPATIBLE_TESTS = [
     # Add full test module path here
-    #   (e.g. 'devil.devil_env_tests')
+    #   (e.g. 'devil.devil_env_test')
+    'devil.utils.cmd_helper_test'
 ]
 
 
