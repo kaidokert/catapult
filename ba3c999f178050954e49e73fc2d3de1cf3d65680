@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73e864bb_3c2c45ca",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T18:43:59Z",
+      "side": 1,
+      "message": "I actually tried this yesterday, without the import, it does not work. Tried again just now with the import, still does not work. It complains:\nTraceback (most recent call last):\n  File \"./devil/bin/run_py3_tests\", line 12, in \u003cmodule\u003e\n    import devil.utils.cmd_helper_test\nModuleNotFoundError: No module named \u0027devil\u0027",
+      "parentUuid": "4982b240_b0739079",
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b84949d3_49ba6769",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 13
