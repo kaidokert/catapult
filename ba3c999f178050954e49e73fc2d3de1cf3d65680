@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdbbd587_8ad7eca7",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T01:01:58Z",
+      "side": 1,
+      "message": "It says \"Ran 0 tests\". I would say make cmd_helper_test pass under run_py3_tests should not be part of this CL. There are other tests inside cmd_helper_test, and those tests are not written with py3 in mind.",
+      "parentUuid": "5a7a6c41_8f399268",
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b84949d3_49ba6769",
         "filename": "devil/devil/android/md5sum.py",
         "patchSetId": 13
@@ -31,6 +49,30 @@
       "writtenOn": "2021-03-17T23:42:17Z",
       "side": 1,
       "message": "nit: alphabetical",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8905841_9075c194",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T01:01:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b84949d3_49ba6769",
       "range": {
         "startLine": 8,
         "startChar": 0,
@@ -54,6 +96,30 @@
       "writtenOn": "2021-03-17T23:42:17Z",
       "side": 1,
       "message": "If decoding is important, how about moving this logic into a helper function? Then we can just replace \"os.read\" calls with the helper method.",
+      "range": {
+        "startLine": 398,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 70
+      },
+      "revId": "ba3c999f178050954e49e73fc2d3de1cf3d65680",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5285a8e2_6d6f46c7",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T01:01:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f858b6c6_40578a8d",
       "range": {
         "startLine": 398,
         "startChar": 8,

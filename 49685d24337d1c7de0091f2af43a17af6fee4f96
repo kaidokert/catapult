@@ -120,6 +120,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "991ea4b6_4bc30bd4",
+        "filename": "devil/devil/utils/cmd_helper.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T01:01:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6407f19c_7c551412",
+      "range": {
+        "startLine": 147,
+        "startChar": 6,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "49685d24337d1c7de0091f2af43a17af6fee4f96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "444742dc_b100b67d",

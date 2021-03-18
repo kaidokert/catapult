@@ -126,6 +126,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b75ad61_39ab3023",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-18T01:01:58Z",
+      "side": 1,
+      "message": "The problem is under py2 and py3, we would get different results. So my intention is just to test there is no decode error.",
+      "parentUuid": "fda1eb77_cf49f311",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1eff37c9_0bda4bfb",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 12
