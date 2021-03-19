@@ -16,6 +16,23 @@
       "message": "Hey Deep,\n\nI\u0027m looking to remove the implementation of a metric that was used by rendering.py. Our team no longer needs it, and I\u0027m looking to remove it from rendering.py.\n\nCould you PTAL?\n\nThanks,\nJonathan",
       "revId": "3ade10575bc9b20165b7e48ce6f9edc3b94daebb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bced21a6_bf638877",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-03-19T18:23:21Z",
+      "side": 1,
+      "message": "Thank you! ",
+      "revId": "3ade10575bc9b20165b7e48ce6f9edc3b94daebb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
