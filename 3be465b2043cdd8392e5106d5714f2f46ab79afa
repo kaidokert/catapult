@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80a2ec7_4761e23e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1111300
+      },
+      "writtenOn": "2021-03-19T06:09:41Z",
+      "side": 1,
+      "message": "Would you review this CL?\n\nSample log:\nhttps://chromium-swarm.appspot.com/task?id\u003d525de297b8703110\n---\nC    5.239s individual_device_set_up(0608588513c86e2b)  (TimeoutThread-1... attempt 1 of 3: AdbShellCommandFailedError(\u0027(device: 0608588513c86e2b) shell command run via adb failed on the device:\\n  command: PATH\u003d\"/data/local/tmp/bin:$PATH\" unzip /data/local/tmp/temp_file-f2d8a549bce26.zip \u0026\u0026 cat /data/local/tmp/temp_file-1be894e587f25 | xargs chmod -R 777\\n  exit status: 127\\n  output:\\n  - /system/bin/sh: xargs: not found\\n\u0027,)\nI    5.459s list_tests(0608588513c86e2b)  flags:\nI    5.460s list_tests(0608588513c86e2b)    --gtest_list_tests\nI    5.460s list_tests(0608588513c86e2b)  Getting logdog client.\nI    5.559s list_tests(0608588513c86e2b)  Logcat saved to https://luci-logdog.appspot.com/v/?s\u003dchromium%2Fandroid%2Fswarming%2Flogcats%2F525de297b8703111%2F%2B%2Flogcat_logcat_list_tests_20210318T112110-UTC_0608588513c86e2b\nI    5.559s archive  Writing text to logdog stream, logcat_logcat_list_tests_20210318T112110-UTC_0608588513c86e2b\nI    5.560s list_tests(0608588513c86e2b)  No tests found. Output:\nI    5.560s list_tests(0608588513c86e2b)    /system/bin/sh: /data/local/tmp/crashpad_tests__dist/crashpad_tests: can\u0027t execute: Permission denied\n\n",
+      "revId": "3be465b2043cdd8392e5106d5714f2f46ab79afa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
