@@ -13,11 +13,11 @@ _DEVIL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 sys.path.append(_DEVIL_PATH)
 # Import compatible tests here by full module path
-#   (e.g. 'import devil.devil_env_tests')
+import devil.utils.cmd_helper_test
 
 PY3_COMPATIBLE_TESTS = [
     # Add full test module path here
-    #   (e.g. 'devil.devil_env_tests')
+    devil.utils.cmd_helper_test,
 ]
 
 
