@@ -222,6 +222,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2da1ae38_f60120aa",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-19T18:53:30Z",
+      "side": 1,
+      "message": "If we continue return bytes in py3, I would say we are putting the burden to the caller side. I don\u0027t think that\u0027s what we want to do.",
+      "parentUuid": "d2b384a6_4746c3d3",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1eff37c9_0bda4bfb",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 12

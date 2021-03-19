@@ -96,6 +96,30 @@
       },
       "revId": "ddf4932ac9dfc5ca31a3abc7565615a296a10734",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9182a4fe_a5b19574",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-19T18:53:30Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "cabf1bad_ca4783e6",
+      "range": {
+        "startLine": 22,
+        "startChar": 16,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "ddf4932ac9dfc5ca31a3abc7565615a296a10734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
