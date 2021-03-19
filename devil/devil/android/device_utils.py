@@ -107,6 +107,13 @@ _RESTART_ADBD_SCRIPT = """
   restart &
 """
 
+_UNZIP_AND_CHMOD_SCRIPT = """
+  %s/unzip %s && (for dir in %s
+  do
+    chmod -R 777 "$dir" || exit 1
+  done)
+"""
+
 # Not all permissions can be set.
 _PERMISSIONS_DENYLIST_RE = re.compile('|'.join(
     fnmatch.translate(p) for p in [
@@ -2226,19 +2233,17 @@ class DeviceUtils(object):
           self.adb, suffix='.zip') as device_temp:
         self.adb.Push(zip_path, device_temp.name)
 
-        with device_temp_file.DeviceTempFile(self.adb) as dirs_temp:
-          self._WriteFileWithPush(dirs_temp.name, ' '.join(dirs))
+        with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
+          # Read dirs from temp file to avoid potential errors like
+          # "Argument list too long" (crbug.com/1174331) when the list
+          # is too long.
+          self.WriteFile(
+              script.name, _UNZIP_AND_CHMOD_SCRIPT %
+              (install_commands.BIN_DIR, device_temp.name, ' '.join(dirs)))
 
-          self.RunShellCommand(
-              # Read dirs from temp file to avoid potential errors like
-              # "Argument list too long" (crbug.com/1174331) when the list
-              # is too long.
-              'unzip %s && cat %s | xargs chmod -R 777' % (
-                  device_temp.name, dirs_temp.name),
-              shell=True,
-              as_root=True,
-              env={'PATH': '%s:$PATH' % install_commands.BIN_DIR},
-              check_return=True)
+          self.RunShellCommand(['source', script.name],
+                               check_return=True,
+                               as_root=True)
 
     return True
 
