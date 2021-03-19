@@ -33,6 +33,69 @@
       "message": "Folks, can you pls review again? Thanks!",
       "revId": "ddf4932ac9dfc5ca31a3abc7565615a296a10734",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7c01bc8_10bee72f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-19T18:43:36Z",
+      "side": 1,
+      "message": "I think this is mostly good. I have a question about whether you think it\u0027s better to use bytes or unicode type (in py3) but I don\u0027t have strong opinions one way or another",
+      "revId": "ddf4932ac9dfc5ca31a3abc7565615a296a10734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39651556_d9be5850",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 16
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-19T18:43:36Z",
+      "side": 1,
+      "message": "suggestion: I think we can delete the example now that we have a real entry",
+      "range": {
+        "startLine": 21,
+        "startChar": 14,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "ddf4932ac9dfc5ca31a3abc7565615a296a10734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cabf1bad_ca4783e6",
+        "filename": "devil/bin/run_py3_tests",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-19T18:43:36Z",
+      "side": 1,
+      "message": "nit: add a trailing comma",
+      "range": {
+        "startLine": 22,
+        "startChar": 16,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "ddf4932ac9dfc5ca31a3abc7565615a296a10734",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

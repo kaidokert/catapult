@@ -198,6 +198,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2b384a6_4746c3d3",
+        "filename": "devil/devil/utils/cmd_helper_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-03-19T18:43:36Z",
+      "side": 1,
+      "message": "Should we return bytes in py3 for consistency, or is there another reason unicode is preferred?",
+      "parentUuid": "dac23158_a3b39146",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "41c10514efa50109f3542036544069adf29985ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1eff37c9_0bda4bfb",
         "filename": "devil/devil/utils/cmd_helper_test.py",
         "patchSetId": 12
