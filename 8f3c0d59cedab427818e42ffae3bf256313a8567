@@ -33,6 +33,24 @@
       "message": "Is the CL description correct? I don\u0027t understand how this is a pylint error.",
       "revId": "8f3c0d59cedab427818e42ffae3bf256313a8567",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7cf3786_c8950cb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-22T20:07:01Z",
+      "side": 1,
+      "message": "Hi Dirk\n\nSome background, if there is a space in Test expectation, when I run \u0027git cl upload\u0027, I will get pylint error as below:\n\n2856: Syntax error: crbug.com/1050754 external/wpt/xhr/xmlhttprequest-timeout-worker-aborted.html?aborted immediately after send() [ Pass Timeout ]\n\nLet me update the description a little bit.",
+      "parentUuid": "391c3fb5_f44e551e",
+      "revId": "8f3c0d59cedab427818e42ffae3bf256313a8567",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
