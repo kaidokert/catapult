@@ -16,6 +16,24 @@
       "message": "You need to replace \u0027%20\u0027 with \u0027 \u0027 when finding expectations that match a test. Please add that capability in this CL.",
       "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3504cfda_5c093a34",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-22T21:04:14Z",
+      "side": 1,
+      "message": "I do not really understand this. Can you pls explain?\n\nAs I explained above, after making this change, the metadata is created correctly.",
+      "parentUuid": "248b86b3_fdb0c4f5",
+      "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
