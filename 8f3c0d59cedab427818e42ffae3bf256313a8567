@@ -69,6 +69,24 @@
       "parentUuid": "d7cf3786_c8950cb2",
       "revId": "8f3c0d59cedab427818e42ffae3bf256313a8567",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a62b732_8adb0c17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-22T20:30:28Z",
+      "side": 1,
+      "message": "The test case has a \" \" in it. Plan is to when generating the test expectation, replace the \" \" with %20, and when parsing it, change it back.\n\nI tested it here, it works.\n\nThe tool for generating test expectations needs to be updated also.",
+      "parentUuid": "a9a2c3dc_84edde86",
+      "revId": "8f3c0d59cedab427818e42ffae3bf256313a8567",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
