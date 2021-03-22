@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62296263_0a4953ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-03-22T15:33:03Z",
+      "side": 1,
+      "message": "Sorry we missed that! jonross@, looks like we forgot the remove the metric from loading metric. Could you remove that first before relanding this? https://source.chromium.org/chromium/chromium/src/+/master:tools/perf/benchmarks/loading_metrics_category.py;l\u003d34;drc\u003d844e00119e5a0d479afcf3784a6e0e9c101f4d14",
+      "revId": "999f35f30e7ed72d640fea1b86f74d54a41896ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
