@@ -397,6 +397,9 @@ class TaggedTestListParser(object):
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
+        # replace %20 in test path to ' '
+        test = test.replace("%20", " ")
+
         # remove escapes for asterisks
         is_glob = not test.endswith('\\*') and test.endswith('*')
         test = test.replace('\\*', '*')
