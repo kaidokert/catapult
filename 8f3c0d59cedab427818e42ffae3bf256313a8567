@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6446e3f_c038f0a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-22T19:34:04Z",
+      "side": 1,
+      "message": "Hi Dirk\n\nCan you help review this? This change is in catapult/third_party, is that ok? Or should I fix at the pylint side (means allow space in pylint check)?",
+      "revId": "8f3c0d59cedab427818e42ffae3bf256313a8567",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
