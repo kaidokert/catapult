@@ -69,6 +69,24 @@
       "parentUuid": "248b86b3_fdb0c4f5",
       "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6e7573d_70e2f7c3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-23T00:09:46Z",
+      "side": 1,
+      "message": "Okay forget the last comment, I understand what you are doing now.\n\nAnother issue I recognized is that if a test name has %20 in it then it will be replaced with a space. If we make %20 a string with special meaning then you should consider allowing to escape it so that it can be used as part of the test name, similarly to to what we do for asterisks.",
+      "parentUuid": "3504cfda_5c093a34",
+      "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
