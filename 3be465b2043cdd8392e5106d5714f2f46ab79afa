@@ -33,6 +33,24 @@
       "message": "Pls use named args in the formatting here if possible, ie:\n  {bin_dir}/unzip {zip_file} \u0026\u0026 (for dir in {dirs}",
       "revId": "3be465b2043cdd8392e5106d5714f2f46ab79afa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "623a40c2_5b3cb8a5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1111300
+      },
+      "writtenOn": "2021-03-23T14:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f79f2f0_872b3d5a",
+      "revId": "3be465b2043cdd8392e5106d5714f2f46ab79afa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
