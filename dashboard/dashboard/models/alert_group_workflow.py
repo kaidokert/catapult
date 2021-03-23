@@ -528,17 +528,27 @@ class AlertGroupWorkflow(object):
     max_regression = None
     max_count = 0
 
+    scores = ndb.get_multi([
+        ndb.Key(
+            'SignalQuality',
+            utils.TestPath(r.test),
+            'SignalQualityScore',
+            '0',
+        ) for r in regressions])
+    scores_dict = {s.key.parent().string_id(): s.score for s in scores if s}
+
     def MaxRegression(x, y):
+      get_score = lambda a: scores_dict.get(utils.TestPath(a.test), 0.6)
       if x is None or y is None:
         return x or y
       if x.relative_delta == float('Inf'):
         if y.relative_delta == float('Inf'):
-          return max(x, y, key=lambda a: a.absolute_delta)
+          return max(x, y, key=lambda a: (get_score(a), a.absolute_delta))
         else:
           return y
       if y.relative_delta == float('Inf'):
         return x
-      return max(x, y, key=lambda a: a.relative_delta)
+      return max(x, y, key=lambda a: (get_score(a), a.relative_delta))
 
     bot_name = lambda r: r.bot_name
     for _, rs in itertools.groupby(
