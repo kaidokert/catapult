@@ -34,6 +34,23 @@
       "parentUuid": "4515426e_c8902526",
       "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb1b28e_f7ef4e4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-24T19:30:57Z",
+      "side": 1,
+      "message": "Folks, do we need give people some kind of warning at presubmit? Previously %20 means %20, now %20 is space.\n\nSuggestions?",
+      "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
