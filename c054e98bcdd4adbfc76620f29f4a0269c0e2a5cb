@@ -51,6 +51,41 @@
       "message": "Folks, do we need give people some kind of warning at presubmit? Previously %20 means %20, now %20 is space.\n\nSuggestions?",
       "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcf8f6c1_c1c62f6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-24T19:35:47Z",
+      "side": 1,
+      "message": "Are there any cases currently where we use %20?",
+      "parentUuid": "cfb1b28e_f7ef4e4a",
+      "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "057ca132_cae0f1dd",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-24T19:35:47Z",
+      "side": 1,
+      "message": "You probably need to change _set_string_value() as well to make sure that spaces are properly escaped when turned back into a string.",
+      "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
