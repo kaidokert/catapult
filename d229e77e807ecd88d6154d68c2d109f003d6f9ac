@@ -22,6 +22,30 @@
       },
       "revId": "d229e77e807ecd88d6154d68c2d109f003d6f9ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f7e467_bdd6f6ab",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1307714
+      },
+      "writtenOn": "2021-03-24T19:02:08Z",
+      "side": 1,
+      "message": "I was thinking that an undefined bin is caused by an error, and otherwise the bin would have zero count and still handle all three values. But looking into the data on dashboard the undefined bin happenes when the bin is empty.\nWill fix that on a follow-up change becasue reverting this change can cause test failures on CQ again.",
+      "parentUuid": "6c12583d_67e96f90",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 50
+      },
+      "revId": "d229e77e807ecd88d6154d68c2d109f003d6f9ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
