@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c12583d_67e96f90",
+        "filename": "tracing/tracing/metrics/uma_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1109584
+      },
+      "writtenOn": "2021-03-24T17:12:26Z",
+      "side": 1,
+      "message": "Wouldn\u0027t we still want the portion of delayed frames, even if there are no dropped?",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 50
+      },
+      "revId": "d229e77e807ecd88d6154d68c2d109f003d6f9ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
