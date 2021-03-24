@@ -229,7 +229,7 @@ class TaggedTestListParser(object):
     TAG_TOKEN = '# tags: ['
     # The bug field (optional), including optional subproject.
     BUG_PREFIX_REGEX = '(?:crbug.com/|skbug.com/|webkit.org/)'
-    _MATCH_STRING = r'^(?:(' + BUG_PREFIX_REGEX + '(?:[^/]*/)?\d+\s)*)'
+    _MATCH_STRING = r'^(?:(' + BUG_PREFIX_REGEX + r'(?:[^/]*/)?\d+\s)*)'
     _MATCH_STRING += r'(?:\[ (.+) \] )?'  # The label field (optional).
     _MATCH_STRING += r'(\S+) '  # The test path field.
     _MATCH_STRING += r'\[ ([^\[.]+) \]'  # The expectation field.
@@ -396,6 +396,10 @@ class TaggedTestListParser(object):
                     raise KeyError
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
+
+        # replace %20 in test path to ' '
+        test = test.replace('%20', ' ')
+        test = test.replace('%25', '%')
 
         # remove escapes for asterisks
         is_glob = not test.endswith('\\*') and test.endswith('*')
