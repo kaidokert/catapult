@@ -104,6 +104,24 @@
       "message": "You probably need to change _set_string_value() as well to make sure that spaces are properly escaped when turned back into a string.",
       "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfbf17f_1be630d6",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-24T21:15:03Z",
+      "side": 1,
+      "message": "Dirk, thanks! Any suggestion on how to test my change for this?",
+      "parentUuid": "057ca132_cae0f1dd",
+      "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
