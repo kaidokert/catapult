@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05c9dcd_6b99d3ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-24T02:12:23Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "676de28789ba55dd01f28303c017b2878c52e9df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a28bb5_fbfece43",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-24T02:12:23Z",
+      "side": 1,
+      "message": "Do you need to make this a list, or can you keep it as a generator (i.e. remove the [])?",
+      "range": {
+        "startLine": 531,
+        "startChar": 27,
+        "endLine": 537,
+        "endChar": 31
+      },
+      "revId": "676de28789ba55dd01f28303c017b2878c52e9df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "311b5e61_69b97dd0",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-24T02:12:23Z",
+      "side": 1,
+      "message": "Please make this a module-level constant and document why it\u0027s 0.6.",
+      "range": {
+        "startLine": 541,
+        "startChar": 68,
+        "endLine": 541,
+        "endChar": 71
+      },
+      "revId": "676de28789ba55dd01f28303c017b2878c52e9df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
