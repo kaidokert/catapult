@@ -59,6 +59,7 @@ class CpuTemperatureGetThermalDeviceInformationTest(CpuTemperatureTest):
     self.assertEqual(c.GetDeviceInfoForTesting(), None)
 
   def testGetThermalDeviceInformation_getsCorrectInformation(self):
+    # pylint: disable=redefined-builtin
     correct_information = {
         'cpu0': '/sys/class/thermal/thermal_zone11/temp',
         'cpu1': '/sys/class/thermal/thermal_zone12/temp',
@@ -69,6 +70,7 @@ class CpuTemperatureGetThermalDeviceInformationTest(CpuTemperatureTest):
         'cpu6': '/sys/class/thermal/thermal_zone17/temp',
         'cpu7': '/sys/class/thermal/thermal_zone18/temp'
     }
+    cmp = lambda x, y: 0 if x == y else -1
     self.assertEqual(
         cmp(correct_information,
             self.cpu_temp.GetDeviceInfoForTesting().get('cpu_temps')), 0)

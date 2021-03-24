@@ -11,6 +11,7 @@ Unit tests for the contents of device_utils.py (mostly DeviceUtils).
 
 import collections
 import contextlib
+import io
 import json
 import logging
 import os
@@ -18,6 +19,8 @@ import posixpath
 import stat
 import sys
 import unittest
+
+import six
 
 from devil import devil_env
 from devil.android import device_errors
@@ -117,9 +120,10 @@ class DeviceUtilsInitTest(unittest.TestCase):
     self.assertEqual(serial_as_str, d.adb.GetDeviceSerial())
 
   def testInitWithUnicode(self):
-    serial_as_unicode = unicode('fedcba9876543210')
-    d = device_utils.DeviceUtils(serial_as_unicode)
-    self.assertEqual(serial_as_unicode, d.adb.GetDeviceSerial())
+    if six.PY2:
+      serial_as_unicode = unicode('fedcba9876543210')
+      d = device_utils.DeviceUtils(serial_as_unicode)
+      self.assertEqual(serial_as_unicode, d.adb.GetDeviceSerial())
 
   def testInitWithAdbWrapper(self):
     serial = '123456789abcdef0'
@@ -167,7 +171,7 @@ class DeviceUtilsRestartServerTest(mock_calls.TestCase):
 
 class MockTempFile(object):
   def __init__(self, name='/tmp/some/file'):
-    self.file = mock.MagicMock(spec=file)
+    self.file = mock.MagicMock(spec=io.BufferedIOBase)
     self.file.name = name
     self.file.name_quoted = cmd_helper.SingleQuote(name)
 
@@ -216,6 +220,15 @@ class DeviceUtilsTest(mock_calls.TestCase):
     self.device = device_utils.DeviceUtils(
         self.adb, default_timeout=10, default_retries=0)
     self.watchMethodCalls(self.call.adb, ignore=['GetDeviceSerial'])
+
+  # pylint: disable=arguments-differ
+  def assertItemsEqual(self, expected, actual):
+    # pylint: disable=no-member
+    if six.PY2:
+      super(DeviceUtilsTest, self).assertItemsEqual(expected, actual)
+    else:
+      self.assertCountEqual(expected, actual)
+  # pylint: enable=arguments-differ
 
   def AdbCommandError(self, args=None, output=None, status=None, msg=None):
     if args is None:
@@ -2381,7 +2394,8 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
     with self.assertCalls(
         (mock.call.tempfile.mkdtemp(), tmp_host_dir),
         (self.call.adb.Pull('/path/to/device/file', mock.ANY)),
-        (mock.call.__builtin__.open(mock.ANY, 'r'), tmp_host),
+        (mock.call.__builtin__.open(mock.ANY, 'r'), tmp_host) if six.PY2 else \
+            (mock.call.builtins.open(mock.ANY, 'r'), tmp_host),
         (mock.call.os.path.exists(tmp_host_dir), True),
         (mock.call.shutil.rmtree(tmp_host_dir), None)):
       self.assertEquals('some interesting contents',
@@ -2663,7 +2677,7 @@ class DeviceUtilsStatDirectoryTest(DeviceUtilsTest):
   def testStatDirectory_symbolicLinks(self):
     entries = self.getStatEntries()
     self.assertEqual(entries['lnk']['symbolic_link_to'], '/a/path')
-    for d in entries.itervalues():
+    for d in entries.values():
       self.assertEqual('symbolic_link_to' in d, stat.S_ISLNK(d['st_mode']))
 
 
@@ -3564,7 +3578,7 @@ class DeviceUtilsGrantPermissionsTest(DeviceUtilsTest):
   def _PmGrantShellCall(self, package, permissions):
     fragment = 'p=%s;for q in %s;' % (package, ' '.join(sorted(permissions)))
     results = []
-    for permission, result in sorted(permissions.iteritems()):
+    for permission, result in sorted(permissions.items()):
       if result:
         output, status = result + '\n', 1
       else:
@@ -3889,6 +3903,15 @@ class IterPushableComponentsTest(unittest.TestCase):
       os.symlink(dir2, symlink_dir)
 
       yield Layout(layout_root, basic_file, symlink, symlink_dir, dir1, dir2)
+
+  # pylint: disable=arguments-differ
+  def assertItemsEqual(self, expected, actual):
+    # pylint: disable=no-member
+    if six.PY2:
+      super(IterPushableComponentsTest, self).assertItemsEqual(expected, actual)
+    else:
+      self.assertCountEqual(expected, actual)
+  # pylint: enable=arguments-differ
 
   def testFile(self):
     with self.sampleLayout() as layout:
