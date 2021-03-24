@@ -1096,10 +1096,12 @@ def _run_one_test(child, test_input):
                                     err, child.worker_num, pid,
                                     expected_results, child.has_expectations,
                                     art.artifacts)
+    test_location = _file_location_from_dir_and_prefix(
+            h, child.top_level_dir, child.test_name_prefix)
     result.result_sink_retcode =\
             child.result_sink_reporter.report_individual_test_result(
                 child.test_name_prefix, result, child.artifact_output_dir,
-                child.expectations)
+                child.expectations, test_location)
     return (result, should_retry_on_failure)
 
 
@@ -1189,6 +1191,19 @@ def _load_via_load_tests(child, test_name):
 
 def _sort_inputs(inps):
     return sorted(inps, key=lambda inp: inp.name)
+
+
+def _file_location_from_dir_and_prefix(host, top_level_dir, test_name_prefix):
+    # Note that this is not particularly robust - it will break if there are
+    # periods in the actual file path, e.g. a hidden directory.
+    # We assume that the test name prefix is in the format:
+    # path.to.test.file.TestClass.
+    num_periods_to_remove = 1
+    if test_name_prefix.endswith('.'):
+        num_periods_to_remove += 1
+    test_path = test_name_prefix.rsplit('.', num_periods_to_remove)[0]
+    test_path = test_path.replace('.', host.sep) + '.py'
+    return host.join(top_level_dir, test_path)
 
 
 if __name__ == '__main__':  # pragma: no cover
