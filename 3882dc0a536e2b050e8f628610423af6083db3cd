@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3423e32_822a11ac",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-24T23:53:18Z",
+      "side": 1,
+      "message": "This comment is worded a bit funny. You should state that you are changing the relative file path to the repository into //\u003crepository relative path to file\u003e",
+      "range": {
+        "startLine": 240,
+        "startChar": 27,
+        "endLine": 240,
+        "endChar": 36
+      },
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e334c73_c23d2e21",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-24T23:53:18Z",
+      "side": 1,
+      "message": "This seems like only needs to be calculated once, can you make src_dir variable declared in the constructor.",
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d958622_806a0ad0",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-24T23:53:18Z",
+      "side": 1,
+      "message": "The test prefix is not guaranteed to point to the file containing the test. You can use the test_name_to_load variable on line 1039 for the full test name. Then you can remove the \u0027.\u003cClass name\u003e.\u003ctest name\u003e\u0027 suffix to get the file path. Or you can use the getfile method from the inspect module to get the absolute path of the file.",
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f94ba6e2_c78c2d05",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-24T23:53:18Z",
+      "side": 1,
+      "message": "Can you put this near the other constants on line 26-32 and also capitalize it.",
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
