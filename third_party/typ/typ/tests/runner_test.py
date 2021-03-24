@@ -21,6 +21,8 @@ from textwrap import dedent as d
 
 from typ import Host, Runner, Stats, TestCase, TestSet, TestInput
 from typ import WinMultiprocessing
+from typ import runner as runner_module
+from typ.fakes import host_fake
 
 
 def _setup_process(child, context):  # pylint: disable=W0613
@@ -324,3 +326,15 @@ class FailureTests(TestCase):
         # Intended to be called from tests above.
         if self.context:
             self.fail()
+
+
+class FileLocationTests(TestCase):
+    def test_trailing_period(self):
+        fp = runner_module._file_location_from_dir_and_prefix(
+            host_fake.FakeHost(), '/top/level', 'test.name.prefix.')
+        self.assertEqual(fp, '/top/level/test/name.py')
+
+    def test_no_trailing_period(self):
+        fp = runner_module._file_location_from_dir_and_prefix(
+            host_fake.FakeHost(), '/top/level', 'test.name.prefix')
+        self.assertEqual(fp, '/top/level/test/name.py')
