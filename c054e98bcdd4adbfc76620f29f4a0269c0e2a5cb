@@ -140,6 +140,24 @@
       "parentUuid": "057ca132_cae0f1dd",
       "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af9d63b_7e851ab3",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-25T01:48:52Z",
+      "side": 1,
+      "message": "there\u0027s tests for this file in tests/expectations_parser_test.py. It should be pretty obvious how to test that a string is getting parsed to match an Expectation() object and vice versa.",
+      "parentUuid": "fdfbf17f_1be630d6",
+      "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
