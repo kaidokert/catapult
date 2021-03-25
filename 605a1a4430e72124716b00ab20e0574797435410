@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf69d966_06694205",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T01:41:35Z",
+      "side": 1,
+      "message": "Also please try to keep in mind that it\u0027s standard to wait _at least_ 24 hours after sending a CL out for any type of ping",
+      "parentUuid": "01515479_005d175b",
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dad92e75_8b9b7b2c",
