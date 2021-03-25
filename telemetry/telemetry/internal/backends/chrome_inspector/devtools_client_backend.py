@@ -50,7 +50,7 @@ _DEVTOOLS_CONNECTION_ERRORS = (
 
 
 def GetDevToolsBackEndIfReady(devtools_port, app_backend, browser_target=None):
-  client = _DevToolsClientBackend(app_backend)
+  client = DevToolsClientBackend(app_backend)
   try:
     client.Connect(devtools_port, browser_target)
     logging.info('DevTools agent ready at %s', client)
@@ -63,7 +63,7 @@ def GetDevToolsBackEndIfReady(devtools_port, app_backend, browser_target=None):
 class FuchsiaBrowserTargetNotFoundException(Exception):
   pass
 
-class _DevToolsClientBackend(object):
+class DevToolsClientBackend(object):
   """An object that communicates with Chrome's devtools.
 
   This class owns a map of InspectorBackends. It is responsible for creating
