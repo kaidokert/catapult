@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad4dd927_e3b62c73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T17:17:49Z",
+      "side": 1,
+      "message": "Hi Ben/Nate, can either of you provide a quick review/approval for this? Due to the revert crrev/2786740, builders already switched to py3 is broken.",
+      "revId": "a77b208f81fb57fafee8eca928951bba6e820a45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
