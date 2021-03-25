@@ -231,6 +231,24 @@
       "parentUuid": "1ed0b383_19daf290",
       "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "517b4032_62d1176d",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-25T20:40:38Z",
+      "side": 1,
+      "message": "Mostly I just want to ensure that we\u0027re being consistent and have a well-defined semantics here across the different test harnesses.",
+      "parentUuid": "e4dd3e7a_d7b1001f",
+      "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
