@@ -195,6 +195,24 @@
       "parentUuid": "55285298_2ddc38ce",
       "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ed0b383_19daf290",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-25T20:12:17Z",
+      "side": 1,
+      "message": "\u0027%2520\u0027 is still a valid substring for a test name.",
+      "parentUuid": "38e00b78_f2054708",
+      "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
