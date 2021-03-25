@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38bf3f0d_5f7fb313",
+        "filename": "devil/devil/android/cpu_temperature_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T03:55:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "230ed67f_fac1d755",
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "430eb218_eb05d1a8",
