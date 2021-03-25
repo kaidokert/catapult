@@ -34,6 +34,24 @@
       "parentUuid": "03908943_23b3db1b",
       "revId": "992cd486f56a8c5c1045bc05d63311ad23639312",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97815339_682d6a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T18:45:39Z",
+      "side": 1,
+      "message": "Let\u0027s just combine them into 1 CL, no need to separate them.",
+      "parentUuid": "1b5b99ba_17ceac6d",
+      "revId": "992cd486f56a8c5c1045bc05d63311ad23639312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
