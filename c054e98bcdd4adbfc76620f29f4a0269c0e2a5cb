@@ -107,6 +107,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdab164e_2006a72f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1173097
+      },
+      "writtenOn": "2021-03-25T20:07:39Z",
+      "side": 1,
+      "message": "Yes please. I\u0027d like to make sure that whatever we do in typ comes out correctly on the other side. So the unittest should 1) create a wpt test with a space in the variant, 2) create a corresponding TestExpectation to translate for this test (containing %20), and 3) ensure that the translation correctly uses a space, not %20",
+      "parentUuid": "784d42c4_ec3dbbd1",
+      "revId": "c054e98bcdd4adbfc76620f29f4a0269c0e2a5cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "057ca132_cae0f1dd",

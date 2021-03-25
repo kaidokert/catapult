@@ -16,6 +16,24 @@
       "message": "Hey Luke, is there any way to remove the spaces test names. Some examples of test include.\n\nxhr/xmlhttprequest-timeout-worker-twice.html?load fires normally with no timeout set, twice\nxhr/xmlhttprequest-timeout-worker-twice.html?load fires normally with same timeout set twice\nxhr/xmlhttprequest-timeout-worker-twice.html?timeout fires normally with same timeout set twice\n\nOur expectations format does not allow spaces in test names.\n\nRakib",
       "revId": "32656c8967bfea9ba29e28446d12f3b2aa872130",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94084444_4d10fc17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1173097
+      },
+      "writtenOn": "2021-03-25T20:07:39Z",
+      "side": 1,
+      "message": "Echoing a similar offline chat with Weizhong:\n- yes we technically could modify the tests. However, I worry about 1) ownership of the tests (would anyone object to us changing them?) and 2) I\u0027ve seen variants that pass HTML-like data into the test, in which case the spaces are required\n- another option would be to avoid this whole problem by saying \"Chromium can\u0027t support spaces in variants\" and we just skip importing these tests altogether. Main downside is we lose coverage\n- third option is to do the eng work to support both cases and move between them.",
+      "parentUuid": "6cd05a2c_202a6297",
+      "revId": "32656c8967bfea9ba29e28446d12f3b2aa872130",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
