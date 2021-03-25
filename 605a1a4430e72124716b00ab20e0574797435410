@@ -16,6 +16,109 @@
       "message": "Folks, pls help review this change. thanks!",
       "revId": "605a1a4430e72124716b00ab20e0574797435410",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dad92e75_8b9b7b2c",
+        "filename": "devil/devil/android/cpu_temperature_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T01:40:16Z",
+      "side": 1,
+      "message": "That\u0027s not right? cmp returns -1 only if a \u003c b \n\nAlso, just rename the lambda so we don\u0027t have to bother with pylint",
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "430eb218_eb05d1a8",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2608,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T01:40:16Z",
+      "side": 1,
+      "message": "Why is this needed exactly?",
+      "range": {
+        "startLine": 2608,
+        "startChar": 24,
+        "endLine": 2608,
+        "endChar": 28
+      },
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4365d874_06aea623",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T01:40:16Z",
+      "side": 1,
+      "message": "Instead of all these pylint exceptions, rename this to \"safeAssertItemsEqual\" and update the call sites",
+      "range": {
+        "startLine": 225,
+        "startChar": 6,
+        "endLine": 225,
+        "endChar": 22
+      },
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e605a7e_b025adf7",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T01:40:16Z",
+      "side": 1,
+      "message": "That loses an awful lot of verification. How about converting to sets and calling assertSetEqual",
+      "range": {
+        "startLine": 230,
+        "startChar": 11,
+        "endLine": 230,
+        "endChar": 27
+      },
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faeef7b2_3d4a5a5c",
+        "filename": "devil/devil/base_error.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T01:40:16Z",
+      "side": 1,
+      "message": "What\u0027s the issue here?",
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
