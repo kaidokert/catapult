@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "230ed67f_fac1d755",
+        "filename": "devil/devil/android/cpu_temperature_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T03:54:44Z",
+      "side": 1,
+      "message": "Thanks, how about change this to:\n\n    self.assertDictEqual(\n        correct_information,\n        self.cpu_temp.GetDeviceInfoForTesting().get(\u0027cpu_temps\u0027)\n    )",
+      "parentUuid": "dad92e75_8b9b7b2c",
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "430eb218_eb05d1a8",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -66,6 +84,30 @@
       "writtenOn": "2021-03-25T01:40:16Z",
       "side": 1,
       "message": "Why is this needed exactly?",
+      "range": {
+        "startLine": 2608,
+        "startChar": 24,
+        "endLine": 2608,
+        "endChar": 28
+      },
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48aba308_11ed47c6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2608,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T03:54:44Z",
+      "side": 1,
+      "message": "At line 2610 it deletes items from the dict. So make a copy here to avoid concurrent modification.",
+      "parentUuid": "430eb218_eb05d1a8",
       "range": {
         "startLine": 2608,
         "startChar": 24,
@@ -99,6 +141,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f395e859_a5d5dcb1",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T03:54:44Z",
+      "side": 1,
+      "message": "Accepted",
+      "parentUuid": "4365d874_06aea623",
+      "range": {
+        "startLine": 225,
+        "startChar": 6,
+        "endLine": 225,
+        "endChar": 22
+      },
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e605a7e_b025adf7",
@@ -122,6 +188,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75c038d1_46fdf926",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T03:54:44Z",
+      "side": 1,
+      "message": "Per the doc, assertCountEqual actually checks both counts, and elements are equal. I agree the name is confusing though.\n\nA \u003d [\u0027A\u0027, \u0027B\u0027]\nB \u003d [\u0027A\u0027, \u0027C\u0027]\nC \u003d [\u0027A\u0027, \u0027B\u0027, \u0027A\u0027]\ntest.assertCountEqual(A, B) got:\nAssertionError: Element counts were not equal:\nFirst has 1, Second has 0:  \u0027B\u0027\nFirst has 0, Second has 1:  \u0027C\u0027\n\ntest.assertCountEqual(A, C) got:\nAssertionError: Element counts were not equal:\nFirst has 1, Second has 2:  \u0027A\u0027",
+      "parentUuid": "3e605a7e_b025adf7",
+      "range": {
+        "startLine": 230,
+        "startChar": 11,
+        "endLine": 230,
+        "endChar": 27
+      },
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faeef7b2_3d4a5a5c",
@@ -135,6 +225,24 @@
       "writtenOn": "2021-03-25T01:40:16Z",
       "side": 1,
       "message": "What\u0027s the issue here?",
+      "revId": "605a1a4430e72124716b00ab20e0574797435410",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "455935ab_99893029",
+        "filename": "devil/devil/base_error.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-25T03:54:44Z",
+      "side": 1,
+      "message": "Without this line, it complains:\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nERROR: testSetWebViewImplementation_missingManifestTag (devil.android.device_utils_test.DeviceUtilsSetWebViewImplementationTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/usr/local/google/code/chromium/src/third_party/catapult/devil/devil/android/device_utils_test.py\", line 3220, in testSetWebViewImplementation_missingManifestTag\n    self._testSetWebViewImplementationHelper(mock_dump_sys,\n  File \"/usr/local/google/code/chromium/src/third_party/catapult/devil/devil/android/device_utils_test.py\", line 3195, in _testSetWebViewImplementationHelper\n    self.assertIn(exception_message_substr, cfe.exception.message)\nAttributeError: \u0027CommandFailedError\u0027 object has no attribute \u0027message\u0027\n\nLooks like the base class is changed, but I can not find a document about that.",
+      "parentUuid": "faeef7b2_3d4a5a5c",
       "revId": "605a1a4430e72124716b00ab20e0574797435410",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
