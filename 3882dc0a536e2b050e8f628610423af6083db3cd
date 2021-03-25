@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f1ecca_a003b407",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-03-25T00:38:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3423e32_822a11ac",
+      "range": {
+        "startLine": 240,
+        "startChar": 27,
+        "endLine": 240,
+        "endChar": 36
+      },
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e334c73_c23d2e21",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-03-24T23:53:18Z",
       "side": 1,
       "message": "This seems like only needs to be calculated once, can you make src_dir variable declared in the constructor.",
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "652663b7_0473084d",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-03-25T00:38:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e334c73_c23d2e21",
       "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -58,6 +100,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c04784d3_9b17dd46",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-03-25T00:38:33Z",
+      "side": 1,
+      "message": "I wasn\u0027t aware of inspect\u0027s functionality - switched to that.",
+      "parentUuid": "4d958622_806a0ad0",
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f94ba6e2_c78c2d05",
@@ -71,6 +131,24 @@
       "writtenOn": "2021-03-24T23:53:18Z",
       "side": 1,
       "message": "Can you put this near the other constants on line 26-32 and also capitalize it.",
+      "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fe29897_039a3ae7",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-03-25T00:38:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f94ba6e2_c78c2d05",
       "revId": "3882dc0a536e2b050e8f628610423af6083db3cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
