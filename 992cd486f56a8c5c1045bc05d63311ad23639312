@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03908943_23b3db1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-03-25T17:59:38Z",
+      "side": 1,
+      "message": "What\u0027s the difference between this and CL:2787080? ",
+      "revId": "992cd486f56a8c5c1045bc05d63311ad23639312",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
