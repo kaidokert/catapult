@@ -28,6 +28,7 @@ from devil.utils import cmd_helper
 from devil.utils import lazy
 from devil.utils import timeout_retry
 
+
 with devil_env.SysPath(devil_env.DEPENDENCY_MANAGER_PATH):
   import dependency_manager  # pylint: disable=import-error
 
@@ -50,7 +51,6 @@ _VERITY_DISABLE_RE = re.compile(r'(V|v)erity (is )?(already )?disabled'
 _VERITY_ENABLE_RE = re.compile(r'(V|v)erity (is )?(already )?enabled'
                                r'|Successfully enabled verity')
 _WAITING_FOR_DEVICE_RE = re.compile(r'- waiting for device -')
-
 
 def VerifyLocalFileExists(path):
   """Verifies a local file exists.
@@ -127,6 +127,30 @@ def _IsExtraneousLine(line, send_cmd):
       send_cmd: Command that was sent to adb persistent shell.
   """
   return send_cmd.rstrip() in line
+
+
+@decorators.WithExplicitTimeoutAndRetries(timeout=30, retries=3)
+def RestartServer():
+  """Restarts the adb server.
+
+  Raises:
+    CommandFailedError if we fail to kill or restart the server.
+  """
+
+  def adb_killed():
+    return not AdbWrapper.IsServerOnline()
+
+  def adb_started():
+    return AdbWrapper.IsServerOnline()
+
+  AdbWrapper.KillServer()
+  if not timeout_retry.WaitFor(adb_killed, wait_period=1, max_tries=5):
+    # TODO(crbug.com/442319): Switch this to raise an exception if we
+    # figure out why sometimes not all adb servers on bots get killed.
+    logger.warning('Failed to kill adb server')
+  AdbWrapper.StartServer()
+  if not timeout_retry.WaitFor(adb_started, wait_period=1, max_tries=5):
+    raise device_errors.CommandFailedError('Failed to start adb server')
 
 
 class AdbWrapper(object):
@@ -301,6 +325,8 @@ class AdbWrapper(object):
         raise
     except cmd_helper.TimeoutError:
       logger.error('Timeout on adb command: %r', adb_cmd)
+      logger.info('Restarting adb server')
+      RestartServer()
       raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
