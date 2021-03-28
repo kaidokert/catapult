@@ -249,6 +249,24 @@
       "parentUuid": "e4dd3e7a_d7b1001f",
       "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb72ad81_b64a7edf",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-28T23:37:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "517b4032_62d1176d",
+      "revId": "3e2e22580b824f9ce78bc8d0598409076125ac24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
