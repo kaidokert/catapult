@@ -16,6 +16,24 @@
       "message": "re: crrev.com/c/2785295\n\nah, now that I found this CL, I understand the difference now. In WebGPU we do have %20 in the \u003cmeta name\u003dvariant content\u003d\u0027\u0027\u003e tag:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/web_tests/wpt_internal/webgpu/cts.html\n\nwhereas your tests have actual spaces:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/web_tests/external/wpt/xhr/xmlhttprequest-timeout-aborted.html\n\nI suppose both are technically valid since they are both valid encodings of a URL containing a space.\n\nBTW to test the  WebGPU tests you can run any of the dawn-.*-deps-rel tryjobs. Any one should work, as these expectations apply to all of them.\n\n\nI am not confident about the solution in this CL. In particular I don\u0027t think that an expectation for U\u003d\"http://google.com/Foo%20Bar\" should be encoded as E\u003d\"http://google.com/Foo%2520Bar\". Those are two different URLs. U is the same URL as \"http://google.com/Foo Bar\".\n\nMy thought would be that instead variants should be normalized to an encoded form prior to having expectations applied, which in JS would look like this:\n\n\u003e new URL(\u0027https://google.com/?a%20b c#d%20e f\u0027).href\n\u0027https://google.com/?a%20b%20c#d%20e%20f\u0027\n\n(or encodeURIComponent(decodeURIComponent(string)) if not working with a full URL)\nbut I\u0027m not sure about how to do this in Python. (Note the trailing wildcard *, if any, would have to be stripped first.)\n\nI don\u0027t understand the code being changed here but it seems potentially fragile to URLs that actually contain %25. Not sure about this.",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd02ea8_57cff5f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-29T23:50:01Z",
+      "side": 1,
+      "message": "Kai, thanks for the comments. I have thought to utilize some url encoding/decoding lib to do full encoding/decoding as you suggested. The problem is that it could potentially introduce big change to current expectation files. That is why I choose the simply scheme in this CL.\n\nI can see one potential issue here: if in future somebody want to add \u0027Foo%25Bar\u0027 to test expectation, and forget to escape that, his change may not work. It will be better if we can have some presubmit warning for this.",
+      "parentUuid": "573be15f_b220bf17",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
