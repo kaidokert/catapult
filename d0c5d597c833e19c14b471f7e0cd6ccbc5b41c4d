@@ -51,6 +51,24 @@
       "parentUuid": "bedfaadf_edae9990",
       "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "030916c5_6550bfa5",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-29T20:37:53Z",
+      "side": 1,
+      "message": "That sounds like a buggy presubmit script, then. Is there an error you can point me at somewhere?",
+      "parentUuid": "beb8b15c_ac3fe861",
+      "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
