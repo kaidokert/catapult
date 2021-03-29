@@ -16,6 +16,24 @@
       "message": "This change doesn\u0027t seem related to this CL?\n\nAlso, I wouldn\u0027t expect most of these files to actually need to be part of `data`.",
       "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb8b15c_ac3fe861",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-29T18:02:23Z",
+      "side": 1,
+      "message": "This is due to the presubmit check. This line is added by the suggested script.",
+      "parentUuid": "bedfaadf_edae9990",
+      "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
