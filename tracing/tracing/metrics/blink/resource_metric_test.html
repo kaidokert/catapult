@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Copyright 2021 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+
+<link rel="import" href="/tracing/core/test_utils.html">
+<link rel="import" href="/tracing/extras/chrome/chrome_test_utils.html">
+<link rel="import" href="/tracing/metrics/blink/resource_metric.html">
+<link rel="import" href="/tracing/value/histogram_set.html">
+
+<script>
+'use strict';
+
+tr.b.unittest.testSuite(function() {
+  test('blinkRequestResourceCount_general', function() {
+    const model = tr.e.chrome.ChromeTestUtils.newChromeModel(function(model) {
+      const rendererProcess = model.rendererProcess;
+      const mainThread = model.rendererMain;
+      const mainFrame = { id: '0xdeadbeef', is_main: true };
+      const emitEvent = (time, cat, url, duration) => {
+        mainThread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+          cat,
+          title,
+          start: time,
+          url: url,
+          duration: duration,
+        }));
+      };
+      emitEvent(1000, 'blink', 'ResourceFetcher::requestResource', 'A.js', 0.1);
+      emitEvent(1200, 'blink', 'ResourceFetcher::requestResource', 'b.js', 0.1);
+    });
+
+    const histograms = new tr.v.HistogramSet();
+    tr.metrics.blinkResourceMetric(histograms, model);
+    const histAc = histograms.getHistogramNamed('blinkRequestResourceCount');
+    assert.strictEqual(histAc.sampleValues.length, 1);
+    assert.strictEqual(histAc.running.count, 1);
+    assert.strictEqual(histAc.running.mean, 2);
+  });
+});
