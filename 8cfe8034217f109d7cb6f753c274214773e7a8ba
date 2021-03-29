@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a7cbcf_8efd02a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-29T15:06:32Z",
+      "side": 1,
+      "message": "Hi \n\nThis CL makes changes so that it restarts the adb server after running an adb command times out. Try\nbuilders running with this change show that subsequent runs of the command are able to run.\n\nRegards\nRakib Hasan\n\n",
+      "revId": "8cfe8034217f109d7cb6f753c274214773e7a8ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
