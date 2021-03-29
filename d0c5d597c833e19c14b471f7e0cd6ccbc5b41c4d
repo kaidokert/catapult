@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55438de_0349f780",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-29T21:28:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddc09a64_46fbbfad",
+      "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bedfaadf_edae9990",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "That sounds like a buggy presubmit script, then. Is there an error you can point me at somewhere?",
       "parentUuid": "beb8b15c_ac3fe861",
+      "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ac9e74_24db5fba",
+        "filename": "BUILD.gn",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-03-29T21:28:55Z",
+      "side": 1,
+      "message": "Hi Dirk\n\nAfter remove METADATA, I got messages as below:\n\nRunning presubmit upload checks ...\nERROR:root:Diff found. Please rerun generate_telemetry_build.py.\n\n** Presubmit ERRORS **\nBUILD.gn needs to be re-generated. Please run /usr/local/google/code/chromium/src/third_party/catapult/generate_telemetry_build.py and include the changes in this CL\n\n** Presubmit Warnings **\nThe catapult directory requires source formatting. Please run: git cl format --js \n\nPresubmit checks took 2.9s to calculate.\n\nThere were presubmit warnings. Are you sure you wish to continue? (y/N)",
+      "parentUuid": "030916c5_6550bfa5",
       "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
