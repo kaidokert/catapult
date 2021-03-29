@@ -3,9 +3,13 @@
 # found in the LICENSE file.
 
 import logging
-import Queue
 import re
+import sys
 import threading
+if sys.version_info > (3,):
+  import queue
+else:
+  import Queue as queue
 
 # Log marker containing SurfaceTexture timestamps.
 _SURFACE_TEXTURE_TIMESTAMPS_MESSAGE = 'SurfaceTexture update timestamps'
@@ -37,7 +41,7 @@ class SurfaceStatsCollector(object):
     if self._ClearSurfaceFlingerLatencyData():
       self._get_data_event = threading.Event()
       self._stop_event = threading.Event()
-      self._data_queue = Queue.Queue()
+      self._data_queue = queue.Queue()
       self._collector_thread = threading.Thread(target=self._CollectorThread)
       self._collector_thread.start()
     else:
@@ -174,6 +178,7 @@ def ParseFrameData(lines, parse_timestamps):
   # (each time the number above changes, we have a "jank").
   # If this happens a lot during an animation, the animation appears
   # janky, even if it runs at 60 fps in average.
+  # pylint: disable=redefined-variable-type
   results = []
   for line in lines:
     # Skip over lines with anything other than digits and whitespace.
@@ -186,7 +191,11 @@ def ParseFrameData(lines, parse_timestamps):
 
   timestamps = []
   nanoseconds_per_millisecond = 1e6
-  refresh_period = long(results[0]) / nanoseconds_per_millisecond
+  if sys.version_info > (3,):
+    refresh_period = int(results[0]) / nanoseconds_per_millisecond
+  else:
+    refresh_period = long(results[0]) / nanoseconds_per_millisecond
+
   if not parse_timestamps:
     return refresh_period, timestamps
 
@@ -201,7 +210,11 @@ def ParseFrameData(lines, parse_timestamps):
     if len(fields) != 3:
       logging.warning('Unexpected line: %s', line)
       continue
-    timestamp = long(fields[1])
+    if sys.version_info > (3,):
+      timestamp = int(fields[1])
+    else:
+      timestamp = long(fields[1])
+
     if timestamp == pending_fence_timestamp:
       continue
     timestamp /= nanoseconds_per_millisecond
