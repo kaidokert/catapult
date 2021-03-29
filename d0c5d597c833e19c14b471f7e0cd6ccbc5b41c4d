@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddc09a64_46fbbfad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-03-29T18:17:43Z",
+      "side": 1,
+      "message": "Also mention that you are using %25 to escape %\u0027s",
+      "revId": "d0c5d597c833e19c14b471f7e0cd6ccbc5b41c4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bedfaadf_edae9990",
         "filename": "BUILD.gn",
         "patchSetId": 6
