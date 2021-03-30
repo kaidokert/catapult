@@ -309,22 +309,40 @@ class _RunTestExecution(execution_module.Execution):
 
     self._Complete(result_arguments=result_arguments)
 
+  @staticmethod
+  def _IsCasDigest(d):
+    return len(d) > 40
+
   def _StartTask(self):
     """Kick off a Swarming task to run a test."""
     if (self._previous_execution and not self._previous_execution.bot_id
         and self._previous_execution.failed):
       raise errors.SwarmingNoBots()
 
+    # TODO(fancl): Seperate cas input from isolate (including endpoint and
+    # datastore module)
+    if self._IsCasDigest(self._isolate_hash):
+      input_ref = {
+          'cas_input_root': {
+              'cas_instance': self._isolate_server,
+              'digest': self._isolate_hash,
+          }
+      }
+    else:
+      input_ref = {
+          'inputs_ref': {
+              'isolatedserver': self._isolate_server,
+              'isolated': self._isolate_hash,
+          }
+      }
+
     properties = {
-        'inputs_ref': {
-            'isolatedserver': self._isolate_server,
-            'isolated': self._isolate_hash,
-        },
         'extra_args': self._extra_args,
         'dimensions': self._dimensions,
         'execution_timeout_secs': str(self.execution_timeout_secs or 2700),
         'io_timeout_secs': str(self.execution_timeout_secs or 2700),
     }
+    properties.update(**input_ref)
 
     if self.command:
       properties.update({
