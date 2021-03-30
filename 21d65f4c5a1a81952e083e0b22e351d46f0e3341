@@ -195,6 +195,24 @@
       "parentUuid": "f038743d_f3232749",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39a1c14_c825bff7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-03-30T02:04:12Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand what Kai is suggesting.\n\nHowever, to be clear: I don\u0027t want there to be more than one way to encode the same test name. Doing so would just confuses things unnecessarily, and it would complicate every other part of the system (like ResultsDB) that needs to refer to test names as well.\n\nThis also implies that typ should not be in the url-normalizing business. Not all test names are URLs and we shouldn\u0027t treat them as such. And, I don\u0027t want the multiple-encoding problems that result when you treat them that way.\n\nFeel free to suggest some other mechanism for escaping things that will allow for spaces in the test names. For example, we could use \"\\ \" instead of \"%20\".\n\nHowever, If there is other code that needs to read or write expectations files and isn\u0027t using typ, then you\u0027ll need to point us at it so we can update that as well.",
+      "parentUuid": "167de0d0_3e34e0d9",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
