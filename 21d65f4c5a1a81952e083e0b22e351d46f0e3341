@@ -339,6 +339,24 @@
       "parentUuid": "e67c4746_ee1dd3c6",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8704c4a5_7a164d58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2021-03-30T17:27:19Z",
+      "side": 1,
+      "message": "\"render%2520pass\", the change in crrev.com/c/2785295, is double-encoded. The first encode is the standard urlencode (space -\u003e %20) and the second encode is the pseudo-url-encode from this CL (%20 -\u003e %2520).",
+      "parentUuid": "0f8ac003_da56184a",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
