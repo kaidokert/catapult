@@ -231,6 +231,24 @@
       "parentUuid": "b39a1c14_c825bff7",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505d7542_e5face1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2021-03-30T03:08:46Z",
+      "side": 1,
+      "message": "\u003e However, If there is other code that needs to read or write expectations files and isn\u0027t using typ, then you\u0027ll need to point us at it so we can update that as well.\n\nIt uses typ to parse the expectation file but then expects the test names to actually be URLs, wherein %2520 would mean \"% 2 0\" which would not match our test name, which has an (encoded) space in it, not \"% 2 0\".\n\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/webgpu-cts/scripts/extract_expectation_names_for_variant_generation.py",
+      "parentUuid": "fd6917d8_3b7f879d",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
