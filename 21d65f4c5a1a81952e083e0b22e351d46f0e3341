@@ -123,6 +123,24 @@
       "parentUuid": "082acabc_55260c6e",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5bc21dd_dceafff2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2021-03-30T01:00:31Z",
+      "side": 1,
+      "message": "Re: the WebGPUExpectations changes:\n\nI do not think those changes are correct. If they are necessary with this patch, then I think this patch must not be correct. (BTW, we have some additional tooling that relies on the WebGPUExpectations being properly encoded, not double-escaped:\nhttps://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/web_tests/webgpu/regenerate_internal_cts_html.sh )\n\n\nTaking a simplified example from that CL:\n\n  crbug.com/dawn/666 cts.html?q\u003drender%20bundle [ Failure ]\n\nIf the string is parsed, truly, as a URL, then it describes exactly the same URL as the following would (if it were valid syntax):\n\n  crbug.com/dawn/666 cts.html?q\u003drender bundle [ Failure ]\n\nMeanwhile, this would be a different URL, which has an encoded % in it:\n\n  crbug.com/dawn/666 cts.html?q\u003drender%2520bundle [ Failure ]\n\n\nAnd for the same reason, the expectation in crbug.com/1190896:\n\n  crbug.com/1050754 external/wpt/xhr/xmlhttprequest-timeout-worker-aborted.html?aborted immediately after send() [ Pass Timeout ]\n\nshould be exactly equivalent to this expectation:\n\n  crbug.com/1050754 external/wpt/xhr/xmlhttprequest-timeout-worker-aborted.html?aborted%20immediately%20after%20send() [ Pass Timeout ]\n\nI do think typ should be changed to allow this last expectation to apply properly to the test in question - just not in the way it\u0027s done in this CL. I\u0027m not sure whether there is a quick fix for this, but my idea would be to apply some URL normalization to both the expectation URL and the variant URL before applying matching to them. I don\u0027t suspect this would cause churn in any existing expectation files.\n\n(Ideally typ would parse/normalize the expectation URL exactly once, so expectation overlap detection would also consider those URLs to be identical.)",
+      "parentUuid": "61b5be69_5d944946",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
