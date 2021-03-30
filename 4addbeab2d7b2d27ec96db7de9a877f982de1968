@@ -80,6 +80,30 @@
       },
       "revId": "4addbeab2d7b2d27ec96db7de9a877f982de1968",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54eac82c_0300b4ea",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-03-30T18:45:44Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "ee8ae7a3_0c93e751",
+      "range": {
+        "startLine": 31,
+        "startChar": 9,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "4addbeab2d7b2d27ec96db7de9a877f982de1968",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
