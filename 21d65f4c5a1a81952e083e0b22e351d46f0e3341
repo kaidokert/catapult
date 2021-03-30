@@ -375,6 +375,24 @@
       "parentUuid": "8704c4a5_7a164d58",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c8d5e3_3004f1fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2021-03-30T17:32:57Z",
+      "side": 1,
+      "message": "WebGPUExpectations will still have to double-encode because our variant meta tag is written with \"%20\", not \" \". URLs with either \"%20\" or \" \" are equivalent, but since there is no normalization, the expectation file must match the again-encoded form of the already-encoded variant string.\n\nIf the test URLs (or just variant strings) were getting normalized, then there would be no issue, as both WebGPU and xmlhttprequest could use %20 and never need %2520.",
+      "parentUuid": "7601b6e0_1829dff9",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
