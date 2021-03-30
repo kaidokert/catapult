@@ -501,6 +501,24 @@
       "parentUuid": "ec87fbf9_d18eb0b1",
       "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a8f798_972c1a5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1172235
+      },
+      "writtenOn": "2021-03-30T18:48:57Z",
+      "side": 1,
+      "message": "In any case, while I do still have this concern:\n\n\u003e I\u0027m still a little reluctant as it very confusing to me (having to double-encode URLs is very weird, and people writing expectation files probably won\u0027t be able to figure out that they should do this), but I think it would technically _work_.\n\nI am satisfied that this isn\u0027t going to break anything, so I won\u0027t block it any further. (No +1 because I didn\u0027t actually review the change / don\u0027t understand the surrounding code.)",
+      "parentUuid": "f2b356ff_2d04d6d3",
+      "revId": "21d65f4c5a1a81952e083e0b22e351d46f0e3341",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
