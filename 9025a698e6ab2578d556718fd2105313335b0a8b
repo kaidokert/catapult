@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519782fe_e01eb3ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:51:23Z",
+      "side": 1,
+      "message": "Maybe associate the issue where we\u0027re tracking the migration?",
+      "revId": "9025a698e6ab2578d556718fd2105313335b0a8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a88a6ac_cef78e90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:51:23Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "9025a698e6ab2578d556718fd2105313335b0a8b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
