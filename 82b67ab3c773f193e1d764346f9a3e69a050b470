@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf726fd_4415749d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "`cas` probably should be `CAS` or specifically `RBE-CAS`. We\u0027ll need to have documentation at the top of the module to explain what RBE is and what CAS is.",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8766a24_7e3ece0a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "Probably say `RBE-CAS` here to be specific.",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a517625b_62cafdb3",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "s/an/a/",
+      "range": {
+        "startLine": 27,
+        "startChar": 15,
+        "endLine": 27,
+        "endChar": 17
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1f26a8_dc041db6",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "CAS is the `Content Addressed Storage` service and RBE is the `Remote Build Execution` service. We should probably spell this out better.",
+      "range": {
+        "startLine": 6,
+        "startChar": 35,
+        "endLine": 6,
+        "endChar": 47
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aecf964_c5a7de61",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "This is probably worth asking someone about in a review. Maybe add tikuta@ to the reviewers?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 70
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e50ddbeb_6392ce07",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "Can this be a list generator instead?\n\n```\nndb.put_multi(\n  CASReference(\n    cas_instance\u003dinstance,\n    cas_digest\u003ddigest,\n    _Key(builder_name, change, target,\n  ) for builder_name, change, target, instance, digest in cas_references\n)\n```",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 62,
+        "endChar": 27
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef5d146e_727255de",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:49:23Z",
+      "side": 1,
+      "message": "Let\u0027s do the Dataflow job in a follow-up change instead?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 58
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
