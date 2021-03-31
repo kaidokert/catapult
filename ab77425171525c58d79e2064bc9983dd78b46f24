@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd40d896_42dcbb68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-03-31T04:53:11Z",
+      "side": 1,
+      "message": "LGTM\n\nAlthough I\u0027m unsatisfied by chasing this down and working around the random number generator\u0027s whims. Making this more deterministic in the future (pre-seeding the RNG and dependency-injecting it in) would be better.",
+      "revId": "ab77425171525c58d79e2064bc9983dd78b46f24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
