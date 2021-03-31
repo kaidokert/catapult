@@ -10,6 +10,7 @@ import sys
 import tempfile
 import time
 
+from datetime import datetime
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry import decorators
@@ -148,7 +149,7 @@ class BrowserBackend(app_backend.AppBackend):
     self._SymbolizeAndLogMinidumps(log_level, data)
     return data
 
-  def _CollectScreenshot(self, log_level, suffix):
+  def _CollectScreenshot(self, log_level, suffix, timestamp = None):
     """Helper function to handle the screenshot portion of CollectDebugData.
 
     Attempts to take a screenshot at the OS level and save it as an artifact.
@@ -157,11 +158,21 @@ class BrowserBackend(app_backend.AppBackend):
       log_level: The logging level to use from the logging module, e.g.
           logging.ERROR.
       suffix: The suffix to append to the names of any created artifacts.
+      timestamp: If set, add time it took to execute TryCaptureScreenShot
+          and append to suffix. Should be time since test started, as a
+          datetime.
     """
+    start_time = datetime.now()
     screenshot_handle = screenshot.TryCaptureScreenShot(
         self.browser.platform, timeout=self.screenshot_timeout)
     if screenshot_handle:
       with open(screenshot_handle.GetAbsPath(), 'rb') as infile:
+        if timestamp:
+          # Account for time to take a screenshot
+          timestamp = (timestamp + datetime.now() - start_time)
+          suffix = suffix + '-' + str(
+            timestamp.total_seconds()).replace('.', '_')
+
         artifact_name = posixpath.join(
             'debug_screenshots', 'screenshot-%s' % suffix)
         logging.log(
