@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db1c600_8c818ead",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T01:10:04Z",
+      "side": 1,
+      "message": "Looks mostly good. A couple suggestions and a couple questions in-line.",
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f55eef70_91cb2fda",
+        "filename": "devil/devil/android/logcat_monitor_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T01:10:04Z",
+      "side": 1,
+      "message": "nit: factor this out as a separate function. This will make it more obvious that we can remove the pylint suppression if we later remove py2 support.",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 78
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57df06be_2dc5932d",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T01:10:04Z",
+      "side": 1,
+      "message": "Does this need to be py3-only? My understanding is the goal right now is to leave py2 behavior untouched with respect to bytes vs. unicode, but let me know if something changed.",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068cb57e_b3e7b1ec",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T01:10:04Z",
+      "side": 1,
+      "message": "suggestion: should this be six.PY3 for consistency?",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "855144f7_cec8eb47",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T01:10:04Z",
+      "side": 1,
+      "message": "suggestion: maybe this logic should be a wrapper function\n\n  def to_long_int(val):\n    \"\"\"Cast val to a long int type.\"\"\"\n    return long(val) if six.PY2 else int(val)\n\nI think then you can remove the pylint warning.",
+      "range": {
+        "startLine": 195,
+        "startChar": 21,
+        "endLine": 195,
+        "endChar": 36
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33a5b6b8_45e781c9",
+        "filename": "devil/devil/android/sdk/shared_prefs_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T01:10:04Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me how this is related to the other changes.",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 48
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
