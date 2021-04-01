@@ -260,30 +260,30 @@ def _ValidateChanges(comparison_mode, arguments):
         'repository':
             arguments.get('repository'),
         'git_hash':
-            arguments.get('end_git_hash', arguments.get('base_git_hash')),
+            arguments.get(
+                'end_git_hash',
+                arguments.get(
+                    'experiment_git_hash',
+                    arguments.get('base_git_hash'),
+                ),
+            ),
     })
 
     # Now, if we have a patch argument, we need to handle the case where a patch
     # needs to be applied to both the 'end_git_hash' and the 'base_git_hash'.
-    if 'patch' in arguments:
-      patch = change.GerritPatch.FromUrl(arguments['patch'])
-    else:
-      patch = None
+    exp_patch = arguments.get('patch', arguments.get('experiment_patch'))
+    if exp_patch:
+      exp_patch = change.GerritPatch.FromUrl(arguments['patch'])
 
-    if 'end_git_hash' in arguments and arguments['end_git_hash'] != arguments[
-        'base_git_hash']:
-      # This is the case where 'end_git_hash' was also provided, in which case
-      # it means that we want to apply the patch to both the base_git_hash and
-      # the end_git_hash.
-      change_1 = change.Change(commits=(commit_1,), patch=patch)
-      change_2 = change.Change(commits=(commit_2,), patch=patch)
-    else:
-      # This is the case where only 'base_git_hash' was provided, or that
-      # 'end_git_hash' is the same as 'base_git_hash', in which case this is an
-      # A/B test.
-      change_1 = change.Change(commits=(commit_1,))
-      change_2 = change.Change(commits=(commit_1,), patch=patch)
+    base_patch = arguments.get('base_patch')
+    if base_patch:
+      base_patch = change.GerritPatch.FromUrl(base_patch)
 
+    if commit_1.git_hash != commit_2.git_hash and not base_patch:
+      base_patch = exp_patch
+
+    change_1 = change.Change(commits=(commit_1,), patch=base_patch)
+    change_2 = change.Change(commits=(commit_2,), patch=exp_patch)
     return change_1, change_2
 
   # Everything else that follows only applies to bisections.
