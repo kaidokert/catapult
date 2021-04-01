@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf386161_cca0cf4a",
+        "filename": "devil/devil/android/logcat_monitor_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T05:15:19Z",
+      "side": 1,
+      "message": "Accepted",
+      "parentUuid": "f55eef70_91cb2fda",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 78
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57df06be_2dc5932d",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73aa8229_d2638bf9",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T05:15:19Z",
+      "side": 1,
+      "message": "I mostly meant the py2 behavior untouched policy only applies to cmd_helper.py (or similar situations). In cmd_helper.py the str/bytes are directly returned to caller, so we want to continue return bytes to caller in py2, and return str to caller in py3.\nHere the return value is the md5 sum of the data, not the data itself. So it is possible we get different md5 sum for same data when running this under py2 or py3, but the return type is not changed for py2, due to we did not make change at line 59.\nI can see one potential issue here: The caller side try to call this function (or the one at line 65) once in py2, and another time in py3, and try to compare the two results. I would say this is not a scenario we plan to support. The caller side need to fix this issue.",
+      "parentUuid": "57df06be_2dc5932d",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "068cb57e_b3e7b1ec",
         "filename": "devil/devil/android/perf/surface_stats_collector.py",
         "patchSetId": 2
@@ -77,6 +125,30 @@
       "writtenOn": "2021-04-01T01:10:04Z",
       "side": 1,
       "message": "suggestion: should this be six.PY3 for consistency?",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79153f91_ee02567b",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T05:15:19Z",
+      "side": 1,
+      "message": "I used six.PY3 at first place. It will then complain six imported before system lib. Then I will need to add one pylint line to disable such complain.",
+      "parentUuid": "068cb57e_b3e7b1ec",
       "range": {
         "startLine": 9,
         "startChar": 1,
@@ -123,6 +195,30 @@
       "writtenOn": "2021-04-01T01:10:04Z",
       "side": 1,
       "message": "It\u0027s not clear to me how this is related to the other changes.",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 48
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23e690aa_657dbd7a",
+        "filename": "devil/devil/android/sdk/shared_prefs_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T05:15:19Z",
+      "side": 1,
+      "message": "This is copied from line 103. Without this the case can not pass under py3. But I don\u0027t understand why we don\u0027t need this line in py2.",
+      "parentUuid": "33a5b6b8_45e781c9",
       "range": {
         "startLine": 135,
         "startChar": 4,
