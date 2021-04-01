@@ -16,6 +16,52 @@
       "message": "tikuta@ We want to cache cas reference for reusing builds. But the caching policy is depending on how long will cas instance perserve the build result. Can you take a look whether if we can keep the same TTL as isolate (58 days) or is there any other options?",
       "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bed48ee_bd54e216",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-01T03:56:57Z",
+      "side": 1,
+      "message": "sort?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d6579d3_98cbf060",
+        "filename": "dashboard/dashboard/pinpoint/models/cas_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1161379
+      },
+      "writtenOn": "2021-04-01T03:56:57Z",
+      "side": 1,
+      "message": "sort?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
