@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a40aa7d_ce94c9ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T20:46:19Z",
+      "side": 1,
+      "message": "Did you forget to push a new patchset? I don\u0027t see code changes addressing the comments you marked as resolved.",
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f55eef70_91cb2fda",
@@ -114,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ec2dfa1_f4a094d4",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T20:46:19Z",
+      "side": 1,
+      "message": "Ah, makes sense. Thanks for explaining.\n\n\u003e I can see one potential issue here: The caller side try to call this function (or the one at line 65) once in py2, and another time in py3, and try to compare the two results.\n\nI know we do compare the results across runs (because the md5sum is used to invalidate a cache). Would it be hard to make the results match in both py2 and py3 to be safe?",
+      "parentUuid": "73aa8229_d2638bf9",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "068cb57e_b3e7b1ec",
         "filename": "devil/devil/android/perf/surface_stats_collector.py",
         "patchSetId": 2
@@ -149,6 +190,30 @@
       "side": 1,
       "message": "I used six.PY3 at first place. It will then complain six imported before system lib. Then I will need to add one pylint line to disable such complain.",
       "parentUuid": "068cb57e_b3e7b1ec",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696f85e3_1716d041",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-01T20:46:19Z",
+      "side": 1,
+      "message": "I think this is a case where it makes sense to import six earlier and just suppress the pylint warning.",
+      "parentUuid": "79153f91_ee02567b",
       "range": {
         "startLine": 9,
         "startChar": 1,
