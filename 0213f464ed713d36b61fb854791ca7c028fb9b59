@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87832905_b59b9a82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T22:01:15Z",
+      "side": 1,
+      "message": "Right I did not push a new patchset yet, (but not because I forget). I meant to reply to your comments first to let know my thoughts.\n\nSo for those I said \"accepted\", I should not mark it as Resolved, and only mark it as resolved after I push the code, right?",
+      "parentUuid": "4a40aa7d_ce94c9ba",
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f55eef70_91cb2fda",
         "filename": "devil/devil/android/logcat_monitor_test.py",
         "patchSetId": 2
@@ -155,6 +173,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a01a59ab_2d49fc3c",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T22:01:15Z",
+      "side": 1,
+      "message": "Let me check. I later realized that I used a bad example. I meant to say md5sum result could change after this CL lands, and caller side should not try to compare results it get before and after this change.\nWith what you said, let me check if we can have a better way.",
+      "parentUuid": "8ec2dfa1_f4a094d4",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "068cb57e_b3e7b1ec",
         "filename": "devil/devil/android/perf/surface_stats_collector.py",
         "patchSetId": 2
@@ -214,6 +256,30 @@
       "side": 1,
       "message": "I think this is a case where it makes sense to import six earlier and just suppress the pylint warning.",
       "parentUuid": "79153f91_ee02567b",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f69e098_472e043e",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T22:01:15Z",
+      "side": 1,
+      "message": "Let me check",
+      "parentUuid": "696f85e3_1716d041",
       "range": {
         "startLine": 9,
         "startChar": 1,
