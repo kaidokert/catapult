@@ -18,6 +18,69 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e50693c_9ef0f7b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-01T06:16:39Z",
+      "side": 1,
+      "message": "LGTM % documentation suggestions.",
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07c3d83_ce72deb7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cas.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-01T06:16:39Z",
+      "side": 1,
+      "message": "Please replace all `cas` with `CAS` in the documentation.",
+      "range": {
+        "startLine": 25,
+        "startChar": 26,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb7d4aa3_00d11c3f",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-01T06:16:39Z",
+      "side": 1,
+      "message": "Maybe something like this:\n\nA CASReference instance contains metadata that allows us to use RBE-CAS digests when starting Swarming tasks.",
+      "range": {
+        "startLine": 6,
+        "startChar": 16,
+        "endLine": 6,
+        "endChar": 50
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bed48ee_bd54e216",
