@@ -182,6 +182,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed2ddae_9fe272ed",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-01T05:16:43Z",
+      "side": 1,
+      "message": "Accepted",
+      "parentUuid": "855144f7_cec8eb47",
+      "range": {
+        "startLine": 195,
+        "startChar": 21,
+        "endLine": 195,
+        "endChar": 36
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33a5b6b8_45e781c9",
