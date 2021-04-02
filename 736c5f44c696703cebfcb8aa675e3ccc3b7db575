@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0748f3a_d3274617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-04-02T16:21:23Z",
+      "side": 1,
+      "message": "Hi\n\nThis CL re-adds retries for system app modification adb commands.\n\nPTAL\nRakib",
+      "revId": "736c5f44c696703cebfcb8aa675e3ccc3b7db575",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
