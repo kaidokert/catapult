@@ -197,6 +197,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc464cae_8daa623b",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-02T16:39:30Z",
+      "side": 1,
+      "message": "Nate: after some thinking, I revert back to treat py2 and py3 differently. Reason is that even though we won\u0027t have issue at return side, for the input, path could be a bytestring, and calling encode on it could met encode error and exception be thrown (https://stackoverflow.com/questions/56418305/python-2-byte-string-that-are-not-encoded-in-utf-8).\n\nFor the call to \u0027encode\u0027 in py3, I would say we can not avoid that, unless we want \u0027paths\u0027 to be \u0027bytes\u0027 (which probably is not what we want). But as the strings are paths, I would say in most case they will be just in ascii encoding, so for most case calling encode on them does not make any change.\n\nWith that said, do we even want to differentiate between py2 and py3. Pls let me know your opinion.",
+      "parentUuid": "a01a59ab_2d49fc3c",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "068cb57e_b3e7b1ec",
         "filename": "devil/devil/android/perf/surface_stats_collector.py",
         "patchSetId": 2
@@ -280,6 +304,30 @@
       "side": 1,
       "message": "Let me check",
       "parentUuid": "696f85e3_1716d041",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53e9c0b3_51521684",
+        "filename": "devil/devil/android/perf/surface_stats_collector.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-02T16:39:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f69e098_472e043e",
       "range": {
         "startLine": 9,
         "startChar": 1,
