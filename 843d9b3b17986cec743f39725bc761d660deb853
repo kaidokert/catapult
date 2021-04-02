@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a357476_d6376083",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-04-02T22:20:52Z",
+      "side": 1,
+      "message": "Hi\n\nThis CL stops restarting the adb server after the command adb command times out.\n\nPTAL\nRakib",
+      "revId": "843d9b3b17986cec743f39725bc761d660deb853",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
