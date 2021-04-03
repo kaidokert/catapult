@@ -24,6 +24,16 @@ from py_utils import xvfb
 
 import typ
 
+# TODO(crbug.com/1195465): Work around how multiprocessing works in typ
+# and a problem caused in the GPU integration tests when they try to
+# talk directly to the ColorSync Framework using the PyObjC bridge.
+if sys.platform.startswith('darwin'):
+  # pylint: disable=import-error
+  # pylint: disable=unused-import
+  import Foundation
+  import Quartz
+  import objc
+
 
 class RunTestsCommand(command_line.OptparseCommand):
   """Run unit tests"""
