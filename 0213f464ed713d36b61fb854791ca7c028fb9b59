@@ -219,6 +219,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "684090fc_d414c125",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-03T00:46:52Z",
+      "side": 1,
+      "message": "I think it\u0027s probably reasonable to let py2 stick with bytes and let py3 use unicode.",
+      "parentUuid": "bc464cae_8daa623b",
+      "range": {
+        "startLine": 56,
+        "startChar": 17,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "0213f464ed713d36b61fb854791ca7c028fb9b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "068cb57e_b3e7b1ec",

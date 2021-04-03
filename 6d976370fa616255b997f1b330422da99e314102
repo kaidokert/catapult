@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fbd6686_945cd9ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-03T00:46:52Z",
+      "side": 1,
+      "message": "LGTM % comments",
+      "revId": "6d976370fa616255b997f1b330422da99e314102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be175e24_069f6378",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-03T00:46:52Z",
+      "side": 1,
+      "message": "Can we split this up so the py2 and py3 codepaths share most of the logic, except for the call to \".encode()\"?",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 77
+      },
+      "revId": "6d976370fa616255b997f1b330422da99e314102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a834a0_1439f3c9",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-03T00:46:52Z",
+      "side": 1,
+      "message": "Same thing here. Can we let py2 and py3 share most of the logic?",
+      "range": {
+        "startLine": 110,
+        "startChar": 3,
+        "endLine": 111,
+        "endChar": 70
+      },
+      "revId": "6d976370fa616255b997f1b330422da99e314102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
