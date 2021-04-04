@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d73912c_acda4bf8",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-04T00:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be175e24_069f6378",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 59,
+        "endChar": 77
+      },
+      "revId": "6d976370fa616255b997f1b330422da99e314102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4a834a0_1439f3c9",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-03T00:46:52Z",
       "side": 1,
       "message": "Same thing here. Can we let py2 and py3 share most of the logic?",
+      "range": {
+        "startLine": 110,
+        "startChar": 3,
+        "endLine": 111,
+        "endChar": 70
+      },
+      "revId": "6d976370fa616255b997f1b330422da99e314102",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab9ee47_7396db8d",
+        "filename": "devil/devil/android/md5sum.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-04T00:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4a834a0_1439f3c9",
       "range": {
         "startLine": 110,
         "startChar": 3,
