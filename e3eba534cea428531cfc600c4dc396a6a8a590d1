@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd789da5_bf5c6512",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-04-05T20:23:41Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem like the right change. I\u0027d expect expectations_for() to be a\nread-only operation, and this looks like it\u0027s changing the TestExpectations() object.\n\nMaybe you need to update merge_test_expectations() instead?",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbadcbe8_a8cbf1fa",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-04-05T20:23:41Z",
+      "side": 1,
+      "message": "What is this supposed to be testing?\n\nIt looks like this is just testing that the conflict_resolution flag to parse_tagged_list() works.\n\nIf that\u0027s the intent, I\u0027m not sure that calling this twice (once for each value) really accomplishes much of anything.",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
