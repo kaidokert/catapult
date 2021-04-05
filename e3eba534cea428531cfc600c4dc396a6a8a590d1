@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d8c02a9_b092c623",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-05T20:44:57Z",
+      "side": 1,
+      "message": "Thanks, I was trying to do the same thing as line 550-555. And TestExpectations currently does not have an member variable _conflict_resolution.\n\nAs _update_expected_results is called inside a loop, I does have a concern on what if different exp has different value of conflict_resolution? But as conflict_resolution is passed in through parse_tagged_list, so I would expect all the Expectation object hold in TestExpectations object have same conflict_resolution value.\n\nHow about we make self_conflict_resolution default to UNION, and update this value in parse_tagged_list. This way we don\u0027t need update this value in a loop.",
+      "parentUuid": "bd789da5_bf5c6512",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbadcbe8_a8cbf1fa",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2021-04-05T20:23:41Z",
       "side": 1,
       "message": "What is this supposed to be testing?\n\nIt looks like this is just testing that the conflict_resolution flag to parse_tagged_list() works.\n\nIf that\u0027s the intent, I\u0027m not sure that calling this twice (once for each value) really accomplishes much of anything.",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b304648_37a89f39",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-05T20:44:57Z",
+      "side": 1,
+      "message": "Yes it is to test conflict_resolution flag is passed correctly to the object generated from expectations_for (and that is the purpose of this CL).\n\nI guess calling this twice does provides a little more coverage, right? If you prefer, I can delete the case for UNION. But I would prefer we keep it, and it does not do any harm.",
+      "parentUuid": "dbadcbe8_a8cbf1fa",
       "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
