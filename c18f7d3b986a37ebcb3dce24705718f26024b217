@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e89831a_67104b8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-05T16:42:06Z",
+      "side": 1,
+      "message": "Hi Dirk/Rakib, forget to mention this change is related with CL 2803048. Can you pls review the two together?\n\nthanks!",
+      "revId": "c18f7d3b986a37ebcb3dce24705718f26024b217",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
