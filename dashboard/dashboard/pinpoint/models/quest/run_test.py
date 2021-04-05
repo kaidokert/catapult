@@ -74,7 +74,14 @@ class RunTest(quest.Quest):
             and self._relative_cwd == other._relative_cwd)
 
   def __str__(self):
-    return 'Test'
+    return (
+        str(self._swarming_server) + ' ' +
+        str(self._dimensions) + ' ' +
+        str(self._extra_args) + ' ' +
+        str(self._canonical_executions) + ' ' +
+        str(self._execution_counts) + ' ' +
+        str(self._command) + ' ' +
+        str(self._relative_cwd))
 
   def __setstate__(self, state):
     self.__dict__ = state  # pylint: disable=attribute-defined-outside-init
