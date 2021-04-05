@@ -205,7 +205,6 @@ class Expectation(object):
     def trailing_comments(self):
         return self._trailing_comments
 
-
 class TaggedTestListParser(object):
     """Parses lists of tests and expectations for them.
 
@@ -557,6 +556,7 @@ class TestExpectations(object):
 
         def _update_expected_results(exp):
             if exp.tags.issubset(self._tags):
+                self._conflict_resolution = exp.conflict_resolution
                 if exp.conflict_resolution == ConflictResolutionTypes.UNION:
                     if not exp.is_default_pass:
                         self._results.update(exp.results)
@@ -584,6 +584,7 @@ class TestExpectations(object):
             return Expectation(
                     test=test, results=self._results, tags=self._exp_tags,
                     retry_on_failure=self._should_retry_on_failure,
+                    conflict_resolution=self._conflict_resolution,
                     is_slow_test=self._is_slow_test, reason=' '.join(self._reasons),
                     trailing_comments=self._trailing_comments)
 
@@ -602,6 +603,7 @@ class TestExpectations(object):
                     return Expectation(
                             test=test, results=self._results, tags=self._exp_tags,
                             retry_on_failure=self._should_retry_on_failure,
+                            conflict_resolution=self._conflict_resolution,
                             is_slow_test=self._is_slow_test, reason=' '.join(self._reasons),
                             trailing_comments=self._trailing_comments)
 
