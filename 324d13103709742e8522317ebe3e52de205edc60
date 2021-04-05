@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e98671d_4e77de60",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_lacros_telemetry_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-04-05T21:16:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb460be1_4bacca6a",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "324d13103709742e8522317ebe3e52de205edc60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fabad670_43ce5562",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-05T21:11:39Z",
       "side": 1,
       "message": "2021",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "324d13103709742e8522317ebe3e52de205edc60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6afa34c6_5f05ba67",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_lacros_telemetry_test_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-04-05T21:16:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fabad670_43ce5562",
       "range": {
         "startLine": 1,
         "startChar": 12,
