@@ -143,7 +143,7 @@ def RestartServer():
   def adb_started():
     return AdbWrapper.IsServerOnline()
 
-  AdbWrapper.KillServer()
+  subprocess.call(["killall", "adb"])
   if not timeout_retry.WaitFor(adb_killed, wait_period=1, max_tries=5):
     # TODO(crbug.com/442319): Switch this to raise an exception if we
     # figure out why sometimes not all adb servers on bots get killed.
@@ -325,6 +325,7 @@ class AdbWrapper(object):
         raise
     except cmd_helper.TimeoutError:
       logger.error('Timeout on adb command: %r', adb_cmd)
+      RestartServer()
       raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
