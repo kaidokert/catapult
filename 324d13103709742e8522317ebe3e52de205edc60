@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd8ad067_781e3501",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-05T21:11:39Z",
+      "side": 1,
+      "message": "LGTM, though I\u0027m not really familiar with the code.",
+      "revId": "324d13103709742e8522317ebe3e52de205edc60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb460be1_4bacca6a",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_lacros_telemetry_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-05T21:11:39Z",
+      "side": 1,
+      "message": "2021",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "324d13103709742e8522317ebe3e52de205edc60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabad670_43ce5562",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_lacros_telemetry_test_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-05T21:11:39Z",
+      "side": 1,
+      "message": "2021",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "324d13103709742e8522317ebe3e52de205edc60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
