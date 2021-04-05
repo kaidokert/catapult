@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e4a8f4_fa1d82bb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cas.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-05T23:46:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e07c3d83_ce72deb7",
+      "range": {
+        "startLine": 25,
+        "startChar": 26,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb7d4aa3_00d11c3f",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-04-01T06:16:39Z",
       "side": 1,
       "message": "Maybe something like this:\n\nA CASReference instance contains metadata that allows us to use RBE-CAS digests when starting Swarming tasks.",
+      "range": {
+        "startLine": 6,
+        "startChar": 16,
+        "endLine": 6,
+        "endChar": 50
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c76be387_8f7f8beb",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-05T23:46:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb7d4aa3_00d11c3f",
       "range": {
         "startLine": 6,
         "startChar": 16,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a4e04b_542c50b0",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-05T23:46:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bed48ee_bd54e216",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d6579d3_98cbf060",
@@ -117,6 +189,30 @@
       "writtenOn": "2021-04-01T03:56:57Z",
       "side": 1,
       "message": "sort?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "1d6ee2079ce9f9be3dca046158f6143595738192",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee96c8d_ec38793c",
+        "filename": "dashboard/dashboard/pinpoint/models/cas_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-05T23:46:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d6579d3_98cbf060",
       "range": {
         "startLine": 4,
         "startChar": 0,

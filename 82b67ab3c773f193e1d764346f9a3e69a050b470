@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18d3ba59_d0fbdd3d",
+        "filename": "dashboard/dashboard/pinpoint/handlers/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-05T23:46:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6375c831_7460dece",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8766a24_7e3ece0a",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Let me ask that question in http://b/184220559",
       "parentUuid": "7aecf964_c5a7de61",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 70
+      },
+      "revId": "82b67ab3c773f193e1d764346f9a3e69a050b470",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6552eff_0518a212",
+        "filename": "dashboard/dashboard/pinpoint/models/cas.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-05T23:46:29Z",
+      "side": 1,
+      "message": "Thanks. That\u0027s helpful.",
+      "parentUuid": "9fd6925e_777fe83a",
       "range": {
         "startLine": 17,
         "startChar": 0,
