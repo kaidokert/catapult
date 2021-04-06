@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f0b234_0ec9916e",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-06T05:17:28Z",
+      "side": 1,
+      "message": "This might have some unintended consequences. Can we make this a string equality check and handle the other cases later? The alternative is to have a regular expression to ensure we\u0027re getting it correctly.",
+      "range": {
+        "startLine": 372,
+        "startChar": 4,
+        "endLine": 373,
+        "endChar": 16
+      },
+      "revId": "d32158a2c6ddeae63d104994295a96917cb0e7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41e46aa2_a8c9deb0",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_lacros_telemetry_test_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-06T05:17:28Z",
+      "side": 1,
+      "message": "If we\u0027re going with supporting other platforms (e.g. not just \u0027eve\u0027) then where should be a test here for specifically that case.",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "d32158a2c6ddeae63d104994295a96917cb0e7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "752810f4_0b0ba012",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-06T05:17:28Z",
+      "side": 1,
+      "message": "Is there a reason we need this in the change?",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 84,
+        "endChar": 32
+      },
+      "revId": "d32158a2c6ddeae63d104994295a96917cb0e7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
