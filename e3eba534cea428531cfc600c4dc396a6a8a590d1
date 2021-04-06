@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7217a46e_4140780a",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-06T19:05:56Z",
+      "side": 1,
+      "message": "updated, pls review again.\n\nDid not touch line 550-555 though.",
+      "parentUuid": "7cd07b46_75d9a1ef",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbadcbe8_a8cbf1fa",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 5
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "Yes it is to test conflict_resolution flag is passed correctly to the object generated from expectations_for (and that is the purpose of this CL).\n\nI guess calling this twice does provides a little more coverage, right? If you prefer, I can delete the case for UNION. But I would prefer we keep it, and it does not do any harm.",
       "parentUuid": "dbadcbe8_a8cbf1fa",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9c4911_ad04e861",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-06T19:05:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b304648_37a89f39",
       "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
