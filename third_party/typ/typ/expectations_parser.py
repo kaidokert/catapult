@@ -433,6 +433,7 @@ class TestExpectations(object):
         self.individual_exps = OrderedDict()
         self.glob_exps = OrderedDict()
         self._tags_conflict = _default_tags_conflict
+        self._conflict_resolution = ConflictResolutionTypes.UNION
 
     def set_tags(self, tags, raise_ex_for_bad_tags=False):
         self.validate_condition_tags(tags, raise_ex_for_bad_tags)
@@ -489,6 +490,7 @@ class TestExpectations(object):
         # self.set_tags().
         self.tag_sets = parser.tag_sets
         self._tags_conflict = tags_conflict
+        self._conflict_resolution = conflict_resolution
         # TODO(crbug.com/83560) - Add support for multiple policies
         # for supporting multiple matching lines, e.g., allow/union,
         # reject, etc. Right now, you effectively just get a union.
@@ -584,6 +586,7 @@ class TestExpectations(object):
             return Expectation(
                     test=test, results=self._results, tags=self._exp_tags,
                     retry_on_failure=self._should_retry_on_failure,
+                    conflict_resolution=self._conflict_resolution,
                     is_slow_test=self._is_slow_test, reason=' '.join(self._reasons),
                     trailing_comments=self._trailing_comments)
 
@@ -602,6 +605,7 @@ class TestExpectations(object):
                     return Expectation(
                             test=test, results=self._results, tags=self._exp_tags,
                             retry_on_failure=self._should_retry_on_failure,
+                            conflict_resolution=self._conflict_resolution,
                             is_slow_test=self._is_slow_test, reason=' '.join(self._reasons),
                             trailing_comments=self._trailing_comments)
 
