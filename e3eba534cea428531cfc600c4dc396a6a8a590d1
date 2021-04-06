@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7cd07b46_75d9a1ef",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-04-06T02:33:27Z",
+      "side": 1,
+      "message": "Now that you mention it, those assignments to member fields seem wrong, too. \nI wonder if they\u0027re only ever referenced inside this function? Maybe \nthey should be local variables instead?\n\nYour proposal does sound correct, though.",
+      "parentUuid": "6d8c02a9_b092c623",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbadcbe8_a8cbf1fa",
         "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
         "patchSetId": 5
