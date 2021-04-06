@@ -143,7 +143,14 @@ def RestartServer():
   def adb_started():
     return AdbWrapper.IsServerOnline()
 
-  AdbWrapper.KillServer()
+  subprocess.call(["killall", "adb"])
+  # Check if port 5037 is still used
+  p1 = subprocess.Popen(['netstat', '-ano'], stdout=subprocess.PIPE)
+  out, err = p1.communicate()
+  p2 = subprocess.Popen(['grep', '5037'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+  final_output, _ = p2.communicate(input=out)
+  logger.warning('Is 5037 still used: \noutput: %s' % final_output)
+
   if not timeout_retry.WaitFor(adb_killed, wait_period=1, max_tries=5):
     # TODO(crbug.com/442319): Switch this to raise an exception if we
     # figure out why sometimes not all adb servers on bots get killed.
@@ -325,6 +332,7 @@ class AdbWrapper(object):
         raise
     except cmd_helper.TimeoutError:
       logger.error('Timeout on adb command: %r', adb_cmd)
+      RestartServer()
       raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
