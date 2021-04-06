@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0d6c54_30cbf745",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-06T01:15:02Z",
+      "side": 1,
+      "message": "If \u0027patch\u0027 is only for backward compatibility, maybe we should test \u0027experiment_patch\u0027 or both?",
+      "revId": "81411f7d5e8c35ce598b1c45a03e947bf0d80b61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
