@@ -53,3 +53,20 @@ class UIDevTools(object):
                                                         y,
                                                         button,
                                                         wheel_direction)
+
+  # pylint: disable=redefined-builtin
+  def DispatchKeyEvent(self,
+                       node_id,
+                       type,
+                       key_code=0,
+                       code=0,
+                       flags=0,
+                       key=0,
+                       is_char=False):
+    return self._ui_devtools_backend.DispatchKeyEvent(node_id,
+                                                      type,
+                                                      key_code,
+                                                      code,
+                                                      flags,
+                                                      key,
+                                                      is_char)
