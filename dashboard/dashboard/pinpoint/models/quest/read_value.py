@@ -18,6 +18,7 @@ from dashboard.common import histogram_helpers
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution
 from dashboard.pinpoint.models.quest import quest
+from dashboard.services import cas as cas_service
 from dashboard.services import isolate
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic_ref
@@ -302,6 +303,38 @@ def RetrieveIsolateOutput(isolate_server, isolate_hash, filename):
   logging.debug('Retrieving %s', output_isolate_hash)
 
   return isolate.Retrieve(isolate_server, output_isolate_hash)
+
+
+def RetrieveCASOutput(cas_root_ref, path):
+  logging.debug('Retrieving output (%s, %s)', cas_root_ref, path)
+
+  def _GetTree(cas_ref):
+    return cas_service.getTree(cas_ref)['directories'][0]
+
+  def _GetNodeByName(name, nodes):
+    for node in nodes:
+      if node['name'] == name:
+        return node
+    raise errors.ReadValueNoFile(path)
+
+  tree = _GetTree(cas_root_ref)
+  for name in path[:-1]:
+    node = _GetNodeByName(name, tree['directories'])
+    tree = _GetTree({
+        'cas_instance': cas_root_ref['cas_instance'],
+        'digest': node['digest'],
+    })
+
+  node = _GetNodeByName(path[-1], tree['files'])
+  return cas_service.BatchRead([{
+      'cas_instance': cas_root_ref['cas_instance'],
+      'digest': node['digest'],
+  }])[0].get('data')
+
+
+def RetrieveOutputJsonFromCAS(cas_root_ref, path):
+  output = RetrieveCASOutput(cas_root_ref, path)
+  return json.loads(output)
 
 
 def RetrieveOutputJson(isolate_server, isolate_hash, filename):
