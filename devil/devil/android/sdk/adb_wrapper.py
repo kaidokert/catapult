@@ -17,6 +17,7 @@ import os
 import posixpath
 import re
 import subprocess
+import time
 
 import six
 
@@ -129,7 +130,25 @@ def _IsExtraneousLine(line, send_cmd):
   return send_cmd.rstrip() in line
 
 
-@decorators.WithExplicitTimeoutAndRetries(timeout=30, retries=3)
+def WaitUntilAllTcpConnectionsEnd():
+  # Wait one minute for any tcp connections in TIME_WAIT
+  start = 0
+  while start < 70:
+    p = subprocess.Popen(['netstat', '-ano'], stdout=subprocess.PIPE)
+    nout, _ = p.communicate()
+    p1 = subprocess.Popen(['grep', '5037'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    output, _ = p1.communicate(input=nout)
+    if output.strip():
+      logger.warning('There is still a tcp connection:\n' + output.strip() + '\n')
+    else:
+      logger.warning('There is no longer a TCP connection, continuing execution')
+      return
+    time.sleep(10)
+    start += 10
+  logger.error('The tcp connection did not end')
+
+
+@decorators.WithExplicitTimeoutAndRetries(timeout=90, retries=3)
 def RestartServer():
   """Restarts the adb server.
 
@@ -143,7 +162,15 @@ def RestartServer():
   def adb_started():
     return AdbWrapper.IsServerOnline()
 
-  AdbWrapper.KillServer()
+  subprocess.call(["killall", "adb"])
+  # Check if port 5037 is still used
+  p1 = subprocess.Popen(['netstat', '-ano'], stdout=subprocess.PIPE)
+  out, err = p1.communicate()
+  p2 = subprocess.Popen(['grep', '5037'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+  final_output, _ = p2.communicate(input=out)
+  logger.warning('Is 5037 still used: \noutput: %s' % final_output)
+
+  WaitUntilAllTcpConnectionsEnd()
   if not timeout_retry.WaitFor(adb_killed, wait_period=1, max_tries=5):
     # TODO(crbug.com/442319): Switch this to raise an exception if we
     # figure out why sometimes not all adb servers on bots get killed.
@@ -325,6 +352,7 @@ class AdbWrapper(object):
         raise
     except cmd_helper.TimeoutError:
       logger.error('Timeout on adb command: %r', adb_cmd)
+      RestartServer()
       raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
