@@ -10,6 +10,8 @@ import time
 
 from devil.utils import reraiser_thread
 from devil.utils import watchdog_timer
+from devil.utils import cmd_helper
+
 
 logger = logging.getLogger(__name__)
 
@@ -155,7 +157,7 @@ def Run(func,
     child_thread = reraiser_thread.ReraiserThread(
         lambda: func(*args, **kwargs), name=thread_name)
     try:
-      thread_group = TimeoutRetryThreadGroup(timeout, threads=[child_thread])
+      thread_group = TimeoutRetryThreadGroup(timeout + 61, threads=[child_thread])
       thread_group.StartAll(will_block=True)
       while True:
         thread_group.JoinAll(
@@ -174,6 +176,7 @@ def Run(func,
     except Exception as e:  # pylint: disable=broad-except
       if num_try > retries or not retry_if_func(e):
         raise
+
       error_log_func('(%s) Exception on %s, attempt %d of %d: %r', thread_name,
                      desc, num_try, retries + 1, e)
     num_try += 1
