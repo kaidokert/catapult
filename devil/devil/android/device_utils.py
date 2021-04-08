@@ -3721,7 +3721,7 @@ class DeviceUtils(object):
             'No devices found. Will try again after restarting adb server '
             'and a short nap of %d s.', sleep_s)
         time.sleep(sleep_s)
-        adb_wrapper.RestartServer()
+        timeout_retry.RestartServer()
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def RestartAdbd(self, timeout=None, retries=None):
