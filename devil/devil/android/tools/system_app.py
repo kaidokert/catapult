@@ -184,6 +184,16 @@ def _TearDownSystemAppModification(device,
                                    timeout=None,
                                    retries=None):
   try:
+    # Sanity check on if Root is still enabled since method is reentrant
+    if not device.HasRoot():
+      logger.warning('Need to re-enable root, it was lost after adb server restart')
+      device.EnableRoot()
+
+      if not device.HasRoot():
+        raise device_errors.CommandFailedError(
+          'Failed to tear down modification of system apps on non-rooted device',
+          str(device))
+
     device.SetProp(_ENABLE_MODIFICATION_PROP, '0')
     device.Reboot()
     device.WaitUntilFullyBooted()
