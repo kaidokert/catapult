@@ -72,6 +72,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fee4224f_360b645f",
+        "filename": "third_party/typ/typ/expectations_parser.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-08T17:51:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7217a46e_4140780a",
+      "revId": "e3eba534cea428531cfc600c4dc396a6a8a590d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbadcbe8_a8cbf1fa",
