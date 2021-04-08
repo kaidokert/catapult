@@ -10,6 +10,8 @@ import time
 
 from devil.utils import reraiser_thread
 from devil.utils import watchdog_timer
+from devil.utils import cmd_helper
+
 
 logger = logging.getLogger(__name__)
 
@@ -174,6 +176,10 @@ def Run(func,
     except Exception as e:  # pylint: disable=broad-except
       if num_try > retries or not retry_if_func(e):
         raise
+      
       error_log_func('(%s) Exception on %s, attempt %d of %d: %r', thread_name,
                      desc, num_try, retries + 1, e)
+      if isinstance(e, cmd_helper.TimeoutError):
+        logger.warning('Waiting for time_wait to expire for tcp connection')
+        time.sleep(61) # Time wait is 60s on linux, why do i care?
     num_try += 1
