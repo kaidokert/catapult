@@ -6,6 +6,7 @@
 
 import logging
 import threading
+import subprocess
 import time
 
 from devil.utils import reraiser_thread
@@ -170,10 +171,70 @@ def Run(func,
       # Timeouts already get their stacks logged.
       if num_try > retries or not retry_if_func(e):
         raise
+      RestartServer()
       # Do not catch KeyboardInterrupt.
     except Exception as e:  # pylint: disable=broad-except
       if num_try > retries or not retry_if_func(e):
         raise
       error_log_func('(%s) Exception on %s, attempt %d of %d: %r', thread_name,
                      desc, num_try, retries + 1, e)
+      RestartServer()
     num_try += 1
+
+
+def WaitUntilAllTcpConnectionsEnd():
+  # Wait one minute for any tcp connections in TIME_WAIT
+  start = 0
+  while start < 70:
+    p = subprocess.Popen(['netstat', '-ano'], stdout=subprocess.PIPE)
+    nout, _ = p.communicate()
+    p1 = subprocess.Popen(['grep', '5037'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    output, _ = p1.communicate(input=nout)
+    if output.strip():
+      logger.warning('There is still a tcp connection:\n' + output.strip() + '\n')
+    else:
+      logger.warning('There is no longer a TCP connection, continuing execution')
+      return
+    time.sleep(10)
+    start += 10
+  logger.error('The tcp connection did not end')
+
+
+def RestartServer():
+  """Restarts the adb server.
+
+  Raises:
+    CommandFailedError if we fail to kill or restart the server.
+  """
+
+  def adb_killed():
+    return not AdbWrapper.IsServerOnline()
+
+  def adb_started():
+    return AdbWrapper.IsServerOnline()
+
+  subprocess.call(["killall", "adb"])
+
+  def check_tcp_connection():
+    # Check if port 5037 is still used
+    p1 = subprocess.Popen(['netstat', '-ano'], stdout=subprocess.PIPE)
+    out, err = p1.communicate()
+    p2 = subprocess.Popen(['grep', '5037'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    final_output, _ = p2.communicate(input=out)
+    logger.warning('Is 5037 still used: \noutput: %s' % final_output)
+
+  logger.warning('Checking if 5037 still used')
+  check_tcp_connection()
+  time.sleep(61) # Time wait is 60s on linux, why do i care?
+  logger.warning('Checking again if 5037 still used')
+  check_tcp_connection()
+
+
+  if not WaitFor(adb_killed, wait_period=1, max_tries=5):
+    # TODO(crbug.com/442319): Switch this to raise an exception if we
+    # figure out why sometimes not all adb servers on bots get killed.
+    logger.warning('Failed to kill adb server')
+  AdbWrapper.StartServer()
+  if not WaitFor(adb_started, wait_period=1, max_tries=5):
+    raise device_errors.CommandFailedError('Failed to start adb server')
+
