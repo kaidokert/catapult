@@ -305,10 +305,22 @@ class _RunTestExecution(execution_module.Execution):
             result['outputs_ref']['isolated'])
         raise errors.SwarmingTaskFailed('%s' % (isolate_output_url,))
 
-    result_arguments = {
-        'isolate_server': result['outputs_ref']['isolatedserver'],
-        'isolate_hash': result['outputs_ref']['isolated'],
-    }
+    if 'cas_output_root' in result:
+      result_arguments = {
+          'cas_root_ref': {
+              'cas_instance': result['cas_output_root']['cas_instance'],
+              'digest': {
+                  'hash': result['cas_output_root']['digest']['hash'],
+                  'sizeBytes': str(
+                      result['cas_output_root']['digest']['size_bytes']),
+              }
+          }
+      }
+    else:
+      result_arguments = {
+          'isolate_server': result['outputs_ref']['isolatedserver'],
+          'isolate_hash': result['outputs_ref']['isolated'],
+      }
 
     self._Complete(result_arguments=result_arguments)
 

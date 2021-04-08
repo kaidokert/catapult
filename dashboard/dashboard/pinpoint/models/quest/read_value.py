@@ -18,6 +18,7 @@ from dashboard.common import histogram_helpers
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution
 from dashboard.pinpoint.models.quest import quest
+from dashboard.services import cas_service
 from dashboard.services import isolate
 from tracing.value import histogram_set
 from tracing.value.diagnostics import diagnostic_ref
@@ -56,7 +57,8 @@ class ReadValue(quest.Quest):
   def metric(self):
     return self._chart or self._metric
 
-  def Start(self, change, isolate_server, isolate_hash):
+  def Start(self, change, isolate_server=None, isolate_hash=None,
+            cas_root_ref=None):
     # Here we create an execution that can handle both histograms and graph
     # json and any other format we support later.
     # TODO(dberris): It seems change is a required input, need to preserve this
@@ -65,7 +67,7 @@ class ReadValue(quest.Quest):
     return ReadValueExecution(self._results_filename, self._metric,
                               self._grouping_label, self._trace_or_story,
                               self._statistic, self._chart, isolate_server,
-                              isolate_hash)
+                              isolate_hash, cas_root_ref)
 
   @classmethod
   def FromDict(cls, arguments):
@@ -95,7 +97,8 @@ class ReadValue(quest.Quest):
 class ReadValueExecution(execution.Execution):
 
   def __init__(self, results_filename, metric, grouping_label, trace_or_story,
-               statistic, chart, isolate_server, isolate_hash):
+               statistic, chart, isolate_server, isolate_hash,
+               cas_root_ref=None):
     super(ReadValueExecution, self).__init__()
     self._results_filename = results_filename
     self._metric = metric
@@ -105,6 +108,7 @@ class ReadValueExecution(execution.Execution):
     self._chart = chart
     self._isolate_server = isolate_server
     self._isolate_hash = isolate_hash
+    self._cas_root_ref = cas_root_ref
     self._trace_urls = []
     self._mode = None
 
@@ -120,9 +124,17 @@ class ReadValueExecution(execution.Execution):
     } for trace_url in self._trace_urls]
 
   def _Poll(self):
-    isolate_output = RetrieveIsolateOutput(self._isolate_server,
-                                           self._isolate_hash,
-                                           self._results_filename)
+    if self._cas_root_ref:
+      isolate_output = RetrieveCASOutput(
+          self._cas_root_ref,
+          self._results_filename,
+      )
+    else:
+      isolate_output = RetrieveIsolateOutput(
+          self._isolate_server,
+          self._isolate_hash,
+          self._results_filename,
+      )
 
     result_values = []
     histogram_exception = None
@@ -302,6 +314,38 @@ def RetrieveIsolateOutput(isolate_server, isolate_hash, filename):
   logging.debug('Retrieving %s', output_isolate_hash)
 
   return isolate.Retrieve(isolate_server, output_isolate_hash)
+
+
+def RetrieveCASOutput(cas_root_ref, path):
+  logging.debug('Retrieving output (%s, %s)', cas_root_ref, path)
+
+  def _GetTree(cas_ref):
+    return cas_service.getTree(cas_ref)['directories'][0]
+
+  def _GetNodeByName(name, nodes):
+    for node in nodes:
+      if node['name'] == name:
+        return node
+    raise errors.ReadValueNoFile(path)
+
+  tree = _GetTree(cas_root_ref)
+  for name in path[:-1]:
+    node = _GetNodeByName(name, tree['directories'])
+    tree = _GetTree({
+        'cas_instance': cas_root_ref['cas_instance'],
+        'digest': node['digest'],
+    })
+
+  node = _GetNodeByName(path[-1], tree['files'])
+  return cas_service.BatchRead([{
+      'cas_instance': cas_root_ref['cas_instance'],
+      'digest': node['digest'],
+  }])[0].get('data')
+
+
+def RetrieveOutputJsonFromCAS(cas_root_ref, path):
+  output = RetrieveCASOutput(cas_root_ref, path)
+  return json.loads(output)
 
 
 def RetrieveOutputJson(isolate_server, isolate_hash, filename):
