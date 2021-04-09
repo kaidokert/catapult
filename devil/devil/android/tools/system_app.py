@@ -184,6 +184,17 @@ def _TearDownSystemAppModification(device,
                                    timeout=None,
                                    retries=None):
   try:
+    # Do sanity check on if Root is still enabled since method is re-entrant
+    if not device.HasRoot():
+      logger.warning('Need to re-enable root.')
+      device.EnableRoot()
+
+      if not device.HasRoot():
+        raise device_errors.CommandFailedError(
+          ('Failed to tear down modification of '
+           'system apps on non-rooted device.'),
+          str(device))
+
     device.SetProp(_ENABLE_MODIFICATION_PROP, '0')
     device.Reboot()
     device.WaitUntilFullyBooted()
