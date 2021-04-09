@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a23e5ad6_0c57dd82",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-09T06:12:26Z",
+      "side": 1,
+      "message": "Do you mean we can\u0027t serialize the field? I didn\u0027t find _isolate_server/hash with @property so not getting the intention here.",
+      "parentUuid": "15f02483_63c3ecd8",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 7
+      },
+      "revId": "6687af7919a6f183b8b1e948910c2521a7da3b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "090ba1ad_4a745242",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2021-04-08T08:21:43Z",
       "side": 1,
       "message": "You can just \"do\" this now, to change it from results_filename to results_path.",
+      "range": {
+        "startLine": 240,
+        "startChar": 14,
+        "endLine": 242,
+        "endChar": 39
+      },
+      "revId": "6687af7919a6f183b8b1e948910c2521a7da3b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1663a8_9402d9ba",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-09T06:12:26Z",
+      "side": 1,
+      "message": "We don\u0027t store the dimensions or platform so we can\u0027t construct the results_filename later. Although we can store dimensions instead as a temporary solution, but to me it\u0027s same to keep results_filename as a temporary solution.",
+      "parentUuid": "090ba1ad_4a745242",
       "range": {
         "startLine": 240,
         "startChar": 14,
