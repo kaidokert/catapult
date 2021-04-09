@@ -16,6 +16,24 @@
       "message": "Maybe a.max_window_size or defaults.MAX_WINDOW_SIZE? Same below.",
       "revId": "646409dc6b22514b3b0cdc4e3c414b737867c37a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2066c94_d7bf5b8a",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-09T04:17:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d77e783_50aada0e",
+      "revId": "646409dc6b22514b3b0cdc4e3c414b737867c37a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
