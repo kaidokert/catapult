@@ -4,6 +4,8 @@
 
 import logging
 
+import six
+
 logger = logging.getLogger(__name__)
 
 _LOCK_SCREEN_SETTINGS_PATH = '/data/system/locksettings.db'
@@ -134,8 +136,9 @@ class ContentSettings(dict):
       return 'f'
     if isinstance(value, int):
       return 'i'
-    if isinstance(value, long):
-      return 'l'
+    if six.PY2:
+      if isinstance(value, long):
+        return 'l'
     if isinstance(value, str):
       return 's'
     raise ValueError('Unsupported type %s' % type(value))

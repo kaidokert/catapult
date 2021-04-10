@@ -11,6 +11,8 @@ import threading
 import time
 import sys
 
+import six
+
 if __name__ == '__main__':
   sys.path.append(
       os.path.abspath(
@@ -160,14 +162,17 @@ def main():
       root, ext = os.path.splitext(host_file)
       f = '%s_%s%s' % (root, str(device), ext)
     f = recorder.Pull(f)
-    print 'Video written to %s' % os.path.abspath(f)
+    print('Video written to %s' % os.path.abspath(f))
 
   parallel_devices = device_utils.DeviceUtils.parallel(script_common.GetDevices(
       args.devices, args.denylist_file),
                                                        asyn=True)
   stop_recording = threading.Event()
   running_recording = parallel_devices.pMap(record_video, stop_recording)
-  print 'Recording. Press Enter to stop.',
+  if six.PY2:
+    print 'Recording. Press Enter to stop.',
+  else:
+    print('Recording. Press Enter to stop.', end=' ')
   sys.stdout.flush()
   raw_input()
   stop_recording.set()

@@ -89,13 +89,14 @@ class TestAdbWrapper(device_test_case.DeviceTestCase):
       self._adb.Uninstall('some.nonexistant.package')
 
   def testRebootWaitForDevice(self):
+    # pylint: disable=superfluous-parens
     self._adb.Reboot()
-    print 'waiting for device to reboot...'
+    print('waiting for device to reboot...')
     while self._adb.GetState() == 'device':
       time.sleep(1)
     self._adb.WaitForDevice()
     self.assertEqual(self._adb.GetState(), 'device')
-    print 'waiting for package manager...'
+    print('waiting for package manager...')
     while True:
       try:
         android_path = self._adb.Shell('pm path android')

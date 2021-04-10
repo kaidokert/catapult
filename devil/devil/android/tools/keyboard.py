@@ -66,14 +66,15 @@ _KEY_MAPPING = {
 
 
 def Keyboard(device, stream_itr):
+  # pylint: disable=superfluous-parens
   try:
     for c in stream_itr:
       k = _KEY_MAPPING.get(c)
       if k:
         device.SendKeyEvent(k)
       else:
-        print
-        print '(No mapping for character 0x%x)' % ord(c)
+        print('')
+        print('(No mapping for character 0x%x)' % ord(c))
   except KeyboardInterrupt:
     pass
 

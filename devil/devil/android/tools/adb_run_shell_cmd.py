@@ -19,6 +19,7 @@ from devil.utils import logging_common
 
 
 def main():
+  # pylint:disable=superfluous-parens
   parser = argparse.ArgumentParser(
       'Run an adb shell command on selected devices')
   parser.add_argument('cmd', help='Adb shell command to run.', nargs="+")
@@ -40,7 +41,7 @@ def main():
   data = {}
   for device, output in zip(devices, p_out):
     for line in output:
-      print '%s: %s' % (device, line)
+      print('%s: %s' % (device, line))
     data[str(device)] = output
 
   if args.json_output:

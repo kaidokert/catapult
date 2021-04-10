@@ -26,15 +26,17 @@ def SetScalingGovernor(device, args):
 
 
 def GetScalingGovernor(device, _args):
+  # pylint: disable=superfluous-parens
   p = perf_control.PerfControl(device)
   for cpu, governor in p.GetScalingGovernor():
-    print '%s %s: %s' % (str(device), cpu, governor)
+    print('%s %s: %s' % (str(device), cpu, governor))
 
 
 def ListAvailableGovernors(device, _args):
+  # pylint: disable=superfluous-parens
   p = perf_control.PerfControl(device)
   for cpu, governors in p.ListAvailableGovernors():
-    print '%s %s: %s' % (str(device), cpu, pprint.pformat(governors))
+    print('%s %s: %s' % (str(device), cpu, pprint.pformat(governors)))
 
 
 def main(raw_args):
