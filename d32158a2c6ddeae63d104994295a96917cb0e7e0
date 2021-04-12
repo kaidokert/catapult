@@ -164,6 +164,30 @@
       },
       "revId": "d32158a2c6ddeae63d104994295a96917cb0e7e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "851ff755_11133c33",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-04-12T17:34:18Z",
+      "side": 1,
+      "message": "Ahh, ok. I just reverted it.",
+      "parentUuid": "2be52490_0cdad05c",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 84,
+        "endChar": 32
+      },
+      "revId": "d32158a2c6ddeae63d104994295a96917cb0e7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
