@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3d0b970_a7ae0119",
+        "filename": "dashboard/dashboard/find_anomalies.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-04-12T04:04:37Z",
+      "side": 1,
+      "message": "The nested list comprehensions are hard to read here.  Perhaps break out the calculation of the anomaly_configs for a matching_sub into the loop body?\n\n  for matching_sub in subscriptions:\n    anomaly_configs \u003d matching_sub.anomaly_configs or [\n        subscription.AnomalyConfig()]\n    for config in [c.to_dict() for c in anomaly_configs]:",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 29
+      },
+      "revId": "9091fa1408f289b2ec77766aed2ec092c8747086",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
