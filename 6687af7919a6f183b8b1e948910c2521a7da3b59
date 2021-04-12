@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf671959_e5ac6bb0",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-12T07:29:26Z",
+      "side": 1,
+      "message": "I got it, thanks.",
+      "parentUuid": "5f2c64bf_0bc0443b",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 7
+      },
+      "revId": "6687af7919a6f183b8b1e948910c2521a7da3b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "090ba1ad_4a745242",
