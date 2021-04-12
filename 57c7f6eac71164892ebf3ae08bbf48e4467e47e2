@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd47d8d_6a87c699",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-12T17:19:46Z",
+      "side": 1,
+      "message": "After re-enabling telemetry unit test LoadMediaActionTest.testAwaitedEventIsConfigurable on Mac over a week ago, no errors were seen on most bots, but it times out sometimes on \"Mac10.15 Tests (dbg)\". Apparently debug build of Chrome isn\u0027t fast enough for this test. Since the Telemetry library is rarely used with debug build of Chrome, I\u0027m just disabling this test on debug builds. PTAL.",
+      "revId": "57c7f6eac71164892ebf3ae08bbf48e4467e47e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
