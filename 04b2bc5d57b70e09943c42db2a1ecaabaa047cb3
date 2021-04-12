@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b788b2e_e223b917",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "LGTM % readability and testing comments.",
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eac88fc_15926b43",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "There\u0027s quite a bit of repetition here. Consider using a reference?\n\n```\ncas_root_ref \u003d self._result_arguments.get(\u0027cas_root_ref\u0027)\nif cas_root_ref is not None:\n  digest \u003d cas_root_ref[\u0027digest\u0027]\n  url \u003d \u0027https://cas-viewer.appspot.com/{}/tree\u0027.format(\n      \u0027/\u0027.join([\n          cas_root_ref[\u0027cas_instance\u0027], digest[\u0027hash\u0027], digest[\u0027size_bytes\u0027],\n      ]))\n  value \u003d \u0027{hash}/{size_bytes}\u0027.format(**digest)\n  details.append({...})\nelse:\n  ....\n```",
+      "range": {
+        "startLine": 265,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 75
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e3c599e_dca5f9e4",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "Does it make sense for us to have a separate test case just for RBE-CAS here, instead of changing the existing test case?",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 5
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1f65a57_67cf3cfe",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "Consider a new test case instead of modifying this one?",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 43
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4bee813_2cd7255d",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "What happens when the digest doesn\u0027t have a key named hash?",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "722a708d_9a01dda1",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "Should this function do some validation of the inputs?",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 50,
+        "endChar": 13
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a66db054_1d467d70",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T11:30:44Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 15
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
