@@ -167,6 +167,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f55320_72c8458f",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-12T01:37:36Z",
+      "side": 1,
+      "message": "Two things:\n\n1. This is in the execution engine. It\u0027s not likely we\u0027ll need to make this change here (this code should have been deleted a while back anyway).\n\n2. How to deal with the path is probably not supposed to be at this level. We should probably store the dimensions in the payload anyway, and then reconstitute the path as we need to (when downloading the values), not when we\u0027re creating the vertices.\n\nBut I\u0027m fine with the TODO.",
+      "parentUuid": "f07ffbf4_20d5461a",
+      "range": {
+        "startLine": 240,
+        "startChar": 14,
+        "endLine": 242,
+        "endChar": 39
+      },
+      "revId": "6687af7919a6f183b8b1e948910c2521a7da3b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea603b80_21f33d9d",
