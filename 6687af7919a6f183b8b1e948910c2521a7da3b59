@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f07ffbf4_20d5461a",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/read_value.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-12T01:28:22Z",
+      "side": 1,
+      "message": "```\nif read_value_quest.IsWindows({\u0027dimensions\u0027: options.test_options.dimensions }):\n  path \u003d ntpath.join(options.benchmark, \u0027perf_results.json\u0027)\nelse:\n  path \u003d posixpath.join(options.benchmark, \u0027perf_results.json\u0027)\n```\n\nWe can, if we store which platform or which seperator is used for joining the path components. That means we still have to add another field for storing dimensions or platform.",
+      "parentUuid": "6f6d3681_57fd5ed2",
+      "range": {
+        "startLine": 240,
+        "startChar": 14,
+        "endLine": 242,
+        "endChar": 39
+      },
+      "revId": "6687af7919a6f183b8b1e948910c2521a7da3b59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea603b80_21f33d9d",
         "filename": "dashboard/dashboard/services/cas_service.py",
         "patchSetId": 3
