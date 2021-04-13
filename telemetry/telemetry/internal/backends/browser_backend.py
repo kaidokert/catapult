@@ -153,12 +153,10 @@ class BrowserBackend(app_backend.AppBackend):
     return data
 
   def StartCollectingPeriodicScreenshots(self, frequency_ms):
-    self._collect_periodic_screenshots = True
-    self._CollectPeriodicScreenshots(datetime.now(), frequency_ms)
+    pass
 
   def StopCollectingPeriodicScreenshots(self):
-    self._collect_periodic_screenshots = False
-    self._periodic_screenshot_timer.cancel()
+    pass
 
   def _CollectPeriodicScreenshots(self, start_time, frequency_ms):
     self._CollectScreenshot(logging.INFO, "periodic.png", start_time)
