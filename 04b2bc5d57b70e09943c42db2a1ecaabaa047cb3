@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09ec2b27_a8630e6b",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-13T05:26:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7eac88fc_15926b43",
+      "range": {
+        "startLine": 265,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 75
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e3c599e_dca5f9e4",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-12T11:30:44Z",
       "side": 1,
       "message": "Does it make sense for us to have a separate test case just for RBE-CAS here, instead of changing the existing test case?",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 5
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "137ad609_3fced4e2",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-13T05:26:38Z",
+      "side": 1,
+      "message": "This is a seperate cas for RBE-CAS (testSuccess_Cas). We added the case with changing the input of swarming to CAS, but left output unchanged. This CL changes the output to the correct result.",
+      "parentUuid": "2e3c599e_dca5f9e4",
       "range": {
         "startLine": 290,
         "startChar": 4,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "052bf711_4a1fb75a",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-13T05:26:38Z",
+      "side": 1,
+      "message": "It\u0027s the old case (and doesn\u0027t affected by RBE-CAS). ReadValueExecution\u0027s __init__ changed to require results_path so we have to change the construction.",
+      "parentUuid": "e1f65a57_67cf3cfe",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 43
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4bee813_2cd7255d",
@@ -100,6 +172,30 @@
       "writtenOn": "2021-04-12T11:30:44Z",
       "side": 1,
       "message": "What happens when the digest doesn\u0027t have a key named hash?",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 30
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a21de5c7_ab99bf66",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-13T05:26:38Z",
+      "side": 1,
+      "message": "It\u0027s invalid. Adding validation.",
+      "parentUuid": "a4bee813_2cd7255d",
       "range": {
         "startLine": 46,
         "startChar": 16,
@@ -133,6 +229,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75f13f79_23a56787",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-13T05:26:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "722a708d_9a01dda1",
+      "range": {
+        "startLine": 50,
+        "startChar": 6,
+        "endLine": 50,
+        "endChar": 13
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a66db054_1d467d70",
@@ -146,6 +266,30 @@
       "writtenOn": "2021-04-12T11:30:44Z",
       "side": 1,
       "message": "Same here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 15
+      },
+      "revId": "04b2bc5d57b70e09943c42db2a1ecaabaa047cb3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d31c439_65c45160",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-13T05:26:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a66db054_1d467d70",
       "range": {
         "startLine": 60,
         "startChar": 6,
