@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 """A library for cross-platform browser tests."""
+from __future__ import print_function
 import os
 import sys
 
@@ -14,7 +15,7 @@ except ImportError:
 
 # Ensure Python >= 2.7.
 if sys.version_info < (2, 7):
-  print >> sys.stderr, 'Need Python 2.7 or greater.'
+  print('Need Python 2.7 or greater.', file=sys.stderr)
   sys.exit(-1)
 
 
