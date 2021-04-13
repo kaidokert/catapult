@@ -16,6 +16,23 @@
       "message": "Starting the conversion to Python 3. This CL updates all print statements in Telemetry.",
       "revId": "e67cda1d7aa979141b49d5803be6eca7fc5637d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "926cecb1_dd0a4a3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-13T21:17:07Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "e67cda1d7aa979141b49d5803be6eca7fc5637d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
