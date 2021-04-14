@@ -17,8 +17,8 @@ import os
 import posixpath
 import re
 import subprocess
-
 import six
+import time
 
 from devil import base_error
 from devil import devil_env
@@ -130,7 +130,7 @@ def _IsExtraneousLine(line, send_cmd):
 
 
 @decorators.WithExplicitTimeoutAndRetries(timeout=30, retries=3)
-def RestartServer():
+def RestartServer(wait_one_minute=False):
   """Restarts the adb server.
 
   Raises:
@@ -143,7 +143,25 @@ def RestartServer():
   def adb_started():
     return AdbWrapper.IsServerOnline()
 
-  AdbWrapper.KillServer()
+  subprocess.call(["killall", "adb"])
+
+  def check_tcp_connection():
+    # Check if port 5037 is still used
+    p1 = subprocess.Popen(['netstat', '-ano'], stdout=subprocess.PIPE)
+    out, err = p1.communicate()
+    p2 = subprocess.Popen(['grep', '5037'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    final_output, _ = p2.communicate(input=out)
+    logger.warning('Is 5037 still used: \noutput: %s' % final_output)
+
+  logger.warning('Checking if 5037 still used')
+  check_tcp_connection()
+  if wait_one_minute:
+    logger.warning('Waiting 65 seconds please help')
+    time.sleep(65) # Time wait is 60s on linux, why do i care?
+
+  logger.warning('Checking again if 5037 still used')
+  check_tcp_connection()
+
   if not timeout_retry.WaitFor(adb_killed, wait_period=1, max_tries=5):
     # TODO(crbug.com/442319): Switch this to raise an exception if we
     # figure out why sometimes not all adb servers on bots get killed.
