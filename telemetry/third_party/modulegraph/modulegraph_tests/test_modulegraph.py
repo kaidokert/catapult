@@ -153,7 +153,7 @@ class TestFunctions (unittest.TestCase):
         try:
             code = modulegraph._code_to_file.__code__
         except AttributeError:
-            code = modulegraph._code_to_file.func_code
+            code = modulegraph._code_to_file.__code__
 
         data = modulegraph._code_to_file(code)
         self.assertTrue(hasattr(data, 'read'))
