@@ -1550,7 +1550,7 @@ class ModuleGraph(ObjectGraph):
             nodetoident[node] = getattr(data, 'identifier', None)
             if isinstance(data, Package):
                 packageidents[data.identifier] = node
-                inpackages[node] = set([node])
+                inpackages[node] = {node}
                 packagenodes.add(node)
 
 
