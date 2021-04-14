@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "501d0b09_66660164",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-14T14:17:22Z",
+      "side": 1,
+      "message": "LGTM\n\nThough you probably need to reformat a line to pass presubmit.",
+      "revId": "7a517a00d34e2d17b0a64e5db15615e25f045987",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
