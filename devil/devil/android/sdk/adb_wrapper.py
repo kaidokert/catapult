@@ -129,7 +129,7 @@ def _IsExtraneousLine(line, send_cmd):
   return send_cmd.rstrip() in line
 
 
-@decorators.WithExplicitTimeoutAndRetries(timeout=30, retries=3)
+@decorators.WithExplicitTimeoutAndRetries(timeout=60, retries=3)
 def RestartServer():
   """Restarts the adb server.
 
@@ -144,6 +144,7 @@ def RestartServer():
     return AdbWrapper.IsServerOnline()
 
   AdbWrapper.KillServer()
+
   if not timeout_retry.WaitFor(adb_killed, wait_period=1, max_tries=5):
     # TODO(crbug.com/442319): Switch this to raise an exception if we
     # figure out why sometimes not all adb servers on bots get killed.
