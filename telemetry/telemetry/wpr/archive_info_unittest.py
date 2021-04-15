@@ -6,6 +6,7 @@ import os
 import shutil
 import tempfile
 import unittest
+from io import open
 import six
 import mock
 

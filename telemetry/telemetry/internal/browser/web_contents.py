@@ -4,6 +4,7 @@
 
 import os
 import six
+from io import open
 
 from telemetry.core import exceptions
 

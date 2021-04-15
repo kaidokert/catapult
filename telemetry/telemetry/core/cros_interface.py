@@ -11,6 +11,7 @@ import stat
 import subprocess
 import tempfile
 import time
+from io import open
 
 from devil.utils import cmd_helper
 from telemetry.util import cmd_util

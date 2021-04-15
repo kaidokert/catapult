@@ -4,6 +4,7 @@
 
 import os
 import posixpath
+from io import open
 
 from telemetry.testing import browser_backend_test_case
 from telemetry import decorators

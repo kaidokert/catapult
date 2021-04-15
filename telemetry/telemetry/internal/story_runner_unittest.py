@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 import logging
+from io import open
 
 import mock
 

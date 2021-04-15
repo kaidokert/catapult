@@ -6,6 +6,7 @@ import optparse
 import os
 import logging
 import re
+from io import open
 
 from telemetry.story import typ_expectations
 

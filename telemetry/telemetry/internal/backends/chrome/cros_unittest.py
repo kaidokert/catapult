@@ -5,6 +5,7 @@
 import logging
 import os
 import tempfile
+from io import open
 
 from telemetry.core import exceptions
 from telemetry import decorators

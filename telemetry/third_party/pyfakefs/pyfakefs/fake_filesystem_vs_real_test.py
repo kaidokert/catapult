@@ -25,6 +25,7 @@ import sys
 import tempfile
 import time
 import sys
+from io import open
 if sys.version_info < (2, 7):
     import unittest2 as unittest
 else:

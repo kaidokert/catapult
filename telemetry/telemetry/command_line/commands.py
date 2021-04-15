@@ -8,6 +8,7 @@ import json
 import logging
 import optparse
 import sys
+from io import open
 
 from telemetry import benchmark
 from telemetry.internal.browser import browser_finder

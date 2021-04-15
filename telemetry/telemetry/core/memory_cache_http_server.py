@@ -18,6 +18,7 @@ import sys
 import traceback
 import urlparse
 
+from io import open
 from telemetry.core import local_server
 
 ByteRange = namedtuple('ByteRange', ['from_byte', 'to_byte'])

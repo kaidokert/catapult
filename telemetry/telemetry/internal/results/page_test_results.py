@@ -10,6 +10,7 @@ import posixpath
 import shutil
 import time
 import traceback
+from io import open
 import six
 
 from telemetry.internal.results import artifact_logger

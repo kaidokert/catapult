@@ -41,6 +41,7 @@ was eliminated in Python 3.
 import os
 import glob
 import shutil
+from io import open
 
 def create_file(path):
     '''Create the specified file and add some content to it.  Use the `open()`

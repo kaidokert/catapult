@@ -9,6 +9,7 @@ import os
 import sys
 import traceback
 import uuid
+from io import open
 
 from py_trace_event import trace_event
 from telemetry.internal.platform.tracing_agent import atrace_tracing_agent
