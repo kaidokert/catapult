@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2e3130_01e2d035",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-04-15T00:39:34Z",
+      "side": 1,
+      "message": "Nit: missing the word “be”\n\n… may not be in the …\n\nI\u0027d actually be ok with omitting this comment, it\u0027s clear enough now that this code deliberately accepts digests without sizeBytes/size_bytes.",
+      "range": {
+        "startLine": 44,
+        "startChar": 27,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "edd8b240e02c77ad65d1ef83c390e739c5e277de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
