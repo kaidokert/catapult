@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ae92ca_3841c81d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-15T17:00:10Z",
+      "side": 1,
+      "message": "This warning causes presubmit error, and will prevent the CL from going through. Adding \"from six.moves import zip\" isn\u0027t really necessary. It just improves perf on Python 2 in some scenarios. To work around the presubmit error, let\u0027s don\u0027t add this import for now. The only file that still needs to be changed is png.py.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 55
+      },
+      "revId": "b869bed1be17a42fc05637cf5da829970261fca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0406ab51_0f024ef2",
