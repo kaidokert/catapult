@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "73342fb9_04d1f119",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-15T19:11:59Z",
+      "side": 1,
+      "message": "SGTM. Thanks!",
+      "parentUuid": "32ae92ca_3841c81d",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 55
+      },
+      "revId": "b869bed1be17a42fc05637cf5da829970261fca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0406ab51_0f024ef2",
