@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b963ef_3dad75f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-04-15T17:44:02Z",
+      "side": 1,
+      "message": "Hi\n\nThis CL adds a adb restart after time out\u0027s that occur during system app modification.\n\nPTAL\nRakib ",
+      "revId": "16c0cd77f1735e6c59d050c2c20ac556331e75ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
