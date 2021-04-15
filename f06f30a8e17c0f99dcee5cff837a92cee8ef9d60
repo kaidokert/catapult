@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85726896_06bf0ef7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-15T00:02:05Z",
+      "side": 1,
+      "message": "PTAL. This CL also includes some manual changes on run_browser_tests.py. ",
+      "revId": "f06f30a8e17c0f99dcee5cff837a92cee8ef9d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5c79529_c5a14da4",
+        "filename": "telemetry/telemetry/testing/run_browser_tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-15T00:02:05Z",
+      "side": 1,
+      "message": "Modernize suggests using:\n\nimport six.moves import filter\n\ntest_cases \u003d list(filter(post_test_filter_matcher, test_cases))\n\nI think it is more straightforward to use the same format with the other change and I did in that way.",
+      "range": {
+        "startLine": 157,
+        "startChar": 17,
+        "endLine": 157,
+        "endChar": 71
+      },
+      "revId": "f06f30a8e17c0f99dcee5cff837a92cee8ef9d60",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
