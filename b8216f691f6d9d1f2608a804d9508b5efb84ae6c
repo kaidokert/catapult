@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "779f47c0_fd78af52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-15T22:11:49Z",
+      "side": 1,
+      "message": "This is a tough call. We can\u0027t submit this CL until pylint is updated. Replacing open with io.open also creates some issues that need to be fixed first.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 66
+      },
+      "revId": "b8216f691f6d9d1f2608a804d9508b5efb84ae6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e34be9_805eb723",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-15T22:11:49Z",
+      "side": 1,
+      "message": "This is a tough call. ",
+      "revId": "b8216f691f6d9d1f2608a804d9508b5efb84ae6c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
