@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c4ff8d3_0eef71c2",
+        "filename": "devil/devil/android/sdk/adb_compatibility_devicetest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T17:05:04Z",
+      "side": 1,
+      "message": "I did give it a try. But it will hang there forever, for both run_py_tests and run_py_devicetests.",
+      "parentUuid": "1b577c11_4183d5c1",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 0
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "429fe35d_c47b8f0c",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-04-13T02:34:49Z",
       "side": 1,
       "message": "Can you add\n\n  from __future__ import print_function\n\nhere and in the other files with \"print()\"? I think this should resolve the pylint errors.",
+      "range": {
+        "startLine": 210,
+        "startChar": 4,
+        "endLine": 210,
+        "endChar": 40
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "731ff3af_6ffa03de",
+        "filename": "devil/devil/android/sdk/adb_compatibility_devicetest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T17:05:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "429fe35d_c47b8f0c",
       "range": {
         "startLine": 210,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af6097d_e1c64b90",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T17:05:04Z",
+      "side": 1,
+      "message": "Right, so the actual type indicator we should pass is based on the requirement of the tool \u0027content update\u0027. So I update it here to align with old behavior, and use the fact that at android side int is always 4 bytes(Java).",
+      "parentUuid": "ef5b17fb_48b9be57",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 18
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3b68baf_8e35a363",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-04-13T02:34:49Z",
       "side": 1,
       "message": "Is there a reason we need this?",
+      "range": {
+        "startLine": 175,
+        "startChar": 43,
+        "endLine": 175,
+        "endChar": 53
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9071263_185a8e13",
+        "filename": "devil/devil/android/tools/video_recorder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T17:05:04Z",
+      "side": 1,
+      "message": "Because at line 173, there is a comma to the end. That indicates the print function should not start a new line. So I just try to keep old behaviors.",
+      "parentUuid": "f3b68baf_8e35a363",
       "range": {
         "startLine": 175,
         "startChar": 43,
