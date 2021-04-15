@@ -242,9 +242,7 @@ def _RelocateApp(device, package_name, relocate_to):
         p: posixpath.join(relocate_to, posixpath.relpath(p, '/'))
         for p in system_package_paths
     }
-    relocation_dirs = [
-        posixpath.dirname(d) for _, d in relocation_map.iteritems()
-    ]
+    relocation_dirs = [posixpath.dirname(d) for _, d in relocation_map.items()]
     device.RunShellCommand(['mkdir', '-p'] + relocation_dirs, check_return=True)
     _MoveApp(device, relocation_map)
   else:
@@ -253,7 +251,7 @@ def _RelocateApp(device, package_name, relocate_to):
   try:
     yield
   finally:
-    _MoveApp(device, {v: k for k, v in relocation_map.iteritems()})
+    _MoveApp(device, {v: k for k, v in relocation_map.items()})
 
 
 @contextlib.contextmanager
@@ -277,7 +275,7 @@ def _MoveApp(device, relocation_map):
     device: (device_utils.DeviceUtils)
     relocation_map: (dict) A dict that maps src to dest
   """
-  movements = ['mv %s %s' % (k, v) for k, v in relocation_map.iteritems()]
+  movements = ['mv %s %s' % (k, v) for k, v in relocation_map.items()]
   cmd = ' && '.join(movements)
   with EnableSystemAppModification(device):
     device.RunShellCommand(cmd, as_root=True, check_return=True, shell=True)
