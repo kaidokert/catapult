@@ -39,6 +39,30 @@
       },
       "revId": "fbccbd648271629f54791398bb2851ebb407ffa6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cece76a1_28be345e",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-04-15T18:21:36Z",
+      "side": 1,
+      "message": "The logger.exception method prints the stack trace as well as any exception message to the log, https://docs.python.org/2.7/library/logging.html#logging.Logger.exception",
+      "parentUuid": "1a0de171_ac916262",
+      "range": {
+        "startLine": 138,
+        "startChar": 33,
+        "endLine": 138,
+        "endChar": 42
+      },
+      "revId": "fbccbd648271629f54791398bb2851ebb407ffa6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
