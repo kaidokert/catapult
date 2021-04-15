@@ -22,6 +22,30 @@
       },
       "revId": "edd8b240e02c77ad65d1ef83c390e739c5e277de",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1fb6656_2dd2ee03",
+        "filename": "dashboard/dashboard/services/cas_service.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-15T00:52:19Z",
+      "side": 1,
+      "message": "Yes...the code providing the default value is not far away. Omitted, thanks.",
+      "parentUuid": "cb2e3130_01e2d035",
+      "range": {
+        "startLine": 44,
+        "startChar": 27,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "edd8b240e02c77ad65d1ef83c390e739c5e277de",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
