@@ -8,6 +8,7 @@ import pkgutil
 import pydoc
 import re
 import sys
+from io import open
 
 import telemetry
 from telemetry.core import util

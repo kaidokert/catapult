@@ -12,6 +12,7 @@ import re
 import stat
 import subprocess
 import sys
+from io import open
 
 from telemetry.internal.platform import desktop_platform_backend
 

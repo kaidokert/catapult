@@ -8,6 +8,7 @@ import os
 import shutil
 import stat
 import tempfile
+from io import open
 
 from py_utils import atexit_with_log
 

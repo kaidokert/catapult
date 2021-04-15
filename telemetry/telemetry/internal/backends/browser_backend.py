@@ -11,6 +11,7 @@ import tempfile
 import threading
 import time
 
+from io import open
 from datetime import datetime
 from py_utils import cloud_storage  # pylint: disable=import-error
 

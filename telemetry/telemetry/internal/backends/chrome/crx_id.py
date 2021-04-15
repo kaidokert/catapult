@@ -13,6 +13,7 @@ import base64
 import os
 import hashlib
 import json
+from io import open
 
 EXPECTED_CRX_MAGIC_NUM = 'Cr24'
 EXPECTED_CRX_VERSION = 2

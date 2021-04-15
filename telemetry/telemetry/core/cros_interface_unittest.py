@@ -11,6 +11,7 @@ import shutil
 import socket
 import tempfile
 import unittest
+from io import open
 import mock
 
 from devil.utils import cmd_helper

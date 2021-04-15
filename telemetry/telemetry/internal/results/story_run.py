@@ -10,6 +10,7 @@ import numbers
 import os
 import posixpath
 import time
+from io import open
 import six
 
 

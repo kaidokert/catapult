@@ -8,6 +8,7 @@ import os
 import shutil
 import tempfile
 import time
+from io import open
 
 from py_utils import cloud_storage  # pylint: disable=import-error
 

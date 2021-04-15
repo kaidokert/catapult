@@ -106,6 +106,7 @@ import os
 import warnings
 
 from altgraph import GraphError
+from io import open
 
 
 class Dot(object):

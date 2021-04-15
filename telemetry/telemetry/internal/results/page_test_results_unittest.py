@@ -7,6 +7,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from io import open
 
 import mock
 

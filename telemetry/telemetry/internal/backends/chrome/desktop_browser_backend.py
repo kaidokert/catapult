@@ -15,6 +15,7 @@ import signal
 import subprocess as subprocess
 import sys
 import tempfile
+from io import open
 
 import py_utils
 from py_utils import cloud_storage

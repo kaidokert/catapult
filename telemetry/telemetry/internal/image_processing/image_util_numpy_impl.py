@@ -5,6 +5,7 @@
 from __future__ import division
 
 import warnings
+from io import open
 
 from telemetry.internal.util import external_modules
 from telemetry.util import color_histogram

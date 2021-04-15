@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 """A helper for common operations in ssh forwarding"""
 import re
+from io import open
 
 import py_utils
 

@@ -6,6 +6,7 @@ import logging
 import os
 import re
 import subprocess
+from io import open
 
 from telemetry.internal.backends.chrome import minidump_symbolizer
 from telemetry.internal.util import local_first_binary_manager

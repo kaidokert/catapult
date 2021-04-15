@@ -13,6 +13,7 @@ import re
 import subprocess
 import sys
 import time
+from io import open
 
 from telemetry.core import util
 

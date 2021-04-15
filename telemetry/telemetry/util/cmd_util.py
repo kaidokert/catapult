@@ -6,6 +6,7 @@
 import logging
 import os
 import subprocess
+from io import open
 
 
 def RunCmd(args, cwd=None, quiet=False):

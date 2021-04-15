@@ -6,6 +6,7 @@ import shutil
 import tarfile
 import tempfile
 import unittest
+from io import open
 
 from telemetry.core import fuchsia_interface
 from telemetry.internal.browser import browser_options

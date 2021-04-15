@@ -5,6 +5,7 @@
 import os
 import timeit
 import unittest
+from io import open
 
 from telemetry.internal.backends.chrome_inspector import tracing_backend
 from telemetry.testing import fakes

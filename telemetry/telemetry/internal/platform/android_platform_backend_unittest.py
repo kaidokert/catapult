@@ -4,6 +4,7 @@
 
 import os
 import unittest
+from io import open
 
 from telemetry import decorators
 from telemetry.core import util

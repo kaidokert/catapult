@@ -14,6 +14,7 @@ import re
 import sys
 import os
 import pprint
+from io import open
 
 import_re = re.compile('PyImport_ImportModule\w+\("(\w+)"\);')
 

@@ -4,6 +4,7 @@
 
 import os
 import unittest
+from io import open
 
 from telemetry.core import util
 from telemetry.internal.platform import linux_based_platform_backend

@@ -166,6 +166,7 @@ And now, my famous members
 from __future__ import generators
 
 from __future__ import print_function
+from io import open
 __version__ = "$URL$ $Rev$"
 
 from array import array

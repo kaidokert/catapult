@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import os
+from io import open
 
 
 def InjectJavaScript(tab, js_file_name):

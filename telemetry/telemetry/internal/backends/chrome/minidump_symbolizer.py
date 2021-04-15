@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from io import open
 
 from dependency_manager import exceptions as dependency_exceptions
 from telemetry.internal.util import local_first_binary_manager
