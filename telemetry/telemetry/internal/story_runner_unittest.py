@@ -9,6 +9,7 @@ import sys
 import tempfile
 import unittest
 import logging
+from six.moves import zip
 
 import mock
 

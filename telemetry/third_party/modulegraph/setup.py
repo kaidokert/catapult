@@ -26,6 +26,7 @@ import sys
 import time
 import tempfile
 import tarfile
+from six.moves import zip
 try:
     import urllib.request as urllib
 except ImportError:

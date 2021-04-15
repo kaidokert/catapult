@@ -7,6 +7,7 @@
 from __future__ import division
 
 import collections
+from six.moves import zip
 
 from telemetry.internal.util import external_modules
 

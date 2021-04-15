@@ -5,6 +5,7 @@
 # pylint: disable=too-many-lines
 
 import unittest
+from six.moves import zip
 
 import telemetry.timeline.counter as tracing_counter
 import telemetry.timeline.model as timeline_model

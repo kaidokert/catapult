@@ -4,6 +4,7 @@
 
 import subprocess
 
+from six.moves import zip
 from py_utils import cloud_storage  # pylint: disable=import-error
 
 from telemetry.core import platform
