@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cedbf14a_d56c82ee",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T23:18:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2c4abec_1ddcf370",
+      "range": {
+        "startLine": 132,
+        "startChar": 2,
+        "endLine": 132,
+        "endChar": 29
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f79fb247_2428ba81",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-15T17:36:56Z",
       "side": 1,
       "message": "Can we factor this out as a named constant? Maybe python already has a named constant we can use from the standard library.",
+      "range": {
+        "startLine": 144,
+        "startChar": 30,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9fe6833_f4c798a7",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T23:18:20Z",
+      "side": 1,
+      "message": "Did not find one in python standard lib. So defined one, _JAVA_MAX_INT",
+      "parentUuid": "f79fb247_2428ba81",
       "range": {
         "startLine": 144,
         "startChar": 30,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a4007d_9ba61575",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T23:18:20Z",
+      "side": 1,
+      "message": "six.string_types is basestring for py2, and str for py3. So change to string_types only changes py2 behavior. Py3 equivalent to str in py2 is \u0027bytes\u0027. But let\u0027s keep this as str for now.",
+      "parentUuid": "4d99d4db_ec696798",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 30
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abab7b46_7469348e",
@@ -100,6 +172,30 @@
       "writtenOn": "2021-04-15T17:36:56Z",
       "side": 1,
       "message": "You don\u0027t need this anymore",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "750e235d_38a04e3a",
+        "filename": "devil/devil/android/tools/video_recorder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T23:18:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abab7b46_7469348e",
       "range": {
         "startLine": 15,
         "startChar": 0,

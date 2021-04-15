@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59cbe99c_b2581e63",
+        "filename": "devil/devil/android/sdk/adb_compatibility_devicetest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-04-15T23:18:20Z",
+      "side": 1,
+      "message": "Is there any document on how to run devicetests?",
+      "parentUuid": "7d30926d_e50cfed8",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 0
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "429fe35d_c47b8f0c",
