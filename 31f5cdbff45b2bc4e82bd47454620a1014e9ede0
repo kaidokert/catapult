@@ -48,6 +48,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d30926d_e50cfed8",
+        "filename": "devil/devil/android/sdk/adb_compatibility_devicetest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "Ok, we should add the devicetests to presubmit in a follow-up then.",
+      "parentUuid": "2c4ff8d3_0eef71c2",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 0
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "429fe35d_c47b8f0c",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "Because at line 173, there is a comma to the end. That indicates the print function should not start a new line. So I just try to keep old behaviors.",
       "parentUuid": "f3b68baf_8e35a363",
+      "range": {
+        "startLine": 175,
+        "startChar": 43,
+        "endLine": 175,
+        "endChar": 53
+      },
+      "revId": "31f5cdbff45b2bc4e82bd47454620a1014e9ede0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7723cce9_87b53ec8",
+        "filename": "devil/devil/android/tools/video_recorder.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "Ah, I didn\u0027t realize that\u0027s what the trailing comma meant. The print function makes this much clearer, thanks!",
+      "parentUuid": "d9071263_185a8e13",
       "range": {
         "startLine": 175,
         "startChar": 43,

@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e7d00df_e3d31138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "LGTM % comments",
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c4abec_1ddcf370",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "suggestion: I think it would improve the code to add a method docstring to explain the output is supposed to represent a Java type (rather than a python type).\n\n  \"\"\"Maps a value to a Java type which can represent it.\n\n  This is based on the type of the data in python, but the types of the two languages don\u0027t always map 1:1.\n   \"\"\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 2,
+        "endLine": 132,
+        "endChar": 29
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79fb247_2428ba81",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "Can we factor this out as a named constant? Maybe python already has a named constant we can use from the standard library.",
+      "range": {
+        "startLine": 144,
+        "startChar": 30,
+        "endLine": 144,
+        "endChar": 40
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d99d4db_ec696798",
+        "filename": "devil/devil/android/settings.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "Does this need to be:\n\n  isinstance(value, six.string_types)\n\n?",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 30
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abab7b46_7469348e",
+        "filename": "devil/devil/android/tools/video_recorder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-04-15T17:36:56Z",
+      "side": 1,
+      "message": "You don\u0027t need this anymore",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "bb01139cd905e8ff3aeb413ed248e7f6de0d4a33",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
