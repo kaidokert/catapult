@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d93b96d_cd3e524e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-04-15T22:09:16Z",
+      "side": 1,
+      "message": "Hi\n\nThis CL adds a sanity check for if the device is fully booted before tearing down the system modification.\n\nPTAL\nRakib",
+      "revId": "7d76618c22433d37eb04b8d90e94d6462ab4e647",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
