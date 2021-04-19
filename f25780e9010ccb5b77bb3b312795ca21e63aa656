@@ -16,6 +16,23 @@
       "message": "Fix print statements in catapult/common folder. PTAL. (I need these dependency changes while working on tools/perf.)",
       "revId": "f25780e9010ccb5b77bb3b312795ca21e63aa656",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c47f8364_771f86c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-19T21:43:46Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "f25780e9010ccb5b77bb3b312795ca21e63aa656",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
