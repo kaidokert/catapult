@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2199e411_301ec793",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-20T02:25:33Z",
+      "side": 1,
+      "message": "This is going to decode the data in memory and return the string. Is there a better way we can avoid having to do this work eagerly? I\u0027m a bit worried that we\u0027ll be base64-decoding something that\u0027s potentially hundreds of megabytes large and cause the AppEngine process to be terminated with an OOM error.",
+      "range": {
+        "startLine": 366,
+        "startChar": 2,
+        "endLine": 366,
+        "endChar": 34
+      },
+      "revId": "2e1253f88f0c2901c7f700a51caa15b3cc7357ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
