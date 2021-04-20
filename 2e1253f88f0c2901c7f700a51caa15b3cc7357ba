@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e602ed03_cbda7556",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-20T04:04:02Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "2e1253f88f0c2901c7f700a51caa15b3cc7357ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2199e411_301ec793",
@@ -38,6 +55,30 @@
       "side": 1,
       "message": "I don\u0027t find a way to streaming parse the base64 data. It\u0027s easy to implement a base64 streaming parser, but maybe in a seperate CL.",
       "parentUuid": "2199e411_301ec793",
+      "range": {
+        "startLine": 366,
+        "startChar": 2,
+        "endLine": 366,
+        "endChar": 34
+      },
+      "revId": "2e1253f88f0c2901c7f700a51caa15b3cc7357ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58fe235e_3e70a1fb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-20T04:04:02Z",
+      "side": 1,
+      "message": "Ah, my bad. There\u0027s https://pypi.org/project/base64io/ but we can\u0027t depend on it unless we vendor it ourselves (which isn\u0027t a bad idea, especially if it will be useful in other cases too).",
+      "parentUuid": "0582238d_f69222cf",
       "range": {
         "startLine": 366,
         "startChar": 2,
