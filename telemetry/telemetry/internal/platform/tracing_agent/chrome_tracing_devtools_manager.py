@@ -1,3 +1,4 @@
+import six
 # Copyright 2015 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -14,7 +15,7 @@ def _RemoveStaleDevToolsClient(platform_backend):
       platform_backend, {})
   devtools_clients_map = {
       port: client
-      for port, client in devtools_clients_map.iteritems()
+      for port, client in six.iteritems(devtools_clients_map)
       if client.IsAlive()
       }
   _platform_backends_to_devtools_clients_maps[platform_backend] = (
@@ -38,7 +39,7 @@ def GetDevToolsClients(platform_backend):
       platform_backend, {})
   if not devtools_clients_map:
     return []
-  return devtools_clients_map.values()
+  return list(devtools_clients_map.values())
 
 def GetActiveDevToolsClients(platform_backend):
   """Get DevTools clients that are still connectable."""
