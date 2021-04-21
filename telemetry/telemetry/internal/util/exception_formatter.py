@@ -10,6 +10,7 @@ import math
 import os
 import sys
 import traceback
+import six
 
 from telemetry.core import exceptions
 
@@ -74,7 +75,7 @@ def _PrintFormattedTrace(processed_tb, frame, exception_string=None):
 
   # Format the locals.
   local_variables = [(variable, value) for variable, value in
-                     frame.f_locals.iteritems() if variable != 'self']
+                     six.iteritems(frame.f_locals) if variable != 'self']
   print(file=sys.stderr)
   print('Locals:', file=sys.stderr)
   if local_variables:
