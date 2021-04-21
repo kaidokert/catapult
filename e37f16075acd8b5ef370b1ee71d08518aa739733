@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84185dbb_30c74216",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T21:06:14Z",
+      "side": 1,
+      "message": "Looks like all changes on png.py are not needed. Now leaving this file unchanged by this CL.",
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1197e291_c768eaed",
@@ -31,6 +48,30 @@
       "writtenOn": "2021-04-21T20:38:22Z",
       "side": 1,
       "message": "Nit: reversed function can take a range object, thus no need to convert to list first. Same for line 1656.",
+      "range": {
+        "startLine": 1631,
+        "startChar": 48,
+        "endLine": 1631,
+        "endChar": 74
+      },
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30209d0d_6830ba2a",
+        "filename": "telemetry/third_party/png/png.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1631,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T21:06:14Z",
+      "side": 1,
+      "message": "Updated. Thanks!",
+      "parentUuid": "1197e291_c768eaed",
       "range": {
         "startLine": 1631,
         "startChar": 48,
@@ -64,6 +105,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "076d1620_f38a236c",
+        "filename": "telemetry/third_party/png/png.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2522,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T21:06:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aeb4748_52f80389",
+      "range": {
+        "startLine": 2522,
+        "startChar": 54,
+        "endLine": 2522,
+        "endChar": 58
+      },
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "836fd40d_ad1f9a57",
@@ -77,6 +142,30 @@
       "writtenOn": "2021-04-21T20:38:22Z",
       "side": 1,
       "message": "Not needed.",
+      "range": {
+        "startLine": 2537,
+        "startChar": 36,
+        "endLine": 2537,
+        "endChar": 40
+      },
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c3852a6_fdb53490",
+        "filename": "telemetry/third_party/png/png.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2537,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T21:06:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "836fd40d_ad1f9a57",
       "range": {
         "startLine": 2537,
         "startChar": 36,
