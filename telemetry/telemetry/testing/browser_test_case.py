@@ -37,7 +37,7 @@ class _MetaBrowserTestCase(type):
     def WrappedMethod(self):
       try:  # pylint: disable=broad-except
         method(self)
-      except Exception:
+      except Exception: # pylint: disable=broad-except
         exc_info = sys.exc_info()
 
         if self._browser:
@@ -48,7 +48,7 @@ class _MetaBrowserTestCase(type):
         # Re-raise the original exception. Note that we can't just use 'raise'
         # without any arguments because an exception might have been thrown when
         # dumping the state of the browser.
-        raise exc_info[0], exc_info[1], exc_info[2]
+        six.reraise(exc_info[0], exc_info[1], exc_info[2])
     return WrappedMethod
 
 

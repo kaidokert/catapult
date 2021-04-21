@@ -67,10 +67,11 @@ def GetPlatformForDevice(device, finder_options, logging=real_logging):
                                                            finder_options))
         return _REMOTE_PLATFORMS[device.guid]
     return None
-  except Exception:
+  except Exception: # pylint: disable=broad-except
     current_exception = sys.exc_info()
     logging.error('Fail to create platform instance for %s.', device.name)
-    raise current_exception[0], current_exception[1], current_exception[2]
+    six.reraise(
+        current_exception[0], current_exception[1], current_exception[2])
 
 
 class Platform(object):
