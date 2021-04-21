@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0222f1aa_24c62a5c",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/inspector_page.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T05:47:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6f70c4_36b09093",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "f532d08b83b9bceb7deec9f251aa72c0b9a3b159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61a1db03_4e6aca2f",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-04-21T01:16:33Z",
       "side": 1,
       "message": "Should be place after copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "f532d08b83b9bceb7deec9f251aa72c0b9a3b159",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d69f524_ba7ff447",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_tracing_devtools_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T05:47:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a1db03_4e6aca2f",
       "range": {
         "startLine": 1,
         "startChar": 0,
