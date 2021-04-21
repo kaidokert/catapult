@@ -1628,7 +1628,7 @@ class Reader:
             spb = 8 // self.bitdepth
             out = array('B')
             mask = 2**self.bitdepth - 1
-            shifts = map(self.bitdepth.__mul__, reversed(range(spb)))
+            shifts = map(self.bitdepth.__mul__, reversed(list(range(spb))))
             for o in raw:
                 out.extend(map(lambda i: mask&(o>>i), shifts))
             return out[:width]
@@ -1653,7 +1653,7 @@ class Reader:
         spb = 8 // self.bitdepth
         out = array('B')
         mask = 2**self.bitdepth - 1
-        shifts = map(self.bitdepth.__mul__, reversed(range(spb)))
+        shifts = map(self.bitdepth.__mul__, reversed(list(range(spb))))
         l = width
         for o in bytes:
             out.extend([(mask&(o>>s)) for s in shifts][:l])
@@ -2519,13 +2519,13 @@ class Test(unittest.TestCase):
         # tested.  Making it a test for Issue 20.
         w = Writer(15, 17, greyscale=True, bitdepth=n, chunk_limit=99)
         f = BytesIO()
-        w.write_array(f, array('B', map(mask.__and__, range(1, 256))))
+        w.write_array(f, array('B', map(mask.__and__, list(range(1, 256)))))
         r = Reader(bytes=f.getvalue())
         x, y, pixels, meta = r.read()
         self.assertEqual(x, 15)
         self.assertEqual(y, 17)
         self.assertEqual(list(itertools.chain(*pixels)),
-                         map(mask.__and__, range(1, 256)))
+                         map(mask.__and__, list(range(1, 256))))
     def testL8(self):
         return self.helperLN(8)
     def testL4(self):
@@ -2534,7 +2534,7 @@ class Test(unittest.TestCase):
         "Also tests asRGB8."
         w = Writer(1, 4, greyscale=True, bitdepth=2)
         f = BytesIO()
-        w.write_array(f, array('B', range(4)))
+        w.write_array(f, array('B', list(range(4))))
         r = Reader(bytes=f.getvalue())
         x, y, pixels, meta = r.asRGB8()
         self.assertEqual(x, 1)
@@ -2861,7 +2861,7 @@ class Test(unittest.TestCase):
         img = from_array([[0, 0x33, 0x66], [0xff, 0xcc, 0x99]], 'L')
         img.save('testfromarray.png')
     def testfromarrayL16(self):
-        img = from_array(group(range(2**16), 256), 'L;16')
+        img = from_array(group(list(range(2**16)), 256), 'L;16')
         img.save('testL16.png')
     def testfromarrayRGB(self):
         img = from_array([[0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1],
@@ -2889,7 +2889,7 @@ class Test(unittest.TestCase):
             print("skipping numpy test", file=sys.stderr)
             return
 
-        rows = [map(numpy.uint16, range(0, 0x10000, 0x5555))]
+        rows = [map(numpy.uint16, list(range(0, 0x10000, 0x5555)))]
         b = topngbytes('numpyuint16.png', rows, 4, 1,
             greyscale=True, alpha=False, bitdepth=16)
     def testNumpyuint8(self):
@@ -2901,7 +2901,7 @@ class Test(unittest.TestCase):
             print("skipping numpy test", file=sys.stderr)
             return
 
-        rows = [map(numpy.uint8, range(0, 0x100, 0x55))]
+        rows = [map(numpy.uint8, list(range(0, 0x100, 0x55)))]
         b = topngbytes('numpyuint8.png', rows, 4, 1,
             greyscale=True, alpha=False, bitdepth=8)
     def testNumpybool(self):
@@ -3820,7 +3820,7 @@ def _main(argv):
         # care about TUPLTYPE.
         greyscale = depth <= 2
         pamalpha = depth in (2, 4)
-        supported = map(lambda x: 2**x-1, range(1, 17))
+        supported = map(lambda x: 2**x-1, list(range(1, 17)))
         try:
             mi = supported.index(maxval)
         except ValueError:

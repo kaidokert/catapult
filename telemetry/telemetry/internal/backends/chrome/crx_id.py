@@ -21,7 +21,7 @@ EXPECTED_CRX_VERSION = 2
 def HexToInt(hex_chars):
   """ Convert bytes like \xab -> 171 """
   val = 0
-  for i in xrange(len(hex_chars)):
+  for i, _ in enumerate(hex_chars):
     val += pow(256, i) * ord(hex_chars[i])
   return val
 
@@ -31,7 +31,7 @@ def HexToMPDecimal(hex_chars):
   """
   result = ''
   base = ord('a')
-  for i in xrange(len(hex_chars)):
+  for i, _ in enumerate(hex_chars):
     value = ord(hex_chars[i])
     dig1 = value // 16
     dig2 = value % 16
@@ -44,7 +44,7 @@ def HexTo256(hex_chars):
       The format is taylored for copy and paste into C code:
       const uint8 sha256_hash[] = { ... }; """
   result = []
-  for i in xrange(len(hex_chars)):
+  for i, _ in enumerate(hex_chars):
     value = ord(hex_chars[i])
     dig1 = value // 16
     dig2 = value % 16

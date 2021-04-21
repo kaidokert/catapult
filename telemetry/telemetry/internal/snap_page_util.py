@@ -75,7 +75,7 @@ def _FetchImages(image_dir, frame_number, external_images):
   print('Fetching external images [local_dir=%s, frame_number=%d, '
         'image_count=%d].' % (image_dir, frame_number, image_count))
 
-  for i in xrange(image_count):
+  for i in range(image_count):
     [element_id, image_url] = external_images[i]
     _, image_file_extension = os.path.splitext(image_url)
     # Strip any query param and all subsequent characters. Note that
@@ -172,7 +172,7 @@ def _SnapPageToFile(finder_options, url, interactive, snapshot_path,
 
     # Sending all the serialized doms back to tab execution context.
     tab.ExecuteJavaScript('var serializedDoms = [];')
-    for i in xrange(len(serialized_doms)):
+    for i, _ in enumerate(serialized_doms):
       sys.stdout.write('Processing dom of frame #%i / %i\r' %
                        (i, len(serialized_doms)))
       sys.stdout.flush()
@@ -187,7 +187,7 @@ def _SnapPageToFile(finder_options, url, interactive, snapshot_path,
 
     print('Writing page snapshot [path=%s].' % snapshot_path)
     snapshot_file.write(page_snapshot)
-    for i in xrange(len(external_images)):
+    for i, _ in enumerate(external_images):
       _FetchImages(image_dir, i, external_images[i])
 
 
