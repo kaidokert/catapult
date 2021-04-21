@@ -1,4 +1,4 @@
-import urllib2
+import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
 
 def div(a, b):
     try:
