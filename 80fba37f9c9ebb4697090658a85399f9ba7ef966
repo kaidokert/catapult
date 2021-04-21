@@ -16,6 +16,69 @@
       "message": "PTAL.",
       "revId": "80fba37f9c9ebb4697090658a85399f9ba7ef966",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f7c595_1c40eda7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T21:44:01Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "80fba37f9c9ebb4697090658a85399f9ba7ef966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0102812_0b0a8cac",
+        "filename": "telemetry/telemetry/core/platform.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T21:44:01Z",
+      "side": 1,
+      "message": "The preferred method is raise statement without any arguments. This also eliminates the need to get current_exception above.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 73
+      },
+      "revId": "80fba37f9c9ebb4697090658a85399f9ba7ef966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a981b52c_95d891a8",
+        "filename": "telemetry/telemetry/testing/browser_test_case.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T21:44:01Z",
+      "side": 1,
+      "message": "Use raise without arguments.",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 58
+      },
+      "revId": "80fba37f9c9ebb4697090658a85399f9ba7ef966",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
