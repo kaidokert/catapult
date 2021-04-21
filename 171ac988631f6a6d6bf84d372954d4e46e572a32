@@ -22,6 +22,168 @@
       },
       "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c86374b_3478b962",
+        "filename": "telemetry/telemetry/internal/backends/chrome/crx_id.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "Update. Also removed the usage of enumerate on line 33 and 46.",
+      "parentUuid": "ae0a79e4_f2600e5f",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80481260_3af993de",
+        "filename": "telemetry/telemetry/internal/image_processing/screen_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "Update here as well.",
+      "range": {
+        "startLine": 362,
+        "startChar": 42,
+        "endLine": 362,
+        "endChar": 61
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0751b76b_72e9b9cb",
+        "filename": "telemetry/telemetry/internal/image_processing/screen_finder.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "Leaving this unchanged to easier reading with x_range[i].",
+      "range": {
+        "startLine": 470,
+        "startChar": 36,
+        "endLine": 470,
+        "endChar": 46
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd0b8615_cbb1a0c9",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "Update the usage.",
+      "range": {
+        "startLine": 175,
+        "startChar": 16,
+        "endLine": 175,
+        "endChar": 25
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f77d92_e9fecf17",
+        "filename": "telemetry/telemetry/internal/snap_page_util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "Updated the usage.",
+      "range": {
+        "startLine": 190,
+        "startChar": 16,
+        "endLine": 190,
+        "endChar": 25
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "734e863c_3fe1f7f4",
+        "filename": "telemetry/telemetry/util/statistics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "updated.",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 16
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "911e201a_ec35ed2d",
+        "filename": "telemetry/telemetry/util/statistics.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "updated",
+      "range": {
+        "startLine": 84,
+        "startChar": 13,
+        "endLine": 84,
+        "endChar": 18
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

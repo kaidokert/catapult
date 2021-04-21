@@ -22,6 +22,30 @@
       },
       "revId": "697369d599e47d3c081f5e724e1f29b3e7a61ff8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b05bdcaf_1112d919",
+        "filename": "telemetry/telemetry/internal/browser/browser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-21T20:10:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36c570c2_65976b46",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 36
+      },
+      "revId": "697369d599e47d3c081f5e724e1f29b3e7a61ff8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
