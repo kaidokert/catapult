@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e52023e_61b1a130",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T20:38:22Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1197e291_c768eaed",
+        "filename": "telemetry/third_party/png/png.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1631,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T20:38:22Z",
+      "side": 1,
+      "message": "Nit: reversed function can take a range object, thus no need to convert to list first. Same for line 1656.",
+      "range": {
+        "startLine": 1631,
+        "startChar": 48,
+        "endLine": 1631,
+        "endChar": 74
+      },
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aeb4748_52f80389",
+        "filename": "telemetry/third_party/png/png.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2522,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T20:38:22Z",
+      "side": 1,
+      "message": "Nit: Not needed. map function can take an iterator. Same on 2528.",
+      "range": {
+        "startLine": 2522,
+        "startChar": 54,
+        "endLine": 2522,
+        "endChar": 58
+      },
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836fd40d_ad1f9a57",
+        "filename": "telemetry/third_party/png/png.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 2537,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T20:38:22Z",
+      "side": 1,
+      "message": "Not needed.",
+      "range": {
+        "startLine": 2537,
+        "startChar": 36,
+        "endLine": 2537,
+        "endChar": 40
+      },
+      "revId": "e37f16075acd8b5ef370b1ee71d08518aa739733",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
