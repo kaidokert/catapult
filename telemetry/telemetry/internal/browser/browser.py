@@ -75,7 +75,7 @@ class Browser(app.App):
 
   @property
   def foreground_tab(self):
-    for i in xrange(len(self._tabs)):
+    for i in range(len(self._tabs)):
       # The foreground tab is the first (only) one that isn't hidden.
       # This only works through luck on Android, due to crbug.com/322544
       # which means that tabs that have never been in the foreground return

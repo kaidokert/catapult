@@ -296,7 +296,7 @@ def RunStorySet(test, story_set, finder_options, results,
   # pylint: disable=too-many-nested-blocks
   try:
     pageset_repeat = finder_options.pageset_repeat
-    for storyset_repeat_counter in xrange(pageset_repeat):
+    for storyset_repeat_counter in range(pageset_repeat):
       for story in stories:
         if not state:
           # Construct shared state by using a copy of finder_options. Shared
