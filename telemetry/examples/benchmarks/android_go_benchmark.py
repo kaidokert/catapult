@@ -14,6 +14,7 @@ from telemetry import benchmark
 from telemetry import story as story_module
 
 from devil.android.sdk import intent
+from six.moves import range
 
 
 class SharedAndroidStoryState(story_module.SharedState):
@@ -111,7 +112,7 @@ class AndroidGoFooStory(story_module.Story):
         SharedAndroidStoryState, name='go:story:foo')
 
   def Run(self, state):
-    for _ in xrange(3):
+    for _ in range(3):
       state.LaunchBrowser(self.URL)
       with state.FindBrowser() as browser:
         action_runner = browser.foreground_tab.action_runner

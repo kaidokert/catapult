@@ -8,6 +8,7 @@ import time
 from devil.android.sdk import keyevent
 
 import py_utils
+from six.moves import range
 
 
 class ActionNotSupported(Exception):

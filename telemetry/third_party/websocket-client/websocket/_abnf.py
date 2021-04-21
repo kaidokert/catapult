@@ -27,6 +27,7 @@ import six
 
 from ._exceptions import *
 from ._utils import validate_utf8
+from six.moves import range
 
 try:
     # If wsaccel is available we use compiled routines to mask data.

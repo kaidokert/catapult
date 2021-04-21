@@ -70,6 +70,7 @@ import types
 import unittest
 
 from mox3 import stubout
+from six.moves import range
 
 
 class Error(AssertionError):
@@ -888,7 +889,7 @@ class _MockObjectFactory(MockObject):
 class MethodSignatureChecker(object):
     """Ensures that methods are called correctly."""
 
-    _NEEDED, _DEFAULT, _GIVEN = range(3)
+    _NEEDED, _DEFAULT, _GIVEN = list(range(3))
 
     def __init__(self, method, class_to_bind=None):
         """Creates a checker.

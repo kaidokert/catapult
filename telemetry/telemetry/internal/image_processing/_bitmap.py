@@ -19,6 +19,7 @@ from telemetry.util import color_histogram
 from telemetry.util import rgba_color
 
 import png
+from six.moves import range
 
 
 class _BitmapTools(object):
@@ -186,7 +187,7 @@ class Bitmap(object):
     out_width = max(self.width, other.width)
     out_height = max(self.height, other.height)
 
-    diff = [[0 for x in xrange(out_width * 3)] for x in xrange(out_height)]
+    diff = [[0 for x in range(out_width * 3)] for x in range(out_height)]
 
     # Loop over each pixel and write out the difference
     for y in range(out_height):

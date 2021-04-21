@@ -15,6 +15,7 @@ import sys
 import time
 
 from telemetry.core import util
+from six.moves import range
 
 NamedPort = collections.namedtuple('NamedPort', ['name', 'port'])
 

@@ -21,6 +21,7 @@ from telemetry.testing import options_for_unittests
 from devil.android import app_ui
 
 import mock
+from six.moves import range
 
 
 class IntentionalException(Exception):
@@ -238,7 +239,7 @@ class TestBrowserCreation(unittest.TestCase):
   def testCreateBrowserTwice(self):
     try:
       self.browser_to_create.SetUpEnvironment(self.browser_options)
-      for _ in xrange(2):
+      for _ in range(2):
         browser = self.browser_to_create.Create()
         tab = browser.tabs.New()
         tab.Navigate('about:blank')

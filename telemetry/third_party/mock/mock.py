@@ -36,6 +36,7 @@ __version__ = '1.0.1'
 import pprint
 import sys
 import six
+from six.moves import range
 
 try:
     import inspect

@@ -21,6 +21,7 @@ from telemetry.page import shared_page_state
 from telemetry.page import traffic_setting as traffic_setting_module
 from telemetry.util import image_util
 from telemetry.testing import options_for_unittests
+from six.moves import range
 
 
 class DummyTest(legacy_page_test.LegacyPageTest):

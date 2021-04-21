@@ -10,6 +10,7 @@ from telemetry.internal.backends.chrome_inspector.inspector_websocket import \
     WebSocketException
 
 import py_utils
+from six.moves import range
 
 
 class Oobe(web_contents.WebContents):

@@ -2,6 +2,7 @@ import sys
 
 from setuptools import setup
 import pkg_resources
+from six.moves import range
 
 VERSION = "0.41.0"
 NAME = "websocket_client"

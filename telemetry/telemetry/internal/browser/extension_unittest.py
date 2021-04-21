@@ -13,6 +13,7 @@ from telemetry import decorators
 from telemetry.internal.browser import browser_finder
 from telemetry.internal.browser import extension_to_load
 from telemetry.testing import options_for_unittests
+from six.moves import range
 
 
 class ExtensionTest(unittest.TestCase):

@@ -6,6 +6,7 @@ import sys
 import re
 import marshal
 import warnings
+from six.moves import range
 
 try:
     unicode

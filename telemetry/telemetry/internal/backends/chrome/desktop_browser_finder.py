@@ -23,6 +23,7 @@ from telemetry.internal.util import binary_manager
 from telemetry.internal.util import local_first_binary_manager
 # This is a workaround for https://goo.gl/1tGNgd
 from telemetry.internal.util import path as path_module
+from six.moves import range
 
 _BROWSER_STARTUP_TRIES = 3
 

@@ -10,6 +10,7 @@ from altgraph import Graph
 import textwrap
 import xml.etree.ElementTree as ET
 import pickle
+from six.moves import range
 
 try:
     bytes

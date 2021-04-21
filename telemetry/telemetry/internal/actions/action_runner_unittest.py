@@ -16,6 +16,7 @@ from telemetry.timeline import tracing_config
 from telemetry.util import trace_processor
 
 import py_utils
+from six.moves import range
 
 
 class ActionRunnerMeasureMemoryTest(tab_test_case.TabTestCase):
@@ -42,7 +43,7 @@ class ActionRunnerMeasureMemoryTest(tab_test_case.TabTestCase):
 
     expected_dump_ids = []
     try:
-      for _ in xrange(self._REQUESTED_DUMP_COUNT):
+      for _ in range(self._REQUESTED_DUMP_COUNT):
         dump_id = self.action_runner.MeasureMemory(deterministic_mode)
         expected_dump_ids.append(dump_id)
     finally:

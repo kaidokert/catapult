@@ -4,6 +4,7 @@
 import time
 
 from telemetry.util import image_util
+from six.moves import range
 
 
 class InspectorPage(object):

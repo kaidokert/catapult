@@ -7,6 +7,7 @@ import unittest
 from telemetry.util import color_histogram
 from telemetry.util import image_util
 from telemetry.util import rgba_color
+from six.moves import range
 
 class HistogramDistanceTest(unittest.TestCase):
   def testNoData(self):
@@ -57,7 +58,7 @@ class HistogramTest(unittest.TestCase):
     bmp = image_util.Crop(bmp, 1, 1, 2, 2)
 
     hist = image_util.GetColorHistogram(bmp)
-    for i in xrange(3):
+    for i in range(3):
       self.assertEquals(sum(hist[i]),
                         image_util.Width(bmp) * image_util.Height(bmp))
     self.assertEquals(hist.r[1], 0)

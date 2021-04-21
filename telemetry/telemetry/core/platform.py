@@ -18,6 +18,7 @@ from telemetry.internal.platform import (platform_backend as
                                          platform_backend_module)
 
 from py_utils import discover
+from six.moves import range
 
 _HOST_PLATFORM = None
 # Remote platform is a dictionary from device ids to remote platform instances.

@@ -35,6 +35,7 @@ from telemetry.web_perf import timeline_interaction_record
 from py_trace_event import trace_event
 
 import py_utils
+from six.moves import range
 
 
 # Time to wait in seconds before requesting a memory dump in deterministic
@@ -680,7 +681,7 @@ class ActionRunner(ActionRunnerBase):
       repeat_delay_ms: Delay after each keypress (including the last one) in
           milliseconds.
     """
-    for _ in xrange(repeat_count):
+    for _ in range(repeat_count):
       self._RunAction(KeyPressAction(key, timeout=timeout))
       #2To3-division: this line is unchanged as result is expected floats.
       self.Wait(repeat_delay_ms / 1000.0)

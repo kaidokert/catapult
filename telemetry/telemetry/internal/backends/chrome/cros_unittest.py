@@ -12,6 +12,7 @@ from telemetry.internal.backends.chrome import cros_test_case
 from telemetry.internal.backends.chrome import oobe
 
 import py_utils
+from six.moves import range
 
 
 class CrOSCryptohomeTest(cros_test_case.CrOSTestCase):

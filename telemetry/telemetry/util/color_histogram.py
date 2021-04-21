@@ -9,6 +9,7 @@ from __future__ import division
 import collections
 
 from telemetry.internal.util import external_modules
+from six.moves import range
 
 np = external_modules.ImportOptionalModule('numpy')
 
@@ -61,7 +62,7 @@ class ColorHistogram(
 
   def Distance(self, other):
     total = 0
-    for i in xrange(3):
+    for i in range(3):
       default_color = self[3][i] if self[3] is not None else None
       total += HistogramDistance(self[i], other[i], default_color)
     return total

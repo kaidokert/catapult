@@ -15,6 +15,7 @@ import telemetry.timeline.flow_event as tracing_flow_event
 from telemetry.timeline import importer
 from telemetry.timeline import memory_dump_event
 from tracing.trace_data import trace_data as trace_data_module
+from six.moves import range
 
 # 2To3-division: those lines like xxx / 1000.0 are unchanged as result is
 # expected floats.
@@ -373,7 +374,7 @@ class TraceEventTimelineImporter(importer.TimelineImporter):
           async_slice.args = events[0]['event']['args']
 
           # Create sub_slices for each step.
-          for j in xrange(1, len(events)):
+          for j in range(1, len(events)):
             sub_name = name
             if events[j - 1]['event']['ph'] == 'T':
               sub_name = name + ':' + events[j - 1]['event']['args']['step']

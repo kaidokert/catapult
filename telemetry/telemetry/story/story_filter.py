@@ -8,6 +8,7 @@ import logging
 import re
 
 from telemetry.story import typ_expectations
+from six.moves import range
 
 
 class _StoryMatcher(object):
@@ -299,7 +300,7 @@ class StoryFilter(object):
           raise ValueError(
               'The index ranges have overlaps or not sorted correctly: %s' %
               self._shard_indexes)
-        indexes = indexes + range(begin, end)
+        indexes = indexes + list(range(begin, end))
         cur_end = end
       else:
         index = int(index_range)

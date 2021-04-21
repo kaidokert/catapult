@@ -28,6 +28,7 @@ from telemetry.page import legacy_page_test
 from telemetry.story import story_filter as story_filter_module
 from telemetry.util import wpr_modes
 from telemetry.web_perf import story_test
+from six.moves import range
 
 
 # Allowed stages to pause for user interaction at.
@@ -296,7 +297,7 @@ def RunStorySet(test, story_set, finder_options, results,
   # pylint: disable=too-many-nested-blocks
   try:
     pageset_repeat = finder_options.pageset_repeat
-    for storyset_repeat_counter in xrange(pageset_repeat):
+    for storyset_repeat_counter in range(pageset_repeat):
       for story in stories:
         if not state:
           # Construct shared state by using a copy of finder_options. Shared

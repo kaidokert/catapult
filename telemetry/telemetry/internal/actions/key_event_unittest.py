@@ -8,6 +8,7 @@ from telemetry import decorators
 from telemetry.internal.actions import key_event
 from telemetry.internal.actions import utils
 from telemetry.testing import tab_test_case
+from six.moves import range
 
 
 class KeyPressActionTest(tab_test_case.TabTestCase):
@@ -75,7 +76,7 @@ class KeyPressActionTest(tab_test_case.TabTestCase):
       self._PressKey(char)
 
     # Make changes to the sentence using special keys.
-    for _ in xrange(6):
+    for _ in range(6):
       self._PressKey('ArrowLeft')
     self._PressKey('Backspace')
     self._PressKey('Return')

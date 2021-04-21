@@ -35,6 +35,7 @@ from devil.android.sdk import shared_prefs
 from devil.android.tools import provision_devices
 from devil.android.tools import system_app
 from devil.android.tools import video_recorder
+from six.moves import range
 
 try:
   # devil.android.forwarder uses fcntl, which doesn't exist on Windows.
@@ -486,7 +487,7 @@ class AndroidPlatformBackend(
 
     Limit the number in case we have an error loop or we are failing to dismiss.
     """
-    for _ in xrange(10):
+    for _ in range(10):
       if not self._device.DismissCrashDialogIfNeeded():
         break
 

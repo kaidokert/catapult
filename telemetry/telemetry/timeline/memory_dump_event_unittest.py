@@ -6,6 +6,7 @@ import unittest
 
 from telemetry.timeline import memory_dump_event
 import mock
+from six.moves import range
 
 
 def MakeRawMemoryDumpEvent(dump_id='123456ABCDEF', pid=1234, start=0,

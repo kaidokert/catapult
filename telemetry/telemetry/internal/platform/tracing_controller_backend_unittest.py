@@ -21,6 +21,7 @@ from telemetry.internal.platform import tracing_controller_backend
 from telemetry.timeline import tracing_config
 
 import mock
+from six.moves import range
 
 
 class FakeTraceDataBuilder(object):
@@ -181,7 +182,7 @@ class TracingControllerBackendTest(unittest.TestCase):
     self.assertIsNotNone(self.controller._current_state.builder)
 
     # Flush tracing several times.
-    for _ in xrange(5):
+    for _ in range(5):
       self.controller.FlushTracing()
       self.assertTrue(self.controller.is_tracing_running)
       self.assertIs(self.controller._current_state.config, self.config)

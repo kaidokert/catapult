@@ -7,6 +7,7 @@ import sys
 
 from telemetry.internal.util import path
 from telemetry.testing import options_for_unittests
+from six.moves import range
 
 
 class ProgressReporter(object):
@@ -62,7 +63,7 @@ class TestRunner(object):
     result.startTestRun()
     try:
       options_for_unittests.Push(args)
-      for _ in xrange(repeat_count):
+      for _ in range(repeat_count):
         test(result)
     finally:
       options_for_unittests.Pop()

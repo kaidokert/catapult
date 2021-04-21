@@ -1,5 +1,6 @@
 from __future__ import print_function
 import websocket
+from six.moves import range
 try:
     import thread
 except ImportError:  # TODO use Threading instead of _thread in python3

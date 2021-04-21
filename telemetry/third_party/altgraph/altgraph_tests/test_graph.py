@@ -3,6 +3,7 @@ import unittest
 
 from altgraph import GraphError
 from altgraph.Graph import Graph
+from six.moves import range
 
 # 2To3-division: the / operations here are not converted to // as the results
 # are expected floats.

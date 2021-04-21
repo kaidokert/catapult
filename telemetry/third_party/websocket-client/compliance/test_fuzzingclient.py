@@ -5,6 +5,7 @@ import json
 import traceback
 
 import websocket
+from six.moves import range
 
 SERVER = 'ws://127.0.0.1:8642'
 AGENT = 'py-websockets-client'
