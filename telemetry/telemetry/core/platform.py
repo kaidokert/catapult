@@ -70,7 +70,8 @@ def GetPlatformForDevice(device, finder_options, logging=real_logging):
   except Exception:
     current_exception = sys.exc_info()
     logging.error('Fail to create platform instance for %s.', device.name)
-    raise current_exception[0], current_exception[1], current_exception[2]
+    six.reraise(
+        current_exception[0], current_exception[1], current_exception[2])
 
 
 class Platform(object):
