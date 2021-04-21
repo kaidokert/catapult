@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae0a79e4_f2600e5f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/crx_id.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-21T17:52:55Z",
+      "side": 1,
+      "message": "Instead of ignoring the value, you can put a variable name here, and then use that variable instead of hex_chars[i] below.",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "171ac988631f6a6d6bf84d372954d4e46e572a32",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
