@@ -37,7 +37,7 @@ def NormalizeSamples(samples):
   if high-low == 0.0:
     return [0.5] * len(samples), 1.0
   scale = (new_high - new_low) / (high - low)
-  for i in xrange(0, len(samples)):
+  for i in range(0, len(samples)):
     samples[i] = float(samples[i] - low) * scale + new_low
   return samples, scale
 
@@ -66,7 +66,7 @@ def Discrepancy(samples, location_count=None):
   if location_count:
     # Generate list of equally spaced locations.
     sample_index = 0
-    for i in xrange(0, int(location_count)):
+    for i in range(0, int(location_count)):
       location = float(i) / (location_count-1)
       locations.append(location)
       while sample_index < len(samples) and samples[sample_index] < location:
@@ -81,7 +81,7 @@ def Discrepancy(samples, location_count=None):
       locations.append(0.0)
       count_less.append(0)
       count_less_equal.append(0)
-    for i in xrange(0, len(samples)):
+    for i in range(0, len(samples)):
       locations.append(samples[i])
       count_less.append(i)
       count_less_equal.append(i+1)
@@ -105,7 +105,7 @@ def Discrepancy(samples, location_count=None):
   max_diff = 0
   # The minimum of (count_open(k, i-1)/N - length(k, i-1)) for any k < i-1.
   min_diff = 0
-  for i in xrange(1, len(locations)):
+  for i in range(1, len(locations)):
     length = locations[i] - locations[i - 1]
     count_closed = count_less_equal[i] - count_less[i - 1]
     count_open = count_less[i] - count_less_equal[i - 1]
