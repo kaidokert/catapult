@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "218ca6d5_6b132e93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-22T23:00:37Z",
+      "side": 1,
+      "message": "This CL updates import for all files. Most of them are only adding one line on top, and the rest include changes on importing sibling package.\nPTAL.",
+      "revId": "deb44fb278a89a917e3169e35ad8f8c6e05ad09d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
