@@ -10,6 +10,7 @@ from __future__ import print_function
 from altgraph import GraphError
 from altgraph.Graph import Graph
 from altgraph.GraphUtil import filter_stack
+from six.moves import map
 
 class ObjectGraph(object):
     """

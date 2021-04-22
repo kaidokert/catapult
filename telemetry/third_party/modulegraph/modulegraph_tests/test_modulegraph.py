@@ -10,6 +10,7 @@ from altgraph import Graph
 import textwrap
 import xml.etree.ElementTree as ET
 import pickle
+from six.moves import map
 
 try:
     bytes
@@ -581,7 +582,7 @@ class TestModuleGraph (unittest.TestCase):
         n2 = graph.createNode(modulegraph.Node, 'n2')
 
         graph.implyNodeReference(n1, n2)
-        outs, ins = map(list, graph.get_edges(n1))
+        outs, ins = list(map(list, graph.get_edges(n1)))
         self.assertEqual(outs, [n2])
         self.assertEqual(ins, [])
 
@@ -589,7 +590,7 @@ class TestModuleGraph (unittest.TestCase):
 
         graph.implyNodeReference(n2, "n3")
         n3 = graph.findNode('n3')
-        outs, ins = map(list, graph.get_edges(n2))
+        outs, ins = list(map(list, graph.get_edges(n2)))
         self.assertEqual(outs, [n3])
         self.assertEqual(ins, [n1])
         self.assertEqual(record, [
@@ -988,10 +989,10 @@ class TestModuleGraph (unittest.TestCase):
         graph.addNode(n2)
 
         graph.createReference(n1, n2)
-        outs, ins = map(list, graph.get_edges(n1))
+        outs, ins = list(map(list, graph.get_edges(n1)))
         self.assertEqual(outs, [n2])
         self.assertEqual(ins, [])
-        outs, ins = map(list, graph.get_edges(n2))
+        outs, ins = list(map(list, graph.get_edges(n2)))
         self.assertEqual(outs, [])
         self.assertEqual(ins, [n1])
 
