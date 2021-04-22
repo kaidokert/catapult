@@ -9,6 +9,7 @@ import time
 
 import six
 from six.moves.urllib.parse import urlparse
+from six.moves import input
 
 import websocket
 
@@ -76,9 +77,9 @@ class RawInput:
 
     def raw_input(self, prompt):
         if six.PY3:
-            line = input(prompt)
+            line = eval(input(prompt))
         else:
-            line = raw_input(prompt)
+            line = input(prompt)
 
         if ENCODING and ENCODING != "utf-8" and not isinstance(line, six.text_type):
             line = line.decode(ENCODING).encode("utf-8")
