@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c779711a_b1fd896a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-22T08:42:22Z",
+      "side": 1,
+      "message": "General comment -- please find a way to translate \"noise\" to \"signal quality\" instead, or the more neutral \"stats\".",
+      "revId": "ac5684340fb692b46985acbafd7fb3786592d657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9d49c46_062d6b1b",
+        "filename": "dashboard/bq_export/bq_export/bq_noise.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-22T08:42:22Z",
+      "side": 1,
+      "message": "nit: Can you make this more descriptive? `ToSQLRow` doesn\u0027t exactly describe the step. 😊",
+      "range": {
+        "startLine": 315,
+        "startChar": 10,
+        "endLine": 315,
+        "endChar": 20
+      },
+      "revId": "ac5684340fb692b46985acbafd7fb3786592d657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
