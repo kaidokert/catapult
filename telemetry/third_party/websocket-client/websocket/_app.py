@@ -23,6 +23,7 @@ Copyright (C) 2010 Hiroki Ohtani(liris)
 """
 WebSocketApp provides higher level APIs.
 """
+from __future__ import absolute_import
 import select
 import sys
 import threading
