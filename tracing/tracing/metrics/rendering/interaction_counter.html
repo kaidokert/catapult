@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
+<link rel="import" href="/tracing/value/diagnostics/related_event_set.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+    'use strict';
+
+    tr.exportTo('tr.metrics.rendering', function() {
+
+      function addInteractionCounter(histograms, model, segments) {
+        const chromeHelper = model.getOrCreateHelper(
+            tr.model.helpers.ChromeModelHelper);
+
+        let total_pipeline_reporters = 0;
+        let total_main_thread_animation_pipeline_reporters = 0;
+        let total_compositor_thread_animation_pipeline_reporters = 0;
+        let total_main_thread_scroll_pipeline_reporters = 0;
+        let total_compositor_thread_scroll_pipeline_reporters = 0;
+        let total_pipeline_reporters_with_any_interaction = 0;
+
+        let pipeline_reporters = []
+
+        for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+          if (rendererHelper.compositorThread === undefined) continue;
+          const slices = rendererHelper.compositorThread.asyncSliceGroup.slices;
+          for (const slice of slices) {
+            if (slice.title !== 'PipelineReporter') continue;
+            pipeline_reporters.push(slice);
+          }
+        }
+
+        for (const pr of pipeline_reporters) {
+          total_pipeline_reporters += 1;
+          let has_interaction = false;
+
+          if (pr.args.chrome_frame_reporter.has_main_animation == true) {
+            total_main_thread_animation_pipeline_reporters += 1;
+            has_interaction = true;
+          }
+
+          if (pr.args.chrome_frame_reporter.has_compositor_animation == true) {
+            total_compositor_thread_animation_pipeline_reporters += 1;
+            has_interaction = true;
+          }
+
+          if (pr.args.chrome_frame_reporter.scroll_state == 'SCROLL_MAIN_THREAD') {
+            total_main_thread_scroll_pipeline_reporters += 1;
+            has_interaction = true;
+          }
+
+          if (pr.args.chrome_frame_reporter.scroll_state == 'SCROLL_COMPOSITOR_THREAD') {
+            total_compositor_thread_scroll_pipeline_reporters += 1;
+            has_interaction = true;
+          }
+
+          if (has_interaction) {
+            total_pipeline_reporters_with_any_interaction += 1;
+          }
+        }
+
+        histograms.createHistogram('00_pipeline_reporters_total',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_pipeline_reporters,
+            {description: 'Number of pipeline reporters in trace',
+              summaryOptions: {}});
+
+        histograms.createHistogram('01_pipeline_reporters_with_main_animations',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_main_thread_animation_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('02_pipeline_reporters_with_compositor_animations',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_compositor_thread_animation_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('03_pipeline_reporters_with_main_scroll',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_main_thread_scroll_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('04_pipeline_reporters_with_compositor_scroll',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_compositor_thread_scroll_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('05_pipeline_reporters_with_any_interaction',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_pipeline_reporters_with_any_interaction,
+            {description: '',
+              summaryOptions: {}});
+      }
+
+      return {
+        addInteractionCounter,
+      };
+    });
+</script>
