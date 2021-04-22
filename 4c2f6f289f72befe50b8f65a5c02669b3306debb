@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7da05af_ee4dee11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-22T17:21:20Z",
+      "side": 1,
+      "message": "Updated and removed some outdated comments.",
+      "revId": "4c2f6f289f72befe50b8f65a5c02669b3306debb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92dcebad_8e71a451",
+        "filename": "telemetry/telemetry/testing/browser_test_case.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-04-22T17:21:20Z",
+      "side": 1,
+      "message": "The original try blocks have been removed:\nhttps://codereview.chromium.org/2072713003/diff/20001/telemetry/telemetry/testing/browser_test_case.py\n\nSo removing this comment section.",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "4c2f6f289f72befe50b8f65a5c02669b3306debb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
