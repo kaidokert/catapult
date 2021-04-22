@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d7e68e3_89065503",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1187160
+      },
+      "writtenOn": "2021-04-22T17:13:10Z",
+      "side": 1,
+      "message": "LGTM.  Reach out to tracing@chromium.org for a code review.",
+      "revId": "1f9ff7d5d1e9231e2518fa359f51985f63a2537b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
