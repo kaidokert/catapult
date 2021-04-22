@@ -16,6 +16,29 @@
       "message": "PTAL.",
       "revId": "1125753ecb7a0db0a42fd9a61228a45530f4d1b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5282d2fe_ab474cff",
+        "filename": "telemetry/third_party/websocket-client/bin/wsdump.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-22T16:05:38Z",
+      "side": 1,
+      "message": "This is incorrect. I guess it\u0027s modernizer thinking this is a Python 2 input, when the code is already for Python 3.",
+      "range": {
+        "startLine": 80,
+        "startChar": 19,
+        "endLine": 80,
+        "endChar": 24
+      },
+      "revId": "1125753ecb7a0db0a42fd9a61228a45530f4d1b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
