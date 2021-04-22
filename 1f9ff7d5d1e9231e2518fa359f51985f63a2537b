@@ -16,6 +16,23 @@
       "message": "LGTM.  Reach out to tracing@chromium.org for a code review.",
       "revId": "1f9ff7d5d1e9231e2518fa359f51985f63a2537b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d23818b_8a6e8926",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115914
+      },
+      "writtenOn": "2021-04-22T17:22:19Z",
+      "side": 1,
+      "message": "Oystein, can you take a look?",
+      "revId": "1f9ff7d5d1e9231e2518fa359f51985f63a2537b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
