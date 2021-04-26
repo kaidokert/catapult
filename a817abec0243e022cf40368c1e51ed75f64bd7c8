@@ -22,6 +22,30 @@
       },
       "revId": "a817abec0243e022cf40368c1e51ed75f64bd7c8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a2b43f_7a20a948",
+        "filename": "telemetry/telemetry/core/fuchsia_interface.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1360101
+      },
+      "writtenOn": "2021-04-26T21:41:22Z",
+      "side": 1,
+      "message": "This code was modeled on another symbolizer invocation which supported multiple\nbuild id files.  Moved the build id file option into the initial symbolizer_cmd\nassignment.",
+      "parentUuid": "1d3c130e_7b160414",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 55
+      },
+      "revId": "a817abec0243e022cf40368c1e51ed75f64bd7c8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
