@@ -105,6 +105,30 @@
       },
       "revId": "ac5684340fb692b46985acbafd7fb3786592d657",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18bf6ed_7004b585",
+        "filename": "dashboard/bq_export/bq_export/bq_noise.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-04-26T04:54:37Z",
+      "side": 1,
+      "message": "Changed to `ConvertToBigQueryRow(by_measurement)` and `ConvertToBigQueryRow(by_botgroup)`.  “Convert” is a verb I\u0027ve used for similar operations in the other pipelines.  Including a noun like “Quality” or “Stats” adds no information, as we already know that\u0027s what the pipeline is operating on and producing (clear from both the source code and the Dataflow UI\u0027s default graph view), so omit that.  Even at this length the labels will be truncated in the default view of Dataflow\u0027s UI anyway.\n\nI think the chain QueryTable → CalcStats(measurement) → ConvertToBigQueryRow(by_measurement) → WriteToPartitionedBigQuery(stats_by_measurement) is adequately clear.",
+      "parentUuid": "9e90402d_6445ec92",
+      "range": {
+        "startLine": 315,
+        "startChar": 10,
+        "endLine": 315,
+        "endChar": 20
+      },
+      "revId": "ac5684340fb692b46985acbafd7fb3786592d657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
