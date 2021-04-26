@@ -81,6 +81,30 @@
       },
       "revId": "ac5684340fb692b46985acbafd7fb3786592d657",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e90402d_6445ec92",
+        "filename": "dashboard/bq_export/bq_export/bq_noise.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-26T03:29:06Z",
+      "side": 1,
+      "message": "Right, so \u0027ToSQLRow-1\u0027 and \u0027ToSQLRow-2\u0027 isn\u0027t conveying what is being converted and why.\n\nSomething like \"TranslateQualityByMetric\" and \"TranslateQualityByBotGroup\" would be better descriptors conveying what\u0027s happening and why (we need to translate it into a form that can be written to partitioned bigquery tables). Another word might be \"Normalize\" instead of \"Translate\".",
+      "parentUuid": "6d413cee_09014ecc",
+      "range": {
+        "startLine": 315,
+        "startChar": 10,
+        "endLine": 315,
+        "endChar": 20
+      },
+      "revId": "ac5684340fb692b46985acbafd7fb3786592d657",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
