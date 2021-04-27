@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6deb7655_ff1f6297",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-04-27T03:48:58Z",
+      "side": 1,
+      "message": "This CL is causing test failures in the auto roll from Catapult into Chromium, and is preventing changes in Catapult from reach Chromium repo. Please see https://chromium-review.googlesource.com/c/chromium/src/+/2852157\n\nI\u0027ll revert this CL so that later CLs can be rolled into Chromium.\n",
+      "revId": "4dd0225362a8a3cdf520470e448df4ef2894b0ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
