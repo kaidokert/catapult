@@ -16,6 +16,24 @@
       "message": "Tested locally by running one of the problematic tests (testIncludeGlobsInTestFilterListWithOutBrowser) locally in a ResultDB context. Uploads the inner results without the fix, doesn\u0027t with the fix.",
       "revId": "e93624bdd885a108e558ec1949f6912913d6f76a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a967c1b_d24432b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-04-27T00:20:45Z",
+      "side": 1,
+      "message": "Nice, thnx for this",
+      "parentUuid": "b6543e6f_8708ad4c",
+      "revId": "e93624bdd885a108e558ec1949f6912913d6f76a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
