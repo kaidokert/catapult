@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6543e6f_8708ad4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-04-27T00:11:43Z",
+      "side": 1,
+      "message": "Tested locally by running one of the problematic tests (testIncludeGlobsInTestFilterListWithOutBrowser) locally in a ResultDB context. Uploads the inner results without the fix, doesn\u0027t with the fix.",
+      "revId": "e93624bdd885a108e558ec1949f6912913d6f76a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
