@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d66280e0_c99fd041",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-04-27T09:08:33Z",
+      "side": 1,
+      "message": "PTAL (I\u0027m waiting for the chrome-side change to land first)",
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
