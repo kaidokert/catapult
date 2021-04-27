@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "453d3330_145c93b0",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-04-27T07:38:33Z",
+      "side": 1,
+      "message": "Ah good point.  I should\u0027ve remembered that.  I\u0027ll update the live tables to match.",
+      "parentUuid": "ba62ad65_8d407981",
+      "range": {
+        "startLine": 168,
+        "startChar": 7,
+        "endLine": 168,
+        "endChar": 19
+      },
+      "revId": "2cec9504936dd592370b65fe93ce8db8c0dcf767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0add6f60_576683b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-04-27T07:02:11Z",
       "side": 1,
       "message": "Not a blocker, just for my understanding -- I wonder why you need to do this in the pipeline, couldn\u0027t this be computed with a PERCENTILE_CONT (https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#percentile_cont) or did you have something else in mind with providing the quartiles?",
+      "range": {
+        "startLine": 298,
+        "startChar": 3,
+        "endLine": 300,
+        "endChar": 26
+      },
+      "revId": "2cec9504936dd592370b65fe93ce8db8c0dcf767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c21c2244_15d1add8",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-04-27T07:38:33Z",
+      "side": 1,
+      "message": "In short, because this is the simplest and most convenient way to get a box plot rendering in our internal dashboarding tool.  It\u0027s not strictly necessary, but it\u0027s cheap to do and a heck of a lot more convenient.  I wrestled with this earlier today; it\u0027s much simpler to be able to point the chart widget directly at a table datasource than crafting a query.  And querying the rows table makes for a pretty sluggish dashboard because it is so huge.  Also that dashboarding tool doesn\u0027t handle the array-typed sample_values column gracefully yet (but it\u0027s improved since the last time I tried, so maybe one day).\n\nGiven that we\u0027ve already aggregated the samples into useful groups here, it\u0027s very little extra work to calculate the quartiles here.",
+      "parentUuid": "0add6f60_576683b7",
       "range": {
         "startLine": 298,
         "startChar": 3,
