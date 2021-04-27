@@ -9,43 +9,43 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/metrics/metric_registry.html">
 
 <script>
-'use strict';
+  'use strict';
 
-/**
- * This metric is used for for blink network metrics
- * - blinkRequestResourceCount: the count of requested resources
- */
-tr.exportTo('tr.metrics', function() {
-  function blinkResourceMetric(histograms, model, opt_options) {
-    const chromeHelper = model.getOrCreateHelper(
+  /**
+   * This metric is used for for blink network metrics
+   * - blinkRequestResourceCount: the count of requested resources
+   */
+  tr.exportTo('tr.metrics', function () {
+    function blinkResourceMetric(histograms, model, opt_options) {
+      const chromeHelper = model.getOrCreateHelper(
         tr.model.helpers.ChromeModelHelper);
-    if (!chromeHelper) {
-      // Chrome isn't present.
-      return;
-    }
-    const CATEGORY = 'blink';
-    const NAME = 'ResourceFetcher::requestResource';
-    let count = 0;
-    // Collect trace events.
-    for (const helper of Object.values(chromeHelper.rendererHelpers)) {
-      if (helper.isChromeTracingUI) continue;
-      const events = tr.e.chrome.EventFinderUtils.getMainThreadEvents(
-          helper, NAME, CATEGORY);
-      for (const event of events) {
-        count++;
+      if (!chromeHelper) {
+        // Chrome isn't present.
+        return;
       }
+      const CATEGORY = 'blink.resource';
+      const NAME = 'ResourceFetcher::requestResource';
+      let count = 0;
+      // Collect trace events.
+      for (const helper of Object.values(chromeHelper.rendererHelpers)) {
+        if (helper.isChromeTracingUI) continue;
+        const events = tr.e.chrome.EventFinderUtils.getMainThreadEvents(
+          helper, NAME, CATEGORY);
+        for (const event of events) {
+          count++;
+        }
+      }
+      // Generate histograms.
+      histograms.createHistogram(
+        'blinkRequestResourceCount', tr.b.Unit.byName.count, count);
     }
-    // Generate histograms.
-    histograms.createHistogram(
-      'blinkRequestResourceCount', tr.b.Unit.byName.count, count);
-  }
 
-  tr.metrics.MetricRegistry.register(blinkResourceMetric, {
-    supportsRangeOfInterest: false,
+    tr.metrics.MetricRegistry.register(blinkResourceMetric, {
+      supportsRangeOfInterest: false,
+    });
+
+    return {
+      blinkResourceMetric,
+    };
   });
-
-  return {
-    blinkResourceMetric,
-  };
-});
 </script>
