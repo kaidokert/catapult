@@ -39,6 +39,30 @@
       },
       "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a576d00_fcc5e901",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-04-27T09:46:01Z",
+      "side": 1,
+      "message": "We definitely want alerts for this once it\u0027s enabled everywhere.",
+      "parentUuid": "08dea17e_8a0f8c65",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
