@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba62ad65_8d407981",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-27T07:02:11Z",
+      "side": 1,
+      "message": "nit: usually this is just \u0027cv\u0027",
+      "range": {
+        "startLine": 168,
+        "startChar": 7,
+        "endLine": 168,
+        "endChar": 19
+      },
+      "revId": "2cec9504936dd592370b65fe93ce8db8c0dcf767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0add6f60_576683b7",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-27T07:02:11Z",
+      "side": 1,
+      "message": "Not a blocker, just for my understanding -- I wonder why you need to do this in the pipeline, couldn\u0027t this be computed with a PERCENTILE_CONT (https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#percentile_cont) or did you have something else in mind with providing the quartiles?",
+      "range": {
+        "startLine": 298,
+        "startChar": 3,
+        "endLine": 300,
+        "endChar": 26
+      },
+      "revId": "2cec9504936dd592370b65fe93ce8db8c0dcf767",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
