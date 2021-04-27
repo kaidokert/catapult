@@ -18,6 +18,63 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bad7eebb_8a5c7847",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-04-27T15:49:43Z",
+      "side": 1,
+      "message": "LGTM % nits. \n\nWould be also great to add alert grouping, but up to you whether you want to do it as part of this CL or a different one. ",
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b00d1ea_584c6d4d",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-04-27T15:49:43Z",
+      "side": 1,
+      "message": "nit: everything seems to be indented with two extra spaces. Top level lines (\u0027use strict\u0027, tr.exportTo(..) etc) should have 0 indent.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 2
+      },
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5452a093_cbbd0921",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-04-27T15:49:43Z",
+      "side": 1,
+      "message": "nit: extra space?",
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08dea17e_8a0f8c65",
@@ -55,6 +112,30 @@
       "side": 1,
       "message": "We definitely want alerts for this once it\u0027s enabled everywhere.",
       "parentUuid": "08dea17e_8a0f8c65",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93579d8a_1a4b6ff8",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-04-27T15:49:43Z",
+      "side": 1,
+      "message": "Yes! See https://chromium.googlesource.com/catapult.git/+/0cfa2c068604d31cc110728dde632ddaeeabfa97/docs/how-to-write-metrics.md#alert-grouping for how to use alert grouping.",
+      "parentUuid": "3a576d00_fcc5e901",
       "range": {
         "startLine": 39,
         "startChar": 6,
