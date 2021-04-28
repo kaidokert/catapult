@@ -16,6 +16,24 @@
       "message": "Looks like this is causing a unit test failure.",
       "revId": "1fddae936ce0de0726f707924ece80dd5d92c9bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2262ec81_c31f4f69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000111
+      },
+      "writtenOn": "2021-04-28T16:40:33Z",
+      "side": 1,
+      "message": "Indeed. I have added a fix. Thanks! (not totally sure if this is the best way to fix this. If not, please advise).",
+      "parentUuid": "92559c0c_d862aa1f",
+      "revId": "1fddae936ce0de0726f707924ece80dd5d92c9bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
