@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2dccf7d_9645332c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-29T01:38:55Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "813e0adb231cddf6517926033eec5396c5523e42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a45655e9_e541e0f1",
@@ -14,6 +31,30 @@
       "writtenOn": "2021-04-29T01:31:11Z",
       "side": 1,
       "message": "Nit: I\u0027m not sure what “existed_groups” means.  Perhaps typo for “existing_groups”?  Although I\u0027m still unsure from the name how that\u0027s distinct from all_groups.  I guess it\u0027s something about the groups we already have for the anomaly vs. the full set of potential groups we generated?  If so maybe s/all_groups/all_possible_groups/ might help?\n\nThat said, the new logic is still easier to follow than the previous version, so I\u0027m still happy to approve this as a good incremental improvement in readability!",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 18
+      },
+      "revId": "813e0adb231cddf6517926033eec5396c5523e42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e7fc2ca_5b7de420",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-29T01:38:55Z",
+      "side": 1,
+      "message": "More naming suggestions:\n\nall_groups -\u003e groups\nexisted_groups -\u003e candidate_groups",
+      "parentUuid": "a45655e9_e541e0f1",
       "range": {
         "startLine": 118,
         "startChar": 4,
