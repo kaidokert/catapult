@@ -82,6 +82,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16233ca2_9c5ddb1e",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-04-29T09:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab0bc661_644a9714",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 2
+      },
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5452a093_cbbd0921",
@@ -95,6 +119,24 @@
       "writtenOn": "2021-04-27T15:49:43Z",
       "side": 1,
       "message": "nit: extra space?",
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dea748b_40393b2a",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-04-29T09:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5452a093_cbbd0921",
       "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -160,6 +202,30 @@
       "side": 1,
       "message": "Yes! See https://chromium.googlesource.com/catapult.git/+/0cfa2c068604d31cc110728dde632ddaeeabfa97/docs/how-to-write-metrics.md#alert-grouping for how to use alert grouping.",
       "parentUuid": "3a576d00_fcc5e901",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 40,
+        "endChar": 68
+      },
+      "revId": "08bee9f7e55da152bd9417328a4388f41dfb7722",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3be190c8_a0eda79a",
+        "filename": "tracing/tracing/metrics/blink/resource_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-04-29T09:00:53Z",
+      "side": 1,
+      "message": "I think we\u0027ll need a separate alert group (we have some other metrics that might go into the resource category).\nI\u0027ll do that in a separate CL.",
+      "parentUuid": "93579d8a_1a4b6ff8",
       "range": {
         "startLine": 39,
         "startChar": 6,
