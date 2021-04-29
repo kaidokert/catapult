@@ -111,45 +111,31 @@ class AlertGroup(ndb.Model):
   def GetGroupsForAnomaly(cls, anomaly_entity, subscriptions):
     names = anomaly_entity.alert_grouping or [anomaly_entity.benchmark_name]
     group_type = cls.GetType(anomaly_entity)
-    revision = RevisionRange(
-        repository='chromium',
-        start=anomaly_entity.start_revision,
-        end=anomaly_entity.end_revision,
+    all_groups = cls.GenerateAllGroupsForAnomaly(
+        anomaly_entity,
+        subscriptions=subscriptions,
     )
-    groups = []
-    for name in names:
-      subscription_names = [s.name for s in subscriptions]
-      groups.extend(g for g in cls.Get(name, group_type, revision)
-                    if g.subscription_name in subscription_names and all(
-                        not added.IsOverlapping(g) for added in groups))
-      all_groups = cls.GenerateAllGroupsForAnomaly(
-          anomaly_entity,
-          subscriptions=subscriptions,
-      )
-      if not groups or not all(
-          any(g1.IsOverlapping(g2) for g2 in groups) for g1 in all_groups):
-        groups += cls.Get('Ungrouped', cls.Type.reserved, None)
-    return [g.key for g in groups]
+    existed_groups = [
+        g1 for name in names
+        for g1 in cls.Get(name, group_type)
+        if any(g1.IsOverlapping(g2) for g2 in all_groups)]
+    if not existed_groups or not all(
+        any(g1.IsOverlapping(g2) for g2 in existed_groups)
+        for g1 in all_groups):
+      existed_groups += cls.Get('Ungrouped', cls.Type.reserved)
+    return [g.key for g in existed_groups]
 
   @classmethod
   def GetByID(cls, group_id):
     return ndb.Key('AlertGroup', group_id).get()
 
   @classmethod
-  def Get(cls, group_name, group_type, revision_info, active=True):
+  def Get(cls, group_name, group_type, active=True):
     query = cls.query(
         cls.active == active,
         cls.name == group_name,
     )
-    if not revision_info:
-      return [
-          group for group in query.fetch() if group.group_type == group_type
-      ]
-    return [
-        group for group in query.fetch()
-        if revision_info and revision_info.IsOverlapping(group.revision)
-        and group.group_type == group_type
-    ]
+    return [g for g in query.fetch() if g.group_type == group_type]
 
   @classmethod
   def GetAll(cls, active=True):
