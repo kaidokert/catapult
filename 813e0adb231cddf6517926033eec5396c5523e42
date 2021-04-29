@@ -63,6 +63,30 @@
       },
       "revId": "813e0adb231cddf6517926033eec5396c5523e42",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8fa5526_87f1f156",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-04-29T04:14:09Z",
+      "side": 1,
+      "message": "I think all_possible_groups and existing_groups are better here. Also adding comments for better understanding.",
+      "parentUuid": "8e7fc2ca_5b7de420",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 18
+      },
+      "revId": "813e0adb231cddf6517926033eec5396c5523e42",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
