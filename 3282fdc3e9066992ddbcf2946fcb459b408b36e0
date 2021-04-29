@@ -22,6 +22,30 @@
       },
       "revId": "3282fdc3e9066992ddbcf2946fcb459b408b36e0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2294ff6d_19e858ad",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-04-29T06:01:17Z",
+      "side": 1,
+      "message": "Ah, good point. It shouldn\u0027t be an input. 😊",
+      "parentUuid": "df379a6e_01971943",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 33
+      },
+      "revId": "3282fdc3e9066992ddbcf2946fcb459b408b36e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
