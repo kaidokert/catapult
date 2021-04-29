@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df379a6e_01971943",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-04-29T05:35:39Z",
+      "side": 1,
+      "message": "I don\u0027t immediately understand why `result_values` is considered an input, but `attempts` and `comparisons` aren\u0027t?  Perhaps leave a comment explaining this.",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 33
+      },
+      "revId": "3282fdc3e9066992ddbcf2946fcb459b408b36e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
