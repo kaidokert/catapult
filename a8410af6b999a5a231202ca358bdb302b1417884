@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d78559e_17ed1771",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1360101
+      },
+      "writtenOn": "2021-05-01T00:00:13Z",
+      "side": 1,
+      "message": "This CL is ready to re-land.  The missing symbolizer executable that caused the original problem\nis now supplied in the test isolates.  I ran the trace_test gpu test locally and it passed without\nerror.\n\nPTAL\n\nSteve",
+      "revId": "a8410af6b999a5a231202ca358bdb302b1417884",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
