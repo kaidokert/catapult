@@ -3,8 +3,16 @@
 # found in the LICENSE file.
 
 from __future__ import division
+import sys
 
 import warnings
+
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+if sys.version_info.major > 2:
+  from io import open  # pylint: disable=redefined-builtin
 
 from telemetry.internal.util import external_modules
 from telemetry.util import color_histogram

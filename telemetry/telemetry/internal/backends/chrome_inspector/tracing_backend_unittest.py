@@ -3,8 +3,16 @@
 # found in the LICENSE file.
 
 import os
+import sys
 import timeit
 import unittest
+
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+if sys.version_info.major > 2:
+  from io import open  # pylint: disable=redefined-builtin
 
 from telemetry.internal.backends.chrome_inspector import tracing_backend
 from telemetry.testing import fakes
@@ -172,7 +180,7 @@ class DevToolsStreamPerformanceTest(unittest.TestCase):
     def MarkDone():
       done['done'] = True
 
-    with open(os.devnull, 'wb') as trace_handle:
+    with open(os.devnull, 'w') as trace_handle:
       reader = tracing_backend._DevToolsStreamReader(
           self._inspector_socket, 'dummy', trace_handle)
       reader.Read(MarkDone)

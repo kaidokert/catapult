@@ -10,6 +10,13 @@ import sys
 import traceback
 import uuid
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+if sys.version_info.major > 2:
+  from io import open  # pylint: disable=redefined-builtin
+
 from py_trace_event import trace_event
 from telemetry.internal.platform.tracing_agent import atrace_tracing_agent
 from telemetry.internal.platform.tracing_agent import chrome_report_events_tracing_agent
@@ -61,7 +68,7 @@ class _TraceDataDiscarder(object):
   """
   def OpenTraceHandleFor(self, part, suffix):
     del part, suffix  # Unused.
-    return open(os.devnull, 'wb')
+    return open(os.devnull, 'w')
 
   def AddTraceFor(self, part, data, allow_unstructured=False):
     assert not allow_unstructured

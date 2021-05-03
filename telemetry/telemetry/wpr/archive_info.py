@@ -5,9 +5,18 @@
 import json
 import logging
 import os
+import sys
 import shutil
 import tempfile
 import time
+
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+if sys.version_info.major > 2:
+  from io import open  # pylint: disable=redefined-builtin
+
 import six
 
 from py_utils import cloud_storage  # pylint: disable=import-error
