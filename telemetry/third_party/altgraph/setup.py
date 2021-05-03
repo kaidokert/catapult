@@ -26,6 +26,7 @@ import sys
 import time
 import tempfile
 import tarfile
+from io import open
 try:
     import urllib.request as urllib
 except ImportError:

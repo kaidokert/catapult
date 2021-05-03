@@ -4,6 +4,7 @@ import os
 from altgraph import Dot
 from altgraph import Graph
 from altgraph import GraphError
+from io import open
 
 
 class TestDot (unittest.TestCase):

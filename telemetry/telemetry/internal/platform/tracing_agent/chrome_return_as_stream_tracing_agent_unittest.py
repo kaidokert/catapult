@@ -5,6 +5,7 @@
 import os
 import stat
 import unittest
+from io import open
 
 from telemetry import decorators
 from telemetry.core import cros_interface

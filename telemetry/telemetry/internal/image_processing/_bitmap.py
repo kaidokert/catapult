@@ -12,6 +12,7 @@ import cStringIO
 import struct
 import subprocess
 import warnings
+from io import open
 
 from telemetry.internal.util import binary_manager
 from telemetry.core import platform

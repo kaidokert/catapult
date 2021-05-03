@@ -11,6 +11,7 @@ import re
 import shutil
 import sys
 from io import BytesIO
+from io import open
 
 import six.moves.urllib.request # pylint: disable=import-error
 from six.moves import input # pylint: disable=redefined-builtin

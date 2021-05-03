@@ -5,6 +5,7 @@
 import json
 import os
 import sys
+from io import open
 
 from telemetry.internal.results import page_test_results
 

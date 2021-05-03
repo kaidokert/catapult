@@ -7,6 +7,7 @@ from __future__ import division
 import os
 import sys
 import json
+from io import open
 
 from telemetry.internal.browser import browser_options
 from telemetry.internal.platform import android_device

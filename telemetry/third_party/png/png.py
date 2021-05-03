@@ -164,11 +164,11 @@ And now, my famous members
 
 # http://www.python.org/doc/2.2.3/whatsnew/node5.html
 from __future__ import generators
-
 from __future__ import print_function
 from __future__ import division
 from functools import reduce
 from six.moves import map
+from io import open
 __version__ = "$URL$ $Rev$"
 
 from array import array

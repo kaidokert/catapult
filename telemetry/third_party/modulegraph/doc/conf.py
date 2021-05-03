@@ -12,6 +12,7 @@
 # serve to show the default.
 
 import sys, os
+from io import open
 
 def get_version():
     fn = os.path.join(

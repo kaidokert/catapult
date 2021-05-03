@@ -13,6 +13,7 @@ import socket
 import StringIO
 import sys
 import traceback
+from io import open
 
 import six.moves.BaseHTTPServer # pylint: disable=import-error
 import six.moves.SimpleHTTPServer # pylint: disable=import-error

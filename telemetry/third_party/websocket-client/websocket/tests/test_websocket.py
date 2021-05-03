@@ -2,6 +2,7 @@
 #
 
 import sys
+from io import open
 sys.path[0:0] = [""]
 
 import os

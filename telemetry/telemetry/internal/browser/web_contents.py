@@ -3,6 +3,7 @@
 # found in the LICENSE file.
 
 import os
+from io import open
 import six
 
 from telemetry.core import exceptions

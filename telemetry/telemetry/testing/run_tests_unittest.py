@@ -6,6 +6,7 @@ import os
 import tempfile
 import unittest
 import json
+from io import open
 import six
 
 

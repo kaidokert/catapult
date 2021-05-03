@@ -6,6 +6,7 @@ import logging as real_logging
 import os
 import subprocess
 import time
+from io import open
 import six
 
 from telemetry.core import local_server

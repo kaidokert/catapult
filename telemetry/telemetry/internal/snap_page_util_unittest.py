@@ -8,6 +8,7 @@ import shutil
 import tempfile
 import unittest
 import StringIO
+from io import open
 
 import mock
 
