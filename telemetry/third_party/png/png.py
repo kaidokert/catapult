@@ -164,11 +164,17 @@ And now, my famous members
 
 # http://www.python.org/doc/2.2.3/whatsnew/node5.html
 from __future__ import generators
-
 from __future__ import print_function
 from __future__ import division
 from functools import reduce
 from six.moves import map
+
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 __version__ = "$URL$ $Rev$"
 
 from array import array

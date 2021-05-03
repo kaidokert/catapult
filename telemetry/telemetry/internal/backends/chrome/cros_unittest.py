@@ -6,6 +6,12 @@ import logging
 import os
 import tempfile
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 from telemetry.core import exceptions
 from telemetry import decorators
 from telemetry.internal.backends.chrome import cros_test_case

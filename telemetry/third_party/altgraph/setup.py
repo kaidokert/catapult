@@ -16,16 +16,20 @@ Additional functionality:
 """
 
 from __future__ import print_function
-import sys
-import os
 import re
 import platform
 from fnmatch import fnmatch
 import os
 import sys
-import time
 import tempfile
 import tarfile
+
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 try:
     import urllib.request as urllib
 except ImportError:

@@ -8,6 +8,12 @@ import os
 import sys
 import json
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 from telemetry.internal.browser import browser_options
 from telemetry.internal.platform import android_device
 from telemetry.internal.util import binary_manager

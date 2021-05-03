@@ -9,6 +9,12 @@ import shutil
 import stat
 import tempfile
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 from py_utils import atexit_with_log
 
 from telemetry.internal.platform.tracing_agent import chrome_tracing_agent

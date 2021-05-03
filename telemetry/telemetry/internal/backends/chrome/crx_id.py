@@ -15,6 +15,12 @@ import os
 import hashlib
 import json
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 EXPECTED_CRX_MAGIC_NUM = 'Cr24'
 EXPECTED_CRX_VERSION = 2
 
@@ -96,7 +102,7 @@ def GetPublicKeyUnpacked(f, filepath):
 
 def HasPublicKey(filename):
   if os.path.isdir(filename):
-    with open(os.path.join(filename, 'manifest.json'), 'rb') as f:
+    with open(os.path.join(filename, 'manifest.json'), 'r') as f:
       manifest = json.load(f)
       return 'key' in manifest
   return False
@@ -109,12 +115,12 @@ def GetPublicKey(filename, from_file_path, is_win_path=False):
   pub_key = ''
   if os.path.isdir(filename):
     # Assume it's an unpacked extension
-    f = open(os.path.join(filename, 'manifest.json'), 'rb')
+    f = open(os.path.join(filename, 'manifest.json'), 'r')
     pub_key = GetPublicKeyUnpacked(f, filename)
     f.close()
   else:
     # Assume it's a packed extension.
-    f = open(filename, 'rb')
+    f = open(filename, 'r')
     pub_key = GetPublicKeyPacked(f)
     f.close()
   return pub_key

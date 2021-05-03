@@ -7,6 +7,12 @@ import os
 import re
 import subprocess
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 from telemetry.internal.backends.chrome import minidump_symbolizer
 from telemetry.internal.util import local_first_binary_manager
 from telemetry.internal.util import path
@@ -82,7 +88,7 @@ class DesktopMinidumpSymbolizer(minidump_symbolizer.MinidumpSymbolizer):
 
     minidump_cmd = [minidump_dump, minidump]
     try:
-      with open(os.devnull, 'wb') as dev_null:
+      with open(os.devnull, 'w') as dev_null:
         minidump_output = subprocess.check_output(minidump_cmd, stderr=dev_null)
     except subprocess.CalledProcessError as e:
       # For some reason minidump_dump always fails despite successful dumping.

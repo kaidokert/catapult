@@ -11,9 +11,14 @@ this information.
 
 from __future__ import print_function
 import re
-import sys
 import os
 import pprint
+
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
 
 import_re = re.compile('PyImport_ImportModule\w+\("(\w+)"\);')
 

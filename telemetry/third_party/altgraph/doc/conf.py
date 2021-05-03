@@ -13,6 +13,12 @@
 
 import sys, os
 
+# The pylint in use is a older version that will consider using io.open() as
+# refining builtin functions. This is fixed in a lower version:
+#   https://github.com/PyCQA/pylint/issues/464
+# For now, we will skip the check for python 3 conversion.
+from io import open  # pylint: disable=redefined-builtin
+
 def get_version():
     fn = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
