@@ -33,6 +33,23 @@
       "message": "I think we should keep the image around, for easier maintenance (yes, I know it\u0027s in git history anyways), and add a CSS comment mentioning that the data URL is for select PNG.  Thoughts?",
       "revId": "2e3981d9217681f872ad37c3dab8966db181e85e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80eec16a_8acadeaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2021-05-03T14:43:59Z",
+      "side": 1,
+      "message": "LGTM! Sorry, hectic week - forgot to get to this.  (And yes, I realize I still need to figure out how to update the server.  Hectic year?)",
+      "revId": "2e3981d9217681f872ad37c3dab8966db181e85e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
