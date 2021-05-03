@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26fd73b0_6c48d55c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-03T18:56:19Z",
+      "side": 1,
+      "message": "Updated to ignore redefined-builtin error, and mode change on some files. PTAL.",
+      "revId": "b920d4e2d9046ff6d955a0cdca987166a742ba40",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
