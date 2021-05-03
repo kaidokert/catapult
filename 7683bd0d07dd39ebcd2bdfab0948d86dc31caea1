@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96b329bb_165760a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-03T21:51:57Z",
+      "side": 1,
+      "message": "Updated using python version as the import condition. The reason is that the io.open().write() expects unicode (as string in python 3), and the current usages of write() will fail on python 2. ",
+      "revId": "7683bd0d07dd39ebcd2bdfab0948d86dc31caea1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
