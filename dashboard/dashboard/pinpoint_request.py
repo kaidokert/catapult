@@ -216,16 +216,27 @@ def PinpointParamsFromPerfTryParams(params):
     user = utils.GetEmail()
     raise InvalidParamsError('User "%s" not authorized.' % user)
 
-  test_path = params['test_path']
+  test_path = params.get('test_path')
+  if not test_path:
+    raise InvalidParamsError('Test path is required.')
+
   test_path_parts = test_path.split('/')
   bot_name = test_path_parts[1]
   suite = test_path_parts[2]
 
-  start_commit = params['start_commit']
-  end_commit = params['end_commit']
+  start_commit = params.get('start_commit')
+  if not start_commit:
+    raise InvalidParamsError('Start commit is required.')
+
+  end_commit = params.get('end_commit')
+  if not end_commit:
+    raise InvalidParamsError('End commit is required.')
+
   start_git_hash = ResolveToGitHash(start_commit, suite)
   end_git_hash = ResolveToGitHash(end_commit, suite)
-  story_filter = params['story_filter']
+  story_filter = params.get('story_filter')
+  if not story_filter:
+    raise InvalidParamsError('Story is required.')
 
   # Pinpoint also requires you specify which isolate target to run the
   # test, so we derive that from the suite name. Eventually, this would
@@ -267,6 +278,7 @@ def PinpointParamsFromBisectParams(params):
         'end_git_hash': Git hash of later revision.
         'bug_id': Associated bug.
         'project_id': Associated Monorail project.
+        'story_filter': The story to run in the bisect request.
     }
 
   Returns:
@@ -276,6 +288,10 @@ def PinpointParamsFromBisectParams(params):
   if not utils.IsValidSheriffUser():
     user = utils.GetEmail()
     raise InvalidParamsError('User "%s" not authorized.' % user)
+
+  story_filter = params['story_filter']
+  if story_filter is None:
+    raise InvalidParamsError('Story is required.')
 
   test_path = params['test_path']
   test_path_parts = test_path.split('/')
@@ -333,7 +349,7 @@ def PinpointParamsFromBisectParams(params):
       comparison_magnitude=alert_magnitude,
       user=email,
       name=job_name,
-      story_filter=params['story_filter'],
+      story_filter=story_filter,
       pin=params.get('pin'),
       tags={
           'test_path': test_path,
