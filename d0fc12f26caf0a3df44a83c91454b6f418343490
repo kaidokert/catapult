@@ -39,6 +39,54 @@
       },
       "revId": "d0fc12f26caf0a3df44a83c91454b6f418343490",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f6f2860_dbea556c",
+        "filename": "telemetry/third_party/modulegraph/setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-04T22:16:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d59b29d6_03b28145",
+      "range": {
+        "startLine": 640,
+        "startChar": 19,
+        "endLine": 640,
+        "endChar": 20
+      },
+      "revId": "d0fc12f26caf0a3df44a83c91454b6f418343490",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45ba5b7d_9175b7d3",
+        "filename": "telemetry/third_party/modulegraph/setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-04T22:16:52Z",
+      "side": 1,
+      "message": "Thanks for catching it!",
+      "parentUuid": "d59b29d6_03b28145",
+      "range": {
+        "startLine": 640,
+        "startChar": 19,
+        "endLine": 640,
+        "endChar": 20
+      },
+      "revId": "d0fc12f26caf0a3df44a83c91454b6f418343490",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
