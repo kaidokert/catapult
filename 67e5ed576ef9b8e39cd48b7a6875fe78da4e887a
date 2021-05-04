@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5d90371_c40a2359",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-05-04T17:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc9034a4_5507ccd0",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88219c91_b9498ee3",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-05-04T05:06:19Z",
       "side": 1,
       "message": "This is no longer necessary. \u003ctext-artifact\u003e renders the contents of an artifact in a safe way.",
+      "range": {
+        "startLine": 162,
+        "startChar": 41,
+        "endLine": 162,
+        "endChar": 51
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f0d30b_d190fa2f",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-05-04T17:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88219c91_b9498ee3",
       "range": {
         "startLine": 162,
         "startChar": 41,
@@ -87,6 +135,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "984f2c7d_19379319",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-05-04T17:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68203365_85b432db",
+      "range": {
+        "startLine": 165,
+        "startChar": 41,
+        "endLine": 165,
+        "endChar": 51
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4524d163_a9ff0075",
@@ -100,6 +172,30 @@
       "writtenOn": "2021-05-04T05:06:19Z",
       "side": 1,
       "message": "Please surround each \u003ctext-artifact /\u003e with \u003cp\u003e and \u003c/p\u003e. It helps each text-artifact rendered below the previous one.",
+      "range": {
+        "startLine": 167,
+        "startChar": 24,
+        "endLine": 168,
+        "endChar": 58
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25b67baa_862edf3d",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-05-04T17:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4524d163_a9ff0075",
       "range": {
         "startLine": 167,
         "startChar": 24,
