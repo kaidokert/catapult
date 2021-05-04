@@ -52,6 +52,24 @@
       "parentUuid": "57a7cff9_a43229e7",
       "revId": "7683bd0d07dd39ebcd2bdfab0948d86dc31caea1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af7bd07_d5c9fd70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-05-04T16:17:07Z",
+      "side": 1,
+      "message": "The \"long way\" would be replacing all instances of \u0027foo\u0027 with u\u0027foo\u0027, and then use io.open(). But I think that\u0027s too tedious and of doubtful value. In my opinion, io.open is primarily useful for people who writes non-ASCII characters into files. Since virtually all our files are for logging purposes and contain only ASCII, I think we can just keep the calls to open() as is, and open fix specific Python 3 issue when we notice them.",
+      "parentUuid": "ae303b23_38b7b261",
+      "revId": "7683bd0d07dd39ebcd2bdfab0948d86dc31caea1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
