@@ -34,6 +34,24 @@
       "parentUuid": "96b329bb_165760a7",
       "revId": "7683bd0d07dd39ebcd2bdfab0948d86dc31caea1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae303b23_38b7b261",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-04T15:55:42Z",
+      "side": 1,
+      "message": "I see. It seems like in python 2 we need to manually convert the string into unicode before writing it to the files opened by io.open().",
+      "parentUuid": "57a7cff9_a43229e7",
+      "revId": "7683bd0d07dd39ebcd2bdfab0948d86dc31caea1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
