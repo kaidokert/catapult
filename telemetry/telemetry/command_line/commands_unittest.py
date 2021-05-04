@@ -3,7 +3,7 @@
 # found in the LICENSE file.
 
 import json
-import StringIO
+from io import StringIO
 import unittest
 
 from telemetry import benchmark
@@ -45,8 +45,8 @@ class BenchmarkDisabled(benchmark.Benchmark):
 class PrintBenchmarkListTests(unittest.TestCase):
 
   def setUp(self):
-    self._stream = StringIO.StringIO()
-    self._json_stream = StringIO.StringIO()
+    self._stream = StringIO()
+    self._json_stream = StringIO()
     self._mock_possible_browser = mock.MagicMock()
     self._mock_possible_browser.browser_type = 'TestBrowser'
 

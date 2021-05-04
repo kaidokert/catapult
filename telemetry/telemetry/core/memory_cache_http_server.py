@@ -10,9 +10,9 @@ import logging
 import mimetypes
 import os
 import socket
-import StringIO
 import sys
 import traceback
+from io import StringIO
 
 import six.moves.BaseHTTPServer # pylint: disable=import-error
 import six.moves.SimpleHTTPServer # pylint: disable=import-error
@@ -208,7 +208,7 @@ class _MemoryCacheHTTPServerImpl(six.moves.socketserver.ThreadingMixIn,
     zipped = False
     if content_type in ['text/html', 'text/css', 'application/javascript']:
       zipped = True
-      sio = StringIO.StringIO()
+      sio = StringIO()
       gzf = gzip.GzipFile(fileobj=sio, compresslevel=9, mode='wb')
       gzf.write(response)
       gzf.close()
