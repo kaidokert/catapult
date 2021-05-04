@@ -581,7 +581,7 @@ else:
             import zipfile
             import os
             import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
-            import StringIO
+            from io import StringIO
             from base64 import standard_b64encode
             import six.moves.http_client
             import six.moves.urllib.parse
@@ -634,7 +634,7 @@ else:
             boundary = '--------------GHSKFJDLGDS7543FJKLFHRE75642756743254'
             sep_boundary = '\n--' + boundary
             end_boundary = sep_boundary + '--'
-            body = StringIO.StringIO()
+            body = StringIO()
             for key, value in data.items():
                 if not isinstance(value, list):
                     value = [value]
