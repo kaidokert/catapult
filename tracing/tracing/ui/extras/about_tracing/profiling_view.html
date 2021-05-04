@@ -86,6 +86,19 @@ tr.exportTo('tr.ui.e.about_tracing', function() {
           Polymer.dom(this).querySelector('tr-ui-timeline-view');
       this.infoBarGroup_ =
           Polymer.dom(this).querySelector('tr-ui-b-info-bar-group');
+      this.infoBarGroup_.addMessage('Try Perfetto UI, an evolution of chrome://tracing!',
+            [{
+              buttonText: 'Open Perfetto UI',
+              onClick(event, infobar) {
+                window.open('https://ui.perfetto.dev');
+              }
+            },
+            {
+              buttonText: 'Close',
+              onClick(event, infobar) {
+                infobar.visible = false;
+              }
+            }]);
 
       // Detach the buttons. We will reattach them to the timeline view.
       // TODO(nduca): Make timeline-view have a content select="x-buttons"
