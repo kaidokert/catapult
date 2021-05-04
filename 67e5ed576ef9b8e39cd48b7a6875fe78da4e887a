@@ -16,6 +16,98 @@
       "message": "+rmhasan for OWNERS\n+ddoman to confirm this is what they wanted",
       "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc9034a4_5507ccd0",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-05-04T05:06:19Z",
+      "side": 1,
+      "message": "no longer necessary.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88219c91_b9498ee3",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-05-04T05:06:19Z",
+      "side": 1,
+      "message": "This is no longer necessary. \u003ctext-artifact\u003e renders the contents of an artifact in a safe way.",
+      "range": {
+        "startLine": 162,
+        "startChar": 41,
+        "endLine": 162,
+        "endChar": 51
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68203365_85b432db",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-05-04T05:06:19Z",
+      "side": 1,
+      "message": "same. no cgi.escape().",
+      "range": {
+        "startLine": 165,
+        "startChar": 41,
+        "endLine": 165,
+        "endChar": 51
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4524d163_a9ff0075",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1147264
+      },
+      "writtenOn": "2021-05-04T05:06:19Z",
+      "side": 1,
+      "message": "Please surround each \u003ctext-artifact /\u003e with \u003cp\u003e and \u003c/p\u003e. It helps each text-artifact rendered below the previous one.",
+      "range": {
+        "startLine": 167,
+        "startChar": 24,
+        "endLine": 168,
+        "endChar": 58
+      },
+      "revId": "67e5ed576ef9b8e39cd48b7a6875fe78da4e887a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
