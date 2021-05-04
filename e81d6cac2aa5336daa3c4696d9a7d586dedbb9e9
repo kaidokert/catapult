@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3efd557_d2d0b717",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1395206
+      },
+      "writtenOn": "2021-05-04T12:20:00Z",
+      "side": 1,
+      "message": "Not sure about the wording: should it read more like an ad or a deprecation notice? I went with a former",
+      "revId": "e81d6cac2aa5336daa3c4696d9a7d586dedbb9e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
