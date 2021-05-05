@@ -16,6 +16,23 @@
       "message": "Not sure about the wording: should it read more like an ad or a deprecation notice? I went with a former",
       "revId": "e81d6cac2aa5336daa3c4696d9a7d586dedbb9e9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eed46e3b_a504825a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116032
+      },
+      "writtenOn": "2021-05-05T12:12:21Z",
+      "side": 1,
+      "message": "Hey Andrew, Eric and I had a chat about this and thought the yellow butterbar is maybe a bit too intrusive for this, especially since you can\u0027t dismiss it permanently (about://tracing doesn\u0027t have cookies).\n\nHow about instead we put a little badge/link next to the \"^_^\" indicator at the top (where the loaded trace file name will be)? Something like \"Try the new [Perfetto UI](https://ui.perfetto.dev) [Learn more](link to a catapult wiki/doc page with a blurb about Perfetto and how to file feedback/bugs.)\"\n\nHere\u0027s the spot in the code: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing/ui/timeline_view.html;drc\u003d22b0de95cd01b9ea77252ac0dc3c793cb07fe8d3;l\u003d123",
+      "revId": "e81d6cac2aa5336daa3c4696d9a7d586dedbb9e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
