@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b195e9_586cfa67",
+        "filename": "tracing/docs/perfetto.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1173914
+      },
+      "writtenOn": "2021-05-05T14:45:22Z",
+      "side": 1,
+      "message": "Let\u0027s add a spiel about the longer-term plan here, e.g.\n\nOur long-term goal is to replace the catapult trace viewer with Perfetto\u0027s UI. It offers various advantages, including:\n* Support for larger trace sizes and more responsive trace navigation\n* Interactive SQL queries to analyze the trace model\n* Android system trace recording via WebUSB\n\nSo far, the Perfetto UI has been optimized for use cases on Android. If your Chromium use case could be supported in better ways, or if you\u0027re missing a loved feature from the catapult viewer, please leave us [feedback](..).\n\nFor a list of known issues, see [this buganizer hotlist](..) (Google-internal only).",
+      "revId": "830d2c5c57b6f01a49a31ee8f457f6fdf895917a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
