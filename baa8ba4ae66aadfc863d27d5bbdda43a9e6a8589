@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bfdd72b_9b0f21f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1360101
+      },
+      "writtenOn": "2021-05-10T16:40:31Z",
+      "side": 1,
+      "message": "Hi Brian,\n\nThis CL is a new version of https://chromium-review.googlesource.com/c/catapult/+/2855757,\nwhich couldn\u0027t be relanded because catapult has switched from using a master branch to\nusing a main branch.\n\nThe content of the CL is the same.\n\nSteve",
+      "revId": "baa8ba4ae66aadfc863d27d5bbdda43a9e6a8589",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
