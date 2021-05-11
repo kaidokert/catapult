@@ -72,7 +72,7 @@ class ChromeTraceConfig(object):
     self._memory_dump_config = None
     self._enable_systrace = False
     self._uma_histogram_names = []
-    self._trace_buffer_size_in_kb = None
+    self._trace_buffer_size_in_kb = 600 * 1024
     self._trace_format = None
 
   @property
@@ -124,7 +124,7 @@ class ChromeTraceConfig(object):
     self._enable_systrace = True
 
   def SetTraceBufferSizeInKb(self, size):
-    self._trace_buffer_size_in_kb = size
+    self._trace_buffer_size_in_kb = 600 * 1024
 
   def EnableUMAHistograms(self, *args):
     for uma_histogram_name in args:
