@@ -16,6 +16,23 @@
       "message": "Python 3 migration, PTAL.",
       "revId": "05012ffa56eed550b32e6f6f0ee0fb7d5840f6b8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52f3f3cf_3e858221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-11T17:58:07Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "05012ffa56eed550b32e6f6f0ee0fb7d5840f6b8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
