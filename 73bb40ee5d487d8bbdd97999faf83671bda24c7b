@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "73bb40ee5d487d8bbdd97999faf83671bda24c7b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dc7fd6b_45b49081",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-05-12T00:18:56Z",
+      "side": 1,
+      "message": "LGTM. Alternatively, you can add default\u003d0 in the parser.add_argument call for -v.",
+      "revId": "73bb40ee5d487d8bbdd97999faf83671bda24c7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
