@@ -16,6 +16,23 @@
       "message": "More Python 3 fix. PTAL.",
       "revId": "93fe5694aa737728fe5c173a2a6819e2d0d6be64",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a8d19a2_9237b728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-12T00:32:27Z",
+      "side": 1,
+      "message": "LGTM. ",
+      "revId": "93fe5694aa737728fe5c173a2a6819e2d0d6be64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
