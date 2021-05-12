@@ -704,14 +704,15 @@ def main():
 
   # Set up logging
   log_level = logging.CRITICAL
-  if options.verbose == 1:
-    log_level = logging.ERROR
-  elif options.verbose == 2:
-    log_level = logging.WARNING
-  elif options.verbose == 3:
-    log_level = logging.INFO
-  elif options.verbose >= 4:
-    log_level = logging.DEBUG
+  if options.verbose:
+    if options.verbose == 1:
+      log_level = logging.ERROR
+    elif options.verbose == 2:
+      log_level = logging.WARNING
+    elif options.verbose == 3:
+      log_level = logging.INFO
+    elif options.verbose >= 4:
+      log_level = logging.DEBUG
   if options.logfile is not None:
     logging.basicConfig(filename=options.logfile, level=log_level,
                         format="%(asctime)s.%(msecs)03d - %(message)s", datefmt="%H:%M:%S")
