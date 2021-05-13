@@ -63,6 +63,30 @@
       },
       "revId": "af621b862c0f4bba1fdd4f24a58a629113fd3ab1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "028fd350_b48036de",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_finder_unittest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1459387
+      },
+      "writtenOn": "2021-05-13T08:48:44Z",
+      "side": 1,
+      "message": "Mark as resolved.",
+      "parentUuid": "dd351d8a_930ef6ad",
+      "range": {
+        "startLine": 115,
+        "startChar": 25,
+        "endLine": 115,
+        "endChar": 57
+      },
+      "revId": "af621b862c0f4bba1fdd4f24a58a629113fd3ab1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
