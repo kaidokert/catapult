@@ -85,6 +85,24 @@
       "parentUuid": "faab9294_5e03b04f",
       "revId": "2e3981d9217681f872ad37c3dab8966db181e85e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cf4467d_ea5f7788",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2021-05-13T15:08:32Z",
+      "side": 1,
+      "message": "\u003e Hey, Matt-- sorry, I too lost track of this. I originally stalled because I wasn\u0027t quite sure how to address your feedback to keep select.png around without it getting deployed as a part of the publish process.\n\nNot a problem, was just going through my old CLs and noticed this.  Anyhow, if it\u0027s deployed and not used, maybe not the end of the world?  Or maybe it\u0027s fine to just delete it - does make it more effort to modify it, but you already need to be able to go from a png to a data URL - going the other way is easier, too (just paste it in your browser, or save-as)",
+      "parentUuid": "0114800e_411c64a1",
+      "revId": "2e3981d9217681f872ad37c3dab8966db181e85e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
