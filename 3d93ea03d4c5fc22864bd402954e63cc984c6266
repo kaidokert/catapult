@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae924516_7499b795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-05-18T02:24:00Z",
+      "side": 1,
+      "message": "LGTM\n\nIs there a way for us to test this, through a unittest?",
+      "revId": "3d93ea03d4c5fc22864bd402954e63cc984c6266",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
