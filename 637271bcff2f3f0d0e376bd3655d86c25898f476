@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43242d3c_50edfd2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1328067
+      },
+      "writtenOn": "2021-05-18T11:48:47Z",
+      "side": 1,
+      "message": "Sami, PTAL! It appeared that little-only setting actually didn\u0027t work. This CL fixes it and adds support for a couple of newer devices.",
+      "revId": "637271bcff2f3f0d0e376bd3655d86c25898f476",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
