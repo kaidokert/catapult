@@ -16,6 +16,24 @@
       "message": "LGTM\n\nIs there a way for us to test this, through a unittest?",
       "revId": "3d93ea03d4c5fc22864bd402954e63cc984c6266",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83e6989d_922aed7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-05-18T04:18:43Z",
+      "side": 1,
+      "message": "Tests have already covered the case (means the CL broke the tests). Fixed, thanks.",
+      "parentUuid": "ae924516_7499b795",
+      "revId": "3d93ea03d4c5fc22864bd402954e63cc984c6266",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
