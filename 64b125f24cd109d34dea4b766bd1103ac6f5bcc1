@@ -16,6 +16,23 @@
       "message": "Hi Haiyang\n\nThis CL does small refactor of an expression\n\nPTAL\nRakib",
       "revId": "64b125f24cd109d34dea4b766bd1103ac6f5bcc1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44333f3c_5ed96dba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2021-05-18T18:47:35Z",
+      "side": 1,
+      "message": "Any reason for this refactoring? IMO, the original code is better in readability.",
+      "revId": "64b125f24cd109d34dea4b766bd1103ac6f5bcc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
