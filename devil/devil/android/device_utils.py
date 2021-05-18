@@ -1104,7 +1104,7 @@ class DeviceUtils(object):
       return not self.IsOnline()
 
     # Only check the root when block is True
-    should_restore_root = self.HasRoot() if block else False
+    should_restore_root = block and self.HasRoot()
     self.adb.Reboot()
     self.ClearCache()
     timeout_retry.WaitFor(device_offline, wait_period=1)
