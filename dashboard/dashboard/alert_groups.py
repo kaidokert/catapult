@@ -69,6 +69,7 @@ def ProcessAlertGroups():
     deferred.defer(
         _ProcessAlertGroup,
         group.key,
+        _queue='update-alert-group-queue',
         _retry_options=taskqueue.TaskRetryOptions(task_retry_limit=0))
 
   deferred.defer(_ProcessUngroupedAlerts,
