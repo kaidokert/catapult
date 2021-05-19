@@ -10,7 +10,7 @@ import("trace_viewer.gni")
 output_resource_dir = "$root_gen_dir/content/browser/tracing"
 
 # TODO(crbug.com/1112471): Make this work under Python 3.
-python2_action("generate_about_tracing") {
+action("generate_about_tracing") {
   script = "bin/generate_about_tracing_contents"
 
   inputs = tracing_files + tracing_python_files

@@ -25,10 +25,10 @@ def _InitBeautifulSoup():
   catapult_path = os.path.abspath(
       os.path.join(os.path.dirname(__file__),
                    os.path.pardir, os.path.pardir, os.path.pardir))
-  bs_path = os.path.join(catapult_path, 'third_party', 'beautifulsoup4')
+  bs_path = os.path.join(catapult_path, 'third_party', 'beautifulsoup4-4.9.3')
   _AddToPathIfNeeded(bs_path)
 
-  html5lib_path = os.path.join(catapult_path, 'third_party', 'html5lib-python')
+  html5lib_path = os.path.join(catapult_path, 'third_party', 'html5lib-python-tot')
   _AddToPathIfNeeded(html5lib_path)
 
   six_path = os.path.join(catapult_path, 'third_party', 'six')
