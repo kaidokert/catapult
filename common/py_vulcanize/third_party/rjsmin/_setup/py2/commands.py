@@ -21,6 +21,8 @@
 
 Command extenders.
 """
+from __future__ import absolute_import
+import six
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 __test__ = False
@@ -65,17 +67,17 @@ def add_option(command, long_name, help_text, short_name=None, default=None,
             attr_name = _fancy_getopt.translate_longopt(long_name)
         else:
             attr_name = _fancy_getopt.translate_longopt(long_name[:-1])
-        if not _option_defaults.has_key(command):
+        if command not in _option_defaults:
             _option_defaults[command] = []
         if inherit is not None:
-            if isinstance(inherit, (str, unicode)):
+            if isinstance(inherit, (str, six.text_type)):
                 inherit = [inherit]
             for i_inherit in inherit:
                 add_option(
                     i_inherit, long_name, help_text, short_name, default
                 )
             default = None
-            if not _option_inherits.has_key(command):
+            if command not in _option_inherits:
                 _option_inherits[command] = []
             for i_inherit in inherit:
                 for i_command, opt_name in _option_inherits[command]:
@@ -88,9 +90,9 @@ def add_option(command, long_name, help_text, short_name=None, default=None,
 
 def add_finalizer(command, key, func):
     """ Add finalizer """
-    if not _option_finalizers.has_key(command):
+    if command not in _option_finalizers:
         _option_finalizers[command] = {}
-    if not _option_finalizers[command].has_key(key):
+    if key not in _option_finalizers[command]:
         _option_finalizers[command][key] = func
 
 
@@ -108,17 +110,17 @@ class Install(_install.install):
         """ Prepare for new options """
         _install.install.initialize_options(self)
         self.single_version_externally_managed = None
-        if _option_defaults.has_key('install'):
+        if 'install' in _option_defaults:
             for opt_name, default in _option_defaults['install']:
                 setattr(self, opt_name, default)
 
     def finalize_options(self):
         """ Finalize options """
         _install.install.finalize_options(self)
-        if _option_inherits.has_key('install'):
+        if 'install' in _option_inherits:
             for parent, opt_name in _option_inherits['install']:
                 self.set_undefined_options(parent, (opt_name, opt_name))
-        if _option_finalizers.has_key('install'):
+        if 'install' in _option_finalizers:
             for func in _option_finalizers['install'].values():
                 func(self)
 
@@ -131,17 +133,17 @@ class InstallData(_install_data.install_data):
     def initialize_options(self):
         """ Prepare for new options """
         _install_data.install_data.initialize_options(self)
-        if _option_defaults.has_key('install_data'):
+        if 'install_data' in _option_defaults:
             for opt_name, default in _option_defaults['install_data']:
                 setattr(self, opt_name, default)
 
     def finalize_options(self):
         """ Finalize options """
         _install_data.install_data.finalize_options(self)
-        if _option_inherits.has_key('install_data'):
+        if 'install_data' in _option_inherits:
             for parent, opt_name in _option_inherits['install_data']:
                 self.set_undefined_options(parent, (opt_name, opt_name))
-        if _option_finalizers.has_key('install_data'):
+        if 'install_data' in _option_finalizers:
             for func in _option_finalizers['install_data'].values():
                 func(self)
 
@@ -154,17 +156,17 @@ class InstallLib(_install_lib.install_lib):
     def initialize_options(self):
         """ Prepare for new options """
         _install_lib.install_lib.initialize_options(self)
-        if _option_defaults.has_key('install_lib'):
+        if 'install_lib' in _option_defaults:
             for opt_name, default in _option_defaults['install_lib']:
                 setattr(self, opt_name, default)
 
     def finalize_options(self):
         """ Finalize options """
         _install_lib.install_lib.finalize_options(self)
-        if _option_inherits.has_key('install_lib'):
+        if 'install_lib' in _option_inherits:
             for parent, opt_name in _option_inherits['install_lib']:
                 self.set_undefined_options(parent, (opt_name, opt_name))
-        if _option_finalizers.has_key('install_lib'):
+        if 'install_lib' in _option_finalizers:
             for func in _option_finalizers['install_lib'].values():
                 func(self)
 
@@ -182,17 +184,17 @@ class BuildExt(_build_ext.build_ext):
     def initialize_options(self):
         """ Prepare for new options """
         _build_ext.build_ext.initialize_options(self)
-        if _option_defaults.has_key('build_ext'):
+        if 'build_ext' in _option_defaults:
             for opt_name, default in _option_defaults['build_ext']:
                 setattr(self, opt_name, default)
 
     def finalize_options(self):
         """ Finalize options """
         _build_ext.build_ext.finalize_options(self)
-        if _option_inherits.has_key('build_ext'):
+        if 'build_ext' in _option_inherits:
             for parent, opt_name in _option_inherits['build_ext']:
                 self.set_undefined_options(parent, (opt_name, opt_name))
-        if _option_finalizers.has_key('build_ext'):
+        if 'build_ext' in _option_finalizers:
             for func in _option_finalizers['build_ext'].values():
                 func(self)
 
@@ -252,16 +254,16 @@ class Build(_build.build):
     def initialize_options(self):
         """ Prepare for new options """
         _build.build.initialize_options(self)
-        if _option_defaults.has_key('build'):
+        if 'build' in _option_defaults:
             for opt_name, default in _option_defaults['build']:
                 setattr(self, opt_name, default)
 
     def finalize_options(self):
         """ Finalize options """
         _build.build.finalize_options(self)
-        if _option_inherits.has_key('build'):
+        if 'build' in _option_inherits:
             for parent, opt_name in _option_inherits['build']:
                 self.set_undefined_options(parent, (opt_name, opt_name))
-        if _option_finalizers.has_key('build'):
+        if 'build' in _option_finalizers:
             for func in _option_finalizers['build'].values():
                 func(self)

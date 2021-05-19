@@ -21,6 +21,7 @@
 
 C extension tools.
 """
+from __future__ import absolute_import
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 __test__ = False
@@ -60,7 +61,7 @@ class Extension(_core.Extension):
 
     def __init__(self, *args, **kwargs):
         """ Initialization """
-        if kwargs.has_key('depends'):
+        if 'depends' in kwargs:
             self.depends = kwargs['depends'] or []
         else:
             self.depends = []

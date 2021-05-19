@@ -24,7 +24,9 @@
 # THE SOFTWARE.
 
 
+from __future__ import absolute_import
 import sys
+import six
 is_3 = sys.version_info >= (3, 0)
 if is_3:
     import io
@@ -45,7 +47,7 @@ def jsmin(js):
     returns a minified version of the javascript string
     """
     if not is_3:        
-        if cStringIO and not isinstance(js, unicode):
+        if cStringIO and not isinstance(js, six.text_type):
             # strings can use cStringIO for a 3x performance
             # improvement, but unicode (in python2) cannot
             klass = cStringIO.StringIO

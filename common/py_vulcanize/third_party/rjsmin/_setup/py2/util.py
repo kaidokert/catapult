@@ -22,6 +22,7 @@
 Setup utilities.
 """
 from __future__ import print_function
+from __future__ import absolute_import
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 
@@ -37,9 +38,9 @@ except ImportError:
 
 from distutils import util as _util
 try:
-    from ConfigParser import SafeConfigParser
+    from six.moves.configparser import SafeConfigParser
 except ImportError:
-    import ConfigParser as _config_parser
+    import six.moves.configparser as _config_parser
     class SafeConfigParser(_config_parser.ConfigParser):
         """ Safe config parser """
         def _interpolate(self, section, option, rawval, vars):

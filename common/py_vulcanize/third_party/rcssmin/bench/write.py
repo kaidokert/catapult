@@ -35,6 +35,11 @@ Usage::
 
 """
 from __future__ import print_function
+from __future__ import absolute_import
+from six.moves import map
+import six
+from six.moves import range
+from six.moves import zip
 if __doc__:
     __doc__ = __doc__.encode('ascii').decode('unicode_escape')
 __author__ = r"Andr\xe9 Malo".encode('ascii').decode('unicode_escape')
@@ -48,7 +53,7 @@ import sys as _sys
 
 
 try:
-    unicode
+    six.text_type
 except NameError:
     def uni(v):
         if hasattr(v, 'decode'):
@@ -56,7 +61,7 @@ except NameError:
         return str(v)
 else:
     def uni(v):
-        if isinstance(v, unicode):
+        if isinstance(v, six.text_type):
             return v.encode('utf-8')
         return str(v)
 
@@ -141,10 +146,10 @@ def write_table(filename, results):
 
             # calculate column widths (global for all tables)
             for idx, row in enumerate(rows):
-                widths[idx] = max(widths[idx], max(map(len, row)))
+                widths[idx] = max(widths[idx], max(list(map(len, row))))
 
             # ... and transpose it back.
-            tables.append(zip(*rows))
+            tables.append(list(zip(*rows)))
         pythons.append((version, tables))
 
         if last_version.startswith('2.'):
