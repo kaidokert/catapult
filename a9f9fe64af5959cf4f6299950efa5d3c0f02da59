@@ -16,6 +16,24 @@
       "message": "Trying to resolve some old bugs. PTAL.",
       "revId": "a9f9fe64af5959cf4f6299950efa5d3c0f02da59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81f160ed_efa78f29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-20T18:20:50Z",
+      "side": 1,
+      "message": "For the same bug, there is one more test disabled:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/backends/chrome/android_browser_finder_unittest.py;l\u003d259\n\nShould we try enable that as well?",
+      "parentUuid": "4059c21e_a3eebd5d",
+      "revId": "a9f9fe64af5959cf4f6299950efa5d3c0f02da59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
