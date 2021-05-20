@@ -21,6 +21,8 @@
 
 This module provides a wrapper around the distutils core setup.
 """
+from __future__ import absolute_import
+from six.moves import map
 __author__ = "Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 

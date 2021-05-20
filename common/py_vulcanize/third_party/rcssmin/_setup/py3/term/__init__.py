@@ -21,6 +21,7 @@
 
 Terminal tools, not distributed.
 """
+from __future__ import absolute_import
 __author__ = "Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 

@@ -31,6 +31,7 @@
 # */
 
 # imports adjusted for speed (cStringIO) and python 3 (io) -- nd
+from __future__ import absolute_import
 try:
     from cStringIO import StringIO
 except ImportError:

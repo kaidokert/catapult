@@ -21,6 +21,7 @@
 
 This module provides tools to simplify data distribution.
 """
+from __future__ import absolute_import
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 
@@ -121,7 +122,7 @@ class Data(object):
                 if len(name) > 1:
                     target = telems + name[:-1]
             tmap.setdefault(_posixpath.join(*target), []).append(fname)
-        return tmap.items()
+        return list(tmap.items())
 
 
 class Documentation(Data):

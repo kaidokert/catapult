@@ -72,6 +72,7 @@ Both python 2 (>= 2.4) and python 3 are supported.
 
 .. _the rule list by Isaac Schlueter: https://github.com/isaacs/cssmin/
 """
+from __future__ import absolute_import
 if __doc__:
     # pylint: disable = W0622
     __doc__ = __doc__.encode('ascii').decode('unicode_escape')

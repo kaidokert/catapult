@@ -21,6 +21,7 @@
 
 C extension tools.
 """
+from __future__ import absolute_import
 __author__ = "Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 __test__ = False

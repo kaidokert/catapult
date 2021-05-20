@@ -24,6 +24,9 @@ Shell utilities.
 from __future__ import generators
 
 from __future__ import print_function
+from __future__ import absolute_import
+import six
+from six.moves import map
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 
@@ -50,7 +53,7 @@ class SignalError(ExitError):
         ExitError.__init__(self, code)
         import signal as _signal
         self.signal = signal
-        for key, val in vars(_signal).iteritems():
+        for key, val in six.iteritems(vars(_signal)):
             if key.startswith('SIG') and not key.startswith('SIG_'):
                 if val == signal:
                     self.signalstr = key[3:]
@@ -79,7 +82,7 @@ def rm(dest):
     """ Remove a file """
     try:
         _os.unlink(native(dest))
-    except OSError, e:
+    except OSError as e:
         if _errno.ENOENT != e.errno:
             raise
 
@@ -88,7 +91,7 @@ def rm_rf(dest):
     dest = native(dest)
     if _os.path.exists(dest):
         for path in files(dest, '*'):
-            _os.chmod(native(path), 0644)
+            _os.chmod(native(path), 0o644)
         _shutil.rmtree(dest)
 
 
@@ -137,15 +140,15 @@ except AttributeError:
             j = _tempfile._counter.get_next() # pylint: disable = E1101, W0212
             fname = _os.path.join(dir, prefix + str(j) + suffix)
             try:
-                fd = _os.open(fname, flags, 0600)
-            except OSError, e:
+                fd = _os.open(fname, flags, 0o600)
+            except OSError as e:
                 if e.errno == _errno.EEXIST:
                     count -= 1
                     continue
                 raise
             _set_cloexec(fd)
             return fd, _os.path.abspath(fname)
-        raise IOError, (_errno.EEXIST, "No usable temporary file name found")
+        raise IOError(_errno.EEXIST, "No usable temporary file name found")
 
 
 def _pipespawn(argv, env):
@@ -235,7 +238,7 @@ sys.exit(3)
                 res = proc.wait()
         if res != 0:
             if res == 2:
-                signal, code = map(int, result.splitlines()[-1].split())
+                signal, code = list(map(int, result.splitlines()[-1].split()))
                 raise SignalError(code, signal)
             elif res == 3:
                 code = int(result.splitlines()[-1].strip())
@@ -377,7 +380,7 @@ except AttributeError:
 
         try:
             names = listdir(top)
-        except error, err:
+        except error as err:
             if onerror is not None:
                 onerror(err)
             return
