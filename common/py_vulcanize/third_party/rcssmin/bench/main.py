@@ -35,6 +35,9 @@ Usage::
 
 """
 from __future__ import print_function
+from __future__ import absolute_import
+from six.moves import map
+from six.moves import range
 if __doc__:
     __doc__ = __doc__.encode('ascii').decode('unicode_escape')
 __author__ = r"Andr\xe9 Malo".encode('ascii').decode('unicode_escape')
@@ -114,7 +117,7 @@ def bench(filenames, count):
 
     ports = [item for item in dir(cssmins) if item.startswith('p_')]
     ports.sort()
-    space = max(map(len, ports)) - 4
+    space = max(list(map(len, ports))) - 4
     ports = [(item[5:], getattr(cssmins, item).cssmin) for item in ports]
     flush = _sys.stdout.flush
 
@@ -160,7 +163,7 @@ def bench(filenames, count):
 
                 xcount = count
                 while True:
-                    counted = [None for _ in xrange(xcount)]
+                    counted = [None for _ in range(xcount)]
                     start = _time.time()
                     for _ in counted:
                         cssmin(style)

@@ -21,10 +21,13 @@
 
 This module provides a wrapper around the distutils core setup.
 """
+from __future__ import absolute_import
+import six
+from six.moves import map
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 
-import ConfigParser as _config_parser
+import six.moves.configparser as _config_parser
 from distutils import core as _core
 import os as _os
 import posixpath as _posixpath
@@ -52,16 +55,16 @@ def check_python_version(impl, version_min, version_max):
     else:
         raise AssertionError("impl not in ('python', 'pypy', 'jython')")
 
-    pyversion = map(int, version_info[:3])
+    pyversion = list(map(int, version_info[:3]))
     if version_min:
         min_required = \
-            map(int, '.'.join((version_min, '0.0.0')).split('.')[:3])
+            list(map(int, '.'.join((version_min, '0.0.0')).split('.')[:3]))
         if pyversion < min_required:
             raise EnvironmentError("Need at least %s %s (vs. %s)" % (
                 impl, version_min, '.'.join(map(str, pyversion))
             ))
     if version_max:
-        max_required = map(int, version_max.split('.'))
+        max_required = list(map(int, version_max.split('.')))
         max_required[-1] += 1
         if pyversion >= max_required:
             raise EnvironmentError("Need at max %s %s (vs. %s)" % (
@@ -188,7 +191,7 @@ def find_packages(manifest):
                 packages[
                     _os.path.normpath(dirpath).replace(sep, '.')
                 ] = None
-    packages = packages.keys()
+    packages = list(packages.keys())
     packages.sort()
     return packages
 
@@ -311,9 +314,9 @@ def make_manifest(manifest, config, docs, kwargs):
     cmd.ensure_finalized()
     #from pprint import pprint; pprint(("install_data", cmd.get_inputs()))
     try:
-        strings = basestring
+        strings = six.string_types
     except NameError:
-        strings = (str, unicode)
+        strings = (str, six.text_type)
 
     for item in cmd.get_inputs():
         if isinstance(item, strings):
@@ -327,7 +330,7 @@ def make_manifest(manifest, config, docs, kwargs):
             for filename in _shell.files(item):
                 result.append(filename)
 
-    result = dict([(item, None) for item in result]).keys()
+    result = list(dict([(item, None) for item in result]).keys())
     result.sort()
     return result
 

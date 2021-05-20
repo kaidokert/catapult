@@ -5,6 +5,7 @@
 """Start and stop Web Page Replay."""
 
 from __future__ import print_function
+from __future__ import absolute_import
 import logging
 import os
 import re
@@ -12,7 +13,7 @@ import signal
 import subprocess
 import sys
 import tempfile
-import urllib
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
 import py_utils
 from py_utils import atexit_with_log
@@ -422,7 +423,7 @@ class ReplayServer(object):
     """
     url = '%s://%s:%s/%s' % (
         protocol, self._replay_host, self._started_ports[protocol], url_path)
-    return urllib.urlopen(url, proxies={})
+    return six.moves.urllib.request.urlopen(url, proxies={})
 
 def _ResetInterruptHandler():
   """Reset the interrupt handler back to the default.

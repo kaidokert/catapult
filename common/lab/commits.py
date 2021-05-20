@@ -6,12 +6,14 @@
 """Print statistics about the rate of commits to a repository."""
 
 from __future__ import print_function
+from __future__ import absolute_import
 import datetime
 import itertools
 import json
 import math
-import urllib
-import urllib2
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
+import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+from six.moves import zip
 
 
 _BASE_URL = 'https://chromium.googlesource.com'
@@ -30,7 +32,7 @@ def Pairwise(iterable):
   """s -> (s0,s1), (s1,s2), (s2, s3), ..."""
   a, b = itertools.tee(iterable)
   next(b, None)
-  return itertools.izip(a, b)
+  return zip(a, b)
 
 
 def Percentile(data, percentile):
@@ -59,9 +61,9 @@ def Percentile(data, percentile):
 
 
 def CommitTimes(repository, revision_count):
-  parameters = urllib.urlencode((('n', revision_count), ('format', 'JSON')))
-  url = '%s/%s/+log?%s' % (_BASE_URL, urllib.quote(repository), parameters)
-  data = json.loads(''.join(urllib2.urlopen(url).read().splitlines()[1:]))
+  parameters = six.moves.urllib.parse.urlencode((('n', revision_count), ('format', 'JSON')))
+  url = '%s/%s/+log?%s' % (_BASE_URL, six.moves.urllib.parse.quote(repository), parameters)
+  data = json.loads(''.join(six.moves.urllib.request.urlopen(url).read().splitlines()[1:]))
 
   commit_times = []
   for revision in data['log']:

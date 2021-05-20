@@ -21,6 +21,7 @@
 
 dist utilities.
 """
+from __future__ import absolute_import
 __author__ = u"Andr\xe9 Malo"
 __docformat__ = "restructuredtext en"
 
