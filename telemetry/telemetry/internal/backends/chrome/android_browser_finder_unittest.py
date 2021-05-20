@@ -256,7 +256,7 @@ class SelectDefaultBrowserTest(unittest.TestCase):
 
 class SetUpProfileBrowserTest(unittest.TestCase):
 
-  @decorators.Disabled('all')  # http://crbug.com/905359
+  @decorators.Enabled('android')
   def testPushEmptyProfile(self):
     finder_options = options_for_unittests.GetCopy()
     finder_options.browser_options.profile_dir = None
@@ -272,7 +272,7 @@ class SetUpProfileBrowserTest(unittest.TestCase):
 
        # "lib" is created after installing the browser, and pushing / removing
        # the profile should never modify it.
-      profile_paths = device.ListDirectory(profile_dir)
+      profile_paths = device.ListDirectory(profile_dir, as_root=True)
       expected_paths = ['lib']
       self.assertEqual(expected_paths, profile_paths)
 
