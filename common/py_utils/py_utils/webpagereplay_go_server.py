@@ -12,7 +12,6 @@ import signal
 import subprocess
 import sys
 import tempfile
-import urllib
 
 import py_utils
 from py_utils import atexit_with_log
