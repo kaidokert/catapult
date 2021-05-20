@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff6ef8a4_1174e8ad",
+        "filename": ".vpython",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-20T21:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7aca960_7ad6ac43",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 15
+      },
+      "revId": "c3ed64fb872ef45967189970e72e8a4756da1e64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a472fc35_d6f738a6",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-05-20T17:16:49Z",
       "side": 1,
       "message": "Remove vpython from all run_test scripts",
+      "range": {
+        "startLine": 190,
+        "startChar": 6,
+        "endLine": 191,
+        "endChar": 3
+      },
+      "revId": "c3ed64fb872ef45967189970e72e8a4756da1e64",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ee2117e_5593ba03",
+        "filename": ".vpython",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-20T21:43:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a472fc35_d6f738a6",
       "range": {
         "startLine": 190,
         "startChar": 6,
