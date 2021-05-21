@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
 import base64
 import os
 import unittest
@@ -38,7 +39,7 @@ class StyleSheetUnittest(unittest.TestCase):
 .x .y {
     background-image: url(data:image/jpeg;base64,%s);
 }
-""" % base64.standard_b64encode('hello world'), inlined)
+""" % base64.standard_b64encode('hello world'.encode('utf-8')), inlined)
 
   def testURLResolveFails(self):
     fs = fake_fs.FakeFS()
