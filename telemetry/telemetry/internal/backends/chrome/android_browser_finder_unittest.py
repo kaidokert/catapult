@@ -7,6 +7,7 @@ import os
 import posixpath
 import unittest
 
+import logging
 import mock
 from pyfakefs import fake_filesystem_unittest
 from py_utils import tempfile_ext
@@ -256,11 +257,12 @@ class SelectDefaultBrowserTest(unittest.TestCase):
 
 class SetUpProfileBrowserTest(unittest.TestCase):
 
-  @decorators.Disabled('all')  # http://crbug.com/905359
   def testPushEmptyProfile(self):
     finder_options = options_for_unittests.GetCopy()
     finder_options.browser_options.profile_dir = None
     browser_to_create = browser_finder.FindBrowser(finder_options)
+
+    logging.error('browser_options: %s', finder_options.browser_options)
 
     try:
       # SetUpEnvironment will call RemoveProfile on the device, due to the fact
@@ -268,7 +270,12 @@ class SetUpProfileBrowserTest(unittest.TestCase):
       browser_to_create.SetUpEnvironment(finder_options.browser_options)
 
       profile_dir = browser_to_create.profile_directory
+      logging.error('profile_dir: %s', browser_to_create.profile_directory)
       device = browser_to_create._platform_backend.device
+
+      logging.error('/data/local: %s', device.ListDirectory('/data/local'))
+      logging.error(
+          '/data/local/tmp: %s', device.ListDirectory('/data/local/tmp'))
 
        # "lib" is created after installing the browser, and pushing / removing
        # the profile should never modify it.
