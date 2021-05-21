@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+from __future__ import absolute_import
 import base64
 import os
 import re
@@ -54,7 +55,7 @@ class ParsedStyleSheet(object):
       image = images_by_url[url]
 
       ext = os.path.splitext(image.absolute_path)[1]
-      data = base64.standard_b64encode(image.contents)
+      data = base64.standard_b64encode(image.contents.encode('utf-8'))
 
       return 'url(data:image/%s;base64,%s)' % (ext[1:], data)
 
