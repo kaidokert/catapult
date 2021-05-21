@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "731f5ae5_2ad4ca60",
+        "filename": "common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-21T18:16:10Z",
+      "side": 1,
+      "message": "This is copied from https://chromium-review.googlesource.com/c/catapult/+/2872570 . I will leave these.",
+      "parentUuid": "5f9d019b_23a99592",
+      "range": {
+        "startLine": 9,
+        "startChar": 31,
+        "endLine": 9,
+        "endChar": 43
+      },
+      "revId": "1750747fc110573cbba2847e394305a331b57b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd1bd164_db43973b",
