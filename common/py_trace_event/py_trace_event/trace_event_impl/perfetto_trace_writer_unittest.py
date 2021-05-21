@@ -6,9 +6,15 @@
 from __future__ import absolute_import
 import unittest
 try:
+<<<<<<< HEAD
+  from StringIO import StringIO as stringIO
+except ImportError:
+  from io import StringIO as stringIO
+=======
   from StringIO import StringIO
 except ImportError:
   from io import StringIO
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
 
 from py_trace_event.trace_event_impl import perfetto_trace_writer
 
@@ -23,7 +29,11 @@ class PerfettoTraceWriterTest(unittest.TestCase):
     perfetto_trace_writer.reset_global_state()
 
   def testWriteThreadDescriptorEvent(self):
+<<<<<<< HEAD
+    result = stringIO()
+=======
     result = StringIO()
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
     perfetto_trace_writer.write_thread_descriptor_event(
         output=result,
         pid=1,
@@ -37,7 +47,11 @@ class PerfettoTraceWriterTest(unittest.TestCase):
     self.assertEqual(expected_output, result.getvalue())
 
   def testWriteTwoEvents(self):
+<<<<<<< HEAD
+    result = stringIO()
+=======
     result = StringIO()
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
     perfetto_trace_writer.write_thread_descriptor_event(
         output=result,
         pid=1,
@@ -63,7 +77,11 @@ class PerfettoTraceWriterTest(unittest.TestCase):
     self.assertEqual(expected_output, result.getvalue())
 
   def testWriteMetadata(self):
+<<<<<<< HEAD
+    result = stringIO()
+=======
     result = StringIO()
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
     perfetto_trace_writer.write_metadata(
         output=result,
         benchmark_start_time_us=1556716807306000,
@@ -83,7 +101,11 @@ class PerfettoTraceWriterTest(unittest.TestCase):
     self.assertEqual(expected_output, result.getvalue())
 
   def testWriteArgs(self):
+<<<<<<< HEAD
+    result = stringIO()
+=======
     result = StringIO()
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
     perfetto_trace_writer.write_thread_descriptor_event(
         output=result,
         pid=1,
@@ -109,7 +131,11 @@ class PerfettoTraceWriterTest(unittest.TestCase):
     self.assertEqual(expected_output, result.getvalue())
 
   def testWriteChromeMetadata(self):
+<<<<<<< HEAD
+    result = stringIO()
+=======
     result = StringIO()
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
     perfetto_trace_writer.write_chrome_metadata(
         output=result,
         clock_domain='FOO',
@@ -120,7 +146,11 @@ class PerfettoTraceWriterTest(unittest.TestCase):
     self.assertEqual(expected_output, result.getvalue())
 
   def testWriteClockSnapshot(self):
+<<<<<<< HEAD
+    result = stringIO()
+=======
     result = StringIO()
+>>>>>>> cde766ee8a5ae51c7096dc51da56168f602baf33
     perfetto_trace_writer.write_clock_snapshot(
         output=result,
         tid=1,
