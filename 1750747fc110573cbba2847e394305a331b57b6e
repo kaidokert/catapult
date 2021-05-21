@@ -64,6 +64,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2c373be_1a2cbf77",
+        "filename": "common/py_vulcanize/py_vulcanize/fake_fs.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-21T18:14:45Z",
+      "side": 1,
+      "message": "Ahh, much better",
+      "parentUuid": "cd1bd164_db43973b",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "1750747fc110573cbba2847e394305a331b57b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ff56c86_22657b00",
@@ -77,6 +101,30 @@
       "writtenOn": "2021-05-21T17:49:54Z",
       "side": 1,
       "message": "Easier to use b\u0027hello world\u0027, as the string is entirely ASCII.",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "1750747fc110573cbba2847e394305a331b57b6e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "befd2f8a_a35d40ba",
+        "filename": "common/py_vulcanize/py_vulcanize/style_sheet_unittest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-21T18:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ff56c86_22657b00",
       "range": {
         "startLine": 42,
         "startChar": 32,
