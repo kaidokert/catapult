@@ -1,6 +1,7 @@
 # Copyright 2016 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+from __future__ import absolute_import
 import atexit
 import json
 import os
@@ -8,12 +9,12 @@ import sys
 import time
 import threading
 import multiprocessing
-import multiprocessing_shim
 
 from py_trace_event.trace_event_impl import perfetto_trace_writer
 from py_trace_event import trace_time
 
 from py_utils import lock
+import six
 
 
 # Trace file formats:
@@ -133,9 +134,9 @@ def _write_header():
     )
   else:
     if _format == JSON:
-      _log_file.write('[')
+      _log_file.write(b'[')
     elif _format == JSON_WITH_METADATA:
-      _log_file.write('{"traceEvents": [\n')
+      _log_file.write(b'{"traceEvents": [\n')
     else:
       raise TraceException("Unknown format: %s" % _format)
     json.dump({
@@ -147,7 +148,7 @@ def _write_header():
         "name": "process_argv",
         "args": {"argv": sys.argv},
     }, _log_file)
-    _log_file.write('\n')
+    _log_file.write(b'\n')
 
 
 @_locked
@@ -170,7 +171,7 @@ def _trace_enable(log_file=None, format=None):
       log_file = open("%s.pb" % n, "ab", False)
     else:
       log_file = open("%s.json" % n, "ab", False)
-  elif isinstance(log_file, basestring):
+  elif isinstance(log_file, six.string_types):
     log_file = open("%s" % log_file, "ab", False)
   elif not hasattr(log_file, 'fileno'):
     raise TraceException(
@@ -191,6 +192,7 @@ def _trace_enable(log_file=None, format=None):
       _note("trace_event: Opened existing tracelog")
     _log_file.flush()
   # Monkeypatch in our process replacement for the multiprocessing.Process class
+  from . import multiprocessing_shim
   if multiprocessing.Process != multiprocessing_shim.ProcessShim:
       multiprocessing.Process = multiprocessing_shim.ProcessShim
 
@@ -227,7 +229,7 @@ def _write_cur_events():
       )
   elif _format in (JSON, JSON_WITH_METADATA):
     for e in _cur_events:
-      _log_file.write(",\n")
+      _log_file.write(b",\n")
       json.dump(e, _log_file)
   else:
     raise TraceException("Unknown format: %s" % _format)
@@ -243,9 +245,9 @@ def _write_footer():
     # been written in a special proto message.
     pass
   elif _format == JSON_WITH_METADATA:
-    _log_file.write('],\n"metadata": ')
+    _log_file.write(b'],\n"metadata": ')
     json.dump(_benchmark_metadata, _log_file)
-    _log_file.write('}')
+    _log_file.write(b'}')
   else:
     raise TraceException("Unknown format: %s" % _format)
 

@@ -13,6 +13,10 @@ import sys
 
 import six
 
+import sys
+is_3 = sys.version_info >= (3, 0)
+if is_3:
+  import builtins
 
 class WithableStringIO(six.StringIO):
 
@@ -33,7 +37,11 @@ class FakeFS(object):
 
     self._bound = False
     self._real_codecs_open = codecs.open
-    self._real_open = sys.modules['__builtin__'].open
+    if is_3:
+      self._real_open = builtins.open
+    else:
+      self._real_open = sys.modules['__builtin__'].open
+
     self._real_abspath = os.path.abspath
     self._real_exists = os.path.exists
     self._real_walk = os.walk
@@ -49,7 +57,10 @@ class FakeFS(object):
   def Bind(self):
     assert not self._bound
     codecs.open = self._FakeCodecsOpen
-    sys.modules['__builtin__'].open = self._FakeOpen
+    if is_3:
+      builtins.open = self._FakeOpen
+    else:
+      sys.modules['__builtin__'].open = self._FakeOpen
     os.path.abspath = self._FakeAbspath
     os.path.exists = self._FakeExists
     os.walk = self._FakeWalk
@@ -59,7 +70,10 @@ class FakeFS(object):
   def Unbind(self):
     assert self._bound
     codecs.open = self._real_codecs_open
-    sys.modules['__builtin__'].open = self._real_open
+    if is_3:
+      builtins.open = self._real_open
+    else:
+      sys.modules['__builtin__'].open = self._real_open
     os.path.abspath = self._real_abspath
     os.path.exists = self._real_exists
     os.walk = self._real_walk
