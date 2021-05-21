@@ -6,16 +6,16 @@ import logging
 import unittest
 
 try:
-  from six import StringIO
+  from StringIO import StringIO as stringIO
 except ImportError:
-  from io import StringIO
+  from io import StringIO as stringIO
 
 from py_utils import logging_util
 
 
 class LoggingUtilTest(unittest.TestCase):
   def testCapture(self):
-    s = StringIO()
+    s = stringIO()
     with logging_util.CaptureLogs(s):
       logging.fatal('test')
 
