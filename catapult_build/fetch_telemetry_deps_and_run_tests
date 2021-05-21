@@ -23,7 +23,8 @@ def main(args):
   print('Done fetching Telemetry dependencies.')
   print('Running Telemetry tests...')
   subprocess.check_call(
-      [sys.executable, os.path.join(_TELEMETRY_BIN_DIR, 'run_tests')] + args)
+      [sys.executable, os.path.join(_TELEMETRY_BIN_DIR, 'run_tests')] + args
+      + ['testPushEmptyProfile'])
 
 
 if __name__ == '__main__':
