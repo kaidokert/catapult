@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98b2c430_d2c9256b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-05-24T23:56:26Z",
+      "side": 1,
+      "message": "Do I grok this? IIUC:\n\n- cli/gRPC users can now request identical build specs (git hash + patch) in both \"changes\" for a pinpoint job\n- New \"label\" field is used by downstream processes (e.g. analysis) to differentiate between the two changes given that they\u0027re otherwise identical from just build spec\n- New \"args\" field is passed to the test runner (and/or browser executable) and can be different for \"base\" and \"exp\" changes\n\nIs there a higher-level discussion (if it\u0027s just the linked bug, I guess I\u0027ll follow up there) about the problem this solves?",
+      "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d4e9c06_47d0b5bf",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-05-24T23:56:26Z",
+      "side": 1,
+      "message": "are the args supposed to be passed to the test executable, the test runner, or some other process?",
+      "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1595edb5_c0459f65",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-05-24T23:56:26Z",
+      "side": 1,
+      "message": "does this code use pickled objects in datastore or something like that?",
+      "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
