@@ -151,13 +151,16 @@ def _CreateSoupWithoutHeadOrBody(html):
 class HTMLModuleParserResults(object):
 
   def __init__(self, html):
+    print(html)
     self._soup = bs4.BeautifulSoup(html, 'html5lib')
+    print(self._soup.prettify())
     self._inline_scripts = None
     self._scripts = None
 
   @property
   def scripts_external(self):
     tags = self._soup.findAll('script', src=True)
+    print(str(tags))
     return [t['src'] for t in tags]
 
   @property

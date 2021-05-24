@@ -31,14 +31,14 @@ class ParseTests(unittest.TestCase):
 
   def test_parse_script_src_basic(self):
     html = """<!DOCTYPE html>
-              <html>
-                <head>
-                  <script src="polymer.min.js"></script>
-                  <script src="foo.js"></script>
-                </head>
-                <body>
-                </body>
-              </html>"""
+<html>
+  <head>
+    <script src="polymer.min.js"></script>
+    <script src="foo.js"></script>
+  </head>
+  <body>
+  </body>
+</html>"""
     parser = parse_html_deps.HTMLModuleParser()
     module = parser.Parse(html)
     self.assertEquals(['polymer.min.js', 'foo.js'], module.scripts_external)
