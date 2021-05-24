@@ -196,6 +196,12 @@ def _TearDownSystemAppModification(device,
                                    timeout=None,
                                    retries=None):
   try:
+    # Do sanity check on if the device is online.
+    if not device.IsOnline():
+      # Reboot blocks until the device is fulling booted
+      logger.warning('Need to reboot the device')
+      device.Reboot()
+
     # The function may be re-entered after the the device loses root
     # privilege. For instance if the adb server is restarted before
     # re-entering the function then the device may lose root privilege.
