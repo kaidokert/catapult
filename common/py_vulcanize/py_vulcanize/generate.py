@@ -280,7 +280,7 @@ def GenerateStandaloneHTMLToFile(output_file,
       text = style_sheet.contents_with_inlined_images
       if minify:
         text = _MinifyCSS(text)
-      return '<style>\n%s\n</style>' % text
+      return '<style>\n%s\n</style>' % text.decode('utf-8')
 
   for module in load_sequence:
     controller = HTMLGenerationController(module)
