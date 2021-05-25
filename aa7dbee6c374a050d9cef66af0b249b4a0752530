@@ -34,6 +34,24 @@
       "parentUuid": "e6979de2_d9d1c525",
       "revId": "aa7dbee6c374a050d9cef66af0b249b4a0752530",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4022669f_e12e2285",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-05-25T19:23:14Z",
+      "side": 1,
+      "message": "You know what, I just realized you\u0027re not really changing the build file to chrome://tracing will not break, but this will still likely break all the generated html trace files on dashboard etc if we use py3. Still best to land https://chromium-review.googlesource.com/c/catapult/+/2917355 first.",
+      "parentUuid": "353bda68_0a99775e",
+      "revId": "aa7dbee6c374a050d9cef66af0b249b4a0752530",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
