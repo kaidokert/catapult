@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6979de2_d9d1c525",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-05-25T19:12:53Z",
+      "side": 1,
+      "message": "I think this will break chrome://tracing (https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1205617#c11) \n\nI have a fix for that - sending a CL in a few mins. Wait for that before submitting this. ",
+      "revId": "aa7dbee6c374a050d9cef66af0b249b4a0752530",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
