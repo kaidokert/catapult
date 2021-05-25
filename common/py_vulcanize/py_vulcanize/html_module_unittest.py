@@ -18,6 +18,8 @@ from py_vulcanize import project as project_module
 from py_vulcanize import resource
 from py_vulcanize import resource_loader as resource_loader
 import six
+if six.PY3:
+  import functools
 
 
 class ResourceWithFakeContents(resource.Resource):
@@ -56,7 +58,10 @@ class FakeLoader(object):
       return None
 
     # Sort by length. Longest match wins.
-    candidate_paths.sort(lambda x, y: len(x) - len(y))
+    if six.PY3:
+      sorted(candidate_paths, key=functools.cmp_to_key(lambda x, y: len(x) - len(y)), reverse=True)
+    else:
+      candidate_paths.sort(lambda x, y: len(x) - len(y))
     longest_candidate = candidate_paths[-1]
 
     return ResourceWithFakeContents(
