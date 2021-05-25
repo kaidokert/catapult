@@ -168,7 +168,7 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
                        latencies_by_page_in_ms['fast'] + 40 - 2)
 
   # Ensure that story_runner allows the test to customize the browser
-  # before it launches.
+  # before it launches. -noop
   def testBrowserBeforeLaunch(self):
     story_set = story.StorySet()
     page = page_module.Page(
