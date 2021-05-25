@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b892bec_fde52abe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-05-25T10:05:46Z",
+      "side": 1,
+      "message": "Please, take a look to my PR.\n\nWe have some testing machines with low performance, so one test can\u0027t be stable passed in existing timeout. Increasing timeout solves this issue.\n",
+      "revId": "2a421d94f72bd5ccacf6e236c6afce50252ae055",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
