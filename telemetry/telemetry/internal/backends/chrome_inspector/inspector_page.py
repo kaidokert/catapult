@@ -101,7 +101,6 @@ class InspectorPage(object):
     evaluated when the navigation is committed. This is after the context of
     the page exists, but before any script on the page itself has executed.
     """
-
     self._SetScriptToEvaluateOnCommit(script_to_evaluate_on_commit, timeout)
     request = {
         'method': 'Page.navigate',
@@ -111,6 +110,8 @@ class InspectorPage(object):
         }
     self._navigated_frame_ids = set()
     res = self._inspector_websocket.SyncRequest(request, timeout)
+    # if 'blank.html' in url:
+    #   assert(False)
     if 'frameId' in res['result']:
       # Modern backends are returning frameId from Page.navigate.
       # Use it here to unblock upon precise navigation.

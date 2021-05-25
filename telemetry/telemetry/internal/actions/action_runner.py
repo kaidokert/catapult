@@ -189,7 +189,6 @@ class ActionRunner(ActionRunnerBase):
     """
     if six.moves.urllib.parse.urlparse(url).scheme == 'file':
       url = self._tab.browser.platform.http_server.UrlOf(url[7:])
-
     self._RunAction(NavigateAction(
         url=url,
         script_to_evaluate_on_commit=script_to_evaluate_on_commit,
