@@ -16,6 +16,29 @@
       "message": "This needs to go in before https://chromium-review.googlesource.com/c/catapult/+/2917817. PTAL, thanks! ",
       "revId": "fa55ee0d19a01d4c8f3803f623f852c9bc94b5e7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da885e3a_12d584ff",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-25T20:17:23Z",
+      "side": 1,
+      "message": "This always returns a string, _MinifyCSS(text) (2 lines down) returns bytes. So, move the decode onto _MinifyCSS()",
+      "range": {
+        "startLine": 280,
+        "startChar": 13,
+        "endLine": 280,
+        "endChar": 53
+      },
+      "revId": "fa55ee0d19a01d4c8f3803f623f852c9bc94b5e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
