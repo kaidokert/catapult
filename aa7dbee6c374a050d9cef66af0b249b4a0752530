@@ -52,6 +52,24 @@
       "parentUuid": "353bda68_0a99775e",
       "revId": "aa7dbee6c374a050d9cef66af0b249b4a0752530",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d243f7df_86ba459f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-25T19:25:51Z",
+      "side": 1,
+      "message": "Yeah, this is a no-op for python2, and makes python3 less broken (there\u0027s still more tests to be fixed).\n\nAnd will wait for your CL.",
+      "parentUuid": "4022669f_e12e2285",
+      "revId": "aa7dbee6c374a050d9cef66af0b249b4a0752530",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
