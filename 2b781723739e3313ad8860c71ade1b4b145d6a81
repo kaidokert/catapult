@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38199a4d_c324c48e",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-05-25T21:33:46Z",
+      "side": 1,
+      "message": "You might be able to just switch everything to BytesIO.\n\nExample - https://chromium-review.googlesource.com/c/catapult/+/2915676/2/common/py_trace_event/py_trace_event/trace_event_impl/perfetto_trace_writer_unittest.py",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 24
+      },
+      "revId": "2b781723739e3313ad8860c71ade1b4b145d6a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8d9d910_0254ac5e",
         "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
         "patchSetId": 5
