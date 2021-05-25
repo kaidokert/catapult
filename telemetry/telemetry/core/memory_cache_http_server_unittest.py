@@ -27,6 +27,8 @@ class MemoryCacheHTTPServerTest(tab_test_case.TabTestCase):
     self._test_file_size = os.stat(test_file).st_size
 
   def testBasicHostingAndRangeRequests(self):
+    # import time
+    # time.sleep(1200)
     self.Navigate('blank.html')
     x = self._tab.EvaluateJavaScript('document.body.innerHTML')
     x = x.strip()

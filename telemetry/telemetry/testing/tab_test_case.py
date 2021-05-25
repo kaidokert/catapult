@@ -16,6 +16,7 @@ class TabTestCase(browser_test_case.BrowserTestCase):
     super(TabTestCase, self).setUp()
 
     if self._browser.supports_tab_control:
+
       try:
         while len(self._browser.tabs) < 1:
           self._browser.tabs.New()
