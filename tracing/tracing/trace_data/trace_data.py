@@ -142,7 +142,7 @@ class TraceDataBuilder(object):
     trace = _TraceItem(
         part_name=part.raw_field_name,
         handle=tempfile.NamedTemporaryFile(
-            delete=False, dir=self._temp_dir, suffix=suffix))
+            mode='w+', delete=False, dir=self._temp_dir, suffix=suffix))
     self._traces.append(trace)
     return trace.handle
 

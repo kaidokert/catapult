@@ -293,7 +293,7 @@ class StoryRun(object):
     if content_type is None:
       content_type = ContentTypeFromExt(name)
 
-    with open(local_path, 'w+b') as file_obj:
+    with open(local_path, 'w+') as file_obj:
       # We want to keep track of all artifacts (e.g. logs) even in the case
       # of an exception in the client code, so we create a record for
       # this artifact before yielding the file handle.
