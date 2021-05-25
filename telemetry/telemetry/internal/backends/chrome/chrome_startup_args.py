@@ -92,7 +92,7 @@ def GetReplayArgs(network_backend, supports_spki_list=True):
   # https://crbug.com/1005971 for more information.
   proxy_port = network_backend.forwarder.remote_port
   args.append('--proxy-server=socks://127.0.0.1:%s' % proxy_port)
-  args.append('--proxy-bypass-list=<-loopback>')
+  args.append('--proxy-bypass-list="<-loopback>"')
 
   if not network_backend.use_live_traffic:
     if supports_spki_list:

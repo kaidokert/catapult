@@ -62,7 +62,7 @@ class ReplayStartupArgsTest(unittest.TestCase):
 
     expected_args = [
         '--proxy-server=socks://127.0.0.1:789',
-        '--proxy-bypass-list=<-loopback>',
+        '--proxy-bypass-list="<-loopback>"',
         '--ignore-certificate-errors-spki-list='
         'PhrPvGIaAMmd29hj8BCZOq096yj7uMpRNHpn5PDxI6I=']
     self.assertItemsEqual(
@@ -77,7 +77,7 @@ class ReplayStartupArgsTest(unittest.TestCase):
 
     expected_args = [
         '--proxy-server=socks://127.0.0.1:789',
-        '--proxy-bypass-list=<-loopback>',
+        '--proxy-bypass-list="<-loopback>"',
         '--ignore-certificate-errors']
     self.assertItemsEqual(
         expected_args,
@@ -91,7 +91,7 @@ class ReplayStartupArgsTest(unittest.TestCase):
 
     expected_args = [
         '--proxy-server=socks://127.0.0.1:789',
-        '--proxy-bypass-list=<-loopback>']
+        '--proxy-bypass-list="<-loopback>"']
     self.assertItemsEqual(
         expected_args,
         chrome_startup_args.GetReplayArgs(network_backend,
@@ -105,7 +105,7 @@ class ReplayStartupArgsTest(unittest.TestCase):
 
     expected_args = [
         '--proxy-server=socks://127.0.0.1:123',
-        '--proxy-bypass-list=<-loopback>']
+        '--proxy-bypass-list="<-loopback>"']
     self.assertItemsEqual(
         expected_args,
         chrome_startup_args.GetReplayArgs(network_backend,
