@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8a3e874_d71507a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-05-25T19:20:00Z",
+      "side": 1,
+      "message": "This needs to go in before https://chromium-review.googlesource.com/c/catapult/+/2917817. PTAL, thanks! ",
+      "revId": "fa55ee0d19a01d4c8f3803f623f852c9bc94b5e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
