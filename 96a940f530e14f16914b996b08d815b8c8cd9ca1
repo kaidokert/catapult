@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a57f8d4_369a6bf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-05-25T00:38:55Z",
+      "side": 1,
+      "message": "It\u0027s in the bug, and in the context of supporting A/A, A/B, and B/B testing. Chat with heiserya@ about the Chrome Health effort\u0027s requirements for those.\n\nThe request to add a label has been around given the bugs where it\u0027s unclear in the results HTML page which column is the base and which column is the experiment.",
+      "parentUuid": "98b2c430_d2c9256b",
+      "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d4e9c06_47d0b5bf",
@@ -35,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5414f0af_be66be67",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-05-25T00:38:55Z",
+      "side": 1,
+      "message": "Yes, these are used in the change to `run_telemetry_test.py`",
+      "parentUuid": "9d4e9c06_47d0b5bf",
+      "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1595edb5_c0459f65",
@@ -48,6 +84,24 @@
       "writtenOn": "2021-05-24T23:56:26Z",
       "side": 1,
       "message": "does this code use pickled objects in datastore or something like that?",
+      "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9793aef0_54e40fe8",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-05-25T00:38:55Z",
+      "side": 1,
+      "message": "Pinpoint unfortunately does (see JobState and how it\u0027s embedded in a Job).",
+      "parentUuid": "1595edb5_c0459f65",
       "revId": "96a940f530e14f16914b996b08d815b8c8cd9ca1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
