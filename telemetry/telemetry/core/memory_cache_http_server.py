@@ -16,7 +16,7 @@ import traceback
 try:
   from StringIO import StringIO
 except ImportError:
-  from io import StringIO
+  from io import BytesIO as StringIO
 
 import six.moves.BaseHTTPServer # pylint: disable=import-error
 import six.moves.SimpleHTTPServer # pylint: disable=import-error
@@ -56,6 +56,8 @@ class MemoryCacheHTTPRequestHandler(
     if not resource_range or not resource_range.resource:
       return
     response = resource_range.resource['response']
+    if not isinstance(response, bytes):
+      response = response.encode('utf-8')
 
     if not resource_range.byte_range:
       self.wfile.write(response)
@@ -125,8 +127,7 @@ class MemoryCacheHTTPRequestHandler(
       http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html for details.
       If upper range limit is greater than total # of bytes, return upper index.
     """
-
-    range_header = self.headers.getheader('Range')
+    range_header = self.headers.get('Range')
     if range_header is None:
       return None
     if not range_header.startswith('bytes='):
