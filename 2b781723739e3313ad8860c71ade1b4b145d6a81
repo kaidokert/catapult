@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71dd113a_be1f1ffa",
+        "filename": "telemetry/telemetry/core/memory_cache_http_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-25T21:53:07Z",
+      "side": 1,
+      "message": "Good idea. Thanks!",
+      "parentUuid": "38199a4d_c324c48e",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 24
+      },
+      "revId": "2b781723739e3313ad8860c71ade1b4b145d6a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8d9d910_0254ac5e",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-05-25T21:18:23Z",
       "side": 1,
       "message": "This looks dubious.\n\nWhen you type arguments on the command line, the arguments are processed by the shell, and in this case you need to quote special characters such as \u003c and \u003e to prevent the shell from interpreting them as file redirection. The shell would remove the quotes before passing them to Chrome.\n\nWhen you are putting arguments in a Python list, the arguments are passed directly to Chrome, bypassing shell. In this case, Chrome will see the quotes, and likely gets confused.\n\nPlease double check that the quotes are really necessary.",
+      "range": {
+        "startLine": 95,
+        "startChar": 35,
+        "endLine": 95,
+        "endChar": 36
+      },
+      "revId": "2b781723739e3313ad8860c71ade1b4b145d6a81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d63dd0d2_da5b02f1",
+        "filename": "telemetry/telemetry/internal/backends/chrome/chrome_startup_args.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-25T21:53:07Z",
+      "side": 1,
+      "message": "Removing the quotes will still make the test hanging on python 3, probably still (I cleaned up my printouts) on the same place we saw last time for proxy server. Though, I didn\u0027t figure out what exactly is causing this issue.",
+      "parentUuid": "d8d9d910_0254ac5e",
       "range": {
         "startLine": 95,
         "startChar": 35,
