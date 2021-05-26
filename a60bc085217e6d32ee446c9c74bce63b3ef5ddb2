@@ -16,6 +16,23 @@
       "message": "I think I\u0027ve found why tsproxy causes tests to hang with Python 3. This CL should fix it. PTAL.",
       "revId": "a60bc085217e6d32ee446c9c74bce63b3ef5ddb2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1437604_371e4be3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-05-26T06:34:51Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "a60bc085217e6d32ee446c9c74bce63b3ef5ddb2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
