@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a398ba1_ba1bba7c",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2021-05-26T19:09:36Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be `decode()`? subprocess returns bytes that you probably want it convert to text?",
+      "revId": "fdd6164408173262f88f43cd64741a71b132c8a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
