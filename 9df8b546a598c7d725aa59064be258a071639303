@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4ed491b_04302546",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-05-26T17:44:35Z",
+      "side": 1,
+      "message": "Fixing an issue causing lots of test failures with Python 3. PTAL.",
+      "revId": "9df8b546a598c7d725aa59064be258a071639303",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
