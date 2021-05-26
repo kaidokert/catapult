@@ -16,6 +16,24 @@
       "message": "shouldn\u0027t this be `decode()`? subprocess returns bytes that you probably want it convert to text?",
       "revId": "fdd6164408173262f88f43cd64741a71b132c8a5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c720152_bf2c1c34",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-05-26T19:11:58Z",
+      "side": 1,
+      "message": "This is the input. There is a decode a few lines below on the output.",
+      "parentUuid": "8a398ba1_ba1bba7c",
+      "revId": "fdd6164408173262f88f43cd64741a71b132c8a5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
