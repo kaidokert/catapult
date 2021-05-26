@@ -22,6 +22,30 @@
       },
       "revId": "751a73b0c38b3d5df0a22bb8c5b73384a8d0e748",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a7ce6c_437ffd0e",
+        "filename": "common/py_vulcanize/py_vulcanize/generate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-05-26T18:20:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e7ef120_650ceedd",
+      "range": {
+        "startLine": 211,
+        "startChar": 46,
+        "endLine": 211,
+        "endChar": 47
+      },
+      "revId": "751a73b0c38b3d5df0a22bb8c5b73384a8d0e748",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
