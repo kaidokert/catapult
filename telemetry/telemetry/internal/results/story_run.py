@@ -292,8 +292,12 @@ class StoryRun(object):
     local_path = self._PrepareLocalPath(name)
     if content_type is None:
       content_type = ContentTypeFromExt(name)
-
-    with open(local_path, 'w+b') as file_obj:
+    import sys
+    if sys.version_info.major == 3:
+      mode = 'w+'
+    else:
+      mode = 'w+b'
+    with open(local_path, mode) as file_obj:
       # We want to keep track of all artifacts (e.g. logs) even in the case
       # of an exception in the client code, so we create a record for
       # this artifact before yielding the file handle.

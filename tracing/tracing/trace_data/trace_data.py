@@ -139,10 +139,15 @@ class TraceDataBuilder(object):
       raise TypeError('part must be a TraceDataPart instance')
     if self._frozen:
       raise RuntimeError('trace data builder is no longer open for writing')
+    import sys
+    if sys.version_info.major == 3:
+      mode = 'w+'
+    else:
+      mode = 'w+b'
     trace = _TraceItem(
         part_name=part.raw_field_name,
         handle=tempfile.NamedTemporaryFile(
-            delete=False, dir=self._temp_dir, suffix=suffix))
+            mode=mode, delete=False, dir=self._temp_dir, suffix=suffix))
     self._traces.append(trace)
     return trace.handle
 
