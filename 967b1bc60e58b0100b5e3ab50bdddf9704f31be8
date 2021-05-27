@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a83ad1_89ffc8a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327821
+      },
+      "writtenOn": "2021-05-27T02:01:49Z",
+      "side": 1,
+      "message": "LGTM\n\nIn the future (i.e. after next week), please send reviews to fancl@ and/or heiserya@ for Pinpoint changes.",
+      "revId": "967b1bc60e58b0100b5e3ab50bdddf9704f31be8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
