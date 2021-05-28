@@ -508,8 +508,10 @@ register_treebuilders_from(_htmlparser)
 try:
     from . import _html5lib
     register_treebuilders_from(_html5lib)
-except ImportError:
+    print('registered _html5lib')
+except ImportError as e:
     # They don't have html5lib installed.
+    print('Import Error', e)
     pass
 try:
     from . import _lxml

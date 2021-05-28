@@ -17,7 +17,10 @@ from bs4.element import (
     NamespacedAttribute,
     nonwhitespace_re,
 )
+import sys
+print('Before import html5lib', sys.path)
 import html5lib
+print('Imported', html5lib)
 from html5lib.constants import (
     namespaces,
     prefixes,
