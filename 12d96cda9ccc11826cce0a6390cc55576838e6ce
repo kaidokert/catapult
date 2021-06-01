@@ -34,6 +34,24 @@
       "parentUuid": "f59fcc63_4f62f278",
       "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb40cc9_397ac85b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161299
+      },
+      "writtenOn": "2021-06-01T15:38:38Z",
+      "side": 1,
+      "message": "I think that the bug is that the soupsieve isn\u0027t installed. This should be done automatically though?",
+      "parentUuid": "dcc9eaf3_171e0040",
+      "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
