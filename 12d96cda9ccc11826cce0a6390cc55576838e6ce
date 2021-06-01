@@ -160,6 +160,24 @@
       "parentUuid": "18b91cee_3d4430f5",
       "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90169a23_e3ba625c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161299
+      },
+      "writtenOn": "2021-06-01T16:18:01Z",
+      "side": 1,
+      "message": "I think that the problem is with this line: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/common/py_vulcanize/py_vulcanize/generate.py;l\u003d86;drc\u003d12d96cda9ccc11826cce0a6390cc55576838e6ce , instead of using \u0027python\u0027 directly this should use sys.executable",
+      "parentUuid": "1fc09db5_7e99bf83",
+      "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
