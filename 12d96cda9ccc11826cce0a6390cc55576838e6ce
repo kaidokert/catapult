@@ -142,6 +142,24 @@
       "parentUuid": "6da4a6b6_153484b9",
       "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc09db5_7e99bf83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161299
+      },
+      "writtenOn": "2021-06-01T16:09:23Z",
+      "side": 1,
+      "message": "The error is now :\n\nC:/src/depot_tools/bootstrap-2@3_8_10_chromium_17_bin/python3/bin/python3.exe ../../third_party/catapult/tracing/bin/generate_about_tracing_contents --outdir gen/content/browser/tracing\nD:\\src\\chrome\\src\\third_party\\catapult\\third_party\\beautifulsoup4-4.9.3\\py3k\\bs4\\element.py:15: UserWarning: The soupsieve package is not installed. CSS selectors cannot be used.\n  warnings.warn(\nrJSmin exited with error code 9009Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings \u003e Manage App Execution Aliases.\n\ndepot_tools is in my path and I have:\n\nD:\\src\\chrome\\src\u003ewhere python\nC:\\src\\depot_tools\\python.bat\nC:\\Users\\sebmarchand\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\n\nD:\\src\\chrome\\src\u003ewhere python3\nC:\\src\\depot_tools\\bootstrap-2@3_8_10_chromium_17_bin\\python3\\bin\\python3.exe\nC:\\src\\depot_tools\\python3.bat\nC:\\Users\\sebmarchand\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe",
+      "parentUuid": "18b91cee_3d4430f5",
+      "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
