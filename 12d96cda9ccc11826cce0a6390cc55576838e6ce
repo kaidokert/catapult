@@ -106,6 +106,24 @@
       "parentUuid": "0ea81c71_e8107eea",
       "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da4a6b6_153484b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1161299
+      },
+      "writtenOn": "2021-06-01T16:00:02Z",
+      "side": 1,
+      "message": "It looks like https://chromium-review.googlesource.com/c/catapult/+/2929581 fixes the problem!",
+      "parentUuid": "8b546866_f3059a2c",
+      "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
