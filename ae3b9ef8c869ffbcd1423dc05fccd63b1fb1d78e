@@ -16,6 +16,23 @@
       "message": "Fixing a Python 3 error. PTAL.",
       "revId": "ae3b9ef8c869ffbcd1423dc05fccd63b1fb1d78e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ec50ef_5e695828",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-06-01T16:00:36Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "ae3b9ef8c869ffbcd1423dc05fccd63b1fb1d78e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
