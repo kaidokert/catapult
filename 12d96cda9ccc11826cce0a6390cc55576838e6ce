@@ -16,6 +16,24 @@
       "message": "I\u0027m still getting some errors after this change:\n\nFAILED: gen/content/browser/tracing/about_tracing.js gen/content/browser/tracing/about_tracing.html\nC:/src/depot_tools/bootstrap-2@3_8_10_chromium_17_bin/python3/bin/python3.exe ../../third_party/catapult/tracing/bin/generate_about_tracing_contents --outdir gen/content/browser/tracing\nD:\\src\\chrome\\src\\third_party\\catapult\\third_party\\beautifulsoup4-4.9.3\\py3k\\bs4\\element.py:15: UserWarning: The soupsieve package is not installed. CSS selectors cannot be used.\n  warnings.warn(\nrJSmin exited with error code 9009Traceback (most recent call last):\n  File \"../../third_party/catapult/tracing/bin/generate_about_tracing_contents\", line 14, in \u003cmodule\u003e\n    sys.exit(generate_about_tracing_contents.Main(sys.argv[1:]))\n  File \"D:\\src\\chrome\\src\\third_party\\catapult\\tracing\\tracing_build\\generate_about_tracing_contents.py\", line 55, in Main\n    py_vulcanize.GenerateJSToFile(\n  File \"D:\\src\\chrome\\src\\third_party\\catapult\\common\\py_vulcanize\\py_vulcanize\\generate.py\", line 142, in GenerateJSToFile\n    minified_js \u003d _MinifyJS(js)\n  File \"D:\\src\\chrome\\src\\third_party\\catapult\\common\\py_vulcanize\\py_vulcanize\\generate.py\", line 97, in _MinifyJS\n    sys.stderr.write(res[1])\nTypeError: write() argument must be str, not bytes\n[1373/36905] ACTION //third_party/libaom:libaom_nasm_action(//build/toolchain/win:win_clang_x86)\nninja: build stopped: subcommand failed.",
       "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcc9eaf3_171e0040",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-01T15:24:47Z",
+      "side": 1,
+      "message": "Looks like there is a bug on third_party\\catapult\\common\\py_vulcanize\\py_vulcanize\\generate.py\" line 97, where res[1] needs to be decoded into a string. I will submit a fix for that. However, this bug is encountered only if errorcode !\u003d 0, and that\u0027s why the error wasn\u0027t caught in CQ. There appears to be something else that\u0027s causing the subprocess to fail on your machine.",
+      "parentUuid": "f59fcc63_4f62f278",
+      "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
