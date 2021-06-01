@@ -70,6 +70,24 @@
       "parentUuid": "5eb40cc9_397ac85b",
       "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ea81c71_e8107eea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-01T15:58:21Z",
+      "side": 1,
+      "message": "Hm I think I\u0027ve always seen that soupsieve warning, so I don\u0027t believe that\u0027s the issue. Looks like what\u0027s failing is rjsmin - I wonder if the command like args is being malformed in some way due to python 3. Is this something that only happens in windows?",
+      "parentUuid": "017b9775_2fba63ad",
+      "revId": "12d96cda9ccc11826cce0a6390cc55576838e6ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
