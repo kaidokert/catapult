@@ -176,7 +176,7 @@ func edit(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 				return nil, nil, err
 			}
 			// Edit this file.
-			cmd := exec.Command(editor, tmpname)
+			cmd := exec.Command(editor, "-w", tmpname)
 			cmd.Stdin = os.Stdin
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
