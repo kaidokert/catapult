@@ -39,6 +39,30 @@
       },
       "revId": "51dbfe32a5ef5312d80de03844b209275faab1ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafbfec1_514dbd6d",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2021-06-02T23:36:41Z",
+      "side": 1,
+      "message": "Good point. I think reading the body on every request will introduce an overhead.\n\nOne thing I could do is to restrict this operation only to PUT and POST methods, and then further restrict the operation only to requests with content-length \u003e N.",
+      "parentUuid": "2391854f_035618ce",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 66
+      },
+      "revId": "51dbfe32a5ef5312d80de03844b209275faab1ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
