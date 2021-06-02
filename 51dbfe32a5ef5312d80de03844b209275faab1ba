@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc9061f9_8603350c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2021-06-02T23:20:05Z",
+      "side": 1,
+      "message": "LGTM with comment",
+      "revId": "51dbfe32a5ef5312d80de03844b209275faab1ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2391854f_035618ce",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2021-06-02T23:20:05Z",
+      "side": 1,
+      "message": "Do we expect to have any effect on performance as a result of this change? I\u0027m wondering about telemetry usage.",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 66
+      },
+      "revId": "51dbfe32a5ef5312d80de03844b209275faab1ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
