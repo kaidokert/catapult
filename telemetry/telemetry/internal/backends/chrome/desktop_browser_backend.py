@@ -25,11 +25,12 @@ from telemetry.core import exceptions
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import minidump_finder
 from telemetry.internal.backends.chrome import desktop_minidump_symbolizer
+from telemetry.internal.backends.chrome_inspector import ui_devtools_client_backend
 from telemetry.internal.util import format_for_logging
 
 
 DEVTOOLS_ACTIVE_PORT_FILE = 'DevToolsActivePort'
-
+UI_DEVTOOLS_ACTIVE_PORT_FILE = 'UIDevToolsActivePort'
 
 class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   """The backend for controlling a locally-executed browser instance, on Linux,
@@ -50,6 +51,7 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._executable = executable
     self._flash_path = flash_path
     self._is_content_shell = is_content_shell
+    self._ui_devtools_client = None
 
     # Initialize fields so that an explosion during init doesn't break in Close.
     self._proc = None
@@ -104,6 +106,29 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     devtools_port = int(lines[0])
     browser_target = lines[1] if len(lines) >= 2 else None
     return devtools_port, browser_target
+
+  def _FindUIDevtoolsPort(self):
+    devtools_file_path = os.path.join(self.profile_directory,
+                                      UI_DEVTOOLS_ACTIVE_PORT_FILE)
+    if not os.path.isfile(devtools_file_path):
+      raise EnvironmentError('UIDevTools file does not exist yet. '
+                             'Did you launch browser with '
+                             '--enable-ui-devtools=0?')
+    lines = None
+    if os.stat(devtools_file_path).st_size > 0:
+      with open(devtools_file_path) as f:
+        lines = [line.rstrip() for line in f]
+    if not lines:
+      raise EnvironmentError('UIDevTools file empty')
+    devtools_port = int(lines[0])
+    return devtools_port
+
+  def GetUIDevtoolsBackend(self):
+    if not self._ui_devtools_client:
+      port = self._FindUIDevtoolsPort()
+      self._ui_devtools_client = ui_devtools_client_backend.GetUIDevtoolsBackend(
+          port, self)
+    return self._ui_devtools_client
 
   def Start(self, startup_args):
     assert not self._proc, 'Must call Close() before Start()'
@@ -334,6 +359,10 @@ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @exc_util.BestEffort
   def Close(self):
     super(DesktopBrowserBackend, self).Close()
+
+    if self._ui_devtools_client:
+      self._ui_devtools_client.Close()
+      self._ui_devtools_client = None
 
     # First, try to cooperatively shutdown.
     if self.IsBrowserRunning():
