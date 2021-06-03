@@ -87,6 +87,30 @@
       },
       "revId": "51dbfe32a5ef5312d80de03844b209275faab1ba",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6096b6_f7c3f7f2",
+        "filename": "web_page_replay_go/src/webpagereplay/archive.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2021-06-03T00:09:46Z",
+      "side": 1,
+      "message": "Done. I actually don\u0027t know the precise threshold at which the golang input buffer gets jammed. For now, I am restricting the read to uploads \u003e 1MB in size.",
+      "parentUuid": "c8cc0c20_70fd74c1",
+      "range": {
+        "startLine": 206,
+        "startChar": 4,
+        "endLine": 206,
+        "endChar": 66
+      },
+      "revId": "51dbfe32a5ef5312d80de03844b209275faab1ba",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
