@@ -16,6 +16,24 @@
       "message": "LGTM - thanks for doing this, were you able to run the wpr tests?\n\nMaybe loop in telemetry team before you upload the binary after merge?",
       "revId": "1cc11543ed648967293045a538b11fcf1a65ef48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03247ba1_42a9177f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1251641
+      },
+      "writtenOn": "2021-06-03T20:42:58Z",
+      "side": 1,
+      "message": "Ran tests in the webpagereplay directory.",
+      "parentUuid": "829f075b_dab068d6",
+      "revId": "1cc11543ed648967293045a538b11fcf1a65ef48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
