@@ -1,0 +1,78 @@
+[1mdiff --git a/telemetry/telemetry/internal/backends/browser_backend.py b/telemetry/telemetry/internal/backends/browser_backend.py[m
+[1mindex 2d8c32749..524f60617 100644[m
+[1m--- a/telemetry/telemetry/internal/backends/browser_backend.py[m
+[1m+++ b/telemetry/telemetry/internal/backends/browser_backend.py[m
+[36m@@ -460,7 +460,7 @@[m [mclass BrowserBackend(app_backend.AppBackend):[m
+       self, behavior, downloadPath, timeout): # pylint: disable=unused-argument[m
+     raise exceptions.StoryActionError('Set download behavior not supported')[m
+ [m
+[31m-  def GetUIDevtoolsBackend(self, port): # pylint: disable=unused-argument[m
+[32m+[m[32m  def GetUIDevtoolsBackend(self):[m
+     raise exceptions.StoryActionError('UI Devtools not supported')[m
+ [m
+   def GetWindowForTarget(self, target_id): # pylint: disable=unused-argument[m
+[1mdiff --git a/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py b/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py[m
+[1mindex 737d7c807..778e4d8f5 100644[m
+[1m--- a/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py[m
+[1m+++ b/telemetry/telemetry/internal/backends/chrome/chrome_browser_backend.py[m
+[36m@@ -310,7 +310,9 @@[m [mclass ChromeBrowserBackend(browser_backend.BrowserBackend):[m
+   def SetDownloadBehavior(self, behavior, downloadPath, timeout):[m
+     self.devtools_client.SetDownloadBehavior(behavior, downloadPath, timeout)[m
+ [m
+[31m-  def GetUIDevtoolsBackend(self, port):[m
+[32m+[m[32m  def GetUIDevtoolsBackend(self):[m
+[32m+[m[32m    port = self._FindUIDevtoolsPort()[m
+[32m+[m[32m    print('!!!!!!!UIDevtools port:%d' % port)[m
+     return ui_devtools_client_backend.GetUIDevtoolsBackend(port, self)[m
+ [m
+   def GetWindowForTarget(self, target_id):[m
+[1mdiff --git a/telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py b/telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py[m
+[1mindex 8a26ca4b2..37ead3d5a 100644[m
+[1m--- a/telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py[m
+[1m+++ b/telemetry/telemetry/internal/backends/chrome/desktop_browser_backend.py[m
+[36m@@ -29,7 +29,7 @@[m [mfrom telemetry.internal.util import format_for_logging[m
+ [m
+ [m
+ DEVTOOLS_ACTIVE_PORT_FILE = 'DevToolsActivePort'[m
+[31m-[m
+[32m+[m[32mUI_DEVTOOLS_ACTIVE_PORT_FILE = 'UIDevToolsActivePort'[m
+ [m
+ class DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):[m
+   """The backend for controlling a locally-executed browser instance, on Linux,[m
+[36m@@ -105,6 +105,19 @@[m [mclass DesktopBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):[m
+     browser_target = lines[1] if len(lines) >= 2 else None[m
+     return devtools_port, browser_target[m
+ [m
+[32m+[m[32m  def _FindUIDevtoolsPort(self):[m
+[32m+[m[32m    devtools_file_path = os.path.join(self.profile_directory, UI_DEVTOOLS_ACTIVE_PORT_FILE)[m
+[32m+[m[32m    if not os.path.isfile(devtools_file_path):[m
+[32m+[m[32m      raise EnvironmentError('UIDevTools file doest not exist yet')[m
+[32m+[m[32m    lines = None[m
+[32m+[m[32m    if os.stat(devtools_file_path).st_size > 0:[m
+[32m+[m[32m      with open(devtools_file_path) as f:[m
+[32m+[m[32m        lines = [line.rstrip() for line in f][m
+[32m+[m[32m    if not lines:[m
+[32m+[m[32m      raise EnvironmentError('UIDevTools file empty')[m
+[32m+[m[32m    devtools_port = int(lines[0])[m
+[32m+[m[32m    return devtools_port[m
+[32m+[m
+   def Start(self, startup_args):[m
+     assert not self._proc, 'Must call Close() before Start()'[m
+ [m
+[1mdiff --git a/telemetry/telemetry/internal/browser/browser.py b/telemetry/telemetry/internal/browser/browser.py[m
+[1mindex 6856f61d3..154adb019 100644[m
+[1m--- a/telemetry/telemetry/internal/browser/browser.py[m
+[1m+++ b/telemetry/telemetry/internal/browser/browser.py[m
+[36m@@ -362,10 +362,10 @@[m [mclass Browser(app.App):[m
+   def supports_inspecting_webui(self, value):[m
+     self._supports_inspecting_webui = value[m
+ [m
+[31m-  def GetUIDevtools(self, port=None):[m
+[32m+[m[32m  def GetUIDevtools(self):[m
+     '''UI Devtools is mainly used to interact with native UI'''[m
+     return ui_devtools.UIDevTools([m
+[31m-        self._browser_backend.GetUIDevtoolsBackend(port))[m
+[32m+[m[32m        self._browser_backend.GetUIDevtoolsBackend())[m
+ [m
+   def GetWindowForTarget(self, target_id):[m
+     return self._browser_backend.GetWindowForTarget(target_id)[m

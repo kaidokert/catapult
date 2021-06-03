@@ -23,6 +23,7 @@ group("telemetry_chrome_test_support") {
     "README.md",
     "WATCHLISTS",
     "codereview.settings",
+    "et",
     "navbar.md",
     "pylintrc",
     "bin/",
