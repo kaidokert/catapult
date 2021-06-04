@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f998d364_e2f2d0c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-04T22:02:03Z",
+      "side": 1,
+      "message": "Fixing a Python 3 error I encountered. PTAL.",
+      "revId": "8eeadf310b8e6c743dae54c9b73dda464cdf73a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
