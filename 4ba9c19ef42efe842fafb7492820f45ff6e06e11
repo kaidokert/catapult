@@ -16,6 +16,23 @@
       "message": "A simple fix to allow \"run_benchmark list\" to work with Python 3.",
       "revId": "4ba9c19ef42efe842fafb7492820f45ff6e06e11",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9853969e_6301dab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-06-06T06:24:52Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "4ba9c19ef42efe842fafb7492820f45ff6e06e11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
