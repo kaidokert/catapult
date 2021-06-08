@@ -14,6 +14,7 @@ from dashboard.api import api_request_handler
 from dashboard.common import bot_configurations
 from dashboard.common import utils
 from dashboard.pinpoint.models import change
+from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import quest as quest_module
@@ -350,7 +351,10 @@ def _ValidateChanges(comparison_mode, arguments):
 
 def _ValidatePatch(patch_data):
   if patch_data:
-    patch_details = change.GerritPatch.FromData(patch_data)
+    try:
+      patch_details = change.GerritPatch.FromData(patch_data)
+    except errors.BuildGerritURLInvalid as e:
+      raise ValueError(str(e))
     return patch_details.server, patch_details.change
   return None, None
 
