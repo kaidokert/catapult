@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b722351_c8d7f0be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1360101
+      },
+      "writtenOn": "2021-06-08T17:59:51Z",
+      "side": 1,
+      "message": "Hi Chong,\n\nDo you think this CL will be enough to start running telemetry tests on Fuchsia on linux arm64 or are there other infra changes that are required?\n\nSteve\n",
+      "revId": "256b20d9641c976ca764ea821896495beb67784e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
