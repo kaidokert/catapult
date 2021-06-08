@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d05ed3_53bedf0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-08T05:41:03Z",
+      "side": 1,
+      "message": "Nice!  LGTM, just some cosmetic nits.",
+      "revId": "a140953bd6ad0ec7cab4cd2c2bb84456fd715020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae41d82_155e50f0",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-08T05:41:03Z",
+      "side": 1,
+      "message": "Nit: end the sentence with a full stop, like the other comments in this file.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 50
+      },
+      "revId": "a140953bd6ad0ec7cab4cd2c2bb84456fd715020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d0afb52_56f1bde4",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-08T05:41:03Z",
+      "side": 1,
+      "message": "Now that this returns a bool rather than None, please add a comment or docstring to describe what that return value means.  Even just:\n\n    \"\"\"Returns True if the issue was changed.\"\"\"",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 50
+      },
+      "revId": "a140953bd6ad0ec7cab4cd2c2bb84456fd715020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72ca2f2_23c95916",
+        "filename": "dashboard/dashboard/models/alert_group_workflow_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-08T05:41:03Z",
+      "side": 1,
+      "message": "Nit: I think the word “will” is missing between these two words?",
+      "range": {
+        "startLine": 139,
+        "startChar": 56,
+        "endLine": 139,
+        "endChar": 70
+      },
+      "revId": "a140953bd6ad0ec7cab4cd2c2bb84456fd715020",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
