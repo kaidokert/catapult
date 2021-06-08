@@ -34,6 +34,24 @@
       "parentUuid": "ccf7c1da_0d36589b",
       "revId": "3e4c641129d355ab28277ed492910e3a0fa739aa",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e79a054_53d6b974",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1359085
+      },
+      "writtenOn": "2021-06-08T21:44:07Z",
+      "side": 1,
+      "message": "When the full restore flag is enabled, telemetry tests are broken, e.g.\nhttps://ci.chromium.org/p/chromium/builders/try/chromeos-amd64-generic-rel/861999?\n\nSee https://chromium-review.googlesource.com/c/chromium/src/+/2944525/1\n\nWell, I haven\u0027t flip the flag yet. But I need to change this so that I can flip the flag.",
+      "parentUuid": "433ef740_b99b85ce",
+      "revId": "3e4c641129d355ab28277ed492910e3a0fa739aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
