@@ -26,8 +26,11 @@ def GetUIDevtoolsBackend(port, app_backend, browser_target='/0'):
     logging.info('DevTools agent connected at %s', client)
     # Enable UI DevTools agents. This is required on Mac so we will be
     # notified about future updates.
+    logging.info('#### before client.Enable()')
     client.Enable()
+    logging.info('#### before client.GetDocument()')
     client.GetDocument()
+    logging.info('#### after client.GetDocument()')
   except _DEVTOOLS_CONNECTION_ERRORS as exc:
     logging.info('DevTools agent at %s not ready yet: %s', client, exc)
     client = None
