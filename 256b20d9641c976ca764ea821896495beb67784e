@@ -16,6 +16,24 @@
       "message": "Hi Chong,\n\nDo you think this CL will be enough to start running telemetry tests on Fuchsia on linux arm64 or are there other infra changes that are required?\n\nSteve\n",
       "revId": "256b20d9641c976ca764ea821896495beb67784e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2725d1b_999993e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2021-06-08T18:17:08Z",
+      "side": 1,
+      "message": "Best way to tell is to try running the tests, but if there aren\u0027t any specialization set for arm64 in //build/fuchsia (Telemetry doesn\u0027t use that folder), it should work fine.",
+      "parentUuid": "9b722351_c8d7f0be",
+      "revId": "256b20d9641c976ca764ea821896495beb67784e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
