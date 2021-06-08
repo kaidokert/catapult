@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf7c1da_0d36589b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1359085
+      },
+      "writtenOn": "2021-06-08T11:22:05Z",
+      "side": 1,
+      "message": "Hi Achuith,\nCould you please have a look? Thank you.\n\nThe Chrome side change is here: https://chromium-review.googlesource.com/c/chromium/src/+/2944526\n\nHow long could this telemetry change be applied to the chromium-review build bots? Is it real time once this CL is submitted? Or I have to wait a few days for the bots to pick up the latest code?\n\nBest regards,\nNancy",
+      "revId": "3e4c641129d355ab28277ed492910e3a0fa739aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
