@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "246b52be_3a9d02f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1359085
+      },
+      "writtenOn": "2021-06-09T20:35:44Z",
+      "side": 1,
+      "message": "Hi Achuith,\nCould you please have a look? Thank you.\nBest regards,\nNancy",
+      "revId": "81a73516d7d1daa3ce45d6eb4db14d1c88ee9068",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
