@@ -28,6 +28,35 @@ _ERROR_TAGS_DICT = 'Tags must be a dict of key/value string pairs.'
 _ERROR_UNSUPPORTED = 'This benchmark (%s) is unsupported.'
 _ERROR_PRIORITY = 'Priority must be an integer.'
 
+REGULAR_TELEMETRY_TESTS = {
+    'performance_webview_test_suite',
+    'performance_web_engine_test_suite',
+}
+SUFFIXED_REGULAR_TELEMETRY_TESTS = {
+    'performance_test_suite',
+    'telemetry_perf_tests',
+}
+SUFFIXES = {
+    '',
+    '_android_chrome',
+    '_android_monochrome',
+    '_android_monochrome_bundle',
+    '_android_weblayer',
+    '_android_webview',
+    '_android_clank_chrome',
+    '_android_clank_monochrome',
+    '_android_clank_monochrome_64_32_bundle',
+    '_android_clank_monochrome_bundle',
+    '_android_clank_trichrome_bundle',
+    '_android_clank_trichrome_webview',
+    '_android_clank_trichrome_webview_bundle',
+    '_android_clank_webview',
+    '_android_clank_webview_bundle',
+}
+for test in SUFFIXED_REGULAR_TELEMETRY_TESTS:
+  for suffix in SUFFIXES:
+    REGULAR_TELEMETRY_TESTS.add(test + suffix)
+
 
 class New(api_request_handler.ApiRequestHandler):
   """Handler that cooks up a fresh Pinpoint job."""
@@ -403,9 +432,7 @@ def _GenerateQuests(arguments):
     target = arguments.get('target')
     logging.debug('Target: %s', target)
 
-    if target in ('performance_test_suite', 'performance_webview_test_suite',
-                  'performance_web_engine_test_suite', 'telemetry_perf_tests',
-                  'telemetry_perf_webview_tests'):
+    if target in REGULAR_TELEMETRY_TESTS:
       quest_classes = (quest_module.FindIsolate, quest_module.RunTelemetryTest,
                        quest_module.ReadValue)
     elif 'performance_test_suite_eve' in target:
