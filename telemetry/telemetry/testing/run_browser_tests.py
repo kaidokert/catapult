@@ -233,12 +233,12 @@ def RunTests(args):
         base_class=serially_executed_browser_test_case.
         SeriallyExecutedBrowserTestCase)
     browser_test_classes = list(modules_to_classes.values())
-
   _ValidateDistinctNames(browser_test_classes)
 
   test_class = None
   for cl in browser_test_classes:
     if cl.Name() == options.test:
+      print('picked ', cl)
       test_class = cl
       break
 

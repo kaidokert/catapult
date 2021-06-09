@@ -317,26 +317,35 @@ def _ValidateTestMethodname(test_name):
 
 def GenerateTestCases(test_class, finder_options):
   test_cases = []
+  print('!!!', test_class)
+  print('!!!', len(inspect.getmembers(test_class, predicate=inspect.ismethod)))
+  print('!!!', inspect.getmembers(test_class, predicate=inspect.ismethod))
   for name, method in inspect.getmembers(
-      test_class, predicate=inspect.ismethod):
+      test_class,
+      predicate=lambda x: inspect.isfunction(x) or inspect.ismethod(x)):
     if name.startswith('test'):
+      print('???-1', name)
       # Do not allow method names starting with "test" in these
       # subclasses, to avoid collisions with Python's unit test runner.
       raise Exception('Name collision with Python\'s unittest runner: %s' %
                       name)
     elif name.startswith('Test'):
+      print('???-2', name)
       # Pass these through for the time being. We may want to rethink
       # how they are handled in the future.
       test_cases.append(test_class(name))
     elif name.startswith(_TEST_GENERATOR_PREFIX):
+      print('???-3', name)
       based_method_name = name[len(_TEST_GENERATOR_PREFIX):]
       assert hasattr(test_class, based_method_name), (
           '%s is specified but based method %s does not exist' %
           (name, based_method_name))
+      print('++++', based_method_name)
       based_method = getattr(test_class, based_method_name)
       for generated_test_name, args in method(finder_options):
         _ValidateTestMethodname(generated_test_name)
         setattr(test_class, generated_test_name, _GenerateTestMethod(
             based_method, args))
         test_cases.append(test_class(generated_test_name))
+  print(test_cases)
   return test_cases
