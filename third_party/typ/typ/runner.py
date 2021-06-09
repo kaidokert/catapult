@@ -654,35 +654,41 @@ class Runner(object):
     def _run_list(self, stats, result_set, test_inputs, jobs, pool):
         running_jobs = set()
 
-        while test_inputs or running_jobs:
-            while test_inputs and (len(running_jobs) < jobs):
-                test_input = test_inputs.pop(0)
-                stats.started += 1
-                pool.send(test_input)
-                running_jobs.add(test_input.name)
-                self._print_test_started(stats, test_input)
+        try:
+            while test_inputs or running_jobs:
+                while test_inputs and (len(running_jobs) < jobs):
+                    test_input = test_inputs.pop(0)
+                    stats.started += 1
+                    pool.send(test_input)
+                    running_jobs.add(test_input.name)
+                    self._print_test_started(stats, test_input)
 
-            result, should_retry_on_failure = pool.get()
-            if result.is_regression:
-                stats.failed += 1
-            if (self.args.typ_max_failures is not None
-                and stats.failed >= self.args.typ_max_failures):
-                print('\nAborting, waiting for processes to close')
-                pool.close()
-                pool.join()
-                raise RuntimeError(
-                    'Encountered %d failures with max of %d set, aborting.' % (
-                    stats.failed, self.args.typ_max_failures))
+                result, should_retry_on_failure = pool.get()
+                if result.is_regression:
+                    stats.failed += 1
+                if (self.args.typ_max_failures is not None
+                    and stats.failed >= self.args.typ_max_failures):
+                    print('\nAborting, waiting for processes to close')
+                    pool.close()
+                    pool.join()
+                    raise RuntimeError(
+                        'Encountered %d failures with max of %d set, aborting.' % (
+                        stats.failed, self.args.typ_max_failures))
 
-            if (self.args.retry_only_retry_on_failure_tests and
-                result.actual == ResultType.Failure and
-                should_retry_on_failure):
-                self.last_runs_retry_on_failure_tests.add(result.name)
+                if (self.args.retry_only_retry_on_failure_tests and
+                    result.actual == ResultType.Failure and
+                    should_retry_on_failure):
+                    self.last_runs_retry_on_failure_tests.add(result.name)
 
-            running_jobs.remove(result.name)
-            result_set.add(result)
-            stats.finished += 1
-            self._print_test_finished(stats, result)
+                running_jobs.remove(result.name)
+                result_set.add(result)
+                stats.finished += 1
+                self._print_test_finished(stats, result)
+        except KeyboardInterrupt:
+            print('')
+            print('tests still running: %s' % ' '.join(sorted(running_jobs)))
+            print('')
+            raise
 
     def _print_test_started(self, stats, test_input):
         if self.args.quiet:

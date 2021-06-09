@@ -19,7 +19,7 @@ from typ import Host
 
 
 class TestResultServerFakeTest(unittest.TestCase):
-    def test_basic_upload(self):
+    def disabled_test_basic_upload(self):
         host = Host()
         server = None
         posts = []

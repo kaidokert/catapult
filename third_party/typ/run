@@ -85,8 +85,8 @@ class Runner(object):
         # mac with multiple processes. We need to investigate the root cause
         # and fix it.
         args = []
-        if sys.platform == 'darwin':
-            args.append('--jobs=1')
+        #if sys.platform == 'darwin':
+        #    args.append('--jobs=1')
 
         self.call([
             self._python, '-m', 'typ',
