@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc6c11fd_9e8e0942",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-09T16:35:08Z",
+      "side": 1,
+      "message": "Python 3 fix, PTAL.",
+      "revId": "9de25ee58e7f606f1ee22fee90c9ae0cc57a6122",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
