@@ -16,6 +16,23 @@
       "message": "This is a slightly unusual fix for Python 3. The original code tries to clean up some text to avoid writing non-ASCII characters into the log. However, in Python 3 this also converts the text into bytes, and writing bytes results in ugly log. Calling decode(\u0027ascii\u0027) to convert the bytes back in to text works around the issue on Python 3, and causes no problems on Python 2. PTAL.",
       "revId": "0620e119b535eaca785918a6ff127186b5255a24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfe5c1c6_770a6043",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-06-09T21:03:28Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "0620e119b535eaca785918a6ff127186b5255a24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
