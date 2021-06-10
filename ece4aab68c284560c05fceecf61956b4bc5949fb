@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05a49e58_012cde46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-06-10T17:19:40Z",
+      "side": 1,
+      "message": "Hi Brian\n\nThis CL sets the raw expectations tags for results sink to the ones supplied in the Result instance if there are no expectations files. PTAL.\n\nRakib",
+      "revId": "ece4aab68c284560c05fceecf61956b4bc5949fb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
