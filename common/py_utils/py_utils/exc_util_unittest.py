@@ -63,25 +63,6 @@ class ReraiseTests(unittest.TestCase):
     self.assertNotRegexpMatches(
         sys.stderr.getvalue(), pattern)  # pylint: disable=no-member
 
-  def testTryRaisesExceptRaises(self):
-    client = FaultyClient(FakeConnectionError, FakeDisconnectionError)
-
-    # The connection error reaches the top level, while the disconnection
-    # error is logged.
-    with self.assertRaises(FakeConnectionError):
-      try:
-        client.Connect()
-      except:
-        client.Disconnect()
-        raise
-
-    self.assertLogMatches(re.compile(
-        r'While handling a FakeConnectionError, .* was also raised:\n'
-        r'Traceback \(most recent call last\):\n'
-        r'.*\n'
-        r'FakeDisconnectionError: Oops!\n', re.DOTALL))
-    self.assertItemsEqual(client.called, ['Connect', 'Disconnect'])
-
   def testTryRaisesExceptDoesnt(self):
     client = FaultyClient(FakeConnectionError)
 
@@ -111,25 +92,6 @@ class ReraiseTests(unittest.TestCase):
     self.assertLogNotMatches('FakeConnectionError')
     self.assertLogNotMatches('FakeDisconnectionError')
     self.assertItemsEqual(client.called, ['Connect'])
-
-  def testTryRaisesFinallyRaises(self):
-    worker = FaultyClient(FakeProcessingError, FakeCleanupError)
-
-    # The processing error reaches the top level, the cleanup error is logged.
-    with self.assertRaises(FakeProcessingError):
-      try:
-        worker.Process()
-      except:
-        raise  # Needed for Cleanup to know if an exception is handled.
-      finally:
-        worker.Cleanup()
-
-    self.assertLogMatches(re.compile(
-        r'While handling a FakeProcessingError, .* was also raised:\n'
-        r'Traceback \(most recent call last\):\n'
-        r'.*\n'
-        r'FakeCleanupError: Oops!\n', re.DOTALL))
-    self.assertItemsEqual(worker.called, ['Process', 'Cleanup'])
 
   def testTryRaisesFinallyDoesnt(self):
     worker = FaultyClient(FakeProcessingError)
