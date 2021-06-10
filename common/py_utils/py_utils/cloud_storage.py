@@ -157,9 +157,15 @@ def _RunCommand(args):
   stdout, stderr = gsutil.communicate()
 
   if gsutil.returncode:
-    raise GetErrorObjectForCloudStorageStderr(stderr.decode('utf-8'))
+    try:
+      raise GetErrorObjectForCloudStorageStderr(stderr.decode('utf-8'))
+    except AttributeError:
+      raise GetErrorObjectForCloudStorageStderr(stderr)
 
-  return stdout.decode('utf-8')
+  try:
+    return stdout.decode('utf-8')
+  except AttributeError:
+    return stdout
 
 
 def GetErrorObjectForCloudStorageStderr(stderr):
