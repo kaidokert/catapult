@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9476ab7_676664db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2021-06-10T22:01:11Z",
+      "side": 1,
+      "message": "http://crbug.com/1215668",
+      "revId": "282b92afa709a492c4c1c5c6863c3a0e32261cec",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
