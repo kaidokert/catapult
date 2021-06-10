@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbe53c52_de1365b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2021-06-10T21:42:12Z",
+      "side": 1,
+      "message": "PTAL - we had issue with building wpr for linux/mips and i have added to tech debt list",
+      "revId": "6eefa1a63b005d957389736c6193fb1737ba7d98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
