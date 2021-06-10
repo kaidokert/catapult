@@ -168,17 +168,6 @@ class ParseTests(unittest.TestCase):
 </style>"""
     self.assertEquals(ghtm, gen_html)
 
-  def test_parse_style_import(self):
-    html = """<polymer-element name="x-blink">
-                <template>
-                  <style>
-                    @import url(awesome.css);
-                  </style>
-                </template>
-              </polymer-element>"""
-    parser = parse_html_deps.HTMLModuleParser()
-    self.assertRaises(lambda: parser.Parse(html))
-
   def test_nested_templates(self):
     orig_html = """<template>
                   <template>
