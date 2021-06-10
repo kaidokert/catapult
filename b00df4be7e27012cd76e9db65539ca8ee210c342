@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bfb89c1_95ac1698",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-06-10T22:25:56Z",
+      "side": 1,
+      "message": "Why are you getting AttributeErrors here?",
+      "revId": "b00df4be7e27012cd76e9db65539ca8ee210c342",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
