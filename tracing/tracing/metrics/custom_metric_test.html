@@ -17,18 +17,21 @@ tr.b.unittest.testSuite(function() {
     const model = tr.c.TestUtils.newModel((model) => {
       const browserThread = setUpBrowserThread(model);
       addTraces(browserThread);
+      const rendererMainThread = setUpRendererMainThread(model);
+      addReportedTraceEvents(rendererMainThread);
     });
     const histograms = new tr.v.HistogramSet();
     tr.metrics.customMetric(histograms, model);
-    const hist1 = histograms.getHistogramNamed('custom_metric:metric1');
+    const hist1 = histograms.getHistogramNamed('metric1');
     assert.strictEqual(hist1.numValues, 2);
-    const hist2 = histograms.getHistogramNamed('custom_metric:metric2');
+    assert.strictEqual(hist1.unit.asJSON(), 'ms_smallerIsBetter');
+    const hist2 = histograms.getHistogramNamed('metric2');
     assert.strictEqual(hist2.numValues, 1);
+    assert.strictEqual(hist2.unit.asJSON(), 'ms_biggerIsBetter');
     const hist3 = histograms.getHistogramNamed('metric3');
-    // metric3 is not collected because its name doesn't start with
-    // "custom_metric:".
+    // metric3 is not collected because its name isn't reported.
     assert.isUndefined(hist3);
-    const hist4 = histograms.getHistogramNamed('custom_metric:metric4');
+    const hist4 = histograms.getHistogramNamed('metric4');
     assert.strictEqual(hist4.numValues, 2);
   });
 
@@ -101,19 +104,19 @@ tr.b.unittest.testSuite(function() {
     [
       {
         cat: 'browser',
-        title: 'custom_metric:metric1',
+        title: 'metric1',
         start: 1,
         duration: 1,
       },
       {
         cat: 'browser',
-        title: 'custom_metric:metric1',
+        title: 'metric1',
         start: 2,
         duration: 2,
       },
       {
         cat: 'browser',
-        title: 'custom_metric:metric2',
+        title: 'metric2',
         start: 3,
         duration: 3,
       },
@@ -130,19 +133,42 @@ tr.b.unittest.testSuite(function() {
     [
       {
         cat: 'browser',
-        title: 'custom_metric:metric4',
+        title: 'metric4',
         start: 1,
         duration: 1,
       },
       {
         cat: 'browser',
-        title: 'custom_metric:metric4',
+        title: 'metric4',
         start: 2,
         duration: 2,
       }
     ].forEach(slice => {
       thread.asyncSliceGroup.push(tr.c.TestUtils.newAsyncSliceEx(slice));
     });
+  }
+
+  function addReportedTraceEvents(thread) {
+    const traceEvents = [
+      {
+        name: "metric1",
+      },
+      {
+        name: "metric2",
+        unit: "ms_biggerIsBetter",
+      },
+      {
+        name: "metric4",
+      }
+    ]
+    const report = `custom_metric:trace_events:${JSON.stringify(traceEvents)}`;
+    thread.sliceGroup.pushSlice(tr.c.TestUtils.newSliceEx({
+      cat: 'blink.user_timing',
+      title: report,
+      start: 0,
+      duration: 0,
+      args: {data: {navigationId: '0xA'}}
+    }));
   }
 
   function addPerformanceMark(thread) {

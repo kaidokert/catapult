@@ -13,8 +13,8 @@ found in the LICENSE file.
 /**
  * This metric is used for custom performance benchmark.
  * It captures the following:
- * - Recorded trace events with name starts with "custom_metric:" on the C++
- * side.
+ * - Trace events reported by telemetry in the format of
+ * performance.mark('custom_metric:trace_events:[{"name":<TRACE_EVENT_NAME1>},{"name":<TRACE_EVENT_NAME2>}...]');
  * - Duration between performance.mark('<YOUR_METRIC_NAME>:benchmark_begin')
  * and performance.mark('<YOUR_METRIC_NAME>:benchmark_end') on the JS side.
  * - performance.mark('<YOUR_METRIC_NAME>:<YOUR_METRIC_VALUE>:benchmark_value')
@@ -29,7 +29,7 @@ tr.exportTo('tr.metrics', function() {
       return;
     }
 
-    const TITLE_PREFIX = 'custom_metric:';
+    const reportedTraceEvents = getReportedTraceEvents(chromeHelper);
     const traces = new Map();
     const benchmarkValues = new Map();
     // Collect trace events.
@@ -37,7 +37,7 @@ tr.exportTo('tr.metrics', function() {
       if (!helper.mainThread) continue;
       for (const slice of helper.mainThread.sliceGroup.slices.concat(
           helper.mainThread.asyncSliceGroup.slices)) {
-        if (!slice.error && slice.title.startsWith(TITLE_PREFIX)) {
+        if (!slice.error && reportedTraceEvents.has(slice.title)) {
           if (!traces.has(slice.title)) {
             traces.set(slice.title, []);
           }
@@ -94,8 +94,13 @@ tr.exportTo('tr.metrics', function() {
 
     // Generate histograms.
     traces.forEach((value, key) => {
+      // Read unit from the reported trace events if available.
+      let unit = reportedTraceEvents.get(key) && reportedTraceEvents.get(key).unit;
+      if (unit) {
+        unit = tr.b.Unit.fromJSON(unit);
+      }
       histograms.createHistogram(key,
-          tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
+          unit || tr.b.Unit.byName.timeDurationInMs_smallerIsBetter,
           value);
     });
     benchmarkValues.forEach((value, key) => {
@@ -107,6 +112,24 @@ tr.exportTo('tr.metrics', function() {
 
   function getNavigationId(event) {
     return event.args.data && event.args.data.navigationId;
+  }
+
+  // Get reported trace events from performance.mark()
+  function getReportedTraceEvents(chromeHelper) {
+    const TRACE_EVENT_PREFIX = 'custom_metric:trace_events:'
+    for (const helper of Object.values(chromeHelper.rendererHelpers)) {
+      for (const event of helper.mainThread.sliceGroup.childEvents()) {
+        const navId = getNavigationId(event);
+        if (!navId || !event.category.includes('blink.user_timing')) continue;
+        const {title} = event;
+        const index = title.indexOf(TRACE_EVENT_PREFIX);
+        if (index === 0) {
+          const result = JSON.parse(title.substring(TRACE_EVENT_PREFIX.length));
+          return new Map(result.map(event => [event.name, event]));
+        }
+      }
+    }
+    return new Map();
   }
 
   tr.metrics.MetricRegistry.register(customMetric, {
