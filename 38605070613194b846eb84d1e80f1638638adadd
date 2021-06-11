@@ -52,6 +52,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce3fbd3f_c52eb275",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-11T04:00:40Z",
+      "side": 1,
+      "message": "I don\u0027t love the growing list of hard-coded special cases for running tests for different configurations, it seems like configuration that\u0027s better off elsewhere.  I don\u0027t have any immediate suggestions for an alternative though.",
+      "revId": "38605070613194b846eb84d1e80f1638638adadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edfa2387_42fb5f59",
@@ -88,6 +105,54 @@
       "writtenOn": "2021-06-09T20:21:37Z",
       "side": 1,
       "message": "Is there another preferred way of failing in Pinpoint\u0027s Python code?",
+      "range": {
+        "startLine": 196,
+        "startChar": 10,
+        "endLine": 196,
+        "endChar": 22
+      },
+      "revId": "38605070613194b846eb84d1e80f1638638adadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b789ce6e_2bf82854",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-11T04:00:40Z",
+      "side": 1,
+      "message": "Not sure, I\u0027m not a JS expert, but I suspect simply raising an error here isn\u0027t good enough.  I\u0027d guess this error is not presented to the user, but just buried in the JS console as an unhandled exception.\n\nI\u0027d guess the right way is probably to use input validation: https://ellenaua.medium.com/input-validation-in-google-polymer-293eb7f785b",
+      "parentUuid": "058a0943_1bbef310",
+      "range": {
+        "startLine": 196,
+        "startChar": 10,
+        "endLine": 196,
+        "endChar": 22
+      },
+      "revId": "38605070613194b846eb84d1e80f1638638adadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "578d965a_4ddfcbb9",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-11T04:00:40Z",
+      "side": 1,
+      "message": "Yes, like elsewhere in this file raising InvalidParamsError looks like an appropriate error here.",
+      "parentUuid": "058a0943_1bbef310",
       "range": {
         "startLine": 196,
         "startChar": 10,
