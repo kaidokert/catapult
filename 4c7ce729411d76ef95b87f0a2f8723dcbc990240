@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "808961a2_356e3bf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-06-12T00:14:28Z",
+      "side": 1,
+      "message": "Hi\n\nThis CL sets the host for ResultSinkReporter to an instance of typ.host.Host. It also makes the variable public.\n\nPTAL\nRakib",
+      "revId": "4c7ce729411d76ef95b87f0a2f8723dcbc990240",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
