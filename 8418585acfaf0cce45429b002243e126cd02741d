@@ -16,6 +16,24 @@
       "message": "I would disagree that these tests don\u0027t test anything. They are intended to verify @exc_util.BestEffort decorator, which is supposed to suppress new exception when another exception is already been handled. For example, in testTryRaisesExceptRaises, if @exc_util.BestEffort isn\u0027t working properly, the final exception would be FakeDisconnectionError instead of FakeConnectionError, causing the test to fail.\n\nAm I missing something?",
       "revId": "8418585acfaf0cce45429b002243e126cd02741d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92acbe1c_bfbb62f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-06-14T20:59:31Z",
+      "side": 1,
+      "message": "Nope, I missed the decorator part.",
+      "parentUuid": "e02a765e_2a72f7b0",
+      "revId": "8418585acfaf0cce45429b002243e126cd02741d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
