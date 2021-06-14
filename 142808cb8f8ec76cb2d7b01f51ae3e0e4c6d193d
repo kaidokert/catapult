@@ -16,6 +16,58 @@
       "message": "Hi, Deep\nThanks for your feedback on the email thread. Could you review this CL for us?\nSee the following CL for an E2E test.\nhttps://chromium-review.googlesource.com/c/chromium/src/+/2954910",
       "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43ee314a_700c6e3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-14T16:53:04Z",
+      "side": 1,
+      "message": "Awesome. I love that trace events no longer need to have the custom_metric prefix in title.",
+      "parentUuid": "4b685760_2c107024",
+      "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54441b95_6a14df52",
+        "filename": "tracing/tracing/metrics/custom_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-14T16:53:04Z",
+      "side": 1,
+      "message": "Why are you checking for navigation id here? You don\u0027t seem to use it anywhere else.",
+      "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15acba2c_f2949599",
+        "filename": "tracing/tracing/metrics/custom_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-14T16:53:04Z",
+      "side": 1,
+      "message": "`title.startswith(TRACE_EVENT_PREFIX)` would be clearer.",
+      "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
