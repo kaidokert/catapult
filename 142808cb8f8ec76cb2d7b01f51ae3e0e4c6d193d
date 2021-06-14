@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "065a794b_a9e6d909",
+        "filename": "tracing/tracing/metrics/custom_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2021-06-14T18:08:50Z",
+      "side": 1,
+      "message": "I believe it was copied from this file. I just remove it if you think it\u0027s unnecessary.\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing/metrics/reported_by_page_metric.html;l\u003d112",
+      "parentUuid": "54441b95_6a14df52",
+      "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15acba2c_f2949599",
@@ -66,6 +84,24 @@
       "writtenOn": "2021-06-14T16:53:04Z",
       "side": 1,
       "message": "`title.startswith(TRACE_EVENT_PREFIX)` would be clearer.",
+      "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "067723d5_49a93474",
+        "filename": "tracing/tracing/metrics/custom_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2021-06-14T18:08:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15acba2c_f2949599",
       "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
