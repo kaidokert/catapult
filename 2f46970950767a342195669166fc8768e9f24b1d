@@ -22,6 +22,30 @@
       },
       "revId": "2f46970950767a342195669166fc8768e9f24b1d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9b79524_87b5f27c",
+        "filename": "tracing/tracing/value/diagnostics/reserved_infos.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-06-14T11:30:13Z",
+      "side": 0,
+      "message": "Good point, done",
+      "parentUuid": "7a449fd1_1c2dda85",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 25
+      },
+      "revId": "2f46970950767a342195669166fc8768e9f24b1d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
