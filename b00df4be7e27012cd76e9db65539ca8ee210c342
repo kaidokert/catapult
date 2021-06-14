@@ -16,6 +16,24 @@
       "message": "Why are you getting AttributeErrors here?",
       "revId": "b00df4be7e27012cd76e9db65539ca8ee210c342",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f360f4_f5c1005d",
+        "filename": "common/py_utils/py_utils/cloud_storage.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-06-14T12:40:48Z",
+      "side": 1,
+      "message": "The tests were passing in strings instead of byte arrays. Now that you mention it, the right way to fix it is https://chromium-review.googlesource.com/c/catapult/+/2960584",
+      "parentUuid": "0bfb89c1_95ac1698",
+      "revId": "b00df4be7e27012cd76e9db65539ca8ee210c342",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
