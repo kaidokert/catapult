@@ -86,6 +86,24 @@
       "message": "Tentatively LGTM, but I think we need to update https://chromeperf.appspot.com/edit_site_config?key\u003drevision_info for these new keys before this lands?",
       "revId": "822d394a3cdf422eb15b55296385504db6061f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e943ec_1d42e35a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-06-15T10:18:45Z",
+      "side": 1,
+      "message": "Yes, for sure. Done. I were just defining the format of it in parallel (what url format will be used)",
+      "parentUuid": "27a5b3e8_c802ca96",
+      "revId": "822d394a3cdf422eb15b55296385504db6061f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
