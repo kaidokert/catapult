@@ -16,6 +16,23 @@
       "message": "bpastene@ can you please take a look?\n\nIt looks like there is a version of provision_devices.py in both build/android and third_party/catapult/devil/devil/android/tools",
       "revId": "b6c7b375c213bdc2b37a43b8ab75a42df3230cb1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "739883c3_454c1ae1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-06-15T17:00:36Z",
+      "side": 1,
+      "message": "Thanks :) ",
+      "revId": "b6c7b375c213bdc2b37a43b8ab75a42df3230cb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
