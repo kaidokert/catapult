@@ -71,6 +71,22 @@ def main():
   parser = _CreateOptionParser()
   options, _ = parser.parse_args()
 
+  #Assume that at least one of options.write_json or options.format
+  #have defaulted values (no flag input)
+  if options.write_json and options.format:
+    raise ValueError("At most one parameter of --json or " +
+                      "--format should be provided")
+
+  kFormatTypes = ['html', 'json', 'proto']
+  if not options.format: 
+    options.format = 'html' #default options.format flag
+    if not options.write_json:
+      print("Using default format: html. Choose another format by specifying: " +
+            "--format [html|json|proto] or -f [html|json|proto]")
+  if options.format not in kFormatTypes: #default value is 'html', not None
+    raise ValueError("Format '{}' is not supported.".format(options.format))
+
+
   if not options.device_serial_number:
     devices = [a.GetDeviceSerial() for a in adb_wrapper.AdbWrapper.Devices()]
     if len(devices) == 0:
@@ -107,7 +123,8 @@ def main():
                                    _CHROME_STARTUP_MODULES,
                                    output=options.output_file,
                                    compress=options.compress,
-                                   write_json=options.write_json)
+                                   write_json=options.write_json,
+                                   format=options.format)
   if options.view:
     if sys.platform == 'darwin':
       os.system('/usr/bin/open %s' % os.path.abspath(result))
