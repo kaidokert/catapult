@@ -69,6 +69,23 @@
       "parentUuid": "2c378c73_ec673985",
       "revId": "822d394a3cdf422eb15b55296385504db6061f1f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a5b3e8_c802ca96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-15T01:30:06Z",
+      "side": 1,
+      "message": "Tentatively LGTM, but I think we need to update https://chromeperf.appspot.com/edit_site_config?key\u003drevision_info for these new keys before this lands?",
+      "revId": "822d394a3cdf422eb15b55296385504db6061f1f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
