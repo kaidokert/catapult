@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27f4ac48_02430bf9",
+        "filename": "tracing/tracing/metrics/custom_metric.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-15T12:04:55Z",
+      "side": 1,
+      "message": "I think for that metric it made sense because they were building a map keyed by nav id. I don\u0027t think we need that here so we should remove it.",
+      "parentUuid": "065a794b_a9e6d909",
+      "revId": "142808cb8f8ec76cb2d7b01f51ae3e0e4c6d193d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15acba2c_f2949599",

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36eda4a3_a592ae4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-15T12:04:55Z",
+      "side": 1,
+      "message": "LGTM % removing that nav id. ",
+      "revId": "9e1d7e4479fc0d02d97f9fa25b460c6ad0e8ab45",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
