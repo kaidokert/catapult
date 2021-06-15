@@ -13,7 +13,7 @@ from systrace import tracing_controller
 
 
 def _GetResults(trace_results, controller, output, compress, write_json,
-                interval):
+                interval, trace_format='html'):
   ui.PrintMessage('Downloading...')
 
   # Wait for the trace file to get written.
@@ -32,9 +32,16 @@ def _GetResults(trace_results, controller, output, compress, write_json,
     ui.PrintMessage('No results')
     return ''
 
+  #Assume that at least one of write_json or trace_format has defaulted values
+  #Default Values: write_json = False, trace_format='html'
+  if write_json and trace_format != 'html':
+    raise ValueError("At most one parameter of --json or " +
+                      "--format should be provided")
+  actualTraceFormat = 'json' if (trace_format == 'html' and write_json) \
+                        else trace_format
   result = None
   trace_results = output_generator.MergeTraceResultsIfNeeded(trace_results)
-  if not write_json:
+  if actualTraceFormat == 'html':
     ui.PrintMessage('Writing trace HTML...')
     html_file = output or trace_results[0].source_name + '.html'
     result = output_generator.GenerateHTMLOutput(trace_results, html_file)
@@ -59,7 +66,7 @@ def _GetResults(trace_results, controller, output, compress, write_json,
 
 
 def CaptureProfile(options, interval, modules, output=None,
-                   compress=False, write_json=False):
+                   compress=False, write_json=False, trace_format='html'):
   """Records a profiling trace saves the result to a file.
 
   Args:
@@ -71,17 +78,21 @@ def CaptureProfile(options, interval, modules, output=None,
     compress: If True, the result will be compressed either with gzip or zip
         depending on the number of captured subtraces.
     write_json: If True, prefer JSON output over HTML.
+    format: Format of trace file. Default is html.
 
   Returns:
     Path to saved profile.
   """
+
   agents_with_config = tracing_controller.CreateAgentsWithConfig(options,
                                                                  modules)
   if chrome_startup_tracing_agent in modules:
     controller_config = tracing_controller.GetChromeStartupControllerConfig(
         options)
+    print("chrome_startup_tracing_agent in modules")
   else:
     controller_config = tracing_controller.GetControllerConfig(options)
+    print("chrome_startup_tracing_agent NOT in modules")
   controller = tracing_controller.TracingController(agents_with_config,
                                                     controller_config)
   try:
@@ -105,4 +116,4 @@ def CaptureProfile(options, interval, modules, output=None,
       ui.PrintMessage('done')
 
   return _GetResults(all_results, controller, output, compress, write_json,
-                     interval)
+                     interval, trace_format)
