@@ -1104,10 +1104,14 @@ def _run_one_test(child, test_input):
                                     expected_results, child.has_expectations,
                                     art.artifacts)
     test_location = inspect.getsourcefile(test_case.__class__)
+    test_method = getattr(test_case, test_case._testMethodName)
+    if hasattr(test_method, '__wrapped__'):
+      test_method = test_method.__wrapped__
+    test_line = inspect.getsourcelines(test_method)[1]
     result.result_sink_retcode =\
             child.result_sink_reporter.report_individual_test_result(
                 child.test_name_prefix, result, child.artifact_output_dir,
-                child.expectations, test_location)
+                child.expectations, test_location, test_line)
     return (result, should_retry_on_failure)
 
 
