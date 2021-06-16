@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47cf1604_35a4f42b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2021-06-16T20:55:32Z",
+      "side": 1,
+      "message": "Hrm...we used to always bypass hooks (as we slowly working on cleaning up style violations).  Guess that no longer works.  :(  At least we fixed most of them (hopefully?)",
+      "revId": "c2376d9c31624a0135c4ed7570e2ac14f5da8ffe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
