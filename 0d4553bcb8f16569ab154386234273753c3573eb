@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2c86a4_c4c29865",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "can you try adding test to third_party/catapult/systrace/profile_chrome/chrome_startup_tracing_agent_unittest.py ?\n\nThis mostly looks good, thanks!",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebdb082c_2334d3b4",
+        "filename": "systrace/bin/adb_profile_chrome_startup",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "can you check if compress is set to true by default? if it is proto output then we probably should not compress the trace. I think trace processor is able to read compressed files as well, so unsure if this is an issue. but verify if we are compressing proto traces.",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "922b1c30_f6c84862",
+        "filename": "systrace/bin/adb_profile_chrome_startup",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "move this code after the devices check, at current line 108. if devices are not detected, not point telling the user about the output format.",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e33994_e3249e8d",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "add a comment about what the function does.\n\n\"\"\"Removes blah blah.\"\"\"\n\ngo/pystyle#docstrings",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8733011_c81460a2",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "i dont think you need this code. the documentation of RemoveFlags() says it removes flags if they are present?\n\nif you end up removing the 2 statements, then you can remove this method and just inline the 2 lines of code. it is easier to read which flags are set and which flags are removed in the same method. so in the future if new flags are added, then it can be added to this list as well.",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae90454_9c728ec4",
+        "filename": "systrace/profile_chrome/profiler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "remove this param. If you decide to keep 2 params in ProfileChrome, then move the code below into ProfileChrome(), if not move the error message to adb_profile_chrome_startup where ProfileChrome is called.",
+      "range": {
+        "startLine": 15,
+        "startChar": 61,
+        "endLine": 15,
+        "endChar": 71
+      },
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e6cd5f_b9d6e13a",
+        "filename": "systrace/profile_chrome/profiler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "I think you mentioned this function is used by multiple files in code and requires write_json parameter.\n\nhow many callsites did you find? I can only see 3 files using this function, so it might not be too hard to change the callsites how the param is passed.\nhttps://source.chromium.org/search?q\u003df:catapult%20CaptureProfile\u0026ss\u003dchromium%2Fchromium%2Fsrc\n\nIs it possible to:\n1. remove this parameter, and keep only trace_format.\n2. change all the callsites to do: CaptureProfile(trace_format\u003d\u0027json\u0027 if write_json else \u0027html\u0027).\n\n\nIf it is not possible to change the callsites, or there are too many of them then:\n\nchange the write_json param description to say:\n\nDEPRECATED legacy format parameter. Either write_json or trace_format should be passed, not both. If set to true, writes JSON, else writes HTML.\nTODO(rhuckleberry): Remove this param and update the callsites.",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f058c769_9c594fd5",
+        "filename": "systrace/profile_chrome/profiler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-16T01:21:46Z",
+      "side": 1,
+      "message": "add html|json|proto, Default is html due to legacy reasons.",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
