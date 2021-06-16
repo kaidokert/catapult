@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd02d7e2_986297f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-16T21:41:54Z",
+      "side": 1,
+      "message": "Sample test results from latest code: https://chromium-review.googlesource.com/c/chromium/src/+/2961753/5",
+      "revId": "40fb836f764bc2880e87b8bf3348e1fa3c0ae642",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
