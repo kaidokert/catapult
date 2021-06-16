@@ -11,6 +11,9 @@ def OutputOptions(parser):
                             help='Save trace output to file.')
   output_options.add_option('--json', help='Save trace as raw JSON instead of '
                             'HTML.', dest='write_json')
+  output_options.add_option('--trace_format', help='Save trace as chosen '
+                              'format instead of the default HTML.',
+                              dest='trace_format')
   output_options.add_option('--view', help='Open resulting trace file in a '
                             'browser.', action='store_true')
   return output_options
