@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab08438a_e05790f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2021-06-16T20:10:41Z",
+      "side": 1,
+      "message": "Yes, it appears to be ~50% faster for files containing large byte arrays; I tested from 26mb to 92mb. It will not be noticeably faster for small files that were not recorded in \"Everything\"/\"Raw bytes\" mode.",
+      "parentUuid": "0b58c03e_04aaa1d1",
+      "revId": "884d0f7c4449ca3dbd2318e3670611fd26c6c59e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "965aca93_1b5981ac",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-06-16T19:47:59Z",
       "side": 1,
       "message": "fix indent",
+      "range": {
+        "startLine": 130,
+        "startChar": 5,
+        "endLine": 132,
+        "endChar": 9
+      },
+      "revId": "884d0f7c4449ca3dbd2318e3670611fd26c6c59e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcf6ced9_e11305bb",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2021-06-16T20:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "965aca93_1b5981ac",
       "range": {
         "startLine": 130,
         "startChar": 5,
@@ -81,6 +123,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ab92eeb_6f657476",
+        "filename": "netlog_viewer/netlog_viewer/log_view_painter.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2021-06-16T20:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87a7391a_20400fe5",
+      "range": {
+        "startLine": 410,
+        "startChar": 6,
+        "endLine": 411,
+        "endChar": 14
+      },
+      "revId": "884d0f7c4449ca3dbd2318e3670611fd26c6c59e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ae3915c_3326ba29",
@@ -94,6 +160,30 @@
       "writtenOn": "2021-06-16T19:47:59Z",
       "side": 1,
       "message": "should label this \"(true /* forSearch */)\"",
+      "range": {
+        "startLine": 213,
+        "startChar": 56,
+        "endLine": 213,
+        "endChar": 60
+      },
+      "revId": "884d0f7c4449ca3dbd2318e3670611fd26c6c59e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc269ed6_d38f80d3",
+        "filename": "netlog_viewer/netlog_viewer/source_filter_parser.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2021-06-16T20:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ae3915c_3326ba29",
       "range": {
         "startLine": 213,
         "startChar": 56,
