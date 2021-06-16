@@ -92,6 +92,20 @@ def main():
   options.device = device
   options.package_info = package_info
 
+  # Assume that at least one of options.write_json or options.trace_format
+  # have defaulted values (no flag input)
+  kFormatTypes = ['html', 'json', 'proto']
+  if options.write_json and options.trace_format:
+    raise ValueError("At most one parameter of --json or " +
+                      "--trace_format should be provided")
+  if not options.trace_format:
+    options.trace_format = 'html' #default options.trace_format flag
+    if not options.write_json:
+      print("Using default format: html. Choose another format by specifying: " +
+            "--format [html|json|proto] or -f [html|json|proto]")
+  if options.trace_format not in kFormatTypes: #default value is 'html', not None
+    raise ValueError("Format '{}' is not supported.".format(options.trace_format))
+
   # TODO(washingtonp): Once Systrace uses all of the profile_chrome agents,
   # manually setting these options will no longer be necessary and should be
   # removed.
@@ -107,7 +121,8 @@ def main():
                                    _CHROME_STARTUP_MODULES,
                                    output=options.output_file,
                                    compress=options.compress,
-                                   write_json=options.write_json)
+                                   write_json=options.write_json,
+                                   trace_format=options.trace_format)
   if options.view:
     if sys.platform == 'darwin':
       os.system('/usr/bin/open %s' % os.path.abspath(result))
