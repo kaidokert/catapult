@@ -58,6 +58,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a929e1_31109613",
+        "filename": "systrace/bin/adb_profile_chrome_startup",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "922b1c30_f6c84862",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94e33994_e3249e8d",
@@ -75,6 +93,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2e8ea3_050efa93",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e33994_e3249e8d",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8733011_c81460a2",
@@ -88,6 +124,30 @@
       "writtenOn": "2021-06-16T01:21:46Z",
       "side": 1,
       "message": "i dont think you need this code. the documentation of RemoveFlags() says it removes flags if they are present?\n\nif you end up removing the 2 statements, then you can remove this method and just inline the 2 lines of code. it is easier to read which flags are set and which flags are removed in the same method. so in the future if new flags are added, then it can be added to this list as well.",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 72
+      },
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8937c94_5ee9e971",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T00:12:10Z",
+      "side": 1,
+      "message": "I believe the documentation states that it will only remove the flag is the exact flag (and parameter) are passed to remove flag. For example, removing --trace-startup-format\u003d5, requires to pass that exact flag into RemoveFlags. I used the list comprehension to only remove the flags that we want to remove and get the parameters too from the current flags.\n\n\"Note that we expect a complete match when removing flags; if you want to remove a switch with a value, you must use the exact string used to add it in the first place.\"\n\nAlternatively, I could change this function to just _RemoveFlags, instead of just specifically trace flags.",
+      "parentUuid": "b8733011_c81460a2",
       "range": {
         "startLine": 93,
         "startChar": 4,
@@ -121,6 +181,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff339813_8268e49f",
+        "filename": "systrace/profile_chrome/profiler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dae90454_9c728ec4",
+      "range": {
+        "startLine": 15,
+        "startChar": 61,
+        "endLine": 15,
+        "endChar": 71
+      },
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9e6cd5f_b9d6e13a",
@@ -138,6 +222,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b2c29a_dd1201b9",
+        "filename": "systrace/profile_chrome/profiler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T00:12:10Z",
+      "side": 1,
+      "message": "I checked and write_json can be replaced here. There is also an options.write_json variable but I am hesitant to change it because I haven\u0027t really looked into where it gets used outside of our specific tracing path.",
+      "parentUuid": "f9e6cd5f_b9d6e13a",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f058c769_9c594fd5",
@@ -151,6 +253,24 @@
       "writtenOn": "2021-06-16T01:21:46Z",
       "side": 1,
       "message": "add html|json|proto, Default is html due to legacy reasons.",
+      "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8feeda_73f4d25f",
+        "filename": "systrace/profile_chrome/profiler.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f058c769_9c594fd5",
       "revId": "0d4553bcb8f16569ab154386234273753c3573eb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
