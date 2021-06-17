@@ -22,6 +22,80 @@
       },
       "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf807920_b5ebefda",
+        "filename": "systrace/profile_chrome/flags.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T01:29:51Z",
+      "side": 1,
+      "message": "public functions should have py docs.\n\n\"\"\"short description\n\nparams desc:\nreturns:\n\"\"\"\n\nplease see the link i sent for the right format.",
+      "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8675cc79_16759def",
+        "filename": "systrace/profile_chrome/flags.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T01:29:51Z",
+      "side": 1,
+      "message": "comments end with fullstops .",
+      "range": {
+        "startLine": 23,
+        "startChar": 40,
+        "endLine": 23,
+        "endChar": 41
+      },
+      "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a123adf8_aa20afe5",
+        "filename": "systrace/profile_chrome/flags.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T01:29:51Z",
+      "side": 1,
+      "message": "remove comment.",
+      "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7be216b_26eb8baa",
+        "filename": "systrace/profile_chrome/flags.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T01:29:51Z",
+      "side": 1,
+      "message": "slightly easier to read code if positive if checks come first.\nexample:\n\n\nif options.trace_format:\n  if options.trace_format not in kSupportedFormats:\n    raiseError()\n   return\n   \nif options.write_json:\n  options.trace_format \u003d ...",
+      "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
