@@ -83,6 +83,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89c3754d_319694c3",
+        "filename": "systrace/profile_chrome/flags.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T17:48:42Z",
+      "side": 1,
+      "message": "Ah it looks like the code was written very long ago, maybe the style guide was different then. also private functions do not really need docstrings.",
+      "parentUuid": "3e81017c_b5134888",
+      "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8675cc79_16759def",
