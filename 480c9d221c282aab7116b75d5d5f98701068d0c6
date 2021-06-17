@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2e6a906_4d757064",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent_unittest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T01:19:40Z",
+      "side": 1,
+      "message": "lets leave this test disabled for now. it seems to fail due to some other reason.\n\n  File \"/b/swarming/w/ir/k/catapult/systrace/profile_chrome/chrome_startup_tracing_agent.py\", line 131, in GetResults\n    with open(self._PullTrace(), \u0027r\u0027) as f:\n  File \"/b/swarming/w/ir/k/catapult/systrace/profile_chrome/chrome_startup_tracing_agent.py\", line 136, in _PullTrace\n    trace_file \u003d self._trace_file.replace(\u0027/storage/emulated/0/\u0027, \u0027/sdcard/\u0027)\nAttributeError: \u0027NoneType\u0027 object has no attribute \u0027replace\u0027",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 6
+      },
+      "revId": "480c9d221c282aab7116b75d5d5f98701068d0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
