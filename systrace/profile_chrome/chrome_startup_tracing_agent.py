@@ -20,7 +20,7 @@ from systrace import tracing_agents
 
 class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
   def __init__(self, device, package_info, webapk_package, cold, url,
-               trace_time=None):
+               trace_time=None, trace_format='html'):
     tracing_agents.TracingAgent.__init__(self)
     self._device = device
     self._package_info = package_info
@@ -29,6 +29,7 @@ class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
     self._logcat_monitor = self._device.GetLogcatMonitor()
     self._url = url
     self._trace_time = trace_time
+    self._trace_format = trace_format
     self._trace_file = None
     self._trace_finish_re = re.compile(r' Completed startup tracing to (.*)')
     self._flag_changer = flag_changer.FlagChanger(
@@ -40,10 +41,23 @@ class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
   def _SetupTracing(self):
     # TODO(lizeb): Figure out how to clean up the command-line file when
     # _TearDownTracing() is not executed in StopTracing().
-    flags = ['--trace-startup', '--enable-perfetto']
+    addFlags = ['--trace-startup', '--enable-perfetto']
     if self._trace_time is not None:
-      flags.append('--trace-startup-duration={}'.format(self._trace_time))
-    self._flag_changer.AddFlags(flags)
+      addFlags.append('--trace-startup-duration={}'.format(self._trace_time))
+    if self._trace_format == 'proto':
+      addFlags.append('--trace-startup-format=proto')
+    elif self._trace_format == 'html' or self._trace_format == 'json':
+      addFlags.append('--trace-startup-format=json')
+    else:
+      raise ValueError("Format '{}' is not supported." \
+                        .format(self._trace_format))
+    removeFlags = self._FindTracingFlags()
+    # Perform flag difference so we only add flags not already on the
+    # command line and remove flags that we aren't also trying to add.
+    addFlagsDiff, removeFlagsDiff = self._FlagDifference(
+                                        addFlags, removeFlags)
+    self._flag_changer.PushFlags(addFlagsDiff, removeFlagsDiff)
+
     self._device.ForceStop(self._package_info.package)
     if self._webapk_package:
       self._device.ForceStop(self._webapk_package)
@@ -74,6 +88,54 @@ class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
           extras={'create_new_tab': True})
     self._logcat_monitor.Start()
     self._device.StartActivity(launch_intent, blocking=True)
+
+  def _FindTracingFlags(self):
+    """Finds tracing flags on the current command line.
+
+    Flags to be found are specified as substrings in the constant
+    flag list of flag. This function detects tracing flags which
+    can later be removed from the current command line. Removing
+    the current tracing flags prevents the error of the
+    current state affecting the specified tracing format.
+
+    Returns:
+      List of tracing flags on the current command line.
+    """
+    kTracingFlags = ['--trace-startup', '--enable-tracing']
+    # RemoveFlags requires the input to have the exact value of the
+    # that the current flag is marked with. Remove current flags
+    # with substring from our constant flag list to satisfy this
+    # requirement.
+    currentFlags = self._flag_changer.GetCurrentFlags()
+    removeFlags = [flag for flag in currentFlags if \
+                  any(traceFlag in flag for traceFlag in kTracingFlags)]
+    return removeFlags
+
+  def _FlagDifference(self, addFlags, removeFlags):
+    """Calculates the set difference between flag sets.
+
+    This function ensure that we only add flags that are not
+    already on the command line and that we ignore flags on
+    the command line that are in both of the addFlags and
+    removeFlags lists. Note that removeFlags is a subset of
+    the current flags by construction.
+
+    Args:
+      addFlags: A list of flags we want on the command line.
+      removeFlags: A list of flags on the command line to remove.
+
+    Returns:
+      addFlagsDiff: A list of flags to add that are not already
+        on the command line and not in the removeFlagsDiff list.
+      removeFlagsDiff: A list of flags on the command line to
+        remove that are not in the addFlagsDiff list.
+    """
+    currentFlags = self._flag_changer.GetCurrentFlags()
+    # removeFlags is a subset of currentFlags by construction, so we
+    # can do one (versus two) set difference to get addFlagDiffernce.
+    addFlagsDiff = list(set(addFlags) - set(currentFlags))
+    removeFlagsDiff = list(set(removeFlags) - set(addFlags))
+    return (addFlagsDiff, removeFlagsDiff)
 
   def _TearDownTracing(self):
     self._flag_changer.Restore()
@@ -115,7 +177,7 @@ class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
 
 class ChromeStartupConfig(tracing_agents.TracingConfig):
   def __init__(self, device, package_info, webapk_package, cold, url,
-               chrome_categories, trace_time):
+               chrome_categories, trace_time, trace_format='html'):
     tracing_agents.TracingConfig.__init__(self)
     self.device = device
     self.package_info = package_info
@@ -124,12 +186,14 @@ class ChromeStartupConfig(tracing_agents.TracingConfig):
     self.url = url
     self.chrome_categories = chrome_categories
     self.trace_time = trace_time
+    self.trace_format = trace_format
 
 
 def try_create_agent(config):
   return ChromeStartupTracingAgent(config.device, config.package_info,
-                                   config.webapk_package,
-                                   config.cold, config.url, config.trace_time)
+                                   config.webapk_package, config.cold,
+                                   config.url, config.trace_time,
+                                   config.trace_format)
 
 def add_options(parser):
   options = optparse.OptionGroup(parser, 'Chrome startup tracing')
@@ -151,4 +215,4 @@ def get_config(options):
   return ChromeStartupConfig(options.device, options.package_info,
                              options.webapk_package, options.cold,
                              options.url, options.chrome_categories,
-                             options.trace_time)
+                             options.trace_time, options.trace_format)
