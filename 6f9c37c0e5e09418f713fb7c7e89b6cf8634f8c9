@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "549dc342_3394c993",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T17:36:15Z",
+      "side": 1,
+      "message": "you also need to get approval from owner of this code",
+      "revId": "6f9c37c0e5e09418f713fb7c7e89b6cf8634f8c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cec29d0_ee29ec28",
+        "filename": "systrace/profile_chrome/flags.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-17T17:36:15Z",
+      "side": 1,
+      "message": "if it returns nothing, you dont have to have this row :)",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "6f9c37c0e5e09418f713fb7c7e89b6cf8634f8c9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
