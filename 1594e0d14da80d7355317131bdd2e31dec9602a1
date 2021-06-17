@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f43784c_89d8d210",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-17T20:23:42Z",
+      "side": 1,
+      "message": "Hello Deep Roy,\n\nI am a new intern. I was wondering if you could take a look at my CL. I added a flag to enable android tracing with proto format, while maintaining the html and json format. I tried to ensure backward compatibility with the old json flag. Please let me know if I missed anything!\n\nThanks!\nRyan Huckleberry",
+      "revId": "1594e0d14da80d7355317131bdd2e31dec9602a1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
