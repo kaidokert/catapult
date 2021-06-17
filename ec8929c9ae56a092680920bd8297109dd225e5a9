@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "472c45fa_dd048fa1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1323655
+      },
+      "writtenOn": "2021-06-17T16:53:42Z",
+      "side": 1,
+      "message": "PTAL? This file should now Vulcanize correctly and deployment to AppSpot is presumably a simple file copy after that. Sorry for the churn!",
+      "revId": "ec8929c9ae56a092680920bd8297109dd225e5a9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
