@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d11c1bf_27ea5f37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1183769
+      },
+      "writtenOn": "2021-06-18T11:29:00Z",
+      "side": 1,
+      "message": "Hi there!\n\nI was doing some tracing with telemetry with a \"off-the-shelf\" device that\u0027s rooted but isn\u0027t running ADB as root. I found I needed this CL to so that tracing with perfetto would work.\n\nWDYT?\n\nThanks,\nPierre",
+      "revId": "7bc3f75295eccf138a0c2c9efcf8783751ad5c5f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
