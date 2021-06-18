@@ -258,6 +258,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50c07fab_ef852628",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T21:48:48Z",
+      "side": 1,
+      "message": "Sorry, apparently this is C++ syntax, not Python!",
+      "parentUuid": "a6506a3f_32f94ad5",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcadb4c1_9e723c7f",
