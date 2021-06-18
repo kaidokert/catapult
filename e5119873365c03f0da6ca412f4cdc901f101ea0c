@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96a4af9_b0ff95e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-18T01:44:40Z",
+      "side": 1,
+      "message": "looks good, just realized it may not be good idea to move everything. let me know if it makes sense. not a major change. feel free to send this on as well, to dproy@ when you moved the function. thanks!",
+      "revId": "e5119873365c03f0da6ca412f4cdc901f101ea0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe82753_b10a375e",
+        "filename": "systrace/profile_chrome/adb_profile_chrome_startup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-18T01:44:40Z",
+      "side": 1,
+      "message": "maybe lets keep this function in the bin script and pass in options to ProfileChrome(). the main reason why we need the code from ProfileChrome() is that it finds where the trace is written and copies the trace file to local folder automatically. maybe mention that as the motivation in the cl description.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "e5119873365c03f0da6ca412f4cdc901f101ea0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b26bf6a_67623cb7",
+        "filename": "systrace/profile_chrome/adb_profile_chrome_startup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-18T01:44:40Z",
+      "side": 1,
+      "message": "this feels like this should be only part of systrace/bin/adb_profile_chrome_startup. We do not want the same description for the other tools that would use this script.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 74
+      },
+      "revId": "e5119873365c03f0da6ca412f4cdc901f101ea0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "260c4b5a_5a4e2fc7",
+        "filename": "systrace/profile_chrome/adb_profile_chrome_startup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-18T01:44:40Z",
+      "side": 1,
+      "message": "some of these flags are useful for the other script as well, but it is ok to reimplement them i guess.",
+      "revId": "e5119873365c03f0da6ca412f4cdc901f101ea0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0731fbf7_5b773290",
+        "filename": "systrace/profile_chrome/adb_profile_chrome_startup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-18T01:44:40Z",
+      "side": 1,
+      "message": "i know it did not exist before, but it would be nice to add a documentation for this public function.",
+      "revId": "e5119873365c03f0da6ca412f4cdc901f101ea0c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
