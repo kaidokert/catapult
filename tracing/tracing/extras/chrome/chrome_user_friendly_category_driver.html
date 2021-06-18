@@ -75,13 +75,12 @@ tr.exportTo('tr.e.chrome', function() {
 
     parseHTML: [
       'BackgroundHTMLParser::pumpTokenizer',
-      'BackgroundHTMLParser::sendTokensToMainThread',
-      'HTMLDocumentParser::didReceiveParsedChunkFromBackgroundParser',
       'HTMLDocumentParser::documentElementAvailable',
-      'HTMLDocumentParser::notifyPendingTokenizedChunks',
-      'HTMLDocumentParser::processParsedChunkFromBackgroundParser',
       'HTMLDocumentParser::processTokenizedChunkFromBackgroundParser',
       'ParseHTML',
+      'HTMLDocumentParser::DeferredPumpTokenizerIfPossible',
+      'HTMLDocumentParser::PumpTokenizer',
+      'HTMLDocumentParser::appendBytes',
     ],
 
     raster: [
