@@ -16,6 +16,201 @@
       "message": "I changed the code to use PushFlags instead. Thanks for your suggestion! Anything else you suggest changing? Thanks!",
       "revId": "eab59b04aaebeabd975022058206db811eb0312b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "836b3b23_c6078e48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "This definitely works better now, thanks! I have a few notes on making the code a little more easier to read and more consistent with the style guide.",
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09e75f76_b2c95767",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "nit: rename to flags_to_add (\u0027addFlags\u0027 sounds like a function that adds flags)",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 12
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdf3aebf_04093266",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "nit: rename to flags_to_remove",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "838feec6_49a959e9",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "Since these are defined as keyword arguments, you should supply them as keyword arguments. This way if someone introduces a new argument to that function / changes the ordering of the arguments, things won\u0027t break.\n\nSo do PushFlags(add\u003daddFlagsDiff, remove\u003dremoveFlagsDiff)",
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca55b1d2_3c7b6811",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "nit: I\u0027d just keep the docstring to \"\"\"Finds tracing flags on the current command line.\"\"\" - that\u0027s sufficient, especially since it\u0027s such a small function. You actually shouldn\u0027t talk anymore about how tracing flags can later be removed etc. since this is function is no longer called \"RemoveTracingFlags\".\n\n\ngo/pystyle#function-docs talks about omitting parts of docstring if the function is short/obvious enough.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29b59f8_1a5c1d94",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "go/pystyle#naming\n\nnit: Variable names are always snake case in python. \n\nHowever, the extra k_ in k_tracing_flags looks weird. Since we\u0027re renaming this anyways, I\u0027d just call it tracing_flags and drop the k_.",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcadb4c1_9e723c7f",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "nit: current_flags. Variable names are always snake case in python go/pystyle#naming\n\nAlso applies to the other variables in this CL.",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 16
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add94d52_28927d99",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "This double nested list comprehension is actually quite difficult to understand. The style guide explicit forbids multiple \u0027for\u0027s. go/pystyle#comprehensions-decision\n\nHow about this? More lines but easier to follow.\n```\nflags_to_remove \u003d []\nfor flag in self._flag_changer.GetCurrentFlags():\n  for traceFlag in kTracingFlags:\n    # Comment explaining why this is not \"if traceFlag \u003d\u003d flag\".\n    if traceFlag in flag:\n       flags_to_remove.append(flag)\n```\n\nBtw, the comment on line 105 isn\u0027t actually clear on why we can\u0027t just do \"if traceFlag \u003d\u003d flag\". Is it because you\u0027re trying catch flags like --trace-startup-file and --trace-startup-duration? In that case you should rename kTracingFlags to trace_flag_prefixes, and instead of doing \"traceFlag in flag\" you should do \"for prefix in trace_flag_prefixes: if flag.startswith(prefix)...\". The code at that point is clear enough that you can delete all the internal comments. It\u0027s better to show intent through code rather than relying on comments.",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 72
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9d50e7_4cdf81d6",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-18T02:16:24Z",
+      "side": 1,
+      "message": "Having a separate function isn\u0027t really making things more readable here. There are a few issues: \n(1) The docstring is a lot longer than the function.\n(2) \"calculates the difference between flag sets\" makes me expect you\u0027re calculating the difference between addFlags and removeFlags, but that\u0027s not what\u0027s happening. A more accurate docstring here would be \"Calculates (a) whatever is in addFlags that is not already in current flags, and (b) whatever is in removeFlags that is not in addFlags.\" But at this point it\u0027s far easier to just read the code than to read English. \n\nSince this function is only used once, I\u0027d inline it up at line 57. Something like this: \n\n```\ncurrent_flags \u003d self._flag_changer.GetCurrentFlags();\nflags_to_add_diff \u003d list(set(flags_to_add) - set(current_flags))\nflags_to_remove_diff \u003d list(set(flags_to_remove) - set(flags_to_add)) \nself._flag_changer.PushFlags(add\u003dflags_to_add_diff, remove\u003dflags_to_remove_diff)\n```\n\nNo further inline comments necessary.\n    \n    \nAlso I just realized GetCurrentFlags actually queries the device to get the list of paths which is an expensive operation, so I would call it once within _SetupTracing and pass it _FindTracingFlags as an argument instead of calling it there again. https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/devil/devil/android/flag_changer.py;l\u003d87;drc\u003d164f811b2cf6f3320404396180c864ac7a74ca91",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 55
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
