@@ -16,6 +16,24 @@
       "message": "LGTM\n\nShould we land it after changes from https://chromium-review.googlesource.com/c/catapult/+/2972503 will be picked up by all users?",
       "revId": "fa80b2e32af1965c7914391b1efda6d848ca646c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd067473_7c892532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-06-18T13:15:25Z",
+      "side": 1,
+      "message": "Yes. I\u0027ll submit only after https://chromium-review.googlesource.com/c/catapult/+/2972503 is rolled out.",
+      "parentUuid": "c45026f6_83bd6523",
+      "revId": "fa80b2e32af1965c7914391b1efda6d848ca646c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
