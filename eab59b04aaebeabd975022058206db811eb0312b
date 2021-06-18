@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce70eec2_35c92bf5",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09e75f76_b2c95767",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 12
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdf3aebf_04093266",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-06-18T02:16:24Z",
       "side": 1,
       "message": "nit: rename to flags_to_remove",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 15
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f31fbf4_e94d2202",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdf3aebf_04093266",
       "range": {
         "startLine": 54,
         "startChar": 4,
@@ -98,6 +146,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadc1411_1f500185",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "838feec6_49a959e9",
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca55b1d2_3c7b6811",
@@ -111,6 +177,30 @@
       "writtenOn": "2021-06-18T02:16:24Z",
       "side": 1,
       "message": "nit: I\u0027d just keep the docstring to \"\"\"Finds tracing flags on the current command line.\"\"\" - that\u0027s sufficient, especially since it\u0027s such a small function. You actually shouldn\u0027t talk anymore about how tracing flags can later be removed etc. since this is function is no longer called \"RemoveTracingFlags\".\n\n\ngo/pystyle#function-docs talks about omitting parts of docstring if the function is short/obvious enough.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8e296ba_99b11bb1",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca55b1d2_3c7b6811",
       "range": {
         "startLine": 95,
         "startChar": 0,
@@ -146,6 +236,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6506a3f_32f94ad5",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Do we normally add the \"k\" to denote that the list is a constant?",
+      "parentUuid": "a29b59f8_1a5c1d94",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fcadb4c1_9e723c7f",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 13
@@ -157,6 +271,30 @@
       "writtenOn": "2021-06-18T02:16:24Z",
       "side": 1,
       "message": "nit: current_flags. Variable names are always snake case in python go/pystyle#naming\n\nAlso applies to the other variables in this CL.",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 16
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1929dca0_12d0ea23",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcadb4c1_9e723c7f",
       "range": {
         "startLine": 109,
         "startChar": 4,
@@ -190,6 +328,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a284a92_341bcddc",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Yes, I am also trying to catch --trace-startup-duration and --trace-startup-format flags. I made this a function, instead of a method, now because we don\u0027t rely on self to call GetCurrentFlags anymore.",
+      "parentUuid": "add94d52_28927d99",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 72
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c9d50e7_4cdf81d6",
@@ -203,6 +365,30 @@
       "writtenOn": "2021-06-18T02:16:24Z",
       "side": 1,
       "message": "Having a separate function isn\u0027t really making things more readable here. There are a few issues: \n(1) The docstring is a lot longer than the function.\n(2) \"calculates the difference between flag sets\" makes me expect you\u0027re calculating the difference between addFlags and removeFlags, but that\u0027s not what\u0027s happening. A more accurate docstring here would be \"Calculates (a) whatever is in addFlags that is not already in current flags, and (b) whatever is in removeFlags that is not in addFlags.\" But at this point it\u0027s far easier to just read the code than to read English. \n\nSince this function is only used once, I\u0027d inline it up at line 57. Something like this: \n\n```\ncurrent_flags \u003d self._flag_changer.GetCurrentFlags();\nflags_to_add_diff \u003d list(set(flags_to_add) - set(current_flags))\nflags_to_remove_diff \u003d list(set(flags_to_remove) - set(flags_to_add)) \nself._flag_changer.PushFlags(add\u003dflags_to_add_diff, remove\u003dflags_to_remove_diff)\n```\n\nNo further inline comments necessary.\n    \n    \nAlso I just realized GetCurrentFlags actually queries the device to get the list of paths which is an expensive operation, so I would call it once within _SetupTracing and pass it _FindTracingFlags as an argument instead of calling it there again. https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/devil/devil/android/flag_changer.py;l\u003d87;drc\u003d164f811b2cf6f3320404396180c864ac7a74ca91",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 55
+      },
+      "revId": "eab59b04aaebeabd975022058206db811eb0312b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f78e3d_04cac74a",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1513404
+      },
+      "writtenOn": "2021-06-18T19:08:09Z",
+      "side": 1,
+      "message": "Yes, that all makes sense! Thanks for letting me know about the expense of GetCurrentFlags.",
+      "parentUuid": "7c9d50e7_4cdf81d6",
       "range": {
         "startLine": 113,
         "startChar": 0,
