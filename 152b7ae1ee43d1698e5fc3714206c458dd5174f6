@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2c1aa16_c0150d76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-06-21T22:36:05Z",
+      "side": 1,
+      "message": "Hi Brian\n\nThis CL makes sure we don\u0027t encode test output if they are empty strings.\n\nPTAL\nRakib",
+      "revId": "152b7ae1ee43d1698e5fc3714206c458dd5174f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
