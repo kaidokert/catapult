@@ -157,15 +157,19 @@ class ResultSinkReporter(object):
                             artifact_output_dir, artifact_filepaths[0]),
                 }
 
-        artifacts[STDOUT_KEY] = {
-            'contents': base64.b64encode(result.out.encode('utf-8'))
-        }
-        artifacts[STDERR_KEY] = {
-            'contents': base64.b64encode(result.err.encode('utf-8'))
-        }
-        html_summary = ('<p><text-artifact artifact-id="%s"/></p>'
-                        '<p><text-artifact artifact-id="%s"/></p>' % (
-                            STDOUT_KEY, STDERR_KEY))
+        html_summary = ''
+        if result.out:
+            artifacts[STDOUT_KEY] = {
+                'contents': base64.b64encode(result.out.encode('utf-8'))
+            }
+            html_summary += (
+                '<p><text-artifact artifact-id="%s"/></p>' % STDOUT_KEY)
+        if result.err:
+            artifacts[STDERR_KEY] = {
+                'contents': base64.b64encode(result.err.encode('utf-8'))
+            }
+            html_summary += (
+                '<p><text-artifact artifact-id="%s"/></p>' % STDERR_KEY)
 
         test_location_in_repo = self._convert_path_to_repo_path(
             os.path.normpath(test_file_location))
