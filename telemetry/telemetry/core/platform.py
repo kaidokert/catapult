@@ -306,6 +306,29 @@ class Platform(object):
     """
     self._platform_backend.StopVideoRecording(video_path)
 
+  def CanRecordPower(self):
+    return self._platform_backend.CanRecordPower()
+
+  def StartPowerRecording(self):
+    """Starts recording power usage on the device.
+
+    Note that this method may not be supported on all platforms, so the caller
+    must check with CanRecordPower() before calling this. Once the caller starts
+    recording power usage via this call, the caller must stop recording by
+    calling StopPowerRecording() before attempting to start recording power
+    usage again.
+    """
+    self._platform_backend.StartPowerRecording()
+
+  def StopPowerRecording(self):
+    """Stops recording power usage on the device.
+
+    This method must be called only if recording power usage has started via a
+    call to StartPowerRecording(), and it was not already stopped using a call
+    to StopPowerRecording().
+    """
+    self._platform_backend.StopPowerRecording()
+
   def SetPerformanceMode(self, performance_mode):
     """ Set the performance mode on the platform.
 

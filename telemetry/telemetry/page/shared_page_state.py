@@ -86,6 +86,8 @@ class SharedPageState(story_module.SharedState):
     self.platform.Initialize()
     self._video_recording_enabled = (self._finder_options.capture_screen_video
                                      and self.platform.CanRecordVideo())
+    self._power_recording_enabled = (self._finder_options.record_power
+                                     and self.platform.CanRecordPower())
 
   @property
   def interval_profiling_controller(self):
@@ -136,6 +138,9 @@ class SharedPageState(story_module.SharedState):
       if self._video_recording_enabled:
         with results.CaptureArtifact('recording.mp4') as video_path:
           self.platform.StopVideoRecording(video_path)
+      if self._power_recording_enabled:
+        with results.CaptureArtifact('power_usage.csv') as power_usage_path:
+          self.platform.StopPowerRecording(power_usage_path)
 
   def ShouldReuseBrowserForAllStoryRuns(self):
     """Whether a single browser instance should be reused to run all stories.
@@ -211,6 +216,8 @@ class SharedPageState(story_module.SharedState):
     reusing_browser = self.browser is not None
     if self._video_recording_enabled:
       self.platform.StartVideoRecording()
+    if self._power_recording_enabled:
+      self.platform.StartPowerRecording()
     if not reusing_browser:
       self._StartBrowser(page)
 

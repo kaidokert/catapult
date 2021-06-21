@@ -209,6 +209,16 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
         win32gui.ReleaseDC(screen_win, win_dc)
     return True
 
+  def StartPowerRecording(self):
+    assert self._intel_power_gadget
+    # TODO(cblume): Create actual device
+    device = 1
+    self._intel_power_gadget_recorder.Start(device)
+
+  def StopPowerRecording(self):
+    assert self._intel_power_gadget
+    self._intel_power_gadget_recorder.Stop()
+
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
 

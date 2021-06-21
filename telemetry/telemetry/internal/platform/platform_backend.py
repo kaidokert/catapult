@@ -2,7 +2,9 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-from __future__ import absolute_import
+import subprocess
+import threading
+
 from telemetry.internal.forwarders import do_nothing_forwarder
 from telemetry.internal.platform import network_controller_backend
 from telemetry.internal.platform import tracing_controller_backend
@@ -10,6 +12,34 @@ from telemetry.testing import test_utils
 
 
 # pylint: disable=unused-argument
+
+class _IntelPowerGadgetRecorder(object):
+
+  def __init__(self):
+    self._stop_recording_signal = threading.Event()
+    self._runner = None
+
+  def WaitForSignal(self):
+    self._stop_recording_signal.wait()
+
+  def Start(self, device):
+    def record_power(device, state):
+      # TODO (cblume): Create actual IPG instance here
+      intel_power_gadget = 1
+      with intel_power_gadget:
+        state.WaitForSignal()
+
+    # Start recording in parallel to running the story, so that the recording
+    # here does not block running the story (which involve executing additional
+    # commands in parallel on the device).
+    parallel_devices = device_utils.DeviceUtils.parallel([device], asyn=True)
+    self._runner = parallel_devices.pMap(record_power, self)
+
+  def Stop(self):
+    self._stop_recording_signal.set()
+    # Recording may take a few seconds in the extreme cases.
+    # Allow a few seconds when shutting down the recording.
+    self._runner.pGet(timeout=10)
 
 class PlatformBackend(object):
 
@@ -29,12 +59,15 @@ class PlatformBackend(object):
     self._network_controller_backend = None
     self._tracing_controller_backend = None
     self._forwarder_factory = None
+    self._intel_power_gadget_recorder = None
 
   def InitPlatformBackend(self):
     self._network_controller_backend = (
         network_controller_backend.NetworkControllerBackend(self))
     self._tracing_controller_backend = (
         tracing_controller_backend.TracingControllerBackend(self))
+    if self.SupportsIntelPowerGadget():
+      self._intel_power_gadget_recorder = _IntelPowerGadgetRecorder()
 
   @classmethod
   def IsPlatformBackendForHost(cls):
@@ -188,6 +221,15 @@ class PlatformBackend(object):
     raise NotImplementedError
 
   def StopVideoRecording(self, video_path):
+    raise NotImplementedError
+
+  def CanRecordPower(self):
+    return self.SupportsIntelPowerGadget()
+
+  def StartPowerRecording(self):
+    raise NotImplementedError
+
+  def StopPowerRecording(self):
     raise NotImplementedError
 
   def IsCooperativeShutdownSupported(self):

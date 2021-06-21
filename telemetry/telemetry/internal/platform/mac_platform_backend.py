@@ -114,6 +114,16 @@ class MacPlatformBackend(posix_platform_backend.PosixPlatformBackend):
           'Screenshot did not finish after $ds.' % timeout_in_sec)
     return None
 
+  def StartPowerRecording(self):
+    assert self._intel_power_gadget
+    # TODO(cblume): Create actual device
+    device = 1
+    self._intel_power_gadget_recorder.Start(device)
+
+  def StopPowerRecording(self):
+    assert self._intel_power_gadget
+    self._intel_power_gadget_recorder.Stop()
+
   def CanFlushIndividualFilesFromSystemCache(self):
     return False
 
