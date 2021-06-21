@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3b6b37b_d383d97a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-21T21:40:23Z",
+      "side": 1,
+      "message": "+dproy: I am unable to decide the right mix of whether to copy the code to reuse it. Let us know how better we can reuse this script if possible. The choices we have are\n1. copy the code in the script to a new main function in src/tools/tracing/\n2. (the one we have here) move the functionality to new library and use it in tracing/. The options cannot be used directly because it adds single letter options like \"-f\".\n3. Use subprocess to invoke the script with different options.\n\nwe went with (2) because subprocess is harder to deal with errors, and didn\u0027t want to copy lot of code. If you think this split is weird, then maybe we can just copy the code to new script.\nThanks for your help!",
+      "revId": "05a524d63417c43929f041e01beb0ad47d34b7f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a33260d_68886091",
+        "filename": "systrace/profile_chrome/adb_profile_chrome_startup.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-21T21:40:23Z",
+      "side": 1,
+      "message": "nit: Profiles Chrome on Android and saves the trace file to output file",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 66
+      },
+      "revId": "05a524d63417c43929f041e01beb0ad47d34b7f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6326cd52_fdaeb665",
+        "filename": "systrace/profile_chrome/adb_profile_chrome_startup.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-06-21T21:40:23Z",
+      "side": 1,
+      "message": "maybe mention it is options value returned by optparse",
+      "revId": "05a524d63417c43929f041e01beb0ad47d34b7f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
