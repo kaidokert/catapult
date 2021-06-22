@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6309e3c5_0d5f1d85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2021-06-22T17:38:21Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "d04a70f01a874cb746353d25bf728243636022cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486f05e5_986ceb47",
+        "filename": "tracing/tracing/metrics/partition_alloc/pcscan_metric.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2021-06-22T17:38:21Z",
+      "side": 1,
+      "message": "relative to PA committed size, or something similar? Not sure we need to be specific here.",
+      "range": {
+        "startLine": 114,
+        "startChar": 40,
+        "endLine": 114,
+        "endChar": 41
+      },
+      "revId": "d04a70f01a874cb746353d25bf728243636022cc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
