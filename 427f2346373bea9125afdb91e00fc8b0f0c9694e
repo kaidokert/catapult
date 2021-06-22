@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e17c1a9_4d64b78d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-06-22T17:55:49Z",
+      "side": 1,
+      "message": "Hi Brian\n\nThis CL makes typ raise an exception containing the invalid status in the message when an invalid status is passed within the Result instance.\n\nPTAL\nRakib",
+      "revId": "427f2346373bea9125afdb91e00fc8b0f0c9694e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
