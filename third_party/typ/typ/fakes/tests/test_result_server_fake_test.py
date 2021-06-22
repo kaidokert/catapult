@@ -19,7 +19,10 @@ from typ import Host
 
 
 class TestResultServerFakeTest(unittest.TestCase):
-    def test_basic_upload(self):
+    # TODO(crbug.com/1032848) The typ unit tests hang whenever they run on
+    # mac with multiple processes. We need to investigate the root cause
+    # and fix it.
+    def disabled_test_basic_upload(self):
         host = Host()
         server = None
         posts = []
