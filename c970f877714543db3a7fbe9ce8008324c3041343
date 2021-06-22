@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e9be81_674ec340",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-06-22T17:28:42Z",
+      "side": 1,
+      "message": "LGTM % don\u0027t have rights to hit +1",
+      "revId": "c970f877714543db3a7fbe9ce8008324c3041343",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
