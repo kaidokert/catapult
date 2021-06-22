@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f85a0c7_17e3ea43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-22T14:46:34Z",
+      "side": 1,
+      "message": "I\u0027m guessing this is resolved now since the CL was abandoned. I don\u0027t have strong opinions here - the approach you\u0027re taking sgtm.",
+      "parentUuid": "d3b6b37b_d383d97a",
+      "revId": "05a524d63417c43929f041e01beb0ad47d34b7f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a33260d_68886091",
