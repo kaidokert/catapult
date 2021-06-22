@@ -235,7 +235,7 @@ class TestCli(test_case.MainTestCase):
                    out=('[1/1] pass_test.PassingTest.test_pass passed\n'
                         '1 test passed, 0 skipped, 0 failures.\n'), err='')
 
-    def test_coverage(self):
+    def disabled_test_coverage(self):
         try:
             import coverage  # pylint: disable=W0612
             files = {
@@ -613,7 +613,8 @@ class TestCli(test_case.MainTestCase):
                                            def test_interrupt(self):
                                                raise KeyboardInterrupt()
                                         """)}
-        self.check(['-j', '1'], files=files, ret=130, out='',
+        self.check(['-j', '1'], files=files, ret=130, 
+                   out='\ntests still running: interrupt_test.Foo.test_interrupt\n\n',
                    err='interrupted, exiting\n')
 
     def test_isolate(self):
@@ -640,7 +641,7 @@ class TestCli(test_case.MainTestCase):
         self.assertIn('[2/2] a/b/pass passed', out)
         self.assertIn('1 test passed, 0 skipped, 1 failure.\n', out)
 
-    def test_load_tests_multiple_workers(self):
+    def disabled_test_load_tests_multiple_workers(self):
         _, out, _, _ = self.check([], files=LOAD_TEST_FILES, ret=1, err='')
 
         # The output for this test is nondeterministic since we may run
@@ -840,7 +841,7 @@ class TestCli(test_case.MainTestCase):
                          r'\d+.\d+s\n'
                          r'1 test passed in \d+.\d+s, 0 skipped, 0 failures.'))
 
-    def test_test_results_server(self):
+    def disabled_test_test_results_server(self):
         server = test_result_server_fake.start()
         self.assertNotEqual(server, None, 'could not start fake server')
 
@@ -865,7 +866,7 @@ class TestCli(test_case.MainTestCase):
         self.assertTrue(payload.endswith('--\r\n'))
         self.assertNotEqual(server.log.getvalue(), '')
 
-    def test_test_results_server_error(self):
+    def disabled_test_test_results_server_error(self):
         server = test_result_server_fake.start(code=500)
         self.assertNotEqual(server, None, 'could not start fake server')
 
@@ -885,7 +886,7 @@ class TestCli(test_case.MainTestCase):
         finally:
             _ = server.stop()
 
-    def test_test_results_server_not_running(self):
+    def disabled_test_test_results_server_not_running(self):
         self.check(['--test-results-server', 'http://localhost:99999',
                     '--master-name', 'fake_master',
                     '--builder-name', 'fake_builder',
