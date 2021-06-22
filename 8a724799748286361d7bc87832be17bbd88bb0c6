@@ -50,6 +50,24 @@
       "message": "[optional]\n\nI think ideally there\u0027d also be a test for the case where the fallback_target argument is given but both the target and the fallback_target are not found, just to be certain that the error case still works as intended when fallback_target is set.",
       "revId": "8a724799748286361d7bc87832be17bbd88bb0c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12f07485_33ca9121",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-06-22T16:58:03Z",
+      "side": 1,
+      "message": "I initially had that in PS1, but couldn\u0027t get it to work easily due to Poll() causing a build to be kicked off instead of failing, so I removed it since we didn\u0027t end up losing any coverage. I\u0027ll try again in a follow-up, might be as simple as just polling twice.",
+      "parentUuid": "ab0f3b68_1befaf4c",
+      "revId": "8a724799748286361d7bc87832be17bbd88bb0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
