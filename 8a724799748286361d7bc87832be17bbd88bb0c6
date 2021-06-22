@@ -16,6 +16,40 @@
       "message": "PTAL",
       "revId": "8a724799748286361d7bc87832be17bbd88bb0c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aef636d_c10806dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-22T04:57:52Z",
+      "side": 1,
+      "message": "Thanks!  This looks good to me.  I\u0027ve suggested an additional unit test, but that can happen in a follow-up CL if you want to add it.",
+      "revId": "8a724799748286361d7bc87832be17bbd88bb0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0f3b68_1befaf4c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-22T04:57:52Z",
+      "side": 1,
+      "message": "[optional]\n\nI think ideally there\u0027d also be a test for the case where the fallback_target argument is given but both the target and the fallback_target are not found, just to be certain that the error case still works as intended when fallback_target is set.",
+      "revId": "8a724799748286361d7bc87832be17bbd88bb0c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
