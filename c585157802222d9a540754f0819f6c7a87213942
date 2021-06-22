@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "c585157802222d9a540754f0819f6c7a87213942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35c988b8_9943a048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131764
+      },
+      "writtenOn": "2021-06-22T17:35:39Z",
+      "side": 1,
+      "message": "lgtm, I guess we won\u0027t cause some exeuction bucket to overflow because of prolonged metrics computation?",
+      "revId": "c585157802222d9a540754f0819f6c7a87213942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
