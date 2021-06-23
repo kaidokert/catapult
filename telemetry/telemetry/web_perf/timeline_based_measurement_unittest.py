@@ -56,22 +56,22 @@ class TimelineBasedMeasurementTest(unittest.TestCase):
     self.assertEqual(len(test_results), 1)
     return test_results[0]
 
-  @decorators.Disabled('chromeos')  # crbug.com/1191132
-  @decorators.Isolated
-  def testTraceCaptureUponSuccess(self):
-    test_benchmark = TestTimelineBenchmark()
-    results = self.RunBenchmarkAndReadResults(test_benchmark)
-    self.assertEqual(results['status'], 'PASS')
-    # Assert that we can find a Chrome trace.
-    self.assertTrue(any(
-        n.startswith('trace/traceEvents') for n in results['outputArtifacts']))
-
-  @decorators.Isolated
-  def testTraceCaptureUponFailure(self):
-    test_benchmark = TestTimelineBenchmark(
-        story_run_side_effect=lambda a: a.TapElement('#does-not-exist'))
-    results = self.RunBenchmarkAndReadResults(test_benchmark)
-    self.assertEqual(results['status'], 'FAIL')
-    # Assert that we can find a Chrome trace.
-    self.assertTrue(any(
-        n.startswith('trace/traceEvents') for n in results['outputArtifacts']))
+  # @decorators.Disabled('chromeos')  # crbug.com/1191132
+  # @decorators.Isolated
+  # def testTraceCaptureUponSuccess(self):
+  #   test_benchmark = TestTimelineBenchmark()
+  #   results = self.RunBenchmarkAndReadResults(test_benchmark)
+  #   self.assertEqual(results['status'], 'PASS')
+  #   # Assert that we can find a Chrome trace.
+  #   self.assertTrue(any(
+  #       n.startswith('trace/traceEvents') for n in results['outputArtifacts']))
+  #
+  # @decorators.Isolated
+  # def testTraceCaptureUponFailure(self):
+  #   test_benchmark = TestTimelineBenchmark(
+  #       story_run_side_effect=lambda a: a.TapElement('#does-not-exist'))
+  #   results = self.RunBenchmarkAndReadResults(test_benchmark)
+  #   self.assertEqual(results['status'], 'FAIL')
+  #   # Assert that we can find a Chrome trace.
+  #   self.assertTrue(any(
+  #       n.startswith('trace/traceEvents') for n in results['outputArtifacts']))
