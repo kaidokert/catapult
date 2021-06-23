@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d107acec_d0dbbedd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-06-23T20:46:16Z",
+      "side": 1,
+      "message": "In looking at this more, the failures on the roll were legit: the code that changed\nin typ changed some things and the blinkpy tests need to be updated to reflect that.\n\nI think we should re-land the typ change and just do a manual roll, as it doesn\u0027t look\nlike there\u0027s an easy way to make the blinkpy tests immune to the change.",
+      "revId": "d7c73cfb9e905c326e5af5cc55fef88aeec5994a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
