@@ -94,6 +94,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4dce6956_b44b4240",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-06-23T20:36:37Z",
+      "side": 1,
+      "message": "Took a closer look at the code. The only thing this is ever used for is to populate the value of a hidden input field. Additionally, both inputs are selected via drop-down. Thus, it seems that users shouldn\u0027t be able to hit this normally unless something in Pinpoint\u0027s end is misconfigured, which would likely result in people looking at the JavaScript logs in order to debug/fix.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html;l\u003d167?q\u003dnew-job-fab.html",
+      "parentUuid": "edfa2387_42fb5f59",
+      "range": {
+        "startLine": 616,
+        "startChar": 16,
+        "endLine": 616,
+        "endChar": 21
+      },
+      "revId": "38605070613194b846eb84d1e80f1638638adadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "058a0943_1bbef310",
         "filename": "dashboard/dashboard/pinpoint_request.py",
         "patchSetId": 2
@@ -153,6 +177,30 @@
       "side": 1,
       "message": "Yes, like elsewhere in this file raising InvalidParamsError looks like an appropriate error here.",
       "parentUuid": "058a0943_1bbef310",
+      "range": {
+        "startLine": 196,
+        "startChar": 10,
+        "endLine": 196,
+        "endChar": 22
+      },
+      "revId": "38605070613194b846eb84d1e80f1638638adadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82e0677e_2c8b6aa5",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-06-23T20:36:37Z",
+      "side": 1,
+      "message": "Done (the comment about JS applies to the version of this block in another file).",
+      "parentUuid": "b789ce6e_2bf82854",
       "range": {
         "startLine": 196,
         "startChar": 10,
