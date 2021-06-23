@@ -7,6 +7,7 @@ import os
 import posixpath
 import unittest
 
+import logging
 import mock
 from pyfakefs import fake_filesystem_unittest
 from py_utils import tempfile_ext
@@ -256,28 +257,53 @@ class SelectDefaultBrowserTest(unittest.TestCase):
 
 class SetUpProfileBrowserTest(unittest.TestCase):
 
-  @decorators.Disabled('all')  # http://crbug.com/905359
   def testPushEmptyProfile(self):
     finder_options = options_for_unittests.GetCopy()
     finder_options.browser_options.profile_dir = None
     browser_to_create = browser_finder.FindBrowser(finder_options)
+    profile_dir = browser_to_create.profile_directory
+    device = browser_to_create._platform_backend.device
+
+    logging.error('browser_options: %s', finder_options.browser_options)
+    logging.error('/data/data: %s', device.ListDirectory('/data/data'))
+    logging.error('/data/data/com.google.android.apps.chrome: %s',
+                  device.ListDirectory('/data/data/com.google.android.apps.chrome'))
+
+    # Depending on Android version, the profile directory may have a 'lib'
+    # folder. This folder must not be deleted when we push an empty profile.
+    # Remember the existence of this folder so that we can check for accidental
+    # deletion later.
+    has_lib_dir = 'lib' in device.ListDirectory(profile_dir, as_root=True)
 
     try:
       # SetUpEnvironment will call RemoveProfile on the device, due to the fact
       # that there is no input profile directory in BrowserOptions.
+      logging.error('Before SetUpEnvironment')
       browser_to_create.SetUpEnvironment(finder_options.browser_options)
+      logging.error('After SetUpEnvironment')
+      logging.error('/data/data: %s', device.ListDirectory('/data/data'))
+      logging.error('/data/data/com.google.android.apps.chrome: %s',
+                    device.ListDirectory('/data/data/com.google.android.apps.chrome'))
 
-      profile_dir = browser_to_create.profile_directory
-      device = browser_to_create._platform_backend.device
+      logging.error('profile_dir: %s', browser_to_create.profile_directory)
 
-       # "lib" is created after installing the browser, and pushing / removing
-       # the profile should never modify it.
-      profile_paths = device.ListDirectory(profile_dir)
-      expected_paths = ['lib']
+      logging.error('/data/local: %s', device.ListDirectory('/data/local'))
+      logging.error(
+          '/data/local/tmp: %s', device.ListDirectory('/data/local/tmp'))
+      logging.error('/data/data: %s', device.ListDirectory('/data/data'))
+      logging.error('/data/data/com.google.android.apps.chrome: %s',
+                    device.ListDirectory('/data/data/com.google.android.apps.chrome'))
+
+      # On some devices, "lib" is created after installing the browser,
+      # and pushing / removing the profile should never modify it.
+      profile_paths = device.ListDirectory(profile_dir, as_root=True)
+      expected_paths = ['lib'] if has_lib_dir else []
       self.assertEqual(expected_paths, profile_paths)
 
     finally:
+      logging.error('Before CleanupEnvironment')
       browser_to_create.CleanUpEnvironment()
+      logging.error('After CleanupEnvironment')
 
   @decorators.Enabled('android')
   def testPushDefaultProfileDir(self):

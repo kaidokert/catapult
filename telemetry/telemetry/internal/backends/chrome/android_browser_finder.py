@@ -199,7 +199,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
         device, self._backend_settings.command_line_name, use_legacy_path=
         compat_mode_options.LEGACY_COMMAND_LINE_PATH in
         browser_options.compatibility_mode)
-    self._flag_changer.ReplaceFlags(startup_args, log_flags=False)
+    self._flag_changer.ReplaceFlags(startup_args, log_flags=True)
     formatted_args = format_for_logging.ShellFormat(
         startup_args, trim=browser_options.trim_logs)
     logging.info('Flags set on device were %s', formatted_args)
