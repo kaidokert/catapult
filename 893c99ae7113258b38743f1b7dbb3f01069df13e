@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60a8f2af_5b3ea5c2",
+        "filename": "tracing/tracing/extras/chrome/chrome_user_friendly_category_driver.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-23T17:04:58Z",
+      "side": 0,
+      "message": "We usually do not delete trace event names in case we want to open an old trace with these names. Unless these names are reused for something else, I\u0027d prefer we leave them here. You can optionally move them to the bottom of the list with a comment on how they\u0027re no longer used in Chrome today.\n\nYou don\u0027t need to keep the old names in the tests, so those changes are fine.",
+      "revId": "893c99ae7113258b38743f1b7dbb3f01069df13e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
