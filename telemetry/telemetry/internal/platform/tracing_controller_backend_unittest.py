@@ -112,150 +112,150 @@ class TracingControllerBackendTest(unittest.TestCase):
     # Replace contents of the list with the agent classes given as args.
     self._TRACING_AGENT_CLASSES[:] = agent_classes
 
-  @decorators.Isolated
-  def testStartTracing(self):
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-
-  @decorators.Isolated
-  def testDoubleStartTracing(self):
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    self.assertFalse(self.controller.StartTracing(self.config, 30))
-
-  @decorators.Isolated
-  def testStopTracingNotStarted(self):
-    with self.assertRaises(AssertionError):
-      self.controller.StopTracing()
-
-  @decorators.Isolated
-  def testStopTracing(self):
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    data = self.controller.StopTracing()
-    self.assertEqual(len(data.clock_syncs), 1)
-    self.assertFalse(self.controller.is_tracing_running)
-
-  @decorators.Isolated
-  def testDoubleStopTracing(self):
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    data = self.controller.StopTracing()
-    self.assertEqual(len(data.clock_syncs), 1)
-    self.assertFalse(self.controller.is_tracing_running)
-    with self.assertRaises(AssertionError):
-      self.controller.StopTracing()
-
-  @decorators.Isolated
-  def testMultipleStartStop(self):
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    data = self.controller.StopTracing()
-    self.assertEqual(len(data.clock_syncs), 1)
-    sync_event_one = data.clock_syncs[0]
-    self.assertFalse(self.controller.is_tracing_running)
-    # Run 2
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    data = self.controller.StopTracing()
-    self.assertEqual(len(data.clock_syncs), 1)
-    sync_event_two = data.clock_syncs[0]
-    self.assertFalse(self.controller.is_tracing_running)
-    # Test difference between events
-    self.assertNotEqual(sync_event_one, sync_event_two)
-
-  @decorators.Isolated
-  def testFlush(self):
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertIsNone(self.controller._current_state)
-
-    # Start tracing.
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    self.assertIs(self.controller._current_state.config, self.config)
-    self.assertEqual(self.controller._current_state.timeout, 30)
-    self.assertIsNotNone(self.controller._current_state.builder)
-
-    # Flush tracing several times.
-    for _ in range(5):
-      self.controller.FlushTracing()
-      self.assertTrue(self.controller.is_tracing_running)
-      self.assertIs(self.controller._current_state.config, self.config)
-      self.assertEqual(self.controller._current_state.timeout, 30)
-      self.assertIsNotNone(self.controller._current_state.builder)
-
-    # Stop tracing.
-    data = self.controller.StopTracing()
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertIsNone(self.controller._current_state)
-
-    self.assertEqual(len(data.clock_syncs), 6)
-
-  @decorators.Isolated
-  def testNoWorkingAgents(self):
-    self._SetTracingAgentClasses(self.MockAgentClass(can_start=False))
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    self.assertEquals(self.controller._active_agents_instances, [])
-    data = self.controller.StopTracing()
-    self.assertEqual(len(data.clock_syncs), 0)
-    self.assertFalse(self.controller.is_tracing_running)
-
-  @decorators.Isolated
-  def testNoClockSyncSupport(self):
-    self._SetTracingAgentClasses(
-        self.MockAgentClass(clock_sync_recorder=True),
-        self.MockAgentClass(supports_clock_sync=False))
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    self.assertEquals(len(self.controller._active_agents_instances), 2)
-    data = self.controller.StopTracing()
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertEqual(len(data.clock_syncs), 0)
-
-  @decorators.Isolated
-  def testMultipleAgents(self):
-    # Only 5 agents can start and, from those, only 2 support clock sync.
-    self._SetTracingAgentClasses(
-        self.MockAgentClass(clock_sync_recorder=True),
-        self.MockAgentClass(),
-        self.MockAgentClass(),
-        self.MockAgentClass(can_start=False),
-        self.MockAgentClass(can_start=False),
-        self.MockAgentClass(supports_clock_sync=False),
-        self.MockAgentClass(supports_clock_sync=False)
-    )
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    self.assertEquals(len(self.controller._active_agents_instances), 5)
-    data = self.controller.StopTracing()
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertEqual(len(data.clock_syncs), 2)
-
-  @decorators.Isolated
-  def testIssueClockSyncMarker_noClockSyncRecorder(self):
-    # Only 4 agents can start, but the clock sync recorder cant.
-    self._SetTracingAgentClasses(
-        self.MockAgentClass(clock_sync_recorder=True, can_start=False),
-        self.MockAgentClass(),
-        self.MockAgentClass(),
-        self.MockAgentClass(can_start=False),
-        self.MockAgentClass(can_start=False),
-        self.MockAgentClass(supports_clock_sync=False),
-        self.MockAgentClass(supports_clock_sync=False)
-    )
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertTrue(self.controller.StartTracing(self.config, 30))
-    self.assertTrue(self.controller.is_tracing_running)
-    self.assertEquals(len(self.controller._active_agents_instances), 4)
-    data = self.controller.StopTracing()
-    self.assertFalse(self.controller.is_tracing_running)
-    self.assertEqual(len(data.clock_syncs), 0)  # No clock syncs found.
+  # @decorators.Isolated
+  # def testStartTracing(self):
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #
+  # @decorators.Isolated
+  # def testDoubleStartTracing(self):
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   self.assertFalse(self.controller.StartTracing(self.config, 30))
+  #
+  # @decorators.Isolated
+  # def testStopTracingNotStarted(self):
+  #   with self.assertRaises(AssertionError):
+  #     self.controller.StopTracing()
+  #
+  # @decorators.Isolated
+  # def testStopTracing(self):
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   data = self.controller.StopTracing()
+  #   self.assertEqual(len(data.clock_syncs), 1)
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #
+  # @decorators.Isolated
+  # def testDoubleStopTracing(self):
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   data = self.controller.StopTracing()
+  #   self.assertEqual(len(data.clock_syncs), 1)
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   with self.assertRaises(AssertionError):
+  #     self.controller.StopTracing()
+  #
+  # @decorators.Isolated
+  # def testMultipleStartStop(self):
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   data = self.controller.StopTracing()
+  #   self.assertEqual(len(data.clock_syncs), 1)
+  #   sync_event_one = data.clock_syncs[0]
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   # Run 2
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   data = self.controller.StopTracing()
+  #   self.assertEqual(len(data.clock_syncs), 1)
+  #   sync_event_two = data.clock_syncs[0]
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   # Test difference between events
+  #   self.assertNotEqual(sync_event_one, sync_event_two)
+  #
+  # @decorators.Isolated
+  # def testFlush(self):
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertIsNone(self.controller._current_state)
+  #
+  #   # Start tracing.
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   self.assertIs(self.controller._current_state.config, self.config)
+  #   self.assertEqual(self.controller._current_state.timeout, 30)
+  #   self.assertIsNotNone(self.controller._current_state.builder)
+  #
+  #   # Flush tracing several times.
+  #   for _ in range(5):
+  #     self.controller.FlushTracing()
+  #     self.assertTrue(self.controller.is_tracing_running)
+  #     self.assertIs(self.controller._current_state.config, self.config)
+  #     self.assertEqual(self.controller._current_state.timeout, 30)
+  #     self.assertIsNotNone(self.controller._current_state.builder)
+  #
+  #   # Stop tracing.
+  #   data = self.controller.StopTracing()
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertIsNone(self.controller._current_state)
+  #
+  #   self.assertEqual(len(data.clock_syncs), 6)
+  #
+  # @decorators.Isolated
+  # def testNoWorkingAgents(self):
+  #   self._SetTracingAgentClasses(self.MockAgentClass(can_start=False))
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   self.assertEquals(self.controller._active_agents_instances, [])
+  #   data = self.controller.StopTracing()
+  #   self.assertEqual(len(data.clock_syncs), 0)
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #
+  # @decorators.Isolated
+  # def testNoClockSyncSupport(self):
+  #   self._SetTracingAgentClasses(
+  #       self.MockAgentClass(clock_sync_recorder=True),
+  #       self.MockAgentClass(supports_clock_sync=False))
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   self.assertEquals(len(self.controller._active_agents_instances), 2)
+  #   data = self.controller.StopTracing()
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertEqual(len(data.clock_syncs), 0)
+  #
+  # @decorators.Isolated
+  # def testMultipleAgents(self):
+  #   # Only 5 agents can start and, from those, only 2 support clock sync.
+  #   self._SetTracingAgentClasses(
+  #       self.MockAgentClass(clock_sync_recorder=True),
+  #       self.MockAgentClass(),
+  #       self.MockAgentClass(),
+  #       self.MockAgentClass(can_start=False),
+  #       self.MockAgentClass(can_start=False),
+  #       self.MockAgentClass(supports_clock_sync=False),
+  #       self.MockAgentClass(supports_clock_sync=False)
+  #   )
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   self.assertEquals(len(self.controller._active_agents_instances), 5)
+  #   data = self.controller.StopTracing()
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertEqual(len(data.clock_syncs), 2)
+  #
+  # @decorators.Isolated
+  # def testIssueClockSyncMarker_noClockSyncRecorder(self):
+  #   # Only 4 agents can start, but the clock sync recorder cant.
+  #   self._SetTracingAgentClasses(
+  #       self.MockAgentClass(clock_sync_recorder=True, can_start=False),
+  #       self.MockAgentClass(),
+  #       self.MockAgentClass(),
+  #       self.MockAgentClass(can_start=False),
+  #       self.MockAgentClass(can_start=False),
+  #       self.MockAgentClass(supports_clock_sync=False),
+  #       self.MockAgentClass(supports_clock_sync=False)
+  #   )
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertTrue(self.controller.StartTracing(self.config, 30))
+  #   self.assertTrue(self.controller.is_tracing_running)
+  #   self.assertEquals(len(self.controller._active_agents_instances), 4)
+  #   data = self.controller.StopTracing()
+  #   self.assertFalse(self.controller.is_tracing_running)
+  #   self.assertEqual(len(data.clock_syncs), 0)  # No clock syncs found.
