@@ -30,111 +30,111 @@ class TracingControllerTest(tab_test_case.TabTestCase):
   def AddTimelineMarker(self, title):
     self._tab.AddTimelineMarker(title)
 
-  @decorators.Isolated
-  def testExceptionDuringStopTracingIsCaught(self):
-    self.tracing_controller.StartTracing(self.config)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    # Inject exception while trying to stop Chrome tracing. It should be
-    # caught and buffered until the trace builder is cleaned up.
-    with mock.patch.object(
-        self._tab._inspector_backend._devtools_client,
-        'StopChromeTracing',
-        side_effect=Exception('Intentional Tracing Exception')):
-      trace_builder = self.tracing_controller.StopTracing()
-
-    # Tracing is stopped even if there was an exception.
-    self.assertFalse(self.tracing_controller.is_tracing_running)
-
-    # Cleaning up the builder raises the exception.
-    with self.assertRaisesRegexp(Exception, 'Intentional Tracing Exception'):
-      trace_builder.CleanUpTraceData()
-
-  @decorators.Isolated
-  def testGotTrace(self):
-    self.tracing_controller.StartTracing(self.config)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    self.AddTimelineMarker('trace-event')
-
-    trace_data = self.tracing_controller.StopTracing()
-    self.assertFalse(self.tracing_controller.is_tracing_running)
-
-    markers = trace_processor.ExtractTimelineMarkers(trace_data)
-    self.assertIn('trace-event', markers)
-
-  @decorators.Isolated
-  def testGotClockSyncMarkers(self):
-    self.tracing_controller.StartTracing(self.config)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-    trace_data = self.tracing_controller.StopTracing()
-    self.assertFalse(self.tracing_controller.is_tracing_running)
-
-    complete_sync_ids = trace_processor.ExtractCompleteSyncIds(trace_data)
-    self.assertEqual(len(complete_sync_ids), 1)
-
-  @decorators.Isolated
-  def testStartAndStopTraceMultipleTimes(self):
-    self.tracing_controller.StartTracing(self.config)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    # Calling StartTracing again does nothing.
-    self.assertFalse(self.tracing_controller.StartTracing(self.config))
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    self.AddTimelineMarker('trace-event')
-
-    trace_data = self.tracing_controller.StopTracing()
-    self.assertFalse(self.tracing_controller.is_tracing_running)
-
-    markers = trace_processor.ExtractTimelineMarkers(trace_data)
-    self.assertIn('trace-event', markers)
-
-    # Calling StopTracing again will raise an exception.
-    with self.assertRaises(Exception):
-      self.tracing_controller.StopTracing()
-
-  @decorators.Isolated
-  @decorators.Disabled('mac')
-  def testFlushTracing(self):
-    self.tracing_controller.StartTracing(self.config)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    self.AddTimelineMarker('before-flush')
-
-    self.tracing_controller.FlushTracing()
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    self.AddTimelineMarker('after-flush')
-
-    trace_data = self.tracing_controller.StopTracing()
-    self.assertFalse(self.tracing_controller.is_tracing_running)
-
-    # Both markers before and after flushing are found.
-    markers = trace_processor.ExtractTimelineMarkers(trace_data)
-    self.assertIn('before-flush', markers)
-    self.assertIn('after-flush', markers)
-
-  @decorators.Isolated
-  @decorators.Disabled('win')  # https://crbug.com/957831
-  def testFlushTracingDiscardCurrent(self):
-    self.tracing_controller.StartTracing(self.config)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    self.AddTimelineMarker('before-flush')
-
-    self.tracing_controller.FlushTracing(discard_current=True)
-    self.assertTrue(self.tracing_controller.is_tracing_running)
-
-    self.AddTimelineMarker('after-flush')
-
-    trace_data = self.tracing_controller.StopTracing()
-    self.assertFalse(self.tracing_controller.is_tracing_running)
-
-    # The marker after flushing should be found, but not the one before.
-    markers = trace_processor.ExtractTimelineMarkers(trace_data)
-    self.assertIn('after-flush', markers)
-    self.assertNotIn('before-flush', markers)
+  # @decorators.Isolated
+  # def testExceptionDuringStopTracingIsCaught(self):
+  #   self.tracing_controller.StartTracing(self.config)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   # Inject exception while trying to stop Chrome tracing. It should be
+  #   # caught and buffered until the trace builder is cleaned up.
+  #   with mock.patch.object(
+  #       self._tab._inspector_backend._devtools_client,
+  #       'StopChromeTracing',
+  #       side_effect=Exception('Intentional Tracing Exception')):
+  #     trace_builder = self.tracing_controller.StopTracing()
+  #
+  #   # Tracing is stopped even if there was an exception.
+  #   self.assertFalse(self.tracing_controller.is_tracing_running)
+  #
+  #   # Cleaning up the builder raises the exception.
+  #   with self.assertRaisesRegexp(Exception, 'Intentional Tracing Exception'):
+  #     trace_builder.CleanUpTraceData()
+  #
+  # @decorators.Isolated
+  # def testGotTrace(self):
+  #   self.tracing_controller.StartTracing(self.config)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   self.AddTimelineMarker('trace-event')
+  #
+  #   trace_data = self.tracing_controller.StopTracing()
+  #   self.assertFalse(self.tracing_controller.is_tracing_running)
+  #
+  #   markers = trace_processor.ExtractTimelineMarkers(trace_data)
+  #   self.assertIn('trace-event', markers)
+  #
+  # @decorators.Isolated
+  # def testGotClockSyncMarkers(self):
+  #   self.tracing_controller.StartTracing(self.config)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #   trace_data = self.tracing_controller.StopTracing()
+  #   self.assertFalse(self.tracing_controller.is_tracing_running)
+  #
+  #   complete_sync_ids = trace_processor.ExtractCompleteSyncIds(trace_data)
+  #   self.assertEqual(len(complete_sync_ids), 1)
+  #
+  # @decorators.Isolated
+  # def testStartAndStopTraceMultipleTimes(self):
+  #   self.tracing_controller.StartTracing(self.config)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   # Calling StartTracing again does nothing.
+  #   self.assertFalse(self.tracing_controller.StartTracing(self.config))
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   self.AddTimelineMarker('trace-event')
+  #
+  #   trace_data = self.tracing_controller.StopTracing()
+  #   self.assertFalse(self.tracing_controller.is_tracing_running)
+  #
+  #   markers = trace_processor.ExtractTimelineMarkers(trace_data)
+  #   self.assertIn('trace-event', markers)
+  #
+  #   # Calling StopTracing again will raise an exception.
+  #   with self.assertRaises(Exception):
+  #     self.tracing_controller.StopTracing()
+  #
+  # @decorators.Isolated
+  # @decorators.Disabled('mac')
+  # def testFlushTracing(self):
+  #   self.tracing_controller.StartTracing(self.config)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   self.AddTimelineMarker('before-flush')
+  #
+  #   self.tracing_controller.FlushTracing()
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   self.AddTimelineMarker('after-flush')
+  #
+  #   trace_data = self.tracing_controller.StopTracing()
+  #   self.assertFalse(self.tracing_controller.is_tracing_running)
+  #
+  #   # Both markers before and after flushing are found.
+  #   markers = trace_processor.ExtractTimelineMarkers(trace_data)
+  #   self.assertIn('before-flush', markers)
+  #   self.assertIn('after-flush', markers)
+  #
+  # @decorators.Isolated
+  # @decorators.Disabled('win')  # https://crbug.com/957831
+  # def testFlushTracingDiscardCurrent(self):
+  #   self.tracing_controller.StartTracing(self.config)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   self.AddTimelineMarker('before-flush')
+  #
+  #   self.tracing_controller.FlushTracing(discard_current=True)
+  #   self.assertTrue(self.tracing_controller.is_tracing_running)
+  #
+  #   self.AddTimelineMarker('after-flush')
+  #
+  #   trace_data = self.tracing_controller.StopTracing()
+  #   self.assertFalse(self.tracing_controller.is_tracing_running)
+  #
+  #   # The marker after flushing should be found, but not the one before.
+  #   markers = trace_processor.ExtractTimelineMarkers(trace_data)
+  #   self.assertIn('after-flush', markers)
+  #   self.assertNotIn('before-flush', markers)
 
 
 class StartupTracingTest(unittest.TestCase):
@@ -187,21 +187,21 @@ class StartupTracingTest(unittest.TestCase):
     markers = self.StopTracingAndGetTimelineMarkers()
     self.assertIn('trace-event', markers)
 
-  @decorators.Isolated
-  @decorators.Disabled('chromeos')  # https://crbug.com/920454
-  @decorators.Disabled('win')  # https://crbug.com/957831
-  def testRestartBrowserWhileTracing(self):
-    expected_markers = ['trace-event-%i' % i for i in range(4)]
-    self.tracing_controller.StartTracing(self.config)
-    try:
-      self.possible_browser.SetUpEnvironment(self.browser_options)
-      for marker in expected_markers:
-        with self.possible_browser.Create() as browser:
-          browser.tabs[0].Navigate('about:blank')
-          browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
-          browser.tabs[0].AddTimelineMarker(marker)
-    finally:
-      self.possible_browser.CleanUpEnvironment()
-    markers = self.StopTracingAndGetTimelineMarkers()
-    for marker in expected_markers:
-      self.assertIn(marker, markers)
+  # @decorators.Isolated
+  # @decorators.Disabled('chromeos')  # https://crbug.com/920454
+  # @decorators.Disabled('win')  # https://crbug.com/957831
+  # def testRestartBrowserWhileTracing(self):
+  #   expected_markers = ['trace-event-%i' % i for i in range(4)]
+  #   self.tracing_controller.StartTracing(self.config)
+  #   try:
+  #     self.possible_browser.SetUpEnvironment(self.browser_options)
+  #     for marker in expected_markers:
+  #       with self.possible_browser.Create() as browser:
+  #         browser.tabs[0].Navigate('about:blank')
+  #         browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+  #         browser.tabs[0].AddTimelineMarker(marker)
+  #   finally:
+  #     self.possible_browser.CleanUpEnvironment()
+  #   markers = self.StopTracingAndGetTimelineMarkers()
+  #   for marker in expected_markers:
+  #     self.assertIn(marker, markers)
