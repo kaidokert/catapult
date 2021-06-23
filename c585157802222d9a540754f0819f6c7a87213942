@@ -33,6 +33,23 @@
       "message": "lgtm, I guess we won\u0027t cause some exeuction bucket to overflow because of prolonged metrics computation?",
       "revId": "c585157802222d9a540754f0819f6c7a87213942",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e2d7f07_b6150f21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-06-23T13:26:06Z",
+      "side": 1,
+      "message": "I \"hope\" we\u0027re good with this :) since we explicitly list all metrics in benchmarks otherwise. (and I don\u0027t see any reference to v8AndMemoryMetrics)",
+      "revId": "c585157802222d9a540754f0819f6c7a87213942",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
