@@ -24,30 +24,30 @@ class PlatformScreenshotTest(tab_test_case.TabTestCase):
 
   # Run this test in serial to avoid multiple browsers pop up on the screen.
   # Disabled: Mac: crbug.com/660587, ChromeOs: crbug.com/944366.
-  @decorators.Isolated
-  @decorators.Disabled('mac', 'chromeos', 'win')
-  def testScreenshot(self):
-    if not self._platform.CanTakeScreenshot():
-      self.skipTest('Platform does not support screenshots, skipping test.')
-    # Skip the test on Mac 10.5, 10.6, 10.7 because png format isn't
-    # recognizable on Mac < 10.8 (crbug.com/369490#c13)
-    if (self._platform.GetOSName() == 'mac' and
-        self._platform.GetOSVersionName() in
-        (os_version.LEOPARD, os_version.SNOWLEOPARD, os_version.LION)):
-      self.skipTest('OS X version %s too old' % self._platform.GetOSName())
-    tf = tempfile.NamedTemporaryFile(delete=False, suffix='.png')
-    tf.close()
-    try:
-      self.Navigate('screenshot_test.html')
-      self._platform.TakeScreenshot(tf.name)
-      # Assert that screenshot image contains the color of the triangle defined
-      # in screenshot_test.html.
-      img = image_util.FromPngFile(tf.name)
-      screenshot_pixels = image_util.Pixels(img)
-      special_colored_pixel = bytearray([217, 115, 43])
-      self.assertTrue(special_colored_pixel in screenshot_pixels)
-    finally:
-      os.remove(tf.name)
+  # @decorators.Isolated
+  # @decorators.Disabled('mac', 'chromeos', 'win')
+  # def testScreenshot(self):
+  #   if not self._platform.CanTakeScreenshot():
+  #     self.skipTest('Platform does not support screenshots, skipping test.')
+  #   # Skip the test on Mac 10.5, 10.6, 10.7 because png format isn't
+  #   # recognizable on Mac < 10.8 (crbug.com/369490#c13)
+  #   if (self._platform.GetOSName() == 'mac' and
+  #       self._platform.GetOSVersionName() in
+  #       (os_version.LEOPARD, os_version.SNOWLEOPARD, os_version.LION)):
+  #     self.skipTest('OS X version %s too old' % self._platform.GetOSName())
+  #   tf = tempfile.NamedTemporaryFile(delete=False, suffix='.png')
+  #   tf.close()
+  #   try:
+  #     self.Navigate('screenshot_test.html')
+  #     self._platform.TakeScreenshot(tf.name)
+  #     # Assert that screenshot image contains the color of the triangle defined
+  #     # in screenshot_test.html.
+  #     img = image_util.FromPngFile(tf.name)
+  #     screenshot_pixels = image_util.Pixels(img)
+  #     special_colored_pixel = bytearray([217, 115, 43])
+  #     self.assertTrue(special_colored_pixel in screenshot_pixels)
+  #   finally:
+  #     os.remove(tf.name)
 
 
 class TestHostPlatformInfo(unittest.TestCase):
