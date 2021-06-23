@@ -248,16 +248,16 @@ class TestBrowserCreation(unittest.TestCase):
     finally:
       self.browser_to_create.CleanUpEnvironment()
 
-  @decorators.Enabled('linux')
-  # TODO(crbug.com/782691): enable this on Win
-  # TODO(ashleymarie): Re-enable on mac (BUG=catapult:#3523)
-  @decorators.Isolated
-  def testBrowserNotLeakingTempFiles(self):
-    before_browser_run_temp_dir_content = os.listdir(tempfile.tempdir)
-    with self.browser_to_create.BrowserSession(self.browser_options) as browser:
-      tab = browser.tabs.New()
-      tab.Navigate('about:blank')
-      self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
-    after_browser_run_temp_dir_content = os.listdir(tempfile.tempdir)
-    self.assertEqual(before_browser_run_temp_dir_content,
-                     after_browser_run_temp_dir_content)
+  # @decorators.Enabled('linux')
+  # # TODO(crbug.com/782691): enable this on Win
+  # # TODO(ashleymarie): Re-enable on mac (BUG=catapult:#3523)
+  # @decorators.Isolated
+  # def testBrowserNotLeakingTempFiles(self):
+  #   before_browser_run_temp_dir_content = os.listdir(tempfile.tempdir)
+  #   with self.browser_to_create.BrowserSession(self.browser_options) as browser:
+  #     tab = browser.tabs.New()
+  #     tab.Navigate('about:blank')
+  #     self.assertEquals(2, tab.EvaluateJavaScript('1 + 1'))
+  #   after_browser_run_temp_dir_content = os.listdir(tempfile.tempdir)
+  #   self.assertEqual(before_browser_run_temp_dir_content,
+  #                    after_browser_run_temp_dir_content)
