@@ -33,6 +33,23 @@
       "message": "Friendly ping here...",
       "revId": "7324e56775c9e13cb33c7c8125a4173d5a7ffd22",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b75bfa_b781b82d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1499972
+      },
+      "writtenOn": "2021-06-23T16:30:04Z",
+      "side": 1,
+      "message": "Just noticed (way too late) that dberris@ is OOO. dproy@, could you PTAL here?",
+      "revId": "7324e56775c9e13cb33c7c8125a4173d5a7ffd22",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
