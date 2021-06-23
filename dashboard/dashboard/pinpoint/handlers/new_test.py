@@ -377,6 +377,11 @@ class NewTest(_NewTest):
     response = self.Post('/api/new', request, status=400)
     self.assertIn('error', json.loads(response.body))
 
+  def testFallbackTarget(self):
+    request = dict(_BASE_REQUEST)
+    request['target'] = 'performance_test_suite_android_chrome'
+    self.Post('/api/new', request, status=200)
+
   def testInvalidTestConfig(self):
     request = dict(_BASE_REQUEST)
     del request['configuration']
