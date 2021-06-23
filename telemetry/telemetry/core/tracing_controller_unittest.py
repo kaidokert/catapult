@@ -187,21 +187,21 @@ class StartupTracingTest(unittest.TestCase):
     markers = self.StopTracingAndGetTimelineMarkers()
     self.assertIn('trace-event', markers)
 
-  @decorators.Isolated
-  @decorators.Disabled('chromeos')  # https://crbug.com/920454
-  @decorators.Disabled('win')  # https://crbug.com/957831
-  def testRestartBrowserWhileTracing(self):
-    expected_markers = ['trace-event-%i' % i for i in range(4)]
-    self.tracing_controller.StartTracing(self.config)
-    try:
-      self.possible_browser.SetUpEnvironment(self.browser_options)
-      for marker in expected_markers:
-        with self.possible_browser.Create() as browser:
-          browser.tabs[0].Navigate('about:blank')
-          browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
-          browser.tabs[0].AddTimelineMarker(marker)
-    finally:
-      self.possible_browser.CleanUpEnvironment()
-    markers = self.StopTracingAndGetTimelineMarkers()
-    for marker in expected_markers:
-      self.assertIn(marker, markers)
+  # @decorators.Isolated
+  # @decorators.Disabled('chromeos')  # https://crbug.com/920454
+  # @decorators.Disabled('win')  # https://crbug.com/957831
+  # def testRestartBrowserWhileTracing(self):
+  #   expected_markers = ['trace-event-%i' % i for i in range(4)]
+  #   self.tracing_controller.StartTracing(self.config)
+  #   try:
+  #     self.possible_browser.SetUpEnvironment(self.browser_options)
+  #     for marker in expected_markers:
+  #       with self.possible_browser.Create() as browser:
+  #         browser.tabs[0].Navigate('about:blank')
+  #         browser.tabs[0].WaitForDocumentReadyStateToBeInteractiveOrBetter()
+  #         browser.tabs[0].AddTimelineMarker(marker)
+  #   finally:
+  #     self.possible_browser.CleanUpEnvironment()
+  #   markers = self.StopTracingAndGetTimelineMarkers()
+  #   for marker in expected_markers:
+  #     self.assertIn(marker, markers)
