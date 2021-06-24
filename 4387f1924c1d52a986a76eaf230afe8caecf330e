@@ -16,6 +16,23 @@
       "message": "Ok, so based on my past experience, I\u0027d like to land this like:\n\n  1. update projects.cfg to look at the generated directory (should have no effect on live configuration)\n  2. commit this change (luci-config should pick up the generated folder)\n  3. delete the old config files\n  \nSound good?",
       "revId": "4387f1924c1d52a986a76eaf230afe8caecf330e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913d0a2b_8ef9b424",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-24T18:18:13Z",
+      "side": 1,
+      "message": "Ok, luci-config picked up the projects.cfg change, landing this one now.",
+      "revId": "4387f1924c1d52a986a76eaf230afe8caecf330e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
