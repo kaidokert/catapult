@@ -342,8 +342,10 @@ def main(args=None):
     else:
       vpython_executable = "vpython"
 
-    executable = 'vpython.bat' if sys.platform == 'win32' \
-      else vpython_executable
+    if test['path'] == 'catapult_build/fetch_telemetry_deps_and_run_tests':
+      executable = 'vpython3.bat' if sys.platform == 'win32' else 'vpython3'
+    else:
+      executable = 'vpython.bat' if sys.platform == 'win32' else vpython_executable
 
     # Always add the appengine SDK path.
     step['env']['PYTHONPATH'] = args.app_engine_sdk_pythonpath
