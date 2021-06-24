@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85f8967a_1012397c",
+        "filename": "infra/config/main.star",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-24T00:03:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "946a5ee6_0b87a4b6",
+      "range": {
+        "startLine": 2,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "1130e3decb8e3044bfbe24922a14f13110dbf206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddb59e87_f40de2c0",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-06-23T23:57:59Z",
       "side": 1,
       "message": "this isn\u0027t necessary since catapult has just 1 repo anyway, how about\n\n.+[+]/dashboard/.+",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 67
+      },
+      "revId": "1130e3decb8e3044bfbe24922a14f13110dbf206",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838eec74_2c2e34a7",
+        "filename": "infra/config/main.star",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-24T00:03:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddb59e87_f40de2c0",
       "range": {
         "startLine": 90,
         "startChar": 16,
