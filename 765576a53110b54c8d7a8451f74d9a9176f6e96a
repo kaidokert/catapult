@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7608b8e7_047ffcc9",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-06-24T18:20:11Z",
+      "side": 1,
+      "message": "It seems that fallback_target isn\u0027t sent as part of the job, only target (which is still performance_test_suite_android_chrome). Not sure if that implies that this fallback approach doesn\u0027t work in its current implementation or just that this method of testing can\u0027t verify that we eventually use the fallback target.\n\nI think I\u0027m leaning towards the latter since we should only be changing the target after a build is complete, which I believe comes after the job request\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/quest/find_isolate.py;l\u003d135?q\u003dfallback_target%20file:pinpoint",
+      "parentUuid": "d3ef232d_e61436ce",
+      "range": {
+        "startLine": 380,
+        "startChar": 6,
+        "endLine": 380,
+        "endChar": 24
+      },
+      "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1708c382_9b1b0b78",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
