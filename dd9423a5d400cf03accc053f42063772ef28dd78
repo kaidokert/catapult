@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dea7c22b_ada7360e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-24T23:42:40Z",
+      "side": 1,
+      "message": "Enable running benchmarks on Android with Python 3. PTAL.",
+      "revId": "dd9423a5d400cf03accc053f42063772ef28dd78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
