@@ -33,6 +33,24 @@
       "message": "As mentioned \"The code using the backends should remember to call Close at the end\", should we expect any potential behavior change?",
       "revId": "dbc597f23a8d76376e7b177149c8ac57b246335a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7906910_59f9d584",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-24T06:31:15Z",
+      "side": 1,
+      "message": "So far as I can see, all Telemetry code is already calling the Close method.",
+      "parentUuid": "2269ed38_bebc1336",
+      "revId": "dbc597f23a8d76376e7b177149c8ac57b246335a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
