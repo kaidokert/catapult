@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24d5a5dd_a03de19d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-24T06:09:28Z",
+      "side": 1,
+      "message": "Not really.  We don\u0027t yet have a dev or test deployment that would facilitate that.  Obviously for this kind of change it would be useful to be able to perform more end-to-end tests than we have now 😞\n\nPinpoint does push-on-green, so committing a revert will at least get automatically rolled out relatively promptly, if that\u0027s any comfort.",
+      "parentUuid": "f5700474_c53a407c",
+      "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d286c2d4_f8e7df05",
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3ef232d_e61436ce",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-24T06:09:28Z",
+      "side": 1,
+      "message": "Something like this maybe?\n\n    response \u003d self.Post(\u0027/api/new\u0027, request, status\u003d200)\n    job \u003d job_module.JobFromId(json.loads(response.body)[\u0027jobId\u0027])\n    self.assertEqual(\n        job.arguments.get(\u0027fallback_target\u0027), \u0027performance_test_suite\u0027)",
+      "parentUuid": "d286c2d4_f8e7df05",
+      "range": {
+        "startLine": 380,
+        "startChar": 6,
+        "endLine": 380,
+        "endChar": 24
+      },
+      "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1708c382_9b1b0b78",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
@@ -54,6 +96,24 @@
       "writtenOn": "2021-06-23T20:36:37Z",
       "side": 1,
       "message": "It seems like the targets in this file are just to determine if extra runtime args need to be added, so we shouldn\u0027t need any fallback stuff here?",
+      "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d14c531_5834c590",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-24T06:09:28Z",
+      "side": 1,
+      "message": "I think that\u0027s probably correct.",
+      "parentUuid": "1708c382_9b1b0b78",
       "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }

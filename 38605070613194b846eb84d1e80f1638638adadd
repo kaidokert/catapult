@@ -116,6 +116,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebfdf010_96171643",
+        "filename": "dashboard/dashboard/pinpoint/elements/jobs-page/new-job-fab.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-24T06:09:28Z",
+      "side": 1,
+      "message": "Fair enough.  It seems like it\u0027d still be nicer to show the error in the proper UI in the unlikely case it does happen, but I agree it\u0027s not a priority.",
+      "parentUuid": "4dce6956_b44b4240",
+      "range": {
+        "startLine": 616,
+        "startChar": 16,
+        "endLine": 616,
+        "endChar": 21
+      },
+      "revId": "38605070613194b846eb84d1e80f1638638adadd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "058a0943_1bbef310",
