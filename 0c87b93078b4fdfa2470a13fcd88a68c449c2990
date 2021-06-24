@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a88cb2b_5ae974bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-06-24T22:10:35Z",
+      "side": 1,
+      "message": "Enabled running benchmarks on Mac. PTAL.",
+      "revId": "0c87b93078b4fdfa2470a13fcd88a68c449c2990",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
