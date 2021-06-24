@@ -66,7 +66,7 @@ def main(argv=None, host=None, win_multiprocessing=None, **defaults):
 
 class TestInput(object):
 
-    def __init__(self, name, msg='', timeout=None, expected=None, iteration=0):
+    def __init__(self, name, msg='', timeout=60, expected=None, iteration=0):
         self.name = name
         self.msg = msg
         self.timeout = timeout
