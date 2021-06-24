@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8af88bdd_d76e77fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1255015
+      },
+      "writtenOn": "2021-06-24T22:16:07Z",
+      "side": 1,
+      "message": "@Andrew, PTAL. This issue\u0027s been bothering me for a while, and I suspect it\u0027s been bothering my whole \nteam too whenever we use the tool to make bugs",
+      "revId": "33e9278c838b0660dcb7b94f4aa531d0bf5d8d7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
