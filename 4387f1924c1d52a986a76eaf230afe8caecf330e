@@ -33,6 +33,23 @@
       "message": "Ok, luci-config picked up the projects.cfg change, landing this one now.",
       "revId": "4387f1924c1d52a986a76eaf230afe8caecf330e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb47e06d_d4b5d32a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-24T18:51:01Z",
+      "side": 1,
+      "message": "Filed https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1223504 for permission error",
+      "revId": "4387f1924c1d52a986a76eaf230afe8caecf330e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
