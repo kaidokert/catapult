@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44d13c21_90aa927a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-24T20:53:51Z",
+      "side": 1,
+      "message": "(sidenote: it\u0027s probably worth skipping the non-presubmit trybots for configuration-only changes)",
+      "revId": "00001bca2215821f94929e10347bc32bb42b349a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
