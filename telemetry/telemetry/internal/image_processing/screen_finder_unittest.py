@@ -44,43 +44,43 @@ else:
       return self.ScreenFinder(fg)
 
     # https://github.com/catapult-project/catapult/issues/3510
-    @decorators.Disabled('all')
-    @decorators.Isolated
-    def testBasicFunctionality(self):
-      def CheckCorners(corners, expected):
-        for i, corner in enumerate(corners):
-          for j, val in enumerate(corner):
-            self.assertAlmostEqual(val, expected[i][j], delta=1.1)
-      expected = [[314, 60], [168, 58], [162, 274], [311, 276]]
-      sf = self._GetScreenFinder('screen_3_frames.mov')
-      self.assertTrue(sf.HasNext())
-      screen, corners = sf.GetNext()
-      CheckCorners(corners, expected)
-      self.assertIsNotNone(screen)
-      height, width = screen.shape[:2]
-      self.assertAlmostEqual(height, 226, delta=2)
-      self.assertAlmostEqual(width, 156, delta=2)
-      self.assertTrue(sf.HasNext())
-      screen, corners = sf.GetNext()
-      CheckCorners(corners, expected)
-      self.assertIsNotNone(screen)
-      height1, width1 = screen.shape[:2]
-      self.assertEqual(width, width1)
-      self.assertEqual(height, height1)
-      self.assertTrue(sf.HasNext())
-      screen, corners = sf.GetNext()
-      CheckCorners(corners, expected)
-      self.assertIsNotNone(screen)
-      height2, width2 = screen.shape[:2]
-      self.assertEqual(width, width2)
-      self.assertEqual(height, height2)
-      self.assertFalse(sf.HasNext())
-      error = ''
-      try:
-        sf.GetNext()
-      except RuntimeError as e:
-        error = str(e)
-      self.assertEqual(error, 'No more frames available.')
+    # @decorators.Disabled('all')
+    # @decorators.Isolated
+    # def testBasicFunctionality(self):
+    #   def CheckCorners(corners, expected):
+    #     for i, corner in enumerate(corners):
+    #       for j, val in enumerate(corner):
+    #         self.assertAlmostEqual(val, expected[i][j], delta=1.1)
+    #   expected = [[314, 60], [168, 58], [162, 274], [311, 276]]
+    #   sf = self._GetScreenFinder('screen_3_frames.mov')
+    #   self.assertTrue(sf.HasNext())
+    #   screen, corners = sf.GetNext()
+    #   CheckCorners(corners, expected)
+    #   self.assertIsNotNone(screen)
+    #   height, width = screen.shape[:2]
+    #   self.assertAlmostEqual(height, 226, delta=2)
+    #   self.assertAlmostEqual(width, 156, delta=2)
+    #   self.assertTrue(sf.HasNext())
+    #   screen, corners = sf.GetNext()
+    #   CheckCorners(corners, expected)
+    #   self.assertIsNotNone(screen)
+    #   height1, width1 = screen.shape[:2]
+    #   self.assertEqual(width, width1)
+    #   self.assertEqual(height, height1)
+    #   self.assertTrue(sf.HasNext())
+    #   screen, corners = sf.GetNext()
+    #   CheckCorners(corners, expected)
+    #   self.assertIsNotNone(screen)
+    #   height2, width2 = screen.shape[:2]
+    #   self.assertEqual(width, width2)
+    #   self.assertEqual(height, height2)
+    #   self.assertFalse(sf.HasNext())
+    #   error = ''
+    #   try:
+    #     sf.GetNext()
+    #   except RuntimeError as e:
+    #     error = str(e)
+    #   self.assertEqual(error, 'No more frames available.')
 
     def testHasMovedFast(self):
       sf = self._GetScreenFinder(None)
