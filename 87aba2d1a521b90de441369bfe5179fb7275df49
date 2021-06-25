@@ -16,6 +16,24 @@
       "message": "Hello,\nPlease take a look.\nThere are two tests failed for this CL (interactivityMetrics_notReportedIfTracingEndsEarly and interactivityMetrics_notReportedIfNextNavigationIsEarly), so I assume current behavior is intended. Could someone please explain what is the point of not reporting TTI and TBT for short tracings?\nI have perf test derived from _LoadingBase which usually loads pages very fast so I don\u0027t get those metrics reported, but I would like to be able to collect TTI and TBT.\n",
       "revId": "87aba2d1a521b90de441369bfe5179fb7275df49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec1b7cfa_9cc68795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-06-25T18:54:19Z",
+      "side": 1,
+      "message": "The five second window is there because we want to make sure we have no long tasks after the last task. If the trace ends before the five seconds are over, then we don\u0027t know if we already reached TTI, or if we simply closed the tab or stopped tracing too early. We don\u0027t want these metrics to be dependent on how long we traced - we\u0027d rather just report nothing at all.\n\nThe five second window was picked based on manual inspection of a bunch of sites on a 3G equivalent connection, where we often saw shorter windows miss a long running JS task from a late loading analytics script etc. Perhaps we can explore a smaller window here if we can guarantee the network is fast enough or there are no outstanding network requests. This would require change in the definition of TTI; this definition of TTI is also implemented in other places like lighthouse (and external developers are sensitive to metric definition changes).\n\nIf you don\u0027t want to do all that work, but still want to collect a TTI-ish metric for your perf test, I\u0027d recommend implementing a new metric (say fast-approximate-TTI, you should be able to reuse most of the code here to implement the behavior you want.) You should document how it\u0027s different from the standard TTI definition, and how the metric may depend on tracing length. Otherwise if waiting a few extra seconds is not an issue, I\u0027d recommend just doing that.",
+      "parentUuid": "8be30b49_101cf644",
+      "revId": "87aba2d1a521b90de441369bfe5179fb7275df49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
