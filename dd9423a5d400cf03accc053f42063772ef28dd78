@@ -16,6 +16,29 @@
       "message": "Enable running benchmarks on Android with Python 3. PTAL.",
       "revId": "dd9423a5d400cf03accc053f42063772ef28dd78",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2d51477_b66d00d5",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-06-25T05:10:30Z",
+      "side": 1,
+      "message": "The psutil doc still shows support for cpu_affinity:\nhttps://psutil.readthedocs.io/en/latest/index.html?highlight\u003dcpu_affinity#psutil.Process.cpu_affinity\n\nWhen trying on local Linux machine, cpu_affinity is available on python 3:\nPython 3.9.2 (default, Feb 28 2021, 17:03:44) \n[GCC 10.2.1 20210110] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import psutil\n\u003e\u003e\u003e psutil.version_info\n(5, 8, 0)\n\u003e\u003e\u003e psutil.Process().cpu_affinity()\n[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]\n\nThough, when trying out on a telemetry test:\n    def testLoadingpsutil(self):\n      import psutil\n      print(psutil.version_info)\n      p \u003d psutil.Process()\n      print(p.cpu_affinity())\nAnd run on vpython3:\n(5, 7, 2)\n  Traceback (most recent call last):\n    File \"/usr/local/google/home/wenbinzhang/chromium/src/third_party/catapult/telemetry/telemetry/internal/image_processing/cv_util_unittest.py\", line 130, in testLoadingpsutil\n      print(p.cpu_affinity())\n  AttributeError: \u0027Process\u0027 object has no attribute \u0027cpu_affinity\u0027\n\nIs it possible to resolve this by using a later version of psutil?",
+      "range": {
+        "startLine": 810,
+        "startChar": 12,
+        "endLine": 811,
+        "endChar": 11
+      },
+      "revId": "dd9423a5d400cf03accc053f42063772ef28dd78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
