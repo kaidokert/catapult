@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8be30b49_101cf644",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1232091
+      },
+      "writtenOn": "2021-06-25T12:59:19Z",
+      "side": 1,
+      "message": "Hello,\nPlease take a look.\nThere are two tests failed for this CL (interactivityMetrics_notReportedIfTracingEndsEarly and interactivityMetrics_notReportedIfNextNavigationIsEarly), so I assume current behavior is intended. Could someone please explain what is the point of not reporting TTI and TBT for short tracings?\nI have perf test derived from _LoadingBase which usually loads pages very fast so I don\u0027t get those metrics reported, but I would like to be able to collect TTI and TBT.\n",
+      "revId": "87aba2d1a521b90de441369bfe5179fb7275df49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
