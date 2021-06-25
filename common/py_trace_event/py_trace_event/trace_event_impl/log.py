@@ -231,9 +231,11 @@ def _write_cur_events():
           tid=threading.current_thread().ident,
       )
   elif _format in (JSON, JSON_WITH_METADATA):
+    _log_string = ''
     for e in _cur_events:
-      _log_file.write(",\n")
-      json.dump(e, _log_file)
+      _log_string += ",\n"
+      _log_string += json.dumps(e)
+    _log_file.write(_log_string)
   else:
     raise TraceException("Unknown format: %s" % _format)
   del _cur_events[:]
