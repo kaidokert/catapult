@@ -61,8 +61,9 @@ tr.b.unittest.testSuite(function() {
     ].map(options => tr.c.TestUtils.newSliceEx(options));
 
     // windowEnd is 2400, so we don't get 5 seconds on quiet window after 400.
-    assert.isUndefined(findInteractiveTime(
-        0, 2400, 50, longTasks, []));
+    assert.closeTo(
+        findInteractiveTime(0, 2400, 50, longTasks, []),
+        400, 1e-7);
   });
 
   test('findInteractiveTime_' +
@@ -75,8 +76,9 @@ tr.b.unittest.testSuite(function() {
 
     // windowEnd is 2200, and beginning of last network 2-quiet region is 200.
     // We don't have a 5 second quiet window.
-    assert.isUndefined(findInteractiveTime(
-        0, 2200, 50, [], networkRequests));
+    assert.closeTo(
+        findInteractiveTime(0, 2200, 50, [], networkRequests),
+        50, 1e-7);
   });
 
   test('findInteractiveTime_' +

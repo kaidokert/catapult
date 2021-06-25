@@ -179,7 +179,7 @@ tr.exportTo('tr.e.chrome', function() {
     }
 
     if (interactiveCandidate === undefined &&
-        reachedTTIQuiscence_(searchEnd,
+        reachedTTIQuiscence_(searchEnd + TIME_TO_INTERACTIVE_WINDOW_SIZE_MS,
             networkQuietWindowStart, mainThreadQuietWindowStart)) {
       interactiveCandidate = mainThreadQuietWindowStart;
     }
