@@ -33,6 +33,24 @@
       "message": "Is there a bug for this, and do you have advice for setting this account up (or identifying an existing one, on the off chance we already have one fit for this use)?",
       "revId": "547344f16e8a29a71908679067cbe3842e588cf3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb587cf_27f51179",
+        "filename": "infra/config/main.star",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-28T19:39:15Z",
+      "side": 1,
+      "message": "tandrii informed me on a subsequent CL for a different project that this \"TODO\" is inaccurate; Likely we\u0027ll be making some (hopefully automated) CLs to remove the \"service-account-cq\" group at a later date.",
+      "parentUuid": "1ca303c0_4c6352f3",
+      "revId": "547344f16e8a29a71908679067cbe3842e588cf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
