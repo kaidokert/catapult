@@ -16,6 +16,23 @@
       "message": "@Andrew, PTAL. This issue\u0027s been bothering me for a while, and I suspect it\u0027s been bothering my whole \nteam too whenever we use the tool to make bugs",
       "revId": "33e9278c838b0660dcb7b94f4aa531d0bf5d8d7f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8ade37_3279712c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-28T01:49:13Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "33e9278c838b0660dcb7b94f4aa531d0bf5d8d7f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
