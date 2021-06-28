@@ -34,6 +34,24 @@
       "parentUuid": "8be30b49_101cf644",
       "revId": "87aba2d1a521b90de441369bfe5179fb7275df49",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c701cbda_40ac610e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1232091
+      },
+      "writtenOn": "2021-06-28T12:08:48Z",
+      "side": 1,
+      "message": "Thank you! Waiting is not an issue, so I will just use this option.",
+      "parentUuid": "ec1b7cfa_9cc68795",
+      "revId": "87aba2d1a521b90de441369bfe5179fb7275df49",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
