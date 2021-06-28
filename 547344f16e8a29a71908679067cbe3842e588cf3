@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54c365b8_d450817d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2021-06-28T19:39:45Z",
+      "side": 1,
+      "message": "Nope, catapult is using the new generated configs now :)",
+      "parentUuid": "2fb36495_e747f46f",
+      "revId": "547344f16e8a29a71908679067cbe3842e588cf3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ca303c0_4c6352f3",
