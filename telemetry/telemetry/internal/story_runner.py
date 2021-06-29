@@ -129,7 +129,9 @@ def _RunStoryAndProcessErrorIfNeeded(
     try:
       has_existing_exception = False
       if isinstance(test, story_test.StoryTest):
-        test.WillRunStory(state.platform, story)
+        test._tbm_options.config.chrome_trace_config.SetTraceBufferSizeInKb(1024 * 1024)
+        if(finder_options.browser_type != "lacros-chrome"):
+          test.WillRunStory(state.platform, story)
       state.WillRunStory(story)
 
       if not state.CanRunStory(story):
