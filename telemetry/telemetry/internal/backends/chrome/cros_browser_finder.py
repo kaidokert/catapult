@@ -157,11 +157,16 @@ class PossibleCrOSBrowser(possible_browser.PossibleBrowser):
           self._DEFAULT_CHROME_ENV,
           os_browser_backend,
           build_dir=self._build_dir)
-      return browser.Browser(
-          lacros_chrome_browser_backend, self._platform_backend, startup_args)
+      return lacros_chrome_browser_backend
     else:
       return browser.Browser(
           os_browser_backend, self._platform_backend, startup_args)
+
+  def CreateLacros(self, lacros_chrome_browser_backend):
+    startup_args = self.GetBrowserStartupArgs(self._browser_options)
+    return browser.Browser(
+          lacros_chrome_browser_backend, self._platform_backend, startup_args)
+
 
   def GetBrowserStartupArgs(self, browser_options):
     startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)

@@ -19,6 +19,7 @@ from telemetry.page import legacy_page_test
 from telemetry.page import traffic_setting
 from telemetry import story as story_module
 from telemetry.util import screenshot
+from telemetry.web_perf import story_test
 
 
 class SharedPageState(story_module.SharedState):
@@ -41,6 +42,15 @@ class SharedPageState(story_module.SharedState):
       # analysing the trace itself.
       self._page_test = test
       self._page_test_results = None
+
+    self._story_test = None
+    if isinstance(test, story_test.StoryTest):
+      # We only need a page_test for legacy measurements that involve running
+      # some commands before/after starting the browser or navigating to a page.
+      # This is not needed for newer timeline (tracing) based benchmarks which
+      # just collect a trace, then measurements are done after the fact by
+      # analysing the trace itself.
+      self._story_test = test
 
     if (self._device_type == 'desktop' and
         platform_module.GetHostPlatform().GetOSName() == 'chromeos'):
@@ -175,6 +185,10 @@ class SharedPageState(story_module.SharedState):
       self._possible_browser.FlushOsPageCaches()
 
     self._browser = self._possible_browser.Create()
+    if(self._possible_browser._app_type == "lacros-chrome"):
+      if self._story_test:
+        self._story_test.WillRunStory(self.platform, None)
+      self._browser = self._possible_browser.CreateLacros(self._browser)
     if self._page_test:
       self._page_test.DidStartBrowser(self.browser)
 
