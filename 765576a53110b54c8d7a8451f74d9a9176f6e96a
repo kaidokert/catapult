@@ -148,6 +148,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eb3d195_e3bb548f",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-06-29T23:32:27Z",
+      "side": 1,
+      "message": "Agreed - I updated the test to check the quests.",
+      "parentUuid": "8e543c57_cb8e3d5a",
+      "range": {
+        "startLine": 380,
+        "startChar": 6,
+        "endLine": 380,
+        "endChar": 24
+      },
+      "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1708c382_9b1b0b78",
