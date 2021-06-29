@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9247f7b9_1d5c7add",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-06-29T18:02:35Z",
+      "side": 1,
+      "message": "is this leftover debug output, or is it intentional?",
+      "revId": "41f1deb6c393108c59b34330f723691944124056",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
