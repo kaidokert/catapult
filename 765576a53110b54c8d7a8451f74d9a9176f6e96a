@@ -126,6 +126,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e543c57_cb8e3d5a",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-06-29T07:54:22Z",
+      "side": 1,
+      "message": "Ah hmm.  _GenerateQuests modifies \u0027arguments\u0027, but Job.New is called with \u0027original_arguments\u0027, so the synthesized \u0027fallback_target\u0027 isn\u0027t reflected in Job.arguments.\n\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/handlers/new.py;l\u003d58,69,115\n\nI think that\u0027s actually correct, in that the Job.arguments property is meant to capture the original arguments from the request.\n\nBut I think it means your test would need to inspect job.quests rather than job.arguments instead.  Something like this would perhaps work, but is pretty ugly:\n\n  self.assertEqual([\u0027performance_test_suite\u0027], [q._fallback_target for q in  job.quests if hasattr(q, \u0027_fallback_target\u0027)])\n\nIt\u0027d be possible to add a helper make extracting a particular quest type from job.quests a little nicer, which would help.\n\nArguably this is digging through too many abstraction layers for test suite.  Whether and how a quest chooses to infer a missing argument based on other arguments is a matter for that quest (and its unit tests) rather than in unit tests for new job requests.  I\u0027m not sure we have good integration tests that should cover this.\n\n\u003e I think I\u0027m leaning towards the latter since we should only be changing the target after a build is complete, which I believe comes after the job request\n\nFrom the perspective of this test, I agree we don\u0027t want to be testing “changing the target”.  It would be nice to test “the fallback is correctly configured” at job creation time, though, but will require some inelegant piercing of abstraction layers.\n\nI think on balance I\u0027d be in favour of adding sort of test for that, even though it\u0027s a bit ugly, because the coverage is worth it.  But I don\u0027t feel very strongly about it, so I\u0027ll leave this up to your judgement.",
+      "parentUuid": "7608b8e7_047ffcc9",
+      "range": {
+        "startLine": 380,
+        "startChar": 6,
+        "endLine": 380,
+        "endChar": 24
+      },
+      "revId": "765576a53110b54c8d7a8451f74d9a9176f6e96a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1708c382_9b1b0b78",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/performance_bisection.py",
         "patchSetId": 4
