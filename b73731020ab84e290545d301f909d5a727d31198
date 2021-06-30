@@ -33,6 +33,23 @@
       "message": "This should match about 5 dylibs, see bug.",
       "revId": "b73731020ab84e290545d301f909d5a727d31198",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2af0b07_65dbda31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2021-06-30T23:09:15Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "b73731020ab84e290545d301f909d5a727d31198",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
