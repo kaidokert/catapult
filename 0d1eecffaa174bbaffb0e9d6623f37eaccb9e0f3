@@ -16,6 +16,24 @@
       "message": "The nav bar (https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/elements/nav-bar.html;l\u003d130) should also be updated.",
       "revId": "0d1eecffaa174bbaffb0e9d6623f37eaccb9e0f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a6fb37a_1dbc9ca6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-07-01T21:57:41Z",
+      "side": 1,
+      "message": "It\u0027s still useful the way it is (the new page redirects to the actual tool).",
+      "parentUuid": "dfdc997a_d49d2ec7",
+      "revId": "0d1eecffaa174bbaffb0e9d6623f37eaccb9e0f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
