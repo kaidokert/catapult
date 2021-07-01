@@ -35,7 +35,7 @@ JSON_WITH_METADATA = "json_with_metadata"
 PROTOBUF = "protobuf"
 
 
-_lock = threading.Lock()
+_lock = threading.RLock()
 
 _enabled = False
 _log_file = None
