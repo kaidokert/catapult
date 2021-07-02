@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5bfaf07_8f63787a",
+        "filename": "trace_processor/experimental/mappers/long_running_tasks_mapper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1499972
+      },
+      "writtenOn": "2021-07-02T16:35:52Z",
+      "side": 0,
+      "message": "I also put this one back - I assume the same rule applies here?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 65
+      },
+      "revId": "893c99ae7113258b38743f1b7dbb3f01069df13e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60a8f2af_5b3ea5c2",
         "filename": "tracing/tracing/extras/chrome/chrome_user_friendly_category_driver.html",
         "patchSetId": 1
@@ -14,6 +37,24 @@
       "writtenOn": "2021-06-23T17:04:58Z",
       "side": 0,
       "message": "We usually do not delete trace event names in case we want to open an old trace with these names. Unless these names are reused for something else, I\u0027d prefer we leave them here. You can optionally move them to the bottom of the list with a comment on how they\u0027re no longer used in Chrome today.\n\nYou don\u0027t need to keep the old names in the tests, so those changes are fine.",
+      "revId": "893c99ae7113258b38743f1b7dbb3f01069df13e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "090a7316_1071f3c0",
+        "filename": "tracing/tracing/extras/chrome/chrome_user_friendly_category_driver.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1499972
+      },
+      "writtenOn": "2021-07-02T16:35:52Z",
+      "side": 0,
+      "message": "Ahh ok, I didn\u0027t know that. I put these back.",
+      "parentUuid": "60a8f2af_5b3ea5c2",
       "revId": "893c99ae7113258b38743f1b7dbb3f01069df13e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
