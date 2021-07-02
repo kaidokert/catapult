@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e3fbc6_1f889114",
+        "filename": "trace_processor/experimental/mappers/long_running_tasks_mapper.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-07-02T20:56:45Z",
+      "side": 0,
+      "message": "Yes, thanks!",
+      "parentUuid": "d5bfaf07_8f63787a",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 65
+      },
+      "revId": "893c99ae7113258b38743f1b7dbb3f01069df13e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60a8f2af_5b3ea5c2",
