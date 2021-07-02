@@ -167,6 +167,23 @@ Gets the device main ABI.
 ```
 
 
+### DeviceUtils.GetSupportedABIs
+
+Gets all ABIs supported by the device.
+```
+    Args:
+      timeout: timeout in seconds
+      retries: number of retries
+
+    Returns:
+      The device's supported ABIs list. For supported ABIs, the returned list
+      will consist of the values defined in devil.android.ndk.abis.
+
+    Raises:
+      CommandTimeoutError on timeout.
+```
+
+
 ### DeviceUtils.GetAppWritablePath
 
 Get a path that on the device's SD card that apps can write.
@@ -1382,15 +1399,6 @@ Returns a list of Android Virtual Devices.
 ```
   Returns:
     A list containing the configured AVDs.
-```
-
-
-### RestartServer
-
-Restarts the adb server.
-```
-  Raises:
-    CommandFailedError if we fail to kill or restart the server.
 ```
 
 
