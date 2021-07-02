@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c81a909_3d476784",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-02T21:45:03Z",
+      "side": 1,
+      "message": "I\u0027ve reverted the problematic portion, and will investigate how to fix it in the future. In the meantime, PTAL at the rest of the CL.",
+      "revId": "18077f7b5c00adcfbb5a502f821dd5eb07ecbeb5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

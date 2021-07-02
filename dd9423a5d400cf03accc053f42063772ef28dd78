@@ -39,6 +39,30 @@
       },
       "revId": "dd9423a5d400cf03accc053f42063772ef28dd78",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e98d599_c31e2578",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-02T21:45:03Z",
+      "side": 1,
+      "message": "This isn\u0027t related to the version of psutil, but depends on the environment that built psutil (https://github.com/giampaolo/psutil/blob/release-5.8.0/psutil/_psutil_linux.c#L48). Apparently the psutil provided by cipd for Python 3 was built in an environment that doesn\u0027t support cpu_affinity.\n\nI\u0027ll see if it\u0027s possible to update psutil to have cpu_affinity. In the meantime, I\u0027ll undo this part of the CL.",
+      "parentUuid": "e2d51477_b66d00d5",
+      "range": {
+        "startLine": 810,
+        "startChar": 12,
+        "endLine": 811,
+        "endChar": 11
+      },
+      "revId": "dd9423a5d400cf03accc053f42063772ef28dd78",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
