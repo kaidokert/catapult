@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c6aca51_6d79cc65",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-07-05T17:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb15cc60_22fae092",
+      "revId": "83528f1cdd5bdf3f661e6195778770727203fedd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45537e28_8246212d",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-07-05T16:11:38Z",
       "side": 1,
       "message": "nit: \u0027if there is more than one renderer\u0027",
+      "revId": "83528f1cdd5bdf3f661e6195778770727203fedd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c95ebb57_9e423115",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-07-05T17:05:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45537e28_8246212d",
       "revId": "83528f1cdd5bdf3f661e6195778770727203fedd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
