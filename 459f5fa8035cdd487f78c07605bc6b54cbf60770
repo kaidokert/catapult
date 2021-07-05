@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0b4024_eae10f64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-07-05T17:07:28Z",
+      "side": 1,
+      "message": "oops added comment to the wrong line. Fixed now.",
+      "revId": "459f5fa8035cdd487f78c07605bc6b54cbf60770",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
