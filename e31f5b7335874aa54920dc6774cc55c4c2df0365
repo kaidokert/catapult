@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c55f544d_9f5ff11c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1176654
+      },
+      "writtenOn": "2021-07-05T04:18:20Z",
+      "side": 1,
+      "message": "johnchen@ can you please take a look?\n\nI have documented crash and ANR dialogs for each Android version here https://docs.google.com/document/d/152_EauAVHJUxHd6jcIaJfGEAeD6c8JzT-1FWBxg5bjY/edit?usp\u003dsharing\u0026resourcekey\u003d0-kQSmPUb_kwH7Z6wAZSXS2Q",
+      "revId": "e31f5b7335874aa54920dc6774cc55c4c2df0365",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
