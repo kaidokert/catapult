@@ -16,6 +16,40 @@
       "message": "Figured out why we had multiple reporting of the same LCP value in https://crbug.com/1191600. PTAL!",
       "revId": "83528f1cdd5bdf3f661e6195778770727203fedd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb15cc60_22fae092",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2021-07-05T16:11:38Z",
+      "side": 1,
+      "message": "Can we add a comment around line 754 explaining the shifts and LCP are reported in the browser hence we don\u0027t need to loop over renderers to add the samples?",
+      "revId": "83528f1cdd5bdf3f661e6195778770727203fedd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45537e28_8246212d",
+        "filename": "tracing/tracing/metrics/system_health/loading_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2021-07-05T16:11:38Z",
+      "side": 1,
+      "message": "nit: \u0027if there is more than one renderer\u0027",
+      "revId": "83528f1cdd5bdf3f661e6195778770727203fedd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
