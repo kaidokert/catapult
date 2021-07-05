@@ -3348,6 +3348,8 @@ WINDOW MANAGER WINDOWS (dumpsys window windows)
              ['input', 'keyevent', '22'], check_return=True)),
         (self.call.device.RunShellCommand(['input', 'keyevent', '22'],
                                           check_return=True)),
+        (self.call.device.RunShellCommand(['input', 'keyevent', '20'],
+                                          check_return=True)),
         (self.call.device.RunShellCommand(['input', 'keyevent', '66'],
                                           check_return=True)),
         (self.call.device.RunShellCommand(['dumpsys', 'window', 'windows'],
