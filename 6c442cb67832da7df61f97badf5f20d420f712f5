@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8fdc6b5_96716e3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2021-07-06T19:25:16Z",
+      "side": 1,
+      "message": "I haven\u0027t worked on this project for a long time, please find a different owner",
+      "revId": "6c442cb67832da7df61f97badf5f20d420f712f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
