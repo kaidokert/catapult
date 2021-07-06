@@ -8,6 +8,8 @@ import tempfile
 import time
 import unittest
 
+import mock
+
 from telemetry import story
 from telemetry.core import exceptions
 from telemetry.core import util
@@ -32,6 +34,11 @@ class DummyTest(legacy_page_test.LegacyPageTest):
 # TODO(crbug.com/1025765): Remove test cases that use real browsers and replace
 # with a story_runner or shared_page_state unittest that tests the same logic.
 class ActualPageRunEndToEndTests(unittest.TestCase):
+  VERY_SLOW_NETWORK = 'VERY_SLOW_NETWORK'
+  VERY_SLOW_CONFIG = traffic_setting_module._Configs(56, 24, 1000)
+  VERY_FAST_NETWORK = 'VERY_FAST_NETWORK'
+  VERY_FAST_CONFIG = traffic_setting_module._Configs(100 * 1024, 75 * 1024, 1)
+
   def setUp(self):
     self.options = options_for_unittests.GetRunOptions(
         output_dir=tempfile.mkdtemp())
@@ -128,16 +135,20 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     self.RunStorySet(test, story_set)
 
   @decorators.Disabled('linux', 'mac')  # crbug.com/1042080
+  @mock.patch('telemetry.page.traffic_setting.NETWORK_CONFIGS', {
+      VERY_SLOW_NETWORK: VERY_SLOW_CONFIG,
+      VERY_FAST_NETWORK: VERY_FAST_CONFIG
+  })
   def testTrafficSettings(self):
     story_set = story.StorySet()
     slow_page = page_module.Page(
         'file://green_rect.html', story_set, base_dir=util.GetUnittestDataDir(),
         name='slow',
-        traffic_setting=traffic_setting_module.GOOD_3G)
+        traffic_setting=self.VERY_SLOW_NETWORK)
     fast_page = page_module.Page(
         'file://green_rect.html', story_set, base_dir=util.GetUnittestDataDir(),
         name='fast',
-        traffic_setting=traffic_setting_module.WIFI)
+        traffic_setting=self.VERY_FAST_NETWORK)
     story_set.AddStory(slow_page)
     story_set.AddStory(fast_page)
 
@@ -162,10 +173,12 @@ class ActualPageRunEndToEndTests(unittest.TestCase):
     self.assertFalse(results.had_failures)
     self.assertIn('slow', latencies_by_page_in_ms)
     self.assertIn('fast', latencies_by_page_in_ms)
-    # Slow page should be slower than fast page by at least 40 ms (roundtrip
-    # time of good 3G) - 2 ms (roundtrip time of Wifi)
+    # Slow page should be slower than fast page by at least (roundtrip
+    # time of slow network) - (roundtrip time of fast network)
     self.assertGreater(latencies_by_page_in_ms['slow'],
-                       latencies_by_page_in_ms['fast'] + 40 - 2)
+                       latencies_by_page_in_ms['fast'] +
+                       self.VERY_SLOW_CONFIG.round_trip_latency_ms -
+                       self.VERY_FAST_CONFIG.round_trip_latency_ms)
 
   # Ensure that story_runner allows the test to customize the browser
   # before it launches.
