@@ -342,8 +342,8 @@ def main(args=None):
     else:
       vpython_executable = "vpython"
 
-    executable = 'vpython.bat' if sys.platform == 'win32' \
-      else vpython_executable
+    if sys.platform == 'win32':
+      executable = vpython_executable + '.bat'
 
     # Always add the appengine SDK path.
     step['env']['PYTHONPATH'] = args.app_engine_sdk_pythonpath
