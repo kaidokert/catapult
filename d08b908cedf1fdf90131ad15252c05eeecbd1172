@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc5f5952_1a3a88a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2021-07-07T17:22:24Z",
+      "side": 1,
+      "message": "LGTM with one question.",
+      "revId": "d08b908cedf1fdf90131ad15252c05eeecbd1172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbcada96_0c2d2821",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 3457,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2021-07-07T17:22:24Z",
+      "side": 1,
+      "message": "Can we add the bug link here to keep a reference?",
+      "range": {
+        "startLine": 3457,
+        "startChar": 8,
+        "endLine": 3457,
+        "endChar": 28
+      },
+      "revId": "d08b908cedf1fdf90131ad15252c05eeecbd1172",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
