@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "60bbb6ab_572e9f47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-07T22:12:36Z",
+      "side": 1,
+      "message": "Replace with \"it\"?",
+      "range": {
+        "startLine": 18,
+        "startChar": 67,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "6c442cb67832da7df61f97badf5f20d420f712f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c8fdc6b5_96716e3f",
@@ -14,6 +37,23 @@
       "writtenOn": "2021-07-06T19:25:16Z",
       "side": 1,
       "message": "I haven\u0027t worked on this project for a long time, please find a different owner",
+      "revId": "6c442cb67832da7df61f97badf5f20d420f712f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c571d5ad_49b23ce4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-07T22:12:36Z",
+      "side": 1,
+      "message": "Thanks for submitting the change. I feel a little uncomfortable about it for two reasons:\n\n1. Using mock NETWORK_CONFIGS instead of the real one. Would some combination of existing configs work, e.g., GPRS vs WIFI? These two configs have similar bandwidths as your mock configs, while the latency difference is about 500 ms instead of 1000 ms, and I think that would be enough.\n\n2. I think a flaw of the original code is it leaves no \"safety margin\". I.e., the calculated latency difference is 40-2 ms, and it requires the measured difference to be larger than that. Since the downloaded page (green_rect.html) is very small, the difference in bandwidth doesn\u0027t contribute much to additional latency. So some interference can easily cause the test to fail. I\u0027d suggest adding some safety margin. For example, if GPRS vs WIFI is used, the calculated difference is 500-2 \u003d 498 ms. The assert condition can be set as slow \u003e fast + 250 to make it more reliable.\n\nPlease let me know if you disagree.",
       "revId": "6c442cb67832da7df61f97badf5f20d420f712f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
