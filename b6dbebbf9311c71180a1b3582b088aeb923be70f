@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13f77090_38777220",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-07-07T20:23:11Z",
+      "side": 1,
+      "message": "Looks like the failures on Catapult Windows Tryserver are unrelated. I filed https://crbug.com/1227147 to track that.",
+      "revId": "b6dbebbf9311c71180a1b3582b088aeb923be70f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
