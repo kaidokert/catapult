@@ -49,7 +49,7 @@ import devil.utils.timeout_retry_unittest
 import devil.utils.zip_utils_test
 
 PY3_COMPATIBLE_TESTS = [
-    # Add full test module path here
+    # Add full test module path here (NOOP change)
     devil.android.apk_helper_test,
     devil.android.app_ui_test,
     devil.android.battery_utils_test,
