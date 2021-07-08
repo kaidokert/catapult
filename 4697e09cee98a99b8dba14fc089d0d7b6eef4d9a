@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1c69f3c_1245c9fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-07-08T15:04:45Z",
+      "side": 1,
+      "message": "Sorry for missing this over the US holiday. LGTM",
+      "revId": "4697e09cee98a99b8dba14fc089d0d7b6eef4d9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
