@@ -25,6 +25,8 @@ class BinaryManager(object):
 
     Will attempt to download from cloud storage if needed.
     """
+    print('____')
+    print(binary_name, os_name, arch)
     return self._WrapDependencyManagerFunction(
         self._dependency_manager.FetchPathWithVersion, binary_name, os_name,
         arch, os_version)
@@ -50,6 +52,9 @@ class BinaryManager(object):
   def _WrapDependencyManagerFunction(
       self, function, binary_name, os_name, arch, os_version):
     platform = '%s_%s' % (os_name, arch)
+
+    print('------')
+    print(binary_name, platform)
     if os_version:
       try:
         versioned_platform = '%s_%s_%s' % (os_name, os_version, arch)
