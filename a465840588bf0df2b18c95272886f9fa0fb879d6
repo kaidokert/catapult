@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a7d540_dab362a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-07-08T06:54:13Z",
+      "side": 1,
+      "message": "Merging it as a temporary solution for mitigation. Please review the resouce usage if reducing memory footprint take effect.",
+      "revId": "a465840588bf0df2b18c95272886f9fa0fb879d6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
