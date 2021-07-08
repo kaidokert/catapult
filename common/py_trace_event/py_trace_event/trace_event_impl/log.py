@@ -84,7 +84,16 @@ def _locked(fn):
     finally:
       _lock.release()
     return ret
-  return locked_fn
+  if sys.version_info.major == 2:
+    return locked_fn
+  else:
+    import concurrent.future
+    def threading_fn(*args,**kwargs):
+      with concurrent.futures.ThreadPoolExecutor() as executor:
+        future = executor.submit(locked_fn, args=args, kwargs=kwargs)
+        return_value = future.result()
+        return return_value
+    return threading_fn
 
 def _disallow_tracing_control():
   global _control_allowed
