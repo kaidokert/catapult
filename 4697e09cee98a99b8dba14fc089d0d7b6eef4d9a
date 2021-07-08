@@ -34,6 +34,24 @@
       "parentUuid": "a1c69f3c_1245c9fa",
       "revId": "4697e09cee98a99b8dba14fc089d0d7b6eef4d9a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76758a1d_e26aa940",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1515717
+      },
+      "writtenOn": "2021-07-08T15:18:40Z",
+      "side": 1,
+      "message": "Thank you for review! So, can we submit the patch to the commit queue? For it seems that I lack access rights to do so.",
+      "parentUuid": "966ef1ad_1c2ceb4b",
+      "revId": "4697e09cee98a99b8dba14fc089d0d7b6eef4d9a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
