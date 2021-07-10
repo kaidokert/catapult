@@ -164,7 +164,7 @@ class ReraiserThreadGroup(object):
                                (len(alive_threads), len(self._threads)))
           # Allow the main thread to periodically check for interrupts.
           thread.join(0.1)
-          if not thread.isAlive():
+          if not thread.is_alive():
             alive_threads.remove(thread)
       # All threads are allowed to complete before reraising exceptions.
       for thread in self._threads:
@@ -178,7 +178,7 @@ class ReraiserThreadGroup(object):
     Returns:
       Whether any of the threads are still alive.
     """
-    return any(t.isAlive() for t in self._threads)
+    return any(t.is_alive() for t in self._threads)
 
   def JoinAll(self, watcher=None, timeout=None,
               error_log_func=logging.critical):
@@ -209,7 +209,7 @@ class ReraiserThreadGroup(object):
     Args:
       watcher: same as in |JoinAll|. Only used if threads are alive.
     """
-    if any([t.isAlive() for t in self._threads]):
+    if any([t.is_alive() for t in self._threads]):
       self.JoinAll(watcher)
     return [t.GetReturnValue() for t in self._threads]
 
