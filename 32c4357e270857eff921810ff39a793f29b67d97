@@ -16,6 +16,23 @@
       "message": "ntfschr@: PTAL\n\nI noticed this when I ran `out/Default/chrome_public_apk install`.",
       "revId": "32c4357e270857eff921810ff39a793f29b67d97",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5347f32_c92b803b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115863
+      },
+      "writtenOn": "2021-07-12T23:03:39Z",
+      "side": 1,
+      "message": "Thank you for review!",
+      "revId": "32c4357e270857eff921810ff39a793f29b67d97",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
