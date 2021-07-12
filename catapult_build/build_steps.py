@@ -71,7 +71,7 @@ _CATAPULT_TESTS = [
     },
     {
         'name': 'Devil Python Tests',
-        'path': 'devil/bin/run_py_tests',
+        'path': 'devil/bin/run_py_tests123131231231',
         'disabled': ['mac', 'win'],
     },
     {
@@ -335,6 +335,16 @@ def main(args=None):
 
     if args.platform in test.get('disabled', []):
       continue
+
+    # The test "Devil Python Tests" has two executables, run_py_tests and
+    # run_py3_tests. Those scripts define the vpython interpreter on shebang,
+    # and will quit when running on unexpected version. This script assumes one
+    # path for each test and thus we will conditionally replace the script name
+    # until python 2 is fully dropped.
+    # here,
+    if args.use_python3 and test['name'] == 'Devil Python Tests':
+      test['path'] == 'devil/bin/run_py3_tests'
+
     step = {'name': test['name'], 'env': {}}
 
     if args.use_python3:
