@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78918d1a_66236973",
+        "filename": "tracing/tracing/extras/chrome/largest_contentful_paint.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1162220
+      },
+      "writtenOn": "2021-07-12T19:14:41Z",
+      "side": 1,
+      "message": "Should we remove this method too?",
+      "revId": "31949c9eb2aae36b89afc092dbbc683b002c8be6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
