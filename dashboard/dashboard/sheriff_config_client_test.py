@@ -159,7 +159,8 @@ class SheriffConfigClientTest(testing_common.TestCase):
             "visibility": "PUBLIC",
             "anomaly_configs": [
               {
-                "max_window_size": 200
+                "max_window_size": 200,
+                "min_segment_size": 0,
               }
             ]
           }
@@ -180,7 +181,8 @@ class SheriffConfigClientTest(testing_common.TestCase):
             auto_triage_enable=False,
             auto_bisect_enable=False,
             monorail_project_id='non-chromium',
-            anomaly_configs=[subscription.AnomalyConfig(max_window_size=200)]),
+            anomaly_configs=[subscription.AnomalyConfig(max_window_size=200,
+                                                        min_segment_size=0)]),
     ]
     self.assertEqual(clt.Match('Foo2/a/Bar2/b'), (expected, None))
 
