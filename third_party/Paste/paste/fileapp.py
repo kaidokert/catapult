@@ -9,6 +9,7 @@ files.  At this time it has cache helpers and understands the
 if-modified-since request header.
 """
 
+from __future__ import absolute_import
 import os, time, mimetypes, zipfile, tarfile
 from paste.httpexceptions import *
 from paste.httpheaders import *
