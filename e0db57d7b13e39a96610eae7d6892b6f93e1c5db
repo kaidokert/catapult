@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2791dda1_7cf9a414",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-07-13T21:27:48Z",
+      "side": 1,
+      "message": "Unblocked systrace tests. PTAL.",
+      "revId": "e0db57d7b13e39a96610eae7d6892b6f93e1c5db",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
