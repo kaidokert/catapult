@@ -3699,11 +3699,6 @@ class DeviceUtils(object):
         return True
       return False
 
-    def supports_abi(abi, serial):
-      if abis and abi not in abis:
-        return False
-      return True
-
     def _get_devices():
       if device_arg:
         devices = [cls(x, **kwargs) for x in device_arg if not denylisted(x)]
@@ -3717,11 +3712,13 @@ class DeviceUtils(object):
             if not supported_abis:
               supported_abis = [device.GetABI()]
             for supported_abi in supported_abis:
-              if supports_abi(supported_abi, serial):
+              if not abis or supported_abi in abis:
                 devices.append(device)
                 break
             else:
-              logger.warning("Device %s doesn't support required ABIs.", serial)
+              logger.warning(
+                  'Device %s not selected. required_abis=%s device_abis=%s',
+                  serial, ','.join(abis), ','.join(supported_abis))
 
       if len(devices) == 0 and not allow_no_devices:
         raise device_errors.NoDevicesError()
