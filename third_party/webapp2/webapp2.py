@@ -1886,7 +1886,7 @@ def _urlunsplit(scheme=None, netloc=None, path=None, query=None,
 
     if query and not isinstance(query, six.string_types):
         if isinstance(query, dict):
-            query = query.items()
+            query = list(query.items())
 
         # Sort args: commonly needed to build signatures for services.
         query = six.moves.urllib.parse.urlencode(sorted(query))

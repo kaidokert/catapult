@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import random
 
 import webapp2
 from webapp2 import BaseRoute, RedirectHandler, Request, Route, Router
 
 import test_base
+from six.moves import range
 
 
 class TestRoute(test_base.BaseTestCase):

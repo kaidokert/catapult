@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import re
 
 from webapp2_extras import security
 
 import test_base
+import six
 
 
 class TestSecurity(test_base.BaseTestCase):
@@ -46,13 +48,13 @@ class TestSecurity(test_base.BaseTestCase):
         hashval = security.generate_password_hash(password, 'plain')
         self.assertFalse(security.check_password_hash(password, ''))
 
-        hashval1 = security.hash_password(unicode(password), 'sha1', u'bar')
-        hashval2 = security.hash_password(unicode(password), 'sha1', u'bar')
+        hashval1 = security.hash_password(six.text_type(password), 'sha1', u'bar')
+        hashval2 = security.hash_password(six.text_type(password), 'sha1', u'bar')
         self.assertTrue(hashval1 is not None)
         self.assertEqual(hashval1, hashval2)
 
-        hashval1 = security.hash_password(unicode(password), 'md5', None)
-        hashval2 = security.hash_password(unicode(password), 'md5', None)
+        hashval1 = security.hash_password(six.text_type(password), 'md5', None)
+        hashval2 = security.hash_password(six.text_type(password), 'md5', None)
         self.assertTrue(hashval1 is not None)
         self.assertEqual(hashval1, hashval2)
 

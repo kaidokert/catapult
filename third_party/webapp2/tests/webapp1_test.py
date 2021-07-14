@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from google.appengine.ext import webapp
 
 import webapp2
@@ -98,13 +99,13 @@ class TestWebapp1(test_base.BaseTestCase):
 
     def test_unicode_cookie(self):
         # see http://stackoverflow.com/questions/6839922/unicodedecodeerror-is-raised-when-getting-a-cookie-in-google-app-engine
-        import urllib
+        import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
         # This is the value we want to set.
         initial_value = u'äëïöü'
         # WebOb version that comes with SDK doesn't quote cookie values.
         # So we have to do it.
-        quoted_value = urllib.quote(initial_value.encode('utf-8'))
+        quoted_value = six.moves.urllib.parse.quote(initial_value.encode('utf-8'))
 
         rsp = webapp.Response()
         rsp.headers['Set-Cookie'] = 'app=%s; Path=/' % quoted_value
@@ -118,7 +119,7 @@ class TestWebapp1(test_base.BaseTestCase):
         self.assertEqual(stored_value, quoted_value)
 
         # And we can get the initial value unquoting and decoding.
-        final_value = urllib.unquote(stored_value).decode('utf-8')
+        final_value = six.moves.urllib.parse.unquote(stored_value).decode('utf-8')
         self.assertEqual(final_value, initial_value)
 
 

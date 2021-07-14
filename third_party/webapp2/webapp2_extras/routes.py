@@ -8,12 +8,14 @@
     :copyright: 2011 by tipfy.org.
     :license: Apache Sotware License, see LICENSE for details.
 """
+from __future__ import absolute_import
 import re
-import urllib
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
 from webob import exc
 
 import webapp2
+import six
 
 
 class MultiRoute(object):
@@ -54,7 +56,7 @@ class MultiRoute(object):
                 for n, r in route.get_build_routes():
                     self.build_children[n] = r
 
-        for rv in self.build_children.iteritems():
+        for rv in six.iteritems(self.build_children):
             yield rv
 
     get_routes = get_children
@@ -211,7 +213,7 @@ class PathPrefixRoute(NamePrefixRoute):
         yield self
 
     def match(self, request):
-        if not self.regex.match(urllib.unquote(request.path)):
+        if not self.regex.match(six.moves.urllib.parse.unquote(request.path)):
             return None
 
         return _match_routes(self.get_match_children, request)

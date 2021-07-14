@@ -8,12 +8,14 @@
     :copyright: 2011 by tipfy.org.
     :license: Apache Sotware License, see LICENSE for details.
 """
+from __future__ import absolute_import
 import re
 
 import webapp2
 
 from webapp2_extras import securecookie
 from webapp2_extras import security
+import six
 
 #: Default configuration values for this module. Keys are:
 #:
@@ -324,7 +326,7 @@ class SessionStore(object):
         """
         backends = self.config['backends']
         backend = backends[name]
-        if isinstance(backend, basestring):
+        if isinstance(backend, six.string_types):
             backend = backends[name] = webapp2.import_string(backend)
 
         return backend

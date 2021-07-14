@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from webapp2_extras import config
 from webapp2_extras import i18n
 

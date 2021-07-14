@@ -10,6 +10,7 @@
     :copyright: 2011 by tipfy.org.
     :license: Apache Sotware License, see LICENSE for details.
 """
+from __future__ import absolute_import
 import datetime
 import gettext as gettext_stdlib
 
@@ -17,6 +18,7 @@ import babel
 from babel import dates
 from babel import numbers
 from babel import support
+import six
 
 try:
     # Monkeypatches pytz for gae.
@@ -143,7 +145,7 @@ class I18nStore(object):
         if func is None:
             self.locale_selector = self.default_locale_selector
         else:
-            if isinstance(func, basestring):
+            if isinstance(func, six.string_types):
                 func = webapp2.import_string(func)
 
             # Functions are descriptors, so bind it to this instance with
@@ -160,7 +162,7 @@ class I18nStore(object):
         if func is None:
             self.timezone_selector = self.default_timezone_selector
         else:
-            if isinstance(func, basestring):
+            if isinstance(func, six.string_types):
                 func = webapp2.import_string(func)
 
             self.timezone_selector = func.__get__(self, self.__class__)

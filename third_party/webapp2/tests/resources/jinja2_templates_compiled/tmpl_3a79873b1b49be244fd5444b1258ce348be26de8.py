@@ -1,4 +1,5 @@
 from __future__ import division
+from __future__ import absolute_import
 from jinja2.runtime import LoopContext, TemplateReference, Macro, Markup, TemplateRuntimeError, missing, concat, escape, markup_join, unicode_join, to_string, TemplateNotFound
 name = 'template1.html'
 

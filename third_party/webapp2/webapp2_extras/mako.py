@@ -15,6 +15,7 @@ from __future__ import absolute_import
 from mako import lookup
 
 import webapp2
+import six
 
 #: Default configuration values for this module. Keys are:
 #:
@@ -66,7 +67,7 @@ class Mako(object):
             required_keys=None)
 
         directories = config.get('template_path')
-        if isinstance(directories, basestring):
+        if isinstance(directories, six.string_types):
             directories = [directories]
 
         self.environment = lookup.TemplateLookup(directories=directories,

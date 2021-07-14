@@ -15,6 +15,7 @@ from __future__ import absolute_import
 import warnings
 
 import webapp2
+import six
 
 warnings.warn(DeprecationWarning(
     'webapp2_extras.config is deprecated. '
@@ -74,12 +75,12 @@ class Config(dict):
         self.loaded = []
         if values is not None:
             assert isinstance(values, dict)
-            for module, config in values.iteritems():
+            for module, config in six.iteritems(values):
                 self.update(module, config)
 
         if defaults is not None:
             assert isinstance(defaults, dict)
-            for module, config in defaults.iteritems():
+            for module, config in six.iteritems(defaults):
                 self.setdefault(module, config)
                 self.loaded.append(module)
 
@@ -156,7 +157,7 @@ class Config(dict):
 
         module_dict = dict.__getitem__(self, module)
 
-        for key, value in values.iteritems():
+        for key, value in six.iteritems(values):
             module_dict.setdefault(key, value)
 
         return module_dict

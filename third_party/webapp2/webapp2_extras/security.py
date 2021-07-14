@@ -13,6 +13,7 @@
 """
 from __future__ import division
 
+from __future__ import absolute_import
 import hashlib
 import hmac
 import math
@@ -20,6 +21,8 @@ import random
 import string
 
 import webapp2
+from six.moves import range
+from six.moves import zip
 
 _rng = random.SystemRandom()
 
@@ -90,9 +93,9 @@ def generate_random_string(length=None, entropy=None, pool=ALPHANUMERIC):
 
     if entropy:
         log_of_2 = 0.6931471805599453
-        length = long(math.ceil((log_of_2 / math.log(len(pool))) * entropy))
+        length = int(math.ceil((log_of_2 / math.log(len(pool))) * entropy))
 
-    return ''.join(_rng.choice(pool) for _ in xrange(length))
+    return ''.join(_rng.choice(pool) for _ in range(length))
 
 
 def generate_password_hash(password, method='sha1', length=22, pepper=None):

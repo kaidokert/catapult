@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from protorpc import messages
 from protorpc import remote
 

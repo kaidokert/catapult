@@ -2,10 +2,11 @@
 """
 Tests for webapp2 webapp2.RequestHandler
 """
+from __future__ import absolute_import
 import os
 import StringIO
 import sys
-import urllib
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
 
 import webapp2
 
@@ -121,7 +122,7 @@ class AuthorizationHandler(webapp2.RequestHandler):
 
 class HandlerWithEscapedArg(webapp2.RequestHandler):
     def get(self, name):
-        self.response.out.write(urllib.unquote_plus(name))
+        self.response.out.write(six.moves.urllib.parse.unquote_plus(name))
 
 def get_redirect_url(handler, **kwargs):
     return handler.uri_for('methods')

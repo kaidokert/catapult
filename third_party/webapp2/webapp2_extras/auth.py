@@ -8,6 +8,7 @@
     :copyright: 2011 by tipfy.org.
     :license: Apache Sotware License, see LICENSE for details.
 """
+from __future__ import absolute_import
 import logging
 import time
 
@@ -15,6 +16,8 @@ import webapp2
 
 from webapp2_extras import security
 from webapp2_extras import sessions
+import six
+from six.moves import zip
 
 #: Default configuration values for this module. Keys are:
 #:
@@ -127,7 +130,7 @@ class AuthStore(object):
     def user_model(self):
         """Configured user model."""
         cls = self.config['user_model']
-        if isinstance(cls, basestring):
+        if isinstance(cls, six.string_types):
             cls = self.config['user_model'] = webapp2.import_string(cls)
 
         return cls

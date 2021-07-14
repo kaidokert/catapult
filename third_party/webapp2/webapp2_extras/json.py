@@ -11,7 +11,8 @@
 from __future__ import absolute_import
 
 import base64
-import urllib
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
+import six
 
 try:
     # Preference for installed library with updated fixes.
@@ -72,7 +73,7 @@ def decode(value, *args, **kwargs):
     if isinstance(value, str):
         value = value.decode('utf-8')
 
-    assert isinstance(value, unicode)
+    assert isinstance(value, six.text_type)
     return json.loads(value, *args, **kwargs)
 
 
@@ -97,7 +98,7 @@ def quote(value, *args, **kwargs):
 
     Parameters and return value are the same from :func:`encode`.
     """
-    return urllib.quote(encode(value, *args, **kwargs))
+    return six.moves.urllib.parse.quote(encode(value, *args, **kwargs))
 
 
 def unquote(value, *args, **kwargs):
@@ -105,4 +106,4 @@ def unquote(value, *args, **kwargs):
 
     Parameters and return value are the same from :func:`decode`.
     """
-    return decode(urllib.unquote(value), *args, **kwargs)
+    return decode(six.moves.urllib.parse.unquote(value), *args, **kwargs)

@@ -33,6 +33,7 @@ Quick links
 .. _webapp2_extras: http://webapp-improved.appspot.com/#api-reference-webapp2-extras
 .. _webapp2 features: http://webapp-improved.appspot.com/features.html
 """
+from __future__ import absolute_import
 from setuptools import setup
 
 setup(

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import webapp2
 
 import test_base
@@ -186,11 +187,11 @@ class TestResponse(test_base.BaseTestCase):
         self.assertEqual(len(rsp.headers), 3)
         rsp.headers = test[:]
         self.assertEqual(len(rsp.headers), 1)
-        self.assertEqual(rsp.headers.keys(), ['x'])
-        self.assertEqual(rsp.headers.values(), ['y'])
-        self.assertEqual(rsp.headers.items(), test)
+        self.assertEqual(list(rsp.headers.keys()), ['x'])
+        self.assertEqual(list(rsp.headers.values()), ['y'])
+        self.assertEqual(list(rsp.headers.items()), test)
         rsp.headers = test
-        self.assertFalse(rsp.headers.items() is test)  # must be copy!
+        self.assertFalse(list(rsp.headers.items()) is test)  # must be copy!
 
         rsp = webapp2.Response()
         h = rsp.headers
