@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cc6c8c_d4f4b631",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-07-14T22:02:47Z",
+      "side": 1,
+      "message": "I feel like this doc needs a lot of updates for new people joining the team to get up to speed efficiently, but perhaps more comprehensive documentation belongs elsewhere.",
+      "revId": "4dad4e6bac588d157ca3320ec28208103c90b357",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
