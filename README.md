@@ -23,4 +23,14 @@ Contributing
 ============
 Please see [our contributor's guide](CONTRIBUTING.md)
 
+# Chromium project note:
+If you are working on Chromium, you will have a much easier time setting up
+your environmnent to edit catapult if you use a `chromium/src` checkout and edit
+the DEPS'd clone of this repo under its `third_party` dir rather than cloning and editing
+this repo directly.
+
+Follow instructions at [Get the
+code](https://chromium.googlesource.com/chromium/src.git/+/refs/heads/main/docs/get_the_code.md)
+first and then make your changes under `src/third_party/catapult`.
+
 <!-- **[Current build status](https://build.chromium.org/p/client.catapult/waterfall)** -->
