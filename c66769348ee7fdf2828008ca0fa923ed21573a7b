@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba86ffa9_01a7370b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-07-14T18:15:04Z",
+      "side": 1,
+      "message": "Telemetry running with psutil 5.8.0. PTAL.",
+      "revId": "c66769348ee7fdf2828008ca0fa923ed21573a7b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
