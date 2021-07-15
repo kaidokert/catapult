@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "558911bd_a44bf7d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-07-15T12:27:14Z",
+      "side": 1,
+      "message": "Thanks for the review, Sam!\n\n+bpastene@ for device_utils.py OWNERS",
+      "revId": "a577f96775baca3c289a26989c6c9c00bb76a06f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
