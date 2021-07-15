@@ -16,6 +16,115 @@
       "message": "PTAL.",
       "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1866502c_b1d2f1dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-15T21:50:43Z",
+      "side": 1,
+      "message": "Please see comments below...",
+      "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1609305_b7336aa2",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-15T21:50:43Z",
+      "side": 1,
+      "message": "I\u0027m curious why this would trigger invalid-name. Do you know what\u0027s happening?",
+      "range": {
+        "startLine": 343,
+        "startChar": 30,
+        "endLine": 343,
+        "endChar": 60
+      },
+      "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf643f41_2bc8c2f6",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-15T21:50:43Z",
+      "side": 1,
+      "message": "Please put an empty line before this, because we\u0027re no longer inside compare function.",
+      "range": {
+        "startLine": 356,
+        "startChar": 1,
+        "endLine": 356,
+        "endChar": 15
+      },
+      "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "349cb2ae_7d413fce",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1901,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-15T21:50:43Z",
+      "side": 1,
+      "message": "Looks like debugging code that should be removed? json.dumps should be returning str type in both Python 2 and 3, though in Python 2 that means byte string, while in Python 3 it means Unicode string.",
+      "range": {
+        "startLine": 1901,
+        "startChar": 4,
+        "endLine": 1901,
+        "endChar": 39
+      },
+      "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f482fc40_b77dd442",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1903,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-15T21:50:43Z",
+      "side": 1,
+      "message": "I believe this is not the best way to fix it. Please take a look at OpenTraceFile function defined earlier in this file. Currently, it opens the file in binary mode (plus gzip compression) if the filename ends with \u0027.gz\u0027, but uses text mode otherwise. The proposed fix only works when filename ends with \u0027.gz\u0027. It would fail on Python 3 when the output file is not in .gz format.\n\nI think a better fix would be in OpenTraceFile function. It would need to check the Python version. It keeps current behavior on Python 2, but with Python 3, it should always open file in text mode, so that json string can be written into it. When .gz format is requested, it can do the following:\n\n  return gzip.open(file_path, mode + \u0027t\u0027, encoding\u003d\u0027utf-8\u0027, newline\u003d\u0027\u0027)\n\nUnfortunately Python 2 version of gzip.open didn\u0027t support text mode, so it appears to be not possible to write version-independent code.",
+      "range": {
+        "startLine": 1903,
+        "startChar": 45,
+        "endLine": 1903,
+        "endChar": 62
+      },
+      "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e84616_805e0aba",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-15T21:50:43Z",
+      "side": 0,
+      "message": "A blank line between class doc string and the first class member is considered a good style. No need to delete it.",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 1
+      },
+      "revId": "066d46004fba4ea48646d1ee30e42e46b822e281",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
