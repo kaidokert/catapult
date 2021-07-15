@@ -304,7 +304,6 @@ class MemoryMap(NodeWrapper):
     ]
   }
   """
-
   class Region(object):
     def __init__(self, start_address, size, file_path, file_offset):
       self._start_address = start_address
@@ -341,7 +340,7 @@ class MemoryMap(NodeWrapper):
     def file_offset(self, value):
       self._file_offset = value
 
-    def __cmp__(self, other):
+    def compare(self, other):
       if isinstance(other, type(self)):
         other_start_address = other._start_address
       elif isinstance(other, six.integer_types):
@@ -354,6 +353,27 @@ class MemoryMap(NodeWrapper):
         return 1
       else:
         return 0
+    if six.PY2:
+      def __cmp__(self, other):
+        return self.compare(other)
+    else:
+      def __eq__(self, other):
+        return self.compare(other) == 0
+
+      def __ne__(self, other):
+        return self.compare(other) != 0
+
+      def __lt__(self, other):
+        return self.compare(other) < 0
+
+      def __le__(self, other):
+        return self.compare(other) <= 0
+
+      def __gt__(self, other):
+        return self.compare(other) > 0
+
+      def __ge__(self, other):
+        return self.compare(other) >= 0
 
     def __repr__(self):
       return 'Region(0x{:X} - 0x{:X}, {})'.format(
@@ -1878,8 +1898,9 @@ def main(args):
       os.rename(trace_file_path, backup_file_path)
 
     print('Updating the trace file...')
+    print(type(json.dumps(trace.node)))
     with OpenTraceFile(trace_file_path, 'w') as trace_file:
-      trace_file.write(json.dumps(trace.node))
+      trace_file.write(json.dumps(trace.node).encode('utf-8'))
   else:
     print('No modifications were made - not updating the trace file.')
   return True
