@@ -29,6 +29,9 @@ _CMDLINE_FILE = 'dummy-command-line'
 
 
 class FlagChangerTest(device_test_case.DeviceTestCase):
+  if sys.version_info.major == 2:
+    assertCountEqual = unittest.TestCase.assertItemsEqual
+
   def setUp(self):
     super(FlagChangerTest, self).setUp()
     self.adb = adb_wrapper.AdbWrapper(self.serial)
@@ -66,10 +69,10 @@ class FlagChangerTest(device_test_case.DeviceTestCase):
 
     # Write some new files, and check they are set.
     new_flags = ['--my', '--new', '--flags=with special value']
-    self.assertItemsEqual(changer.ReplaceFlags(new_flags), new_flags)
+    self.assertCountEqual(changer.ReplaceFlags(new_flags), new_flags)
 
     # Restore and go back to the old flags.
-    self.assertItemsEqual(changer.Restore(), ['--some', '--old', '--flags'])
+    self.assertCountEqual(changer.Restore(), ['--some', '--old', '--flags'])
 
   def testFlagChanger_removeFlags(self):
     self.device.RemovePath(self.cmdline_path, force=True)
