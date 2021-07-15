@@ -13,6 +13,7 @@ import sys
 _EXCLUDED_PATHS = (
     r'(.*[\\/])?\.git[\\/].*',
     r'.+\.png$',
+    r'foo',
     r'.+\.svg$',
     r'.+\.skp$',
     r'.+\.gypi$',
