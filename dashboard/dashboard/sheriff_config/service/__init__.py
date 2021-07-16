@@ -177,7 +177,9 @@ def CreateApp(test_config=None):
     match_response = sheriff_config_pb2.MatchResponse()
     configs = list(
         luci_config.FindMatchingConfigs(datastore_client, match_request))
+    print("matching configs: %s" % configs)
     configs = match_policy.FilterSubscriptionsByPolicy(match_request, configs)
+    print("filtered configs: %s" % configs)
     for config_set, revision, subscription in configs:
       subscription_metadata = match_response.subscriptions.add()
       subscription_metadata.config_set = config_set
@@ -190,6 +192,7 @@ def CreateApp(test_config=None):
       # Then we find one anomaly config that matches.
       matcher = luci_config.GetMatcher(revision, subscription)
       anomaly_config = matcher.GetAnomalyConfig(match_request.path)
+      print("anomaly_config: %s" % anomaly_config)
       if anomaly_config:
         subscription_metadata.subscription.anomaly_configs.append(
             anomaly_config)

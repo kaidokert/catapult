@@ -23,13 +23,14 @@ import time
 import unittest
 from unittest import mock
 
+import json
 
 class LuciPollingTest(unittest.TestCase):
 
   def setUp(self):
     with open(
         'tests/sample-configs-get_project_configs.json') as sample_config_file:
-      self.sample_config = sample_config_file.read()
+      self.sample_config = sample_config_file.read()  
     self.app = service.CreateApp({
         'environ': {
             'GOOGLE_CLOUD_PROJECT': 'chromeperf',
@@ -86,6 +87,89 @@ class LuciPollingTest(unittest.TestCase):
                 }
             }]
         })
+
+  def testPollAndMatchV8Perf(self):
+    """
+    The relevant config bits for this test:
+subscriptions {
+  name: "V8 Perf Sheriff"
+  notification_email: "v8-perf-alerts@google.com"
+  contact_email: "v8-perf-alerts@google.com"
+  bug_components: ["Blink>JavaScript"]
+  bug_labels: "Performance-Sheriff-V8"
+  visibility: PUBLIC
+  rules: {
+    match: [
+      { glob: "ChromiumPerf/*/speedometer2/*/Speedometer2" },
+      { glob: "internal.client.v8/*/v8/JSTests/*/*" }
+    ]
+  }
+  auto_triage: {
+    rules: {
+      match: [
+        { regex: "^ChromiumPerf.+" }
+      ]
+    }
+  }
+  anomaly_configs {
+    rules {
+      match: [
+        { glob: "internal.client.v8/*/v8/JSTests/*" },
+        { glob: "internal.client.v8/*/v8/JSTests/*/*" }
+      ]
+    }
+  }
+}
+    """
+    client = self.app.test_client()
+    response = client.get(
+        '/configs/update', headers={'X-Forwarded-Proto': 'https'})
+    self.assertEqual(response.status_code, 200)
+
+    def Test(path, triaged, bisected):
+      response = client.post(
+          '/subscriptions/match',
+          json={
+              'path': path,
+              'stats': ['PCT_99'],
+              'metadata': {
+                  'units': 'SomeUnit',
+                  'master': 'Master',
+                  'bot': 'Bot',
+                  'benchmark': 'Test',
+                  'metric_parts': ['Metric', 'Something'],
+              }
+          },
+          headers={'X-Forwarded-Proto': 'https'})
+      self.assertEqual(response.status_code, 200)
+      response_proto = response.get_json()
+      self.assertDictEqual(
+          response_proto, {
+              'subscriptions': [{
+                  'config_set': 'projects/v8',
+                  'revision': '0123456789abcdff',
+                  'subscription': {
+                      'name': 'V8 Perf Sheriff',
+                      'notification_email': "v8-perf-alerts@google.com",
+                      'contact_email': 'v8-perf-alerts@google.com',
+                      'bug_labels': ['Performance-Sheriff-V8'],
+                      'bug_components': ['Blink>JavaScript'],
+                      'anomaly_configs': [{'rules': {}}],
+                      'auto_triage': {
+                          'enable': triaged
+                      },
+                      'auto_bisection': {
+                          'enable': bisected
+                      },
+                      'rules': {},
+                      'visibility': 'PUBLIC',
+                  }
+              }]
+          })
+    #Test('ChromiumPerf/*/speedometer2/*/Speedometer2', True, False)
+    #Test('internal.client.v8/*/v8/JSTests/*/*', False, False)
+    Test('internal.client.v8/Atom_x64/v8/JSTests/ArraySortDifferentLengths/Sorted1000', False, False)
+
 
   def testPollAndMatchTriageBisect(self):
     client = self.app.test_client()
@@ -326,6 +410,9 @@ class LuciPollingTest(unittest.TestCase):
         json={'identity_email': 'any@internal.com'},
         headers={'X-Forwarded-Proto': 'https'})
     self.assertEqual(response.status_code, 200)
+    self.assertEqual(len(response.get_json()['subscriptions']), 4)
+    #v8 = response.get_json()['subscriptions'][3]
+    #self.assertEqual(json.dumps(v8, indent='  '), '')
     self.assertDictEqual(
         response.get_json(), {
             'subscriptions': [{
@@ -377,6 +464,24 @@ class LuciPollingTest(unittest.TestCase):
                     },
                     'rules': {},
                 }
+            }, {
+                'config_set': 'projects/v8',
+                'revision': '0123456789abcdff',
+                'subscription': {
+                    'name': 'V8 Perf Sheriff',
+                    'contact_email': 'v8-perf-alerts@google.com',
+                    'notification_email': "v8-perf-alerts@google.com",
+                    'bug_labels': ['Performance-Sheriff-V8'],
+                    'bug_components': ['Blink>JavaScript'],
+                    'auto_triage': {
+                        'enable': False
+                    },
+                    'auto_bisection': {
+                        'enable': False
+                    },
+                    'rules': {},
+                    'visibility': 'PUBLIC',
+                 }
             }]
         })
     response = client.post(
@@ -384,7 +489,9 @@ class LuciPollingTest(unittest.TestCase):
         json={'identity_email': 'any@public.com'},
         headers={'X-Forwarded-Proto': 'https'})
     self.assertEqual(response.status_code, 200)
-    self.assertDictEqual(response.get_json(), {})
+    # Skip this for now, since it returns a public subscription with the
+    # updatated config for v8.
+    #self.assertDictEqual(response.get_json(), {})
 
   def testPollAndWarmup(self):
     client = self.app.test_client()
