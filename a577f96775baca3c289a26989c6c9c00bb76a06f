@@ -33,6 +33,24 @@
       "message": "nit: Is there a relevant tracking bug for this that you can link here via a TODO?",
       "revId": "a577f96775baca3c289a26989c6c9c00bb76a06f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16bba541_5d2002b6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1201,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-07-16T13:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "274387f7_2680934b",
+      "revId": "a577f96775baca3c289a26989c6c9c00bb76a06f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
