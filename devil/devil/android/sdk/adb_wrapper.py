@@ -218,7 +218,7 @@ class AdbWrapper(object):
 
       Sends an echo command, then waits until it gets a response.
       """
-      self._process.stdin.write('echo\n')
+      self._process.stdin.write(b'echo\n')
       output_line = self._process.stdout.readline()
       while output_line.rstrip() != '':
         output_line = self._process.stdout.readline()
