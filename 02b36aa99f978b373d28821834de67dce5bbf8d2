@@ -82,6 +82,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "495f035b_698ee899",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-16T15:38:11Z",
+      "side": 1,
+      "message": "Oh, well, ok then.",
+      "parentUuid": "c7afc44f_c0fc35b8",
+      "range": {
+        "startLine": 343,
+        "startChar": 30,
+        "endLine": 343,
+        "endChar": 60
+      },
+      "revId": "02b36aa99f978b373d28821834de67dce5bbf8d2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf643f41_2bc8c2f6",
