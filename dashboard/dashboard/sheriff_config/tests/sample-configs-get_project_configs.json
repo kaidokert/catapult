@@ -13,6 +13,13 @@
 			"content_hash": "v1:someotherhash0",
 			"config_set": "projects/other_project",
 			"revision": "0123456789abcdff"
+		},
+		{
+			"url": "https://example.com/v8/sources/+/0123456789abcdff/configs/v8-perf-sheriff.cfg",
+			"content": "c3Vic2NyaXB0aW9ucyB7CiAgbmFtZTogIlY4IFBlcmYgU2hlcmlmZiIKICBub3RpZmljYXRpb25fZW1haWw6ICJ2OC1wZXJmLWFsZXJ0c0Bnb29nbGUuY29tIgogIGNvbnRhY3RfZW1haWw6ICJ2OC1wZXJmLWFsZXJ0c0Bnb29nbGUuY29tIgogIGJ1Z19jb21wb25lbnRzOiBbIkJsaW5rPkphdmFTY3JpcHQiXQogIGJ1Z19sYWJlbHM6ICJQZXJmb3JtYW5jZS1TaGVyaWZmLVY4IgogIHZpc2liaWxpdHk6IFBVQkxJQwogIHJ1bGVzOiB7CiAgICBtYXRjaDogWwogICAgICB7IGdsb2I6ICJDaHJvbWl1bVBlcmYvKi9zcGVlZG9tZXRlcjIvKi9TcGVlZG9tZXRlcjIiIH0sCiAgICAgIHsgZ2xvYjogImludGVybmFsLmNsaWVudC52OC8qL3Y4L0pTVGVzdHMvKi8qIiB9CiAgICBdCiAgfQogIGF1dG9fdHJpYWdlOiB7CiAgICBydWxlczogewogICAgICBtYXRjaDogWwogICAgICAgIHsgcmVnZXg6ICJeQ2hyb21pdW1QZXJmLisiIH0sCiAgICAgICAgeyBnbG9iOiAiaW50ZXJuYWwuY2xpZW50LnY4LyovdjgvSlNUZXN0cy8qIiB9LAogICAgICAgIHsgZ2xvYjogImludGVybmFsLmNsaWVudC52OC8qL3Y4L0pTVGVzdHMvKi8qIiB9CiAgICAgIF0KICAgIH0KICB9CiAgYW5vbWFseV9jb25maWdzIHsKICAgIG1pbl9yZWxhdGl2ZV9jaGFuZ2U6IDAuMQogICAgcnVsZXMgewogICAgICBtYXRjaDogWwogICAgICAgIHsgZ2xvYjogImludGVybmFsLmNsaWVudC52OC8qL3Y4L0pTVGVzdHMvKiIgfSwKICAgICAgICB7IGdsb2I6ICJpbnRlcm5hbC5jbGllbnQudjgvKi92OC9KU1Rlc3RzLyovKiIgfQogICAgICBdCiAgICB9CiAgfQp9",
+			"content_hash": "v1:somehash2",
+			"config_set": "projects/v8",
+			"revision": "0123456789abcdff"
 		}
 	]
 }
