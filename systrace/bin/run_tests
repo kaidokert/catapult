@@ -46,6 +46,8 @@ def main():
         method = getattr(
           test, test._testMethodName)  # pylint: disable=protected-access
         if not decorators.ShouldSkip(method, options.device):
+        #if test.id().endswith('test_default_output_filename'):
+        #if test.id().endswith('test_strip_and_decompress_trace'):
           suite.addTest(test)
   result = unittest.TextTestRunner(verbosity=2).run(suite)
   if result.wasSuccessful() and all_tests_loaded:
