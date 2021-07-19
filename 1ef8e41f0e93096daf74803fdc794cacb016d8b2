@@ -46,6 +46,30 @@
       },
       "revId": "1ef8e41f0e93096daf74803fdc794cacb016d8b2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07695b58_642b6fcf",
+        "filename": "dashboard/dashboard/sheriff_config_client.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1514318
+      },
+      "writtenOn": "2021-07-19T20:56:28Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "491e12f4_055d3e8e",
+      "range": {
+        "startLine": 63,
+        "startChar": 58,
+        "endLine": 63,
+        "endChar": 73
+      },
+      "revId": "1ef8e41f0e93096daf74803fdc794cacb016d8b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
