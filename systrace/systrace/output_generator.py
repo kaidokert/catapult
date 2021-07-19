@@ -13,6 +13,8 @@ try:
 except ImportError:
   from io import StringIO
 
+import six
+
 from systrace import tracing_controller
 from systrace import trace_result
 from tracing.trace_data import trace_data
@@ -128,10 +130,16 @@ def _ConvertToHtmlString(result):
   If the trace result is a dictionary or list, JSON-encode it.
   If the trace result is a string, leave it unchanged.
   """
+  print(type(result))
+  print(len(result))
+  # print(result)
   if isinstance(result, dict) or isinstance(result, list):
+    print('data1')
     return json.dumps(result)
-  elif isinstance(result, str):
+  elif isinstance(result, six.string_types):
     return result
+  elif isinstance(result, bytes):
+    return result.decode('utf-8')
   else:
     raise ValueError('Invalid trace result format for HTML output')
 

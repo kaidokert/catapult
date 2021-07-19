@@ -19,9 +19,9 @@ from systrace.tracing_agents import atrace_agent
 
 
 # ADB sends this text to indicate the beginning of the trace data.
-TRACE_START_REGEXP = r'TRACE\:'
+TRACE_START_REGEXP = br'TRACE\:'
 # Text that ADB sends, but does not need to be displayed to the user.
-ADB_IGNORE_REGEXP = r'^capturing trace\.\.\. done|^capturing trace\.\.\.'
+ADB_IGNORE_REGEXP = br'^capturing trace\.\.\. done|^capturing trace\.\.\.'
 
 T2T_OUTPUT = 'trace.systrace'
 
@@ -117,10 +117,15 @@ class AtraceFromFileAgent(tracing_agents.TracingAgent):
     return trace_result.TraceResult('trace-data', self._trace_data)
 
   def _read_trace_data(self):
+    # import pdb; pdb.set_trace()
     with open(self._filename, 'rb') as f:
       result = f.read()
+    print(type(result))
+    print(len(result))
     data_start = re.search(TRACE_START_REGEXP, result).end(0)
     data = re.sub(ADB_IGNORE_REGEXP, '', result[data_start:])
+    print(type(data))
+    print(len(data))
     return self._preprocess_data(data)
 
   # pylint: disable=no-self-use

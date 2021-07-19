@@ -20,7 +20,7 @@ from systrace import tracing_agents
 from systrace import util
 
 # Text that ADB sends, but does not need to be displayed to the user.
-ADB_IGNORE_REGEXP = r'^capturing trace\.\.\. done|^capturing trace\.\.\.'
+ADB_IGNORE_REGEXP = br'^capturing trace\.\.\. done|^capturing trace\.\.\.'
 # The number of seconds to wait on output from ADB.
 ADB_STDOUT_READ_TIMEOUT = 0.2
 # The number of seconds to wait for large output from ADB.
@@ -36,10 +36,11 @@ DEFAULT_CATEGORIES = 'am,binder_driver,camera,dalvik,freq,'\
 LIST_CATEGORIES_ARGS = ATRACE_BASE_ARGS + ['--list_categories']
 # Minimum number of seconds between displaying status updates.
 MIN_TIME_BETWEEN_STATUS_UPDATES = 0.2
+# if sys.version_info.major == 2:
 # ADB sends this text to indicate the beginning of the trace data.
-TRACE_START_REGEXP = r'TRACE\:'
+TRACE_START_REGEXP = br'TRACE\:'
 # Plain-text trace data should always start with this string.
-TRACE_TEXT_HEADER = '# tracer'
+TRACE_TEXT_HEADER = b'# tracer'
 _FIX_MISSING_TGIDS = True
 _FIX_CIRCULAR_TRACES = True
 
@@ -339,25 +340,56 @@ def strip_and_decompress_trace(trace_data):
     The decompressed trace data.
   """
   # Collapse CRLFs that are added by adb shell.
-  if trace_data.startswith('\r\n'):
-    trace_data = trace_data.replace('\r\n', '\n')
-  elif trace_data.startswith('\r\r\n'):
-    # On windows, adb adds an extra '\r' character for each line.
-    trace_data = trace_data.replace('\r\r\n', '\n')
+  # import pdb; pdb.set_trace()
+  import six
+  if isinstance(trace_data, six.string_types):
+    if trace_data.startswith('\r\n'):
+      print('rp1')
+      trace_data = trace_data.replace('\r\n', '\n')
+    elif trace_data.startswith('\r\r\n'):
+      print('rp2')
+      # On windows, adb adds an extra '\r' character for each line.
+      trace_data = trace_data.replace('\r\r\n', '\n')
+  else:
+    if trace_data.startswith(b'\r\n'):
+      print('rp1')
+      trace_data = trace_data.replace(b'\r\n', b'\n')
+    elif trace_data.startswith(b'\r\r\n'):
+      print('rp2')
+      # On windows, adb adds an extra '\r' character for each line.
+      trace_data = trace_data.replace(b'\r\r\n', b'\n')
+  print(type(trace_data))
+  print(len(trace_data))
 
   # Skip the initial newline.
-  if trace_data[0] == '\n':
+  print(repr(trace_data[0]))
+  if trace_data[0] == b'\n' or trace_data[0] == 10:
+    print('skip')
     trace_data = trace_data[1:]
+  print(type(trace_data))
+  print(len(trace_data))
 
-  if not trace_data.startswith(TRACE_TEXT_HEADER):
-    # No header found, so assume the data is compressed.
-    trace_data = zlib.decompress(trace_data)
+  if isinstance(trace_data, six.string_types):
+    if not trace_data.startswith(r'TRACE\:'):
+      print('::::::::')
+      print(type(trace_data))
+      print(len(trace_data))
+      # No header found, so assume the data is compressed.
+      trace_data = zlib.decompress(trace_data)
+  else:
+    if not trace_data.startswith(TRACE_TEXT_HEADER):
+      print('::::::::')
+      print(type(trace_data))
+      print(len(trace_data))
+      # No header found, so assume the data is compressed.
+      trace_data = zlib.decompress(trace_data)
 
+  print(type(trace_data))
   # Enforce Unix line-endings.
-  trace_data = trace_data.replace('\r', '')
+  trace_data = trace_data.replace(b'\r', b'')
 
   # Skip any initial newlines.
-  while trace_data and trace_data[0] == '\n':
+  while trace_data and (trace_data[0] == b'\n' or trace_data[0] == 10):
     trace_data = trace_data[1:]
 
   return trace_data
@@ -409,7 +441,7 @@ def fix_circular_traces(out):
   #
   # No such headers are emitted if there were no overflows or the trace
   # was captured with non-circular buffers.
-  buffer_start_re = re.compile(r'^#+ CPU \d+ buffer started', re.MULTILINE)
+  buffer_start_re = re.compile(br'^#+ CPU \d+ buffer started', re.MULTILINE)
 
   start_of_full_trace = 0
 
@@ -422,7 +454,7 @@ def fix_circular_traces(out):
 
   if start_of_full_trace > 0:
     # Need to keep the header intact to make the importer happy.
-    end_of_header = re.search(r'^[^#]', out, re.MULTILINE).start()
+    end_of_header = re.search(br'^[^#]', out, re.MULTILINE).start()
     out = out[:end_of_header] + out[start_of_full_trace:]
   return out
 
