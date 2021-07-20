@@ -16,6 +16,23 @@
       "message": "Second part of the fix for missing alerts. PTAL.",
       "revId": "7d3253ab6c8e95d33e7814d03a2a522875d2888a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "929af30a_b6da9456",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-20T16:30:56Z",
+      "side": 1,
+      "message": "Sean: Friendly ping. Could you please take a look when you get the chance? Thanks.",
+      "revId": "7d3253ab6c8e95d33e7814d03a2a522875d2888a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
