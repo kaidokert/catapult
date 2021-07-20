@@ -43,7 +43,7 @@ from dashboard.services import gitiles_service
 from dashboard.services import issue_tracker_service
 from dashboard.services import pinpoint_service
 
-# Templates used for rendering issue contents
+# Templates used for rendering issue contents.
 _TEMPLATE_LOADER = jinja2.FileSystemLoader(
     searchpath=os.path.join(os.path.dirname(os.path.realpath(__file__))))
 _TEMPLATE_ENV = jinja2.Environment(loader=_TEMPLATE_LOADER)
