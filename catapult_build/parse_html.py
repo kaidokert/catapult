@@ -8,6 +8,7 @@ The purpose of this module is to ensure consistency of HTML parsing
 in catapult_build.
 """
 
+from __future__ import absolute_import
 import bs4
 
 

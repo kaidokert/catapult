@@ -4,6 +4,7 @@
 
 """Checks to use in PRESUBMIT.py for HTML style violations."""
 
+from __future__ import absolute_import
 import collections
 import difflib
 import re
