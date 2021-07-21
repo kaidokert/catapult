@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fad47f1a_d6b5f590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-07-21T17:15:07Z",
+      "side": 1,
+      "message": "Hi Andrew, this is a tentative fix to run gtest from pinpoint. Please take a look and let me know whether this is the correct direction. Thanks!",
+      "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
