@@ -16,6 +16,64 @@
       "message": "Hi Andrew, this is a tentative fix to run gtest from pinpoint. Please take a look and let me know whether this is the correct direction. Thanks!",
       "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "744287a7_956516da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-07-22T06:37:15Z",
+      "side": 1,
+      "message": "Well, if there\u0027s no more universal way to invoke a benchmark run, I guess we\u0027re stuck with this hardcoding.  Although it seems like other systems like findit might also run afoul of this?\n\nAnyway I\u0027m ok with this, so long as it has sufficient comments.  My intuition is that long-term we\u0027ll want a nicer solution, but in the meantime let\u0027s not let aesthetics get too much in the way of being useful.",
+      "parentUuid": "fad47f1a_d6b5f590",
+      "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77de8246_3576aacd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-07-22T06:37:15Z",
+      "side": 1,
+      "message": "Leave a comment saying this should be kept in sync with https://chromium.googlesource.com/chromium/src/+/main/tools/perf/core/bot_platforms.py?",
+      "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "369566f3_cdbfb839",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-07-22T06:37:15Z",
+      "side": 1,
+      "message": "I suggest wrapping this in a call to list:\n\n      pass_through_args \u003d list(_WATERFALL_ENABLED_GTEST_NAMES[benchmark])\n\nTo make sure code downstream of here can\u0027t inadvertently mutate the list in the global “constant”.",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 108,
+        "endChar": 67
+      },
+      "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
