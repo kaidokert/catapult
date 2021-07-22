@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c491aa4_0b4a1089",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-07-22T02:29:53Z",
+      "side": 1,
+      "message": "lgtm with a small edit.\n+dproy for owners.",
+      "revId": "45d795054c8fbb8006da24c761ea4df245bd701a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cda1c7_3b7ec5c9",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-07-22T02:29:53Z",
+      "side": 1,
+      "message": "i think we need to not pass if the string is empty:\n\nif self._chrome_categories:\n  start_tracing_flag \u003d \u0027--trace-startup\u003d{}\u0027.format(self._chrome_categories)\nelse:\n  start_tracing_flag \u003d \u0027--trace-startup\u0027",
+      "revId": "45d795054c8fbb8006da24c761ea4df245bd701a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
