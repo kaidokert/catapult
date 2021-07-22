@@ -335,6 +335,17 @@ def main(args=None):
 
     if args.platform in test.get('disabled', []):
       continue
+
+    # The test "Devil Python Tests" has two executables, run_py_tests and
+    # run_py3_tests. Those scripts define the vpython interpreter on shebang,
+    # and will quit when running on unexpected version. This script assumes one
+    # path for each test and thus we will conditionally replace the script name
+    # until python 2 is fully dropped.
+    # here,
+    test_path = test['path']
+    if args.use_python3 and test['name'] == 'Devil Python Tests':
+      test_path = 'devil/bin/run_py3_tests'
+
     step = {'name': test['name'], 'env': {}}
 
     if args.use_python3:
@@ -342,15 +353,15 @@ def main(args=None):
     else:
       vpython_executable = "vpython"
 
-    executable = 'vpython.bat' if sys.platform == 'win32' \
-      else vpython_executable
+    if sys.platform == 'win32':
+      vpython_executable += '.bat'
 
     # Always add the appengine SDK path.
     step['env']['PYTHONPATH'] = args.app_engine_sdk_pythonpath
 
     step['cmd'] = [
-        executable,
-        os.path.join(args.api_path_checkout, test['path'])
+        vpython_executable,
+        os.path.join(args.api_path_checkout, test_path)
     ]
     if step['name'] == 'Systrace Tests':
       step['cmd'] += ['--device=' + args.platform]

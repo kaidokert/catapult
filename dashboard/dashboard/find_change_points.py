@@ -95,7 +95,7 @@ def FindChangePoints(series,
     multiple_of_std_dev: Threshold for change as multiple of std. deviation.
 
   Returns:
-    A list with one ChangePoint object, or an empty list.
+    A list of zero to many ChangePoint object(s).
   """
   if len(series) < 2:
     return []  # Not enough points to possibly contain a valid split point.
@@ -127,7 +127,7 @@ def FindChangePoints(series,
     if passed_filter:
       change_points.append(point)
     else:
-      logging.debug('Rejected %s as potential index (%s); reason = %s',
+      logging.info('Rejected %s as potential index (%s); reason = %s',
                     point, RevAndIdx(point[0]), reject_reason)
 
   logging.info('E-Divisive potential change-points: %s',

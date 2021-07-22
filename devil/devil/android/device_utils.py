@@ -301,6 +301,11 @@ _DUMPSYS_PACKAGE_RE_STR =\
 PS_COLUMNS = ('name', 'pid', 'ppid')
 ProcessInfo = collections.namedtuple('ProcessInfo', PS_COLUMNS)
 
+# The list of Rock960 device family.
+ROCK960_DEVICE_LIST = [
+    'rk3399', 'rk3399-all', 'rk3399-box'
+]
+
 
 @decorators.WithExplicitTimeoutAndRetries(_DEFAULT_TIMEOUT, _DEFAULT_RETRIES)
 def GetAVDs():
@@ -1021,6 +1026,35 @@ class DeviceUtils(object):
       DeviceUnreachableError if the device becomes unresponsive.
     """
 
+    def is_device_connection_ready():
+      # Rock960 devices re-connect during boot process, presumably
+      # due to change in USB protocol configuration, which causes restart of adb
+      # daemon running on device and "re-connection" seen from adb client side.
+      # Since device is unreachable after disconnecting and before re-connecting
+      # for the second time, we must wait for re-connection and give control
+      # back to devil code only when sys.usb.config property, which allows us to
+      # differentiate between these states, switches to the right value. This
+      # way we avoid "device unreachable" errors occuring when re-connections
+      # happens.
+      try:
+        if self.GetProp('ro.product.model') not in ROCK960_DEVICE_LIST:
+          return True
+      except device_errors.CommandFailedError as e:
+        logging.warn('Failed to get product_model: %s', e)
+        return False
+      except device_errors.DeviceUnreachableError:
+        logging.warn('Failed to get product_model: device unreachable')
+        return False
+
+      try:
+        return self.GetProp('sys.usb.config') == 'adb'
+      except device_errors.CommandFailedError as e:
+        logging.warn('Failed to get prop "sys.usb.config": %s', e)
+        return False
+      except device_errors.DeviceUnreachableError:
+        logging.warn('Failed to get prop "sys.usb.config": device unreachable')
+        return False
+
     def sd_card_ready():
       try:
         self.RunShellCommand(
@@ -1060,6 +1094,8 @@ class DeviceUtils(object):
         return False
 
     self.adb.WaitForDevice()
+    # Rock960 devices connected twice. Wait for device ready.
+    timeout_retry.WaitFor(is_device_connection_ready)
     timeout_retry.WaitFor(sd_card_ready)
     timeout_retry.WaitFor(pm_ready)
     timeout_retry.WaitFor(boot_completed)
@@ -2438,7 +2474,7 @@ class DeviceUtils(object):
       return self._ReadFileWithPull(device_path)
 
   def _WriteFileWithPush(self, device_path, contents):
-    with tempfile.NamedTemporaryFile() as host_temp:
+    with tempfile.NamedTemporaryFile(mode='w+') as host_temp:
       host_temp.write(contents)
       host_temp.flush()
       self.adb.Push(host_temp.name, device_path)
@@ -3031,6 +3067,27 @@ class DeviceUtils(object):
     return self.GetProp('ro.product.cpu.abi', cache=True)
 
   @decorators.WithTimeoutAndRetriesFromInstance()
+  def GetSupportedABIs(self, timeout=None, retries=None):
+    """Gets all ABIs supported by the device.
+
+    Args:
+      timeout: timeout in seconds
+      retries: number of retries
+
+    Returns:
+      The device's supported ABIs list. For supported ABIs, the returned list
+      will consist of the values defined in devil.android.ndk.abis.
+
+    Raises:
+      CommandTimeoutError on timeout.
+    """
+    supported_abis = self.GetProp('ro.product.cpu.abilist', cache=True)
+    return [
+        supported_abi for supported_abi in supported_abis.split(',')
+        if supported_abi
+    ]
+
+  @decorators.WithTimeoutAndRetriesFromInstance()
   def GetFeatures(self, timeout=None, retries=None):
     """Returns the features supported on the device."""
     lines = self.RunShellCommand(['pm', 'list', 'features'], check_return=True)
@@ -3452,6 +3509,9 @@ class DeviceUtils(object):
 
     def _FindFocusedWindow():
       match = None
+      # Note: This will fail to find system dialogs on Android Q+. System
+      # dialogs should not be shown on Android Q+ because we set
+      # hide_error_dialogs=1. http://crbug.com/1107896#c26
       # TODO(jbudorick): Try to grep the output on the device instead of using
       # large_output if/when DeviceUtils exposes a public interface for piped
       # shell command handling.
@@ -3468,9 +3528,18 @@ class DeviceUtils(object):
       return None
     package = match.group(2)
     logger.warning('Trying to dismiss %s dialog for %s', *match.groups())
-    self.SendKeyEvent(keyevent.KEYCODE_DPAD_RIGHT)
-    self.SendKeyEvent(keyevent.KEYCODE_DPAD_RIGHT)
-    self.SendKeyEvent(keyevent.KEYCODE_ENTER)
+
+    if self.build_version_sdk >= version_codes.NOUGAT:
+      # Broadcast does not work pre-N. Send broadcast because Android N+
+      # sometimes displays system dialog where only option is "Open app Again"
+      # when app crashes.
+      self.BroadcastIntent(
+          intent.Intent(action='android.intent.action.CLOSE_SYSTEM_DIALOGS'))
+    else:
+      self.SendKeyEvent(keyevent.KEYCODE_DPAD_RIGHT)
+      self.SendKeyEvent(keyevent.KEYCODE_DPAD_RIGHT)
+      self.SendKeyEvent(keyevent.KEYCODE_ENTER)
+
     match = _FindFocusedWindow()
     if match:
       logger.error('Still showing a %s dialog for %s', *match.groups())
@@ -3672,7 +3741,6 @@ class DeviceUtils(object):
 
     def supports_abi(abi, serial):
       if abis and abi not in abis:
-        logger.warning("Device %s doesn't support required ABIs.", serial)
         return False
       return True
 
@@ -3685,8 +3753,18 @@ class DeviceUtils(object):
           serial = adb.GetDeviceSerial()
           if not denylisted(serial):
             device = cls(_CreateAdbWrapper(adb), **kwargs)
-            if supports_abi(device.GetABI(), serial):
-              devices.append(device)
+            supported_abis = device.GetSupportedABIs()
+            if not supported_abis:
+              supported_abis = [device.GetABI()]
+            for supported_abi in supported_abis:
+              if supports_abi(supported_abi, serial):
+                devices.append(device)
+                break
+            else:
+              logger.warning(
+                  "Device %s doesn't support required ABIs "
+                  "(supported: %s, required: %s)", serial,
+                  ','.join(supported_abis), ','.join(abis))
 
       if len(devices) == 0 and not allow_no_devices:
         raise device_errors.NoDevicesError()
