@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0cc5d3a_da2ce355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-07-22T12:18:39Z",
+      "side": 1,
+      "message": "lgtm after the fix Sid suggested. ",
+      "revId": "45d795054c8fbb8006da24c761ea4df245bd701a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7cda1c7_3b7ec5c9",
         "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
         "patchSetId": 1
