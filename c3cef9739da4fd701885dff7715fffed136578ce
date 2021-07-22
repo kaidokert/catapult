@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "448fc3f4_f9b506f9",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1513687
+      },
+      "writtenOn": "2021-07-22T14:58:59Z",
+      "side": 1,
+      "message": "I changed it to look more like the code below, since it doesn\u0027t seem like the order of the list matters.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 79
+      },
+      "revId": "c3cef9739da4fd701885dff7715fffed136578ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
