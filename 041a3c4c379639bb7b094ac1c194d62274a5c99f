@@ -68,6 +68,23 @@
       "message": "+Johnchen and +bsheedy\n\nCan you guys take a look since this affects the perf waterfall and gpu tests.",
       "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ebfc287_de6081e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-07-23T19:17:12Z",
+      "side": 1,
+      "message": "I wasn\u0027t aware of this argument, so I can\u0027t say whether it\u0027ll have any sort of impact on the GPU tests. If it causes any major issues, though, the tests should fail on the roll.",
+      "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
