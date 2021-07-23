@@ -6,6 +6,7 @@
 import os
 import platform
 import sys
+import logging
 
 _CATAPULT_PATH = os.path.abspath(
     os.path.join(
@@ -21,6 +22,16 @@ from tracing import tracing_project
 def _RunTestsOrDie(top_level_dir):
   path = [_TRACING_PATH]
   path.extend(tracing_project.GetDependencyPaths())
+  try:
+    logging.warning(sys.path)
+    logging.warning(sys.modules)
+    from google.protobuf.internal import enum_type_wrapper
+  except Exception:
+    logging.warning(sys.path)
+    logging.warning(sys.modules)
+    from google.protobuf.internal import enum_type_wrapper
+  logging.warning(sys.path)
+  logging.warning(sys.modules)
   exit_code = run_with_typ.Run(top_level_dir, path=path)
   if exit_code:
     sys.exit(exit_code)
