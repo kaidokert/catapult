@@ -85,6 +85,23 @@
       "message": "I wasn\u0027t aware of this argument, so I can\u0027t say whether it\u0027ll have any sort of impact on the GPU tests. If it causes any major issues, though, the tests should fail on the roll.",
       "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f3bf8b_362bb974",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-07-23T21:16:43Z",
+      "side": 1,
+      "message": "--eanble-automation is a relatively intrusive option, and may have unexpected effects on Chrome performance. Therefore I\u0027d prefer not to include this option by default. If you plan to add any new test case that needs this option, please enable it for those tests only.",
+      "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
