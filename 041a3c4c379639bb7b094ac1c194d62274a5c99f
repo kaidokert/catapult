@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "343f1d55_c0ad6c57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-07-23T18:52:46Z",
+      "side": 1,
+      "message": "Is there a bug associated with this change. Why is this CL needed?",
+      "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3995126_9d921195",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-07-23T18:52:46Z",
+      "side": 1,
+      "message": "John, can you plea",
+      "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
