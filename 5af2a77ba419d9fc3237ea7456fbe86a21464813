@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": false,
       "key": {
         "uuid": "5c5ff7e3_b41d5640",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
@@ -14,10 +15,28 @@
       "side": 1,
       "message": "Why is this an inner class of AdbWrapper? Not that I expect you to refactor it now; it just feels like an odd choice.",
       "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": false
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b1405b1_5de77c1f",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2021-07-24T05:10:59Z",
+      "side": 1,
+      "message": "Agreed. I have no idea.",
+      "parentUuid": "5c5ff7e3_b41d5640",
+      "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "40f869a0_5d372f48",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
@@ -37,10 +56,34 @@
         "endChar": 69
       },
       "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f5def5_5865fee2",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2021-07-24T05:10:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40f869a0_5d372f48",
+      "range": {
+        "startLine": 178,
+        "startChar": 63,
+        "endLine": 178,
+        "endChar": 69
+      },
+      "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "c5219f74_bbd66efc",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
@@ -60,10 +103,34 @@
         "endChar": 42
       },
       "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ad05ea1_767add17",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2021-07-24T05:10:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5219f74_bbd66efc",
+      "range": {
+        "startLine": 204,
+        "startChar": 38,
+        "endLine": 204,
+        "endChar": 42
+      },
+      "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "1c09bd37_49caaa4c",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
@@ -77,10 +144,10 @@
       "side": 1,
       "message": "nit: line longer than 80 chars",
       "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "269fc785_bab6e5bd",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
@@ -94,8 +161,25 @@
       "side": 1,
       "message": "I recognize that you moved this to be below the PersistentShell inner class, but I\u0027d still prefer to have it at the top so that it is easy to see at a glance what the data members of an AdbWrapper class instance are.",
       "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
-      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
-      "unresolved": true
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9496498_4d142ec3",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1000046
+      },
+      "writtenOn": "2021-07-24T05:10:59Z",
+      "side": 1,
+      "message": "Unfortunately, since I have to instantiate a PersistantShell in __init__, this has to appear underneath the declaration. Not sure how to move it up without a bit more contortion...",
+      "parentUuid": "269fc785_bab6e5bd",
+      "revId": "5af2a77ba419d9fc3237ea7456fbe86a21464813",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
