@@ -17,6 +17,9 @@ _TRACING_PATH = os.path.join(_CATAPULT_PATH, 'tracing')
 sys.path.insert(0, _TRACING_PATH)
 from tracing import tracing_project
 
+if 'google' in sys.modules:
+  sys.modules.pop('google')
+from google.protobuf.internal import enum_type_wrapper
 
 def _RunTestsOrDie(top_level_dir):
   path = [_TRACING_PATH]
