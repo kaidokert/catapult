@@ -176,7 +176,9 @@ class AlertGroupWorkflow(object):
     Returns the key for the associated group when the workflow was
     initialized."""
 
+    logging.info('Processing workflow for group %s', self._group.key)
     update = update or self._PrepareGroupUpdate()
+    logging.info('%d anomalies', len(update.anomalies))
 
     # Process input before we start processing the group.
     for a in update.anomalies:
@@ -186,6 +188,9 @@ class AlertGroupWorkflow(object):
       a.auto_triage_enable = any(s.auto_triage_enable
                                  for s in subscriptions
                                  if s.name == self._group.subscription_name)
+      if a.auto_triage_enable:
+        logging.info('enabled auto_triage for %s because of %s', a.test.string_id(), all(s.name for s in subscriptions if s.auto_triage_enable))
+
       a.auto_bisect_enable = any(s.auto_bisect_enable
                                  for s in subscriptions
                                  if s.name == self._group.subscription_name)
@@ -320,6 +325,16 @@ class AlertGroupWorkflow(object):
     regressions = []
     subscriptions_dict = {}
     for a in anomalies:
+      # This logging is just for debugging https://bugs.chromium.org/p/chromium/issues/detail?id=1223401
+      # in production since I can't reproduce it in unit tests. One theory I
+      # have is that there's a bug in this part of the code, where
+      # details of one anomaly's subscription get replaced with another
+      # anomaly's subscription.  The subscriptions_dict.update call below is a
+      # suspect.
+      for s in a.subscriptions:
+        if subscriptions_dict.has_key(s.name) and s.auto_triage_enable != subscriptions_dict[s.name].auto_triage_enable:
+          logging.warn('replacing w/ different autio_triage: %s', s.name)
+
       subscriptions_dict.update({s.name: s for s in a.subscriptions})
       if not a.is_improvement and not a.recovered:
         regressions.append(a)
@@ -498,6 +513,7 @@ class AlertGroupWorkflow(object):
 
     # Fetching issue labels, components and cc from subscriptions and owner
     components, cc, labels = self._ComputeBugUpdate(subscriptions, regressions)
+    logging.info('Creating a new issue for AlertGroup %s', self._group.key)
 
     response = self._issue_tracker.NewBug(
         title,
