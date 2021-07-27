@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f110e99_be7b6214",
+        "filename": "tracing/tracing/extras/chrome/chrome_auditor_test.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-07-27T17:48:26Z",
+      "side": 1,
+      "message": "Might want to turn this into an array: \n\nmissedFrameSlices \u003d [\n newAsyncSliceEx({...}),\n newAsyncSliceEx({...}),\n ...\n];\n...\nm.compositorThread.asyncSliceGroup.push(...missedFrameSlices);",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 9
+      },
+      "revId": "8de856c75f6602d607114fd9af663cc2beeb5bcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
