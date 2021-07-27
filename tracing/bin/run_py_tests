@@ -42,5 +42,5 @@ if __name__ == '__main__':
 
   from catapult_build import run_with_typ
   _RunTestsOrDie(os.path.join(_TRACING_PATH, 'tracing'))
-  _RunTestsOrDie(os.path.join(_TRACING_PATH, 'tracing_build'))
+  #_RunTestsOrDie(os.path.join(_TRACING_PATH, 'tracing_build'))
   sys.exit(0)
