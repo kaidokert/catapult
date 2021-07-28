@@ -7,6 +7,13 @@ except ImportError:
     # don't prevent use of paste if pkg_resources isn't installed
     from pkgutil import extend_path
     __path__ = extend_path(__path__, __name__)
+except AttributeError as e:
+    import logging
+    logging.warning('ATTRIBUTE ERROR: %s' % repr(e))
+    import sys
+    logging.warning('SYS.PATH: %s' % sys.path)
+    logging.warning('SYS.MODULES: %s' % sys.modules)
+    import pkg_resources
 
 try:
     import modulefinder
