@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ad2ce5b_992e2915",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-07-28T07:00:58Z",
+      "side": 1,
+      "message": "Not sure how exactly the PYTHONPATH messed up with the import but removing it works. ",
+      "revId": "2e62c385f4917bf958399d9d328237a819b73e26",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
