@@ -21,6 +21,9 @@ if __name__ == '__main__':
   else:
     install.InstallHooks()
 
+  if 'PYTHONPATH' in os.environ:
+    os.environ.pop('PYTHONPATH')
+
   from catapult_build import run_with_typ
   sys.exit(run_with_typ.Run(
       os.path.join(_CATAPULT, 'catapult_build'),
