@@ -740,6 +740,40 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
         'Chromium Commit Position: http://test-results.appspot.com/revision_range?start=0&end=100',
         self._issue_tracker.new_bug_args[1])
 
+  def testNoTriage_GroupUntriaged_InfAnomaly(self):
+    anomalies = [self._AddAnomaly(test="a/b/c", median_before_anomaly=0), self._AddAnomaly(test="d/e/f")]
+
+    group = self._AddAlertGroup(
+        anomalies[0],
+        status=alert_group.AlertGroup.Status.untriaged,
+    )
+    self._sheriff_config.patterns = {
+        'a/b/c': [
+            subscription.Subscription(name='sheriff', auto_triage_enable=False)
+        ],
+         'd/e/f': [
+            subscription.Subscription(name='sheriff', auto_triage_enable=True)
+        ],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        issue_tracker=self._issue_tracker,
+        revision_info=self._revision_info,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+    self._UpdateTwice(
+        workflow=w,
+        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies),
+            issue=None,
+        ))
+    self.assertIn('inf', self._issue_tracker.new_bug_args[1])
+
   def testTriage_GroupUntriaged_InfAnomaly(self):
     anomalies = [self._AddAnomaly(median_before_anomaly=0), self._AddAnomaly()]
     group = self._AddAlertGroup(
