@@ -16,6 +16,24 @@
       "message": "Hi Haiyang,\n\nI have confirmed locally that the issue is with the android-11-x86-fyi-rel bot\u0027s android30 emulator image instead of with this CL. A local device with android-11 passes these tests. The emulator might have been configured in user mode instead of userdebug, since it does not allow access to /sdcard/Android/data at all. I have filed https://crbug.com/1234375 to track it.\n\nSince the bot has been failing since before my original CL landed and is still failing now, let\u0027s not block this play core support on the FYI bot: https://ci.chromium.org/p/chromium/builders/ci/android-11-x86-fyi-rel?limit\u003d200\n\nThanks!\nPeter",
       "revId": "498d91cb72e67783e05dfa2a067553b2d683bba9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3df957f_e62a0c03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2021-07-29T17:52:21Z",
+      "side": 1,
+      "message": "Hey Peter,\n\nThe emulator image we are using on Android-11 is google_apis which is of userdebug type. Given a local device works, a rooted userdebug emulator should work as well. Can you try explicitly enabling root before PushChangedFiles?",
+      "parentUuid": "25b645ab_8df58560",
+      "revId": "498d91cb72e67783e05dfa2a067553b2d683bba9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
