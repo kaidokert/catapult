@@ -14,7 +14,16 @@ import uuid
 import webapp2
 import webtest
 
-from google.appengine.ext import ndb
+import logging
+try:
+  from google.appengine.ext import ndb
+except ModuleNotFoundError as e:
+  logging.warning(repr(e))
+  logging.warning(sys.modules)
+  logging.warning(sys.path)
+logging.warning('=======')
+logging.warning(ndb)
+logging.warning(google.appengine.ext)
 
 from dashboard import add_histograms_queue
 from dashboard import find_anomalies
