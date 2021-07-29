@@ -102,6 +102,24 @@
       "message": "--eanble-automation is a relatively intrusive option, and may have unexpected effects on Chrome performance. Therefore I\u0027d prefer not to include this option by default. If you plan to add any new test case that needs this option, please enable it for those tests only.",
       "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ddad47_a646bd7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-07-29T20:08:09Z",
+      "side": 1,
+      "message": "OK, thanks!",
+      "parentUuid": "f5f3bf8b_362bb974",
+      "revId": "041a3c4c379639bb7b094ac1c194d62274a5c99f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
