@@ -148,6 +148,47 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     workflow.Process(update=update)
     workflow.Process(update=update)
 
+  def test_FileIssue(self):
+    anomalies = [self._AddAnomaly(), self._AddAnomaly()]
+    added = [self._AddAnomaly(), self._AddAnomaly()]
+    group = self._AddAlertGroup(anomalies[0], anomalies=anomalies)
+    self._sheriff_config.patterns = {
+        '*': [subscription.Subscription(name='sheriff', auto_triage_enable=True)],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        issue_tracker=self._issue_tracker,
+    )
+
+    update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies + added),
+            issue={},
+        )
+
+    w.Process(update)
+
+    #regressions, subscriptions = w._GetRegressions(update.anomalies)
+    #self.assertIsNotNone(regressions)
+    #self.assertIsNotNone(subscriptions)
+
+    bug, anns = w._FileIssue(update.anomalies)
+    self.assertIsNone(bug)
+    self.assertIsNotNone(anns)
+    #self._UpdateTwice(
+    #    workflow=w,
+    #    update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+    #        now=datetime.datetime.utcnow(),
+    #        anomalies=ndb.get_multi(anomalies + added),
+    #        issue={},
+    #    ))
+
+    #self.assertEqual(len(group.get().anomalies), 4)
+    #for a in added:
+    #  self.assertIn(a, group.get().anomalies)
+
+
   def testAddAnomalies_GroupUntriaged(self):
     anomalies = [self._AddAnomaly(), self._AddAnomaly()]
     added = [self._AddAnomaly(), self._AddAnomaly()]
@@ -739,6 +780,51 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertIn(
         'Chromium Commit Position: http://test-results.appspot.com/revision_range?start=0&end=100',
         self._issue_tracker.new_bug_args[1])
+
+  def testNoTriage_GroupUntriaged_Anomaly(self):
+    anomalies = [
+        self._AddAnomaly(test="internal.client.v8/Nexus7/v8/JSTests/IC/LoadConstantFromPrototype"),
+        self._AddAnomaly(test="Chromium/foo/bar/baz/zippy")
+    ]
+
+    # TODO: Make sure these anomalies end up in different AlertGropus.
+
+    group = self._AddAlertGroup(
+        anomalies[0],
+        status=alert_group.AlertGroup.Status.untriaged,
+    )
+    # It is important that these subscriptions have the same name since we want
+    # to test the grouping logic that merges auto_triage_ename across
+    # subscriptions.
+    self._sheriff_config.patterns = {
+        'Chromium/*': [
+            subscription.Subscription(name='sheriff', auto_triage_enable=True)
+        ],
+         'internal.client.v8/*': [
+            subscription.Subscription(name='sheriff_not_bind', auto_triage_enable=False)
+        ],
+    }
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        issue_tracker=self._issue_tracker,
+        revision_info=self._revision_info,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+    self._UpdateTwice(
+        workflow=w,
+        update=alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+            now=datetime.datetime.utcnow(),
+            anomalies=ndb.get_multi(anomalies),
+            issue=None,
+        ))
+
+    #print("issue tracker state: %s" % self._issue_tracker.new_buag_args)
+
+    #self.assertIn('a/b/c', self._issue_tracker.new_bug_args[1])
 
   def testTriage_GroupUntriaged_InfAnomaly(self):
     anomalies = [self._AddAnomaly(median_before_anomaly=0), self._AddAnomaly()]
