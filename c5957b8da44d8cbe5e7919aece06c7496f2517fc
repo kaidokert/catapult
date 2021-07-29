@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e40136_a24e5335",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-07-29T13:17:36Z",
+      "side": 1,
+      "message": "Opps, still need OWNERS.\n\nBen, would you mind taking another look for device_utils* OWNERS? This CL is an identical reland of my previous CL: https://crrev.com/c/3024597",
+      "revId": "c5957b8da44d8cbe5e7919aece06c7496f2517fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
