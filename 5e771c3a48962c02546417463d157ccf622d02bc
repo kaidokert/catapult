@@ -16,6 +16,24 @@
       "message": "Are there any news?",
       "revId": "5e771c3a48962c02546417463d157ccf622d02bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fceee7e_bffa75a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-07-29T20:25:20Z",
+      "side": 1,
+      "message": "Thanks for the patch \u0026 sorry about the delay.",
+      "parentUuid": "a87b0442_ab8dce31",
+      "revId": "5e771c3a48962c02546417463d157ccf622d02bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
