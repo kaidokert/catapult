@@ -23,7 +23,7 @@ from tracing_build import render_histograms_viewer
 
 
 def _IsUserDefinedInstance(obj):
-  return type(obj).__module__ != six.moves.builtins.__name__
+  return str(type(obj)).startswith('<class ')
 
 
 class _HeapProfiler(object):
