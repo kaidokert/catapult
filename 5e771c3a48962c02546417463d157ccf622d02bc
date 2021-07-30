@@ -51,6 +51,24 @@
       "message": "ah, this appears to need addressing:\n\n```\nThe catapult directory requires source formatting. Please run: git cl format --js \n```",
       "revId": "5e771c3a48962c02546417463d157ccf622d02bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6da0628_7c864b96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181690
+      },
+      "writtenOn": "2021-07-30T18:43:37Z",
+      "side": 1,
+      "message": "but this is likely outside the scope of your CL:\n\n```\nERROR: Cannot install -r /b/s/w/ir/tmp/t/vpython_bootstrap282822878/requirements.txt (line 31) and py\u003d\u003d1.5.3 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    The user requested py\u003d\u003d1.5.3\n    pytest 6.2.2 depends on py\u003e\u003d1.8.2\n\nTo fix this you could try to:\n1. loosen the range of package versions you\u0027ve specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/user_guide/#fixing-conflicting-dependencies\n```",
+      "parentUuid": "c9cd8965_49d183b5",
+      "revId": "5e771c3a48962c02546417463d157ccf622d02bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
