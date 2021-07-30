@@ -4,10 +4,15 @@
 
 import unittest
 import shutil
+import sys
 import tempfile
 
-from tracing_build import generate_about_tracing_contents
+if sys.version_info < (3,):
+  from tracing_build import generate_about_tracing_contents
 
+
+@unittest.skipIf(sys.version_info >= (3,),
+                 'py_vulcanize is not ported to python3')
 class GenerateAboutTracingContentsUnittTest(unittest.TestCase):
 
   def testSmoke(self):
