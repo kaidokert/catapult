@@ -22,6 +22,30 @@
       },
       "revId": "4633481d2946d39210a59f0768dfb2e7baedbc73",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be496de6_58119866",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-07-30T20:43:04Z",
+      "side": 1,
+      "message": "Andrey mentioned those in another email thread. Copying here:\n\nIt broke our tests: https://ci.chromium.org/p/webrtc/g/perf/console\nExample error log: https://logs.chromium.org/logs/webrtc/buildbucket/cr-buildbucket.appspot.com/8840263745083023424/+/steps/webrtc_perf_tests_Dashboard_Upload/0/stdout\n\nIt happens because histogram_proto.HAS_PROTO is now false: https://source.chromium.org/chromium/chromium/src/+/main:third_party/webrtc/tools_webrtc/perf/webrtc_dashboard_upload.py;l\u003d102\n\nI think the comment near your changes describes the issue:\n  # Note: from tracing.proto import histogram_pb2 would make more sense here,\n  # but unfortunately protoc does not generate __init__.py files if you specify\n  # an out package (at least for the gn proto_library rule).It broke our tests: https://ci.chromium.org/p/webrtc/g/perf/console\nExample error log: https://logs.chromium.org/logs/webrtc/buildbucket/cr-buildbucket.appspot.com/8840263745083023424/+/steps/webrtc_perf_tests_Dashboard_Upload/0/stdout\n\nIt happens because histogram_proto.HAS_PROTO is now false: https://source.chromium.org/chromium/chromium/src/+/main:third_party/webrtc/tools_webrtc/perf/webrtc_dashboard_upload.py;l\u003d102\n\nI think the comment near your changes describes the issue:\n  # Note: from tracing.proto import histogram_pb2 would make more sense here,\n  # but unfortunately protoc does not generate __init__.py files if you specify\n  # an out package (at least for the gn proto_library rule).",
+      "parentUuid": "ec407e82_36fadc02",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 95
+      },
+      "revId": "4633481d2946d39210a59f0768dfb2e7baedbc73",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
