@@ -9,8 +9,21 @@ try:
   # an out package (at least for the gn proto_library rule).
   from . import histogram_pb2  # pylint:disable=relative-import
   HAS_PROTO = True
-except ImportError:
-  HAS_PROTO = False
+except ImportError as e:
+  import logging
+  try:
+    # crbug/1234919
+    # webrtc has the histogram in output path while catapult put it in the
+    # same source folder. This allows to try import from sys.path, set in:
+    # webrtc_dashboard_upload.py;l=96
+    logging.warning(
+        'Failed to import histogram_pb2 from .: %s', repr(e))
+    import histogram_pb2
+    logging.warning(
+        'Retried to imported histogram_pb2: %s', histogram_pb2)
+    HAS_PROTO = True
+  except ImportError:
+    HAS_PROTO = False
 
 
 def _EnsureProto():
