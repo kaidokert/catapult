@@ -69,6 +69,23 @@
       "parentUuid": "c9cd8965_49d183b5",
       "revId": "5e771c3a48962c02546417463d157ccf622d02bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75196565_3b4a8dd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518317
+      },
+      "writtenOn": "2021-07-30T19:13:29Z",
+      "side": 1,
+      "message": "Yes, this error is outside the scope of my CL.\nIn a previous CL I had the same warning (for python2, not python3), but presubmit checks were passed.",
+      "revId": "5e771c3a48962c02546417463d157ccf622d02bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
