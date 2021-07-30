@@ -33,6 +33,23 @@
       "message": "PTAL.",
       "revId": "80055eceaf8015fd622babf4361c39cc71566857",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a42733e_c1257428",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-07-30T21:04:51Z",
+      "side": 1,
+      "message": "LGTM % don\u0027t have rights to actually click +1",
+      "revId": "80055eceaf8015fd622babf4361c39cc71566857",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
