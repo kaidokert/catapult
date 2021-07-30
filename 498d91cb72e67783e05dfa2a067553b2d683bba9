@@ -34,6 +34,24 @@
       "parentUuid": "25b645ab_8df58560",
       "revId": "498d91cb72e67783e05dfa2a067553b2d683bba9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "080491c8_f9fbbe23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-07-30T14:51:48Z",
+      "side": 1,
+      "message": "Great idea! Thanks Haiyang, I\u0027ve explicitly enabled root and now it passes on the android-11 emulator.",
+      "parentUuid": "a3df957f_e62a0c03",
+      "revId": "498d91cb72e67783e05dfa2a067553b2d683bba9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
