@@ -213,7 +213,7 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
         # Try to decompress at most 100 bytes from the data, only to determine
         # if we've been given compressed payload.
         zlib.decompressobj().decompress(data_str, 100)
-        logging.info('Received compressed data.')
+        logging.info('Received compressed data...')
       except zlib.error:
         data_str = self.request.get('data')
         if not data_str:
