@@ -27,8 +27,8 @@ class RevisionRange(ndb.Model):
 
 
 class BugInfo(ndb.Model):
-  project = ndb.StringProperty()
-  bug_id = ndb.IntegerProperty()
+  project = ndb.StringProperty(indexed=True)
+  bug_id = ndb.IntegerProperty(indexed=True)
 
 
 class AlertGroup(ndb.Model):
@@ -59,7 +59,7 @@ class AlertGroup(ndb.Model):
   )
   active = ndb.BooleanProperty(indexed=True)
   revision = ndb.LocalStructuredProperty(RevisionRange)
-  bug = ndb.LocalStructuredProperty(BugInfo)
+  bug = ndb.StructuredProperty(BugInfo, indexed=True)
   project_id = ndb.StringProperty(indexed=True, default='chromium')
   bisection_ids = ndb.StringProperty(repeated=True)
   anomalies = ndb.KeyProperty(repeated=True)
