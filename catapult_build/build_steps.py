@@ -22,156 +22,156 @@ import sys
 #   page. More details here:
 # github.com/luci/recipes-py/blob/master/recipe_modules/generator_script/api.py
 _DASHBOARD_TESTS = [
-    {
-        'name': 'Dashboard Dev Server Tests Stable',
-        'path': 'dashboard/bin/run_dev_server_tests',
-        'additional_args': [
-            '--no-install-hooks', '--no-use-local-chrome', '--channel=stable',
-            '--timeout-sec=120', '--timeout-retries=2'
-        ],
-        'outputs_presentation_json': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Dashboard Dev Server Tests Canary',
-        'path': 'dashboard/bin/run_dev_server_tests',
-        'additional_args': [
-            '--no-install-hooks', '--no-use-local-chrome', '--channel=canary',
-            '--timeout-sec=120', '--timeout-retries=2'
-        ],
-        'outputs_presentation_json': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Dashboard Python Tests',
-        'path': 'dashboard/bin/run_py_tests',
-        'additional_args': ['--no-install-hooks'],
-        'disabled': ['android'],
-    },
+    # {
+    #     'name': 'Dashboard Dev Server Tests Stable',
+    #     'path': 'dashboard/bin/run_dev_server_tests',
+    #     'additional_args': [
+    #         '--no-install-hooks', '--no-use-local-chrome', '--channel=stable',
+    #         '--timeout-sec=120', '--timeout-retries=2'
+    #     ],
+    #     'outputs_presentation_json': True,
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Dashboard Dev Server Tests Canary',
+    #     'path': 'dashboard/bin/run_dev_server_tests',
+    #     'additional_args': [
+    #         '--no-install-hooks', '--no-use-local-chrome', '--channel=canary',
+    #         '--timeout-sec=120', '--timeout-retries=2'
+    #     ],
+    #     'outputs_presentation_json': True,
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Dashboard Python Tests',
+    #     'path': 'dashboard/bin/run_py_tests',
+    #     'additional_args': ['--no-install-hooks'],
+    #     'disabled': ['android'],
+    # },
 ]
 
 _CATAPULT_TESTS = [
-    {
-        'name': 'Build Python Tests',
-        'path': 'catapult_build/bin/run_py_tests',
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Common Tests',
-        'path': 'common/bin/run_tests',
-    },
-    {
-        'name': 'Dependency Manager Tests',
-        'path': 'dependency_manager/bin/run_tests',
-    },
-    {
-        'name': 'Devil Device Tests',
-        'path': 'devil/bin/run_py_devicetests',
-        'disabled': ['win', 'mac', 'linux']
-    },
-    {
-        'name': 'Devil Python Tests',
-        'path': 'devil/bin/run_py_tests',
-        'disabled': ['mac', 'win'],
-    },
-    {
-        'name': 'Native Heap Symbolizer Tests',
-        'path': 'tracing/bin/run_symbolizer_tests',
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Py-vulcanize Tests',
-        'path': 'common/py_vulcanize/bin/run_py_tests',
-        'additional_args': ['--no-install-hooks'],
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Systrace Tests',
-        'path': 'systrace/bin/run_tests',
-    },
-    {
-        'name': 'Snap-it Tests',
-        'path': 'telemetry/bin/run_snap_it_unittest',
-        'additional_args': ['--browser=reference',],
-        'uses_sandbox_env': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Telemetry Tests with Stable Browser (Desktop)',
-        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
-        'additional_args': [
-            '--browser=reference',
-            '--start-xvfb',
-            '-v',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Telemetry Tests with Stable Browser (Android)',
-        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
-        'additional_args': [
-            '--browser=reference',
-            '--device=android',
-            '--jobs=1',
-            '-v',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['win', 'mac', 'linux']
-    },
-    {
-        'name': 'Telemetry Integration Tests with Stable Browser',
-        'path': 'telemetry/bin/run_browser_tests',
-        'additional_args': [
-            'BrowserTest',
-            '--browser=reference',
-            '-v',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['android', 'linux'],  # TODO(nedn): enable this on linux
-    },
-    {
-        'name': 'Tracing Dev Server Tests',
-        'path': 'tracing/bin/run_dev_server_tests',
-        'additional_args': [
-            '--no-install-hooks',
-            '--no-use-local-chrome',
-            '--channel=stable',
-            '--timeout-sec=900',
-        ],
-        'outputs_presentation_json': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Tracing Dev Server Tests Canary',
-        'path': 'tracing/bin/run_dev_server_tests',
-        'additional_args': [
-            '--no-install-hooks',
-            '--no-use-local-chrome',
-            '--channel=canary',
-            '--timeout-sec=900',
-        ],
-        'outputs_presentation_json': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Tracing D8 Tests',
-        'path': 'tracing/bin/run_vinn_tests',
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Tracing Python Tests',
-        'path': 'tracing/bin/run_py_tests',
-        'additional_args': ['--no-install-hooks'],
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Typ unittest',
-        'path': 'third_party/typ/run',
-        'additional_args': ['tests'],
-        'disabled': ['android', 'win'
-                    ],  # TODO(crbug.com/851498): enable typ unittests on Win
-    },
+    # {
+    #     'name': 'Build Python Tests',
+    #     'path': 'catapult_build/bin/run_py_tests',
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Common Tests',
+    #     'path': 'common/bin/run_tests',
+    # },
+    # {
+    #     'name': 'Dependency Manager Tests',
+    #     'path': 'dependency_manager/bin/run_tests',
+    # },
+    # {
+    #     'name': 'Devil Device Tests',
+    #     'path': 'devil/bin/run_py_devicetests',
+    #     'disabled': ['win', 'mac', 'linux']
+    # },
+    # {
+    #     'name': 'Devil Python Tests',
+    #     'path': 'devil/bin/run_py_tests',
+    #     'disabled': ['mac', 'win'],
+    # },
+    # {
+    #     'name': 'Native Heap Symbolizer Tests',
+    #     'path': 'tracing/bin/run_symbolizer_tests',
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Py-vulcanize Tests',
+    #     'path': 'common/py_vulcanize/bin/run_py_tests',
+    #     'additional_args': ['--no-install-hooks'],
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Systrace Tests',
+    #     'path': 'systrace/bin/run_tests',
+    # },
+    # {
+    #     'name': 'Snap-it Tests',
+    #     'path': 'telemetry/bin/run_snap_it_unittest',
+    #     'additional_args': ['--browser=reference',],
+    #     'uses_sandbox_env': True,
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Telemetry Tests with Stable Browser (Desktop)',
+    #     'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
+    #     'additional_args': [
+    #         '--browser=reference',
+    #         '--start-xvfb',
+    #         '-v',
+    #     ],
+    #     'uses_sandbox_env': True,
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Telemetry Tests with Stable Browser (Android)',
+    #     'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
+    #     'additional_args': [
+    #         '--browser=reference',
+    #         '--device=android',
+    #         '--jobs=1',
+    #         '-v',
+    #     ],
+    #     'uses_sandbox_env': True,
+    #     'disabled': ['win', 'mac', 'linux']
+    # },
+    # {
+    #     'name': 'Telemetry Integration Tests with Stable Browser',
+    #     'path': 'telemetry/bin/run_browser_tests',
+    #     'additional_args': [
+    #         'BrowserTest',
+    #         '--browser=reference',
+    #         '-v',
+    #     ],
+    #     'uses_sandbox_env': True,
+    #     'disabled': ['android', 'linux'],  # TODO(nedn): enable this on linux
+    # },
+    # {
+    #     'name': 'Tracing Dev Server Tests',
+    #     'path': 'tracing/bin/run_dev_server_tests',
+    #     'additional_args': [
+    #         '--no-install-hooks',
+    #         '--no-use-local-chrome',
+    #         '--channel=stable',
+    #         '--timeout-sec=900',
+    #     ],
+    #     'outputs_presentation_json': True,
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Tracing Dev Server Tests Canary',
+    #     'path': 'tracing/bin/run_dev_server_tests',
+    #     'additional_args': [
+    #         '--no-install-hooks',
+    #         '--no-use-local-chrome',
+    #         '--channel=canary',
+    #         '--timeout-sec=900',
+    #     ],
+    #     'outputs_presentation_json': True,
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Tracing D8 Tests',
+    #     'path': 'tracing/bin/run_vinn_tests',
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Tracing Python Tests',
+    #     'path': 'tracing/bin/run_py_tests',
+    #     'additional_args': ['--no-install-hooks'],
+    #     'disabled': ['android'],
+    # },
+    # {
+    #     'name': 'Typ unittest',
+    #     'path': 'third_party/typ/run',
+    #     'additional_args': ['tests'],
+    #     'disabled': ['android', 'win'
+    #                 ],  # TODO(crbug.com/851498): enable typ unittests on Win
+    # },
     {
         'name': 'Vinn Tests',
         'path': 'third_party/vinn/bin/run_tests',
