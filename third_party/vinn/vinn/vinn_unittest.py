@@ -108,20 +108,20 @@ class VinnUnittest(unittest.TestCase):
     file_path = self.GetTestFilePath('print_file_content.js')
     dummy_test_path = self.GetTestFilePath('dummy_test_file')
     output = vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir],
-                                   js_args=[dummy_test_path])
+                                   js_args=[dummy_test_path]).decode('utf-8')
     self.assertIn(
         'This is file contains only data for testing.\n1 2 3 4', output)
 
   def testDuplicateSourcePaths(self):
     output = vinn.ExecuteJsString(
       "HTMLImportsLoader.loadHTML('/load_simple_html.html');",
-      source_paths=[self.test_data_dir]*100)
+      source_paths=[self.test_data_dir]*100).decode('utf-8')
     self.assertIn(
         'load_simple_html.html is loaded', output)
 
   def testJsFileLoadHtmlFile(self):
     file_path = self.GetTestFilePath('load_simple_html.js')
-    output = vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
+    output = vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir]).decode('utf-8')
     expected_output = ('File foo.html is loaded\n'
                        'x = 1\n'
                        "File foo.html's second script is loaded\n"
@@ -131,7 +131,7 @@ class VinnUnittest(unittest.TestCase):
 
   def testJsFileLoadJsFile(self):
     file_path = self.GetTestFilePath('load_simple_js.js')
-    output = vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
+    output = vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir]).decode('utf-8')
     expected_output = ('bar.js is loaded\n'
                        'load_simple_js.js is loaded\n')
     self.assertEquals(output, expected_output)
@@ -139,7 +139,7 @@ class VinnUnittest(unittest.TestCase):
   def testHTMLFileLoadHTMLFile(self):
     file_path = self.GetTestFilePath('load_simple_html.html')
     output = vinn.ExecuteFile(
-        file_path, source_paths=[self.test_data_dir])
+        file_path, source_paths=[self.test_data_dir]).decode('utf-8')
     expected_output = ('File foo.html is loaded\n'
                        'x = 1\n'
                        "File foo.html's second script is loaded\n"
@@ -182,7 +182,7 @@ class VinnUnittest(unittest.TestCase):
       vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
 
     # Assert error stack trace contain src files' info.
-    exception_message = context.exception.message
+    exception_message = str(context.exception).encode().decode("unicode-escape")
     self.assertIn(
         ('error.js:7: Error: Throw ERROR\n'
          "    throw new Error('Throw ERROR');"), exception_message)
@@ -207,7 +207,7 @@ class VinnUnittest(unittest.TestCase):
       vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
 
     # Assert error stack trace contain src files' info.
-    exception_message = context.exception.message
+    exception_message = str(context.exception).encode().decode("unicode-escape")
     self.assertIn(
         ('error.js:7: Error: Throw ERROR\n'
          "    throw new Error('Throw ERROR');"), exception_message)
@@ -226,7 +226,7 @@ class VinnUnittest(unittest.TestCase):
       vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
 
     # Assert error stack trace contain src files' info.
-    exception_message = context.exception.message
+    exception_message = str(context.exception).encode().decode("unicode-escape")
 
     self.assertIn('Error: /does_not_exist.html not found', exception_message)
     self.AssertHasNamedFrame('eval', 'load_error_2.html:21', exception_message)
@@ -238,7 +238,7 @@ class VinnUnittest(unittest.TestCase):
       vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
 
     # Assert error stack trace contain src files' info.
-    exception_message = context.exception.message
+    exception_message = str(context.exception).encode().decode("unicode-escape")
 
     self.assertIn('syntax_error.html:23: SyntaxError: Unexpected identifier',
                   exception_message)
@@ -249,7 +249,7 @@ class VinnUnittest(unittest.TestCase):
       vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
 
     # Assert error stack trace contain src files' info.
-    exception_message = context.exception.message
+    exception_message = str(context.exception).encode().decode("unicode-escape")
 
     self.assertIn('Error: /does_not_exist.js not found', exception_message)
     self.AssertHasNamedFrame('eval', 'load_js_error_2.html:20',
@@ -263,7 +263,7 @@ class VinnUnittest(unittest.TestCase):
       vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
 
     # Assert error stack trace contain src files' info.
-    exception_message = context.exception.message
+    exception_message = str(context.exception).encode().decode("unicode-escape")
 
     self.assertIn('non_defined_variable is not defined', exception_message)
     self.AssertHasNamedFrame('eval', 'non_strict_error.html:17',
@@ -271,16 +271,20 @@ class VinnUnittest(unittest.TestCase):
 
   def testConsolePolyfill(self):
     self.assertEquals(
-        vinn.ExecuteJsString('console.log("hello", "world");'),
+        vinn.ExecuteJsString(
+            'console.log("hello", "world");').decode('utf-8'),
         'hello world\n')
     self.assertEquals(
-        vinn.ExecuteJsString('console.info("hello", "world");'),
+        vinn.ExecuteJsString(
+            'console.info("hello", "world");').decode('utf-8'),
         'Info: hello world\n')
     self.assertEquals(
-        vinn.ExecuteJsString('console.warn("hello", "world");'),
+        vinn.ExecuteJsString(
+            'console.warn("hello", "world");').decode('utf-8'),
         'Warning: hello world\n')
     self.assertEquals(
-        vinn.ExecuteJsString('console.error("hello", "world");'),
+        vinn.ExecuteJsString(
+            'console.error("hello", "world");').decode('utf-8'),
         'Error: hello world\n')
 
   def testConsoleTimeEndAssertion(self):
@@ -292,11 +296,12 @@ class VinnUnittest(unittest.TestCase):
 
   def testConsoleTime(self):
     self.assertEquals(
-        vinn.ExecuteJsString('console.time("AA")'),
+        vinn.ExecuteJsString('console.time("AA")').decode('utf-8'),
         '')
 
   def testConsoleTimeEndOutput(self):
-    output = vinn.ExecuteJsString('console.time("AA");console.timeEnd("AA")')
+    output = vinn.ExecuteJsString(
+        'console.time("AA");console.timeEnd("AA")').decode('utf-8')
     m = re.search('\d+\.\d+', output)
     if not m:
       sys.stderr.write('\nExpected to find output of timer AA')
@@ -306,7 +311,7 @@ class VinnUnittest(unittest.TestCase):
     output = vinn.ExecuteJsString("""console.time("BB");
                                      console.time("CC");
                                      console.timeEnd("CC");
-                                     console.timeEnd("BB")""")
+                                     console.timeEnd("BB")""").decode('utf-8')
     m = re.findall('(\d+\.\d+)', output)
     if not m:
       sys.stderr.write('\nExpected to find output of timer\n')
@@ -324,7 +329,7 @@ class VinnUnittest(unittest.TestCase):
         mock.patch('time.sleep'):
       mock_d8_runner.side_effect = RaiseRuntimeError
       with self.assertRaises(RuntimeError):
-        output = vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
+        vinn.ExecuteFile(file_path, source_paths=[self.test_data_dir])
       self.assertEqual(len(mock_d8_runner.mock_calls), _vinn._NUM_TRIALS)
 
 
@@ -387,7 +392,7 @@ class HTMLGeneratorTest(unittest.TestCase):
         f.write(html_text)
       return vinn.ExecuteJsString(
           'write(generateJsFromHTML(read(%s)));' %
-          _EscapeJsString(temp_file_name))
+          _EscapeJsString(temp_file_name)).decode('utf-8')
     finally:
       shutil.rmtree(tmp_dir)
 
