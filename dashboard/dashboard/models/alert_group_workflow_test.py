@@ -23,6 +23,11 @@ from dashboard.models import subscription
 
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
 
+_DUPLICATE_NOTIFICATION_TEMPLATE = """Alert group (%s) was automatically merged into %s because corresponding issues was marked as duplicates.
+
+Dashboard will now post all updates about newly detected regressions to the canonical group issue.
+
+This behavior is set up by subscription config. One of the anomalies in the group had auto merge allowed."""
 
 class AlertGroupWorkflowTest(testing_common.TestCase):
 
@@ -1663,3 +1668,57 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
             issue=self._issue_tracker.issue,
         ))
     self.assertIsNone(self._pinpoint.new_job_request)
+
+  def testAutoMerge_DuplicateGroupRun(self):
+    self._sheriff_config.patterns = {
+        '*': [
+            subscription.Subscription(name='sheriff', auto_triage_enable=True, auto_merge_enable=True)
+        ],
+    }
+
+    grouped_anomalies = [self._AddAnomaly(), self._AddAnomaly()]
+    all_anomalies = grouped_anomalies + [self._AddAnomaly()]
+    group = self._AddAlertGroup(
+        grouped_anomalies[0],
+        issue=self._issue_tracker.NewBug(status='Duplicate'),
+        anomalies=grouped_anomalies,
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+    canonical_group = self._AddAlertGroup(
+        grouped_anomalies[0],
+        issue=self._issue_tracker.NewBug(),
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        sheriff_config=self._sheriff_config,
+        issue_tracker=self._issue_tracker,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+    u = alert_group_workflow.AlertGroupWorkflow.GroupUpdate(
+        now=datetime.datetime.utcnow(),
+        anomalies=ndb.get_multi(all_anomalies),
+        issue=self._issue_tracker.issue,
+        canonical_group=canonical_group.get(),
+    )
+
+    w.Process(update=u)
+    # self._UpdateTwice(workflow=w, update=u)
+
+    self.assertEqual(len(self._issue_tracker.calls), 2)
+    self.assertEqual(self._issue_tracker.calls[0], {
+        'method': 'AddBugComment',
+        'args': [
+            # FakeIssueTrackerService.NewBug creates IDs starting from 12345.
+            12345,
+            _DUPLICATE_NOTIFICATION_TEMPLATE % (group.key.string_id(), canonical_group.string_id()),
+        ],
+        'kwargs': {
+            'project': 'chromium',
+            'send_email': False
+        },
+    })
