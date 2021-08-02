@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8402b25_82a957ce",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-08-02T18:21:58Z",
+      "side": 1,
+      "message": "Good idea. Thanks!",
+      "parentUuid": "77de8246_3576aacd",
+      "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "369566f3_cdbfb839",
@@ -66,6 +84,30 @@
       "writtenOn": "2021-07-22T06:37:15Z",
       "side": 1,
       "message": "I suggest wrapping this in a call to list:\n\n      pass_through_args \u003d list(_WATERFALL_ENABLED_GTEST_NAMES[benchmark])\n\nTo make sure code downstream of here can\u0027t inadvertently mutate the list in the global “constant”.",
+      "range": {
+        "startLine": 108,
+        "startChar": 26,
+        "endLine": 108,
+        "endChar": 67
+      },
+      "revId": "5ab0807f48df404c26f30451b157570a23c0d7e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e2fcbf2_749b1537",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-08-02T18:21:58Z",
+      "side": 1,
+      "message": "Updated. Thanks!",
+      "parentUuid": "369566f3_cdbfb839",
       "range": {
         "startLine": 108,
         "startChar": 26,
