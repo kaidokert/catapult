@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import csv
 import logging
-import StringIO
+from six import StringIO
 
 from dashboard.common import datastore_hooks
 from dashboard.common import request_handler
