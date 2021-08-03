@@ -404,9 +404,14 @@ class FakeIssueTrackerService(object):
     # TODO(dberris): In the future, actually generate the issue.
     self.issues.update({
         (kwargs.get('project', 'chromium'), self._bug_id_counter): {
-            k: v for k, v in itertools.chain(self._base_issue.items(), [(
-                'id', self._bug_id_counter
-            ), ('projectId', kwargs.get('project', 'chromium'))])
+            k: v for k, v in itertools.chain(
+                self._base_issue.items(),
+                kwargs.items(),
+                [
+                    ('id', self._bug_id_counter),
+                    ('projectId', kwargs.get('project', 'chromium'))
+                ]
+            )
         }
     })
     result = {
@@ -452,7 +457,9 @@ class FakeSheriffConfigClient(object):
     # The real implementation is quite different from fnmatch. But this is
     # enough for testing because we shouldn't test match logic.
     for p, s in self.patterns.items():
+      logging.debug('Trying to match %r to %s', p, path)
       if re.match(fnmatch.translate(p), path):
+        logging.debug('Matched %s', str(s))
         return s, None
     return [], None
 
