@@ -57,6 +57,8 @@ _TEMPLATE_ISSUE_COMMENT = _TEMPLATE_ENV.get_template(
 _TEMPLATE_REOPEN_COMMENT = _TEMPLATE_ENV.get_template('reopen_issue_comment.j2')
 _TEMPLATE_AUTO_BISECT_COMMENT = _TEMPLATE_ENV.get_template(
     'auto_bisect_comment.j2')
+_TEMPLATE_GROUP_WAS_MERGED = _TEMPLATE_ENV.get_template(
+    'alert_groups_merge_bug_comment.j2')
 
 # Waiting 7 days to gather more potential alerts. Just choose a long
 # enough time and all alerts arrive after archived shouldn't be silent
@@ -104,8 +106,13 @@ class AlertGroupWorkflow(object):
     __slots__ = ()
 
   class GroupUpdate(
-      collections.namedtuple('GroupUpdate', ('now', 'anomalies', 'issue'))):
+      collections.namedtuple('GroupUpdate',
+                             ('now', 'anomalies', 'issue', 'canonical_group'))):
     __slots__ = ()
+
+    def __new__(cls, now, anomalies, issue, canonical_group=None):
+      return super(AlertGroupWorkflow.GroupUpdate, cls).__new__(
+          cls, now, anomalies, issue, canonical_group)
 
   class BenchmarkDetails(
       collections.namedtuple('BenchmarkDetails',
@@ -143,11 +150,55 @@ class AlertGroupWorkflow(object):
     self._revision_info = revision_info or revision_info_client
     self._service_account = service_account or utils.ServiceAccountEmail
 
+  def _FindCanonicalGroup(self, issue):
+    if issue['status'] != 'Duplicate':
+      return None
+
+    merged_into = None
+    latest_id = 0
+    for comment in issue['comments']:
+      if comment['updates'].get('mergedInto') and comment['id'] >= latest_id:
+        merged_into = comment['updates'].get('mergedInto')
+        latest_id = comment['id']
+    if not merged_into:
+      return None
+
+    query = alert_group.AlertGroup.query(
+        alert_group.AlertGroup.active == True,
+        # It is impossible to merge bugs from different projects in monorail.
+        # So the canonical group bug is guarandeed to have the same project.
+        alert_group.AlertGroup.bug.project == self._group.bug.project,
+        alert_group.AlertGroup.bug.bug_id == merged_into)
+    query_result = query.fetch(limit=1)
+    if not query_result:
+      return None
+
+    canonical_group = query_result[0]
+    visited = {canonical_group.key}
+    while canonical_group.canonical_group:
+      if canonical_group.canonical_group in visited:
+        logging.warning(
+            'Alert group auto merge failed. Found a cycle while '
+            'searching for a canonical group for %r', self._group)
+        return None
+      canonical_group = canonical_group.canonical_group.get()
+    return canonical_group
+
+  def _FindDuplicateGroups(self):
+    query = alert_group.AlertGroup.query(
+        alert_group.AlertGroup.active == True,
+        alert_group.AlertGroup.canonical_group == self._group.key)
+    return query.fetch() or []
+
   def _PrepareGroupUpdate(self):
+    duplicate_groups = self._FindDuplicateGroups()
     now = datetime.datetime.utcnow()
-    query = anomaly.Anomaly.query(anomaly.Anomaly.groups.IN([self._group.key]))
+    query = anomaly.Anomaly.query(
+        anomaly.Anomaly.groups.IN([self._group.key] +
+                                  [g.key for g in duplicate_groups]))
     anomalies = query.fetch()
     issue = None
+    canonical_group = None
     if self._group.status in {
         self._group.Status.triaged, self._group.Status.bisected,
         self._group.Status.closed
@@ -158,7 +209,8 @@ class AlertGroupWorkflow(object):
       # manually replace it with 'chromium'.
       issue['comments'] = self._issue_tracker.GetIssueComments(
           self._group.bug.bug_id, project=self._group.bug.project or 'chromium')
-    return self.GroupUpdate(now, anomalies, issue)
+      canonical_group = self._FindCanonicalGroup(issue)
+    return self.GroupUpdate(now, anomalies, issue, canonical_group)
 
   def Process(self, update=None):
     """Process the workflow.
@@ -188,17 +240,20 @@ class AlertGroupWorkflow(object):
       matching_subs = [
           s for s in subscriptions if s.name == self._group.subscription_name
       ]
-      a.auto_triage_enable = any(s.auto_triage_enable
-                                 for s in subscriptions
-                                 if s.name == self._group.subscription_name)
+      a.auto_triage_enable = any(s.auto_triage_enable for s in matching_subs)
       if a.auto_triage_enable:
         logging.info('auto_triage_enable for %s due to subscription: %s',
                      a.test.string_id(),
                      [s.name for s in matching_subs if s.auto_triage_enable])
 
-      a.auto_bisect_enable = any(s.auto_bisect_enable
-                                 for s in subscriptions
-                                 if s.name == self._group.subscription_name)
+      a.auto_merge_enable = any(s.auto_merge_enable for s in matching_subs)
+
+      if a.auto_merge_enable:
+        logging.info('auto_merge_enable for %s due to subscription: %s',
+                     a.test.string_id(),
+                     [s.name for s in matching_subs if s.auto_merge_enable])
+
+      a.auto_bisect_enable = any(s.auto_bisect_enable for s in matching_subs)
       a.relative_delta = (
           abs(a.absolute_delta / float(a.median_before_anomaly))
           if a.median_before_anomaly != 0. else float('Inf'))
@@ -207,9 +262,19 @@ class AlertGroupWorkflow(object):
 
     if update.issue:
       self._UpdateStatus(update.issue)
-      if self._UpdateIssue(update.issue, update.anomalies, added):
+      self._UpdateAnomaliesBugs(update.anomalies, update.canonical_group)
+      if self._ShouldMergeGroups(update.anomalies, update.canonical_group):
+        logging.info('Can merge groups')
+        if self._UpdateCanonicalGroup(update.canonical_group):
+          self._FileDuplicatedNotification(update.canonical_group)
+        self._UpdateDuplicateIssue(update.anomalies, added)
+        assert (self._group.status == self._group.Status.closed), (
+            'The issue is closed as duplicate (\'state\' is \'closed\'). '
+            'However the groups\' status doesn\'t match the issue status')
+      elif self._UpdateIssue(update.issue, update.anomalies, added):
         # Only operate on alert group if nothing updated to prevent flooding
         # monorail if some operations keep failing.
+        logging.info('Commit group')
         return self._CommitGroup()
 
     group = self._group
@@ -223,6 +288,7 @@ class AlertGroupWorkflow(object):
       self._TryTriage(update.now, update.anomalies)
     elif group.status in {group.Status.triaged}:
       self._TryBisect(update)
+    logging.info('Commit group 2')
     return self._CommitGroup()
 
   def _CommitGroup(self):
@@ -239,13 +305,25 @@ class AlertGroupWorkflow(object):
     elif self._group.status == self._group.Status.closed:
       self._group.status = self._group.Status.triaged
 
-  def _UpdateIssue(self, issue, anomalies, added):
-    """Update the status of the monorail issue.
+  def _ShouldMergeGroups(self, anomalies, canonical_group):
+    # Only merge groups if there is at least one anomaly that allows merge.
+    return canonical_group is not None and any(
+        a.auto_merge_enable for a in anomalies)
 
-    Returns True if the issue was changed.
-    """
+  def _UpdateCanonicalGroup(self, canonical_group):
+    if self._group.canonical_group != canonical_group.key:
+      self._group.canonical_group = canonical_group.key
+      return True
+    return False
+
+  def _UpdateAnomaliesBugs(self, anomalies, canonical_group):
     for a in anomalies:
-      if a.bug_id is None and a.auto_triage_enable:
+      if not a.auto_triage_enable:
+        continue
+      if canonical_group is not None and a.auto_merge_enable:
+        a.project_id = canonical_group.project_id
+        a.bug_id = canonical_group.bug.bug_id
+      elif a.bug_id is None:
         a.project_id = self._group.project_id
         a.bug_id = self._group.bug.bug_id
 
@@ -253,6 +331,12 @@ class AlertGroupWorkflow(object):
     # found because group may be updating at the same time.
     ndb.put_multi(anomalies)
 
+  def _UpdateIssue(self, issue, anomalies, added):
+    """Update the status of the monorail issue.
+
+    Returns True if the issue was changed.
+    """
+    logging.info('Not merge groups')
     # Check whether all the anomalies associated have been marked recovered.
     if all(a.recovered for a in anomalies if not a.is_improvement):
       if issue.get('state') == 'open':
@@ -278,6 +362,8 @@ class AlertGroupWorkflow(object):
                              for a in anomalies
                              if not a.is_improvement and not a.recovered)
 
+    logging.info('About to file an update')
+
     if (issue.get('state') == 'closed' and closed_by_pinpoint
         and has_new_regression):
       self._ReopenWithNewRegressions(all_regressions, new_regressions,
@@ -285,6 +371,20 @@ class AlertGroupWorkflow(object):
     else:
       self._FileNormalUpdate(all_regressions, new_regressions, subscriptions)
     return True
+
+  def _UpdateDuplicateIssue(self, anomalies, added):
+    new_regressions, subscriptions = self._GetRegressions(added)
+    all_regressions, _ = self._GetRegressions(anomalies)
+
+    # Only update issue if there is at least one regression
+    if not new_regressions:
+      return False
+
+    self._FileNormalUpdate(
+        all_regressions,
+        new_regressions,
+        subscriptions,
+        new_regression_notification=False)
 
   def _CloseBecauseRecovered(self):
     self._issue_tracker.AddBugComment(
@@ -313,10 +413,16 @@ class AlertGroupWorkflow(object):
         send_email=False,
     )
 
-  def _FileNormalUpdate(self, all_regressions, added, subscriptions):
+  def _FileNormalUpdate(self,
+                        all_regressions,
+                        added,
+                        subscriptions,
+                        new_regression_notification=True):
     summary = _TEMPLATE_ISSUE_TITLE.render(
         self._GetTemplateArgs(all_regressions))
-    comment = _TEMPLATE_ISSUE_COMMENT.render(self._GetTemplateArgs(added))
+    comment = None
+    if new_regression_notification:
+      comment = _TEMPLATE_ISSUE_COMMENT.render(self._GetTemplateArgs(added))
     components, cc, labels = self._ComputeBugUpdate(subscriptions, added)
     self._issue_tracker.AddBugComment(
         self._group.bug.bug_id,
@@ -325,6 +431,18 @@ class AlertGroupWorkflow(object):
         labels=labels,
         cc_list=cc,
         components=components,
+        project=self._group.project_id,
+        send_email=False,
+    )
+
+  def _FileDuplicatedNotification(self, canonical_group):
+    comment = _TEMPLATE_GROUP_WAS_MERGED.render({
+        'group': self._group,
+        'canonical_group': canonical_group,
+    })
+    self._issue_tracker.AddBugComment(
+        self._group.bug.bug_id,
+        comment,
         project=self._group.project_id,
         send_email=False,
     )
