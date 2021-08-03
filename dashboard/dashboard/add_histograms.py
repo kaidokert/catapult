@@ -11,7 +11,7 @@ import decimal
 import ijson
 import json
 import logging
-import StringIO
+from six import StringIO
 import sys
 import uuid
 import zlib
