@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import csv
-import StringIO
+from six import StringIO
 import unittest
 
 import webapp2
