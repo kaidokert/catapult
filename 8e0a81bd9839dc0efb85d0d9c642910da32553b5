@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d5b95ce_b7eb31f3",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-04T13:34:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1cf90e6_0465bc80",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "8e0a81bd9839dc0efb85d0d9c642910da32553b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "835bb3c9_6876ede1",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd36b117_61602224",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-04T13:34:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "835bb3c9_6876ede1",
+      "range": {
+        "startLine": 153,
+        "startChar": 6,
+        "endLine": 153,
+        "endChar": 25
+      },
+      "revId": "8e0a81bd9839dc0efb85d0d9c642910da32553b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f56b3164_10e78b9d",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-08-04T11:54:03Z",
       "side": 1,
       "message": "Maybe add a docstring?",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 25
+      },
+      "revId": "8e0a81bd9839dc0efb85d0d9c642910da32553b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91d9447b_9731d613",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-04T13:34:41Z",
+      "side": 1,
+      "message": "I can\u0027t see any that would make sense here and wouldn\u0027t be just rephrased function name.",
+      "parentUuid": "f56b3164_10e78b9d",
       "range": {
         "startLine": 206,
         "startChar": 6,
