@@ -23,6 +23,32 @@
 #   https://chromium.googlesource.com/infra/infra/+/master/doc/users/vpython.md
 
 python_version: "3.8"
+
+# Used by:
+#   telemetry/
+#
+# This version must be compatible with the version range specified by
+# //telemetry/telemetry/internal/util/external_modules.py
+wheel: <
+  name: "infra/python/wheels/numpy/${vpython_platform}"
+  version: "version:1.11.3"
+>
+
+# Used by:
+#   dashboard/
+#   telemetry/
+wheel: <
+  name: "infra/python/wheels/pypiwin32/${vpython_platform}"
+  version: "version:219"
+  match_tag: <
+    platform: "win32"
+  >
+  match_tag: <
+    platform: "win_amd64"
+  >
+>
+
+
 # Used by:
 #   build/android/pylib/local/emulator/avd.py
 #   components/policy/test_support/policy_testserver.py
