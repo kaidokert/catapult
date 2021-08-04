@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1cf90e6_0465bc80",
+        "filename": "dashboard/dashboard/models/alert_group.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1275653
+      },
+      "writtenOn": "2021-08-04T11:54:03Z",
+      "side": 1,
+      "message": "Maybe add a comment about what is it and what type it stores?",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "8e0a81bd9839dc0efb85d0d9c642910da32553b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835bb3c9_6876ede1",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1275653
+      },
+      "writtenOn": "2021-08-04T11:54:03Z",
+      "side": 1,
+      "message": "Maybe add a docstring?",
+      "range": {
+        "startLine": 153,
+        "startChar": 6,
+        "endLine": 153,
+        "endChar": 25
+      },
+      "revId": "8e0a81bd9839dc0efb85d0d9c642910da32553b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f56b3164_10e78b9d",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1275653
+      },
+      "writtenOn": "2021-08-04T11:54:03Z",
+      "side": 1,
+      "message": "Maybe add a docstring?",
+      "range": {
+        "startLine": 206,
+        "startChar": 6,
+        "endLine": 206,
+        "endChar": 25
+      },
+      "revId": "8e0a81bd9839dc0efb85d0d9c642910da32553b5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
