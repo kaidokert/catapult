@@ -16,6 +16,23 @@
       "message": "Please take a look.",
       "revId": "6ae4a4344c5b9f3d04173bbfee69adbbb38d9fa0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41f53adc_ac9753b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-05T16:28:58Z",
+      "side": 1,
+      "message": "Could you please also update record_wpr_unittest.py? Thanks!",
+      "revId": "6ae4a4344c5b9f3d04173bbfee69adbbb38d9fa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
