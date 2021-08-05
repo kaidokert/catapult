@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3955a4b4_3cdf81be",
+        "filename": ".vpython3",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-05T06:05:14Z",
+      "side": 0,
+      "message": "Could you explain this? Is numpy not needed any more?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 27
+      },
+      "revId": "dc93b474218dfe516a4b05d8337276dc1bf2581b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
