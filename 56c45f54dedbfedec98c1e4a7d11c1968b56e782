@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ebee24e_627c1b45",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-08-05T19:58:27Z",
+      "side": 1,
+      "message": "Enabling root is sticky, and could cause subsequent calls to DeviceUtils methods to succeed that would otherwise fail (e.g. can mask errors where other commands forget to use root).\n\nCan you change this to push to /data/local/tmp, and then use a RunShellCommand(as_root\u003dTrue) to move the files to their final destination?\n\nIdeally PushChangedFiles would have an as_root option... If you\u0027re feeling ambition, could take that approach as well.",
+      "revId": "56c45f54dedbfedec98c1e4a7d11c1968b56e782",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
