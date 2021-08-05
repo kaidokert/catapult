@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d588f22_dafd8fb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-05T20:07:06Z",
+      "side": 1,
+      "message": "Just to clarify - the process doesn\u0027t auto merge issues. It merges alert groups for issues that were merged by the user.\n\nThe way it is currently implemented, if groups are merged they can\u0027t be fully separated (it\u0027s not obvious, so I\u0027ve added note about it in the doc: go/chromeperf-auto-triage#opt-into-auto-merge). If the user decides to change the duplicate issue status the groups will stay merged anyway.\n\nThank for the question. Now that I think about it - this behavior will probably cause some confusion. So it\u0027s better to implement separation. However we won\u0027t be able to:\n- Remove anomalies that were added to the canonical group while the groups were merged. Theoretically it\u0027s possible but hard to implement.\n- Change back bug id that was assigned to the anomalies. We can\u0027t tell is it was assigned by auto merge of by user via \nBut besides that everything will become as if the groups were never merged.\n\nI\u0027ve added separation. PTAL again.",
+      "parentUuid": "2904af5e_b38bd32b",
+      "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a8d063a_57be4f06",
@@ -58,6 +76,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c6e6a5_5ae58476",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-05T20:07:06Z",
+      "side": 1,
+      "message": "It deoes: `self._group.canonical_group \u003d canonical_group.key`. It doesn\u0027t put the update to the datastore, but neither other similar functions here e.g. `_UpdateStatus`",
+      "parentUuid": "5a8d063a_57be4f06",
+      "range": {
+        "startLine": 342,
+        "startChar": 6,
+        "endLine": 342,
+        "endChar": 27
+      },
+      "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67d550ec_fc2a0172",
@@ -71,6 +113,30 @@
       "writtenOn": "2021-08-05T16:36:03Z",
       "side": 1,
       "message": "were",
+      "range": {
+        "startLine": 1,
+        "startChar": 139,
+        "endLine": 1,
+        "endChar": 142
+      },
+      "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97268722_b77f20e6",
+        "filename": "dashboard/dashboard/models/alert_groups_merge_bug_comment.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-05T20:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67d550ec_fc2a0172",
       "range": {
         "startLine": 1,
         "startChar": 139,
