@@ -89,6 +89,7 @@ class TsProxyServer(object):
       cmd_line.append(
           '--mapports=443:%s,*:%s' % (self._https_port, self._http_port))
       logging.info('Tsproxy commandline: %s', cmd_line)
+    logging.warning('Running %s', cmd_line)
     self._proc = subprocess.Popen(
         cmd_line, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
         stderr=subprocess.PIPE, bufsize=1)
