@@ -22,6 +22,30 @@
       },
       "revId": "dc93b474218dfe516a4b05d8337276dc1bf2581b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0729f2fe_3e19e7e0",
+        "filename": ".vpython3",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-08-05T06:09:47Z",
+      "side": 0,
+      "message": "It is moved up to be more consistent to the format in .vpython (py2 version).\n\nThe .vpython3 was copied from chromium/src and has mismatches with the .vpython under catapult/. However, we cannot simply copy the list over as some wheels are not available yet. (That should be the reason why we chose to use the one under chromium/src)",
+      "parentUuid": "3955a4b4_3cdf81be",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 27
+      },
+      "revId": "dc93b474218dfe516a4b05d8337276dc1bf2581b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
