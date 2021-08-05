@@ -16,6 +16,69 @@
       "message": "LGTM",
       "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2904af5e_b38bd32b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-05T16:36:03Z",
+      "side": 1,
+      "message": "Thank you for adding good test coverage for these changes.\n\nWhat happens if this auto-merges an issue, but for whatever reason the user disagrees and overrides by un-merging the issue. Will the issue get auto-merged again on the next run?  Is that covered already, or is it not likely to be a problem?",
+      "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8d063a_57be4f06",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-05T16:36:03Z",
+      "side": 1,
+      "message": "_ShouldUpdateCanonicalGroup? This doesn\u0027t execute any actual updates.",
+      "range": {
+        "startLine": 342,
+        "startChar": 6,
+        "endLine": 342,
+        "endChar": 27
+      },
+      "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d550ec_fc2a0172",
+        "filename": "dashboard/dashboard/models/alert_groups_merge_bug_comment.j2",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-05T16:36:03Z",
+      "side": 1,
+      "message": "were",
+      "range": {
+        "startLine": 1,
+        "startChar": 139,
+        "endLine": 1,
+        "endChar": 142
+      },
+      "revId": "91c6bb9317982dbcdcb9e7aa6b0f71084022bc1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
