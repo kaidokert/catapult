@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a315bc7_c5e3d6e3",
+        "filename": "dashboard/dashboard/pinpoint/models/change/patch_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-08-06T22:49:16Z",
+      "side": 1,
+      "message": "Add a test for https://codereview.com/c/658277",
+      "range": {
+        "startLine": 161,
+        "startChar": 35,
+        "endLine": 161,
+        "endChar": 67
+      },
+      "revId": "d9f65a1cf0b341d0879cff68527cddb67c2260ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28be0c31_69038a0e",
         "filename": "dashboard/dashboard/pinpoint/models/change/patch_test.py",
         "patchSetId": 2
