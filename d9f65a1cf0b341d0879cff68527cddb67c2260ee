@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28be0c31_69038a0e",
+        "filename": "dashboard/dashboard/pinpoint/models/change/patch_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-08-06T22:46:19Z",
+      "side": 1,
+      "message": "Above, we see \n\ndef Patch(revision\u003d\u0027abc123\u0027, server\u003d\u0027https://codereview.com\u0027):\n  return patch.GerritPatch(server, \u0027repo~branch~id\u0027, revision)\n  \nWhy do these match?",
+      "range": {
+        "startLine": 162,
+        "startChar": 24,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "d9f65a1cf0b341d0879cff68527cddb67c2260ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
