@@ -16,6 +16,86 @@
       "message": "+agrieve@ for review\n+bpastene@ for OWNERS",
       "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af75a5c1_5a7e7ec1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-08-06T21:18:09Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278b2dda_5454e3b5",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-08-06T21:18:09Z",
+      "side": 1,
+      "message": "nit: us posixpath for device paths",
+      "range": {
+        "startLine": 1272,
+        "startChar": 26,
+        "endLine": 1272,
+        "endChar": 33
+      },
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce5cc6c_93e13f8c",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1273,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-08-06T21:18:09Z",
+      "side": 1,
+      "message": "why not mv? (add comment)",
+      "range": {
+        "startLine": 1273,
+        "startChar": 29,
+        "endLine": 1273,
+        "endChar": 31
+      },
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c43768f3_bdca16dc",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1126674
+      },
+      "writtenOn": "2021-08-06T21:18:09Z",
+      "side": 1,
+      "message": "nit: add comment about why this is necessary (presumably because files are owned by root)",
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
