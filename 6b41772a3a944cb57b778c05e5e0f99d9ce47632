@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0fca8d8_881e85f6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-08-09T13:07:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "278b2dda_5454e3b5",
+      "range": {
+        "startLine": 1272,
+        "startChar": 26,
+        "endLine": 1272,
+        "endChar": 33
+      },
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ce5cc6c_93e13f8c",
@@ -81,6 +105,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb337e95_4f25fdd6",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1273,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-08-09T13:07:04Z",
+      "side": 1,
+      "message": "Added comment. Basically need to keep it compatible with existing playcore until chromium moves to the new version.",
+      "parentUuid": "4ce5cc6c_93e13f8c",
+      "range": {
+        "startLine": 1273,
+        "startChar": 29,
+        "endLine": 1273,
+        "endChar": 31
+      },
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c43768f3_bdca16dc",
@@ -94,6 +142,24 @@
       "writtenOn": "2021-08-06T21:18:09Z",
       "side": 1,
       "message": "nit: add comment about why this is necessary (presumably because files are owned by root)",
+      "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0aac03_97c9f280",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-08-09T13:07:04Z",
+      "side": 1,
+      "message": "Removed. Turns out this is actually not needed since the dir after pushing is owned by shell and the apk is world rw (just not executable which we don\u0027t need).",
+      "parentUuid": "c43768f3_bdca16dc",
       "revId": "6b41772a3a944cb57b778c05e5e0f99d9ce47632",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
