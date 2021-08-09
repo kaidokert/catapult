@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1a5db0_9db527eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-09T18:35:00Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "09f7b34593f20e1588739f6bd16405f6bd0a6fb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b23690e_8b93fac3",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-09T18:35:00Z",
+      "side": 1,
+      "message": "Is this line still necessary?",
+      "revId": "09f7b34593f20e1588739f6bd16405f6bd0a6fb1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
