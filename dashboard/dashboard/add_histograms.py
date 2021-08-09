@@ -237,9 +237,8 @@ class AddHistogramsHandler(api_request_handler.ApiRequestHandler):
     gcs_file.close()
 
     token_info = None
-    if utils.ShouldTurnOnUploadCompletionTokenExperiment():
-      _, token_info = self._CreateUploadCompletionToken(params['gcs_file_path'])
-      params['upload_completion_token'] = token_info['token']
+    _, token_info = self._CreateUploadCompletionToken(params['gcs_file_path'])
+    params['upload_completion_token'] = token_info['token']
 
     retry_options = taskqueue.TaskRetryOptions(
         task_retry_limit=_TASK_RETRY_LIMIT)
