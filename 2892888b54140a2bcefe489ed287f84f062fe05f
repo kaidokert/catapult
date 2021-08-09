@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97efd9b3_7af1a3c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-08-09T12:59:13Z",
+      "side": 1,
+      "message": "Great work!",
+      "revId": "2892888b54140a2bcefe489ed287f84f062fe05f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7201f510_2115523b",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-08-09T12:59:13Z",
+      "side": 1,
+      "message": "update.anomalies should include all anomalies including duplicated groups\u0027. Also duplicated group will set bug_id to merged_into. Will _FileDuplicatedNotification and _UpdateIssue both update the issue for same anomaly twice?",
+      "revId": "2892888b54140a2bcefe489ed287f84f062fe05f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
