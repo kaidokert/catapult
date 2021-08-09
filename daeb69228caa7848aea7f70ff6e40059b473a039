@@ -16,6 +16,23 @@
       "message": "John, could you please look at the change, is there anything left before this can land? I probably do not have commit access right now, so if you decide everything is fine please submit this.",
       "revId": "daeb69228caa7848aea7f70ff6e40059b473a039",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7709590b_beaa1ec4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-09T16:09:54Z",
+      "side": 1,
+      "message": "LGTM. Sorry for the delay.",
+      "revId": "daeb69228caa7848aea7f70ff6e40059b473a039",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
