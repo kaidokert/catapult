@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec2fd120_f94384dd",
+        "filename": "dashboard/dashboard/pinpoint/models/change/patch_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2021-08-09T14:24:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a315bc7_c5e3d6e3",
+      "range": {
+        "startLine": 161,
+        "startChar": 35,
+        "endLine": 161,
+        "endChar": 67
+      },
+      "revId": "d9f65a1cf0b341d0879cff68527cddb67c2260ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28be0c31_69038a0e",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-08-06T22:46:19Z",
       "side": 1,
       "message": "Above, we see \n\ndef Patch(revision\u003d\u0027abc123\u0027, server\u003d\u0027https://codereview.com\u0027):\n  return patch.GerritPatch(server, \u0027repo~branch~id\u0027, revision)\n  \nWhy do these match?",
+      "range": {
+        "startLine": 162,
+        "startChar": 24,
+        "endLine": 162,
+        "endChar": 53
+      },
+      "revId": "d9f65a1cf0b341d0879cff68527cddb67c2260ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1a9071d_12731a09",
+        "filename": "dashboard/dashboard/pinpoint/models/change/patch_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2021-08-09T14:24:46Z",
+      "side": 1,
+      "message": "For these tests, GetChange always returns the mock _GERRIT_CHANGE_INFO. GerritPatch.FromUrl doesn\u0027t create a new Gerrit Patch, rather it calls GetChange to find a matching existing patch.\n\nSince the URL\u0027s patch number is 3 and \"yet another revision\"\u0027s _number is also 3, they will match.",
+      "parentUuid": "28be0c31_69038a0e",
       "range": {
         "startLine": 162,
         "startChar": 24,
