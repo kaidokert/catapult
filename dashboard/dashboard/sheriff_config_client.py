@@ -52,8 +52,12 @@ class SheriffConfigClient(object):
     from google.auth.transport.requests import AuthorizedSession
     credentials, _ = google.auth.default(
         scopes=['https://www.googleapis.com/auth/userinfo.email'])
-    jwt_credentials = jwt.Credentials.from_signing_credentials(
-        credentials, 'sheriff-config-dot-chromeperf.appspot.com')
+    print("credentials: %s" % credentials)
+    jwt_credentials = jwt.Credentials.from_service_account_file(
+        'service_account.json', audience='sheriff-config-dot-chromeperf.appspot.com')
+
+    #jwt_credentials = jwt.Credentials.from_signing_credentials(
+    #    credentials, 'sheriff-config-dot-chromeperf.appspot.com')
     self._session = AuthorizedSession(jwt_credentials)
 
   @staticmethod

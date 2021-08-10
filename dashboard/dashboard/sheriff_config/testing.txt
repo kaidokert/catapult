@@ -1,0 +1,26 @@
+check/add some unit tests for:
+luci_config.FindMatchingConfigs
+match_policy.FilterSubscriptionsByPolicy
+several other things in https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/sheriff_config/service/__init__.py;l=157
+
+
+setup:
+- .cfg with the following:
+subscriptions {
+  name: "V8 Perf Sheriff"
+  notification_email: "v8-perf-alerts@google.com"
+  contact_email: "v8-perf-alerts@google.com"
+  bug_components: ["Blink>JavaScript"]
+  bug_labels: "Performance-Sheriff-V8"
+  visibility: PUBLIC
+  auto_triage: {
+    rules: {
+      match: {
+        regex: "^ChromiumPerf.+"
+      }
+    }
+  }
+}
+
+- An anomaly matching "internal.client.v8"
+

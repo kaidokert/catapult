@@ -87,6 +87,522 @@ class LuciPollingTest(unittest.TestCase):
             }]
         })
 
+  def makeMockHttpConfig(self, cfg_str):
+    enc_cfg = base64.b64encode(cfg_str.encode('utf8')).decode('utf8')
+    ret = ("""{
+      "configs": [
+        {
+          "url": "https://example.com/project/sources/+/0123456789abcdef/configs/chromeperf-sheriff.cfg",
+          "content": "%s",
+          "content_hash": "v1:somehash",
+          "config_set": "projects/v8",
+          "revision": "0123456789abcdef"
+        }
+      ]
+              }""" % enc_cfg)
+    return ret
+
+  def testPollAndMatchV8Perf(self):
+    # pylint: enable=line-too-long
+    config = self.makeMockHttpConfig(u"""
+# V8-specific sheriff configurations.
+#
+# This file follows the proto definition at
+# https://source.chromium.org/chromium/chromium/src/+/master:third_party/catapult/dashboard/dashboard/proto/sheriff.proto
+subscriptions {
+  name: "V8 Future Perf Sheriff"
+  notification_email: "v8-future-perf-alerts@google.com"
+  contact_email: "v8-future-perf-alerts@google.com"
+  bug_components: ["Blink>JavaScript"]
+  bug_labels: "Performance-Sheriff-V8"
+  visibility: PUBLIC
+  rules: {
+    match: [
+      { glob: "internal.client.v8/*/v8/ARES-6-Future/*" },
+      { glob: "internal.client.v8/*/v8/Octane2.1-Future/*" },
+      { glob: "internal.client.v8/*/v8/RuntimeStats/Group-Optimize*/*/*/*/*/Future" },
+      { glob: "internal.client.v8/*/v8/RuntimeStats/Group-Optimize*/*/*/*/Future" },
+      { glob: "internal.client.v8/*/v8/RuntimeStats/Group-Optimize*/*/*/Future" },
+      { glob: "internal.client.v8/*/v8/RuntimeStats/Group-Optimize*/*/Future" }
+    ]
+  }
+}
+subscriptions {
+  name: "V8 Memory Perf Sheriff"
+  notification_email: "v8-memory-alerts@google.com"
+  contact_email: "v8-memory-alerts@google.com"
+  bug_components: ["Blink>JavaScript>GC"]
+  bug_labels: "Performance-Sheriff-V8"
+  visibility: PUBLIC
+  rules: {
+    match: [
+      { glob: "ChromiumPerf/*/memory.desktop/memory:chrome:all_processes:reported_by_chrome:v8:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/memory.desktop/memory:chrome:all_processes:reported_by_chrome:v8:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/memory.desktop/memory:chrome:all_processes:reported_by_chrome:blink_gc:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/memory.desktop/memory:chrome:all_processes:reported_by_chrome:blink_gc:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_desktop/memory:chrome:all_processes:reported_by_chrome:v8:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_desktop/memory:chrome:all_processes:reported_by_chrome:v8:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_desktop/memory:chrome:all_processes:reported_by_chrome:blink_gc:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_desktop/memory:chrome:all_processes:reported_by_chrome:blink_gc:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:chrome:all_processes:reported_by_chrome:v8:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:chrome:all_processes:reported_by_chrome:v8:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:chrome:all_processes:reported_by_chrome:blink_gc:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:chrome:all_processes:reported_by_chrome:blink_gc:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:webview:all_processes:reported_by_chrome:v8:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:webview:all_processes:reported_by_chrome:v8:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:webview:all_processes:reported_by_chrome:blink_gc:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/system_health.memory_mobile/memory:webview:all_processes:reported_by_chrome:blink_gc:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:allocated_objects_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:allocated_objects_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:effective_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:effective_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/total:500ms_window:renderer_eqt:v8_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/total:500ms_window:renderer_eqt_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/unified-gc-total_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/unified-gc-total_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-full-mark-compactor_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-full-mark-compactor_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-full-mark-compactor_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-incremental-finalize_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-incremental-finalize_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-incremental-finalize_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-incremental-step_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-incremental-step_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-incremental-step_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-latency-mark-compactor_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-latency-mark-compactor_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-latency-mark-compactor_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-scavenger_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-scavenger_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-scavenger_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-total_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/v8-gc-total_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-atomic-pause_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-atomic-pause_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-atomic-pause_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-unified-marking-by-v8_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-unified-marking-by-v8_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-unified-marking-by-v8_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-incremental-start_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-incremental-start_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-incremental-start_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-incremental-step_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-incremental-step_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-incremental-step_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-mark-background_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-mark-foreground_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-sweep-background_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-sweep-foreground_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-complete-sweep_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-complete-sweep_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/blink-gc-complete-sweep_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:allocated_objects_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:allocated_objects_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:allocated_objects_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:v8:heap:effective_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:effective_size_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/memory:chrome:renderer_processes:reported_by_chrome:blink_gc:effective_size_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/total:500ms_window:renderer_eqt:v8_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/total:500ms_window:renderer_eqt_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/unified-gc-total_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/unified-gc-total_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-full-mark-compactor_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-full-mark-compactor_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-full-mark-compactor_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-incremental-finalize_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-incremental-finalize_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-incremental-finalize_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-incremental-step_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-incremental-step_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-incremental-step_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-latency-mark-compactor_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-latency-mark-compactor_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-latency-mark-compactor_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-scavenger_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-scavenger_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-scavenger_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-total_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/v8-gc-total_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-atomic-pause_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-atomic-pause_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-atomic-pause_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-unified-marking-by-v8_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-unified-marking-by-v8_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-unified-marking-by-v8_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-incremental-start_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-incremental-start_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-incremental-start_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-incremental-step_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-incremental-step_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-incremental-step_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-mark-background_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-mark-foreground_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-sweep-background_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-sweep-foreground_sum/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-complete-sweep_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-complete-sweep_max/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/blink-gc-complete-sweep_sum/*/*" }
+    ]
+  }
+  auto_triage: {
+    rules: {
+      match: {
+        regex: ".+"
+      }
+    }
+  }
+  auto_bisection: {
+    rules: {
+      match: {
+        regex: ".+"
+      }
+    }
+  }
+}
+subscriptions {
+  name: "V8 Perf Sheriff"
+  notification_email: "v8-perf-alerts@google.com"
+  contact_email: "v8-perf-alerts@google.com"
+  bug_components: ["Blink>JavaScript"]
+  bug_labels: "Performance-Sheriff-V8"
+  visibility: PUBLIC
+  rules: {
+    match: [
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:compile:compile-unoptimize_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:compile:optimize_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:compile:parse_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:compile_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:execute_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:gc:full-mark-compactor_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:gc:incremental-marking_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:gc:latency-mark-compactor_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:gc:memory-mark-compactor_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:gc:scavenger_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8:gc_max" },
+      { glob: "ChromiumPerf/*/*/total:500ms_window:renderer_eqt:v8_max" },
+      { glob: "ChromiumPerf/*/speedometer2/*/Speedometer2" },
+      { glob: "ChromiumPerf/*/v8.google/v8_execution_cpu_total_avg" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/API:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/Compile-Background:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/Compile:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/GC:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/IC:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/JavaScript:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/Optimize:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/Parse-Background:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/Parse:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/Total:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/V8 C++:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/V8-Only:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_*/V8-Only-Main-Thread:duration_avg/*/*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/interactive:500ms_window:renderer_eqt:v8:*" },
+      { glob: "ChromiumPerf/*/v8.browsing_desktop/total:500ms_window:renderer_eqt:v8:*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/interactive:500ms_window:renderer_eqt:v8:*" },
+      { glob: "ChromiumPerf/*/v8.browsing_mobile/total:500ms_window:renderer_eqt:v8:*" },
+      { glob: "ChromiumPerf/*/jetstream2/*/JetStream2" },
+      { glob: "internal.client.v8/*/JSTests/BytecodeHandlers/*/*" },
+      { glob: "internal.client.v8/*/JSTests/InterpreterEntryTrampoline/*/*" },
+      { glob: "internal.client.v8/*/v8/*/JSTests/BytecodeHandlers/*/*" },
+      { glob: "internal.client.v8/*/v8/Infra/Stability/*" },
+      { glob: "internal.client.v8/*/v8/Infra/Stability/*/*" },
+      { glob: "internal.client.v8/*/v8/Octane2.1-NoOpt/Ignition/*" },
+      { glob: "internal.client.v8/*/v8/Octane2.1/*" },
+      { glob: "internal.client.v8/*/v8/web-tooling-benchmark/*" },
+      { glob: "internal.client.v8/*/v8/AreWeFastYet/*" },
+      { glob: "internal.client.v8/*/v8/BigNum/*" },
+      { glob: "internal.client.v8/*/v8/BigNum/*/*" },
+      { glob: "internal.client.v8/*/v8/Compile/*" },
+      { glob: "internal.client.v8/*/v8/Embenchen/*" },
+      { glob: "internal.client.v8/*/v8/Emscripten/*" },
+      { glob: "internal.client.v8/*/v8/JSBench/*" },
+      { glob: "internal.client.v8/*/v8/JSTests/*" },
+      { glob: "internal.client.v8/*/v8/JSTests/*/*" },
+      { glob: "internal.client.v8/*/v8/JetStream/*" },
+      { glob: "internal.client.v8/*/v8/KrakenOrig/*" },
+      { glob: "internal.client.v8/*/v8/Massive/*" },
+      { glob: "internal.client.v8/*/v8/Massive/*/*" },
+      { glob: "internal.client.v8/*/v8/Promises/*" },
+      { glob: "internal.client.v8/*/v8/RegExp/RegExp/*" },
+      { glob: "internal.client.v8/*/v8/Ritz/*" },
+      { glob: "internal.client.v8/*/v8/SixSpeed/*" },
+      { glob: "internal.client.v8/*/v8/SixSpeed/*/*" },
+      { glob: "internal.client.v8/*/v8/SunSpider/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-API/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Callback/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Compile/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-GC/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-IC/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-JavaScript/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Optimize/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Parse/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Runtime/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Total-V8/duration/*/*" },
+      { glob: "internal.client.v8/x64/v8/SixSpeed/*" },
+      { glob: "internal.client.v8/x64/v8/SixSpeed/*/*" },
+      { glob: "internal.client.v8/x64/v8/SunSpider/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/API:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/API:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Callback:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Callback:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Compile:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Compile:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/GC:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/GC:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/IC:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/IC:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/JavaScript:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/JavaScript:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Optimize:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Optimize:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Parse:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Parse:duration_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Runtime:count_avg/*" },
+      { glob: "ChromiumPerf/*/v8.runtime_stats.top_25/Runtime:duration_avg/*" }
+    ]
+  }
+  auto_triage: {
+    rules: {
+      match: {
+        regex: "^ChromiumPerf.+"
+      }
+    }
+  }
+  auto_bisection: {
+    rules: {
+      match: {
+        # Only auto-bisect story-specific anomalies.
+        regex: "^ChromiumPerf(.*\/){3,}.+"
+      }
+      exclude: [
+         # Do not auto-bisect metric-level summary measurements.
+        { regex: "^ChromiumPerf(.*\/){3,}total:.+" }
+      ]
+    }
+  }
+  # Ported from 'V8-noisy'.
+  anomaly_configs {
+    min_relative_change: 0.1
+    rules {
+      match: [
+        { glob: "internal.client.v8/*/v8/JSTests/*" },
+        { glob: "internal.client.v8/*/v8/JSTests/*/*" }
+      ]
+    }
+  }
+  # Ported from 'V8-perf-stability'.
+  anomaly_configs {
+    min_segment_size: 3
+    rules {
+      match: [
+        { glob: "internal.client.v8/*/v8/Infra/Stability/*" },
+        { glob: "internal.client.v8/*/v8/Infra/Stability/*/*" }
+      ]
+    }
+  }
+  # Ported from 'V8-general'.
+  # FIXME: Potentially simplify this?
+  anomaly_configs {
+    min_relative_change: 0.03
+    rules {
+      match: [
+        { glob: "internal.client.v8/*/v8/AreWeFastYet/*" },
+        { glob: "internal.client.v8/*/v8/BigNum/*" },
+        { glob: "internal.client.v8/*/v8/BigNum/*/*" },
+        { glob: "internal.client.v8/*/v8/Closure/*" },
+        { glob: "internal.client.v8/*/v8/Compile/*" },
+        { glob: "internal.client.v8/*/v8/Embenchen/*" },
+        { glob: "internal.client.v8/*/v8/Emscripten/*" },
+        { glob: "internal.client.v8/*/v8/JSBench/*" },
+        { glob: "internal.client.v8/*/v8/JetStream-Ignition/*" },
+        { glob: "internal.client.v8/*/v8/JetStream/*" },
+        { glob: "internal.client.v8/*/v8/KrakenOrig-Ignition/*" },
+        { glob: "internal.client.v8/*/v8/KrakenOrig-TF/*" },
+        { glob: "internal.client.v8/*/v8/KrakenOrig/*" },
+        { glob: "internal.client.v8/*/v8/LoadTime-Ignition/*" },
+        { glob: "internal.client.v8/*/v8/LoadTime/*" },
+        { glob: "internal.client.v8/*/v8/MDV/*" },
+        { glob: "internal.client.v8/*/v8/Massive-TF/*" },
+        { glob: "internal.client.v8/*/v8/Massive-TF/*/*" },
+        { glob: "internal.client.v8/*/v8/Massive/*" },
+        { glob: "internal.client.v8/*/v8/Massive/*/*" },
+        { glob: "internal.client.v8/*/v8/Memory/*" },
+        { glob: "internal.client.v8/*/v8/Micro/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-Harmony/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-Ignition/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-NoOpt/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-NoOpt/*/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-TF-pr/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-TF/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-TF/*/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1-pr/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1/*" },
+        { glob: "internal.client.v8/*/v8/Octane2.1ES6/*" },
+        { glob: "internal.client.v8/*/v8/Promises/*" },
+        { glob: "internal.client.v8/*/v8/PunchStartup-Ignition/*" },
+        { glob: "internal.client.v8/*/v8/PunchStartup/*" },
+        { glob: "internal.client.v8/*/v8/RegExp/RegExp/*" },
+        { glob: "internal.client.v8/*/v8/Ritz/*" },
+        { glob: "internal.client.v8/*/v8/SIMDJS/*" },
+        { glob: "internal.client.v8/*/v8/SixSpeed/*" },
+        { glob: "internal.client.v8/*/v8/SixSpeed/*/*" },
+        { glob: "internal.client.v8/*/v8/SunSpider-Ignition/*" },
+        { glob: "internal.client.v8/*/v8/SunSpider-TF/*" },
+        { glob: "internal.client.v8/*/v8/SunSpider/*" },
+        { glob: "internal.client.v8/*/v8/SunSpiderGolem/*" },
+        { glob: "internal.client.v8/*/v8/TraceurES6/*" },
+        { glob: "internal.client.v8/*/v8/Wasm/*" },
+        { glob: "internal.client.v8/*/v8/Wasm/*/*" },
+        { glob: "internal.client.v8/*/v8/web-tooling-benchmark/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-API/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Callback/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Compile/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-GC/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-IC/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-JavaScript/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Optimize/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Parse/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Runtime/duration/*/*" },
+        { glob: "internal.client.v8/x64/v8/RuntimeStats/Group-Total-V8/duration/*/*" }
+      ]
+    }
+  }
+}
+subscriptions {
+  name: "V8 Perf Sheriff (testing)"
+  notification_email: "sergiyb@google.com"
+  contact_email: "sergiyb@google.com"
+  bug_components: ["Blink>JavaScript"]
+  bug_labels: "Performance-Sheriff-V8"
+  rules: {
+    match: [
+      { glob: "internal.client.v8/Nokia1/v8.testing/AreWeFastYet/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/BigNum/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Compile/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Embenchen/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Emscripten/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/JSBench/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/JSTests/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/JetStream/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/KrakenOrig/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Massive/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Octane2.1-NoOpt/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Octane2.1-TF/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Octane2.1/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Promises/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/RegExp/RegExp/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/Ritz/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/SixSpeed/*" },
+      { glob: "internal.client.v8/Nokia1/v8.testing/SunSpider/*" }
+    ]
+  }
+}
+subscriptions {
+  name: "V8 Wasm Perf Sheriff"
+  notification_email: "wasm-perf@google.com"
+  contact_email: "wasm-perf@google.com"
+  rules: {
+    match: [
+      { glob: "internal.client.v8/*/v8/Blazor/*" },
+      { glob: "internal.client.v8/*/v8/Embenchen/*" },
+      { glob: "internal.client.v8/*/v8/Emscripten/*" },
+      { glob: "internal.client.v8/*/v8/JetStream-wasm/*" },
+      { glob: "internal.client.v8/*/v8/Spec2k6/*/CodeSize" },
+      { glob: "internal.client.v8/*/v8/Spec2k6/*/Compile" },
+      { glob: "internal.client.v8/*/v8/Spec2k6/*/RelocSize" },
+      { glob: "internal.client.v8/*/v8/Spec2k6/*/Run" },
+      { glob: "internal.client.v8/*/v8/Unity/*/CodeSize" },
+      { glob: "internal.client.v8/*/v8/Unity/*/Compile" },
+      { glob: "internal.client.v8/*/v8/Unity/*/Instantiate" },
+      { glob: "internal.client.v8/*/v8/Unity/*/RelocSize" },
+      { glob: "internal.client.v8/*/v8/Unity/*/Runtime" },
+      { glob: "internal.client.v8/*/v8/Wasm/AngryBots/*" },
+      { glob: "internal.client.v8/*/v8/Wasm/AngryBots-Async/Compile" },
+      { glob: "internal.client.v8/*/v8/Wasm/Epic-Liftoff-Async/*" },
+      { glob: "internal.client.v8/*/v8/Wasm/Epic-Liftoff/*" },
+      { glob: "internal.client.v8/*/v8/Wasm/Epic-Turbofan-Async/*" },
+      { glob: "internal.client.v8/*/v8/Wasm/Epic-Turbofan/*" },
+      { glob: "internal.client.v8/*/v8/Wasm/Import-Export-Wrappers-Microbench/*" },
+      { glob: "internal.client.v8/*/v8/Wasm-SIMD/skcms/*" },
+      { glob: "internal.client.v8/*/v8/Wasm-SIMD/simd-micro/*" },
+      { glob: "internal.client.v8/*/v8/Wasm-SIMD/meet-segmentation-bench/*" }
+    ]
+  }
+}
+                                     """)
+    app = service.CreateApp({
+        'environ': {
+            'GOOGLE_CLOUD_PROJECT': 'chromeperf',
+            'GAE_SERVICE': 'sheriff-config',
+        },
+        'datastore_client': datastore.Client(project='chromeperf'),
+        'http': HttpMockSequenceWithDiscovery([({
+            'status': '200'
+        }, config)]),
+    })
+
+    client = app.test_client()
+    response = client.get(
+        '/configs/update', headers={'X-Forwarded-Proto': 'https'})
+    self.assertEqual(response.status_code, 200)
+
+    def Test(path, triaged, bisected, anomalies):
+      response = client.post(
+          '/subscriptions/match',
+          json={
+              'path': path,
+              'stats': ['PCT_99'],
+              'metadata': {
+                  'units': 'SomeUnit',
+                  'master': 'Master',
+                  'bot': 'Bot',
+                  'benchmark': 'Test',
+                  'metric_parts': ['Metric', 'Something'],
+              }
+          },
+          headers={'X-Forwarded-Proto': 'https'})
+      self.assertEqual(response.status_code, 200)
+      response_proto = response.get_json()
+      expected_sub = {
+          'name': 'V8 Perf Sheriff',
+          'notification_email': "v8-perf-alerts@google.com",
+          'contact_email': 'v8-perf-alerts@google.com',
+          'bug_labels': ['Performance-Sheriff-V8'],
+          'bug_components': ['Blink>JavaScript'],
+          'auto_triage': {
+              'enable': triaged
+          },
+          'auto_bisection': {
+              'enable': bisected
+          },
+          'rules': {},
+          'visibility': 'PUBLIC',
+      }
+      if anomalies:
+        expected_sub['anomaly_configs'] = [{
+            'min_relative_change': 0.1,
+            'rules': {}
+        }]
+
+      expected = {
+          'subscriptions': [{
+              'config_set': 'projects/v8',
+              'revision': '0123456789abcdef',
+              'subscription': expected_sub
+          }]
+      }
+      self.assertDictEqual(response_proto, expected)
+
+    Test('ChromiumPerf/*/speedometer2/*/Speedometer2', True, True, False)
+    Test(
+        'internal.client.v8/Atom_x64/v8/JSTests/ArraySortDifferentLengths/Sorted1000',
+        False, False, True)
+
   def testPollAndMatchTriageBisect(self):
     client = self.app.test_client()
     response = client.get(
