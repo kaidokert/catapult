@@ -16,6 +16,24 @@
       "message": "Looking at the failure[1] it seems like some AlertGroupWorkflowTest tests are flaky. Since there is no log \"logging.info(\u0027created: %s, triage_delay: ...\" in the logs I assume the issue is that the test is too fast and clock doesn\u0027t tick, so \"group.created + self._config.triage_delay \u003c update.now\" is false even though we\u0027ve set triage_delay to zero.\n\nI\u0027ll create a fix in a separate CL.\n\n[1]: https://logs.chromium.org/logs/catapult/buildbucket/cr-buildbucket/8839260955120846993/+/steps/Dashboard_Python_Tests/0/stdout",
       "revId": "6a4146b11437b5aa85798a459527879869b169a8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e61f502_6f7b35ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-08-10T19:19:59Z",
+      "side": 1,
+      "message": "Flakiness fix: https://crrev.com/c/3087442",
+      "parentUuid": "6b6151a8_a0875e2a",
+      "revId": "6a4146b11437b5aa85798a459527879869b169a8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
