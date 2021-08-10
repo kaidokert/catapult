@@ -770,6 +770,7 @@ class CrOSInterface(object):
     if clear_enterprise_policy:
       self.RunCmdOnDevice(stop_cmd)
       self.RmRF('/var/lib/whitelist/*')
+      self.RmRF('/var/lib/devicesettings/*')
       self.RmRF(r'/home/chronos/Local\ State')
 
     if self.IsServiceRunning('ui'):
