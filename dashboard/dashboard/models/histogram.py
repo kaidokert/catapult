@@ -62,13 +62,46 @@ class HistogramRevisionRecord(ndb.Model):
       raise ndb.Return(records[0].revision - 1)
     raise ndb.Return(sys.maxsize)
 
+class ErrorTolerantJsonProperty(ndb.JsonProperty):
+  @ndb.utils.positional(2)
+  def __init__(
+      self,
+      name=None,
+      compressed=None,
+      indexed=None,
+      repeated=None,
+      required=None,
+      default=None,
+      choices=None,
+      validator=None,
+      verbose_name=None,
+      write_empty_list=None,
+  ):
+    super(ErrorTolerantJsonProperty, self).__init__(
+        name=name,
+        compressed=compressed,
+        indexed=indexed,
+        repeated=repeated,
+        required=required,
+        default=default,
+        choices=choices,
+        validator=validator,
+        verbose_name=verbose_name,
+        write_empty_list=write_empty_list,
+    )
+
+  def _from_base_type(self, value):
+    try:
+      return ndb.JsonProperty._from_base_type(self, value)
+    except ValueError:
+      return None
 
 class JsonModel(internal_only_model.InternalOnlyModel):
   # Similarly to Row, we don't need to memcache these as we don't expect to
   # access them repeatedly.
   _use_memcache = False
 
-  data = ndb.JsonProperty(compressed=True)
+  data = ErrorTolerantJsonProperty(compressed=True)
   test = ndb.KeyProperty(graph_data.TestMetadata)
   internal_only = ndb.BooleanProperty(default=False, indexed=True)
 
@@ -80,6 +113,16 @@ class Histogram(JsonModel):
   # The time the histogram was added to the dashboard.
   timestamp = ndb.DateTimeProperty(auto_now_add=True, indexed=True)
 
+def _removeInvalidSparseDiagnostics(diagnostics):
+  # Returns a list of SparseDiagnostics with invalid entried removed
+  #   (data == None).
+  valid_diagnostics = []
+  for d in diagnostics:
+    if not d.data:
+      logging.error("Found invalid diagnostic %s", d)
+    else:
+      valid_diagnostics.append(d)
+  return valid_diagnostics
 
 class SparseDiagnostic(JsonModel):
   # Need for intersecting range queries.
@@ -110,6 +153,7 @@ class SparseDiagnostic(JsonModel):
   def GetMostRecentDataByNamesAsync(cls, test_key, diagnostic_names):
     diagnostics = yield cls.query(cls.end_revision == sys.maxsize,
                                   cls.test == test_key).fetch_async()
+    diagnostics = _removeInvalidSparseDiagnostics(diagnostics)
     diagnostics_by_name = {}
     for diagnostic in diagnostics:
       if diagnostic.name not in diagnostic_names:
@@ -130,6 +174,8 @@ class SparseDiagnostic(JsonModel):
   def FixDiagnostics(test_key):
     diagnostics_for_test = yield SparseDiagnostic.query(
         SparseDiagnostic.test == test_key).fetch_async()
+    diagnostics_for_test = _removeInvalidSparseDiagnostics(
+      diagnostics_for_test)
     diagnostics_by_name = collections.defaultdict(list)
 
     for d in diagnostics_for_test:
@@ -198,6 +244,7 @@ def _FindOrInsertDiagnosticsLast(new_entities, test, rev):
       ndb.AND(SparseDiagnostic.end_revision == sys.maxsize,
               SparseDiagnostic.test == test))
   existing_entities = yield query.fetch_async()
+  existing_entities = _removeInvalidSparseDiagnostics(existing_entities)
   existing_entities = dict((d.name, d) for d in existing_entities)
   entity_futures = []
   new_guids_to_existing_diagnostics = {}
@@ -466,6 +513,7 @@ def _FindOrInsertDiagnosticsOutOfOrder(new_entities, test, rev):
               SparseDiagnostic.test == test))
   query = query.order(-SparseDiagnostic.end_revision)
   diagnostic_entities = yield query.fetch_async()
+  diagnostic_entities = _removeInvalidSparseDiagnostics(diagnostic_entities)
 
   new_entities_by_name = dict((d.name, d) for d in new_entities)
   diagnostics_by_name = collections.defaultdict(list)
