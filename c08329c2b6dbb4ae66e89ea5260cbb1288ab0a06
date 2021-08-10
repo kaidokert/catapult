@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e579c298_4179b898",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-08-10T12:25:00Z",
+      "side": 1,
+      "message": "lgtm % one comment",
+      "revId": "c08329c2b6dbb4ae66e89ea5260cbb1288ab0a06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f5e909_601d8454",
+        "filename": "tracing/tracing/metrics/custom_metric_test.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-08-10T12:25:00Z",
+      "side": 1,
+      "message": "Can we name it more descriptively, perhaps addSingleCustomMetric? Alternatively, you can just inline this.",
+      "range": {
+        "startLine": 173,
+        "startChar": 11,
+        "endLine": 173,
+        "endChar": 21
+      },
+      "revId": "c08329c2b6dbb4ae66e89ea5260cbb1288ab0a06",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
