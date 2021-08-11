@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7792f441_9f3e6e0a",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-08-11T02:41:34Z",
+      "side": 1,
+      "message": "I attempted an implementation that derived from JsonProperty in revision #3. Problem is, I couldn\u0027t get it to work - _from_base_type was getting called with a dict instead of a string.",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 101
+      },
+      "revId": "c1cd98454e396180d6e2e95bbca629fd76bcaa54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
