@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b62c36a_cbffb3a6",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-11T06:01:54Z",
+      "side": 1,
+      "message": "See https://cloud.google.com/appengine/docs/standard/python/refdocs/google.appengine.ext.ndb.model#google.appengine.ext.ndb.model.Property. Note that, \"_to_base_type() and _from_base_type() ... should NOT call their super() method\". By the time your _from_base_type() is called, the one from base class has already been called, so in revision #3, the JSON string has already been decoded, and your code received the resulting object. The problem is, if the JSON is invalid, the exception would occur before your _from_base_type() is even called. I think you can override _call_from_base_type() and catch exception there, but the current method of inheriting from BlobProperty is fine.",
+      "parentUuid": "7792f441_9f3e6e0a",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 101
+      },
+      "revId": "c1cd98454e396180d6e2e95bbca629fd76bcaa54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "adda4d48_d36c4590",
         "filename": "dashboard/dashboard/models/histogram.py",
         "patchSetId": 5
