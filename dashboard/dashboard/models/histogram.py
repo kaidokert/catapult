@@ -86,6 +86,7 @@ class ErrorTolerantJsonProperty(ndb.BlobProperty):
         value = value.decode("ascii")
       return json.loads(value)
     except ValueError:
+      logging.error("Attempted to deserialize invalid JSON")
       return None
 # pylint: enable=invalid-name
 
