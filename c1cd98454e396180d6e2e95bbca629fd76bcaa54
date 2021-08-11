@@ -65,6 +65,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cfa83ea_8dd5b3c9",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-08-11T13:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b62c36a_cbffb3a6",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 101
+      },
+      "revId": "c1cd98454e396180d6e2e95bbca629fd76bcaa54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adda4d48_d36c4590",
@@ -78,6 +102,30 @@
       "writtenOn": "2021-08-11T02:52:58Z",
       "side": 1,
       "message": "ascii??? [checks ndb source... oh... oh, god...] ok.",
+      "range": {
+        "startLine": 81,
+        "startChar": 26,
+        "endLine": 81,
+        "endChar": 31
+      },
+      "revId": "c1cd98454e396180d6e2e95bbca629fd76bcaa54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c32928b9_5e1d07cb",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-08-11T13:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adda4d48_d36c4590",
       "range": {
         "startLine": 81,
         "startChar": 26,
