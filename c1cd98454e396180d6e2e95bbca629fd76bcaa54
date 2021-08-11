@@ -157,6 +157,30 @@
       },
       "revId": "c1cd98454e396180d6e2e95bbca629fd76bcaa54",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1c32e35_93bde80f",
+        "filename": "dashboard/dashboard/models/histogram.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-08-11T14:00:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8ef291c_b71dd814",
+      "range": {
+        "startLine": 110,
+        "startChar": 53,
+        "endLine": 110,
+        "endChar": 60
+      },
+      "revId": "c1cd98454e396180d6e2e95bbca629fd76bcaa54",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
