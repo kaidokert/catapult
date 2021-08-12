@@ -33,6 +33,24 @@
       "message": "Can we do unitName.endsWith(\"_smallerIsBetter\") instead since there can be other units with the same problem?",
       "revId": "3a44175340232e4da3757a21dc9598b4b857318b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "650f2577_68ea23ea",
+        "filename": "tracing/tracing/value/ui/histogram_set_table_row.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-08-12T22:00:44Z",
+      "side": 1,
+      "message": "Resolved by email thread. The rows in result.html can have different units, and then this behavior will just be weird when the values are absolute. This \"normalizedPercentageDelta_smallerIsBetter\" unit only shows up when you pick a column to be reference column and pick the delta-% unit, and this change will let improvements and regressions be grouped together, which is a nice UX but it only works in this case.",
+      "parentUuid": "406244d2_4750a4b6",
+      "revId": "3a44175340232e4da3757a21dc9598b4b857318b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
