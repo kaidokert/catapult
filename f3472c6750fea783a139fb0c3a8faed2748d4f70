@@ -16,6 +16,24 @@
       "message": "do we want to add a comment to stop removing this? Or perhaps it\u0027s fine to leave here?",
       "revId": "f3472c6750fea783a139fb0c3a8faed2748d4f70",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89329506_7ee2664e",
+        "filename": "telemetry/telemetry/core/cros_interface.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1400492
+      },
+      "writtenOn": "2021-08-12T08:34:12Z",
+      "side": 1,
+      "message": "It wont hurt I believe, but we should clean it up at some point. I\u0027ll leave comment.",
+      "parentUuid": "96615919_27ea998e",
+      "revId": "f3472c6750fea783a139fb0c3a8faed2748d4f70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
