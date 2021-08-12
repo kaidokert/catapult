@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eeefefa_6f6af6dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-08-12T19:57:59Z",
+      "side": 1,
+      "message": "Thanks for the patch!",
+      "revId": "3a44175340232e4da3757a21dc9598b4b857318b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406244d2_4750a4b6",
+        "filename": "tracing/tracing/value/ui/histogram_set_table_row.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-08-12T19:57:59Z",
+      "side": 1,
+      "message": "Can we do unitName.endsWith(\"_smallerIsBetter\") instead since there can be other units with the same problem?",
+      "revId": "3a44175340232e4da3757a21dc9598b4b857318b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
