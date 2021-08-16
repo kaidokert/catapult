@@ -259,6 +259,11 @@ class AlertGroupWorkflow(object):
     update = update or self._PrepareGroupUpdate()
     logging.info('%d anomalies', len(update.anomalies))
 
+    # TODO(): understand why Datastore query may return empty anomalies list.
+    if len(update.anomalies) == 0 and len(self._group.anomalies) != 0:
+      logging.warning('No anomailes detected. Skipping this run.')
+      return self._CommitGroup()
+
     # Process input before we start processing the group.
     for a in update.anomalies:
       subscriptions, _ = self._sheriff_config.Match(
