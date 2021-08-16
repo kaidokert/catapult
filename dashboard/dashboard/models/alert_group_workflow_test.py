@@ -9,6 +9,7 @@ from __future__ import absolute_import
 
 import datetime
 import json
+import mock
 import uuid
 
 from google.appengine.ext import ndb
@@ -2276,3 +2277,33 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     update = w._PrepareGroupUpdate()
 
     self.assertIsNone(update.canonical_group)
+
+  def testPrepareGroupUpdate_FailedToFindAnomalies(self):
+    anomaly.Anomaly.query = mock.MagicMock(return_value=None)
+
+    base_anomaly = self._AddAnomaly()
+    group = self._AddAlertGroup(
+        base_anomaly,
+        issue=self._issue_tracker.GetIssue(self._issue_tracker.issue),
+    )
+    # An alert group for more realistic datastore enviroment.
+    self._AddAlertGroup(
+        base_anomaly,
+        issue=self._issue_tracker.GetIssue(self._issue_tracker.issue),
+    )
+
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        issue_tracker=self._issue_tracker,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+
+    update = w._PrepareGroupUpdate()
+
+    self.assertIsNone(update.anomalies)
+    self.assertIsNone(update.issue)
+    self.assertIsNone(update.canonical_group)
+    anomaly.Anomaly.query.assert_called_once_with([group])
