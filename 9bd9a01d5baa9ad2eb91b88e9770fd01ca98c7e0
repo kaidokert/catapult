@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "418127ed_015e518e",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-17T17:17:32Z",
+      "side": 1,
+      "message": "Discomforting observation (not specific to this CL, no need to respond): All of the unit tests for this class pass `update` to `.Process` instead of exercising the logic in `_PrepareGroupUpdate` (which is non-trivial) by just calling `.Process()` with no `update` param. \n\nAnd if you check the actual handler we use in production, it does *not* pass an `update` parameter. It just calls `.Process()`, which in turn invokes `_PrepareGroupUpdate()`: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/alert_groups.py;l\u003d22?q\u003d%22.Process(%22\u0026ss\u003dchromium%2Fchromium%2Fsrc:third_party%2Fcatapult%2Fdashboard%2Fdashboard%2F\n\nGiven the amount of trouble we\u0027ve seen in the vicinity of this class, I might spend some time looking into that. And possibly change the tests to better reflect how we call this code in reality.",
+      "revId": "9bd9a01d5baa9ad2eb91b88e9770fd01ca98c7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f52920_29fcae92",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-17T17:17:32Z",
+      "side": 1,
+      "message": "Should this be logging.error? Do we actually expect this condition to happen if everything else is working properly?",
+      "revId": "9bd9a01d5baa9ad2eb91b88e9770fd01ca98c7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "effb1660_2471a433",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-17T17:17:32Z",
+      "side": 1,
+      "message": "what changes might it be committing in this case?",
+      "revId": "9bd9a01d5baa9ad2eb91b88e9770fd01ca98c7e0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
