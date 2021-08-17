@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import attr
 import cloudstorage
 import logging
 import os
@@ -109,6 +110,8 @@ def GenerateResults2(job):
   logging.debug('Generated %s; see https://storage.cloud.google.com%s',
                 filename, filename)
 
+  _SaveJobToBigQuery(job)
+
 
 def _ReadVulcanizedHistogramsViewer():
   viewer_path = os.path.join(
@@ -118,10 +121,23 @@ def _ReadVulcanizedHistogramsViewer():
     return f.read()
 
 
+@attr.s
+class HistogramMetadata:
+  attemptNo = attr.ib()
+  change = attr.ib()
+  taskID = attr.ib()
+
 def _FetchHistograms(job):
   for change in _ChangeList(job):
-    for attempt in job.state._attempts[change]:
+    for attemptNo, attempt in enumerate(job.state._attempts[change]):
+      taskID = None
       for execution in attempt.executions:
+        # Attempt to extract taskID if this is a run_test._RunTestExecution
+        if isinstance(execution, run_test._RunTestExecution):
+          taskID = execution._task_id
+          continue
+
+        # Attempt to extract Histograms if this is a read_value.*
         mode = None
         if isinstance(execution, read_value._ReadHistogramsJsonValueExecution):
           mode = 'histograms'
@@ -145,8 +161,9 @@ def _FetchHistograms(job):
 
         logging.debug('Found %s histograms for %s', len(histogram_sets), change)
 
+        metadata = HistogramMetadata(attemptNo, change, taskID)
         for histogram in histogram_sets:
-          yield histogram
+          yield (metadata, histogram) # TODO: Return TaskID, change representation?
 
         # Force deletion of histogram_set objects which can be O(100MB).
         del histogram_sets
@@ -188,3 +205,10 @@ def _JsonFromExecution(execution):
       isolate_hash,
       results_filename,
   )
+
+def _SaveJobsToBigQuery(job):
+  for attemptNo, h in _FetchHistograms(job):
+    if "sampleValues" not in h:
+      continue
+
+
