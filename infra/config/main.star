@@ -165,9 +165,7 @@ def try_builder(
 
     # Presubmit sees all changes
     if not is_presubmit:
-        if is_dashboard:
-            verifier_kwargs["location_regexp"] = [DASHBOARD_RE]
-        else:
+        if not is_dashboard:
             verifier_kwargs["location_regexp_exclude"] = [DASHBOARD_RE]
     if experiment != None:
         verifier_kwargs["experiment_percentage"] = experiment
@@ -194,4 +192,3 @@ try_builder("Catapult Android Tryserver Py3", "Android", experiment = 100, dimen
 try_builder("Catapult Presubmit", "Ubuntu", is_presubmit = True)
 
 try_builder("Dashboard Linux Tryserver", "Ubuntu", is_dashboard = True)
-try_builder("Dashboard Windows Tryserver", "Windows-10", is_dashboard = True)
