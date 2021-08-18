@@ -166,7 +166,7 @@ def try_builder(
     # Presubmit sees all changes
     if not is_presubmit:
         if is_dashboard:
-            verifier_kwargs["location_regexp"] = [DASHBOARD_RE]
+            verifier_kwargs["location_regexp"] = [".*"]
         else:
             verifier_kwargs["location_regexp_exclude"] = [DASHBOARD_RE]
     if experiment != None:
