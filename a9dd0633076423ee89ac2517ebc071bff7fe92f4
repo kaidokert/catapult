@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e182c06b_a6cdafda",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1002539
+      },
+      "writtenOn": "2021-08-19T19:45:50Z",
+      "side": 1,
+      "message": "why under \"if self._swarming_tags\" instead of where `body` is originally defined?",
+      "range": {
+        "startLine": 403,
+        "startChar": 11,
+        "endLine": 403,
+        "endChar": 36
+      },
+      "revId": "a9dd0633076423ee89ac2517ebc071bff7fe92f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
