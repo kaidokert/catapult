@@ -239,7 +239,7 @@ class AdbWrapper(object):
 
       if close:
 
-        def run_cmd(cmd):
+        def run_cmd(cmd): #comment
           send_cmd = '( %s ); echo $?; exit;\n' % cmd.rstrip()
           (output, _) = self._process.communicate(send_cmd)
           self._process = None
