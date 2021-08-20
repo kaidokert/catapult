@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d410e8e7_4986c7bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-20T01:04:23Z",
+      "side": 1,
+      "message": "this will get auto-deployed on green, so I\u0027ll wait until tomorrow AM to land it. That way I can keep an eye on it and roll back if necessary.",
+      "revId": "9881de4503f17e4c8b8e21cfacd1334f25da9eaf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
