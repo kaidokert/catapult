@@ -218,10 +218,10 @@ class AdbWrapper(object):
 
       Sends an echo command, then waits until it gets a response.
       """
-      self._process.stdin.write('echo\n')
-      output_line = self._process.stdout.readline()
+      self._process.stdin.write('echo\n'.encode('utf-8'))
+      output_line = self._process.stdout.readline().decode('utf-8')
       while output_line.rstrip() != '':
-        output_line = self._process.stdout.readline()
+        output_line = self._process.stdout.readline().decode('utf-8')
 
     def RunCommand(self, command, close=False):
       """Runs an ADB command and returns the output.
@@ -241,18 +241,18 @@ class AdbWrapper(object):
 
         def run_cmd(cmd):
           send_cmd = '( %s ); echo $?; exit;\n' % cmd.rstrip()
-          (output, _) = self._process.communicate(send_cmd)
+          (output, _) = self._process.communicate(send_cmd.encode('utf-8'))
           self._process = None
-          for x in output.rstrip().splitlines():
+          for x in output.rstrip().decode('utf-8').splitlines():
             yield x
 
       else:
 
         def run_cmd(cmd):
           send_cmd = '( %s ); echo DONE:$?;\n' % cmd.rstrip()
-          self._process.stdin.write(send_cmd)
+          self._process.stdin.write(send_cmd.encode('utf-8'))
           while True:
-            output_line = self._process.stdout.readline().rstrip()
+            output_line = self._process.stdout.readline().rstrip().decode('utf-8')
             if output_line[:5] == 'DONE:':
               yield output_line[5:]
               break
@@ -268,7 +268,7 @@ class AdbWrapper(object):
     def Stop(self):
       """Stops the ADB process if it is still running."""
       if self._process is not None:
-        self._process.stdin.write('exit\n')
+        self._process.stdin.write('exit\n'.encode('utf-8'))
         self._process = None
 
   @classmethod
