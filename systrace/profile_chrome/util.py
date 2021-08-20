@@ -28,7 +28,7 @@ def ArchiveData(trace_results, output):
       os.unlink(trace_file)
 
 def WriteDataToCompressedFile(data, output):
-  with gzip.open(output, 'wb') as out:
+  with gzip.open(output, 'w') as out:
     out.write(data)
 
 def GetTraceTimestamp():
