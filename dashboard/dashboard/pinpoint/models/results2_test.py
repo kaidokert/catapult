@@ -14,6 +14,7 @@ import unittest
 from google.appengine.api import taskqueue
 
 from dashboard.common import testing_common
+from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
 from dashboard.pinpoint.models.quest import read_value
 from tracing.value import histogram_set
@@ -131,7 +132,7 @@ class GetCachedResults2Test(unittest.TestCase):
   def testGetCachedResults2_Cached_ReturnsResult(self, mock_cloudstorage):
     mock_cloudstorage.return_value = ['foo']
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     url = results2.GetCachedResults2(job)
 
     self.assertEqual(
@@ -142,7 +143,7 @@ class GetCachedResults2Test(unittest.TestCase):
   def testGetCachedResults2_Uncached_Fails(self, mock_cloudstorage):
     mock_cloudstorage.return_value = []
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     url = results2.GetCachedResults2(job)
 
     self.assertIsNone(url)
@@ -154,7 +155,7 @@ class ScheduleResults2Generation2Test(unittest.TestCase):
   def testScheduleResults2Generation2_FailedPreviously(self, mock_add):
     mock_add.side_effect = taskqueue.TombstonedTaskError
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     result = results2.ScheduleResults2Generation(job)
     self.assertFalse(result)
 
@@ -162,7 +163,7 @@ class ScheduleResults2Generation2Test(unittest.TestCase):
   def testScheduleResults2Generation2_AlreadyRunning(self, mock_add):
     mock_add.side_effect = taskqueue.TaskAlreadyExistsError
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     result = results2.ScheduleResults2Generation(job)
     self.assertTrue(result)
 
@@ -177,7 +178,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2.render_histograms_viewer,
                      'RenderHistogramsViewer')
   def testPost_Renders(self, mock_render):
-    job = _JobStub(None, '123')
+    job = _JobStub(None, '123', job_state.PERFORMANCE)
     results2.GenerateResults2(job)
 
     mock_render.assert_called_with(['a', 'b'],
@@ -194,7 +195,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   def testTypeDispatch_LegacyHistogramExecution(self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -231,7 +232,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   def testTypeDispatch_LegacyGraphJsonExecution(self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -270,7 +271,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   def testTypeDispatch_ReadValueExecution(self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -311,7 +312,7 @@ class GenerateResults2Test(testing_common.TestCase):
   def testTypeDispatch_ReadValueExecution_MultipleChanges(
       self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -405,8 +406,9 @@ class _JobStateFake(object):
 
 class _JobStub(object):
 
-  def __init__(self, job_dict, job_id, state=None):
+  def __init__(self, job_dict, job_id, comparison_mode, state=None):
     self._job_dict = job_dict
+    self.comparison_mode = comparison_mode
     self.job_id = job_id
     self.state = state
 
