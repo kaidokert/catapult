@@ -414,6 +414,17 @@ tr.exportTo('tr.metrics.sh', function() {
     }
   };
 
+  const MAX_COMMITTED_SIZE = {
+    name: 'max_committed_size',
+    unit: sizeInBytes_smallerIsBetter,
+    buildDescriptionPrefix(componentPath, processName) {
+      return buildChromeValueDescriptionPrefix(componentPath, processName, {
+        userFriendlyPropertyName: 'max committed size',
+        componentPreposition: 'of'
+      });
+    }
+  };
+
   const PEAK_SIZE = {
     name: 'peak_size',
     unit: sizeInBytes_smallerIsBetter,
@@ -452,6 +463,7 @@ tr.exportTo('tr.metrics.sh', function() {
     ALLOCATED_OBJECTS_SIZE,
     SHIM_ALLOCATED_OBJECTS_SIZE,
     LOCKED_SIZE,
+    MAX_COMMITTED_SIZE,
     PEAK_SIZE
   ];
 
