@@ -54,7 +54,7 @@ class OutputGeneratorTest(unittest.TestCase):
     with open(ATRACE_DATA) as f:
       atrace_data = f.read().replace(" ", "").strip()
     trace_results = [trace_result.TraceResult('systemTraceEvents', atrace_data)]
-    with tempfile_ext.TemporaryFileName() as output_file_name:
+    with tempfile_ext.TemporaryFileName(mode='w+') as output_file_name:
       output_generator.GenerateHTMLOutput(trace_results, output_file_name)
       with open(output_file_name, 'r') as f:
         html_output = f.read()
