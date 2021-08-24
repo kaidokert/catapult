@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e805041_d54ffae7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1400492
+      },
+      "writtenOn": "2021-08-24T09:03:43Z",
+      "side": 1,
+      "message": "I waited with this because I pushed another fix to Chrome OS 9 days ago. Let\u0027s hope this time frame suffices not to break incremental builds.",
+      "revId": "c4981377c0cd17f26848cb58677a49c977df6029",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
