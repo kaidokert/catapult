@@ -9,7 +9,12 @@ from __future__ import absolute_import
 import collections
 import unittest
 
-import mock
+import six
+
+if six.PY3:
+  import unittest.mock as mock
+else:
+  import mock
 
 from dashboard.pinpoint import test
 from dashboard.pinpoint.models import errors
@@ -132,7 +137,48 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         'Mac Builder',
         'not_real_target',
         'luci.bucket',
-        fallback_target='telemetry_perf_tests')
+        fallback_targets='telemetry_perf_tests')
+
+    # Propagate a thing that looks like a job.
+    quest.PropagateJob(
+        FakeJob('cafef00d', 'https://pinpoint/cafef00d', 'performance',
+                'user@example.com'))
+
+    execution = quest.Start(change_test.Change(123))
+    execution.Poll()
+
+    expected_result_arguments = {
+        'isolate_server': 'https://isolate.server',
+        'isolate_hash': '7c7e90be',
+    }
+    expected_as_dict = {
+        'completed':
+            True,
+        'exception':
+            None,
+        'details': [
+            {
+                'key': 'builder',
+                'value': 'Mac Builder',
+            },
+            {
+                'key': 'isolate',
+                'value': '7c7e90be',
+                'url': 'https://isolate.server/browse?digest=7c7e90be',
+            },
+        ],
+    }
+    self.assertExecutionSuccess(execution)
+    self.assertEqual(execution.result_values, ())
+    self.assertEqual(execution.result_arguments, expected_result_arguments)
+    self.assertEqual(execution.AsDict(), expected_as_dict)
+
+  def testIsolateLookupFallbackSuccessMultipleFallbacks(self):
+    quest = find_isolate.FindIsolate(
+        'Mac Builder',
+        'not_real_target',
+        'luci.bucket',
+        fallback_targets=['also_not_a_real_target', 'telemetry_perf_tests'])
 
     # Propagate a thing that looks like a job.
     quest.PropagateJob(
@@ -173,7 +219,7 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         'Mac Builder',
         'not_real_target',
         'luci.bucket',
-        fallback_target='also_not_real_target')
+        fallback_targets='also_not_real_target')
 
     # Propagate a thing that looks like a job.
     quest.PropagateJob(

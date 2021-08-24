@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import collections
 import json
 import logging
+import six
 from six.moves.urllib import parse as urlparse
 
 from dashboard.pinpoint.models import change as change_module
@@ -24,11 +25,11 @@ BUCKET = 'master.tryserver.chromium.perf'
 
 class FindIsolate(quest.Quest):
 
-  def __init__(self, builder, target, bucket, fallback_target=None):
+  def __init__(self, builder, target, bucket, fallback_targets=None):
     self._builder_name = builder
     self._target = target
     self._bucket = bucket
-    self._fallback_target = fallback_target
+    self._fallback_targets = fallback_targets
 
     self._previous_builds = {}
     self._build_tags = collections.OrderedDict()
@@ -36,7 +37,7 @@ class FindIsolate(quest.Quest):
   def __eq__(self, other):
     return (isinstance(other, type(self)) and self._bucket == other._bucket
             and self._builder_name == other._builder_name
-            and self._fallback_target == other._fallback_target)
+            and self._fallback_targets == other._fallback_targets)
 
   def __str__(self):
     return 'Build'
@@ -61,7 +62,7 @@ class FindIsolate(quest.Quest):
         change,
         self._previous_builds,
         self.build_tags,
-        fallback_target=self._fallback_target)
+        fallback_targets=self._fallback_targets)
 
   def PropagateJob(self, job):
     self._build_tags = BuildTagsFromJob(job)
@@ -76,7 +77,7 @@ class FindIsolate(quest.Quest):
         arguments['builder'],
         arguments['target'],
         arguments['bucket'],
-        fallback_target=arguments.get('fallback_target'))
+        fallback_targets=arguments.get('fallback_targets'))
 
 
 class _FindIsolateExecution(execution.Execution):
@@ -88,13 +89,17 @@ class _FindIsolateExecution(execution.Execution):
                change,
                previous_builds,
                build_tags,
-               fallback_target=None):
+               fallback_targets=None):
     super(_FindIsolateExecution, self).__init__()
     self._builder_name = builder_name
     self._target = target
     self._bucket = bucket
     self._change = change
-    self._fallback_target = fallback_target
+    self._fallback_targets = fallback_targets
+    if isinstance(self._fallback_targets, six.string_types):
+      self._fallback_targets = [self._fallback_targets]
+    # Handle "None".
+    self._fallback_targets = self._fallback_targets or []
 
     # previous_builds is shared among all Executions of the same Quest.
     self._previous_builds = previous_builds
@@ -152,15 +157,16 @@ class _FindIsolateExecution(execution.Execution):
                                                  self._change, self._target)
     except KeyError:
       logging.debug('NOT found in isolate cache')
-      if self._fallback_target:
+      found_fallback = False
+      for target in self._fallback_targets:
         try:
           isolate_server, isolate_hash = isolate.Get(self._builder_name,
-                                                     self._change,
-                                                     self._fallback_target)
+                                                     self._change, target)
+          found_fallback = True
+          break
         except KeyError:
-          logging.debug('fallback NOT found in isolate cache')
-          return False
-      else:
+          logging.debug('fallback %s NOT found in isolate cache', target)
+      if not found_fallback:
         return False
 
     result_arguments = {
@@ -199,9 +205,13 @@ class _FindIsolateExecution(execution.Execution):
     target_to_use = self._target
 
     if self._target not in properties[key]:
-      if self._fallback_target and self._fallback_target in properties[key]:
-        target_to_use = self._fallback_target
-      else:
+      found_fallback = False
+      for target in self._fallback_targets:
+        if target in properties[key]:
+          target_to_use = target
+          found_fallback = True
+          break
+      if not found_fallback:
         raise errors.BuildIsolateNotFound()
 
     # Cache the isolate information.
