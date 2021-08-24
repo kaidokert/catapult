@@ -97,29 +97,6 @@ _CATAPULT_TESTS = [
         'disabled': ['android'],
     },
     {
-        'name': 'Telemetry Tests with Stable Browser (Desktop)',
-        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
-        'additional_args': [
-            '--browser=reference',
-            '--start-xvfb',
-            '-v',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['android'],
-    },
-    {
-        'name': 'Telemetry Tests with Stable Browser (Android)',
-        'path': 'catapult_build/fetch_telemetry_deps_and_run_tests',
-        'additional_args': [
-            '--browser=reference',
-            '--device=android',
-            '--jobs=1',
-            '-v',
-        ],
-        'uses_sandbox_env': True,
-        'disabled': ['win', 'mac', 'linux']
-    },
-    {
         'name': 'Telemetry Integration Tests with Stable Browser',
         'path': 'telemetry/bin/run_browser_tests',
         'additional_args': [
