@@ -218,10 +218,21 @@ class AdbWrapper(object):
 
       Sends an echo command, then waits until it gets a response.
       """
-      self._process.stdin.write('echo\n')
-      output_line = self._process.stdout.readline()
+      self._process.stdin.write(six.ensure_binary('echo\n'))
+      self._process.stdin.flush()
+      self._process.stdout.readline()
+      output_line = six.ensure_str(self._process.stdout.readline())
       while output_line.rstrip() != '':
-        output_line = self._process.stdout.readline()
+        output_line = six.ensure_str(self._process.stdout.readline())
+#       print('TEST')
+#       try:
+#         out, err = self._process.communicate(timeout=10)
+#         print('OUT: %s' % out)
+#         print('ERR: %s' % err)
+#       except subprocess.TimeoutExpired as e:
+#         print('TIMEOUT %s' % repr(e))
+#       assert(False)
+
 
     def RunCommand(self, command, close=False):
       """Runs an ADB command and returns the output.
