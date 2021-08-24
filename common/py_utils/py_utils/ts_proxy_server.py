@@ -91,7 +91,7 @@ class TsProxyServer(object):
       logging.info('Tsproxy commandline: %s', cmd_line)
     self._proc = subprocess.Popen(
         cmd_line, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-        stderr=subprocess.PIPE, bufsize=1)
+        stderr=subprocess.PIPE, bufsize=1, universal_newlines=True)
     self._non_blocking = False
     if fcntl:
       logging.info('fcntl is supported, trying to set '
