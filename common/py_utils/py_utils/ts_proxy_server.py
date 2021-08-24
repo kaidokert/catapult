@@ -91,7 +91,7 @@ class TsProxyServer(object):
       logging.info('Tsproxy commandline: %s', cmd_line)
     self._proc = subprocess.Popen(
         cmd_line, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
-        stderr=subprocess.PIPE, bufsize=1)
+        stderr=subprocess.PIPE, bufsize=1, universal_newlines=True, encoding='utf-8')
     self._non_blocking = False
     if fcntl:
       logging.info('fcntl is supported, trying to set '
@@ -127,7 +127,7 @@ class TsProxyServer(object):
   def _ReadLineTsProxyStdout(self, timeout):
     def ReadSingleLine():
       try:
-        return self._proc.stdout.readline().strip().decode("utf-8")
+        return self._proc.stdout.readline().strip()
       except IOError:
         # Add a sleep to avoid trying to read self._proc.stdout too often.
         if self._non_blocking:
@@ -140,7 +140,7 @@ class TsProxyServer(object):
     del retries  # handled by the decorator
     logging.info('Issuing command to ts_proxy_server: %s', command_string)
     command_output = []
-    self._proc.stdin.write(('%s\n' % command_string).encode('utf-8'))
+    self._proc.stdin.write(('%s\n' % command_string))
     def CommandStatusIsRead():
       self._proc.stdin.flush()
       self._proc.stdout.flush()
