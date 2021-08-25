@@ -184,14 +184,22 @@ def GetIsolateTarget(bot_name, suite):
     return 'performance_test_suite_android_clank_monochrome_bundle'
   elif bot_name == 'android-go-perf':
     return 'performance_test_suite_android_clank_chrome'
+  elif bot_name == 'android-go_webview-perf':
+    return 'performance_test_suite_android_clank_webview'
   elif bot_name == 'Android Nexus5 Perf':
     return 'performance_test_suite_android_chrome'
+  elif bot_name == 'Android Nexus5X WebView Perf':
+    return 'performance_webview_test_suite'
   elif bot_name == 'android-pixel2-perf':
     return 'performance_test_suite_android_clank_monochrome_64_32_bundle'
+  elif bot_name == 'android-pixel2_webview-perf':
+    return 'performance_test_suite_android_clank_webview'
   elif bot_name == 'android-pixel2_weblayer-perf':
     return 'performance_weblayer_test_suite'
   elif bot_name == 'android-pixel4-perf':
     return 'performance_test_suite_android_clank_trichrome_bundle'
+  elif bot_name == 'android-pixel4_webview-perf':
+    return 'performance_test_suite_android_clank_trichrome_webview_bundle'
   elif bot_name == 'android-pixel4_weblayer-perf':
     return 'performance_weblayer_test_suite'
   elif bot_name == 'android-pixel4a_power-perf':
