@@ -8,10 +8,12 @@ import base64
 import gzip
 import json
 import os
+
 try:
   from StringIO import StringIO
 except ImportError:
   from io import StringIO
+import io
 
 import six
 
@@ -57,7 +59,10 @@ def GenerateHTMLOutput(trace_results, output_file_name):
           results should be written to.
   """
   def _ReadAsset(src_dir, filename):
-    return open(os.path.join(src_dir, filename)).read()
+    with io.open(os.path.join(src_dir, filename), encoding='utf-8') as f:
+      asset = six.ensure_str(f.read())
+    return asset
+     #     return open(os.path.join(src_dir, filename)).read()
 
   # TODO(rnephew): The tracing output formatter is able to handle a single
   # systrace trace just as well as it handles multiple traces. The obvious thing
@@ -101,24 +106,27 @@ def GenerateHTMLOutput(trace_results, output_file_name):
 
   # Open the file in binary mode to prevent python from changing the
   # line endings, then write the prefix.
-  html_file = open(output_file_name, 'w')
-  html_file.write(html_output.replace('{{SYSTRACE_TRACE_VIEWER_HTML}}',
-                                      trace_viewer_html))
+  html_file = io.open(output_file_name, 'wb')
+#   html_file = io.open(output_file_name, 'w', encoding='utf-8')
+#   html_file = open(output_file_name, 'w')
+  html_file.write(
+    six.ensure_binary(
+      html_output.replace('{{SYSTRACE_TRACE_VIEWER_HTML}}', trace_viewer_html)))
 
 
 
   # Write the trace data itself. There is a separate section of the form
   # <script class="trace-data" type="application/text"> ... </script>
   # for each tracing agent (including the controller tracing agent).
-  html_file.write('<!-- BEGIN TRACE -->\n')
+  html_file.write(six.ensure_binary('<!-- BEGIN TRACE -->\n'))
   for result in trace_results:
-    html_file.write('  <script class="trace-data" type="application/text">\n')
-    html_file.write(_ConvertToHtmlString(result.raw_data))
-    html_file.write('  </script>\n')
-  html_file.write('<!-- END TRACE -->\n')
+    html_file.write(six.ensure_binary('  <script class="trace-data" type="application/text">\n'))
+    html_file.write(six.ensure_binary(_ConvertToHtmlString(result.raw_data)))
+    html_file.write(six.ensure_binary('  </script>\n'))
+  html_file.write(six.ensure_binary('<!-- END TRACE -->\n'))
 
   # Write the suffix and finish.
-  html_file.write(html_suffix)
+  html_file.write(six.ensure_binary(html_suffix))
   html_file.close()
 
   final_path = os.path.abspath(output_file_name)
@@ -150,6 +158,7 @@ def GenerateJSONOutput(trace_results, output_file_name):
   results = _ConvertTraceListToDictionary(trace_results)
   results[CONTROLLER_TRACE_DATA_KEY] = (
       tracing_controller.TRACE_DATA_CONTROLLER_NAME)
+#   with io.open(output_file_name, 'w', encoding='utf-8') as json_file:
   with open(output_file_name, 'w') as json_file:
     json.dump(results, json_file)
   final_path = os.path.abspath(output_file_name)
