@@ -16,6 +16,24 @@
       "message": "Hi, Sean. Could you review my draft? \n\nIt also seems that the next step would be to display the token somewhere in the dashboard front-end, since searching through build logs is cumbersome. Is that worth pursuing at this time?",
       "revId": "7bf7f8791a164c6993c099b847a7fba6b3b5cc47",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0017672a_0c03a049",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-08-25T20:40:36Z",
+      "side": 1,
+      "message": "Short answer: no. Longer: I would like to shield fellow engineers from modifying the current dashboard frontend altogether :) Given that the problems this logging addresses usually prevent data from showing up in the dashboard in the first place, I\u0027m not sure how useful that would be.",
+      "parentUuid": "ddcbfc3b_01821532",
+      "revId": "7bf7f8791a164c6993c099b847a7fba6b3b5cc47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
