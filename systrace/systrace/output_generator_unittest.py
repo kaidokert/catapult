@@ -6,6 +6,7 @@
 
 import hashlib
 import json
+import io
 import os
 import unittest
 
@@ -56,6 +57,7 @@ class OutputGeneratorTest(unittest.TestCase):
     trace_results = [trace_result.TraceResult('systemTraceEvents', atrace_data)]
     with tempfile_ext.TemporaryFileName() as output_file_name:
       output_generator.GenerateHTMLOutput(trace_results, output_file_name)
+#       with io.open(output_file_name, 'r', encoding='utf-8') as f:
       with open(output_file_name, 'r') as f:
         html_output = f.read()
       trace_data = (html_output.split(
