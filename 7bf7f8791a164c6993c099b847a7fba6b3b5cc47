@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddcbfc3b_01821532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2021-08-25T20:25:05Z",
+      "side": 1,
+      "message": "Hi, Sean. Could you review my draft? \n\nIt also seems that the next step would be to display the token somewhere in the dashboard front-end, since searching through build logs is cumbersome. Is that worth pursuing at this time?",
+      "revId": "7bf7f8791a164c6993c099b847a7fba6b3b5cc47",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
