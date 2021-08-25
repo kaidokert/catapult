@@ -183,3 +183,8 @@ wheel: <
     platform: "win_amd64"
   >
 >
+
+wheel: <
+  name: "infra/python/wheels/google-cloud-bigquery-py2_py3"
+  version: "version:0.28.0"
+>
