@@ -4,6 +4,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import io
 import os
 import unittest
 
@@ -36,6 +37,7 @@ class AtraceFromFileAgentTest(unittest.TestCase):
                                 '-o',
                                 output_file_name])
         # and verify file contents
+#         with io.open(output_file_name, 'r', encoding='utf-8') as f1, \
         with open(output_file_name, 'r') as f1, \
             open(DECOMPRESSED_ATRACE_DATA, 'r') as f2:
           full_trace = f1.read()
@@ -57,6 +59,7 @@ class AtraceFromFileAgentTest(unittest.TestCase):
                               '--from-file',
                               COMPRESSED_ATRACE_DATA])
       # and verify file contents
+#       with io.open(output_file_name, 'r', encoding='utf-8') as f1, \
       with open(output_file_name, 'r') as f1, \
           open(DECOMPRESSED_ATRACE_DATA, 'r') as f2:
         full_trace = f1.read()
