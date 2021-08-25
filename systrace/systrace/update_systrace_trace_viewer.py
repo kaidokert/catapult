@@ -7,6 +7,7 @@
 from __future__ import print_function   # pylint: disable=wrong-import-position
 
 import codecs
+import io
 import optparse
 import os
 import re
@@ -37,6 +38,7 @@ def create_catapult_rev_str_(revision):
 def get_catapult_rev_in_file_(html_file):
   assert os.path.exists(html_file)
   rev = ''
+#   with io.open(html_file, 'r', encoding='utf-8') as f:
   with open(html_file, 'r') as f:
     lines = f.readlines()
     for line in lines[::-1]:
