@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae44976_19d23d7f",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-08-26T06:28:00Z",
+      "side": 1,
+      "message": "The comments on Popen says this is only for backwards compatibility.\n\nWithout looking closely I\u0027d guess you want to add these kwargs instead:\n\n  text\u003dTrue, encoding\u003d\u0027utf-8\u0027",
+      "range": {
+        "startLine": 94,
+        "startChar": 43,
+        "endLine": 94,
+        "endChar": 66
+      },
+      "revId": "ab141fb37d2b1f2a1e4e2c0d4397fddc3c93febe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
