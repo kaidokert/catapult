@@ -46,6 +46,30 @@
       },
       "revId": "ab141fb37d2b1f2a1e4e2c0d4397fddc3c93febe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fd8266_0dc53c9b",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1512447
+      },
+      "writtenOn": "2021-08-26T15:00:05Z",
+      "side": 1,
+      "message": "Looks like text\u003d isn\u0027t backwards compatible, but universal_newlines is (and also forces text mode in 3.9).",
+      "parentUuid": "aa68b7bf_aca56d34",
+      "range": {
+        "startLine": 94,
+        "startChar": 43,
+        "endLine": 94,
+        "endChar": 66
+      },
+      "revId": "ab141fb37d2b1f2a1e4e2c0d4397fddc3c93febe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
