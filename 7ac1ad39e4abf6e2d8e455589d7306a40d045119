@@ -16,6 +16,23 @@
       "message": "PTAL\n\nThis was prompted by one of the comments on this doc going over the current state of Telemetry browsers and what we need to do to make them 1:1 with Chromium targets. https://docs.google.com/document/d/1y3EO-_coGViQr1e7TXSizqEvoqCb64efLjR4-B6UjRg/edit?usp\u003dsharing",
       "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bf628de_d2bc5d09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-08-26T18:40:57Z",
+      "side": 1,
+      "message": "Ping on this",
+      "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
