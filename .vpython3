@@ -34,6 +34,11 @@ wheel: <
   version: "version:1.19.5"
 >
 
+wheel: <
+  name: "infra/python/wheels/numpy/mac-amd64_cp38_cp38"
+  version: "version:1.19.2"
+>
+
 # Used by:
 #  telemetry/bin/fetch_telemetry_binary_dependencies
 wheel: <
