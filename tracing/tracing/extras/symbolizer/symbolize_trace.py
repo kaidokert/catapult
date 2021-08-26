@@ -1462,7 +1462,7 @@ class Symbolizer(object):
       return extension in ['.dll', '.exe']
     else:
       result = subprocess.check_output(['file', '-0', file_path])
-      type_string = result[result.find('\0') + 1:]
+      type_string = result[result.find(six.ensure_binary('\0')) + 1:]
       return bool(re.match(r'.*(ELF|Mach-O) (32|64)-bit\b.*',
                            type_string, re.DOTALL))
 
