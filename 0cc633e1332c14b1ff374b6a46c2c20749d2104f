@@ -16,6 +16,69 @@
       "message": "PTAL.",
       "revId": "0cc633e1332c14b1ff374b6a46c2c20749d2104f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78634e71_d85618f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-26T18:11:56Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "0cc633e1332c14b1ff374b6a46c2c20749d2104f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308e1f93_0f9ac8f9",
+        "filename": "systrace/systrace/output_generator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-26T18:11:56Z",
+      "side": 1,
+      "message": "For binary file, \"open\" should work fine. No need for io.open.",
+      "range": {
+        "startLine": 107,
+        "startChar": 14,
+        "endLine": 107,
+        "endChar": 17
+      },
+      "revId": "0cc633e1332c14b1ff374b6a46c2c20749d2104f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf14df1d_c9e01d71",
+        "filename": "systrace/systrace/output_generator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-08-26T18:11:56Z",
+      "side": 1,
+      "message": "For fixed string, you can use b\u0027...\u0027 syntax, which works in both Python 2 and 3, and avoid unnecessary runtime conversion.",
+      "range": {
+        "startLine": 117,
+        "startChar": 18,
+        "endLine": 117,
+        "endChar": 61
+      },
+      "revId": "0cc633e1332c14b1ff374b6a46c2c20749d2104f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
