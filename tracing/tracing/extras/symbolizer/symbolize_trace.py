@@ -1386,7 +1386,7 @@ class Symbolizer(object):
                             stderr=None)
     addrs = ["%x" % relative_pc for relative_pc in
              symfile.frames_by_address.keys()]
-    (stdout_data, _) = proc.communicate('\n'.join(addrs))
+    (stdout_data, _) = proc.communicate(six.ensure_binary('\n'.join(addrs)))
     # On windows, lines may contain '\r' character: e.g. "RtlUserThreadStart\r".
     stdout_data.replace('\r', '')
     stdout_data = stdout_data.split('\n')
@@ -1461,7 +1461,8 @@ class Symbolizer(object):
       extension = os.path.splitext(file_path)[1].lower()
       return extension in ['.dll', '.exe']
     else:
-      result = subprocess.check_output(['file', '-0', file_path])
+      result = six.ensure_str(
+          subprocess.check_output(['file', '-0', file_path]))
       type_string = result[result.find('\0') + 1:]
       return bool(re.match(r'.*(ELF|Mach-O) (32|64)-bit\b.*',
                            type_string, re.DOTALL))
