@@ -39,6 +39,30 @@
       },
       "revId": "420089a0ffe3fd925171e08a0b667ab04bcb1d21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d5351d_4a5202ce",
+        "filename": "dashboard/dashboard/pinpoint_request.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-08-26T00:05:31Z",
+      "side": 1,
+      "message": "Ack, I\u0027ll see about getting WebView tests onto the same logic as the rest of the bots at some point, although right now I\u0027d prefer to make as few changes as necessary out of fear of breaking things more.",
+      "parentUuid": "c2355214_e915e317",
+      "range": {
+        "startLine": 187,
+        "startChar": 2,
+        "endLine": 188,
+        "endChar": 57
+      },
+      "revId": "420089a0ffe3fd925171e08a0b667ab04bcb1d21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
