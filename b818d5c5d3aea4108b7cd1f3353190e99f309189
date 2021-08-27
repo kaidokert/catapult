@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0f5692c_8c300eb2",
+        "filename": "infra/config/generated/cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-08-27T01:57:58Z",
+      "side": 1,
+      "message": "Yes. Thanks for catching. 😂",
+      "parentUuid": "ffc18aa7_a29169b9",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 40
+      },
+      "revId": "b818d5c5d3aea4108b7cd1f3353190e99f309189",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcfe0ca0_2b784502",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-08-27T00:25:28Z",
       "side": 1,
       "message": "false?",
+      "range": {
+        "startLine": 97,
+        "startChar": 35,
+        "endLine": 97,
+        "endChar": 39
+      },
+      "revId": "b818d5c5d3aea4108b7cd1f3353190e99f309189",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c405cb9d_331c3556",
+        "filename": "infra/config/generated/cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-08-27T01:57:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcfe0ca0_2b784502",
       "range": {
         "startLine": 97,
         "startChar": 35,
