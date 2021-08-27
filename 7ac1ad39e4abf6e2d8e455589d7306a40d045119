@@ -33,6 +33,47 @@
       "message": "Ping on this",
       "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb5d5116_9090caf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-08-27T07:21:17Z",
+      "side": 1,
+      "message": "FYI I\u0027m only available 2 days/week for at the moment, so you may want to seek review from someone else to get more timely responses.",
+      "parentUuid": "3bf628de_d2bc5d09",
+      "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d1ef4c_2b6fc74f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-08-27T07:21:17Z",
+      "side": 1,
+      "message": "Hmm, I think this change wouldn\u0027t roll out safely.  As a final state of the code it seems reasonable, but it could (and probably would) break some in-progress jobs when it got deployed.  Effectively this is a schema change for job state, but it\u0027s not backwards compatible.\n\nAs a temporary measure, I think you need to add code to read in the older schema too, e.g.:\n\n  if \u0027fallback_target\u0027 in arguments:\n    # TODO: Delete code to read/write fallback_target after 2021-10-01.\n    fallback_targets \u003d [arguments[\u0027fallback_target\u0027]]\n  else:\n    fallback_targets \u003d arguments.get(\u0027fallback_targets\u0027)\n    \nI picked the date arbitrarily far enough in the future to be confident no old jobs from before this version would still be executed, probably just 2 weeks would be plenty.\n\nAlso I wonder if this issue would affect re-running older jobs?  I forget the exact details of how the arguments are propagated in that case.  If so, probably we\u0027d want to keep backwards compatibility for long enough to be sure no-one is going to re-run with the older arguments schema.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 59
+      },
+      "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
