@@ -45,6 +45,10 @@ if os.environ.get('APPENGINE_RUNTIME') != 'python27': # pragma: no cover
         from google.appengine.ext import webapp as _webapp
     except ImportError: # pragma: no cover
         # Running webapp2 outside of GAE.
+        logging.warning('===ImportError===')
+        pass
+    except SyntaxError:
+        logging.warning('===SyntaxError===')
         pass
 
 try: # pragma: no cover
@@ -1988,4 +1992,6 @@ _set_thread_safe_app()
 try:
     from google.appengine.ext.webapp import util as _webapp_util
 except ImportError: # pragma: no cover
+    pass
+except SyntaxError: # pragma: no cover
     pass
