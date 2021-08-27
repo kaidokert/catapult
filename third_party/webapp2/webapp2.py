@@ -40,12 +40,18 @@ except ImportError: # pragma: no cover
 
 # google.appengine.ext.webapp imports webapp2 in the
 # App Engine Python 2.7 runtime.
+logging.warning('===========')
 if os.environ.get('APPENGINE_RUNTIME') != 'python27': # pragma: no cover
     try:
+        logging.warning('Going to import from GAE')
         from google.appengine.ext import webapp as _webapp
     except ImportError: # pragma: no cover
         # Running webapp2 outside of GAE.
+        logging.warning('Failed to import webapp from GAE!')
         pass
+    except Exception as e:
+        logging.warning('Exception type %s' % type(e))
+        logging.warning('Exception %s' % repr(e))
 
 try: # pragma: no cover
     # Thread-local variables container.
