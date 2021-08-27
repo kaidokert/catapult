@@ -70,6 +70,30 @@
       },
       "revId": "ab141fb37d2b1f2a1e4e2c0d4397fddc3c93febe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4bd908_06afe7d7",
+        "filename": "common/py_utils/py_utils/ts_proxy_server.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-08-27T00:53:01Z",
+      "side": 1,
+      "message": "Ah seems like the encoding kwarg was only added in 3.6.  Fair enough.\n\nPerhaps add a comment?  We don\u0027t really care about “universal newlines”, we want to ensure the pipes are read \u0026 written with UTF-8 encoding.",
+      "parentUuid": "85fd8266_0dc53c9b",
+      "range": {
+        "startLine": 94,
+        "startChar": 43,
+        "endLine": 94,
+        "endChar": 66
+      },
+      "revId": "ab141fb37d2b1f2a1e4e2c0d4397fddc3c93febe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
