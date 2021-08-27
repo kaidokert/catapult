@@ -36,6 +36,7 @@ def ParseTsProxyPortFromOutput(output_line):
       r'(?P<host>[^:]*):'
       r'(?P<port>\d+)')
   m = port_re.match(output_line)
+  logging.warning('Parse m: %s', m)
   if m:
     return int(m.group('port'))
 
@@ -125,7 +126,10 @@ class TsProxyServer(object):
       return False
     self._proc.stdout.flush()
     output_line = self._ReadLineTsProxyStdout(timeout=5)
-    logging.debug('TsProxy output: %s', output_line)
+    logging.warning('TsProxy output: %s', output_line)
+    logging.warning('TsProxy output type: %s', type(output_line))
+    import six
+    output_line = six.ensure_str(output_line)
     self._port = ParseTsProxyPortFromOutput(output_line)
     return self._port != None
 
