@@ -45,6 +45,7 @@ if os.environ.get('APPENGINE_RUNTIME') != 'python27': # pragma: no cover
         from google.appengine.ext import webapp as _webapp
     except ImportError: # pragma: no cover
         # Running webapp2 outside of GAE.
+        logging.warning('Failed to import webapp from GAE!')
         pass
 
 try: # pragma: no cover
