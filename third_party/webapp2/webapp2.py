@@ -40,11 +40,17 @@ except ImportError: # pragma: no cover
 
 # google.appengine.ext.webapp imports webapp2 in the
 # App Engine Python 2.7 runtime.
+logging.warning('======')
 if os.environ.get('APPENGINE_RUNTIME') != 'python27': # pragma: no cover
     try:
+        logging.warning('===before===')
         from google.appengine.ext import webapp as _webapp
     except ImportError: # pragma: no cover
         # Running webapp2 outside of GAE.
+        logging.warning('===ImportError===')
+        pass
+    except SyntaxError:
+        logging.warning('===SyntaxError===')
         pass
 
 try: # pragma: no cover
