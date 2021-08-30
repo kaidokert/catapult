@@ -36,6 +36,7 @@ def ParseTsProxyPortFromOutput(output_line):
       r'(?P<host>[^:]*):'
       r'(?P<port>\d+)')
   m = port_re.match(output_line)
+  logging.warning('Parse m: %s', m)
   if m:
     return int(m.group('port'))
 
@@ -89,17 +90,18 @@ class TsProxyServer(object):
     if self._http_port:
       cmd_line.append(
           '--mapports=443:%s,*:%s' % (self._https_port, self._http_port))
-      logging.info('Tsproxy commandline: %s', cmd_line)
+      logging.warn('Tsproxy commandline: %s', cmd_line)
     # In python3 subprocess handles encoding/decoding; this warns if it won't be UTF-8.
     if locale.getpreferredencoding() != 'UTF-8':
       logging.warn('Decoding will use %s instead of UTF-8', locale.getpreferredencoding())
+    logging.warn('cmd: %s', (' '.join(cmd_line)))
     # In python3 universal_newlines forces subprocess to encode/decode, allowing per-line buffering.
     self._proc = subprocess.Popen(
         cmd_line, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
         stderr=subprocess.PIPE, bufsize=1, universal_newlines=True)
     self._non_blocking = False
     if fcntl:
-      logging.info('fcntl is supported, trying to set '
+      logging.warn('fcntl is supported, trying to set '
                    'non blocking I/O for the ts_proxy process')
       fd = self._proc.stdout.fileno()
       fl = fcntl.fcntl(fd, fcntl.F_GETFL)
@@ -121,18 +123,28 @@ class TsProxyServer(object):
   def _IsStarted(self):
     assert not self._is_running
     assert self._proc
+    # Check if child process has terminated.
     if self._proc.poll() is not None:
+      logging.warn('Returning for self._proc.poll')
       return False
     self._proc.stdout.flush()
     output_line = self._ReadLineTsProxyStdout(timeout=5)
-    logging.debug('TsProxy output: %s', output_line)
+    logging.warn('TsProxy output: %s', output_line)
+    logging.warn('TsProxy output type: %s', type(output_line))
+    import six
+    output_line = six.ensure_str(output_line)
     self._port = ParseTsProxyPortFromOutput(output_line)
     return self._port != None
 
   def _ReadLineTsProxyStdout(self, timeout):
     def ReadSingleLine():
       try:
-        return self._proc.stdout.readline().strip()
+        self._proc.stdout.flush()
+        line = self._proc.stdout.readline().strip()
+        logging.warn('type %s', type(line))
+        logging.warn('Read single line: %s', line)
+        return line
+#         return self._proc.stdout.readline().strip()
       except IOError:
         # Add a sleep to avoid trying to read self._proc.stdout too often.
         if self._non_blocking:
