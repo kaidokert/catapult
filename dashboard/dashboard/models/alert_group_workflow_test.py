@@ -2307,3 +2307,26 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     update = w._PrepareGroupUpdate()
 
     self.assertIsNone(update.canonical_group)
+
+  def testPrepareGroupUpdate_AlertGroupBugBackwardsCompatiblity(self):
+    base_anomaly = self._AddAnomaly()
+    group = self._AddAlertGroup(
+        base_anomaly,
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+
+    group.bug_backwards_compatible = alert_group.BugInfo(
+        bug_id=self._issue_tracker.issue.get('id'),
+        project=self._issue_tracker.issue.get('projectId', 'chromium'),
+    )
+
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        issue_tracker=self._issue_tracker,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+    w._PrepareGroupUpdate()
+    self.assertTrue(False)
