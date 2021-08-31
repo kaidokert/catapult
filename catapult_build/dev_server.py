@@ -71,7 +71,7 @@ def _RelPathToUnixPath(p):
 class TestResultHandler(webapp2.RequestHandler):
   def post(self, *args, **kwargs):  # pylint: disable=unused-argument
     msg = self.request.body
-    ostream = sys.stdout if 'PASSED' in msg else sys.stderr
+    ostream = sys.stdout if b'PASSED' in msg else sys.stderr
     ostream.write(msg + '\n')
     return self.response.write('')
 
