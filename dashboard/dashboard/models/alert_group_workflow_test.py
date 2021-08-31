@@ -2307,3 +2307,35 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     update = w._PrepareGroupUpdate()
 
     self.assertIsNone(update.canonical_group)
+
+  def testPrepareGroupUpdate_AlertGroupBugBackwardsCompatiblity(self):
+    base_anomaly = self._AddAnomaly()
+    group = self._AddAlertGroup(
+        base_anomaly,
+        # issue=self._issue_tracker.issue,
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+
+    group_entity = group.get()
+
+    print('---- Bug %r Backwards bug %r' % (group_entity.bug, group_entity.bug_backwards_compatible))
+    group_entity.bug_backwards_compatible = alert_group.BugInfoBackwards(
+        bug_id=self._issue_tracker.issue.get('id'),
+        project=self._issue_tracker.issue.get('projectId', 'chromium'),
+    )
+    group_entity.put()
+
+    group_entity = group.get()
+
+    print('2--- Bug %r Backwards bug %r' % (group_entity.bug, group_entity.bug_backwards_compatible))
+
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        issue_tracker=self._issue_tracker,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+    w._PrepareGroupUpdate()
+    self.assertTrue(False)
