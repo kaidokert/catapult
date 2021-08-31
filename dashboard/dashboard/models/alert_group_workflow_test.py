@@ -2307,3 +2307,40 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     update = w._PrepareGroupUpdate()
 
     self.assertIsNone(update.canonical_group)
+
+  # TODO(crbug.com/1245054): remove after all old alert groups are processed.
+  def testPrepareGroupUpdate_AlertGroupBugBackwardsCompatiblity(self):
+    base_anomaly = self._AddAnomaly()
+    group = self._AddAlertGroup(
+        base_anomaly,
+        status=alert_group.AlertGroup.Status.triaged,
+    )
+
+    group_entity = group.get()
+
+    print('---- Bug %s' % str(group_entity._properties))
+    group_entity._properties['bug'] = ndb.LocalStructuredProperty(alert_group.BugInfo, 'bug')
+    print('2--- Bug %s | %s' % (str(group_entity.bug), str(group_entity._properties)))
+
+    group_entity.bug = alert_group.BugInfo(
+        bug_id=self._issue_tracker.issue.get('id'),
+        project=self._issue_tracker.issue.get('projectId', 'chromium'),
+    )
+    print('3--- Bug %r | %s' % (group_entity.bug, str(group_entity._properties)))
+
+    group_entity.put()
+
+    group_entity = group.get()
+
+    print('4--- Bug %r | %s' % (group_entity.bug, str(group_entity._properties)))
+
+    w = alert_group_workflow.AlertGroupWorkflow(
+        group.get(),
+        issue_tracker=self._issue_tracker,
+        config=alert_group_workflow.AlertGroupWorkflow.Config(
+            active_window=datetime.timedelta(days=7),
+            triage_delay=datetime.timedelta(hours=0),
+        ),
+    )
+    w._PrepareGroupUpdate()
+    self.assertTrue(False)
