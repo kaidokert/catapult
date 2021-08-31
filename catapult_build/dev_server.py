@@ -9,6 +9,7 @@ import argparse
 import json
 import os
 import sys
+import six
 import six.moves.urllib.parse # pylint: disable=import-error
 
 from hooks import install
@@ -71,16 +72,16 @@ def _RelPathToUnixPath(p):
 class TestResultHandler(webapp2.RequestHandler):
   def post(self, *args, **kwargs):  # pylint: disable=unused-argument
     msg = self.request.body
-    ostream = sys.stdout if 'PASSED' in msg else sys.stderr
-    ostream.write(msg + '\n')
+    ostream = sys.stdout if b'PASSED' in msg else sys.stderr
+    ostream.write(six.ensure_str(msg) + '\n')
     return self.response.write('')
 
 
 class TestsCompletedHandler(webapp2.RequestHandler):
   def post(self, *args, **kwargs):  # pylint: disable=unused-argument
     msg = self.request.body
-    sys.stdout.write(msg + '\n')
-    exit_code = 0 if 'ALL_PASSED' in msg else 1
+    sys.stdout.write(six.ensure_str(msg) + '\n')
+    exit_code = 0 if b'ALL_PASSED' in msg else 1
     if hasattr(self.app.server, 'please_exit'):
       self.app.server.please_exit(exit_code)
     return self.response.write('')
@@ -89,7 +90,7 @@ class TestsErrorHandler(webapp2.RequestHandler):
   def post(self, *args, **kwargs):
     del args, kwargs
     msg = self.request.body
-    sys.stderr.write(msg + '\n')
+    sys.stderr.write(msg + b'\n')
     exit_code = 1
     if hasattr(self.app.server, 'please_exit'):
       self.app.server.please_exit(exit_code)
