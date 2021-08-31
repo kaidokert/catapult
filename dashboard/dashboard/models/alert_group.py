@@ -31,6 +31,11 @@ class BugInfo(ndb.Model):
   bug_id = ndb.IntegerProperty(indexed=True)
 
 
+class BugInfoBackwards(ndb.Model):
+  project = ndb.StringProperty()
+  bug_id = ndb.IntegerProperty()
+
+
 class AlertGroup(ndb.Model):
   name = ndb.StringProperty(indexed=True)
   domain = ndb.StringProperty(indexed=True)
@@ -60,6 +65,7 @@ class AlertGroup(ndb.Model):
   active = ndb.BooleanProperty(indexed=True)
   revision = ndb.LocalStructuredProperty(RevisionRange)
   bug = ndb.StructuredProperty(BugInfo, indexed=True)
+  bug_backwards_compatible = ndb.LocalStructuredProperty(BugInfoBackwards, name='bug')
   project_id = ndb.StringProperty(indexed=True, default='chromium')
   bisection_ids = ndb.StringProperty(repeated=True)
   anomalies = ndb.KeyProperty(repeated=True)
