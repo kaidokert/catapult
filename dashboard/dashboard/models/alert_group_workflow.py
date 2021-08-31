@@ -230,6 +230,18 @@ class AlertGroupWorkflow(object):
         self._group.Status.triaged, self._group.Status.bisected,
         self._group.Status.closed
     }:
+      # This is required for backwards compatibility. There is number of alert
+      # groups that has bug as ndb.LocalStructuredProperty.
+      # TODO(crbug.com/1245054): remove after all old groups are processed.
+      if not self._group.bug:
+        logging.info('Old format alert group is detected. Migrating bug property.')
+        old_format_bug = self._group._properties.get('bug')._get_value(self._group)
+        self._group.bug = alert_group.BugInfo(
+            project=old_format_bug.project,
+            bug_id=old_format_bug.bug_id,
+        )
+        logging.info('Bug property migrated: %s', str(self._group.bug))
+
       issue = self._issue_tracker.GetIssue(
           self._group.bug.bug_id, project=self._group.bug.project)
       # GetIssueComments doesn't work with empty project id so we have to
