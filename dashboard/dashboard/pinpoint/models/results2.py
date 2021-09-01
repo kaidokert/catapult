@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import collections
 import cloudstorage
 import logging
 import os
@@ -13,12 +14,25 @@ import os
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
 
+from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models.quest import read_value
+from dashboard.pinpoint.models.quest import run_test
+from dashboard.services import swarming
 from tracing_build import render_histograms_viewer
 from tracing.value import gtest_json_converter
 from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import reserved_infos
 
+import io
+import json
+import logging
+import time
+import uuid
+from google.appengine.api import app_identity
+
+from apiclient import http
+from apiclient.discovery import build
+from oauth2client import client
 
 class Results2Error(Exception):
 
@@ -87,7 +101,6 @@ def ScheduleResults2Generation(job):
 def GenerateResults2(job):
   logging.debug('Job [%s]: GenerateResults2', job.job_id)
 
-  histogram_dicts = _FetchHistograms(job)
   vulcanized_html = _ReadVulcanizedHistogramsViewer()
 
   CachedResults2(job_id=job.job_id).put()
@@ -100,7 +113,7 @@ def GenerateResults2(job):
       retry_params=cloudstorage.RetryParams(backoff_factor=1.1))
 
   render_histograms_viewer.RenderHistogramsViewer(
-      histogram_dicts,
+      _FetchHistograms(job),
       gcs_file,
       reset_results=True,
       vulcanized_html=vulcanized_html)
@@ -108,6 +121,15 @@ def GenerateResults2(job):
   gcs_file.close()
   logging.debug('Generated %s; see https://storage.cloud.google.com%s',
                 filename, filename)
+
+  # Only save A/B tests to BQ
+  if job.comparison_mode != job_state.FUNCTIONAL and job.comparison_mode != job_state.PERFORMANCE:
+    #try:
+    _SaveJobToBigQuery(job)
+    # except Exception as e:
+    #  logging.error(e)
+  else:
+    logging.error("NO BQ?!?!?!!?")
 
 
 def _ReadVulcanizedHistogramsViewer():
@@ -118,10 +140,28 @@ def _ReadVulcanizedHistogramsViewer():
     return f.read()
 
 
+
+HistogramMetadata = collections.namedtuple('HistogramMetadata',
+  ['attemptNo', "change", "swarming_result"])
+
 def _FetchHistograms(job):
   for change in _ChangeList(job):
-    for attempt in job.state._attempts[change]:
+    for attemptNo, attempt in enumerate(job.state._attempts[change]):
+      swarming_result = None
       for execution in attempt.executions:
+        # Attempt to extract taskID if this is a run_test._RunTestExecution
+        if isinstance(execution, run_test._RunTestExecution):
+          # Query Swarming
+          try:
+            swarming_task = swarming.Swarming(execution._swarming_server).Task(execution._task_id)
+            logging.error("SWARMINGTASKWORKEDWOO: " + str(swarming_task))
+            swarming_result = swarming_task.Result()
+            logging.error("SWARMRESULT: " + str(swarming_result))
+          except Exception as e:
+            logging.error("_FetchHistograms _RunTestExecutions error: " + str(e))
+          continue
+
+        # Attempt to extract Histograms if this is a read_value.*
         mode = None
         if isinstance(execution, read_value._ReadHistogramsJsonValueExecution):
           mode = 'histograms'
@@ -145,8 +185,9 @@ def _FetchHistograms(job):
 
         logging.debug('Found %s histograms for %s', len(histogram_sets), change)
 
+        metadata = HistogramMetadata(attemptNo, change, swarming_result)
         for histogram in histogram_sets:
-          yield histogram
+          yield render_histograms_viewer.HistogramData(metadata, histogram)
 
         # Force deletion of histogram_set objects which can be O(100MB).
         del histogram_sets
@@ -188,3 +229,80 @@ def _JsonFromExecution(execution):
       isolate_hash,
       results_filename,
   )
+
+_PROJECT_ID = 'todo'
+_DATASET = 'todo'
+_TABLE = 'todo' # We'll probably have more than one of these
+def _SaveJobToBigQuery(job):
+  logging.error("Save to BQ!")
+  #bq = _BQService()
+  rows = []
+  for h in _FetchHistograms(job):
+    logging.error("SOME H:" + str(h.histogram))
+    if "sampleValues" not in h.histogram:
+      continue
+    if len(h.histogram["sampleValues"]) != 1:
+      # We don't support analysis of metrics with more than one sample.
+      continue
+
+    data = {}
+    data["batchID"] = job.batch_id
+    logging.error("bargs: " + str(job.benchmark_arguments))
+    data["benchmark"] = job.benchmark_arguments["benchmark"]
+    data["cfg"] = job.configuration
+    data["change_repo"] = h.metadata.change.commits[0].repository
+    data["change_hash"] = h.metadata.change.commits[0].git_hash
+    data["patch_server"] = None
+    data["patch_repo"] = None
+    data["patch_number"] = None
+    data["patch_rev"] = None
+    if h.metadata.change.patch is not None:
+      patch_params = h.metadata.change.patch.BuildParameters()
+      data["patch_server"] = patch_params["patch_gerrit_url"]
+      data["patch_repo"] = patch_params["project"]
+      data["patch_number"] = patch_params["patch_issue"]
+      data["patch_rev"] = patch_params["patch_rev"]
+
+    if h.metadata.swarming_result and "bot_dimensions" in h.metadata.swarming_result:
+      if "device_type" in h.metadata.swarming_result["bot_dimensions"]:
+        data["deviceModel"] = h.metadata.swarming_result["bot_dimensions"]["device_type"]
+      if "device_os" in h.metadata.swarming_result["bot_dimensions"]:
+        data["deviceOS"] = h.metadata.swarming_result["bot_dimensions"]["device_os"]
+
+    data["iteration"] = h.metadata.attemptNo
+    data["jobID"] = job.job_id
+    data["metric"] = h.histogram["name"]
+    data["story"] = job.benchmark_arguments["story"] # TODO: What if user used story tags?
+    data["value"] = h.histogram["sampleValues"][0]
+    data["passing"] = True # TODO: How do we figure this out?
+
+    logging.error("\n\nANDNOWDATA: " + str(data) + "\n\n")
+    rows.append(data)
+  #InsertRowsSync(bq, _PROJECT_ID, _DATASET, _TABLE, rows)
+
+INSERTION_MAX_ROWS = 10000
+def InsertRowsSync(self, service, project_id, dataset_id, table_id, rows, num_retries=5):
+  for i in xrange(0, len(rows), INSERTION_MAX_ROWS):
+    rows_chunk = rows[i:i+INSERTION_MAX_ROWS]
+    logging.info('Inserting %d rows into %s.%s.',
+                  len(rows_chunk), dataset_id, table_id)
+    rows_chunk = [{'insertId': str(uuid.uuid4()), 'json': row}
+                  for row in rows_chunk]
+    insert_data = {'rows': rows_chunk}
+    response = service.tabledata().insertAll(
+        projectId=project_id,
+        datasetId=dataset_id,
+        tableId=table_id,
+        body=insert_data).execute(num_retries=num_retries)
+
+    if 'insertErrors' in response:
+      logging.error("Insert failed: " + response)
+
+def _BQService():
+  """Returns an initialized and authorized BigQuery client."""
+  # pylint: disable=no-member
+  credentials = client.GoogleCredentials.get_application_default()
+  if credentials.create_scoped_required():
+    credentials = credentials.create_scoped(
+        'https://www.googleapis.com/auth/bigquery')
+  return build('bigquery', 'v2', credentials=credentials)
