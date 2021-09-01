@@ -10,6 +10,7 @@ import sys
 import shutil
 import tempfile
 import unittest
+import six
 from six.moves import range
 
 sys.path.append(
@@ -57,10 +58,11 @@ class VinnUnittest(unittest.TestCase):
       self.fail(msg)
 
   def _GetUnescapedExceptionMessage(self, exception):
-    if os.name == 'nt':
-      return str(exception)
-    else:
-      return str(exception).encode().decode("unicode-escape")
+#     if os.name == 'nt':
+#       return str(exception)
+#     else:
+#       return str(exception).encode().decode("unicode-escape")
+    return six.ensure_str(six.ensure_binary(exception).decode("unicode-escape"))
 
 
   def testExecuteJsStringStdoutPiping(self):
