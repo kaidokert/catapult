@@ -328,7 +328,7 @@ class AdbWrapper(object):
       else:
         raise
     except cmd_helper.TimeoutError:
-      logger.exception('Timeout on adb command: %r', adb_cmd)
+      logger.error('Timeout on adb command: %r', adb_cmd)
       raise
 
     # Best effort to catch errors from adb; unfortunately adb is very
