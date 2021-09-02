@@ -165,9 +165,28 @@ wheel: <
   name: "infra/python/wheels/distro-py2_py3"
   version: "version:1.4.0"
 >
+# Used by:
+#   telemetry/
 wheel: <
-  name: "infra/python/wheels/pillow/linux-amd64_cp38_cp38"
-  version: "version:8.1.2"
+  name: "infra/python/wheels/pillow/${vpython_platform}"
+  version: "version:8.3.1"
+  match_tag: <
+    platform: "win32"
+  >
+  match_tag: <
+    platform: "win_amd64"
+  >
+  match_tag: <
+    abi: "cp27mu"
+    platform: "manylinux1_i686"
+  >
+  match_tag: <
+    abi: "cp27mu"
+    platform: "manylinux1_x86_64"
+  >
+  match_tag: <
+    platform: "macosx_10_6_intel"
+  >
 >
 
 # Used by:
