@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a68453c2_b5b1ae1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-09-02T22:36:46Z",
+      "side": 1,
+      "message": "I will try to prioritize updating the way of how revision range is set in CPD. For now lets add one more diagnostic.",
+      "revId": "d3cad741fbda2a0495617fd44b3dadc6b70cebbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
