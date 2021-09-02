@@ -1174,7 +1174,7 @@ class DeviceUtilsInstallTest(DeviceUtilsTest):
               ['mkdir', '-p', '/sdcard/Android/data/test.package/files'],
               as_root=True),
           self.call.device.RunShellCommand([
-              'cp', '-a', '/data/local/tmp/modules/test.package',
+              'mv', '/data/local/tmp/modules/test.package',
               '/sdcard/Android/data/test.package/files/local_testing'
           ],
                                            as_root=True),
