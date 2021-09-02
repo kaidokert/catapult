@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef3e144c_454639c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-09-02T00:07:04Z",
+      "side": 1,
+      "message": "Need bypass the try job failures on android devices because the old devices are offline as part of the change of this CL. PTAL.",
+      "revId": "758f769ac6bedfba1b69159a583468397a84653e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
