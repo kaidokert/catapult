@@ -16,6 +16,23 @@
       "message": "I will try to prioritize updating the way of how revision range is set in CPD. For now lets add one more diagnostic.",
       "revId": "d3cad741fbda2a0495617fd44b3dadc6b70cebbb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eb6fe4f_5e9f1d9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1275653
+      },
+      "writtenOn": "2021-09-02T22:37:34Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "d3cad741fbda2a0495617fd44b3dadc6b70cebbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
