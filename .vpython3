@@ -166,7 +166,7 @@ wheel: <
   version: "version:1.4.0"
 >
 wheel: <
-  name: "infra/python/wheels/pillow/linux-amd64_cp38_cp38"
+  name: "infra/python/wheels/pillow/${vpython_platform}"
   version: "version:8.1.2"
 >
 

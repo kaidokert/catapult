@@ -102,7 +102,7 @@ _CATAPULT_TESTS = [
         'additional_args': [
             '--browser=reference',
             '--start-xvfb',
-            '-v',
+            '-vvvvvv',
         ],
         'uses_sandbox_env': True,
         'disabled': ['android'],
