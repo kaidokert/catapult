@@ -63,6 +63,7 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
     This is guaranteed to be called only once for all the tests before the test
     suite runs.
     """
+    logging.error('ASDF setting up process')
     finder_options = browser_test_context.GetCopy().finder_options
     cls._finder_options = finder_options
 
@@ -80,6 +81,7 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
     cls.browser = None
     cls._browser_to_create = None
     cls._browser_options = None
+    logging.error('ASDF done setting up process')
 
   @classmethod
   def SetBrowserOptions(cls, browser_options):
@@ -115,6 +117,7 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
           this archive will be automatically downloaded from Google Storage.
       archive_bucket: The bucket to look for the WPR archive.
     """
+    logging.error('ASDF setting up WPR server')
     assert cls._browser_options, (
         'Browser options must be set with |SetBrowserOptions| prior to '
         'starting WPR')
@@ -122,6 +125,7 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
 
     cloud_storage.GetIfChanged(archive_path, archive_bucket)
     cls.platform.network_controller.StartReplay(archive_path)
+    logging.error('ASDF done starting WPR server')
 
   @classmethod
   def StopWPRServer(cls):
@@ -167,12 +171,14 @@ class SeriallyExecutedBrowserTestCase(test_case.TestCase):
     This is guaranteed to be called only once for all the tests after the test
     suite finishes running.
     """
+    logging.error('ASDF tearing down process')
     if cls.platform:
       cls.platform.StopAllLocalServers()
       cls.platform.network_controller.Close()
       cls.platform.SetPerformanceMode(android_device.NORMAL_PERFORMANCE_MODE)
     if cls.browser:
       cls.StopBrowser()
+    logging.error('ASDF done tearing down process')
 
   @classmethod
   def SetStaticServerDirs(cls, dirs_path):

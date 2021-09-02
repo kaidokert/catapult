@@ -187,6 +187,7 @@ class Runner(object):
         self.host.print_(msg, end, stream=stream)
 
     def run(self, test_set=None):
+        self.print_('ASDF runner.run')
 
         ret = 0
         h = self.host
@@ -555,6 +556,7 @@ class Runner(object):
             raise ImportError(loader.errors)
 
     def _run_tests(self, result_set, test_set, all_tests):
+        self.print_('ASDF Runner._run_tests')
         h = self.host
         self.last_runs_retry_on_failure_tests = set()
 
@@ -589,6 +591,7 @@ class Runner(object):
         try:
             # Start at 1 since we already did iteration 0 above.
             for iteration in range(1, self.args.retry_limit + 1):
+                self.print_('ASDF Starting run_tests iteration %d' % iteration)
                 if not tests_to_retry:
                     break
                 if retry_limit == self.args.retry_limit:
@@ -628,9 +631,11 @@ class Runner(object):
         retcode = (json_results.exit_code_from_full_results(full_results)
                    | result_sink.result_sink_retcode_from_result_set(result_set))
 
+        self.print_('ASDF finish Runner._run_tests')
         return (retcode, full_results)
 
     def _run_one_set(self, stats, result_set, test_set, jobs, pool):
+        self.print_('ASDF _run_one_set')
         self._skip_tests(stats, result_set, test_set.tests_to_skip)
         self._run_list(stats, result_set,
                        test_set.parallel_tests, jobs, pool)
@@ -652,6 +657,7 @@ class Runner(object):
             self._print_test_finished(stats, result)
 
     def _run_list(self, stats, result_set, test_inputs, jobs, pool):
+        self.print_('ASDF _run_list')
         running_jobs = set()
 
         while test_inputs or running_jobs:
@@ -660,6 +666,7 @@ class Runner(object):
                 stats.started += 1
                 pool.send(test_input)
                 running_jobs.add(test_input.name)
+                self.print_('ASDF starting test %s' % test_input)
                 self._print_test_started(stats, test_input)
 
             result, should_retry_on_failure = pool.get()
@@ -1004,6 +1011,7 @@ def _teardown_process(child):
 
 
 def _run_one_test(child, test_input):
+    print('ASDF _ron_one_test')
     h = child.host
     pid = h.getpid()
     test_name = test_input.name
@@ -1085,6 +1093,7 @@ def _run_one_test(child, test_input):
     out = ''
     err = ''
     try:
+        print('ASDF actually running one test')
         if child.dry_run:
             pass
         elif child.debugger:  # pragma: no cover
