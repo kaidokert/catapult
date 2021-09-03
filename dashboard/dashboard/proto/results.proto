@@ -1,0 +1,76 @@
+// Copyright 2019 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be found
+// in the LICENSE file.
+syntax = "proto3";
+
+package dashboard;
+
+message PinpointID {
+    string run_id = 1;
+    string batch_id = 2;
+}
+
+message Device {
+    // Pinpoint cfg (e.g. linux-perf)
+    string cfg = 1;
+
+    // Swarming dimensions returned by querying the completed
+    // Swarming Task ID
+    // (empty if not available)
+    repeated string os = 2;
+    repeated string cpu = 3;
+    // E.g. build62-h7--device6
+    string swarming_bot_id = 4;
+
+    // E.g. FA81H1A03209, if available
+    string device_serial = 5;
+}
+
+message TestInfo {
+    string benchmark = 1;
+    string story = 2;
+}
+
+message Checkout {
+    // E.g. chromium/src
+    string repo = 1;
+    string git_hash = 2;
+    int git_position = 3; // If available
+    int chromium_review_patch_id = 4; // If available
+}
+
+message Metric {
+    string name = 1;
+    bool lower_is_better = 2;
+}
+
+message Pairing {
+    // https://screenshot.googleplex.com/7bdwTLgrwy9fZaA.png
+    int iteration = 1;
+    int order = 2;
+}
+
+message Dims {
+    // Swarming Task Timing Information -> Started
+    google.protobuf.Timestamp start_time = 1;
+    PinpointID pinpoint = 2;
+    string swarming_task_id = 3;
+    Device device = 4;
+    TestInfo TestInfo = 5;
+    repeated Checkout checkout = 6;
+    repeated string flags = 8;
+    Metric metric = 9;
+}
+
+message Measures {
+    bool pass = 1;
+    float value = 2;
+}
+
+// Represents a row in a BigQuery table.
+// Each row maps Dimensions (device, story, etc.) + pairing + metric -> value
+message ResultRow {
+    Dims dims = 1;
+    // Each unique combination of Dims should have up to one Measures.
+    Measures measures = 2;
+}
