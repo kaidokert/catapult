@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure how to test UI change. Is there is an easy way?",
       "revId": "fd4f641ab838f6b6b372ab050187daf8262b7be2",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4351b08b_3bb8900e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1378662
+      },
+      "writtenOn": "2021-09-03T12:53:08Z",
+      "side": 1,
+      "message": "There is a dev server but doesn\u0027t really work because it can\u0027t fetch any data. So the only way I know is testing in production 😞.",
+      "parentUuid": "4af6be47_4ac4b4a9",
+      "revId": "fd4f641ab838f6b6b372ab050187daf8262b7be2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
