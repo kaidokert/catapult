@@ -31,7 +31,17 @@ python_version: "3.8"
 # //telemetry/telemetry/internal/util/external_modules.py
 wheel: <
   name: "infra/python/wheels/numpy/${vpython_platform}"
+  version: "version:1.20.3"
+>
+wheel: <
+  name: "infra/python/wheels/numpy/${vpython_platform}"
   version: "version:1.19.5"
+  match_tag: <
+      platform: "win32"
+    >
+    match_tag: <
+      platform: "win_amd64"
+    >
 >
 
 # Used by:
