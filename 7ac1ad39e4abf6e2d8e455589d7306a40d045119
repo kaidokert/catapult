@@ -122,6 +122,30 @@
       },
       "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8e9cf2_59f8057d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-09-03T05:29:58Z",
+      "side": 1,
+      "message": "This isn\u0027t sufficient yet.  Rereading my original comment I realize conflated two different issues, sorry!  The two issues are:\n\n1) how to deal with requests from old clients that are still passing \u0027fallback_target\u0027 in arguments (that\u0027s handled by FromDict), and\n\n2) how to deal with old job states serialized by versions before this CL.\n\nYou\u0027re now handling 1, but you also need to handle 2, or else in-progress job executions will fail when this rolls out.  For 2 you need to update both FindIsolate and _FindIsolateExecution.\n\nThere\u0027s a limited example of how to handle this sort of issue in FindIsolate: the build_tags property, which carefully guards against the possibility that the _build_tags attribute is not present.  A similar approach could work well here:\n\n  @property\n  def fallback_targets(self):\n    if hasattr(self, \u0027_fallback_targets\u0027):\n      return self._fallback_targets\n    # Support the older attribute for this (before crrev.com/c/3115684).\n    if hasattr(self, \u0027_fallback_target\u0027):\n      return [self._fallback_target]\n    return []\n\n    \nAnd then always read these values via this property rather than the underscore-prefixed name.\n\n(You could probably also muck about with the __getstate__ hook, but IIRC it\u0027s more complex.)\n\nUnfortunately it\u0027s hard to convincingly unit test that a newer version of the code correctly deserializes objects serialized by an older version.",
+      "parentUuid": "f5183329_cd27f5d3",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 59
+      },
+      "revId": "7ac1ad39e4abf6e2d8e455589d7306a40d045119",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

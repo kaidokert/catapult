@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec113e5b_ce902108",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-09-03T05:29:58Z",
+      "side": 1,
+      "message": "What about clients that are providing \u0027fallback_target\u0027 today?  Have they already been updated to also provide \u0027fallback_targets\u0027?  Otherwise this seem like it could change behaviour for existing clients that attempt to provide \u0027fallback_target\u0027 explicitly.  The default value for \u0027fallback_targets\u0027 that is added here will take precedence over an explicit \u0027fallback_target\u0027 argument from the client in FindIsolate.FromDict, if I\u0027m reading the logic correctly.\n\nSo perhaps this should be:\n\n  if \u0027fallback_targets\u0027 not in arguments and \u0027fallback_target\u0027 not in arguments:\n  \nWhat do you think?",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 45
+      },
+      "revId": "e264f0b591113b5951ac6868357c085442e60cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c9e4369_fd6aaf4a",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-09-03T05:29:58Z",
+      "side": 1,
+      "message": "You need similar backwards compatibility for the _fallback_targets attribute of the Quest, not just Execution.  Both types of object are serialized as part of the JobState, and so you need to handle the case where a newer version of this code attempts to deserialize a FindIsolate serialized by an older version, just like you need to for the _FindIsolateExecution class.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "e264f0b591113b5951ac6868357c085442e60cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
