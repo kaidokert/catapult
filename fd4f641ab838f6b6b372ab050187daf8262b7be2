@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af6be47_4ac4b4a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-09-03T12:33:45Z",
+      "side": 1,
+      "message": "I\u0027m not sure how to test UI change. Is there is an easy way?",
+      "revId": "fd4f641ab838f6b6b372ab050187daf8262b7be2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
