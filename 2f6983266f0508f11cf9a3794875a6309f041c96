@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e497caf4_9fcaf770",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-09-06T08:23:52Z",
+      "side": 1,
+      "message": "I don\u0027t :(. I don\u0027t know how to check UI changes. Neither does Chenlin (see previous comments). Let me know if there is a way to do it.",
+      "parentUuid": "51127f6a_8e2c998c",
+      "revId": "2f6983266f0508f11cf9a3794875a6309f041c96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0f32be1_a550f4bf",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-09-03T18:39:25Z",
       "side": 1,
       "message": "nit: add semicolon here and below",
+      "revId": "2f6983266f0508f11cf9a3794875a6309f041c96",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e47ae43f_bd8a3029",
+        "filename": "dashboard/dashboard/elements/alerts-table.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-09-06T08:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0f32be1_a550f4bf",
       "revId": "2f6983266f0508f11cf9a3794875a6309f041c96",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
