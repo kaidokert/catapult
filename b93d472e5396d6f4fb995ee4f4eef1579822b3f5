@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8093773a_aa8b802b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-09-07T14:53:15Z",
+      "side": 1,
+      "message": "I think it should be fine to submit it like this since it\u0027s a minor UI change. ",
+      "revId": "b93d472e5396d6f4fb995ee4f4eef1579822b3f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
