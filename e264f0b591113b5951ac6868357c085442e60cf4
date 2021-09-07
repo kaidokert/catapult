@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63b43a3b_1cf16dfb",
+        "filename": "dashboard/dashboard/pinpoint/handlers/new.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-07T19:32:53Z",
+      "side": 1,
+      "message": "Done, with some added tests.",
+      "parentUuid": "ec113e5b_ce902108",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 45
+      },
+      "revId": "e264f0b591113b5951ac6868357c085442e60cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c9e4369_fd6aaf4a",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-03T05:29:58Z",
       "side": 1,
       "message": "You need similar backwards compatibility for the _fallback_targets attribute of the Quest, not just Execution.  Both types of object are serialized as part of the JobState, and so you need to handle the case where a newer version of this code attempts to deserialize a FindIsolate serialized by an older version, just like you need to for the _FindIsolateExecution class.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "e264f0b591113b5951ac6868357c085442e60cf4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "698746e8_afa5c2ac",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-07T19:32:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c9e4369_fd6aaf4a",
       "range": {
         "startLine": 32,
         "startChar": 0,
