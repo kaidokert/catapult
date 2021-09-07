@@ -414,6 +414,17 @@ tr.exportTo('tr.metrics.sh', function() {
     }
   };
 
+  const MAX_ALLOCATED_SIZE = {
+    name: 'max_allocated_size',
+    unit: sizeInBytes_smallerIsBetter,
+    buildDescriptionPrefix(componentPath, processName) {
+      return buildChromeValueDescriptionPrefix(componentPath, processName, {
+        userFriendlyPropertyName: 'maximum allocated size',
+        componentPreposition: 'of'
+      });
+    }
+  };
+
   const PEAK_SIZE = {
     name: 'peak_size',
     unit: sizeInBytes_smallerIsBetter,
@@ -452,6 +463,7 @@ tr.exportTo('tr.metrics.sh', function() {
     ALLOCATED_OBJECTS_SIZE,
     SHIM_ALLOCATED_OBJECTS_SIZE,
     LOCKED_SIZE,
+    MAX_ALLOCATED_SIZE,
     PEAK_SIZE
   ];
 
