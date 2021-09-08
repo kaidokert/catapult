@@ -3196,6 +3196,25 @@ class DeviceUtils(object):
       else:
         raise
 
+  @decorators.WithTimeoutAndRetriesFromInstance()
+  def GetUidForPackage(self, package_name, timeout=None, retries=None):
+    """Get user id for package name on device
+
+    Args:
+      package_name: Package name installed on device
+
+    Returns:
+      A string containing the package UID
+    """
+    dumpsys_output = self._GetDumpsysOutput(
+        ['package', package_name], 'userId=')
+
+    if not dumpsys_output:
+      raise device_errors.CommandFailedError(
+          'No output was received from dumpsys')
+
+    return re.sub('.*userId=', '', dumpsys_output[0])
+
   # TODO(#4103): Remove after migrating clients to ListProcesses.
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetPids(self, process_name=None, timeout=None, retries=None):
