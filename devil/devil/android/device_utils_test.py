@@ -604,6 +604,16 @@ class DeviceUtils_GetApplicationTargetSdkTest(DeviceUtilsTest):
           'R', self.device.GetApplicationTargetSdk('com.android.chrome'))
 
 
+class DeviceUtils_GetUidForPackageTest(DeviceUtilsTest):
+  def test_GetUidForPackage(self):
+    with self.assertCall(
+        self.call.device._RunPipedShellCommand(
+            'dumpsys package com.android.chrome | grep -F userId='),
+        ['  userId=1001']):
+      self.assertEquals('1001',
+                        self.device.GetUidForPackage('com.android.chrome'))
+
+
 class DeviceUtils_GetPackageArchitectureTest(DeviceUtilsTest):
   def test_GetPackageArchitecture_exists(self):
     with self.assertCall(
