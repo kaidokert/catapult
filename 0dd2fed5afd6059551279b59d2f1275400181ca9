@@ -16,6 +16,98 @@
       "message": "Hi John\n\nThis CL adds a new method to get the UID for package to devil.\n\nPTAL\nRakib",
       "revId": "0dd2fed5afd6059551279b59d2f1275400181ca9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "558a20fe_f792a4c2",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3203,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-09-08T23:42:25Z",
+      "side": 1,
+      "message": "Closing triple quotes should be on a line by itself. Can you also add a block for \"Returns:\" which explains the return type is a string?",
+      "range": {
+        "startLine": 3203,
+        "startChar": 52,
+        "endLine": 3203,
+        "endChar": 55
+      },
+      "revId": "0dd2fed5afd6059551279b59d2f1275400181ca9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab00dbb_0d080077",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3206,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-09-08T23:42:25Z",
+      "side": 1,
+      "message": "This should probably be \"throw CommandFailedError\" or something like that",
+      "range": {
+        "startLine": 3206,
+        "startChar": 4,
+        "endLine": 3206,
+        "endChar": 10
+      },
+      "revId": "0dd2fed5afd6059551279b59d2f1275400181ca9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3658aff2_bdb04a3f",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3206,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-09-08T23:42:25Z",
+      "side": 1,
+      "message": "spelling: received",
+      "range": {
+        "startLine": 3206,
+        "startChar": 42,
+        "endLine": 3206,
+        "endChar": 50
+      },
+      "revId": "0dd2fed5afd6059551279b59d2f1275400181ca9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29bfb37c_caf8b1c0",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-09-08T23:42:25Z",
+      "side": 1,
+      "message": "Can this mock the \"_GetDumpsysOutput\" call instead?",
+      "range": {
+        "startLine": 610,
+        "startChar": 8,
+        "endLine": 610,
+        "endChar": 47
+      },
+      "revId": "0dd2fed5afd6059551279b59d2f1275400181ca9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
