@@ -16,6 +16,23 @@
       "message": "I think it should be fine to submit it like this since it\u0027s a minor UI change. ",
       "revId": "b93d472e5396d6f4fb995ee4f4eef1579822b3f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11da0bea_ab3756c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428512
+      },
+      "writtenOn": "2021-09-08T08:09:29Z",
+      "side": 1,
+      "message": "Sean is OOO. Ryan PTAL. It is a minor UI change. Unfortunately idk how to test it locally, to see how it will look (neither does Chenlin). But I think it should be minor enough",
+      "revId": "b93d472e5396d6f4fb995ee4f4eef1579822b3f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
