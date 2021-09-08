@@ -1555,9 +1555,12 @@ class DeviceUtils(object):
       if large_output_mode:
         with device_temp_file.DeviceTempFile(self.adb) as large_output_file:
           large_output_cmd = '( %s )>%s 2>&1' % (cmd, large_output_file.name)
-          logger.debug('Large output mode enabled. Will write output to '
+          logger.warning('Large output mode enabled. Will write output to '
                        'device and read results from file.')
           try:
+            logging.warning('=== pre test cmd')
+            self.adb.Shell('echo TEST>%s 2>&1' % large_output_file.name)
+            logging.warning('=== post test cmd')
             handle_large_command(large_output_cmd)
             return self.ReadFile(large_output_file.name, force_pull=True)
           except device_errors.AdbShellCommandFailedError as exc:
@@ -1597,7 +1600,8 @@ class DeviceUtils(object):
     if (as_root is _FORCE_SU) or (as_root and self.NeedsSU()):
       # "su -c sh -c" allows using shell features in |cmd|
       cmd = self._Su('sh -c %s' % cmd_helper.SingleQuote(cmd))
-
+    logging.warning('=== cmd: %s' % cmd)
+    logging.warning('=== large_output: %s' % large_output)
     output = handle_large_output(cmd, large_output)
 
     if raw_output:
