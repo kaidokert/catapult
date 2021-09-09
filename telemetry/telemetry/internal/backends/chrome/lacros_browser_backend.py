@@ -133,7 +133,7 @@ class LacrosBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
            '--lang=en-US',
            '--breakpad-dump-location=/usr/local/lacros-chrome/',
            '--no-sandbox',
-           '--trace-smb-size=32768'] + startup_args)
+           '--trace-smb-size=65536'] + startup_args)
       # This will only exist if launch was successful.
       return self._IsDevtoolsUp()
 
