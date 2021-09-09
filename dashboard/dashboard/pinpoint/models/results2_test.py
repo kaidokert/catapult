@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import collections
 import itertools
 import logging
 import mock
@@ -14,8 +15,14 @@ import unittest
 from google.appengine.api import taskqueue
 
 from dashboard.common import testing_common
+from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import results2
+from dashboard.pinpoint.models.change import change
+from dashboard.pinpoint.models.change import commit
+from dashboard.pinpoint.models.change import patch
 from dashboard.pinpoint.models.quest import read_value
+from dashboard.pinpoint.models.quest import run_test
+from dashboard.services import swarming
 from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
 
@@ -131,7 +138,7 @@ class GetCachedResults2Test(unittest.TestCase):
   def testGetCachedResults2_Cached_ReturnsResult(self, mock_cloudstorage):
     mock_cloudstorage.return_value = ['foo']
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     url = results2.GetCachedResults2(job)
 
     self.assertEqual(
@@ -142,7 +149,7 @@ class GetCachedResults2Test(unittest.TestCase):
   def testGetCachedResults2_Uncached_Fails(self, mock_cloudstorage):
     mock_cloudstorage.return_value = []
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     url = results2.GetCachedResults2(job)
 
     self.assertIsNone(url)
@@ -154,7 +161,7 @@ class ScheduleResults2Generation2Test(unittest.TestCase):
   def testScheduleResults2Generation2_FailedPreviously(self, mock_add):
     mock_add.side_effect = taskqueue.TombstonedTaskError
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     result = results2.ScheduleResults2Generation(job)
     self.assertFalse(result)
 
@@ -162,7 +169,7 @@ class ScheduleResults2Generation2Test(unittest.TestCase):
   def testScheduleResults2Generation2_AlreadyRunning(self, mock_add):
     mock_add.side_effect = taskqueue.TaskAlreadyExistsError
 
-    job = _JobStub(_JOB_WITH_DIFFERENCES, '123')
+    job = _JobStub(_JOB_WITH_DIFFERENCES, '123', job_state.PERFORMANCE)
     result = results2.ScheduleResults2Generation(job)
     self.assertTrue(result)
 
@@ -177,7 +184,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2.render_histograms_viewer,
                      'RenderHistogramsViewer')
   def testPost_Renders(self, mock_render):
-    job = _JobStub(None, '123')
+    job = _JobStub(None, '123', job_state.PERFORMANCE)
     results2.GenerateResults2(job)
 
     mock_render.assert_called_with(['a', 'b'],
@@ -194,7 +201,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   def testTypeDispatch_LegacyHistogramExecution(self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -209,7 +216,7 @@ class GenerateResults2Test(testing_common.TestCase):
 
     def TraverseHistograms(hists, *unused_args, **unused_kw_args):
       for histogram in hists:
-        histograms.append(histogram)
+        histograms.append(histogram.histogram)
 
     mock_render.side_effect = TraverseHistograms
     histogram = histogram_module.Histogram('histogram', 'count')
@@ -231,7 +238,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   def testTypeDispatch_LegacyGraphJsonExecution(self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -245,7 +252,7 @@ class GenerateResults2Test(testing_common.TestCase):
 
     def TraverseHistograms(hists, *unused_args, **unused_kw_args):
       for histogram in hists:
-        histograms.append(histogram)
+        histograms.append(histogram.histogram)
 
     mock_render.side_effect = TraverseHistograms
     mock_json.return_value = {
@@ -270,7 +277,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   def testTypeDispatch_ReadValueExecution(self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -288,7 +295,7 @@ class GenerateResults2Test(testing_common.TestCase):
       del args
       del kw_args
       for histogram in hists:
-        histograms.append(histogram)
+        histograms.append(histogram.histogram)
 
     mock_render.side_effect = TraverseHistograms
     histogram = histogram_module.Histogram('histogram', 'count')
@@ -311,7 +318,7 @@ class GenerateResults2Test(testing_common.TestCase):
   def testTypeDispatch_ReadValueExecution_MultipleChanges(
       self, mock_json, mock_render):
     job = _JobStub(
-        None, '123',
+        None, '123', job_state.PERFORMANCE,
         _JobStateFake({
             'f00c0de': [{
                 'executions': [
@@ -338,7 +345,7 @@ class GenerateResults2Test(testing_common.TestCase):
       del args
       del kw_args
       for histogram in hists:
-        histograms.append(histogram)
+        histograms.append(histogram.histogram)
 
     mock_render.side_effect = TraverseHistograms
     histogram_a = histogram_module.Histogram('histogram', 'count')
@@ -362,6 +369,137 @@ class GenerateResults2Test(testing_common.TestCase):
     self.assertEqual(
         expected_histogram_set_a.AsDicts() + expected_histogram_set_b.AsDicts(),
         histograms)
+
+
+  @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
+  @mock.patch.object(results2, '_InsertBQRows')
+  @mock.patch.object(results2.render_histograms_viewer,
+                     'RenderHistogramsViewer')
+  @mock.patch.object(results2, '_JsonFromExecution')
+  @mock.patch.object(swarming, 'Swarming')
+  def testTypeDispatch_PushBQ(self, mock_swarming, mock_json, mock_render,
+                              mock_bqinsert):
+
+    test_execution = run_test._RunTestExecution("fake_server", None, None, None,
+                                                None, None)
+    test_execution._task_id = "fake_task"
+
+    commit_a = commit.Commit("fakerepo", "fakehashA")
+    change_a = change.Change([commit_a])
+    commit_b = commit.Commit("fakeRepo", "fakehashB")
+    patch_b = FakePatch("fakePatchServer", "fakePatchNo", "fakePatchRev")
+    change_b = change.Change([commit_b], patch_b)
+
+    job = _JobStub(
+        None, 'fake_job_id', None,
+        _JobStateFake({
+            change_a: [{
+                'executions': [
+                    test_execution,
+                    read_value.ReadValueExecution(
+                        'fake_filename', ['fake_filename'], 'fake_metric',
+                        'fake_grouping_label', 'fake_trace_or_story', 'avg',
+                        'fake_chart', 'https://isolate_server',
+                        'deadc0decafef00d')
+                ]
+            }],
+            change_b: [{
+                'executions': [
+                    test_execution,
+                    read_value.ReadValueExecution(
+                        'fake_filename', ['fake_filename'], 'fake_metric',
+                        'fake_grouping_label', 'fake_trace_or_story', 'avg',
+                        'fake_chart', 'https://isolate_server',
+                        'deadc0decafef00d')
+                ]
+            }],
+        }))
+    job.batch_id = "fake_batch_id"
+    job.benchmark_arguments = {
+        "benchmark": "fake_benchmark",
+        "story": "fake_story"
+    }
+    job.configuration = "fake_configuration"
+    histograms = []
+
+    def TraverseHistograms(hists, *args, **kw_args):
+      del args
+      del kw_args
+      for histogram in hists:
+        histograms.append(histogram.histogram)
+
+    task_mock = mock.Mock()
+    task_mock.Result.return_value = {
+        "bot_dimensions": {
+            "device_type": "type",
+            "device_os": "os"
+        }
+    }
+    mock_swarming.return_value.Task.return_value = task_mock
+    mock_render.side_effect = TraverseHistograms
+    histogram = histogram_module.Histogram('histogram', 'count')
+    histogram.AddSample(42)
+    expected_histogram_set = histogram_set.HistogramSet([histogram])
+    mock_json.return_value = expected_histogram_set.AsDicts()
+    results2.GenerateResults2(job)
+
+    # TODO: Validate args for _InsertBQRows.
+    expected_rows = [{
+        'change_hash': 'fakehashB',
+        'story': 'fake_story',
+        'deviceOS': 'os',
+        'deviceModel': 'type',
+        'cfg': 'fake_configuration',
+        'patch_number': 'fake_patch_issue',
+        'benchmark': 'fake_benchmark',
+        'iteration': 0,
+        'jobID': 'fake_job_id',
+        'batchID': 'fake_batch_id',
+        'patch_repo': 'fake_project',
+        'change_repo': 'fakeRepo',
+        'value': 42,
+        'passing': True,
+        'patch_server': 'fake_gerrit_url',
+        'patch_rev': 'fake_patch_rev',
+        'metric': 'histogram'
+    }, {
+        'change_hash': 'fakehashA',
+        'story': 'fake_story',
+        'deviceOS': 'os',
+        'deviceModel': 'type',
+        'cfg': 'fake_configuration',
+        'patch_number': None,
+        'benchmark': 'fake_benchmark',
+        'iteration': 0,
+        'jobID': 'fake_job_id',
+        'batchID': 'fake_batch_id',
+        'patch_repo': None,
+        'change_repo': 'fakerepo',
+        'value': 42,
+        'passing': True,
+        'patch_server': None,
+        'patch_rev': None,
+        'metric': 'histogram'
+    }]
+
+    mock_bqinsert.assert_called_with(
+        "todo",
+        "todo",
+        "todo",
+        expected_rows
+    )
+
+
+class FakePatch(
+    collections.namedtuple('GerritPatch', ('server', 'change', 'revision'))):
+
+  def BuildParameters(self):
+    return {
+        "patch_gerrit_url": "fake_gerrit_url",
+        "project": "fake_project",
+        "patch_issue": "fake_patch_issue",
+        "patch_rev": "fake_patch_rev"
+    }
 
 
 class _AttemptFake(object):
@@ -405,8 +543,9 @@ class _JobStateFake(object):
 
 class _JobStub(object):
 
-  def __init__(self, job_dict, job_id, state=None):
+  def __init__(self, job_dict, job_id, comparison_mode, state=None):
     self._job_dict = job_dict
+    self.comparison_mode = comparison_mode
     self.job_id = job_id
     self.state = state
 
