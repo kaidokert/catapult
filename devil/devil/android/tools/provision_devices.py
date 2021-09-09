@@ -186,11 +186,18 @@ def Wipe(device, adb_key_files=None):
     WipeChromeData(device)
 
     package = 'com.google.android.gms'
-    version_name = device.GetApplicationVersion(package)
-    if version_name:
+    try:
+      # logging.warning('==== pre getapp')
+      version_name = device.GetApplicationVersion(package)
+      logging.warning('==== post getapp %s, %s' % (package, version_name))
+    # if version_name:
       logger.info('Version name for %s is %s', package, version_name)
-    else:
+    except device_errors.CommandFailedError:
       logger.info('Package %s is not installed', package)
+    except Exception as e:
+      logger.info('unknown: %s' % repr(e))
+      # logging.warning('==== unknown catch %s' % type(e))
+      # logging.warning('==== unknown: %s' % repr(e))
   else:
     WipeDevice(device, adb_key_files)
 
@@ -213,6 +220,7 @@ def WipeChromeData(device):
     device: the device to wipe
   """
   try:
+    logging.warning('== IsUserBuid? %s' % device.IsUserBuild())
     if device.IsUserBuild():
       _UninstallIfMatch(device, _CHROME_PACKAGE_REGEX)
       device.RunShellCommand(

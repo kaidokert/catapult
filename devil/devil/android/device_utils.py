@@ -673,7 +673,8 @@ class DeviceUtils(object):
       CommandTimeoutError on timeout.
       DeviceUnreachableError on missing device.
     """
-    return self.build_type == 'user'
+    logging.warning('build_type: %s' % self.build_type)
+    return self.build_type == 'user' or self.build_type == 'userdebug'
 
   @decorators.WithTimeoutAndRetriesFromInstance()
   def GetExternalStoragePath(self, timeout=None, retries=None):
@@ -875,6 +876,7 @@ class DeviceUtils(object):
       A string with the version name or None if the package is not found
       on the device.
     """
+    # logging.warning('==== IN getapp')
     output = self.RunShellCommand(['dumpsys', 'package', package],
                                   check_return=True)
     if not output:
@@ -883,6 +885,8 @@ class DeviceUtils(object):
       line = line.strip()
       if line.startswith('versionName='):
         return line[len('versionName='):]
+      if line.startswith('Unable to find package'):
+        return None
     raise device_errors.CommandFailedError(
         'Version name for %s not found on dumpsys output' % package, str(self))
 
@@ -1558,9 +1562,20 @@ class DeviceUtils(object):
           logger.debug('Large output mode enabled. Will write output to '
                        'device and read results from file.')
           try:
+            # logging.warning('=== pre test cmd')
+            # logging.warning('=== whoami: %s' % self.adb.Shell('whoami'))
+            # self.adb.Shell('echo LOCAL>%s 2>&1' % './local')
+            # logging.warning('=== ls1: %s' % self.adb.Shell('ls /data'))
+            # logging.warning('=== ls2: %s' % self.adb.Shell('ls /data/local'))
+            # logging.warning('=== mkdir: %s' % self.adb.Shell('mkdir -p -m 777 /data/local/tmp'))
+            # logging.warning('=== ls3: %s' % self.adb.Shell('ls /data/local/tmp'))
+            # self.adb.Shell('echo TEMP>%s 2>&1' % '/data/local/tmp/temp_file-111111111111')
+            # self.adb.Shell('echo TEST>%s 2>&1' % large_output_file.name)
+            # logging.warning('=== post test cmd')
             handle_large_command(large_output_cmd)
             return self.ReadFile(large_output_file.name, force_pull=True)
           except device_errors.AdbShellCommandFailedError as exc:
+            # logging.warning('===== exception: %s' % repr(exc))
             output = self.ReadFile(large_output_file.name, force_pull=True)
             raise device_errors.AdbShellCommandFailedError(
                 cmd, output, exc.status, exc.device_serial)
@@ -1597,7 +1612,8 @@ class DeviceUtils(object):
     if (as_root is _FORCE_SU) or (as_root and self.NeedsSU()):
       # "su -c sh -c" allows using shell features in |cmd|
       cmd = self._Su('sh -c %s' % cmd_helper.SingleQuote(cmd))
-
+    # logging.warning('=== cmd: %s' % cmd)
+    # logging.warning('=== large_output: %s' % large_output)
     output = handle_large_output(cmd, large_output)
 
     if raw_output:
