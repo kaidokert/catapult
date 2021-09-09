@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e14d16_6a66f911",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-09T23:39:08Z",
+      "side": 1,
+      "message": "The GPU test I was using to test locally appears to behave identically between Python 2 and 3 now.",
+      "revId": "ce8bc3a3e9279f1f5bfca0227ebac54820e1a100",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
