@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1ecd9fa_85ac8147",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-09-09T01:20:25Z",
+      "side": 1,
+      "message": "Which case do we expect when the package is not installed? if it\u0027s this one, I\u0027d recommend renaming this test case to \"*_notInstalled\" to make that clear",
+      "range": {
+        "startLine": 616,
+        "startChar": 33,
+        "endLine": 616,
+        "endChar": 42
+      },
+      "revId": "602486fdecd09d1c3443c3fd3c05fd5ec0a58a56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb45f1b_81b667bb",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-09-09T01:20:25Z",
+      "side": 1,
+      "message": "optional: I think returning `None` when the app is not installed would be more consistent with other devil APIs",
+      "range": {
+        "startLine": 621,
+        "startChar": 24,
+        "endLine": 621,
+        "endChar": 27
+      },
+      "revId": "602486fdecd09d1c3443c3fd3c05fd5ec0a58a56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
