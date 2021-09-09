@@ -319,6 +319,8 @@ class AdbWrapper(object):
       env.update(additional_env)
     try:
       adb_cmd = cls._BuildAdbCmd(args, device_serial, cpu_affinity=cpu_affinity)
+      logging.warning('pre adb_cmd: %s' % adb_cmd)
+      logging.warning('pre env: %s' % env)
       status, output = cmd_helper.GetCmdStatusAndOutputWithTimeout(adb_cmd,
                                                                    timeout,
                                                                    env=env)
