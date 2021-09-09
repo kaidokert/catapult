@@ -635,3 +635,4 @@ class VinnV8ArgsTest(unittest.TestCase):
     v8_args = self.mock_popen.call_args[0][0]
     self.assertIn('--foo', v8_args)
     self.assertIn('--bar=True', v8_args)
+
