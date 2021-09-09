@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49108d8b_23fc11fd",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/find_isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-09-09T06:28:26Z",
+      "side": 1,
+      "message": "I think a property like the one in FindIsolate would be better, to handle instances that were already serialized before this CL.\n\nThat said the way executions are retried means jobs would probably still get to the right outcome (after a couple of spurious failures in executions), so this isn\u0027t a critical issue.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 55
+      },
+      "revId": "63ed27a0db210c4607699c20c46277d525d0c4cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
