@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c1cde79_a6ccb445",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-09-09T01:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1ecd9fa_85ac8147",
+      "range": {
+        "startLine": 616,
+        "startChar": 33,
+        "endLine": 616,
+        "endChar": 42
+      },
+      "revId": "602486fdecd09d1c3443c3fd3c05fd5ec0a58a56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cb45f1b_81b667bb",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-09T01:20:25Z",
       "side": 1,
       "message": "optional: I think returning `None` when the app is not installed would be more consistent with other devil APIs",
+      "range": {
+        "startLine": 621,
+        "startChar": 24,
+        "endLine": 621,
+        "endChar": 27
+      },
+      "revId": "602486fdecd09d1c3443c3fd3c05fd5ec0a58a56",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fcce808_f0e2bdb3",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-09-09T01:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb45f1b_81b667bb",
       "range": {
         "startLine": 621,
         "startChar": 24,
