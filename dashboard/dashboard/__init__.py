@@ -23,6 +23,7 @@ THIRD_PARTY_LIBRARIES = [
     'depot_tools',
     'flot',
     'gae_ts_mon',
+    'google/cloud/bigquery',
     'google-auth',
     'graphy',
     'html5lib-python',
