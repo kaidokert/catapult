@@ -90,6 +90,24 @@
       "message": "I think it\u0027s unnecessary to include doc (and probably tests) when adding third-party library. Doing so on all libraries would result in a major increase in our repo size. By convention, a README.chromium file should be added for each third-party library, with link to the original repository, so people wanting to see docs would know where to look.",
       "revId": "549242f9fefe86f4eb266f3ea66bb2f50cce2400",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "130bd34b_0770d7fc",
+        "filename": "third_party/httplib2/doc/conf.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-13T17:15:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "995c0c55_bb2ccd01",
+      "revId": "549242f9fefe86f4eb266f3ea66bb2f50cce2400",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
