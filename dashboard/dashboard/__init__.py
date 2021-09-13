@@ -26,7 +26,6 @@ THIRD_PARTY_LIBRARIES = [
     'google-auth',
     'graphy',
     'html5lib-python',
-    'httplib2',
     'idna',
     'ijson',
     'jquery',
