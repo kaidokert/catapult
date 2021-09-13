@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542bfac8_2e5b8d4b",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-13T17:29:09Z",
+      "side": 1,
+      "message": "If I modify the unit test to execute this for real, I get the following error:\n\nNo api proxy found for service \"app_identity_service\"\n\nPoking around message boards, it looks like this will only work if this is executed from AppEngine. Do we have a way to create a fake deployment?",
+      "range": {
+        "startLine": 294,
+        "startChar": 2,
+        "endLine": 298,
+        "endChar": 56
+      },
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
