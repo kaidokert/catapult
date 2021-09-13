@@ -56,6 +56,40 @@
       "message": "I can\u0027t remove the Commit-Queue +2 from Wenbin, so I\u0027m adding Code-Review -1 to prevent this CL from being submitted until my comments are resolved.",
       "revId": "549242f9fefe86f4eb266f3ea66bb2f50cce2400",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "434f3e9e_70954ad1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-13T17:06:54Z",
+      "side": 1,
+      "message": "One more comment below.",
+      "revId": "549242f9fefe86f4eb266f3ea66bb2f50cce2400",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995c0c55_bb2ccd01",
+        "filename": "third_party/httplib2/doc/conf.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-13T17:06:54Z",
+      "side": 1,
+      "message": "I think it\u0027s unnecessary to include doc (and probably tests) when adding third-party library. Doing so on all libraries would result in a major increase in our repo size. By convention, a README.chromium file should be added for each third-party library, with link to the original repository, so people wanting to see docs would know where to look.",
+      "revId": "549242f9fefe86f4eb266f3ea66bb2f50cce2400",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
