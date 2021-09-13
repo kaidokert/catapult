@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfc7588b_96b90e60",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-13T20:48:33Z",
+      "side": 1,
+      "message": "Discussed in chat - we\u0027ll keep this as-is, so we don\u0027t need to define a separate request handler (and other surrounding stuff)",
+      "parentUuid": "cac160a1_ca4d26f7",
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac47d0e4_443f647f",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-09-13T20:27:09Z",
       "side": 1,
       "message": "re: previous comment, you could make this non-private and wrap the insides in that try/catch/log block.",
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b10dbe4b_11114084",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-13T20:48:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ac47d0e4_443f647f",
       "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -120,6 +156,30 @@
       "side": 1,
       "message": "Yeah, that sounds easier. I\u0027ll update the todo consts once I figure out how to do that. In the meantime - how does the rest of this CL look?",
       "parentUuid": "90d77362_844e70a1",
+      "range": {
+        "startLine": 294,
+        "startChar": 2,
+        "endLine": 298,
+        "endChar": 56
+      },
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e220e9a9_09fea4ee",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-13T20:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2ffc74e_c849f412",
       "range": {
         "startLine": 294,
         "startChar": 2,
