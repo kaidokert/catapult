@@ -16,6 +16,24 @@
       "message": "This is an old change that was submitted in 2019. What is the context for adding new reviewers?\n\nI expect any bugs would better be tracked through their own bugs reports.",
       "revId": "437131108da36c0b0a7eeec18608ae56524f83ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f98d2c_00c2078e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-13T17:15:50Z",
+      "side": 1,
+      "message": "This is a somewhat common occurrence recently with spam bots adding a bunch of random reviewers to closed CLs.",
+      "parentUuid": "a66d03d6_5f8da72d",
+      "revId": "437131108da36c0b0a7eeec18608ae56524f83ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
