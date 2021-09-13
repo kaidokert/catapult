@@ -46,6 +46,30 @@
       },
       "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d77362_844e70a1",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-13T18:41:17Z",
+      "side": 1,
+      "message": "could you modify this to have prod write to a test bq table instead of prod bq? If nothing else depends on this data yet, that might be easier.",
+      "parentUuid": "81840d7d_b8d43982",
+      "range": {
+        "startLine": 294,
+        "startChar": 2,
+        "endLine": 298,
+        "endChar": 56
+      },
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
