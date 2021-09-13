@@ -22,6 +22,30 @@
       },
       "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81840d7d_b8d43982",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-13T18:30:39Z",
+      "side": 1,
+      "message": "Right now, we don\u0027t have a way to create a fake deployment. Wenbin has modified AppEngine configurations so that newly deployed versions don\u0027t take any traffic, until manually switched. So it should be relatively safe to deploy and then manually test it.\n\nI wonder if it would make sense to create a new GCP project, say chromeperf-testing, for doing fake deployment and testing. On problem with this approach is the real instance has huge amount of data that would be difficult to duplicate on a test instance.",
+      "parentUuid": "542bfac8_2e5b8d4b",
+      "range": {
+        "startLine": 294,
+        "startChar": 2,
+        "endLine": 298,
+        "endChar": 56
+      },
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
