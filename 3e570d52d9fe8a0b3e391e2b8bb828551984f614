@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cac160a1_ca4d26f7",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-13T20:27:09Z",
+      "side": 1,
+      "message": "Does the BQ logic on 119-225 need anything other than `job` (which is passed in already), or do some of the preceding operations have hidden side-effects needed by the bq logic?  If not, I suggest moving the BQ stuff to its own function. If you\u0027re unfamiliar with this code and just looking at a call site for GenerateResults2, it\u0027s not super obvious that this function writes to BQ unless you manage to track down this definition.",
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac47d0e4_443f647f",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-13T20:27:09Z",
+      "side": 1,
+      "message": "re: previous comment, you could make this non-private and wrap the insides in that try/catch/log block.",
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "542bfac8_2e5b8d4b",
         "filename": "dashboard/dashboard/pinpoint/models/results2.py",
         "patchSetId": 42
@@ -92,6 +126,46 @@
         "endLine": 298,
         "endChar": 56
       },
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf337a33_eff8b6cc",
+        "filename": "dashboard/dashboard/proto/results.proto",
+        "patchSetId": 42
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-13T20:27:09Z",
+      "side": 1,
+      "message": "2021",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94cd7259_ea59f74f",
+        "filename": "dashboard/dashboard/proto/results.proto",
+        "patchSetId": 42
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-13T20:27:09Z",
+      "side": 1,
+      "message": "I think it\u0027s safe to exclude this :)",
       "revId": "3e570d52d9fe8a0b3e391e2b8bb828551984f614",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
