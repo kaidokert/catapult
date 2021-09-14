@@ -11,7 +11,6 @@ _DATA_SEPARATOR = '--><!--'
 _DATA_END_OLD = '--!></div>'
 _DATA_END = '--></div>'
 
-
 def ExtractJSON(results_html):
   results = []
   flags = re.MULTILINE | re.DOTALL
