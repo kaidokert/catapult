@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import collections
 import json
 import logging
 import re
@@ -11,6 +12,8 @@ _DATA_SEPARATOR = '--><!--'
 _DATA_END_OLD = '--!></div>'
 _DATA_END = '--></div>'
 
+HistogramData = collections.namedtuple('HistogramMetadata',
+                                       ["metadata", "histogram"])
 
 def ExtractJSON(results_html):
   results = []
@@ -47,7 +50,7 @@ def ReadExistingResults(results_html):
 
   if not histogram_dicts:
     logging.warn('Failed to extract previous results from HTML output')
-  return histogram_dicts
+  return [HistogramData(None, h) for h in histogram_dicts]
 
 
 def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
@@ -77,11 +80,11 @@ def RenderHistogramsViewer(histogram_dicts, output_stream, reset_results=False,
   output_stream.write(_DATA_START)
 
   chunk_size = 0
-  for histogram in histogram_dicts:
+  for histogram_data in histogram_dicts:
     output_stream.write('\n')
     # No escaping is necessary since the data is stored inside an html comment.
     # This assumes that {hist_json} doesn't contain an html comment itself.
-    hist_json = json.dumps(histogram, separators=(',', ':'))
+    hist_json = json.dumps(histogram_data, separators=(',', ':'))
     output_stream.write(hist_json)
     chunk_size += len(hist_json) + 1
     # Start a new comment after {max_chunk_size_hint_bytes} to avoid hitting
