@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import collections
 import json
 import logging
 import re
@@ -11,6 +12,8 @@ _DATA_SEPARATOR = '--><!--'
 _DATA_END_OLD = '--!></div>'
 _DATA_END = '--></div>'
 
+HistogramData = collections.namedtuple('HistogramMetadata',
+                                       ["metadata", "histogram"])
 
 def ExtractJSON(results_html):
   results = []
