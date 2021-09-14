@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "422bb33b_f1c43267",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-14T20:55:50Z",
+      "side": 1,
+      "message": "PTAL\n\nI\u0027ve actually confirmed it\u0027s usable in the GPU tests this time.",
+      "revId": "983a5c83f516c47cfa820da4bb2f9d2e7b3c5b74",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
