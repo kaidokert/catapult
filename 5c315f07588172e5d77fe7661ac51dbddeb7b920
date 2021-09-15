@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f000cd34_afb841e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-15T22:48:51Z",
+      "side": 1,
+      "message": "No space is allowed between chromium: and the bug number. (If it\u0027s formatted correctly, Gerrit can automatically display it as a link.)",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "5c315f07588172e5d77fe7661ac51dbddeb7b920",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d172e7b0_fbad40b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-15T22:48:51Z",
+      "side": 1,
+      "message": "This is redundant with the previous line, and can be removed.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "5c315f07588172e5d77fe7661ac51dbddeb7b920",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
