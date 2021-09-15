@@ -16,6 +16,57 @@
       "message": "I didn\u0027t change very much... mostly took a long time to figure out what was going on. ",
       "revId": "760da205d700c2f587923f2898c2d53feffe657a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7049b0ef_56807f71",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-15T22:30:33Z",
+      "side": 1,
+      "message": "since this `30` literal shows up in a couple of places (here, and in the unit tests at least), it\u0027s probably better to make it a named constant a la `MAX_ATTEMPTS` up on line 25.",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae9058b5_a709850f",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-15T22:30:33Z",
+      "side": 1,
+      "message": "Do these two lines need to be here? With or without them, the code will behave the same way, no?\n\nOr is this supposed to log the errors.InformationError before raising it again?",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae3aef9_11458aba",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-15T22:30:33Z",
+      "side": 1,
+      "message": "Does this test something different from the new test added to job_state_test.py?  If they\u0027re both testing the same code changes to JobState, then this one might be redundant.",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
