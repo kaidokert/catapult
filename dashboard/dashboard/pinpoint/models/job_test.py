@@ -20,6 +20,9 @@ from dashboard.pinpoint.models import change
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models import job
 from dashboard.pinpoint import test
+from dashboard.pinpoint.models import job_state
+from dashboard.pinpoint.models.change import change_test
+from dashboard.pinpoint.models.quest import quest_test
 
 _CHROMIUM_URL = 'https://chromium.googlesource.com/chromium/src'
 _COMMENT_STARTED = (u"""\U0001f4cd Pinpoint job started.
@@ -965,3 +968,16 @@ class BugCommentTest(test.TestCase):
     self.ExecuteDeferredTasks('default')
     post_change_comment.assert_called_once_with('https://review.com', '123456',
                                                 _COMMENT_CODE_REVIEW)
+
+  def testFailedAfterNBuilds(self):
+    j = job.Job.New((), (), bug_id=123456, comparison_mode='performance')
+    quests = [quest_test.QuestSpin()]
+    j.state = job_state.JobState(quests, comparison_mode=job_state.PERFORMANCE)
+    n = 30
+    for i in range(n):
+      j.AddChange(change_test.Change(i))
+    j.Run()
+    self.ExecuteDeferredTasks('default')
+    self.assertFalse(j.failed)
+    with self.assertRaisesRegexp(Exception, '(.+)The number of builds exceeded 30.(.+)'):
+      j.AddChange(change_test.Change(123))

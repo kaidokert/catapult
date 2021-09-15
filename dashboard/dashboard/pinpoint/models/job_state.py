@@ -115,6 +115,9 @@ class JobState(object):
     else:
       self._changes.append(change)
 
+    if len(self._changes) > 30:
+      raise errors.BuildCancelled('The number of builds exceeded 30. Aborting Job')
+
     self._attempts[change] = []
     self.AddAttempts(change)
 
@@ -181,6 +184,8 @@ class JobState(object):
             urlfetch_errors.DeadlineExceededError) as e:
       logging.debug('Encountered error: %s', e)
       raise errors.RecoverableError(e)
+    except errors.InformationalError as e:
+      raise errors.InformationalError(e)
 
   def ScheduleWork(self):
     work_left = False
