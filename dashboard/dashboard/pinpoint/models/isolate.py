@@ -16,6 +16,7 @@ import datetime
 
 from google.appengine.ext import deferred
 from google.appengine.ext import ndb
+from google.appengine.ext import query
 
 # Isolates expire in isolate server after 60 days. We expire
 # our isolate lookups a little bit sooner, just to be safe.
@@ -69,7 +70,11 @@ def Put(isolate_infos):
 def DeleteExpiredIsolates(start_cursor=None):
   expire_time = datetime.datetime.utcnow() - ISOLATE_EXPIRY_DURATION
   q = Isolate.query()
-  q = q.filter(Isolate.created < expire_time)
+  # Delete expired builds, and builds that contain isolates (40-character hash)
+  # instead of RBE-CAS (longer hash).
+  q = q.filter(
+      query.OR(Isolate.created < expire_time,
+               len(Isolate.isolate_hash) <= 40))
 
   keys, next_cursor, more = q.fetch_page(
       1000, start_cursor=start_cursor, keys_only=True)
