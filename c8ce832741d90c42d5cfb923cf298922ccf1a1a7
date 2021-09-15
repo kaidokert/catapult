@@ -50,6 +50,24 @@
       "message": "Do I understand this correctly?: As soon as it\u0027s deployed, this change will start flushing all Isolates built prior to 9/7. And it will only start deleting Isolates built *after* 9/7 once ISOLATE_EXPIRY_DURATION (58 days) has passed, some time in early November? Do we expect there to be many (any, actually) isolates built in the future now that https://crrev.com/c/3134726 landed?",
       "revId": "c8ce832741d90c42d5cfb923cf298922ccf1a1a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabd13d2_8cbb1b42",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-15T19:04:42Z",
+      "side": 1,
+      "message": "This function is usually executed once a day (https://source.chromium.org/chromium/chromium/src/+/96a3342dd3d9acaeb9c0b124a910d27300f1f422:third_party/catapult/dashboard/cron.yaml;l\u003d48), and when it runs, it would delete all builds created prior to 9/7, which should include all isolates. I intend to revert this CL once it is confirmed that the deletion has completed, and we\u0027ll get back to expire 58-day old builds (shouldn\u0027t actually have any until November). If the revert doesn\u0027t happen for some reason, we would still starting to expire old builds some time in November.\n\nThere should be no more new isolates created since 9/7.",
+      "parentUuid": "099968a5_02d0e057",
+      "revId": "c8ce832741d90c42d5cfb923cf298922ccf1a1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
