@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "367563c1_a68e2d52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-15T17:57:06Z",
+      "side": 1,
+      "message": "Sean: a slight change in plan. It turned out Python\u0027s len() function doesn\u0027t work as part of ndb query filter, and there appears to be no way to filter by string length or whether the string contains a specific character or not. So I\u0027m falling back to using a time-based heuristics -- no isolates should have been created since 9/7. Could you please take another look? Thanks.",
+      "revId": "c8ce832741d90c42d5cfb923cf298922ccf1a1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
