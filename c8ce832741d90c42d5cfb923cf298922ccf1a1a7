@@ -16,6 +16,40 @@
       "message": "Sean: a slight change in plan. It turned out Python\u0027s len() function doesn\u0027t work as part of ndb query filter, and there appears to be no way to filter by string length or whether the string contains a specific character or not. So I\u0027m falling back to using a time-based heuristics -- no isolates should have been created since 9/7. Could you please take another look? Thanks.",
       "revId": "c8ce832741d90c42d5cfb923cf298922ccf1a1a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "162fe522_780daa33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-15T18:52:59Z",
+      "side": 1,
+      "message": "thanks for catching that!",
+      "revId": "c8ce832741d90c42d5cfb923cf298922ccf1a1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099968a5_02d0e057",
+        "filename": "dashboard/dashboard/pinpoint/models/isolate.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-15T18:52:59Z",
+      "side": 1,
+      "message": "Do I understand this correctly?: As soon as it\u0027s deployed, this change will start flushing all Isolates built prior to 9/7. And it will only start deleting Isolates built *after* 9/7 once ISOLATE_EXPIRY_DURATION (58 days) has passed, some time in early November? Do we expect there to be many (any, actually) isolates built in the future now that https://crrev.com/c/3134726 landed?",
+      "revId": "c8ce832741d90c42d5cfb923cf298922ccf1a1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
