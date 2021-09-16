@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4749f3d4_90e943c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-16T15:56:53Z",
+      "side": 1,
+      "message": "A few more comments below...",
+      "revId": "4659dea4c4eba141a54e76624450d537a6a179b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3878c663_4f1a1dcd",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-16T15:56:53Z",
+      "side": 1,
+      "message": "Should use MAX_BUILDS for this as well. (You can use \u0027The number of builds exceeded %d. Aborting Job\u0027 % MAX_BUILDS)",
+      "range": {
+        "startLine": 120,
+        "startChar": 65,
+        "endLine": 120,
+        "endChar": 67
+      },
+      "revId": "4659dea4c4eba141a54e76624450d537a6a179b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65ddc91e_51bbd62d",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-16T15:56:53Z",
+      "side": 1,
+      "message": "job_state.MAX_BUILDS",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 10
+      },
+      "revId": "4659dea4c4eba141a54e76624450d537a6a179b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

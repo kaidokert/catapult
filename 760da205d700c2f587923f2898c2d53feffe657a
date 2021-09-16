@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f6a7043_bdb7f2ca",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-16T15:56:53Z",
+      "side": 1,
+      "message": "Only RecoverableError causes the job to be rescheduled. BuildCancelled isn\u0027t a RecoverableError, so you don\u0027t need to worry about the recover code in job.py.",
+      "parentUuid": "38513dd5_d998231f",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dae3aef9_11458aba",
         "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
         "patchSetId": 1
