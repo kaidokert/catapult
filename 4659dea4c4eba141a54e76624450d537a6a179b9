@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a902165f_e88efa50",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-16T22:17:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3878c663_4f1a1dcd",
+      "range": {
+        "startLine": 120,
+        "startChar": 65,
+        "endLine": 120,
+        "endChar": 67
+      },
+      "revId": "4659dea4c4eba141a54e76624450d537a6a179b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65ddc91e_51bbd62d",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-09-16T15:56:53Z",
       "side": 1,
       "message": "job_state.MAX_BUILDS",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 10
+      },
+      "revId": "4659dea4c4eba141a54e76624450d537a6a179b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de25e164_fb396a33",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-16T22:17:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "65ddc91e_51bbd62d",
       "range": {
         "startLine": 201,
         "startChar": 8,
