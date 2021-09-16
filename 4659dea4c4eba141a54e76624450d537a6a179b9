@@ -65,6 +65,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a08a6c_3e69da80",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-16T22:47:41Z",
+      "side": 1,
+      "message": "For future reference, the preferred response for this situation is \"Done\".",
+      "parentUuid": "a902165f_e88efa50",
+      "range": {
+        "startLine": 120,
+        "startChar": 65,
+        "endLine": 120,
+        "endChar": 67
+      },
+      "revId": "4659dea4c4eba141a54e76624450d537a6a179b9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65ddc91e_51bbd62d",
