@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05966723_7457bfef",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-16T15:11:55Z",
+      "side": 1,
+      "message": "yeah that\u0027s a good point, I\u0027ll make the change.",
+      "parentUuid": "7049b0ef_56807f71",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae9058b5_a709850f",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38513dd5_d998231f",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-16T15:11:55Z",
+      "side": 1,
+      "message": "I believe these lines are needed. Without them job.py will attempt to reschedule the job and you might end up with a job retry error (based on these lines of code here: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job.py;drc\u003dacead308bcfa9d9554df70fdbc6cd7941db4a6b0;l\u003d737). \n\nI wanted to bypass that and force the job to go straight to failure.",
+      "parentUuid": "ae9058b5_a709850f",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dae3aef9_11458aba",
         "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
         "patchSetId": 1
@@ -65,6 +101,24 @@
       "writtenOn": "2021-09-15T22:30:33Z",
       "side": 1,
       "message": "Does this test something different from the new test added to job_state_test.py?  If they\u0027re both testing the same code changes to JobState, then this one might be redundant.",
+      "revId": "760da205d700c2f587923f2898c2d53feffe657a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77ea8368_992ce6a9",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-16T15:11:55Z",
+      "side": 1,
+      "message": "I believe you\u0027re right. I made this test out of an abundance of caution but it\u0027s more likely redundant than useful.",
+      "parentUuid": "dae3aef9_11458aba",
       "revId": "760da205d700c2f587923f2898c2d53feffe657a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
