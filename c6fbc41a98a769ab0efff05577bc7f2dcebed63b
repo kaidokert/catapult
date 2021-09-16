@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2c9954_41d80412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-16T18:04:22Z",
+      "side": 1,
+      "message": "Looks like I need a stamp, I don\u0027t think the bot stamp works for reverts",
+      "revId": "c6fbc41a98a769ab0efff05577bc7f2dcebed63b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
