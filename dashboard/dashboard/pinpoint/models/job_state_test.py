@@ -195,6 +195,16 @@ class ScheduleWorkTest(unittest.TestCase):
     with self.assertRaisesRegexp(Exception, expected_regexp):
       self.assertFalse(state.ScheduleWork())
 
+  def testAbortAfterNChanges(self):
+    quests = [quest_test.QuestSpin()]
+    state = job_state.JobState(quests, comparison_mode=job_state.PERFORMANCE)
+    n = 30
+    for i in range(n):
+      state.AddChange(change_test.Change(i))
+    self.assertEqual(len(state._changes), n)
+    with self.assertRaisesRegexp(Exception, '(.+)The number of builds exceeded 30.(.+)'):
+      state.AddChange(change_test.Change(123))
+
 
 class MeanTest(unittest.TestCase):
 

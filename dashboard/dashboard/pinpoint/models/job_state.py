@@ -24,6 +24,7 @@ from dashboard.pinpoint.models import exploration
 # attempts max (that's 4 iterations).
 MIN_ATTEMPTS = 10
 MAX_ATTEMPTS = 160
+MAX_BUILDS = 30
 _DEFAULT_SPECULATION_LEVELS = 2
 
 FUNCTIONAL = 'functional'
@@ -115,6 +116,9 @@ class JobState(object):
     else:
       self._changes.append(change)
 
+    if len(self._changes) > MAX_BUILDS:
+      raise errors.BuildCancelled('The number of builds exceeded 30. Aborting Job')
+
     self._attempts[change] = []
     self.AddAttempts(change)
 
@@ -181,6 +185,8 @@ class JobState(object):
             urlfetch_errors.DeadlineExceededError) as e:
       logging.debug('Encountered error: %s', e)
       raise errors.RecoverableError(e)
+    except errors.InformationalError as e:
+      raise errors.InformationalError(e)
 
   def ScheduleWork(self):
     work_left = False
