@@ -54,4 +54,10 @@ steps:
     # Deploy Pinpoint as well.
     pinpoint.yaml,
   ]
-images: ['gcr.io/$PROJECT_ID/dashboard-base:latest']
+  images: ['gcr.io/$PROJECT_ID/dashboard-base:latest']
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: '/bin/bash'
+  args: [
+      '-x', '-e', 'dashboard/dev_dockerfiles/deploy_production.sh',
+      'api', 'default', 'pinpoint', 'upload-processing', 'upload'
+  ]
