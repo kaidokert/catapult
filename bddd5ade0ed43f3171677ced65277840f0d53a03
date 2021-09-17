@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "451a4f33_18d6995a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-09-17T18:12:48Z",
+      "side": 1,
+      "message": "Hi Ben,\n\nThis reland doesn\u0027t change any functionality but cleans up the comments, adding reasons why we need to keep using cp instead of mv.\n\nNot sure why presubmit forced me to add the BUILD.gn changes though.\n\nThanks,\nPeter",
+      "revId": "bddd5ade0ed43f3171677ced65277840f0d53a03",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
