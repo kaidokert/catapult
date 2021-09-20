@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c14a88_7e600c22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-09-20T22:32:42Z",
+      "side": 1,
+      "message": "Thanks for ensuring it\u0027ll work on older versions 👍",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 11,
+        "endChar": 51
+      },
+      "revId": "8484805810632077c50cf5e4a0fb0f9d546c0640",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
