@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c290a283_c100ae39",
+        "filename": "dashboard/dashboard/proto/results.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-22T18:51:24Z",
+      "side": 1,
+      "message": "How is this field going to be used/queried (for what use cases)?",
+      "revId": "354cdecf4ddbd3f3ffca2b275eb2a0596581b27e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
