@@ -70,6 +70,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19eb469b_fd57cbe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1518317
+      },
+      "writtenOn": "2021-09-22T18:36:59Z",
+      "side": 1,
+      "message": "I don\u0027t know, without this change I couldn\u0027t upload my CL.\n\nPresumbit check said \"BUILD.gn needs to be re-generated. Please run generate_telemetry_build.py and include the changes in this CL\"",
+      "parentUuid": "7bf75088_43665b7a",
+      "revId": "7d6dc1ff5ccd57ae1e0e97d99764c16c27c9bd6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31ee64e3_55e1dd77",
