@@ -469,7 +469,8 @@ class GenerateResults2Test(testing_common.TestCase):
                 'benchmark': 'fake_benchmark'
             },
             'pairing': {
-                'replica': 0
+                'replica': 0,
+                'arm': 0
             },
             'checkout': {
                 'repo': 'fakeRepo',
@@ -499,7 +500,8 @@ class GenerateResults2Test(testing_common.TestCase):
                 'benchmark': 'fake_benchmark'
             },
             'pairing': {
-                'replica': 0
+                'replica': 0,
+                'arm': 1
             },
             'checkout': {
                 'repo': 'fakerepo',

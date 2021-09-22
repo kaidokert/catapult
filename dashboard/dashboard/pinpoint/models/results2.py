@@ -132,13 +132,13 @@ def _ReadVulcanizedHistogramsViewer():
     return f.read()
 
 HistogramMetadata = collections.namedtuple(
-    'HistogramMetadata', ['attempt_number', "change", "swarming_result"])
+    'HistogramMetadata', ['attempt_number', "change", "swarming_result", "arm"])
 HistogramData = collections.namedtuple('HistogramMetadata',
                                        ["metadata", "histogram"])
 
 
 def _FetchHistograms(job):
-  for change in _ChangeList(job):
+  for arm, change in enumerate(_ChangeList(job)):
     for attempt_number, attempt in enumerate(job.state._attempts[change]):
       swarming_result = None
       for execution in attempt.executions:
@@ -177,7 +177,8 @@ def _FetchHistograms(job):
 
         logging.debug('Found %s histograms for %s', len(histogram_sets), change)
 
-        metadata = HistogramMetadata(attempt_number, change, swarming_result)
+        metadata = HistogramMetadata(attempt_number, change, swarming_result,
+                                     arm)
         for histogram in histogram_sets:
           yield HistogramData(metadata, histogram)
 
@@ -269,6 +270,7 @@ def _PopulateMetadata(job, h):
     md["dims"]["checkout"]["patch_gerrit_change"] = patch_params["patch_issue"]
     md["dims"]["checkout"]["patch_gerrit_revision"] = patch_params["patch_set"]
   md["dims"]["pairing"] = {}
+  md["dims"]["pairing"]["arm"] = h.metadata.arm
   md["dims"]["pairing"]["replica"] = h.metadata.attempt_number
   # TODO: order (not implemented yet)
 
