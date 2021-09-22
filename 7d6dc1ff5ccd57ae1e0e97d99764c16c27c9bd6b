@@ -33,6 +33,24 @@
       "message": "We do reboot after setting properties here. Which other properties are you looking at that we\u0027re modifying before SetDate?",
       "revId": "7d6dc1ff5ccd57ae1e0e97d99764c16c27c9bd6b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93acb1cf_c8606897",
+        "filename": "devil/devil/android/tools/provision_devices.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1518317
+      },
+      "writtenOn": "2021-09-22T16:15:03Z",
+      "side": 1,
+      "message": "Disabling network. BTW, provision script from `src/build/android/provision_device.py` do reboot after set properties: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/build/android/provision_devices.py#123 instead of this one.",
+      "parentUuid": "31ee64e3_55e1dd77",
+      "revId": "7d6dc1ff5ccd57ae1e0e97d99764c16c27c9bd6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
