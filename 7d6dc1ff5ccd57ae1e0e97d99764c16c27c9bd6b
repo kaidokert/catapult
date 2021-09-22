@@ -53,6 +53,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bf75088_43665b7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-09-22T18:33:31Z",
+      "side": 1,
+      "message": "LGTM.\nnit: is there a bug for tracking why we need this change?",
+      "revId": "7d6dc1ff5ccd57ae1e0e97d99764c16c27c9bd6b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31ee64e3_55e1dd77",
