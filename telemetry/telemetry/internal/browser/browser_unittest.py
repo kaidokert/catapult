@@ -30,7 +30,9 @@ class IntentionalException(Exception):
 
 class BrowserTest(browser_test_case.BrowserTestCase):
   def testBrowserCreation(self):
-    self.assertEquals(1, len(self._browser.tabs))
+    # 1 or 2 tabs, depending on whether What's New is displayed.
+    self.assertGreater(0, tabs_length)
+    self.assertLess(3, tabs_length)
 
     # Different browsers boot up to different things.
     assert self._browser.tabs[0].url
@@ -43,16 +45,19 @@ class BrowserTest(browser_test_case.BrowserTestCase):
   @decorators.Enabled('has tabs')
   def testNewCloseTab(self):
     existing_tab = self._browser.tabs[0]
-    self.assertEquals(1, len(self._browser.tabs))
+    tabs_length = len(self._browser.tabs)
+    # 1 or 2 tabs, depending on whether What's New is displayed.
+    self.assertGreater(0, tabs_length)
+    self.assertLess(3, tabs_length)
     existing_tab_url = existing_tab.url
 
     new_tab = self._browser.tabs.New()
-    self.assertEquals(2, len(self._browser.tabs))
+    self.assertEquals(tabs_length + 1, len(self._browser.tabs))
     self.assertEquals(existing_tab.url, existing_tab_url)
     self.assertEquals(new_tab.url, 'about:blank')
 
     new_tab.Close()
-    self.assertEquals(1, len(self._browser.tabs))
+    self.assertEquals(tabs_length, len(self._browser.tabs))
     self.assertEquals(existing_tab.url, existing_tab_url)
 
   def testMultipleTabCalls(self):
@@ -70,12 +75,16 @@ class BrowserTest(browser_test_case.BrowserTestCase):
     tab = self._browser.tabs[0]
     tab.Navigate(self.UrlOfUnittestFile('blank.html'))
     tab.Close()
-    self.assertEquals(1, len(self._browser.tabs))
+    # 1 or 2 tabs, depending on whether What's New is displayed.
+    self.assertGreater(0, len(self._browser.tabs))
+    self.assertLess(3, len(self._browser.tabs))
 
   @decorators.Enabled('has tabs')
   def testForegroundTab(self):
-    # Should be only one tab at this stage, so that must be the foreground tab
-    original_tab = self._browser.tabs[0]
+    # 1 or 2 tabs, depending on whether What's New is displayed.
+    self.assertGreater(0, len(self._browser.tabs))
+    self.assertLess(3, len(self._browser.tabs))
+    original_tab = self._browser.tabs[len(self._browser.tabs) - 1]
     self.assertEqual(self._browser.foreground_tab, original_tab)
     new_tab = self._browser.tabs.New()
     # New tab shouls be foreground tab

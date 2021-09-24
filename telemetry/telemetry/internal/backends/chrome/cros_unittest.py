@@ -21,7 +21,9 @@ class CrOSCryptohomeTest(cros_test_case.CrOSTestCase):
     """Verifies cryptohome mount status for regular and guest user and when
     logged out"""
     with self._CreateBrowser() as b:
-      self.assertEquals(1, len(b.tabs))
+      # One or two tabs depending on whether what's New is showing.
+      self.assertGreater(0, len(b.tabs))
+      self.assertLess(3, len(b.tabs))
       self.assertTrue(b.tabs[0].url)
       self.assertTrue(self._IsCryptohomeMounted())
       self.assertTrue(
