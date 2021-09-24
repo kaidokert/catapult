@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a5d943a_1f641360",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-09-24T20:27:23Z",
+      "side": 1,
+      "message": "The description confused me - does this mean the same thing as \"don\u0027t ignore tests when the user has requests them, even if expectations.config says to ignore them\"? ",
+      "revId": "8965905495f911f219cda1c5b2823ffb8eac999d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
