@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df9fbffa_bc9a7c6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1182404
+      },
+      "writtenOn": "2021-09-25T02:31:49Z",
+      "side": 1,
+      "message": "Adjusting a few tests as we are modifying the What\u0027s New feature to potentially have multiple tabs open at startup, if What\u0027s New hasn\u0027t been displayed previously. It seems that these tests trigger this case, because they start with an empty local state; the local state is how we track whether What\u0027s New has already been shown.\n\nSee CL linked in description for the failures I\u0027m seeing when trying to change the What\u0027s New behavior. It seems like these tests need to be modified ahead of time, before that change can land. Currently, modifying the tests such that 1 or 2 tabs are allowed; if there\u0027s a different, recommended way of doing this, open to suggestions as I\u0027m not very familiar with these tests. Thanks!",
+      "revId": "2102bd8e7d60cc3a012f95a81c04178e2ba4d066",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
