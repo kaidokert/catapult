@@ -16,6 +16,24 @@
       "message": "should \"refs/heads/main@{#437745}\" still work too, or does this replace that pattern?",
       "revId": "2146b04fafd1a411b058d3b45a0298810aa8b3ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "441fce58_9f5f790d",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-27T22:08:19Z",
+      "side": 1,
+      "message": "Both still work (and should) (the test below confirms that).",
+      "parentUuid": "2d4760e0_a2a686a8",
+      "revId": "2146b04fafd1a411b058d3b45a0298810aa8b3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
