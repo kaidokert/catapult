@@ -125,6 +125,7 @@ deps = {
                    'Cr-Commit-Position: refs/heads/master@{#437745}',
         'review_url': 'https://foo/c/chromium/src/+/123',
         'commit_position': 437745,
+        'commit_branch': 'refs/heads/master'
     }
     self.assertEqual(Commit(0).AsDict(), expected)
 
@@ -157,6 +158,7 @@ deps = {
                    'Cr-Commit-Position: refs/heads/master@{#437745}',
         'review_url': 'https://foo/c/chromium/src/+/123',
         'commit_position': 437745,
+        'commit_branch': 'refs/heads/master'
     }
     self.assertEqual(commit.Commit('chromium', 'commit_0\n').AsDict(), expected)
 
@@ -186,6 +188,7 @@ deps = {
                    'Commit message.\n'
                    'Cr-Commit-Position: refs/heads/master@{#437745}',
         'commit_position': 437745,
+        'commit_branch': 'refs/heads/master',
     }
     self.assertEqual(Commit(0).AsDict(), expected)
 
@@ -215,6 +218,7 @@ deps = {
                    'Commit message.\n'
                    'Cr-Commit-Position: refs/heads/master@{#437745}',
         'commit_position': 437745,
+        'commit_branch': 'refs/heads/master'
     }
     self.assertEqual(Commit(0).AsDict(), expected)
 
