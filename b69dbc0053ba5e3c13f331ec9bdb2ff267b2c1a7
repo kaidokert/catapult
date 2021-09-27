@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f623377f_fae226ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-27T17:34:41Z",
+      "side": 1,
+      "message": "LGTM with nits",
+      "revId": "b69dbc0053ba5e3c13f331ec9bdb2ff267b2c1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c0a83e_ea9e077e",
+        "filename": "dashboard/dashboard/pinpoint/models/change/change_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-27T17:34:41Z",
+      "side": 1,
+      "message": "Suggest s/master/main/ in the whole file.",
+      "range": {
+        "startLine": 79,
+        "startChar": 32,
+        "endLine": 79,
+        "endChar": 38
+      },
+      "revId": "b69dbc0053ba5e3c13f331ec9bdb2ff267b2c1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b615c29_8b218150",
+        "filename": "dashboard/dashboard/pinpoint/models/change/commit_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-27T17:34:41Z",
+      "side": 1,
+      "message": "Suggest s/master/main/ in the whole file.",
+      "range": {
+        "startLine": 128,
+        "startChar": 37,
+        "endLine": 128,
+        "endChar": 43
+      },
+      "revId": "b69dbc0053ba5e3c13f331ec9bdb2ff267b2c1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2379796c_79a090c8",
+        "filename": "dashboard/dashboard/pinpoint/models/results2_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-27T17:34:41Z",
+      "side": 1,
+      "message": "main",
+      "range": {
+        "startLine": 400,
+        "startChar": 51,
+        "endLine": 400,
+        "endChar": 57
+      },
+      "revId": "b69dbc0053ba5e3c13f331ec9bdb2ff267b2c1a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
