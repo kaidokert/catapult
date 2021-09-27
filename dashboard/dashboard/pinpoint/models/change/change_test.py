@@ -75,6 +75,8 @@ class ChangeTest(test.TestCase):
             {
                 'author':
                     'author@chromium.org',
+                'commit_branch':
+                    'refs/heads/main',
                 'commit_position':
                     123456,
                 'git_hash':
@@ -95,11 +97,13 @@ class ChangeTest(test.TestCase):
                     'Subject.\n\nCommit message.\n'
                     'Reviewed-on: https://foo.bar/+/123456\n'
                     'Change-Id: If32lalatdfg325simon8943washere98j589\n'
-                    'Cr-Commit-Position: refs/heads/master@{#123456}',
+                    'Cr-Commit-Position: refs/heads/main@{#123456}',
             },
             {
                 'author':
                     'author@chromium.org',
+                'commit_branch':
+                    'refs/heads/main',
                 'commit_position':
                     123456,
                 'git_hash':
@@ -120,7 +124,7 @@ class ChangeTest(test.TestCase):
                     'Subject.\n\nCommit message.\n'
                     'Reviewed-on: https://foo.bar/+/123456\n'
                     'Change-Id: If32lalatdfg325simon8943washere98j589\n'
-                    'Cr-Commit-Position: refs/heads/master@{#123456}',
+                    'Cr-Commit-Position: refs/heads/main@{#123456}',
             },
         ],
         'patch': {
@@ -135,6 +139,7 @@ class ChangeTest(test.TestCase):
                        'Change-Id: I0123456789abcdef',
         },
     }
+    self.maxDiff = None
     self.assertEqual(c.AsDict(), expected)
 
   def testFromDataUrl(self):
