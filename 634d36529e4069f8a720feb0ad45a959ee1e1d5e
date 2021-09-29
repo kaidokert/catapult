@@ -63,6 +63,30 @@
       },
       "revId": "634d36529e4069f8a720feb0ad45a959ee1e1d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba97585_642ea29c",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-09-29T17:56:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4f3c447d_aeb7f181",
+      "range": {
+        "startLine": 824,
+        "startChar": 14,
+        "endLine": 824,
+        "endChar": 18
+      },
+      "revId": "634d36529e4069f8a720feb0ad45a959ee1e1d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
