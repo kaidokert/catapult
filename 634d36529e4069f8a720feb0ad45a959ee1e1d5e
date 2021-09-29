@@ -39,6 +39,30 @@
       },
       "revId": "634d36529e4069f8a720feb0ad45a959ee1e1d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3c447d_aeb7f181",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-09-29T17:49:01Z",
+      "side": 1,
+      "message": "Not sure as it will be too much. ~3M such warnings in the last 3 hours, compared to ~500K informational. Do you now what this warning could lead to?",
+      "parentUuid": "1879b2b8_603a68c8",
+      "range": {
+        "startLine": 824,
+        "startChar": 14,
+        "endLine": 824,
+        "endChar": 18
+      },
+      "revId": "634d36529e4069f8a720feb0ad45a959ee1e1d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
