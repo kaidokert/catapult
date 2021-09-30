@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "405bc1bd_e15899fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-09-30T21:51:05Z",
+      "side": 1,
+      "message": "PTAL\n\nTested to work here https://ci.chromium.org/ui/p/chromium/builders/try/android_optional_gpu_tests_rel/83406/test-results?q\u003dExactID%3Aninja%3A%2F%2Fchrome%2Ftest%3Atelemetry_gpu_integration_test_android_chrome%2Fgpu_tests.pixel_integration_test.PixelIntegrationTest.Pixel_CSS3DBlueBox+VHash%3A3a2632ad7f70ba38",
+      "revId": "c0e502188c62222e7d20a14cb22ea40b57b3d781",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
