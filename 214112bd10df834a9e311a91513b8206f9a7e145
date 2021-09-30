@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1760f139_30da3274",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-30T23:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9c2d40d_e0f306f0",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 137
+      },
+      "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b00704b7_55dd6756",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-30T20:24:07Z",
       "side": 1,
       "message": "This is only test code. You should be able to run it locally or in CQ.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "919634cd_80d85c5e",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-30T23:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b00704b7_55dd6756",
       "range": {
         "startLine": 72,
         "startChar": 0,
@@ -107,6 +155,30 @@
       "writtenOn": "2021-09-30T20:24:07Z",
       "side": 1,
       "message": "This change already exists in main branch. That means you\u0027re creating CL based on an old commit. Please rebase locally and upload.",
+      "range": {
+        "startLine": 122,
+        "startChar": 3,
+        "endLine": 123,
+        "endChar": 96
+      },
+      "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "217c1dae_4c310bfe",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-09-30T23:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2546415_bf094eef",
       "range": {
         "startLine": 122,
         "startChar": 3,
