@@ -679,6 +679,7 @@ class Job(ndb.Model):
     self.task = task.name
 
   def _MaybeScheduleRetry(self):
+    # I do want to know if this is running so it's worth adding a log here 
     if not hasattr(self, 'retry_count') or self.retry_count is None:
       self.retry_count = 0
 
@@ -688,6 +689,10 @@ class Job(ndb.Model):
     self.retry_count += 1
 
     # Back off exponentially
+    try:
+      logging.debug('Leina - reschedule - retry count - %s', self.retry_count)
+    except:
+      logging.debug('Leina - log message failed')
     self._Schedule(countdown=_TASK_INTERVAL * (2**self.retry_count))
 
     return True
@@ -724,17 +729,25 @@ class Job(ndb.Model):
         return
 
       if not self._IsTryJob():
+        try: 
+          logging.debug('Leina - job.run() - Explore - num changes - %s', len(self.state._changes))
+        except:
+          logging.debug('Leina - log messaged failed')
         self.state.Explore()
       work_left = self.state.ScheduleWork()
 
       # Schedule moar task.
       if work_left:
+        try:
+          logging.debug('Leina - job.run() - schedule - num changes - %s', len(self.state._changes))
+        except:
+          logging.debug('Leina - log messaged failed')
         self._Schedule()
       else:
-        self._Complete()
+        self._Complete() # not sure how it's possible for this line to get executed 
 
       self.retry_count = 0
-    except errors.RecoverableError as e:
+    except errors.RecoverableError as e: 
       try:
         if not self._MaybeScheduleRetry():
           self.Fail(errors.JobRetryLimitExceededError(wrapped_exc=e))
