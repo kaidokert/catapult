@@ -69,8 +69,11 @@ class ExplorationTest(unittest.TestCase):
                                            (args,)),
         midpoint=FindMidpoint,
         levels=2)
+    test_arr = [] 
     for index, change in results:
       changes.insert(index, change)
+      test_arr.append((index, change))
+    logging.warning(test_arr)
     self.assertEqual(changes, [0, 25, 50, 75, 100])
 
   def testSpeculateUnbalanced(self):

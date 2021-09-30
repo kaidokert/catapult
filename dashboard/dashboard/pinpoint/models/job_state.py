@@ -116,11 +116,11 @@ class JobState(object):
     else:
       self._changes.append(change)
 
-    if len(self._changes) > MAX_BUILDS:
-      raise errors.BuildCancelled('The number of builds exceeded %d. Aborting Job' % MAX_BUILDS)
-
     self._attempts[change] = []
     self.AddAttempts(change)
+
+    if len(self._changes) > MAX_BUILDS:
+      raise errors.BuildCancelled('The number of builds exceeded %d. Aborting Job' % MAX_BUILDS)
 
   def Explore(self):
     """Compare Changes and bisect by adding additional Changes as needed.
@@ -175,18 +175,27 @@ class JobState(object):
           on_unknown=CollectChangesToRefine,
           midpoint=FindMidpoint,
           levels=_DEFAULT_SPECULATION_LEVELS)
+      add_changes_log = []
       logging.debug('Refinement list: %s', changes_to_refine)
       for change in changes_to_refine:
         self.AddAttempts(change)
-      logging.debug('Edit list: %s', additional_changes)
+      logging.debug('Edit list: %s', additional_changes) # revise so it's more useful 
       for index, change in additional_changes:
         self.AddChange(change, index)
+        add_changes_log.append((index, change, change.commits))
+      try:
+        logging.debug('Leina - edit list: %s', add_changes_log)
+      except:
+        logging.debug('Leina - log message failed')
     except (http_client.HTTPException,
             urlfetch_errors.DeadlineExceededError) as e:
       logging.debug('Encountered error: %s', e)
       raise errors.RecoverableError(e)
 
   def ScheduleWork(self):
+    # not confident but I believe this is scheduling 
+    # one of the attempts and doesn't add 
+    # additional changes 
     work_left = False
     for attempts in self._attempts.values():
       for attempt in attempts:
