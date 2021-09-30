@@ -94,6 +94,8 @@ def Speculate(changes, change_detected, on_unknown, midpoint, levels=2):
       # to which the found change is to be inserted.
       def Inserter(change):
         # We only add changes that we've not encountered yet in this traversal.
+        # there's nothing here to prevent it from adding additional changes
+        # if there are concurrent jobs still running
         if change not in accumulated_changes and change not in changes:
           accumulated_changes.append(change)
           additional_changes.append(tuple([index_b, change]))

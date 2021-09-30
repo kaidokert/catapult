@@ -204,6 +204,9 @@ class ScheduleWorkTest(unittest.TestCase):
     self.assertEqual(len(state._changes), n)
     with self.assertRaisesRegexp(Exception, '(.+)The number of builds exceeded %d.(.+)' % n):
       state.AddChange(change_test.Change(123))
+    logging.warning('test message')
+    # logging.warning(state._changes)
+    logging.warning(state._changes[0].commits)
 
 
 class MeanTest(unittest.TestCase):
