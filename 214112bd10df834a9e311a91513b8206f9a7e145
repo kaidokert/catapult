@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9c2d40d_e0f306f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-30T20:24:07Z",
+      "side": 1,
+      "message": "It\u0027s OK to check in temporary changes such as additional logging, with intention to revert afterwards. However, such CL would still exist permanently in git history, so it still needs to follow coding conventions.\n\nFor the commit message, the convention is to have a short title line (less than 80 characters, with no more than 50 characters preferred), followed by a blank line, followed by more details (no more than 80 characters per line). For example:\n\n[Pinpoint] Add log statements for debugging\n\nAdded a few log statements to debug https://crbug.com/1254010.\nWill upload to main branch, set the build to 100%, and revert CL\nafterwards.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 137
+      },
+      "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b00704b7_55dd6756",
+        "filename": "dashboard/dashboard/pinpoint/models/exploration_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-30T20:24:07Z",
+      "side": 1,
+      "message": "This is only test code. You should be able to run it locally or in CQ.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfe96f5a_763c03f6",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 6
@@ -43,6 +89,29 @@
         "startChar": 21,
         "endLine": 693,
         "endChar": 26
+      },
+      "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2546415_bf094eef",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-09-30T20:24:07Z",
+      "side": 1,
+      "message": "This change already exists in main branch. That means you\u0027re creating CL based on an old commit. Please rebase locally and upload.",
+      "range": {
+        "startLine": 122,
+        "startChar": 3,
+        "endLine": 123,
+        "endChar": 96
       },
       "revId": "214112bd10df834a9e311a91513b8206f9a7e145",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
