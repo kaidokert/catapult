@@ -7,6 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 import logging
+import datetime
 
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
@@ -23,6 +24,8 @@ from dashboard.services import issue_tracker_service
 _TASK_QUEUE_NAME = 'auto-triage-queue'
 
 _MAX_UNTRIAGED_ANOMALIES = 5000
+
+_BUG_DATES_TO_IGNORE_ITS_ALERTS = 180
 
 # Maximum relative difference between two steps for them to be considered
 # similar enough for the second to be a "recovery" of the first.
@@ -127,6 +130,30 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
     alert_entity = ndb.Key(urlsafe=alert_key_urlsafe).get()
     logging.info('Checking alert %s', alert_entity)
     if not self._IsAlertRecovered(alert_entity):
+      if bug_id:
+        issue_tracker = issue_tracker_service.IssueTrackerService(
+            utils.ServiceAccountHttp())
+        issue = issue_tracker.GetIssue(bug_id, project=project_id)
+        reported_on = issue['published']
+        dates_from_reported = (datetime.now() -
+                               datetime.fromisoformat(reported_on)).days
+        if dates_from_reported > _BUG_DATES_TO_IGNORE_ITS_ALERTS:
+          comment = """
+          The test related to the alert below cannot be found in data store.
+          As it has been %s days since reported, we consider this alert no
+          longer valid and mark it as recovered.
+          Alert: %s
+          TestMetadataKey: %s
+          """ % (dates_from_reported, alert_entity,
+                 alert_entity.GetTestMetadataKey())
+          logging.info(comment)
+          issue_tracker.AddBugComment(
+              bug_id,
+              comment,
+              project=project_id,
+              labels='Performance-Regression-Recovered')
+          alert_entity.recovered = True
+          alert_entity.put()
       return
 
     logging.info('Recovered')
@@ -151,7 +178,7 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
   def _IsAlertRecovered(self, alert_entity):
     test = alert_entity.GetTestMetadataKey().get()
     if not test:
-      logging.error('TestMetadata %s not found for Anomaly %s, deleting test.',
+      logging.error('TestMetadata %s not found for Anomaly %s.',
                     utils.TestPath(alert_entity.GetTestMetadataKey()),
                     alert_entity)
       return False
