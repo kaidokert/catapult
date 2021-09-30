@@ -335,6 +335,32 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
   @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
   @mock.patch.object(
       issue_tracker_service.IssueTrackerService,
+      'GetIssue',
+      return_value={
+          'id': 5678,
+          'published': '1900-01-01T00:00:00',
+      })
+  def testPost_TestDeletedMarkRecovered_AddsComment(self, _,
+                                                    add_bug_comment_mock):
+    anomaly_key = self._AddAnomalyForTest(
+        utils.TestKey('non/exist/path'),
+        revision=11,
+        median_before=50,
+        median_after=55,
+        bug_id=5678)
+    self.testapp.post('/mark_recovered_alerts')
+    self.ExecuteTaskQueueTasks('/mark_recovered_alerts',
+                               mark_recovered_alerts._TASK_QUEUE_NAME)
+    self.assertTrue(anomaly_key.get().recovered)
+    add_bug_comment_mock.assert_called_once_with(
+        mock.ANY,
+        mock.ANY,
+        project=mock.ANY,
+        labels='Performance-Regression-Recovered')
+
+  @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  @mock.patch.object(
+      issue_tracker_service.IssueTrackerService,
       'List',
       return_value={'items': [{
           'id': 1234
