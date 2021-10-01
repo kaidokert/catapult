@@ -39,6 +39,30 @@
       },
       "revId": "62e571a1910778feca0e4c440d36729b4f9a193b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b1c2f4_3ddd3b64",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-10-01T00:42:02Z",
+      "side": 1,
+      "message": "Thanks for catching it. Will move the logic in _IsAlertRecovered().\n\nThe reason I check the bug\u0027s age is that I\u0027m not sure whether by any reason the get() will return None even when the record exists in ndb, then the alert will be incorrectly marked as recovered. Do you have any experience on the behaviors of the get()?",
+      "parentUuid": "f73f38b2_b155ac3e",
+      "range": {
+        "startLine": 133,
+        "startChar": 5,
+        "endLine": 133,
+        "endChar": 6
+      },
+      "revId": "62e571a1910778feca0e4c440d36729b4f9a193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
