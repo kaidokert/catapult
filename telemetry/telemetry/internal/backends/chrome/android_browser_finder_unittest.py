@@ -45,7 +45,7 @@ class AndroidBrowserFinderTest(fake_filesystem_unittest.TestCase):
         spec=android_platform_backend.AndroidPlatformBackend)
     device = self.fake_platform._platform_backend.device
     device.build_description = 'some L device'
-    device.build_version_sdk = 'L23ds5'
+    device.build_version_sdk = 21
     self.fake_platform.GetOSVersionName.return_value = device.build_version_sdk
     self.fake_platform.GetArchName.return_value = 'armeabi-v7a'
     # The android_browser_finder converts the os version name to 'k' or 'l'
