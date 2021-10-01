@@ -63,6 +63,30 @@
       },
       "revId": "62e571a1910778feca0e4c440d36729b4f9a193b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbaccd4b_47beafaa",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-01T02:47:07Z",
+      "side": 1,
+      "message": "In theory that shouldn\u0027t happen, but I don\u0027t know how reliable ndb is. When something goes wrong inside ndb, I\u0027d expect it to throw an exception instead of returning null, but I don\u0027t know how well-behaved ndb is. So it does make sense to be cautious. In that case, I think we should check the timestamp of the alert (alert_entity.timestamp), instead of bug creation time, as the presence of bug is optional.",
+      "parentUuid": "04b1c2f4_3ddd3b64",
+      "range": {
+        "startLine": 133,
+        "startChar": 5,
+        "endLine": 133,
+        "endChar": 6
+      },
+      "revId": "62e571a1910778feca0e4c440d36729b4f9a193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
