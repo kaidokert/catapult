@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f970e14d_a4202b6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-01T00:29:28Z",
+      "side": 1,
+      "message": "LGTM with a nit.",
+      "revId": "ecef4f37335375986174734800eaf70cec3db0aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c51d2e75_c952e1bd",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-01T00:29:28Z",
+      "side": 1,
+      "message": "The code reaches here when there is no more work left, i.e., when all tasks for this Pinpoint job has completed and ScheduleWork returns False.",
+      "range": {
+        "startLine": 747,
+        "startChar": 27,
+        "endLine": 747,
+        "endChar": 83
+      },
+      "revId": "ecef4f37335375986174734800eaf70cec3db0aa",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
