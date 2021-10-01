@@ -19,7 +19,6 @@ from dashboard.pinpoint import test
 from dashboard.pinpoint.handlers import new
 from dashboard.pinpoint.models import job as job_module
 from dashboard.pinpoint.models import quest as quest_module
-from dashboard.pinpoint.models.change import change_test
 
 # All arguments must have string values.
 _BASE_REQUEST = {
@@ -231,11 +230,11 @@ class NewTest(_NewTest):
     self.assertEqual(job.comparison_mode, 'try')
     self.assertEqual(
         str(job.state._changes[0]),
-        'base: chromium@3 (%s)' % (', '.join(base_args)),
+        'base: chromium@3 (%s) (Arm: 0)' % (', '.join(base_args)),
     )
     self.assertEqual(
         str(job.state._changes[1]),
-        'exp: chromium@3 (%s)' % (', '.join(exp_args)),
+        'exp: chromium@3 (%s) (Arm: 1)' % (', '.join(exp_args)),
     )
 
   def testComparisonModeTry_BaseNoPatchAndExperimentCommitPatch(self):
