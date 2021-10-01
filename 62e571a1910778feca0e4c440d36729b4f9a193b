@@ -16,6 +16,29 @@
       "message": "Fixing the dangling alert. PTAL. ",
       "revId": "62e571a1910778feca0e4c440d36729b4f9a193b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f73f38b2_b155ac3e",
+        "filename": "dashboard/dashboard/mark_recovered_alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-01T00:18:23Z",
+      "side": 1,
+      "message": "_IsAlertRecovered can return False for two reasons: TestMetadata not found, or the alert hasn\u0027t recovered. So at this point, we don\u0027t know that the test was not found.\n\nMy suggestion is to move all the new code into _IsAlertRecovered, immediately after it has logged the TestMetadata not found error. It\u0027ll be necessary to pass the bug_id to that function.\n\nIn addition:\n\n* When TestMetadata is not found, alert_entity should unconditionally be marked as recovered. Regardless of whether a bug exists, or how old the bug (or alert) is, there is no point to check again for recovery.\n\n* I think we shouldn\u0027t add Performance-Regression-Recovered label to the bug, or state \"mark it as recovered\" in the text. Simply state that \"The test related to the alert below cannot be found in data store.\" The bug should be updated regardless of its age -- test disappearing is a useful info to bug owner even for new bugs.",
+      "range": {
+        "startLine": 133,
+        "startChar": 5,
+        "endLine": 133,
+        "endChar": 6
+      },
+      "revId": "62e571a1910778feca0e4c440d36729b4f9a193b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
