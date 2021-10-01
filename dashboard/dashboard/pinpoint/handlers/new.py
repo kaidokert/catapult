@@ -20,6 +20,7 @@ from dashboard.pinpoint.models import job_state
 from dashboard.pinpoint.models import quest as quest_module
 from dashboard.pinpoint.models import scheduler
 from dashboard.pinpoint.models import task as task_module
+from dashboard.pinpoint.models.change import change as change_module
 from dashboard.pinpoint.models.tasks import performance_bisection
 from dashboard.pinpoint.models.tasks import read_value
 
@@ -325,7 +326,7 @@ def _ValidateChangesForTry(arguments):
       patch=base_patch,
       label='base',
       args=base_extra_args or None,
-  )
+      arm=change_module.ARM_BASE)
   exp_extra_args = _ParseExtraArgs(arguments.get('experiment_extra_args', ''))
   logging.debug('Experiment extra args: %s', exp_extra_args)
   change_2 = change.Change(
@@ -333,7 +334,7 @@ def _ValidateChangesForTry(arguments):
       patch=exp_patch,
       label='exp',
       args=exp_extra_args or None,
-  )
+      arm=change_module.ARM_EXP)
   return change_1, change_2
 
 
