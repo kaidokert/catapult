@@ -17,9 +17,13 @@ except ImportError:
 from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.change import patch as patch_module
 
+ARM_BASE = "base"
+ARM_EXP = "exp"
+
 
 class Change(
-    collections.namedtuple('Change', ('commits', 'patch', 'label', 'args'))):
+    collections.namedtuple('Change',
+                           ('commits', 'patch', 'label', 'args', 'arm'))):
   """A particular set of Commits with or without an additional patch applied.
 
   For example, a Change might sync to src@9064a40 and catapult@8f26966,
@@ -28,7 +32,7 @@ class Change(
 
   __slots__ = ()
 
-  def __new__(cls, commits, patch=None, label=None, args=None):
+  def __new__(cls, commits, patch=None, label=None, args=None, arm=None):
     """Creates a Change.
 
     Args:
@@ -36,16 +40,12 @@ class Change(
       patch: An optional Patch to apply to the Change.
       label: An optional string to label a Change.
       args: A list of strings associated with a Change.
+      arm: Is the change base or experiment. Only valid for A/B jobs.
     """
     if not (commits or patch):
       raise TypeError('At least one commit or patch required.')
-    return super(Change, cls).__new__(
-        cls,
-        tuple(commits),
-        patch,
-        label,
-        json.dumps(args) if args else None,
-    )
+    return super(Change, cls).__new__(cls, tuple(commits), patch, label,
+                                      json.dumps(args) if args else None, arm)
 
   def __str__(self):
     """Returns an informal short string representation of this Change."""
@@ -56,6 +56,8 @@ class Change(
     args = self.change_args
     if args:
       string += ' (%s)' % (', '.join(args),)
+    if self.arm:
+      string += ' (Arm: %s)' % self.arm
     return string
 
   def __getnewargs__(self):
@@ -69,7 +71,8 @@ class Change(
     https://docs.python.org/2.7/library/pickle.html#pickling-and-unpickling-normal-class-instances
     (for Python 2.7) details.
     """
-    return (self.commits, self.patch, self.change_label, self.change_args)
+    return (self.commits, self.patch, self.change_label, self.change_args,
+            self.arm)
 
   @property
   def change_label(self):
@@ -140,7 +143,8 @@ class Change(
     patch = self.patch or other.patch
     label = self.change_label or other.change_label
     args = self.change_args or other.change_args
-    return Change(commits, patch, label, args)
+    arm = self.arm or other.arm
+    return Change(commits, patch, label, args, arm)
 
   def AsDict(self):
     result = {
@@ -155,6 +159,9 @@ class Change(
 
     if self.change_label:
       result['label'] = self.change_label
+
+    if self.arm:
+      result['arm'] = self.arm
 
     return result
 
@@ -183,7 +190,8 @@ class Change(
     label = data.get('label')
     args = data.get('args')
 
-    return cls(commits, patch=patch, label=label, args=args)
+    return cls(
+        commits, patch=patch, label=label, args=args, arm=data.get('arm'))
 
   @classmethod
   def Midpoint(cls, change_a, change_b):
