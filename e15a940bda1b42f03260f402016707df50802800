@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b29e6fc3_3af54e09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-04T15:29:53Z",
+      "side": 1,
+      "message": "I\u0027m worried about the term \"arm\", as it has other meanings and can cause confusions. Wikipedia (https://en.wikipedia.org/wiki/A/B_testing) uses \"variant\" while describing A/B testing. Would that be a better term for us to use?",
+      "revId": "e15a940bda1b42f03260f402016707df50802800",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
