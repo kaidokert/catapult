@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc4b56a4_b0f5fa84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-10-04T20:25:26Z",
+      "side": 1,
+      "message": "+johnchen for Telemetry changes\n+rmhasan for typ changes",
+      "revId": "0adbe65b13b3836eae9b5a0e51bd76e0d0bff9d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
