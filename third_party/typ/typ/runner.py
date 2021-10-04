@@ -552,6 +552,11 @@ class Runner(object):
             # In Python3's version of unittest, loader failures get converted
             # into failed test cases, rather than raising exceptions. However,
             # the errors also get recorded so you can err out immediately.
+            if isinstance(loader.errors, list):
+                error_message = ''
+                for e in loader.errors:
+                    error_message += e + '\n'
+                raise ImportError(error_message)
             raise ImportError(loader.errors)
 
     def _run_tests(self, result_set, test_set, all_tests):
@@ -1039,12 +1044,21 @@ def _run_one_test(child, test_input):
 
         test_name_to_load = child.test_name_prefix + test_name
         try:
+            # If we have errors around from before, clear them now so we don't
+            # attempt to handle them later.
+            if hasattr(child.loader, 'errors') and child.loader.errors:
+                child.loader.errors.clear()
             suite = child.loader.loadTestsFromName(test_name_to_load)
             # From Python 3.5, AttributeError will not be thrown when calling
             # LoadTestsFromName. Instead, it adds error messages in the loader.
             # As a result, the original handling cannot kick in properly. We
             # now check the error message and throw exception as needed.
             if hasattr(child.loader, 'errors') and child.loader.errors:
+                if isinstance(child.loader.errors, list):
+                    error_message = ''
+                    for e in child.loader.errors:
+                        error_message += e + '\n'
+                    raise AttributeError(error_message)
                 raise AttributeError(child.loader.errors)
         except Exception as e:
             ex_str = ('loadTestsFromName("%s") failed: %s\n%s\n' %
