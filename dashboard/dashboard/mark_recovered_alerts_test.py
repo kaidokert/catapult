@@ -339,6 +339,61 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
       return_value={'items': [{
           'id': 1234
       }]})
+  def testPost_TestDeletedMarkRecovered_AddsComment(self, _,
+                                                    add_bug_comment_mock):
+    values = [
+        49,
+        50,
+        51,
+        50,
+        51,
+        49,
+        51,
+        50,
+        50,
+        49,
+        55,
+        54,
+        55,
+        56,
+        54,
+        56,
+        57,
+        56,
+        55,
+        56,
+        55,
+        54,
+        55,
+        56,
+        54,
+        56,
+        57,
+        56,
+        55,
+        56,
+    ]
+    self._AddTestData(values)
+    anomaly_key = self._AddAnomalyForTest(
+        utils.TestKey('non/exist/test'),
+        revision=11,
+        median_before=50,
+        median_after=55,
+        bug_id=1234)
+    self.testapp.post('/mark_recovered_alerts')
+    self.ExecuteTaskQueueTasks('/mark_recovered_alerts',
+                               mark_recovered_alerts._TASK_QUEUE_NAME)
+    self.assertTrue(anomaly_key.get().recovered)
+    add_bug_comment_mock.assert_called_once_with(
+        mock.ANY, mock.ANY, project=mock.ANY)
+
+  @mock.patch.object(issue_tracker_service.IssueTrackerService, 'AddBugComment')
+  @mock.patch.object(
+      issue_tracker_service.IssueTrackerService,
+      'List',
+      return_value={'items': [{
+          'id': 1234
+      }]})
   def testPost_BugHasNoAlerts_NoCommentPosted(self, _, add_bug_comment_mock):
     self.testapp.post('/mark_recovered_alerts')
     self.ExecuteTaskQueueTasks('/mark_recovered_alerts',
