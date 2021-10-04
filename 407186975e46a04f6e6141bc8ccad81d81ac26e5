@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "945b3afe_370c30f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-04T15:57:29Z",
+      "side": 1,
+      "message": "variant",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "407186975e46a04f6e6141bc8ccad81d81ac26e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "775d6b67_fb66c40a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-04T15:57:29Z",
+      "side": 1,
+      "message": "LGTM except for the CL title.",
+      "revId": "407186975e46a04f6e6141bc8ccad81d81ac26e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
