@@ -174,7 +174,7 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
           issue_tracker = issue_tracker_service.IssueTrackerService(
               utils.ServiceAccountHttp())
           issue_tracker.AddBugComment(bug_id, comment, project=project_id)
-      return False
+      return alert_entity.recovered
     config = anomaly_config.GetAnomalyConfigDict(test)
     max_num_rows = config.get('max_window_size',
                               find_anomalies.DEFAULT_NUM_POINTS)
