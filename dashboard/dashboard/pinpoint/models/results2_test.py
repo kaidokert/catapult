@@ -548,6 +548,7 @@ class GenerateResults2Test(testing_common.TestCase):
     }]
 
     results2.GenerateResults2(job)
+    self.maxDiff = None
     self.assertItemsEqual(mock_bqinsert.call_args[0][3], expected_rows)
 
   @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
