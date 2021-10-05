@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a066225_eeb29b3d",
+        "filename": "dashboard/dashboard/proto/results.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-10-05T17:36:13Z",
+      "side": 1,
+      "message": "is this the overall pinpoint job start time, a waterfall tester\u0027s start time, or an individual swarming task running one shard of tests or something like that?",
+      "revId": "60932ab0b049b94cd8a3888f6305c65787ab46d1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
