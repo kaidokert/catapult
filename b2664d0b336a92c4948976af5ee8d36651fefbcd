@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92653766_db60aead",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-10-05T22:06:57Z",
+      "side": 1,
+      "message": "Another fix on the dangling alerts. PTAL.",
+      "revId": "b2664d0b336a92c4948976af5ee8d36651fefbcd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
