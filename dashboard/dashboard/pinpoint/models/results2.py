@@ -261,6 +261,7 @@ def _PopulateMetadata(job, h):
   md["batch_id"] = job.batch_id
   md["run_id"] = job.job_id
   md["dims"] = {}
+  md["dims"]["start_time"] = job.started_time
   md["dims"]["device"] = {}
   md["dims"]["device"]["cfg"] = job.configuration
   if h.metadata.swarming_result and "bot_dimensions" in h.metadata.swarming_result:

@@ -13,6 +13,8 @@ import logging
 import mock
 import unittest
 
+from datetime import date
+
 from google.appengine.api import taskqueue
 
 from dashboard.common import testing_common
@@ -25,6 +27,8 @@ from dashboard.pinpoint.models.quest import run_test
 from dashboard.services import swarming
 from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
+
+_TEST_START_TIME = date.fromtimestamp(1326244364)
 
 _ATTEMPT_DATA = {
     "executions": [{
@@ -479,6 +483,7 @@ class GenerateResults2Test(testing_common.TestCase):
     expected_rows = [{
         'batch_id': 'fake_batch_id',
         'dims': {
+            'start_time': _TEST_START_TIME,
             'device': {
                 'cfg': 'fake_configuration',
                 'os': 'os'
@@ -510,6 +515,7 @@ class GenerateResults2Test(testing_common.TestCase):
     }, {
         'batch_id': 'fake_batch_id',
         'dims': {
+            'start_time': _TEST_START_TIME,
             'device': {
                 'cfg': 'fake_configuration',
                 'os': 'os'
@@ -705,6 +711,7 @@ class _JobStub(object):
     self.batch_id = batch_id
     self.configuration = configuration
     self.benchmark_arguments = benchmark_arguments
+    self.started_time = _TEST_START_TIME
 
   def AsDict(self, options=None):
     del options
