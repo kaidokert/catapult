@@ -27,7 +27,7 @@ from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
 
 _TEST_START_TIME = datetime.date.fromtimestamp(1326244364)
-_TEST_START_TIME_STR = "2012-01-10 00:00:00.000000"
+_TEST_START_TIME_STR = _TEST_START_TIME.strftime('%Y-%m-%d %H:%M:%S.%f')
 
 _ATTEMPT_DATA = {
     "executions": [{
