@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
+<link rel="import" href="/tracing/value/diagnostics/related_event_set.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+    'use strict';
+
+    tr.exportTo('tr.metrics.rendering', function() {
+
+      function addBreakdownTimes(histograms, model, segments) {
+        const chromeHelper = model.getOrCreateHelper(
+            tr.model.helpers.ChromeModelHelper);
+
+        let total_pipeline_reporters = 0;
+        let total_main_thread_animation_pipeline_reporters = 0;
+        let total_compositor_thread_animation_pipeline_reporters = 0;
+        let total_main_thread_scroll_pipeline_reporters = 0;
+        let total_compositor_thread_scroll_pipeline_reporters = 0;
+        let total_pipeline_reporters_with_any_interaction = 0;
+
+        for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+          let pipeline_reporters = [];
+          
+          let forked_PRs = [];
+          let forked_PR_state_counter = {};
+          let states = ['STATE_NO_UPDATE_DESIRED', 'STATE_PRESENTED_PARTIAL', 'STATE_PRESENTED_ALL', 'STATE_DROPPED'];
+          let states_short_name = ['NUD', 'PP', 'PA', 'D'];
+
+          for (const st1 of states) {
+            forked_PR_state_counter[st1] = {};
+            for (const st2 of states) {
+              forked_PR_state_counter[st1][st2] = 0;
+            }
+          }
+
+          let Last_PR;
+
+          if (rendererHelper.compositorThread === undefined) continue;
+          const slices = rendererHelper.compositorThread.asyncSliceGroup.slices;
+          for (const slice of slices) {
+            console.log(slice.title);
+            if (slice.title !== 'PipelineReporter') continue;
+            pipeline_reporters.push(slice);
+          }
+
+          pipeline_reporters.sort(function (a, b) {
+            if (a.start == b.start) return (a.duration - b.duration);
+            return (a.start - b.start);
+          });
+
+          for (const pr of pipeline_reporters) {
+            total_pipeline_reporters += 1;
+            let has_interaction = false;
+            let CFR = pr.args.chrome_frame_reporter;
+
+            if (Last_PR) {
+              let Last_PR_CFR = Last_PR.args.chrome_frame_reporter;
+
+              if (Last_PR_CFR.frame_sequence == CFR.frame_sequence && Last_PR_CFR.frame_source == CFR.frame_source) {
+                forked_PRs.push({
+                  'impl': Last_PR,
+                  'main': pr
+                })
+              }
+            }
+
+            if (CFR.has_main_animation == true) {
+              total_main_thread_animation_pipeline_reporters += 1;
+              has_interaction = true;
+            }
+
+            if (CFR.has_compositor_animation == true) {
+              total_compositor_thread_animation_pipeline_reporters += 1;
+              has_interaction = true;
+            }
+
+            if (CFR.scroll_state == 'SCROLL_MAIN_THREAD') {
+              total_main_thread_scroll_pipeline_reporters += 1;
+              has_interaction = true;
+            }
+
+            if (CFR.scroll_state == 'SCROLL_COMPOSITOR_THREAD') {
+              total_compositor_thread_scroll_pipeline_reporters += 1;
+              has_interaction = true;
+            }
+
+            if (has_interaction) {
+              total_pipeline_reporters_with_any_interaction += 1;
+            }
+
+            Last_PR = pr;
+          }
+
+          for (const forked_pr of forked_PRs) {
+            let impl_state = forked_pr['impl'].args.chrome_frame_reporter.state;
+            let main_state = forked_pr['main'].args.chrome_frame_reporter.state;
+            forked_PR_state_counter[impl_state][main_state] += 1;
+
+            let impl_state_index = states.indexOf(impl_state);
+            let main_state_index = states.indexOf(main_state);
+            console.log(forked_pr['impl'].start + ' - ' + forked_pr['impl'].args.chrome_frame_reporter.frame_sequence);
+            console.log(forked_pr['main'].start + ' - ' + forked_pr['main'].args.chrome_frame_reporter.frame_sequence);
+            let histogram_name = '08_forkedPR_start_' + states_short_name[impl_state_index] + '_' + states_short_name[main_state_index];
+
+            histograms.createHistogram(histogram_name,
+              tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+              forked_pr['impl'].start,
+              {description: 'Start time of pipeline reporter',
+                summaryOptions: {}})
+          }
+
+          for (const [i1, st1] of states.entries()) {
+            for (const [i2, st2] of states.entries()) {
+              let histogram_name = '07_forkedPR_state_' + states_short_name[i1] + '_' + states_short_name[i2];
+              histograms.createHistogram(histogram_name,
+                  tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+                  forked_PR_state_counter[st1][st2],
+                  {description: '',
+                    summaryOptions: {}});
+            }
+          }
+
+          histograms.createHistogram('06_forked_pipeline_reporters',
+              tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+              forked_PRs.length,
+              {description: '',
+                summaryOptions: {}});
+        }
+
+        histograms.createHistogram('00_pipeline_reporters_total',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_pipeline_reporters,
+            {description: 'Number of pipeline reporters in trace',
+              summaryOptions: {}});
+
+        histograms.createHistogram('01_pipeline_reporters_with_main_animations',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_main_thread_animation_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('02_pipeline_reporters_with_compositor_animations',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_compositor_thread_animation_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('03_pipeline_reporters_with_main_scroll',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_main_thread_scroll_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('04_pipeline_reporters_with_compositor_scroll',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_compositor_thread_scroll_pipeline_reporters,
+            {description: '',
+              summaryOptions: {}});
+
+        histograms.createHistogram('05_pipeline_reporters_with_any_interaction',
+            tr.b.Unit.byName.unitlessNumber_smallerIsBetter,
+            total_pipeline_reporters_with_any_interaction,
+            {description: '',
+              summaryOptions: {}});
+      }
+
+      return {
+        addBreakdownTimes,
+      };
+    });
+</script>

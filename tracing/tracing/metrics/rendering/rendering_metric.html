@@ -10,6 +10,8 @@ found in the LICENSE file.
 <link rel="import" href="/tracing/metrics/rendering/image_decode_time.html">
 <link rel="import" href="/tracing/metrics/rendering/pixels.html">
 <link rel="import" href="/tracing/metrics/rendering/queueing_duration.html">
+<link rel="import" href="/tracing/metrics/rendering/pipeline_reporter_validation.html">
+<link rel="import" href="/tracing/metrics/rendering/log_breakdown_times.html">
 
 <script>
 'use strict';
@@ -34,6 +36,8 @@ tr.exportTo('tr.metrics.rendering', function() {
       tr.metrics.rendering.addPixelsHistograms(histograms, model, segments);
       tr.metrics.rendering.addQueueingDurationHistograms(
           histograms, model, segments);
+      tr.metrics.rendering.addPipelineReporterValidation(histograms, model, segments);
+      tr.metrics.rendering.addBreakdownTimes(histograms, model, segments);
     }
 
     const uiSegments = chromeHelper.telemetryHelper.uiSegments;
