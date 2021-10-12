@@ -16,6 +16,23 @@
       "message": "PTAL.",
       "revId": "7d57b72580b165bf4cce95b671f436b60935987d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f3bc7b_a9bf4f92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-12T23:58:39Z",
+      "side": 1,
+      "message": "LGTM, though looks like you\u0027ll need to update the tests to make sure test alerts have timestamps.",
+      "revId": "7d57b72580b165bf4cce95b671f436b60935987d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
