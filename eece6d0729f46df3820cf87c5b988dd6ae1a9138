@@ -16,6 +16,24 @@
       "message": "On the failed try job:\nhttps://ci.chromium.org/ui/p/chromium/builders/try/chromeos-amd64-generic-rel/971041/overview\n\nThere are two failures which do not seem related to cros_interface.py:\ntelemetry.web_perf.timeline_based_measurement_unittest.TimelineBasedMeasurementTest.testTraceCaptureUponFailure\nand\ntelemetry.internal.backends.chrome.cros_unittest.CrOSLoginTest.testGetCredentials\n\nAre you planning on another CL?",
       "revId": "eece6d0729f46df3820cf87c5b988dd6ae1a9138",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ab4464_31cee64e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2021-10-12T21:10:05Z",
+      "side": 1,
+      "message": "Yes, I\u0027ll fix them on another CL",
+      "parentUuid": "3f1a4d62_01ed63d5",
+      "revId": "eece6d0729f46df3820cf87c5b988dd6ae1a9138",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
