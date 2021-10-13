@@ -61,7 +61,7 @@ class MarkRecoveredAlertsTest(testing_common.TestCase):
                          median_after,
                          bug_id=None,
                          project='chromium',
-                         timestamp=None):
+                         timestamp=datetime.now() - timedelta(days=1)):
     """Adds a sample Anomaly and returns the key."""
     if bug_id > 0:
       bug = bug_data.Key(project=project, bug_id=bug_id).get()
