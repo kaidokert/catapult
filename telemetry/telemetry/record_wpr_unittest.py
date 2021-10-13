@@ -87,6 +87,9 @@ class MockBenchmark(benchmark.Benchmark):
     self.mock_story_set = MockStorySet(**kwargs)
     return self.mock_story_set
 
+  def SetExtraBrowserOptions(self, options):
+    options.AppendExtraBrowserArgs('--extra-option')
+
 
 class MockTimelineBasedMeasurementBenchmark(benchmark.Benchmark):
 
@@ -227,6 +230,8 @@ class RecordWprUnitTests(tab_test_case.TabTestCase):
       self.assertEquals(self._url, wpr_recorder.options.mock_benchmark_url)
       # record_wpr command-line arg to upload to cloud-storage.
       self.assertTrue(wpr_recorder.options.upload)
+      # extra_option added from Benchmark.SetExtraBrowserOptions()
+      self.assertTrue(wpr_recorder.options.extra_option)
       # invalid command-line args
       self.assertFalse(hasattr(wpr_recorder.options, 'not_a_real_option'))
 
