@@ -75,6 +75,8 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
               'alert_key': alert.urlsafe()
           },
           queue_name=_TASK_QUEUE_NAME)
+      logging.info('anomaly: %s' % alert.urlsafe())
+      assert False
 
     # Kick off task queue jobs for open bugs.
     bugs = self._FetchOpenBugs()
