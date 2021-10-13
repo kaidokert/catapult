@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import logging
 from datetime import datetime
+from datetime import timedelta
 
 from google.appengine.api import taskqueue
 from google.appengine.ext import ndb
@@ -67,6 +68,11 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
     # Kick off task queue jobs for untriaged anomalies.
     alerts = self._FetchUntriagedAnomalies()
     logging.info('Kicking off tasks for %d alerts', len(alerts))
+    if alerts:
+      allert = alerts[0]
+      logging.info('revision %s' % alert.start_revision)
+      logging.info('anomaly: %s' % alert.key.urlsafe())
+      logging.info('anomaly: %s' % alert.urlsafe())
     for alert in alerts:
       taskqueue.add(
           url='/mark_recovered_alerts',
@@ -75,6 +81,7 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
               'alert_key': alert.urlsafe()
           },
           queue_name=_TASK_QUEUE_NAME)
+      assert False
 
     # Kick off task queue jobs for open bugs.
     bugs = self._FetchOpenBugs()
@@ -94,13 +101,17 @@ class MarkRecoveredAlertsHandler(request_handler.RequestHandler):
     # extreme cases that anomalies produced by a single sheriff prevent other
     # sheriff's anomalies being processed. But it introduced some unnecessary
     # complex to system and considered almost impossible happened.
+    min_timestamp_to_check = (
+        datetime.now() - timedelta(days=_MAX_DATES_TO_IGNORE_ALERT))
+    logging.info('Fetching untriaged anomalies fired after %s',
+                 min_timestamp_to_check)
     future = anomaly.Anomaly.QueryAsync(
         keys_only=True,
         limit=_MAX_UNTRIAGED_ANOMALIES,
         recovered=False,
         is_improvement=False,
         bug_id='',
-    )
+        min_timestamp=min_timestamp_to_check)
     future.wait()
     anomalies = future.get_result()[0]
     return anomalies
