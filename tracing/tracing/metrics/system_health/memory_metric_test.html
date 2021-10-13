@@ -565,7 +565,8 @@ tr.b.unittest.testSuite(function() {
       newAllocatorDump(pmdBrowser3, 'malloc', {numerics: {
         size: 8000,
         allocated_objects_size: 4000,
-        shim_allocated_objects_size: 3000
+        shim_allocated_objects_size: 3000,
+        max_allocated_size: 4000
       }})
     ];
     const pmdRendererB3 = addProcessMemoryDump(gmd3, pRendererB, {ts: 61});
@@ -655,6 +656,11 @@ tr.b.unittest.testSuite(function() {
       unit: sizeInBytes_smallerIsBetter,
       description: 'total size of all allocated objects reported by Chrome ' +
           'for all processes in Chrome'
+    },
+    'memory:chrome:all_processes:reported_by_chrome:max_allocated_size': {
+      value: [0, 0, 0, 0],
+      unit: sizeInBytes_smallerIsBetter,
+      description: 'totasdsadas'
     },
     'memory:chrome:all_processes:reported_by_chrome:blinkgc:BlinkObject:heap_category_size':
     {
