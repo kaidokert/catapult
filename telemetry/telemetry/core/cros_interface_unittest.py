@@ -303,6 +303,9 @@ class CrOSInterfaceTest(unittest.TestCase):
   def testLsbReleaseValue(self):
     with self._GetCRI() as cri:
       build_num = cri.LsbReleaseValue('CHROMEOS_RELEASE_BUILD_NUMBER', None)
+      # Accept RXX-XXXX format as well as simple digit format.
+      if  not build_num.isdigit():
+        build_num = build_num.split('-')[1]
       self.assertTrue(build_num.isdigit())
       device_type = cri.GetDeviceTypeName()
       self.assertTrue(device_type.isalpha())
