@@ -135,6 +135,9 @@ class Benchmark(command_line.Command):
   def CustomizeOptions(self, finder_options, possible_browser=None):
     """Add options that are required by this benchmark."""
 
+  def SetExtraBrowserOptions(self, browser_options):
+    """Set extra browser command line options"""
+
   def GetBugComponents(self):
     """Return the benchmark's Monorail component as a string."""
     return decorators.GetComponent(self)
