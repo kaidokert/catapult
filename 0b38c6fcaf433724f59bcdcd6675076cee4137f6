@@ -16,6 +16,29 @@
       "message": "PTAL",
       "revId": "0b38c6fcaf433724f59bcdcd6675076cee4137f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565b61d5_40ea51b5",
+        "filename": "telemetry/telemetry/internal/backends/app_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-10-13T21:39:07Z",
+      "side": 1,
+      "message": "IIUC, if app is None, we will no longer see the AttributeError. How will should we handle the new AssertionError in this case?",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "0b38c6fcaf433724f59bcdcd6675076cee4137f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
