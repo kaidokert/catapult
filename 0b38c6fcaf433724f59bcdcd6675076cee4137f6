@@ -39,6 +39,30 @@
       },
       "revId": "0b38c6fcaf433724f59bcdcd6675076cee4137f6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f07acc_ef678e05",
+        "filename": "telemetry/telemetry/internal/backends/app_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1132654
+      },
+      "writtenOn": "2021-10-14T07:48:34Z",
+      "side": 1,
+      "message": "My idea was to narrow down the place where we run with a None app to get some information from the failing bot, since this happens only on the lacros devices I fear reproing and debugging this is going to be tricky.",
+      "parentUuid": "565b61d5_40ea51b5",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "0b38c6fcaf433724f59bcdcd6675076cee4137f6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
