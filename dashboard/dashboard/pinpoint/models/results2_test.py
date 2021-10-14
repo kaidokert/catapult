@@ -386,8 +386,121 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   @mock.patch.object(swarming, 'Swarming')
   @mock.patch.object(commit.Commit, 'GetOrCacheCommitInfo')
-  def testTypeDispatch_PushBQ(self, mock_commit_info, mock_swarming, mock_json, mock_render,
+  def testTypeDispatch_PushBQ_CWV(self, mock_commit_info, mock_swarming, mock_json, mock_render,
                               mock_bqinsert):
+    lcp_histogram = histogram_module.Histogram('largestContentfulPaint',
+                                               'count')
+    lcp_histogram.AddSample(42)
+    fcp_histogram = histogram_module.Histogram('timeToFirstContentfulPaint',
+                                               'count')
+    fcp_histogram.AddSample(11)
+    cls_histogram = histogram_module.Histogram('overallCumulativeLayoutShift',
+                                               'count')
+    cls_histogram.AddSample(22)
+    tbt_histogram = histogram_module.Histogram('totalBlockingTime', 'count')
+    tbt_histogram.AddSample(33)
+    useless_histogram = histogram_module.Histogram('someUselessMetric', 'count')
+    useless_histogram.AddSample(42)
+    expected_histogram_set = histogram_set.HistogramSet([
+        lcp_histogram, fcp_histogram, cls_histogram, tbt_histogram,
+        useless_histogram
+    ])
+    job = setupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json, expected_histogram_set)
+
+    expected_rows = [{
+        'job_start_time': _TEST_START_TIME_STR,
+        'batch_id': 'fake_batch_id',
+        'dims': {
+            'device': {
+                'cfg': 'fake_configuration',
+                'os': 'os'
+            },
+            'test_info': {
+                'story': 'fake_story',
+                'benchmark': 'fake_benchmark'
+            },
+            'pairing': {
+                'replica': 0,
+                'variant': 0
+            },
+            'checkout': {
+                'repo': 'fakerepo',
+                'git_hash': 'fakehashA',
+                'commit_position': 437745,
+                'branch': 'refs/heads/main'
+            }
+        },
+        'measures': {
+            'core_web_vitals': {
+                'timeToFirstContentfulPaint': 11.0,
+                'totalBlockingTime': 33.0,
+                'largestContentfulPaint': 42.0,
+                'overallCumulativeLayoutShift': 22.0
+            },
+            'speedometer2': {}
+        },
+        'run_id': 'fake_job_id'
+    }, {
+        'job_start_time': _TEST_START_TIME_STR,
+        'batch_id': 'fake_batch_id',
+        'dims': {
+            'device': {
+                'cfg': 'fake_configuration',
+                'os': 'os'
+            },
+            'test_info': {
+                'story': 'fake_story',
+                'benchmark': 'fake_benchmark'
+            },
+            'pairing': {
+                'replica': 0,
+                'variant': 1
+            },
+            'checkout': {
+                'patch_gerrit_revision': 'fake_patch_set',
+                'commit_position': 437745,
+                'patch_gerrit_change': 'fake_patch_issue',
+                'repo': 'fakeRepo',
+                'branch': 'refs/heads/main',
+                'git_hash': 'fakehashB'
+            }
+        },
+        'measures': {
+            'core_web_vitals': {
+                'timeToFirstContentfulPaint': 11.0,
+                'totalBlockingTime': 33.0,
+                'largestContentfulPaint': 42.0,
+                'overallCumulativeLayoutShift': 22.0
+            },
+            'speedometer2': {}
+        },
+        'run_id': 'fake_job_id'
+    }]
+
+    results2.GenerateResults2(job)
+    self.maxDiff = None
+    self.assertItemsEqual(mock_bqinsert.call_args[0][3], expected_rows)
+
+  @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
+  @mock.patch.object(results2, '_InsertBQRows')
+  @mock.patch.object(results2.render_histograms_viewer,
+                     'RenderHistogramsViewer')
+  @mock.patch.object(results2, '_JsonFromExecution')
+  @mock.patch.object(swarming, 'Swarming')
+  @mock.patch.object(commit.Commit, 'GetOrCacheCommitInfo')
+  def testTypeDispatch_PushBQNoRows(self, mock_commit_info, mock_swarming, mock_json, mock_render,
+                                    mock_bqinsert):
+    useless_histogram = histogram_module.Histogram('someUselessMetric', 'count')
+    useless_histogram.AddSample(42)
+    expected_histogram_set = histogram_set.HistogramSet([
+        useless_histogram
+    ])
+    job = setupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json, expected_histogram_set)
+
+    results2.GenerateResults2(job)
+    self.assertFalse(mock_bqinsert.called)
+
+def setupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json, expected_histogram_set):
     mock_commit_info.return_value = {
         'author': {
             'email': 'author@chromium.org'
@@ -460,188 +573,8 @@ class GenerateResults2Test(testing_common.TestCase):
     }
     mock_swarming.return_value.Task.return_value = task_mock
     mock_render.side_effect = TraverseHistograms
-    lcp_histogram = histogram_module.Histogram('largestContentfulPaint',
-                                               'count')
-    lcp_histogram.AddSample(42)
-    fcp_histogram = histogram_module.Histogram('timeToFirstContentfulPaint',
-                                               'count')
-    fcp_histogram.AddSample(11)
-    cls_histogram = histogram_module.Histogram('overallCumulativeLayoutShift',
-                                               'count')
-    cls_histogram.AddSample(22)
-    tbt_histogram = histogram_module.Histogram('totalBlockingTime', 'count')
-    tbt_histogram.AddSample(33)
-    useless_histogram = histogram_module.Histogram('someUselessMetric', 'count')
-    useless_histogram.AddSample(42)
-    expected_histogram_set = histogram_set.HistogramSet([
-        lcp_histogram, fcp_histogram, cls_histogram, tbt_histogram,
-        useless_histogram
-    ])
     mock_json.return_value = expected_histogram_set.AsDicts()
-
-    expected_rows = [{
-        'job_start_time': _TEST_START_TIME_STR,
-        'batch_id': 'fake_batch_id',
-        'dims': {
-            'device': {
-                'cfg': 'fake_configuration',
-                'os': 'os'
-            },
-            'test_info': {
-                'story': 'fake_story',
-                'benchmark': 'fake_benchmark'
-            },
-            'pairing': {
-                'replica': 0,
-                'variant': 0
-            },
-            'checkout': {
-                'repo': 'fakerepo',
-                'git_hash': 'fakehashA',
-                'commit_position': 437745,
-                'branch': 'refs/heads/main'
-            }
-        },
-        'measures': {
-            'core_web_vitals': {
-                'timeToFirstContentfulPaint': 11.0,
-                'totalBlockingTime': 33.0,
-                'largestContentfulPaint': 42.0,
-                'overallCumulativeLayoutShift': 22.0
-            }
-        },
-        'run_id': 'fake_job_id'
-    }, {
-        'job_start_time': _TEST_START_TIME_STR,
-        'batch_id': 'fake_batch_id',
-        'dims': {
-            'device': {
-                'cfg': 'fake_configuration',
-                'os': 'os'
-            },
-            'test_info': {
-                'story': 'fake_story',
-                'benchmark': 'fake_benchmark'
-            },
-            'pairing': {
-                'replica': 0,
-                'variant': 1
-            },
-            'checkout': {
-                'patch_gerrit_revision': 'fake_patch_set',
-                'commit_position': 437745,
-                'patch_gerrit_change': 'fake_patch_issue',
-                'repo': 'fakeRepo',
-                'branch': 'refs/heads/main',
-                'git_hash': 'fakehashB'
-            }
-        },
-        'measures': {
-            'core_web_vitals': {
-                'timeToFirstContentfulPaint': 11.0,
-                'totalBlockingTime': 33.0,
-                'largestContentfulPaint': 42.0,
-                'overallCumulativeLayoutShift': 22.0
-            }
-        },
-        'run_id': 'fake_job_id'
-    }]
-
-    results2.GenerateResults2(job)
-    self.maxDiff = None
-    self.assertItemsEqual(mock_bqinsert.call_args[0][3], expected_rows)
-
-  @mock.patch.object(results2, '_GcsFileStream', mock.MagicMock())
-  @mock.patch.object(results2, '_InsertBQRows')
-  @mock.patch.object(results2.render_histograms_viewer,
-                     'RenderHistogramsViewer')
-  @mock.patch.object(results2, '_JsonFromExecution')
-  @mock.patch.object(swarming, 'Swarming')
-  @mock.patch.object(commit.Commit, 'GetOrCacheCommitInfo')
-  def testTypeDispatch_PushBQNoRows(self, mock_commit_info, mock_swarming, mock_json, mock_render,
-                                    mock_bqinsert):
-    mock_commit_info.return_value = {
-        'author': {
-            'email': 'author@chromium.org'
-        },
-        'created': datetime.date.today(),
-        'commit': 'aaa7336',
-        'committer': {
-            'time': 'Fri Jan 01 00:01:00 2016'
-        },
-        'message': 'Subject.\n\n'
-                   'Commit message.\n'
-                   'Reviewed-on: https://foo/c/chromium/src/+/123\n'
-                   'Cr-Commit-Position: refs/heads/main@{#437745}',
-    }
-
-    test_execution = run_test._RunTestExecution("fake_server", None, None, None,
-                                                None, None)
-    test_execution._task_id = "fake_task"
-
-    commit_a = commit.Commit("fakerepo", "fakehashA")
-    change_a = change.Change([commit_a])
-    commit_b = commit.Commit("fakeRepo", "fakehashB")
-    patch_b = FakePatch("fakePatchServer", "fakePatchNo", "fakePatchRev")
-    change_b = change.Change([commit_b], patch_b)
-
-    benchmark_arguments = FakeBenchmarkArguments("fake_benchmark", "fake_story")
-    job = _JobStub(
-        None,
-        'fake_job_id',
-        None,
-        _JobStateFake({
-            change_a: [{
-                'executions': [
-                    test_execution,
-                    read_value.ReadValueExecution(
-                        'fake_filename', ['fake_filename'], 'fake_metric',
-                        'fake_grouping_label', 'fake_trace_or_story', 'avg',
-                        'fake_chart', 'https://isolate_server',
-                        'deadc0decafef00d')
-                ]
-            }],
-            change_b: [{
-                'executions': [
-                    test_execution,
-                    read_value.ReadValueExecution(
-                        'fake_filename', ['fake_filename'], 'fake_metric',
-                        'fake_grouping_label', 'fake_trace_or_story', 'avg',
-                        'fake_chart', 'https://isolate_server',
-                        'deadc0decafef00d')
-                ]
-            }],
-        }),
-        benchmark_arguments=benchmark_arguments,
-        batch_id="fake_batch_id",
-        configuration="fake_configuration")
-    histograms = []
-
-    def TraverseHistograms(hists, *args, **kw_args):
-      del args
-      del kw_args
-      for histogram in hists:
-        histograms.append(histogram)
-
-    task_mock = mock.Mock()
-    task_mock.Result.return_value = {
-        "bot_dimensions": {
-            "device_type": "type",
-            "device_os": "os"
-        }
-    }
-    mock_swarming.return_value.Task.return_value = task_mock
-    mock_render.side_effect = TraverseHistograms
-    useless_histogram = histogram_module.Histogram('someUselessMetric', 'count')
-    useless_histogram.AddSample(42)
-    expected_histogram_set = histogram_set.HistogramSet([
-        useless_histogram
-    ])
-    mock_json.return_value = expected_histogram_set.AsDicts()
-
-    results2.GenerateResults2(job)
-    self.assertFalse(mock_bqinsert.called)
-
+    return job
 
 class FakePatch(
     collections.namedtuple('GerritPatch', ('server', 'change', 'revision'))):
