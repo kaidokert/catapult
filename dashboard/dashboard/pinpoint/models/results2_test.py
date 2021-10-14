@@ -386,7 +386,7 @@ class GenerateResults2Test(testing_common.TestCase):
   @mock.patch.object(results2, '_JsonFromExecution')
   @mock.patch.object(swarming, 'Swarming')
   @mock.patch.object(commit.Commit, 'GetOrCacheCommitInfo')
-  def testTypeDispatch_PushBQ(self, mock_commit_info, mock_swarming, mock_json, mock_render,
+  def testTypeDispatch_PushBQ_CWV(self, mock_commit_info, mock_swarming, mock_json, mock_render,
                               mock_bqinsert):
     mock_commit_info.return_value = {
         'author': {
@@ -508,7 +508,8 @@ class GenerateResults2Test(testing_common.TestCase):
                 'totalBlockingTime': 33.0,
                 'largestContentfulPaint': 42.0,
                 'overallCumulativeLayoutShift': 22.0
-            }
+            },
+            'speedometer2': {}
         },
         'run_id': 'fake_job_id'
     }, {
@@ -542,7 +543,8 @@ class GenerateResults2Test(testing_common.TestCase):
                 'totalBlockingTime': 33.0,
                 'largestContentfulPaint': 42.0,
                 'overallCumulativeLayoutShift': 22.0
-            }
+            },
+            'speedometer2': {}
         },
         'run_id': 'fake_job_id'
     }]
