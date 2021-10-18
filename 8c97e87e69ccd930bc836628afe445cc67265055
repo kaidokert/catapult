@@ -33,6 +33,24 @@
       "message": "LGTM, but I am not able to vote the code review",
       "revId": "8c97e87e69ccd930bc836628afe445cc67265055",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54e740b_b8acea10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-10-18T05:23:22Z",
+      "side": 1,
+      "message": "Yuan, you can vote for code review in Catapult repo now.",
+      "parentUuid": "9573310f_dfce581a",
+      "revId": "8c97e87e69ccd930bc836628afe445cc67265055",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
