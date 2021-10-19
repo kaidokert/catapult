@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+-->
+<link rel="import" href="/tracing/base/math/statistics.html">
+<link rel="import" href="/tracing/base/unit.html">
+<link rel="import" href="/tracing/base/unit_scale.html">
+<link rel="import" href="/tracing/metrics/rendering/cpu_utilization.html">
+<link rel="import" href="/tracing/model/helpers/chrome_model_helper.html">
+<link rel="import" href="/tracing/model/user_model/segment.html">
+<link rel="import" href="/tracing/value/diagnostics/generic_set.html">
+<link rel="import" href="/tracing/value/diagnostics/related_event_set.html">
+<link rel="import" href="/tracing/value/histogram.html">
+
+<script>
+    'use strict';
+    tr.exportTo('tr.metrics.rendering', function() {
+      function addBreakdownTimes(histograms, model, segments) {
+        const chromeHelper = model.getOrCreateHelper(
+            tr.model.helpers.ChromeModelHelper);
+
+            //Add fields under 'metadata' frame_sequence_num, source_id, layer_treehost_id, trace, pid(look into this).
+        let cumulative_latencies = {'BeginImplFrameToSendBeginMainFrame':+0.0,'SendBeginMainFrameToCommit':+0.0,
+                                    'SendBeginMainFrameToCommit.animate':+0.0,'SendBeginMainFrameToCommit.begin_main_sent_to_started':+0.0,
+                                    'SendBeginMainFrameToCommit.composite_commit':+0.0,'SendBeginMainFrameToCommit.compositing_assignments':+0.0,
+                                    'SendBeginMainFrameToCommit.compositing_inputs':+0.0,'SendBeginMainFrameToCommit.handle_input_events':+0.0,
+                                    'SendBeginMainFrameToCommit.layout_update':+0.0,'SendBeginMainFrameToCommit.paint':+0.0,
+                                    'SendBeginMainFrameToCommit.prepaint':+0.0,'SendBeginMainFrameToCommit.style_update':+0.0,
+                                    'SendBeginMainFrameToCommit.update_layers':+0.0,'Commit':+0.0,'EndCommitToActivation':+0.0,
+                                    'Activation':+0.0,'EndActivateToSubmitCompositorFrame':+0.0,'SubmitCompositorFrameToPresentationCompositorFrame':+0.0,
+                            };
+        let latency_template = Object.assign({},cumulative_latencies);
+        let num_complete_pipeline_reporters = 0;
+        let pipeline_reporter_latencies = [];
+
+        for (const rendererHelper of Object.values(chromeHelper.rendererHelpers)) {
+          let pipeline_reporters = [];
+          let all_slices = [];
+
+          if (rendererHelper.compositorThread === undefined) continue;
+          const slices = rendererHelper.compositorThread.asyncSliceGroup.slices;
+          for (const slice of slices) { 
+            if (slice.title !== 'PipelineReporter') continue;
+            pipeline_reporters.push(slice);
+          }
+
+          pipeline_reporters.sort(function (a, b) {
+            if (a.start == b.start) return (a.duration - b.duration);
+            return (a.start - b.start);
+          });
+          
+          let total_pipeline_reporters = 0;
+          
+
+          for (const pr of pipeline_reporters) {
+            let pr_latencies = Object.assign({},latency_template);
+            total_pipeline_reporters += 1;
+            let CFR = pr.args.chrome_frame_reporter; 
+
+            pr.subSlices.forEach(function (item, index) {
+                if (item.title === 'SendBeginMainFrameToCommit') {
+                    let sbmf_args = item.args['send_begin_mainframe_to_commit_breakdown'];
+                    //console.log(JSON.stringify(sbmf_args));
+                    for (const name in sbmf_args) {
+                        sbmf_args[name] = sbmf_args[name] * 0.001;
+                    }
+                    //console.log(JSON.stringify(sbmf_args));
+
+                    pr_latencies['SendBeginMainFrameToCommit.animate'] = sbmf_args['animate_us'];
+                    pr_latencies['SendBeginMainFrameToCommit.begin_main_sent_to_started'] = sbmf_args['begin_main_sent_to_started'];
+                    pr_latencies['SendBeginMainFrameToCommit.composite_commit'] = sbmf_args['composite_commit'];
+                    pr_latencies['SendBeginMainFrameToCommit.compositing_assignments'] = sbmf_args['compositing_assignments'];
+                    pr_latencies['SendBeginMainFrameToCommit.compositing_inputs'] = sbmf_args['compositing_inputs'];
+                    pr_latencies['SendBeginMainFrameToCommit.handle_input_events'] = sbmf_args['handle_input_events'];
+                    pr_latencies['SendBeginMainFrameToCommit.layout_update'] = sbmf_args['layout_update'];
+                    pr_latencies['SendBeginMainFrameToCommit.paint'] = sbmf_args['paint'];
+                    pr_latencies['SendBeginMainFrameToCommit.prepaint'] = sbmf_args['prepaint'];
+                    pr_latencies['SendBeginMainFrameToCommit.style_update'] = sbmf_args['style_update'];
+                    pr_latencies['SendBeginMainFrameToCommit.update_layers'] = sbmf_args['update_layers'];               
+                }
+            });
+            let stage_latencies = Object.assign({}, ...pr.subSlices.map((x) => ({[x.title]: x.duration})));
+            
+            for(var stage in stage_latencies) {
+                pr_latencies[stage] += stage_latencies[stage];
+            }
+            if (pr_latencies['SendBeginMainFrameToCommit']>0) console.log(JSON.stringify(pr_latencies));
+            for(var stage in pr_latencies){
+                cumulative_latencies[stage] = cumulative_latencies[stage]+pr_latencies[stage];
+                }                
+            pipeline_reporter_latencies.push(pr_latencies);    
+            //console.log(JSON.stringify(pr_latencies));           
+          }                    
+        }
+        /*
+        for(var stage in cumulative_latencies){
+            cumulative_latencies[stage] /= num_complete_pipeline_reporters;
+          }      */    
+          //console.log(JSON.stringify(pipeline_reporter_latencies));
+      }
+
+      return {
+        addBreakdownTimes,
+      };
+    });
+</script>
