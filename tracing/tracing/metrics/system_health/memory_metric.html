@@ -334,6 +334,12 @@ tr.exportTo('tr.metrics.sh', function() {
       property: CODE_AND_METADATA_SIZE,
       value: v8Dump.numerics.bytecode_and_metadata_size
     });
+    addProcessScalar({
+      source: 'reported_by_chrome',
+      component: ['v8'],
+      property: CPU_PROFILER_METADATA_SIZE,
+      value: v8Dump.numerics.cpu_profiler_metadata_size
+    });
   }
 
   /**
@@ -443,6 +449,17 @@ tr.exportTo('tr.metrics.sh', function() {
       return buildChromeValueDescriptionPrefix(componentPath, processName, {
         userFriendlyPropertyNamePrefix: 'size of',
         userFriendlyPropertyName: 'code and metadata'
+      });
+    }
+  };
+
+  const CPU_PROFILER_METADATA_SIZE = {
+    name: 'cpu_profiler_metadata_size',
+    unit: sizeInBytes_smallerIsBetter,
+    buildDescriptionPrefix(componentPath, processName) {
+      return buildChromeValueDescriptionPrefix(componentPath, processName, {
+        userFriendlyPropertyNamePrefix: 'size of',
+        userFriendlyPropertyName: 'cpu profiler metadata'
       });
     }
   };
