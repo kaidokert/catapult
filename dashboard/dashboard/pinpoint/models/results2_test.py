@@ -694,10 +694,16 @@ def _SetupBQTest(mock_commit_info, mock_swarming, mock_render, mock_json,
 
   task_mock = mock.Mock()
   task_mock.Result.return_value = {
-      "bot_dimensions": {
-          "device_type": "type",
-          "device_os": "os"
-      }
+      "bot_dimensions": [
+          {
+              "key": "device_type",
+              "value": "type"
+          },
+          {
+              "key": "device_os",
+              "value": "os"
+          }
+      ]
   }
   mock_swarming.return_value.Task.return_value = task_mock
   mock_render.side_effect = TraverseHistograms
