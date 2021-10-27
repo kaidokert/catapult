@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed69cd1_09ca30eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-10-27T14:50:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d3074b1_d5152864",
+      "revId": "fa9ff66fd0506d783411055d6a481e3a1c43dcbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f5d494b_940f3457",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-10-27T07:20:51Z",
       "side": 1,
       "message": "I don\u0027t believe this will have any effects. We have already called scheduler.Cancel [1] earlier. This function set job status to \u0027Cancelled\u0027 in the queue. It then calls queue.put [2], which removes jobs with \u0027Done\u0027 or \u0027Cancelled\u0027 status from the queue. So by the time control reaches this line, the scheduler job queue no longer has this job. scheduler.Complete [3] thus can\u0027t find the job, and would have no effects.\n\nThe problem is, I can\u0027t figure out how Cancel is supposed to work. This function sets a few job attributes (including self.cancelled \u003d True), and removes the job from the scheduler. But I can\u0027t find any code that actually cancels the job, i.e., stopping pending tasks, or at least preventing any more tasks from being created. Am I missing something?\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/scheduler.py?q\u003d%22def%20Cancel%22\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/scheduler.py?q\u003d%22def%20put%22\n[3] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/scheduler.py?q\u003d%22def%20Complete%22",
+      "range": {
+        "startLine": 864,
+        "startChar": 4,
+        "endLine": 864,
+        "endChar": 28
+      },
+      "revId": "fa9ff66fd0506d783411055d6a481e3a1c43dcbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d296ddd9_eee1dc69",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-10-27T14:50:35Z",
+      "side": 1,
+      "message": "You\u0027re right. I overlooked that line 843 in job.py [1] would call the scheduler to cancel. I\u0027m in general agreement that the cancel operation does not appear to actually cancel the job. I\u0027m curious if there are examples of the cancel button working, because in my experience, I have yet to see the cancel button work as intended. \n\nI\u0027m working under the assumption that the fail function does work, so if I can properly compare the differences between those the fail and cancel functions then I can incorporate the job canceling features of the fail function into the cancel function. \n\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job.py;drc\u003d875ae05bddbe16c9f20769f98e05015a855aa3d7;l\u003d843",
+      "parentUuid": "3f5d494b_940f3457",
       "range": {
         "startLine": 864,
         "startChar": 4,
