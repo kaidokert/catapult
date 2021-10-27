@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d3074b1_d5152864",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-10-27T02:06:44Z",
+      "side": 1,
+      "message": "Single line edit of job.py - hoping this stops jobs from queueing after hitting the cancel button. ",
+      "revId": "fa9ff66fd0506d783411055d6a481e3a1c43dcbb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
