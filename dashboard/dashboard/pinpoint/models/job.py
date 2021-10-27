@@ -861,6 +861,7 @@ class Job(ndb.Model):
         send_email=True,
         labels=job_bug_update.ComputeLabelUpdates(['Pinpoint-Job-Cancelled']),
         _retry_options=RETRY_OPTIONS)
+    scheduler.Complete(self)
 
 
 def _PostBugCommentDeferred(bug_id, *args, **kwargs):
