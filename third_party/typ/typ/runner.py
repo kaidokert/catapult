@@ -21,6 +21,8 @@ import pdb
 import sys
 import unittest
 import traceback
+import logging
+from datetime import datetime
 
 from collections import OrderedDict
 
@@ -246,6 +248,7 @@ class Runner(object):
             if self.args.list_only:
                 self.print_('\n'.join(all_tests))
             else:
+                logging.info('Start running tests: %s', str(datetime.now()))
                 for _ in range(self.args.repeat):
                     current_ret, full_results=self._run_tests(
                         result_set, test_set.copy(), all_tests)
