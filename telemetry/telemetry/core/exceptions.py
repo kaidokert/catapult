@@ -99,10 +99,11 @@ class AppCrashException(Error):
     debug_messages.append(divider)
     debug_messages.append('Standard output:')
     debug_messages.append(divider)
-    debug_messages.extend(('\t%s' % l) for l in self._app_stdout)
+    debug_messages.extend(
+        ('\t%s' % l) for l in self._app_stdout.decode('utf-8'))
     debug_messages.append(divider)
     debug_messages.append('System log:')
-    debug_messages.append(self._system_log)
+    debug_messages.append(self._system_log.decode('utf-8'))
     return '\n'.join(debug_messages)
 
 class DevtoolsTargetCrashException(AppCrashException):
