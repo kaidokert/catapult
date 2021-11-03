@@ -237,7 +237,7 @@ class AdbWrapper(object):
       Returns:
         The command output, given as a list of lines, and the exit code
       """
-
+      print("Dummy change")
       if close:
 
         def run_cmd(cmd):
