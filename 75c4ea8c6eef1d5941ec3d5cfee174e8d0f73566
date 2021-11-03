@@ -22,6 +22,30 @@
       },
       "revId": "75c4ea8c6eef1d5941ec3d5cfee174e8d0f73566",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe53c08_817da736",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-03T08:56:25Z",
+      "side": 1,
+      "message": "I think that method |PullFile| must be used for file copying. Method |ReadFile| returns string, not bytes and this is not absolutely correct, strictly speaking. For example, method |RunShellCommand| uses |ReadFile| for handling large output. If some command prints some non-utf8 symbols, this command will be executed successfully, but we get exception on decoding output. In our environment we got this issue on decoding some tombstones and get exception while handling another crash. Replacing wrong symbols to \u0027?\u0027 seems more better solution in this case instead of getting nothing. Perhaps, more correct solution is return bytes from |ReadFile| and handling decoding errors in every case separately.",
+      "parentUuid": "cd4cf284_4e1bf5bd",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "75c4ea8c6eef1d5941ec3d5cfee174e8d0f73566",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
