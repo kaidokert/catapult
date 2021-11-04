@@ -701,10 +701,18 @@ class Job(ndb.Model):
     Changes as needed. If there are any incomplete tasks, schedules another
     Run() call on the task queue.
     """
+    # not sure if this 
     self.exception_details = None  # In case the Job succeeds on retry.
     self.task = None  # In case an exception is thrown.
 
     try:
+      if scheduler.IsCancelled(self):
+        """ Because of a race condition between the job.Cancel(), which 
+        triggers when a user manually cancels a Pinpoint job, and job.Run(),
+        create a secondary check to see if the existing job still exists
+        in the scheduler or if it's cancelled in the scheduler. If it is, then
+        cancellation took place and this job should not run. """
+        raise errors.BuildCancelled("""Pinpoint Job cancelled""")
       if self.use_execution_engine:
         # Treat this as if it's a poll, and run the handler here.
         context = task_module.Evaluate(
@@ -861,6 +869,7 @@ class Job(ndb.Model):
         send_email=True,
         labels=job_bug_update.ComputeLabelUpdates(['Pinpoint-Job-Cancelled']),
         _retry_options=RETRY_OPTIONS)
+    scheduler.Complete(self)
 
 
 def _PostBugCommentDeferred(bug_id, *args, **kwargs):
