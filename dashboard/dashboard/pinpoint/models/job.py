@@ -705,6 +705,13 @@ class Job(ndb.Model):
     self.task = None  # In case an exception is thrown.
 
     try:
+      if scheduler.IsCancelled(self):
+        """ Because of a race condition between the job.Cancel(), which 
+        triggers when a user manually cancels a Pinpoint job, and job.Run(),
+        create a secondary check to see if the existing job still exists
+        in the scheduler or if it's cancelled in the scheduler. If it is, then
+        cancellation took place and this job should not run. """
+        raise errors.BuildCancelled("""Pinpoint Job cancelled""")
       if self.use_execution_engine:
         # Treat this as if it's a poll, and run the handler here.
         context = task_module.Evaluate(
