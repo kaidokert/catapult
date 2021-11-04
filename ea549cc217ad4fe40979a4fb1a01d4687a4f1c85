@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb34a37d_0e256c57",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-04T23:41:50Z",
+      "side": 1,
+      "message": "IIUC (biiiig assumption ;) the race condition is something like \n\n```\n   Thread 1               | Thread 2             | ndb op | job.cancelled, as\n   handle /run            | handle /cancel       |        | stored in ndb\n--------------------------------------------------------------------------\n0: job \u003d key.get()        |                      | read   | false\n1: job.Run()              |                      |        | false\n2:                        | job \u003d key.get()      | read   | false\n3:                        | job.Cancel()         |        | false\n4: [never updates its     |                      |        | false\n   copy of job.cancelled] |                      |        | false\n5:                        | job.cancelled \u003d true |        | true\n6:                        | job.put()            | write  | true\n7: [its in-mem copy of    |                      |        | true\n   job.cancelled is still |                      |        | true\n   false]                 |                      |        | true\n8: job.put()              |                      | write  | false\n```\n\nI believe that adding an IsCancelled (even if it\u0027s @ndb.transactional) check here would be like having Thread 1 do an extra read somewhere arbitrarily in the range of lines (1, 8). This would still leave Thread 1 potentially unaware of any writes that Thread 2 has made before Thread 1 reaches line 8.\n\nI\u0027m not familiar enough with ndb transactions yet to answer this, but can the entire /run and /cancel handlers be made atomic? E.g. make it so either request thread\u0027s key.get() call will block or raise if the other thread already has read the key with a txn (locked job) and hasn\u0027t committed the txn (released job) yet? Or something like that?\n\nBacking up a bit, what do we *want* to happen if a user asks the server to cancel a job that\u0027s already started? If it\u0027s \"Reply with a `sorry, we can\u0027t actually cancel a job once it\u0027s started` message and disable the cancel button.\" that\u0027s probably easier than \"Actually have the server cancel the job and stop any distributed work already in progress on it.\"",
+      "parentUuid": "9f3a1d32_b6371631",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5df90475_be2f659d",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2021-11-04T17:58:26Z",
       "side": 1,
       "message": "Not sure if ndb.transactional is necessary here",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d773e57_e52dd687",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-04T23:41:50Z",
+      "side": 1,
+      "message": "I\u0027m not sure either.",
+      "parentUuid": "5df90475_be2f659d",
       "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
