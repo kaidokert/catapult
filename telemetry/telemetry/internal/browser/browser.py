@@ -48,6 +48,7 @@ class Browser(app.App):
       if find_existing:
         self._browser_backend.BindDevToolsClient()
       else:
+        startup_args.append("--disable-features=V8ConcurrentInlining")
         self._browser_backend.Start(startup_args)
       self._LogBrowserInfo()
     except Exception:
