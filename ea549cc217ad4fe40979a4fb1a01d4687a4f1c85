@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bde155a7_07df8771",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-05T18:32:02Z",
+      "side": 1,
+      "message": "Wow nice visual. \n\nFirst, we want to first see if we can \"fix\" the cancel button. We would like it if when you press the cancel button, the job somehow stops. If that\u0027s not possible, then we\u0027ll go with the alternative of showing an error message that says \"sorry, jobs only cancel if they are queued and not running\" \n\nSecond, I believe everything you said about threads, ndb op, and job.cancelled are correct. I am hoping that scheduler will track the job objects and their queued / running / cancelled status correctly regardless of race condition. Scheduler does not get overwritten by job.run (I think otherwise this solution would not work). \n\nThird, I don\u0027t know enough about ndb transactions either to know if it\u0027s possible to prevent threads from running while other functions are executing.",
+      "parentUuid": "bb34a37d_0e256c57",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5df90475_be2f659d",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 1
