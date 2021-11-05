@@ -9,6 +9,9 @@ import os
 import platform
 import subprocess
 
+# TODO(crbug.com/1267066): Remove when python2 is deprecated.
+import six
+
 from telemetry.core import util
 
 FUCHSIA_BROWSERS = ['web-engine-shell']
@@ -55,8 +58,11 @@ class CommandRunner(object):
 
     # Having control master causes weird behavior in port_forwarding.
     ssh_args.append('-oControlMaster=no')
+
     ssh_command = self._GetSshCommandLinePrefix() + ssh_args + ['--'] + command
     logging.debug(' '.join(ssh_command))
+    if six.PY3:
+      kwargs['text'] = True
     return subprocess.Popen(ssh_command, **kwargs)
 
   def RunCommand(self, command=None, ssh_args=None, **kwargs):
@@ -98,11 +104,16 @@ def StartSymbolizerForProcessIfPossible(input_file, output_file, build_id_file):
     ]
 
     logging.debug('Running "%s".' % ' '.join(symbolizer_cmd))
+    kwargs = {
+        'stdin':input_file,
+        'stdout':output_file,
+        'stderr':subprocess.STDOUT,
+        'close_fds':True
+    }
+    if six.PY3:
+      kwargs['text'] = True
     return subprocess.Popen(symbolizer_cmd,
-                            stdin=input_file,
-                            stdout=output_file,
-                            stderr=subprocess.STDOUT,
-                            close_fds=True)
+                            **kwargs)
   else:
     logging.info('Symbolizer cannot be started.')
     return None
