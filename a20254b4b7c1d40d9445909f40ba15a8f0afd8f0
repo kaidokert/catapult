@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "689015a6_142af573",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-08T19:12:48Z",
+      "side": 1,
+      "message": "That makes sense (that is, if we don\u0027t know, don\u0027t change it)",
+      "parentUuid": "0bf995a4_40f0b5b3",
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d5c6a94_3eec242f",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2021-11-08T19:00:59Z",
       "side": 1,
       "message": "I\u0027m pretty sure this would work but not 100% sure. If someone has ideas of how I could write a unit test for this or confirm through some other means that would be great.",
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d39cfc_ca1fa68c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-08T19:12:48Z",
+      "side": 1,
+      "message": "I\u0027m guessing there will be a decent starting point in https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job_test.py;l\u003d1?q\u003dmodels%2Fjob_test.py\u0026sq\u003d\u0026ss\u003dchromium",
+      "parentUuid": "3d5c6a94_3eec242f",
       "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
