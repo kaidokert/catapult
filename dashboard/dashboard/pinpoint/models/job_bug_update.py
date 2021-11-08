@@ -120,8 +120,9 @@ class DifferencesFoundBugUpdateBuilder(object):
     issue_update_info = builder.BuildUpdate(tags, url)
   """
 
-  def __init__(self, metric):
+  def __init__(self, metric, improvement_dir=False):
     self._metric = metric
+    self._improvementDirection = improvement_dir
     self._differences = []
     self._examined_count = None
     self._cached_ordered_diffs_by_delta = None
@@ -215,9 +216,12 @@ class DifferencesFoundBugUpdateBuilder(object):
     diffs_with_deltas = [(diff.MeanDelta(), diff)
                          for diff in self._differences
                          if diff.values_a and diff.values_b]
+    # If improvement direction true then regression direction is up 
+    # or positive
     ordered_diffs = [
         diff for _, diff in sorted(
-            diffs_with_deltas, key=lambda i: abs(i[0]), reverse=True)
+            diffs_with_deltas, key=lambda i: i[0], 
+            reverse=self._improvementDirection)
     ]
     self._cached_ordered_diffs_by_delta = ordered_diffs
     return ordered_diffs
