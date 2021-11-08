@@ -69,6 +69,29 @@
       "parentUuid": "3d5c6a94_3eec242f",
       "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b19bb96c_be811be9",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-08T19:14:06Z",
+      "side": 1,
+      "message": "Maybe pass through the direction itself instead of coercing it to a bool?",
+      "range": {
+        "startLine": 123,
+        "startChar": 45,
+        "endLine": 123,
+        "endChar": 51
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
