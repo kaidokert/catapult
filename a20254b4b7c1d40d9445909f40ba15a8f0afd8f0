@@ -38,6 +38,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74de481b_c7482bff",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-08T19:43:04Z",
+      "side": 1,
+      "message": "It looks like improvement_direction isn\u0027t computed in the constructor [1], so this will always be UNKNOWN\n\n[1]: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/models/graph_data.py;drc\u003d39a3806d4972290e58f3f3f948ce9295c008239c;l\u003d261",
+      "range": {
+        "startLine": 510,
+        "startChar": 15,
+        "endLine": 510,
+        "endChar": 36
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d5c6a94_3eec242f",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
