@@ -39,6 +39,30 @@
       },
       "revId": "31719268919d18fbecbb53e1827b563be4096aee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9b9aec_7c929ca7",
+        "filename": "dashboard/dashboard/pinpoint/handlers/jobs.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2021-11-08T23:40:28Z",
+      "side": 1,
+      "message": "Done. Can\u0027t remove _ because next is a reserved python keyword.",
+      "parentUuid": "af1745d7_030372f5",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 9
+      },
+      "revId": "31719268919d18fbecbb53e1827b563be4096aee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
