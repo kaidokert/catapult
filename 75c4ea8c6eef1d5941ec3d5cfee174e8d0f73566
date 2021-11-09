@@ -46,6 +46,30 @@
       },
       "revId": "75c4ea8c6eef1d5941ec3d5cfee174e8d0f73566",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa6ec1f_c9b2ae1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-09T18:16:05Z",
+      "side": 1,
+      "message": "Would it make sense to accept an \u0027encoding\u0027 argument so the caller can choose the scheme? I think defaulting to \u0027utf-8\u0027 is still appropriate, but this lets the caller handle these errors more robustly if necessary.",
+      "parentUuid": "6fe53c08_817da736",
+      "range": {
+        "startLine": 10,
+        "startChar": 18,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "75c4ea8c6eef1d5941ec3d5cfee174e8d0f73566",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
