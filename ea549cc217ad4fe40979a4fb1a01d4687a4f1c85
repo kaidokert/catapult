@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f257fff_22b2c429",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-10T23:13:14Z",
+      "side": 1,
+      "message": "I see, I misinterpreted the CL description: \"Additional check necessary due to race condition.\" - does not actually imply this CL fixes the condition. I agree w/ John. This code change is appropriate for handling cancelled jobs correctly under non-race conditions, but the comment could be rewritten to make that clearer.",
+      "parentUuid": "d39e0ea2_e9577846",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5df90475_be2f659d",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 1
