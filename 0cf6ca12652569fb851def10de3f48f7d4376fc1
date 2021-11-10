@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25359d4d_29fdbad4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1285054
+      },
+      "writtenOn": "2021-11-10T17:54:51Z",
+      "side": 1,
+      "message": "PTAL thanks!\n\nFeel free to re-assign to someone else if you aren\u0027t the correct owner for this. ",
+      "revId": "0cf6ca12652569fb851def10de3f48f7d4376fc1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
