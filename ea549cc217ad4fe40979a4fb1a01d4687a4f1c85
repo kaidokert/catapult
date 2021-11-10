@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d39e0ea2_e9577846",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-10T22:57:07Z",
+      "side": 1,
+      "message": "I believe this \"if\" statement is at the right location. Its goal is not to avoid the race condition Sean mentioned, but to ensure that the job is really cancelled when the race conditions doesn\u0027t happen. We\u0027ll have to handle the race condition by some other means.\n\nHowever, the comments below are misleading. They seem to suggest that the new code would avoid the race condition, which is not true.",
+      "parentUuid": "bde155a7_07df8771",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5df90475_be2f659d",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 1
