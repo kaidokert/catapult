@@ -2438,13 +2438,13 @@ class DeviceUtils(object):
     else:
       self.adb.Pull(device_path, host_path)
 
-  def _ReadFileWithPull(self, device_path):
+  def _ReadFileWithPull(self, device_path, encoding='utf8', errors='replace'):
     try:
       d = tempfile.mkdtemp()
       host_temp_path = os.path.join(d, 'tmp_ReadFileWithPull')
       self.adb.Pull(device_path, host_temp_path)
       with open(host_temp_path, 'rb') as host_temp:
-        return six.ensure_str(host_temp.read(), errors='replace')
+        return six.ensure_str(host_temp.read(), encoding, errors)
     finally:
       if os.path.exists(d):
         shutil.rmtree(d)
@@ -2455,7 +2455,9 @@ class DeviceUtils(object):
                as_root=False,
                force_pull=False,
                timeout=None,
-               retries=None):
+               retries=None,
+               encoding='utf8',
+               errors='replace'):
     """Reads the contents of a file from the device.
 
     Args:
@@ -2468,6 +2470,8 @@ class DeviceUtils(object):
           contents are short, to retrieve the contents using cat instead.
       timeout: timeout in seconds
       retries: number of retries
+      encoding: file encoding
+      errors: encoding errors handling
 
     Returns:
       The contents of |device_path| as a string. Contents are intepreted using
@@ -2494,9 +2498,10 @@ class DeviceUtils(object):
                                  check_return=True))
       else:
         with self._CopyToReadableLocation(device_path) as readable_temp_file:
-          return self._ReadFileWithPull(readable_temp_file.name)
+          return self._ReadFileWithPull(readable_temp_file.name,
+                                        encoding, errors)
     else:
-      return self._ReadFileWithPull(device_path)
+      return self._ReadFileWithPull(device_path, encoding, errors)
 
   def _WriteFileWithPush(self, device_path, contents):
     with tempfile.NamedTemporaryFile(mode='w+') as host_temp:

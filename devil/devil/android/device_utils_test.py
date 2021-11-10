@@ -2492,7 +2492,7 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
                           (mock.call.os.path.exists(tmp_host_dir), True),
                           (mock.call.shutil.rmtree(tmp_host_dir), None)):
       with self.assertRaises(device_errors.CommandFailedError):
-        self.device._ReadFileWithPull('/path/to/device/file')
+        self.device._ReadFileWithPull('/path/to/device/file', 'utf8', 'replace')
 
   def testReadFile_withSU_zeroSize(self):
     with self.assertCalls(
@@ -2507,7 +2507,8 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
             shell=True,
             as_root=True,
             check_return=True),
-        (self.call.device._ReadFileWithPull('/sdcard/tmp/on.device'),
+        (self.call.device._ReadFileWithPull('/sdcard/tmp/on.device',
+                                            'utf8', 'replace'),
          'but it has contents\n')):
       self.assertEqual('but it has contents\n',
                        self.device.ReadFile('/this/file/has/zero/size',
@@ -2537,7 +2538,8 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
   def testReadFile_withPull(self):
     contents = 'a' * 123456
     with self.assertCalls(
-        (self.call.device._ReadFileWithPull('/read/this/big/test/file'),
+        (self.call.device._ReadFileWithPull('/read/this/big/test/file',
+                                            'utf8', 'replace'),
          contents)):
       self.assertEqual(contents,
                        self.device.ReadFile('/read/this/big/test/file'))
@@ -2556,7 +2558,8 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
             shell=True,
             as_root=True,
             check_return=True),
-        (self.call.device._ReadFileWithPull('/sdcard/tmp/on.device'),
+        (self.call.device._ReadFileWithPull('/sdcard/tmp/on.device',
+                                            'utf8', 'replace'),
          contents)):
       self.assertEqual(
           contents,
@@ -2566,7 +2569,8 @@ class DeviceUtilsReadFileTest(DeviceUtilsTest):
   def testReadFile_forcePull(self):
     contents = 'a' * 123456
     with self.assertCall(
-        self.call.device._ReadFileWithPull('/read/this/big/test/file'),
+        self.call.device._ReadFileWithPull('/read/this/big/test/file',
+                                           'utf8', 'replace'),
         contents):
       self.assertEqual(
           contents,
