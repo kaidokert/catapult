@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7730c06_227a2de2",
+        "filename": "dashboard/dashboard/pinpoint/elements/queue-stats-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-11T22:36:30Z",
+      "side": 1,
+      "message": "I\u0027m not sure how this happened. How do I revert this one?",
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

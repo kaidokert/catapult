@@ -125,6 +125,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b3ea9cd_9d576ba4",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-11T22:36:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "584c8d92_e1362aca",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5df90475_be2f659d",
@@ -178,6 +196,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f97b73ce_78494b72",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-11T22:36:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9760d529_de62bc5d",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7665f1c0_04ac63e7",
@@ -191,6 +227,30 @@
       "writtenOn": "2021-11-11T01:35:10Z",
       "side": 1,
       "message": "I\u0027m debating whether this is the best name of the function. The function returns False if the job is Running or Queued, thus it returns True if the job is cancelled or done. Even though this CL only use it to check for cancelled job, I think it\u0027s still better to name it correctly, e.g., IsStopped.",
+      "range": {
+        "startLine": 270,
+        "startChar": 4,
+        "endLine": 270,
+        "endChar": 15
+      },
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23d85eb2_ca37aeb6",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-11T22:36:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7665f1c0_04ac63e7",
       "range": {
         "startLine": 270,
         "startChar": 4,
