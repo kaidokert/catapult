@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "584c8d92_e1362aca",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-11T01:35:10Z",
+      "side": 1,
+      "message": "After thinking more about this, I now believe this CL does fix the race condition (except for a caveat that I\u0027ll mention below). The reason is job cancellation is recorded in two places: the cancelled flag in the Job object, and the removal of the job from scheduler\u0027s ConfigurationQueue object. The race condition causes Job.cancelled flag to be overwritten, so that it remains False after the Cancel method is called. However, the change to the ConfigurationQueue is persisted, since that update is protected by a transaction, and job.put() doesn\u0027t make any changes to the ConfigurationQueue. So even when the race condition occurs, scheduler.IsCancelled(self) will still return True, and the new \"if\" statement will correctly stop the job from running further.\n\nThe caveat is Job.cancelled flag will remain False. I\u0027m not sure what the Pinpoint UI will display as the status of the job, but likely not \"Cancelled\". We should add another statement below, before raising the exception, to reset self.cancelled to True.",
+      "parentUuid": "8f257fff_22b2c429",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5df90475_be2f659d",
         "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
         "patchSetId": 1
@@ -138,6 +156,47 @@
       "side": 1,
       "message": "I\u0027m not sure either.",
       "parentUuid": "5df90475_be2f659d",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9760d529_de62bc5d",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-11T01:35:10Z",
+      "side": 1,
+      "message": "I\u0027m not sure either. I would say having @ndb.transactional is safer, though incurs some overhead.",
+      "parentUuid": "4d773e57_e52dd687",
+      "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7665f1c0_04ac63e7",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-11T01:35:10Z",
+      "side": 1,
+      "message": "I\u0027m debating whether this is the best name of the function. The function returns False if the job is Running or Queued, thus it returns True if the job is cancelled or done. Even though this CL only use it to check for cancelled job, I think it\u0027s still better to name it correctly, e.g., IsStopped.",
+      "range": {
+        "startLine": 270,
+        "startChar": 4,
+        "endLine": 270,
+        "endChar": 15
+      },
       "revId": "ea549cc217ad4fe40979a4fb1a01d4687a4f1c85",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
