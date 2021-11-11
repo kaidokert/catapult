@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "54b2d97c96ae30eee4622c39d3fd148ffd7cfb83",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "238541b7_c7381dd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-11T20:19:56Z",
+      "side": 1,
+      "message": "Switching reviewers since Wenbin is OOO today.",
+      "revId": "54b2d97c96ae30eee4622c39d3fd148ffd7cfb83",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
