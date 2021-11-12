@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a215ba3b_5f9d4449",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-12T22:03:11Z",
+      "side": 1,
+      "message": "nits: `returns True if...` (and trailing whitespace)",
+      "parentUuid": "689015a6_142af573",
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74de481b_c7482bff",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -112,6 +130,53 @@
         "startChar": 45,
         "endLine": 123,
         "endChar": 51
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2823bbd0_26b2d8f7",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-12T22:03:11Z",
+      "side": 1,
+      "message": "default arg values are okay if they\u0027re immutable, according to https://google.github.io/styleguide/pyguide.html#212-default-argument-values",
+      "parentUuid": "b19bb96c_be811be9",
+      "range": {
+        "startLine": 123,
+        "startChar": 45,
+        "endLine": 123,
+        "endChar": 51
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed42dd04_d24f2a74",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-12T22:03:11Z",
+      "side": 1,
+      "message": "nit: trailing ws",
+      "range": {
+        "startLine": 219,
+        "startChar": 67,
+        "endLine": 219,
+        "endChar": 68
       },
       "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
