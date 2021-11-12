@@ -86,6 +86,24 @@
       "parentUuid": "8b8b9388_067d23ef",
       "revId": "c633bf7e520b94174f2ddf9d9c0553b17d89a137",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15ea6e4_9e3149b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2021-11-12T02:54:36Z",
+      "side": 1,
+      "message": "\u003e Yeah, I think I found the instruction (goto/deploy-cr-netlog-viewer). Looks like only a few people can deploy to appspot. Should I ask for deploy? I\u0027m also happy to deploy myself if I can have access to the billing account.\n\nEric gave me permissions before he left the team - I\u0027d be happy to add you, if I can figure out how.  :)",
+      "parentUuid": "3cd674c2_b484623f",
+      "revId": "c633bf7e520b94174f2ddf9d9c0553b17d89a137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
