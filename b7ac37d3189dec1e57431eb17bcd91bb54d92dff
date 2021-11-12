@@ -16,6 +16,139 @@
       "message": "I\u0027m not sure how this happened. How do I revert this one?",
       "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c44d9d3_06707088",
+        "filename": "dashboard/dashboard/pinpoint/elements/queue-stats-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T01:52:42Z",
+      "side": 1,
+      "message": "When the diff is small, an easy fix is manually editing the file to revert the change, run \"git add\" on it, commit and then upload.\n\nMore generally, you can use the following command (note that there must be exactly three dots in front of origin/main):\n\n  git restore --staged --worktree -s ...origin/main dashboard/dashboard/pinpoint/elements/queue-stats-page.html",
+      "parentUuid": "f7730c06_227a2de2",
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b48e12ff_99be2a1c",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T01:52:42Z",
+      "side": 1,
+      "message": "Nit: This style of comments should only be used to provide documentation for classes and functions. For comments about code, please prefix each line by # instead.",
+      "range": {
+        "startLine": 709,
+        "startChar": 8,
+        "endLine": 709,
+        "endChar": 11
+      },
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69313768_5c14728a",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T01:52:42Z",
+      "side": 1,
+      "message": "Nit: please remove trailing spaces.",
+      "range": {
+        "startLine": 710,
+        "startChar": 77,
+        "endLine": 710,
+        "endChar": 78
+      },
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5436005d_30fb8d78",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T01:52:42Z",
+      "side": 1,
+      "message": "stopped",
+      "range": {
+        "startLine": 271,
+        "startChar": 62,
+        "endLine": 271,
+        "endChar": 71
+      },
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3020b41c_9999301c",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T01:52:42Z",
+      "side": 1,
+      "message": "\"has stopped running\"",
+      "range": {
+        "startLine": 271,
+        "startChar": 21,
+        "endLine": 271,
+        "endChar": 33
+      },
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d5b333_6e8c8124",
+        "filename": "dashboard/dashboard/pinpoint/models/scheduler.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T01:52:42Z",
+      "side": 1,
+      "message": "the status is not Running or Queued",
+      "range": {
+        "startLine": 272,
+        "startChar": 2,
+        "endLine": 272,
+        "endChar": 44
+      },
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
