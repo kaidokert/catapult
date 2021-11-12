@@ -68,6 +68,24 @@
       "parentUuid": "75449408_f92642f4",
       "revId": "c633bf7e520b94174f2ddf9d9c0553b17d89a137",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd674c2_b484623f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115863
+      },
+      "writtenOn": "2021-11-12T02:51:17Z",
+      "side": 1,
+      "message": "Yeah, I think I found the instruction (goto/deploy-cr-netlog-viewer). Looks like only a few people can deploy to appspot. Should I ask for deploy? I\u0027m also happy to deploy myself if I can have access to the billing account.",
+      "parentUuid": "8b8b9388_067d23ef",
+      "revId": "c633bf7e520b94174f2ddf9d9c0553b17d89a137",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
