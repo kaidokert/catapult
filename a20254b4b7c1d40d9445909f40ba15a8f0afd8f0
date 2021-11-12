@@ -79,6 +79,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43fb67f1_aa7c3ad6",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T22:50:19Z",
+      "side": 1,
+      "message": "Calling the constructor for TestMetadata creates a new instance, using only data passed in through the constructor, so improvement_direction would be UNKNOWN. I believe the right approach is to use graph_data.TestMetadata.get_by_id(self.tags[\"test_path\"]), which loads the TestMetadata from data store.",
+      "parentUuid": "74de481b_c7482bff",
+      "range": {
+        "startLine": 510,
+        "startChar": 15,
+        "endLine": 510,
+        "endChar": 36
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d5c6a94_3eec242f",
         "filename": "dashboard/dashboard/pinpoint/models/job.py",
         "patchSetId": 1
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "default arg values are okay if they\u0027re immutable, according to https://google.github.io/styleguide/pyguide.html#212-default-argument-values",
       "parentUuid": "b19bb96c_be811be9",
+      "range": {
+        "startLine": 123,
+        "startChar": 45,
+        "endLine": 123,
+        "endChar": 51
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "369ccc9c_059ee1db",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-12T22:50:19Z",
+      "side": 1,
+      "message": "I agree with Ryan. It will be difficult (and error prone) to remember whether True means UP is improvement or DOWN is improvement. Easier to just pass in UP or DOWN, with the default value being UNKNOWN.",
+      "parentUuid": "2823bbd0_26b2d8f7",
       "range": {
         "startLine": 123,
         "startChar": 45,
