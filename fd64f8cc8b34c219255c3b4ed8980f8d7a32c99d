@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a7c93c_fca1ef4b",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-12T16:04:12Z",
+      "side": 1,
+      "message": "Change to \u0027s",
+      "range": {
+        "startLine": 715,
+        "startChar": 36,
+        "endLine": 715,
+        "endChar": 64
+      },
+      "revId": "fd64f8cc8b34c219255c3b4ed8980f8d7a32c99d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
