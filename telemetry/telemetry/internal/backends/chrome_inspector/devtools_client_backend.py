@@ -18,6 +18,7 @@ from telemetry.internal.backends.chrome_inspector import devtools_http
 from telemetry.internal.backends.chrome_inspector import inspector_backend
 from telemetry.internal.backends.chrome_inspector import inspector_websocket
 from telemetry.internal.backends.chrome_inspector import memory_backend
+from telemetry.internal.backends.chrome_inspector import profiling_backend
 from telemetry.internal.backends.chrome_inspector import system_info_backend
 from telemetry.internal.backends.chrome_inspector import tracing_backend
 from telemetry.internal.backends.chrome_inspector import window_manager_backend
@@ -89,6 +90,7 @@ class _DevToolsClientBackend(object):
     # Other backends.
     self._tracing_backend = None
     self._memory_backend = None
+    self._profiling_backend = None
     self._system_info_backend = None
     self._wm_backend = None
     self._devtools_context_map_backend = _DevToolsContextMapBackend(self)
@@ -211,6 +213,9 @@ class _DevToolsClientBackend(object):
     if self._memory_backend is not None:
       self._memory_backend.Close()
       self._memory_backend = None
+    if self._profiling_backend is not None:
+      self._profiling_backend.Close()
+      self._profiling_backend = None
     if self._system_info_backend is not None:
       self._system_info_backend.Close()
       self._system_info_backend = None
@@ -369,6 +374,11 @@ class _DevToolsClientBackend(object):
       self._memory_backend = memory_backend.MemoryBackend(
           self._browser_websocket)
 
+  def _CreateProfilingBackendIfNeeded(self):
+    if not self._profiling_backend:
+      self._profiling_backend = profiling_backend.ProfilingBackend(
+          self._browser_websocket)
+
   def _CreateSystemInfoBackendIfNeeded(self):
     if not self._system_info_backend:
       self._system_info_backend = system_info_backend.SystemInfoBackend(
@@ -502,6 +512,14 @@ class _DevToolsClientBackend(object):
     self._CreateMemoryBackendIfNeeded()
     return self._memory_backend.SimulateMemoryPressureNotification(
         pressure_level, timeout)
+
+  def DumpProfilingDataOfAllProcesses(self, timeout):
+    """Causes all profiling data of all Chrome processes to be dumped to disk.
+
+    This should only be called by an Android backend.
+    """
+    self._CreateProfilingBackendIfNeeded()
+    return self._profiling_backend.dumpProfilingDataOfAllProcesses(timeout)
 
   @property
   def window_manager_backend(self):

@@ -252,6 +252,9 @@ class Browser(app.App):
     self._browser_backend.SimulateMemoryPressureNotification(
         pressure_level, timeout)
 
+  def DumpProfilingDataOfAllProcesses(self, timeout):
+    self._browser_backend.DumpProfilingDataOfAllProcesses(timeout)
+
   @property
   def supports_overview_mode(self): # pylint: disable=invalid-name
     return self._browser_backend.supports_overview_mode
