@@ -16,6 +16,115 @@
       "message": "PTAL",
       "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "965e9a73_d2be7753",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-12T22:27:56Z",
+      "side": 1,
+      "message": "Thanks! This looks pretty reasonable, just a few comments",
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "451bb21f_d6c30a7b",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2441,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-12T22:27:56Z",
+      "side": 1,
+      "message": "Would it be possible to add a test case for the utf8 behavior? Maybe we can return a non-unicode bytes sequence and verify the characters are encoded as \u0027?\u0027 instead of crashing?",
+      "range": {
+        "startLine": 2441,
+        "startChar": 42,
+        "endLine": 2441,
+        "endChar": 76
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8bbc7a2_41ccc748",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2474,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-12T22:27:56Z",
+      "side": 1,
+      "message": "Can you briefly summarize the default behavior with respect to non-unicode byte sequences? Either here or maybe in a second sentence near the top of the docstring.",
+      "range": {
+        "startLine": 2473,
+        "startChar": 0,
+        "endLine": 2474,
+        "endChar": 38
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17e1e565_a21fa0c3",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2495,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-12T22:27:56Z",
+      "side": 1,
+      "message": "nit: do we need to add these args if they\u0027re optional?",
+      "range": {
+        "startLine": 2495,
+        "startChar": 60,
+        "endLine": 2495,
+        "endChar": 79
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ca40305_498e4297",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-12T22:27:56Z",
+      "side": 1,
+      "message": "Same question here: is it necessary to state this was called with the default args?",
+      "range": {
+        "startLine": 2511,
+        "startChar": 44,
+        "endLine": 2511,
+        "endChar": 61
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
