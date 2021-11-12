@@ -204,6 +204,8 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @exc_util.BestEffort
   def Close(self):
     super(AndroidBrowserBackend, self).Close()
+    if os.getenv('CHROME_PGO_PROFILING'):
+      self.devtools_client.DumpProfilingDataOfAllProcesses(timeout=120)
     self._StopBrowser()
     if self._tmp_minidump_dir:
       shutil.rmtree(self._tmp_minidump_dir, ignore_errors=True)
@@ -339,3 +341,6 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     artifact_name = posixpath.join(
         self.DEBUG_ARTIFACT_PREFIX, 'tombstones-%s.txt' % suffix)
     artifact_logger.CreateArtifact(artifact_name, tombstones)
+
+  def DumpProfilingDataOfAllProcesses(self, timeout):
+    self.devtools_client.DumpProfilingDataOfAllProcesses(timeout)
