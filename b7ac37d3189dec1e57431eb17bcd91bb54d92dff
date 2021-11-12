@@ -54,6 +54,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f1c3d18_7674d292",
+        "filename": "dashboard/dashboard/pinpoint/elements/queue-stats-page.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-12T16:02:31Z",
+      "side": 1,
+      "message": "That looks right. Also, it\u0027s not showing up in the diff, which is good.",
+      "parentUuid": "eb929e5c_6c5eb22d",
+      "revId": "b7ac37d3189dec1e57431eb17bcd91bb54d92dff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b48e12ff_99be2a1c",
