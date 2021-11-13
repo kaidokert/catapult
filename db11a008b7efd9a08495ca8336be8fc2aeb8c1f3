@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4dbedd93_3bbc3bda",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2441,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-13T06:06:50Z",
+      "side": 1,
+      "message": "Yes, it is possible while we use bytes-mode |open| and decode (with |six.ensure_str| or |bytes.decode|). But we can test this only on Python3, on Python2 this parameters is meaningless (I wrote more detailed comment below).\nAlso, changing implementation with using |io.open| would be more difficult for test this case.",
+      "parentUuid": "451bb21f_d6c30a7b",
+      "range": {
+        "startLine": 2441,
+        "startChar": 42,
+        "endLine": 2441,
+        "endChar": 76
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8bbc7a2_41ccc748",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2021-11-12T22:27:56Z",
       "side": 1,
       "message": "Can you briefly summarize the default behavior with respect to non-unicode byte sequences? Either here or maybe in a second sentence near the top of the docstring.",
+      "range": {
+        "startLine": 2473,
+        "startChar": 0,
+        "endLine": 2474,
+        "endChar": 38
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5ddb4b2_3b865cf0",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2474,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-13T06:06:50Z",
+      "side": 1,
+      "message": "Sure, but one little note.\nThis parameters is meaningless on Python2, because |str| and |bytes| are the same type. On Python3 we return |str| value, not |bytes| and need specify encoding. This, on Python3 this implementation don\u0027t allow to read file as bytes. Maybe add special case for allowing this? For example, if |encoding| is |None|, return bytes instead of string?",
+      "parentUuid": "f8bbc7a2_41ccc748",
       "range": {
         "startLine": 2473,
         "startChar": 0,
@@ -106,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "042edfc8_b42ab957",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2495,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-13T06:06:50Z",
+      "side": 1,
+      "message": "Oops, don\u0027t need, thanks!",
+      "parentUuid": "17e1e565_a21fa0c3",
+      "range": {
+        "startLine": 2495,
+        "startChar": 60,
+        "endLine": 2495,
+        "endChar": 79
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ca40305_498e4297",
         "filename": "devil/devil/android/device_utils_test.py",
         "patchSetId": 1
@@ -117,6 +189,30 @@
       "writtenOn": "2021-11-12T22:27:56Z",
       "side": 1,
       "message": "Same question here: is it necessary to state this was called with the default args?",
+      "range": {
+        "startLine": 2511,
+        "startChar": 44,
+        "endLine": 2511,
+        "endChar": 61
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96be25c7_93427f2e",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-13T06:06:50Z",
+      "side": 1,
+      "message": "No, thanks",
+      "parentUuid": "4ca40305_498e4297",
       "range": {
         "startLine": 2511,
         "startChar": 44,
