@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e40be60e_d5c94b9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-15T23:24:46Z",
+      "side": 1,
+      "message": "This works. Though when I said mock \"mock scheduler.IsStopped so it returns False\", I meant adding the following decorator before class RetryTest and BugCommentTest:\n\n@mock.patch.object(\n    job.scheduler, \u0027IsStopped\u0027, mock.MagicMock(return_value\u003dFalse))\n    \nThis would force scheduler.IsStopped to return False. Your change is closer to the \"real world\", but requires changing more locations.",
+      "parentUuid": "273f85c7_105b0977",
+      "revId": "2f54290ebe452b5843fb279f22781fd0c210417d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df70b7b4_2c3009c8",
