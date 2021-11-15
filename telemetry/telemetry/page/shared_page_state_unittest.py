@@ -7,6 +7,8 @@ import shutil
 import tempfile
 import unittest
 
+import mock
+
 from telemetry.core import exceptions
 from telemetry.core import platform as platform_module
 from telemetry.internal.browser import browser_finder
@@ -119,6 +121,10 @@ class SharedPageStateTests(unittest.TestCase):
         shared_page_state.Shared10InchTabletPageState, 'tablet_10_inch')
     self.assertUserAgentSetCorrectly(
         shared_page_state.SharedPageState, None)
+    self.possible_browser.browser_type = mock.Mock(
+        return_value='web-engine-shell')
+    self.assertUserAgentSetCorrectly(
+        shared_page_state.SharedDesktopPageState, None)
 
 
 class FakeBrowserStorySetRunTests(unittest.TestCase):
