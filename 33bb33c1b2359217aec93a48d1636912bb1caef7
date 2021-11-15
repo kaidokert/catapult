@@ -53,6 +53,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf28c1c_a74373ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115863
+      },
+      "writtenOn": "2021-11-15T23:05:17Z",
+      "side": 1,
+      "message": "Replacing window.addEventListner with HTMLImports.whenReady seems to fix this issue. I\u0027m not very familiar with Polymer but looks like using HTMLImports.whenReady is a right way to go.",
+      "parentUuid": "fc3e4b52_6d1ba8c9",
+      "revId": "33bb33c1b2359217aec93a48d1636912bb1caef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "841f1dd8_f02603ad",
@@ -66,6 +84,30 @@
       "writtenOn": "2021-11-15T15:17:44Z",
       "side": 1,
       "message": "Would it make more sense for this to be HTMLImports.whenReady instead?",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 35
+      },
+      "revId": "33bb33c1b2359217aec93a48d1636912bb1caef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "325e4a43_bf361a44",
+        "filename": "netlog_viewer/netlog_viewer/tests.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1115863
+      },
+      "writtenOn": "2021-11-15T23:05:17Z",
+      "side": 1,
+      "message": "Yes, thank you for the suggestion!",
+      "parentUuid": "841f1dd8_f02603ad",
       "range": {
         "startLine": 40,
         "startChar": 4,
