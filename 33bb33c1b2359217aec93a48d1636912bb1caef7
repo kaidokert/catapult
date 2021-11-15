@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b27029d6_5511d3be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001766
+      },
+      "writtenOn": "2021-11-15T16:14:05Z",
+      "side": 1,
+      "message": "Sorry I am no longer active on Chromium; will defer the review to Matt.\n\nThese unit-tests were not properly set-up, as the componentization/polymerization was in an unfinished state at the time. So there are probably a number of issues, so good to be skeptical when evaluating the existing approach.",
+      "revId": "33bb33c1b2359217aec93a48d1636912bb1caef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "841f1dd8_f02603ad",
         "filename": "netlog_viewer/netlog_viewer/tests.html",
         "patchSetId": 1
