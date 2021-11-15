@@ -16,6 +16,29 @@
       "message": "Can someone verify that the edits to the unit tests are appropriate? ",
       "revId": "2f54290ebe452b5843fb279f22781fd0c210417d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df70b7b4_2c3009c8",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-15T22:27:13Z",
+      "side": 1,
+      "message": "So this puts j into some queue [1]. It looks like this queue is never consumed? Nor does it need to be - it looks like this test is validating how _Schedule gets called (from [2]).\n\n[1]: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/scheduler.py;drc\u003de50155de2ce9344561eefdbaa594df40ac07c0c6;l\u003d125\n[2]: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job.py;drc\u003d875ae05bddbe16c9f20769f98e05015a855aa3d7;l\u003d691",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 25
+      },
+      "revId": "2f54290ebe452b5843fb279f22781fd0c210417d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
