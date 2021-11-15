@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c055c0a1_a06855bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115863
+      },
+      "writtenOn": "2021-11-15T00:53:30Z",
+      "side": 1,
+      "message": "eroman@: PTAL\n\nI\u0027m not sure eroman@ is still active but I got the following error even after this CL and I\u0027d like to know what\u0027s an appropriate fix for this error. Looks like we are failing at assertFirstConstructorCall() [1].\n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/netlog_viewer/netlog_viewer/util.js;l\u003d180;drc\u003d86de2fb21848958b3a2de44a9c93d14f693b8ed9 \n\n```\nError: Element tab-list not found\n    at MainView.DivView (http://localhost:8111/netlog_viewer/view.js:85:13)\n    at new MainView (http://localhost:8111/netlog_viewer/main.js:59:16)\n    at Function.ctor.getInstance (http://localhost:8111/netlog_viewer/cr.js:17:50)\n    at TestCase.testFn_ (http://localhost:8111/netlog_viewer/events_view_test.html.js:80:14)\n    at TestCase.run (http://localhost:8111/tracing/base/unittest/test_case.html.js:76:19)\n    at TestRunner.\u003canonymous\u003e (http://localhost:8111/tracing/base/unittest/test_runner.html.js:226:48)\n    at new Promise (\u003canonymous\u003e)\n    at TestRunner.runCurrentTestCase_ (http://localhost:8111/tracing/base/unittest/test_runner.html.js:223:14)\n    at TestRunner.runOneTestCase_ (http://localhost:8111/tracing/base/unittest/test_runner.html.js:171:12)\n    at http://localhost:8111/tracing/base/unittest/test_runner.html.js:128:43\n```\n",
+      "revId": "33bb33c1b2359217aec93a48d1636912bb1caef7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
