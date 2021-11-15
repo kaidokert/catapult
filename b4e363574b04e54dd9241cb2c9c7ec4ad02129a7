@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af12ea31_3e4bc005",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-15T16:18:33Z",
+      "side": 1,
+      "message": "I tried to submit, but the code I\u0027ve written will fail any unit test that includes Job.Run(). Not sure how to fix yet. If I think of something, I\u0027ll let folks know. ",
+      "revId": "b4e363574b04e54dd9241cb2c9c7ec4ad02129a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dc095dc_2a2d5814",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-15T16:18:33Z",
+      "side": 1,
+      "message": "Right now the code does not play nice with other unit tests. The scheduler is typically empty for the Pinpoint unit tests, so any unit test that calls Job.Run() will crash, because scheduler.IsStopped will always return True.",
+      "revId": "b4e363574b04e54dd9241cb2c9c7ec4ad02129a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
