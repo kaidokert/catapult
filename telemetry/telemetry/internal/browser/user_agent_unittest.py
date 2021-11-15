@@ -37,3 +37,14 @@ class DesktopUserAgentTest(tab_test_case.TabTestCase):
   def testUserAgent(self):
     ua = self._tab.EvaluateJavaScript('window.navigator.userAgent')
     self.assertEquals(ua, user_agent.UA_TYPE_MAPPING['desktop'])
+
+
+class FuchsiaUserAgentTest(tab_test_case.TabTestCase):
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.browser_user_agent_type = 'fuchsia'
+
+  @decorators.Disabled('chromeos')  # crbug.com/483212
+  def testUserAgent(self):
+    ua = self._tab.EvaluateJavaScript('window.navigator.userAgent')
+    self.assertEquals(ua, user_agent.UA_TYPE_MAPPING['desktop'])

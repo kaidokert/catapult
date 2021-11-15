@@ -23,6 +23,10 @@ UA_TYPE_MAPPING = {
         'Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus 10 Build/IMM76B) '
         'AppleWebKit/535.36 (KHTML, like Gecko) Chrome/60.0.3112.90 '
         'Safari/535.36',
+    'fuchsia':
+        '"Mozilla/5.0 (X11; Fuchsia) '
+        'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.217 '
+        'Safari/537.36 CrKey/1.52.999999"'
 }
 
 
