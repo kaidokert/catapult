@@ -33,6 +33,24 @@
       "message": "Right now the code does not play nice with other unit tests. The scheduler is typically empty for the Pinpoint unit tests, so any unit test that calls Job.Run() will crash, because scheduler.IsStopped will always return True.",
       "revId": "b4e363574b04e54dd9241cb2c9c7ec4ad02129a7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6bd924_96cca5cb",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-15T18:03:21Z",
+      "side": 1,
+      "message": "You can mock scheduler.IsStopped so it returns False during unit tests.",
+      "parentUuid": "1dc095dc_2a2d5814",
+      "revId": "b4e363574b04e54dd9241cb2c9c7ec4ad02129a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
