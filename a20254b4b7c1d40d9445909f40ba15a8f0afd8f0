@@ -101,6 +101,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c96114e_06c8033e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-15T15:31:36Z",
+      "side": 1,
+      "message": "graph_data.TestMetadata.get_by_id(...) seems to work!",
+      "parentUuid": "43fb67f1_aa7c3ad6",
+      "range": {
+        "startLine": 510,
+        "startChar": 15,
+        "endLine": 510,
+        "endChar": 36
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d5c6a94_3eec242f",
@@ -132,6 +156,24 @@
       "side": 1,
       "message": "I\u0027m guessing there will be a decent starting point in https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/pinpoint/models/job_test.py;l\u003d1?q\u003dmodels%2Fjob_test.py\u0026sq\u003d\u0026ss\u003dchromium",
       "parentUuid": "3d5c6a94_3eec242f",
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11eeebb1_3b02a87e",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-15T15:31:36Z",
+      "side": 1,
+      "message": "Anything else we should check for in this self.tags? I had isinstance(self.tags[\u0027test_path\u0027], str) but then I ran into unicode issues with the unit test.",
+      "parentUuid": "42d39cfc_ca1fa68c",
       "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
@@ -207,6 +249,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ead7df29_695df701",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-15T15:31:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "369ccc9c_059ee1db",
+      "range": {
+        "startLine": 123,
+        "startChar": 45,
+        "endLine": 123,
+        "endChar": 51
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed42dd04_d24f2a74",
@@ -220,6 +286,30 @@
       "writtenOn": "2021-11-12T22:03:11Z",
       "side": 1,
       "message": "nit: trailing ws",
+      "range": {
+        "startLine": 219,
+        "startChar": 67,
+        "endLine": 219,
+        "endChar": 68
+      },
+      "revId": "a20254b4b7c1d40d9445909f40ba15a8f0afd8f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14ef0840_07572497",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-15T15:31:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed42dd04_d24f2a74",
       "range": {
         "startLine": 219,
         "startChar": 67,
