@@ -17,10 +17,9 @@ found in the LICENSE file.
   <script src="/netlog_viewer/net_internals_test.js"></script>  
 
   <link rel="import" href="/components/polymer/polymer.html">
+  <link rel="import" href="/netlog_viewer/netlog_viewer.html">
   <link rel="import" href="/tracing/base/unittest/interactive_test_runner.html">
   <link rel="import" href="/tracing/core/test_utils.html">
-
-  <link rel="import" href="/netlog_viewer/netlog_viewer.html">
 
   <style>
     html, body {
@@ -47,16 +46,18 @@ found in the LICENSE file.
       globalNetLogViewerElementForTests =
           document.createElement('netlog-viewer');
 
-      tr.b.unittest.loadAndRunTests({
-        title: 'All NetLog Viewer Tests',
-        getAllSuiteRelPathsAsync: function() {
-          return tr.b.getAsync('/netlog_viewer/tests').then(function(json) {
-            return JSON.parse(json).test_relpaths;
-          }).catch(function(e) {
-           throw e;
-          });
-        },
-        testLinks: []
+      HTMLImports.whenReady(function(_) {
+        tr.b.unittest.loadAndRunTests({
+          title: 'All NetLog Viewer Tests',
+          getAllSuiteRelPathsAsync: function() {
+            return tr.b.getAsync('/netlog_viewer/tests').then(function(json) {
+              return JSON.parse(json).test_relpaths;
+            }).catch(function(e) {
+              throw e;
+            });
+          },
+          testLinks: []
+        });
       });
     });
 
