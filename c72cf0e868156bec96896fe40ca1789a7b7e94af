@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a3587e9_d13e3ec2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128435
+      },
+      "writtenOn": "2021-11-16T16:48:27Z",
+      "side": 1,
+      "message": "I stopped working on this project 4 years ago..",
+      "revId": "c72cf0e868156bec96896fe40ca1789a7b7e94af",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
