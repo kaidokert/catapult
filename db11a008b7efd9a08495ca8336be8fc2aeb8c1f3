@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c814688e_5a134e1d",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2441,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-16T02:04:14Z",
+      "side": 1,
+      "message": "If it\u0027s straightforward to return early from the test case when `six.PY2 \u003d\u003d True` then I would be OK with that. However if it\u0027s too much complexity to add a test case, then that\u0027s OK with me too.",
+      "parentUuid": "4dbedd93_3bbc3bda",
+      "range": {
+        "startLine": 2441,
+        "startChar": 42,
+        "endLine": 2441,
+        "endChar": 76
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8bbc7a2_41ccc748",
         "filename": "devil/devil/android/device_utils.py",
         "patchSetId": 1
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "Sure, but one little note.\nThis parameters is meaningless on Python2, because |str| and |bytes| are the same type. On Python3 we return |str| value, not |bytes| and need specify encoding. This, on Python3 this implementation don\u0027t allow to read file as bytes. Maybe add special case for allowing this? For example, if |encoding| is |None|, return bytes instead of string?",
       "parentUuid": "f8bbc7a2_41ccc748",
+      "range": {
+        "startLine": 2473,
+        "startChar": 0,
+        "endLine": 2474,
+        "endChar": 38
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "646a6ca4_d45c2438",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2474,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-16T02:04:14Z",
+      "side": 1,
+      "message": "\u003e This parameters is meaningless on Python2\n\nAck. Could you briefly mention these are python3-only in the docstring?\n\n\u003e Maybe add special case for allowing this? For example, if |encoding| is |None|, return bytes instead of string?\n\nThat sounds good to me.",
+      "parentUuid": "f5ddb4b2_3b865cf0",
       "range": {
         "startLine": 2473,
         "startChar": 0,
