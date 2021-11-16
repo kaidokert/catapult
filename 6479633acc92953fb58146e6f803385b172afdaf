@@ -16,6 +16,29 @@
       "message": "Maybe I need one more unit test for job_bug_update to test the sorting? ",
       "revId": "6479633acc92953fb58146e6f803385b172afdaf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e78abb4_6c7c8acd",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-16T01:47:19Z",
+      "side": 1,
+      "message": "Would be nice to add a unit test for this, to confirm that the sorting is correct.",
+      "range": {
+        "startLine": 212,
+        "startChar": 6,
+        "endLine": 212,
+        "endChar": 32
+      },
+      "revId": "6479633acc92953fb58146e6f803385b172afdaf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
