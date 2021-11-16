@@ -106,6 +106,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7270012_ab6c6c43",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2441,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-16T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c814688e_5a134e1d",
+      "range": {
+        "startLine": 2441,
+        "startChar": 42,
+        "endLine": 2441,
+        "endChar": 76
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8bbc7a2_41ccc748",
@@ -177,6 +201,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7d1e41e_e927d336",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2474,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-16T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "646a6ca4_d45c2438",
+      "range": {
+        "startLine": 2473,
+        "startChar": 0,
+        "endLine": 2474,
+        "endChar": 38
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17e1e565_a21fa0c3",
@@ -224,6 +272,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b65885_79c5e806",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2495,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-16T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "042edfc8_b42ab957",
+      "range": {
+        "startLine": 2495,
+        "startChar": 60,
+        "endLine": 2495,
+        "endChar": 79
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ca40305_498e4297",
@@ -261,6 +333,30 @@
       "side": 1,
       "message": "No, thanks",
       "parentUuid": "4ca40305_498e4297",
+      "range": {
+        "startLine": 2511,
+        "startChar": 44,
+        "endLine": 2511,
+        "endChar": 61
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf4460ae_80d5268d",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-16T13:02:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96be25c7_93427f2e",
       "range": {
         "startLine": 2511,
         "startChar": 44,
