@@ -66,6 +66,9 @@ class ResultSinkReporter(object):
         if not self._sink:
             return
 
+        self.report_artifacts_url = ('http://%s/prpc/luci.resultsink.v1.Sink/ReportInvocationLevelArtifacts'
+                     % self._sink['address'])
+
         self._url = ('http://%s/prpc/luci.resultsink.v1.Sink/ReportTestResults'
                      % self._sink['address'])
         self._headers = {
@@ -78,6 +81,22 @@ class ResultSinkReporter(object):
     @property
     def resultdb_supported(self):
         return self._sink is not None
+
+    def report_invocation_level_artifacts(self, artifacts):
+        """Uploads invocation-level artifacts to the ResultSink server.
+
+        This is for artifacts that don't apply to a single test but to the test
+        invocation as a whole (eg: system logs).
+
+        Args:
+          artifacts: A dict of artifacts to attach to the invocation.
+        """
+        req = {'artifacts': artifacts}
+        res = self._session.post(
+            url=self.report_artifacts_url,
+            headers=self._headers,
+            data=json.dumps(req))
+        return 0 if res.ok else 1
 
     def report_individual_test_result(
             self, test_name_prefix, result, artifact_output_dir, expectations,
