@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "126d28ba_7467b8f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-17T23:26:06Z",
+      "side": 1,
+      "message": "LGTM % comments, although `wpt-report.json` sounds to me like it\u0027s part of the web tests? If so, this is the wrong implementation to modify - https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/tools/blinkpy/web_tests/controllers/test_result_sink.py?q\u003dtest_result_sink.py is what you\u0027re looking for.",
+      "revId": "8742a3cd7ab7c84599d7588e29e56c730fa3e4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f85a254_4106cb9b",
@@ -31,6 +48,30 @@
       "writtenOn": "2021-11-17T23:21:27Z",
       "side": 1,
       "message": "Should start with an underscore unless you mean to expose access to it",
+      "range": {
+        "startLine": 69,
+        "startChar": 13,
+        "endLine": 69,
+        "endChar": 33
+      },
+      "revId": "8742a3cd7ab7c84599d7588e29e56c730fa3e4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d750a85_bc799aa8",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-17T23:26:06Z",
+      "side": 1,
+      "message": "Additionally, can you rename to specify that it\u0027s invocation level artifacts?",
+      "parentUuid": "8f85a254_4106cb9b",
       "range": {
         "startLine": 69,
         "startChar": 13,
@@ -89,6 +130,24 @@
       "side": 1,
       "message": "Ty gerrit for the double comment",
       "parentUuid": "a6ab317c_f5d5ba2a",
+      "revId": "8742a3cd7ab7c84599d7588e29e56c730fa3e4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a9d75c4_f29440e8",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-17T23:26:06Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "9470bee1_d7340051",
       "revId": "8742a3cd7ab7c84599d7588e29e56c730fa3e4bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
