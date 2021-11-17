@@ -16,6 +16,74 @@
       "message": "PTAL",
       "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b61ab702_17364d93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-11-17T20:32:35Z",
+      "side": 1,
+      "message": "lgtm w/ comments addressed.",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc96753_45878e81",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1114,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-11-17T20:32:35Z",
+      "side": 1,
+      "message": "(speculation ...)\n\nI don\u0027t really like the fact that we have to pass data back out-of-band, but\nI\u0027m not sure how easy this would be to change to have the test case(s)\nreturn data instead.\n\nI think this is the right change to make now, though.",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6765a97d_9c8332f0",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-11-17T20:32:35Z",
+      "side": 1,
+      "message": "I might just call this `retryOnFailure` instead; I think the \"force\" part\nwould just be inferred automatically.\n\nAlso, can you add a comment describing what this does and when a test case\nshould use it?",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b586a5e1_93d95bf1",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-11-17T20:32:35Z",
+      "side": 1,
+      "message": "I don\u0027t think we need a setter for this, since the test case would be setting\nit directly.",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
