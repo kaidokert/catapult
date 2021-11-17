@@ -365,11 +365,11 @@ def _JoinLines(lines):
   return ''.join(s for line in lines for s in (line, '\n'))
 
 
-def _CreateAdbWrapper(device):
+def _CreateAdbWrapper(device, **kwargs):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
   else:
-    return adb_wrapper.AdbWrapper(device)
+    return adb_wrapper.AdbWrapper(device, **kwargs)
 
 
 def _FormatPartialOutputError(output):
@@ -3724,6 +3724,7 @@ class DeviceUtils(object):
                      retries=1,
                      enable_usb_resets=False,
                      abis=None,
+                     persistent_shell=False,
                      **kwargs):
     """Returns a list of DeviceUtils instances.
 
@@ -3754,6 +3755,9 @@ class DeviceUtils(object):
           those that appear to be android devices.
       abis: A list of ABIs for which the device needs to support at least one of
           (optional). See devil.android.ndk.abis for valid values.
+      persistent_shell: Makes AdbWrapper pipe commands through a single
+          "adb shell" instead of spawning a new shell each invocation. Can
+          save a lot of time as adb shell startup can be nearly 100ms.
       A device serial, or a list of device serials (optional).
 
     Returns:
@@ -3799,10 +3803,13 @@ class DeviceUtils(object):
         devices = [cls(x, **kwargs) for x in device_arg if not denylisted(x)]
       else:
         devices = []
-        for adb in adb_wrapper.AdbWrapper.Devices():
+        for adb in adb_wrapper.AdbWrapper.Devices(
+            persistent_shell=persistent_shell):
           serial = adb.GetDeviceSerial()
           if not denylisted(serial):
-            device = cls(_CreateAdbWrapper(adb), **kwargs)
+            device = cls(
+                _CreateAdbWrapper(adb, persistent_shell=persistent_shell),
+                **kwargs)
             supported_abis = device.GetSupportedABIs()
             if not supported_abis:
               supported_abis = [device.GetABI()]
