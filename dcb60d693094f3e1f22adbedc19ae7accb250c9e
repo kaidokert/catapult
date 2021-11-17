@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "044fe59d_d4601a63",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-17T16:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a544d5ff_51c1c14b",
+      "range": {
+        "startLine": 511,
+        "startChar": 4,
+        "endLine": 511,
+        "endChar": 38
+      },
+      "revId": "dcb60d693094f3e1f22adbedc19ae7accb250c9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caa89e86_11647404",
@@ -93,6 +117,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4263c2f6_20e5fe89",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-17T16:24:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5388bd3b_466bece4",
+      "revId": "dcb60d693094f3e1f22adbedc19ae7accb250c9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e151efa_bfd50d54",
@@ -106,6 +148,30 @@
       "writtenOn": "2021-11-17T00:46:26Z",
       "side": 1,
       "message": "Nit: Trailing spaces (and elsewhere in this file).",
+      "range": {
+        "startLine": 14,
+        "startChar": 36,
+        "endLine": 14,
+        "endChar": 43
+      },
+      "revId": "dcb60d693094f3e1f22adbedc19ae7accb250c9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0fe5793_98c6b75e",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-17T16:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e151efa_bfd50d54",
       "range": {
         "startLine": 14,
         "startChar": 36,
@@ -139,6 +205,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "353d0a2b_3b19a8f7",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-17T16:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5f5d9dd_fdc97640",
+      "range": {
+        "startLine": 56,
+        "startChar": 54,
+        "endLine": 56,
+        "endChar": 55
+      },
+      "revId": "dcb60d693094f3e1f22adbedc19ae7accb250c9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "317ca8de_89a479dc",
@@ -152,6 +242,30 @@
       "writtenOn": "2021-11-17T00:46:26Z",
       "side": 1,
       "message": "Nit: Add a trailing newline.",
+      "range": {
+        "startLine": 995,
+        "startChar": 66,
+        "endLine": 995,
+        "endChar": 67
+      },
+      "revId": "dcb60d693094f3e1f22adbedc19ae7accb250c9e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "203e07d2_4ae2790e",
+        "filename": "dashboard/dashboard/pinpoint/models/job_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-11-17T16:24:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "317ca8de_89a479dc",
       "range": {
         "startLine": 995,
         "startChar": 66,
