@@ -73,6 +73,24 @@
       "message": "I\u0027d refactor this to take url as an arg, then have report_invocation_level_artifacts simply wrap it",
       "revId": "8742a3cd7ab7c84599d7588e29e56c730fa3e4bc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ce10c0_b9a512c6",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-11-17T23:22:45Z",
+      "side": 1,
+      "message": "Ty gerrit for the double comment",
+      "parentUuid": "a6ab317c_f5d5ba2a",
+      "revId": "8742a3cd7ab7c84599d7588e29e56c730fa3e4bc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
