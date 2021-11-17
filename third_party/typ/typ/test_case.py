@@ -29,12 +29,16 @@ class TestCase(unittest.TestCase):
     context = None
     maxDiff = 80 * 66
     artifacts = None
+    forceRetryOnFailure = False
 
     def set_artifacts(self, artifacts):
         # We need this setter instead of setting artifacts directly so that
         # subclasses can override it to be notified when the artifacts
         # implementation is set.
         self.artifacts = artifacts
+
+    def set_force_retry_on_failure(self, value):
+        self.forceRetryOnFailure = value
 
 
 class MainTestCase(TestCase):
