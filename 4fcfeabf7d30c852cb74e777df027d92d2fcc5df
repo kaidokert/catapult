@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0e6b00_a956aa9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-17T22:05:10Z",
+      "side": 1,
+      "message": "Looks mostly good. A couple comments but then this should be good to land.",
+      "revId": "4fcfeabf7d30c852cb74e777df027d92d2fcc5df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c4e6e45_3606b5f1",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2487,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-17T22:05:10Z",
+      "side": 1,
+      "message": "Can you add a leading \"_\" to make it clear this is an internal helper method?",
+      "range": {
+        "startLine": 2487,
+        "startChar": 0,
+        "endLine": 2487,
+        "endChar": 6
+      },
+      "revId": "4fcfeabf7d30c852cb74e777df027d92d2fcc5df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
