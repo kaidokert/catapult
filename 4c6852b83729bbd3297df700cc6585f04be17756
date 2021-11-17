@@ -52,6 +52,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a6db53_65732f8f",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1114,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-17T20:39:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "adc96753_45878e81",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6765a97d_9c8332f0",
@@ -69,6 +87,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28108a7c_3b47c7be",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-17T20:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6765a97d_9c8332f0",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b586a5e1_93d95bf1",
@@ -82,6 +118,24 @@
       "writtenOn": "2021-11-17T20:32:35Z",
       "side": 1,
       "message": "I don\u0027t think we need a setter for this, since the test case would be setting\nit directly.",
+      "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70e3c50c_22563ce8",
+        "filename": "third_party/typ/typ/test_case.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-11-17T20:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b586a5e1_93d95bf1",
       "revId": "4c6852b83729bbd3297df700cc6585f04be17756",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
