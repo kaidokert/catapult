@@ -57,6 +57,14 @@ _METRIC_MAP = {
     "VueJS-TodoMVC": ("speedometer2", "VueJS_TodoMVC")
 }
 
+_PROJECT_ID = 'chromeperf'
+
+_DATASET_CHROME_HEALTH = 'pinpoint_export_test'
+_TABLE_CHROME_HEALTH = 'pinpoint_results'
+
+_DATASET_GENERAL = 'pinpoint_export'
+_TABLE_GENERAL = 'results'
+
 
 class Results2Error(Exception):
 
@@ -147,12 +155,18 @@ def GenerateResults2(job):
   logging.debug('Generated %s; see https://storage.cloud.google.com%s',
                 filename, filename)
 
-  # Only save A/B tests to BQ
+  # Only save A/B tests to the Chrome Health BigQuery
   if job.comparison_mode != job_state.FUNCTIONAL and job.comparison_mode != job_state.PERFORMANCE:
     try:
-      _SaveJobToBigQuery(job)
+      _SaveJobToChromeHealthBigQuery(job)
     except Exception as e:  # pylint: disable=broad-except
       logging.error(e)
+
+  # Export every job to the General BigQuery
+  try:
+    _SaveJobToGeneralBigQuery(job)
+  except Exception as e:  # pylint: disable=broad-except
+    logging.error(e)
 
 
 def _ReadVulcanizedHistogramsViewer():
@@ -253,14 +267,28 @@ def _JsonFromExecution(execution):
       results_filename,
   )
 
+# General BigQuery Export
+
+
+def _SaveJobToGeneralBigQuery(job):
+  rows = []
+  for h in _FetchHistograms(job):
+    if "sampleValues" not in h.histogram:
+      continue
+    row = _PopulateMetadata(job, h)
+    row["metric"] = h.histogram["name"]
+    row["values"] = h.histogram["sampleValues"]
+    rows.append(row)
+  if len(rows):
+    _InsertBQRows(_PROJECT_ID, _DATASET_GENERAL, _TABLE_GENERAL, rows)
+
+
+# Chrome Health BigQuery Export
 
 RowKey = collections.namedtuple('RowKey', ['change', 'iteration'])
-_PROJECT_ID = 'chromeperf'
-_DATASET = 'pinpoint_export_test'
-_TABLE = 'pinpoint_results'
 
 
-def _SaveJobToBigQuery(job):
+def _SaveJobToChromeHealthBigQuery(job):
   rows = {}  # Key is a RowKey
   for h in _FetchHistograms(job):
     if "sampleValues" not in h.histogram:
@@ -271,6 +299,7 @@ def _SaveJobToBigQuery(job):
     rk = RowKey(h.metadata.change, h.metadata.attempt_number)
     if rk not in rows:
       rows[rk] = _PopulateMetadata(job, h)
+      rows[rk]["measures"] = _GetEmptyMeasures()
     rows[rk] = _PopulateMetric(rows[rk], h.histogram["name"],
                                h.histogram["sampleValues"][0])
   empty_measures = _GetEmptyMeasures()
@@ -278,7 +307,8 @@ def _SaveJobToBigQuery(job):
       r for r in rows.values() if r["measures"] != empty_measures
   ]
   if len(rows_with_measures):
-    _InsertBQRows(_PROJECT_ID, _DATASET, _TABLE, rows_with_measures)
+    _InsertBQRows(_PROJECT_ID, _DATASET_CHROME_HEALTH, _TABLE_CHROME_HEALTH,
+                  rows_with_measures)
 
 
 def _GetEmptyMeasures():
@@ -286,6 +316,17 @@ def _GetEmptyMeasures():
   measures["core_web_vitals"] = {}
   measures["speedometer2"] = {}
   return measures
+
+
+def _PopulateMetric(data, name, value):
+  if name in _METRIC_MAP:
+    loc = _METRIC_MAP[name]
+    data["measures"][loc[0]][loc[1]] = float(value)
+
+  return data
+
+
+# General BQ
 
 
 def _PopulateMetadata(job, h):
@@ -328,23 +369,14 @@ def _PopulateMetadata(job, h):
   md["dims"]["pairing"]["replica"] = h.metadata.attempt_number
   # TODO: order (not implemented yet)
 
-  md["measures"] = _GetEmptyMeasures()
   return md
-
-
-def _PopulateMetric(data, name, value):
-  if name in _METRIC_MAP:
-    loc = _METRIC_MAP[name]
-    data["measures"][loc[0]][loc[1]] = float(value)
-
-  return data
-
 
 def _ConvertDatetimeToBQ(dt):
   return dt.strftime('%Y-%m-%d %H:%M:%S.%f')
 
 
 def _InsertBQRows(project_id, dataset_id, table_id, rows, num_retries=5):
+  logging.error("Inserting into " + table_id)
   service = _BQService()
   rows = [{'insertId': str(uuid.uuid4()), 'json': row} for row in rows]
   insert_data = {'rows': rows}
