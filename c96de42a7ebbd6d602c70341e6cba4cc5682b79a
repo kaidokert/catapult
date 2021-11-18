@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1760c02_3b94e567",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-18T16:54:00Z",
+      "side": 1,
+      "message": "lg, aside from unease wrt naming a table \"rows\" ",
+      "revId": "c96de42a7ebbd6d602c70341e6cba4cc5682b79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b1da98_2cbb6429",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-11-18T16:54:00Z",
+      "side": 1,
+      "message": ":/ Do we gain something from consistency with chromeperf datastore export tables here? \n\nWhat new problems do we create (and importantly, for whom) by calling it \"results\" or something more descriptive?",
+      "revId": "c96de42a7ebbd6d602c70341e6cba4cc5682b79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
