@@ -20,7 +20,7 @@ from systrace import tracing_agents
 from systrace import util
 
 # Text that ADB sends, but does not need to be displayed to the user.
-ADB_IGNORE_REGEXP = br'^capturing trace\.\.\. done|^capturing trace\.\.\.'
+ADB_IGNORE_REGEXP = r'^capturing trace\.\.\. done|^capturing trace\.\.\.'
 # The number of seconds to wait on output from ADB.
 ADB_STDOUT_READ_TIMEOUT = 0.2
 # The number of seconds to wait for large output from ADB.
@@ -37,9 +37,9 @@ LIST_CATEGORIES_ARGS = ATRACE_BASE_ARGS + ['--list_categories']
 # Minimum number of seconds between displaying status updates.
 MIN_TIME_BETWEEN_STATUS_UPDATES = 0.2
 # ADB sends this text to indicate the beginning of the trace data.
-TRACE_START_REGEXP = br'TRACE\:'
+TRACE_START_REGEXP = r'TRACE\:'
 # Plain-text trace data should always start with this string.
-TRACE_TEXT_HEADER = b'# tracer'
+TRACE_TEXT_HEADER = '# tracer'
 _FIX_MISSING_TGIDS = True
 _FIX_CIRCULAR_TRACES = True
 
