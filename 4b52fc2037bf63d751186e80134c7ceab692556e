@@ -16,6 +16,24 @@
       "message": "The fix didn\u0027t seem to work. Please take a look at the test results. Thanks.",
       "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23613cba_6999cfb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-11-18T06:45:08Z",
+      "side": 1,
+      "message": "It seems like problem not in this patch itself, because when i run telemetry.core.platform_unittest.PlatformScreenshotTest.testScreenshot on my Windows 10 machine everything is OK. Maybe environment on your CI servers is different from our environment.",
+      "parentUuid": "c59947a1_f81ec5d8",
+      "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
