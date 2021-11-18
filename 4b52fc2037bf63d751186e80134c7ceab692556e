@@ -52,6 +52,24 @@
       "parentUuid": "23613cba_6999cfb2",
       "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7806dc7_94611189",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-18T17:19:48Z",
+      "side": 1,
+      "message": "From the build status page (e.g., https://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Windows%20Tryserver/6332/overview), you can click on the \"Bot\" link (https://chromium-swarm.appspot.com/bot?id\u003dluci-flex-try-win10-8-rtow) on the right side to get details of the machine that ran the test. These are virtual machines using compute engine on Google cloud platform.\n\nTo answer your questions:\n1. Windows 10 version 1703 (Windows-10-15063)\n2. Python 3.8.9\n3. Python packages are controlled by https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/.vpython3. From there you can see pywin32 is 300 and Pillow is 8.3.1.",
+      "parentUuid": "4e035441_06583040",
+      "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
