@@ -33,6 +33,24 @@
       "message": ":/ Do we gain something from consistency with chromeperf datastore export tables here? \n\nWhat new problems do we create (and importantly, for whom) by calling it \"results\" or something more descriptive?",
       "revId": "c96de42a7ebbd6d602c70341e6cba4cc5682b79a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "149f1e43_785f925d",
+        "filename": "dashboard/dashboard/pinpoint/models/results2.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-11-18T18:32:04Z",
+      "side": 1,
+      "message": "Mild amusement about the reaction of future maintainers?\n\nChanged, in any case.",
+      "parentUuid": "10b1da98_2cbb6429",
+      "revId": "c96de42a7ebbd6d602c70341e6cba4cc5682b79a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
