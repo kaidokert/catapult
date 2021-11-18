@@ -8,6 +8,14 @@ from __future__ import absolute_import
 
 import json
 
+from google.protobuf import empty_pb2
+
+from components import net
+from components.prpc import client as prpc_client
+from components.prpc import codes
+from components.prpc.test import test_pb2
+from components.prpc.test import test_prpc_pb2
+
 from dashboard.services import request
 
 API_BASE_URL = 'https://cr-buildbucket.appspot.com/api/buildbucket/v1/'
