@@ -389,6 +389,30 @@
       },
       "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d64d5a7_43535307",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1512169
+      },
+      "writtenOn": "2021-11-18T07:01:04Z",
+      "side": 1,
+      "message": "No, I didn\u0027t forget. This change is needed because it in |assertCalls| arguments. I checked, without this the test failing.",
+      "parentUuid": "8856a771_2c5e8582",
+      "range": {
+        "startLine": 2511,
+        "startChar": 44,
+        "endLine": 2511,
+        "endChar": 61
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
