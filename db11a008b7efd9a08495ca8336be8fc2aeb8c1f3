@@ -413,6 +413,30 @@
       },
       "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bbeb84b_50b9b0fb",
+        "filename": "devil/devil/android/device_utils_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2511,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2021-11-19T01:05:50Z",
+      "side": 1,
+      "message": "Ok. Your previous reply made me think you were making a code change here.",
+      "parentUuid": "1d64d5a7_43535307",
+      "range": {
+        "startLine": 2511,
+        "startChar": 44,
+        "endLine": 2511,
+        "endChar": 61
+      },
+      "revId": "db11a008b7efd9a08495ca8336be8fc2aeb8c1f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
