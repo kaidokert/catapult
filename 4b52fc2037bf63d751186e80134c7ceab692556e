@@ -70,6 +70,24 @@
       "parentUuid": "4e035441_06583040",
       "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a5c4c5_a39d2b53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-11-19T18:05:35Z",
+      "side": 1,
+      "message": "I found another error - screenshot on Windows doesn\u0027t contain full screen. Patchset 4 fixes this bug, but testScreenshot still fails is CI. At the same time in my Windows machines everything works fine, test passes. Because testScreenshot fails on pixel search step, screenshot is taking without errors, but there is no required pixel on screenshot. Maybe there are some problems with Windows color profile or with mulptiple screens.\nAs solution I can suggests to disable test on windows as it was before changes. Maybe create an issue to investigate this problem on CI machines.",
+      "parentUuid": "d7806dc7_94611189",
+      "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
