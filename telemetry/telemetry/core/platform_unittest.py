@@ -18,6 +18,10 @@ from telemetry.testing import tab_test_case
 
 class PlatformScreenshotTest(tab_test_case.TabTestCase):
 
+  @classmethod
+  def CustomizeBrowserOptions(cls, options):
+    options.AppendExtraBrowserArgs('--force-color-profile=srgb')
+
   def testScreenshotSupported(self):
     if self._platform.GetOSName() == 'android':
       self.assertTrue(self._platform.CanTakeScreenshot())
@@ -25,7 +29,7 @@ class PlatformScreenshotTest(tab_test_case.TabTestCase):
   # Run this test in serial to avoid multiple browsers pop up on the screen.
   # Disabled: Mac: crbug.com/660587, ChromeOs: crbug.com/944366.
   @decorators.Isolated
-  @decorators.Disabled('mac', 'chromeos', 'win')
+  @decorators.Disabled('mac', 'chromeos')
   def testScreenshot(self):
     if not self._platform.CanTakeScreenshot():
       self.skipTest('Platform does not support screenshots, skipping test.')

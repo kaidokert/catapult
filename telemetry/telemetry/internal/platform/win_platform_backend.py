@@ -183,8 +183,7 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
     return True
 
   def TakeScreenshot(self, file_path):
-    width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
-    height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+    width, height = self.GetScreenResolution()
     screen_win = win32gui.GetDesktopWindow()
     win_dc = None
     screen_dc = None
@@ -214,6 +213,15 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
       if win_dc:
         win32gui.ReleaseDC(screen_win, win_dc)
     return True
+
+  def GetScreenResolution(self):
+    # SetProcessDPIAware sets the process-default DPI awareness to
+    # system-DPI awareness.
+    # SM_CXSCREEN (width of the screen of the primary display monitor)
+    # SM_CYSCREEN (height of the screen of the primary display monitor)
+    ctypes.windll.user32.SetProcessDPIAware()
+    return (ctypes.windll.user32.GetSystemMetrics(win32con.SM_CXSCREEN),
+            ctypes.windll.user32.GetSystemMetrics(win32con.SM_CYSCREEN))
 
   def CanFlushIndividualFilesFromSystemCache(self):
     return True
