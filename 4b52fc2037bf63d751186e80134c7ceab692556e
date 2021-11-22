@@ -88,6 +88,24 @@
       "parentUuid": "d7806dc7_94611189",
       "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abb5e76a_d0e0534b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-22T17:39:04Z",
+      "side": 1,
+      "message": "I agree. I don\u0027t know what\u0027s causing the test to fail on Windows in the CQ. So we have to keep it disabled on Windows for now.\n\nThanks for your investigations.",
+      "parentUuid": "89a5c4c5_a39d2b53",
+      "revId": "4b52fc2037bf63d751186e80134c7ceab692556e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
