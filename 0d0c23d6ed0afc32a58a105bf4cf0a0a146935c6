@@ -16,6 +16,69 @@
       "message": "Disable testScreenshot on Windows",
       "revId": "0d0c23d6ed0afc32a58a105bf4cf0a0a146935c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0383e03_e8498b95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-22T19:17:30Z",
+      "side": 1,
+      "message": "A couple of nits below...",
+      "revId": "0d0c23d6ed0afc32a58a105bf4cf0a0a146935c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "436544fa_5bb29f16",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-22T19:17:30Z",
+      "side": 1,
+      "message": "Seems better to use win32con.SM_CXSCREEN, as in the original code.",
+      "range": {
+        "startLine": 221,
+        "startChar": 50,
+        "endLine": 221,
+        "endChar": 51
+      },
+      "revId": "0d0c23d6ed0afc32a58a105bf4cf0a0a146935c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "697d2743_aecb037a",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-22T19:17:30Z",
+      "side": 1,
+      "message": "Use integer division: width * scale // 100",
+      "range": {
+        "startLine": 230,
+        "startChar": 11,
+        "endLine": 230,
+        "endChar": 35
+      },
+      "revId": "0d0c23d6ed0afc32a58a105bf4cf0a0a146935c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
