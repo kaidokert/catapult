@@ -38,7 +38,7 @@ class CrOSInterfaceTest(unittest.TestCase):
       cri.RmRF(tmp_file)
       cri.PushContents(test_contents, tmp_file)
       contents = cri.GetFileContents(tmp_file)
-      self.assertEquals(contents, test_contents)
+      self.assertEqual(contents, test_contents)
 
   @decorators.Enabled('chromeos')
   def testExists(self):
@@ -368,31 +368,31 @@ class CrOSInterfaceTest(unittest.TestCase):
 
     mock_run_cmd.return_value = ('', 'Host key verification failed')
     self.assertRaises(cros_interface.LoginException, cri.TryLogin)
-    self.assertRaisesRegexp(cros_interface.LoginException,
-                            r'.*host key verification failed..*', cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.LoginException,
+                           r'.*host key verification failed..*', cri.TryLogin)
 
     mock_run_cmd.return_value = ('', 'Operation timed out')
-    self.assertRaisesRegexp(cros_interface.LoginException,
-                            r'Timed out while logging into.*', cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.LoginException,
+                           r'Timed out while logging into.*', cri.TryLogin)
 
     mock_run_cmd.return_value = ('', 'UNPROTECTED PRIVATE KEY FILE!')
-    self.assertRaisesRegexp(cros_interface.LoginException,
-                            r'Permissions for .* are too open. To fix this.*',
-                            cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.LoginException,
+                           r'Permissions for .* are too open. To fix this.*',
+                           cri.TryLogin)
 
     mock_run_cmd.return_value = (
         '', 'Permission denied (publickey,keyboard-interactive)')
-    self.assertRaisesRegexp(cros_interface.KeylessLoginRequiredException,
-                            r'Need to set up ssh auth for .*', cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.KeylessLoginRequiredException,
+                           r'Need to set up ssh auth for .*', cri.TryLogin)
 
     mock_run_cmd.return_value = ('', 'Fallback error case')
-    self.assertRaisesRegexp(cros_interface.LoginException,
-                            r'While logging into .*, got .*', cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.LoginException,
+                           r'While logging into .*, got .*', cri.TryLogin)
 
     mock_run_cmd.return_value = ('', 'Could not resolve hostname')
-    self.assertRaisesRegexp(cros_interface.DNSFailureException,
-                            r'Unable to resolve the hostname for:.*',
-                            cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.DNSFailureException,
+                           r'Unable to resolve the hostname for:.*',
+                           cri.TryLogin)
 
   @decorators.Enabled('chromeos')
   @mock.patch.object(cros_interface.CrOSInterface, 'RunCmdOnDevice')
@@ -400,9 +400,9 @@ class CrOSInterfaceTest(unittest.TestCase):
     mock_run_cmd.return_value = ('notrooot', '')
     cri = cros_interface.CrOSInterface(
         "testhostname", 22, options_for_unittests.GetCopy().cros_ssh_identity)
-    self.assertRaisesRegexp(cros_interface.LoginException,
-                            r'Logged into .*, expected \$USER=root, but got .*',
-                            cri.TryLogin)
+    self.assertRaisesRegex(cros_interface.LoginException,
+                           r'Logged into .*, expected \$USER=root, but got .*',
+                           cri.TryLogin)
 
   @decorators.Enabled('chromeos')
   @mock.patch.object(cros_interface.CrOSInterface, 'RunCmdOnDevice')

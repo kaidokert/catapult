@@ -118,10 +118,9 @@ class TracingBackendUnittest(unittest.TestCase):
         'Tracing.hasCompleted', lambda req: {})
     backend = tracing_backend.TracingBackend(self._inspector_socket)
     config = tracing_config.TracingConfig()
-    self.assertRaisesRegexp(
-        tracing_backend.TracingUnexpectedResponseException,
-        'Tracing is already started',
-        backend.StartTracing, config.chrome_trace_config)
+    self.assertRaisesRegex(tracing_backend.TracingUnexpectedResponseException,
+                           'Tracing is already started', backend.StartTracing,
+                           config.chrome_trace_config)
 
   def testStopTracingFailure(self):
     self._inspector_socket.AddResponseHandler('Tracing.start', lambda req: {})
@@ -133,10 +132,8 @@ class TracingBackendUnittest(unittest.TestCase):
     backend = tracing_backend.TracingBackend(self._inspector_socket)
     config = tracing_config.TracingConfig()
     backend.StartTracing(config._chrome_trace_config)
-    self.assertRaisesRegexp(
-        tracing_backend.TracingUnexpectedResponseException,
-        'Tracing had an error',
-        backend.StopTracing)
+    self.assertRaisesRegex(tracing_backend.TracingUnexpectedResponseException,
+                           'Tracing had an error', backend.StopTracing)
 
   def testStartTracingWithoutCollection(self):
     self._inspector_socket.AddResponseHandler('Tracing.start', lambda req: {})
@@ -153,7 +150,7 @@ class TracingBackendUnittest(unittest.TestCase):
     config = tracing_config.TracingConfig()
     backend.StartTracing(config._chrome_trace_config)
     backend.StopTracing()
-    with self.assertRaisesRegexp(AssertionError, 'Data not collected from .*'):
+    with self.assertRaisesRegex(AssertionError, 'Data not collected from .*'):
       backend.StartTracing(config._chrome_trace_config)
 
 

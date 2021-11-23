@@ -35,13 +35,13 @@ class DecoratorsUnitTest(unittest.TestCase):
     self.assertNotEquals(CreateFooCached(1), CreateFooCached(2))
 
     self.assertNotEquals(CreateFooUncached(1), CreateFooUncached(1))
-    self.assertEquals(CreateFooCached(1), CreateFooCached(1))
+    self.assertEqual(CreateFooCached(1), CreateFooCached(1))
 
   def testCacheableMemberCachesOnlyForSameArgs(self):
     foo = Foo()
     value_of_one = foo.GetCountCached(1)
 
-    self.assertEquals(value_of_one, foo.GetCountCached(1))
+    self.assertEqual(value_of_one, foo.GetCountCached(1))
     self.assertNotEquals(value_of_one, foo.GetCountCached(2))
 
   def testCacheableMemberHasSeparateCachesForSiblingInstances(self):
