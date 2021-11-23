@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7d58a7f_1814f75e",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-11-23T05:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "436544fa_5bb29f16",
+      "range": {
+        "startLine": 221,
+        "startChar": 50,
+        "endLine": 221,
+        "endChar": 51
+      },
+      "revId": "0d0c23d6ed0afc32a58a105bf4cf0a0a146935c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "697d2743_aecb037a",
@@ -71,6 +95,30 @@
       "writtenOn": "2021-11-22T19:17:30Z",
       "side": 1,
       "message": "Use integer division: width * scale // 100",
+      "range": {
+        "startLine": 230,
+        "startChar": 11,
+        "endLine": 230,
+        "endChar": 35
+      },
+      "revId": "0d0c23d6ed0afc32a58a105bf4cf0a0a146935c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3e2db3d_212550f1",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-11-23T05:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "697d2743_aecb037a",
       "range": {
         "startLine": 230,
         "startChar": 11,
