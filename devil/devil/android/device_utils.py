@@ -1469,7 +1469,8 @@ class DeviceUtils(object):
                       large_output=False,
                       raw_output=False,
                       timeout=None,
-                      retries=None):
+                      retries=None,
+                      compressed_output=False):
     """Run an ADB shell command.
 
     The command to run |cmd| should be a sequence of program arguments
@@ -1514,6 +1515,7 @@ class DeviceUtils(object):
           (no splitting into lines).
       timeout: timeout in seconds
       retries: number of retries
+      compressed_output: whether the temp file for output is compressed
 
     Returns:
       If single_line is False, the output of the command as a list of lines,
@@ -1565,9 +1567,19 @@ class DeviceUtils(object):
                        'device and read results from file.')
           try:
             handle_large_command(large_output_cmd)
-            return self.ReadFile(large_output_file.name, force_pull=True)
+            if compressed_output:
+              return self.ReadFile(large_output_file.name,
+                                   force_pull=True,
+                                   encoding=None)
+            else:
+              return self.ReadFile(large_output_file.name, force_pull=True)
           except device_errors.AdbShellCommandFailedError as exc:
-            output = self.ReadFile(large_output_file.name, force_pull=True)
+            if compressed_output:
+              output = self.ReadFile(large_output_file.name,
+                                     force_pull=True,
+                                     encoding=None)
+            else:
+              output = self.ReadFile(large_output_file.name, force_pull=True)
             raise device_errors.AdbShellCommandFailedError(
                 cmd, output, exc.status, exc.device_serial)
       else:
