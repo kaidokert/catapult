@@ -16,6 +16,29 @@
       "message": "PTAL.",
       "revId": "b664bf4cf9871e7448f5b724d87da46591d67373",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f430768e_dafbe7a4",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1473,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-23T08:16:26Z",
+      "side": 1,
+      "message": "As a general function that runs arbitrary shell command, RunShellCommand shouldn\u0027t care whether the output is compressed or not. Instead, it should care whether the output is binary data or text. Some day, we might run a command that generates other kind of binary output.\n\nI think the easiest solution is to add a parameter named \u0027encoding\u0027, with default value of \u0027utf-8\u0027. This function simply forwards the parameter to self.ReadFile. The caller would set encoding\u003dNone to indicate binary output expected, and use the default value to indicate text output.",
+      "range": {
+        "startLine": 1473,
+        "startChar": 22,
+        "endLine": 1473,
+        "endChar": 39
+      },
+      "revId": "b664bf4cf9871e7448f5b724d87da46591d67373",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
