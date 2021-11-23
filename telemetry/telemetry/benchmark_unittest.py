@@ -50,22 +50,22 @@ class BenchmarkTest(unittest.TestCase):
     b = TestBenchmark(story_module.Story(
         name='test story',
         shared_state_class=shared_page_state.SharedPageState))
-    with self.assertRaisesRegexp(
-        Exception, 'containing only telemetry.page.Page stories'):
+    with self.assertRaisesRegex(Exception,
+                                'containing only telemetry.page.Page stories'):
       b.Run(self.options)
 
     state_class = story_module.SharedState
     b = TestBenchmark(story_module.Story(
         name='test benchmark',
         shared_state_class=state_class))
-    with self.assertRaisesRegexp(
-        Exception, 'containing only telemetry.page.Page stories'):
+    with self.assertRaisesRegex(Exception,
+                                'containing only telemetry.page.Page stories'):
       b.Run(self.options)
 
     b = TestBenchmark(android.AndroidStory(
         name='test benchmark', start_intent=None))
-    with self.assertRaisesRegexp(
-        Exception, 'containing only telemetry.page.Page stories'):
+    with self.assertRaisesRegex(Exception,
+                                'containing only telemetry.page.Page stories'):
       b.Run(self.options)
 
   @mock.patch('telemetry.internal.story_runner.RunStorySet')
@@ -91,7 +91,7 @@ class BenchmarkTest(unittest.TestCase):
 
     type_error_regex = (
         '"UnknownTestType" is not a PageTest or a StoryTest')
-    with self.assertRaisesRegexp(TypeError, type_error_regex):
+    with self.assertRaisesRegex(TypeError, type_error_regex):
       UnknownTestTypeBenchmark().CreatePageTest(options=None)
 
   def testGetOwners(self):

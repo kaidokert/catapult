@@ -47,7 +47,7 @@ class TracingControllerTest(tab_test_case.TabTestCase):
     self.assertFalse(self.tracing_controller.is_tracing_running)
 
     # Cleaning up the builder raises the exception.
-    with self.assertRaisesRegexp(Exception, 'Intentional Tracing Exception'):
+    with self.assertRaisesRegex(Exception, 'Intentional Tracing Exception'):
       trace_builder.CleanUpTraceData()
 
   @decorators.Isolated
