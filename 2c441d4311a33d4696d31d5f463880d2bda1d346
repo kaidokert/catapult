@@ -16,6 +16,23 @@
       "message": "Hi Wenbin, Would you help review this CL? (and a bunch of follow-ups...)",
       "revId": "2c441d4311a33d4696d31d5f463880d2bda1d346",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9243d5_4c70765a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-11-24T08:47:15Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "2c441d4311a33d4696d31d5f463880d2bda1d346",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
