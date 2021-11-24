@@ -22,6 +22,30 @@
       },
       "revId": "d1c16dd8ece1f54f7406cdbf8503c9521bc454ce",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93503cd9_d02de31e",
+        "filename": "systrace/systrace/tracing_agents/atrace_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-11-24T21:06:39Z",
+      "side": 1,
+      "message": "https://chromium-review.googlesource.com/c/catapult/+/3299015\nFixed in another CL. Thanks!",
+      "parentUuid": "68f85986_af4d1710",
+      "range": {
+        "startLine": 278,
+        "startChar": 6,
+        "endLine": 281,
+        "endChar": 43
+      },
+      "revId": "d1c16dd8ece1f54f7406cdbf8503c9521bc454ce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
