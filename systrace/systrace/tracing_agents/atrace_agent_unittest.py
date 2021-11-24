@@ -96,7 +96,7 @@ class AtraceAgentTest(unittest.TestCase):
   @decorators.HostOnlyTest
   def test_extract_tgids(self):
     with open(ATRACE_PROCFS_DUMP, 'r') as f1, \
-        open(ATRACE_EXTRACTED_TGIDS, 'r') as f2:
+        open(ATRACE_EXTRACTED_TGIDS, 'rb') as f2:
 
       atrace_procfs_dump = f1.read()
       atrace_procfs_extracted = f2.read()
@@ -108,9 +108,9 @@ class AtraceAgentTest(unittest.TestCase):
 
   @decorators.HostOnlyTest
   def test_fix_missing_tgids(self):
-    with open(ATRACE_EXTRACTED_TGIDS, 'r') as f1, \
-        open(ATRACE_MISSING_TGIDS, 'r') as f2, \
-        open(ATRACE_FIXED_TGIDS, 'r') as f3:
+    with open(ATRACE_EXTRACTED_TGIDS, 'rb') as f1, \
+        open(ATRACE_MISSING_TGIDS, 'rb') as f2, \
+        open(ATRACE_FIXED_TGIDS, 'rb') as f3:
 
       atrace_data = f2.read()
       tgid_map = eval(f1.read())
