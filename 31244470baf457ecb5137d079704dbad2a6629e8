@@ -16,6 +16,23 @@
       "message": "Looks like the original fix did not handle the tgid mapping well. It could still cause issue when trying to fix missing tgids. Updated to ensure the extracted tgid values are in binary. ",
       "revId": "31244470baf457ecb5137d079704dbad2a6629e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1bc73c3_d52c9d94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-11-24T23:01:34Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "31244470baf457ecb5137d079704dbad2a6629e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
