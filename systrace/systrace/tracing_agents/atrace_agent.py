@@ -286,9 +286,6 @@ class AtraceAgent(tracing_agents.TracingAgent):
             self._tracer_args + ['--async_stop'], raw_output=True,
             large_output=True, check_return=True,
             timeout=ADB_LARGE_OUTPUT_TIMEOUT)
-      print('DEBUG: Length of result from large output run: %d' % len(result))
-      print('DEBUG: Type of result: %s' % type(result))
-      print('DEBUG: First 30 chars: %s' % result[:30])
 
     return six.ensure_binary(result)
 
@@ -302,12 +299,6 @@ class AtraceAgent(tracing_agents.TracingAgent):
     else:
       raise IOError('Unable to get atrace data. Did you forget adb root?')
     output = re.sub(ADB_IGNORE_REGEXP, '', result[data_start:])
-    print('DEBUG-2: Length of result from large output run: %d' % len(result))
-    print('DEBUG-2: Type of result: %s' % type(result))
-    print('DEBUG-2: First 30 chars: %s' % result[:30])
-    print('DEBUG-2: data_start: %s' % data_start)
-    print('DEBUG-2: First 30 chars of final output: %s' % output[:30])
-    print('DEBUG-2: Type of final output: %s' % type(output))
     return output
 
   def _preprocess_trace_data(self, trace_data):
@@ -414,7 +405,7 @@ def fix_missing_tgids(trace_data, pid2_tgid):
 
   # matches something like:
   # Binder_2-895 (-----)
-  trace_data = re.sub(r'^\s*(\S+)-(\d+)\s+(\(\S+\))', repl, trace_data,
+  trace_data = re.sub(br'^\s*(\S+)-(\d+)\s+(\(\S+\))', repl, trace_data,
                       flags=re.MULTILINE)
   return trace_data
 
