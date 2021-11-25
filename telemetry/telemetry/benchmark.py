@@ -24,7 +24,6 @@ Owner = decorators.Info # pylint: disable=invalid-name
 
 class InvalidOptionsError(Exception):
   """Raised for invalid benchmark options."""
-  pass
 
 
 class Benchmark(command_line.Command):
@@ -81,7 +80,7 @@ class Benchmark(command_line.Command):
         return True
     return False
 
-  def Run(self, finder_options):
+  def Run(self, finder_options):  # pylint: disable=arguments-differ
     """Do not override this method."""
     finder_options.target_platforms = self.GetSupportedPlatformNames(
         self.SUPPORTED_PLATFORMS)
@@ -134,11 +133,9 @@ class Benchmark(command_line.Command):
 
   def CustomizeOptions(self, finder_options, possible_browser=None):
     """Add options that are required by this benchmark."""
-    pass
 
   def SetExtraBrowserOptions(self, browser_options):
     """Set extra browser command line options"""
-    pass
 
   def GetBugComponents(self):
     """Return the benchmark's Monorail component as a string."""
