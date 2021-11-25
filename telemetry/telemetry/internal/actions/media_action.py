@@ -17,7 +17,7 @@ class MediaAction(page_action.PageAction):
     utils.InjectJavaScript(tab, 'media_action.js')
 
   def RunAction(self, tab):
-    super(MediaAction, self).RunAction(tab)
+    raise NotImplementedError()
 
   def WaitForEvent(self, tab, selector, event_name, timeout_in_seconds):
     """Halts media action until the selector's event is fired.
