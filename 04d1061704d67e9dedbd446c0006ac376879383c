@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "717c87d6_6a4bcace",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-11-26T01:29:49Z",
+      "side": 1,
+      "message": "Don\u0027t know this code well, but looks reasonable. LGTM",
+      "revId": "04d1061704d67e9dedbd446c0006ac376879383c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
