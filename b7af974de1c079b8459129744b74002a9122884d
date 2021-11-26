@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd21a71a_e3cb2fbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-11-26T01:35:46Z",
+      "side": 1,
+      "message": "lgtm",
+      "revId": "b7af974de1c079b8459129744b74002a9122884d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdea760e_56f064a8",
@@ -14,6 +31,24 @@
       "writtenOn": "2021-11-23T23:05:30Z",
       "side": 1,
       "message": "thinking more, this has been annoying error message on every script that imports something in cataplt. can we remove this message entirely?",
+      "revId": "b7af974de1c079b8459129744b74002a9122884d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77ecf86e_caf701f1",
+        "filename": "tracing/tracing/proto/histogram_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2021-11-26T01:35:46Z",
+      "side": 1,
+      "message": "I don\u0027t really know how this works and I\u0027m ok either way. wenbinzhang@ I see you on the blame list, WDYT? Can we remove this warning?",
+      "parentUuid": "fdea760e_56f064a8",
       "revId": "b7af974de1c079b8459129744b74002a9122884d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
