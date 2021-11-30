@@ -36,8 +36,6 @@ DISABLE_FUZZY_URL_MATCHING = '--disable-fuzzy-url-matching'
 
 class ReplayError(Exception):
   """Catch-all exception for the module."""
-  pass
-
 
 class ReplayNotFoundError(ReplayError):
   def __init__(self, label, path):
@@ -50,7 +48,7 @@ class ReplayNotFoundError(ReplayError):
       path: A string of the path in this error.
 
     """
-    super(ReplayNotFoundError, self).__init__()
+    super().__init__()
     self.args = (label, path)
 
   def __str__(self):
@@ -62,7 +60,7 @@ class ReplayNotStartedError(ReplayError):
   pass
 
 
-class ReplayServer(object):
+class ReplayServer():
   """Start and Stop Web Page Replay.
 
   Web Page Replay is a proxy that can record and "replay" web pages with
@@ -140,7 +138,7 @@ class ReplayServer(object):
         print(subprocess.check_output(
             ['go', 'build', os.path.join(go_folder, 'wpr.go')]))
       except subprocess.CalledProcessError:
-        exit(1)
+        sys.exit(1)
       os.chdir(cur_cwd)
 
       return os.path.join(go_folder, 'wpr')
@@ -324,7 +322,7 @@ class ReplayServer(object):
       return dict(self._started_ports)
     except Exception:
       self.StopServer(logging.ERROR)
-      raise ReplayNotStartedError('Web Page Replay failed to start.')
+      raise ReplayNotStartedError('Web Page Replay failed to start.') from None
 
   def _IsReplayProcessStarted(self):
     if not self.replay_process:

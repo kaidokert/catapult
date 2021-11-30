@@ -34,12 +34,13 @@ def IsRunningOnCrosDevice():
 def GetHostOsName():
   if IsRunningOnCrosDevice():
     return 'chromeos'
-  elif sys.platform.startswith('linux'):
+  if sys.platform.startswith('linux'):
     return 'linux'
-  elif sys.platform == 'darwin':
+  if sys.platform == 'darwin':
     return 'mac'
-  elif sys.platform == 'win32':
+  if sys.platform == 'win32':
     return 'win'
+  return None
 
 
 def GetHostArchName():
@@ -56,10 +57,8 @@ def IsExecutable(path):
   if os.path.isfile(path):
     if hasattr(os, 'name') and os.name == 'nt':
       return path.split('.')[-1].upper() in _ExecutableExtensions()
-    else:
-      return os.access(path, os.X_OK)
-  else:
-    return False
+    return os.access(path, os.X_OK)
+  return False
 
 
 def _AddDirToPythonPath(*path_parts):
@@ -98,8 +97,7 @@ def TimeoutDeco(func, default_timeout):
   def RunWithTimeout(*args, **kwargs):
     if 'timeout' in kwargs:
       timeout = kwargs['timeout']
-    else:
-      timeout = default_timeout
+    timeout = default_timeout
     try:
       return timeout_retry.Run(func, timeout, 0, args=args)
     except reraiser_thread.TimeoutError:
@@ -156,4 +154,3 @@ class TimeoutException(Exception):
   It is possible that waiting for a longer period of time would result in a
   successful operation.
   """
-  pass
