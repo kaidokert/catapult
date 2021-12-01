@@ -88,9 +88,8 @@ def _LockImplWin(target_file, flags):
   except pywintypes.error as exc_value:
     if exc_value.args[0] == 33:
       raise LockException('Error trying acquiring lock of %s: %s' %
-                          (target_file.name, exc_value.args[2]))
-    else:
-      raise
+                          (target_file.name, exc_value.args[2])) from exc_value
+    raise
 
 
 def _UnlockImplWin(target_file):
@@ -113,9 +112,8 @@ def _LockImplPosix(target_file, flags):
   except IOError as exc_value:
     if exc_value.args[0] == 11 or exc_value.args[0] == 35:
       raise LockException('Error trying acquiring lock of %s: %s' %
-                          (target_file.name, exc_value.args[1]))
-    else:
-      raise
+                          (target_file.name, exc_value.args[1])) from exc_value
+    raise
 
 
 def _UnlockImplPosix(target_file):
