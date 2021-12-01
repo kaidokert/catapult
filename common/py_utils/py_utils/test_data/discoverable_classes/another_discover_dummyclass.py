@@ -15,20 +15,20 @@ from discoverable_classes import discover_dummyclass
 
 class _PrivateDummyException(discover_dummyclass.DummyException):
   def __init__(self):
-    super(_PrivateDummyException, self).__init__()
+    discover_dummyclass.DummyException.__init__(self)
 
 
 class DummyExceptionImpl1(_PrivateDummyException):
   def __init__(self):
-    super(DummyExceptionImpl1, self).__init__()
+    _PrivateDummyException.__init__(self)
 
 
 class DummyExceptionImpl2(_PrivateDummyException):
   def __init__(self):
-    super(DummyExceptionImpl2, self).__init__()
+    _PrivateDummyException.__init__(self)
 
 
 class DummyExceptionWithParameterImpl1(_PrivateDummyException):
   def __init__(self, parameter):
-    super(DummyExceptionWithParameterImpl1, self).__init__()
+    super().__init__()
     del parameter
