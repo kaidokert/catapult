@@ -8,5 +8,5 @@ from discoverable_classes import discover_dummyclass
 
 class DummyExceptionWithParameterImpl2(discover_dummyclass.DummyException):
   def __init__(self, parameter1, parameter2):
-    super(DummyExceptionWithParameterImpl2, self).__init__()
+    super().__init__()
     del parameter1, parameter2
