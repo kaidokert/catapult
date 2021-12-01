@@ -219,4 +219,3 @@ class BinaryManagerTest(fake_filesystem_unittest.TestCase):
     manager = binary_manager.BinaryManager([self.base_config])
     found_path = manager.LocalPath('dep_2', 'android', 'x86', 'l')
     self.assertEqual(self.expected_dep2_android_file, found_path)
-

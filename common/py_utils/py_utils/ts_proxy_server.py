@@ -28,7 +28,6 @@ _TSPROXY_PATH = os.path.join(
 
 class TsProxyServerError(Exception):
   """Catch-all exception for tsProxy Server."""
-  pass
 
 def ParseTsProxyPortFromOutput(output_line):
   port_re = re.compile(
@@ -38,9 +37,10 @@ def ParseTsProxyPortFromOutput(output_line):
   m = port_re.match(output_line)
   if m:
     return int(m.group('port'))
+  return None
 
 
-class TsProxyServer(object):
+class TsProxyServer():
   """Start and stop tsproxy.
 
   TsProxy provides basic latency, download and upload traffic shaping. This
@@ -92,7 +92,7 @@ class TsProxyServer(object):
       logging.info('Tsproxy commandline: %s', cmd_line)
     # In python3 subprocess handles encoding/decoding; this warns if it won't be UTF-8.
     if locale.getpreferredencoding() != 'UTF-8':
-      logging.warn('Decoding will use %s instead of UTF-8', locale.getpreferredencoding())
+      logging.warning('Decoding will use %s instead of UTF-8', locale.getpreferredencoding())
     # In python3 universal_newlines forces subprocess to encode/decode, allowing per-line buffering.
     self._proc = subprocess.Popen(
         cmd_line, stdout=subprocess.PIPE, stdin=subprocess.PIPE,
@@ -116,7 +116,7 @@ class TsProxyServer(object):
       if err:
         logging.error('Error stopping WPR server:\n%s', err)
       raise TsProxyServerError(
-          'Error starting tsproxy: timed out after %s seconds' % timeout)
+          'Error starting tsproxy: timed out after %s seconds' % timeout) from None
 
   def _IsStarted(self):
     assert not self._is_running
@@ -127,7 +127,7 @@ class TsProxyServer(object):
     output_line = self._ReadLineTsProxyStdout(timeout=5)
     logging.debug('TsProxy output: %s', output_line)
     self._port = ParseTsProxyPortFromOutput(output_line)
-    return self._port != None
+    return self._port is not None
 
   def _ReadLineTsProxyStdout(self, timeout):
     def ReadSingleLine():
