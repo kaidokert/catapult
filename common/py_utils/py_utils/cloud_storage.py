@@ -75,11 +75,13 @@ class CloudStorageError(Exception):
             '  2. If you have a @google.com account, use that account.\n'
             '  3. For the project-id, just enter 0.' % command)
 
-
-class PermissionError(CloudStorageError):
+# pylint: disable=C0103
+class PermissionError_(CloudStorageError):
 
   def __init__(self):
-    super(PermissionError, self).__init__(
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
+    super(PermissionError_, self).__init__(
         'Attempted to access a file from Cloud Storage but you don\'t '
         'have permission. ' + self._GetConfigInstructions())
 
@@ -87,6 +89,8 @@ class PermissionError(CloudStorageError):
 class CredentialsError(CloudStorageError):
 
   def __init__(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(CredentialsError, self).__init__(
         'Attempted to access a file from Cloud Storage but you have no '
         'configured credentials. ' + self._GetConfigInstructions())
@@ -171,7 +175,7 @@ def GetErrorObjectForCloudStorageStderr(stderr):
   if ('status=403' in stderr or 'status 403' in stderr or
       '403 Forbidden' in stderr or
       re.match('.*403.*does not have .* access to .*', stderr)):
-    return PermissionError()
+    return PermissionError_()
   if (stderr.startswith('InvalidUriError') or 'No such object' in stderr or
       'No URLs matched' in stderr or 'One or more URLs matched no' in stderr):
     return NotFoundError(stderr)
@@ -433,7 +437,7 @@ def Insert(bucket, remote_path, local_path, publicly_readable=False):
   return cloud_filepath.view_url
 
 
-class CloudFilepath(object):
+class CloudFilepath():
   def __init__(self, bucket, remote_path):
     self.bucket = bucket
     self.remote_path = remote_path
@@ -486,7 +490,7 @@ def GetIfHashChanged(cs_path, download_path, bucket, file_hash):
     True if the binary was changed.
   Raises:
     CredentialsError if the user has no configured credentials.
-    PermissionError if the user does not have permission to access the bucket.
+    PermissionError_ if the user does not have permission to access the bucket.
     NotFoundError if the file is not in the given bucket in cloud_storage.
   """
   with _FileLock(download_path):
@@ -505,7 +509,7 @@ def GetIfChanged(file_path, bucket):
     True if the binary was changed.
   Raises:
     CredentialsError if the user has no configured credentials.
-    PermissionError if the user does not have permission to access the bucket.
+    PermissionError_ if the user does not have permission to access the bucket.
     NotFoundError if the file is not in the given bucket in cloud_storage.
   """
   with _FileLock(file_path):
