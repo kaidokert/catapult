@@ -72,9 +72,9 @@ class CloudStorageFakeFsUnitTest(BaseFakeFsUnitTest):
             'Failure: No handler was ready to authenticate.']
     self._AssertRunCommandRaisesError(strs, cloud_storage.CredentialsError)
 
-  def testRunCommandPermissionError(self):
+  def testRunCommandPermissionError_(self):
     strs = ['status=403', 'status 403', '403 Forbidden']
-    self._AssertRunCommandRaisesError(strs, cloud_storage.PermissionError)
+    self._AssertRunCommandRaisesError(strs, cloud_storage.PermissionError_)
 
   def testRunCommandNotFoundError(self):
     strs = ['InvalidUriError', 'No such object', 'No URLs matched',
@@ -246,11 +246,15 @@ class CloudStorageFakeFsUnitTest(BaseFakeFsUnitTest):
 class GetIfChangedTests(BaseFakeFsUnitTest):
 
   def setUp(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(GetIfChangedTests, self).setUp()
     self._orig_read_hash = cloud_storage.ReadHash
     self._orig_calculate_hash = cloud_storage.CalculateHash
 
   def tearDown(self):
+    # TODO(https://crbug.com/1262295): Change to super() after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(GetIfChangedTests, self).tearDown()
     cloud_storage.CalculateHash = self._orig_calculate_hash
     cloud_storage.ReadHash = self._orig_read_hash
@@ -430,4 +434,4 @@ class CloudStorageErrorHandlingTest(unittest.TestCase):
                           cloud_storage.CredentialsError)
     self.assertIsInstance(cloud_storage.GetErrorObjectForCloudStorageStderr(
         '403 Caller does not have storage.objects.list access to bucket '
-        'chrome-telemetry'), cloud_storage.PermissionError)
+        'chrome-telemetry'), cloud_storage.PermissionError_)
