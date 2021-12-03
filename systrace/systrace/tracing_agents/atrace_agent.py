@@ -250,12 +250,12 @@ class AtraceAgent(tracing_agents.TracingAgent):
     Note that prior to Api 23, --async-stop isn't working correctly. It
     doesn't stop tracing and clears trace buffer before dumping it rendering
     results unusable."""
+    compress_trace_data = '-z' in self._tracer_args
     if self._device_sdk_version < version_codes.MARSHMALLOW:
       is_trace_enabled_file = '%s/tracing_on' % self._tracing_path
       # Stop tracing first so new data won't arrive while dump is performed (it
       # may take a non-trivial time and tracing buffer may overflow).
       self._device_utils.WriteFile(is_trace_enabled_file, '0')
-      compress_trace_data = '-z' in self._tracer_args
       # For compressed trace data, we don't want encoding when adb shell reads
       # the temp output file. (crbug/1271668)
       if compress_trace_data:
@@ -275,13 +275,17 @@ class AtraceAgent(tracing_agents.TracingAgent):
           self._tracer_args + ['-t 0'], check_return=True)
     else:
       # On M+ --async_stop does everything necessary
-      result = self._device_utils.RunShellCommand(
-          self._tracer_args + ['--async_stop'], raw_output=True,
-          large_output=True, check_return=True,
-          timeout=ADB_LARGE_OUTPUT_TIMEOUT)
-      print('DEBUG: Length of result from large output run: %d' % len(result))
-      print('DEBUG: Type of result: %s' % type(result))
-      print('DEBUG: First 30 chars: %s' % result[:30])
+      if compress_trace_data:
+        result = self._device_utils.RunShellCommand(
+            self._tracer_args + ['--async_stop'], raw_output=True,
+            large_output=True, check_return=True,
+            timeout=ADB_LARGE_OUTPUT_TIMEOUT,
+            encoding=None)
+      else:
+        result = self._device_utils.RunShellCommand(
+            self._tracer_args + ['--async_stop'], raw_output=True,
+            large_output=True, check_return=True,
+            timeout=ADB_LARGE_OUTPUT_TIMEOUT)
 
     return six.ensure_binary(result)
 
@@ -295,12 +299,6 @@ class AtraceAgent(tracing_agents.TracingAgent):
     else:
       raise IOError('Unable to get atrace data. Did you forget adb root?')
     output = re.sub(ADB_IGNORE_REGEXP, '', result[data_start:])
-    print('DEBUG-2: Length of result from large output run: %d' % len(result))
-    print('DEBUG-2: Type of result: %s' % type(result))
-    print('DEBUG-2: First 30 chars: %s' % result[:30])
-    print('DEBUG-2: data_start: %s' % data_start)
-    print('DEBUG-2: First 30 chars of final output: %s' % output[:30])
-    print('DEBUG-2: Type of final output: %s' % type(output))
     return output
 
   def _preprocess_trace_data(self, trace_data):
@@ -346,7 +344,7 @@ def extract_tgids(trace_lines):
     result = re.match('^/proc/([0-9]+)/task/([0-9]+)', line)
     if result:
       parent_pid, tgid = result.group(1, 2)
-      tgid_2pid[tgid] = parent_pid
+      tgid_2pid[six.ensure_binary(tgid)] = six.ensure_binary(parent_pid)
 
   return tgid_2pid
 
@@ -397,17 +395,17 @@ def fix_missing_tgids(trace_data, pid2_tgid):
 
   def repl(m):
     tid = m.group(2)
-    if (int(tid) > 0 and m.group(1) != '<idle>' and m.group(3) == '(-----)'
+    if (int(tid) > 0 and m.group(1) != b'<idle>' and m.group(3) == b'(-----)'
         and tid in pid2_tgid):
       # returns Proc_name-PID (TGID)
       # Binder_2-381 (-----) becomes Binder_2-381 (128)
-      return m.group(1) + '-' + m.group(2) + ' ( ' + pid2_tgid[tid] + ')'
+      return m.group(1) + b'-' + m.group(2) + b' ( ' + pid2_tgid[tid] + b')'
 
     return m.group(0)
 
   # matches something like:
   # Binder_2-895 (-----)
-  trace_data = re.sub(r'^\s*(\S+)-(\d+)\s+(\(\S+\))', repl, trace_data,
+  trace_data = re.sub(br'^\s*(\S+)-(\d+)\s+(\(\S+\))', repl, trace_data,
                       flags=re.MULTILINE)
   return trace_data
 
