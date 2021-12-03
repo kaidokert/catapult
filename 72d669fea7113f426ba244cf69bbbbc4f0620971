@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "704bd525_769fb48d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/extension_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "is it ok to just remove the __init__() here?",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e4cf424_8107fd27",
+        "filename": "telemetry/telemetry/internal/backends/chrome/misc_web_contents_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 9
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "562e3041_dcbc019c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "372fc59f_b6d9182e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "903b3258_0c817dac",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_report_events_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9060b30f_70f15118",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto,",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b3b072_9d5f0477",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/display_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5c3836_fea66b46",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:52:51Z",
+      "side": 0,
+      "message": "ditto.",
+      "range": {
+        "startLine": 270,
+        "startChar": 6,
+        "endLine": 270,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
