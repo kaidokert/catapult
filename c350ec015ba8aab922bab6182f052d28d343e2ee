@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99da0ad5_9538113e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-12-03T21:08:37Z",
+      "side": 1,
+      "message": "The previous CL didn\u0027t remove the problematic logging line. This CL removes that log. I\u0027ll delete the previous build when it shows up in pinpoint traffic allocation so that automated jobs do not crash. ",
+      "revId": "c350ec015ba8aab922bab6182f052d28d343e2ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
