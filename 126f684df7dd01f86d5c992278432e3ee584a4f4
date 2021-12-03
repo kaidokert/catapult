@@ -16,6 +16,23 @@
       "message": "PTAL, no changes from original CL.",
       "revId": "126f684df7dd01f86d5c992278432e3ee584a4f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c7d918_3c7d9b82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-12-03T22:21:57Z",
+      "side": 1,
+      "message": "Sorry for the delay, been swamped w/ other things over the past two days.\n\nlgtm.",
+      "revId": "126f684df7dd01f86d5c992278432e3ee584a4f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
