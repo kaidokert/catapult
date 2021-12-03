@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf92c46_2ee8e360",
+        "filename": "common/py_utils/PRESUBMIT.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "Let\u0027s use the actual name (invalid-name in this case) instead of the code to make it more readable.",
+      "range": {
+        "startLine": 4,
+        "startChar": 18,
+        "endLine": 4,
+        "endChar": 23
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59e28aa_7fb0e1d4",
+        "filename": "common/py_utils/py_utils/__init__.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 65,
+        "startChar": 70,
+        "endLine": 65,
+        "endChar": 75
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfeb5845_e5a698ea",
+        "filename": "common/py_utils/py_utils/__init__.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "Can use kwargs.get(\u0027timeout\u0027, default_timeout).",
+      "range": {
+        "startLine": 99,
+        "startChar": 6,
+        "endLine": 100,
+        "endChar": 29
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "555470ac_5a42962f",
+        "filename": "common/py_utils/py_utils/cloud_storage_unittest.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "why we need this change?",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 21
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a192f7_ca8887bd",
+        "filename": "common/py_utils/py_utils/discover.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 178,
+        "startChar": 20,
+        "endLine": 178,
+        "endChar": 25
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49fdbbf1_faa070c1",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 315,
+        "startChar": 24,
+        "endLine": 315,
+        "endChar": 29
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90704a4_424874d5",
+        "filename": "common/py_utils/py_utils/webpagereplay_go_server.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-03T20:01:21Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 326,
+        "startChar": 40,
+        "endLine": 326,
+        "endChar": 45
+      },
+      "revId": "dde320ed7ed8b07799f97a4aa0bf0f0306129c68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
