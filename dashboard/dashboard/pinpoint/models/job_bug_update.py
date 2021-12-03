@@ -161,6 +161,7 @@ class DifferencesFoundBugUpdateBuilder(object):
 
   def BuildUpdate(self, tags, url):
     """Return _BugUpdateInfo for the differences."""
+    logging.debug('crbug/1215127 - Build Update running')
     if len(self._differences) == 0:
       raise ValueError("BuildUpdate called with 0 differences")
     differences = self._OrderedDifferencesByDelta()
@@ -211,13 +212,17 @@ class DifferencesFoundBugUpdateBuilder(object):
 
   def _OrderedDifferencesByDelta(self):
     """Return the list of differences sorted by absolute change."""
+    logging.debug('crbug/1215127 - ordering differences')
     if self._cached_ordered_diffs_by_delta is not None:
+      logging.debug('crbug/1215127 - returning catched differences')
       return self._cached_ordered_diffs_by_delta
 
     diffs_with_deltas = [(diff.MeanDelta(), diff)
                          for diff in self._differences
                          if diff.values_a and diff.values_b]
 
+    logging.debug('crbug/1215127 - improvement direction: %s',
+                  self._improvement_direction)
     if self._improvement_direction == anomaly.UP:
       # improvement is positive, regression is negative
       ordered_diffs = [
@@ -400,6 +405,8 @@ def _FormatDocumentationUrls(tags):
 
 
 def UpdatePostAndMergeDeferred(bug_update_builder, bug_id, tags, url, project):
+  logging.debug('crbug/1215127 - email: ', utils.GetEmail())
+  logging.debug('crbug/1215127 - Update Post running')
   if not bug_id:
     return
   commit_cache_key = bug_update_builder.GenerateCommitCacheKey()
