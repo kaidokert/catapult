@@ -16,6 +16,29 @@
       "message": "Sean believes the logging that caused issue is the diff.meanDelta call so I removed that one and added one to see what email returns when util tries to get email. ",
       "revId": "9b2afd42a1d71424ed5a00338f72e21b18d22079",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d2d77b_4a6836c5",
+        "filename": "dashboard/dashboard/pinpoint/models/job_bug_update.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2021-12-03T18:40:27Z",
+      "side": 1,
+      "message": "Add %s?",
+      "range": {
+        "startLine": 408,
+        "startChar": 40,
+        "endLine": 408,
+        "endChar": 41
+      },
+      "revId": "9b2afd42a1d71424ed5a00338f72e21b18d22079",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
