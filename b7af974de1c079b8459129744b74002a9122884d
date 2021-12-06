@@ -69,6 +69,24 @@
       "parentUuid": "77ecf86e_caf701f1",
       "revId": "b7af974de1c079b8459129744b74002a9122884d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dfeeca9_3a468dc0",
+        "filename": "tracing/tracing/proto/histogram_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-06T06:42:36Z",
+      "side": 1,
+      "message": "On perf waterfall, histogram_pb2.py is not needed and doesn\u0027t exist. So we always get this warning.\n\nOn Catapult CQ, histogram_pb2.py exists in the same directory as this file. With Python 3 (or Python 2 with absolute import enabled), a simple \"import histogram_pb2\" fails because it doesn\u0027t check the caller\u0027s directory, so we get this warning as well. Also, the relative import below succedes, so we get another warning from below.\n\nOn some other environments (webrtc is an example I\u0027m aware of), histogram_pb2.py is on Python sys.path, so the above import succeedes, no warnings.",
+      "parentUuid": "8fdbf48c_c89a6e37",
+      "revId": "b7af974de1c079b8459129744b74002a9122884d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
