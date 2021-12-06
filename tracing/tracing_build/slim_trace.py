@@ -64,7 +64,7 @@ def SlimSingleTrace(trace_data):
   return trace_data
 
 
-class TraceExtractor(object):
+class TraceExtractor:
   def CanExtractFile(self, trace_file_handle):
     raise NotImplementedError
 

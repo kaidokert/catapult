@@ -14,11 +14,11 @@ AUTO_JOB_COUNT = -1
 class MapError(Exception):
 
   def __init__(self, *args):
-    super(MapError, self).__init__(*args)
+    super().__init__(*args)
     self.canonical_url = None
 
 
-class MapRunner(object):
+class MapRunner:
   def __init__(self, trace_handles, job,
                stop_on_error=False, progress_reporter=None,
                jobs=AUTO_JOB_COUNT,

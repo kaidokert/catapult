@@ -12,7 +12,7 @@ def Deserialize(data):
           for datum in data[2:]}
 
 
-class HistogramDeserializer(object):
+class HistogramDeserializer:
   def __init__(self, objects, diagnostics=None):
     self._objects = objects
     self._diagnostics = {}

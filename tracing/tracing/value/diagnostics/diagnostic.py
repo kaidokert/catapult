@@ -14,8 +14,8 @@ except ImportError:
 from tracing.value.diagnostics import all_diagnostics
 
 
-class Diagnostic(object):
-  __slots__ = '_guid',
+class Diagnostic:
+  __slots__ = ('_guid',)
 
   # Ensure that new subclasses remember to specify __slots__ in order to prevent
   # regressing memory consumption:

@@ -3,7 +3,7 @@
 # found in the LICENSE file.
 
 
-class RunReporter(object):
+class RunReporter:
 
   def __init__(self, canonical_url):
     self.canonical_url = canonical_url
@@ -17,7 +17,7 @@ class RunReporter(object):
 
 # Derived from telemetry ProgressReporter. Should stay close in architecture
 # to telemetry ProgressReporter.
-class ProgressReporter(object):
+class ProgressReporter:
 
   def WillRun(self, canonical_url):
     return RunReporter(canonical_url)

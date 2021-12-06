@@ -22,10 +22,11 @@ class CloudStorageError(Exception):
             '  3. For the project-id, just enter 0.' % command)
 
 
+# pylint: disable=redefined-builtin
 class PermissionError(CloudStorageError):
 
   def __init__(self):
-    super(PermissionError, self).__init__(
+    super().__init__(
         'Attempted to access a file from Cloud Storage but you don\'t '
         'have permission. ' + self._GetConfigInstructions())
 
@@ -33,7 +34,7 @@ class PermissionError(CloudStorageError):
 class CredentialsError(CloudStorageError):
 
   def __init__(self):
-    super(CredentialsError, self).__init__(
+    super().__init__(
         'Attempted to access a file from Cloud Storage but you have no '
         'configured credentials. ' + self._GetConfigInstructions())
 

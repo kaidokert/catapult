@@ -13,7 +13,7 @@ except ImportError:
   import six.moves.queue as queue # pylint: disable=import-error
 
 
-class ThreadedWorkQueue(object):
+class ThreadedWorkQueue:
 
   def __init__(self, num_threads):
     self._num_threads = num_threads

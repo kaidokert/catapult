@@ -12,12 +12,16 @@ disable=
   similarities,
 
   fixme,
+  invalid-name,
   locally-disabled,
   locally-enabled,
   missing-docstring,
+  not-an-iterable,
   no-self-use,
   protected-access,
   star-args,
+  wrong-import-order,
+  wrong-import-position,
 
 
 [REPORTS]

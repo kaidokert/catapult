@@ -6,7 +6,7 @@ import uuid
 from tracing.mre import function_handle
 
 
-class Job(object):
+class Job:
 
   def __init__(self, map_function_handle, guid=None):
     if guid is None:

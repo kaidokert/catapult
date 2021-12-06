@@ -100,3 +100,5 @@ def Main(argv):
     json.dump({'traceEvents': out_events}, fout)
     num_bytes_written = fout.tell()
   print(' (%s written)' % FormatBytes(num_bytes_written))
+
+  return 0

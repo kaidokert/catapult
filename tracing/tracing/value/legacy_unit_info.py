@@ -15,7 +15,7 @@ IMPROVEMENT_DIRECTION_SMALLER_IS_BETTER = '_smallerIsBetter'
 IMPROVEMENT_DIRECTION_BIGGER_IS_BETTER = '_biggerIsBetter'
 
 
-class LegacyUnit(object):
+class LegacyUnit:
   """Simple object for storing data to improve readability."""
   def __init__(self, name, improvement_direction, conversion_factor=1):
     assert improvement_direction in [

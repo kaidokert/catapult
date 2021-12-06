@@ -14,7 +14,7 @@ class UserFriendlyStringInvalidError(Exception):
   """Raised if a user friendly string cannot be parsed."""
 
 
-class ModuleToLoad(object):
+class ModuleToLoad:
 
   def __init__(self, href=None, filename=None):
     if bool(href) == bool(filename):
@@ -38,7 +38,7 @@ class ModuleToLoad(object):
     return ModuleToLoad(module_dict.get('href'), module_dict.get('filename'))
 
 
-class FunctionHandle(object):
+class FunctionHandle:
 
   def __init__(self, modules_to_load=None, function_name=None,
                options=None, guid=uuid.uuid4()):
@@ -99,7 +99,7 @@ class FunctionHandle(object):
         abspath = module.filename
 
       if not abspath:
-        raise AbspathInvalidError('Filename %s invalid', abspath)
+        raise AbspathInvalidError('Filename %s invalid' % abspath)
 
       new_modules_to_load.append(ModuleToLoad(filename=abspath))
 
@@ -136,4 +136,3 @@ class FunctionHandle(object):
 
     return FunctionHandle(modules_to_load=modules_to_load,
                           function_name=parts[-1])
-

@@ -4,14 +4,14 @@
 import datetime
 
 from tracing.value.diagnostics import diagnostic
+from tracing.value import histogram
 
 
 class DateRange(diagnostic.Diagnostic):
-  __slots__ = '_range',
+  __slots__ = ('_range',)
 
   def __init__(self, ms):
-    from tracing.value import histogram
-    super(DateRange, self).__init__()
+    super().__init__()
     self._range = histogram.Range()
     self._range.AddValue(ms)
 
@@ -88,4 +88,3 @@ class DateRange(diagnostic.Diagnostic):
 
   def AddDiagnostic(self, other_diagnostic):
     self._range.AddRange(other_diagnostic._range)
-

@@ -5,7 +5,7 @@
 import re
 
 
-class AtosRegexMatcher(object):
+class AtosRegexMatcher:
   def __init__(self):
     """
     Atos output has two useful forms:

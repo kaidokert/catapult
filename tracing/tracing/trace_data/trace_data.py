@@ -36,7 +36,7 @@ _TRACE2HTML_PATH = os.path.join(_TRACING_DIR, 'bin', 'trace2html')
 
 MIB = 1024 * 1024
 
-class TraceDataPart(object):
+class TraceDataPart:
   """Trace data can come from a variety of tracing agents.
 
   Data from each agent is collected into a trace "part" and accessed by the
@@ -76,7 +76,7 @@ ALL_TRACE_PARTS = {ANDROID_PROCESS_DATA_PART,
                    TELEMETRY_PART}
 
 
-class _TraceData(object):
+class _TraceData:
   """Provides read access to traces collected from multiple tracing agents.
 
   Instances are created by calling the AsData() method on a TraceDataWriter.
@@ -107,7 +107,7 @@ class TraceDataException(Exception):
   """Exception raised by TraceDataBuilder via RecordTraceDataException()."""
 
 
-class TraceDataBuilder(object):
+class TraceDataBuilder:
   """TraceDataBuilder helps build up a trace from multiple trace agents.
 
   Note: the collected trace data is maintained in a set of temporary files to

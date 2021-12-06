@@ -10,7 +10,7 @@ import tracing_project
 from tracing_build import check_common
 
 
-class _Token(object):
+class _Token:
 
   def __init__(self, data, token_id=None):
     self.data = data
@@ -20,11 +20,11 @@ class _Token(object):
       self.token_id = 'plain'
 
 
-class BuildFile(object):
+class BuildFile:
 
   def __init__(self, text, file_groups):
     self._file_groups = file_groups
-    self._tokens = [token for token in self._Tokenize(text)]
+    self._tokens = list(self._Tokenize(text))
 
   def _Tokenize(self, text):
     rest = text

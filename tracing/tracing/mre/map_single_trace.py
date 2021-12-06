@@ -21,7 +21,7 @@ _MAP_SINGLE_TRACE_CMDLINE_PATH = os.path.join(
     tracing_project.TracingProject.tracing_src_path, 'mre',
     'map_single_trace_cmdline.html')
 
-class TemporaryMapScript(object):
+class TemporaryMapScript:
   def __init__(self, js):
     tempfile_kwargs = {'mode': 'w+', 'delete': False}
     if sys.version_info >= (3,):
@@ -120,7 +120,7 @@ def MapSingleTrace(trace_handle,
           job,
           trace_handle.canonical_url,
           'Error', 'vinn runtime error while mapping trace.',
-          e.message, 'Unknown stack'))
+          str(e), 'Unknown stack'))
       return result
 
   stdout = res.stdout

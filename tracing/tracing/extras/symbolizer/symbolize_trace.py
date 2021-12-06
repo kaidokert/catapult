@@ -241,7 +241,7 @@ from tracing.extras.symbolizer import symbolize_trace_macho_reader
 _UNNAMED_FILE = 'unnamed'
 
 
-class NodeWrapper(object):
+class NodeWrapper:
   """Wraps an event data node(s).
 
   A node is a reference into a trace event JSON. Wrappers parse nodes to
@@ -284,7 +284,6 @@ class NodeWrapper(object):
     'modified' flag.
 
   """
-  pass
 
 
 class MemoryMap(NodeWrapper):
@@ -305,7 +304,7 @@ class MemoryMap(NodeWrapper):
   }
   """
 
-  class Region(object):
+  class Region:
     def __init__(self, start_address, size, file_path, file_offset):
       self._start_address = start_address
       self._size = size
@@ -350,10 +349,9 @@ class MemoryMap(NodeWrapper):
         raise Exception('Cannot compare with %s' % type(other))
       if self._start_address < other_start_address:
         return -1
-      elif self._start_address > other_start_address:
+      if self._start_address > other_start_address:
         return 1
-      else:
-        return 0
+      return 0
 
     if six.PY2:
       def __cmp__(self, other):
@@ -456,7 +454,7 @@ class MemoryMap(NodeWrapper):
     region_index = bisect.bisect_right(self._regions, address) - 1
     if region_index >= 0:
       region = self._regions[region_index]
-      if address >= region.start_address and address < region.end_address:
+      if region.start_address <= address < region.end_address:
         return region
     return None
 
@@ -466,7 +464,7 @@ class UnsupportedHeapDumpVersionError(Exception):
 
   def __init__(self, version):
     message = 'Unsupported heap dump version: {}'.format(version)
-    super(UnsupportedHeapDumpVersionError, self).__init__(message)
+    super().__init__(message)
 
 
 class StringMap(NodeWrapper):
@@ -568,7 +566,7 @@ class TypeNameMap(NodeWrapper):
   and then translated back to ids in ApplyModifications().
   """
 
-  class Type(object):
+  class Type:
     """Holds information used to populate the "object type" field.
 
     We store type id and type name. If "--frame-as-object-type" is enabled,
@@ -754,7 +752,7 @@ class StackFrameMap(NodeWrapper):
   addresses (PCs). Inner Frame class below parses name and extracts PC,
   if it's there.
   """
-  class Frame(object):
+  class Frame:
     def __init__(self, frame_id, name, parent_frame_id):
       self._modified = False
       self._id = frame_id
@@ -905,7 +903,7 @@ class Trace(NodeWrapper):
   # Indicates variation of a modern heap dump format.
   HEAP_DUMP_VERSION_1 = 1
 
-  class Process(object):
+  class Process:
     """Collection of per-process data and wrappers."""
 
     def __init__(self, pid):
@@ -980,7 +978,7 @@ class Trace(NodeWrapper):
     self._frame_as_object_type = frame_as_object_type
 
     # Misc per-process information needed only during parsing.
-    class ProcessExt(object):
+    class ProcessExt:
       def __init__(self, pid):
         self.process = Trace.Process(pid)
         self.mapped_entry_names = set()
@@ -1174,15 +1172,14 @@ class Trace(NodeWrapper):
     if self._heap_dump_version is None:
       self._heap_dump_version = version
       return version
-    elif self._heap_dump_version != version:
+    if self._heap_dump_version != version:
       raise Exception(
           ("Inconsistent trace file: first saw '{}' heap dump version, "
            "then '{}'.").format(self._heap_dump_version, version))
-    else:
-      return version
+    return version
 
 
-class SymbolizableFile(object):
+class SymbolizableFile:
   """Holds file path, addresses to symbolize and stack frames to update.
 
   This class is a link between ELFSymbolizer and a trace file: it specifies
@@ -1260,11 +1257,11 @@ def FindInSystemPath(binary_name):
   return None
 
 
-class BreakpadSymbolsModule(object):
+class BreakpadSymbolsModule:
   """Encapsulates Breakpad logic for symbols of a specific module."""
 
   def __init__(self, filename):
-    super(BreakpadSymbolsModule, self).__init__()
+    super().__init__()
     self.filename = filename
     self.files = []
     self.symbols = {}
@@ -1297,7 +1294,7 @@ class BreakpadSymbolsModule(object):
           self.symbols[int(fragments[1], 16)] = ' '.join(fragments[4:])
 
 
-class Symbolizer(object):
+class Symbolizer:
   """Encapsulates platform-specific symbolization logic."""
 
   def __init__(self, addr2line_executable):
@@ -1462,12 +1459,11 @@ class Symbolizer(object):
     if self.is_win:
       extension = os.path.splitext(file_path)[1].lower()
       return extension in ['.dll', '.exe']
-    else:
-      result = six.ensure_str(
-          subprocess.check_output(['file', '-0', file_path]))
-      type_string = result[result.find('\0') + 1:]
-      return bool(re.match(r'.*(ELF|Mach-O) (32|64)-bit\b.*',
-                           type_string, re.DOTALL))
+    result = six.ensure_str(
+        subprocess.check_output(['file', '-0', file_path]))
+    type_string = result[result.find('\0') + 1:]
+    return bool(re.match(r'.*(ELF|Mach-O) (32|64)-bit\b.*',
+                          type_string, re.DOTALL))
 
 
 def SymbolizeFiles(symfiles, symbolizer):
@@ -1681,11 +1677,9 @@ def OpenTraceFile(file_path, mode):
   if file_path.endswith('.gz'):
     if six.PY2:
       return gzip.open(file_path, mode + 'b')
-    else:
-      return gzip.open( # pylint: disable=unexpected-keyword-arg
-          file_path, mode + 't', encoding='utf-8', newline='')
-  else:
-    return open(file_path, mode + 't')
+    return gzip.open( # pylint: disable=unexpected-keyword-arg
+        file_path, mode + 't', encoding='utf-8', newline='')
+  return open(file_path, mode + 't')
 
 
 def FetchAndExtractSymbolsMac(symbol_base_directory, version,
@@ -1739,6 +1733,7 @@ def FetchAndExtractSymbolsWin(symbol_base_directory, version, is64bit,
         target = open(os.path.join(destination, filename), 'wb')
         with source, target:
           shutil.copyfileobj(source, target)
+    return True
 
   folder = "win64" if is64bit else "win"
   # Clang build (M61+)

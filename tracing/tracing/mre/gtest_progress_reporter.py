@@ -13,7 +13,7 @@ from tracing.mre import progress_reporter
 class GTestRunReporter(progress_reporter.RunReporter):
 
   def __init__(self, canonical_url, output_stream, timestamp):
-    super(GTestRunReporter, self).__init__(canonical_url)
+    super().__init__(canonical_url)
     self._output_stream = output_stream
     self._timestamp = timestamp
 
@@ -22,12 +22,12 @@ class GTestRunReporter(progress_reporter.RunReporter):
     return (time.time() - self._timestamp) * 1000
 
   def DidAddFailure(self, failure):
-    super(GTestRunReporter, self).DidAddFailure(failure)
+    super().DidAddFailure(failure)
     print(failure.stack.encode('utf-8'), file=self._output_stream)
     self._output_stream.flush()
 
   def DidRun(self, run_failed):
-    super(GTestRunReporter, self).DidRun(run_failed)
+    super().DidRun(run_failed)
     if run_failed:
       print('[  FAILED  ] %s (%0.f ms)' % (self.canonical_url, self._GetMs()),
             file=self._output_stream)
@@ -49,18 +49,18 @@ class GTestProgressReporter(progress_reporter.ProgressReporter):
   """
 
   def __init__(self, output_stream=sys.stdout):
-    super(GTestProgressReporter, self).__init__()
+    super().__init__()
     self._output_stream = output_stream
 
   def WillRun(self, canonical_url):
-    super(GTestProgressReporter, self).WillRun(canonical_url)
+    super().WillRun(canonical_url)
     print('[ RUN      ] %s' % canonical_url.encode('utf-8'),
           file=self._output_stream)
     self._output_stream.flush()
     return GTestRunReporter(canonical_url, self._output_stream, time.time())
 
   def DidFinishAllRuns(self, result_list):
-    super(GTestProgressReporter, self).DidFinishAllRuns(result_list)
+    super().DidFinishAllRuns(result_list)
     successful_runs = 0
     failed_canonical_urls = []
     failed_runs = 0

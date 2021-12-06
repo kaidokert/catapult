@@ -150,7 +150,6 @@ def Percentile(ary, percent):
 
 class HistogramError(ValueError):
   """Base execption type for Histogram related exceptions."""
-  pass
 
 
 class InvalidBucketError(HistogramError):
@@ -164,7 +163,7 @@ class InvalidBucketError(HistogramError):
       - value: a dict associated with the provided bucket index.
       - buckets: a list of valid bucket definitions.
     """
-    super(InvalidBucketError, self).__init__()
+    super().__init__()
     self.bucket_index = bucket_index
     self.value = value
     self.buckets = buckets
@@ -174,7 +173,7 @@ class InvalidBucketError(HistogramError):
         self.bucket_index, len(self.buckets), self.value)
 
 
-class Range(object):
+class Range:
   __slots__ = '_empty', '_min', '_max'
 
   def __init__(self):
@@ -242,7 +241,7 @@ class Range(object):
 
 
 # This class computes statistics online in O(1).
-class RunningStatistics(object):
+class RunningStatistics:
   __slots__ = (
       '_count', '_mean', '_max', '_min', '_sum', '_variance', '_meanlogs')
 
@@ -434,7 +433,7 @@ class RunningStatistics(object):
 
 
 class DiagnosticMap(dict):
-  __slots__ = '_allow_reserved_names',
+  __slots__ = ('_allow_reserved_names',)
 
   def __init__(self, *args, **kwargs):
     self._allow_reserved_names = True
@@ -543,7 +542,7 @@ class DiagnosticMap(dict):
 MAX_DIAGNOSTIC_MAPS = 16
 
 
-class HistogramBin(object):
+class HistogramBin:
   __slots__ = '_range', '_count', '_diagnostic_maps'
 
   def __init__(self, rang):
@@ -658,7 +657,7 @@ def UnrecognizedUnitMessage(unit):
   return output
 
 
-class Scalar(object):
+class Scalar:
   __slots__ = '_unit', '_value'
 
   def __init__(self, unit, value):
@@ -697,7 +696,7 @@ DEFAULT_SUMMARY_OPTIONS = {
 }
 
 
-class Histogram(object):
+class Histogram:
   __slots__ = (
       '_bin_boundaries_dict',
       '_description',
@@ -752,8 +751,8 @@ class Histogram(object):
     if summary_options:
       hist.CustomizeSummaryOptions(summary_options)
     if diagnostics:
-      for name, diag in diagnostics.items():
-        hist.diagnostics[name] = diag
+      for diag_name, diag in diagnostics.items():
+        hist.diagnostics[diag_name] = diag
 
     if not isinstance(samples, list):
       samples = [samples]
@@ -824,7 +823,7 @@ class Histogram(object):
         upper = PercentFromString(stat_name[8:])
         self._summary_options.get('iprs').push(
             Range.FromExplicitRange(lower, upper))
-    for stat_name in self._summary_options.keys():
+    for stat_name in self._summary_options:
       if stat_name in ['percentile', 'iprs']:
         continue
       self._summary_options[stat_name] = stat_name in statistics_names
@@ -1030,10 +1029,9 @@ class Histogram(object):
         continue
       if hbin.range.min == -JS_MAX_VALUE:
         return hbin.range.max
-      elif hbin.range.max == JS_MAX_VALUE:
+      if hbin.range.max == JS_MAX_VALUE:
         return hbin.range.min
-      else:
-        return hbin.range.center
+      return hbin.range.center
     return self._bins[len(self._bins) - 1].range.min
 
   def _ResampleMean(self, percent):
@@ -1215,6 +1213,8 @@ class Histogram(object):
       return Scalar(self.unit, (self.GetApproximatePercentile(upper) -
                                 self.GetApproximatePercentile(lower)))
 
+    return None
+
   @property
   def statistics_scalars(self):
     results = {}
@@ -1256,7 +1256,7 @@ class Histogram(object):
       dct['maxNumSampleValues'] = self.max_num_sample_values
     if self.num_nans:
       dct['numNans'] = self.num_nans
-    if len(self.nan_diagnostic_maps):
+    if self.nan_diagnostic_maps:
       dct['nanDiagnostics'] = [m.AsDict() for m in self.nan_diagnostic_maps]
     if self.num_values:
       dct['sampleValues'] = list(self.sample_values)
@@ -1268,7 +1268,7 @@ class Histogram(object):
     summary_options = {}
     any_overridden_summary_options = False
     for name, option in self._summary_options.items():
-      if name == 'percentile' or name == 'ci':
+      if name in('percentile', 'ci'):
         if len(option) == 0:
           continue
       elif name == 'iprs':
@@ -1313,8 +1313,8 @@ class Histogram(object):
       self._GetAllBinsAsProto(proto.all_bins)
 
     any_overridden_summary_options = any(
-        [self._summary_options[k] != DEFAULT_SUMMARY_OPTIONS[k]
-         for k in DEFAULT_SUMMARY_OPTIONS])
+        self._summary_options[k] != DEFAULT_SUMMARY_OPTIONS[k]
+         for k in DEFAULT_SUMMARY_OPTIONS)
 
     if any_overridden_summary_options or self._summary_options['percentile']:
       # Note: iprs and ci are not supported in the proto format yet.
@@ -1393,7 +1393,7 @@ class Histogram(object):
     return len(self._bins) * 10
 
 
-class HistogramBinBoundaries(object):
+class HistogramBinBoundaries:
   __slots__ = '_builder', '_range', '_bin_ranges', '_bins'
 
   CACHE = {}

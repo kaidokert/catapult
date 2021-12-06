@@ -6,7 +6,7 @@
 # to telemetry OutputFormatter.
 
 
-class OutputFormatter(object):
+class OutputFormatter:
 
   def __init__(self, output_stream):
     self._output_stream = output_stream

@@ -20,7 +20,7 @@ except ImportError:
   from io import StringIO
 
 
-class Bench(object):
+class Bench:
 
   def SetUp(self):
     pass

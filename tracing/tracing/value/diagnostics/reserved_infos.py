@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-class _Info(object):
+class _Info:
 
   def __init__(self, name, _type=None, entry_type=None):
     self._name = name
@@ -96,6 +96,7 @@ def GetTypeForName(name):
   info = _CACHED_INFO_TYPES.get(name)
   if info:
     return info.type
+  return None
 
 def AllInfos():
   for info in _CACHED_INFO_TYPES.values():

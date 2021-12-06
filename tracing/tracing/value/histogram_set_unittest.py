@@ -146,7 +146,7 @@ class HistogramSetUnittest(unittest.TestCase):
     hists2 = histogram_set.HistogramSet()
     hists2.ImportDicts(ds)
     self.assertEqual(len(hists2), 1)
-    hist2 = [h for h in hists2][0]
+    hist2 = list(hists2)[0]
 
     self.assertIsInstance(
         hist2.diagnostics.get('generic'), generic_set.GenericSet)

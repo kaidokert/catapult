@@ -29,7 +29,7 @@ class TestListHandler(webapp2.RequestHandler):
     return self.response.write(tests_as_json)
 
 
-class TracingDevServerConfig(object):
+class TracingDevServerConfig:
 
   def __init__(self):
     self.project = tracing_project.TracingProject()

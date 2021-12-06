@@ -3,7 +3,7 @@
 # found in the LICENSE file.
 
 
-class CorpusDriver(object):
+class CorpusDriver:
 
   def GetTraceHandles(self):
     raise NotImplementedError()

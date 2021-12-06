@@ -16,7 +16,7 @@ def Serialize(histograms):
   return [serializer._objects, diagnostics] + histograms
 
 
-class HistogramSerializer(object):
+class HistogramSerializer:
   __slots__ = ('_objects', '_ids_by_json', '_diagnostics_by_type',
                '_diagnostic_id')
 

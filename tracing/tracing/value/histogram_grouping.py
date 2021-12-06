@@ -4,11 +4,10 @@
 
 from tracing.value.diagnostics import reserved_infos
 
-
 GROUPINGS_BY_KEY = {}
 
 
-class HistogramGrouping(object):
+class HistogramGrouping:
   """This class wraps a registered function that maps from a Histogram to a
   string or number in order to allow grouping together Histograms that produce
   the same string or number. HistogramGroupings may be looked up by key in
@@ -118,7 +117,7 @@ class GenericSetGrouping(HistogramGrouping):
   """
 
   def __init__(self, name):
-    super(GenericSetGrouping, self).__init__(name, self._Compute)
+    super().__init__(name, self._Compute)
 
   def _Compute(self, hist):
     diag = hist.diagnostics.get(self.key)
@@ -148,7 +147,7 @@ class DateRangeGrouping(HistogramGrouping):
   """
 
   def __init__(self, name):
-    super(DateRangeGrouping, self).__init__(name, self._Compute)
+    super().__init__(name, self._Compute)
 
   def _Compute(self, hist):
     diag = hist.diagnostics.get(self.key)

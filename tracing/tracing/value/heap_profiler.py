@@ -20,13 +20,14 @@ from tracing.value.diagnostics import generic_set
 from tracing.value.diagnostics import related_name_map
 from tracing.value.diagnostics import reserved_infos
 from tracing_build import render_histograms_viewer
+from tracing_build import vulcanize_histograms_viewer
 
 
 def _IsUserDefinedInstance(obj):
   return type(obj).__module__ != six.moves.builtins.__name__
 
 
-class _HeapProfiler(object):
+class _HeapProfiler:
   __slots__ = '_diagnostics_callback', '_histograms', '_seen'
 
   def __init__(self, diagnostics_callback=None):
@@ -199,7 +200,6 @@ def Profile(root, label=None, html_filename=None, html_stream=None,
       render_histograms_viewer.RenderHistogramsViewer(
           histograms.AsDicts(), html_stream, reset_results, vulcanized_viewer)
     else:
-      from tracing_build import vulcanize_histograms_viewer
       vulcanize_histograms_viewer.VulcanizeAndRenderHistogramsViewer(
           histograms.AsDicts(), html_stream)
 

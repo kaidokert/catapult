@@ -3,7 +3,7 @@
 # found in the LICENSE file.
 
 
-class DiagnosticRef(object):
+class DiagnosticRef:
   def __init__(self, guid):
     self._guid = guid
 

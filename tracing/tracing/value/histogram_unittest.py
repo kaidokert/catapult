@@ -808,4 +808,3 @@ class DiagnosticMapUnittest(unittest.TestCase):
     self.assertIs(related_map, diagnostics[1])
     self.assertIs(events, diagnostics[2])
     self.assertIs(generic2, diagnostics[3])
-

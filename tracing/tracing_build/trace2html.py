@@ -68,7 +68,7 @@ def Main(argv):
 class ViewerDataScript(generate.ExtraScript):
 
   def __init__(self, trace_data_string, mime_type):
-    super(ViewerDataScript, self).__init__()
+    super().__init__()
     self._trace_data_string = trace_data_string
     self._mime_type = mime_type
 

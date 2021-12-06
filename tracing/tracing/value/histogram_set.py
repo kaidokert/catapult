@@ -5,7 +5,7 @@
 import collections
 
 from tracing.proto import histogram_proto
-from tracing.value import histogram as histogram
+from tracing.value import histogram
 from tracing.value import histogram_deserializer
 from tracing.value.diagnostics import all_diagnostics
 from tracing.value.diagnostics import diagnostic
@@ -13,7 +13,7 @@ from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import generic_set
 
 
-class HistogramSet(object):
+class HistogramSet:
   def __init__(self, histograms=()):
     self._histograms = set()
     self._shared_diagnostics_by_guid = {}

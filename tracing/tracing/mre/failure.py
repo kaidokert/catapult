@@ -5,7 +5,7 @@
 from tracing.mre import job as job_module
 
 
-class Failure(object):
+class Failure:
 
   def __init__(self, job, function_handle_string, trace_canonical_url,
                failure_type_name, description, stack):

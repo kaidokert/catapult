@@ -10,11 +10,11 @@ class JSONOutputFormatter(output_formatter.OutputFormatter):
 
   def __init__(self, output_file):
     # TODO(nduca): Resolve output_file here vs output_stream in base class.
-    super(JSONOutputFormatter, self).__init__(output_file)
+    super().__init__(output_file)
     self.output_file = output_file
 
-  def Format(self, result_list):
-    d = [result.AsDict() for result in result_list]
+  def Format(self, results):
+    d = [result.AsDict() for result in results]
     json.dump(d, self.output_file, indent=2)
     if hasattr(self.output_file, 'flush'):
       self.output_file.flush()

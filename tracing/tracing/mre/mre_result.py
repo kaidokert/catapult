@@ -8,7 +8,7 @@ class DuplicateKeyError(Exception):
   """Raised if an attempt is made to set a key more than once."""
 
 
-class MreResult(object):
+class MreResult:
 
   def __init__(self, failures=None, pairs=None):
     if failures is None:
@@ -38,7 +38,7 @@ class MreResult(object):
 
   def AddFailure(self, failure):
     if not isinstance(failure, failure_module.Failure):
-      raise ValueError('Attempted to add %s as Failure', failure)
+      raise ValueError('Attempted to add %s as Failure' % failure)
 
     self._failures.append(failure)
 

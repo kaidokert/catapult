@@ -66,8 +66,8 @@ def CheckPythonDiagnostics():
   for name in all_diagnostics.GetDiagnosticTypenames():
     diagnostic = all_diagnostics.GetDiagnosticClassForName(name)
     if name != diagnostic.__name__:
-      print 'This diagnostic refers to the wrong class: %s: %s' % (
-          name, diagnostic.__name__)
+      print ('This diagnostic refers to the wrong class: %s: %s' % (
+          name, diagnostic.__name__))
       return_code = 1
 
   return return_code

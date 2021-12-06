@@ -13,7 +13,7 @@ class FilePreparationError(Exception):
   """Raised if something goes wrong while preparing a file for processing."""
 
 
-class FileHandle(object):
+class FileHandle:
   def __init__(self, canonical_url):
     self._canonical_url = canonical_url
 
@@ -43,7 +43,7 @@ class FileHandle(object):
 
 class URLFileHandle(FileHandle):
   def __init__(self, canonical_url, url_to_load):
-    super(URLFileHandle, self).__init__(canonical_url)
+    super().__init__(canonical_url)
 
     self._url_to_load = url_to_load
 
@@ -63,7 +63,7 @@ class URLFileHandle(FileHandle):
 
 class GCSFileHandle(FileHandle):
   def __init__(self, canonical_url, cache_directory):
-    super(GCSFileHandle, self).__init__(canonical_url)
+    super().__init__(canonical_url)
     file_name = canonical_url.split('/')[-1]
     self.cache_file = os.path.join(
         cache_directory, file_name + '.gz')
@@ -82,7 +82,7 @@ class GCSFileHandle(FileHandle):
 
 class InMemoryFileHandle(FileHandle):
   def __init__(self, canonical_url, data):
-    super(InMemoryFileHandle, self).__init__(canonical_url)
+    super().__init__(canonical_url)
 
     self.data = data
     self._temp_file_path = None
