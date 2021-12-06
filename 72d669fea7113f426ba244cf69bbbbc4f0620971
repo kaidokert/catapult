@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa6c466e_3c933376",
+        "filename": "telemetry/telemetry/internal/backends/chrome/extension_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-06T16:25:35Z",
+      "side": 0,
+      "message": "Could you help me understand your concerns?\n\nThis case seems to be a single inheritance case. I think ExtensionBackendList\u0027s MRO is [ExtensionBackendList, inspector_backend_list.InspectorBackendList, collections.Sequence, ...some abstract stuff, object]\nIn this case, calling super().__init__ here equals calling inspector_backend_list.InspectorBackendList.__init__(). If we remove ExtensionBackendList.__init__(), ExtensionBackendList(browser_backend) will call inspector_backend_list.InspectorBackendList.__init__() directly, so this code looks work well.",
+      "parentUuid": "704bd525_769fb48d",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e4cf424_8107fd27",
         "filename": "telemetry/telemetry/internal/backends/chrome/misc_web_contents_backend.py",
         "patchSetId": 3
