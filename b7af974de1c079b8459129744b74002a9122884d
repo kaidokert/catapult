@@ -105,6 +105,24 @@
       "parentUuid": "3dfeeca9_3a468dc0",
       "revId": "b7af974de1c079b8459129744b74002a9122884d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d57fd8ae_8f581c73",
+        "filename": "tracing/tracing/proto/histogram_proto.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-12-06T21:04:11Z",
+      "side": 1,
+      "message": "So, is it ok to remove these warnings and add a # TODO instead?",
+      "parentUuid": "50df7014_a4da99e1",
+      "revId": "b7af974de1c079b8459129744b74002a9122884d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
