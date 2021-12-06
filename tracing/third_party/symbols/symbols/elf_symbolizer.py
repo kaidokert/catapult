@@ -397,7 +397,7 @@ class ELFSymbolizer(object):
       if self._symbolizer.inlines:
         cmd += ['--inlines']
       self._proc = subprocess.Popen(cmd, bufsize=1, stdout=subprocess.PIPE,
-          stdin=subprocess.PIPE, stderr=sys.stderr, close_fds=True)
+          stdin=subprocess.PIPE, stderr=sys.stderr, close_fds=True, text=True)
 
       # Start the poller thread, which simply moves atomically the lines read
       # from the addr2line's stdout to the |_out_queue|.
@@ -441,7 +441,7 @@ class ELFSymbolizer(object):
         process_pipe.close()
 
       # Every addr2line processes will die at some point, please die silently.
-      except (IOError, OSError):
+      except (IOError, OSError, ValueError):
         pass
 
     @property
