@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9afae1cb_effb6b4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-12-07T01:07:24Z",
+      "side": 1,
+      "message": "Hi John\n\nThis CL adds a monochrome webview testing configuration to telemetry.\n\nRegards\nRakib Hasan",
+      "revId": "1c198ebe7cdb9d96695e947aec469961de1a7107",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
