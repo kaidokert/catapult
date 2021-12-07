@@ -89,6 +89,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a7fdcf_50870046",
+        "filename": "telemetry/telemetry/benchmark.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 1,
+      "message": "Thanks! I renamed it anded add a comment.",
+      "parentUuid": "3efd670c_f512df22",
+      "range": {
+        "startLine": 83,
+        "startChar": 52,
+        "endLine": 83,
+        "endChar": 61
+      },
+      "revId": "6dc55f788ecd2a3cf349ce3104f26266aeb70b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48802cfe_aceab1fa",
@@ -126,6 +150,30 @@
       "side": 1,
       "message": "ooooh yes, great catch!\nI\u0027ll revise this change.",
       "parentUuid": "48802cfe_aceab1fa",
+      "range": {
+        "startLine": 20,
+        "startChar": 10,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "6dc55f788ecd2a3cf349ce3104f26266aeb70b01",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edcc6780_1a56abb1",
+        "filename": "telemetry/telemetry/internal/actions/media_action.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7af6bf82_6bdf1b36",
       "range": {
         "startLine": 20,
         "startChar": 10,

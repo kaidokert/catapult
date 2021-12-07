@@ -72,6 +72,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62a6500c_e576e342",
+        "filename": "telemetry/telemetry/internal/backends/chrome/extension_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "Thanks! I\u0027ll double check other cases.",
+      "parentUuid": "9fd50924_f2480c1c",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e4cf424_8107fd27",
@@ -85,6 +109,30 @@
       "writtenOn": "2021-12-03T20:52:51Z",
       "side": 0,
       "message": "ditto.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 9
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8685d95_64be8975",
+        "filename": "telemetry/telemetry/internal/backends/chrome/misc_web_contents_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "telemetry.internal.backends.chrome.misc_web_contents_backend.MiscWebContentsBackend\u0027\u003e, \u003cclass \u0027telemetry.internal.backends.chrome_inspector.inspector_backend_list.InspectorBackendList\u0027\u003e, \u003cclass \u0027_abcoll.Sequence\u0027\u003e, \u003cclass \u0027_abcoll.Sized\u0027\u003e, \u003cclass \u0027_abcoll.Iterable\u0027\u003e, \u003cclass \u0027_abcoll.Container\u0027\u003e, \u003ctype \u0027object\u0027\u003e)\nno subclasses.\n\nchecked.",
+      "parentUuid": "2e4cf424_8107fd27",
       "range": {
         "startLine": 18,
         "startChar": 4,
@@ -118,6 +166,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38398bd9_b732ca63",
+        "filename": "telemetry/telemetry/internal/backends/chrome/oobe.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "(\u003cclass \u0027telemetry.internal.backends.chrome.oobe.Oobe\u0027\u003e, \u003cclass \u0027telemetry.internal.browser.web_contents.WebContents\u0027\u003e, \u003ctype \u0027object\u0027\u003e)\nno subclasses.",
+      "parentUuid": "562e3041_dcbc019c",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "372fc59f_b6d9182e",
@@ -131,6 +203,30 @@
       "writtenOn": "2021-12-03T20:52:51Z",
       "side": 0,
       "message": "ditto.",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "302418cc_1bc27ef6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/tab_list_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "(\u003cclass \u0027telemetry.internal.backends.chrome.tab_list_backend.TabListBackend\u0027\u003e, \u003cclass \u0027telemetry.internal.backends.chrome_inspector.inspector_backend_list.InspectorBackendList\u0027\u003e, \u003cclass \u0027_abcoll.Sequence\u0027\u003e, \u003cclass \u0027_abcoll.Sized\u0027\u003e, \u003cclass \u0027_abcoll.Iterable\u0027\u003e, \u003cclass \u0027_abcoll.Container\u0027\u003e, \u003ctype \u0027object\u0027\u003e)\nno subclasses.\n\nConfirmed.",
+      "parentUuid": "372fc59f_b6d9182e",
       "range": {
         "startLine": 20,
         "startChar": 6,
@@ -164,6 +260,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f86e85f_7ead712c",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_report_events_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "(\u003cclass \u0027telemetry.internal.platform.tracing_agent.chrome_report_events_tracing_agent.ChromeReportEventsTracingAgent\u0027\u003e, \u003cclass \u0027telemetry.internal.platform.tracing_agent.chrome_tracing_agent.ChromeTracingAgent\u0027\u003e, \u003cclass \u0027telemetry.internal.platform.tracing_agent.TracingAgent\u0027\u003e, \u003ctype \u0027object\u0027\u003e)\nno subclasses. \nchecked.",
+      "parentUuid": "903b3258_0c817dac",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9060b30f_70f15118",
@@ -177,6 +297,30 @@
       "writtenOn": "2021-12-03T20:52:51Z",
       "side": 0,
       "message": "ditto,",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26224aa_3d68690b",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/chrome_return_as_stream_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "(\u003cclass \u0027telemetry.internal.platform.tracing_agent.chrome_return_as_stream_tracing_agent.ChromeReturnAsStreamTracingAgent\u0027\u003e, \u003cclass \u0027telemetry.internal.platform.tracing_agent.chrome_tracing_agent.ChromeTracingAgent\u0027\u003e, \u003cclass \u0027telemetry.internal.platform.tracing_agent.TracingAgent\u0027\u003e, \u003ctype \u0027object\u0027\u003e)\nno subclasses.\n\nChecked.",
+      "parentUuid": "9060b30f_70f15118",
       "range": {
         "startLine": 37,
         "startChar": 6,
@@ -210,6 +354,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d22e454_49f25727",
+        "filename": "telemetry/telemetry/internal/platform/tracing_agent/display_tracing_agent.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "(\u003cclass \u0027telemetry.internal.platform.tracing_agent.display_tracing_agent.DisplayTracingAgent\u0027\u003e, \u003cclass \u0027telemetry.internal.platform.tracing_agent.TracingAgent\u0027\u003e, \u003ctype \u0027object\u0027\u003e) \nno subclasses. \nChecked.",
+      "parentUuid": "65b3b072_9d5f0477",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e5c3836_fea66b46",
@@ -223,6 +391,30 @@
       "writtenOn": "2021-12-03T20:52:51Z",
       "side": 0,
       "message": "ditto.",
+      "range": {
+        "startLine": 270,
+        "startChar": 6,
+        "endLine": 270,
+        "endChar": 14
+      },
+      "revId": "72d669fea7113f426ba244cf69bbbbc4f0620971",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb47aa8f_ded514d4",
+        "filename": "telemetry/telemetry/testing/fakes/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-07T14:02:46Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2e5c3836_fea66b46",
       "range": {
         "startLine": 270,
         "startChar": 6,
