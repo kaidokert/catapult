@@ -3,7 +3,6 @@
 # found in the LICENSE file.
 
 from __future__ import absolute_import
-from telemetry.core import exceptions
 from telemetry.testing import browser_test_case
 
 
@@ -14,20 +13,8 @@ class TabTestCase(browser_test_case.BrowserTestCase):
 
   def setUp(self):
     super(TabTestCase, self).setUp()
-
-    if self._browser.supports_tab_control:
-      try:
-        while len(self._browser.tabs) < 1:
-          self._browser.tabs.New()
-        while len(self._browser.tabs) > 1:
-          self._browser.tabs[0].Close()
-        self._tab = self._browser.tabs[0]
-      except exceptions.TimeoutException:
-        self._RestartBrowser()
-    else:
-      self._RestartBrowser()
-    self._tab.Navigate('about:blank')
-    self._tab.WaitForDocumentReadyStateToBeInteractiveOrBetter()
+    assert self._browser.supports_tab_control
+    self._tab = self._browser.tabs.New()
 
   def Navigate(self,
                filename,
@@ -41,12 +28,6 @@ class TabTestCase(browser_test_case.BrowserTestCase):
     self._tab.Navigate(url, script_to_evaluate_on_commit)
     self._tab.WaitForDocumentReadyStateToBeComplete()
     self._tab.WaitForFrameToBeDisplayed()
-
-  def _RestartBrowser(self):
-    if not self._browser.tabs:
-      self.tearDownClass()
-      self.setUpClass()
-    self._tab = self._browser.tabs[0]
 
   @property
   def tabs(self):
