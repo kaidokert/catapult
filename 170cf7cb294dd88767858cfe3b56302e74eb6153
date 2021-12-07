@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a5e0a0_377069c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-07T21:24:07Z",
+      "side": 1,
+      "message": "I had to update some test expectations.",
+      "revId": "170cf7cb294dd88767858cfe3b56302e74eb6153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032efb11_305f50b1",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-07T21:24:07Z",
+      "side": 1,
+      "message": "I had to update this test expectations. I could not manage to run this locally due to some weirdness with python loading modules and having multiple modules called \"google\".",
+      "revId": "170cf7cb294dd88767858cfe3b56302e74eb6153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618b43ac_f8448d66",
+        "filename": "third_party/gae_ts_mon/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-07T21:24:07Z",
+      "side": 1,
+      "message": "We are talking about this line, right? This directory includes a number of libraries, not only protobuf. My guess is that this used to be a copy of a repository that no longer exists.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 88
+      },
+      "revId": "170cf7cb294dd88767858cfe3b56302e74eb6153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
