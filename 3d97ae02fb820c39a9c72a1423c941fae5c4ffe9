@@ -33,6 +33,24 @@
       "message": "LGTM % one change.\n\nCan you update the version reported in third_party/gae_ts_mon/README.md?\n\nAlso just to confirm, this is a straight copy/paste job without any Catapult/Chromium-specific changes made, right?",
       "revId": "3d97ae02fb820c39a9c72a1423c941fae5c4ffe9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ba61a3_d5cbdc7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-07T20:42:44Z",
+      "side": 1,
+      "message": "Yes, this is a straight \"cp -R\", I did not make any change. I noticed the URL is no longer valid in that file. Should we remove it?",
+      "parentUuid": "8fbe3367_eaa34fd8",
+      "revId": "3d97ae02fb820c39a9c72a1423c941fae5c4ffe9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
