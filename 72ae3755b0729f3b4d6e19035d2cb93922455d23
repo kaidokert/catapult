@@ -16,6 +16,23 @@
       "message": "Hello folks,\nPTAL, it seems this codebase is still largely using python2.",
       "revId": "72ae3755b0729f3b4d6e19035d2cb93922455d23",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "524fcbec_a789ee5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-07T18:14:34Z",
+      "side": 1,
+      "message": "Ah, so we need to maintain both python2 and python3 compatibility. I\u0027ll get back to this.",
+      "revId": "72ae3755b0729f3b4d6e19035d2cb93922455d23",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
