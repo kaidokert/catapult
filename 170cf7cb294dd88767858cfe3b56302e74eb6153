@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b814459_b9aea2e2",
+        "filename": "dashboard/dashboard/sheriff_config_client_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-12-07T21:40:57Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "032efb11_305f50b1",
+      "revId": "170cf7cb294dd88767858cfe3b56302e74eb6153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "618b43ac_f8448d66",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-12-07T21:24:07Z",
       "side": 1,
       "message": "We are talking about this line, right? This directory includes a number of libraries, not only protobuf. My guess is that this used to be a copy of a repository that no longer exists.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 88
+      },
+      "revId": "170cf7cb294dd88767858cfe3b56302e74eb6153",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d506a13_a893c4f6",
+        "filename": "third_party/gae_ts_mon/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-12-07T21:40:57Z",
+      "side": 1,
+      "message": "Ack, removing SGTM then.",
+      "parentUuid": "618b43ac_f8448d66",
       "range": {
         "startLine": 3,
         "startChar": 0,
