@@ -51,6 +51,24 @@
       "parentUuid": "8fbe3367_eaa34fd8",
       "revId": "3d97ae02fb820c39a9c72a1423c941fae5c4ffe9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6278341c_cad96b78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-12-07T20:44:13Z",
+      "side": 1,
+      "message": "I think updating it to wherever you got this source from is preferable to completely removing it.",
+      "parentUuid": "75ba61a3_d5cbdc7b",
+      "revId": "3d97ae02fb820c39a9c72a1423c941fae5c4ffe9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
