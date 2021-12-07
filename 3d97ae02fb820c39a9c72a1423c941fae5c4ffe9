@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "814f2893_08c72fb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-07T20:32:05Z",
+      "side": 1,
+      "message": "PTAL. This is a preliminary requirement for using python3. It should not break anything. In fact, using the current version in gae_ts_mon does not work.",
+      "revId": "3d97ae02fb820c39a9c72a1423c941fae5c4ffe9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
