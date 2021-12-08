@@ -14,7 +14,7 @@ from __future__ import absolute_import
 import logging
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import email_sheriff
 from dashboard import find_change_points

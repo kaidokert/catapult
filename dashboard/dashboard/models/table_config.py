@@ -31,7 +31,7 @@ from __future__ import division
 from __future__ import absolute_import
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import utils
 from dashboard.models import internal_only_model

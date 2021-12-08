@@ -13,7 +13,7 @@ import logging
 import six
 import sys
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import utils
 from dashboard.models import graph_data
@@ -119,7 +119,7 @@ def RemoveInvalidSparseDiagnostics(diagnostics):
 
 class SparseDiagnostic(JsonModel):
   # Need for intersecting range queries.
-  name = ndb.StringProperty(indexed=False)
+  name = ndb.StringProperty()
   start_revision = ndb.IntegerProperty(indexed=True)
   end_revision = ndb.IntegerProperty(indexed=True)
 

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 BUG_STATUS_OPENED = 'opened'
 BUG_STATUS_CLOSED = 'closed'

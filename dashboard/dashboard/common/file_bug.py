@@ -13,7 +13,7 @@ import re
 
 from google.appengine.api import app_identity
 from google.appengine.api import urlfetch
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import auto_bisect
 from dashboard import short_uri

@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import datetime
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 # Isolates expire in isolate server after 60 days. We expire
 # our isolate lookups a little bit sooner, just to be safe.
@@ -81,8 +81,8 @@ def DeleteExpiredIsolates(start_cursor=None):
 
 
 class Isolate(ndb.Model):
-  isolate_server = ndb.StringProperty(indexed=False, required=True)
-  isolate_hash = ndb.StringProperty(indexed=False, required=True)
+  isolate_server = ndb.StringProperty(required=True)
+  isolate_hash = ndb.StringProperty(required=True)
   created = ndb.DateTimeProperty(auto_now_add=True)
 
   # We can afford to look directly in Datastore here since we don't expect to

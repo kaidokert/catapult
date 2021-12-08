@@ -10,7 +10,7 @@ import unittest
 
 import mock
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import testing_common
 from dashboard.common import utils

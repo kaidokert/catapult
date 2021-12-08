@@ -17,7 +17,7 @@ import uuid
 import zlib
 
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import sheriff_config_client
 from dashboard.api import api_request_handler

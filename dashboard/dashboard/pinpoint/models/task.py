@@ -13,7 +13,7 @@ import logging
 
 from dashboard.common import timing
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import db
 
 __all__ = (

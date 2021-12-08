@@ -11,7 +11,7 @@ import datetime
 import json
 import uuid
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import namespaced_stored_object
 from dashboard.common import testing_common

@@ -12,7 +12,7 @@ import unittest
 import webapp2
 import webtest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import list_tests
 from dashboard.common import datastore_hooks

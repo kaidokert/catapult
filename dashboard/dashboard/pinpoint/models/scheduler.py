@@ -22,7 +22,7 @@ import datetime
 import functools
 import random
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import bot_configurations
 
@@ -70,7 +70,7 @@ class ConfigurationQueue(ndb.Model):
   _default_indexed = False
   _default_memcache = True
   jobs = ndb.StructuredProperty(QueueElement, repeated=True)
-  configuration = ndb.StringProperty(required=True, indexed=True)
+  configuration = ndb.StringProperty(required=True)
   samples = ndb.StructuredProperty(SampleElementTiming, repeated=True)
 
   @classmethod

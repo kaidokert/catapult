@@ -10,7 +10,7 @@ import collections
 import json
 import urllib
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import alerts
 from dashboard.common import datastore_hooks

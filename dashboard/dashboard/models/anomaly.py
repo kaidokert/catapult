@@ -10,7 +10,7 @@ import logging
 import sys
 import time
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import timing
 from dashboard.common import utils
@@ -27,7 +27,7 @@ UP, DOWN, UNKNOWN = (0, 1, 4)
 
 
 class Issue(ndb.Model):
-  project_id = ndb.StringProperty(default='chromium', indexed=True)
+  project_id = ndb.StringProperty(default='chromium')
   issue_id = ndb.IntegerProperty(required=True, indexed=True)
 
 
@@ -53,7 +53,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # This is the project to which an anomaly is associated with, in the issue
   # tracker service.
-  project_id = ndb.StringProperty(indexed=True, default='chromium')
+  project_id = ndb.StringProperty(default='chromium')
   # === DEPRECATED END   ===
 
   # AlertGroups used for grouping
@@ -72,7 +72,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   # The subscribers who recieve alerts
   subscriptions = ndb.LocalStructuredProperty(
       subscription.Subscription, repeated=True)
-  subscription_names = ndb.StringProperty(indexed=True, repeated=True)
+  subscription_names = ndb.StringProperty(repeated=True)
 
   # The anomaly configuration used to generate this anomaly, associated with the
   # subscription.
@@ -81,7 +81,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # Each Alert is related to one Test.
   test = ndb.KeyProperty(indexed=True)
-  statistic = ndb.StringProperty(indexed=True)
+  statistic = ndb.StringProperty()
 
   # We'd like to be able to query Alerts by Master, Bot, and Benchmark names.
   master_name = ndb.ComputedProperty(
@@ -106,7 +106,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # Alert grouping is used to overide the default alert group (test suite)
   # for auto-triage.
-  alert_grouping = ndb.StringProperty(indexed=False, repeated=True)
+  alert_grouping = ndb.StringProperty(repeated=True)
 
   # The number of points before and after this anomaly that were looked at
   # when finding this anomaly.
@@ -143,10 +143,10 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   ref_test = ndb.KeyProperty(indexed=False)
 
   # The corresponding units from the TestMetaData entity.
-  units = ndb.StringProperty(indexed=False)
+  units = ndb.StringProperty()
 
   recipe_bisects = ndb.KeyProperty(repeated=True, indexed=False)
-  pinpoint_bisects = ndb.StringProperty(repeated=True, indexed=False)
+  pinpoint_bisects = ndb.StringProperty(repeated=True)
 
   # Additional Metadata
   # ====

@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 from google.appengine.api import users
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import oauth2_decorator
 from dashboard.common import file_bug

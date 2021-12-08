@@ -12,7 +12,7 @@ from dashboard.common import request_handler
 from dashboard.models import alert_group
 from dashboard.models import alert_group_workflow
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.api import taskqueue
 
 

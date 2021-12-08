@@ -12,7 +12,7 @@ from dashboard import revision_info_client
 from dashboard.common import namespaced_stored_object
 from dashboard.common import testing_common
 from dashboard.common import utils
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from tracing.value.diagnostics import reserved_infos
 
 

@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import webapp2
 import webtest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import speed_releasing
 from dashboard.common import datastore_hooks

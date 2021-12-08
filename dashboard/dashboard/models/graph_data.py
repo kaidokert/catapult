@@ -60,7 +60,7 @@ from __future__ import absolute_import
 
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import layered_cache
 from dashboard.common import utils
@@ -157,7 +157,7 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
       indexed=False)
 
   # Units of the child Rows of this test, or None if there are no child Rows.
-  units = ndb.StringProperty(indexed=False)
+  units = ndb.StringProperty()
 
   # Whether or not the test has child rows. Set by hook on Row class put.
   has_rows = ndb.BooleanProperty(default=False, indexed=True)
@@ -171,7 +171,7 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
 
   # Story names are escaped (slashes, colons). Store unescaped version
   # for story filter flag.
-  unescaped_story_name = ndb.StringProperty(indexed=False)
+  unescaped_story_name = ndb.StringProperty()
 
   # Computed properties are treated like member variables, so they have
   # lowercase names, even though they look like methods to pylint.

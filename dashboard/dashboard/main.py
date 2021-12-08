@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import datetime
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import email_template
 from dashboard.common import request_handler

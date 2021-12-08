@@ -7,7 +7,7 @@ from __future__ import absolute_import
 import logging
 import uuid
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.api import api_request_handler
 from dashboard.common import histogram_helpers

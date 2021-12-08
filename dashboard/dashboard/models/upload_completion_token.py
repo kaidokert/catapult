@@ -7,7 +7,7 @@ from __future__ import absolute_import
 import logging
 import uuid
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.models import internal_only_model
 
@@ -52,13 +52,13 @@ class Token(internal_only_model.InternalOnlyModel):
   state_ = ndb.IntegerProperty(
       name='state', default=State.PENDING, indexed=False)
 
-  error_message = ndb.StringProperty(indexed=False, default=None)
+  error_message = ndb.StringProperty(default=None)
 
   creation_time = ndb.DateTimeProperty(auto_now_add=True, indexed=False)
 
   update_time = ndb.DateTimeProperty(auto_now=True, indexed=False)
 
-  temporary_staging_file_path = ndb.StringProperty(indexed=False, default=None)
+  temporary_staging_file_path = ndb.StringProperty(default=None)
 
   @property
   def state(self):
@@ -132,11 +132,11 @@ class Measurement(internal_only_model.InternalOnlyModel):
 
   token = ndb.KeyProperty(kind='Token', indexed=True)
 
-  test_path = ndb.StringProperty(indexed=True)
+  test_path = ndb.StringProperty()
 
   state = ndb.IntegerProperty(default=State.PROCESSING, indexed=False)
 
-  error_message = ndb.StringProperty(indexed=False, default=None)
+  error_message = ndb.StringProperty(default=None)
 
   update_time = ndb.DateTimeProperty(auto_now=True, indexed=False)
 

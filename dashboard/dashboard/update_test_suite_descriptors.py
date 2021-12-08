@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import logging
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import list_tests
 from dashboard import update_test_suites

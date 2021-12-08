@@ -12,7 +12,7 @@ from __future__ import print_function
 
 import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 
 CAS_EXPIRY_DURATION = datetime.timedelta(days=88)
@@ -62,8 +62,8 @@ def Put(cas_references):
 
 
 class CASReference(ndb.Model):
-  cas_instance = ndb.StringProperty(indexed=False, required=True)
-  cas_digest = ndb.StringProperty(indexed=False, required=True)
+  cas_instance = ndb.StringProperty(required=True)
+  cas_digest = ndb.StringProperty(required=True)
   created = ndb.DateTimeProperty(auto_now_add=True)
 
   # We can afford to look directly in Datastore here since we don't expect to

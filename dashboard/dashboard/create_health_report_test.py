@@ -10,7 +10,7 @@ import copy
 import webapp2
 import webtest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.api import users
 
 from dashboard import create_health_report

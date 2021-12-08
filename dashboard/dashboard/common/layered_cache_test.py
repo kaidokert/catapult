@@ -15,7 +15,7 @@ import datetime
 import mock
 import unittest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.runtime import apiproxy_errors
 
 from dashboard.common import layered_cache

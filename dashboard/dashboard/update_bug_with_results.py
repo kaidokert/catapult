@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import collections
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import layered_cache
 from dashboard.models import anomaly

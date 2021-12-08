@@ -21,7 +21,7 @@ from google.appengine.api import oauth
 from google.appengine.api import urlfetch
 from google.appengine.api import urlfetch_errors
 from google.appengine.api import users
-from google.appengine.ext import ndb
+from google.cloud import ndb
 import httplib2
 from oauth2client import client
 

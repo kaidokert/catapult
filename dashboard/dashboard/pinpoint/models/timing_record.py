@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import collections
 import datetime
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from dashboard.common import math_utils
 
 FETCH_LIMIT = 500
@@ -24,7 +24,7 @@ class TimingRecord(ndb.Model):
   started = ndb.DateTimeProperty(indexed=False, required=True)
   completed = ndb.DateTimeProperty(indexed=True, required=True)
   estimate = ndb.DateTimeProperty(indexed=False)
-  tags = ndb.StringProperty(indexed=True, repeated=True)
+  tags = ndb.StringProperty(repeated=True)
 
 
 def GetSimilarHistoricalTimings(job):

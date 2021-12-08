@@ -17,7 +17,7 @@ import logging
 import math
 import re
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import alerts
 from dashboard import can_bisect

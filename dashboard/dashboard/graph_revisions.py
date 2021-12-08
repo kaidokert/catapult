@@ -20,7 +20,7 @@ import bisect
 import json
 import math
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import datastore_hooks
 from dashboard.common import namespaced_stored_object

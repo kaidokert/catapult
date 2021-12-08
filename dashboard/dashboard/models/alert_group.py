@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import uuid
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 # Move import of protobuf-dependent code here so that all AppEngine work-arounds
 # have a chance to be live before we import any proto code.
@@ -27,14 +27,14 @@ class RevisionRange(ndb.Model):
 
 
 class BugInfo(ndb.Model):
-  project = ndb.StringProperty(indexed=True)
+  project = ndb.StringProperty()
   bug_id = ndb.IntegerProperty(indexed=True)
 
 
 class AlertGroup(ndb.Model):
-  name = ndb.StringProperty(indexed=True)
-  domain = ndb.StringProperty(indexed=True)
-  subscription_name = ndb.StringProperty(indexed=True)
+  name = ndb.StringProperty()
+  domain = ndb.StringProperty()
+  subscription_name = ndb.StringProperty()
   created = ndb.DateTimeProperty(indexed=False, auto_now_add=True)
   updated = ndb.DateTimeProperty(indexed=False, auto_now_add=True)
 
@@ -60,7 +60,7 @@ class AlertGroup(ndb.Model):
   active = ndb.BooleanProperty(indexed=True)
   revision = ndb.LocalStructuredProperty(RevisionRange)
   bug = ndb.StructuredProperty(BugInfo, indexed=True)
-  project_id = ndb.StringProperty(indexed=True, default='chromium')
+  project_id = ndb.StringProperty(default='chromium')
   bisection_ids = ndb.StringProperty(repeated=True)
   anomalies = ndb.KeyProperty(repeated=True)
   # Key of canonical AlertGroup. If not None the group is considered to be

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import unittest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import datastore_hooks
 from dashboard.common import testing_common

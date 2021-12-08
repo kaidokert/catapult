@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import functools
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import report_query
 from dashboard.common import timing
