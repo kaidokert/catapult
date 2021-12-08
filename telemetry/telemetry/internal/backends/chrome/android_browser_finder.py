@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import
 import contextlib
+import copy
 import logging
 import os
 import platform
@@ -467,9 +468,11 @@ def _FindAllPossibleBrowsers(finder_options, android_platform):
             android_platform, finder_options.IsBrowserTypeBundle())
 
       if settings.IsWebView():
+        settings_copy = copy.deepcopy(settings)
+        settings_copy.SetEmbedderPackageName(finder_options.chrome_root)
         p_browser = PossibleAndroidBrowser(
-            settings.browser_type, finder_options, android_platform, settings,
-            local_apk=local_apk, target_os='android_webview')
+            settings_copy.browser_type, finder_options, android_platform,
+            settings_copy, local_apk=local_apk, target_os='android_webview')
       else:
         p_browser = PossibleAndroidBrowser(
             settings.browser_type, finder_options, android_platform, settings,
