@@ -47,7 +47,7 @@ _PERF_OPTIONS = [
 ]
 
 
-class _PerfProfiler(object):
+class _PerfProfiler():
   def __init__(self, device, perf_binary, categories):
     self._device = device
     self._output_file = device_temp_file.DeviceTempFile(

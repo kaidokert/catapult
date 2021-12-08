@@ -10,7 +10,7 @@ from systrace import trace_result
 from systrace import tracing_agents
 
 
-class FakeAgent2(object):
+class FakeAgent2():
   def __init__(self, contents='fake-contents'):
     self.contents = contents
     self.stopped = False

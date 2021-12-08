@@ -21,7 +21,7 @@ FT_BUFFER_SIZE = FT_DIR + "buffer_size_kb"
 
 
 def make_test_io_interface(permitted_files):
-  class TestIoImpl(object):
+  class TestIoImpl():
 
     @staticmethod
     def writeFile(path, data):
@@ -31,8 +31,7 @@ def make_test_io_interface(permitted_files):
     def readFile(path):
       if path in permitted_files:
         return permitted_files[path]
-      else:
-        return ""
+      return ""
 
     @staticmethod
     def haveWritePermissions(path):
