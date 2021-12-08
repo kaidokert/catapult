@@ -9,6 +9,7 @@ import os
 
 from telemetry.core import util
 
+from devil.android import apk_helper
 from devil.android.sdk import version_codes
 
 import py_utils
@@ -168,6 +169,14 @@ class WebViewBackendSettings(WebViewBasedBackendSettings):
     kwargs.setdefault('embedder_apk_name', 'SystemWebViewShell.apk')
     kwargs.setdefault('command_line_name', 'webview-command-line')
     return super(WebViewBackendSettings, cls).__new__(cls, **kwargs)
+
+  def SetEmbedderPackageName(self, chrome_root):
+    if not chrome_root:
+      return
+    embedder_apk_path = os.path.dirname(
+        util.FindLatestApkOnHost(chrome_root, self.embedder_apk_name))
+    # pylint: disable=attribute-defined-outside-init
+    self.package = apk_helper.GetPackageName(embedder_apk_path)
 
   def GetApkName(self, device):
     if self.apk_name is not None:
