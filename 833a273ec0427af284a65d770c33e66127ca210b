@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd401260_781cfecf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-12-08T01:06:37Z",
+      "side": 1,
+      "message": "Hi John\n\nThis CL makes telemetry use the correct webview embedder package name when running tests. This is necessary for builders that change the package name of webview shell.\n\nPTAL\nRegards\nRakib Hasan",
+      "revId": "833a273ec0427af284a65d770c33e66127ca210b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
