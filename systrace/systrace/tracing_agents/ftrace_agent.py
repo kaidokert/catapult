@@ -11,7 +11,7 @@ from systrace import trace_result
 from systrace import tracing_agents
 
 
-class FtraceAgentIo(object):
+class FtraceAgentIo():
   @staticmethod
   def writeFile(path, data):
     if FtraceAgentIo.haveWritePermissions(path):
