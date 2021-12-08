@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e9bb0ac_38368241",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125359
+      },
+      "writtenOn": "2021-12-08T04:36:45Z",
+      "side": 1,
+      "message": "thanks for the details. Added a todo to clean up this import weirdness.",
+      "revId": "5dac013480787fde10617b9733d18503a4bdaaf5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
