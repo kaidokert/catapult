@@ -204,6 +204,10 @@ class AndroidBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   @exc_util.BestEffort
   def Close(self):
     if os.getenv('CHROME_PGO_PROFILING'):
+      # Bind the DevTools connection if it has already been closed, this will
+      # be closed again later when stopping the browser.
+      #if not self.HasDevToolsConnection() or True:
+      self.BindDevToolsClient()
       self.devtools_client.DumpProfilingDataOfAllProcesses(timeout=120)
     super(AndroidBrowserBackend, self).Close()
     self._StopBrowser()
