@@ -8,6 +8,7 @@
 import os
 import sys
 
+import typ
 
 def Run(top_level_dir, path=None, suffixes=None, **kwargs):
   """Runs a set of Python tests using typ.
@@ -24,7 +25,6 @@ def Run(top_level_dir, path=None, suffixes=None, **kwargs):
   typ_path = os.path.abspath(os.path.join(
       os.path.dirname(__file__), os.path.pardir, 'third_party', 'typ'))
   _AddToPathIfNeeded(typ_path)
-  import typ
   return typ.main(
       top_level_dir=top_level_dir,
       path=(path or []),
