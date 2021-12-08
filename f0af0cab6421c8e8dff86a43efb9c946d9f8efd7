@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2408da6d_90aa5d9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-08T06:08:18Z",
+      "side": 1,
+      "message": "This is now ready for review. Do note that it depends onhttps://chromium-review.googlesource.com/c/catapult/+/3321627/6",
+      "revId": "f0af0cab6421c8e8dff86a43efb9c946d9f8efd7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
