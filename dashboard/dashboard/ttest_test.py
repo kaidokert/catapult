@@ -91,7 +91,7 @@ class TTestTest(unittest.TestCase):
     # Note that a negative t-value is obtained when the first sample has a
     # smaller mean than the second, otherwise a positive value is returned.
     self.assertAlmostEqual(-0.27968236, ttest._TValue(stats1, stats2))
-    self.assertAlmostEqual(0.27968236, ttest._TValue(stats2, stats1))
+    self.assertAlmostEqual(0.27968236, ttest._TValue(stats2, stats1))  # pylint:disable=arguments-out-of-order
 
   def testTValue_ConstantSamples_ResultIsInfinity(self):
     """If there is no variation, infinity is used as the t-statistic value."""

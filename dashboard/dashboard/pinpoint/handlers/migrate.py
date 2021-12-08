@@ -29,10 +29,10 @@ class Migrate(api_request_handler.ApiRequestHandler):
     if not utils.IsAdministrator():
       raise api_request_handler.ForbiddenError()
 
-  def Get(self):
+  def Get(self, *_):
     return stored_object.Get(_STATUS_KEY) or {}
 
-  def Post(self):
+  def Post(self, *_):
     status = stored_object.Get(_STATUS_KEY)
 
     if not status:

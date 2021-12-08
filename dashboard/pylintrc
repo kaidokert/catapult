@@ -25,6 +25,7 @@ disable=
 
   fixme,
   global-statement,
+  invalid-name,
   import-error,
   locally-disabled,
   locally-enabled,
@@ -35,7 +36,8 @@ disable=
   no-self-use,
   protected-access,
   star-args,
-  super-on-old-class,
+  super-with-arguments,
+  useless-object-inheritance,
 
   basestring-builtin,
   range-builtin-not-iterating,

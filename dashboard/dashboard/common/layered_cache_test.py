@@ -6,11 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-try:
-  import cPickle
-except ImportError:
-  # pickle in python 3 uses the c version as cPickle in python 2.
-  import pickle as cPickle
+import six.moves.cPickle
 import datetime
 import mock
 import unittest
@@ -37,7 +33,7 @@ class LayeredCacheTest(testing_common.TestCase):
     layered_cache.Set('dict', {'hello': [1, 2, 3]})
     self.assertEqual(
         'Hello, World!',
-        cPickle.loads(
+        six.moves.cPickle.loads(
             ndb.Key('CachedPickledString', 'internal_only__str').get().value))
     self.assertIsNone(
         ndb.Key('CachedPickledString', 'externally_visible__str').get())
@@ -46,7 +42,7 @@ class LayeredCacheTest(testing_common.TestCase):
     self.assertIsNone(layered_cache.Get('str'))
     self.SetCurrentUser('internal@chromium.org')
     self.assertEqual({'hello': [1, 2, 3]},
-                     cPickle.loads(
+                     six.moves.cPickle.loads(
                          ndb.Key('CachedPickledString',
                                  'internal_only__dict').get().value))
     self.assertIsNone(
@@ -60,14 +56,14 @@ class LayeredCacheTest(testing_common.TestCase):
     layered_cache.SetExternal('dict', {'hello': [1, 2, 3]})
     self.assertEqual(
         'Hello, World!',
-        cPickle.loads(
+        six.moves.cPickle.loads(
             ndb.Key('CachedPickledString',
                     'externally_visible__str').get().value))
     self.assertEqual(None,
                      ndb.Key('CachedPickledString', 'internal_only__str').get())
     self.assertEqual('Hello, World!', layered_cache.GetExternal('str'))
     self.assertEqual({'hello': [1, 2, 3]},
-                     cPickle.loads(
+                     six.moves.cPickle.loads(
                          ndb.Key('CachedPickledString',
                                  'externally_visible__dict').get().value))
     self.assertEqual(
@@ -91,7 +87,8 @@ class LayeredCacheTest(testing_common.TestCase):
     layered_cache.Set('str1', 'Hello, World!', days_to_keep=10)
     key_internal = ndb.Key('CachedPickledString', 'internal_only__str1')
     key_external = ndb.Key('CachedPickledString', 'externally_visible__str1')
-    self.assertEqual('Hello, World!', cPickle.loads(key_internal.get().value))
+    self.assertEqual('Hello, World!',
+                     six.moves.cPickle.loads(key_internal.get().value))
     self.assertIsNone(key_external.get())
     self.assertEqual('Hello, World!', layered_cache.Get('str1'))
 

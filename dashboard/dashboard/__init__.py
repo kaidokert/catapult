@@ -141,7 +141,7 @@ def _AllSdkThirdPartyLibraryPaths():
     break
 
   try:
-    import dev_appserver
+    import dev_appserver  # pylint: disable=import-outside-toplevel
   except ImportError:
     # TODO: Put the Cloud SDK in the path with the binary dependency manager.
     # https://github.com/catapult-project/catapult/issues/2135

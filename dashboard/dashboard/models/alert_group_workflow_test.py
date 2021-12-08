@@ -20,6 +20,7 @@ from dashboard.models import alert_group
 from dashboard.models import alert_group_workflow
 from dashboard.models import anomaly
 from dashboard.models import subscription
+import six
 
 _SERVICE_ACCOUNT_EMAIL = 'service-account@chromium.org'
 
@@ -933,8 +934,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     # Tags must be a dict of key/value string pairs.
     for k, v in tags.items():
-      self.assertIsInstance(k, basestring)
-      self.assertIsInstance(v, basestring)
+      self.assertIsInstance(k, six.string_types)
+      self.assertIsInstance(v, six.string_types)
 
     self.assertEqual(['123456'], group.get().bisection_ids)
     self.assertEqual(['Chromeperf-Auto-Bisected'],
@@ -987,8 +988,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     # Tags must be a dict of key/value string pairs.
     for k, v in tags.items():
-      self.assertIsInstance(k, basestring)
-      self.assertIsInstance(v, basestring)
+      self.assertIsInstance(k, six.string_types)
+      self.assertIsInstance(v, six.string_types)
 
     self.assertEqual(['123456'], group.get().bisection_ids)
     self.assertEqual(['Chromeperf-Auto-Bisected'],
@@ -1093,8 +1094,8 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
 
     # Tags must be a dict of key/value string pairs.
     for k, v in tags.items():
-      self.assertIsInstance(k, basestring)
-      self.assertIsInstance(v, basestring)
+      self.assertIsInstance(k, six.string_types)
+      self.assertIsInstance(v, six.string_types)
 
     self.assertEqual(['123456'], group.get().bisection_ids)
     self.assertEqual(['Chromeperf-Auto-Bisected'],

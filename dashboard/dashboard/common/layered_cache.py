@@ -32,11 +32,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-try:
-  import cPickle
-except ImportError:
-  # pickle in python 3 uses the c version as cPickle in python 2.
-  import pickle as cPickle
+import six.moves.cPickle
 import datetime
 import logging
 
@@ -79,9 +75,8 @@ def Get(key):
   entity = ndb.Key('CachedPickledString',
                    namespaced_key).get(read_policy=ndb.EVENTUAL_CONSISTENCY)
   if entity:
-    return cPickle.loads(entity.value)
-  else:
-    return stored_object.Get(key)
+    return six.moves.cPickle.loads(entity.value)
+  return stored_object.Get(key)
 
 
 def GetExternal(key):
@@ -93,9 +88,8 @@ def GetExternal(key):
   entity = ndb.Key('CachedPickledString',
                    namespaced_key).get(read_policy=ndb.EVENTUAL_CONSISTENCY)
   if entity:
-    return cPickle.loads(entity.value)
-  else:
-    return stored_object.Get(key)
+    return six.moves.cPickle.loads(entity.value)
+  return stored_object.Get(key)
 
 
 def Set(key, value, days_to_keep=None, namespace=None):
@@ -120,7 +114,8 @@ def Set(key, value, days_to_keep=None, namespace=None):
 
   try:
     CachedPickledString(
-        id=namespaced_key, value=cPickle.dumps(value),
+        id=namespaced_key,
+        value=six.moves.cPickle.dumps(value),
         expire_time=expire_time).put()
   except datastore_errors.BadRequestError as e:
     logging.warning('BadRequestError for key %s: %s', key, e)

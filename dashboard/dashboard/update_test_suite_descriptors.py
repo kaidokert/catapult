@@ -22,6 +22,7 @@ from dashboard.models import graph_data
 from dashboard.models import histogram
 from tracing.value.diagnostics import reserved_infos
 from tracing.value.diagnostics import generic_set
+import six
 
 
 def CacheKey(master, test_suite):
@@ -48,13 +49,13 @@ def FetchCachedTestSuiteDescriptor(master, test_suite):
       desc['measurements'].extend(cur_desc['measurements'])
       desc['bots'].extend(cur_desc['bots'])
       desc['cases'].extend(cur_desc['cases'])
-      for tag, case_tags in cur_desc['caseTags'].iteritems():
+      for tag, case_tags in six.iteritems(cur_desc['caseTags']):
         desc['caseTags'].setdefault(tag, []).extend(case_tags)
 
   desc['measurements'] = list(sorted(set(desc['measurements'])))
   desc['bots'] = list(sorted(set(desc['bots'])))
   desc['cases'] = list(sorted(set(desc['cases'])))
-  for tag in desc['caseTags'].keys():
+  for tag in desc['caseTags']:
     desc['caseTags'][tag] = list(sorted(set(desc['caseTags'][tag])))
 
   return desc

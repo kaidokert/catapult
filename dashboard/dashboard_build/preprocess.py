@@ -31,7 +31,7 @@ def Chdir(path):
 def PackPinpoint(catapult_path, temp_dir, deployment_paths):
   with Chdir(catapult_path):
     _AddToPathIfNeeded(os.path.join(catapult_path, 'common', 'node_runner'))
-    from node_runner import node_util
+    from node_runner import node_util  # pylint: disable=import-outside-toplevel
     node_path = node_util.GetNodePath()
     node_modules = node_util.GetNodeModulesPath()
 

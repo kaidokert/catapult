@@ -7,6 +7,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import six
+
 from googleapiclient import discovery
 from googleapiclient import errors
 
@@ -72,5 +74,5 @@ def CreateServiceClient(api_root, api, version, http=None, credentials=None):
           http=http,
           cache_discovery=False)
   except (errors.HttpError, errors.UnknownApiNameOrVersion) as e:
-    raise DiscoveryError(e)
+    six.raise_from(DiscoveryError(e), e)
   return client

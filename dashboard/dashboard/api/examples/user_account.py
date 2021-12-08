@@ -22,6 +22,7 @@ from __future__ import absolute_import
 
 import httplib2
 from oauth2client import client
+from six.moves import input
 
 # See security notes about why the 'secret' doesn't need to be kept secret here:
 # https://cs.chromium.org/chromium/tools/depot_tools/auth.py
@@ -42,7 +43,7 @@ def MakeApiRequest():
         '    %s\n' % authorize_url)
 
   # pylint:disable=raw_input-builtin
-  code = raw_input('Enter verification code: ').strip()
+  code = input('Enter verification code: ').strip()
   try:
     creds = flow.step2_exchange(code)
   except client.FlowExchangeError as e:

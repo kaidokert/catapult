@@ -7,6 +7,9 @@ from __future__ import division
 from __future__ import absolute_import
 
 
+USE_PYTHON3 = True
+
+
 def CheckChangeOnUpload(input_api, output_api):
   return _CommonChecks(input_api, output_api)
 
@@ -24,7 +27,8 @@ def _CommonChecks(input_api, output_api):
           output_api,
           extra_paths_list=_GetPathsToPrepend(input_api),
           files_to_skip=files_to_skip,
-          pylintrc='pylintrc'))
+          pylintrc='pylintrc',
+          version='2.7'))
   return results
 
 
