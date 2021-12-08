@@ -56,15 +56,11 @@ class JobError(Exception):
 
 
 class FatalError(JobError):
-
-  def __init__(self, message):
-    super(FatalError, self).__init__(message)
+  pass
 
 
 class InformationalError(JobError):
-
-  def __init__(self, message):
-    super(InformationalError, self).__init__(message)
+  pass
 
 
 # Not a JobError because this is only used for internal control flow -- this

@@ -24,6 +24,7 @@ from dashboard.pinpoint.models.quest import run_vr_telemetry_test
 from dashboard.pinpoint.models.quest import run_gtest
 from dashboard.pinpoint.models.quest import run_webrtc_test
 from dashboard.services import gitiles_service
+from six.moves import zip
 
 _DEFAULT_SPECULATION_LEVELS = 2
 
@@ -217,7 +218,7 @@ class PrepareCommits(collections.namedtuple('PrepareCommits', ('job', 'task'))):
           'errors':
               self.task.payload.get('errors', []) + [{
                   'reason': 'GitilesFetchError',
-                  'message': e.message
+                  'message': str(e)
               }]
       })
       task_module.UpdateTask(
@@ -542,7 +543,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         p, c, n = itertools.tee(iterable, 3)
         p = itertools.chain([None], p)
         n = itertools.chain(itertools.islice(n, 1, None), [None])
-        return itertools.izip(p, c, n)
+        return zip(p, c, n)
 
       # This is a comparison between values at a change and the values at
       # the previous change and the next change.
@@ -585,7 +586,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
           RefineExplorationAction(self.job, task, change, new_size)
           for change, new_size in itertools.chain(
               [(c, min_attempts) for _, c in additional_changes],
-              [(c, a) for c, a in changes_to_refine],
+              list(changes_to_refine),
           )
           if not bool({'pending', 'ongoing'} & set(status_by_change[change]))
       ]
@@ -595,7 +596,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         """s -> (s0, s1), (s1, s2), (s2, s3), ..."""
         a, b = itertools.tee(iterable)
         next(b, None)
-        return itertools.izip(a, b)
+        return zip(a, b)
 
       task.payload.update({
           'culprits': [(a.AsDict(), b.AsDict())
@@ -607,6 +608,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         # Mark this operation complete, storing the differences we can compute.
         actions = [CompleteExplorationAction(self.job, task, 'completed')]
       return actions
+    return None
 
 
 class Evaluator(evaluators.FilteringEvaluator):

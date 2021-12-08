@@ -6,6 +6,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import six
+import sys
 import traceback
 
 from oauth2client import client
@@ -81,7 +83,7 @@ class Execution(object):
   # crbug.com/971370
   def __setstate__(self, state):
     self.__dict__ = state  # pylint: disable=attribute-defined-outside-init
-    if isinstance(self._exception, basestring):
+    if isinstance(self._exception, six.string_types):
       self._exception = {
           'message': self._exception.splitlines()[-1],
           'traceback': self._exception
@@ -94,7 +96,7 @@ class Execution(object):
         'details': self._AsDict(),
     }
 
-    if isinstance(self._exception, basestring):
+    if isinstance(self._exception, six.string_types):
       d['exception'] = {
           'message': self._exception.splitlines()[-1],
           'traceback': self._exception
@@ -120,11 +122,11 @@ class Execution(object):
     try:
       self._Poll()
     except client.AccessTokenRefreshError as e:
-      raise errors.RecoverableError(e)
+      six.raise_from(errors.RecoverableError(e), e)
     except (errors.FatalError, RuntimeError):
       # Some built-in exceptions are derived from RuntimeError which we'd like
       # to treat as errors.
-      raise
+      six.reraise(*sys.exc_info())
     except Exception as e:  # pylint: disable=broad-except
       # We allow broad exception handling here, because we log the exception and
       # display it in the UI.
@@ -132,10 +134,9 @@ class Execution(object):
       tb = traceback.format_exc()
       if hasattr(e, 'task_output'):
         tb += '\n%s' % getattr(e, 'task_output')
-      self._exception = {'message': e.message, 'traceback': tb}
-    except:
-      # All other exceptions must be propagated.
-      raise
+      self._exception = {'message': str(e), 'traceback': tb}
+      # Re-propagate.
+      six.reraise(*sys.exc_info())
 
   def _Poll(self):
     raise NotImplementedError()

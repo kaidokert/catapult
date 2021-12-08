@@ -27,7 +27,7 @@ class BugsHandler(api_request_handler.ApiRequestHandler):
     if not datastore_hooks.IsUnalteredQueryPermitted():
       raise api_request_handler.ForbiddenError()
 
-  def Post(self, *args, **kwargs):
+  def Post(self, *args, **kwargs):  # pylint: disable=arguments-differ
     """Returns alert data in response to API requests.
 
     Argument:

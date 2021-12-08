@@ -26,6 +26,7 @@ from dashboard.services import swarming
 from dateutil.parser import isoparse
 from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
+from six.moves import zip
 
 _TEST_START_TIME = datetime.datetime.fromtimestamp(1326244364)
 _TEST_START_TIME_STR = _TEST_START_TIME.strftime('%Y-%m-%d %H:%M:%S.%f')
@@ -849,9 +850,9 @@ class _JobStateFake(object):
     def Pairwise(iterable):
       a, b = itertools.tee(iterable)
       next(b, None)
-      return itertools.izip(a, b)
+      return zip(a, b)
 
-    return [(a, b) for a, b in Pairwise(self._attempts.keys())]
+    return list(Pairwise(list(self._attempts.keys())))
 
 
 class _JobStub(object):

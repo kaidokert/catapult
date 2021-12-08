@@ -11,7 +11,6 @@ import json
 import mock
 
 from dashboard.pinpoint.handlers import results2
-from dashboard.pinpoint.models.results2 import Results2Error
 from dashboard.pinpoint import test
 
 
@@ -87,7 +86,7 @@ class Results2GeneratorPostTest(_Results2Test):
     self.assertTrue(mock_generate.called)
 
   def testGet_ReturnsError(self, mock_generate):
-    mock_generate.side_effect = Results2Error('foo')
+    mock_generate.side_effect = results2.Results2Error('foo')
     self._SetJob(_JobStub('101112'))
 
     response = self.testapp.post('/api/generate-results2/101112')

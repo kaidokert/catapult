@@ -7,15 +7,19 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from googleapiclient import errors
-from google.cloud import datastore
+
 import base64
 import collections
 import httplib2
 import sheriff_pb2
 import validator
 import matcher as matcher_module
+import six
 import utils
+
+from googleapiclient import errors
+from google.cloud import datastore
+
 
 # The path which we will look for in projects.
 SHERIFF_CONFIG_PATH = 'chromeperf-sheriffs.cfg'
@@ -56,7 +60,7 @@ def FindAllSheriffConfigs(client):
   try:
     configs = client.get_project_configs(path=SHERIFF_CONFIG_PATH).execute()
   except (errors.HttpError, httplib2.HttpLib2Error) as e:
-    raise FetchError(e)
+    six.raise_from(FetchError(e), e)
   return configs
 
 
@@ -107,8 +111,8 @@ def StoreConfigs(client, configs):
     try:
       sheriff_config = validator.Validate(
           base64.standard_b64decode(config['content']))
-    except validator.Error as error:
-      raise InvalidContentError(config, error)
+    except validator.Error as e:
+      six.raise_from(InvalidContentError(e, config), e)
 
     entity = datastore.Entity(
         key=key, exclude_from_indexes=['sheriff_config', 'url'])
@@ -223,7 +227,7 @@ def ListAllConfigs(client):
     subscription_index_key = client.key('SubscriptionIndex', 'global')
     subscription_index = client.get(subscription_index_key)
     if subscription_index is None:
-      return
+      return None
 
     # Then for each instance in the 'config_sets', create a key based on the
     # subscription_index_key as a parent, and look those up in one go.
