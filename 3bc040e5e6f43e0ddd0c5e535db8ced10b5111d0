@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b7fcb4d_3c107094",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409812
+      },
+      "writtenOn": "2021-12-08T18:45:53Z",
+      "side": 1,
+      "message": "Hi, Ryan,\nPTAL. I tested the CL locally on my machine, although I\u0027m not sure why the catapult bots did not catch the error last time for the original CL.",
+      "revId": "3bc040e5e6f43e0ddd0c5e535db8ced10b5111d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
