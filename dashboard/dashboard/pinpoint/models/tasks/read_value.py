@@ -95,16 +95,15 @@ class ReadValueEvaluator(
             isolate_server, isolate_hash, task.payload.get('results_filename'))
       if task.payload.get('mode') == 'histogram_sets':
         return self.HandleHistogramSets(task, data)
-      elif task.payload.get('mode') == 'graph_json':
+      if task.payload.get('mode') == 'graph_json':
         return self.HandleGraphJson(task, data)
-      else:
-        return self.CompleteWithError(
-            task, 'UnsupportedMode',
-            ('Pinpoint only currently supports reading '
-             'HistogramSets and GraphJSON formatted files.'))
+      return self.CompleteWithError(
+          task, 'UnsupportedMode',
+          ('Pinpoint only currently supports reading '
+           'HistogramSets and GraphJSON formatted files.'))
     except (errors.FatalError, errors.InformationalError,
             errors.RecoverableError) as e:
-      return self.CompleteWithError(task, type(e).__name__, e.message)
+      return self.CompleteWithError(task, type(e).__name__, str(e))
 
   def HandleHistogramSets(self, task, histogram_dicts):
     histogram_options = task.payload.get('histogram_options', {})

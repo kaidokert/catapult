@@ -385,7 +385,7 @@ class MidpointTest(test.TestCase):
     count = 0
     matcher = re.compile(r'^mc_\d+$')
     for midpoint in _Midpoints(start, end):
-      self.assertRegexpMatches(midpoint.git_hash, matcher)
+      self.assertRegex(midpoint.git_hash, matcher)
       count += 1
       self.assertLess(count, 100)
 

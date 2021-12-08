@@ -18,6 +18,7 @@ class Commit(api_request_handler.ApiRequestHandler):
   def _CheckUser(self):
     pass
 
+  # pylint: disable=inconsistent-return-statements
   def Post(self, *args, **kwargs):
     del args, kwargs  # Unused.
     repository = self.request.get('repository', 'chromium')

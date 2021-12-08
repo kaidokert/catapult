@@ -14,6 +14,7 @@ import collections
 import json
 import logging
 import shlex
+import six
 
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution as execution_module
@@ -74,6 +75,11 @@ class RunTest(quest.Quest):
             and self._execution_counts == other._execution_counts
             and self._command == other._command
             and self._relative_cwd == other._relative_cwd)
+
+  def __hash__(self):
+    return hash(self._swarming_server, self._dimensions, self._extra_args,
+                self._canonical_executions, self._execution_counts,
+                self._command, self._relative_cwd)
 
   def __str__(self):
     return 'Test'
@@ -186,7 +192,7 @@ class RunTest(quest.Quest):
     dimensions = arguments.get('dimensions')
     if not dimensions:
       raise TypeError('Missing a "dimensions" argument.')
-    if isinstance(dimensions, basestring):
+    if isinstance(dimensions, six.string_types):
       dimensions = json.loads(dimensions)
     if not any(dimension['key'] == 'pool' for dimension in dimensions):
       raise ValueError('Missing a "pool" dimension.')
@@ -331,11 +337,10 @@ class _RunTestExecution(execution_module.Execution):
       if 'outputs_ref' not in result:
         task_url = '%s/task?id=%s' % (self._swarming_server, self._task_id)
         raise errors.SwarmingTaskFailed('%s' % (task_url,))
-      else:
-        isolate_output_url = '%s/browse?digest=%s' % (
-            result['outputs_ref']['isolatedserver'],
-            result['outputs_ref']['isolated'])
-        raise errors.SwarmingTaskFailed('%s' % (isolate_output_url,))
+      isolate_output_url = '%s/browse?digest=%s' % (
+          result['outputs_ref']['isolatedserver'],
+          result['outputs_ref']['isolated'])
+      raise errors.SwarmingTaskFailed('%s' % (isolate_output_url,))
 
     if 'cas_output_root' in result:
       result_arguments = {

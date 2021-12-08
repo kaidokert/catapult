@@ -565,7 +565,7 @@ class GroupMemberAuthFailed(Exception):
   pass
 
 
-def IsGroupMember(identity, group):
+def IsGroupMember(identity, group):  # pylint: disable=inconsistent-return-statements
   """Checks if a user is a group member of using chrome-infra-auth.appspot.com.
 
   Args:

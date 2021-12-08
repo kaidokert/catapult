@@ -696,6 +696,7 @@ def _IsAcceptableRowId(row_id, last_row_id):
   return True
 
 
+# pylint: disable=inconsistent-return-statements
 def GetAndValidateRowId(row_dict):
   """Returns the integer ID for a new Row.
 

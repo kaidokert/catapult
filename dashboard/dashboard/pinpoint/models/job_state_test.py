@@ -192,7 +192,7 @@ class ScheduleWorkTest(unittest.TestCase):
     expected_regexp = ('.*7/10.*\nInformationalError: Expected error for '
                        'testing.$')
     self.assertTrue(state.ScheduleWork())
-    with self.assertRaisesRegexp(Exception, expected_regexp):
+    with self.assertRaisesRegex(Exception, expected_regexp):
       self.assertFalse(state.ScheduleWork())
 
   def testAbortAfterNChanges(self):
@@ -202,7 +202,8 @@ class ScheduleWorkTest(unittest.TestCase):
     for i in range(n):
       state.AddChange(change_test.Change(i))
     self.assertEqual(len(state._changes), n)
-    with self.assertRaisesRegexp(Exception, '(.+)The number of builds exceeded %d.(.+)' % n):
+    with self.assertRaisesRegex(
+        Exception, '(.+)The number of builds exceeded %d.(.+)' % n):
       state.AddChange(change_test.Change(123))
 
 

@@ -256,6 +256,7 @@ def _ArgumentsWithConfiguration(original_arguments):
   return new_arguments
 
 
+# pylint: disable=inconsistent-return-statements
 def _ValidateBugId(bug_id, project):
   if not bug_id:
     return None, None
@@ -270,6 +271,7 @@ def _ValidateBugId(bug_id, project):
     six.raise_from(ValueError(_ERROR_BUG_ID), e)
 
 
+# pylint: disable=inconsistent-return-statements
 def _ValidatePriority(priority):
   if not priority:
     return None
@@ -341,6 +343,7 @@ def _ValidateChangesForTry(arguments):
   return change_1, change_2
 
 
+# pylint: disable=inconsistent-return-statements
 def _ValidateChanges(comparison_mode, arguments):
   try:
     changes = arguments.get('changes')
