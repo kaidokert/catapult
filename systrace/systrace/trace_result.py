@@ -11,7 +11,7 @@ tool (e.g. atrace, ftrace.)
 '''
 
 
-class TraceResult(object):
+class TraceResult():
   def __init__(self, source_name, raw_data):
     self.source_name = source_name
     self.raw_data = raw_data
