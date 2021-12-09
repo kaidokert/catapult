@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8b120c7_c675c5ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-12-09T18:29:06Z",
+      "side": 1,
+      "message": "not an owner",
+      "revId": "4ff0b38379e358ff26f63c4c3f9f47a79414cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c92b7d2_3a199d97",
@@ -31,6 +48,30 @@
       "writtenOn": "2021-12-09T01:28:29Z",
       "side": 1,
       "message": "One question about this: in real scenario will the content of /path/to/report be uploaded to ResultDB? Or should I use a different actifact as {\"report\": {\u0027contents\u0027: base64.b64encode(\u0027content of the file\u0027)}}?",
+      "range": {
+        "startLine": 175,
+        "startChar": 20,
+        "endLine": 175,
+        "endChar": 63
+      },
+      "revId": "4ff0b38379e358ff26f63c4c3f9f47a79414cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46588ca6_38788c42",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-12-09T18:29:06Z",
+      "side": 1,
+      "message": "See the resultdb api protos, ie:\nhttps://source.chromium.org/chromium/infra/infra/+/main:go/src/go.chromium.org/luci/resultdb/sink/proto/v1/test_result.proto;drc\u003db84665def8055e050faa7e9450b4171e62106fcb;l\u003d77",
+      "parentUuid": "3c92b7d2_3a199d97",
       "range": {
         "startLine": 175,
         "startChar": 20,
