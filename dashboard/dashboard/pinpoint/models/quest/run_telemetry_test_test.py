@@ -44,11 +44,12 @@ _BASE_SWARMING_TAGS = {}
 class StartTest(unittest.TestCase):
 
   def testStart(self):
+    crrev_service = run_test_test.CreateFakeCrrevService(99999)
     quest = run_telemetry_test.RunTelemetryTest('server',
                                                 run_test_test.DIMENSIONS,
                                                 ['arg'], _BASE_SWARMING_TAGS,
                                                 _TELEMETRY_COMMAND,
-                                                'out/Release')
+                                                'out/Release', crrev_service)
     change = mock.MagicMock(spec=change_module.Change)
     change.base_commit = mock.MagicMock(spec=commit.Commit)
     change.base_commit.AsDict = mock.MagicMock(
