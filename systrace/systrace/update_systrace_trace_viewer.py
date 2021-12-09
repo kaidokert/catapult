@@ -8,6 +8,8 @@ from __future__ import print_function   # pylint: disable=wrong-import-position
 
 import codecs
 import io
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import os
 import re
@@ -120,6 +122,8 @@ def update(no_auto_update=False, no_min=False, force_update=False):
       f.write(create_catapult_rev_str_(new_rev))
 
 def main():
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   parser = optparse.OptionParser()
   parser.add_option('--force-update', dest='force_update',
                     default=False, action='store_true', help='force update the '

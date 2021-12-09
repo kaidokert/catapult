@@ -3,6 +3,8 @@
 # found in the LICENSE file.
 
 from __future__ import print_function
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import tempfile
 
@@ -10,7 +12,7 @@ from systrace import trace_result
 from systrace import tracing_agents
 
 
-class FakeAgent2(object):
+class FakeAgent2():
   def __init__(self, contents='fake-contents'):
     self.contents = contents
     self.stopped = False
@@ -61,6 +63,8 @@ def try_create_agent(config):
   return FakeAgent2()
 
 def add_options(parser):
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   options = optparse.OptionGroup(parser, 'Fake options.')
   return options
 

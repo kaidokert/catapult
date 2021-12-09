@@ -31,13 +31,11 @@ def try_create_agent(options):
       if is_perfetto(f_in):
         if convert_perfetto_trace(options.from_file):
           options.from_file = T2T_OUTPUT
-        else:
-          print ('Perfetto trace file: ' + options.from_file +
-                 ' could not be converted.')
-          sys.exit(1)
+        print ('Perfetto trace file: ' + options.from_file +
+                ' could not be converted.')
+        sys.exit(1)
     return AtraceFromFileAgent(options)
-  else:
-    return False
+  return False
 
 def convert_perfetto_trace(in_file):
   traceconv_path = os.path.abspath(os.path.join(os.path.dirname(__file__),

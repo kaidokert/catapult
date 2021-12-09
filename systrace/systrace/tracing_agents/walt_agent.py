@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import threading
 
@@ -32,6 +34,8 @@ class WaltConfig(tracing_agents.TracingConfig):
 
 
 def add_options(parser):
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   options = optparse.OptionGroup(parser, 'WALT trace options')
   options.add_option('--walt', dest='is_walt_enabled', default=False,
                     action='store_true', help='Use the WALT tracing agent. '

@@ -7,6 +7,8 @@
 
 import json
 import logging
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import py_utils
 
@@ -92,6 +94,8 @@ class AtraceProcessDumpConfig(tracing_agents.TracingConfig):
 
 
 def add_options(parser):
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   options = optparse.OptionGroup(parser, 'Atrace process dump options')
   options.add_option('--process-dump', dest='process_dump_enable',
                      default=False, action='store_true',
