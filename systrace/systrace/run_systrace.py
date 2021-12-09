@@ -156,7 +156,7 @@ def main_impl(arguments):
     if not options.device_serial_number:
       if len(devices) == 0:
         raise RuntimeError('No ADB devices connected.')
-      elif len(devices) >= 2:
+      if len(devices) >= 2:
         raise RuntimeError('Multiple devices connected, serial number required')
       options.device_serial_number = devices[0]
     elif options.device_serial_number not in devices:

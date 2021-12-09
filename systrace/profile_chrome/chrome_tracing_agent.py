@@ -6,6 +6,7 @@ import json
 import optparse
 import os
 import re
+import six
 
 import py_utils
 
@@ -47,8 +48,10 @@ class ChromeTracingAgent(tracing_agents.TracingAgent):
         json_category_list = logmon.WaitFor(
             re.compile(r'{"traceCategoriesList(.*)'), timeout=5).group(0)
       except device_errors.CommandTimeoutError:
-        raise RuntimeError('Performance trace category list marker not found. '
-                           'Is the correct version of the browser running?')
+        six.raise_from(
+          RuntimeError('Performance trace category list marker not found. '
+                           'Is the correct version of the browser running?'),
+                           None)
 
     record_categories = set()
     disabled_by_default_categories = set()
@@ -88,9 +91,10 @@ class ChromeTracingAgent(tracing_agents.TracingAgent):
       self._logcat_monitor.WaitFor(self._trace_start_re, timeout=5)
       self._is_tracing = True
     except device_errors.CommandTimeoutError:
-      raise RuntimeError(
+      six.raise_from(RuntimeError(
           'Trace start marker not found. Possible causes: 1) Is the correct '
-          'version of the browser running? 2) Is the browser already launched?')
+          'version of the browser running? 2) Is the browser already launched?'),
+          None)
     return True
 
   @py_utils.Timeout(tracing_agents.START_STOP_TIMEOUT)
@@ -117,10 +121,10 @@ class ChromeTracingAgent(tracing_agents.TracingAgent):
     try:
       self._device.PullFile(trace_file, host_file)
     except device_errors.AdbCommandFailedError:
-      raise RuntimeError(
+      six.raise_from(RuntimeError(
           'Cannot pull the trace file. Have you granted Storage permission to '
           'the browser? (Android Settings -> Apps -> [the browser app] -> '
-          'Permissions -> Storage)')
+          'Permissions -> Storage)'), None)
     return host_file
 
   def SupportsExplicitClockSync(self):
