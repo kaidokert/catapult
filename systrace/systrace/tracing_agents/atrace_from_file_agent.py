@@ -31,13 +31,11 @@ def try_create_agent(options):
       if is_perfetto(f_in):
         if convert_perfetto_trace(options.from_file):
           options.from_file = T2T_OUTPUT
-        else:
-          print ('Perfetto trace file: ' + options.from_file +
-                 ' could not be converted.')
-          sys.exit(1)
+        print ('Perfetto trace file: ' + options.from_file +
+                ' could not be converted.')
+        sys.exit(1)
     return AtraceFromFileAgent(options)
-  else:
-    return False
+  return False
 
 def convert_perfetto_trace(in_file):
   traceconv_path = os.path.abspath(os.path.join(os.path.dirname(__file__),
@@ -92,6 +90,8 @@ def get_config(options):
 
 class AtraceFromFileAgent(tracing_agents.TracingAgent):
   def __init__(self, options):
+    # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(AtraceFromFileAgent, self).__init__()
     self._filename = os.path.expanduser(options.from_file)
     self._trace_data = False

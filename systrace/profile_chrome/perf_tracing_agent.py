@@ -3,6 +3,8 @@
 # found in the LICENSE file.
 
 import logging
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import os
 import signal
@@ -47,7 +49,7 @@ _PERF_OPTIONS = [
 ]
 
 
-class _PerfProfiler(object):
+class _PerfProfiler():
   def __init__(self, device, perf_binary, categories):
     self._device = device
     self._output_file = device_temp_file.DeviceTempFile(
@@ -234,6 +236,8 @@ def try_create_agent(config):
   return None
 
 def add_options(parser):
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   options = optparse.OptionGroup(parser, 'Perf profiling options')
   options.add_option('-p', '--perf', help='Capture a perf profile with '
                      'the chosen comma-delimited event categories. '

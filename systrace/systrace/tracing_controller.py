@@ -38,6 +38,8 @@ def ControllerAgentClockSync(issue_ts, name):
 
 class TracingControllerAgent(tracing_agents.TracingAgent):
   def __init__(self):
+    # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(TracingControllerAgent, self).__init__()
     self._log_path = None
 
@@ -103,7 +105,7 @@ class TracingControllerAgent(tracing_agents.TracingAgent):
   def RecordClockSyncMarker(self, sync_id, callback):
     raise NotImplementedError
 
-class TracingController(object):
+class TracingController():
   def __init__(self, agents_with_config, controller_config):
     """Create tracing controller.
 
@@ -250,7 +252,7 @@ def GetUniqueSyncID():
   return str(uuid.uuid4())
 
 
-class AgentWithConfig(object):
+class AgentWithConfig():
   def __init__(self, agent, config):
     self.agent = agent
     self.config = config
