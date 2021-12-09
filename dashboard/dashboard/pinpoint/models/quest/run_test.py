@@ -19,6 +19,7 @@ from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution as execution_module
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
+from dashboard.services import crrev_service
 
 _TESTER_SERVICE_ACCOUNT = (
     'chrome-tester@chops-service-accounts.iam.gserviceaccount.com')
@@ -40,7 +41,7 @@ def SwarmingTagsFromJob(job):
 class RunTest(quest.Quest):
 
   def __init__(self, swarming_server, dimensions, extra_args, swarming_tags,
-               command, relative_cwd):
+               command, relative_cwd, crrev_service_instance=None):
     """RunTest Quest
 
     Args:
@@ -58,6 +59,10 @@ class RunTest(quest.Quest):
     self._swarming_tags = {} if not swarming_tags else swarming_tags
     self._command = command
     self._relative_cwd = relative_cwd
+    if crrev_service_instance:
+      self._crrev_service = crrev_service_instance
+    else:
+      self._crrev_service = crrev_service
 
     # We want subsequent executions use the same bot as the first one.
     self._canonical_executions = []
