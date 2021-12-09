@@ -17,6 +17,8 @@ the kernel.  It creates an HTML file for visualizing the trace.
 from __future__ import print_function
 import sys
 
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import os
 import time
@@ -56,6 +58,8 @@ def parse_options(argv):
   """
   usage = 'Usage: %prog [options] [category1 [category2 ...]]'
   desc = 'Example: %prog -b 32768 -t 15 gfx input view sched freq'
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   parser = optparse.OptionParser(usage=usage, description=desc,
                                  conflict_handler='resolve')
   parser = util.get_main_options(parser)
@@ -156,7 +160,7 @@ def main_impl(arguments):
     if not options.device_serial_number:
       if len(devices) == 0:
         raise RuntimeError('No ADB devices connected.')
-      elif len(devices) >= 2:
+      if len(devices) >= 2:
         raise RuntimeError('Multiple devices connected, serial number required')
       options.device_serial_number = devices[0]
     elif options.device_serial_number not in devices:
@@ -186,7 +190,8 @@ def main_impl(arguments):
     print('Starting tracing (%d seconds)' % options.trace_time)
     time.sleep(options.trace_time)
   else:
-    raw_input('Starting tracing (stop with enter)')
+    # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+    raw_input('Starting tracing (stop with enter)') # pylint: disable=undefined-variable
 
   # Stop tracing and collect the output.
   print('Tracing completed. Collecting output...')
