@@ -64,6 +64,38 @@ def RemoveSystemApps(device, package_names):
       device.RemovePath(system_package_paths, force=True, recursive=True)
 
 
+def InstallPrivilegedApps(device, apk_tuples):
+  """Install given apps as privileged apps.
+
+  The apks will be installed to the given system image partition on device.
+  If the package names already exists, they will be removed before installation.
+
+  See source.android.com/devices/tech/config/perms-allowlist for what privileged
+  apps are.
+
+  Args:
+    device: (device_utils.DeviceUtils) the device to install the privileged apps
+    apk_tuples: a list of (apk_path, device_partition) tuples where |apk_path|
+      is a string containing the path to the APK, and |device_partition| is a
+      string indicating the system image partition on device that contains
+      "priv-app" directory, e.g. "/system", "/product"
+  """
+  apk_metadata = []
+  # Retrieve the package path ahead, since `pm` does not work properly after
+  # EnableSystemAppModification
+  for apk_path, partition in apk_tuples:
+    package_name = apk_helper.GetPackageName(apk_path)
+    package_paths = _FindSystemPackagePaths(device, [package_name])
+    apk_metadata.append([apk_path, partition, package_name, package_paths])
+  with EnableSystemAppModification(device):
+    for apk_path, partition, package_name, package_paths in apk_metadata:
+      # Remove the existing packages so that the pushed apks can be installed.
+      if package_paths:
+        device.RemovePath(package_paths, force=True, recursive=True)
+      device.adb.Push(apk_path, '%s/priv-app' % partition.rstrip('/'))
+    device.RunShellCommand(['am', 'restart'])
+
+
 @contextlib.contextmanager
 def ReplaceSystemApp(device,
                      package_name,
@@ -167,8 +199,15 @@ def _SetUpSystemAppModification(device, timeout=None, retries=None):
   try:
     # Disable Marshmallow's Verity security feature
     if device.build_version_sdk >= version_codes.MARSHMALLOW:
-      logger.info('Disabling Verity on %s', device.serial)
-      device.adb.DisableVerity()
+      # For Android >= Q (API 29), use a different approach. For more details,
+      # see https://issuetracker.google.com/issues/144891973#comment31
+      if device.build_version_sdk >= version_codes.Q:
+        logger.info('Disabling Verication on %s', device.serial)
+        device.RunShellCommand(['avbctl', 'disable-verification'],
+                               check_return=True)
+      else:
+        logger.info('Disabling Verity on %s', device.serial)
+        device.adb.DisableVerity()
       device.Reboot()
       device.WaitUntilFullyBooted()
       device.EnableRoot()
