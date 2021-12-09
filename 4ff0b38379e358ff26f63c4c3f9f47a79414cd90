@@ -16,6 +16,29 @@
       "message": "Hi Ben, can you help review this? There is a bug in my previous CL. Fixed that and add a unit test for the new function.",
       "revId": "4ff0b38379e358ff26f63c4c3f9f47a79414cd90",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c92b7d2_3a199d97",
+        "filename": "third_party/typ/typ/tests/result_sink_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2021-12-09T01:28:29Z",
+      "side": 1,
+      "message": "One question about this: in real scenario will the content of /path/to/report be uploaded to ResultDB? Or should I use a different actifact as {\"report\": {\u0027contents\u0027: base64.b64encode(\u0027content of the file\u0027)}}?",
+      "range": {
+        "startLine": 175,
+        "startChar": 20,
+        "endLine": 175,
+        "endChar": 63
+      },
+      "revId": "4ff0b38379e358ff26f63c4c3f9f47a79414cd90",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
