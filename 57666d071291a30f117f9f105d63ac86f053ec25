@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87e18d33_88c50827",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-09T21:42:07Z",
+      "side": 1,
+      "message": "When self.command doesn\u0027t contain \u0027vpython3\u0027, the index method raises ValueError. This \"if\" statement can\u0027t catch that.\n\nWhen \u0027vpython3\u0027 is found, this is equivalent to \"if vpython3_pos !\u003d 0\", which doesn\u0027t seem to be useful. Currently, vpython3_pos is larger than 0, because the command always starts with \u0027luci-auth\u0027, but if once we change that and vpython3_pos becomes 0, then this stops working properly.\n\nMaybe replace the if statement with try block? Or check \u0027vpython3\u0027 in self.command first.",
+      "range": {
+        "startLine": 133,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 24
+      },
+      "revId": "57666d071291a30f117f9f105d63ac86f053ec25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
