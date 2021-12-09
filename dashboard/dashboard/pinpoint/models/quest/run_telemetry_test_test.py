@@ -48,7 +48,8 @@ class StartTest(unittest.TestCase):
                                                 run_test_test.DIMENSIONS,
                                                 ['arg'], _BASE_SWARMING_TAGS,
                                                 _TELEMETRY_COMMAND,
-                                                'out/Release')
+                                                'out/Release',
+                                                run_test_test.FakeCrRevService)
     change = mock.MagicMock(spec=change_module.Change)
     change.base_commit = mock.MagicMock(spec=commit.Commit)
     change.base_commit.AsDict = mock.MagicMock(

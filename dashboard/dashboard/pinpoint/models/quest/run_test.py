@@ -19,6 +19,7 @@ from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution as execution_module
 from dashboard.pinpoint.models.quest import quest
 from dashboard.services import swarming
+from dashboard.services import crrev_service
 
 _TESTER_SERVICE_ACCOUNT = (
     'chrome-tester@chops-service-accounts.iam.gserviceaccount.com')
@@ -40,7 +41,7 @@ def SwarmingTagsFromJob(job):
 class RunTest(quest.Quest):
 
   def __init__(self, swarming_server, dimensions, extra_args, swarming_tags,
-               command, relative_cwd):
+               command, relative_cwd, crrev_service_instance=None):
     """RunTest Quest
 
     Args:
@@ -58,6 +59,11 @@ class RunTest(quest.Quest):
     self._swarming_tags = {} if not swarming_tags else swarming_tags
     self._command = command
     self._relative_cwd = relative_cwd
+    if crrev_service_instance:
+      self._crrev_service = crrev_service_instance
+    else:
+      self._crrev_service = crrev_service
+
 
     # We want subsequent executions use the same bot as the first one.
     self._canonical_executions = []
@@ -109,6 +115,23 @@ class RunTest(quest.Quest):
 
     if self._swarming_tags:
       swarming_tags.update(self._swarming_tags)
+
+    # Pinpoint started to run on Python 3 on 11/23/2021. However, if user tries
+    # to launch try job or bisect on old commits where scripts are not python3
+    # compatible, it fails. E.g.: crbug/1278382
+    # Here is a workaround to handle such cases. When the commit position is
+    # prior than X, we run the test in python 2.
+    # A more complete fix will be checking the whole series of commits and run
+    # all in python 2 if any of the commit is prior than X.
+    # Here we picked X as 926914 where the print issue in the bug was fixed.
+    commit_result = self._crrev_service.GetCommit(isolate_hash)
+    if 'number' in commit_result:
+      commit_position = int(commit_result['number'])
+      if commit_position < 926914:
+        vpython3_pos = self.command.index(
+            'vpython3') if 'vpython3' in self.command else None
+        if vpython3_pos:
+          self.command[vpython3_pos] = 'vpython'
 
     if len(self._canonical_executions) <= index:
       execution = _RunTestExecution(
