@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import json
 import unittest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.api import api_auth
 from dashboard.api import report_template as api_report_template

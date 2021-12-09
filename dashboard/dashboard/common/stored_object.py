@@ -26,7 +26,7 @@ except ImportError:
   # pickle in python 3 uses the c version as cPickle in python 2.
   import pickle
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 # Max bytes per entity.
 _CHUNK_SIZE = 1000 * 1000
@@ -107,7 +107,7 @@ class MultipartEntity(ndb.Model):
   """Container for PartEntity."""
 
   # Number of entities use to store serialized.
-  size = ndb.IntegerProperty(default=0, indexed=False)
+  size = ndb.IntegerProperty(default=0)
 
   @ndb.tasklet
   @ndb.transactional(propagation=ndb.TransactionOptions.ALLOWED, xg=True)

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from oauth2client import xsrfutil
 
@@ -17,7 +17,7 @@ from dashboard.common import utils
 
 class XsrfSecretKey(ndb.Model):
   """Stores a secret XSRF key for the site."""
-  token = ndb.StringProperty(indexed=False)
+  token = ndb.StringProperty()
 
 
 def _ValidateToken(token, email):

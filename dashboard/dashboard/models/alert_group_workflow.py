@@ -28,7 +28,7 @@ import jinja2
 import logging
 import os
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import pinpoint_request
 from dashboard import sheriff_config_client

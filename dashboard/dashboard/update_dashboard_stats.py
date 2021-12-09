@@ -12,7 +12,7 @@ from six.moves import http_client
 import time
 
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import add_histograms
 from dashboard.common import datastore_hooks

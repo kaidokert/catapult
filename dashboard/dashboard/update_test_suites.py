@@ -10,7 +10,7 @@ import collections
 import logging
 
 from google.appengine.api import datastore_errors
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import datastore_hooks
 from dashboard.common import descriptor

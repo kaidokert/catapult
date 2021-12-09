@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import request_handler
 

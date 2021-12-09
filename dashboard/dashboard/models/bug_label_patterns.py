@@ -10,7 +10,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import utils
 
@@ -25,7 +25,7 @@ class BugLabelPatterns(ndb.Model):
   property, which is a dict mapping bug label strings to lists of test path
   pattern strings.
   """
-  labels_to_patterns = ndb.JsonProperty(indexed=False)
+  labels_to_patterns = ndb.JsonProperty()
 
 
 def _Get():

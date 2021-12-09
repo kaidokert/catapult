@@ -14,7 +14,7 @@ import re
 
 from google.appengine.api import datastore_errors
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.api import api_auth
 from dashboard.common import request_handler

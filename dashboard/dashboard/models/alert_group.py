@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import uuid
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 # Move import of protobuf-dependent code here so that all AppEngine work-arounds
 # have a chance to be live before we import any proto code.
@@ -27,16 +27,16 @@ class RevisionRange(ndb.Model):
 
 
 class BugInfo(ndb.Model):
-  project = ndb.StringProperty(indexed=True)
-  bug_id = ndb.IntegerProperty(indexed=True)
+  project = ndb.StringProperty()
+  bug_id = ndb.IntegerProperty()
 
 
 class AlertGroup(ndb.Model):
-  name = ndb.StringProperty(indexed=True)
-  domain = ndb.StringProperty(indexed=True)
-  subscription_name = ndb.StringProperty(indexed=True)
-  created = ndb.DateTimeProperty(indexed=False, auto_now_add=True)
-  updated = ndb.DateTimeProperty(indexed=False, auto_now_add=True)
+  name = ndb.StringProperty()
+  domain = ndb.StringProperty()
+  subscription_name = ndb.StringProperty()
+  created = ndb.DateTimeProperty(auto_now_add=True)
+  updated = ndb.DateTimeProperty(auto_now_add=True)
 
   class Status(object):
     unknown = 0
@@ -45,7 +45,7 @@ class AlertGroup(ndb.Model):
     bisected = 3
     closed = 4
 
-  status = ndb.IntegerProperty(indexed=False)
+  status = ndb.IntegerProperty()
 
   class Type(object):
     test_suite = 0
@@ -53,19 +53,18 @@ class AlertGroup(ndb.Model):
     reserved = 2
 
   group_type = ndb.IntegerProperty(
-      indexed=False,
       choices=[Type.test_suite, Type.logical, Type.reserved],
       default=Type.test_suite,
   )
-  active = ndb.BooleanProperty(indexed=True)
+  active = ndb.BooleanProperty()
   revision = ndb.LocalStructuredProperty(RevisionRange)
-  bug = ndb.StructuredProperty(BugInfo, indexed=True)
-  project_id = ndb.StringProperty(indexed=True, default='chromium')
+  bug = ndb.StructuredProperty(BugInfo)
+  project_id = ndb.StringProperty(default='chromium')
   bisection_ids = ndb.StringProperty(repeated=True)
   anomalies = ndb.KeyProperty(repeated=True)
   # Key of canonical AlertGroup. If not None the group is considered to be
   # duplicate.
-  canonical_group = ndb.KeyProperty(indexed=True)
+  canonical_group = ndb.KeyProperty()
 
   def IsOverlapping(self, b):
     return (self.name == b.name and self.domain == b.domain

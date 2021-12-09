@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 BUG_STATUS_OPENED = 'opened'
 BUG_STATUS_CLOSED = 'closed'
@@ -31,7 +31,7 @@ class Bug(ndb.Model):
           BUG_STATUS_CLOSED,
           BUG_STATUS_RECOVERED,
       ],
-      indexed=True)
+  )
 
   # Status of the latest bisect run for this bug
   # (e.g., started, failed, completed).
@@ -42,10 +42,10 @@ class Bug(ndb.Model):
           BISECT_STATUS_COMPLETED,
           BISECT_STATUS_FAILED,
       ],
-      indexed=True)
+  )
 
   # The time that the Bug entity was created.
-  timestamp = ndb.DateTimeProperty(indexed=True, auto_now_add=True)
+  timestamp = ndb.DateTimeProperty(auto_now_add=True)
 
   @classmethod
   def New(cls, project, bug_id):

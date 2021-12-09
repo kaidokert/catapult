@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 # The parameters to use from anomaly threshold config dict.
 # Any parameters in such a dict that aren't in this list will be ignored.
@@ -29,14 +29,14 @@ class AnomalyConfig(ndb.Model):
   thresholds for what is considered an anomaly.
   """
   # A dictionary mapping parameter names to values.
-  config = ndb.JsonProperty(required=True, indexed=False)
+  config = ndb.JsonProperty(required=True)
 
   # A list of test path patterns. Each pattern is a string which can match parts
   # of the test path either exactly, or use * as a wildcard.
   # Note: TestMetadata entities contain a key property called
   # overridden_anomaly_config, which is set in the pre-put hook for TestMetadata
   # in graph_data.py.
-  patterns = ndb.StringProperty(repeated=True, indexed=False)
+  patterns = ndb.StringProperty(repeated=True)
 
 
 def CleanConfigDict(config_dict):

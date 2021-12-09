@@ -12,7 +12,7 @@ import unittest
 
 import mock
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import sheriff_config_client
 from dashboard.common import testing_common

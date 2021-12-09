@@ -11,7 +11,7 @@ from datetime import datetime
 from datetime import timedelta
 
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import find_anomalies
 from dashboard.common import math_utils

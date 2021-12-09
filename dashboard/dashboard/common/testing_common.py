@@ -24,7 +24,7 @@ import webtest
 from google.appengine.api import oauth
 from google.appengine.api import users
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import testbed
 
 from dashboard.common import datastore_hooks

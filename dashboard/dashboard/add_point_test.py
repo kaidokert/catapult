@@ -16,7 +16,7 @@ import webapp2
 import webtest
 
 from google.appengine.api import datastore_errors
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import add_point
 from dashboard import add_point_queue

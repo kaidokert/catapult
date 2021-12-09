@@ -60,7 +60,7 @@ from __future__ import absolute_import
 
 import logging
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import layered_cache
 from dashboard.common import utils
@@ -95,7 +95,7 @@ class Bot(internal_only_model.InternalOnlyModel):
   each bot has a parent that is a Master entity. To query the tests that run on
   a Bot, check the bot_name and master_name properties of the TestMetadata.
   """
-  internal_only = ndb.BooleanProperty(default=False, indexed=True)
+  internal_only = ndb.BooleanProperty(default=False)
 
   _use_memcache = True
 
@@ -142,36 +142,36 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
   # https://cloud.google.com/appengine/docs/python/ndb/cache
   _use_memcache = False
 
-  internal_only = ndb.BooleanProperty(default=False, indexed=True)
+  internal_only = ndb.BooleanProperty(default=False)
 
   # There is a default anomaly threshold config (in anomaly.py), and it can
   # be overridden for a group of tests by using /edit_sheriffs.
   overridden_anomaly_config = ndb.KeyProperty(
-      kind=anomaly_config.AnomalyConfig, indexed=False)
+      kind=anomaly_config.AnomalyConfig)
 
   # Keep track of what direction is an improvement for this graph so we can
   # filter out alerts on regressions.
   improvement_direction = ndb.IntegerProperty(
       default=anomaly.UNKNOWN,
       choices=[anomaly.UP, anomaly.DOWN, anomaly.UNKNOWN],
-      indexed=False)
+  )
 
   # Units of the child Rows of this test, or None if there are no child Rows.
-  units = ndb.StringProperty(indexed=False)
+  units = ndb.StringProperty()
 
   # Whether or not the test has child rows. Set by hook on Row class put.
-  has_rows = ndb.BooleanProperty(default=False, indexed=True)
+  has_rows = ndb.BooleanProperty(default=False)
 
   # A test is marked "deprecated" if no new points have been received for
   # a long time; these tests should usually not be listed.
-  deprecated = ndb.BooleanProperty(default=False, indexed=True)
+  deprecated = ndb.BooleanProperty(default=False)
 
   # Description of what the test measures.
-  description = ndb.TextProperty(indexed=True)
+  description = ndb.TextProperty()
 
   # Story names are escaped (slashes, colons). Store unescaped version
   # for story filter flag.
-  unescaped_story_name = ndb.StringProperty(indexed=False)
+  unescaped_story_name = ndb.StringProperty()
 
   # Computed properties are treated like member variables, so they have
   # lowercase names, even though they look like methods to pylint.
@@ -334,7 +334,7 @@ class LastAddedRevision(ndb.Model):
   # memcache when accessed by default. For more info, see:
   # https://cloud.google.com/appengine/docs/python/ndb/cache
   _use_memcache = False
-  revision = ndb.IntegerProperty(indexed=False)
+  revision = ndb.IntegerProperty()
 
 
 class Row(ndb.Expando):
@@ -383,13 +383,13 @@ class Row(ndb.Expando):
   # The time the revision was added to the dashboard is tracked in order
   # to too many points from being added in a short period of time, which would
   # indicate an error or malicious code.
-  timestamp = ndb.DateTimeProperty(auto_now_add=True, indexed=True)
+  timestamp = ndb.DateTimeProperty(auto_now_add=True)
 
   # The Y-value at this point.
-  value = ndb.FloatProperty(indexed=True)
+  value = ndb.FloatProperty()
 
   # The standard deviation at this point. Optional.
-  error = ndb.FloatProperty(indexed=False)
+  error = ndb.FloatProperty()
 
   @ndb.tasklet
   def UpdateParentAsync(self, **ctx_options):

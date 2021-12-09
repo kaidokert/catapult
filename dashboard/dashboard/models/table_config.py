@@ -31,7 +31,7 @@ from __future__ import division
 from __future__ import absolute_import
 import json
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import utils
 from dashboard.models import internal_only_model
@@ -53,7 +53,7 @@ class TableConfig(internal_only_model.InternalOnlyModel):
   # Aids in displaying the table by showing groupings and giving pretty names.
   table_layout = ndb.JsonProperty()
 
-  internal_only = ndb.BooleanProperty(default=False, indexed=True)
+  internal_only = ndb.BooleanProperty(default=False)
 
   # The username of the creator
   username = ndb.StringProperty()

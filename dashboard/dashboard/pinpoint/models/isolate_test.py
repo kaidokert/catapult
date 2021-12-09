@@ -10,7 +10,7 @@ import datetime
 
 import mock
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.pinpoint.models.change import change_test
 from dashboard.pinpoint.models import isolate

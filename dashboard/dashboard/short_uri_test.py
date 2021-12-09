@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import json
 import unittest
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import short_uri
 from dashboard.common import testing_common

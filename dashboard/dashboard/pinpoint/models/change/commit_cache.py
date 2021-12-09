@@ -6,7 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 _MEMCACHE_TIMEOUT = 60 * 60 * 24 * 30
 
@@ -75,8 +75,8 @@ class Commit(ndb.Model):
   # Cache the data in Memcache for up-to 30 days
   _memcache_timeout = _MEMCACHE_TIMEOUT
 
-  url = ndb.StringProperty(indexed=False, required=True)
-  author = ndb.StringProperty(indexed=False, required=True)
-  created = ndb.DateTimeProperty(indexed=False, required=True)
-  subject = ndb.StringProperty(indexed=False, required=True)
+  url = ndb.StringProperty(required=True)
+  author = ndb.StringProperty(required=True)
+  created = ndb.DateTimeProperty(required=True)
+  subject = ndb.StringProperty(required=True)
   message = ndb.TextProperty(required=True)

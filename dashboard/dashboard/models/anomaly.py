@@ -10,7 +10,7 @@ import logging
 import sys
 import time
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import timing
 from dashboard.common import utils
@@ -27,8 +27,8 @@ UP, DOWN, UNKNOWN = (0, 1, 4)
 
 
 class Issue(ndb.Model):
-  project_id = ndb.StringProperty(default='chromium', indexed=True)
-  issue_id = ndb.IntegerProperty(required=True, indexed=True)
+  project_id = ndb.StringProperty(default='chromium')
+  issue_id = ndb.IntegerProperty(required=True)
 
 
 class Anomaly(internal_only_model.InternalOnlyModel):
@@ -38,10 +38,10 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   improvement or a regression.
   """
   # Whether the alert should only be viewable by internal users.
-  internal_only = ndb.BooleanProperty(indexed=True, default=False)
+  internal_only = ndb.BooleanProperty(default=False)
 
   # The time the alert fired.
-  timestamp = ndb.DateTimeProperty(indexed=True, auto_now_add=True)
+  timestamp = ndb.DateTimeProperty(auto_now_add=True)
 
   # TODO(dberris): Remove these after migrating all issues to use the issues
   # repeated field, to allow an anomaly to be represented in multiple issues on
@@ -49,20 +49,20 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   # === DEPRECATED START ===
   # Note: -1 denotes an invalid alert and -2 an ignored alert.
   # By default, this is None, which denotes a non-triaged alert.
-  bug_id = ndb.IntegerProperty(indexed=True)
+  bug_id = ndb.IntegerProperty()
 
   # This is the project to which an anomaly is associated with, in the issue
   # tracker service.
-  project_id = ndb.StringProperty(indexed=True, default='chromium')
+  project_id = ndb.StringProperty(default='chromium')
   # === DEPRECATED END   ===
 
   # AlertGroups used for grouping
-  groups = ndb.KeyProperty(indexed=True, repeated=True)
+  groups = ndb.KeyProperty(repeated=True)
 
   # This is the list of issues associated with the anomaly. We're doing this to
   # allow a single anomaly to be represented in multiple issues in different
   # issue trackers.
-  issues = ndb.StructuredProperty(Issue, indexed=True, repeated=True)
+  issues = ndb.StructuredProperty(Issue, repeated=True)
 
   # This field aims to replace the 'bug_id' field serving as a state indicator.
   state = ndb.StringProperty(
@@ -72,7 +72,7 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   # The subscribers who recieve alerts
   subscriptions = ndb.LocalStructuredProperty(
       subscription.Subscription, repeated=True)
-  subscription_names = ndb.StringProperty(indexed=True, repeated=True)
+  subscription_names = ndb.StringProperty(repeated=True)
 
   # The anomaly configuration used to generate this anomaly, associated with the
   # subscription.
@@ -80,25 +80,25 @@ class Anomaly(internal_only_model.InternalOnlyModel):
   anomaly_config = ndb.JsonProperty()
 
   # Each Alert is related to one Test.
-  test = ndb.KeyProperty(indexed=True)
-  statistic = ndb.StringProperty(indexed=True)
+  test = ndb.KeyProperty()
+  statistic = ndb.StringProperty()
 
   # We'd like to be able to query Alerts by Master, Bot, and Benchmark names.
   master_name = ndb.ComputedProperty(
-      lambda self: utils.TestPath(self.test).split('/')[0], indexed=True)
+      lambda self: utils.TestPath(self.test).split('/')[0],)
   bot_name = ndb.ComputedProperty(
-      lambda self: utils.TestPath(self.test).split('/')[1], indexed=True)
+      lambda self: utils.TestPath(self.test).split('/')[1],)
   benchmark_name = ndb.ComputedProperty(
-      lambda self: utils.TestPath(self.test).split('/')[2], indexed=True)
+      lambda self: utils.TestPath(self.test).split('/')[2],)
 
   # Each Alert has a revision range it's associated with; however,
   # start_revision and end_revision could be the same.
-  start_revision = ndb.IntegerProperty(indexed=True)
-  end_revision = ndb.IntegerProperty(indexed=True)
+  start_revision = ndb.IntegerProperty()
+  end_revision = ndb.IntegerProperty()
 
   # The revisions to use for display, if different than point id.
-  display_start = ndb.IntegerProperty(indexed=False)
-  display_end = ndb.IntegerProperty(indexed=False)
+  display_start = ndb.IntegerProperty()
+  display_end = ndb.IntegerProperty()
 
   # Ownership data, mapping e-mails to the benchmark's owners' emails and
   # component as the benchmark's Monorail component
@@ -106,47 +106,47 @@ class Anomaly(internal_only_model.InternalOnlyModel):
 
   # Alert grouping is used to overide the default alert group (test suite)
   # for auto-triage.
-  alert_grouping = ndb.StringProperty(indexed=False, repeated=True)
+  alert_grouping = ndb.StringProperty(repeated=True)
 
   # The number of points before and after this anomaly that were looked at
   # when finding this anomaly.
-  segment_size_before = ndb.IntegerProperty(indexed=False)
-  segment_size_after = ndb.IntegerProperty(indexed=False)
+  segment_size_before = ndb.IntegerProperty()
+  segment_size_after = ndb.IntegerProperty()
 
   # The medians of the segments before and after the anomaly.
-  median_before_anomaly = ndb.FloatProperty(indexed=False)
-  median_after_anomaly = ndb.FloatProperty(indexed=False)
+  median_before_anomaly = ndb.FloatProperty()
+  median_after_anomaly = ndb.FloatProperty()
 
   # The standard deviation of the segments before the anomaly.
-  std_dev_before_anomaly = ndb.FloatProperty(indexed=False)
+  std_dev_before_anomaly = ndb.FloatProperty()
 
   # The number of points that were used in the before/after segments.
   # This is also  returned by FindAnomalies
-  window_end_revision = ndb.IntegerProperty(indexed=False)
+  window_end_revision = ndb.IntegerProperty()
 
   # In order to estimate how likely it is that this anomaly is due to noise,
   # t-test may be performed on the points before and after. The t-statistic,
   # degrees of freedom, and p-value are potentially-useful intermediary results.
-  t_statistic = ndb.FloatProperty(indexed=False)
-  degrees_of_freedom = ndb.FloatProperty(indexed=False)
-  p_value = ndb.FloatProperty(indexed=False)
+  t_statistic = ndb.FloatProperty()
+  degrees_of_freedom = ndb.FloatProperty()
+  p_value = ndb.FloatProperty()
 
   # Whether this anomaly represents an improvement; if false, this anomaly is
   # considered to be a regression.
-  is_improvement = ndb.BooleanProperty(indexed=True, default=False)
+  is_improvement = ndb.BooleanProperty(default=False)
 
   # Whether this anomaly recovered (i.e. if this is a step down, whether there
   # is a corresponding step up later on, or vice versa.)
-  recovered = ndb.BooleanProperty(indexed=True, default=False)
+  recovered = ndb.BooleanProperty(default=False)
 
   # If the TestMetadata alerted upon has a ref build, store the ref build.
-  ref_test = ndb.KeyProperty(indexed=False)
+  ref_test = ndb.KeyProperty()
 
   # The corresponding units from the TestMetaData entity.
-  units = ndb.StringProperty(indexed=False)
+  units = ndb.StringProperty()
 
-  recipe_bisects = ndb.KeyProperty(repeated=True, indexed=False)
-  pinpoint_bisects = ndb.StringProperty(repeated=True, indexed=False)
+  recipe_bisects = ndb.KeyProperty(repeated=True,)
+  pinpoint_bisects = ndb.StringProperty(repeated=True,)
 
   # Additional Metadata
   # ====

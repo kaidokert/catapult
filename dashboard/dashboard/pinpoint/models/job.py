@@ -16,7 +16,7 @@ import uuid
 from google.appengine.api import datastore_errors
 from google.appengine.api import taskqueue
 from google.appengine.ext import deferred
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.runtime import apiproxy_errors
 
 from dashboard.common import utils
@@ -142,11 +142,11 @@ class BenchmarkArguments(ndb.Model):
   supported by the Job model. This is intended to be used as a structured
   property of Job, not a standalone entity.
   """
-  benchmark = ndb.StringProperty(indexed=True)
-  story = ndb.StringProperty(indexed=True)
-  story_tags = ndb.StringProperty(indexed=True)
-  chart = ndb.StringProperty(indexed=True)
-  statistic = ndb.StringProperty(indexed=True)
+  benchmark = ndb.StringProperty()
+  story = ndb.StringProperty()
+  story_tags = ndb.StringProperty()
+  chart = ndb.StringProperty()
+  statistic = ndb.StringProperty()
 
   @classmethod
   def FromArgs(cls, args):
@@ -236,7 +236,7 @@ class Job(ndb.Model):
 
   # Indicate whether we should evaluate this job's tasks through the execution
   # engine.
-  use_execution_engine = ndb.BooleanProperty(default=False, indexed=False)
+  use_execution_engine = ndb.BooleanProperty(default=False)
 
   # Priority for scheduling purposes. Lower numbers indicate higher priority.
   priority = ndb.IntegerProperty(default=0)

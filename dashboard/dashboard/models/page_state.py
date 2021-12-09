@@ -9,12 +9,12 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 
 class PageState(ndb.Model):
   """An entity with a single blob value where id is a hash value."""
 
-  value = ndb.BlobProperty(indexed=False)
+  value = ndb.BlobProperty()
 
-  value_v2 = ndb.BlobProperty(indexed=False)
+  value_v2 = ndb.BlobProperty()

@@ -13,7 +13,7 @@ import logging
 import six
 import sys
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import utils
 from dashboard.models import graph_data
@@ -23,8 +23,8 @@ from tracing.value.diagnostics import diagnostic as diagnostic_module
 
 class HistogramRevisionRecord(ndb.Model):
   _use_memcache = False
-  revision = ndb.IntegerProperty(indexed=True)
-  test = ndb.KeyProperty(graph_data.TestMetadata, indexed=True)
+  revision = ndb.IntegerProperty()
+  test = ndb.KeyProperty(graph_data.TestMetadata)
 
   @staticmethod
   @ndb.tasklet
@@ -96,15 +96,16 @@ class JsonModel(internal_only_model.InternalOnlyModel):
 
   data = ErrorTolerantJsonProperty(compressed=True)
   test = ndb.KeyProperty(graph_data.TestMetadata)
-  internal_only = ndb.BooleanProperty(default=False, indexed=True)
+  internal_only = ndb.BooleanProperty(default=False)
 
 
 class Histogram(JsonModel):
   # Needed for timeseries queries (e.g. for alerting).
-  revision = ndb.IntegerProperty(indexed=True)
+  revision = ndb.IntegerProperty()
 
   # The time the histogram was added to the dashboard.
-  timestamp = ndb.DateTimeProperty(auto_now_add=True, indexed=True)
+  timestamp = ndb.DateTimeProperty(auto_now_add=True)
+
 
 def RemoveInvalidSparseDiagnostics(diagnostics):
   # Returns a list of SparseDiagnostics with invalid entries removed
@@ -119,9 +120,9 @@ def RemoveInvalidSparseDiagnostics(diagnostics):
 
 class SparseDiagnostic(JsonModel):
   # Need for intersecting range queries.
-  name = ndb.StringProperty(indexed=False)
-  start_revision = ndb.IntegerProperty(indexed=True)
-  end_revision = ndb.IntegerProperty(indexed=True)
+  name = ndb.StringProperty()
+  start_revision = ndb.IntegerProperty()
+  end_revision = ndb.IntegerProperty()
 
   def IsValid(self):
     try:

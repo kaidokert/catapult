@@ -12,7 +12,7 @@ import logging
 import sys
 import uuid
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import add_point
 from dashboard import add_point_queue

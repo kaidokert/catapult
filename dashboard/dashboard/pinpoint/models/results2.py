@@ -13,7 +13,7 @@ import os
 import uuid
 
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from apiclient.discovery import build
 from dashboard.pinpoint.models import job_state

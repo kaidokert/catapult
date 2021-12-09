@@ -16,7 +16,7 @@ import urllib
 
 from google.appengine.api import app_identity
 from google.appengine.api import urlfetch
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext.ndb import model
 
 from dashboard import update_test_suites

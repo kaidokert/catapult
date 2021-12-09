@@ -24,7 +24,7 @@ import re
 
 from google.appengine.api import mail
 from google.appengine.api import taskqueue
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import graph_revisions
 from dashboard import list_tests

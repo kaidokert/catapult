@@ -11,7 +11,7 @@ import unittest
 
 import mock
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard import find_anomalies
 from dashboard import find_change_points

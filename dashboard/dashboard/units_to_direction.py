@@ -6,14 +6,14 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.models import anomaly
 
 
 class UnitsToDirection(ndb.Model):
   """Data about improvement direction for one type of unit."""
-  bigger_is_better = ndb.BooleanProperty(indexed=False)
+  bigger_is_better = ndb.BooleanProperty()
 
 
 def GetImprovementDirection(units):

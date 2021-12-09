@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import functools
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import report_query
 from dashboard.common import timing
@@ -17,9 +17,9 @@ from dashboard.models import internal_only_model
 
 
 class ReportTemplate(internal_only_model.InternalOnlyModel):
-  internal_only = ndb.BooleanProperty(indexed=True, default=False)
+  internal_only = ndb.BooleanProperty(default=False)
   name = ndb.StringProperty()
-  modified = ndb.DateTimeProperty(indexed=False, auto_now=True)
+  modified = ndb.DateTimeProperty(auto_now=True)
   owners = ndb.StringProperty(repeated=True)
   template = ndb.JsonProperty()
 

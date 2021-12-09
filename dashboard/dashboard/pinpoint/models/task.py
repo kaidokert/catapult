@@ -13,7 +13,7 @@ import logging
 
 from dashboard.common import timing
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 from google.appengine.ext import db
 
 __all__ = (
@@ -81,7 +81,7 @@ class Task(ndb.Model):
   """
   task_type = ndb.StringProperty(required=True)
   status = ndb.StringProperty(required=True, choices=VALID_TRANSITIONS.keys())
-  payload = ndb.JsonProperty(compressed=True, indexed=False)
+  payload = ndb.JsonProperty(compressed=True)
   dependencies = ndb.KeyProperty(repeated=True, kind='Task')
   created = ndb.DateTimeProperty(required=True, auto_now_add=True)
   updated = ndb.DateTimeProperty(required=True, auto_now_add=True)
@@ -104,9 +104,11 @@ class TaskLog(ndb.Model):
   immutable once created.
   """
   timestamp = ndb.DateTimeProperty(
-      required=True, auto_now_add=True, indexed=False)
+      required=True,
+      auto_now_add=True,
+  )
   message = ndb.TextProperty()
-  payload = ndb.JsonProperty(compressed=True, indexed=False)
+  payload = ndb.JsonProperty(compressed=True)
 
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, retries=0)
@@ -167,7 +169,7 @@ def ExtendTaskGraph(job, vertices, dependencies):
   new_task_keys = set(t.key for t in amendment_task_graph.values())
   overlap = new_task_keys & current_task_keys
   if overlap:
-    raise InvalidAmendment('vertices (%r) already in task graph.' % (overlap,))
+    raise InvalidAmendment('vertices (%r) already in task graph.' % (overlap))
 
   # Then we add the dependencies.
   current_task_graph = {t.key.id(): t for t in current_tasks}
@@ -180,7 +182,7 @@ def ExtendTaskGraph(job, vertices, dependencies):
       amendment_task = amendment_task_graph.get(dependency.from_)
       if current_task is None and amendment_task is None:
         raise InvalidAmendment('dependency `from` (%s) not in amended graph.' %
-                               (dependency.from_,))
+                               (dependency.from_))
       if current_task:
         current_task_graph[dependency.from_].dependencies.append(dependency_key)
       if amendment_task:
@@ -211,7 +213,7 @@ def UpdateTask(job, task_id, new_state=None, payload=None):
     raise ValueError('Set one of `new_state` or `payload`.')
 
   if new_state and new_state not in VALID_TRANSITIONS:
-    raise InvalidTransition('Unknown state: %s' % (new_state,))
+    raise InvalidTransition('Unknown state: %s' % (new_state))
 
   task = Task.get_by_id(task_id, parent=job.key)
   if not task:
@@ -331,7 +333,7 @@ def Evaluate(job, event, evaluator):
       # input. We want to run each action in their own transaction as well.
       # This must not be called in a transaction.
       with timing.WallTimeLogger('ExecutionEngine:ActionRunner<%s>' %
-                                 (type(action).__name__,)):
+                                 (type(action).__name__)):
         action(accumulator)
 
     # Clear the actions and accumulator for this traversal.

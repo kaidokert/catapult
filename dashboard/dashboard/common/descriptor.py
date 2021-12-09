@@ -23,7 +23,7 @@ from __future__ import absolute_import
 
 import re
 
-from google.appengine.ext import ndb
+from google.cloud import ndb
 
 from dashboard.common import bot_configurations
 from dashboard.common import stored_object
