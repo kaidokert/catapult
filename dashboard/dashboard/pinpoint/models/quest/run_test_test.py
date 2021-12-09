@@ -14,6 +14,7 @@ import logging
 
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import run_test
+from dashboard.services import crrev_service
 
 DIMENSIONS = [
     {
@@ -34,6 +35,13 @@ _BASE_SWARMING_TAGS = {}
 
 FakeJob = collections.namedtuple('Job',
                                  ['job_id', 'url', 'comparison_mode', 'user'])
+
+
+# def CreateFakeCrrevService(commit_pos):
+#   fake_crrev_service = mock.MagicMock(spec=crrev_service)
+#   fake_crrev_service.GetCommit = mock.MagicMock(
+#       return_value={'number': commit_pos})
+#   return fake_crrev_service
 
 
 class StartTest(unittest.TestCase):
