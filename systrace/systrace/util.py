@@ -3,6 +3,8 @@
 # found in the LICENSE file.
 
 from __future__ import print_function
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import os
 import sys
@@ -19,12 +21,18 @@ class OptionParserIgnoreErrors(optparse.OptionParser):
   def exit(self, status=0, msg=None):
     pass
 
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=arguments-differ
   def print_usage(self, out_file=None):
     pass
 
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=arguments-differ
   def print_help(self, out_file=None):
     pass
 
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=arguments-differ
   def print_version(self, out_file=None):
     pass
 

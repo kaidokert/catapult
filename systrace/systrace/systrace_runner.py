@@ -23,7 +23,7 @@ AGENT_MODULES = [android_process_data_agent, android_cgroup_agent,
                  atrace_agent, atrace_from_file_agent, atrace_process_dump,
                  ftrace_agent, walt_agent]
 
-class SystraceRunner(object):
+class SystraceRunner():
   def __init__(self, script_dir, options):
     """Constructor.
 
