@@ -3,6 +3,8 @@
 # found in the LICENSE file.
 
 from __future__ import print_function
+# TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+# pylint: disable=deprecated-module
 import optparse
 import os
 import py_utils
@@ -11,7 +13,7 @@ from systrace import trace_result
 from systrace import tracing_agents
 
 
-class FtraceAgentIo(object):
+class FtraceAgentIo():
   @staticmethod
   def writeFile(path, data):
     if FtraceAgentIo.haveWritePermissions(path):
@@ -110,6 +112,8 @@ class FtraceConfig(tracing_agents.TracingConfig):
 
 
 def add_options(parser):
+  # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+  # pylint: disable=deprecated-module
   options = optparse.OptionGroup(parser, 'Ftrace options')
   options.add_option('--ftrace-categories', dest='ftrace_categories',
                      help='Select ftrace categories with a comma-delimited '
@@ -131,6 +135,8 @@ class FtraceAgent(tracing_agents.TracingAgent):
       config: The command-line config.
       categories: The trace categories to capture.
     """
+    # TODO(https://crbug.com/1262296): Update this after Python2 trybots retire.
+    # pylint: disable=super-with-arguments
     super(FtraceAgent, self).__init__()
     self._fio = fio
     self._config = None

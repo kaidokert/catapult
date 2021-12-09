@@ -136,12 +136,11 @@ def _ConvertToHtmlString(result):
   """
   if isinstance(result, dict) or isinstance(result, list):
     return json.dumps(result)
-  elif isinstance(result, six.string_types):
+  if isinstance(result, six.string_types):
     return result
-  elif isinstance(result, bytes):
+  if isinstance(result, bytes):
     return result.decode('utf-8')
-  else:
-    raise ValueError('Invalid trace result format for HTML output')
+  raise ValueError('Invalid trace result format for HTML output')
 
 def GenerateJSONOutput(trace_results, output_file_name):
   """Write the results of systrace to a JSON file.
