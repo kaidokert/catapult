@@ -450,7 +450,7 @@ class Job(ndb.Model):
         task_module.Evaluate(
             self,
             event_module.Event(type='initiate', target_task=None, payload={}),
-            task_evaluator.ExecutionEngine(self)),
+            task_evaluator.ExecutionEngine(self))
       except task_module.Error as error:
         logging.error('Failed: %s', error)
         self.Fail()
@@ -621,20 +621,20 @@ class Job(ndb.Model):
     self.done = True
 
     if not self.cancelled:
-      # What follows are the details we are providing when posting updates to the
-      # associated bug.
+      # What follows are the details we are providing when posting updates to
+      # the associated bug.
       tb = traceback.format_exc() or ''
       title = _CRYING_CAT_FACE + ' Pinpoint job stopped with an error.'
       exc_info = sys.exc_info()
       if exception is None:
         if exc_info[1] is None:
-          # We've been called without a exception in sys.exc_info or in our args.
-          # This should not happen.
+          # We've been called without a exception in sys.exc_info or in our
+          # args. This should not happen.
           exception = errors.JobError('Unknown job error')
           exception.category = 'pinpoint'
         else:
           exception = exc_info[1]
-      exc_message = exception.message
+      exc_message = str(exception)
       category = None
       if isinstance(exception, errors.JobError):
         category = exception.category
@@ -713,7 +713,9 @@ class Job(ndb.Model):
         # causing a race condition. This if statement takes an extra step to
         # ensure the job stops running after a user cancels the job.
         self.cancelled = True
-        logging.debug('Pinpoint job forced to stop because job meets cancellation conditions')
+        logging.debug(
+            'Pinpoint job forced to stop because job meets cancellation'
+            ' conditions')
         raise errors.BuildCancelled('Pinpoint Job cancelled')
       if self.use_execution_engine:
         # Treat this as if it's a poll, and run the handler here.

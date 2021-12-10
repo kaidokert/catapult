@@ -77,7 +77,7 @@ class UpdateBuildStatusAction(
           'No build details in attempt to update build status; task = %s',
           self.task)
       task_module.UpdateTask(self.job, self.task.id, new_state='failed')
-      return None
+      return
 
     # Attempt to use the payload in a buildbucket pub/sub update to handle the
     # update without polling. Only poll as a last resort.
@@ -100,7 +100,7 @@ class UpdateBuildStatusAction(
               self.task.id,
               new_state='failed',
               payload=self.task.payload)
-          return None
+          return
 
         build = buildbucket_service.GetJobStatus(build_id).get('build', {})
       except request.RequestError as e:
@@ -117,7 +117,7 @@ class UpdateBuildStatusAction(
             self.task.id,
             new_state='failed',
             payload=self.task.payload)
-        return None
+        return
 
     logging.debug('buildbucket response: %s', build)
 
@@ -129,7 +129,7 @@ class UpdateBuildStatusAction(
     # Decide whether the build was successful or not.
     if build.get('status') != 'COMPLETED':
       # Skip this update.
-      return None
+      return
 
     result = build.get('result')
     if not result:
@@ -143,7 +143,7 @@ class UpdateBuildStatusAction(
       })
       task_module.UpdateTask(
           self.job, self.task.id, new_state='failed', payload=self.task.payload)
-      return None
+      return
 
     self.task.payload.update({'build_url': build.get('url')})
 
@@ -163,7 +163,7 @@ class UpdateBuildStatusAction(
           self.task.id,
           new_state=FAILURE_MAPPING[result],
           payload=self.task.payload)
-      return None
+      return
 
     # Parse the result and mark this task completed.
     if 'result_details_json' not in build:
@@ -177,7 +177,7 @@ class UpdateBuildStatusAction(
       })
       task_module.UpdateTask(
           self.job, self.task.id, new_state='failed', payload=self.task.payload)
-      return None
+      return
 
     try:
       result_details = json.loads(build['result_details_json'])
@@ -190,7 +190,7 @@ class UpdateBuildStatusAction(
       })
       task_module.UpdateTask(
           self.job, self.task.id, new_state='failed', payload=self.task.payload)
-      return None
+      return
 
     if 'properties' not in result_details:
       self.task.payload.update({
@@ -204,7 +204,7 @@ class UpdateBuildStatusAction(
       })
       task_module.UpdateTask(
           self.job, self.task.id, new_state='failed', payload=self.task.payload)
-      return None
+      return
 
     properties = result_details['properties']
 
@@ -223,7 +223,7 @@ class UpdateBuildStatusAction(
       })
       task_module.UpdateTask(
           self.job, self.task.id, new_state='failed', payload=self.task.payload)
-      return None
+      return
 
     commit_position = properties['got_revision_cp'].replace('@', '(at)')
     suffix = ('without_patch'
@@ -243,7 +243,7 @@ class UpdateBuildStatusAction(
       })
       task_module.UpdateTask(
           self.job, self.task.id, new_state='failed', payload=self.task.payload)
-      return None
+      return
 
     self.task.payload.update({
         'isolate_server': properties['isolate_server'],
