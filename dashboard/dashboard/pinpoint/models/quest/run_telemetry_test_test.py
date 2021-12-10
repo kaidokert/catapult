@@ -8,12 +8,14 @@ from __future__ import absolute_import
 
 import unittest
 import mock
+from mock import patch
 
 from dashboard.pinpoint.models.change import change as change_module
 from dashboard.pinpoint.models.change import commit
 from dashboard.pinpoint.models.quest import run_performance_test
 from dashboard.pinpoint.models.quest import run_telemetry_test
 from dashboard.pinpoint.models.quest import run_test_test
+from dashboard.services import crrev_service
 
 _BASE_ARGUMENTS = {
     'swarming_server': 'server',
@@ -43,7 +45,9 @@ _BASE_SWARMING_TAGS = {}
 
 class StartTest(unittest.TestCase):
 
-  def testStart(self):
+  @patch('crrev_service.GetCommit')
+  def testStart(self, get_commit):
+    get_commit.return_value = {'number': 999999}
     quest = run_telemetry_test.RunTelemetryTest('server',
                                                 run_test_test.DIMENSIONS,
                                                 ['arg'], _BASE_SWARMING_TAGS,
