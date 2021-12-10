@@ -123,9 +123,6 @@ class JobTest(test.TestCase):
 
 class RetryTest(test.TestCase):
 
-  def setUp(self):
-    super(RetryTest, self).setUp()
-
   def testStarted_RecoverableError_BacksOff(self):
     j = job.Job.New((), (), comparison_mode='performance')
     j.Start()
@@ -367,8 +364,7 @@ class BugCommentTest(test.TestCase):
     def _GetIssue(bug_id, project='chromium'):
       if bug_id == '111222':
         return {'status': 'Duplicate', 'projectId': project, 'id': '111222'}
-      else:
-        return {'status': 'Untriaged', 'projectId': project, 'id': str(bug_id)}
+      return {'status': 'Untriaged', 'projectId': project, 'id': str(bug_id)}
 
     self.get_issue.side_effect = _GetIssue
     layered_cache.SetExternal('commit_hash_git_hash', 'chromium:111222')
@@ -737,7 +733,7 @@ class BugCommentTest(test.TestCase):
         for i in range(1, number_culprits + 1)
     ]
     # Return [(None,c1), (c1,c2), (c2,c3), ...]
-    differences.return_value = zip([None] + changes, changes)
+    differences.return_value = list(zip([None] + changes, changes))
 
     # Ensure culprits are ordered by deriving change results values from commit
     # names.  E.g.:
