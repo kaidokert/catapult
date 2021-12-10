@@ -22,6 +22,30 @@
       },
       "revId": "57666d071291a30f117f9f105d63ac86f053ec25",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5102455_22488b19",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-10T07:17:57Z",
+      "side": 1,
+      "message": "Thanks! Updated the logic.",
+      "parentUuid": "87e18d33_88c50827",
+      "range": {
+        "startLine": 133,
+        "startChar": 7,
+        "endLine": 133,
+        "endChar": 24
+      },
+      "revId": "57666d071291a30f117f9f105d63ac86f053ec25",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
