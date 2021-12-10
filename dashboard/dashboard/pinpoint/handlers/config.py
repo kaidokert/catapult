@@ -10,11 +10,12 @@ from dashboard.api import api_request_handler
 from dashboard.common import bot_configurations
 
 
+# pylint: disable=abstract-method
 class Config(api_request_handler.ApiRequestHandler):
   """Handler returning site configuration details."""
 
   def _CheckUser(self):
     pass
 
-  def Post(self):
+  def Post(self, *_):
     return {'configurations': bot_configurations.List()}

@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import json
 import logging
 import shlex
+import six
 
 from dashboard.api import api_request_handler
 from dashboard.common import bot_configurations
@@ -60,6 +61,7 @@ for test in SUFFIXED_REGULAR_TELEMETRY_TESTS:
     REGULAR_TELEMETRY_TESTS_WITH_FALLBACKS[test + suffix] = test
 
 
+# pylint: disable=abstract-method
 class New(api_request_handler.ApiRequestHandler):
   """Handler that cooks up a fresh Pinpoint job."""
 
@@ -68,7 +70,7 @@ class New(api_request_handler.ApiRequestHandler):
     if not utils.IsTryjobUser():
       raise api_request_handler.ForbiddenError()
 
-  def Post(self):
+  def Post(self, *_):
     # TODO(dberris): Validate the inputs based on the type of job requested.
     job = _CreateJob(self.request)
 
@@ -133,7 +135,7 @@ def _CreateJob(request):
 
     # First we check whether there's a quest that's of type 'RunTelemetryTest'.
     is_telemetry_test = any(
-        [isinstance(q, quest_module.RunTelemetryTest) for q in quests])
+        isinstance(q, quest_module.RunTelemetryTest) for q in quests)
     if is_telemetry_test and ('story' not in arguments
                               and 'story_tags' not in arguments):
       raise ValueError(
@@ -224,9 +226,10 @@ def _ArgumentsWithConfiguration(original_arguments):
   if configuration:
     try:
       default_arguments = bot_configurations.Get(configuration)
-    except ValueError:
+    except ValueError as e:
       # Reraise with a clearer message.
-      raise ValueError("Bot Config: %s doesn't exist." % configuration)
+      six.raise_from(
+          ValueError("Bot Config: %s doesn't exist." % configuration), e)
     logging.info('Bot Config: %s', default_arguments)
 
     if default_arguments:
@@ -262,8 +265,8 @@ def _ValidateBugId(bug_id, project):
     # we might need to update the scopes we're asking for. For now trust that
     # the inputs are valid.
     return int(bug_id), project
-  except ValueError:
-    raise ValueError(_ERROR_BUG_ID)
+  except ValueError as e:
+    six.raise_from(ValueError(_ERROR_BUG_ID), e)
 
 
 def _ValidatePriority(priority):
@@ -272,8 +275,8 @@ def _ValidatePriority(priority):
 
   try:
     return int(priority)
-  except ValueError:
-    raise ValueError(_ERROR_PRIORITY)
+  except ValueError as e:
+    six.raise_from(ValueError(_ERROR_PRIORITY), e)
 
 
 def _ValidateChangesForTry(arguments):
@@ -351,8 +354,7 @@ def _ValidateChanges(comparison_mode, arguments):
       return _ValidateChangesForTry(arguments)
 
     # Everything else that follows only applies to bisections.
-    assert (comparison_mode == job_state.FUNCTIONAL
-            or comparison_mode == job_state.PERFORMANCE)
+    assert comparison_mode in (job_state.FUNCTIONAL, job_state.PERFORMANCE)
 
     if 'start_git_hash' not in arguments or 'end_git_hash' not in arguments:
       raise ValueError(
@@ -380,7 +382,7 @@ def _ValidateChanges(comparison_mode, arguments):
 
     return change_1, change_2
   except errors.BuildGerritURLInvalid as e:
-    raise ValueError(str(e))
+    six.raise_from(ValueError(str(e)), e)
 
 
 def _ValidatePatch(patch_data):
@@ -388,7 +390,7 @@ def _ValidatePatch(patch_data):
     try:
       patch_details = change.GerritPatch.FromData(patch_data)
     except errors.BuildGerritURLInvalid as e:
-      raise ValueError(str(e))
+      six.raise_from(ValueError(str(e)), e)
     return patch_details.server, patch_details.change
   return None, None
 
@@ -423,7 +425,7 @@ def _GenerateQuests(arguments):
   """
   quests = arguments.get('quests')
   if quests:
-    if isinstance(quests, basestring):
+    if isinstance(quests, six.string_types):
       quests = quests.split(',')
     quest_classes = []
     for quest in quests:
@@ -494,7 +496,8 @@ def _ValidateTags(tags):
     raise ValueError(_ERROR_TAGS_DICT)
 
   for k, v in tags_dict.items():
-    if not isinstance(k, basestring) or not isinstance(v, basestring):
+    if not isinstance(k, six.string_types) or \
+       not isinstance(v, six.string_types):
       raise ValueError(_ERROR_TAGS_DICT)
 
   return tags_dict
