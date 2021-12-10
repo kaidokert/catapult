@@ -46,4 +46,4 @@ def List():
   canonical_names = [
       name for name, value in bot_configurations.items() if 'alias' not in value
   ]
-  return sorted(canonical_names, key=string.lower)
+  return sorted(canonical_names, key=string.ascii_lowercase)
