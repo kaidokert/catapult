@@ -10,6 +10,8 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
+import six
+
 from google.protobuf import text_format
 import matcher
 import sheriff_pb2
@@ -98,8 +100,9 @@ def Validate(content):
   """
   try:
     result = text_format.Parse(content, sheriff_pb2.SheriffConfig())
-  except text_format.ParseError as error:
-    raise InvalidConfig('SheriffConfig Validation Error: %s' % (error))
+  except text_format.ParseError as e:
+    six.raise_from(
+        InvalidConfig('SheriffConfig Validation Error: %s' % str(e)), e)
 
   # Go through each of the subscriptions, and ensure we find the semantically
   # required fields.
@@ -108,17 +111,18 @@ def Validate(content):
     if field is None:
       raise InvalidPattern(result, index, pattern_idx,
                            'must provide either \'glob\' or \'regex\'', group)
-    elif field == 'glob' and len(pattern.glob) == 0:
+    if field == 'glob' and len(pattern.glob) == 0:
       raise InvalidPattern(result, index, pattern_idx, 'glob must not be empty',
                            group)
-    elif field == 'regex' and len(pattern.regex) == 0:
+    if field == 'regex' and len(pattern.regex) == 0:
       raise InvalidPattern(result, index, pattern_idx,
                            'regex must not be empty', group)
     try:
       matcher.CompilePattern(pattern)
     except re2.error as e:
-      raise InvalidPattern(result, index, pattern_idx, 'failed: %s' % (e,),
-                           group)
+      six.raise_from(
+          InvalidPattern(result, index, pattern_idx, 'failed: %s' % (e,),
+                         group), e)
 
   for (index, subscription) in enumerate(result.subscriptions):
     if subscription.contact_email is None or len(
