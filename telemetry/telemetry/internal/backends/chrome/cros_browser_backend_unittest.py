@@ -106,7 +106,8 @@ previous log contents"""
       artifact_name = 'ui_logs/ui_log-timestamp-suffix'
       self.mock_create_artifact.assert_called_once_with(artifact_name, contents)
 
-  @decorators.Enabled('chromeos')
+  # Test flaky on Chrome OS: https://crbug.com/1273968
+  @decorators.Disabled('chromeos')
   def testCollectUiLogsActualFile(self):
     """Tests that we successfully get some sort of UI log normally."""
     self._browser_backend._CollectUiLogs(logging.DEBUG)
