@@ -12,13 +12,14 @@ from dashboard.common import file_bug
 from dashboard.common import utils
 
 
+# pylint: disable=abstract-method
 class NewBugHandler(api_request_handler.ApiRequestHandler):
 
   def _CheckUser(self):
     if not utils.IsValidSheriffUser():
       raise api_request_handler.ForbiddenError()
 
-  def Post(self):
+  def Post(self, *_):
     owner = self.request.get('owner')
     cc = self.request.get('cc')
     summary = self.request.get('summary')
