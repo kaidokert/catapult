@@ -222,7 +222,7 @@ class InitiateEvaluator(object):
       # isolate inputs to Swarming.
       logging.error(('Found multiple dependencies for run_test; '
                      'picking a random input; task = %s'), task)
-    dep_value.update(dep_map.values()[0])
+    dep_value.update(list(dep_map.values())[0])
 
     if dep_value.get('status') == 'failed':
       task.payload.update({
@@ -250,6 +250,7 @@ class InitiateEvaluator(object):
       return [
           ScheduleTestAction(job=self.job, task=task, properties=properties)
       ]
+    return None
 
 
 class UpdateEvaluator(object):
