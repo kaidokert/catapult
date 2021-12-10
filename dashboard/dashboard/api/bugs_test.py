@@ -22,7 +22,7 @@ class MockIssueTrackerService(object):
     pass
 
   @classmethod
-  def List(cls, project='chromium', *unused_args, **unused_kwargs):
+  def List(cls, project='chromium', **kwargs):  # pylint: disable=unused-argument
     del project
     return {
         'items': [

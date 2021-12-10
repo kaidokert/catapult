@@ -11,6 +11,7 @@ from dashboard.common import utils
 from dashboard.models import graph_data
 
 
+# pylint: disable=abstract-method
 class ListTimeseriesHandler(api_request_handler.ApiRequestHandler):
   """API handler for listing timeseries for a benchmark."""
 
