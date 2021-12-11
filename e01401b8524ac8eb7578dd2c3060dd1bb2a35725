@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6447bcf3_c61fc0fd",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-11T06:20:19Z",
+      "side": 1,
+      "message": "We don\u0027t need to repeat if we want to disable all within this class:\nhttps://pylint.pycqa.org/en/latest/user_guide/message-control.html",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "e01401b8524ac8eb7578dd2c3060dd1bb2a35725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
