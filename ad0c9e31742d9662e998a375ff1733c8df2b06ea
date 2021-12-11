@@ -16,6 +16,75 @@
       "message": "PTAL",
       "revId": "ad0c9e31742d9662e998a375ff1733c8df2b06ea",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6541480e_748187e4",
+        "filename": "dashboard/dashboard/models/alert_group_workflow.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-11T06:15:36Z",
+      "side": 1,
+      "message": "It looks like the return value is not used. We can simply return here.",
+      "range": {
+        "startLine": 423,
+        "startChar": 13,
+        "endLine": 423,
+        "endChar": 18
+      },
+      "revId": "ad0c9e31742d9662e998a375ff1733c8df2b06ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e9af4b_801bbb37",
+        "filename": "dashboard/dashboard/models/bug_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-11T06:15:36Z",
+      "side": 1,
+      "message": "nit: update to bug_id.",
+      "range": {
+        "startLine": 75,
+        "startChar": 22,
+        "endLine": 75,
+        "endChar": 24
+      },
+      "revId": "ad0c9e31742d9662e998a375ff1733c8df2b06ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae35969_22ea05ee",
+        "filename": "dashboard/dashboard/models/bug_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-11T06:15:36Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 83,
+        "startChar": 22,
+        "endLine": 83,
+        "endChar": 24
+      },
+      "revId": "ad0c9e31742d9662e998a375ff1733c8df2b06ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
