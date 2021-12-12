@@ -16,6 +16,69 @@
       "message": "Updated. Thanks!",
       "revId": "a44fc137fb2fa0d4bcb6766ed7be84f44225d9f4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb275309_4b0ccaca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-12T18:39:17Z",
+      "side": 1,
+      "message": "LGTM with nits.",
+      "revId": "a44fc137fb2fa0d4bcb6766ed7be84f44225d9f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b86738_14cf9b8d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-12T18:39:17Z",
+      "side": 1,
+      "message": "Maybe log commit_hash instead, or in addition",
+      "range": {
+        "startLine": 132,
+        "startChar": 16,
+        "endLine": 132,
+        "endChar": 28
+      },
+      "revId": "a44fc137fb2fa0d4bcb6766ed7be84f44225d9f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ede064c_203f2fc3",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-12T18:39:17Z",
+      "side": 1,
+      "message": "commit_hash?",
+      "range": {
+        "startLine": 137,
+        "startChar": 21,
+        "endLine": 137,
+        "endChar": 33
+      },
+      "revId": "a44fc137fb2fa0d4bcb6766ed7be84f44225d9f4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
