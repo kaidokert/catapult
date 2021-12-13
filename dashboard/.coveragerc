@@ -1,0 +1,6 @@
+[run]
+# based on .gitignore
+omit = *pb2.py
+
+[html]
+directory = ./
