@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd13b338_02754c65",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2021-12-13T07:05:38Z",
+      "side": 1,
+      "message": "Maybe use del instead of *_.\nhttps://google.github.io/styleguide/pyguide.html#214-decision",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
