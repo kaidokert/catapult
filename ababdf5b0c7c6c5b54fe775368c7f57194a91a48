@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5d8f1be6_b54d94f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-13T23:25:48Z",
+      "side": 1,
+      "message": "Thank you!",
+      "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fd13b338_02754c65",
         "filename": "dashboard/dashboard/api/alerts.py",
         "patchSetId": 3
@@ -14,6 +31,30 @@
       "writtenOn": "2021-12-13T07:05:38Z",
       "side": 1,
       "message": "Maybe use del instead of *_.\nhttps://google.github.io/styleguide/pyguide.html#214-decision",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4859d226_df576457",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-13T23:25:48Z",
+      "side": 1,
+      "message": "The Post method is defined in api_request_handler.py as\ndef Post(self, *_)\n\nI am changing it because the linter was complaining that the arrgument names were different. Are you suggesting to modify the definition of the method in ApiRequestHandler too?",
+      "parentUuid": "fd13b338_02754c65",
       "range": {
         "startLine": 28,
         "startChar": 17,
