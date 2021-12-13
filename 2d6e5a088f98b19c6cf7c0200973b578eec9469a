@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8306d9b6_fdf45269",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-12-13T06:10:02Z",
+      "side": 1,
+      "message": "I\u0027m not sure what other lines I should add to this config file. I looked around at the different parameters available in coverage.py but I feel like I need a better feel for what we can or can\u0027t ignore in catapult/dashboard before I include those omissions. ",
+      "revId": "2d6e5a088f98b19c6cf7c0200973b578eec9469a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
