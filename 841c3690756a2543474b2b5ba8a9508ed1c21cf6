@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c58ca1f_8be4716c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-13T16:39:09Z",
+      "side": 1,
+      "message": "This disable statement applies to this `if` block only. Since `report_output \u003d report_output.decode(\u0027utf-8\u0027)` is the only statement inside the `if` block, I feel like it can be fine to put it here.. But i guess you may want to add more statements into this block? if so, I\u0027ll keep it as what it was.",
+      "parentUuid": "7df75859_38abaf94",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 47
+      },
+      "revId": "841c3690756a2543474b2b5ba8a9508ed1c21cf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b5360a2_bbcdcf93",
         "filename": "telemetry/telemetry/testing/system_stub.py",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2021-12-11T06:03:06Z",
       "side": 1,
       "message": "if?",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 168,
+        "endChar": 8
+      },
+      "revId": "841c3690756a2543474b2b5ba8a9508ed1c21cf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe37ea10_a905f5d1",
+        "filename": "telemetry/telemetry/testing/system_stub.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-13T16:39:09Z",
+      "side": 1,
+      "message": "I\u0027d like to address this issue in the CL of fixing no-else-raise. How does it sound to you?",
+      "parentUuid": "9b5360a2_bbcdcf93",
       "range": {
         "startLine": 168,
         "startChar": 4,
