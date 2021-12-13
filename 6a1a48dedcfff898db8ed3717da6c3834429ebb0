@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "6a1a48dedcfff898db8ed3717da6c3834429ebb0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37599d69_b2ec45a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-13T23:13:30Z",
+      "side": 1,
+      "message": "Waiting on the dependent CL updating pylintrc",
+      "revId": "6a1a48dedcfff898db8ed3717da6c3834429ebb0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
