@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "351a83d0_0a508f13",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cros_browser_backend_unittest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-12-13T18:33:47Z",
+      "side": 1,
+      "message": "This change makes it so it\u0027s attempting to run on all platforms except ChromeOS, when it shouldn\u0027t be run anywhere if it\u0027s not working on ChromeOS.",
+      "revId": "65da670a4ca774e85cd5c2d69989e6d2906537e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
