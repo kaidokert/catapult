@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "0aefbbfc4cc47ad2778bc8278f318df35cec01c0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613b5388_101819ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1284623
+      },
+      "writtenOn": "2021-12-13T07:35:40Z",
+      "side": 1,
+      "message": "This looks reasonable in principle.\n\nHowever, I have a vague memory that \"import six\" hasn\u0027t worked for the dashboard code in our GAE environment for some reason, although I don\u0027t recall why.  I might be misremembering, after all https://cloud.google.com/appengine/docs/standard/python/tools/built-in-libraries-27 suggests it is supported.\n\nAnyway, adding a current project owner as a reviewer, so he can decide how best to deal with deploying this change.",
+      "revId": "0aefbbfc4cc47ad2778bc8278f318df35cec01c0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
