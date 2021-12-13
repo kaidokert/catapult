@@ -22,6 +22,30 @@
       },
       "revId": "e01401b8524ac8eb7578dd2c3060dd1bb2a35725",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a149430_72dcd020",
+        "filename": "systrace/systrace/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1517927
+      },
+      "writtenOn": "2021-12-13T02:45:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6447bcf3_c61fc0fd",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "e01401b8524ac8eb7578dd2c3060dd1bb2a35725",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
