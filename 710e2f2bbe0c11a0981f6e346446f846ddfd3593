@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a79d3d50_c69509e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-14T20:19:04Z",
+      "side": 1,
+      "message": "Changing owners. PTAL",
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
