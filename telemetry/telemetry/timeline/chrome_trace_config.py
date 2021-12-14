@@ -75,6 +75,19 @@ class ChromeTraceConfig(object):
     self._trace_buffer_size_in_kb = None
     self._trace_format = None
 
+  def __repr__(self):
+    str_ = 'ChromeTraceConfig:'
+    str_ += '\n\t\trecord_mode: ' + str(self._record_mode)
+    str_ += '\n\t\tcategory_filter: ' + str(self._category_filter)
+    str_ += '\n\t\tenable_systrace: ' + str(self._enable_systrace)
+    str_ += '\n\t\tuma_histogram_name: ' + str(self._uma_histogram_names)
+    str_ += '\n\t\ttrace_buffer_size_in_kb: ' + str(self._trace_buffer_size_in_kb)
+    str_ += '\n\t\ttrace_format: ' + str(self._trace_format)
+    str_ += '\n#'*10
+    str_ += str(self._memory_dump_config)
+    str_ += '\n#'*10
+    return str_
+
   @property
   def trace_format(self):
     return self._trace_format
@@ -202,3 +215,6 @@ class MemoryDumpConfig(object):
     """Returns the dump config as dictionary for chrome tracing."""
     # An empty trigger list would mean no periodic memory dumps.
     return {'memory_dump_config': {'triggers': self._triggers}}
+
+  def __repr__(self):
+    return str(self.GetDictForChromeTracing())

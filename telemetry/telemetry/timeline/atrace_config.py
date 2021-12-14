@@ -17,3 +17,9 @@ class AtraceConfig(object):
   def __init__(self):
     self.categories = atrace_agent.DEFAULT_CATEGORIES
     self.app_name = None
+
+  def __repr__(self):
+    str_ = 'AtraceConfig:\n'
+    str_ += '\t\tcategories: %s' % str(self.categories)
+    str_ += '\n\t\tapp_name: %s' % str(self.app_name)
+    return str_

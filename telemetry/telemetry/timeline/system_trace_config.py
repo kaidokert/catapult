@@ -17,6 +17,17 @@ class SystemTraceConfig(object):
     self._enable_ftrace_cpu = False
     self._enable_ftrace_sched = False
     self._chrome_config = None
+  def __repr__(self):
+    str_ = 'SystemTraceConfig:\n'
+    str_ += '\t\tenable_chrome: ' + str(self._enable_chrome)
+    str_ += '\n\t\tenable_power: ' + str(self._enable_power)
+    str_ += '\n\t\tenable_sys_stats_cpu: ' + str(self._enable_sys_stats_cpu)
+    str_ += '\n\t\tenable_ftrace_cpu: ' + str(self._enable_ftrace_cpu)
+    str_ += '\n\t\tenable_ftrace_sched: ' + str(self._enable_ftrace_sched)
+    str_ += '\n' + ('#' * 10) + '\n'
+    str_ += str(self._chrome_config)
+    str_ += '\n' + ('#' * 10) + '\n'
+    return str_
 
   def GetTextConfig(self):
     text_config = """

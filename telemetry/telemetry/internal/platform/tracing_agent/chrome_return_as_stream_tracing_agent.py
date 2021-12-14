@@ -40,16 +40,18 @@ class ChromeReturnAsStreamTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
 
   @classmethod
   def IsSupported(cls, platform_backend):
-    return platform_backend.GetOSName() != 'fuchsia'
+    #return platform_backend.GetOSName() != 'fuchsia'
+    return True
 
   def _GetTransferMode(self):
     return 'ReturnAsStream'
 
   def _StartStartupTracing(self, config):
-    self._CreateTraceConfigFile(config)
-    logging.info('Created startup trace config file in: %s',
-                 self._trace_config_file)
-    return True
+    if self._CreateTraceConfigFile(config):
+      logging.info('Created startup trace config file in: %s',
+                   self._trace_config_file)
+      return True
+    return False
 
   def _CreateTraceConfigFileString(self, config):
     # See src/components/tracing/trace_config_file.h for the format
@@ -81,6 +83,9 @@ class ChromeReturnAsStreamTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
       # The config file has fixed path on CrOS. We need to ensure it is
       # always cleaned up.
       atexit_with_log.Register(self._RemoveTraceConfigFile)
+    elif os_name == 'fuchsia':
+      logging.warning('Fuchsia does not currently support Startup Tracing.')
+      return False
     elif os_name in _DESKTOP_OS_NAMES:
       self._trace_config_file = os.path.join(tempfile.mkdtemp(),
                                              _CHROME_TRACE_CONFIG_FILE_NAME)
@@ -92,6 +97,7 @@ class ChromeReturnAsStreamTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
                os.stat(self._trace_config_file).st_mode | stat.S_IROTH)
     else:
       raise NotImplementedError('Tracing not supported on: %s' % os_name)
+    return True
 
   def _RemoveTraceConfigFile(self):
     if not self._trace_config_file:

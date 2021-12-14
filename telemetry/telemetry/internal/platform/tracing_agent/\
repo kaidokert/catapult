@@ -83,10 +83,6 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
         self._platform_backend.GetOSName() == 'android'):
       self._platform_backend.SetGraphicsMemoryTrackingEnabled(True)
 
-    # Modify the config if necessary.
-    if self._GetTransferMode() == 'ReportEvents':
-      config.trace_format = 'json'
-
     # Chrome tracing Agent needs to start tracing for chrome browsers that are
     # not yet started, and for the ones that already are. For the former, we
     # first setup the trace_config_file, which allows browsers that starts after
@@ -178,7 +174,6 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
     for client in self._previously_responsive_devtools:
       try:
         print('TRACE DATA BUILDER')
-        print(trace_data_builder)
         client.CollectChromeTracingData(trace_data_builder)
       except Exception: # pylint: disable=broad-except
         raised_exception_messages.append(

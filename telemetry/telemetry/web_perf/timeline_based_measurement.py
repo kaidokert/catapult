@@ -152,6 +152,7 @@ class TimelineBasedMeasurement(story_test.StoryTest):
 
   def Measure(self, platform, results):
     """Collect all possible metrics and added them to results."""
+    print('MEASURING TBM')
     platform.tracing_controller.RecordBenchmarkMetadata(results)
     traces = platform.tracing_controller.StopTracing()
     tbm_metrics = self._tbm_options.GetTimelineBasedMetrics()

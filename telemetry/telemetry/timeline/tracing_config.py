@@ -48,6 +48,24 @@ class TracingConfig(object):
     self._chrome_trace_config = chrome_trace_config.ChromeTraceConfig()
     self._system_trace_config = system_trace_config.SystemTraceConfig()
 
+  def __repr__(self):
+    str_ = 'TracingConfig:\n'
+    str_ += f'\t\tenable_atrace_trace: {self.enable_atrace_trace}\n'
+    str_ += f'\t\tenable_platform_display_trace: {self.enable_platform_display_trace}\n'
+    str_ += f'\t\tenable_android_graphics_memtrack: {self.enable_android_graphics_memtrack}\n'
+    str_ += f'\t\tenable_cpu_trace: {self.enable_cpu_trace}\n'
+    str_ += f'\t\tenable_chrome_trace: {self.enable_chrome_trace}\n'
+    str_ += f'\t\tenable_experimental_system_tracing: {self.enable_experimental_system_tracing}\n'
+    str_ += f'\t\tforce_sideload_perfetto: {self.force_sideload_perfetto}\n'
+    str_ += '\n'+('#'*10)
+    str_ += str(self._atrace_config)
+    str_ += '\n'+('#'*10)
+    str_ += str(self._chrome_trace_config)
+    str_ += '\n'+('#'*10)
+    str_ += str(self._system_trace_config)
+    str_ += '\n'+('#'*10)
+    return str_
+
   @property
   def enable_atrace_trace(self):
     return self._enable_atrace_trace

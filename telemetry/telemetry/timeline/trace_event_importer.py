@@ -32,6 +32,7 @@ class TraceEventTimelineImporter(importer.TimelineImporter):
 
     self._events = []
     self._metadata = []
+    print('TRACE DATA: %s' % trace_data)
     for trace in trace_data.GetTracesFor(trace_data_module.CHROME_TRACE_PART):
       self._events.extend(trace['traceEvents'])
       self.CollectMetadataRecords(trace)

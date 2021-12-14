@@ -337,6 +337,10 @@ def trace_add_benchmark_metadata(
     had_failures: Whether this story run failed.
   """
   global _benchmark_metadata
+  global _format
+  print('FORMAT: %s' % _format)
+  print('FORMAT: %s' % _format)
+  _format=JSON_WITH_METADATA
   if _format == PROTOBUF:
     # Write metadata immediately.
     perfetto_trace_writer.write_metadata(

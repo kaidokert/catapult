@@ -1,0 +1,13 @@
+/b/s/w/ir/.task_template_vpython_cache/vpython/814c9e/bin/python
+../../testing/scripts/run_performance_tests.py
+../../content/test/gpu/run_telemetry_benchmark_fuchsia.py
+--isolated-script-test-output=/b/s/w/ioDFglWI/output.json
+--isolated-script-test-perf-output=/b/s/w/ioDFglWI/perftest-output.json
+-v
+--browser=web-engine-shell
+--upload-results
+--test-shard-map-filename=fuchsia-perf-fyi_map.json
+--output-format=histograms
+--experimental-tbmv3-metrics
+--device=custom
+--custom-device-target=internal.astro_target

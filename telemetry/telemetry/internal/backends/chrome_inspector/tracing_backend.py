@@ -90,6 +90,7 @@ class _DevToolsStreamReader(object):
     data_chunk = result['data'].encode('utf8')
     if result.get('base64Encoded', False):
       data_chunk = base64.b64decode(data_chunk)
+
     self._trace_handle.write(data_chunk)
 
     if not result.get('eof', False):
@@ -364,7 +365,11 @@ class TracingBackend(object):
 
   def _NotificationHandler(self, res):
     if res.get('method') == 'Tracing.dataCollected':
+      print('KEYS: %s' % res.keys())
       value = res.get('params', {}).get('value')
+      print('GOT A TRACE')
+      for v in value:
+        print('VALUE KEYS: %s' %  v.keys())
       self._trace_data_builder.AddTraceFor(
           trace_data_module.CHROME_TRACE_PART,
           {'traceEvents': value})
@@ -373,6 +378,8 @@ class TracingBackend(object):
       # TODO(crbug.com/948412): Start requiring a value for dataLossOccurred
       # once we stop supporting Chrome M76 (which was the last version that
       # did not return this as a required parameter).
+      print('TRACE COMPLETE')
+      print('PARAMS: %s' % params)
       self._data_loss_occurred = params.get('dataLossOccurred', False)
       stream_handle = params.get('stream')
       if not stream_handle:

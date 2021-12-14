@@ -197,6 +197,8 @@ class TraceDataBuilder(object):
       do_write = lambda d, f: f.write(d)
       suffix = '.txt'  # Used for atrace and systrace data.
     elif isinstance(data, dict):
+      print('DATA')
+      print(data)
       do_write = json.dump
       suffix = '.json'
     else:

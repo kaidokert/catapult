@@ -15,12 +15,14 @@ from py_trace_event import trace_time
 
 def IsAgentEnabled():
   """Returns True if the agent is currently enabled and tracing."""
+  print('CHECKING iF EnABLED')
   return trace_event.trace_is_enabled()
 
 
 def RecordBenchmarkMetadata(results):
   """Record benchmark metadata if tracing is enabled."""
   if IsAgentEnabled():
+    print('AGENT IS ENABLED')
     trace_event.trace_add_benchmark_metadata(
         benchmark_name=results.benchmark_name,
         benchmark_description=results.benchmark_description,
@@ -91,6 +93,8 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
   @classmethod
   def IsSupported(cls, platform_backend):
     del platform_backend  # Unused.
+    print('Checking if supported!')
+    print('Checking %s ' % trace_event.is_tracing_controllable())
     return trace_event.is_tracing_controllable()
 
   @property
@@ -98,6 +102,7 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
     return IsAgentEnabled()
 
   def StartAgentTracing(self, config, timeout):
+    config.chrome_trace_config.trace_format = 'json'
     del timeout  # Unused.
     assert not self.is_tracing, 'Telemetry tracing already running'
 
@@ -113,6 +118,10 @@ class TelemetryTracingAgent(tracing_agent.TracingAgent):
       temp_file_mode = 'w+b'
     else:
       temp_file_mode = 'w+'
+
+    print('Trace format: %s' % str(trace_format))
+    print('Temp file mode: %s' % str(temp_file_mode))
+    print('Suffix: %s' % str(suffix))
 
     # Create a temporary file and pass the opened file-like object to
     # trace_event.trace_enable(); the file will be closed on trace_disable(),
