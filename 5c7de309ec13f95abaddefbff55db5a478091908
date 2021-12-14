@@ -39,6 +39,30 @@
       },
       "revId": "5c7de309ec13f95abaddefbff55db5a478091908",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26484531_91a9bfad",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-14T18:39:48Z",
+      "side": 1,
+      "message": "More recent versions of pylint do not understand that the statement applies to this string as it previously was set. Really, we want a multi-line comment here, right? I can change it instead.",
+      "parentUuid": "75cf300c_4dde8ed6",
+      "range": {
+        "startLine": 291,
+        "startChar": 4,
+        "endLine": 291,
+        "endChar": 46
+      },
+      "revId": "5c7de309ec13f95abaddefbff55db5a478091908",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
