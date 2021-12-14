@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac18fbc2_e8178835",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-14T07:59:20Z",
+      "side": 1,
+      "message": "You\u0027re right. I didn\u0027t notice the if block.",
+      "parentUuid": "6c58ca1f_8be4716c",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 47
+      },
+      "revId": "841c3690756a2543474b2b5ba8a9508ed1c21cf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b5360a2_bbcdcf93",
         "filename": "telemetry/telemetry/testing/system_stub.py",
         "patchSetId": 2
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "I\u0027d like to address this issue in the CL of fixing no-else-raise. How does it sound to you?",
       "parentUuid": "9b5360a2_bbcdcf93",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 168,
+        "endChar": 8
+      },
+      "revId": "841c3690756a2543474b2b5ba8a9508ed1c21cf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74a8384_8a018a6d",
+        "filename": "telemetry/telemetry/testing/system_stub.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-14T07:59:20Z",
+      "side": 1,
+      "message": "sgtm.",
+      "parentUuid": "fe37ea10_a905f5d1",
       "range": {
         "startLine": 168,
         "startChar": 4,
