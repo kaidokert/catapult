@@ -50,6 +50,24 @@
       "message": "+johnchen for review. Are we ready to migrate to python3 is all our environments (e.g. chromeos)?",
       "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2256f1c8_d97efbd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-14T22:04:28Z",
+      "side": 1,
+      "message": "This should not break python 2 compatibility. Since many bots are still python 2, if I made a mistake, something should catch it pretty quickly.",
+      "parentUuid": "21a29f1b_252e0833",
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
