@@ -63,6 +63,30 @@
       },
       "revId": "5c7de309ec13f95abaddefbff55db5a478091908",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410db679_8e793ba2",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-14T18:52:29Z",
+      "side": 1,
+      "message": "Do you mean that the previous \"pylint: disable\" no longer works in the new pylint? I\u0027m fine with this change. Ideally we need to enable the check on pointless string after this. Otherwise the checker will be disabled in the remaining of main().",
+      "parentUuid": "26484531_91a9bfad",
+      "range": {
+        "startLine": 291,
+        "startChar": 4,
+        "endLine": 291,
+        "endChar": 46
+      },
+      "revId": "5c7de309ec13f95abaddefbff55db5a478091908",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
