@@ -89,6 +89,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea7a76c9_688de90c",
+        "filename": "telemetry/telemetry/internal/backends/chrome/minidump_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-14T10:30:17Z",
+      "side": 1,
+      "message": "Thanks for confirming!",
+      "parentUuid": "ac18fbc2_e8178835",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 47
+      },
+      "revId": "841c3690756a2543474b2b5ba8a9508ed1c21cf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b5360a2_bbcdcf93",
@@ -150,6 +174,30 @@
       "side": 1,
       "message": "sgtm.",
       "parentUuid": "fe37ea10_a905f5d1",
+      "range": {
+        "startLine": 168,
+        "startChar": 4,
+        "endLine": 168,
+        "endChar": 8
+      },
+      "revId": "841c3690756a2543474b2b5ba8a9508ed1c21cf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da7d8d72_1e355a67",
+        "filename": "telemetry/telemetry/testing/system_stub.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1413245
+      },
+      "writtenOn": "2021-12-14T10:30:17Z",
+      "side": 1,
+      "message": "Done. I\u0027ll upload a followup.",
+      "parentUuid": "e74a8384_8a018a6d",
       "range": {
         "startLine": 168,
         "startChar": 4,
