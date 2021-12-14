@@ -33,6 +33,24 @@
       "message": "rm trailing whitespace?",
       "revId": "c90915480ce8f72551fca6781693761d4ca519d5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d338b163_edc9573e",
+        "filename": "dashboard/.coveragerc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-12-14T06:23:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dd824e7_8176c13b",
+      "revId": "c90915480ce8f72551fca6781693761d4ca519d5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
