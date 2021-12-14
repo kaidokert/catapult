@@ -14,12 +14,18 @@ class ChromeReportEventsTracingAgent(chrome_tracing_agent.ChromeTracingAgent):
 
   @classmethod
   def IsSupported(cls, platform_backend):
-    return platform_backend.GetOSName() == 'fuchsia'
+    #return platform_backend.GetOSName() == 'fuchsia'
+    return False
 
   def _GetTransferMode(self):
-    return 'ReportEvents'
+    return 'ReturnAsStream'
 
   def _StartStartupTracing(self, config):
+    print('########## CONFIG NOT BEING USED #########')
+    #config._chrome_trace_config.SetJsonTraceFormat()
+    print(config)
+
+
     del config
     # Fuchsia doesn't support starting tracing with a config file
     return False
