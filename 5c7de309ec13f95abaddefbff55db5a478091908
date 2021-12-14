@@ -16,6 +16,29 @@
       "message": "PTAL\nThis was broken from https://crrev.com/c/3329203",
       "revId": "5c7de309ec13f95abaddefbff55db5a478091908",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75cf300c_4dde8ed6",
+        "filename": "dashboard/bq_export/bq_export/bq_calc_stats.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-14T08:03:51Z",
+      "side": 1,
+      "message": "Are we intended to disable pointless-string-statement for the whole main()?",
+      "range": {
+        "startLine": 291,
+        "startChar": 4,
+        "endLine": 291,
+        "endChar": 46
+      },
+      "revId": "5c7de309ec13f95abaddefbff55db5a478091908",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
