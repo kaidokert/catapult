@@ -111,6 +111,30 @@
       },
       "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a5b58b5_8309fed4",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2021-12-14T19:18:46Z",
+      "side": 1,
+      "message": "LGTM",
+      "parentUuid": "80933f8d_ff541fb5",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
