@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "11780d18_7e406140",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-12-14T20:05:02Z",
+      "side": 1,
+      "message": "Please reformat this into a one line summary followed by\na blank line then followed by this description.\n\nIt\u0027s a git convention to have the one-line summary to make things easier to read.",
+      "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0440f9ab_b3f1e6a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-12-14T20:05:02Z",
+      "side": 1,
+      "message": "this link didn\u0027t appear to link to anything. Can you upload a CL to chromium-review.googlesource.com? That would make it easier for me (and anyone else) to see the context.\n\nFailing that, can you fix the link to point to whatever you meant to point to?",
+      "range": {
+        "startLine": 14,
+        "startChar": 32,
+        "endLine": 14,
+        "endChar": 49
+      },
+      "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "201e1ff9_cb1eb661",
@@ -14,6 +54,23 @@
       "writtenOn": "2021-12-14T06:44:07Z",
       "side": 1,
       "message": "PTL",
+      "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac17d335_40c3dd1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2021-12-14T20:05:02Z",
+      "side": 1,
+      "message": "Thanks for the patch! \n\nI don\u0027t fully understand what you\u0027re trying to do here, probably because the example you were trying to link to didn\u0027t work for me. \n\nI\u0027d like to see how this would actually be used in practice if possible.",
       "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
