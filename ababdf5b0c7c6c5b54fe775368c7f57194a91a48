@@ -63,6 +63,30 @@
       },
       "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35f2e787_93ec2068",
+        "filename": "dashboard/dashboard/api/alerts.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1425877
+      },
+      "writtenOn": "2021-12-14T08:39:02Z",
+      "side": 1,
+      "message": "Probably renaming the argument in ApiRequestHandler is a good idea.\nIn the current state the Post methods that actually use the argument *_ need to have different names.",
+      "parentUuid": "4859d226_df576457",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "ababdf5b0c7c6c5b54fe775368c7f57194a91a48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
