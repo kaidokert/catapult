@@ -59,7 +59,6 @@ class VinnUnittest(unittest.TestCase):
 
   def _GetUnescapedExceptionMessage(self, exception):
     if os.name == 'nt':
-      if sys.version_info.major == 2:
         return str(exception)
       else:
         return str(exception).encode().decode("unicode-escape")
