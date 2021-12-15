@@ -1163,9 +1163,9 @@ class AdbWrapper(object):
           ['enable-verity'], output, device_serial=self._device_serial)
     return output
 
-  # Deprecated use device_utils#is_emulator instead.
   @property
   def is_emulator(self):
+    # emulator uses "emulator-" as part of the serial (https://bit.ly/3IQbwZx)
     return _EMULATOR_RE.match(self._device_serial)
 
   @property

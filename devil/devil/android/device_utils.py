@@ -2860,7 +2860,7 @@ class DeviceUtils(object):
 
   @property
   def is_emulator(self):
-    return _EMULATOR_RE.match(self.GetProp('ro.product.device', cache=True))
+    return self.adb.is_emulator
 
   @property
   def build_description(self):
