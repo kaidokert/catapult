@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c048889f_bb34ccfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-12-15T08:13:33Z",
+      "side": 1,
+      "message": "Thank you for your comment, I didn\u0027t know that it is possible to edit title after uploading CL.",
+      "parentUuid": "11780d18_7e406140",
+      "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0440f9ab_b3f1e6a2",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-12-14T20:05:02Z",
       "side": 1,
       "message": "this link didn\u0027t appear to link to anything. Can you upload a CL to chromium-review.googlesource.com? That would make it easier for me (and anyone else) to see the context.\n\nFailing that, can you fix the link to point to whatever you meant to point to?",
+      "range": {
+        "startLine": 14,
+        "startChar": 32,
+        "endLine": 14,
+        "endChar": 49
+      },
+      "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "222575ee_91dedf21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-12-15T08:13:33Z",
+      "side": 1,
+      "message": "Uploaded CL: https://chromium-review.googlesource.com/c/chromium/src/+/3341052",
+      "parentUuid": "0440f9ab_b3f1e6a2",
       "range": {
         "startLine": 14,
         "startChar": 32,
@@ -71,6 +113,24 @@
       "writtenOn": "2021-12-14T20:05:02Z",
       "side": 1,
       "message": "Thanks for the patch! \n\nI don\u0027t fully understand what you\u0027re trying to do here, probably because the example you were trying to link to didn\u0027t work for me. \n\nI\u0027d like to see how this would actually be used in practice if possible.",
+      "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c0119df_ddd9bf8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-12-15T08:13:33Z",
+      "side": 1,
+      "message": "This is a link to CL with changes in Chromium, which use this functionality in typ.\nhttps://chromium-review.googlesource.com/c/chromium/src/+/3341052\nIn a few word, logic with \u0027real_test_func\u0027 helps to find source filepath for tests, which is generated somewhere and added to TestCase using \u0027setattr\u0027. Good example Chromium benchmarks smoke unittests (you can see code in CL). Benchmarks smoke unittests are generated from benchmarks. It is make more sense to write path to benchmark to trace instead of writing path to file with test generator.\n\nWriting filepath of test source to trace can be useful in CI to print test failed test location.",
+      "parentUuid": "ac17d335_40c3dd1d",
       "revId": "76f76988729acf5e1dc4b80a5886477b6c9c2832",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
