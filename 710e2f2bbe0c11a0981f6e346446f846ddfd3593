@@ -68,6 +68,144 @@
       "parentUuid": "21a29f1b_252e0833",
       "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4762f64_ca7a4080",
+        "filename": "tracing/bin/validate_all_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-15T08:25:10Z",
+      "side": 1,
+      "message": "Nit: redundant",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6fb9cf8_a5c88f6e",
+        "filename": "tracing/bin/validate_all_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-15T08:25:10Z",
+      "side": 1,
+      "message": "Redundant",
+      "range": {
+        "startLine": 87,
+        "startChar": 9,
+        "endLine": 87,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aef39c3_a37875aa",
+        "filename": "tracing/bin/validate_all_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-15T08:25:10Z",
+      "side": 1,
+      "message": "Redundant",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d83a5c_46a97536",
+        "filename": "tracing/bin/validate_all_metrics",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-15T08:25:10Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a02061_0ae41926",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-15T08:25:10Z",
+      "side": 1,
+      "message": "This appears to be a semantic change. Are we certain this is correct?",
+      "range": {
+        "startLine": 1754,
+        "startChar": 2,
+        "endLine": 1759,
+        "endChar": 16
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25853486_25ac1147",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-15T08:25:10Z",
+      "side": 1,
+      "message": "Add space before (",
+      "range": {
+        "startLine": 1271,
+        "startChar": 16,
+        "endLine": 1271,
+        "endChar": 17
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
