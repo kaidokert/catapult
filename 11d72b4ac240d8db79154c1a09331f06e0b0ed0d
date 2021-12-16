@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1d3bd2_f1647f34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-16T00:54:35Z",
+      "side": 1,
+      "message": "Avoid checking with slashes as the behavior seem changing. PTAL.",
+      "revId": "11d72b4ac240d8db79154c1a09331f06e0b0ed0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
