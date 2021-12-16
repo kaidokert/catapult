@@ -50,6 +50,23 @@
       "message": "I\u0027ll defer to John for benchmark-specific comment since I haven\u0027t interacted much with benchmarks in a long time.",
       "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd81a6f_9d63d126",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-12-16T08:02:09Z",
+      "side": 1,
+      "message": "Catapult Windows Tryserver checks fail every time with encoding error: https://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Windows%20Tryserver/6459/overview\nI ran vinn unitests on my local Windows 10 machine and didn\u0027t get any problems with encoding like on Tryserver.\nI investigated problem and found that there were some fixes with encoding in this CL: https://chromium-review.googlesource.com/c/catapult/+/3151276\nBut this CL also failed Catapult Windows Tryserver Py3 checks, but despite this was merged.\nIs it a known bug? My changes shouldn\u0027t affect vinn package unittests.",
+      "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
