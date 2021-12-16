@@ -33,6 +33,23 @@
       "message": "Ah, interesting. I wasn\u0027t aware that anything was using the trace file data.\n\nThis change seems reasonable, but it would probably be better to have someone\na bit more familiar with the use in benchmarks to weigh in.\n\n@johnchen @bsheedy ?",
       "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1154214b_e6547b1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2021-12-16T00:32:43Z",
+      "side": 1,
+      "message": "I\u0027ll defer to John for benchmark-specific comment since I haven\u0027t interacted much with benchmarks in a long time.",
+      "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
