@@ -125,6 +125,30 @@
       },
       "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dd822cb_89ec696e",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1527923
+      },
+      "writtenOn": "2021-12-16T20:37:34Z",
+      "side": 1,
+      "message": "Thank you for your comment. I removed duplicated code, see Patchset 7.\nYou can see file and line forwarding to trace by running tests using typ with option --write-trace-to. There is an example of trace from run of runner_test.py using typ with --write-trace-to option: https://pastebin.com/MkRrCUjf\nI slightly changed file paths with the aim not to show my real directories tree.",
+      "parentUuid": "9f985604_b5a53164",
+      "range": {
+        "startLine": 1122,
+        "startChar": 0,
+        "endLine": 1133,
+        "endChar": 22
+      },
+      "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
