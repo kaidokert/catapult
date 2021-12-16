@@ -67,6 +67,64 @@
       "message": "Catapult Windows Tryserver checks fail every time with encoding error: https://ci.chromium.org/ui/p/catapult/builders/try/Catapult%20Windows%20Tryserver/6459/overview\nI ran vinn unitests on my local Windows 10 machine and didn\u0027t get any problems with encoding like on Tryserver.\nI investigated problem and found that there were some fixes with encoding in this CL: https://chromium-review.googlesource.com/c/catapult/+/3151276\nBut this CL also failed Catapult Windows Tryserver Py3 checks, but despite this was merged.\nIs it a known bug? My changes shouldn\u0027t affect vinn package unittests.",
       "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ef53af1_65b7bb65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-16T08:37:32Z",
+      "side": 1,
+      "message": "Thanks for submitting the patch. Please see comment below.",
+      "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cfc3b80_e5c7c443",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-16T08:37:32Z",
+      "side": 1,
+      "message": "The vinn unittests should be fixed by https://chromium-review.googlesource.com/c/catapult/+/3343233 now.",
+      "parentUuid": "ddd81a6f_9d63d126",
+      "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f985604_b5a53164",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-16T08:37:32Z",
+      "side": 1,
+      "message": "The new code is partial duplicate of this section of code. The differences being the existing code doesn\u0027t handle real_test_func, while the new code doesn\u0027t check __wrapped__ attribute. Also, the new code stores data in result object, while the old stores them in local variables before passing them to result sink.\n\nPlease merge the existing code into your new code, and then this section of code should be deleted.\n\nAlso, could you please give a concrete example of where the added file path and line number would be visible at?",
+      "range": {
+        "startLine": 1122,
+        "startChar": 0,
+        "endLine": 1133,
+        "endChar": 22
+      },
+      "revId": "f4db9841e98b080a0c9f7a8c16d09daf9a7bccfc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
