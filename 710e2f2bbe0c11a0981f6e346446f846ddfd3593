@@ -127,6 +127,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec120166_b63befa1",
+        "filename": "tracing/bin/validate_all_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-16T20:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4762f64_ca7a4080",
+      "range": {
+        "startLine": 59,
+        "startChar": 9,
+        "endLine": 59,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6fb9cf8_a5c88f6e",
@@ -140,6 +164,30 @@
       "writtenOn": "2021-12-15T08:25:10Z",
       "side": 1,
       "message": "Redundant",
+      "range": {
+        "startLine": 87,
+        "startChar": 9,
+        "endLine": 87,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f73e1646_48a58561",
+        "filename": "tracing/bin/validate_all_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-16T20:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6fb9cf8_a5c88f6e",
       "range": {
         "startLine": 87,
         "startChar": 9,
@@ -173,6 +221,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5696de_1c82ca5a",
+        "filename": "tracing/bin/validate_all_diagnostics",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-16T20:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8aef39c3_a37875aa",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8d83a5c_46a97536",
@@ -186,6 +258,30 @@
       "writtenOn": "2021-12-15T08:25:10Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 10
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ddec3fa_f24de68f",
+        "filename": "tracing/bin/validate_all_metrics",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-16T20:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8d83a5c_46a97536",
       "range": {
         "startLine": 26,
         "startChar": 9,
@@ -221,6 +317,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d425395_adc18758",
+        "filename": "tracing/tracing/extras/symbolizer/symbolize_trace.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-16T20:18:24Z",
+      "side": 1,
+      "message": "After seeing the pylint warning about inconsistent return statements in this function, it seemed obvious to me that was always the intent. As it is currently written, this code can silently fail. This is very unlikely to happen but could lead to some hard to diagnose issues if the bot is full, for instance.",
+      "parentUuid": "55a02061_0ae41926",
+      "range": {
+        "startLine": 1754,
+        "startChar": 2,
+        "endLine": 1759,
+        "endChar": 16
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25853486_25ac1147",
         "filename": "tracing/tracing/value/histogram.py",
         "patchSetId": 6
@@ -232,6 +352,30 @@
       "writtenOn": "2021-12-15T08:25:10Z",
       "side": 1,
       "message": "Add space before (",
+      "range": {
+        "startLine": 1271,
+        "startChar": 16,
+        "endLine": 1271,
+        "endChar": 17
+      },
+      "revId": "710e2f2bbe0c11a0981f6e346446f846ddfd3593",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9b521cc_6c7d1a80",
+        "filename": "tracing/tracing/value/histogram.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2021-12-16T20:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25853486_25ac1147",
       "range": {
         "startLine": 1271,
         "startChar": 16,
