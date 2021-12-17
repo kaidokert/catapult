@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9ace02_6e8e239e",
+        "filename": "systrace/profile_chrome/chrome_startup_tracing_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "nit: there are still some redundant disable statement. I guess it is fine as long as they will be removed when fixing the bug.",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 37
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a07487_be39a17c",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "I believe this should be the instance of the caught exception.",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3fc08eb_475accc1",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 16
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfb56558_9fb062be",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 129,
+        "startChar": 38,
+        "endLine": 129,
+        "endChar": 42
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec3be56_669f526d",
+        "filename": "systrace/profile_chrome/main.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "I think this should return 0 if the workflow execute all the way to the end.",
+      "range": {
+        "startLine": 175,
+        "startChar": 9,
+        "endLine": 175,
+        "endChar": 13
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce9e265_c6e37090",
+        "filename": "systrace/profile_chrome/perf_tracing_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "As it returns True at the end, I believe here should be False.",
+      "range": {
+        "startLine": 140,
+        "startChar": 13,
+        "endLine": 140,
+        "endChar": 17
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d01a5811_8ce416ee",
+        "filename": "systrace/systrace/output_generator.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "unintended change.",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 45
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622f371c_812cf430",
+        "filename": "systrace/systrace/tracing_agents/atrace_from_file_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "This else should not be removed.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 19
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace010d6_bc2e07dc",
+        "filename": "systrace/systrace/tracing_agents/ftrace_agent.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-17T04:23:59Z",
+      "side": 1,
+      "message": "This changes the behavior. Try using \u0027if avail:\u0027.",
+      "range": {
+        "startLine": 239,
+        "startChar": 4,
+        "endLine": 239,
+        "endChar": 17
+      },
+      "revId": "0590f2ec09262ffbc0febd804e175601c1d23b18",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
