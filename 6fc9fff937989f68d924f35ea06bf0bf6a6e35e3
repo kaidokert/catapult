@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfac079_b0e716d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1183894
+      },
+      "writtenOn": "2021-12-20T14:22:10Z",
+      "side": 1,
+      "message": "Camillo, FYI.\n\nJohn, this fixes the issue that performance measurements include DevTools stack capturing overhead.",
+      "revId": "6fc9fff937989f68d924f35ea06bf0bf6a6e35e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
