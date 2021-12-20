@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c03ee9bb_159376ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T20:10:26Z",
+      "side": 1,
+      "message": "I\u0027ll suggest have a CL for revert and then another for the new changes. That will make the new change more clear.",
+      "revId": "8435b4ac09d445e5ca2859803b01a2a8c7bb941b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
