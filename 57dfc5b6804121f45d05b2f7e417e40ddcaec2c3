@@ -16,6 +16,167 @@
       "message": "Last preparatory CL before the pylint update.",
       "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7a0c7a0_4e9c5653",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "nit: We can use %s here.",
+      "range": {
+        "startLine": 170,
+        "startChar": 50,
+        "endLine": 170,
+        "endChar": 52
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d372fe_2d30e3b1",
+        "filename": "dashboard/dashboard/add_histograms.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "Why this is needed?",
+      "range": {
+        "startLine": 177,
+        "startChar": 10,
+        "endLine": 177,
+        "endChar": 33
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "496d8a4b_5e792b98",
+        "filename": "dashboard/dashboard/dispatcher_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "Can we remove this import statement?",
+      "range": {
+        "startLine": 23,
+        "startChar": 56,
+        "endLine": 23,
+        "endChar": 62
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded8aa8f_bdb075a5",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "Can I have some context of this change?",
+      "range": {
+        "startLine": 134,
+        "startChar": 6,
+        "endLine": 134,
+        "endChar": 14
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373193fb_25626ff6",
+        "filename": "dashboard/dashboard/find_anomalies_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 153,
+        "startChar": 6,
+        "endLine": 153,
+        "endChar": 14
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34fb7b3b_a61e2824",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "They don\u0027t seem needed in this file.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 64
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1a74eec_1db35348",
+        "filename": "dashboard/dashboard/uploads_info.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-20T17:41:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 30,
+        "startChar": 18,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
