@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3043676_258c7a1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2021-12-20T19:13:36Z",
+      "side": 1,
+      "message": "Dmitry: I had to submit a revert for this CL, because it is causing test failures while rolling into Chromium repo. See any of the failed builds at https://chromium-review.googlesource.com/c/chromium/src/+/3346909/ for more details.\n\nThe test that triggered the failure is https://source.chromium.org/chromium/chromium/src/+/main:tools/metrics/histograms/extract_histograms_test.py?q\u003dtestUpdateNameDuplicateVariant, though other tests using @parameterized.expand would also have failed. For such tests, the new code causes test location to be parameterized.py in Python library, instead of the file containing the test, thus causing failures.\n\nPlease revise your changes to handle this and try again. Thanks!",
+      "revId": "636ee165099788c25ce62526d4a0a2908f4ba8dc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
