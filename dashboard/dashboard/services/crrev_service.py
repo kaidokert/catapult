@@ -19,6 +19,9 @@ def GetNumbering(number, numbering_identifier, numbering_type, project, repo):
       'project': project,
       'repo': repo
   }
+  # adding code to test code coverage
+  if False:
+    pass
 
   return request.RequestJson(_URL + 'get_numbering', 'GET', **params)
 

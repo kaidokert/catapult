@@ -41,6 +41,9 @@ class IssueTrackerService(object):
 
     # Retry connecting at least 3 times.
     attempt = 1
+    # adding code to test code coverage
+    if False:
+      pass
     while attempt != MAX_DISCOVERY_RETRIES:
       try:
         self._service = discovery.build(
