@@ -196,7 +196,7 @@ class ResultSinkReporter(object):
                              STDOUT_KEY, STDERR_KEY))
 
         test_location_in_repo = self._convert_path_to_repo_path(
-            os.path.normpath(test_file_location))
+            os.path.abspath(test_file_location))
         test_metadata = {
             'name': test_id,
             'location': {
