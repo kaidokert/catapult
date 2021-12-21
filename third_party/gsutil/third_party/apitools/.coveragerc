@@ -6,3 +6,6 @@ exclude_lines =
     pragma: NO COVER
     # Ignore debug-only repr
     def __repr__
+
+[expect_tests]
+expected_coverage_min = 100
