@@ -52,6 +52,24 @@
       "parentUuid": "4048a432_8545b6c9",
       "revId": "d6764a993f64df83aa6e9f243e2490257e984d6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd3feb3b_5583f289",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2021-12-21T18:46:42Z",
+      "side": 1,
+      "message": "Gerrit would commit this to main if we tried it right now: https://ci.chromium.org/ui/p/catapult/builders/try/Dashboard%20Linux%20Tryserver/1702/overview",
+      "parentUuid": "4048a432_8545b6c9",
+      "revId": "d6764a993f64df83aa6e9f243e2490257e984d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
