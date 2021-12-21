@@ -16,6 +16,24 @@
       "message": "The checks tab is all green - I\u0027m guessing this change should have turned one of them red.",
       "revId": "d6764a993f64df83aa6e9f243e2490257e984d6f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4048a432_8545b6c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2021-12-21T18:31:51Z",
+      "side": 1,
+      "message": "The idea here is to introduce changes to a few scripts and set the expected min coverage to 100%. If code coverage is working, then gerrit should not commit this to main.",
+      "parentUuid": "34c749b2_d003a5cb",
+      "revId": "d6764a993f64df83aa6e9f243e2490257e984d6f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
