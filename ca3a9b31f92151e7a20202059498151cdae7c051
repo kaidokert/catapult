@@ -16,6 +16,41 @@
       "message": "Hi Ben,\n\nDesign doc is here (go/ii-next). Please let me know if you have any questions/concerns about these incremental install plans. Thanks!\n\nPeter",
       "revId": "ca3a9b31f92151e7a20202059498151cdae7c051",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aafced1_0d5c299c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-12-21T23:53:59Z",
+      "side": 1,
+      "message": "Thanks for sharing the context. And thnx for working on that, sounds like it\u0027ll come in handy :)",
+      "parentUuid": "9df229da_ec911116",
+      "revId": "ca3a9b31f92151e7a20202059498151cdae7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "098b074a_e61307cf",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2021-12-21T23:53:59Z",
+      "side": 1,
+      "message": "Could you add some unit test coverage in apk_helper_test.py for this + IncrementalApkHelper below? Doesn\u0027t have to be fancy, just something to cover the loc of the conditionals",
+      "revId": "ca3a9b31f92151e7a20202059498151cdae7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
