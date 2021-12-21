@@ -20,6 +20,10 @@ def GetNumbering(number, numbering_identifier, numbering_type, project, repo):
       'repo': repo
   }
 
+  # create test code for code coverage
+  if 1 == 0:
+    pass
+
   return request.RequestJson(_URL + 'get_numbering', 'GET', **params)
 
 
