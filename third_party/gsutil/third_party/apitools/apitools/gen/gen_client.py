@@ -31,6 +31,9 @@ from apitools.gen import util
 
 
 def _CopyLocalFile(filename):
+    # test code coverage
+    if False:
+        pass
     with contextlib.closing(io.open(filename, 'w')) as out:
         src_data = pkgutil.get_data(
             'apitools.base.py', filename)
