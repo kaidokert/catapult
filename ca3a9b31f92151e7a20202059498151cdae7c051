@@ -51,6 +51,24 @@
       "message": "Could you add some unit test coverage in apk_helper_test.py for this + IncrementalApkHelper below? Doesn\u0027t have to be fancy, just something to cover the loc of the conditionals",
       "revId": "ca3a9b31f92151e7a20202059498151cdae7c051",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ad2b50_ec698a49",
+        "filename": "devil/devil/android/apk_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2021-12-22T15:19:21Z",
+      "side": 1,
+      "message": "Great suggestion, thanks Ben. I forgot there were tests for these files. I\u0027ve added some tests and made ToIncrementalHelper a bit more robust (i.e. it now converts ApkHelper to IncrementalApkHelper but all other helpers result in an exception).",
+      "parentUuid": "098b074a_e61307cf",
+      "revId": "ca3a9b31f92151e7a20202059498151cdae7c051",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
