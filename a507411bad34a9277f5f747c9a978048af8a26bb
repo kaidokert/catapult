@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8fb8bb7_024db55f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2021-12-23T18:21:41Z",
+      "side": 1,
+      "message": "I\u0027ve learned that vinn makes many assumptions about the d8 binary.\n\nI\u0027ve found https://chromium.googlesource.com/catapult/+/refs/heads/main/third_party/vinn/bin/update_v8 which is a script to build d8 for vinn. Medium-term, it\u0027d probably be good to update that script and use it.\n\nShort-term, these args.gn produced a binary that works in practice for me:\n\n```\ntarget_cpu \u003d \"arm64\"\nuse_goma \u003d true\nis_debug \u003d false\nv8_use_external_startup_data \u003d false\nicu_use_data_file \u003d false\n```\n\nSo I\u0027d suggest using those args short-term.\n\nI\u0027d also `strip out/foo/d8` (the script I linked to above does that too). Even with that, this produces a 32M d8 binary over here -- git isn\u0027t great at storing large binary blobs like that. Long term, it\u0027d be good to move off keeping these binaries checked in to git.\n\n(https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1282472 last bit of comment 2 onward documents my flailing around :/)",
+      "revId": "a507411bad34a9277f5f747c9a978048af8a26bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
