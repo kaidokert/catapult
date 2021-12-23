@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b149b41_a488905c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2021-12-23T16:42:53Z",
+      "side": 1,
+      "message": "I tried patching this in and running the binary, and it fails with:\n\n```\n  Reason: tried: \u0027/Users/thakis/src/chrome/src/third_party/catapult/third_party/vinn/third_party/v8/mac/arm/./libv8.dylib\u0027 (no such file), \u0027/Users/thakis/src/chrome/src/third_party/catapult/third_party/vinn/third_party/v8/mac/arm/../../../libv8.dylib\u0027 (no such file), \u0027/Users/thakis/src/chrome/src/third_party/catapult/third_party/vinn/third_party/v8/mac/arm/./libv8.dylib\u0027 (no such file), \u0027/Users/thakis/src/chrome/src/third_party/catapult/third_party/vinn/third_party/v8/mac/arm/../../../libv8.dylib\u0027 (no such file), \u0027/usr/local/lib/libv8.dylib\u0027 (no such file), \u0027/usr/lib/libv8.dylib\u0027 (no such file)\n```\n\nDid you do a component build? That won\u0027t work. You probably want a vanilla `is_debug\u003dfalse` build.",
+      "revId": "b249b5cf032b2bff88d146f1dc8bf4355531c2a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
