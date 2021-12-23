@@ -16,6 +16,23 @@
       "message": "I patched this in and at least on my m1, it didn\u0027t want to run:\n\n```\n% third_party/catapult/third_party/vinn/third_party/v8/mac/arm/d8     \nzsh: killed     third_party/catapult/third_party/vinn/third_party/v8/mac/arm/d8\n % echo $?\n137\n```\n\nConsole.app shows \"ignoring detached code signature on \u0027d8\u0027 with cdhash \u0027ec5a61a21029da2aebb431b71b1bf2756e004336\u0027 because it is invalid, or not a simple adhoc signature.\"\n\nThis made it go:\n\n```\ncodesign -s - --preserve-metadata\u003didentifier,entitlements,flags,runtime -f third_party/catapult/third_party/vinn/third_party/v8/mac/arm/d8             \n```\n\nI don\u0027t understand why that should be necessary. The linker is supposed to add a valid code signature by itself.\n\nBut maybe you could try running that codesign command and then reuploading?",
       "revId": "9a79aeb6a6bb3ad034722ac3b310583e4e7c8aa0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76af78b1_031fb65f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001629
+      },
+      "writtenOn": "2021-12-23T20:05:01Z",
+      "side": 1,
+      "message": "Oh, I might know what this is: If your strip is from a fairly old Xcode (before 12.2), then it has a bug where it breaks the linker signature. So if you\u0027re running an older Xcode (or have a new version installed but never opened it so that it could install updated commandline tools), that\u0027d explain what we\u0027re seeing.",
+      "revId": "9a79aeb6a6bb3ad034722ac3b310583e4e7c8aa0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
