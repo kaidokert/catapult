@@ -64,8 +64,8 @@ class AndroidBrowserBackendSettings(_BackendSettingsTuple):
   def has_additional_apk(self):
     return self.additional_apk_name is not None
 
-  def GetDevtoolsRemotePort(self, device):
-    del device
+  def GetDevtoolsRemotePort(self, device, package=None):
+    del device, package
     # By default return the devtools_port defined in the constructor.
     return self.devtools_port
 
@@ -146,10 +146,11 @@ class WebViewBasedBackendSettings(AndroidBrowserBackendSettings):
     kwargs.setdefault('additional_apk_name', None)
     return super(WebViewBasedBackendSettings, cls).__new__(cls, **kwargs)
 
-  def GetDevtoolsRemotePort(self, device):
+  def GetDevtoolsRemotePort(self, device, package=None):
     # The DevTools port for WebView based backends depends on the browser PID.
     def get_activity_pid():
-      return device.GetApplicationPids(self.package, at_most_one=True)
+      return device.GetApplicationPids(package or self.package,
+                                       at_most_one=True)
 
     pid = py_utils.WaitFor(get_activity_pid, timeout=30)
     return self.devtools_port.format(pid=pid)
