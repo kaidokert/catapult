@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7da7e6_3c1de3ed",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-28T19:20:39Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 56,
+        "startChar": 41,
+        "endLine": 56,
+        "endChar": 60
+      },
+      "revId": "f417cd4b15fa53bd63cbe55966a05300df5d6808",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a88c5f86_8111e332",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-28T19:20:39Z",
+      "side": 1,
+      "message": "It should be an instance instead of a class. E.g.: \nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing/value/diagnostics/generic_set.py;l\u003d111",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 45
+      },
+      "revId": "f417cd4b15fa53bd63cbe55966a05300df5d6808",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e871cec7_51488b8e",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2021-12-28T19:20:39Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 129,
+        "startChar": 52,
+        "endLine": 129,
+        "endChar": 73
+      },
+      "revId": "f417cd4b15fa53bd63cbe55966a05300df5d6808",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
