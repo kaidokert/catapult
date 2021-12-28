@@ -6,6 +6,7 @@ from __future__ import absolute_import
 import os
 import posixpath
 
+from mock import patch
 from telemetry.testing import browser_backend_test_case
 from telemetry import decorators
 
@@ -84,6 +85,30 @@ class AndroidBrowserBackendTest(
     self.assertTrue(os.path.exists(local_old_dump_path))
     # A changed mtime would mean that the dump was re-pulled
     self.assertEqual(os.stat(local_old_dump_path).st_mtime, old_dump_time)
+
+  @decorators.Enabled('android')
+  @patch('telemetry.internal.backends.chrome.'
+         'android_browser_finder.util.FindLatestApkOnHost')
+  @patch('telemetry.internal.backends.chrome.'
+         'android_browser_finder.apk_helper.GetPackageName')
+  def testSetPackageMemberVariableInPossibleBrowser(self, apk_on_host, get_pkg):
+    apk_on_host.return_value = 'apks/SystemWebViewShell.apk'
+    get_pkg.return_value = 'webview_test_shell'
+    self.assertEqual(self._possible_browser.package,
+                     'webview_test_shell')
+    get_pkg.assert_called_with('apks/SystemWebViewShell.apk')
+
+  @decorators.Enabled('android')
+  @patch('telemetry.internal.backends.chrome.'
+         'android_browser_backend.util.FindLatestApkOnHost')
+  @patch('telemetry.internal.backends.chrome.'
+         'android_browser_backend.apk_helper.GetPackageName')
+  def testSetPackageMemberVariableInBrowserBackend(self, apk_on_host, get_pkg):
+    apk_on_host.return_value = 'apks/SystemWebViewShell.apk'
+    get_pkg.return_value = 'webview_test_shell'
+    self.assertEqual(self._browser_backend.package,
+                     'webview_test_shell')
+    get_pkg.assert_called_with('apks/SystemWebViewShell.apk')
 
   @decorators.Enabled('android')
   def testPullMinidumpsLockFilesIgnored(self):
