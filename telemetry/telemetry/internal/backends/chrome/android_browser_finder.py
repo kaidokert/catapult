@@ -92,6 +92,8 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     self._flag_changer = None
     self._modules_to_install = None
     self._compile_apk = finder_options.compile_apk
+    self._finder_options = finder_options
+    self._package = None
 
     if self._local_apk is None and finder_options.chrome_root is not None:
       self._local_apk = self._backend_settings.FindLocalApk(
@@ -130,6 +132,25 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     """Get the backend_settings for this possible browser."""
     return self._backend_settings
 
+  def _SetPackage(self):
+    """Set the _package member variable."""
+    self._package = self._backend_settings.package
+    apk_name = self._backend_settings.GetApkName(self._platform_backend.device)
+    if self._backend_settings.IsWebView():
+      apk_name = self._backend_settings.embedder_apk_name
+
+    apk_path = util.FindLatestApkOnHost(self._finder_options.chrome_root,
+                                        apk_name)
+    if not apk_path:
+      return
+    self._package = apk_helper.GetPackageName(apk_path)
+
+  @property
+  def package(self):
+    if not self._package:
+      self._SetPackage()
+    return self._package
+
   @property
   def browser_directory(self):
     # On Android L+ the directory where base APK resides is also used for
@@ -142,7 +163,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     # startup benchmarks to flush OS pagecache for the native library, .odex and
     # the APK.
     apks = self._platform_backend.device.GetApplicationPaths(
-        self._backend_settings.package)
+        self.package)
     # A package can map to multiple APKs if the package overrides the app on
     # the system image. Such overrides should not happen on perf bots. The
     # package can also map to multiple apks if splits are used. In all cases, we
@@ -154,7 +175,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
 
   @property
   def profile_directory(self):
-    return self._platform_backend.GetProfileDir(self._backend_settings.package)
+    return self._platform_backend.GetProfileDir(self.package)
 
   @property
   def last_modification_time(self):
@@ -178,13 +199,13 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     profile_files_to_copy = self._browser_options.profile_files_to_copy
     if not self._browser_options.profile_dir and not profile_files_to_copy:
       self._platform_backend.RemoveProfile(
-          self._backend_settings.package,
+          self.package,
           self._backend_settings.profile_ignore_list)
       return
 
     with _ProfileWithExtraFiles(self._browser_options.profile_dir,
                                 profile_files_to_copy) as profile_dir:
-      self._platform_backend.PushProfile(self._backend_settings.package,
+      self._platform_backend.PushProfile(self.package,
                                          profile_dir)
 
   def SetUpEnvironment(self, browser_options):
@@ -206,12 +227,12 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     # Stop any existing browser found already running on the device. This is
     # done *after* setting the command line flags, in case some other Android
     # process manages to trigger Chrome's startup before we do.
-    self._platform_backend.StopApplication(self._backend_settings.package)
+    self._platform_backend.StopApplication(self.package)
     self._SetupProfile()
 
     # Remove any old crash dumps
     self._platform_backend.device.RemovePath(
-        self._platform_backend.GetDumpLocation(self._backend_settings.package),
+        self._platform_backend.GetDumpLocation(self.package),
         recursive=True, force=True)
 
   def _TearDownEnvironment(self):
@@ -251,7 +272,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     browser_backend = android_browser_backend.AndroidBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory,
-        self._backend_settings,
+        self._backend_settings, self._finder_options,
         build_dir=self._build_dir)
     try:
       return browser.Browser(
@@ -284,7 +305,7 @@ class PossibleAndroidBrowser(possible_browser.PossibleBrowser):
     # crashpad_stackwalker.py is hard-coded to look for a "Crashpad" directory
     # in the dump directory that it is provided.
     startup_args.append('--breakpad-dump-location=' + posixpath.join(
-        self._platform_backend.GetDumpLocation(self._backend_settings.package),
+        self._platform_backend.GetDumpLocation(self.package),
         'Crashpad'))
 
     return startup_args
