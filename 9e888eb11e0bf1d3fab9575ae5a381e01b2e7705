@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba0d3908_ff1e58c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2021-12-29T23:42:46Z",
+      "side": 1,
+      "message": "Hi John\n\nThis CL makes telemetry run tests on the installed WebView shell instead of the preinstalled one. This CL only affects emulators.\n\nPTAL\nRakib\n",
+      "revId": "9e888eb11e0bf1d3fab9575ae5a381e01b2e7705",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
