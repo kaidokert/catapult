@@ -16,6 +16,24 @@
       "message": "PTAL 😊",
       "revId": "f8642b566f8c5f060f1e779537fd61585043f7c4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa9e354b_5718fcdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-01-04T18:24:20Z",
+      "side": 1,
+      "message": "lgtm, sry for the delay",
+      "parentUuid": "96d745e8_6ae53f8a",
+      "revId": "f8642b566f8c5f060f1e779537fd61585043f7c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
