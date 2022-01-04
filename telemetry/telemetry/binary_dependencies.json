@@ -119,6 +119,20 @@
         }
       }
     },
+    "httparchive_go": {
+      "cloud_storage_base_folder": "binary_dependencies",
+      "cloud_storage_bucket": "chromium-telemetry",
+      "file_info": {
+        "linux_x86_64": {
+          "cloud_storage_hash": "963f893a77f15f819dd60e98fd3745d22c70db0e",
+          "download_path": "bin/linux/x86_64/httparchive"
+        },
+        "win_AMD64": {
+          "cloud_storage_hash": "ed15f87778e718e8a2fc9fc44adc8e13fe98b9fd",
+          "download_path": "bin/win/AMD64/httparchive.exe"
+        }
+      }
+    },
     "ipfw": {
       "cloud_storage_base_folder": "binary_dependencies",
       "cloud_storage_bucket": "chromium-telemetry",
