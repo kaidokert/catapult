@@ -114,7 +114,7 @@ func trim(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 		} else {
 			fmt.Printf("Trimming request: host=%s uri=%s\n", req.Host, req.URL.String())
 			return true, nil
-	  }
+		}
 	})
 	if err != nil {
 		return fmt.Errorf("error editing archive:\n%v", err)
@@ -308,6 +308,7 @@ func compressResponse(resp *http.Response) error {
 		return fmt.Errorf("can't compress body to '%s' recieved Content-Encoding: '%s'", ce, newCE)
 	}
 	resp.Body = ioutil.NopCloser(bytes.NewReader(body))
+	resp.ContentLength = int64(len(body))
 	return nil
 }
 
