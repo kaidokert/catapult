@@ -33,6 +33,24 @@
       "message": "Thanks Alex - this looks like a good update to grab - my one question (I\u0027m not certain what\u0027s right) is I see proxy.go sets the \"Content-Length\" Header value when it updates the resp.ContentLength [1] - potentially we should do this in each of these instances as well? \n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/web_page_replay_go/src/webpagereplay/proxy.go;l\u003d134",
       "revId": "aea2bb7df1d77079981ea90e6639a1a88884d278",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2777dd1_948f2637",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1524482
+      },
+      "writtenOn": "2022-01-04T22:01:48Z",
+      "side": 1,
+      "message": "Generally we shouldn\u0027t as Golang http library takes care of it.\n\nFrom docs to http.Response [1]:\n\n```\n// Header values are duplicated by other fields in this struct (e.g.,\n// ContentLength, TransferEncoding, Trailer), the field values are\n// authoritative.\n```\n\nAll non-specific headers are written here [2]:\n\n`err \u003d r.Header.WriteSubset(w, respExcludeHeader)`\n\nwith excluding specific headers in map `respExcludeHeader`\n\n```\nvar respExcludeHeader \u003d map[string]bool{\n\t\"Content-Length\":    true,\n\t\"Transfer-Encoding\": true,\n\t\"Trailer\":           true,\n}\n```\n\nso `resp.Header.Set(\"Content-Length\"...)` is redundant\n\n[1] https://cs.opensource.google/go/go/+/refs/tags/go1.17.5:src/net/http/response.go;l\u003d46\n[2] https://cs.opensource.google/go/go/+/refs/tags/go1.17.5:src/net/http/response.go;l\u003d308",
+      "parentUuid": "a6324e64_ac15aafc",
+      "revId": "aea2bb7df1d77079981ea90e6639a1a88884d278",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
