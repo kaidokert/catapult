@@ -14,7 +14,10 @@ import six
 
 from telemetry.core import util
 
-FUCHSIA_BROWSERS = ['web-engine-shell']
+FUCHSIA_BROWSERS = [
+    'fuchsia-chrome',
+    'web-engine-shell'
+]
 
 
 class CommandRunner(object):

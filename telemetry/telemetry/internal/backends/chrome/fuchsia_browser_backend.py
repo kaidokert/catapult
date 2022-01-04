@@ -10,6 +10,7 @@ import select
 import subprocess
 
 from telemetry.core import fuchsia_interface
+from telemetry.core import util
 from telemetry.internal.backends.chrome import chrome_browser_backend
 from telemetry.internal.backends.chrome import minidump_finder
 from telemetry.internal.platform import fuchsia_platform_backend as fuchsia_platform_backend_module
@@ -65,27 +66,42 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     return py_utils.WaitFor(lambda: TryReadingPort(stderr), timeout=60)
 
   def _ConstructCmdLine(self, startup_args):
-    browser_cmd = [
-        'run',
-        'fuchsia-pkg://%s/web_engine_shell#meta/web_engine_shell.cmx' %
-        self._managed_repo,
-        '--web-engine-package-name=web_engine_with_webui',
-        '--remote-debugging-port=0',
-        'about:blank'
-    ]
+    if self.browser_type == 'web-engine-shell':
+      browser_cmd = [
+          'run',
+          'fuchsia-pkg://%s/web_engine_shell#meta/web_engine_shell.cmx' %
+          self._managed_repo,
+          '--web-engine-package-name=web_engine_with_webui',
+          '--remote-debugging-port=0',
+          'about:blank'
+      ]
 
-    # Use flags used on WebEngine in production devices.
-    browser_cmd.extend([
-        '--',
-        '--enable-low-end-device-mode',
-        '--force-gpu-mem-available-mb=64',
-        '--force-gpu-mem-discardable-limit-mb=32',
-        '--force-max-texture-size=2048',
-        '--gpu-rasterization-msaa-sample-count=0',
-        '--min-height-for-gpu-raster-tile=128',
-        '--webgl-msaa-sample-count=0',
-        '--max-decoded-image-size-mb=10'
-    ])
+      # Use flags used on WebEngine in production devices.
+      browser_cmd.extend([
+          '--',
+          '--enable-low-end-device-mode',
+          '--force-gpu-mem-available-mb=64',
+          '--force-gpu-mem-discardable-limit-mb=32',
+          '--force-max-texture-size=2048',
+          '--gpu-rasterization-msaa-sample-count=0',
+          '--min-height-for-gpu-raster-tile=128',
+          '--webgl-msaa-sample-count=0',
+          '--max-decoded-image-size-mb=10'
+      ])
+    else:
+      sdk_root = os.path.join(util.GetCatapultDir(), '..', 'fuchsia-sdk', 'sdk')
+      ffx = os.path.join(sdk_root, 'tools',
+                         fuchsia_interface._GetHostArchFromPlatform(), 'ffx')
+      browser_cmd = [
+          ffx,
+          'session',
+          'add',
+          'fuchsia-pkg://%s/chrome#meta/chrome_v1.cmx' %
+          self._managed_repo,
+          '--',
+          'about:blank',
+          '--remote-debugging-port=0'
+      ]
 
     if startup_args:
       browser_cmd.extend(startup_args)
@@ -94,10 +110,18 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def Start(self, startup_args):
     browser_cmd = self._ConstructCmdLine(startup_args)
     try:
-      self._browser_process = self._command_runner.RunCommandPiped(
-          browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-      browser_id_file = os.path.join(self._output_dir, 'gen', 'fuchsia',
-                                     'engine', 'web_engine_shell', 'ids.txt')
+      if self.browser_type == 'web-engine-shell':
+        self._browser_process = self._command_runner.RunCommandPiped(
+            browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        browser_id_file = os.path.join(self._output_dir, 'gen', 'fuchsia',
+                                       'engine', 'web_engine_shell', 'ids.txt')
+      else:
+        self._browser_process = subprocess.Popen(
+            browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        import time
+        time.sleep(30)
+        browser_id_file = os.path.join(self._output_dir, 'gen', 'chrome', 'app',
+                                       'chrome', 'ids.txt')
 
       # Symbolize stderr of browser process if possible
       self._symbolizer_proc = (
@@ -109,7 +133,13 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._dump_finder = minidump_finder.MinidumpFinder(
           self.browser.platform.GetOSName(),
           self.browser.platform.GetArchName())
-      self._devtools_port = self._ReadDevToolsPort(self._browser_process.stderr)
+#      self._devtools_port = self._ReadDevToolsPort(self._browser_process.stderr)
+      print(self._platform_backend.GetSystemLog())
+      tokens = re.search(r'DevTools listening on ws://127.0.0.1:(\d+)', self._platform_backend.GetSystemLog().decode("utf-8"))
+      if tokens:
+        self._devtools_port = int(tokens.group(1))
+        print(self._devtools_port)
+
       self.BindDevToolsClient()
 
       # Start tracing if startup tracing attempted but did not actually start.
