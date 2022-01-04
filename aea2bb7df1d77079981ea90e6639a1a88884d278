@@ -16,6 +16,23 @@
       "message": "Hi Ian, PTAL at fixes for WebPageReplay",
       "revId": "aea2bb7df1d77079981ea90e6639a1a88884d278",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6324e64_ac15aafc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2022-01-04T18:54:59Z",
+      "side": 1,
+      "message": "Thanks Alex - this looks like a good update to grab - my one question (I\u0027m not certain what\u0027s right) is I see proxy.go sets the \"Content-Length\" Header value when it updates the resp.ContentLength [1] - potentially we should do this in each of these instances as well? \n\n[1] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/web_page_replay_go/src/webpagereplay/proxy.go;l\u003d134",
+      "revId": "aea2bb7df1d77079981ea90e6639a1a88884d278",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
