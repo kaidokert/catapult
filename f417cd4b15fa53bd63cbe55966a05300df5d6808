@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f40747_e5bad3a3",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1517927
+      },
+      "writtenOn": "2022-01-05T09:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc7da7e6_3c1de3ed",
+      "range": {
+        "startLine": 56,
+        "startChar": 41,
+        "endLine": 56,
+        "endChar": 60
+      },
+      "revId": "f417cd4b15fa53bd63cbe55966a05300df5d6808",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a88c5f86_8111e332",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46219bbb_e571fbde",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1517927
+      },
+      "writtenOn": "2022-01-05T09:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a88c5f86_8111e332",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 99,
+        "endChar": 45
+      },
+      "revId": "f417cd4b15fa53bd63cbe55966a05300df5d6808",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e871cec7_51488b8e",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-12-28T19:20:39Z",
       "side": 1,
       "message": "ditto.",
+      "range": {
+        "startLine": 129,
+        "startChar": 52,
+        "endLine": 129,
+        "endChar": 73
+      },
+      "revId": "f417cd4b15fa53bd63cbe55966a05300df5d6808",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de62e08_09640241",
+        "filename": "systrace/profile_chrome/chrome_tracing_agent.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1517927
+      },
+      "writtenOn": "2022-01-05T09:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e871cec7_51488b8e",
       "range": {
         "startLine": 129,
         "startChar": 52,
