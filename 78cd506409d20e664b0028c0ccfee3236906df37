@@ -16,6 +16,23 @@
       "message": "I met 2 presubmit warnings as below, but I couldn\u0027t understand the reason. Are they related to my changes?\n\n** Presubmit Warnings **\nPylint (438 files using [\u0027--disable\u003dall\u0027, \u0027--enable\u003dcyclic-import\u0027])\nd:\\workspace\\project\\depot_tools\\pylint-1.5.bat --args-on-stdin exec failure (0.00s)\nTraceback (most recent call last):\n  File \"d:\\workspace\\project\\depot_tools\\presubmit_support.py\", line 223, in CallCommand\n    returncode, stdout \u003d self._RunWithTimeout(cmd, test.stdin, test.kwargs)\n  File \"d:\\workspace\\project\\depot_tools\\presubmit_support.py\", line 206, in _RunWithTimeout\n    p \u003d subprocess.Popen(cmd, **kwargs)\n  File \"d:\\workspace\\project\\depot_tools\\subprocess2.py\", line 158, in __init__\n    super(Popen, self).__init__(args, **kwargs)\n  File \"D:\\workspace\\project\\depot_tools\\bootstrap-2@3_8_10_chromium_23_bin\\python\\bin\\Lib\\subprocess.py\", line 394, in __init__\n    errread, errwrite)\n  File \"D:\\workspace\\project\\depot_tools\\bootstrap-2@3_8_10_chromium_23_bin\\python\\bin\\Lib\\subprocess.py\", line 644, in _execute_child\n    startupinfo)\nTypeError: environment can only contain strings\n\n\nPylint (438 files using [\u0027--disable\u003dcyclic-import\u0027] on 8 cores)\nd:\\workspace\\project\\depot_tools\\pylint-1.5.bat --args-on-stdin exec failure (0.00s)\nTraceback (most recent call last):\n  File \"d:\\workspace\\project\\depot_tools\\presubmit_support.py\", line 223, in CallCommand\n    returncode, stdout \u003d self._RunWithTimeout(cmd, test.stdin, test.kwargs)\n  File \"d:\\workspace\\project\\depot_tools\\presubmit_support.py\", line 206, in _RunWithTimeout\n    p \u003d subprocess.Popen(cmd, **kwargs)\n  File \"d:\\workspace\\project\\depot_tools\\subprocess2.py\", line 158, in __init__\n    super(Popen, self).__init__(args, **kwargs)\n  File \"D:\\workspace\\project\\depot_tools\\bootstrap-2@3_8_10_chromium_23_bin\\python\\bin\\Lib\\subprocess.py\", line 394, in __init__\n    errread, errwrite)\n  File \"D:\\workspace\\project\\depot_tools\\bootstrap-2@3_8_10_chromium_23_bin\\python\\bin\\Lib\\subprocess.py\", line 644, in _execute_child\n    startupinfo)\nTypeError: environment can only contain strings",
       "revId": "78cd506409d20e664b0028c0ccfee3236906df37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48e74a1c_d478793a",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1171626
+      },
+      "writtenOn": "2022-01-05T05:06:10Z",
+      "side": 1,
+      "message": "I didn\u0027t find any place to use GetSystemProcessInfo, so I\u0027m not sure if I also need to change this part.",
+      "revId": "78cd506409d20e664b0028c0ccfee3236906df37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
