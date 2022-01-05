@@ -146,29 +146,42 @@ class RunnerTests(TestCase):
         self.assertEqual(ret, 0)
 
     def test_max_failures_fail_if_equal(self):
-      r = Runner()
-      r.args.tests = ['typ.tests.runner_test.FailureTests']
-      r.args.jobs = 1
-      r.args.typ_max_failures = 1
-      r.context = True
-      with self.assertRaises(RuntimeError):
-        r.run()
+        r = Runner()
+        r.args.tests = ['typ.tests.runner_test.FailureTests']
+        r.args.jobs = 1
+        r.args.typ_max_failures = 1
+        r.context = True
+        with self.assertRaises(RuntimeError):
+            r.run()
 
     def test_max_failures_pass_if_under(self):
-      r = Runner()
-      r.args.tests = ['typ.tests.runner_test.ContextTests', 'typ.tests.runner_test.FAilureTests']
-      r.args.jobs = 1
-      r.args.typ_max_failures = 2
-      r.context = True
-      r.run()
+        r = Runner()
+        r.args.tests = [
+            'typ.tests.runner_test.ContextTests',
+            'typ.tests.runner_test.FailureTests'
+        ]
+        r.args.jobs = 1
+        r.args.typ_max_failures = 2
+        r.context = False
+        r.run()
 
     def test_max_failures_ignored_if_unset(self):
-      r = Runner()
-      r.args.tests = ['typ.tests.runner_test.FailureTests']
-      r.args.jobs = 1
-      r.args.typ_max_failures = None
-      r.context = True
-      r.run()
+        r = Runner()
+        r.args.tests = ['typ.tests.runner_test.FailureTests']
+        r.args.jobs = 1
+        r.args.typ_max_failures = None
+        r.context = True
+        r.run()
+
+    def test_skip_test(self):
+        r = Runner()
+        r.args.tests = ['typ.tests.runner_test.SkipTests']
+        r.args.jobs = 1
+        ret, full_results, _ = r.run()
+        self.assertEqual(ret, 0)
+        self.assertEqual(
+            full_results['num_failures_by_type'],
+            {'FAIL': 0, 'TIMEOUT': 0, 'CRASH': 0, 'PASS': 0, 'SKIP': 1})
 
     def test_use_real_test_func_attribute(self):
       fd, trace_filepath = tempfile.mkstemp(prefix='trace', suffix='.json')
@@ -365,6 +378,11 @@ class FailureTests(TestCase):
         # Intended to be called from tests above.
         if self.context:
             self.fail()
+
+
+class SkipTests(TestCase):
+    def test_skip(self):
+        self.skipTest('Skipped test')
 
 
 def test_func(self):

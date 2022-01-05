@@ -1103,6 +1103,12 @@ def _run_one_test(child, test_input):
             _run_under_debugger(h, test_case, suite, test_result)
         else:
             suite.run(test_result)
+    except unittest.SkipTest as st:
+        # Regular Python unittests can call self.skipTest() to skip a test, so
+        # support that behavior here.
+        return (Result(test_name, ResultType.Skip, started, 0,
+                       child.worker_num, expected=expected_results,
+                       unexpected=False, pid=pid), False)
     finally:
         out, err = h.restore_output()
         # Clear the artifact implementation so that later tests don't try to
