@@ -114,7 +114,7 @@ func trim(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 		} else {
 			fmt.Printf("Trimming request: host=%s uri=%s\n", req.Host, req.URL.String())
 			return true, nil
-	  }
+		}
 	})
 	if err != nil {
 		return fmt.Errorf("error editing archive:\n%v", err)
@@ -130,7 +130,9 @@ func edit(cfg *Config, a *webpagereplay.Archive, outfile string) error {
 	}
 
 	marshalForEdit := func(w io.Writer, req *http.Request, resp *http.Response) error {
-		if err := req.Write(w); err != nil {
+		// WriteProxy writes absolute URI in the Start line including the
+		// scheme and host. It is necessary for unmarshaling later.
+		if err := req.WriteProxy(w); err != nil {
 			return err
 		}
 		if cfg.decodeResponseBody {
