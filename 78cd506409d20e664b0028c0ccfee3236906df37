@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4381b3b3_a5b0c633",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2022-01-05T06:34:59Z",
+      "side": 1,
+      "message": "+bsheedy may be able to suggest the most appropriate reviewer. This looks good to me, but I don\u0027t work in Telemetry regularly any more so shouldn\u0027t approve it.\n",
+      "revId": "78cd506409d20e664b0028c0ccfee3236906df37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48e74a1c_d478793a",
@@ -31,6 +48,24 @@
       "writtenOn": "2022-01-05T05:06:10Z",
       "side": 1,
       "message": "I didn\u0027t find any place to use GetSystemProcessInfo, so I\u0027m not sure if I also need to change this part.",
+      "revId": "78cd506409d20e664b0028c0ccfee3236906df37",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8df9072b_56dc8112",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1105344
+      },
+      "writtenOn": "2022-01-05T06:34:59Z",
+      "side": 1,
+      "message": "Interesting. I also can\u0027t find any references using code search. In that case perhaps the method should be removed.",
+      "parentUuid": "48e74a1c_d478793a",
       "revId": "78cd506409d20e664b0028c0ccfee3236906df37",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
