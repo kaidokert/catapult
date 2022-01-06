@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98e3fd67_2f78eac0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-01-06T20:18:23Z",
+      "side": 1,
+      "message": "Faraz, friendly ping.",
+      "revId": "eed6ea7cd25d9cebb0a0c60b68212f3f9c7f5acd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
