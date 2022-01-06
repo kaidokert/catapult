@@ -372,6 +372,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "295ae806_293a539b",
+        "filename": "dashboard/dashboard/list_tests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-01-06T20:10:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e18edfb_8f653650",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 64
+      },
+      "revId": "57dfc5b6804121f45d05b2f7e417e40ddcaec2c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1a74eec_1db35348",
