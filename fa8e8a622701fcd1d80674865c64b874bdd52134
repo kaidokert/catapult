@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac240f0b_9de9f29e",
+        "filename": "dashboard/dashboard/common/descriptor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-01-06T00:31:57Z",
+      "side": 1,
+      "message": "pylint insists on having it when __eq__ is also defined",
+      "parentUuid": "e95b4e98_0b066c83",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 14
+      },
+      "revId": "fa8e8a622701fcd1d80674865c64b874bdd52134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbeb2621_42791134",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f7b2211_8085ee2e",
+        "filename": "dashboard/dashboard/common/stored_object_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-01-06T00:31:57Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "bbeb2621_42791134",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "fa8e8a622701fcd1d80674865c64b874bdd52134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c1f8f19_272629b3",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-12-17T05:22:31Z",
       "side": 1,
       "message": "Why \u0027ascii\u0027 is used instead of utf-8?",
+      "range": {
+        "startLine": 564,
+        "startChar": 43,
+        "endLine": 564,
+        "endChar": 48
+      },
+      "revId": "fa8e8a622701fcd1d80674865c64b874bdd52134",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56a1ecdc_f411ba16",
+        "filename": "dashboard/dashboard/common/testing_common.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-01-06T00:31:57Z",
+      "side": 1,
+      "message": "I changed this to utf-8",
+      "parentUuid": "2c1f8f19_272629b3",
       "range": {
         "startLine": 564,
         "startChar": 43,
