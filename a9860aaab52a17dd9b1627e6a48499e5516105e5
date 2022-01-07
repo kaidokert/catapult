@@ -34,6 +34,46 @@
       "parentUuid": "fef5d435_3cfea7a9",
       "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e1c133_0f67c63c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-01-07T18:47:29Z",
+      "side": 1,
+      "message": "LGTM % nit assuming the bots are happy. In the future, please refrain from adding more reviewers than is necessary.",
+      "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c588cd6_9bf9abee",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-01-07T18:47:29Z",
+      "side": 1,
+      "message": "Nit: Instead of checking this condition twice, assign to a variable like use_powershell.",
+      "range": {
+        "startLine": 124,
+        "startChar": 7,
+        "endLine": 124,
+        "endChar": 52
+      },
+      "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
