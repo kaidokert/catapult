@@ -16,6 +16,24 @@
       "message": "I don\u0027t have Windows 7 at hand. Can you help me try on Windows 7?",
       "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a053f452_8d918012",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1171626
+      },
+      "writtenOn": "2022-01-07T07:37:03Z",
+      "side": 1,
+      "message": "I found a win7 trybot, so I added it for test.",
+      "parentUuid": "fef5d435_3cfea7a9",
+      "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
