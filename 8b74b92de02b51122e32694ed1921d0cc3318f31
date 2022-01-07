@@ -110,6 +110,30 @@
       },
       "revId": "8b74b92de02b51122e32694ed1921d0cc3318f31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3875e23d_c4b3e2c4",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-01-07T22:49:37Z",
+      "side": 1,
+      "message": "When a test determines that it should be. For the webcodecs tests/GPU tests in general, it would be https://chromium-review.googlesource.com/c/chromium/src/+/3370807/4/content/test/gpu/gpu_tests/gpu_integration_test.py#348.\n\nIt might be worth moving that behavior into SeriallyExecutedBrowserTestCase in the future, though.",
+      "parentUuid": "78c32bfa_79cb06b0",
+      "range": {
+        "startLine": 1118,
+        "startChar": 45,
+        "endLine": 1118,
+        "endChar": 71
+      },
+      "revId": "8b74b92de02b51122e32694ed1921d0cc3318f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
