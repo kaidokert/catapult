@@ -72,6 +72,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "42331e3c_b9e61e9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1390636
+      },
+      "writtenOn": "2022-01-07T23:01:47Z",
+      "side": 1,
+      "message": "In context of webcodecs ( https://www.w3.org/TR/webcodecs/ ) availability of certain codecs ( or encoding options like SVC) can depend on device model, OS version, GPU driver version, GPU model etc. OS usually provides APIs that that allow Chrome to figure out what\u0027s supported on this particular device and Chrome exposes it via VideoEncoder.isConfigSupported() and VideoDecoder.isConfigSupported()  \n\nWe\u0027d need platform specific test harness plugins to replicate all this logic from Chrome. A lot of effort for not much benefit.  \n\nCurrently webcodecs GPU tests just mark all tests of unsupported configurations as passed, we\u0027d like to be more honest and mark them as skipped.",
+      "parentUuid": "f522f60e_8eb39bba",
+      "revId": "8b74b92de02b51122e32694ed1921d0cc3318f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f810b0d8_16b8e932",
