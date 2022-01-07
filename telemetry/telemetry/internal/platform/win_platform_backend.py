@@ -113,6 +113,7 @@ class WinPlatformBackend(desktop_platform_backend.DesktopPlatformBackend):
 
   def GetPcSystemType(self):
     # Details at https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-computersystem
+
     lines = six.ensure_str(
         subprocess.Popen(
             ['powershell',
