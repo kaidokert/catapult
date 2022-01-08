@@ -53,6 +53,42 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "901d7e8d_1bc1d19a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1171626
+      },
+      "writtenOn": "2022-01-08T02:51:27Z",
+      "side": 1,
+      "message": "Sorry, but I added them as they show up in crbug.com/3371888, so I think maybe they\u0027d also review this change or at least get notified.",
+      "parentUuid": "e2e1c133_0f67c63c",
+      "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80e5b099_4eb1e7ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1171626
+      },
+      "writtenOn": "2022-01-08T02:51:27Z",
+      "side": 1,
+      "message": "Win7 bot passed the tests. I also tried if I changed nothing, win7 bot could not pass (https://chromium-review.googlesource.com/c/catapult/+/3372682), so the fix does take effect.",
+      "parentUuid": "a053f452_8d918012",
+      "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c588cd6_9bf9abee",
@@ -66,6 +102,30 @@
       "writtenOn": "2022-01-07T18:47:29Z",
       "side": 1,
       "message": "Nit: Instead of checking this condition twice, assign to a variable like use_powershell.",
+      "range": {
+        "startLine": 124,
+        "startChar": 7,
+        "endLine": 124,
+        "endChar": 52
+      },
+      "revId": "a9860aaab52a17dd9b1627e6a48499e5516105e5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e22b4e_c89b722c",
+        "filename": "telemetry/telemetry/internal/platform/win_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1171626
+      },
+      "writtenOn": "2022-01-08T02:51:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c588cd6_9bf9abee",
       "range": {
         "startLine": 124,
         "startChar": 7,
