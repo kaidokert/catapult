@@ -67,6 +67,24 @@
       "message": "Let\u0027s pause these updates for a moment, as we recently experienced a Pinpoint breakage due to this type of changes (https://crbug.com/1285463). We don\u0027t currently have good ways to verify that these changes won\u0027t break production. Can we pause Python 3 updates in third_party/catapult/dashboard folder for the time being? Thanks.",
       "revId": "e685b77816f36b93ce9ea636885987c8e717ab99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83036f7a_6153286e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-01-08T00:32:16Z",
+      "side": 1,
+      "message": "I am okay with slowing these down a bit but Python 2 has been end-of-life since January 2020. We need to make it a priority to update our code base.",
+      "parentUuid": "4428f934_8b3e5813",
+      "revId": "e685b77816f36b93ce9ea636885987c8e717ab99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
