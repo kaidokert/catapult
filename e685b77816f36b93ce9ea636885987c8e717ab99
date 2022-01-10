@@ -85,6 +85,24 @@
       "parentUuid": "4428f934_8b3e5813",
       "revId": "e685b77816f36b93ce9ea636885987c8e717ab99",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30f11071_d56c42a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-01-10T17:41:11Z",
+      "side": 1,
+      "message": "We are actively working on a staging environment for Pinpoint. Once that is done, it will be much safer to resume the Python 3 migration.",
+      "parentUuid": "83036f7a_6153286e",
+      "revId": "e685b77816f36b93ce9ea636885987c8e717ab99",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
