@@ -147,6 +147,10 @@ class BrowserTest(browser_test_case.BrowserTestCase):
       return
 
     model_name_re = r"[a-zA-Z]* [0-9.]*"
+    # Logging model name to make it easier to identify why this test is failing
+    # on some Mac bots.
+    # TODO(http://crbug.com/1286736): Stop logging once the issue is fixed.
+    logging.warning('crbug/1286736: Model name is %s' % info.model_name)
     self.assertNotEqual(re.match(model_name_re, info.model_name), None)
 
   @decorators.Enabled('android')
