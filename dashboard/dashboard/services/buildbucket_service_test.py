@@ -48,15 +48,6 @@ class BuildbucketServiceTest(unittest.TestCase):
     self._AssertCorrectResponse(response)
     self._AssertRequestMadeOnce('builds', method='PUT', body=expected_body)
 
-  def testPutJob(self):
-    expected_body = {
-        'bucket': buildbucket_service._BUCKET_NAME,
-        'tags': [],
-        'parameters_json': json.dumps(_BUILD_PARAMETERS, separators=(',', ':')),
-    }
-    self.assertEqual(buildbucket_service.PutJob(FakeJob()), 'build id')
-    self._AssertRequestMadeOnce('builds', method='PUT', body=expected_body)
-
   def testGetJobStatus(self):
     response = buildbucket_service.GetJobStatus('job_id')
     self._AssertCorrectResponse(response)
