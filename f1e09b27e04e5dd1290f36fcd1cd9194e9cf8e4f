@@ -22,6 +22,30 @@
       },
       "revId": "f1e09b27e04e5dd1290f36fcd1cd9194e9cf8e4f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e9375d3_19a8e099",
+        "filename": "telemetry/telemetry/internal/browser/browser_unittest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1184709
+      },
+      "writtenOn": "2022-01-12T15:41:37Z",
+      "side": 1,
+      "message": "Presubmit asked to use % instead of .format, I changed without changing the placeholder in the string 🤦",
+      "parentUuid": "750e8662_82a092b3",
+      "range": {
+        "startLine": 153,
+        "startChar": 50,
+        "endLine": 153,
+        "endChar": 74
+      },
+      "revId": "f1e09b27e04e5dd1290f36fcd1cd9194e9cf8e4f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
