@@ -71,7 +71,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
           r'DevTools listening on ws://127.0.0.1:(\d+)',
           self._platform_backend.GetSystemLog().decode("utf-8"))
       return int(tokens.group(1)) if tokens else None
-    return py_utils.WaitFor(TryReadingPort(), timeout=60)
+    return py_utils.WaitFor(lambda: TryReadingPort(), timeout=60)
 
   def _ReadDevToolsPort(self):
     if self.browser_type == 'web-engine-shell':
