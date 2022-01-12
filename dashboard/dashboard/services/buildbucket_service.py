@@ -27,15 +27,6 @@ def Put(bucket, tags, parameters, pubsub_callback=None):
   return request.RequestJson(API_BASE_URL + 'builds', method='PUT', body=body)
 
 
-# TODO: Deprecated. Use Put() instead.
-def PutJob(job, bucket=_BUCKET_NAME):
-  """Creates a job via buildbucket's API."""
-  parameters = job.GetBuildParameters()
-  response_content = Put(bucket, [], parameters)
-  job.response_fields = response_content.get('build')
-  return job.response_fields.get('id')
-
-
 # TODO: Rename to Get().
 def GetJobStatus(job_id):
   """Gets the details of a job via buildbucket's API."""
