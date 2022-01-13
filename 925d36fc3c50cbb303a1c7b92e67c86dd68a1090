@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure if there\u0027s any immediate downsides to making typ always report code coverage. ",
       "revId": "925d36fc3c50cbb303a1c7b92e67c86dd68a1090",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8917f06_ec2a4d6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-01-13T01:09:05Z",
+      "side": 1,
+      "message": "I\u0027d keep an eye on how much longer the test step takes with coverage enabled. Looks like this one completed in 2.5 minutes: https://ci.chromium.org/ui/p/catapult/builders/try/Dashboard%20Linux%20Tryserver/1756/overview\n\nSeems reasonable to me, at least.",
+      "parentUuid": "ec545228_43aed257",
+      "revId": "925d36fc3c50cbb303a1c7b92e67c86dd68a1090",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
