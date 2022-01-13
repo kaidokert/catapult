@@ -1,0 +1,29 @@
+{
+  "commit": "84d5d83440bae8ae19878ee17c6fe6b6b7d096a1",
+  "tree": "0d4bdeb1e7282652ceac35c23f89348f962b9b2d",
+  "parents": [
+    "51b35c4e552f0eae3a02e0d9e94c95e8b3b5e26e"
+  ],
+  "author": {
+    "name": "chromium-autoroll",
+    "email": "chromium-autoroll@skia-public.iam.gserviceaccount.com",
+    "time": "Thu Jan 13 01:04:59 2022"
+  },
+  "committer": {
+    "name": "LUCI CQ",
+    "email": "infra-scoped@luci-project-accounts.iam.gserviceaccount.com",
+    "time": "Thu Jan 13 01:04:59 2022"
+  },
+  "message": "Roll luci-py from b55311623237 to f68b91b43ef4 (1 revision)\n\nhttps://chromium.googlesource.com/infra/luci/luci-py.git/+log/b55311623237..f68b91b43ef4\n\n2022-01-13 tikhonov@google.com gae.py: fix sorting to compare ModuleFile objects via module ids\n\nIf this roll has caused a breakage, revert this CL and stop the roller\nusing the controls here:\nhttps://autoroll.skia.org/r/luci-py-infra-autoroll\nPlease CC tikuta+infra-roll@chromium.org on the revert to ensure that a human\nis aware of the problem.\n\nTo report a problem with the AutoRoller itself, please file a bug:\nhttps://bugs.chromium.org/p/skia/issues/entry?template\u003dAutoroller+Bug\n\nDocumentation for the AutoRoller is here:\nhttps://skia.googlesource.com/buildbot/+doc/main/autoroll/README.md\n\nTbr: tikuta+infra-roll@chromium.org\nChange-Id: Ieccbf439c55dc15b78b5a61ceeaf2aa2babfcca8\nReviewed-on: https://chromium-review.googlesource.com/c/infra/infra/+/3385241\nCommit-Queue: chromium-autoroll \u003cchromium-autoroll@skia-public.iam.gserviceaccount.com\u003e\nBot-Commit: chromium-autoroll \u003cchromium-autoroll@skia-public.iam.gserviceaccount.com\u003e\nCr-Commit-Position: refs/heads/main@{#46331}\n",
+  "tree_diff": [
+    {
+      "type": "modify",
+      "old_id": "4d8986b4a641883fd6abe91d5ad99ad3c60c5fba",
+      "old_mode": 33188,
+      "old_path": "DEPS",
+      "new_id": "5fd2ab6d5cb2ec95c0c6eb506a7c30c11e6155c5",
+      "new_mode": 33188,
+      "new_path": "DEPS"
+    }
+  ]
+}

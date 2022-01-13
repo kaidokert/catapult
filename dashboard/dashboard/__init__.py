@@ -29,6 +29,7 @@ THIRD_PARTY_LIBRARIES = [
     'idna',
     'ijson',
     'jquery',
+    'luci_proto',
     'mapreduce',
     'mock',
     'oauth2client',
