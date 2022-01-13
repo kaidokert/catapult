@@ -21,7 +21,7 @@ class BuildbucketJobStatusHandler(request_handler.RequestHandler):
   """
 
   def get(self, job_id):
-    original_status = buildbucket_service.GetJobStatus(job_id)
+    original_status = buildbucket_service.LegacyGetJobStatus(job_id)
 
     error = 'error' in original_status
 

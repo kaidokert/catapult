@@ -43,13 +43,13 @@ class BuildbucketServiceTest(unittest.TestCase):
         'tags': ['buildset:foo'],
         'parameters_json': json.dumps(_BUILD_PARAMETERS, separators=(',', ':')),
     }
-    response = buildbucket_service.Put('bucket_name', ['buildset:foo'],
-                                       _BUILD_PARAMETERS)
+    response = buildbucket_service.LegacyPut('bucket_name', ['buildset:foo'],
+                                             _BUILD_PARAMETERS)
     self._AssertCorrectResponse(response)
     self._AssertRequestMadeOnce('builds', method='PUT', body=expected_body)
 
-  def testGetJobStatus(self):
-    response = buildbucket_service.GetJobStatus('job_id')
+  def testLegacyGetJobStatus(self):
+    response = buildbucket_service.LegacyGetJobStatus('job_id')
     self._AssertCorrectResponse(response)
     self._AssertRequestMadeOnce('builds/job_id')
 

@@ -111,7 +111,8 @@ class BuildbucketJobStatusTest(testing_common.TestCase):
     ])
     self.testapp = webtest.TestApp(app)
 
-  @mock.patch.object(buildbucket_job_status.buildbucket_service, 'GetJobStatus',
+  @mock.patch.object(buildbucket_job_status.buildbucket_service,
+                     'LegacyGetJobStatus',
                      mock.MagicMock(return_value=json.loads(SAMPLE_RESPONSE)))
   def testGet_ExistingJob(self):
     response = self.testapp.get('/buildbucket_job_status/9046721402459257808')
@@ -127,7 +128,7 @@ class BuildbucketJobStatusTest(testing_common.TestCase):
                   response.body, re.IGNORECASE))
 
   @mock.patch.object(
-      buildbucket_job_status.buildbucket_service, 'GetJobStatus',
+      buildbucket_job_status.buildbucket_service, 'LegacyGetJobStatus',
       mock.MagicMock(return_value=json.loads(SAMPLE_RESPONSE_NOT_FOUND)))
   def testGet_JobNotFound(self):
     response = self.testapp.get('/buildbucket_job_status/9046721402459257808')

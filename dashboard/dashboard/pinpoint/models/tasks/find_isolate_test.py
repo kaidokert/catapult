@@ -41,8 +41,8 @@ class FindIsolateEvaluatorBase(test.TestCase):
                 }))))
 
 
-@mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
-@mock.patch('dashboard.services.buildbucket_service.Put')
+@mock.patch('dashboard.services.buildbucket_service.LegacyGetJobStatus')
+@mock.patch('dashboard.services.buildbucket_service.LegacyPut')
 class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 
   def testInitiate_FoundIsolate(self, *_):
@@ -214,7 +214,7 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
             find_isolate.Serializer()))
 
 
-@mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
+@mock.patch('dashboard.services.buildbucket_service.LegacyGetJobStatus')
 class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
 
   def setUp(self):
@@ -222,7 +222,7 @@ class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
 
     # Here we set up the pre-requisite for polling, where we've already had a
     # successful build scheduled.
-    with mock.patch('dashboard.services.buildbucket_service.Put') as put:
+    with mock.patch('dashboard.services.buildbucket_service.LegacyPut') as put:
       put.return_value = {'build': {'id': '345982437987234'}}
       self.assertDictEqual(
           {

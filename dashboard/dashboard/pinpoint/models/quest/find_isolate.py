@@ -177,7 +177,7 @@ class _FindIsolateExecution(execution.Execution):
     Raises:
       BuildError: The build failed, was canceled, or didn't produce an isolate.
     """
-    build = buildbucket_service.GetJobStatus(self._build)['build']
+    build = buildbucket_service.LegacyGetJobStatus(self._build)['build']
     logging.debug('buildbucket response: %s', build)
 
     self._build_url = build.get('url')
@@ -329,8 +329,8 @@ def RequestBuild(builder_name, change, bucket, build_tags, task=None):
     logging.debug('pubsub_callback: %s', pubsub_callback)
 
   # TODO: Look up Buildbucket bucket from builder_name.
-  return buildbucket_service.Put(bucket, builder_tags, parameters,
-                                 pubsub_callback)
+  return buildbucket_service.LegacyPut(bucket, builder_tags, parameters,
+                                       pubsub_callback)
 
 
 def BuildTagsFromJob(job):

@@ -80,8 +80,8 @@ def CreateTestUpdate(job, commit_id, attempt):
 
 
 @mock.patch('dashboard.common.utils.ServiceAccountHttp', mock.MagicMock())
-@mock.patch('dashboard.services.buildbucket_service.Put')
-@mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
+@mock.patch('dashboard.services.buildbucket_service.LegacyPut')
+@mock.patch('dashboard.services.buildbucket_service.LegacyGetJobStatus')
 class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):

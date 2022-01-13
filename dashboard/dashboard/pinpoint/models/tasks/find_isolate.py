@@ -102,7 +102,8 @@ class UpdateBuildStatusAction(
               payload=self.task.payload)
           return None
 
-        build = buildbucket_service.GetJobStatus(build_id).get('build', {})
+        build = (
+            buildbucket_service.LegacyGetJobStatus(build_id).get('build', {}))
       except request.RequestError as e:
         logging.error('Failed getting Buildbucket Job status: %s', e)
         self.task.payload.update({

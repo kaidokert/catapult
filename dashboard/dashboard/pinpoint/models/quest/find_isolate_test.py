@@ -183,7 +183,7 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
     execution = quest.Start(change_test.Change(123))
     execution._build = True
     with mock.patch(
-        'dashboard.services.buildbucket_service.GetJobStatus',
+        'dashboard.services.buildbucket_service.LegacyGetJobStatus',
         return_value={
             'build': {
                 'url':
@@ -205,8 +205,8 @@ class IsolateLookupTest(_FindIsolateExecutionTest):
         execution.Poll()
 
 
-@mock.patch('dashboard.services.buildbucket_service.GetJobStatus')
-@mock.patch('dashboard.services.buildbucket_service.Put')
+@mock.patch('dashboard.services.buildbucket_service.LegacyGetJobStatus')
+@mock.patch('dashboard.services.buildbucket_service.LegacyPut')
 class BuildTest(_FindIsolateExecutionTest):
 
   def testBuildNoReviewUrl(self, put, _):
