@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d36d0b4_fe0e4afc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-01-13T21:27:38Z",
+      "side": 1,
+      "message": "Thanks for digging into this!",
+      "revId": "bb1674b035d7b03ad2945cb026e37050466e4cc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6543052_956cc499",
+        "filename": "third_party/luci_proto/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-01-13T21:27:38Z",
+      "side": 1,
+      "message": "Can DEPS not handle inter-repo dependencies like this, or is it not applicable here for some reason (which wouldn\u0027t surprise me, since catapult is weird)?\n\nI am concerned that this approach requires a human to know how/when to run an update script to generate this code, and that they actually do run it when the original changes.",
+      "revId": "bb1674b035d7b03ad2945cb026e37050466e4cc3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
