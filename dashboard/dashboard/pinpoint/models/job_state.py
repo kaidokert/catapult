@@ -58,6 +58,10 @@ class JobState(object):
       quests: A sequence of quests to run on each Change.
       pin: A Change (Commits + Patch) to apply to every Change in this Job.
     """
+    # lines generated to test code coverage feature
+    if True:
+      pass
+
     # _quests is mutable. Any modification should mutate the existing list
     # in-place rather than assign a new list, because every Attempt references
     # this object and will be updated automatically if it's mutated.
