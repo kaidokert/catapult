@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4353784_cea23bc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-01-14T19:17:18Z",
+      "side": 1,
+      "message": "You\u0027ll want to make an equivalent change to the GPU tags https://source.chromium.org/chromium/chromium/src/+/main:content/test/gpu/validate_tag_consistency.py;l\u003d14\n\nWe also ignored the web-engine-shell tag since it was equivalent to Fuchsia, but that should probably be moved to be a browser tag as well https://source.chromium.org/chromium/chromium/src/+/main:content/test/gpu/gpu_tests/gpu_integration_test.py;l\u003d726",
+      "revId": "608c9241108725d76e0329470e2d6c2a0d99a7e2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
