@@ -2199,6 +2199,10 @@ class DeviceUtils(object):
         len(host_device_tuples), dir_file_count, dir_size, False)
     zip_duration = self._ApproximateDuration(1, 1, size, True)
 
+    logger.info('push_duration: %d', push_duration)
+    logger.info('dir_push_duration: %d', dir_push_duration)
+    logger.info('zip_duration: %d', zip_duration)
+
     if (dir_push_duration < push_duration and dir_push_duration < zip_duration
         # TODO(jbudorick): Resume directory pushing once clients have switched
         # to 1.0.36-compatible syntax.
@@ -2211,6 +2215,7 @@ class DeviceUtils(object):
       self._PushChangedFilesIndividually(files)
     elif not self._PushChangedFilesZipped(files,
                                           [d for _, d in host_device_tuples]):
+      logger.info('Zipping failed, use _PushChangedFilesIndividually')
       self._PushChangedFilesIndividually(files)
 
   def _MaybeInstallCommands(self):
@@ -2258,27 +2263,33 @@ class DeviceUtils(object):
     return adb_call_time + adb_push_setup_time + zip_time + transfer_time
 
   def _PushChangedFilesIndividually(self, files):
+    logger.info('_PushChangedFilesIndividually started')
     for h, d in files:
       self.adb.Push(h, d)
+    logger.info('_PushChangedFilesIndividually finished')
 
   def _PushChangedFilesZipped(self, files, dirs):
+    logger.info('_PushChangedFilesZipped started')
     if not self._MaybeInstallCommands():
       return False
 
     with tempfile_ext.NamedTemporaryDirectory() as working_dir:
       zip_path = os.path.join(working_dir, 'tmp.zip')
+      logger.info('Zipping %d files', len(files))
       try:
         zip_utils.WriteZipFile(zip_path, files)
-      except zip_utils.ZipFailedError:
+      except zip_utils.ZipFailedError as e:
+        logger.info('Zipping %d files failed: %s', len(files), e)
         return False
 
-      logger.info('Pushing %d files via .zip of size %d', len(files),
+      logger.info('Pushing %d files via .zip of size %d Byte', len(files),
                   os.path.getsize(zip_path))
       self.NeedsSU()
       with device_temp_file.DeviceTempFile(
           self.adb, suffix='.zip') as device_temp:
         self.adb.Push(zip_path, device_temp.name)
 
+        logger.info('Start unzipping on devices.')
         with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
           # Read dirs from temp file to avoid potential errors like
           # "Argument list too long" (crbug.com/1174331) when the list
@@ -2292,7 +2303,9 @@ class DeviceUtils(object):
           self.RunShellCommand(['source', script.name],
                                check_return=True,
                                as_root=True)
+        logger.info('Finished unzipping on devices.')
 
+    logger.info('_PushChangedFilesZipped finished')
     return True
 
   # TODO(crbug.com/1111556): remove this and migrate the callsite to
