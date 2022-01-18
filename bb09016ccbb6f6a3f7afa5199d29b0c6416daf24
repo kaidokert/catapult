@@ -87,6 +87,24 @@
       "parentUuid": "1905d047_37e7b5fc",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f0c5981_9c36e48c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2022-01-18T23:04:36Z",
+      "side": 1,
+      "message": "\u003e But from the link above, we have tests that have brackets in test names. \n\u003e Just that they did not fail so did not cause any problem.\n\nJust webdriver tests? Or also web platform tests? I didn\u0027t see any checked-in tests with those characters in the name, but maybe there are other tests that exist only in manifests?",
+      "parentUuid": "e3ac6a82_97ae3a04",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
