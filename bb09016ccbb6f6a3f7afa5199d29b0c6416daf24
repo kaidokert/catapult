@@ -122,6 +122,24 @@
       "message": "I think I misunderstood the patch initially, so I\u0027m slightly more comfortable\nwith this idea than I was before.\n\nHowever, I would still suggest that you fix this in the callers so that they either don\u0027t use \"[\" at all, or do the encoding themselves, so that by the time the name gets handed to typ it gets \"%5B\" and only has to then encode the \"%\" (producing %255B).\n\nThis seems clunky but the alternative has us adding more and more escape codes for more and more test types and more potential for confusion over what\u0027s legal where.\n\nI suppose it\u0027s possible that we could expand this in typ, but I would want to do this a bit more carefully to make sure we don\u0027t break other users when doing so.",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86c23c03_4880ad93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-01-18T23:39:23Z",
+      "side": 1,
+      "message": "Looks like the tests that have bracket in their test names are all from webdriver test. And there are all old tests. I am not sure how webdriver test works, but looks like the stuffs inside the bracket are parameters to a test.\n\nDirk, maybe we can look at this from a different angle. If we ask what characters are not allowed in test name, (or reserved characters by the typ system), is it only \u0027[\u0027, \u0027]\u0027, and SPACE? So we won\u0027t need to escape any other characters?\n\nI have made a change in wpt-importer, so that it will change \u0027[\u0027 to %5B, etc. I had been asking myself, do I also need the change in typ? I guess we need, otherwise the test suite won\u0027t be able to match the test with its expectation?\n\nIf we only have \u0027[\u0027, \u0027]\u0027, SPACE and a few others I missed, maybe we can proceed to land this. I can update this CL to include those other characters that need an escape. And hopefully we don\u0027t have such issue any more.\n\nAs I am planning to skip changes in web driver side, this is not urgent any more.",
+      "parentUuid": "604f5d90_b2158087",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
