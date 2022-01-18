@@ -33,6 +33,24 @@
       "message": "I don\u0027t think we should expand the list of characters that we support natively unless we have no alternative. Can\u0027t we rewrite the test names during the import?",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1905d047_37e7b5fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1476473
+      },
+      "writtenOn": "2022-01-18T22:36:24Z",
+      "side": 1,
+      "message": "Thank you Dirk! Do you mean rewrite test names in test expectations? (probably not). I have another CL escape test names in test expectations.\n\nIf you mean update the test files so that there is no such characters in test names, I would guess it will be difficult. Also we will be losing sync with upstream, which will probably cause all kinds of problems.\n\nIf we do want to make such a change, I think the change should be exported back to upstream. And I would expect owners of each test to make such a change.\n\nDo we have any rules of test names? we may need make this known to blink devs, and also get agreement at upstream.",
+      "parentUuid": "c2ffeee0_dbbcd1c7",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
