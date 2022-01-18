@@ -105,6 +105,23 @@
       "parentUuid": "e3ac6a82_97ae3a04",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "604f5d90_b2158087",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2022-01-18T23:12:31Z",
+      "side": 1,
+      "message": "I think I misunderstood the patch initially, so I\u0027m slightly more comfortable\nwith this idea than I was before.\n\nHowever, I would still suggest that you fix this in the callers so that they either don\u0027t use \"[\" at all, or do the encoding themselves, so that by the time the name gets handed to typ it gets \"%5B\" and only has to then encode the \"%\" (producing %255B).\n\nThis seems clunky but the alternative has us adding more and more escape codes for more and more test types and more potential for confusion over what\u0027s legal where.\n\nI suppose it\u0027s possible that we could expand this in typ, but I would want to do this a bit more carefully to make sure we don\u0027t break other users when doing so.",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
