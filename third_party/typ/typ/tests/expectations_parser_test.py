@@ -232,6 +232,18 @@ crbug.com/12345 [ tag1 ] b1/s1 [ Skip ]
         for i in range(len(parser.expectations)):
             self.assertEqual(parser.expectations[i], expected_outcomes[i])
 
+    def testParseExpectationBracketEscapeInTestName(self):
+        raw_data = (
+            '# tags: [ Mac ]\n# results: [ Skip ]\ncrbug.com/123 [ Mac ] http://google.com/Foo%5BBar%5D [ Skip ]'
+        )
+        expected_outcomes = [
+            expectations_parser.Expectation(
+                'crbug.com/123', 'http://google.com/Foo[Bar]', ['mac'], ['SKIP'], 3)
+        ]
+        parser = expectations_parser.TaggedTestListParser(raw_data)
+        for i in range(len(parser.expectations)):
+            self.assertEqual(parser.expectations[i], expected_outcomes[i])
+
     def testParseExpectationLineEndingComment(self):
         raw_data = ('# tags: [ Mac ]\n# results: [ Skip ]\n'
                     'crbug.com/23456 [ Mac ] b1/s2 [ Skip ] # abc 123')

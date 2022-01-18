@@ -41,6 +41,13 @@ VALID_RESULT_TAGS = set(
     list(_EXPECTATION_MAP.keys()) +
     [_SLOW_TAG, _RETRY_ON_FAILURE_TAG])
 
+# A list of characters that should be escaped if presented in test name
+# '%' should always be the first one
+ESCAPED_CHARACTERS = [('%', '%25'),
+                      (' ', '%20'),
+                      ('[', '%5B'),
+                      (']', '%5D'),
+                      ]
 
 class ConflictResolutionTypes(object):
     UNION = 1
@@ -124,8 +131,10 @@ class Expectation(object):
             pattern = self._test[:-1].replace('*', '\\*') + '*'
         else:
             pattern = self._test.replace('*', '\\*')
-        pattern = pattern.replace('%', '%25')
-        pattern = pattern.replace(' ', '%20')
+
+        for pair in ESCAPED_CHARACTERS:
+            pattern = pattern.replace(pair[0], pair[1])
+
         self._string_value = ''
         if self._reason:
             self._string_value += self._reason + ' '
@@ -420,9 +429,8 @@ class TaggedTestListParser(object):
             except KeyError:
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
-        # replace %20 in test path to ' '
-        test = test.replace('%20', ' ')
-        test = test.replace('%25', '%')
+        for pair in reversed(ESCAPED_CHARACTERS):
+            test = test.replace(pair[1], pair[0])
 
         # remove escapes for asterisks
         is_glob = not test.endswith('\\*') and test.endswith('*')
