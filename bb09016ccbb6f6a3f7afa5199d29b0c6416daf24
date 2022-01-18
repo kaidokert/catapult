@@ -16,6 +16,23 @@
       "message": "Hi Folks, can I get a quick review on this? wpt-importer is blocked due to this.\n\nthanks!",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ffeee0_dbbcd1c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2022-01-18T21:58:03Z",
+      "side": 1,
+      "message": "I don\u0027t think we should expand the list of characters that we support natively unless we have no alternative. Can\u0027t we rewrite the test names during the import?",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
