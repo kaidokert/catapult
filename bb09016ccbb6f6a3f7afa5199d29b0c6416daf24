@@ -51,6 +51,24 @@
       "parentUuid": "c2ffeee0_dbbcd1c7",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4175c11_52f9fdea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2022-01-18T22:46:36Z",
+      "side": 1,
+      "message": "\u003e Thank you Dirk! Do you mean rewrite test names in test expectations? \n\u003e (probably not). I have another CL escape test names in test expectations.\n\nThat wasn\u0027t what I was initially suggesting, but that might be another option.\n\n\u003e If you mean update the test files so that there is no such characters \n\u003e in test names, I would guess it will be difficult. Also we will be \n\u003e losing sync with upstream, which will probably cause all kinds of problems.\n\nYes, that was what I was suggesting, and yes, there are downsides.\n\n\u003e If we do want to make such a change, I think the change should be exported \n\u003e back to upstream. And I would expect owners of each test to make such a change.\n\nIf we can get the WPT folks to not use \u0027[\u0027 or \u0027]\u0027, that would be even better. Given that those characters are often shell metacharacters, I think avoiding them is a good idea.\n\n\u003e \n\u003e Do we have any rules of test names? we may need make this known to blink devs,\n\u003e and also get agreement at upstream.\n\nWe have go/chrome-test-id (internal-only, and not actually that useful) and bit.ly/chromium-test-lists-format.\n\nNote that if there was an unescaped \u0027[\u0027 in the TestExpectations files, that would conflict with the way we use \u0027[\u0027 for tags and results.",
+      "parentUuid": "1905d047_37e7b5fc",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
