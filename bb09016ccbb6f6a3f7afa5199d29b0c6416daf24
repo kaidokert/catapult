@@ -140,6 +140,24 @@
       "parentUuid": "604f5d90_b2158087",
       "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d3d81e2_4af1cd17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003232
+      },
+      "writtenOn": "2022-01-21T17:58:34Z",
+      "side": 1,
+      "message": "\u003e Dirk, maybe we can look at this from a different angle.\n\u003e If we ask what characters are not allowed in test name, \n\u003e (or reserved characters by the typ system), is it only \u0027[\u0027, \u0027]\u0027, and SPACE? \n\u003e So we won\u0027t need to escape any other characters?\n\nI suppose if we change our perspective from \"what characters should we allow in a test name\" to \"what characters do we have to disallow, and where\", we could take a different approach.\n\nIn the test expectations files, I think the only characters we have to truly disallow in test names are whitespace (or at least anything that included \"\\s*\\[\"), because that would make the grammar possibly ambiguous, would make the files somewhat harder to read at a glance (due to the lookahead humans would have to have), and would make tooling harder. And, we already disallow whitespace.\n\nIf you wanted to take on the challenge of trying to revise the definition of a test name in our systems, that\u0027s fine by me, but it\u0027s a decent amount of work (you have to look at what databases and UIs might be affected, e.g., ResultDB, Milo, etc.) to try and make all of the systems be consistent. They\u0027re probably not all consistent now, but I wouldn\u0027t want us to become even more inconsistent if we could avoid it.",
+      "parentUuid": "86c23c03_4880ad93",
+      "revId": "bb09016ccbb6f6a3f7afa5199d29b0c6416daf24",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
