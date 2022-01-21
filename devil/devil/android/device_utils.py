@@ -2201,10 +2201,14 @@ class DeviceUtils(object):
         len(host_device_tuples), dir_file_count, dir_size, False)
     zip_duration = self._ApproximateDuration(1, 1, size, True)
 
-    if (dir_push_duration < push_duration and dir_push_duration < zip_duration
-        # TODO(jbudorick): Resume directory pushing once clients have switched
-        # to 1.0.36-compatible syntax.
-        and False):
+    if self.build_version_sdk >= version_codes.R:
+      # `adb push` supports compression for Android >= 11 since Version 30.0.0
+      # (https://bit.ly/3tJT7Za) so there is no need to use zip.
+      self._PushChangedFilesIndividually(files)
+    elif (dir_push_duration < push_duration and dir_push_duration < zip_duration
+          # TODO(jbudorick): Resume directory pushing once clients have switched
+          # to 1.0.36-compatible syntax.
+          and False):
       self._PushChangedFilesIndividually(host_device_tuples)
     elif push_duration < zip_duration:
       self._PushChangedFilesIndividually(files)
