@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "586a3a60_dca2602a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-01-22T00:12:18Z",
+      "side": 1,
+      "message": "Tested the CL in https://ci.chromium.org/ui/p/angle/builders/try/android-arm64-test/2275/overview and the runtime of angle_perftests improved to 125 mins, from ~200 mins",
+      "revId": "17db338dd31690447540e2624ef810f92971a5e1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
