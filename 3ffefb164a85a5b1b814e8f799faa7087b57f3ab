@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e1aee29_3c2d60cf",
+        "filename": "devil/devil/android/device_utils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2189,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-01-24T17:35:01Z",
+      "side": 1,
+      "message": "Wow. Hope it works!",
+      "revId": "3ffefb164a85a5b1b814e8f799faa7087b57f3ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
