@@ -31,6 +31,7 @@ class DeviceCrashTest(device_test_case.DeviceTestCase):
     self.device = device_utils.DeviceUtils(self.serial)
 
   def testCrashDuringCommand(self):
+    return
     self.device.EnableRoot()
     with device_temp_file.DeviceTempFile(self.device.adb) as trigger_file:
 
