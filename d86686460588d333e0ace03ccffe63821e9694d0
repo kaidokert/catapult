@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc6031f5_494a17ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1383098
+      },
+      "writtenOn": "2022-01-25T12:17:14Z",
+      "side": 1,
+      "message": "I added \n  * overrideIf \u003d label:Bot-Commit\u003d+1\n  \nand added a justification for why it\u0027s needed in the commit message.\n\nI rechecked the config. +2 from my side.",
+      "revId": "d86686460588d333e0ace03ccffe63821e9694d0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
