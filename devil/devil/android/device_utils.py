@@ -367,11 +367,11 @@ def _JoinLines(lines):
   return ''.join(s for line in lines for s in (line, '\n'))
 
 
-def _CreateAdbWrapper(device):
+def _CreateAdbWrapper(device, **kwargs):
   if isinstance(device, adb_wrapper.AdbWrapper):
     return device
   else:
-    return adb_wrapper.AdbWrapper(device)
+    return adb_wrapper.AdbWrapper(device, **kwargs)
 
 
 def _FormatPartialOutputError(output):
@@ -3747,6 +3747,7 @@ class DeviceUtils(object):
                      device_arg='default',
                      retries=1,
                      enable_usb_resets=False,
+                     persistent_shell=False,
                      abis=None,
                      **kwargs):
     """Returns a list of DeviceUtils instances.
@@ -3823,10 +3824,13 @@ class DeviceUtils(object):
         devices = [cls(x, **kwargs) for x in device_arg if not denylisted(x)]
       else:
         devices = []
-        for adb in adb_wrapper.AdbWrapper.Devices():
+        for adb in adb_wrapper.AdbWrapper.Devices(
+            persistent_shell=persistent_shell):
           serial = adb.GetDeviceSerial()
           if not denylisted(serial):
-            device = cls(_CreateAdbWrapper(adb), **kwargs)
+            device = cls(
+                _CreateAdbWrapper(adb, persistent_shell=persistent_shell),
+                **kwargs)
             supported_abis = device.GetSupportedABIs()
             if not supported_abis:
               supported_abis = [device.GetABI()]
