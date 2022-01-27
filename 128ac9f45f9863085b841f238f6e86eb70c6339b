@@ -16,6 +16,41 @@
       "message": "Brian - besides running tryjobs, is there anything else we need to do to ensure this doesn\u0027t break on non-cros platforms?",
       "revId": "128ac9f45f9863085b841f238f6e86eb70c6339b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92269af1_09454ffd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-01-27T20:11:36Z",
+      "side": 1,
+      "message": "This looks safe to me, although I\u0027m not sure if this will do exactly what you\u0027re expecting it to? As-is, stderr should have been output to the terminal. With this change, it will be directed to a pipe but nothing actually ever reads from that pipe so it\u0027ll effectively be gone.",
+      "revId": "128ac9f45f9863085b841f238f6e86eb70c6339b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0adc49f_3c2572ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-01-27T20:11:36Z",
+      "side": 1,
+      "message": "Not AFAIK. This seems like a pretty safe change anyways since nothing should have been using uncaptured stderr before and the stdout/stderr streams aren\u0027t getting combined, so this shouldn\u0027t impact anything that reads stdout.",
+      "parentUuid": "9394be46_1e817c99",
+      "revId": "128ac9f45f9863085b841f238f6e86eb70c6339b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
