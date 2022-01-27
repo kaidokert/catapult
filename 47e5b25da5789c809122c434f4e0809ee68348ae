@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca889e83_cd26835a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-01-27T19:19:13Z",
+      "side": 1,
+      "message": "LGTM, manually checked all major testers. All of them are correct. I was unable to confirm win-10 amd laptop perf. Every Pinpoint job I ran failed to complete the job  so I\u0027m unable to retrieve the isolate to verify. I still feel reasonably confident that this CL works. ",
+      "revId": "47e5b25da5789c809122c434f4e0809ee68348ae",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
