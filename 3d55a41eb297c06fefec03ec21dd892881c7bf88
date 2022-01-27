@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09fff98a_b44c809b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2022-01-27T18:44:54Z",
+      "side": 1,
+      "message": "chonggu@ to review that this works with GPU tests.\nkhoklov@ please review the clock change\njohnchen@ please review the overall telemetry changes.",
+      "revId": "3d55a41eb297c06fefec03ec21dd892881c7bf88",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
