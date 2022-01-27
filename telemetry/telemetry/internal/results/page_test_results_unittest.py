@@ -5,6 +5,7 @@
 from __future__ import absolute_import
 import json
 import shutil
+import socket
 import sys
 import tempfile
 import unittest
@@ -213,6 +214,7 @@ class PageTestResultsTest(unittest.TestCase):
           'diagnostics': {
               'benchmarks': ['some benchmark'],
               'benchmarkDescriptions': ['a description'],
+              'botId': [socket.gethostname()],
               'owners': ['test'],
               'bugComponents': ['1', '2'],
               'documentationLinks': [['documentation', 'url']],
