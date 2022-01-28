@@ -151,6 +151,7 @@ def try_builder(
         executable = luci.recipe(
             name = "run_presubmit",
             cipd_package = "infra/recipe_bundles/chromium.googlesource.com/chromium/tools/build",
+            use_bbagent = True,
         )
         props["repo_name"] = "catapult"
     if is_dashboard:
