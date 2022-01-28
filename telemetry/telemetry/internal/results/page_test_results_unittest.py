@@ -4,7 +4,9 @@
 
 from __future__ import absolute_import
 import json
+import os
 import shutil
+import socket
 import sys
 import tempfile
 import unittest
@@ -213,6 +215,8 @@ class PageTestResultsTest(unittest.TestCase):
           'diagnostics': {
               'benchmarks': ['some benchmark'],
               'benchmarkDescriptions': ['a description'],
+              'botId':
+                  [os.environ.get('SWARMING_BOT_ID', socket.gethostname())],
               'owners': ['test'],
               'bugComponents': ['1', '2'],
               'documentationLinks': [['documentation', 'url']],

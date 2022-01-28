@@ -9,6 +9,7 @@ import logging
 import os
 import posixpath
 import shutil
+import socket
 import time
 import traceback
 import six
@@ -65,6 +66,8 @@ class PageTestResults(object):
         reserved_infos.BENCHMARKS.name: [self.benchmark_name],
         reserved_infos.BENCHMARK_DESCRIPTIONS.name:
             [self.benchmark_description],
+        reserved_infos.BOT_ID.name:
+            [os.environ.get('SWARMING_BOT_ID', socket.gethostname())],
     }
 
     # If the object has been finalized, no more results can be added to it.
