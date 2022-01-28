@@ -161,7 +161,7 @@ class AdbWrapper(object):
   _adb_path = lazy.WeakConstant(_FindAdb)
   _adb_version = lazy.WeakConstant(_GetVersion)
 
-  def __init__(self, device_serial):
+  def __init__(self, device_serial, persistent_shell=False):
     """Initializes the AdbWrapper.
 
     Args:
@@ -459,6 +459,7 @@ class AdbWrapper(object):
   def Devices(cls,
               desired_state=_READY_STATE,
               long_list=False,
+              persistent_shell=False,
               timeout=DEFAULT_TIMEOUT,
               retries=DEFAULT_RETRIES):
     """Get the list of active attached devices.
