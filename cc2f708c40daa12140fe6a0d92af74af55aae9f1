@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d6604e_3337fbf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-01-28T19:22:12Z",
+      "side": 1,
+      "message": "I ran a pinpoint job to confirm that this CL would generate the correct bot ID. I believe it\u0027s good to go. \n\nRedoing CL because original CL author is OOO. ",
+      "revId": "cc2f708c40daa12140fe6a0d92af74af55aae9f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
