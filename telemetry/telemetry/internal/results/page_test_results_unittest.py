@@ -188,6 +188,7 @@ class PageTestResultsTest(unittest.TestCase):
     with self.CreateResults(benchmark_name='some benchmark',
                             benchmark_description='a description') as results:
       results.AddSharedDiagnostics(
+          botId=['botId'],
           owners=['test'],
           bug_components=['1', '2'],
           documentation_urls=[['documentation', 'url']],
@@ -213,6 +214,7 @@ class PageTestResultsTest(unittest.TestCase):
           'diagnostics': {
               'benchmarks': ['some benchmark'],
               'benchmarkDescriptions': ['a description'],
+              'botId': ['botId'],
               'owners': ['test'],
               'bugComponents': ['1', '2'],
               'documentationLinks': [['documentation', 'url']],
