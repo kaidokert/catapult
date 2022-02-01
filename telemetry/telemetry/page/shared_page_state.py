@@ -42,6 +42,12 @@ class SharedPageState(story_module.SharedState):
       self._page_test = test
       self._page_test_results = None
 
+    self._story_test = None
+    if isinstance(test, story_test.StoryTest):
+      # Used for Lacros tests to launch startup tracing before
+      # starting the browser instead of while logging into Cros.
+      self._story_test = test
+
     if (self._device_type == 'desktop' and
         platform_module.GetHostPlatform().GetOSName() == 'chromeos'):
       self._device_type = 'chromeos'

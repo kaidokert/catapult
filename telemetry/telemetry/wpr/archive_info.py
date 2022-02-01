@@ -199,8 +199,4 @@ class WprArchiveInfo(object):
 
   def _SetWprFileForStory(self, story_name, wpr_file, target_platform):
     """For modifying the metadata when we're going to record a new archive."""
-    if story_name not in self._data['archives']:
-      # If there is no other recording we want the first to be the default
-      # until a new default is recorded.
-      self._data['archives'][story_name] = {_DEFAULT_PLATFORM: wpr_file}
-    self._data['archives'][story_name][target_platform] = wpr_file
+    self._data['archives'][story_name] = {_DEFAULT_PLATFORM: wpr_file}
