@@ -190,6 +190,30 @@
       },
       "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49be3fc_4a8914e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2022-02-02T21:28:36Z",
+      "side": 1,
+      "message": "Thanks. Sure, CQ Dry run makes sense. I just wasn\u0027t sure how far we\u0027re looking to go with additional validations.\nKicked off https://crrev.com/c/3433905",
+      "parentUuid": "9dd2b32a_de5bc437",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
