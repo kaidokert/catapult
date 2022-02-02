@@ -94,6 +94,30 @@
       },
       "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63bb9c44_673331ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2022-02-02T19:19:31Z",
+      "side": 1,
+      "message": "Thanks for linking the bug, Andrew. lz4 sounds like the perfect option for this. If there was an easy way to flip deflate to lz4 I\u0027d do that, even with double compression that would be blazing fast. Single-threaded deflate, not so much apparently.. Also note how the *de*compression step on the phone also took significantly longer time (60s deflate vs 30s store). I personally am very tempted to just flip the compression off and see if anyone complains. I\u0027m happy to take all the blame ~:}",
+      "parentUuid": "b1fb9703_5e660ba8",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
