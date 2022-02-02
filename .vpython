@@ -183,3 +183,8 @@ wheel: <
     platform: "win_amd64"
   >
 >
+
+wheel: <
+  name: "infra/python/wheels/protobuf-py2_py3"
+  version: "version:3.6.1"
+>
