@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2cb938_d5d88830",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-02-02T18:28:11Z",
+      "side": 1,
+      "message": "What about other use cases? What affect will this have on standard chromium gtest / instrumentation tests?",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
