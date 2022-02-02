@@ -2053,35 +2053,37 @@ class DeviceUtils(object):
       assert os.path.isabs(h) and posixpath.isabs(d)
       h = os.path.realpath(h)
       host_path = h.rstrip('/')
-      device_dir = d.rstrip('/')
+      device_path = d.rstrip('/')
 
-      expected_device_nodes.add(device_dir)
+      expected_device_nodes.add(device_path)
 
       # Add all parent directories to the directories we expect to have so we
       # don't delete empty nested directories.
-      parent = posixpath.dirname(device_dir)
+      parent = posixpath.dirname(device_path)
       while parent and parent != '/':
         expected_device_nodes.add(parent)
         parent = posixpath.dirname(parent)
 
       if os.path.isdir(host_path):
-        device_dirs_to_push_to.add(device_dir)
+        device_base_dir = device_path
+        device_dirs_to_push_to.add(device_base_dir)
         for root, _, filenames in os.walk(host_path):
           # ignore hidden directories
           if os.path.sep + '.' in root:
             continue
           relative_dir = os.path.relpath(root, host_path).rstrip('.')
-          device_path = posixpath.join(device_dir, relative_dir).rstrip('/')
-          expected_device_nodes.add(device_path)
-          device_dirs_to_push_to.add(device_path)
-          files = (
-            [posixpath.join(device_dir, relative_dir, f) for f in filenames])
+          device_dir = posixpath.join(device_base_dir, relative_dir).rstrip('/')
+          expected_device_nodes.add(device_dir)
+          device_dirs_to_push_to.add(device_dir)
+          files = [posixpath.join(device_dir, f) for f in filenames]
           expected_device_nodes.update(files)
           file_tuples.extend(zip(
             (os.path.join(root, f) for f in filenames), files))
       else:
-        device_dirs_to_push_to.add(posixpath.dirname(device_dir))
-        file_tuples.append((host_path, device_dir))
+        # Note that the entire parent directory is pushed so any old files
+        # in the same directory are considered stale.
+        device_dirs_to_push_to.add(posixpath.dirname(device_path))
+        file_tuples.append((host_path, device_path))
 
     if file_tuples or delete_stale:
       current_device_nodes = self._GetDeviceNodes(device_dirs_to_push_to)

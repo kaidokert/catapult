@@ -250,6 +250,33 @@ class DeviceUtilsPushDeleteFilesTest(device_test_case.DeviceTestCase):
     sub_dir = self.device.ListDirectory('%s/%s' % (_DEVICE_DIR, _SUB_DIR))
     self.assertEqual([], sub_dir)
 
+  def testPushChangedFiles_PushingSingleFileDeletesOtherFiles(self):
+    host_tmp_dir = tempfile.mkdtemp()
+    host_sub_dir1 = '%s/%s' % (host_tmp_dir, _SUB_DIR1)
+    os.makedirs(host_sub_dir1)
+    self._MakeTempFileGivenDir(host_sub_dir1, _OLD_CONTENTS)
+    (_, file_name1) = self._MakeTempFileGivenDir(host_tmp_dir, _OLD_CONTENTS)
+
+    # Push all our created files/directories and verify they're on the device.
+    self.device.PushChangedFiles([(host_tmp_dir, _DEVICE_DIR)],
+                                 delete_device_stale=True)
+    filenames = self.device.ListDirectory(_DEVICE_DIR)
+    self.assertIn(_SUB_DIR1, filenames)
+    self.assertIn(file_name1, filenames)
+
+    (host_file_path2,
+     file_name2) = self._MakeTempFileGivenDir(host_tmp_dir, _OLD_CONTENTS)
+    device_file_path2 = "%s/%s" % (_DEVICE_DIR, file_name2)
+
+    # Note that only a single file is specified, not the entire directory.
+    # However, delete_device_stale=True results in other files and
+    # directories in the same parent dir being deleted.
+    self.device.PushChangedFiles([(host_file_path2, device_file_path2)],
+                                 delete_device_stale=True)
+
+    filenames = self.device.ListDirectory(_DEVICE_DIR)
+    self.assertEqual([file_name2], filenames)
+
   def testRestartAdbd(self):
     def get_adbd_pid():
       try:
