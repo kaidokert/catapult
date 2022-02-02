@@ -135,8 +135,7 @@ class WprArchiveInfo(object):
       os.close(temp_wpr_file_handle)
     self.temp_target_wpr_file_path = temp_wpr_file_path
 
-  def AddRecordedStories(self, stories, upload_to_cloud_storage=False,
-                         target_platform=_DEFAULT_PLATFORM):
+  def AddRecordedStories(self, stories, upload_to_cloud_storage=False):
     if not stories:
       os.remove(self.temp_target_wpr_file_path)
       return
@@ -146,13 +145,8 @@ class WprArchiveInfo(object):
     (target_wpr_file, target_wpr_file_path) = self._NextWprFileName(
         target_wpr_file_hash)
     for story in stories:
-      # Check to see if the platform has been manually overrided.
-      if not story.platform_specific:
-        current_target_platform = _DEFAULT_PLATFORM
-      else:
-        current_target_platform = target_platform
       self._SetWprFileForStory(
-          story.name, target_wpr_file, current_target_platform)
+          story.name, target_wpr_file)
     shutil.move(self.temp_target_wpr_file_path, target_wpr_file_path)
 
     # Update the hash file.
@@ -197,10 +191,6 @@ class WprArchiveInfo(object):
     new_filename = '%s_%s.%s' % (base, file_hash[:10], 'wprgo')
     return new_filename, self._WprFileNameToPath(new_filename)
 
-  def _SetWprFileForStory(self, story_name, wpr_file, target_platform):
+  def _SetWprFileForStory(self, story_name, wpr_file):
     """For modifying the metadata when we're going to record a new archive."""
-    if story_name not in self._data['archives']:
-      # If there is no other recording we want the first to be the default
-      # until a new default is recorded.
-      self._data['archives'][story_name] = {_DEFAULT_PLATFORM: wpr_file}
-    self._data['archives'][story_name][target_platform] = wpr_file
+    self._data['archives'][story_name] = {_DEFAULT_PLATFORM: wpr_file}

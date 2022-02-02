@@ -276,50 +276,6 @@ class WprArchiveInfoTest(unittest.TestCase):
     self.assertEqual(hash_mock.call_count, 1)
     hash_mock.assert_called_with(new_temp_recording)
 
-  @mock.patch(
-      'telemetry.wpr.archive_info.cloud_storage.CalculateHash',
-      return_value='abcdef0006deadcode')
-  def testAddRecordedStoriesNotDefault(self, hash_mock):
-    test_archive_info = self.createArchiveInfo()
-    self.assertWprFileDoesNotExist('story_name_abcdef0006.wprgo')
-    new_temp_recording = os.path.join(self.tmp_dir, 'recording.wprgo')
-
-    with open(new_temp_recording, 'w') as f:
-      f.write('wpr data')
-    test_archive_info.AddNewTemporaryRecording(new_temp_recording)
-    test_archive_info.AddRecordedStories([page2, page3],
-                                         target_platform='android')
-
-    with open(self.story_set_archive_info_file, 'r') as f:
-      archive_file_contents = json.load(f)
-
-    expected_archive_contents = _BASE_ARCHIVE.copy()
-    expected_archive_contents['archives'] = {
-        page1.name: {
-            _DEFAULT_PLATFORM: recording1
-        },
-        page2.name: {
-            _DEFAULT_PLATFORM: recording2,
-            'android': 'story_name_abcdef0006.wprgo'
-        },
-        page3.name: {
-            _DEFAULT_PLATFORM: recording1,
-            'linux': recording4,
-            'mac': recording3,
-            'win': recording2,
-            'android': 'story_name_abcdef0006.wprgo'
-        },
-    }
-
-    self.assertDictEqual(expected_archive_contents, archive_file_contents)
-    # Ensure the saved JSON does not contain trailing spaces.
-    with open(self.story_set_archive_info_file, 'rU') as f:
-      for line in f:
-        self.assertFalse(line.rstrip('\n').endswith(' '))
-    self.assertWprFileDoesExist('story_name_abcdef0006.wprgo')
-    self.assertEqual(hash_mock.call_count, 1)
-    hash_mock.assert_called_with(new_temp_recording)
-
   def testAddRecordedStoriesNewPage(self):
     test_archive_info = self.createArchiveInfo()
     self.assertWprFileDoesNotExist('story_name_abcdef0006.wprgo')
@@ -342,8 +298,7 @@ class WprArchiveInfoTest(unittest.TestCase):
         f.write('wpr data2')
       test_archive_info.AddNewTemporaryRecording(new_temp_recording)
       self.assertEqual(hash_mock.call_count, 0)
-      test_archive_info.AddRecordedStories([pageNew2],
-                                           target_platform='android')
+      test_archive_info.AddRecordedStories([pageNew2])
       hash_mock.assert_any_call(new_temp_recording)
       self.assertEqual(hash_mock.call_count, 1)
 
@@ -369,8 +324,7 @@ class WprArchiveInfoTest(unittest.TestCase):
             _DEFAULT_PLATFORM: 'story_name_abcdef0006.wprgo'
         },
         pageNew2.name: {
-            _DEFAULT_PLATFORM: 'story_name_abcdef0007.wprgo',
-            'android': 'story_name_abcdef0007.wprgo'
+            _DEFAULT_PLATFORM: 'story_name_abcdef0007.wprgo'
         }
     }
 

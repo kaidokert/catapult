@@ -272,8 +272,7 @@ class WprRecorder(object):
     results.Finalize()
     self._story_set.wpr_archive_info.AddRecordedStories(
         [run.story for run in results.IterStoryRuns() if run.ok],
-        upload_to_cloud_storage,
-        target_platform=self._record_page_test.platform)
+        upload_to_cloud_storage)
 
 
 def Main(environment, **log_config_kwargs):
