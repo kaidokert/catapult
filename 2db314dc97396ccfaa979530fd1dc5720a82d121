@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a5f4f3_b24cbc90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2022-02-02T23:37:18Z",
+      "side": 1,
+      "message": "This *might* be a side effect of https://chromium-review.googlesource.com/c/catapult/+/2170402 or it\u0027s just how it always was, not sure.",
+      "revId": "2db314dc97396ccfaa979530fd1dc5720a82d121",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
