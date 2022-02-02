@@ -214,6 +214,30 @@
       },
       "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84d04112_ec0bd742",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1531247
+      },
+      "writtenOn": "2022-02-02T23:00:15Z",
+      "side": 1,
+      "message": "CQ passed. Anything else I should be checking for, Ben?",
+      "parentUuid": "a49be3fc_4a8914e1",
+      "range": {
+        "startLine": 14,
+        "startChar": 12,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "2e4f398c7b98ffd6f660d588441ee1de664d4597",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
