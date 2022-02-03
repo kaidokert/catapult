@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a81f10a6_7b182170",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-02-03T00:36:48Z",
+      "side": 1,
+      "message": "Hopefully I didn\u0027t overcomplicate what you were trying to tell me to do",
+      "revId": "b7e24b43304a58e855c835a89a33a4e929e7d317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28353bd7_76d93e4a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-02-03T00:36:48Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I wrote this line correctly though",
+      "revId": "b7e24b43304a58e855c835a89a33a4e929e7d317",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
