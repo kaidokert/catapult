@@ -63,6 +63,30 @@
       },
       "revId": "cc2f708c40daa12140fe6a0d92af74af55aae9f1",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "855b95c2_838ac34a",
+        "filename": "telemetry/telemetry/internal/results/page_test_results_unittest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-03T00:00:01Z",
+      "side": 1,
+      "message": "The test should cover the new added code. In your case, it is in PageTestResults(). I\u0027ll suggest adding an argument with default value (None) in the init(), and then pass in the test pass the \u0027botId\u0027 literal when calling CreateResults().",
+      "parentUuid": "314654a4_9c28f709",
+      "range": {
+        "startLine": 190,
+        "startChar": 14,
+        "endLine": 190,
+        "endChar": 27
+      },
+      "revId": "cc2f708c40daa12140fe6a0d92af74af55aae9f1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
