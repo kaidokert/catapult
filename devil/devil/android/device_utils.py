@@ -1977,9 +1977,11 @@ class DeviceUtils(object):
         # sync-unaware implementation.
         logging.warning(str(e))
 
+    logging.info('qqq _GetChangedFiles')
     changed_files, missing_dirs, cache_commit_func = (self._GetChangedFiles(
         host_device_tuples, delete_device_stale))
 
+    logging.info('qqq _PushFilesImpl')
     if changed_files:
       if missing_dirs:
         self.RunShellCommand(['mkdir', '-p'] + list(missing_dirs),
@@ -2269,12 +2271,14 @@ class DeviceUtils(object):
       self.adb.Push(h, d)
 
   def _PushChangedFilesZipped(self, files, dirs):
+    logging.info('qqq _PushChangedFilesZipped')
     if not self._MaybeInstallCommands():
       return False
 
     with tempfile_ext.NamedTemporaryDirectory() as working_dir:
       zip_path = os.path.join(working_dir, 'tmp.zip')
       try:
+        logging.info('qqq WriteZipFile')
         zip_utils.WriteZipFile(zip_path, files)
       except zip_utils.ZipFailedError:
         return False
@@ -2284,6 +2288,7 @@ class DeviceUtils(object):
       self.NeedsSU()
       with device_temp_file.DeviceTempFile(
           self.adb, suffix='.zip') as device_temp:
+        logging.info('qqq adb.Push')
         self.adb.Push(zip_path, device_temp.name)
 
         with device_temp_file.DeviceTempFile(self.adb, suffix='.sh') as script:
@@ -2296,10 +2301,12 @@ class DeviceUtils(object):
                                              zip_file=device_temp.name,
                                              dirs=' '.join(dirs)))
 
+          logging.info('qqq unzip/chmod script')
           self.RunShellCommand(['source', script.name],
                                check_return=True,
                                as_root=True)
 
+    logging.info('qqq _PushChangedFilesZipped done')
     return True
 
   # TODO(crbug.com/1111556): remove this and migrate the callsite to
