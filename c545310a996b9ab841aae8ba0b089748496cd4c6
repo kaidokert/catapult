@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad0f45ad_e2bb253e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-02-04T18:49:08Z",
+      "side": 1,
+      "message": "We\u0027re using this to trigger a dashboard Cloud Build.",
+      "revId": "c545310a996b9ab841aae8ba0b089748496cd4c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
