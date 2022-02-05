@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f056858_b20b0cfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-02-05T00:01:17Z",
+      "side": 1,
+      "message": "Thanks! LGTM, but please wait for John\u0027s review as well. \n\nWe also have a bunch of references to the old API in chromium/src. (https://source.chromium.org/search?q\u003d%22console.developers.google.com%2Fm%2Fcloudstorage%22%20\u0026ss\u003dchromium). Were you planning to remove those as well? ",
+      "revId": "b894e3da1cb32f13cb78ab50d82aeecaa4d09946",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
