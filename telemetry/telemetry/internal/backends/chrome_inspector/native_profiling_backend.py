@@ -5,6 +5,7 @@
 from __future__ import absolute_import
 import json
 import logging
+import time
 import traceback
 
 from telemetry.internal.backends.chrome_inspector import inspector_websocket
@@ -33,8 +34,18 @@ class NativeProfilingBackend(object):
     """
     method = 'NativeProfiling.dumpProfilingDataOfAllProcesses'
     request = {'method': method}
+    response_holder = {}
     try:
-      response = self._inspector_websocket.SyncRequest(request, timeout)
+      logging.info('Requesting PGO profiles to be dumped')
+      def ws_callback(response):
+        logging.info('PGO profile dump done')
+        response_holder['response'] = response
+      self._inspector_websocket.AsyncRequest(request, ws_callback)
+      start_time = time.perf_counter()
+      elapsed_time = 0
+      while ('response' not in response_holder) and (elapsed_time < timeout):
+        self._inspector_websocket.DispatchNotifications(timeout)
+        elapsed_time = time.perf_counter() - start_time
     except inspector_websocket.WebSocketException as err:
       if issubclass(
           err.websocket_error_type, websocket.WebSocketTimeoutException):
@@ -49,7 +60,10 @@ class NativeProfilingBackend(object):
           'Exception raised while sending a %s request:\n%s' %
           (method, traceback.format_exc()))
 
-    if 'error' in response:
+    response = response_holder['response']
+    if not response:
+      logging.error('Did not receive PGO response')
+    elif 'error' in response:
       code = response['error']['code']
       if code == inspector_websocket.InspectorWebsocket.METHOD_NOT_FOUND_CODE:
         logging.warning(
@@ -58,6 +72,8 @@ class NativeProfilingBackend(object):
         raise NativeProfilingUnexpectedResponseException(
             'Inspector returned unexpected response for %s:\n%s' %
             (method, json.dumps(response, indent=2)))
+    else:
+      logging.info('Received PGO response: %s', json.dumps(response, indent=2))
 
   def Close(self):
     self._inspector_websocket = None
