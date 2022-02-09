@@ -136,12 +136,11 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
       'next': next_,
   }
 
-  service_account_email = utils.ServiceAccountEmail()
-  logging.debug('service account email = %s', service_account_email)
+  service_account_emails = [utils.ServiceAccountEmail(), utils.LEGACY_SERVICE_ACCOUNT]
 
   def _FixupEmails(j):
     user = j.get('user')
-    if user and user == service_account_email:
+    if user and user in service_account_emails:
       j['user'] = 'chromeperf (automation)'
     return j
 
