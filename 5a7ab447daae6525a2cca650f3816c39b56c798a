@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac62313_d1fb1d37",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-02-10T18:55:34Z",
+      "side": 1,
+      "message": "So `adb version` prints two different version strings? That seems.. weird. Oh well",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 64
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d66d3ce8_67ce586d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-02-10T18:55:34Z",
+      "side": 1,
+      "message": "nit: prefer the public-friendly url (issuetracker.google.com/218716282) in case the bug is opened to the public",
+      "range": {
+        "startLine": 301,
+        "startChar": 34,
+        "endLine": 301,
+        "endChar": 61
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5828beef_3ef14912",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-02-10T18:55:34Z",
+      "side": 1,
+      "message": "So we just pass in a dummy arg that we know it\u0027ll ignore? Clever :)",
+      "range": {
+        "startLine": 975,
+        "startChar": 6,
+        "endLine": 975,
+        "endChar": 43
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
