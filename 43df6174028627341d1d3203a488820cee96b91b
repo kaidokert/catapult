@@ -16,6 +16,24 @@
       "message": "Hi Ben,\n\nI\u0027m in the process of submitting a CL to fix this in adb (https://r.android.com/1978747), assuming that the fix will be picked up in the next version of adb (1.0.42), we\u0027ll no longer need this workaround then.\n\nThanks,\nPeter",
       "revId": "43df6174028627341d1d3203a488820cee96b91b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11c2c343_949f4329",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2022-02-10T16:48:26Z",
+      "side": 1,
+      "message": "I found this as part of go/ii-next where `adb install-multiple` was failing for all API levels less than 28.",
+      "parentUuid": "c387563f_6d280ce8",
+      "revId": "43df6174028627341d1d3203a488820cee96b91b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
