@@ -940,6 +940,10 @@ class AdbWrapper(object):
     for path in apk_paths:
       VerifyLocalFileExists(path)
     cmd = ['install-multiple']
+    if (du_version.LooseVersion(self.Version()) <
+        du_version.LooseVersion('1.0.42')):
+      # Workaround for http://b/218716282.
+      cmd.append('--unused-arg-workaround')
     if forward_lock:
       cmd.append('-l')
     if reinstall:
