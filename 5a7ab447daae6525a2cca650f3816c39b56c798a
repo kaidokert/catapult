@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "801b71c6_e40a1518",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2022-02-10T19:08:26Z",
+      "side": 1,
+      "message": "As far as I understand, the first is the adb server/client\u0027s version and the second is the platform-tools release\u0027s version that the adb\u0027s bundled in. The first used to be incremented by the adb team and the second is always incremented for every platform-tools release, so it\u0027s a bit more reliable for new features being present or fixes being included.",
+      "parentUuid": "5ac62313_d1fb1d37",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 64
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d66d3ce8_67ce586d",
@@ -49,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f3336901_8cef9c1d",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2022-02-10T19:08:26Z",
+      "side": 1,
+      "message": "Sorry, in this case the bug is a private one. 😞 I\u0027ve replaced the b/ links in the code with more detailed comments and left the b/ link for context in the commit message. Thanks for the reminder to check if the issue is public or internal!",
+      "parentUuid": "d66d3ce8_67ce586d",
+      "range": {
+        "startLine": 301,
+        "startChar": 34,
+        "endLine": 301,
+        "endChar": 61
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5828beef_3ef14912",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-10T18:55:34Z",
       "side": 1,
       "message": "So we just pass in a dummy arg that we know it\u0027ll ignore? Clever :)",
+      "range": {
+        "startLine": 975,
+        "startChar": 6,
+        "endLine": 975,
+        "endChar": 43
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a1ccfe_a2c4d4f6",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2022-02-10T19:08:26Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "5828beef_3ef14912",
       "range": {
         "startLine": 975,
         "startChar": 6,
