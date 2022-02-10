@@ -121,6 +121,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e28311b5_6cf350b7",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1002869
+      },
+      "writtenOn": "2022-02-10T19:30:15Z",
+      "side": 1,
+      "message": "Thanks for explaining, Ben. I understand better now that it\u0027s an open source best practice for linking rather than whether the bug is public or not (also that bugs can potentially be made public later). Added the links to the bug back to the code.",
+      "parentUuid": "f010cd22_f09e9645",
+      "range": {
+        "startLine": 301,
+        "startChar": 34,
+        "endLine": 301,
+        "endChar": 61
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5828beef_3ef14912",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
