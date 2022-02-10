@@ -16,6 +16,23 @@
       "message": "ptal",
       "revId": "1db4585ab35dad4da513370640465333b3d3e13a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ae03085_fb7418da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-02-10T19:27:14Z",
+      "side": 1,
+      "message": "I\u0027m sure you + Sadrul know how these metrics should be computed better than me, so if having multiple irSegments make more sense in the context of your metrics that seems fine to me! Looks like rendering_metric is the only user of this: https://source.chromium.org/search?q\u003dirSegments%20f:catapult\u0026ss\u003dchromium",
+      "revId": "1db4585ab35dad4da513370640465333b3d3e13a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
