@@ -97,6 +97,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f010cd22_f09e9645",
+        "filename": "devil/devil/android/sdk/adb_wrapper.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-02-10T19:22:44Z",
+      "side": 1,
+      "message": "You can keep the bug link in the code, but use the \"issuetracker\" URL when adding it to opensource code rather than the b/ shorthand.\n\nIt\u0027s similar to crbug/ vs crbug.com/. The former only works for google employees, but the latter works for everyone. So best to use the latter to be inclusive, regardless of if RVG is set or not.",
+      "parentUuid": "f3336901_8cef9c1d",
+      "range": {
+        "startLine": 301,
+        "startChar": 34,
+        "endLine": 301,
+        "endChar": 61
+      },
+      "revId": "5a7ab447daae6525a2cca650f3816c39b56c798a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5828beef_3ef14912",
         "filename": "devil/devil/android/sdk/adb_wrapper.py",
         "patchSetId": 4
