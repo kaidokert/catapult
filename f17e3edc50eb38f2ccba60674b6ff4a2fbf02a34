@@ -34,6 +34,24 @@
       "parentUuid": "95638faf_2c50298f",
       "revId": "f17e3edc50eb38f2ccba60674b6ff4a2fbf02a34",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5634f6_86938368",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-11T21:32:00Z",
+      "side": 1,
+      "message": "I believe it\u0027s currently both Python 2 and Python 3-compatible, or at least should be. Long-term I believe it will be Python 3-only. wenbinzhang@W might know more - IIRC they did a lot of work around making it work with Python 3.",
+      "parentUuid": "94d13bf3_9cc44d5e",
+      "revId": "f17e3edc50eb38f2ccba60674b6ff4a2fbf02a34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
