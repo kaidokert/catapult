@@ -56,7 +56,7 @@ CHROMIUM_MILESTONES = {
     67: (554148, None),
 }
 
-CURRENT_MILESTONE = max(CHROMIUM_MILESTONES.keys())
+CURRENT_MILESTONE = max(list(CHROMIUM_MILESTONES))
 
 
 class SpeedReleasingHandler(request_handler.RequestHandler):
@@ -379,7 +379,7 @@ def _GetEndOfMilestone(rev, milestone_dict):
   is a beginning rev.
   """
   beginning_rev = 0
-  for _, value_tuple in milestone_dict.items():
+  for _, value_tuple in list(milestone_dict.items()):
     if value_tuple[0] <= int(rev) < value_tuple[1]:  # 'rev' is a beginning rev.
       return value_tuple[1]  # Favor by returning here.
     if value_tuple[1] == int(rev):  # 'rev' is an end rev.
@@ -462,7 +462,7 @@ def _GetMilestoneForRevs(rev_a, rev_b, milestone_dict):
   rev_a_milestone = CURRENT_MILESTONE
   rev_b_milestone = CURRENT_MILESTONE
 
-  for key, milestone in milestone_dict.items():
+  for key, milestone in list(milestone_dict.items()):
     if milestone[0] <= rev_a < milestone[1]:
       rev_a_milestone = key
     if milestone[0] < rev_b <= milestone[1]:

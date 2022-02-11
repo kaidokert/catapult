@@ -233,13 +233,13 @@ def _ProcessPinpointStats(offset=0):
       'total': 0
   })
 
-  for bot, benchmark_dict in jobs_by_bot.items():
+  for bot, benchmark_dict in list(jobs_by_bot.items()):
     hists = []
 
     summaries = {'total': 0, 'norepro': 0, 'fail': 0, 'pass': 0}
 
-    for benchmark, values in benchmark_dict.items():
-      for k, v in values.items():
+    for benchmark, values in list(benchmark_dict.items()):
+      for k, v in list(values.items()):
         h = _CreateHistogram(
             k, _UnitType(k), story=benchmark, summary_options=default_opts)
         h.AddSample(v)
@@ -247,7 +247,7 @@ def _ProcessPinpointStats(offset=0):
         summaries[k] += v
         data_by_benchmark[benchmark][k] += v
 
-    for k, v in summaries.items():
+    for k, v in list(summaries.items()):
       h = _CreateHistogram(k, _UnitType(k), summary_options=default_opts)
       h.AddSample(v)
       hists.append(h)
@@ -267,15 +267,15 @@ def _ProcessPinpointStats(offset=0):
   summaries = {'total': 0, 'norepro': 0, 'fail': 0, 'pass': 0}
   hists = []
 
-  for benchmark, values in data_by_benchmark.items():
-    for k, v in values.items():
+  for benchmark, values in list(data_by_benchmark.items()):
+    for k, v in list(values.items()):
       h = _CreateHistogram(
           k, _UnitType(k), story=benchmark, summary_options=default_opts)
       h.AddSample(v)
       hists.append(h)
       summaries[k] += v
 
-  for k, v in summaries.items():
+  for k, v in list(summaries.items()):
     h = _CreateHistogram(k, _UnitType(k), summary_options=default_opts)
     h.AddSample(v)
     hists.append(h)
@@ -306,7 +306,7 @@ def _ProcessAlerts():
   for a in alerts:
     alerts_by_bot[a.bot_name].append(a)
 
-  for bot_name, bot_alerts in alerts_by_bot.items():
+  for bot_name, bot_alerts in list(alerts_by_bot.items()):
     yield _ProcessAlertsForBot(bot_name, bot_alerts)
 
 
@@ -324,7 +324,7 @@ def _ProcessAlertsForBot(bot_name, alerts):
     count_by_suite[test_suite_name] += 1
 
   hists_by_suite = {}
-  for s, c in count_by_suite.items():
+  for s, c in list(count_by_suite.items()):
     hists_by_suite[s] = _CreateHistogram(
         'chromium.perf.alerts', 'count', story=s)
     hists_by_suite[s].AddSample(c)

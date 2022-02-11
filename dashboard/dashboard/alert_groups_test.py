@@ -321,8 +321,7 @@ class GroupReportTest(GroupReportTestBase):
         for g in alert_group.AlertGroup.Get(
             'test_suite', alert_group.AlertGroup.Type.test_suite)
     }
-    self.assertItemsEqual(
-        list(groups.keys()), ['sheriff1', 'sheriff2', 'sheriff3'])
+    self.assertItemsEqual(list(groups), ['sheriff1', 'sheriff2', 'sheriff3'])
     self.assertItemsEqual(groups['sheriff1'].anomalies, [a1, a2])
     self.assertItemsEqual(groups['sheriff2'].anomalies, [a1, a3])
     self.assertItemsEqual(groups['sheriff3'].anomalies, [a3])

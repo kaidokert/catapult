@@ -933,7 +933,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(anomalies[1].urlsafe(), tags['alert'])
 
     # Tags must be a dict of key/value string pairs.
-    for k, v in tags.items():
+    for k, v in list(tags.items()):
       self.assertIsInstance(k, six.string_types)
       self.assertIsInstance(v, six.string_types)
 
@@ -987,7 +987,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(anomalies[0].urlsafe(), tags['alert'])
 
     # Tags must be a dict of key/value string pairs.
-    for k, v in tags.items():
+    for k, v in list(tags.items()):
       self.assertIsInstance(k, six.string_types)
       self.assertIsInstance(v, six.string_types)
 
@@ -1093,7 +1093,7 @@ class AlertGroupWorkflowTest(testing_common.TestCase):
     self.assertEqual(anomalies[2].urlsafe(), tags['alert'])
 
     # Tags must be a dict of key/value string pairs.
-    for k, v in tags.items():
+    for k, v in list(tags.items()):
       self.assertIsInstance(k, six.string_types)
       self.assertIsInstance(v, six.string_types)
 

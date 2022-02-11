@@ -23,8 +23,8 @@ from dashboard.pinpoint.models.change import patch as patch_module
 
 from tracing.value.diagnostics import reserved_infos
 
-_INFINITY = u'\u221e'
-_RIGHT_ARROW = u'\u2192'
+_INFINITY = '\u221e'
+_RIGHT_ARROW = '\u2192'
 
 _TEMPLATE_ENV = jinja2.Environment(
     loader=jinja2.FileSystemLoader(
@@ -59,11 +59,8 @@ def ComputeLabelUpdates(labels):
     found_in_sets = sum(
         label in label_set for label_set in _LABEL_EXCLUSION_SETS)
     if found_in_sets > 1:
-      raise ValueError(
-          'label "%s" is found in %s label sets',
-          label,
-          found_in_sets,
-      )
+      raise ValueError('label "%s" is found in %s label sets' %
+                       (label, found_in_sets))
 
   for label_set in _LABEL_EXCLUSION_SETS:
     label_updates |= set('-' + l for l in label_set)

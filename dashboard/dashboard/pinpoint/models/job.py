@@ -39,10 +39,10 @@ from dashboard.services import issue_tracker_service
 # finish, but don't want to consume too many resources.
 _TASK_INTERVAL = 60
 
-_CRYING_CAT_FACE = u'\U0001f63f'
-_INFINITY = u'\u221e'
-_RIGHT_ARROW = u'\u2192'
-_ROUND_PUSHPIN = u'\U0001f4cd'
+_CRYING_CAT_FACE = '\U0001f63f'
+_INFINITY = '\u221e'
+_RIGHT_ARROW = '\u2192'
+_ROUND_PUSHPIN = '\U0001f4cd'
 
 _MAX_RECOVERABLE_RETRIES = 3
 
@@ -57,7 +57,7 @@ RETRY_OPTIONS = taskqueue.TaskRetryOptions(
     task_retry_limit=8, min_backoff_seconds=2)
 
 _FIRST_OR_LAST_FAILED_COMMENT = (
-    u"""One or both of the initial changes failed to produce any results.
+    """One or both of the initial changes failed to produce any results.
 Perhaps the job is misconfigured or the tests are broken? See the job
 page for details.""")
 
@@ -101,7 +101,7 @@ def IsDone(job_id):
         }))
     if not context:
       return False
-    for payload in context.values():
+    for payload in list(context.values()):
       status = payload.get('status')
       if status in {'pending', 'ongoing'}:
         return False
@@ -450,7 +450,7 @@ class Job(ndb.Model):
         task_module.Evaluate(
             self,
             event_module.Event(type='initiate', target_task=None, payload={}),
-            task_evaluator.ExecutionEngine(self)),
+            task_evaluator.ExecutionEngine(self))
       except task_module.Error as error:
         logging.error('Failed: %s', error)
         self.Fail()
@@ -538,7 +538,7 @@ class Job(ndb.Model):
       result_values = {
           change_module.ReconstituteChange(v.get('change')):
           v.get('result_values')
-          for v in context.values()
+          for v in list(context.values())
           if 'change' in v and 'result_values' in v
       }
 
@@ -634,7 +634,7 @@ class Job(ndb.Model):
           exception.category = 'pinpoint'
         else:
           exception = exc_info[1]
-      exc_message = exception.message
+      exc_message = str(exception)
       category = None
       if isinstance(exception, errors.JobError):
         category = exception.category
@@ -861,7 +861,7 @@ class Job(ndb.Model):
     self.task = None
     self.put()
     title = _ROUND_PUSHPIN + ' Pinpoint job cancelled.'
-    comment = u'{}\n{}\n\nCancelled by {}, reason given: {}'.format(
+    comment = '{}\n{}\n\nCancelled by {}, reason given: {}'.format(
         title, self.url, user, reason)
     deferred.defer(
         _PostBugCommentDeferred,

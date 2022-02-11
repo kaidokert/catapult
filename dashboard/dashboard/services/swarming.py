@@ -71,7 +71,7 @@ class Bots(object):
     """Provides list of known bots. Deleted bots will not be listed."""
     if dimensions:
       dimensions = tuple(
-          ':'.join(dimension) for dimension in dimensions.items())
+          ':'.join(dimension) for dimension in list(dimensions.items()))
 
     url = '%s/%s/bots/list' % (self._server, _API_PATH)
     return request.RequestJson(

@@ -60,8 +60,8 @@ class ScheduleTestAction(
         # Since we're always going to be using the PubSub handling, we add the
         # tags unconditionally.
         'tags': [
-            '%s:%s' % (k, v)
-            for k, v in run_test_quest.SwarmingTagsFromJob(self.job).items()
+            '%s:%s' % (k, v) for k, v in list(
+                run_test_quest.SwarmingTagsFromJob(self.job).items())
         ],
 
         # Use an explicit service account.
@@ -133,7 +133,7 @@ class PollSwarmingTaskAction(
     self.task.payload.update({
         'swarming_task_result': {
             k: v
-            for k, v in result.items()
+            for k, v in list(result.items())
             if k in {'bot_id', 'state', 'failure'}
         }
     })
@@ -222,7 +222,7 @@ class InitiateEvaluator(object):
       # isolate inputs to Swarming.
       logging.error(('Found multiple dependencies for run_test; '
                      'picking a random input; task = %s'), task)
-    dep_value.update(dep_map.values()[0])
+    dep_value.update(list(dep_map.values())[0])
 
     if dep_value.get('status') == 'failed':
       task.payload.update({

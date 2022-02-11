@@ -26,31 +26,31 @@ from dashboard.pinpoint import test
 # pylint: disable=too-many-lines
 
 _CHROMIUM_URL = 'https://chromium.googlesource.com/chromium/src'
-_COMMENT_STARTED = (u"""\U0001f4cd Pinpoint job started.
+_COMMENT_STARTED = ("""\U0001f4cd Pinpoint job started.
 https://testbed.example.com/job/1""")
 
 _COMMENT_COMPLETED_NO_COMPARISON = (
-    u"""<b>\U0001f4cd Job complete. See results below.</b>
+    """<b>\U0001f4cd Job complete. See results below.</b>
 https://testbed.example.com/job/1""")
 
 _COMMENT_COMPLETED_NO_DIFFERENCES = (
-    u"""<b>\U0001f4cd Couldn't reproduce a difference.</b>
+    """<b>\U0001f4cd Couldn't reproduce a difference.</b>
 https://testbed.example.com/job/1""")
 
 _COMMENT_COMPLETED_NO_DIFFERENCES_DUE_TO_FAILURE = (
-    u"""<b>\U0001f63f Job finished with errors.</b>
+    """<b>\U0001f63f Job finished with errors.</b>
 https://testbed.example.com/job/1
 
 One or both of the initial changes failed to produce any results.
 Perhaps the job is misconfigured or the tests are broken? See the job
 page for details.""")
 
-_COMMENT_FAILED = (u"""\U0001f63f Pinpoint job stopped with an error.
+_COMMENT_FAILED = ("""\U0001f63f Pinpoint job stopped with an error.
 https://testbed.example.com/job/1
 
 Error string""")
 
-_COMMENT_CODE_REVIEW = (u"""\U0001f4cd Job complete.
+_COMMENT_CODE_REVIEW = ("""\U0001f4cd Job complete.
 
 See results at: https://testbed.example.com/job/1""")
 
@@ -367,8 +367,7 @@ class BugCommentTest(test.TestCase):
     def _GetIssue(bug_id, project='chromium'):
       if bug_id == '111222':
         return {'status': 'Duplicate', 'projectId': project, 'id': '111222'}
-      else:
-        return {'status': 'Untriaged', 'projectId': project, 'id': str(bug_id)}
+      return {'status': 'Untriaged', 'projectId': project, 'id': str(bug_id)}
 
     self.get_issue.side_effect = _GetIssue
     layered_cache.SetExternal('commit_hash_git_hash', 'chromium:111222')
@@ -443,8 +442,7 @@ class BugCommentTest(test.TestCase):
                     bug_id=123456,
                     comparison_mode='performance',
                     tags={'test_path': 'master/bot/benchmark'})
-    diag_dict = generic_set.GenericSet([[u'Benchmark doc link',
-                                         u'http://docs']])
+    diag_dict = generic_set.GenericSet([['Benchmark doc link', 'http://docs']])
     diag = histogram.SparseDiagnostic(
         data=diag_dict.AsDict(),
         start_revision=1,
@@ -737,7 +735,7 @@ class BugCommentTest(test.TestCase):
         for i in range(1, number_culprits + 1)
     ]
     # Return [(None,c1), (c1,c2), (c2,c3), ...]
-    differences.return_value = zip([None] + changes, changes)
+    differences.return_value = list(zip([None] + changes, changes))
 
     # Ensure culprits are ordered by deriving change results values from commit
     # names.  E.g.:

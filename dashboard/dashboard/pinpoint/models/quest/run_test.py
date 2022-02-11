@@ -39,7 +39,7 @@ def SwarmingTagsFromJob(job):
   }
 
 
-class RunTest(quest.Quest):
+class RunTest(quest.Quest):  # pylint: disable=eq-without-hash
 
   def __init__(self, swarming_server, dimensions, extra_args, swarming_tags,
                command, relative_cwd):
@@ -331,11 +331,11 @@ class _RunTestExecution(execution_module.Execution):
       if 'outputs_ref' not in result:
         task_url = '%s/task?id=%s' % (self._swarming_server, self._task_id)
         raise errors.SwarmingTaskFailed('%s' % (task_url,))
-      else:
-        isolate_output_url = '%s/browse?digest=%s' % (
-            result['outputs_ref']['isolatedserver'],
-            result['outputs_ref']['isolated'])
-        raise errors.SwarmingTaskFailed('%s' % (isolate_output_url,))
+
+      isolate_output_url = '%s/browse?digest=%s' % (
+          result['outputs_ref']['isolatedserver'],
+          result['outputs_ref']['isolated'])
+      raise errors.SwarmingTaskFailed('%s' % (isolate_output_url,))
 
     if 'cas_output_root' in result:
       result_arguments = {
@@ -428,7 +428,9 @@ class _RunTestExecution(execution_module.Execution):
       # This means we have additional information available about the Pinpoint
       # tags, and we should add those to the Swarming Pub/Sub updates.
       body.update({
-          'tags': ['%s:%s' % (k, v) for k, v in self._swarming_tags.items()],
+          'tags': [
+              '%s:%s' % (k, v) for k, v in list(self._swarming_tags.items())
+          ],
           # TODO(dberris): Consolidate constants in environment vars?
           'pubsub_topic':
               'projects/chromeperf/topics/pinpoint-swarming-updates',

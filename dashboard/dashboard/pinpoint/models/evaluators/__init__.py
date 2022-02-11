@@ -126,7 +126,9 @@ class TaskPayloadLiftingEvaluator(object):
       return (self._include_keys is not None
               and key in self._include_keys) or key not in self._exclude_keys
 
-    update = {key: val for key, val in task.payload.items() if IncludeKey(key)}
+    update = {
+        key: val for key, val in list(task.payload.items()) if IncludeKey(key)
+    }
     update['status'] = task.status
     accumulator.update({task.id: update})
     return None

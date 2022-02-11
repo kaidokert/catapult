@@ -79,7 +79,7 @@ class GerritPatchTest(test.TestCase):
   def testPatch(self):
     p = patch.GerritPatch('https://example.com', 'abcdef', '2f0d5c7')
 
-    other_patch = patch.GerritPatch(u'https://example.com', 'abcdef', '2f0d5c7')
+    other_patch = patch.GerritPatch('https://example.com', 'abcdef', '2f0d5c7')
     self.assertEqual(p, other_patch)
     self.assertEqual(str(p), '2f0d5c7')
     self.assertEqual(p.id_string, 'https://example.com/abcdef/2f0d5c7')

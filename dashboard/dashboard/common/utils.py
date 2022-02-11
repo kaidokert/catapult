@@ -565,7 +565,7 @@ class GroupMemberAuthFailed(Exception):
   pass
 
 
-def IsGroupMember(identity, group):
+def IsGroupMember(identity, group):  # pylint: disable=inconsistent-return-statements
   """Checks if a user is a group member of using chrome-infra-auth.appspot.com.
 
   Args:
@@ -745,7 +745,7 @@ def Validate(expected, actual):
     if actual_type is not dict:
       raise ValueError('Invalid type. Expected: %s. Actual: %s.' %
                        (expected_type, actual_type))
-    missing = set(expected.keys()) - set(actual.keys())
+    missing = set(expected) - set(actual)
     if missing:
       raise ValueError('Missing the following properties: %s' %
                        ','.join(missing))

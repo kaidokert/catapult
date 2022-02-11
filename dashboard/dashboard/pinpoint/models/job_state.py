@@ -190,7 +190,7 @@ class JobState(object):
 
   def ScheduleWork(self):
     work_left = False
-    for attempts in self._attempts.values():
+    for attempts in list(self._attempts.values()):
       for attempt in attempts:
         if attempt.completed:
           continue
@@ -205,7 +205,7 @@ class JobState(object):
 
   def _RaiseErrorIfAllAttemptsFailed(self):
     counter = collections.Counter()
-    for attempts in self._attempts.values():
+    for attempts in list(self._attempts.values()):
       for attempt in attempts:
         if not attempt.exception:
           return
@@ -341,7 +341,7 @@ class JobState(object):
         )
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
-        elif comparison == compare.UNKNOWN:
+        if comparison == compare.UNKNOWN:
           any_unknowns = True
 
       # Compare result values by consolidating all measurments by change, and
@@ -374,7 +374,7 @@ class JobState(object):
         )
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
-        elif comparison == compare.UNKNOWN:
+        if comparison == compare.UNKNOWN:
           any_unknowns = True
 
     if any_unknowns:

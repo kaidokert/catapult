@@ -37,7 +37,7 @@ disable=
   star-args,
   super-on-old-class,
 
-  basestring-builtin,
+  str-builtin,
   range-builtin-not-iterating,
   map-builtin-not-iterating,
   zip-builtin-not-iterating,

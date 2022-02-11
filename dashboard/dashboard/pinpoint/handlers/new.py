@@ -256,7 +256,7 @@ def _ArgumentsWithConfiguration(original_arguments):
   return new_arguments
 
 
-def _ValidateBugId(bug_id, project):
+def _ValidateBugId(bug_id, project):  # pylint: disable=inconsistent-return-statements
   if not bug_id:
     return None, None
 
@@ -270,7 +270,7 @@ def _ValidateBugId(bug_id, project):
     six.raise_from(ValueError(_ERROR_BUG_ID), e)
 
 
-def _ValidatePriority(priority):
+def _ValidatePriority(priority):  # pylint: disable=inconsistent-return-statements
   if not priority:
     return None
 
@@ -341,7 +341,7 @@ def _ValidateChangesForTry(arguments):
   return change_1, change_2
 
 
-def _ValidateChanges(comparison_mode, arguments):
+def _ValidateChanges(comparison_mode, arguments):  # pylint: disable=inconsistent-return-statements
   try:
     changes = arguments.get('changes')
     if changes:
@@ -496,7 +496,7 @@ def _ValidateTags(tags):
   if not isinstance(tags_dict, dict):
     raise ValueError(_ERROR_TAGS_DICT)
 
-  for k, v in tags_dict.items():
+  for k, v in list(tags_dict.items()):
     if not isinstance(k, six.string_types) or \
        not isinstance(v, six.string_types):
       raise ValueError(_ERROR_TAGS_DICT)
@@ -512,7 +512,7 @@ _REQUIRED_NON_EMPTY_PARAMS = {'target', 'benchmark'}
 
 
 def _ValidateRequiredParams(params):
-  missing = _REQUIRED_NON_EMPTY_PARAMS - set(params.keys())
+  missing = _REQUIRED_NON_EMPTY_PARAMS - set(params)
   if missing:
     raise ValueError('Missing required parameters: %s' % (list(missing)))
   # Check that they're not empty.

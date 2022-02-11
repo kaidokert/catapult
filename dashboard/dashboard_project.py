@@ -21,7 +21,7 @@ def UpdateSysPathIfNeeded():
   _AddToPathIfNeeded(p.catapult_third_party_path)
   _AddToPathIfNeeded(p.catapult_path)
   _AddToPathIfNeeded(p.tracing_root_path)
-  import tracing_project
+  import tracing_project  # pylint: disable=import-outside-toplevel
   tracing_project.UpdateSysPathIfNeeded()
 
 
@@ -73,7 +73,7 @@ class DashboardProject(object):
       self._source_paths.append(self.redux_path)
       self._source_paths.append(self.catapult_third_party_path)
 
-      import tracing_project as tracing_project_module
+      import tracing_project as tracing_project_module  # pylint: disable=import-outside-toplevel
       tracing_project = tracing_project_module.TracingProject()
       self._source_paths.extend(tracing_project.source_paths)
 

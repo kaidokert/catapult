@@ -141,7 +141,7 @@ def _GetFirstTest(test_suite, bot_path):
   sub_test_tree = list_tests.GetSubTests(test_suite, [bot_path])
   test_parts = []
   while sub_test_tree:
-    first_test = sorted(sub_test_tree.keys())[0]
+    first_test = sorted(list(sub_test_tree))[0]
     test_parts.append(first_test)
     if sub_test_tree[first_test]['has_rows']:
       return test_parts

@@ -786,7 +786,7 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
       expected[d.name].remove(
           (d.start_revision, d.end_revision, d.data['values']))
 
-    for k in expected.keys():
+    for k in list(expected.keys()):
       self.assertFalse(expected[k])
 
   def testPost_OutOfOrder_SuiteLevel(self):
@@ -797,9 +797,8 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     self._AddAtCommit(15, 'd1', 'o2')
 
     expected = {
-        'deviceIds': [(1, sys.maxsize, [u'd1'])],
-        'owners': [(1, 14, [u'o1']), (15, 19, [u'o2']),
-                   (20, sys.maxsize, [u'o1'])]
+        'deviceIds': [(1, sys.maxsize, ['d1'])],
+        'owners': [(1, 14, ['o1']), (15, 19, ['o2']), (20, sys.maxsize, ['o1'])]
     }
     self._CheckOutOfOrderExpectations(expected)
 
@@ -811,9 +810,9 @@ class AddHistogramsEndToEndTest(AddHistogramsBaseTest):
     self._AddAtCommit(15, 'd2', 'o1')
 
     expected = {
-        'deviceIds': [(1, 14, [u'd1']), (15, 19, [u'd2']),
-                      (20, sys.maxsize, [u'd1'])],
-        'owners': [(1, sys.maxsize, [u'o1'])]
+        'deviceIds': [(1, 14, ['d1']), (15, 19, ['d2']),
+                      (20, sys.maxsize, ['d1'])],
+        'owners': [(1, sys.maxsize, ['o1'])]
     }
     self._CheckOutOfOrderExpectations(expected)
 
@@ -1987,4 +1986,4 @@ class DecompressFileWrapperTest(testing_common.TestCase):
 
     with BufferedFakeFile('[{"key": "complete list"}]') as input_file:
       dicts = add_histograms._LoadHistogramList(input_file)
-      self.assertSequenceEqual([{u'key': u'complete list'}], dicts)
+      self.assertSequenceEqual([{'key': 'complete list'}], dicts)
