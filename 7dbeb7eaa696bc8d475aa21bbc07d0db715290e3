@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3c5aa2_5fcd225f",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1170419
+      },
+      "writtenOn": "2022-02-11T17:49:57Z",
+      "side": 1,
+      "message": "I\u0027d expect this to be a failure. ie: the user is trying to replace the wrong package. Shouldn\u0027t we return an error in that case?",
+      "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
