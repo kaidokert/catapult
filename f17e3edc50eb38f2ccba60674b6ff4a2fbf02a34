@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95638faf_2c50298f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-11T20:36:10Z",
+      "side": 1,
+      "message": "Looks like the bots are unhappy with this https://logs.chromium.org/logs/catapult/buildbucket/cr-buildbucket/8822493557991013201/+/u/Dashboard_Python_Tests/stdout\n\nLet me know once everything\u0027s happy and I\u0027ll give this a thorough review.",
+      "revId": "f17e3edc50eb38f2ccba60674b6ff4a2fbf02a34",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
