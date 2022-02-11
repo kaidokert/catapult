@@ -37,7 +37,7 @@ def _Internal(unused_revisions):
 class ReportGenerateTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ReportGenerateTest, self).setUp()
+    super().setUp()
     self.SetUpApp([
         ('/api/report/generate', report_generate.ReportGenerateHandler),
     ])

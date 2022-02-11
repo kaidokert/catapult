@@ -18,7 +18,7 @@ from dashboard.pinpoint import test
 class _Results2Test(test.TestCase):
 
   def setUp(self):
-    super(_Results2Test, self).setUp()
+    super().setUp()
 
     self._job_from_id = mock.MagicMock()
     patcher = mock.patch.object(results2.job_module, 'JobFromId',
@@ -94,11 +94,11 @@ class Results2GeneratorPostTest(_Results2Test):
     self.assertIn('foo', response.body)
 
 
-class _TaskStub(object):
+class _TaskStub:
   pass
 
 
-class _JobStub(object):
+class _JobStub:
 
   def __init__(self, job_id, started=True, task=None):
     self.job_id = job_id

@@ -123,7 +123,7 @@ class ExecutionTest(unittest.TestCase):
 
     self.assertTrue(e.completed)
     self.assertTrue(e.failed)
-    self.assertTrue(isinstance(e.exception, basestring))
+    self.assertTrue(isinstance(e.exception, str))
 
     e = pickle.loads(pickle.dumps(e))
 

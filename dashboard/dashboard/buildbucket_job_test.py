@@ -15,7 +15,7 @@ from dashboard.common import testing_common
 class BuildbucketJobTest(testing_common.TestCase):
 
   def setUp(self):
-    super(BuildbucketJobTest, self).setUp()
+    super().setUp()
     self._args_base = {
         'try_job_id': 1,
         'recipe_tester_name': 'linux_perf_bisect',

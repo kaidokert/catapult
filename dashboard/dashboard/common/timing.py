@@ -11,7 +11,7 @@ import logging
 import time
 
 
-class WallTimeLogger(object):
+class WallTimeLogger:
 
   def __init__(self, label, description=''):
     """Initialize a context manager labeled `label` that measures the wall time

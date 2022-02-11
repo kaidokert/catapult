@@ -30,7 +30,7 @@ def SetInternalUserOAuth(mock_oauth):
 class UploadInfo(testing_common.TestCase):
 
   def setUp(self):
-    super(UploadInfo, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/uploads/(.+)', uploads_info.UploadInfoHandler),
     ])

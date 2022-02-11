@@ -73,7 +73,7 @@ _TEST_DIAGNOSTIC_DATA = [{
 class GetDiagnosticsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(GetDiagnosticsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/get_diagnostics',
                                     get_diagnostics.GetDiagnosticsHandler)])
     self.testapp = webtest.TestApp(app)

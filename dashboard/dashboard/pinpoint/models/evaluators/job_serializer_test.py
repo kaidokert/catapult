@@ -22,7 +22,7 @@ from dashboard.pinpoint.models.tasks import performance_bisection
 class EvaluatorTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):
-    super(EvaluatorTest, self).setUp()
+    super().setUp()
     self.maxDiff = None
     self.job = job_module.Job.New(
         (), (),

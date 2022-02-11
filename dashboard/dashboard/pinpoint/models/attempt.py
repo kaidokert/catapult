@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 
-class Attempt(object):
+class Attempt:
   """One run of all the Quests on a Change.
 
   Each Change should execute at least one Attempt. The user can request more

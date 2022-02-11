@@ -104,7 +104,7 @@ SAMPLE_RESPONSE_NOT_FOUND = r"""{
 class BuildbucketJobStatusTest(testing_common.TestCase):
 
   def setUp(self):
-    super(BuildbucketJobStatusTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         (r'/buildbucket_job_status/(\d+)',
          buildbucket_job_status.BuildbucketJobStatusHandler)

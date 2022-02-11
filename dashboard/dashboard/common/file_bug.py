@@ -79,7 +79,7 @@ def _AdditionalDetails(bug_id, project_id, alerts):
 
     docs_by_suite[suite] = docs
 
-  for k, v in docs_by_suite.items():
+  for k, v in list(docs_by_suite.items()):
     comment += '\n\n%s - %s:\n  %s' % (k, v[0], v[1])
 
   return comment

@@ -29,7 +29,7 @@ class EditAnomalyConfigsTest(testing_common.TestCase):
   # Each post request is either a request to add an entity or to edit one.
 
   def setUp(self):
-    super(EditAnomalyConfigsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/edit_anomaly_configs',
          edit_anomaly_configs.EditAnomalyConfigsHandler),
@@ -38,7 +38,7 @@ class EditAnomalyConfigsTest(testing_common.TestCase):
     self.testapp = webtest.TestApp(app)
 
   def tearDown(self):
-    super(EditAnomalyConfigsTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def testAdd(self):

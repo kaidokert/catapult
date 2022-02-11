@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 """The datastore models for upload tokens and related data."""
+
+
 from __future__ import absolute_import
 
 import logging
@@ -16,7 +18,7 @@ from dashboard.models import internal_only_model
 _MEMCACHE_TIMEOUT = 60 * 10
 
 
-class State(object):
+class State:
   PENDING = 0
   PROCESSING = 1
   FAILED = 2

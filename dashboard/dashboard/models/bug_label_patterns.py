@@ -47,7 +47,7 @@ def GetBugLabelPatterns():
 def GetBugLabelsForTest(test):
   """Returns a list of bug labels to be applied to the test."""
   matching = []
-  for label, patterns in GetBugLabelPatterns().items():
+  for label, patterns in list(GetBugLabelPatterns().items()):
     for pattern in patterns:
       if utils.TestMatchesPattern(test, pattern):
         matching.append(label)

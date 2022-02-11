@@ -44,7 +44,7 @@ class AlertGroup(ndb.Model):
   created = ndb.DateTimeProperty(indexed=False, auto_now_add=True)
   updated = ndb.DateTimeProperty(indexed=False, auto_now_add=True)
 
-  class Status(object):
+  class Status:
     unknown = 0
     untriaged = 1
     triaged = 2
@@ -53,7 +53,7 @@ class AlertGroup(ndb.Model):
 
   status = ndb.IntegerProperty(indexed=False)
 
-  class Type(object):
+  class Type:
     test_suite = 0
     logical = 1
     reserved = 2

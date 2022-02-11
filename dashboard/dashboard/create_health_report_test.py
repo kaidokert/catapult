@@ -44,7 +44,7 @@ _ALT_SAMPLE_TABLE_CONFIG = {
 class CreateHealthReportTest(testing_common.TestCase):
 
   def setUp(self):
-    super(CreateHealthReportTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/create_health_report',
          create_health_report.CreateHealthReportHandler)
@@ -55,7 +55,7 @@ class CreateHealthReportTest(testing_common.TestCase):
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
 
   def tearDown(self):
-    super(CreateHealthReportTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def _AddInternalBotsToDataStore(self):

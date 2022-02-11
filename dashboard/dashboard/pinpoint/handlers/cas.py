@@ -96,9 +96,8 @@ class CASReference(api_request_handler.ApiRequestHandler):
       return
 
     # Put information into the datastore.
-    cas_references = [(builder_name, change, target, cas_instance,
-                       cas_digest)
-                      for target, cas_digest in cas_map.items()]
+    cas_references = [(builder_name, change, target, cas_instance, cas_digest)
+                      for target, cas_digest in list(cas_map.items())]
     cas.Put(cas_references)
 
     # Respond to the API user.

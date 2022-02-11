@@ -59,7 +59,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
   """A git repository pinned to a particular commit."""
 
   def __init__(self, *args, **kwargs):
-    super(Commit, self).__init__(*args, **kwargs)
+    super().__init__(*args, **kwargs)
     self._repository_url = None
 
   def __str__(self):
@@ -116,7 +116,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
 
     # Convert deps strings to repository and git hash.
     commits = []
-    for dep_value in deps_dict.values():
+    for dep_value in list(deps_dict.values()):
       if dep_value.get('dep_type') != 'git':
         # We don't support DEPS that are CIPD packages.
         continue
@@ -191,10 +191,9 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
                 or the git hash is not valid.
       ValueError: The URL has an unrecognized format.
     """
-    if isinstance(data, basestring):
+    if isinstance(data, str):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):
@@ -245,7 +244,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
         result = gitiles_service.CommitInfo(repository_url, git_hash)
         git_hash = result['commit']
     except gitiles_service.NotFoundError as e:
-      raise KeyError(str(e))
+      raise KeyError(str(e)) from e
 
     commit = cls(repository, git_hash)
     commit._repository_url = repository_url

@@ -16,7 +16,7 @@ from dashboard.common import testing_common
 class CanBisectTest(testing_common.TestCase):
 
   def setUp(self):
-    super(CanBisectTest, self).setUp()
+    super().setUp()
     namespaced_stored_object.Set(
         can_bisect.BISECT_BOT_MAP_KEY,
         {'SupportedDomain': ['perf_bot', 'bisect_bot']})

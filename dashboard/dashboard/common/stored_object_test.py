@@ -12,7 +12,7 @@ from dashboard.common import stored_object
 from dashboard.common import testing_common
 
 
-class SampleSerializableClass(object):
+class SampleSerializableClass:
 
   def __init__(self, data):
     self.data = data

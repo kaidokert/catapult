@@ -24,7 +24,7 @@ _VULNERABILITY_PREFIX = ")]}'\n"
 class RequestError(http_client.HTTPException):
 
   def __init__(self, msg, content):
-    super(RequestError, self).__init__(msg)
+    super().__init__(msg)
     self.content = content
 
 

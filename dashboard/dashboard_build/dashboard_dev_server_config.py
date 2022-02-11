@@ -33,7 +33,7 @@ class TestListHandler(webapp2.RequestHandler):
     return self.response.write(tests_as_json)
 
 
-class DashboardDevServerConfig(object):
+class DashboardDevServerConfig:
 
   def __init__(self):
     self.project = dashboard_project.DashboardProject()

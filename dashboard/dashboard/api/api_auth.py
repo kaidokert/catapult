@@ -48,19 +48,19 @@ class ApiAuthException(Exception):
 class OAuthError(ApiAuthException):
 
   def __init__(self):
-    super(OAuthError, self).__init__('User authentication error')
+    super().__init__('User authentication error')
 
 
 class NotLoggedInError(ApiAuthException):
 
   def __init__(self):
-    super(NotLoggedInError, self).__init__('User not authenticated')
+    super().__init__('User not authenticated')
 
 
 class InternalOnlyError(ApiAuthException):
 
   def __init__(self):
-    super(InternalOnlyError, self).__init__('User does not have access')
+    super().__init__('User does not have access')
 
 
 def Authorize():

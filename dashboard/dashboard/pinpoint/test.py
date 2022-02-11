@@ -21,7 +21,7 @@ CHROMIUM_URL = 'https://chromium.googlesource.com/chromium/src'
 class TestCase(testing_common.TestCase):
 
   def setUp(self):
-    super(TestCase, self).setUp()
+    super().setUp()
     self._SetUpTestApp()
     self._SetUpStubs()
     self._PopulateData()

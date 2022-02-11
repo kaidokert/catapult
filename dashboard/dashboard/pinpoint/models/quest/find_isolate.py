@@ -22,7 +22,7 @@ from dashboard.services import gerrit_service
 BUCKET = 'master.tryserver.chromium.perf'
 
 
-class FindIsolate(quest.Quest):
+class FindIsolate(quest.Quest):  # pylint: disable=eq-without-hash
 
   def __init__(self, builder, target, bucket, fallback_target=None):
     self._builder_name = builder
@@ -89,7 +89,7 @@ class _FindIsolateExecution(execution.Execution):
                previous_builds,
                build_tags,
                fallback_target=None):
-    super(_FindIsolateExecution, self).__init__()
+    super().__init__()
     self._builder_name = builder_name
     self._target = target
     self._bucket = bucket
@@ -257,7 +257,7 @@ def RequestBuild(builder_name, change, bucket, build_tags, task=None):
   builder_tags.append('buildset:commit/gitiles/%s/%s/+/%s' %
                       (commit_url_parts.netloc, change_info['project'],
                        change.base_commit.git_hash))
-  builder_tags.extend(['%s:%s' % (k, v) for k, v in build_tags.items()])
+  builder_tags.extend(['%s:%s' % (k, v) for k, v in list(build_tags.items())])
 
   deps_overrides = {dep.repository_url: dep.git_hash for dep in change.deps}
   parameters = {

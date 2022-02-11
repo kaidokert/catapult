@@ -217,7 +217,7 @@ class PrepareCommits(collections.namedtuple('PrepareCommits', ('job', 'task'))):
           'errors':
               self.task.payload.get('errors', []) + [{
                   'reason': 'GitilesFetchError',
-                  'message': e.message
+                  'message': str(e)
               }]
       })
       task_module.UpdateTask(
@@ -404,7 +404,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
 
       associated_results = [(change_module.ReconstituteChange(t.get('change')),
                              t.get('status'), t.get('result_values'))
-                            for dep, t in accumulator.items()
+                            for dep, t in list(accumulator.items())
                             if dep in deps]
       for change, status, result_values in associated_results:
         if result_values:
@@ -542,7 +542,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         p, c, n = itertools.tee(iterable, 3)
         p = itertools.chain([None], p)
         n = itertools.chain(itertools.islice(n, 1, None), [None])
-        return itertools.izip(p, c, n)
+        return zip(p, c, n)
 
       # This is a comparison between values at a change and the values at
       # the previous change and the next change.
@@ -585,7 +585,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
           RefineExplorationAction(self.job, task, change, new_size)
           for change, new_size in itertools.chain(
               [(c, min_attempts) for _, c in additional_changes],
-              [(c, a) for c, a in changes_to_refine],
+              changes_to_refine,
           )
           if not bool({'pending', 'ongoing'} & set(status_by_change[change]))
       ]
@@ -595,7 +595,7 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         """s -> (s0, s1), (s1, s2), (s2, s3), ..."""
         a, b = itertools.tee(iterable)
         next(b, None)
-        return itertools.izip(a, b)
+        return zip(a, b)
 
       task.payload.update({
           'culprits': [(a.AsDict(), b.AsDict())
@@ -608,11 +608,13 @@ class FindCulprit(collections.namedtuple('FindCulprit', ('job'))):
         actions = [CompleteExplorationAction(self.job, task, 'completed')]
       return actions
 
+    return None
+
 
 class Evaluator(evaluators.FilteringEvaluator):
 
   def __init__(self, job):
-    super(Evaluator, self).__init__(
+    super().__init__(
         predicate=evaluators.All(
             evaluators.TaskTypeEq('find_culprit'),
             evaluators.Not(evaluators.TaskStatusIn({'completed', 'failed'}))),
@@ -644,7 +646,7 @@ def AnalysisSerializer(task, _, accumulator):
 class Serializer(evaluators.FilteringEvaluator):
 
   def __init__(self):
-    super(Serializer, self).__init__(
+    super().__init__(
         predicate=evaluators.All(
             evaluators.TaskTypeEq('find_culprit'),
             evaluators.TaskStatusIn(

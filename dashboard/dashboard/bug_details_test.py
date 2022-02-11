@@ -52,7 +52,7 @@ GET_COMMENTS_DATA = [{
 class BugDetailsHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    super(BugDetailsHandlerTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/bug_details',
                                     bug_details.BugDetailsHandler)])
     self.testapp = webtest.TestApp(app)

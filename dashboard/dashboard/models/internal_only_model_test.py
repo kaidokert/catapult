@@ -34,7 +34,7 @@ class CreateHookModelExample(internal_only_model.CreateHookInternalOnlyModel):
 class InternalOnlyModelTest(testing_common.TestCase):
 
   def setUp(self):
-    super(InternalOnlyModelTest, self).setUp()
+    super().setUp()
     testing_common.SetIsInternalUser('x@google.com', True)
     testing_common.SetIsInternalUser('x@foo.com', False)
 

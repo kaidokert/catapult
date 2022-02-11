@@ -19,7 +19,7 @@ from dashboard.pinpoint.models import scheduler
 class CancelJobTest(test.TestCase):
 
   def setUp(self):
-    super(CancelJobTest, self).setUp()
+    super().setUp()
     self.SetCurrentUserOAuth(testing_common.INTERNAL_USER)
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 

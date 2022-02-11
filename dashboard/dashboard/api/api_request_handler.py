@@ -31,13 +31,13 @@ class BadRequestError(Exception):
 class ForbiddenError(Exception):
 
   def __init__(self):
-    super(ForbiddenError, self).__init__('Access denied')
+    super().__init__('Access denied')
 
 
 class NotFoundError(Exception):
 
   def __init__(self):
-    super(NotFoundError, self).__init__('Not found')
+    super().__init__('Not found')
 
 
 class ApiRequestHandler(webapp2.RequestHandler):

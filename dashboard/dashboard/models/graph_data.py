@@ -265,7 +265,7 @@ class TestMetadata(internal_only_model.CreateHookInternalOnlyModel):
     # Truncate the "description" property if necessary.
     description = kwargs.get('description') or ''
     kwargs['description'] = description[:_MAX_STRING_LENGTH]
-    super(TestMetadata, self).__init__(*args, **kwargs)
+    super().__init__(*args, **kwargs)
 
   @ndb.synctasklet
   def UpdateSheriff(self):

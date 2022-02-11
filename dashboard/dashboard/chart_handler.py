@@ -20,12 +20,11 @@ class ChartHandler(request_handler.RequestHandler):
     template_values.update(self._GetChartValues())
     template_values['revision_info'] = json.dumps(
         template_values['revision_info'])
-    return super(ChartHandler, self).RenderHtml(template_file, template_values,
-                                                status)
+    return super().RenderHtml(template_file, template_values, status)
 
   def GetDynamicVariables(self, template_values, request_path=None):
     template_values.update(self._GetChartValues())
-    super(ChartHandler, self).GetDynamicVariables(template_values, request_path)
+    super().GetDynamicVariables(template_values, request_path)
 
   def _GetChartValues(self):
     return {'revision_info': revision_info_client.GetRevisionInfoConfig()}

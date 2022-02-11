@@ -24,7 +24,7 @@ from dashboard.models import graph_data
 class EditConfigHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    super(EditConfigHandlerTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/put_entities_task',
                                     put_entities_task.PutEntitiesTaskHandler)])
     self.testapp = webtest.TestApp(app)

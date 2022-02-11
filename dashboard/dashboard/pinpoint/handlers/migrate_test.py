@@ -22,7 +22,7 @@ from dashboard.pinpoint import test
 class MigrateAuthTest(test.TestCase):
 
   def setUp(self):
-    super(MigrateAuthTest, self).setUp()
+    super().setUp()
 
     patcher = mock.patch.object(migrate, 'datetime', _DatetimeStub())
     self.addCleanup(patcher.stop)
@@ -54,7 +54,7 @@ class MigrateAuthTest(test.TestCase):
 class MigrateTest(MigrateAuthTest):
 
   def setUp(self):
-    super(MigrateTest, self).setUp()
+    super().setUp()
 
     print('MigrateTest')
     self._SetupCredentials(testing_common.INTERNAL_USER,
@@ -118,10 +118,10 @@ def _JobStateSetState(self, state):
   self._new_field = 'new value'
 
 
-class _DatetimeStub(object):
+class _DatetimeStub:
 
   # pylint: disable=invalid-name
-  class datetime(object):
+  class datetime:
 
     def isoformat(self):
       return 'Date Time'

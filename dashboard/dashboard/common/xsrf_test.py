@@ -29,7 +29,7 @@ class ExampleHandler(request_handler.RequestHandler):
 class XsrfTest(testing_common.TestCase):
 
   def setUp(self):
-    super(XsrfTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/example', ExampleHandler)])
     self.testapp = webtest.TestApp(app)
 

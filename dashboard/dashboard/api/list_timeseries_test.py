@@ -17,7 +17,7 @@ from dashboard.common import testing_common
 class ListTimeseriesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ListTimeseriesTest, self).setUp()
+    super().setUp()
     self.SetUpApp([(r'/api/list_timeseries/(.*)',
                     list_timeseries.ListTimeseriesHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])

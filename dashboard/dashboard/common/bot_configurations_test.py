@@ -14,7 +14,7 @@ from dashboard.common import testing_common
 class ConfigTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ConfigTest, self).setUp()
+    super().setUp()
 
     namespaced_stored_object.Set(
         bot_configurations.BOT_CONFIGURATIONS_KEY, {

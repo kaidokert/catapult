@@ -26,7 +26,7 @@ from tracing.value.diagnostics import diagnostic_ref
 from tracing.value.diagnostics import reserved_infos
 
 
-class ReadValue(quest.Quest):
+class ReadValue(quest.Quest):  # pylint: disable=eq-without-hash
 
   def __init__(self,
                results_filename,
@@ -110,7 +110,7 @@ class ReadValueExecution(execution.Execution):
   def __init__(self, results_filename, results_path, metric, grouping_label,
                trace_or_story, statistic, chart, isolate_server, isolate_hash,
                cas_root_ref=None):
-    super(ReadValueExecution, self).__init__()
+    super().__init__()
     self._results_filename = results_filename
     self._results_path = results_path
     self._metric = metric
@@ -171,9 +171,6 @@ class ReadValueExecution(execution.Execution):
       result_values = self._ParseHistograms(json_data, proto_data)
       self._mode = 'histograms'
       logging.debug('Succeess.')
-    except (errors.ReadValueNotFound, errors.ReadValueNoValues,
-            errors.FatalError):
-      raise
     except (errors.InformationalError, errors.ReadValueUnknownFormat) as e:
       # In case we encounter any other error, we should log and proceed.
       logging.error('Failed parsing histograms: %s', e)
@@ -185,9 +182,6 @@ class ReadValueExecution(execution.Execution):
         result_values = self._ParseGraphJson(json_data)
         self._mode = 'graphjson'
         logging.debug('Succeess.')
-      except (errors.ReadValueChartNotFound, errors.ReadValueTraceNotFound,
-              errors.FatalError):
-        raise
       except errors.InformationalError as e:
         logging.error('Failed parsing histograms: %s', e)
         graph_json_exception = sys.exc_info()[1]
@@ -204,8 +198,8 @@ class ReadValueExecution(execution.Execution):
         histograms.ImportDicts(json_data)
       elif proto_data is not None:
         histograms.ImportProto(proto_data)
-    except BaseException:
-      raise errors.ReadValueUnknownFormat(self._results_filename)
+    except BaseException as e:
+      raise errors.ReadValueUnknownFormat(self._results_filename) from e
 
     self._trace_urls = FindTraceUrls(histograms)
     histograms_by_path = CreateHistogramSetByTestPathDict(histograms)
@@ -290,22 +284,22 @@ def _GetValuesOrStatistic(statistic, hist):
   # js.
   if statistic == 'avg':
     return [hist.running.mean]
-  elif statistic == 'min':
+  if statistic == 'min':
     return [hist.running.min]
-  elif statistic == 'max':
+  if statistic == 'max':
     return [hist.running.max]
-  elif statistic == 'sum':
+  if statistic == 'sum':
     return [hist.running.sum]
-  elif statistic == 'std':
+  if statistic == 'std':
     return [hist.running.stddev]
-  elif statistic == 'count':
+  if statistic == 'count':
     return [hist.running.count]
   raise errors.ReadValueUnknownStat(statistic)
 
 
 def IsWindows(arguments):
   dimensions = arguments.get('dimensions', ())
-  if isinstance(dimensions, basestring):
+  if isinstance(dimensions, str):
     dimensions = json.loads(dimensions)
   for dimension in dimensions:
     if dimension['key'] == 'os' and dimension['value'].startswith('Win'):
@@ -363,7 +357,7 @@ def RetrieveCASOutput(cas_root_ref, path, client=None):
   response = cas_client.BatchRead(
       cas_root_ref['cas_instance'], [node['digest']])
   data = response['responses'][0].get('data', '')
-  return base64.decodestring(data)
+  return base64.decodebytes(data)
 
 
 def RetrieveOutputJsonFromCAS(cas_root_ref, path):
@@ -389,7 +383,7 @@ def ExtractValuesFromHistograms(test_paths_to_match, histograms_by_path,
           histograms_by_path.get(histogram)
           for histogram in test_paths_to_match
           if histogram in histograms_by_path))
-  logging.debug('Histograms in results: %s', histograms_by_path.keys())
+  logging.debug('Histograms in results: %s', list(histograms_by_path))
   if matching_histograms:
     logging.debug('Found %s matching histograms: %s', len(matching_histograms),
                   [h.name for h in matching_histograms])
@@ -398,7 +392,7 @@ def ExtractValuesFromHistograms(test_paths_to_match, histograms_by_path,
   elif histogram_name:
     # Histograms don't exist, which means this is summary
     summary_value = []
-    for test_path, histograms_for_test_path in histograms_by_path.items():
+    for test_path, histograms_for_test_path in list(histograms_by_path.items()):
       for test_path_to_match in test_paths_to_match:
         if test_path.startswith(test_path_to_match):
           for h in histograms_for_test_path:
@@ -415,14 +409,13 @@ def ExtractValuesFromHistograms(test_paths_to_match, histograms_by_path,
   if not result_values and histogram_name:
     if matching_histograms:
       raise errors.ReadValueNoValues()
-    else:
-      conditions = {'histogram': histogram_name}
-      if grouping_label:
-        conditions['grouping_label'] = grouping_label
-      if story:
-        conditions['story'] = story
-      reason = ', '.join(list(':'.join(i) for i in conditions.items()))
-      raise errors.ReadValueNotFound(reason)
+    conditions = {'histogram': histogram_name}
+    if grouping_label:
+      conditions['grouping_label'] = grouping_label
+    if story:
+      conditions['story'] = story
+    reason = ', '.join(list(':'.join(i) for i in list(conditions.items())))
+    raise errors.ReadValueNotFound(reason)
   return result_values
 
 
@@ -432,7 +425,7 @@ def ExtractValuesFromHistograms(test_paths_to_match, histograms_by_path,
 # JobState objects in Datastore. We're leaving these around for a time until we
 # can determine that it's safe to remove these types.
 #
-class ReadHistogramsJsonValue(quest.Quest):
+class ReadHistogramsJsonValue(quest.Quest):  # pylint: disable=eq-without-hash
 
   def __init__(self,
                results_filename,
@@ -502,7 +495,7 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
 
   def __init__(self, results_filename, hist_name, grouping_label,
                trace_or_story, statistic, isolate_server, isolate_hash):
-    super(_ReadHistogramsJsonValueExecution, self).__init__()
+    super().__init__()
     self._results_filename = results_filename
     self._hist_name = hist_name
     self._grouping_label = grouping_label
@@ -567,7 +560,7 @@ class _ReadHistogramsJsonValueExecution(execution.Execution):
     self._Complete(result_values=tuple(result_values))
 
 
-class ReadGraphJsonValue(quest.Quest):
+class ReadGraphJsonValue(quest.Quest):  # pylint: disable=eq-without-hash
 
   def __init__(self, results_filename, chart, trace):
     self._results_filename = results_filename
@@ -613,7 +606,7 @@ class _ReadGraphJsonValueExecution(execution.Execution):
 
   def __init__(self, results_filename, chart, trace, isolate_server,
                isolate_hash):
-    super(_ReadGraphJsonValueExecution, self).__init__()
+    super().__init__()
     self._results_filename = results_filename
     self._chart = chart
     self._trace = trace

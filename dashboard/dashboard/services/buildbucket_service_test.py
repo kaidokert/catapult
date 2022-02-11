@@ -63,7 +63,7 @@ class BuildbucketServiceTest(unittest.TestCase):
     self._AssertRequestMadeOnce('builds/job_id')
 
 
-class FakeJob(object):
+class FakeJob:
 
   def GetBuildParameters(self):
     return _BUILD_PARAMETERS

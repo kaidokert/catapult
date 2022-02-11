@@ -25,7 +25,7 @@ from dashboard.models import anomaly
 class UpdateBugWithResultsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(UpdateBugWithResultsTest, self).setUp()
+    super().setUp()
 
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
 

@@ -20,7 +20,7 @@ from dashboard.models import page_state
 class ShortUriTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ShortUriTest, self).setUp()
+    super().setUp()
     self.SetUpApp([('/short_uri', short_uri.ShortUriHandler)])
 
   def testUpgradeOld(self):

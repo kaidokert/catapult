@@ -29,7 +29,7 @@ from dashboard.models.subscription import Subscription
 class GroupReportTest(testing_common.TestCase):
 
   def setUp(self):
-    super(GroupReportTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/group_report',
                                     group_report.GroupReportHandler)])
     self.testapp = webtest.TestApp(app)

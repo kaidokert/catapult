@@ -28,7 +28,7 @@ from dashboard.services import issue_tracker_service
 class MarkRecoveredAlertsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(MarkRecoveredAlertsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/mark_recovered_alerts',
          mark_recovered_alerts.MarkRecoveredAlertsHandler)

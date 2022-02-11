@@ -39,7 +39,7 @@ class ReadValueQuestTest(unittest.TestCase):
     self.stream_handler = logging.StreamHandler(sys.stdout)
     self.logger.addHandler(self.stream_handler)
     self.addCleanup(self.logger.removeHandler, self.stream_handler)
-    super(ReadValueQuestTest, self).setUp()
+    super().setUp()
 
   def testMinimumArguments(self):
     quest = read_value.ReadValue.FromDict(_BASE_ARGUMENTS_HISTOGRAMS)
@@ -146,7 +146,7 @@ class _ReadValueExecutionTest(unittest.TestCase):
         testing_common.FakeCASClient)
     cas_client.start()
     self.addCleanup(cas_client.stop)
-    super(_ReadValueExecutionTest, self).setUp()
+    super().setUp()
 
   def SetOutputFileContents(self, contents):
     self._retrieve.side_effect = (
@@ -209,7 +209,7 @@ class _ReadValueExecutionTest(unittest.TestCase):
   def assertReadValueError(self, execution, exception):
     self.assertTrue(execution.completed)
     self.assertTrue(execution.failed)
-    self.assertIsInstance(execution.exception['traceback'], basestring)
+    self.assertIsInstance(execution.exception['traceback'], str)
     self.assertIn(exception, execution.exception['traceback'])
 
   def assertReadValueSuccess(self, execution):

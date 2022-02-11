@@ -9,7 +9,7 @@ from __future__ import absolute_import
 import re
 
 
-class BisectJob(object):
+class BisectJob:
   """A buildbot bisect job started and monitored through buildbucket."""
 
   def __init__(self,

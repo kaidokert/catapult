@@ -49,7 +49,7 @@ class _QuestStub(quest.Quest):
 class ExecutionResults(execution_test._ExecutionStub):
 
   def __init__(self, c):
-    super(ExecutionResults, self).__init__()
+    super().__init__()
     self._result_for_test = _RESULTS_BY_CHANGE[str(c)]
 
   def _Poll(self):
@@ -71,7 +71,7 @@ def _FakeTasklet(*args):
 class UpdateDashboardStatsTest(test.TestCase):
 
   def setUp(self):
-    super(UpdateDashboardStatsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/update_dashboard_stats',
          update_dashboard_stats.UpdateDashboardStatsHandler)

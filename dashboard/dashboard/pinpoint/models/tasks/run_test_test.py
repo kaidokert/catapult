@@ -36,7 +36,7 @@ DIMENSIONS = [
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
-    super(EvaluatorTest, self).setUp()
+    super().setUp()
     self.maxDiff = None
     self.job = job_module.Job.New((), ())
     task_module.PopulateTaskGraph(
@@ -521,7 +521,7 @@ AttributeError: 'Namespace' object has no attribute 'benchmark_names'"""
 class ValidatorTest(test.TestCase):
 
   def setUp(self):
-    super(ValidatorTest, self).setUp()
+    super().setUp()
     self.maxDiff = None
 
   def testMissingDependency(self):

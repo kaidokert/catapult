@@ -25,14 +25,14 @@ from dashboard.models import anomaly
 class EditAnomaliesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(EditAnomaliesTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/edit_anomalies',
                                     edit_anomalies.EditAnomaliesHandler)])
     self.testapp = webtest.TestApp(app)
     testing_common.SetSheriffDomains(['chromium.org'])
 
   def tearDown(self):
-    super(EditAnomaliesTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def _AddAnomaliesToDataStore(self):

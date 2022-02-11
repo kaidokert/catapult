@@ -181,7 +181,7 @@ _UNITS_TO_DIRECTION_DICT = {
 class AddPointTest(testing_common.TestCase):
 
   def setUp(self):
-    super(AddPointTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/add_point', add_point.AddPointHandler),
                                    ('/add_point_queue',
                                     add_point_queue.AddPointQueueHandler)])

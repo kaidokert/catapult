@@ -20,7 +20,7 @@ from dashboard.models import report_template
 class ReportTemplateTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ReportTemplateTest, self).setUp()
+    super().setUp()
     self.SetUpApp([
         ('/api/report/template', api_report_template.ReportTemplateHandler),
     ])

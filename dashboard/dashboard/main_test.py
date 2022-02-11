@@ -20,7 +20,7 @@ from dashboard.models import anomaly
 class MainTest(testing_common.TestCase):
 
   def setUp(self):
-    super(MainTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/', main.MainHandler)])
     self.testapp = webtest.TestApp(app)
 

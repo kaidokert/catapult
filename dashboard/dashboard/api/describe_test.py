@@ -22,7 +22,7 @@ TEST_SUITE_NAME = 'test_suite'
 class DescribeTest(testing_common.TestCase):
 
   def setUp(self):
-    super(DescribeTest, self).setUp()
+    super().setUp()
     self.SetUpApp([(r'/api/describe', describe.DescribeHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 

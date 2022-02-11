@@ -43,7 +43,7 @@ class TestApiRequestHandlerForbidden(api_request_handler.ApiRequestHandler):
 class ApiRequestHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ApiRequestHandlerTest, self).setUp()
+    super().setUp()
 
     app = webapp2.WSGIApplication([(r'/api/test', TestApiRequestHandler),
                                    (r'/api/forbidden',

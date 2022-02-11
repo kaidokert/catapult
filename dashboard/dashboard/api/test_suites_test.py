@@ -21,7 +21,7 @@ from dashboard.common import testing_common
 class TestSuitesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(TestSuitesTest, self).setUp()
+    super().setUp()
     self.SetUpApp([('/api/test_suites', test_suites.TestSuitesHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
     external_key = namespaced_stored_object.NamespaceKey(

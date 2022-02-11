@@ -196,7 +196,7 @@ def _ValidateDashboardJson(dash_json_dict):
 
   charts = dash_json_dict.get('chart_data', {}).get('charts', {})
 
-  for _, v in charts.items():
+  for _, v in list(charts.items()):
     if not isinstance(v, dict):
       raise BadRequestError('Expected be dict: %s' % str(v))
 
@@ -696,7 +696,7 @@ def _IsAcceptableRowId(row_id, last_row_id):
   return True
 
 
-def GetAndValidateRowId(row_dict):
+def GetAndValidateRowId(row_dict):  # pylint: disable=inconsistent-return-statements
   """Returns the integer ID for a new Row.
 
   This method is also responsible for validating the input fields related
@@ -782,7 +782,7 @@ def _GetSupplementalColumns(row):
     A dict of valid supplemental columns.
   """
   columns = {}
-  for (name, value) in row.get('supplemental_columns', {}).items():
+  for (name, value) in list(row.get('supplemental_columns', {}).items()):
     # Don't allow too many columns
     if len(columns) == _MAX_NUM_COLUMNS:
       logging.warning('Too many columns, some being dropped.')

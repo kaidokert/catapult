@@ -57,7 +57,7 @@ def _StartBisectForBug(bug_id, project_id):
 
   bot_configurations = namespaced_stored_object.Get('bot_configurations')
 
-  if test.bot_name not in list(bot_configurations.keys()):
+  if test.bot_name not in list(bot_configurations):
     raise NotBisectableError('Bot: %s has no corresponding Pinpoint bot.' %
                              test.bot_name)
   return _StartPinpointBisect(bug_id, project_id, test_anomaly, test)

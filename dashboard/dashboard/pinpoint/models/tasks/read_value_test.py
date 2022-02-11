@@ -31,7 +31,7 @@ from tracing.value.diagnostics import reserved_infos
 class EvaluatorTest(test.TestCase):
 
   def setUp(self):
-    super(EvaluatorTest, self).setUp()
+    super().setUp()
     self.maxDiff = None
     self.job = job_module.Job.New((), ())
     # Set up a common evaluator for all the test cases.

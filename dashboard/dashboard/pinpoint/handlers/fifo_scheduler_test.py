@@ -20,7 +20,7 @@ from dashboard.pinpoint.models.tasks import bisection_test_util
 class FifoSchedulerTest(test.TestCase):
 
   def setUp(self):
-    super(FifoSchedulerTest, self).setUp()
+    super().setUp()
     namespaced_stored_object.Set(bot_configurations.BOT_CONFIGURATIONS_KEY,
                                  {'mock': {}})
 
@@ -242,7 +242,7 @@ class FifoSchedulerTest(test.TestCase):
 class FifoSchedulerExecutionEngineTest(bisection_test_util.BisectionTestBase):
 
   def setUp(self):
-    super(FifoSchedulerExecutionEngineTest, self).setUp()
+    super().setUp()
     namespaced_stored_object.Set(bot_configurations.BOT_CONFIGURATIONS_KEY,
                                  {'mock': {}})
 
@@ -267,7 +267,7 @@ class FifoSchedulerExecutionEngineTest(bisection_test_util.BisectionTestBase):
 class FifoSchedulerCostModelTest(test.TestCase):
 
   def setUp(self):
-    super(FifoSchedulerCostModelTest, self).setUp()
+    super().setUp()
     # We're setting up a cost model where tryjobs cost half as much as a
     # performance or functional bisection, and ensure that we're seeing the
     # budget consumed appropriately in a scheduling iteration.

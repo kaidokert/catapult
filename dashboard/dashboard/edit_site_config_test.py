@@ -23,7 +23,7 @@ from dashboard.common import xsrf
 class EditSiteConfigTest(testing_common.TestCase):
 
   def setUp(self):
-    super(EditSiteConfigTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/edit_site_config',
                                     edit_site_config.EditSiteConfigHandler)])
     self.testapp = webtest.TestApp(app)

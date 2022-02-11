@@ -24,7 +24,7 @@ _SAMPLE_LAYOUT = ('{ "my_test_suite/my_test": ["Foreground", '
                    mock.MagicMock(return_value=None))
 class SheriffConfigClientTest(testing_common.TestCase):
 
-  class _Response(object):
+  class _Response:
     # pylint: disable=invalid-name
 
     def __init__(self, ok, text):
@@ -37,7 +37,7 @@ class SheriffConfigClientTest(testing_common.TestCase):
     def status_code(self):
       return 200
 
-  class _Session(object):
+  class _Session:
 
     def __init__(self, response):
       self._response = response

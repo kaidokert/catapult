@@ -18,7 +18,7 @@ from dashboard.models import report_template
 class ReportNamesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ReportNamesTest, self).setUp()
+    super().setUp()
     self.SetUpApp([('/api/report_names', report_names.ReportNamesHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
     report_template.ReportTemplate(internal_only=False, name='external').put()

@@ -158,10 +158,10 @@ def _SubTestsDict(paths, deprecated):
       merged[test_name]['sub_tests'].append(sub_test_path)
 
   if deprecated:
-    for k, v in merged.items():
+    for k, v in list(merged.items()):
       merged[k]['deprecated'] = True
 
-  for k, v in merged.items():
+  for k, v in list(merged.items()):
     merged[k]['sub_tests'] = _SubTestsDict(v['sub_tests'], deprecated)
   return merged
 
@@ -408,7 +408,7 @@ def _GetSelectedTestPathsForDict(test_path_dict):
   paths = []
   test_key_futures = []
   any_missing = False
-  for path, selection in test_path_dict.items():
+  for path, selection in list(test_path_dict.items()):
     if selection == 'core':
       try:
         paths.extend(_GetCoreTestPathsForTest(path, True))
@@ -457,7 +457,7 @@ def _GetSelectedTestPathsForDict(test_path_dict):
 
 def _GetUnselectedTestPathsForDict(test_path_dict):
   paths = []
-  for path, selection in test_path_dict.items():
+  for path, selection in list(test_path_dict.items()):
     if selection == 'core':
       paths.extend(_GetCoreTestPathsForTest(path, False))
     elif selection == 'all':

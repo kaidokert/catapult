@@ -26,7 +26,7 @@ from tracing.value.diagnostics import generic_set
 class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(UpdateTestSuiteDescriptorsTest, self).setUp()
+    super().setUp()
     handler = update_test_suite_descriptors.UpdateTestSuiteDescriptorsHandler
     self.SetUpApp([('/update_test_suite_descriptors', handler)])
     testing_common.SetIsInternalUser('internal@chromium.org', True)
@@ -65,7 +65,7 @@ class UpdateTestSuiteDescriptorsTest(testing_common.TestCase):
     # to global state like SetPrivilegedRequest, so set privileged=False as the
     # taskqueue does, and test that UpdateDescriptor sets it back to True so
     # that it gets the internal TestMetadata.
-    class FakeRequest(object):
+    class FakeRequest:
 
       def __init__(self):
         self.registry = {'privileged': False}

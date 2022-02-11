@@ -21,7 +21,7 @@ def GetRBECASService():
   return GetRBECASService._client
 
 
-class RBECASService(object):
+class RBECASService:
 
   def __init__(self):
     """Initializes an object for retrieving files and directories from RBE-CAS.

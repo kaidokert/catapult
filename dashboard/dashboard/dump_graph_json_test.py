@@ -25,7 +25,7 @@ from dashboard.models.subscription import Subscription
 class DumpGraphJsonTest(testing_common.TestCase):
 
   def setUp(self):
-    super(DumpGraphJsonTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/dump_graph_json',
                                     dump_graph_json.DumpGraphJsonHandler)])
     self.testapp = webtest.TestApp(app)

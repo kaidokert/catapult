@@ -37,7 +37,7 @@ def GetAliasesAsync(bot):
   if 'alias' in configurations[bot]:
     bot = configurations[bot]['alias']
     aliases.add(bot)
-  for name, configuration in configurations.items():
+  for name, configuration in list(configurations.items()):
     if configuration.get('alias') == bot:
       aliases.add(name)
   raise ndb.Return(aliases)
@@ -46,7 +46,8 @@ def GetAliasesAsync(bot):
 def List():
   bot_configurations = namespaced_stored_object.Get(BOT_CONFIGURATIONS_KEY)
   canonical_names = [
-      name for name, value in bot_configurations.items() if 'alias' not in value
+      name for name, value in list(bot_configurations.items())
+      if 'alias' not in value
   ]
   if six.PY2:
     return sorted(canonical_names, key=string.lower)

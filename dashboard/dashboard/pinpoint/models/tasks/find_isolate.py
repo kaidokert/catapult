@@ -22,7 +22,7 @@ from dashboard.services import request
 FAILURE_MAPPING = {'FAILURE': 'failed', 'CANCELLED': 'cancelled'}
 
 
-class ScheduleBuildAction(object):
+class ScheduleBuildAction:
   """Action to schedule a build via BuildBucket.
 
   This action will schedule a build via the BuildBucket API, and ensure that
@@ -254,13 +254,14 @@ class UpdateBuildStatusAction(
         self.task.id,
         new_state='completed',
         payload=self.task.payload)
+    return None
 
   def __str__(self):
     return 'Update Build Action <job = %s, task = %s>' % (self.job.job_id,
                                                           self.task.id)
 
 
-class InitiateEvaluator(object):
+class InitiateEvaluator:
 
   def __init__(self, job):
     self.job = job
@@ -309,7 +310,7 @@ class InitiateEvaluator(object):
     return None
 
 
-class UpdateEvaluator(object):
+class UpdateEvaluator:
 
   def __init__(self, job):
     self.job = job
@@ -332,7 +333,7 @@ class UpdateEvaluator(object):
 class Evaluator(evaluators.SequenceEvaluator):
 
   def __init__(self, job):
-    super(Evaluator, self).__init__(
+    super().__init__(
         evaluators=(
             evaluators.TaskPayloadLiftingEvaluator(),
             evaluators.FilteringEvaluator(
@@ -392,7 +393,7 @@ def BuildSerializer(task, _, accumulator):
 class Serializer(evaluators.FilteringEvaluator):
 
   def __init__(self):
-    super(Serializer, self).__init__(
+    super().__init__(
         predicate=evaluators.TaskTypeEq('find_isolate'),
         delegate=BuildSerializer)
 

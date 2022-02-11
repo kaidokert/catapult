@@ -23,7 +23,7 @@ from dashboard.models import page_state
 class ReportTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ReportTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/report', report.ReportHandler),
         ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler)

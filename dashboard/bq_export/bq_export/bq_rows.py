@@ -123,7 +123,7 @@ def main():
       }
       # Add the expando properties as a JSON-encoded dict.
       properties = {}
-      for key, value in entity.items():
+      for key, value in list(entity.items()):
         if key in d or key in ['parent_test', 'error']:
           # skip properties with dedicated columns.
           continue

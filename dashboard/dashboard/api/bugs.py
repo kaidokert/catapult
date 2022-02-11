@@ -125,4 +125,4 @@ class BugsWithProjectHandler(BugsHandler):
     if len(args) != 2:
       raise api_request_handler.BadRequestError(
           'Must have two non-empty arguments to URI.')
-    return super(BugsWithProjectHandler, self).Post(args[1], project=args[0])
+    return super().Post(args[1], project=args[0])

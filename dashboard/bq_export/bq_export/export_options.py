@@ -46,7 +46,7 @@ class BqExportOptions(PipelineOptions):
     return _TimeRangeProvider(self.end_date, self.num_days)
 
 
-class _TimeRangeProvider(object):
+class _TimeRangeProvider:
   """A ValueProvider-like based on the end_date and num_days ValueProviders.
 
   This class is a workaround for the lack of NestedValueProviders in Beam's

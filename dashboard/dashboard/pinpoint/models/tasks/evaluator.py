@@ -24,7 +24,7 @@ class ExecutionEngine(evaluators.SequenceEvaluator):
 
   def __init__(self, job):
     # We gather all the evaluators from the modules we know.
-    super(ExecutionEngine, self).__init__(evaluators=[
+    super().__init__(evaluators=[
         evaluators.DispatchByTaskType({
             'find_isolate': find_isolate.Evaluator(job),
             'find_culprit': performance_bisection.Evaluator(job),

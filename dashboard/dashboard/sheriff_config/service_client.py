@@ -18,15 +18,14 @@ class Error(Exception):
 class DiscoveryError(Error):
 
   def __init__(self, error):
-    super(DiscoveryError,
-          self).__init__('Service discovery failed: {}'.format(error))
+    super().__init__('Service discovery failed: {}'.format(error))
     self.error = error
 
 
 class BadArgumentError(Error):
 
   def __init__(self, err_str):
-    super(BadArgumentError, self).__init__('Bad Argument: {}'.format(err_str))
+    super().__init__('Bad Argument: {}'.format(err_str))
 
 
 def CreateServiceClient(api_root, api, version, http=None, credentials=None):
@@ -72,5 +71,5 @@ def CreateServiceClient(api_root, api, version, http=None, credentials=None):
           http=http,
           cache_discovery=False)
   except (errors.HttpError, errors.UnknownApiNameOrVersion) as e:
-    raise DiscoveryError(e)
+    raise DiscoveryError(e) from e
   return client

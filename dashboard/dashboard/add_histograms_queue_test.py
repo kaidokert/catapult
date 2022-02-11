@@ -79,7 +79,7 @@ TEST_OWNERS = {
 class AddHistogramsQueueTest(testing_common.TestCase):
 
   def setUp(self):
-    super(AddHistogramsQueueTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/add_histograms_queue',
          add_histograms_queue.AddHistogramsQueueHandler)
@@ -448,11 +448,10 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
     row = rows_by_path.pop('Chromium/win7/suite/metric')
     self.assertEqual(0, len(rows_by_path))
-    fields = iter(row.to_dict().keys())
     d_fields = []
     r_fields = []
     a_fields = []
-    for field in fields:
+    for field in row.to_dict().keys():
       if field.startswith('d_'):
         d_fields.append(field)
       elif field.startswith('r_'):
@@ -501,8 +500,9 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 
     ndb.put_multi(rows)
     row = graph_data.Row.query().fetch()[0]
-    fields = iter(row.to_dict().keys())
-    d_fields = [field for field in fields if field.startswith('d_')]
+    d_fields = [
+        field for field in row.to_dict().keys() if field.startswith('d_')
+    ]
 
     self.assertEqual(1, len(d_fields))
     self.assertEqual(3, row.d_count)
@@ -618,7 +618,7 @@ class AddHistogramsQueueTest(testing_common.TestCase):
 class AddHistogramsQueueTestWithUploadCompletionToken(testing_common.TestCase):
 
   def setUp(self):
-    super(AddHistogramsQueueTestWithUploadCompletionToken, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/add_histograms_queue',
          add_histograms_queue.AddHistogramsQueueHandler)

@@ -23,7 +23,7 @@ from dashboard.pinpoint.models.tasks import find_isolate
 class FindIsolateEvaluatorBase(test.TestCase):
 
   def setUp(self):
-    super(FindIsolateEvaluatorBase, self).setUp()
+    super().setUp()
     self.maxDiff = None  # pylint: disable=invalid-name
     self.job = job_module.Job.New((), ())
     task_module.PopulateTaskGraph(
@@ -218,7 +218,7 @@ class FindIsolateEvaluatorTest(FindIsolateEvaluatorBase):
 class FindIsolateEvaluatorUpdateTests(FindIsolateEvaluatorBase):
 
   def setUp(self):
-    super(FindIsolateEvaluatorUpdateTests, self).setUp()
+    super().setUp()
 
     # Here we set up the pre-requisite for polling, where we've already had a
     # successful build scheduled.

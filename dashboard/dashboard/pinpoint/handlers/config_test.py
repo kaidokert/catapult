@@ -16,7 +16,7 @@ from dashboard.pinpoint import test
 class ConfigTest(test.TestCase):
 
   def setUp(self):
-    super(ConfigTest, self).setUp()
+    super().setUp()
 
     self.SetCurrentUser('external@chromium.org')
 

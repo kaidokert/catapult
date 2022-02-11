@@ -23,7 +23,7 @@ from dashboard.models import graph_data
 class GraphCsvTest(testing_common.TestCase):
 
   def setUp(self):
-    super(GraphCsvTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/graph_csv', graph_csv.GraphCsvHandler)])
     self.testapp = webtest.TestApp(app)
     self.SetCurrentUser('foo@bar.com', is_admin=True)

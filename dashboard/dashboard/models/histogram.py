@@ -72,9 +72,7 @@ class ErrorTolerantJsonProperty(ndb.BlobProperty):
       self,
       compressed=None
   ):
-    super(ErrorTolerantJsonProperty, self).__init__(
-        compressed=compressed
-    )
+    super().__init__(compressed=compressed)
 
   def _to_base_type(self, value):
     as_str = json.dumps(value, separators=(",", ":"), ensure_ascii=True)
@@ -159,7 +157,7 @@ class SparseDiagnostic(JsonModel):
       diagnostics_by_name[diagnostic.name] = diagnostic
     raise ndb.Return({
         diagnostic.name: diagnostic.data
-        for diagnostic in diagnostics_by_name.values()
+        for diagnostic in list(diagnostics_by_name.values())
     })
 
   @staticmethod
@@ -176,7 +174,7 @@ class SparseDiagnostic(JsonModel):
 
     futures = []
 
-    for diagnostics in diagnostics_by_name.values():
+    for diagnostics in list(diagnostics_by_name.values()):
       sorted_diagnostics = sorted(diagnostics, key=lambda d: d.start_revision)
       unique_diagnostics = []
 
@@ -519,7 +517,7 @@ def _FindOrInsertDiagnosticsOutOfOrder(new_entities, test, rev):
 
   futures = []
 
-  for name in diagnostics_by_name.keys():
+  for name in list(diagnostics_by_name.keys()):
     if not name in new_entities_by_name:
       continue
 

@@ -10,7 +10,7 @@ from apiclient import http
 from dashboard import oauth2_decorator
 
 
-class MockOAuth2Decorator(object):
+class MockOAuth2Decorator:
   """Mocks OAuth2Decorator for testing."""
 
   def __init__(self, client_id, client_secret, scope, message, callback_path):

@@ -28,16 +28,15 @@ class Error(Exception):
 class FetchError(Error):
 
   def __init__(self, error):
-    super(FetchError,
-          self).__init__('Failed fetching project configs: {}'.format(error))
+    super().__init__('Failed fetching project configs: {}'.format(error))
     self.error = error
 
 
 class InvalidConfigError(Error):
 
   def __init__(self, config, fields):
-    super(InvalidConfigError, self).__init__(
-        'Config (%r) missing required fields: %r' % (config, fields))
+    super().__init__('Config (%r) missing required fields: %r' %
+                     (config, fields))
     self.fields = fields
     self.config = config
 
@@ -45,8 +44,7 @@ class InvalidConfigError(Error):
 class InvalidContentError(Error):
 
   def __init__(self, error, config):
-    super(InvalidContentError, self).__init__(
-        'Config (%r) content decoding error: %s' % (config, error))
+    super().__init__('Config (%r) content decoding error: %s' % (config, error))
     self.config = config
     self.error = error
 
@@ -56,7 +54,7 @@ def FindAllSheriffConfigs(client):
   try:
     configs = client.get_project_configs(path=SHERIFF_CONFIG_PATH).execute()
   except (errors.HttpError, httplib2.HttpLib2Error) as e:
-    raise FetchError(e)
+    raise FetchError(e) from e
   return configs
 
 
@@ -108,10 +106,10 @@ def StoreConfigs(client, configs):
       sheriff_config = validator.Validate(
           base64.standard_b64decode(config['content']))
     except validator.Error as error:
-      raise InvalidContentError(config, error)
+      raise InvalidContentError(error, config) from error
 
     entity = datastore.Entity(
-        key=key, exclude_from_indexes=['sheriff_config', 'url'])
+        exclude_from_indexes=['sheriff_config', 'url'], key=key)
     entity.update({
         'config_set': config['config_set'],
         'revision': config['revision'],
@@ -144,7 +142,8 @@ def StoreConfigs(client, configs):
     })
     client.put_multi(list(entities.values()) + [subscription_index])
 
-class Matcher(object):
+
+class Matcher:
 
   def __init__(self, subscription):
     self._match_subscription = matcher_module.CompileRules(
@@ -223,7 +222,7 @@ def ListAllConfigs(client):
     subscription_index_key = client.key('SubscriptionIndex', 'global')
     subscription_index = client.get(subscription_index_key)
     if subscription_index is None:
-      return
+      return None
 
     # Then for each instance in the 'config_sets', create a key based on the
     # subscription_index_key as a parent, and look those up in one go.

@@ -19,7 +19,7 @@ from dashboard.models import anomaly
 class TimeseriesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(TimeseriesTest, self).setUp()
+    super().setUp()
     self.SetUpApp([(r'/api/timeseries/(.*)', timeseries.TimeseriesHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 

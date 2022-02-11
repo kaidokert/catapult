@@ -23,8 +23,7 @@ class EditAnomalyConfigsHandler(edit_config_handler.EditConfigHandler):
   """
 
   def __init__(self, request, response):
-    super(EditAnomalyConfigsHandler,
-          self).__init__(request, response, anomaly_config.AnomalyConfig)
+    super().__init__(request, response, anomaly_config.AnomalyConfig)
 
   def get(self):
     """Renders the UI with the form."""
@@ -45,7 +44,7 @@ class EditAnomalyConfigsHandler(edit_config_handler.EditConfigHandler):
     self.RenderHtml(
         'edit_anomaly_configs.html', {
             'anomaly_config_json': json.dumps(anomaly_configs),
-            'anomaly_config_names': sorted(anomaly_configs.keys()),
+            'anomaly_config_names': sorted(list(anomaly_configs)),
         })
 
   def _UpdateFromRequestParameters(self, entity):

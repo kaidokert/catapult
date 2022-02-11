@@ -117,7 +117,7 @@ def _ResolveTestPathDict(test_path_dict, is_selected):
   # TODO(eakuefner): These are old-style test path dicts which means that []
   # doesn't mean 'no tests' but rather 'all tests'. Remove this hack.
   if is_selected:
-    for test, selected in test_path_dict.items():
+    for test, selected in list(test_path_dict.items()):
       if selected == []:
         test_path_dict[test] = 'all'
 
@@ -256,7 +256,7 @@ def _PointInfoDict(row, anomaly_annotation_map):
     anomaly_entity = anomaly_annotation_map.get(row.revision)
     point_info['g_anomaly'] = alerts.GetAnomalyDict(anomaly_entity)
   row_dict = row.to_dict()
-  for name, val in row_dict.items():
+  for name, val in list(row_dict.items()):
     if name.startswith('r_'):
       point_info[name] = val
     elif name == 'a_default_rev':
@@ -316,7 +316,7 @@ def _ClampRevisionMap(revision_map, rev, num_points):
     rev: The requested revision.
     num_points: The requested number of points to plot.
   """
-  revisions = sorted(revision_map.keys())
+  revisions = sorted(list(revision_map))
   if len(revisions) <= num_points:
     return
 
@@ -401,7 +401,7 @@ def _GetFlotJson(revision_map, tests):
   }
 
   test_keys = [t.key.urlsafe() for t in tests]
-  for revision in sorted(revision_map.keys()):
+  for revision in sorted(list(revision_map)):
     for series_index, key in enumerate(test_keys):
       point_info = revision_map[revision].get(key, None)
       if not point_info:

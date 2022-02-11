@@ -33,7 +33,7 @@ _TEST_HISTOGRAM_DATA = {
 class GetHistogramsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(GetHistogramsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/get_histogram',
                                     get_histogram.GetHistogramHandler)])
     self.testapp = webtest.TestApp(app)

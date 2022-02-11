@@ -35,7 +35,7 @@ _TEST_HISTOGRAM_DATA = {
 class Timeseries2Test(testing_common.TestCase):
 
   def setUp(self):
-    super(Timeseries2Test, self).setUp()
+    super().setUp()
     self.SetUpApp([('/api/timeseries2', timeseries2.Timeseries2Handler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
     self.SetCurrentUserOAuth(None)
@@ -158,7 +158,7 @@ class Timeseries2Test(testing_common.TestCase):
       else:
         self.assertEqual(None, datum[4])
       if i in [0, 5]:
-        self.assertEqual('deviceIds', list(datum[5].keys())[0])
+        self.assertEqual('deviceIds', list(datum[5])[0])
       else:
         self.assertEqual(None, datum[5])
       self.assertEqual(_TEST_HISTOGRAM_DATA['name'], datum[6]['name'])

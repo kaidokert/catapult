@@ -27,7 +27,7 @@ class RefreshJobsTest(test.TestCase):
     self.stream_handler = logging.StreamHandler(sys.stdout)
     self.logger.addHandler(self.stream_handler)
     self.addCleanup(self.logger.removeHandler, self.stream_handler)
-    super(RefreshJobsTest, self).setUp()
+    super().setUp()
 
   def testGet(self):
     job = job_module.Job.New((), ())

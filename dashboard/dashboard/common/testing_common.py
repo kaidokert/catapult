@@ -42,7 +42,7 @@ EXTERNAL_USER = users.User(
     email='external@example.com', _auth_domain='example.com')
 
 
-class FakeRequestObject(object):
+class FakeRequestObject:
   """Fake Request object which can be used by datastore_hooks mocks."""
 
   def __init__(self, remote_addr=None):
@@ -50,7 +50,7 @@ class FakeRequestObject(object):
     self.remote_addr = remote_addr
 
 
-class FakeResponseObject(object):
+class FakeResponseObject:
   """Fake Response Object which can be returned by urlfetch mocks."""
 
   def __init__(self, status_code, content):
@@ -333,7 +333,7 @@ def SetIpAllowlist(ip_addresses):
 
 
 # TODO(fancl): Make it a "real" fake issue tracker.
-class FakeIssueTrackerService(object):
+class FakeIssueTrackerService:
   """A fake version of IssueTrackerService that saves call values."""
 
   def __init__(self):
@@ -447,7 +447,7 @@ class FakeIssueTrackerService(object):
     return self.issue_comments.get((project, issue_id), [])
 
 
-class FakeSheriffConfigClient(object):
+class FakeSheriffConfigClient:
 
   def __init__(self):
     self.patterns = {}
@@ -455,13 +455,13 @@ class FakeSheriffConfigClient(object):
   def Match(self, path, **_):
     # The real implementation is quite different from fnmatch. But this is
     # enough for testing because we shouldn't test match logic.
-    for p, s in self.patterns.items():
+    for p, s in list(self.patterns.items()):
       if re.match(fnmatch.translate(p), path):
         return s, None
     return [], None
 
 
-class FakeCrrev(object):
+class FakeCrrev:
 
   def __init__(self):
     self._response = None
@@ -478,7 +478,7 @@ class FakeCrrev(object):
     return self._response
 
 
-class FakePinpoint(object):
+class FakePinpoint:
 
   def __init__(self):
     self.new_job_request = None
@@ -496,7 +496,7 @@ class FakePinpoint(object):
     return self._response
 
 
-class FakeGitiles(object):
+class FakeGitiles:
 
   def __init__(self, repo_commit_list=None):
     self._repo_commit_list = repo_commit_list or {}
@@ -506,7 +506,7 @@ class FakeGitiles(object):
     return self._repo_commit_list.get(repo, {}).get(revision, {})
 
 
-class FakeRevisionInfoClient(object):
+class FakeRevisionInfoClient:
 
   def __init__(self, infos, revisions):
     self._infos = infos
@@ -523,7 +523,7 @@ class FakeRevisionInfoClient(object):
     revision_start = self.GetRevisions(test_key, start - 1)
     revision_end = self.GetRevisions(test_key, end)
     infos = []
-    for k, info in revision_info.items():
+    for k, info in list(revision_info.items()):
       if k not in revision_start or k not in revision_end:
         continue
       url = info.get('url', '')
@@ -533,7 +533,7 @@ class FakeRevisionInfoClient(object):
     return infos
 
 
-class FakeCASClient(object):
+class FakeCASClient:
 
   _trees = {}
   _files = {}

@@ -48,7 +48,7 @@ class ReadTimestampRangeFromDatastore(beam.PTransform):
       :timestamp_property: a str of the name of the timestamp property to filter
           on.
     """
-    super(ReadTimestampRangeFromDatastore, self).__init__()
+    super().__init__()
     self._query_params = query_params
     self._time_range_provider = time_range_provider
     self._step = step
@@ -69,7 +69,7 @@ class ReadTimestampRangeFromDatastore(beam.PTransform):
   class _QueryFn(beam.DoFn):
 
     def __init__(self, query_params, timestamp_property):
-      super(ReadTimestampRangeFromDatastore._QueryFn, self).__init__()
+      super().__init__()
       self._query_params = query_params
       self._timestamp_property = timestamp_property
 

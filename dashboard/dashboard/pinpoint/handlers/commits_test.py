@@ -14,7 +14,7 @@ from dashboard.pinpoint import test
 from dashboard.services import request
 
 
-class MockCommit(object):
+class MockCommit:
 
   def __init__(self, url, msg):
     self.url = url

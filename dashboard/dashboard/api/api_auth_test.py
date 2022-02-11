@@ -18,7 +18,7 @@ from dashboard.common import utils
 class ApiAuthTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ApiAuthTest, self).setUp()
+    super().setUp()
 
     patcher = mock.patch.object(datastore_hooks, 'SetPrivilegedRequest')
     self.addCleanup(patcher.stop)

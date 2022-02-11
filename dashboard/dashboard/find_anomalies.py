@@ -76,7 +76,7 @@ def _ProcessTest(test_key):
   if ref_test:
     ref_rows_by_stat = yield GetRowsToAnalyzeAsync(ref_test, max_num_rows)
 
-  for s, rows in rows_by_stat.items():
+  for s, rows in list(rows_by_stat.items()):
     if rows:
       logging.info('Processing test: %s', test_key.id())
       yield _ProcessTestStat(test, s, rows, ref_rows_by_stat.get(s))

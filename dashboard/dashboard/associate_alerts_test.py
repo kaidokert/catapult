@@ -27,7 +27,7 @@ from dashboard.services import issue_tracker_service
 class AssociateAlertsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(AssociateAlertsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/associate_alerts',
                                     associate_alerts.AssociateAlertsHandler)])
     self.testapp = webtest.TestApp(app)

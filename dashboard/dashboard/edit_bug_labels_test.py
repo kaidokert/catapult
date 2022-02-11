@@ -22,7 +22,7 @@ from dashboard.models import bug_label_patterns
 class EditBugLabelsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(EditBugLabelsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/edit_bug_labels',
                                     edit_bug_labels.EditBugLabelsHandler)])
     self.testapp = webtest.TestApp(app)
@@ -30,7 +30,7 @@ class EditBugLabelsTest(testing_common.TestCase):
     self.SetCurrentUser('x@google.com', is_admin=True)
 
   def tearDown(self):
-    super(EditBugLabelsTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def testBugLabelPattern_AddAndRemove(self):

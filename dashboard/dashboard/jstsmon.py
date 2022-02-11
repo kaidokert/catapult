@@ -51,7 +51,7 @@ METRICS = [
 class JsTsMonHandler(TSMonJSHandler):
 
   def __init__(self, request=None, response=None):
-    super(JsTsMonHandler, self).__init__(request, response)
+    super().__init__(request, response)
     self.register_metrics(METRICS)
 
   def xsrf_is_valid(self, unused_body):  # pylint: disable=invalid-name

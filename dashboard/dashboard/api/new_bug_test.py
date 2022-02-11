@@ -19,7 +19,7 @@ from dashboard.models import graph_data
 class NewBugTest(testing_common.TestCase):
 
   def setUp(self):
-    super(NewBugTest, self).setUp()
+    super().setUp()
     self.SetUpApp([('/api/new_bug', new_bug.NewBugHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
     self.SetCurrentUserOAuth(None)

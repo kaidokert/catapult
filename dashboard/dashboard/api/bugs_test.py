@@ -15,14 +15,14 @@ from dashboard.common import testing_common
 from dashboard.common import utils
 
 
-class MockIssueTrackerService(object):
+class MockIssueTrackerService:
   """A fake version of IssueTrackerService that returns expected data."""
 
   def __init__(self, http=None):
     pass
 
   @classmethod
-  def List(cls, project='chromium', *unused_args, **unused_kwargs):
+  def List(cls, *unused_args, project='chromium', **unused_kwargs):
     del project
     return {
         'items': [
@@ -104,7 +104,7 @@ class MockIssueTrackerService(object):
 class BugsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(BugsTest, self).setUp()
+    super().setUp()
     self.SetUpApp([
         (r'/api/bugs/p/(.+)/(.+)', bugs.BugsWithProjectHandler),
         (r'/api/bugs/(.*)', bugs.BugsHandler),
@@ -118,7 +118,7 @@ class BugsTest(testing_common.TestCase):
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
 
   def tearDown(self):
-    super(BugsTest, self).tearDown()
+    super().tearDown()
     bugs.issue_tracker_service.IssueTrackerService = self.original_service
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())

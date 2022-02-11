@@ -20,7 +20,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
   """Test case for functions in SparseDiagnostic."""
 
   def setUp(self):
-    super(SparseDiagnosticTest, self).setUp()
+    super().setUp()
     self.SetCurrentUser('foo@bar.com', is_admin=True)
 
   def _AddMockData(self, test_key):
@@ -60,7 +60,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
             },
         ]
     }
-    for k, diagnostic_samples in data_samples.items():
+    for k, diagnostic_samples in list(data_samples.items()):
       for i, sample in enumerate(diagnostic_samples):
         start_revision = i * 10
         end_revision = (i + 1) * 10 - 1
@@ -392,7 +392,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
             [e], test_key, e.start_revision, e.start_revision).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, sys.maxsize, [u'm1']),
+        (1, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_Latest_Different(self):
@@ -406,8 +406,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
             [e], test_key, e.start_revision, e.start_revision).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, sys.maxsize, [u'm2']),
+        (1, 9, ['m1']),
+        (10, sys.maxsize, ['m2']),
     ])
 
   def testFindOrInsertDiagnostics_Latest_Invalid(self):
@@ -423,7 +423,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
             [e], test_key, e.start_revision, e.start_revision).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (10, sys.maxsize, [u'm2']),
+        (10, sys.maxsize, ['m2']),
     ])
 
   def testFindOrInsertDiagnostics_Latest_New(self):
@@ -436,7 +436,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
             [e], test_key, e.start_revision, e.start_revision).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (10, sys.maxsize, [u'm1']),
+        (10, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Same(self):
@@ -455,7 +455,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, sys.maxsize, [u'm1']),
+        (1, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Before_Same(self):
@@ -474,7 +474,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, sys.maxsize, [u'm1']),
+        (1, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Before_Diff(self):
@@ -493,8 +493,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 4, [u'm2']),
-        (5, sys.maxsize, [u'm1']),
+        (1, 4, ['m2']),
+        (5, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurSame_NextDiff(self):
@@ -513,9 +513,9 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 4, [u'm1']),
-        (5, 9, [u'm2']),
-        (10, sys.maxsize, [u'm1']),
+        (1, 4, ['m1']),
+        (5, 9, ['m2']),
+        (10, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_NextNone(self):
@@ -534,8 +534,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 11, [u'm1']),
-        (12, sys.maxsize, [u'm2']),
+        (1, 11, ['m1']),
+        (12, sys.maxsize, ['m2']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_NextNone_Rev(self):
@@ -554,9 +554,9 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 7, [u'm1']),
-        (8, 9, [u'm2']),
-        (10, sys.maxsize, [u'm1']),
+        (1, 7, ['m1']),
+        (8, 9, ['m2']),
+        (10, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_HasRevs(self):
@@ -576,10 +576,10 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 4, [u'm1']),
-        (5, 7, [u'm2']),
-        (8, 9, [u'm1']),
-        (10, sys.maxsize, [u'm2']),
+        (1, 4, ['m1']),
+        (5, 7, ['m2']),
+        (8, 9, ['m1']),
+        (10, sys.maxsize, ['m2']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_NextDiff(self):
@@ -598,9 +598,9 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 4, [u'm1']),
-        (5, 9, [u'm2']),
-        (10, sys.maxsize, [u'm3']),
+        (1, 4, ['m1']),
+        (5, 9, ['m2']),
+        (10, sys.maxsize, ['m3']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Splits_CurDiff_NextSame(self):
@@ -619,8 +619,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 4, [u'm1']),
-        (5, sys.maxsize, [u'm3']),
+        (1, 4, ['m1']),
+        (5, sys.maxsize, ['m3']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_NoNext_NoRevs(self):
@@ -639,8 +639,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, sys.maxsize, [u'm2']),
+        (1, 9, ['m1']),
+        (10, sys.maxsize, ['m2']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_NoNext_Revs(self):
@@ -660,9 +660,9 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, 14, [u'm2']),
-        (15, sys.maxsize, [u'm3']),
+        (1, 9, ['m1']),
+        (10, 14, ['m2']),
+        (15, sys.maxsize, ['m3']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_Next_Revs(self):
@@ -683,10 +683,10 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, 12, [u'm2']),
-        (13, 14, [u'm3']),
-        (15, sys.maxsize, [u'm4']),
+        (1, 9, ['m1']),
+        (10, 12, ['m2']),
+        (13, 14, ['m3']),
+        (15, sys.maxsize, ['m4']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_Next_Revs_Same(self):
@@ -706,8 +706,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, sys.maxsize, [u'm2']),
+        (1, 9, ['m1']),
+        (10, sys.maxsize, ['m2']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_Next_NoRevs_Diff(self):
@@ -727,9 +727,9 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, 14, [u'm4']),
-        (15, sys.maxsize, [u'm3']),
+        (1, 9, ['m1']),
+        (10, 14, ['m4']),
+        (15, sys.maxsize, ['m3']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_Next_NoRevs_Same(self):
@@ -749,8 +749,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 9, [u'm1']),
-        (10, sys.maxsize, [u'm3']),
+        (1, 9, ['m1']),
+        (10, sys.maxsize, ['m3']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_Next_Prev_Same(self):
@@ -770,7 +770,7 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, sys.maxsize, [u'm1']),
+        (1, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_Clobber_NextDiff_PrevSame(self):
@@ -790,8 +790,8 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 14, [u'm1']),
-        (15, sys.maxsize, [u'm3']),
+        (1, 14, ['m1']),
+        (15, sys.maxsize, ['m3']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_LastInvalid(self):
@@ -815,9 +815,9 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, 2, [u'm1']),
-        (3, 4, [u'm3']),
-        (5, sys.maxsize, [u'm1']),
+        (1, 2, ['m1']),
+        (3, 4, ['m3']),
+        (5, sys.maxsize, ['m1']),
     ])
 
   def testFindOrInsertDiagnostics_OutOfOrder_AllInvalid(self):
@@ -838,5 +838,5 @@ class SparseDiagnosticTest(testing_common.TestCase):
         ).get_result())
 
     self._CheckExpectations(e, guid_mapping, [
-        (1, sys.maxsize, [u'm2']),
+        (1, sys.maxsize, ['m2']),
     ])

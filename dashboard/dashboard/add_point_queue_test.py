@@ -17,7 +17,7 @@ from dashboard.models import graph_data
 class GetOrCreateAncestorsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(GetOrCreateAncestorsTest, self).setUp()
+    super().setUp()
     self.SetCurrentUser('foo@bar.com', is_admin=True)
 
   def testGetOrCreateAncestors_GetsExistingEntities(self):

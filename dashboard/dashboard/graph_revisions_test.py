@@ -23,7 +23,7 @@ from dashboard.models import graph_data
 class GraphRevisionsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(GraphRevisionsTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([('/graph_revisions',
                                     graph_revisions.GraphRevisionsHandler)])
     self.testapp = webtest.TestApp(app)

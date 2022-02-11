@@ -21,7 +21,7 @@ MAX_DISCOVERY_RETRIES = 3
 MAX_REQUEST_RETRIES = 5
 
 
-class IssueTrackerService(object):
+class IssueTrackerService:
   """Class for updating bug issues."""
 
   def __init__(self, http):
@@ -289,8 +289,7 @@ class IssueTrackerService(object):
     if not bug_id or bug_id < 0:
       return None
     response = self._MakeGetCommentsRequest(bug_id, project=project)
-    if response and all(
-        v in list(response.keys()) for v in ['totalResults', 'items']):
+    if response and all(v in list(response) for v in ['totalResults', 'items']):
       bug_comments = response.get('items')[response.get('totalResults') - 1]
       if bug_comments.get('content') and bug_comments.get('published'):
         return {

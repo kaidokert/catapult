@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import absolute_import
 
 
-class Quest(object):
+class Quest:
   """A description of work to do on a Change.
 
   Examples include building a binary or running a test. The concept is borrowed
@@ -34,7 +34,6 @@ class Quest(object):
     Arguments:
       job: A dashboard.pinpoint.models.job.Job instance.
     """
-    pass
 
   @classmethod
   def FromDict(cls, arguments):

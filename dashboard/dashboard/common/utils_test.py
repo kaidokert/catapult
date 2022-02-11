@@ -23,7 +23,7 @@ from dashboard.models import graph_data
 class UtilsTest(testing_common.TestCase):
 
   def setUp(self):
-    super(UtilsTest, self).setUp()
+    super().setUp()
     testing_common.SetIsInternalUser('internal@chromium.org', True)
     testing_common.SetIsInternalUser('foo@chromium.org', False)
     testing_common.SetIsAdministrator('admin@chromium.org', True)

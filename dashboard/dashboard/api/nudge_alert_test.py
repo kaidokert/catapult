@@ -24,7 +24,7 @@ from dashboard.models import graph_data
 class NudgeAlertTest(testing_common.TestCase):
 
   def setUp(self):
-    super(NudgeAlertTest, self).setUp()
+    super().setUp()
     self.SetUpApp([('/api/nudge_alert', nudge_alert.NudgeAlertHandler)])
     self.SetCurrentClientIdOAuth(api_auth.OAUTH_CLIENT_ID_ALLOWLIST[0])
     self.SetCurrentUserOAuth(None)

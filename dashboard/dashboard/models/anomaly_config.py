@@ -48,7 +48,7 @@ def CleanConfigDict(config_dict):
   """
   return {
       key: value
-      for key, value in config_dict.items()
+      for key, value in list(config_dict.items())
       if key in _VALID_ANOMALY_CONFIG_PARAMETERS
   }
 

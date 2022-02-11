@@ -17,7 +17,7 @@ from dashboard.services import pinpoint_service
 class PinpointServiceTest(unittest.TestCase):
 
   def setUp(self):
-    super(PinpointServiceTest, self).setUp()
+    super().setUp()
 
     patcher = mock.patch.object(datastore_hooks, 'IsUnalteredQueryPermitted')
     self.addCleanup(patcher.stop)

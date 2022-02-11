@@ -42,7 +42,7 @@ _MOCK_DATA = [['ChromiumPerf'], ['win7', 'mac'], {
 class MigrateTestNamesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(MigrateTestNamesTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/migrate_test_names', migrate_test_names.MigrateTestNamesHandler)
     ])

@@ -73,13 +73,13 @@ _GERRIT_CHANGE_INFO = {
 class GerritPatchTest(test.TestCase):
 
   def setUp(self):
-    super(GerritPatchTest, self).setUp()
+    super().setUp()
     self.get_change.return_value = _GERRIT_CHANGE_INFO
 
   def testPatch(self):
     p = patch.GerritPatch('https://example.com', 'abcdef', '2f0d5c7')
 
-    other_patch = patch.GerritPatch(u'https://example.com', 'abcdef', '2f0d5c7')
+    other_patch = patch.GerritPatch('https://example.com', 'abcdef', '2f0d5c7')
     self.assertEqual(p, other_patch)
     self.assertEqual(str(p), '2f0d5c7')
     self.assertEqual(p.id_string, 'https://example.com/abcdef/2f0d5c7')

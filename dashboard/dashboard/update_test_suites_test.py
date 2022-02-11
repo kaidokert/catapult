@@ -24,7 +24,7 @@ from dashboard.models import graph_data
 class ListTestSuitesTest(testing_common.TestCase):
 
   def setUp(self):
-    super(ListTestSuitesTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([
         ('/update_test_suites', update_test_suites.UpdateTestSuitesHandler)
     ])

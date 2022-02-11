@@ -62,7 +62,6 @@ class SampleElementTiming(ndb.Model):
 
 class Queues(ndb.Model):
   """A root element for all queues."""
-  pass
 
 
 class ConfigurationQueue(ndb.Model):
@@ -110,7 +109,7 @@ class ConfigurationQueue(ndb.Model):
     ]
     if len(self.samples) > 50:
       self.samples = random.sample(self.samples, 50)
-    super(ConfigurationQueue, self).put()
+    super().put()
 
 
 class Error(Exception):

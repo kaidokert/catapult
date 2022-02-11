@@ -18,7 +18,7 @@ from dashboard.models import upload_completion_token
 class UploadCompletionTokenTest(testing_common.TestCase):
 
   def setUp(self):
-    super(UploadCompletionTokenTest, self).setUp()
+    super().setUp()
     testing_common.SetIsInternalUser('foo@bar.com', True)
     self.SetCurrentUser('foo@bar.com', is_admin=True)
 

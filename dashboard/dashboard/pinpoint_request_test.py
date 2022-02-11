@@ -60,7 +60,7 @@ def GenerateBisectRequestParams(params):
 class PinpointNewPrefillRequestHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    super(PinpointNewPrefillRequestHandlerTest, self).setUp()
+    super().setUp()
 
     app = webapp2.WSGIApplication([
         (r'/pinpoint/new/prefill',
@@ -79,7 +79,7 @@ class PinpointNewPrefillRequestHandlerTest(testing_common.TestCase):
 class PinpointNewPerfTryRequestHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    super(PinpointNewPerfTryRequestHandlerTest, self).setUp()
+    super().setUp()
 
     app = webapp2.WSGIApplication([
         (r'/pinpoint/new', pinpoint_request.PinpointNewPerfTryRequestHandler)
@@ -101,7 +101,7 @@ class PinpointNewPerfTryRequestHandlerTest(testing_common.TestCase):
                      mock.MagicMock(return_value=False))
   def testPost_NotSheriff(self):
     response = self.testapp.post('/pinpoint/new')
-    self.assertEqual({u'error': u'User "foo@chromium.org" not authorized.'},
+    self.assertEqual({'error': 'User "foo@chromium.org" not authorized.'},
                      json.loads(response.body))
 
   @mock.patch.object(utils, 'IsValidSheriffUser',
@@ -110,8 +110,7 @@ class PinpointNewPerfTryRequestHandlerTest(testing_common.TestCase):
     params = GenerateTryRequestParams(
         {'test_path': 'ChromiumPerf/android-webview-nexus5x/system_health/foo'})
     response = self.testapp.post('/pinpoint/new', params=params)
-    self.assertEqual({u'error': u'Story is required.'},
-                     json.loads(response.body))
+    self.assertEqual({'error': 'Story is required.'}, json.loads(response.body))
 
   @mock.patch.object(utils, 'IsValidSheriffUser',
                      mock.MagicMock(return_value=True))
@@ -298,7 +297,7 @@ class PinpointNewPerfTryRequestHandlerTest(testing_common.TestCase):
 class PinpointNewBisectRequestHandlerTest(testing_common.TestCase):
 
   def setUp(self):
-    super(PinpointNewBisectRequestHandlerTest, self).setUp()
+    super().setUp()
 
     app = webapp2.WSGIApplication([
         (r'/pinpoint/new', pinpoint_request.PinpointNewBisectRequestHandler)
@@ -320,7 +319,7 @@ class PinpointNewBisectRequestHandlerTest(testing_common.TestCase):
                      mock.MagicMock(return_value=False))
   def testPost_NotSheriff(self):
     response = self.testapp.post('/pinpoint/new')
-    self.assertEqual({u'error': u'User "foo@chromium.org" not authorized.'},
+    self.assertEqual({'error': 'User "foo@chromium.org" not authorized.'},
                      json.loads(response.body))
 
   @mock.patch.object(utils, 'IsValidSheriffUser',
@@ -761,7 +760,7 @@ class PinpointNewBisectRequestHandlerTest(testing_common.TestCase):
 class PinpointNewBisectComparisonMagnitude(testing_common.TestCase):
 
   def setUp(self):
-    super(PinpointNewBisectComparisonMagnitude, self).setUp()
+    super().setUp()
 
     self.SetCurrentUser('foo@chromium.org')
 

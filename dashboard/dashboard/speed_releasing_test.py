@@ -33,7 +33,7 @@ RECENT_REV = speed_releasing.CHROMIUM_MILESTONES[
 class SpeedReleasingTest(testing_common.TestCase):
 
   def setUp(self):
-    super(SpeedReleasingTest, self).setUp()
+    super().setUp()
     app = webapp2.WSGIApplication([(r'/speed_releasing/(.*)',
                                     speed_releasing.SpeedReleasingHandler)])
     self.testapp = webtest.TestApp(app)
@@ -42,7 +42,7 @@ class SpeedReleasingTest(testing_common.TestCase):
     self.SetCurrentUser('internal@chromium.org', is_admin=True)
 
   def tearDown(self):
-    super(SpeedReleasingTest, self).tearDown()
+    super().tearDown()
     self.UnsetCurrentUser()
 
   def _AddInternalBotsToDataStore(self):

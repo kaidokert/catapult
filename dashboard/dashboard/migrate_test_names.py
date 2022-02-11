@@ -510,7 +510,7 @@ def _GetOrCreate(cls, old_entity, new_name, parent_key, exclude):
       'id': new_name,
       'parent': parent_key,
   }
-  for prop, val in old_entity.to_dict(exclude=exclude).items():
+  for prop, val in list(old_entity.to_dict(exclude=exclude).items()):
     create_args[prop] = val
   new_entity = cls(**create_args)
   raise ndb.Return(new_entity)

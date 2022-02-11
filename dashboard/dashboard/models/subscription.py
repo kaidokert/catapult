@@ -10,7 +10,7 @@ from google.appengine.ext import ndb
 from dashboard.common import defaults
 
 
-class _Visibility(object):
+class _Visibility:
   """Mirror of sheriff_pb2.Subscription.VisibilityTag."""
   # This needs to be kept in sync with sheriff_pb2.Subscription.VisibilityTag.
   # We don't import it here to avoid circular imports, especially as protobuf
