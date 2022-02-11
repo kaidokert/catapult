@@ -16,6 +16,24 @@
       "message": "I\u0027d expect this to be a failure. ie: the user is trying to replace the wrong package. Shouldn\u0027t we return an error in that case?",
       "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2206ebb1_31c94eba",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-02-11T22:16:30Z",
+      "side": 1,
+      "message": "When testing system apps like system webview shell, the package name can be changed to a different one via GN arg. However, for for system webview shell, its package name is hardcoded in [gn_isolate_map.pyl](https://source.chromium.org/chromium/chromium/src/+/main:testing/buildbot/gn_isolate_map.pyl;drc\u003dcc7506bf1718aab6e02ff93b2e8860ae9bfb022c;l\u003d1694).\n\nIn this case, I think it is reasonable to just skip the replacement, instead of erroring out.\n\nWDYT?",
+      "parentUuid": "0f3c5aa2_5fcd225f",
+      "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
