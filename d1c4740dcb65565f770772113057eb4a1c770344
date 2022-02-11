@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34ed2ad4_94bdbdf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-02-11T05:34:23Z",
+      "side": 1,
+      "message": "hey, I tried looking around more for supplemental columns in entities kind\u003dhistogram but I might just be overthinking it. Here\u0027s a CL for now adding bot ID to the supplemental columns. I was trying to write a unit test for bot ID but I\u0027m not sure if the existing unit tests support it. ",
+      "revId": "d1c4740dcb65565f770772113057eb4a1c770344",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
