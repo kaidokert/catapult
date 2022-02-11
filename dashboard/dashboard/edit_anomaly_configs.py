@@ -45,7 +45,7 @@ class EditAnomalyConfigsHandler(edit_config_handler.EditConfigHandler):
     self.RenderHtml(
         'edit_anomaly_configs.html', {
             'anomaly_config_json': json.dumps(anomaly_configs),
-            'anomaly_config_names': sorted(anomaly_configs.keys()),
+            'anomaly_config_names': sorted(list(anomaly_configs)),
         })
 
   def _UpdateFromRequestParameters(self, entity):

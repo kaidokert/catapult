@@ -100,7 +100,7 @@ class Isolate(api_request_handler.ApiRequestHandler):
     # Put information into the datastore.
     isolate_infos = [(builder_name, change, target, isolate_server,
                       isolate_hash)
-                     for target, isolate_hash in isolate_map.items()]
+                     for target, isolate_hash in list(isolate_map.items())]
     isolate.Put(isolate_infos)
 
     # Respond to the API user.

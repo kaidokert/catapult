@@ -80,7 +80,7 @@ class Task(ndb.Model):
   and need to be.
   """
   task_type = ndb.StringProperty(required=True)
-  status = ndb.StringProperty(required=True, choices=VALID_TRANSITIONS.keys())
+  status = ndb.StringProperty(required=True, choices=list(VALID_TRANSITIONS))
   payload = ndb.JsonProperty(compressed=True, indexed=False)
   dependencies = ndb.KeyProperty(repeated=True, kind='Task')
   created = ndb.DateTimeProperty(required=True, auto_now_add=True)
@@ -135,7 +135,7 @@ def PopulateTaskGraph(job, graph):
       tasks[dependency.from_].dependencies.append(dependency_key)
       dependencies.add(dependency)
 
-  ndb.put_multi(tasks.values(), use_cache=True)
+  ndb.put_multi(list(tasks.values()), use_cache=True)
 
 
 @ndb.transactional(propagation=ndb.TransactionOptions.INDEPENDENT, retries=0)
@@ -164,7 +164,7 @@ def ExtendTaskGraph(job, vertices, dependencies):
   # Ensure that the keys we're adding are not in the graph yet.
   current_tasks = Task.query(ancestor=job_key).fetch()
   current_task_keys = set(t.key for t in current_tasks)
-  new_task_keys = set(t.key for t in amendment_task_graph.values())
+  new_task_keys = set(t.key for t in list(amendment_task_graph.values()))
   overlap = new_task_keys & current_task_keys
   if overlap:
     raise InvalidAmendment('vertices (%r) already in task graph.' % (overlap,))
@@ -191,8 +191,10 @@ def ExtendTaskGraph(job, vertices, dependencies):
 
   ndb.put_multi(
       itertools.chain(
-          amendment_task_graph.values(),
-          [t for id_, t in current_task_graph.items() if id_ in update_filter]),
+          list(amendment_task_graph.values()), [
+              t for id_, t in list(current_task_graph.items())
+              if id_ in update_filter
+          ]),
       use_cache=True)
 
 
@@ -343,7 +345,7 @@ def Evaluate(job, event, evaluator):
 
     if not graph.tasks:
       logging.debug('Task graph empty for job %s', job.job_id)
-      return
+      return None
 
     # First get all the "terminal" tasks, and traverse the dependencies in a
     # depth-first-search.
@@ -351,7 +353,7 @@ def Evaluate(job, event, evaluator):
 
     # If the stack is empty, we should start at an arbitrary point.
     if not task_stack:
-      task_stack = [graph.tasks.values()[0]]
+      task_stack = [list(graph.tasks.values())[0]]
     vertex_states = {}
     while task_stack:
       task = task_stack[-1]

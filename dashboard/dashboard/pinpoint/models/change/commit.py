@@ -116,7 +116,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
 
     # Convert deps strings to repository and git hash.
     commits = []
-    for dep_value in deps_dict.values():
+    for dep_value in list(deps_dict.values()):
       if dep_value.get('dep_type') != 'git':
         # We don't support DEPS that are CIPD packages.
         continue
@@ -193,8 +193,7 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
     """
     if isinstance(data, basestring):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):

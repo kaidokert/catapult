@@ -18,10 +18,11 @@ class Commit(api_request_handler.ApiRequestHandler):
   def _CheckUser(self):
     pass
 
-  def Post(self, *args, **kwargs):
+  def Post(self, *args, **kwargs):  # pylint: disable=inconsistent-return-statements
     del args, kwargs  # Unused.
     repository = self.request.get('repository', 'chromium')
     git_hash = self.request.get('git_hash')
+
     try:
       c = change.Commit.FromDict({
           'repository': repository,

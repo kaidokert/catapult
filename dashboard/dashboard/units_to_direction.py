@@ -53,7 +53,7 @@ def UpdateFromJson(units_dict):
       units_to_direction_entity.put()
 
   # Add new UnitsToDirection entities.
-  for unit, value in units_dict.items():
+  for unit, value in list(units_dict.items()):
     if not isinstance(value, dict):
       continue
     if unit not in existing_units:

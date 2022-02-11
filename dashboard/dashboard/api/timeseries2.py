@@ -286,13 +286,13 @@ class TimeseriesQuery(object):
         if 'revisions' in self._columns:
           datum['revisions'] = {
               attr: value
-              for attr, value in row.to_dict().items()
+              for attr, value in list(row.to_dict().items())
               if attr.startswith('r_')
           }
         if 'annotations' in self._columns:
           datum['annotations'] = {
               attr: value
-              for attr, value in row.to_dict().items()
+              for attr, value in list(row.to_dict().items())
               if attr.startswith('a_')
           }
 

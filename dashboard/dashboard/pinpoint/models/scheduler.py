@@ -62,7 +62,6 @@ class SampleElementTiming(ndb.Model):
 
 class Queues(ndb.Model):
   """A root element for all queues."""
-  pass
 
 
 class ConfigurationQueue(ndb.Model):

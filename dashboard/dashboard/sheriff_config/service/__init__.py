@@ -76,7 +76,7 @@ def CreateApp(test_config=None):
       'app_id': environ.get('GOOGLE_CLOUD_PROJECT', ''),
       'service': environ.get('GAE_SERVICE', ''),
   }
-  empty_keys = [k for k, v in domain_parts.items() if len(v) == 0]
+  empty_keys = [k for k, v in list(domain_parts.items()) if len(v) == 0]
   if len(empty_keys):
     raise MissingEnvironmentVars(empty_keys)
   domain = '{parts[service]}-dot-{parts[app_id]}.appspot.com'.format(
@@ -124,10 +124,10 @@ def CreateApp(test_config=None):
   def Validate():  # pylint: disable=unused-variable
     validation_request = request.get_json()
     if validation_request is None:
-      return u'Invalid request.', 400
+      return 'Invalid request.', 400
     for member in ('config_set', 'path', 'content'):
       if member not in validation_request:
-        return u'Missing \'%s\' member in request.' % (member), 400
+        return 'Missing \'%s\' member in request.' % (member), 400
     try:
       _ = validator.Validate(
           base64.standard_b64decode(validation_request['content']))

@@ -455,7 +455,7 @@ class FakeSheriffConfigClient(object):
   def Match(self, path, **_):
     # The real implementation is quite different from fnmatch. But this is
     # enough for testing because we shouldn't test match logic.
-    for p, s in self.patterns.items():
+    for p, s in list(self.patterns.items()):
       if re.match(fnmatch.translate(p), path):
         return s, None
     return [], None
@@ -523,7 +523,7 @@ class FakeRevisionInfoClient(object):
     revision_start = self.GetRevisions(test_key, start - 1)
     revision_end = self.GetRevisions(test_key, end)
     infos = []
-    for k, info in revision_info.items():
+    for k, info in list(revision_info.items()):
       if k not in revision_start or k not in revision_end:
         continue
       url = info.get('url', '')

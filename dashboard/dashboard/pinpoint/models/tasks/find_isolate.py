@@ -254,6 +254,7 @@ class UpdateBuildStatusAction(
         self.task.id,
         new_state='completed',
         payload=self.task.payload)
+    return None
 
   def __str__(self):
     return 'Update Build Action <job = %s, task = %s>' % (self.job.job_id,

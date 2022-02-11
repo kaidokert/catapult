@@ -296,8 +296,7 @@ class FileBugTest(testing_common.TestCase):
                          'issue_url': 'foo.com'
                      }))
   def testGet_WithFinish_CreatesBug_WithDocs(self):
-    diag_dict = generic_set.GenericSet([[u'Benchmark doc link',
-                                         u'http://docs']])
+    diag_dict = generic_set.GenericSet([['Benchmark doc link', 'http://docs']])
     diag = histogram.SparseDiagnostic(
         data=diag_dict.AsDict(),
         start_revision=1,
@@ -595,7 +594,7 @@ class FileBugTest(testing_common.TestCase):
     # would be the label that it would get if the alert was Chromium.
     self._PostSampleBug(has_commit_positions=False)
     labels = self._issue_tracker_service.new_bug_kwargs['labels']
-    self.assertEqual(0, len([x for x in labels if x.startswith(u'M-')]))
+    self.assertEqual(0, len([x for x in labels if x.startswith('M-')]))
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   @mock.patch.object(file_bug.file_bug, '_GetAllCurrentVersionsFromOmahaProxy',
@@ -634,7 +633,7 @@ class FileBugTest(testing_common.TestCase):
     # there is no version information from omahaproxy (for whatever reason)
     self._PostSampleBug()
     labels = self._issue_tracker_service.new_bug_kwargs['labels']
-    self.assertEqual(0, len([x for x in labels if x.startswith(u'M-')]))
+    self.assertEqual(0, len([x for x in labels if x.startswith('M-')]))
 
   @mock.patch.object(utils, 'ServiceAccountHttp', mock.MagicMock())
   @mock.patch(
@@ -678,7 +677,7 @@ class FileBugTest(testing_common.TestCase):
   def testGet_WithFinish_SucceedsWithNAAndLogsWarning(self, mock_warn):
     self._PostSampleBug()
     labels = self._issue_tracker_service.new_bug_kwargs['labels']
-    self.assertEqual(0, len([x for x in labels if x.startswith(u'M-')]))
+    self.assertEqual(0, len([x for x in labels if x.startswith('M-')]))
     self.assertEqual(1, mock_warn.call_count)
 
   def testGet_OwnersAreEmptyEvenWithOwnership(self):

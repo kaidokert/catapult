@@ -12,7 +12,7 @@ import json
 try:
   from itertools import zip_longest
 except ImportError:
-  from itertools import izip_longest as zip_longest
+  from itertools import izip_longest as zip_longest  # pylint: disable=useless-import-alias
 
 from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.change import patch as patch_module
@@ -133,7 +133,7 @@ class Change(
     commits.update(other.commits)
     commits = tuple(
         commit_module.Commit(repository, git_hash)
-        for repository, git_hash in commits.items())
+        for repository, git_hash in list(commits.items()))
 
     if self.patch and other.patch:
       raise NotImplementedError(
@@ -166,8 +166,7 @@ class Change(
   def FromData(cls, data):
     if isinstance(data, basestring):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):

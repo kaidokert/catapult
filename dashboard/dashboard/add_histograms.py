@@ -83,7 +83,7 @@ class DecompressFileWrapper(object):
         temporary_buffer += raw_buffer
 
     if len(temporary_buffer) == 0:
-      return u''
+      return ''
 
     decompressed_data = self.decompressor.decompress(temporary_buffer, size)
     return decompressed_data
@@ -119,7 +119,7 @@ def _LoadHistogramList(input_file):
         if isinstance(obj, decimal.Decimal):
           return float(obj)
         if isinstance(obj, dict):
-          for k, v in obj.items():
+          for k, v in list(obj.items()):
             obj[k] = NormalizeDecimals(v)
         if isinstance(obj, list):
           obj = [NormalizeDecimals(x) for x in obj]
@@ -357,7 +357,7 @@ def ProcessHistogramSet(histogram_dicts, completion_token=None):
             last_added.revision).get_result())
 
   with timing.WallTimeLogger('ReplaceSharedDiagnostic calls'):
-    for new_guid, old_diagnostic in new_guids_to_old_diagnostics.items():
+    for new_guid, old_diagnostic in list(new_guids_to_old_diagnostics.items()):
       histograms.ReplaceSharedDiagnostic(
           new_guid, diagnostic.Diagnostic.FromDict(old_diagnostic))
 
@@ -449,10 +449,10 @@ def _MakeTaskDict(hist,
   # same diagnostic out (datastore contention), at the cost of copyin the
   # data. These are sparsely written to datastore anyway, so the extra
   # storage should be minimal.
-  for d in diagnostics.values():
+  for d in list(diagnostics.values()):
     d.ResetGuid()
 
-  diagnostics = {k: d.AsDict() for k, d in diagnostics.items()}
+  diagnostics = {k: d.AsDict() for k, d in list(diagnostics.items())}
 
   params['diagnostics'] = diagnostics
   params['data'] = hist.AsDict()
@@ -467,7 +467,7 @@ def FindSuiteLevelSparseDiagnostics(histograms, suite_key, revision,
                                     internal_only):
   diagnostics = {}
   for hist in histograms:
-    for name, diag in hist.diagnostics.items():
+    for name, diag in list(hist.diagnostics.items()):
       if name in histogram_helpers.SUITE_LEVEL_SPARSE_DIAGNOSTIC_NAMES:
         existing_entity = diagnostics.get(name)
         if existing_entity is None:
@@ -487,7 +487,7 @@ def FindSuiteLevelSparseDiagnostics(histograms, suite_key, revision,
 
 def FindHistogramLevelSparseDiagnostics(hist):
   diagnostics = {}
-  for name, diag in hist.diagnostics.items():
+  for name, diag in list(hist.diagnostics.items()):
     if name in histogram_helpers.HISTOGRAM_LEVEL_SPARSE_DIAGNOSTIC_NAMES:
       diagnostics[name] = diag
   return diagnostics
@@ -537,7 +537,7 @@ def InlineDenseSharedDiagnostics(histograms):
   # TODO(896856): Delete inlined diagnostics from the set
   for hist in histograms:
     diagnostics = hist.diagnostics
-    for name, diag in diagnostics.items():
+    for name, diag in list(diagnostics.items()):
       if name not in histogram_helpers.SPARSE_DIAGNOSTIC_NAMES:
         diag.Inline()
 
@@ -548,6 +548,6 @@ def _PurgeHistogramBinData(histograms):
   for cur_hist in histograms:
     for cur_bin in cur_hist.bins:
       for dm in cur_bin.diagnostic_maps:
-        keys = list(dm.keys())
+        keys = list(dm)
         for k in keys:
           del dm[k]

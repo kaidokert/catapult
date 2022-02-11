@@ -22,7 +22,7 @@ class CommitTest(test.TestCase):
   def testCommit(self):
     c = commit.Commit('chromium', 'aaa7336c821888839f759c6c0a36')
 
-    other_commit = commit.Commit(u'chromium', u'aaa7336c821888839f759c6c0a36')
+    other_commit = commit.Commit('chromium', 'aaa7336c821888839f759c6c0a36')
     self.assertEqual(c, other_commit)
     self.assertEqual(str(c), 'chromium@aaa7336')
     self.assertEqual(c.id_string, 'chromium@aaa7336c821888839f759c6c0a36')

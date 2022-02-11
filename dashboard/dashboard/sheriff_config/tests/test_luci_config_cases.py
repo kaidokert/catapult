@@ -35,8 +35,8 @@ class LuciConfigTest(unittest.TestCase):
     self.assertEqual({}, luci_config.FindAllSheriffConfigs(service))
 
   def testFailingCreateConfigClient(self):
-    with self.assertRaisesRegex(service_client.DiscoveryError,
-                                'Service discovery failed:'):
+    with self.assertRaisesRegexp(service_client.DiscoveryError,
+                                 'Service discovery failed:'):
       http = HttpMockSequence([({'status': '403'}, 'Forbidden')])
       _ = service_client.CreateServiceClient(
           'https://luci-config.appspot.com/_ah/api', 'config', 'v1', http=http)

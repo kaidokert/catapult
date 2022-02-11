@@ -45,7 +45,7 @@ def _IfNone(value, none_result):
 def JobEntityToRowDict(entity):
   try:
     comparison_mode = entity.get('comparison_mode')
-    if isinstance(comparison_mode, (int,)):
+    if isinstance(comparison_mode, int):
       # Workaround for some entities in April/May 2018 with a comparison_mode of
       # 2 (the integer, not a string!).
       comparison_mode = str(comparison_mode)

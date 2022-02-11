@@ -927,13 +927,14 @@ class _JobStateFake(object):
   def __init__(self, attempts):
     self._attempts = {
         change: [_AttemptFake(attempt)]
-        for change, attempt_list in attempts.items() for attempt in attempt_list
+        for change, attempt_list in list(attempts.items())
+        for attempt in attempt_list
     }
     logging.debug('JobStateFake = %s', self._attempts)
 
   @property
   def _changes(self):
-    changes = list(self._attempts.keys())
+    changes = list(self._attempts)
     logging.debug('JobStateFake._changes = %s', changes)
     return changes
 

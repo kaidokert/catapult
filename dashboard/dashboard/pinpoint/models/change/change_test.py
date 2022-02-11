@@ -113,7 +113,7 @@ class ChangeTest(test.TestCase):
                 'created':
                     '2018-01-01T00:01:00',
                 'url':
-                    u'https://chromium.googlesource.com/chromium/src/+/commit_123',
+                    'https://chromium.googlesource.com/chromium/src/+/commit_123',
                 'subject':
                     'Subject.',
                 'review_url':
@@ -140,7 +140,7 @@ class ChangeTest(test.TestCase):
                 'created':
                     '2018-01-01T00:01:00',
                 'url':
-                    u'https://chromium.googlesource.com/catapult/+/commit_456',
+                    'https://chromium.googlesource.com/catapult/+/commit_456',
                 'subject':
                     'Subject.',
                 'review_url':
@@ -189,7 +189,7 @@ class ChangeTest(test.TestCase):
             'created':
                 '2018-01-01T00:01:00',
             'url':
-                u'https://chromium.googlesource.com/chromium/src/+/commit_123',
+                'https://chromium.googlesource.com/chromium/src/+/commit_123',
             'subject':
                 'Subject.',
             'review_url':
@@ -341,8 +341,7 @@ class MidpointTest(test.TestCase):
       if int(git_hash.split('_')[1]) <= 4:  # DEPS roll at chromium@5
         return 'deps = {"chromium/catapult": "%s@commit_0"}' % (
             test.CATAPULT_URL + '.git')
-      else:
-        return 'deps = {"chromium/catapult": "%s@commit_9"}' % test.CATAPULT_URL
+      return 'deps = {"chromium/catapult": "%s@commit_9"}' % test.CATAPULT_URL
 
     self.file_contents.side_effect = _FileContents
 

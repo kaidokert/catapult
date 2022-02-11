@@ -130,8 +130,7 @@ class GerritPatch(
     """
     if isinstance(data, basestring):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):
@@ -204,8 +203,8 @@ class GerritPatch(
     # Revision can be a revision ID or numeric patch number.
     if not revision:
       revision = patch_info['current_revision']
-    for revision_id, revision_info in patch_info['revisions'].items():
-      if revision == revision_id or revision == revision_info['_number']:
+    for revision_id, revision_info in list(patch_info['revisions'].items()):
+      if revision in (revision_id, revision_info['_number']):
         revision = revision_id
         break
     else:

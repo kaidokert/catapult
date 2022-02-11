@@ -30,7 +30,7 @@ def GetRevisions(test_key, revision):
               graph_data.Row.revision == revision)).get()
   if row is None:
     return {}
-  return {k: v for k, v in row.to_dict().items() if k.startswith('r_')}
+  return {k: v for k, v in list(row.to_dict().items()) if k.startswith('r_')}
 
 
 def GetRangeRevisionInfo(test_key, start, end):
@@ -40,7 +40,7 @@ def GetRangeRevisionInfo(test_key, start, end):
   revision_start = GetRevisions(test_key, start - 1)
   revision_end = GetRevisions(test_key, end)
   infos = []
-  for k, info in revision_info.items():
+  for k, info in list(revision_info.items()):
     if k not in revision_start or k not in revision_end:
       continue
     url = info.get('url', '')

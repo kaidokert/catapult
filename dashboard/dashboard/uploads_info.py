@@ -49,7 +49,7 @@ class UploadInfoHandler(api_request_handler.ApiRequestHandler):
       attached_histogram = histogram_module.Histogram.FromDict(
           histogram_entity.data)
       info['dimensions'] = []
-      for name, diagnostic in attached_histogram.diagnostics.items():
+      for name, diagnostic in list(attached_histogram.diagnostics.items()):
         if name not in histogram_helpers.ADD_HISTOGRAM_RELATED_DIAGNOSTICS:
           continue
 

@@ -72,7 +72,7 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
 
     # Here we're testing that we can find the change between commit_1 and
     # commit_2 in the values we seed above.
-    self.assertEquals(evaluate_result['performance_bisection']['culprits'], [[
+    self.assertEqual(evaluate_result['performance_bisection']['culprits'], [[
         change_module.Change.FromDict({
             'commits': [{
                 'repository': 'chromium',
@@ -101,12 +101,12 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
                             'git_hash': commit
                         }]
                     }): values for commit, values in (
-                        ('commit_0', range(10)),
-                        ('commit_1', range(1, 11)),
-                        ('commit_2', range(2, 12)),
-                        ('commit_3', range(3, 13)),
-                        ('commit_4', range(3, 13)),
-                        ('commit_5', range(3, 13)),
+                        ('commit_0', list(range(10))),
+                        ('commit_1', list(range(1, 11))),
+                        ('commit_2', list(range(2, 12))),
+                        ('commit_3', list(range(3, 13))),
+                        ('commit_4', list(range(3, 13))),
+                        ('commit_5', list(range(3, 13))),
                     )
                 })))
 
@@ -116,7 +116,7 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
         self.job, bisection_test_util.SelectEvent(),
         evaluators.Selector(task_type='read_value'))
     attempt_counts = {}
-    for payload in evaluate_result.values():
+    for payload in list(evaluate_result.values()):
       change = change_module.Change.FromDict(payload.get('change'))
       attempt_counts[change] = attempt_counts.get(change, 0) + 1
     self.assertGreater(
@@ -138,8 +138,8 @@ class EvaluatorTest(bisection_test_util.BisectionTestBase):
         self.job, bisection_test_util.SelectEvent(),
         evaluators.Selector(task_type='find_culprit'))
     self.assertIn('performance_bisection', evaluate_result)
-    self.assertEquals(evaluate_result['performance_bisection']['culprits'],
-                      [mock.ANY, mock.ANY, mock.ANY])
+    self.assertEqual(evaluate_result['performance_bisection']['culprits'],
+                     [mock.ANY, mock.ANY, mock.ANY])
 
   def testEvaluateFailure_DependenciesFailed(self):
     self.PopulateSimpleBisectionGraph(self.job)
