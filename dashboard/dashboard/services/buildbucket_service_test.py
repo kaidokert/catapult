@@ -39,28 +39,29 @@ class BuildbucketServiceTest(unittest.TestCase):
 
   def testPut(self):
     expected_body = {
-        'bucket': 'bucket_name',
+        'builder': {
+            'project': '',
+            'bucket': 'bucket_name',
+            'builder': '',
+        },
+        # This almost certainly isn't the right formatting for tags
+        # in the v2 api.
         'tags': ['buildset:foo'],
         'parameters_json': json.dumps(_BUILD_PARAMETERS, separators=(',', ':')),
     }
     response = buildbucket_service.Put('bucket_name', ['buildset:foo'],
                                        _BUILD_PARAMETERS)
     self._AssertCorrectResponse(response)
-    self._AssertRequestMadeOnce('builds', method='PUT', body=expected_body)
-
-  def testPutJob(self):
-    expected_body = {
-        'bucket': buildbucket_service._BUCKET_NAME,
-        'tags': [],
-        'parameters_json': json.dumps(_BUILD_PARAMETERS, separators=(',', ':')),
-    }
-    self.assertEqual(buildbucket_service.PutJob(FakeJob()), 'build id')
-    self._AssertRequestMadeOnce('builds', method='PUT', body=expected_body)
+    self._AssertRequestMadeOnce('ScheduleBuild', method='POST',
+                                body=expected_body)
 
   def testGetJobStatus(self):
     response = buildbucket_service.GetJobStatus('job_id')
     self._AssertCorrectResponse(response)
-    self._AssertRequestMadeOnce('builds/job_id')
+    expected_body = json.dumps({
+        'id': 'job_id',
+    })
+    self._AssertRequestMadeOnce('GetBuild', method='POST', body=expected_body)
 
 
 class FakeJob(object):

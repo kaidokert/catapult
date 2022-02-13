@@ -10,7 +10,9 @@ import json
 
 from dashboard.services import request
 
-API_BASE_URL = 'https://cr-buildbucket.appspot.com/api/buildbucket/v1/'
+#API_BASE_URL = 'https://cr-buildbucket.apapspot.com/api/buildbucket/v1/'
+
+API_BASE_URL = 'https://cr-buildbucket.appspot.com/prpc/buildbucket.v2.Builds/'
 
 # Default Buildbucket bucket name.
 _BUCKET_NAME = 'master.tryserver.chromium.perf'
@@ -18,28 +20,30 @@ _BUCKET_NAME = 'master.tryserver.chromium.perf'
 
 def Put(bucket, tags, parameters, pubsub_callback=None):
   body = {
-      'bucket': bucket,
+      'builder': {
+          'project': '',
+          'bucket': bucket,
+          'builder': ''
+      },
       'tags': tags,
+      # parameters_json does not appear to exist in the new api.
+      # TODO: Delete this and see if anyone notices.
       'parameters_json': json.dumps(parameters, separators=(',', ':')),
   }
   if pubsub_callback:
     body['pubsub_callback'] = pubsub_callback
-  return request.RequestJson(API_BASE_URL + 'builds', method='PUT', body=body)
-
-
-# TODO: Deprecated. Use Put() instead.
-def PutJob(job, bucket=_BUCKET_NAME):
-  """Creates a job via buildbucket's API."""
-  parameters = job.GetBuildParameters()
-  response_content = Put(bucket, [], parameters)
-  job.response_fields = response_content.get('build')
-  return job.response_fields.get('id')
+  return request.RequestJson(API_BASE_URL + 'ScheduleBuild', method='POST',
+                             body=body)
 
 
 # TODO: Rename to Get().
 def GetJobStatus(job_id):
   """Gets the details of a job via buildbucket's API."""
-  return request.RequestJson(API_BASE_URL + 'builds/%s' % (job_id))
+  body = json.dumps({
+      'id': job_id
+  })
+  return request.RequestJson(API_BASE_URL + 'GetBuild', method='POST',
+                             body=body)
 
 
 # TODO(robertocn): Implement CancelJobByID
