@@ -24,6 +24,8 @@ def Put(bucket, tags, parameters, pubsub_callback=None):
   }
   if pubsub_callback:
     body['pubsub_callback'] = pubsub_callback
+  print "Put"
+  raise "Oops"
   return request.RequestJson(API_BASE_URL + 'builds', method='PUT', body=body)
 
 
@@ -33,12 +35,17 @@ def PutJob(job, bucket=_BUCKET_NAME):
   parameters = job.GetBuildParameters()
   response_content = Put(bucket, [], parameters)
   job.response_fields = response_content.get('build')
+  print "PutJob"
+  raise "Oops"
   return job.response_fields.get('id')
 
 
 # TODO: Rename to Get().
 def GetJobStatus(job_id):
   """Gets the details of a job via buildbucket's API."""
+  print "GetJobStatus"
+  raise "Oops"
+
   return request.RequestJson(API_BASE_URL + 'builds/%s' % (job_id))
 
 
