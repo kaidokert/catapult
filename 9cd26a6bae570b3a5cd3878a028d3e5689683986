@@ -33,6 +33,121 @@
       "message": "Do these changes need to be checked in? Looks like they only needed for local testing.",
       "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a8a0fd5_68d4101c",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-14T20:37:52Z",
+      "side": 1,
+      "message": "I would consider setting request_id here, too (https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/builds_service.proto#226)",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 6
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b768958d_6d577d10",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-14T20:37:52Z",
+      "side": 1,
+      "message": "this would be the LUCI project. The BBv1 \"bucket names\" that were actually LUCI buckets look like \"luci.$project.$bucket\" e.g. `luci.chromium.ci`.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 59
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804a33df_6f783eb0",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-14T20:37:52Z",
+      "side": 1,
+      "message": "This would be `parameters[\u0027builder_name\u0027]`",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2f7958c_83f59f56",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-14T20:37:52Z",
+      "side": 1,
+      "message": "this should be `parameters.get(\u0027properties\u0027, {})` (https://source.chromium.org/chromium/infra/infra/+/main:appengine/cr-buildbucket/legacy/api_common.py)",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cfe036_f831d1c8",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-14T20:37:52Z",
+      "side": 1,
+      "message": "Note that this will return a subset of the whole go/build.proto; I\u0027m not actually sure what it was returning before.\n\nIf you have specific fields you want to read, you should specify them in the mask field (https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/builds_service.proto#337 and https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/builds_service.proto#444",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
