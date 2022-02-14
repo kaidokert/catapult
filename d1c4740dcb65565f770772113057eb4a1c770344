@@ -16,6 +16,29 @@
       "message": "hey, I tried looking around more for supplemental columns in entities kind\u003dhistogram but I might just be overthinking it. Here\u0027s a CL for now adding bot ID to the supplemental columns. I was trying to write a unit test for bot ID but I\u0027m not sure if the existing unit tests support it. ",
       "revId": "d1c4740dcb65565f770772113057eb4a1c770344",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2600cff4_3ac0051f",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-14T18:07:55Z",
+      "side": 1,
+      "message": "This reminds me one thing that there could be multiple bot id for a single data point on the time series graph when the story runs on multiple bots. We need to check how the bot id values are currently handled, and update the handling if needed.",
+      "range": {
+        "startLine": 421,
+        "startChar": 54,
+        "endLine": 421,
+        "endChar": 68
+      },
+      "revId": "d1c4740dcb65565f770772113057eb4a1c770344",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
