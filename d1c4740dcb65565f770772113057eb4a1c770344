@@ -63,6 +63,30 @@
       },
       "revId": "d1c4740dcb65565f770772113057eb4a1c770344",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e676c15a_bcef1365",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-14T23:40:54Z",
+      "side": 1,
+      "message": "That may work. Before that, we still need to see whether the multi-id case is handled.\n\nThe results of the same benchmark from different bots are merged before uploading:\nhttps://source.chromium.org/chromium/chromium/src/+/main:tools/perf/process_perf_results.py;l\u003d413\nAfter uploaded, the json is processed by a handler: https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/add_histograms.py;l\u003d162\n\nMy guess is that the merging is somewhere in the handler.",
+      "parentUuid": "363d9f17_28a8b71e",
+      "range": {
+        "startLine": 421,
+        "startChar": 54,
+        "endLine": 421,
+        "endChar": 68
+      },
+      "revId": "d1c4740dcb65565f770772113057eb4a1c770344",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
