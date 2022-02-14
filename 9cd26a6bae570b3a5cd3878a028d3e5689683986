@@ -16,6 +16,23 @@
       "message": "I don\u0027t believe this is safe to push to production yet but PTAL at what\u0027s here. I\u0027d like to change as little chromeperf dashboard code as possible so this approach \n- skips importing new client libraries and just goes for raw http POST\n- tries to hide any message format changes from the code that calls it (see the \u0027tags\u0027 formatting, but I\u0027m sure there are other parts I missed)\n\nRobbie: do you know if the v2 response types are compatible with whatever v1 returns? And should GAE\u0027s standard application auth headers work with buildbucket v2 if they worked with v1?\n\nJohn: do you have advice for testing a deployment of this change? e.g. is there an example cli command can I run to make chromeperf (or pinpoint) server execute these buildbucket calls, so I can verify in logs etc? I can probably figure it out eventually but if you have pointers it might speed me up.",
       "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c573f7a2_96c8eddd",
+        "filename": "dashboard/dashboard/__init__.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-02-14T19:17:15Z",
+      "side": 1,
+      "message": "Do these changes need to be checked in? Looks like they only needed for local testing.",
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
