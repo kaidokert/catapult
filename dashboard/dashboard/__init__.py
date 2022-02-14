@@ -129,16 +129,21 @@ def _AllSdkThirdPartyLibraryPaths():
   """
   paths = []
   for sdk_bin_path in os.environ['PATH'].split(os.pathsep):
+    print("checking %s" % sdk_bin_path)
     if 'google-cloud-sdk' not in sdk_bin_path:
       continue
 
     if not os.path.isdir(sdk_bin_path):
+      print("not a dir: %s" % sdk_bin_path)
       sdk_bin_path = os.path.dirname(sdk_bin_path)
 
     appengine_path = os.path.join(sdk_bin_path, 'platform', 'google_appengine')
+
+    print("appending %s" % appengine_path)
     paths.append(appengine_path)
     sys.path.insert(0, appengine_path)
-    break
+    print(sys.path)
+    #break
 
   try:
     import dev_appserver
