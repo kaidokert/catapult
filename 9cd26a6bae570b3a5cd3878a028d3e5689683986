@@ -58,6 +58,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac69b83_cdd23427",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-02-15T20:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a8a0fd5_68d4101c",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 6
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b768958d_6d577d10",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-02-14T20:37:52Z",
       "side": 1,
       "message": "this would be the LUCI project. The BBv1 \"bucket names\" that were actually LUCI buckets look like \"luci.$project.$bucket\" e.g. `luci.chromium.ci`.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 59
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80e86264_b1a486f4",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-02-15T20:44:37Z",
+      "side": 1,
+      "message": "This appears to be \u0027chrome\u0027 for the perf waterfall (what this dashboard checks). John: do you know of any others?",
+      "parentUuid": "b768958d_6d577d10",
       "range": {
         "startLine": 22,
         "startChar": 0,
@@ -104,6 +152,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba8bfd2_57ffd15a",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-02-15T20:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "804a33df_6f783eb0",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2f7958c_83f59f56",
@@ -127,6 +199,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2fb082_a4fd3348",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-02-15T20:44:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2f7958c_83f59f56",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0cfe036_f831d1c8",
@@ -140,6 +236,30 @@
       "writtenOn": "2022-02-14T20:37:52Z",
       "side": 1,
       "message": "Note that this will return a subset of the whole go/build.proto; I\u0027m not actually sure what it was returning before.\n\nIf you have specific fields you want to read, you should specify them in the mask field (https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/builds_service.proto#337 and https://chromium.googlesource.com/infra/luci/luci-go/+/master/buildbucket/proto/builds_service.proto#444",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6572e16c_d7866839",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-02-15T20:44:37Z",
+      "side": 1,
+      "message": "I too am unsure what fields are actually used by the callers (and callers\u0027 callers etc). There\u0027s also no reliable way to automatically check.  We\u0027ll have to push it and see if anything breaks, roll back, edit, and repeat. Because Python.\n\nThanks for the mask links - I\u0027m glad bbv2 uses this pattern!",
+      "parentUuid": "c0cfe036_f831d1c8",
       "range": {
         "startLine": 34,
         "startChar": 8,
