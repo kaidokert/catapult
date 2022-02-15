@@ -32,12 +32,10 @@ from gslib.third_party.storage_apitools import storage_v1_messages as apitools_m
 from gslib.utils.encryption_helper import GetEncryptionKeyWrapper
 from gslib.utils.translation_helper import PreconditionsFromHeaders
 
-MAX_COMPONENT_COUNT = 1024
 MAX_COMPOSE_ARITY = 32
-MAX_COMPONENT_RATE = 200
 
 _SYNOPSIS = """
-  gsutil compose gs://bucket/obj1 [gs://bucket/obj2 ...] gs://bucket/composite
+  gsutil compose gs://bucket/source_obj1 [gs://bucket/source_obj2 ...] gs://bucket/composite_obj
 """
 
 _DETAILED_HELP_TEXT = ("""
@@ -49,27 +47,11 @@ _DETAILED_HELP_TEXT = ("""
   The compose command creates a new object whose content is the concatenation
   of a given sequence of source objects under the same bucket. gsutil uses
   the content type of the first source object to determine the destination
-  object's content type. For more information, please see:
-  https://cloud.google.com/storage/docs/composite-objects
+  object's content type and does not modify or delete the source objects as
+  part of the compose command. For more information, see the `composite objects
+  topic <https://cloud.google.com/storage/docs/composite-objects>`_.
 
-  Note also that the gsutil cp command can automatically split uploads for
-  large files into multiple component objects, upload them in parallel, and
-  compose them into a final object. This will still perform all uploads from
-  a single machine. For extremely large files and/or very low per-machine
-  bandwidth, you may want to split the file and upload it from multiple
-  machines, and later compose these parts of the file manually. See the
-  'PARALLEL COMPOSITE UPLOADS' section under 'gsutil help cp' for details.
-
-  Appending simply entails uploading your new data to a temporary object,
-  composing it with the growing append-target, and deleting the temporary
-  object:
-
-    $ echo 'new data' | gsutil cp - gs://bucket/data-to-append
-    $ gsutil compose gs://bucket/append-target gs://bucket/data-to-append \\
-        gs://bucket/append-target
-    $ gsutil rm gs://bucket/data-to-append
-
-  Note that there is a limit (currently %d) to the number of components that can
+  There is a limit (currently %d) to the number of components that can
   be composed in a single operation.
 """ % (MAX_COMPOSE_ARITY))
 
@@ -144,7 +126,7 @@ class ComposeCommand(Command):
             apitools_messages.ComposeRequest.SourceObjectsValueListEntry(
                 name=src_url.object_name))
         if src_url.HasGeneration():
-          src_obj_metadata.generation = src_url.generation
+          src_obj_metadata.generation = int(src_url.generation)
         components.append(src_obj_metadata)
         # Avoid expanding too many components, and sanity check each name
         # expansion result.
@@ -155,11 +137,13 @@ class ComposeCommand(Command):
     if not components:
       raise CommandException('"compose" requires at least 1 component object.')
 
-    dst_obj_metadata.contentType = self.gsutil_api.GetObjectMetadata(
+    first_src_obj_metadata = self.gsutil_api.GetObjectMetadata(
         first_src_url.bucket_name,
         first_src_url.object_name,
         provider=first_src_url.scheme,
-        fields=['contentType']).contentType
+        fields=['contentEncoding', 'contentType'])
+    dst_obj_metadata.contentType = first_src_obj_metadata.contentType
+    dst_obj_metadata.contentEncoding = first_src_obj_metadata.contentEncoding
 
     preconditions = PreconditionsFromHeaders(self.headers or {})
 

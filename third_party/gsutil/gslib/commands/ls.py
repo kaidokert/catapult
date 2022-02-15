@@ -55,23 +55,29 @@ _DETAILED_HELP_TEXT = ("""
 <B>SYNOPSIS</B>
 """ + _SYNOPSIS + """
 
+<B>DESCRIPTION</B>
+Retrieves a list of providers, buckets, or objects matching the criteria,
+ordered in the list lexicographically by name.
+
 
 <B>LISTING PROVIDERS, BUCKETS, SUBDIRECTORIES, AND OBJECTS</B>
-  If you run gsutil ls without URLs, it lists all of the Google Cloud Storage
-  buckets under your default project ID:
+  If you run ``gsutil ls`` without URLs, it lists all of the Google Cloud Storage
+  buckets under your default project ID (or all of the Cloud Storage buckets
+  under the project you specify with the ``-p`` flag):
 
     gsutil ls
 
-  (For details about projects, see "gsutil help projects" and also the -p
-  option in the OPTIONS section below.)
-
-  If you specify one or more provider URLs, gsutil ls will list buckets at
-  each listed provider:
+  If you specify one or more provider URLs, ``gsutil ls`` lists buckets at each
+  listed provider:
 
     gsutil ls gs://
 
-  If you specify bucket URLs, gsutil ls will list objects at the top level of
-  each bucket, along with the names of each subdirectory. For example:
+  gsutil currently supports ``gs://`` and ``s3://`` as valid providers
+
+  If you specify bucket URLs, or use `Wildcards
+  <https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames>`_ to
+  capture a set of buckets, ``gsutil ls`` lists objects at the top level of each
+  bucket, along with the names of each subdirectory. For example:
 
     gsutil ls gs://bucket
 
@@ -87,13 +93,13 @@ _DETAILED_HELP_TEXT = ("""
 
     gsutil ls gs://bucket/images*
 
-  If you specify object URLs, gsutil ls will list the specified objects. For
+  If you specify object URLs, ``gsutil ls`` lists the specified objects. For
   example:
 
     gsutil ls gs://bucket/*.txt
 
-  will list all files whose name matches the above wildcard at the top level
-  of the bucket.
+  lists all files whose name matches the above wildcard at the top level of
+  the bucket.
 
   See "gsutil help wildcards" for more details on working with wildcards.
 
@@ -105,8 +111,8 @@ _DETAILED_HELP_TEXT = ("""
 
     gsutil ls -r gs://bucket
 
-  will list the top-level objects and buckets, then the objects and
-  buckets under gs://bucket/images1, then those under gs://bucket/images2, etc.
+  lists the top-level objects and buckets, then the objects and buckets under
+  gs://bucket/images1, then those under gs://bucket/images2, etc.
 
   If you want to see all objects in the bucket in one "flat" listing use the
   recursive ("**") wildcard, like:
@@ -123,17 +129,18 @@ _DETAILED_HELP_TEXT = ("""
 
 
 <B>LISTING OBJECT DETAILS</B>
-  If you specify the -l option, gsutil will output additional information
-  about each matching provider, bucket, subdirectory, or object. For example:
+  If you specify the -l option, gsutil outputs additional information about
+  each matching provider, bucket, subdirectory, or object. For example:
 
-    gsutil ls -l gs://bucket/*.txt
+    gsutil ls -l gs://bucket/*.html gs://bucket/*.txt
 
-  will print the object size, creation time stamp, and name of each matching
+  prints the object size, creation time stamp, and name of each matching
   object, along with the total count and sum of sizes of all matching objects:
 
-       2276224  2017-03-02T19:25:17Z  gs://bucket/obj1
-       3914624  2017-03-02T19:30:27Z  gs://bucket/obj2
-    TOTAL: 2 objects, 6190848 bytes (5.9 MiB)
+       2276224  2020-03-02T19:25:17Z  gs://bucket/obj1.html
+       3914624  2020-03-02T19:30:27Z  gs://bucket/obj2.html
+           131  2020-03-02T19:37:45Z  gs://bucket/obj3.txt
+    TOTAL: 3 objects, 6190979 bytes (5.9 MiB)
 
   Note that the total listed in parentheses above is in mebibytes (or gibibytes,
   tebibytes, etc.), which corresponds to the unit of billing measurement for
@@ -149,7 +156,7 @@ _DETAILED_HELP_TEXT = ("""
 
     gsutil ls -L gs://bucket/obj1
 
-  will print something like:
+  prints something like:
 
     gs://bucket/obj1:
             Creation time:                    Fri, 26 May 2017 22:55:44 GMT
@@ -194,7 +201,7 @@ _DETAILED_HELP_TEXT = ("""
 
     gsutil ls -L -b gs://bucket
 
-  will print something like:
+  prints something like:
 
     gs://bucket/ :
             Storage class:                STANDARD
@@ -241,10 +248,11 @@ _DETAILED_HELP_TEXT = ("""
 <B>OPTIONS</B>
   -l          Prints long listing (owner, length).
 
-  -L          Prints even more detail than -l.  Note: If you use this option
-              with the (non-default) XML API it will generate an additional
-              request per object being listed, which makes the -L option run
-              much more slowly (and cost more) using the XML API than the
+  -L          Prints even more detail than -l.
+
+              Note: If you use this option with the (non-default) XML API it
+              generates an additional request per object being listed, which
+              makes the -L option run much more slowly and cost more than the
               default JSON API.
 
   -d          List matching subdirectory names instead of contents, and do not
@@ -256,14 +264,15 @@ _DETAILED_HELP_TEXT = ("""
   -h          When used with -l, prints object sizes in human readable format
               (e.g., 1 KiB, 234 MiB, 2 GiB, etc.)
 
-  -p proj_id  Specifies the project ID to use for listing buckets.
+  -p proj_id  Specifies the project ID or project number to use for listing
+              buckets.
 
   -R, -r      Requests a recursive listing, performing at least one listing
               operation per subdirectory. If you have a large number of
               subdirectories and do not require recursive-style output ordering,
               you may be able to instead use wildcards to perform a flat
-              listing, e.g.  `gsutil ls gs://mybucket/**`, which will generally
-              perform fewer listing operations.
+              listing, e.g.  ``gsutil ls gs://mybucket/**``, which generally
+              performs fewer listing operations.
 
   -a          Includes non-current object versions / generations in the listing
               (only useful with a versioning-enabled bucket). If combined with
@@ -364,8 +373,14 @@ class LsCommand(Command):
       fields['default_kms_key'] = 'None'
     fields['encryption_config'] = 'Present' if bucket.encryption else 'None'
     # Fields not available in all APIs (e.g. the XML API)
+    if bucket.autoclass and bucket.autoclass.enabled:
+      fields['autoclass_enabled_date'] = (
+          bucket.autoclass.toggleTime.strftime('%a, %d %b %Y'))
     if bucket.locationType:
       fields['location_type'] = bucket.locationType
+    if bucket.customPlacementConfig:
+      fields['custom_placement_locations'] = (
+          bucket.customPlacementConfig.dataLocations)
     if bucket.metageneration:
       fields['metageneration'] = bucket.metageneration
     if bucket.timeCreated:
@@ -375,9 +390,17 @@ class LsCommand(Command):
       fields['updated'] = bucket.updated.strftime('%a, %d %b %Y %H:%M:%S GMT')
     if bucket.defaultEventBasedHold:
       fields['default_eventbased_hold'] = bucket.defaultEventBasedHold
-    if bucket.iamConfiguration and bucket.iamConfiguration.bucketPolicyOnly:
-      enabled = bucket.iamConfiguration.bucketPolicyOnly.enabled
-      fields['bucket_policy_only_enabled'] = enabled
+    if bucket.iamConfiguration:
+      if bucket.iamConfiguration.bucketPolicyOnly:
+        enabled = bucket.iamConfiguration.bucketPolicyOnly.enabled
+        fields['bucket_policy_only_enabled'] = enabled
+      if bucket.iamConfiguration.publicAccessPrevention:
+        fields[
+            'public_access_prevention'] = bucket.iamConfiguration.publicAccessPrevention
+    if bucket.rpo:
+      fields['rpo'] = bucket.rpo
+    if bucket.satisfiesPZS:
+      fields['satisfies_pzs'] = bucket.satisfiesPZS
 
     # For field values that are multiline, add indenting to make it look
     # prettier.
@@ -394,15 +417,25 @@ class LsCommand(Command):
 
     # Only display certain properties if the given API returned them (JSON API
     # returns many fields that the XML API does not).
+    autoclass_line = ''
     location_type_line = ''
+    custom_placement_locations_line = ''
     metageneration_line = ''
     time_created_line = ''
     time_updated_line = ''
     default_eventbased_hold_line = ''
     retention_policy_line = ''
     bucket_policy_only_enabled_line = ''
+    public_access_prevention_line = ''
+    rpo_line = ''
+    satisifies_pzs_line = ''
+    if 'autoclass_enabled_date' in fields:
+      autoclass_line = '\tAutoclass:\t\t\tEnabled on {autoclass_enabled_date}\n'
     if 'location_type' in fields:
       location_type_line = '\tLocation type:\t\t\t{location_type}\n'
+    if 'custom_placement_locations' in fields:
+      custom_placement_locations_line = (
+          '\tPlacement locations:\t\t{custom_placement_locations}\n')
     if 'metageneration' in fields:
       metageneration_line = '\tMetageneration:\t\t\t{metageneration}\n'
     if 'time_created' in fields:
@@ -417,11 +450,19 @@ class LsCommand(Command):
     if 'bucket_policy_only_enabled' in fields:
       bucket_policy_only_enabled_line = ('\tBucket Policy Only enabled:\t'
                                          '{bucket_policy_only_enabled}\n')
+    if 'public_access_prevention' in fields:
+      public_access_prevention_line = ('\tPublic access prevention:\t'
+                                       '{public_access_prevention}\n')
+    if 'rpo' in fields:
+      rpo_line = ('\tRPO:\t\t\t\t{rpo}\n')
+    if 'satisfies_pzs' in fields:
+      satisifies_pzs_line = '\tSatisfies PZS:\t\t\t{satisfies_pzs}\n'
 
     text_util.print_to_fd(
         ('{bucket} :\n'
          '\tStorage class:\t\t\t{storage_class}\n' + location_type_line +
-         '\tLocation constraint:\t\t{location_constraint}\n'
+         '\tLocation constraint:\t\t{location_constraint}\n' +
+         custom_placement_locations_line +
          '\tVersioning enabled:\t\t{versioning}\n'
          '\tLogging configuration:\t\t{logging_config}\n'
          '\tWebsite configuration:\t\t{website_config}\n'
@@ -432,7 +473,9 @@ class LsCommand(Command):
          '\tLabels:\t\t\t\t{labels}\n' +
          '\tDefault KMS key:\t\t{default_kms_key}\n' + time_created_line +
          time_updated_line + metageneration_line +
-         bucket_policy_only_enabled_line + '\tACL:\t\t\t\t{acl}\n'
+         bucket_policy_only_enabled_line + autoclass_line +
+         public_access_prevention_line + rpo_line + satisifies_pzs_line +
+         '\tACL:\t\t\t\t{acl}\n'
          '\tDefault ACL:\t\t\t{default_acl}').format(**fields))
     if bucket_blr.storage_url.scheme == 's3':
       text_util.print_to_fd(
@@ -536,8 +579,10 @@ class LsCommand(Command):
       elif listing_style == ListingStyle.LONG_LONG:
         bucket_fields = [
             'acl',
+            'autoclass',
             'billing',
             'cors',
+            'customPlacementConfig',
             'defaultObjectAcl',
             'encryption',
             'iamConfiguration',
@@ -549,6 +594,8 @@ class LsCommand(Command):
             'metageneration',
             'retentionPolicy',
             'defaultEventBasedHold',
+            'rpo',
+            'satisfiesPZS',
             'storageClass',
             'timeCreated',
             'updated',
