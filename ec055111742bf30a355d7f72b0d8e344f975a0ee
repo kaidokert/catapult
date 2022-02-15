@@ -246,6 +246,30 @@
       },
       "revId": "ec055111742bf30a355d7f72b0d8e344f975a0ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9e6a3f_91398e75",
+        "filename": "telemetry/telemetry/page/shared_page_state.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1341502
+      },
+      "writtenOn": "2022-02-15T22:34:53Z",
+      "side": 1,
+      "message": "crbug.com/1297754 to track this.",
+      "parentUuid": "aedc965c_d257105e",
+      "range": {
+        "startLine": 49,
+        "startChar": 41,
+        "endLine": 49,
+        "endChar": 57
+      },
+      "revId": "ec055111742bf30a355d7f72b0d8e344f975a0ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
