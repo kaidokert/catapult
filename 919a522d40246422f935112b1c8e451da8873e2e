@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3f79ed7_ec498e2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-15T22:05:47Z",
+      "side": 1,
+      "message": "PTAL\n\nSample task with this change https://chromium-swarm.appspot.com/task?id\u003d591811528ca01910 vs. without https://chromium-swarm.appspot.com/task?id\u003d59178b7c6a6b5410\n\nNote that the former has browser log lines such as \"Chrome is running in full browser mode\"",
+      "revId": "919a522d40246422f935112b1c8e451da8873e2e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
