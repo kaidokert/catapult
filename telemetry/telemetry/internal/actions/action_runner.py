@@ -71,6 +71,7 @@ class ActionRunner(ActionRunnerBase):
   def _RunAction(self, action):
     logging.info("START Page Action: %s", action)
     action.WillRunAction(self._tab)
+    logging.info('DONE WillRunAction: %s', action)
     action.RunAction(self._tab)
     logging.info("DONE Page Action: %s", action.__class__.__name__)
 

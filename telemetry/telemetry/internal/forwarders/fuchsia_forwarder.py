@@ -8,6 +8,7 @@ import tempfile
 from telemetry.core import util
 from telemetry.internal import forwarders
 from telemetry.internal.forwarders import forwarder_utils
+import logging
 
 
 class FuchsiaForwarderFactory(forwarders.ForwarderFactory):
@@ -53,9 +54,16 @@ class FuchsiaSshForwarder(forwarders.Forwarder):
         local_port, remote_port, self.host_ip,
         port_forward))
 
+
     with tempfile.NamedTemporaryFile() as stderr_file:
+      #self._proc = command_runner.RunFFXCommand([
+      #    'target',
+      #    'forward',
+      #    local_port,
+      #    remote_port
+      #], stderr=stderr_file)
       self._proc = command_runner.RunCommandPiped(ssh_args=ssh_args,
-                                                  stderr=stderr_file)
+                                                 stderr=stderr_file)
       if not remote_port:
         remote_port = forwarder_utils.ReadRemotePort(stderr_file.name)
 

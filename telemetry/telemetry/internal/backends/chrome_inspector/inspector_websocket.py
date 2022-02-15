@@ -106,16 +106,20 @@ class InspectorWebsocket(object):
     self._SendRequest(req)
 
   def _SendRequest(self, req):
+
     if not self._socket:
+      logging.warning('_SendRequest: WebSocketDisconnected!')
       raise WebSocketDisconnected()
     try:
+      logging.info('Trying to send request')
       req['id'] = self._next_request_id
       self._next_request_id += 1
       data = json.dumps(req)
       self._socket.send(data.encode('utf-8'))
-      if logging.getLogger().isEnabledFor(logging.DEBUG):
-        logging.debug('sent [%s]', json.dumps(req, indent=2, sort_keys=True))
+      if logging.getLogger().isEnabledFor(logging.INFO):
+        logging.info('sent [%s]', json.dumps(req, indent=2, sort_keys=True))
     except websocket.WebSocketException as err:
+      logging.info('WebSocketException raised by %s', str(req))
       raise WebSocketException(err)
 
   def SyncRequest(self, req, timeout):
@@ -126,7 +130,10 @@ class InspectorWebsocket(object):
       socket.error: Error from websocket library.
       exceptions.WebSocketDisconnected: The socket was disconnected.
     """
+    logging.info('SENDING REQUEST')
     self._SendRequest(req)
+    if req.get('method') == 'Page.navigate':
+      logging.info('SKIPPING RECEIVE - waiting instead')
 
     while True:
       res = self._Receive(timeout)

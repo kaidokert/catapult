@@ -22,6 +22,12 @@ FUCHSIA_BROWSERS = [
 SDK_ROOT = os.path.join(util.GetCatapultDir(), '..', 'fuchsia-sdk', 'sdk')
 
 
+def _GetSDKToolPath(tool):
+  """Returns path to tool in SDK."""
+  return os.path.join(SDK_ROOT, 'tools', GetHostArchFromPlatform(), tool)
+
+
+
 class CommandRunner(object):
   """Helper class used to execute commands on Fuchsia devices on a remote host
   over SSH."""
@@ -64,7 +70,7 @@ class CommandRunner(object):
     # Having control master causes weird behavior in port_forwarding.
     ssh_args.append('-oControlMaster=no')
     ssh_command = self._GetSshCommandLinePrefix() + ssh_args + ['--'] + command
-    logging.debug(' '.join(ssh_command))
+    logging.info(' '.join(ssh_command))
     if six.PY3:
       kwargs['text'] = True
     return subprocess.Popen(ssh_command, **kwargs)
@@ -75,6 +81,12 @@ class CommandRunner(object):
     cmd_proc = self.RunCommandPiped(command, ssh_args, **kwargs)
     stdout, stderr = cmd_proc.communicate()
     return cmd_proc.returncode, stdout, stderr
+
+  def RunFFXCommand(self, ffx_args, **kwargs):
+    ffx_args = [str(arg) for arg in ffx_args]
+    command = [_GetSDKToolPath('ffx')] + ffx_args
+    logging.info(' '.join(command))
+    return subprocess.Popen(command, **kwargs)
 
 
 def GetHostArchFromPlatform():
@@ -99,8 +111,7 @@ def StartSymbolizerForProcessIfPossible(input_file, output_file, build_id_file):
       A subprocess.Popen object for the started process, None if symbolizer
       fails to start."""
   if os.path.isfile(build_id_file):
-    symbolizer = os.path.join(SDK_ROOT, 'tools', GetHostArchFromPlatform(),
-                              'symbolizer')
+    symbolizer = _GetSDKToolPath('symbolizer')
     symbolizer_cmd = [
         symbolizer, '--build-id-dir', os.path.join(SDK_ROOT, '.build-id'),
         '--ids-txt', build_id_file

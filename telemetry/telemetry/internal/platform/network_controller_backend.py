@@ -8,6 +8,7 @@ import os
 from telemetry.internal.util import webpagereplay_go_server
 from telemetry.internal.util import ts_proxy_server
 from telemetry.util import wpr_modes
+import logging
 
 
 class ArchiveDoesNotExistError(Exception):
@@ -56,6 +57,7 @@ class NetworkControllerBackend(object):
     """
     if self.is_open:
       use_live_traffic = wpr_mode == wpr_modes.WPR_OFF
+      logging.info('USE LIVE TRAFFIC: %s', str(use_live_traffic))
       if self.use_live_traffic != use_live_traffic:
         self.Close()  # Need to restart the current TsProxy and forwarder.
       else:
@@ -65,10 +67,16 @@ class NetworkControllerBackend(object):
         return
 
     self._wpr_mode = wpr_mode
+    logging.info('WPR_MODE: %s', str(self._wpr_mode))
     try:
       local_port = self._StartTsProxyServer()
+      logging.info('Local port for TS proxy server: %s', str(local_port))
       self._forwarder = self._platform_backend.forwarder_factory.Create(
           local_port=local_port, remote_port=None)
+      logging.info('Created forwarder!: %s', str(self._forwarder))
+      logging.info('Remote port: %s', str(self._forwarder.remote_port))
+      import traceback
+      traceback.print_stack()
     except Exception:
       self.Close()
       raise

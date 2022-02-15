@@ -9,6 +9,7 @@ import six
 from telemetry.core import exceptions
 
 from py_trace_event import trace_event
+import logging
 
 DEFAULT_WEB_CONTENTS_TIMEOUT = 90
 
@@ -241,6 +242,7 @@ class WebContents(six.with_metaclass(trace_event.TracedMetaClass, object)):
       exceptions.WebSocketException
       exceptions.DevtoolsTargetCrashException
     """
+    logging.info('WAIT FOR JAVASCRIPT CONDITION: %s', str(*args))
     return self._inspector_backend.WaitForJavaScriptCondition(*args, **kwargs)
 
   def AddTimelineMarker(self, marker):
@@ -301,6 +303,8 @@ class WebContents(six.with_metaclass(trace_event.TracedMetaClass, object)):
     script_to_evaluate_on_commit = (
         self._quiescence_js + self._wait_for_serviceworker_js +
         script_to_evaluate_on_commit)
+
+    logging.info('WebContents.Navigate: %s', url)
     self._inspector_backend.Navigate(url, script_to_evaluate_on_commit, timeout)
 
   def IsAlive(self):

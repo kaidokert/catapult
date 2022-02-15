@@ -5,6 +5,7 @@ from __future__ import absolute_import
 import time
 
 from telemetry.util import image_util
+import logging
 
 
 class InspectorPage(object):
@@ -110,7 +111,9 @@ class InspectorPage(object):
             }
         }
     self._navigated_frame_ids = set()
+    logging.info('InspectorPage.Navigate: %s, %s', url, str(request))
     res = self._inspector_websocket.SyncRequest(request, timeout)
+    logging.info('InspectorPage.SyncRequest complete: %s, %s', url, str(request))
     if 'frameId' in res['result']:
       # Modern backends are returning frameId from Page.navigate.
       # Use it here to unblock upon precise navigation.

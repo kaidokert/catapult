@@ -19,6 +19,7 @@ from telemetry.page import legacy_page_test
 from telemetry.page import traffic_setting
 from telemetry import story as story_module
 from telemetry.util import screenshot
+import pdb
 
 
 class SharedPageState(story_module.SharedState):
@@ -45,7 +46,7 @@ class SharedPageState(story_module.SharedState):
     if (self._device_type == 'desktop' and
         platform_module.GetHostPlatform().GetOSName() == 'chromeos'):
       self._device_type = 'chromeos'
-    if possible_browser.browser_type == 'web-engine-shell':
+    if possible_browser.browser_type == 'web-engine-shell' or possible_browser.browser_type == 'fuchsia-chrome':
       self._device_type = None
 
     browser_options = finder_options.browser_options
@@ -86,9 +87,12 @@ class SharedPageState(story_module.SharedState):
     self._perf_mode_set = (finder_options.performance_mode !=
                            android_device.KEEP_PERFORMANCE_MODE)
     self.platform.network_controller.Open(self.wpr_mode)
+    # Does nothing on Fuchsia platform
+    # Android platform ensures APK is installed 
     self.platform.Initialize()
     self._video_recording_enabled = (self._finder_options.capture_screen_video
                                      and self.platform.CanRecordVideo())
+
 
   @property
   def interval_profiling_controller(self):
