@@ -16,6 +16,24 @@
       "message": "No, sorry, I mean the parameter `bucket` to this function, is already in the form `luci.$project.$builder` and should be decomposed into\n\n```\n\u0027builder\u0027: {\n  \u0027project\u0027: bucket.split(\u0027.\u0027)[1],\n  \u0027bucket\u0027: bucket.split(\u0027.\u0027)[2],\n  \u0027builder\u0027: parameters[\u0027builder_name\u0027],\n}\n```",
       "revId": "a35dfa6768e1a5b2718a97c010b4578bc2973f31",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9294df39_c1ced56d",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-15T21:58:06Z",
+      "side": 1,
+      "message": "(or some more robust parsing)",
+      "parentUuid": "0c78fba0_6f4f2003",
+      "revId": "a35dfa6768e1a5b2718a97c010b4578bc2973f31",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
