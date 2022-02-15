@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76df0ab5_ea5d5445",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-15T21:13:55Z",
+      "side": 1,
+      "message": "I mean; I assume that `bucket` here is probably `luci.chrome.stuff` where `stuff` is the v2 bucket name.",
+      "revId": "43235e72153a64e295bec2735c07934dc54b302b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
