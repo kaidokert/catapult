@@ -85,6 +85,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         self._managed_repo,
         '--web-engine-package-name=web_engine_with_webui',
         '--remote-debugging-port=0',
+        '--bypass-context-provider',
         'about:blank'
     ]
 
