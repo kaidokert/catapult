@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebfb213_3f93fb86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1177266
+      },
+      "writtenOn": "2022-02-15T18:28:55Z",
+      "side": 1,
+      "message": "PTAL, thanks!\n\nI don\u0027t see an option in pinpoint CLI\u0027s experiment-telemetry-start to test a catapult CL, so I\u0027ll land this first, wait for the roll, and check that this worked using Ryan\u0027s colab before closing the bug.",
+      "revId": "032c17723280292d59b1a2dd203acfa45ea83bbd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
