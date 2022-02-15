@@ -7,6 +7,7 @@ import logging
 import os
 import re
 import select
+import time
 import subprocess
 
 from telemetry.core import fuchsia_interface
@@ -39,7 +40,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       self._output_dir = os.path.abspath(os.path.dirname(
           fuchsia_platform_backend.ssh_config))
     self._browser_log = ''
+    self._browser_log_proc = None
     self._managed_repo = fuchsia_platform_backend.managed_repo
+    self._num_browsers = 0
 
   @property
   def log_file_path(self):
@@ -56,9 +59,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _ReadDevToolsPortFromStderr(self):
     def TryReadingPort():
-      if not self._browser_process.stderr:
+      if not self._browser_log_proc.stderr:
         return None
-      line = self._browser_process.stderr.readline()
+      line = self._browser_log_proc.stderr.readline()
       tokens = re.search(r'Remote debugging port: (\d+)', line)
       self._browser_log += line
       return int(tokens.group(1)) if tokens else None
@@ -66,9 +69,30 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
 
   def _ReadDevToolsPortFromSystemLog(self):
     def TryReadingPort():
-      tokens = re.search(
-          r'DevTools listening on ws://127.0.0.1:(\d+)',
-          self._platform_backend.GetSystemLog().decode("utf-8"))
+      #logs = self._platform_backend.GetSystemLog()
+      #possible_ports = []
+      #for line in logs.decode("utf-8").splitlines():
+      #  tokens = re.search(
+      #      r'DevTools listening on ws://127.0.0.1:(\d+)/devtools.*',
+      #      line)
+      #  if tokens:
+      #    logging.info('SYSTEM LOGS: %s', line)
+      #    logging.info('PORT: %d', int(tokens.group(1)))
+      #    possible_ports.append(tokens.group(1))
+      #    logging.info('POSSIBLE PORTS: %s' % str(possible_ports))
+      #    logging.info('NUM BROWSERS: %d' % self._num_browsers)
+
+      #if len(possible_ports) == self._num_browsers:
+      #  logging.info('RETURNING %s' % possible_ports[-1])
+      #  return possible_ports[-1]
+      if not self._browser_log_proc.stderr:
+        return None
+      logging.info('GETTING LINE')
+      line = self._browser_log_proc.stderr.readline()
+      logging.info('GOT LINE: %s', line)
+
+      tokens = re.search(r'DevTools listening on ws://127.0.0.1:(\d+)/devtools.*', line)
+      self._browser_log += line
       return int(tokens.group(1)) if tokens else None
     return py_utils.WaitFor(TryReadingPort, timeout=60)
 
@@ -104,6 +128,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       browser_cmd.extend(startup_args)
     self._browser_process = self._command_runner.RunCommandPiped(
         browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    self._browser_log_proc = self._browser_process
 
   def _StartChrome(self, startup_args):
     ffx = os.path.join(fuchsia_interface.SDK_ROOT, 'tools',
@@ -116,12 +141,38 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         self._managed_repo,
         '--',
         'about:blank',
-        '--remote-debugging-port=0'
+        '--remote-debugging-port=0',
+        '--enable-logging',
+        '--ignore-certificate-errors',
+        '--allow-insecure-localhost',
+        '--reduce-security-for-testing',
+        '--disable-web-security',
+        '--unsafely-treat-insecure-origin-as-secure',
+        '--v=3'
     ]
     if startup_args:
       browser_cmd.extend(startup_args)
+    logging.info(' '.join(browser_cmd))
+    # Log the browser from this point on from system-logs.
+    logging_cmd = [
+        'log_listener',
+        '--since_now'
+    ]
+    # Combine to STDERR, as this is used for symbolization
+    self._browser_log_proc = self._command_runner.RunCommandPiped(
+        logging_cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    # Need stderr to replicate stdout for symbolization.
+    self._browser_log_proc.stderr = self._browser_log_proc.stdout
+    sleep = 1
+    logging.info('SHOULD HAVE LAUNCHED THE BROWSER LOG COMMAND')
+    while not self._browser_log_proc.pid:
+      logging.info(f'PID not found for log proc. Sleeping {sleep}s')
+      time.sleep(sleep)
     self._browser_process = subprocess.Popen(
         browser_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    self._num_browsers += 1
 
   def Start(self, startup_args):
     try:
@@ -137,9 +188,9 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
       # Symbolize stderr of browser process if possible
       self._symbolizer_proc = (
           fuchsia_interface.StartSymbolizerForProcessIfPossible(
-              self._browser_process.stderr, subprocess.PIPE, browser_id_file))
+              self._browser_log_proc.stderr, subprocess.PIPE, browser_id_file))
       if self._symbolizer_proc:
-        self._browser_process.stderr = self._symbolizer_proc.stdout
+        self._browser_log_proc.stderr = self._symbolizer_proc.stdout
 
       self._dump_finder = minidump_finder.MinidumpFinder(
           self.browser.platform.GetOSName(),
@@ -158,13 +209,16 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         tracing_backend.StartTracing(current_state.config,
                                      current_state.timeout)
 
-    except:
+    except Exception as e:
+      logging.exception(e)
       logging.info('The browser failed to start. Output of the browser: \n%s' %
                    self.GetStandardOutput())
       self.Close()
       raise
 
   def GetPid(self):
+    # TODO: This does not work if the browser process is kicked off via ffx
+    # session add, as that process is on the host, and exits immediately.
     return self._browser_process.pid
 
   def Background(self):
@@ -176,21 +230,30 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._browser_process:
       logging.info('Shutting down browser process on Fuchsia')
       self._browser_process.kill()
+    if self._browser_log_proc:
+      self._browser_log_proc.kill()
     if self._symbolizer_proc:
       self._symbolizer_proc.kill()
-    close_cmd = ['killall', 'context_provider.cmx']
+    if self.browser_type == 'web-engine-shell':
+      close_cmd = ['killall', 'context_provider.cmx']
+    else:
+      close_cmd = ['killall', 'chrome_v1.cmx']
     self._command_runner.RunCommand(
         close_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     self._browser_process = None
+    self._browser_log_proc = None
 
   def IsBrowserRunning(self):
+    # TODO: this does not capture if the process is still running if its kicked
+    # off via ffx session add.
     return bool(self._browser_process)
 
   def GetStandardOutput(self):
-    if self._browser_process:
+    if self._browser_log_proc:
       # Make sure there is something to read.
-      if select.select([self._browser_process.stderr], [], [], 0.0)[0]:
-        self._browser_log += self._browser_process.stderr.read()
+      self._browser_log_proc.terminate()
+      if select.select([self._browser_log_proc.stderr], [], [], 0.0)[0]:
+        self._browser_log += self._browser_log_proc.stderr.read()
     return self._browser_log
 
   def SymbolizeMinidump(self, minidump_path):

@@ -57,8 +57,8 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
       local_first_binary_manager.LocalFirstBinaryManager.Init(
           self._build_dir, None, 'linux', platform.machine())
 
-    startup_args = chrome_startup_args.GetFromBrowserOptions(
-        self._browser_options)
+    startup_args = self.GetBrowserStartupArgs(self._browser_options)#chrome_startup_args.GetFromBrowserOptions(
+        #self._browser_options)
     browser_backend = fuchsia_browser_backend.FuchsiaBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory)
@@ -69,6 +69,52 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
     except Exception:
       browser_backend.Close()
       raise
+
+  def GetBrowserStartupArgs(self, browser_options):
+    startup_args = chrome_startup_args.GetFromBrowserOptions(browser_options)
+
+    startup_args.extend(chrome_startup_args.GetReplayArgs(
+        self._platform_backend.network_controller_backend))
+
+    #startup_args.extend([
+    #    '--enable-smooth-scrolling',
+    #    '--enable-threaded-compositing',
+    #    # Allow devtools to connect to chrome.
+    #    '--remote-debugging-port=0',
+    #    # Open a maximized window.
+    #    '--start-maximized',
+    #    # Disable sounds.
+    #    '--ash-disable-system-sounds',
+    #    # Skip user image selection screen, and post login screens.
+    #    '--oobe-skip-postlogin',
+    #    # Enable OOBE test API
+    #    '--enable-oobe-test-api',
+    #    # Force launch browser
+    #    '--force-launch-browser',
+    #    # Debug logging.
+    #    '--vmodule=%s' % vmodule,
+    #    # Enable crash dumping.
+    #    '--enable-crash-reporter-for-testing',
+    #])
+
+    #if self._app_type == 'lacros-chrome':
+    #  startup_args.extend(['--lacros-mojo-socket-for-testing=/tmp/lacros.sock'])
+
+    #if browser_options.mute_audio:
+    #  startup_args.append('--mute-audio')
+
+    #if not browser_options.expect_policy_fetch:
+    #  startup_args.append('--allow-failed-policy-fetch-for-test')
+
+    #if browser_options.disable_gaia_services:
+    #  startup_args.append('--disable-gaia-services')
+
+    #trace_config_file = (self._platform_backend.tracing_controller_backend
+    #                     .GetChromeTraceConfigFile())
+    #if trace_config_file:
+    #  startup_args.append('--trace-config-file=%s' % trace_config_file)
+
+    return startup_args
 
   def CleanUpEnvironment(self):
     if self._browser_options is None:
