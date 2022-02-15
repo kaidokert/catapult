@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e950c16_2872744f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1528727
+      },
+      "writtenOn": "2022-02-15T10:55:31Z",
+      "side": 1,
+      "message": "I pulled tags/v5.6 from the upstream repository into a local directory, initialized all the submodules, deleted the top-level .git files and added the README.chromium that was already present. \n\nI only really needed a few fixes, but I suppose it\u0027s better to upgrade the library wholesale to a new version, since it\u0027s been 2 years since the last upgrade.",
+      "revId": "59299771436f37b457490d2d94b69309f638f427",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
