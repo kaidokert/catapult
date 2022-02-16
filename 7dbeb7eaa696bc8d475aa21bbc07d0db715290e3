@@ -123,6 +123,24 @@
       "parentUuid": "3ffdac8b_5c3cb886",
       "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef6fc296_2ada99c5",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-02-16T23:48:20Z",
+      "side": 1,
+      "message": "Updated the CL to prepare for the package_name removal. Will send follow-ups, as described in the commit message.",
+      "parentUuid": "044509b4_471d624c",
+      "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
