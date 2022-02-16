@@ -113,6 +113,15 @@ def ReplaceSystemApp(device,
     package_name: (str) the name of the package to replace.
     replacement_apk: (str) the path to the APK to use as a replacement.
   """
+  apk_package_name = apk_helper.GetPackageName(replacement_apk)
+  if package_name != apk_package_name:
+    logger.info(
+        'System app not replaced due to package name mismatch: '
+        '%s != %s (from replacement apk)', package_name, apk_package_name)
+    with _TemporarilyInstallApp(device, replacement_apk, install_timeout):
+      yield
+    return
+
   storage_dir = device_temp_file.NamedDeviceTemporaryDirectory(device.adb)
   relocate_app = _RelocateApp(device, package_name, storage_dir.name)
   install_app = _TemporarilyInstallApp(device, replacement_apk, install_timeout)
