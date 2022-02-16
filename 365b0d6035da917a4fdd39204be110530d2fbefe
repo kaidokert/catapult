@@ -52,6 +52,24 @@
       "parentUuid": "e011d836_5039b3fc",
       "revId": "365b0d6035da917a4fdd39204be110530d2fbefe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c1e763_fea4527e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-16T17:39:31Z",
+      "side": 1,
+      "message": "The decision was made after more discussions with the team. I\u0027ll add comment to the bug above. Please let me know if any more bugs related to python3 migration on catapult/dashboard.\nThanks!",
+      "parentUuid": "a53e6f40_e1f75056",
+      "revId": "365b0d6035da917a4fdd39204be110530d2fbefe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
