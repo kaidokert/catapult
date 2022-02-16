@@ -87,6 +87,24 @@
       "parentUuid": "d0b271d6_8e3e33fe",
       "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ffdac8b_5c3cb886",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-02-16T21:32:32Z",
+      "side": 1,
+      "message": "Oh, wait. I put a wrong code here. If there is a mismatch, ReplaceSystemApp should not relocate the system app, but still install the APK. I will upload a new patch.\n\nAs ReplaceSystemApp accepts a package_name and the replace APK as the parameters, there is always a potential mismatch issue so I think it makes more sense to put it here.\nMaybe a better way is to just retrieve the package name from APK, and then follow the pseudocode above?",
+      "parentUuid": "33115dfe_66215dc4",
+      "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
