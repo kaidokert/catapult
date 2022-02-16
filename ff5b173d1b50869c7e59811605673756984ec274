@@ -16,6 +16,46 @@
       "message": "went with list approach, added a try/catch",
       "revId": "ff5b173d1b50869c7e59811605673756984ec274",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad7c0a4d_dabfd093",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-16T17:08:08Z",
+      "side": 1,
+      "message": "LGTM with nit.",
+      "revId": "ff5b173d1b50869c7e59811605673756984ec274",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310b8e58_d586e584",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-16T17:08:08Z",
+      "side": 1,
+      "message": "nit: add the exception message in the log.",
+      "range": {
+        "startLine": 424,
+        "startChar": 4,
+        "endLine": 424,
+        "endChar": 11
+      },
+      "revId": "ff5b173d1b50869c7e59811605673756984ec274",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
