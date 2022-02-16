@@ -146,6 +146,7 @@ def try_builder(
         name = "catapult",
         cipd_package = "infra/recipe_bundles/chromium.googlesource.com/chromium/tools/build",
         use_bbagent = True,
+        use_python3 = True,
     )
     if is_presubmit:
         executable = luci.recipe(
