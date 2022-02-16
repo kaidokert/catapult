@@ -69,6 +69,24 @@
       "parentUuid": "2206ebb1_31c94eba",
       "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33115dfe_66215dc4",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-02-16T20:43:05Z",
+      "side": 1,
+      "message": "It seems like a better approach would be to move this check up to the call site, with pseudocode like:\n\n```\nif IsSystemApp(replacement_package.package_name):\n  ReplaceSystemApp(replacement_package)\nelse:\n  Install(replacement_package)\n```\n\nIs there a reason this needs to be done at this level instead?",
+      "parentUuid": "d0b271d6_8e3e33fe",
+      "revId": "7dbeb7eaa696bc8d475aa21bbc07d0db715290e3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
