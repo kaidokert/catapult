@@ -22,6 +22,30 @@
       },
       "revId": "2ed4fe8a73f8f2947662ccba6403bf50cb7b89cf",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecdcbc95_cd621a6b",
+        "filename": "telemetry/telemetry/binary_dependencies.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2022-02-17T22:47:11Z",
+      "side": 1,
+      "message": "Yes, I\u0027ll double check after the merge and re-create.",
+      "parentUuid": "7e76df80_ea35a596",
+      "range": {
+        "startLine": 404,
+        "startChar": 28,
+        "endLine": 404,
+        "endChar": 68
+      },
+      "revId": "2ed4fe8a73f8f2947662ccba6403bf50cb7b89cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
