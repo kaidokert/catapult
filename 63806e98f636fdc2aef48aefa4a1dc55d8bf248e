@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e55dac3b_c1a1cbea",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-17T17:46:36Z",
+      "side": 1,
+      "message": "Are there ever going to be actual cases where this is different from the browser?",
+      "range": {
+        "startLine": 268,
+        "startChar": 4,
+        "endLine": 268,
+        "endChar": 29
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "659470c3_a7ed1635",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-17T17:46:36Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ddbb3a_cb197286",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-17T17:46:36Z",
+      "side": 1,
+      "message": "This isn\u0027t exactly a guid. Every cast device will have the same one.",
+      "range": {
+        "startLine": 16,
+        "startChar": 50,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
