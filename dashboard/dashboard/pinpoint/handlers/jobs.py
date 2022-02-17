@@ -14,11 +14,13 @@ from dashboard.pinpoint.models import job as job_module
 from dashboard.common import utils
 
 from google.appengine.datastore import datastore_query
+from google.appengine.api import app_identity
 
 _BATCH_FETCH_TIMEOUT = 200
 _MAX_JOBS_TO_FETCH = 100
 _MAX_JOBS_TO_COUNT = 1000
 _DEFAULT_FILTERED_JOBS = 40
+_STAGE_APP_ID = 'chromeperf-stage'
 
 
 class Error(Exception):
@@ -135,6 +137,10 @@ def _GetJobs(options, query_filter, prev_cursor='', next_cursor=''):
       'prev': prev_,
       'next': next_,
   }
+
+  # Skip the email replacement workflow in staging environment.
+  if app_identity.get_application_id() != _STAGE_APP_ID:
+    return result
 
   service_account_email = utils.ServiceAccountEmail()
   logging.debug('service account email = %s', service_account_email)
