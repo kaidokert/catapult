@@ -140,6 +140,30 @@
       },
       "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "381def90_80e42795",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-17T18:59:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "64995146_42bcb264",
+      "range": {
+        "startLine": 16,
+        "startChar": 50,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
