@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e76df80_ea35a596",
+        "filename": "telemetry/telemetry/binary_dependencies.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-02-17T22:42:45Z",
+      "side": 1,
+      "message": "I assume the binaries were built using the code from https://chromium-review.googlesource.com/c/catapult/+/3472685, right? This hash would be wrong. Please wait for the other CL to be merged, then update your git client and regenerate this file. That should get the right git hash.",
+      "range": {
+        "startLine": 404,
+        "startChar": 28,
+        "endLine": 404,
+        "endChar": 68
+      },
+      "revId": "2ed4fe8a73f8f2947662ccba6403bf50cb7b89cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
