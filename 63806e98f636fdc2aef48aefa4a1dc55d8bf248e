@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4855e6c_faecf1aa",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-17T17:56:48Z",
+      "side": 1,
+      "message": "Ah sorry forgot to modify the comment, as for actual cases, we currently have two: one is on actual TVs which is a remote platform (new class coming), and the other on Linux (we\u0027ll be trying to use the desktop_platform and desktop_platform_backend for that).",
+      "parentUuid": "e55dac3b_c1a1cbea",
+      "range": {
+        "startLine": 268,
+        "startChar": 4,
+        "endLine": 268,
+        "endChar": 29
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "659470c3_a7ed1635",
@@ -47,6 +71,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b37272_91f9407b",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-17T17:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "659470c3_a7ed1635",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6ddbb3a_cb197286",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-17T17:46:36Z",
       "side": 1,
       "message": "This isn\u0027t exactly a guid. Every cast device will have the same one.",
+      "range": {
+        "startLine": 16,
+        "startChar": 50,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "63806e98f636fdc2aef48aefa4a1dc55d8bf248e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64995146_42bcb264",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-17T17:56:48Z",
+      "side": 1,
+      "message": "I copied this from desktop_device.py, I think if we end up using guid I can come back and update this?",
+      "parentUuid": "f6ddbb3a_cb197286",
       "range": {
         "startLine": 16,
         "startChar": 50,
