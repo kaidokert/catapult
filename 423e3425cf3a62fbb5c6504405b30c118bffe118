@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fd77d8d_e9f17b0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338159
+      },
+      "writtenOn": "2022-02-17T18:19:49Z",
+      "side": 1,
+      "message": "Adding Brain to review the file .gitignore.",
+      "revId": "423e3425cf3a62fbb5c6504405b30c118bffe118",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
