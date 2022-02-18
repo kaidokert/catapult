@@ -124,8 +124,7 @@ class Expectation(object):
             pattern = self._test[:-1].replace('*', '\\*') + '*'
         else:
             pattern = self._test.replace('*', '\\*')
-        pattern = pattern.replace('%', '%25')
-        pattern = pattern.replace(' ', '%20')
+        pattern = uri_encode_spaces(pattern)
         self._string_value = ''
         if self._reason:
             self._string_value += self._reason + ' '
@@ -421,8 +420,7 @@ class TaggedTestListParser(object):
                 raise ParseError(lineno, 'Unknown result type "%s"' % r)
 
         # replace %20 in test path to ' '
-        test = test.replace('%20', ' ')
-        test = test.replace('%25', '%')
+        test = uri_decode_spaces(test)
 
         # remove escapes for asterisks
         is_glob = not test.endswith('\\*') and test.endswith('*')
@@ -680,6 +678,9 @@ class TestExpectations(object):
         # test_names: list of test names that are used to find test expectations
         # that do not apply to any of test names in the list.
         broken_exps = []
+        # Apply the same temporary encoding we do when ingesting/comparing
+        # expectations.
+        test_names = [uri_decode_spaces(tn) for tn in test_names]
         test_names = set(test_names)
         for pattern, exps in self.individual_exps.items():
             if pattern not in test_names:
@@ -707,3 +708,14 @@ class TestExpectations(object):
                     break
                 _trie = _trie[l]
         return broken_exps + broken_glob_exps
+
+def uri_encode_spaces(s):
+  s = s.replace('%', '%25')
+  s = s.replace(' ', '%20')
+  return s
+
+
+def uri_decode_spaces(s):
+  s = s.replace('%20', ' ')
+  s = s.replace('%25', '%')
+  return s
