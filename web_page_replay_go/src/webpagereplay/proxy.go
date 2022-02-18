@@ -19,9 +19,19 @@ import (
 
 const errStatus = http.StatusInternalServerError
 
+func isAmazonSearchPage(req *http.Request) bool {
+	if req.URL.Host != "www.amazon.in" {
+		return false
+	}
+	if !strings.HasPrefix(req.URL.Path, "/s/") {
+		return false
+	}
+	return true
+}
+
 func makeLogger(req *http.Request, quietMode bool) func(msg string, args ...interface{}) {
 	if quietMode {
-		return func(string, ...interface{}) { }
+		return func(string, ...interface{}) {}
 	}
 	prefix := fmt.Sprintf("ServeHTTP(%s): ", req.URL)
 	return func(msg string, args ...interface{}) {
@@ -67,7 +77,7 @@ func updateDates(h http.Header, now time.Time) {
 // NewReplayingProxy constructs an HTTP proxy that replays responses from an archive.
 // The proxy is listening for requests on a port that uses the given scheme (e.g., http, https).
 func NewReplayingProxy(a *Archive, scheme string, transformers []ResponseTransformer, quietMode bool) http.Handler {
-	return &replayingProxy{a, scheme, transformers, quietMode }
+	return &replayingProxy{a, scheme, transformers, quietMode}
 }
 
 type replayingProxy struct {
@@ -152,8 +162,24 @@ func (proxy *replayingProxy) ServeHTTP(w http.ResponseWriter, req *http.Request)
 		w.Header()[k] = append([]string{}, v...)
 	}
 	w.WriteHeader(storedResp.StatusCode)
-	if _, err := io.Copy(w, storedResp.Body); err != nil {
-		logf("warning: client response truncated: %v", err)
+
+	if isAmazonSearchPage(req) {
+		chunk, err := io.ReadAll(storedResp.Body)
+		if err != nil {
+			logf("warning: client response truncated: %v", err)
+		}
+		// Split into the first 60KB data
+		threshold := 60 << (10 * 1)
+		w.Write(chunk[0:threshold])
+		w.(http.Flusher).Flush()
+		// Wait for 3 seconds
+		time.Sleep(3 * time.Second)
+		// Then return the rest of data
+		w.Write(chunk[threshold:])
+	} else {
+		if _, err := io.Copy(w, storedResp.Body); err != nil {
+			logf("warning: client response truncated: %v", err)
+		}
 	}
 }
 
