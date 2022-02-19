@@ -16,6 +16,23 @@
       "message": "Achuith, PTAL",
       "revId": "94ba4833c039977910e96c3a9210cc257c6a5af7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfef873a_c1c9dc23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000623
+      },
+      "writtenOn": "2022-02-19T10:01:21Z",
+      "side": 1,
+      "message": "It\u0027s supposed to be used for guest mode login. I\u0027m not sure if we still have autotests that run in guest mode",
+      "revId": "94ba4833c039977910e96c3a9210cc257c6a5af7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
