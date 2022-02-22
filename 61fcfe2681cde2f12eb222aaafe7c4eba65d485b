@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a38dc03_3b360784",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2022-02-22T17:59:49Z",
+      "side": 1,
+      "message": "I\u0027ll investigate what changed in the mac version - thanks for diagnosing and resolving this.",
+      "revId": "61fcfe2681cde2f12eb222aaafe7c4eba65d485b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
