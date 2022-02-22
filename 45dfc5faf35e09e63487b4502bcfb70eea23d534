@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "577ad52e_56f0d629",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002192
+      },
+      "writtenOn": "2022-02-22T19:52:19Z",
+      "side": 1,
+      "message": "PTAL. Sorry for this blatant error :) ",
+      "revId": "45dfc5faf35e09e63487b4502bcfb70eea23d534",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
