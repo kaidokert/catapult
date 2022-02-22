@@ -16,6 +16,23 @@
       "message": "ping?",
       "revId": "b54d95c0b75617272ead1d65eddeba8ee5649818",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c97777_3932bf9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-02-22T23:41:59Z",
+      "side": 1,
+      "message": "lgtm (but I doubt I\u0027m an OWNER here)",
+      "revId": "b54d95c0b75617272ead1d65eddeba8ee5649818",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
