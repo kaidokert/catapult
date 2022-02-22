@@ -147,6 +147,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd75261_fa01931d",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-02-22T19:59:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80e86264_b1a486f4",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 59
+      },
+      "revId": "9cd26a6bae570b3a5cd3878a028d3e5689683986",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "804a33df_6f783eb0",
