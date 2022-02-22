@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bc354eb_d32bfb51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1431447
+      },
+      "writtenOn": "2022-02-22T09:35:37Z",
+      "side": 1,
+      "message": "[Chromium sheriff] This seems to have broken telemetry tests on bots: crbug.com/1299313. Will try to revert.",
+      "revId": "91986b1fdbf04f863473e5d38046df46a02639e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
