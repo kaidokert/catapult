@@ -16,6 +16,23 @@
       "message": "I figured out why the bot_id was not showing up in row entities. Information from supplemental columns must start with a_, r_, or c_ [1]. I eventually found it thanks to this logging line [2].\n\n[1] https://chromium.googlesource.com/catapult/+/HEAD/dashboard/dashboard/models/graph_data.py#348\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/add_point.py;drc\u003da4ac13270babda56d851c9b746e89d2eb17f198b;l\u003d805",
       "revId": "f2083aab299fbf08b69fe93130eb9c31a93188a4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c905f2c7_4bee61c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-02-22T15:42:35Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "f2083aab299fbf08b69fe93130eb9c31a93188a4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
