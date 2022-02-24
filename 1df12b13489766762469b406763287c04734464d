@@ -41,6 +41,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "880653c7_a4c6dbf5",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-24T17:08:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0a78563_5e8f9adc",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 21
+      },
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2085efe8_fc146c4f",
@@ -64,6 +88,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2010a6e_fc233c53",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-24T17:08:56Z",
+      "side": 1,
+      "message": "Removed, it seems like from my own testing that this is not required.",
+      "parentUuid": "2085efe8_fc146c4f",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 18
+      },
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f0f77d0_dd29cdf8",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-02-24T00:53:30Z",
       "side": 1,
       "message": "Are cast tests only ever expected to run on Linux? If not, I could see this potentially causing issues, e.g. if the desktop browser is Windows.",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 40
+      },
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb1a1c4_cac8f401",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-24T17:08:56Z",
+      "side": 1,
+      "message": "Currently, yes. There are two types of cast tests, and the difference is whether the cast receiver is remote or not, but the test themselves will always originate from Linux. I think I wasn\u0027t planning on using this class in any meaningful way in our testing.",
+      "parentUuid": "4f0f77d0_dd29cdf8",
       "range": {
         "startLine": 55,
         "startChar": 33,
