@@ -39,6 +39,30 @@
       },
       "revId": "102d5fd25f64384de4cae858a5db03302a34b806",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d18c1ab_37070725",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T21:07:13Z",
+      "side": 1,
+      "message": "On second thought, it\u0027s technically fine as-is, but I think you\u0027re combining two different possible approaches in a way that isn\u0027t quite right. Right now, you\u0027re keeping an open file handle to this all the time, but also re-opening it later on in Start. Your two better options are:\n\n1. Keep creation in __init__, but set delete\u003dFalse, store the name instead of the file handle, and immediately close the file. You can then write contents to it in Start and make a best-effort attempt to clean up the file in __del__\n\n2. Initialize this to None, and instead create the actual file in Start. You would then close the file handle in Close, which would then clean up the file on disk.\n\nThe second approach seems cleaner to me since then you don\u0027t have to mess around with __del__.",
+      "parentUuid": "7c878bee_913d4bc2",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "102d5fd25f64384de4cae858a5db03302a34b806",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
