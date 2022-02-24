@@ -116,13 +116,18 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         '--force_all_apps_discoverable',
         '--remote-debugging-port=%d' % self._devtools_port,
     ]
-    os.chdir(self._output_dir)
-    self._cast_core_process = subprocess.Popen(cast_core_command,
-                                               stdin=open(os.devnull),
-                                               stdout=subprocess.PIPE,
-                                               stderr=subprocess.STDOUT)
+    original_dir = os.getcwd()
+    try:
+      os.chdir(self._output_dir)
+      self._cast_core_process = subprocess.Popen(cast_core_command,
+                                                 stdin=open(os.devnull),
+                                                 stdout=subprocess.PIPE,
+                                                 stderr=subprocess.STDOUT)
 
-    self._browser_process = self._web_runtime.Start()
+      self._browser_process = self._web_runtime.Start()
+    finally:
+      os.chdir(original_dir)
+
     self.BindDevToolsClient()
 
   def GetPid(self):
