@@ -22,6 +22,30 @@
       },
       "revId": "405da205e70f93eab541ad12892403acfad9ff72",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab41ccfa_57a76e70",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-24T21:08:15Z",
+      "side": 1,
+      "message": "Me neither, I saw this appear as a warning and looked at https://stackoverflow.com/questions/8683178/chained-method-calls-indentation-style-in-python for a potential solution.",
+      "parentUuid": "177e80cc_d75f5b29",
+      "range": {
+        "startLine": 206,
+        "startChar": 58,
+        "endLine": 206,
+        "endChar": 59
+      },
+      "revId": "405da205e70f93eab541ad12892403acfad9ff72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
