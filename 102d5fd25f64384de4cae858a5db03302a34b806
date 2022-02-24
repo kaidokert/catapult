@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c909ec8f_5a22ec21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T17:47:53Z",
+      "side": 1,
+      "message": "LGTM % nit",
+      "revId": "102d5fd25f64384de4cae858a5db03302a34b806",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c878bee_913d4bc2",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T17:47:53Z",
+      "side": 1,
+      "message": "Nit: set delete\u003dFalse so that the file doesn\u0027t get removed from disk between when you call this and when you use it.",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "102d5fd25f64384de4cae858a5db03302a34b806",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
