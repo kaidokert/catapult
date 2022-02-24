@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "844e2b0c_1cb7ca79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T23:14:06Z",
+      "side": 1,
+      "message": "LGTM % remaining comment",
+      "revId": "89563a6335f77c9f20c31ecf3bca5d799f19f95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c76f71c5_1083d7a9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T23:14:06Z",
+      "side": 1,
+      "message": "It might not make a difference in practice (i.e. we\u0027re already in the output dir on swarming), but it\u0027s probably best to store the current directory, change directory, create the process, and swap back afterwards. It doesn\u0027t seem like chdir can be used as a context manager, so do something like:\n\n```\noriginal_dir \u003d os.getcwd()\ntry:\n  os.chdir(self._output_dir)\n  self._cast_core_process \u003d ...\nfinally:\n  os.chdir(original_dir)\n```",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 30
+      },
+      "revId": "89563a6335f77c9f20c31ecf3bca5d799f19f95a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
