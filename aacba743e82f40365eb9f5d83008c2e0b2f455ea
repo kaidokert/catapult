@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d5ed6e_f3346ceb",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T22:58:46Z",
+      "side": 1,
+      "message": "You should not need to do this - self._config_file is already an open writable file handle. If you\u0027re doing this because it\u0027s complaining about bytes vs. strings, specify `mode\u003d\u0027w\u0027` in NamedTemporaryFile.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 42
+      },
+      "revId": "aacba743e82f40365eb9f5d83008c2e0b2f455ea",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
