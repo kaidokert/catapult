@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "177e80cc_d75f5b29",
+        "filename": "telemetry/telemetry/internal/backends/chrome_inspector/devtools_client_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T17:52:27Z",
+      "side": 1,
+      "message": "I\u0027m not sure this will work as intended with this space here? Can\u0027t same I\u0027m super familiar with escaped line break behavior, though.",
+      "range": {
+        "startLine": 206,
+        "startChar": 58,
+        "endLine": 206,
+        "endChar": 59
+      },
+      "revId": "405da205e70f93eab541ad12892403acfad9ff72",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
