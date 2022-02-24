@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d91f20a2_88e487f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T00:53:30Z",
+      "side": 1,
+      "message": "Sorry, apparently I had this open in a window and forgot to finish actually reviewing.",
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0a78563_5e8f9adc",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T00:53:30Z",
+      "side": 1,
+      "message": "Nit: The variable implies this is a directory, but it\u0027s being used like an executable.",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 21
+      },
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2085efe8_fc146c4f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T00:53:30Z",
+      "side": 1,
+      "message": "I feel like there has to be a better way to wait for this. Sleeps are both flake-prone and wasteful.",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 18
+      },
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0f77d0_dd29cdf8",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_finder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-02-24T00:53:30Z",
+      "side": 1,
+      "message": "Are cast tests only ever expected to run on Linux? If not, I could see this potentially causing issues, e.g. if the desktop browser is Windows.",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 40
+      },
+      "revId": "1df12b13489766762469b406763287c04734464d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
