@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d832bb8c_a5169911",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-02-25T19:39:04Z",
+      "side": 1,
+      "message": "We were running Mac-specific unit tests on all platforms. I updated test code to avoid that.",
+      "revId": "63728037d490d7f1d08f811763c98602fdb28253",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
