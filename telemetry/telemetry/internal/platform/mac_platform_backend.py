@@ -91,6 +91,7 @@ class MacPlatformBackend(posix_platform_backend.PosixPlatformBackend):
       tags.append('mac-10.11')
     elif detail_string.startswith('10.12'):
       tags.append('mac-10.12')
+    tags.append('mac-' + os.uname().machine)
     return tags
 
   @decorators.Cache
