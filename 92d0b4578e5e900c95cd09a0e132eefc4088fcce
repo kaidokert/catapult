@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b288300f_eacbafc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-02-25T02:31:45Z",
+      "side": 1,
+      "message": "Implemented advice mentioned in https://crrev.com/c/3472688",
+      "revId": "92d0b4578e5e900c95cd09a0e132eefc4088fcce",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
