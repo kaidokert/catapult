@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd7ddc5c_3b4523cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-02-25T17:40:11Z",
+      "side": 1,
+      "message": "Adding a new tag on Mac to distinguish M1 vs x86. PTAL.",
+      "revId": "69424ad637597be0728e88c6b7594880faed9027",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
