@@ -16,6 +16,23 @@
       "message": "Adding a new tag on Mac to distinguish M1 vs x86. PTAL.",
       "revId": "69424ad637597be0728e88c6b7594880faed9027",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f86c96cb_cd16eb34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-02-25T17:42:58Z",
+      "side": 1,
+      "message": "Example Pinpoint job: https://pinpoint-dot-chromeperf.appspot.com/job/1675f1e98a0000. The new tag can be seen near the beginning of benchmark_log.txt file from any run with the patch:\n\nThe following expectations condition tags were generated [\u0027mac\u0027, \u0027bigsur\u0027, \u0027desktop\u0027, \u0027mac-arm64\u0027, \u0027release\u0027, \u0027release\u0027]",
+      "revId": "69424ad637597be0728e88c6b7594880faed9027",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
