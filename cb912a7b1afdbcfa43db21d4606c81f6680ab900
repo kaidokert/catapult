@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da301bb2_a9c4ef75",
+        "filename": "telemetry/telemetry/record_wpr.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-02-28T22:20:50Z",
+      "side": 1,
+      "message": "This has been changed above.",
+      "range": {
+        "startLine": 312,
+        "startChar": 11,
+        "endLine": 312,
+        "endChar": 25
+      },
+      "revId": "cb912a7b1afdbcfa43db21d4606c81f6680ab900",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
