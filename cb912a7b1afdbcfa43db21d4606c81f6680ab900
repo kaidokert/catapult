@@ -22,6 +22,30 @@
       },
       "revId": "cb912a7b1afdbcfa43db21d4606c81f6680ab900",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848a8511_0ca1298a",
+        "filename": "telemetry/telemetry/record_wpr.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-02-28T22:48:52Z",
+      "side": 1,
+      "message": "Ugh, fixed. The name is a little clunky (with _ instead of -), but since it\u0027s a positional arg, it won\u0027t impact usability.",
+      "parentUuid": "da301bb2_a9c4ef75",
+      "range": {
+        "startLine": 312,
+        "startChar": 11,
+        "endLine": 312,
+        "endChar": 25
+      },
+      "revId": "cb912a7b1afdbcfa43db21d4606c81f6680ab900",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
