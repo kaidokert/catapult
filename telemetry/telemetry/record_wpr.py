@@ -38,6 +38,10 @@ class RecorderPageTest(legacy_page_test.LegacyPageTest):
   def platform(self):
     return self._platform
 
+  @property
+  def story_set(self):
+    return self._story_set
+
   def CustomizeBrowserOptions(self, options):
     if self._page_test:
       self._page_test.CustomizeBrowserOptions(options)
