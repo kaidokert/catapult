@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82920dad_f48251c1",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 2430,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-02T20:15:02Z",
+      "side": 1,
+      "message": "I think putting a text content is better than use it as link.\nI updated the prototype CL and we can put the info up a bit.\nhttps://chromium-review.googlesource.com/c/catapult/+/3496422/5\n\nhttps://tooltip-test-4-dot-chromeperf.appspot.com/report?sid\u003d3e68fa9d8037ff1e49088ba9a7c1e471ae04bfb79ff9e62cd7c950589ee0930a",
+      "range": {
+        "startLine": 2430,
+        "startChar": 10,
+        "endLine": 2430,
+        "endChar": 15
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56024237_81723eaf",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-02T20:15:02Z",
+      "side": 1,
+      "message": "We can remove this if tested, because it will not change from time to time.",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 267,
+        "endChar": 60
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "226b2ac5_dbd1b663",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-02T20:15:02Z",
+      "side": 1,
+      "message": "We may need to handle the case when too many bots are involved.",
+      "range": {
+        "startLine": 269,
+        "startChar": 31,
+        "endLine": 269,
+        "endChar": 34
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
