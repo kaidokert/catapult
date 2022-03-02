@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d839d7c_d923be58",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-02T20:53:15Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "8dcf47de_7b75f172",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 267,
+        "endChar": 60
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "226b2ac5_dbd1b663",
         "filename": "dashboard/dashboard/graph_json.py",
         "patchSetId": 2
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "SG. I didn\u0027t write that in yet. I wanted to confirm if val is array or string.",
       "parentUuid": "226b2ac5_dbd1b663",
+      "range": {
+        "startLine": 269,
+        "startChar": 31,
+        "endLine": 269,
+        "endChar": 34
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d40340c_bb70a555",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-02T20:53:15Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "f57ff32b_2dd17976",
       "range": {
         "startLine": 269,
         "startChar": 31,
