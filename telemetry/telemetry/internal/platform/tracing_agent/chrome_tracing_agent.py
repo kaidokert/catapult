@@ -115,8 +115,8 @@ class ChromeTracingAgent(tracing_agent.TracingAgent):
 
     has_clock_synced = False
     for client in devtools_clients:
-      if not client.has_tracing_client:
-        continue
+      #if not client.has_tracing_client:
+        #continue
       try:
         timestamp = trace_time.Now()
         client.RecordChromeClockSyncMarker(sync_id)
