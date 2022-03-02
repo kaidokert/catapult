@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure if pretty_name appears in all os-release and also can\u0027t figure out why getOSVersionName is so complicated ",
       "revId": "213eefc73d8c80a2477c1beab258b9a4f8f13036",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7fee81_24d13223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-02T04:56:22Z",
+      "side": 1,
+      "message": "Running `man os-release` on my Linux machine shows the following info about PRETTY_NAME:\n\n           A pretty operating system name in a format suitable for\n           presentation to the user. May or may not contain a release code\n           name or OS version of some kind, as suitable. If not set, a default\n           of \"PRETTY_NAME\u003d\"Linux\"\" may be used\n\nBased on this, PRETTY_NAME is not a good choice.\n\nOur linux-perf bots have the following /etc/os-release:\n\n```\nNAME\u003d\"Ubuntu\"\nVERSION\u003d\"18.04.5 LTS (Bionic Beaver)\"\nID\u003dubuntu\nID_LIKE\u003ddebian\nPRETTY_NAME\u003d\"Ubuntu 18.04.5 LTS\"\nVERSION_ID\u003d\"18.04\"\n...\n```\n\nI think `NAME + \" \" + VERSION` might be the best choice.",
+      "parentUuid": "ae0cda4b_fcfe9337",
+      "revId": "213eefc73d8c80a2477c1beab258b9a4f8f13036",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
