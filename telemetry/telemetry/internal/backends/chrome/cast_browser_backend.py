@@ -2,6 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import json
 import logging
 import os
 import subprocess
@@ -49,6 +50,9 @@ _RUNTIME_CONFIG_TEMPLATE = """
 }}
 """
 
+CAST_CORE_CONFIG_PATH = os.path.join(
+    '~', '.config', 'cast_shell', '.eureka.conf')
+
 class CastRuntime(object):
   def __init__(self, root_dir, runtime_dir):
     self._root_dir = root_dir
@@ -60,9 +64,10 @@ class CastRuntime(object):
     self._config_file = None
 
   def Start(self):
-    self._config_file = tempfile.NamedTemporaryFile()
+    self._config_file = tempfile.NamedTemporaryFile('w+')
     self._config_file.write(
         _RUNTIME_CONFIG_TEMPLATE.format(runtime_dir=self._runtime_dir))
+    self._config_file.flush()
 
     runtime_command = [
         self._app_exe,
@@ -97,12 +102,17 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     self._cast_core_process = None
     self._devtools_port = None
     self._output_dir = cast_platform_backend.output_dir
+    self._receiver_name = None
     self._web_runtime = CastRuntime(cast_platform_backend.output_dir,
                                     cast_platform_backend.runtime_exe)
 
-
   def _FindDevToolsPortAndTarget(self):
     return self._devtools_port, None
+
+  def _ReadReceiverName(self):
+    if not self._receiver_name:
+      with open(CAST_CORE_CONFIG_PATH) as f:
+        self._receiver_name = json.load(f)['eureka-name']
 
   def Start(self, startup_args):
     # Cast Core needs to start with a fixed devtools port.
@@ -126,6 +136,7 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
                                                  stderr=subprocess.STDOUT)
 
       self._browser_process = self._web_runtime.Start()
+      self._ReadReceiverName()
     finally:
       os.chdir(original_dir)
 
@@ -143,7 +154,10 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._browser_process:
       logging.info('Shutting down Cast browser.')
       self._web_runtime.Close()
-    self._browser_process = None
+      self._browser_process = None
+    if self._cast_core_process:
+      self._cast_core_process.kill()
+      self._cast_core_process = None
 
   def IsBrowserRunning(self):
     return bool(self._browser_process)
