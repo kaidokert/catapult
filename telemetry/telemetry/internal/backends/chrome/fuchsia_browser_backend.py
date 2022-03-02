@@ -107,9 +107,14 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
   def _StartChrome(self, startup_args):
     ffx = os.path.join(fuchsia_interface.SDK_ROOT, 'tools',
                        fuchsia_interface.GetHostArchFromPlatform(), 'ffx')
+    target = self._command_runner.host
+    if self._command_runner.node_name and 'fuchsia' in self._command_runner.node_name:
+      target = self._command_runner.node_name
     browser_cmd = [
         ffx,
         'session',
+        '--target',
+        target,
         'add',
         'fuchsia-pkg://%s/chrome#meta/chrome_v1.cmx' %
         self._managed_repo,
