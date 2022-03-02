@@ -90,7 +90,18 @@ class LinuxPlatformBackend(
     raise NotImplementedError('Unknown Linux OS version')
 
   def GetOSVersionDetailString(self):
-    return ''  # TODO(kbr): Implement this.
+    # First try os-release
+    for path in ('/etc/os-release', '/usr/lib/os-release'):
+      os_release = self._ReadReleaseFile(path)
+      if os_release:
+        return os_release.get('PRETTY_NAME')
+
+    # Use lsb-release as a fallback.
+    lsb_release = self._ReadReleaseFile('/etc/lsb-release')
+    if lsb_release:
+      return lsb_release.get('DISTRIB_DESCRIPTION')
+
+    raise NotImplementedError('Unknown Linux OS version')
 
   def CanTakeScreenshot(self):
     return_code = subprocess.call(['which', 'gnome-screenshot'])
