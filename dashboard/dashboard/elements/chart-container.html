@@ -2426,6 +2426,11 @@ triaging functionality in the chart.
             'text': 'View trace from this run',
             'url': annotation.a_tracing_uri
           });
+        } else if (key == 'a_bot_id') {
+          links.push({
+            'text': 'Bot ID: ' + annotation.a_bot_id,
+            'url': ''
+          });
         } else if (key.indexOf('a_') === 0) {
           const match = TOOLTIP_LINK_REGEX.exec(annotation[key]);
           if (match) {
