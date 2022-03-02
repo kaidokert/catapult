@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06585f95_3e7ec11e",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-02T21:15:10Z",
+      "side": 1,
+      "message": "You might be able to do something like this - https://screenshot.googleplex.com/9NvMss6PDAaBisz.png",
+      "parentUuid": "3d839d7c_d923be58",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 267,
+        "endChar": 60
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "226b2ac5_dbd1b663",
         "filename": "dashboard/dashboard/graph_json.py",
         "patchSetId": 2
