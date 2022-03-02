@@ -39,6 +39,30 @@
       },
       "revId": "e1c367f733b2dee236309193291c75c684d8118d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42620eb_63a5817a",
+        "filename": "telemetry/telemetry/internal/platform/linux_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-02T19:39:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a585d143_f48a5c88",
+      "range": {
+        "startLine": 106,
+        "startChar": 48,
+        "endLine": 106,
+        "endChar": 55
+      },
+      "revId": "e1c367f733b2dee236309193291c75c684d8118d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
