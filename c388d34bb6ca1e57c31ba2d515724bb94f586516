@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06caab41_d1263811",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 2430,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-02T20:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82920dad_f48251c1",
+      "range": {
+        "startLine": 2430,
+        "startChar": 10,
+        "endLine": 2430,
+        "endChar": 15
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56024237_81723eaf",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8dcf47de_7b75f172",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-02T20:31:37Z",
+      "side": 1,
+      "message": "I plan to remove the logpoint once we\u0027ve confirmed what type val is.",
+      "parentUuid": "56024237_81723eaf",
+      "range": {
+        "startLine": 267,
+        "startChar": 20,
+        "endLine": 267,
+        "endChar": 60
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "226b2ac5_dbd1b663",
         "filename": "dashboard/dashboard/graph_json.py",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2022-03-02T20:15:02Z",
       "side": 1,
       "message": "We may need to handle the case when too many bots are involved.",
+      "range": {
+        "startLine": 269,
+        "startChar": 31,
+        "endLine": 269,
+        "endChar": 34
+      },
+      "revId": "c388d34bb6ca1e57c31ba2d515724bb94f586516",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f57ff32b_2dd17976",
+        "filename": "dashboard/dashboard/graph_json.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-02T20:31:37Z",
+      "side": 1,
+      "message": "SG. I didn\u0027t write that in yet. I wanted to confirm if val is array or string.",
+      "parentUuid": "226b2ac5_dbd1b663",
       "range": {
         "startLine": 269,
         "startChar": 31,
