@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc6af802_43fd038c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344211
+      },
+      "writtenOn": "2022-03-03T17:09:41Z",
+      "side": 1,
+      "message": "PTAL - do you think we should make this change to allow vpython propagation? see bug comment: crbug.com/1237866#c8",
+      "revId": "df308d2893a24004d9ab1cf918364cd86d710bf6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
