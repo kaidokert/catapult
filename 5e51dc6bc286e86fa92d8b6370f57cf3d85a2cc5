@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1f6677a_973ce18c",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-03T23:46:03Z",
+      "side": 1,
+      "message": "I didn\u0027t implement this, but not sure why this one has a [0] at the end and the other instances of GetProp do not.",
+      "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
