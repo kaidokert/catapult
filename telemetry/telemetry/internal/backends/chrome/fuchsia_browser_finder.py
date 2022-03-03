@@ -60,8 +60,10 @@ class PossibleFuchsiaBrowser(possible_browser.PossibleBrowser):
     browser_backend = fuchsia_browser_backend.FuchsiaBrowserBackend(
         self._platform_backend, self._browser_options,
         self.browser_directory, self.profile_directory)
-    startup_args = self.GetBrowserStartupArgs(self._browser_options,
-                                              browser_backend.browser_type)
+    startup_args = chrome_startup_args.GetFromBrowserOptions(
+                    self._browser_options)
+    #startup_args = self.GetBrowserStartupArgs(self._browser_options,
+    #                                          browser_backend.browser_type)
     try:
       return browser.Browser(
           browser_backend, self._platform_backend, startup_args,
