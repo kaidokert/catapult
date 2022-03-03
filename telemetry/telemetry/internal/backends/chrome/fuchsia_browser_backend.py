@@ -117,7 +117,7 @@ class FuchsiaBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         'about:blank',
         '--remote-debugging-port=0',
         '--enable-logging',
-        '--v=3'
+        '--verbose=1'
     ]
     if startup_args:
       browser_cmd.extend(startup_args)
