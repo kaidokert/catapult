@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2351404b_341f820f",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-03T19:50:07Z",
+      "side": 1,
+      "message": "This is copied from linux_platform_backend. I checked it in my command line on a cros bot to make sure it works with self.GetFileContents and [\u0027cat\u0027, file_path] works. Let me know if you think there\u0027s a better way to implement this.",
+      "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
