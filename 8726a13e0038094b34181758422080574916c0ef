@@ -39,6 +39,30 @@
       },
       "revId": "8726a13e0038094b34181758422080574916c0ef",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bb54f76_a30a6018",
+        "filename": "telemetry/telemetry/wpr/archive_info.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-03T17:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e28ef0c0_da5f19bb",
+      "range": {
+        "startLine": 184,
+        "startChar": 3,
+        "endLine": 184,
+        "endChar": 41
+      },
+      "revId": "8726a13e0038094b34181758422080574916c0ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
