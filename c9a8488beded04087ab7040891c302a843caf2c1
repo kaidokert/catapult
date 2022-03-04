@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55315634_7820b49b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-04T00:33:28Z",
+      "side": 1,
+      "message": "Hey Wenbin, my last edit to the tool tip did not generate a new build in chromeperf default so I think editing dashboard/ should create a new build. I made a change to a comment so there should be no effects to the code base.  ",
+      "revId": "c9a8488beded04087ab7040891c302a843caf2c1",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
