@@ -34,6 +34,24 @@
       "parentUuid": "2351404b_341f820f",
       "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78eb85d2_952f68b9",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-04T16:55:55Z",
+      "side": 1,
+      "message": "This doc could be helpful:\nhttps://chromium.googlesource.com/chromiumos/docs/+/HEAD/lsb-release.md\n\nInteresting that I setup the Linux dev environment on my chromebook but didn\u0027t see the lsb-release under /etc at that time.",
+      "parentUuid": "98c5b854_801c331a",
+      "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
