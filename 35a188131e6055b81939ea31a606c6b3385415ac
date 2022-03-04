@@ -16,6 +16,24 @@
       "message": "the \u0027 | \u0027 matches up with device_os on the swarming bot page. Example: https://chromium-swarm.appspot.com/bot?id\u003dbuild5-h9--device6",
       "revId": "35a188131e6055b81939ea31a606c6b3385415ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "918b6c30_88a61dfa",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-04T19:19:40Z",
+      "side": 1,
+      "message": "The \"|\" on swarming bot page is just part of the UI. In reality the device_os is a set. For this particular bot, the set contains two values, \"P\" and \"PQ3A.190801.002\". The UI display both values using \"|\" as the separator. You can see LUCI code does the set union at https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/api/platforms/android.py;l\u003d177-182.\n\nHaving both values in dimensions is necessary, because dimensions are use for device selection purposes, not just for display. The user is allowed to ask for a bot with device_os of either \"P\" or \"PQ3A.190801.002\", and the swarming must be able to find this bot.\n\nFor us, the version detail string will be for display purpose only, so I think including \"P\" adds no additional info.",
+      "parentUuid": "eacb3676_49662411",
+      "revId": "35a188131e6055b81939ea31a606c6b3385415ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
