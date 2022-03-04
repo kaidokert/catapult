@@ -16,6 +16,47 @@
       "message": "I didn\u0027t implement this, but not sure why this one has a [0] at the end and the other instances of GetProp do not.",
       "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f8bea96_79b4cf41",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-04T07:31:04Z",
+      "side": 1,
+      "message": "The value of ro.build.id is something like \"OMB1.180119.001\". By adding [0], this function returns \"O\", which is the approximate version name.",
+      "parentUuid": "b1f6677a_973ce18c",
+      "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b76dbc6_40799e40",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-04T07:31:04Z",
+      "side": 1,
+      "message": "This will return a single number, such as 8, which is not specific enough. For the minimum, we need ro.build.id without adding [0]. We can also concatenate ro.build.version.release with ro.build.id, though the first letter of build ID can be used to find the release version.",
+      "range": {
+        "startLine": 373,
+        "startChar": 11,
+        "endLine": 373,
+        "endChar": 59
+      },
+      "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
