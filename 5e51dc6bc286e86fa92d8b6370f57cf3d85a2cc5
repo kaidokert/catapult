@@ -57,6 +57,30 @@
       },
       "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d40244e_5b5c2b2e",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-04T07:34:46Z",
+      "side": 1,
+      "message": "By the way, swarming uses dimensions reported by LUCI, see get_dimensions function in https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/api/platforms/android.py",
+      "parentUuid": "7b76dbc6_40799e40",
+      "range": {
+        "startLine": 373,
+        "startChar": 11,
+        "endLine": 373,
+        "endChar": 59
+      },
+      "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
