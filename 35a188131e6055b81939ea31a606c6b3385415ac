@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eacb3676_49662411",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-04T18:59:16Z",
+      "side": 1,
+      "message": "the \u0027 | \u0027 matches up with device_os on the swarming bot page. Example: https://chromium-swarm.appspot.com/bot?id\u003dbuild5-h9--device6",
+      "revId": "35a188131e6055b81939ea31a606c6b3385415ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4cec28b_e126c151",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-04T18:59:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f8bea96_79b4cf41",
+      "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b76dbc6_40799e40",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "By the way, swarming uses dimensions reported by LUCI, see get_dimensions function in https://source.chromium.org/chromium/infra/infra/+/main:luci/appengine/swarming/swarming_bot/api/platforms/android.py",
       "parentUuid": "7b76dbc6_40799e40",
+      "range": {
+        "startLine": 373,
+        "startChar": 11,
+        "endLine": 373,
+        "endChar": 59
+      },
+      "revId": "5e51dc6bc286e86fa92d8b6370f57cf3d85a2cc5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f4cbfbf_6d47718a",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-04T18:59:16Z",
+      "side": 1,
+      "message": "doing it this way (see line 373-375) to match device_os on the swarming bot page: https://chromium-swarm.appspot.com/bot?id\u003dbuild5-h9--device6",
+      "parentUuid": "3d40244e_5b5c2b2e",
       "range": {
         "startLine": 373,
         "startChar": 11,
