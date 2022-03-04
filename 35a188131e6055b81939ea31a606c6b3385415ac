@@ -34,6 +34,24 @@
       "parentUuid": "eacb3676_49662411",
       "revId": "35a188131e6055b81939ea31a606c6b3385415ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b253d3c_6dedd496",
+        "filename": "telemetry/telemetry/internal/platform/android_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-04T19:23:41Z",
+      "side": 1,
+      "message": "That makes sense. I\u0027ve corrected and removed the unnecessary information",
+      "parentUuid": "918b6c30_88a61dfa",
+      "revId": "35a188131e6055b81939ea31a606c6b3385415ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
