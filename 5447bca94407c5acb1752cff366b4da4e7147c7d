@@ -16,6 +16,29 @@
       "message": "I don\u0027t have the permission to vote, but the change looks good to me. Thanks for the patch 😊",
       "revId": "5447bca94407c5acb1752cff366b4da4e7147c7d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "700c7dab_d14ea154",
+        "filename": "telemetry/telemetry/util/js_template.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-04T06:12:32Z",
+      "side": 1,
+      "message": "On Python 2, this would cause a conversion from byte string to Unicode string, which would be a change in behavior. This is probably OK, but it would be safer to add \"and six.PY3\" to the if condition.",
+      "range": {
+        "startLine": 64,
+        "startChar": 6,
+        "endLine": 64,
+        "endChar": 35
+      },
+      "revId": "5447bca94407c5acb1752cff366b4da4e7147c7d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
