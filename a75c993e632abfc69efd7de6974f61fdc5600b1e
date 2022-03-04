@@ -16,6 +16,24 @@
       "message": "This is copied from linux_platform_backend. I checked it in my command line on a cros bot to make sure it works with self.GetFileContents and [\u0027cat\u0027, file_path] works. Let me know if you think there\u0027s a better way to implement this.",
       "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c5b854_801c331a",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-04T07:14:44Z",
+      "side": 1,
+      "message": "I ran a Pinpoint job based on this CL (https://pinpoint-dot-chromeperf.appspot.com/job/14f6dfe58a0000). It shows:\n\nGetOSName(): \"chromeos\"\nGetOSVersionName(): \"Chrome OS\"\nGetOSVersionDetailString(): \"Chrome OS 101\"\n\n(You can find the info from benchmark_log.txt by searching for _LogBrowserInfo, and then match the output against the code at https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/browser/browser.py;l\u003d102?q\u003d_LogBrowserInfo\u0026ss\u003dchromium%2Fchromium%2Fsrc)\n\nI think the info isn\u0027t specific enough. Swarming (https://chrome-swarming.appspot.com/task?id\u003d596b4f7663576510) reported device_os as 14541.0.0, which is better. The swarming script is at https://source.corp.google.com/chops_infra_internal/data/config/configs/chrome-swarming/scripts/cros_ssh.py. It use CHROMEOS_RELEASE_VERSION from /etc/lsb-release to set device_os. (On the other hand, swarming does report the value of VERSION from /etc/os-release, i.e., 101. Not sure if it\u0027s worth including that value as well.)",
+      "parentUuid": "2351404b_341f820f",
+      "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
