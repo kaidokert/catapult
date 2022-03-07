@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb03a83f_683999fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-07T16:26:03Z",
+      "side": 1,
+      "message": "Could you add a note (either in the change description or in the linked bug) about why this change is made? Thanks.",
+      "revId": "b4834696715d7e3f71aaeffe2efbff4210089296",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
