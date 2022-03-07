@@ -16,6 +16,23 @@
       "message": "\u003e Patch Set 2:\n\u003e \n\u003e 😿 Job failed.\n\u003e \n\u003e See results at: https://pinpoint-dot-chromeperf.appspot.com/job/123160d78a0000\n\nDue to https://crbug.com/1299041, you can\u0027t directly submit this CL to Pinpoint. To work around the bug, you can follow the example in https://pinpoint-dot-chromeperf.appspot.com/job/14f6dfe58a0000. You\u0027ll need to create a test CL similar to https://chromium-review.googlesource.com/c/chromium/src/+/3500932, which has two changes: change in chrome/test/BUILD.gn works around the build break, and change in DEPS brings in this CL from catapult repo. Use \u0027refs/changes/36/3501036/2\u0027 as the catapult_revision, in order to bringing in patchset 2 of this CL.",
       "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60732ae8_67febbea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-07T23:50:00Z",
+      "side": 1,
+      "message": "The new patchset now gives:\n OS: chromeos Chrome OS\n Detailed OS version: 14542.0.0\nhttps://pinpoint-dot-chromeperf.appspot.com/job/16d6c17b8a0000",
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
