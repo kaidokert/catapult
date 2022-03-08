@@ -33,6 +33,98 @@
       "message": "The new patchset now gives:\n OS: chromeos Chrome OS\n Detailed OS version: 14542.0.0\nhttps://pinpoint-dot-chromeperf.appspot.com/job/16d6c17b8a0000",
       "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04d08f70_71d458a8",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-08T21:45:17Z",
+      "side": 1,
+      "message": "why do we need to split and join on the same value?",
+      "range": {
+        "startLine": 110,
+        "startChar": 30,
+        "endLine": 110,
+        "endChar": 40
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dab976a_afa94ce8",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-08T21:45:17Z",
+      "side": 1,
+      "message": "we may want to check whether key is a meaningful value. Using partition can return the full string if \u0027\u003d\u0027 is not found in the string, and the \u0027value\u0027 here will be empty.",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 22
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c62af3c7_3cc0b97f",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-08T21:45:17Z",
+      "side": 1,
+      "message": "nit: put it in a constant to reuse among functions.",
+      "range": {
+        "startLine": 114,
+        "startChar": 39,
+        "endLine": 114,
+        "endChar": 57
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af63490_bae49bd3",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-08T21:45:17Z",
+      "side": 1,
+      "message": "nit: lsb_release",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 14
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
