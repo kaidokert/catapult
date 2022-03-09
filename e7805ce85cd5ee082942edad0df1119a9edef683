@@ -131,6 +131,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92dc082b_721e8f21",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-09T01:28:02Z",
+      "side": 1,
+      "message": "My opinion is it\u0027s unnecessary. But I do see the same code in Linux version of this function, so I\u0027m OK either way.",
+      "parentUuid": "88a187f6_765661d7",
+      "range": {
+        "startLine": 110,
+        "startChar": 30,
+        "endLine": 110,
+        "endChar": 40
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613687c9_e4ecbec3",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-09T01:28:02Z",
+      "side": 1,
+      "message": "We\u0027re looking for specific keywords, such as CHROMEOS_RELEASE_VERSION\u003d1.2.3. If there are any lines without \u003d, we don\u0027t know what the right keyword would be. I think we just have to ignore those lines.",
+      "parentUuid": "16af3915_f673a2c2",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 22
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c62af3c7_3cc0b97f",
         "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
         "patchSetId": 2
