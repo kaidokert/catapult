@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "088fc910_e0f8d70e",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-09T00:34:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this is the best way to implement (or even if this is how you would implement this in javascript)",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f975f7e6_a2120b3e",
+        "filename": "dashboard/dashboard/elements/chart-tooltip.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-09T00:34:32Z",
+      "side": 1,
+      "message": "adding this so that the botID result appears on a separate line from the time stamp",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
