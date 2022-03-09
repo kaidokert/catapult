@@ -2265,7 +2265,11 @@ triaging functionality in the chart.
       this.$.tooltip.revisions = this.getRevisions(
           jsonSeriesIndex, dataIndex);
       if ('a_bot_id' in annotation) {
-          this.$.tooltip.botId = annotation.a_bot_id
+        this.$.tooltip.botId = annotation.a_bot_id(0, 3)
+        if (annotation.a_bot_id > 3) {
+          annotation.a_bot_id.push('... and %d more bots', 
+                                    annotation.a_bot_id.length - 3)
+        }
       }
       this.$.tooltip.links = this.getTooltipLinks(annotation, series.path,
           pointId);
