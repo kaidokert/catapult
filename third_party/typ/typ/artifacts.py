@@ -22,6 +22,18 @@ else:
 
 from typ.host import Host
 
+WINDOWS_FORBIDDEN_PATH_CHARACTERS = [
+  '<',
+  '>',
+  ':',
+  '"',
+  '/',
+  '\\',
+  '|',
+  '?',
+  '*',
+]
+
 class Artifacts(object):
   def __init__(self, output_dir, host, iteration=0, artifacts_base_dir='',
                intial_results_base_dir=False, repeat_tests=False):
@@ -65,6 +77,11 @@ class Artifacts(object):
     self._output_dir = output_dir
     self._iteration = iteration
     self._artifacts_base_dir = artifacts_base_dir
+    # Replace invalid Windows path characters now with URL-encoded equivalents.
+    if sys.platform == 'win32':
+      for c in WINDOWS_FORBIDDEN_PATH_CHARACTERS:
+        self._artifacts_base_dir = self._artifacts_base_dir.replace(
+            c, urlparse.quote(c))
     # A map of artifact names to their filepaths relative to the output
     # directory.
     self.artifacts = {}
