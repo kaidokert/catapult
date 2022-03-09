@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0018790_dac22a9e",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 2270,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-03-09T18:13:32Z",
+      "side": 1,
+      "message": "[driveby comment] JS is a bit different from python or other languages with libraries and built-ins that support \u0027printf\u0027 style formatting. \n\nAfter the code as written here executes, annotation.a_bot_id have two elements pushed onto it (the literal format string, which isn\u0027t processed, followed by whatever annotation.a_bot_id.length - 3 turns out to be). I assume that\u0027s not what you want to happen.\n\nThis might work better (note the use of backticks, not single quotes) if you just want to append a single formatted string: \n```\nannotation.a_bot_id.push(`... and ${annotation.a_bot_id.length - 3} more bots`)\n```\n\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f975f7e6_a2120b3e",
         "filename": "dashboard/dashboard/elements/chart-tooltip.html",
         "patchSetId": 1
