@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f3b05a0_77dca858",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-09T18:57:46Z",
+      "side": 1,
+      "message": "Not sure if I\u0027m doing this right. I\u0027m going to try this as a patch CL first to see if the values are being generated.",
+      "revId": "dd8953467ce151e1a2c6c797b64726de944d90c3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
