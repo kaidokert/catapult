@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4569d9d9_c4be86d8",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-10T23:27:54Z",
+      "side": 1,
+      "message": "I don\u0027t think a_bot_id(0, 3) will work in JS. You can use slice() to get a subarray:\nhttps://stackoverflow.com/questions/7538519/how-to-get-subarray-from-array",
+      "parentUuid": "fc1242e2_b3546323",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0018790_dac22a9e",
         "filename": "dashboard/dashboard/elements/chart-container.html",
         "patchSetId": 1
