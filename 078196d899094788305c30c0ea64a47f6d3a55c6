@@ -22,6 +22,30 @@
       },
       "revId": "078196d899094788305c30c0ea64a47f6d3a55c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb71916_cfcc292a",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 2269,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-10T22:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b67efe4_40af5169",
+      "range": {
+        "startLine": 2269,
+        "startChar": 23,
+        "endLine": 2269,
+        "endChar": 31
+      },
+      "revId": "078196d899094788305c30c0ea64a47f6d3a55c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
