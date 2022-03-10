@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0050fc56_2b6a5447",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 2270,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-10T00:18:27Z",
+      "side": 1,
+      "message": "Also, this line updates the original array at annotation.a_bot_id, but the previous line has created a copy for this.$.tooltip.botId. Modifying the original array will have no effects on this.$.tooltip.botId.",
+      "parentUuid": "b0018790_dac22a9e",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f975f7e6_a2120b3e",
         "filename": "dashboard/dashboard/elements/chart-tooltip.html",
         "patchSetId": 1
