@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b307edc_a579aef4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-10T23:11:32Z",
+      "side": 1,
+      "message": "This CL adds a properties instead of using the existing tags from the build. It should be more reliable to tell where the request comes from. PTAL.",
+      "revId": "1d4e86c1236a1f33bb3915a77646b2b083acd1e7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
