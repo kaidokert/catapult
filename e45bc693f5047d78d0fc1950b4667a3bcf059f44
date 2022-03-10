@@ -72,6 +72,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a53153dc_5680a9d1",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-10T23:40:51Z",
+      "side": 1,
+      "message": "yeah I found the slice method and just forgot to write it d\u0027oh",
+      "parentUuid": "4569d9d9_c4be86d8",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0018790_dac22a9e",
