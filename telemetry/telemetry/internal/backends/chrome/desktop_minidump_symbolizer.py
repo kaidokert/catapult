@@ -109,7 +109,7 @@ class DesktopMinidumpSymbolizer(minidump_symbolizer.MinidumpSymbolizer):
 
         # Filter out system binaries.
         if (binary_path.startswith('/usr/lib/') or
-            binary_path.startswith('/System/Library/') or
+            # binary_path.startswith('/System/Library/') or
             binary_path.startswith('/lib/')):
           continue
 
