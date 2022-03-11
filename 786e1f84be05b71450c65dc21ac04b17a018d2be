@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd51a1e1_1ed79630",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 2337,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-11T23:03:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c57ae891_da3c71aa",
+      "range": {
+        "startLine": 2337,
+        "startChar": 4,
+        "endLine": 2337,
+        "endChar": 16
+      },
+      "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e2efad7_dd7dc40e",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "I did some more investigations on this, but it\u0027s still a mystery why the bot IDs are missing. I can see the bot IDs in entities and in BigQuery tables, but not on perf dashboard.\n\nIt turns out botId was never assigned to, because condition (\u0027a_bot_id\u0027 in annotation) is false. For some reason, !botId doesn\u0027t work if it has never been assigned to. I think we should initialize botId in resetTooltip function in chart-container.html (see my other comment).",
       "parentUuid": "a46e658f_0e45e6fd",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 66
+      },
+      "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a808de_eb473583",
+        "filename": "dashboard/dashboard/elements/chart-tooltip.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-11T23:03:45Z",
+      "side": 1,
+      "message": "I set the traffic a few days ago to builds that were deployed around March 4. The CL to push bot ID onto the tool tip took place on March 2, so I don\u0027t think it\u0027s the traffic that\u0027s causing the issue. \n\nI made the resetToolTip revision as John suggested.",
+      "parentUuid": "1c98ffda_2978a76a",
       "range": {
         "startLine": 88,
         "startChar": 12,
