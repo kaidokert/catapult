@@ -22,6 +22,30 @@
       },
       "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ccdf863_f0d57c26",
+        "filename": "dashboard/dashboard/elements/chart-tooltip.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-11T00:39:31Z",
+      "side": 1,
+      "message": "I haven\u0027t figured out why this is happening yet. It looks like local deployments of chromeperf do show the bot ID. Example [1][2]. However, the actual chromeperf dashboard itself is not showing the information [3] and as you noted. Links 2 and 3 use the exact same build. \n\n[1] https://cloud-build-5b79b29-dot-chromeperf.appspot.com/report?sid\u003d2a513a8a436c956fe85a082b04428365362fa765fe1f88c6c0355169281d4fd0\n\n[2] https://cloud-build-34063a8-dot-chromeperf.appspot.com/report?sid\u003d2a513a8a436c956fe85a082b04428365362fa765fe1f88c6c0355169281d4fd0\n\n[3] https://chromeperf.appspot.com/report?sid\u003d2a513a8a436c956fe85a082b04428365362fa765fe1f88c6c0355169281d4fd0",
+      "parentUuid": "2e2efad7_dd7dc40e",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 66
+      },
+      "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
