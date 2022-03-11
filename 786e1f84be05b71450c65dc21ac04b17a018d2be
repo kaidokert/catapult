@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e2efad7_dd7dc40e",
+        "filename": "dashboard/dashboard/elements/chart-tooltip.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-11T00:10:46Z",
+      "side": 1,
+      "message": "Should I be able to see bot IDs today? Right now, I\u0027m seeing \"Test Bot(s):\" label on perf dashboard, but no bots are listed. This brings up two issues:\n* Recent results should already have bot IDs. Why aren\u0027t they showing up?\n* If bot IDs are indeed missing, shouldn\u0027t that cause hidden be set to true, and hide this span? Why do I still see \"Test Bot(s):\"?",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 66
+      },
+      "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
