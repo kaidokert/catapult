@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c44fc1_034a31d6",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-11T00:20:48Z",
+      "side": 1,
+      "message": "Ah sorry I forgot to change it back, I tried using Path.home() per https://stackoverflow.com/questions/4028904/what-is-the-correct-cross-platform-way-to-get-the-home-directory-in-python but it wasn\u0027t working on my machine.",
+      "parentUuid": "053fe595_24506a35",
+      "range": {
+        "startLine": 55,
+        "startChar": 5,
+        "endLine": 55,
+        "endChar": 35
+      },
+      "revId": "de223560a30f88706bd8e0731ba05c2bbfa385e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abb76e9d_70532265",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-10T23:58:38Z",
       "side": 1,
       "message": "Remove.",
+      "range": {
+        "startLine": 171,
+        "startChar": 17,
+        "endLine": 171,
+        "endChar": 43
+      },
+      "revId": "de223560a30f88706bd8e0731ba05c2bbfa385e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "259c2c35_338c3f09",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_backend.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-11T00:20:48Z",
+      "side": 1,
+      "message": "Ah apologies, fixed!",
+      "parentUuid": "abb76e9d_70532265",
       "range": {
         "startLine": 171,
         "startChar": 17,
