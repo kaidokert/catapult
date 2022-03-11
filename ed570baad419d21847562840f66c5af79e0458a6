@@ -16,6 +16,29 @@
       "message": "I\u0027ve been trying out chromeperf dev server. It seems to be a good way to quickly try out perf dashboard changes. I encountered an issue while copying some data from production server: keys were missing in some entities. This CL works around the issue so that good entities can still be copied. PTAL. (Haven\u0027t been able to figure out why some entities are malformed yet.)",
       "revId": "ed570baad419d21847562840f66c5af79e0458a6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0493737a_bb4b1d8c",
+        "filename": "dashboard/dashboard/load_from_prod.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-11T06:05:35Z",
+      "side": 1,
+      "message": "Do we know why the key is missing? Does it mean the pb entity (not sure what it is) is also invalid?",
+      "range": {
+        "startLine": 108,
+        "startChar": 23,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "ed570baad419d21847562840f66c5af79e0458a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
