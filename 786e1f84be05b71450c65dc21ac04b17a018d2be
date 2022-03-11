@@ -46,6 +46,30 @@
       },
       "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46e658f_0e45e6fd",
+        "filename": "dashboard/dashboard/elements/chart-tooltip.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-11T01:08:34Z",
+      "side": 1,
+      "message": "One of the reason bots are showing up is that not all traffics are going to the upload-processing service with Leina\u0027s change, and thus the bot id may not be added. \n\nAnd I believe the reason we still see \u0027Test Bot(s)\u0027 is that the val read from Row entity is an empty array and ![] is false in JS.",
+      "parentUuid": "4ccdf863_f0d57c26",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 66
+      },
+      "revId": "786e1f84be05b71450c65dc21ac04b17a018d2be",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
