@@ -22,6 +22,30 @@
       },
       "revId": "f47d92ae67c0b2f621cf5e0df8345822955fb0df",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c9fa16_47224b34",
+        "filename": "dashboard/dashboard/pinpoint/models/job.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-11T23:19:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ef8d93c3_2b9f1d1b",
+      "range": {
+        "startLine": 694,
+        "startChar": 4,
+        "endLine": 695,
+        "endChar": 57
+      },
+      "revId": "f47d92ae67c0b2f621cf5e0df8345822955fb0df",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
