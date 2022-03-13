@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73df2a08_946f0b8d",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 2272,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-13T21:52:25Z",
+      "side": 1,
+      "message": "I tried this on a dev server, and found it to be ineffective. What seems to happen is Polymer library monitors assignments to this.$.tooltip.botId, and updates the display whenever a new array is assigned to it, but it doesn\u0027t monitor changes to the contents or size of the array. Polymer documentation https://polymer-library.polymer-project.org/1.0/docs/devguide/model-data#array-mutation mentions some ways to update array so that data binding gets notified, but I couldn\u0027t get it to work somehow. I think the easiest solution is to assign to a local variable first, and then assign to this.$.tooltip.botId when you have the final contents, e.g.,\n\n        const botId \u003d annotation.a_bot_id.slice(0, 3)\n        if (annotation.a_bot_id.length \u003e 3) {\n          botId.push(`... and ${annotation.a_bot_id.length - 3} more bots`)\n        }\n        this.$.tooltip.botId \u003d botId",
+      "range": {
+        "startLine": 2270,
+        "startChar": 10,
+        "endLine": 2272,
+        "endChar": 15
+      },
+      "revId": "7a41a50d7c1d6be6e1577891db3f7d46a0f35310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
