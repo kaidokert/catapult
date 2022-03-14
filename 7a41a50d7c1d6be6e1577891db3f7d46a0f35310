@@ -22,6 +22,30 @@
       },
       "revId": "7a41a50d7c1d6be6e1577891db3f7d46a0f35310",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2828324_12b18958",
+        "filename": "dashboard/dashboard/elements/chart-container.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 2272,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-14T18:03:37Z",
+      "side": 1,
+      "message": "Thanks for figuring this out! Done.",
+      "parentUuid": "73df2a08_946f0b8d",
+      "range": {
+        "startLine": 2270,
+        "startChar": 10,
+        "endLine": 2272,
+        "endChar": 15
+      },
+      "revId": "7a41a50d7c1d6be6e1577891db3f7d46a0f35310",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

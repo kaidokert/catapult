@@ -158,6 +158,24 @@
       "message": "adding this so that the botID result appears on a separate line from the time stamp",
       "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4677b510_f80f9aea",
+        "filename": "dashboard/dashboard/elements/chart-tooltip.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-14T18:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f975f7e6_a2120b3e",
+      "revId": "e45bc693f5047d78d0fc1950b4667a3bcf059f44",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
