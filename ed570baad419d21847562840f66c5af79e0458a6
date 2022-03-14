@@ -18,6 +18,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "872270b1_12949989",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-14T18:54:10Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "ed570baad419d21847562840f66c5af79e0458a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0493737a_bb4b1d8c",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "I couldn\u0027t figure out. The error must have happened while the entity is serialized and then deserialized, as it is not possible to have an entity without key in the data store.\n\nThis is purely test code, which I have just discovered recently. It allows the production server to serialize some entities into strings, so that they can downloaded to a dev machine, and then deserialized into entities for testing purposes. The serialized format is based on protobuf, and I suspect pb stands for protobuf or protobuf binary. I\u0027ve found that Subscription entities always encounter this issue, while other entities are OK.\n\n* The code that does serialization is at https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/dashboard/dashboard/dump_graph_json.py;l\u003d162. It\u0027s quite simple, and handles all entity types equally, so I don\u0027t see why only Subscription entities are having problems. The actual serialization happens in ndb library, which would likely be difficult to debug.\n\n* The code being changed here is responsible for converting the serialized string back into entities. It runs on dev machines only, never on production servers. For now I don\u0027t need Subscription entities (I was looking at bot ID display code), so don\u0027t want to spend too much time finding the root cause, and just want a workaround.",
       "parentUuid": "0493737a_bb4b1d8c",
+      "range": {
+        "startLine": 108,
+        "startChar": 23,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "ed570baad419d21847562840f66c5af79e0458a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1385b089_b01d3c99",
+        "filename": "dashboard/dashboard/load_from_prod.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-14T18:54:10Z",
+      "side": 1,
+      "message": "I see. LGTM.",
+      "parentUuid": "82ed291f_f24bfd56",
       "range": {
         "startLine": 108,
         "startChar": 23,
