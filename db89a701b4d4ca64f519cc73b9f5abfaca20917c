@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "85cbc8bf_8e42591d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-14T22:42:53Z",
+      "side": 1,
+      "message": "Nit: Add \"remove\"?",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "db89a701b4d4ca64f519cc73b9f5abfaca20917c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0d4813c5_08c488e3",
@@ -14,6 +37,23 @@
       "writtenOn": "2022-03-14T22:10:42Z",
       "side": 1,
       "message": "PTAL.",
+      "revId": "db89a701b4d4ca64f519cc73b9f5abfaca20917c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5c4c486_860f333b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-14T22:42:53Z",
+      "side": 1,
+      "message": "LGTM with nit",
       "revId": "db89a701b4d4ca64f519cc73b9f5abfaca20917c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
