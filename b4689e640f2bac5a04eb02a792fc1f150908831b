@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca9b8b3e_09bc8a77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-14T20:17:06Z",
+      "side": 1,
+      "message": "LGTM % one fix.",
+      "revId": "b4689e640f2bac5a04eb02a792fc1f150908831b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3b49f30_ab8f628a",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-14T20:17:06Z",
+      "side": 1,
+      "message": "Parentheses are preferred over line breaks for multi-line conditionals. So:\n\n```\nif (not options.cast_receiver_type or\n    options.cast_receiver_type not in cast_interfaces.CAST_BROWSERS):\n```",
+      "range": {
+        "startLine": 34,
+        "startChar": 39,
+        "endLine": 34,
+        "endChar": 40
+      },
+      "revId": "b4689e640f2bac5a04eb02a792fc1f150908831b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
