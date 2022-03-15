@@ -52,6 +52,24 @@
       "parentUuid": "98c5b854_801c331a",
       "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dea39a4_0acbde5e",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-15T19:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78eb85d2_952f68b9",
+      "revId": "a75c993e632abfc69efd7de6974f61fdc5600b1e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

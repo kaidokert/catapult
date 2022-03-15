@@ -177,6 +177,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc1239c1_e8c769d6",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-15T19:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92dc082b_721e8f21",
+      "range": {
+        "startLine": 110,
+        "startChar": 30,
+        "endLine": 110,
+        "endChar": 40
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14090a04_6126bd1d",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-15T19:25:57Z",
+      "side": 1,
+      "message": "I added a check for \u0027\u003d\u0027 just in case",
+      "parentUuid": "613687c9_e4ecbec3",
+      "range": {
+        "startLine": 110,
+        "startChar": 19,
+        "endLine": 110,
+        "endChar": 22
+      },
+      "revId": "e7805ce85cd5ee082942edad0df1119a9edef683",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c62af3c7_3cc0b97f",
