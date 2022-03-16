@@ -452,6 +452,11 @@ tr.exportTo('tr.v', function() {
       if (dict.running) {
         hist.running_ = tr.b.math.RunningStatistics.fromDict(dict.running);
       }
+      if (dict.name === 'motionmark') {
+        dict.summaryOptions = {
+          geometricMean: true,
+        };
+      }
       if (dict.summaryOptions) {
         if (dict.summaryOptions.iprs) {
           // Range.fromDict() requires isEmpty, which is unnecessarily verbose
