@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e787bf_d4804c21",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-16T22:49:51Z",
+      "side": 1,
+      "message": "You should check if self.browser is not None first. It is a quicker check when self.browser is None via short circuit evaluation. Also if you need self.browser inside  ShouldPerformMinidumpCleanupOnTearDown then you should check if self.browser is not None before hand.",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1ce577e_7ea59d70",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-16T22:49:51Z",
+      "side": 1,
+      "message": "Which part of the artifact path are you trying to shorten with this method. Can you give me an example?",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "057d3227_67535d3e",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-16T22:49:51Z",
+      "side": 1,
+      "message": "Maybe you should only execute this block of code if sys.platform \u003d\u003d \u0027win32\u0027 and len(abs_path) \u003e\u003d WINDOWS_MAX_PATH.",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
