@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00f866ce_d15b3e92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-16T19:46:01Z",
+      "side": 1,
+      "message": "I already have DEPS modified in the Chromium-side CL that adds the WebGPU CTS harness, so I\u0027ll just do a web test run there. https://chromium-review.googlesource.com/c/chromium/src/+/3473402",
+      "parentUuid": "08580632_b69a8218",
+      "revId": "1964a050cd2e23424ecd60355725714e3ceab580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f70c5736_a0c58a26",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "You just need to replace the catapult revision in //DEPS with refs/changes/96/3472696/9 and then run windows blink bot.",
       "parentUuid": "f70c5736_a0c58a26",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "1964a050cd2e23424ecd60355725714e3ceab580",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d6996b4_03aa2d57",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-16T19:46:01Z",
+      "side": 1,
+      "message": "Done, although defined as a class variable since it\u0027s used that way elsewhere.",
+      "parentUuid": "28bd19d7_bf2ec4a9",
       "range": {
         "startLine": 51,
         "startChar": 12,
