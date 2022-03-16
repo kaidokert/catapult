@@ -71,6 +71,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42533602_39a39d9a",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-16T23:52:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4827382d_ca4dc24c",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "057d3227_67535d3e",
