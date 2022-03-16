@@ -18,6 +18,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2097f001_7dd85ea2",
+        "filename": "telemetry/telemetry/testing/serially_executed_browser_test_case.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-16T23:40:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4e787bf_d4804c21",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1ce577e_7ea59d70",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4827382d_ca4dc24c",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-16T23:40:40Z",
+      "side": 1,
+      "message": "This is, in effect, the test name. The WebGPU CTS test names are really long, e.g. `gpu_tests.webgpu_cts_integration_test.WebGpuCtsIntegrationTest.worker_webgpu:api,operation,render_pass,storeOp:render_pass_store_op,color_attachment_with_depth_stencil_attachment:colorStoreOperation\u003d\"discard\";depthStencilStoreOperation\u003d\"discard\"`\n\nSo, the path on disk for `/some/output/directory/artifacts/long_test_name/path/to/artifact` becomes `/some/output/directory/artifacts/hash_of_test_name/path/to/artifact`\n\nHere\u0027s a concrete example of it in use https://cas-viewer.appspot.com/projects/chromium-swarm/instances/default_instance/blobs/5e77cd1aa8c995c74c29b56feb0a01417bd6633f4232b42fa97c474dcafa6cdb/16053/tree - we use the test name if possible, but fall back to the hash if it results in too long of a name. Not great for the user since it\u0027s a hash, but better than not having the file at all and for most people it\u0027s transparent since ResultDB properly associates the artifacts with the test regardless of the path, see https://ci.chromium.org/ui/p/chromium/builders/try/dawn-win10-x64-deps-rel/21466/test-results.",
+      "parentUuid": "f1ce577e_7ea59d70",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "057d3227_67535d3e",
         "filename": "third_party/typ/typ/artifacts.py",
         "patchSetId": 10
@@ -48,6 +84,24 @@
       "writtenOn": "2022-03-16T22:49:51Z",
       "side": 1,
       "message": "Maybe you should only execute this block of code if sys.platform \u003d\u003d \u0027win32\u0027 and len(abs_path) \u003e\u003d WINDOWS_MAX_PATH.",
+      "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f430f3_8cda6b35",
+        "filename": "third_party/typ/typ/artifacts.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-16T23:40:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "057d3227_67535d3e",
       "revId": "d2228ee18ecc2bfb059dcd14445aca28c25a154d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
