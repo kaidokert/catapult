@@ -16,6 +16,23 @@
       "message": "just confirmed that the osDetailedVersionString works for all OS platforms amongst all waterfall testers",
       "revId": "640c8629451583d0e134fb28c565d815b57475e6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49466140_af24703b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-17T17:28:14Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "640c8629451583d0e134fb28c565d815b57475e6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
