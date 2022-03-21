@@ -16,6 +16,29 @@
       "message": "Added some initial unit test for the new function, i\u0027ll follow up with some more unit tests for httparchive that didnt previously have them",
       "revId": "cbfa71addf713c09e9ad9933fe326028a921ede3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ebcb152_22aa77a0",
+        "filename": "web_page_replay_go/src/httparchive_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1376756
+      },
+      "writtenOn": "2022-03-21T22:24:20Z",
+      "side": 1,
+      "message": "I would do it slightly different\n\nHere is an example of go unittest from google3. You could refer to it https://source.corp.google.com/piper///depot/google3/chrome/breve/cacao/util/piper_test.go;l\u003d53",
+      "range": {
+        "startLine": 32,
+        "startChar": 5,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "cbfa71addf713c09e9ad9933fe326028a921ede3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
