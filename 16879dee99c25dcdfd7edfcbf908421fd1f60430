@@ -16,6 +16,46 @@
       "message": "Rakib, could you PTAL? Thanks.",
       "revId": "16879dee99c25dcdfd7edfcbf908421fd1f60430",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bab0102b_add3e9e8",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-21T17:15:49Z",
+      "side": 1,
+      "message": "Do we need a FailureReason class? Can\u0027t we just store the failure message string here?",
+      "revId": "16879dee99c25dcdfd7edfcbf908421fd1f60430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f17d86fc_859c6f4f",
+        "filename": "third_party/typ/typ/result_sink.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-21T17:15:49Z",
+      "side": 1,
+      "message": "result",
+      "range": {
+        "startLine": 101,
+        "startChar": 32,
+        "endLine": 101,
+        "endChar": 37
+      },
+      "revId": "16879dee99c25dcdfd7edfcbf908421fd1f60430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
