@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe03aa52_4030de1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2022-03-22T06:34:41Z",
+      "side": 1,
+      "message": "FYI the CL content has substantially changed; the new CL description reflects that.\n\nThis CL now reports failure reasons for python unit tests. blink_web_tests are dealt with in another CL:\nhttps://chromium-review.googlesource.com/c/chromium/src/+/3539721",
+      "revId": "67413df5c23c5c82ee5afff69b2564c7362aa093",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
