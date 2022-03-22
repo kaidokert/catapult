@@ -279,6 +279,8 @@ class BrowserFinderOptions(optparse.Values):
                      help='Output directory for Cast Core.')
     group.add_option('--cast-runtime-exe',
                      help='Path to Cast Web Runtime executable.')
+    group.add_option('--cast-device-ip',
+                     help='IP address of the Cast device.')
 
     group = optparse.OptionGroup(parser, 'Fuchsia platform options')
     group.add_option(

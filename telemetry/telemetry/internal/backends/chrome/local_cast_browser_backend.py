@@ -7,9 +7,9 @@ import logging
 import os
 import subprocess
 import tempfile
-import time
 
-from telemetry.internal.backends.chrome import chrome_browser_backend
+from telemetry.internal.backends.chrome import cast_browser_backend
+from telemetry.internal.backends.chrome import minidump_finder
 
 
 _RUNTIME_CONFIG_TEMPLATE = """
@@ -53,9 +53,6 @@ _RUNTIME_CONFIG_TEMPLATE = """
 CAST_CORE_CONFIG_PATH = os.path.join(
     os.getenv("HOME"), '.config', 'cast_shell', '.eureka.conf')
 
-class ReceiverNotFoundException(Exception):
-  pass
-
 class CastRuntime(object):
   def __init__(self, root_dir, runtime_dir):
     self._root_dir = root_dir
@@ -91,31 +88,15 @@ class CastRuntime(object):
       self._runtime_process = None
 
 
-class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
+class LocalCastBrowserBackend(cast_browser_backend.CastBrowserBackend):
   def __init__(self, cast_platform_backend, browser_options,
                browser_directory, profile_directory, casting_tab):
-    super(CastBrowserBackend, self).__init__(
+    super(LocalCastBrowserBackend, self).__init__(
         cast_platform_backend,
         browser_options=browser_options,
         browser_directory=browser_directory,
         profile_directory=profile_directory,
-        supports_extensions=False,
-        supports_tab_control=False)
-    self._browser_process = None
-    self._cast_core_process = None
-    self._casting_tab = casting_tab
-    self._devtools_port = None
-    self._output_dir = cast_platform_backend.output_dir
-    self._receiver_name = None
-    self._web_runtime = CastRuntime(cast_platform_backend.output_dir,
-                                    cast_platform_backend.runtime_exe)
-
-  @property
-  def log_file_path(self):
-    return None
-
-  def _FindDevToolsPortAndTarget(self):
-    return self._devtools_port, None
+        casting_tab=casting_tab)
 
   def _ReadReceiverName(self):
     if not self._receiver_name:
@@ -123,31 +104,40 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
         self._receiver_name = json.load(f)['eureka-name']
 
   def Start(self, startup_args):
+    # Cast Core needs to start with a fixed devtools port.
+    self._devtools_port = 9222
+
+    self._dump_finder = minidump_finder.MinidumpFinder(
+        self.browser.platform.GetOSName(),
+        self.browser.platform.GetArchName())
+    cast_core_command = [
+        os.path.join(self._output_dir, 'blaze-bin', 'third_party', 'castlite',
+                     'public', 'sdk', 'core', 'samples', 'cast_core'),
+        '--force_all_apps_discoverable',
+        '--remote-debugging-port=%d' % self._devtools_port,
+    ]
+    original_dir = os.getcwd()
+    try:
+      os.chdir(self._output_dir)
+      self._cast_core_process = subprocess.Popen(cast_core_command,
+                                                 stdin=open(os.devnull),
+                                                 stdout=subprocess.PIPE,
+                                                 stderr=subprocess.STDOUT)
+      self._browser_process = self._web_runtime.Start()
+      self._ReadReceiverName()
+      self._WaitForSink()
+      self._casting_tab.action_runner.Navigate('about:blank')
+      self._casting_tab.action_runner.tab.StartTabMirroring(self._receiver_name)
+      self.BindDevToolsClient()
+
+    finally:
+      os.chdir(original_dir)
+
+  def Background(self):
     raise NotImplementedError
 
-  def _WaitForSink(self, timeout=60):
-    sink_name_list = []
-    start_time = time.time()
-    while (self._receiver_name not in sink_name_list
-           and time.time() - start_time < timeout):
-      self._casting_tab.action_runner.tab.EnableCast()
-      sink_name_list = [
-          sink['name'] for sink in self._casting_tab\
-                                       .action_runner.tab.GetCastSinks()
-      ]
-      self._casting_tab.action_runner.Wait(1)
-    if self._receiver_name not in sink_name_list:
-      raise ReceiverNotFoundException(
-          'Could not find Cast Receiver {0}.'.format(self._receiver_name))
-
-  def GetReceiverName(self):
-    return self._receiver_name
-
-  def GetPid(self):
-    return self._browser_process.pid
-
   def Close(self):
-    super(CastBrowserBackend, self).Close()
+    super(LocalCastBrowserBackend, self).Close()
 
     if self._browser_process:
       logging.info('Shutting down Cast browser.')
@@ -156,16 +146,3 @@ class CastBrowserBackend(chrome_browser_backend.ChromeBrowserBackend):
     if self._cast_core_process:
       self._cast_core_process.kill()
       self._cast_core_process = None
-
-  def IsBrowserRunning(self):
-    return bool(self._browser_process)
-
-  def GetStandardOutput(self):
-    return 'Stdout is not available for Cast browser.'
-
-  def GetStackTrace(self):
-    return (False, 'Stack trace is not yet supported on Cast browser.')
-
-  def SymbolizeMinidump(self, minidump_path):
-    logging.info('Symbolizing Minidump is not yet supported on Cast browser.')
-    return None
