@@ -10,9 +10,10 @@ from telemetry.internal.platform import device
 
 
 class CastDevice(device.Device):
-  def __init__(self, output_dir, runtime_exe):
+  def __init__(self, output_dir, runtime_exe, ip_address):
     self._output_dir = output_dir
     self._runtime_exe = runtime_exe
+    self._ip_address = ip_address
     super(CastDevice, self).__init__(name='cast', guid='cast')
 
   @classmethod
@@ -27,6 +28,10 @@ class CastDevice(device.Device):
   def runtime_exe(self):
     return self._runtime_exe
 
+  @property
+  def ip_address(self):
+    return self._ip_address
+
 
 def FindAllAvailableDevices(options):
   """Returns a list of available devices.
@@ -34,4 +39,5 @@ def FindAllAvailableDevices(options):
   if (not options.cast_receiver_type or
       options.cast_receiver_type not in cast_interface.CAST_BROWSERS):
     return []
-  return [CastDevice(options.cast_output_dir, options.cast_runtime_exe)]
+  return [CastDevice(options.cast_output_dir, options.cast_runtime_exe,
+                     options.cast_device_ip)]

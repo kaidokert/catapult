@@ -12,8 +12,11 @@ from telemetry.internal.platform import platform_backend
 class CastPlatformBackend(platform_backend.PlatformBackend):
   def __init__(self, device):
     super(CastPlatformBackend, self).__init__(device)
+    self._ip_addr = None
     self._output_dir = device.output_dir
     self._runtime_exe = device.runtime_exe
+    if device.ip_address:
+      self._ip_addr = device.ip_addr
 
   @classmethod
   def SupportsDevice(cls, device):
@@ -31,6 +34,10 @@ class CastPlatformBackend(platform_backend.PlatformBackend):
   @property
   def runtime_exe(self):
     return self._runtime_exe
+
+  @property
+  def ip_addr(self):
+    return self._ip_addr
 
   def IsRemoteDevice(self):
     return False
