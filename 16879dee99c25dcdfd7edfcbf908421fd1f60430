@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32ff71fc_cca8a71d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2022-03-22T02:25:18Z",
+      "side": 1,
+      "message": "In process of revising this CL.\n\nI identified that to export failure reasons for blink web tests, I did not need to make this change:\nhttps://chromium-review.googlesource.com/c/chromium/src/+/3539721\n\nHowever, this code seems to be used for python unit tests, and having failure reasons for these is likely to be useful. This will require some modifications to typ\u0027s test runner.",
+      "revId": "16879dee99c25dcdfd7edfcbf908421fd1f60430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bab0102b_add3e9e8",
         "filename": "third_party/typ/typ/json_results.py",
         "patchSetId": 4
@@ -31,6 +48,24 @@
       "writtenOn": "2022-03-21T17:15:49Z",
       "side": 1,
       "message": "Do we need a FailureReason class? Can\u0027t we just store the failure message string here?",
+      "revId": "16879dee99c25dcdfd7edfcbf908421fd1f60430",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de1460f_80f64bb7",
+        "filename": "third_party/typ/typ/json_results.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1386944
+      },
+      "writtenOn": "2022-03-22T02:25:18Z",
+      "side": 1,
+      "message": "The main reason I defined a class and not a string is that it is modelling the failure_reason proto. This type was defined as a struct rather than a string so that other structured failure information (stack traces, etc.) could be captured in future. (Without having to re-do all the plumbing work through the test harness, to ResultSink, to ResultDB and out to Weetbix again).",
+      "parentUuid": "bab0102b_add3e9e8",
       "revId": "16879dee99c25dcdfd7edfcbf908421fd1f60430",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
