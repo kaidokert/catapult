@@ -320,6 +320,8 @@ class Job(ndb.Model):
         comparison_magnitude=comparison_magnitude,
         pin=pin)
     args = arguments or {}
+    if batch_id is None:
+      batch_id = str(uuid.uuid4())
     job = cls(
         state=state,
         arguments=args,
