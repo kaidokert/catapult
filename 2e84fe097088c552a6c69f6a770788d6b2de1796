@@ -34,6 +34,24 @@
       "parentUuid": "9b90ea24_c5cb41f1",
       "revId": "2e84fe097088c552a6c69f6a770788d6b2de1796",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99086c68_014635dd",
+        "filename": "third_party/typ/typ/tests/expectations_parser_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1311766
+      },
+      "writtenOn": "2022-03-23T17:41:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e9e59a2c_17a89b96",
+      "revId": "2e84fe097088c552a6c69f6a770788d6b2de1796",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ],
   "submitRequirementResults": [
