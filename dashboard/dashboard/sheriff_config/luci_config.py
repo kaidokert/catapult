@@ -56,7 +56,7 @@ def FindAllSheriffConfigs(client):
   try:
     configs = client.get_project_configs(path=SHERIFF_CONFIG_PATH).execute()
   except (errors.HttpError, httplib2.HttpLib2Error) as e:
-    raise FetchError(e)
+    raise FetchError(e) from e
   return configs
 
 
@@ -108,7 +108,7 @@ def StoreConfigs(client, configs):
       sheriff_config = validator.Validate(
           base64.standard_b64decode(config['content']))
     except validator.Error as error:
-      raise InvalidContentError(config, error)
+      raise InvalidContentError(error, config) from error
 
     entity = datastore.Entity(
         key=key, exclude_from_indexes=['sheriff_config', 'url'])
@@ -223,7 +223,7 @@ def ListAllConfigs(client):
     subscription_index_key = client.key('SubscriptionIndex', 'global')
     subscription_index = client.get(subscription_index_key)
     if subscription_index is None:
-      return
+      return None
 
     # Then for each instance in the 'config_sets', create a key based on the
     # subscription_index_key as a parent, and look those up in one go.

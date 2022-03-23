@@ -11,6 +11,9 @@ enable=python3
 # TODO: Shrink this list to as small as possible.
 # Disable some specific python3 incompatibilities that we cannot use yet in
 # Python 2.7.
+# TODO(https://1277796): These should be removed once we're Python 3-only:
+#   super-with-arguments
+#   useless-object-inheritance
 disable=
   design,
   similarities,
@@ -26,6 +29,7 @@ disable=
   fixme,
   global-statement,
   import-error,
+  invalid-name,
   locally-disabled,
   locally-enabled,
   missing-docstring,
@@ -36,6 +40,8 @@ disable=
   protected-access,
   star-args,
   super-on-old-class,
+  super-with-arguments,
+  useless-object-inheritance,
 
   basestring-builtin,
   range-builtin-not-iterating,

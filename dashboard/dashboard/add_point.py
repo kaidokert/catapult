@@ -718,6 +718,7 @@ def GetAndValidateRowId(row_dict):
   except (ValueError, TypeError) as e:
     six.raise_from(
         BadRequestError('Bad value for "revision", should be numerical.'), e)
+  return None
 
 
 def GetAndValidateRowProperties(row):

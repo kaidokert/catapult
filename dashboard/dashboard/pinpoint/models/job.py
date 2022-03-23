@@ -450,7 +450,7 @@ class Job(ndb.Model):
         task_module.Evaluate(
             self,
             event_module.Event(type='initiate', target_task=None, payload={}),
-            task_evaluator.ExecutionEngine(self)),
+            task_evaluator.ExecutionEngine(self))
       except task_module.Error as error:
         logging.error('Failed: %s', error)
         self.Fail()
@@ -634,7 +634,7 @@ class Job(ndb.Model):
           exception.category = 'pinpoint'
         else:
           exception = exc_info[1]
-      exc_message = exception.message
+      exc_message = str(exception)
       category = None
       if isinstance(exception, errors.JobError):
         category = exception.category

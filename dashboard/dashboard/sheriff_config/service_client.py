@@ -72,5 +72,5 @@ def CreateServiceClient(api_root, api, version, http=None, credentials=None):
           http=http,
           cache_discovery=False)
   except (errors.HttpError, errors.UnknownApiNameOrVersion) as e:
-    raise DiscoveryError(e)
+    raise DiscoveryError(e) from e
   return client
