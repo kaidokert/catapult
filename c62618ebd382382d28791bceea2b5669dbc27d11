@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fd2b86b_f6140c93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2022-03-23T20:30:13Z",
+      "side": 1,
+      "message": "johnchen: PTaL. The original change is in the patchset 1.",
+      "revId": "c62618ebd382382d28791bceea2b5669dbc27d11",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
