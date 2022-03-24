@@ -59,11 +59,8 @@ def ComputeLabelUpdates(labels):
     found_in_sets = sum(
         label in label_set for label_set in _LABEL_EXCLUSION_SETS)
     if found_in_sets > 1:
-      raise ValueError(
-          'label "%s" is found in %s label sets',
-          label,
-          found_in_sets,
-      )
+      raise ValueError('label "%s" is found in %s label sets' %
+                       (label, found_in_sets))
 
   for label_set in _LABEL_EXCLUSION_SETS:
     label_updates |= set('-' + l for l in label_set)

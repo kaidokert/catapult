@@ -6,7 +6,7 @@ from __future__ import print_function
 from __future__ import division
 from __future__ import absolute_import
 
-import itertools
+from six.moves import zip_longest as six_moves_zip_longest
 
 from dashboard.pinpoint.models import change as change_module
 from dashboard.pinpoint.models import evaluators
@@ -14,6 +14,7 @@ from dashboard.pinpoint.models.tasks import find_isolate
 from dashboard.pinpoint.models.tasks import performance_bisection
 from dashboard.pinpoint.models.tasks import read_value
 from dashboard.pinpoint.models.tasks import run_test
+
 
 
 class Serializer(evaluators.DispatchByTaskType):
@@ -210,7 +211,7 @@ class Serializer(evaluators.DispatchByTaskType):
             ordered_states[index] = state
 
         # Merge in the comparisons as they appear for the ordered_states.
-        for state, comparison, result in itertools.izip_longest(
+        for state, comparison, result in six_moves_zip_longest(
             ordered_states, comparisons or [], result_values or []):
           if state is None:
             continue
@@ -282,7 +283,7 @@ def TaskTransformer(task, _, context):
       }
   }
   context.clear()
-  context.update(result)
+  return context.update(result)
 
 
 def AnalysisTransformer(task, _, context):
@@ -324,4 +325,4 @@ def AnalysisTransformer(task, _, context):
       }
   }
   context.clear()
-  context.update(result)
+  return context.update(result)

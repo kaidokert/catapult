@@ -108,10 +108,10 @@ def Validate(content):
     if field is None:
       raise InvalidPattern(result, index, pattern_idx,
                            'must provide either \'glob\' or \'regex\'', group)
-    elif field == 'glob' and len(pattern.glob) == 0:
+    if field == 'glob' and len(pattern.glob) == 0:
       raise InvalidPattern(result, index, pattern_idx, 'glob must not be empty',
                            group)
-    elif field == 'regex' and len(pattern.regex) == 0:
+    if field == 'regex' and len(pattern.regex) == 0:
       raise InvalidPattern(result, index, pattern_idx,
                            'regex must not be empty', group)
     try:

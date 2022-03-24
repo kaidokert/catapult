@@ -9,6 +9,7 @@ from __future__ import absolute_import
 import traceback
 
 from oauth2client import client
+from six import string_types
 
 from dashboard.pinpoint.models import errors
 
@@ -81,7 +82,7 @@ class Execution(object):
   # crbug.com/971370
   def __setstate__(self, state):
     self.__dict__ = state  # pylint: disable=attribute-defined-outside-init
-    if isinstance(self._exception, basestring):
+    if isinstance(self._exception, string_types):
       self._exception = {
           'message': self._exception.splitlines()[-1],
           'traceback': self._exception
@@ -94,7 +95,7 @@ class Execution(object):
         'details': self._AsDict(),
     }
 
-    if isinstance(self._exception, basestring):
+    if isinstance(self._exception, string_types):
       d['exception'] = {
           'message': self._exception.splitlines()[-1],
           'traceback': self._exception
@@ -132,8 +133,8 @@ class Execution(object):
       tb = traceback.format_exc()
       if hasattr(e, 'task_output'):
         tb += '\n%s' % getattr(e, 'task_output')
-      self._exception = {'message': e.message, 'traceback': tb}
-    except:
+      self._exception = {'message': str(e), 'traceback': tb}
+    except:  # pylint: disable=try-except-raise
       # All other exceptions must be propagated.
       raise
 
