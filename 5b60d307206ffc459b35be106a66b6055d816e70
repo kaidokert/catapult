@@ -22,6 +22,30 @@
       },
       "revId": "5b60d307206ffc459b35be106a66b6055d816e70",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b063371_10343ef3",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T17:36:59Z",
+      "side": 1,
+      "message": "My understanding is that this is the name of the OS build (https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/telemetry/telemetry/internal/platform/fuchsia_platform_backend.py;l\u003d83). It\u0027s possible that in the distant future we will need to separate different types of chromebooks, but I think the tag should be sufficient for now.",
+      "parentUuid": "064a142d_f7da1663",
+      "range": {
+        "startLine": 32,
+        "startChar": 42,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "5b60d307206ffc459b35be106a66b6055d816e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
