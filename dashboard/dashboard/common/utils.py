@@ -26,7 +26,7 @@ from oauth2client import client
 
 from dashboard.common import stored_object
 import six
-import six.moves.urllib.parse
+import six.moves.urllib.parse as urllib_parse
 
 SHERIFF_DOMAINS_KEY = 'sheriff_domains_key'
 IP_ALLOWLIST_KEY = 'ip_whitelist'
@@ -606,6 +606,7 @@ def IsGroupMember(identity, group):
   except (errors.HttpError, KeyError, AttributeError) as e:
     logging.error('Failed to check membership of %s: %s', identity, str(e))
     six.raise_from(GroupMemberAuthFailed('Failed to authenticate user.'), e)
+  return None
 
 
 def GetCachedIsGroupMember(identity, group):
@@ -808,7 +809,7 @@ def GetBuildDetailsFromStdioLink(stdio_link):
     # This wasn't a buildbot formatted link.
     return no_details
   base_url, master, bot, buildnumber, step = m.groups()
-  bot = six.moves.urllib.parse.unquote(bot)  # pylint: disable=too-many-function-args
+  bot = urllib_parse.unquote(bot)  # pylint: disable=too-many-function-args
   return base_url, master, bot, buildnumber, step
 
 
