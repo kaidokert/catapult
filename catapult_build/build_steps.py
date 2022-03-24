@@ -203,6 +203,7 @@ def main(args=None):
       '--app-engine-sdk-pythonpath',
       help='PYTHONPATH to include app engine SDK path')
   parser.add_argument('--platform', help='Platform name (linux, mac, or win)')
+  parser.add_argument('--platform_arch', help='Platform arch (intel or arm)')
   parser.add_argument('--output-json', help='Output for buildbot status page')
   parser.add_argument(
       '--run_android_tests', default=True, help='Run Android tests')
@@ -234,6 +235,11 @@ def main(args=None):
                                      'tracing', 'proto')
   tracing_proto_output_path = tracing_protos_path
   tracing_proto_files = [os.path.join(tracing_protos_path, 'histogram.proto')]
+
+  protoc_path = 'protoc'
+  if args.platform == 'mac' and args.platform_arch == 'arm':
+    protoc_path = os.path.join(args.api_path_checkout, 'catapult_build', 'bin',
+                               'mac-arm64', 'protoc-3.19.4-osx-aarch_64.exe')
 
 
   steps = [
@@ -279,7 +285,7 @@ def main(args=None):
           'name':
               'Generate Tracing protocol buffers',
           'cmd': [
-              'protoc',
+              protoc_path,
               '--proto_path',
               tracing_protos_path,
               '--python_out',
