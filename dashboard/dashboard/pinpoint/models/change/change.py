@@ -14,6 +14,8 @@ try:
 except ImportError:
   from itertools import izip_longest as zip_longest
 
+from six import string_types
+
 from dashboard.pinpoint.models.change import commit as commit_module
 from dashboard.pinpoint.models.change import patch as patch_module
 
@@ -164,10 +166,9 @@ class Change(
 
   @classmethod
   def FromData(cls, data):
-    if isinstance(data, basestring):
+    if isinstance(data, string_types):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):

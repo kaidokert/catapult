@@ -14,6 +14,7 @@ import mock
 import unittest
 
 from google.appengine.api import taskqueue
+from six.moves import zip as six_moves_zip
 
 from dashboard.common import testing_common
 from dashboard.common import utils
@@ -27,6 +28,7 @@ from dashboard.services import swarming
 from dateutil.parser import isoparse
 from tracing.value import histogram_set
 from tracing.value import histogram as histogram_module
+
 
 _TEST_START_TIME = datetime.datetime.fromtimestamp(1326244364)
 _TEST_START_TIME_STR = _TEST_START_TIME.strftime('%Y-%m-%d %H:%M:%S.%f')
@@ -954,9 +956,9 @@ class _JobStateFake(object):
     def Pairwise(iterable):
       a, b = itertools.tee(iterable)
       next(b, None)
-      return itertools.izip(a, b)
+      return six_moves_zip(a, b)
 
-    return [(a, b) for a, b in Pairwise(self._attempts.keys())]
+    return list(Pairwise(self._attempts.keys()))
 
 
 class _JobStub(object):
