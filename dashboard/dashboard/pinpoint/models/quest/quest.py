@@ -34,7 +34,6 @@ class Quest(object):
     Arguments:
       job: A dashboard.pinpoint.models.job.Job instance.
     """
-    pass
 
   @classmethod
   def FromDict(cls, arguments):

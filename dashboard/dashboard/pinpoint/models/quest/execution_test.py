@@ -10,6 +10,7 @@ import pickle
 import unittest
 
 from oauth2client import client
+from six import string_types
 
 from dashboard.pinpoint.models import errors
 from dashboard.pinpoint.models.quest import execution
@@ -123,7 +124,7 @@ class ExecutionTest(unittest.TestCase):
 
     self.assertTrue(e.completed)
     self.assertTrue(e.failed)
-    self.assertTrue(isinstance(e.exception, basestring))
+    self.assertTrue(isinstance(e.exception, string_types))
 
     e = pickle.loads(pickle.dumps(e))
 

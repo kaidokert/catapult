@@ -341,7 +341,7 @@ class JobState(object):
         )
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
-        elif comparison == compare.UNKNOWN:
+        if comparison == compare.UNKNOWN:
           any_unknowns = True
 
       # Compare result values by consolidating all measurments by change, and
@@ -374,7 +374,7 @@ class JobState(object):
         )
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
-        elif comparison == compare.UNKNOWN:
+        if comparison == compare.UNKNOWN:
           any_unknowns = True
 
     if any_unknowns:

@@ -68,7 +68,7 @@ class UpdateBuildStatusAction(
   __slots__ = ()
 
   @task_module.LogStateTransitionFailures
-  def __call__(self, accumulator):
+  def __call__(self, accumulator):  # pylint: disable=inconsistent-return-statements
     # The task contains the buildbucket_result which we need to update by
     # polling the status of the id.
     build_details = self.task.payload.get('buildbucket_result')
