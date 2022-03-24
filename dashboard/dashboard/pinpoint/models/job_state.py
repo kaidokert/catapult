@@ -120,9 +120,12 @@ class JobState(object):
     self.AddAttempts(change)
 
     if len(self._changes) > MAX_BUILDS:
-      raise errors.BuildCancelled("""The number of builds exceeded %d. Aborting Job.
-            Consult https://chromium.googlesource.com/catapult/+/HEAD/dashboard/dashboard/pinpoint/docs/abort_error.md
-            for suggestions on next steps.""" % MAX_BUILDS)
+      raise errors.BuildCancelled(
+          """The number of builds exceeded %d. Aborting Job.
+            Consult %s+%s
+            for suggestions on next steps.""" %
+          (MAX_BUILDS, "https://chromium.googlesource.com/catapult/",
+           "/HEAD/dashboard/dashboard/pinpoint/docs/abort_error.md"))
 
   def Explore(self):
     """Compare Changes and bisect by adding additional Changes as needed.
@@ -341,7 +344,7 @@ class JobState(object):
         )
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
-        elif comparison == compare.UNKNOWN:
+        if comparison == compare.UNKNOWN:
           any_unknowns = True
 
       # Compare result values by consolidating all measurments by change, and
@@ -374,7 +377,7 @@ class JobState(object):
         )
         if comparison == compare.DIFFERENT:
           return compare.DIFFERENT
-        elif comparison == compare.UNKNOWN:
+        if comparison == compare.UNKNOWN:
           any_unknowns = True
 
     if any_unknowns:
