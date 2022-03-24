@@ -80,7 +80,8 @@ class Task(ndb.Model):
   and need to be.
   """
   task_type = ndb.StringProperty(required=True)
-  status = ndb.StringProperty(required=True, choices=VALID_TRANSITIONS.keys())
+  status = ndb.StringProperty(
+      required=True, choices=list(VALID_TRANSITIONS.keys()))
   payload = ndb.JsonProperty(compressed=True, indexed=False)
   dependencies = ndb.KeyProperty(repeated=True, kind='Task')
   created = ndb.DateTimeProperty(required=True, auto_now_add=True)
@@ -343,7 +344,7 @@ def Evaluate(job, event, evaluator):
 
     if not graph.tasks:
       logging.debug('Task graph empty for job %s', job.job_id)
-      return
+      return None
 
     # First get all the "terminal" tasks, and traverse the dependencies in a
     # depth-first-search.

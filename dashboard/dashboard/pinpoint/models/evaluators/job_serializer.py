@@ -210,7 +210,7 @@ class Serializer(evaluators.DispatchByTaskType):
             ordered_states[index] = state
 
         # Merge in the comparisons as they appear for the ordered_states.
-        for state, comparison, result in itertools.izip_longest(
+        for state, comparison, result in itertools.zip_longest(
             ordered_states, comparisons or [], result_values or []):
           if state is None:
             continue
@@ -282,7 +282,7 @@ def TaskTransformer(task, _, context):
       }
   }
   context.clear()
-  context.update(result)
+  return context.update(result)
 
 
 def AnalysisTransformer(task, _, context):
@@ -324,4 +324,4 @@ def AnalysisTransformer(task, _, context):
       }
   }
   context.clear()
-  context.update(result)
+  return context.update(result)

@@ -942,9 +942,9 @@ class _JobStateFake(object):
     def Pairwise(iterable):
       a, b = itertools.tee(iterable)
       next(b, None)
-      return itertools.izip(a, b)
+      return itertools.zip(a, b)
 
-    return [(a, b) for a, b in Pairwise(self._attempts.keys())]
+    return list(Pairwise(self._attempts.keys()))
 
 
 class _JobStub(object):
