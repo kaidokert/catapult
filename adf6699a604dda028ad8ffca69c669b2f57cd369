@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a07896_41207899",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e01bc101_725600ba",
+      "range": {
+        "startLine": 76,
+        "startChar": 51,
+        "endLine": 76,
+        "endChar": 67
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1db8df6c_df42241e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-24T17:23:09Z",
       "side": 1,
       "message": "Should the process be killed first since it\u0027s the last thing to be created in Start()?",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d35768_29591719",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1db8df6c_df42241e",
       "range": {
         "startLine": 85,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "826c9f09_a18f77bd",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0b4533_9ea6ba25",
+      "range": {
+        "startLine": 124,
+        "startChar": 55,
+        "endLine": 124,
+        "endChar": 71
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e08dbfb_43eb598f",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-24T17:23:09Z",
       "side": 1,
       "message": "This should be below the built-in imports and above the Telemetry imports",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2afbef00_f75c8140",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e08dbfb_43eb598f",
       "range": {
         "startLine": 7,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a14997e8_a6bca223",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Added exception handling. Thanks for the reminder!",
+      "parentUuid": "a7f28e09_fd3d1801",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8b95354_55348c94",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-03-24T17:23:09Z",
       "side": 1,
       "message": "Can you add a comment explaining what this is supposed to do? It\u0027s not clear to me as someone who isn\u0027t familiar with cast.",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a19029_6def535a",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8b95354_55348c94",
       "range": {
         "startLine": 58,
         "startChar": 10,
@@ -162,6 +306,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b855db19_b5ae122d",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb2ce6eb_2738d06e",
+      "range": {
+        "startLine": 71,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 19
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab02f5e1_d5e80fab",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-03-24T17:23:09Z",
       "side": 1,
       "message": "Where does 2 come from? 0/1 makes sense, but 2 seems random to me.",
+      "range": {
+        "startLine": 114,
+        "startChar": 14,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53c9ea4_1187f293",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Changed _SendCommand such that the prompt passed in are processed first, which makes it clearer the expected response is result_0.",
+      "parentUuid": "ab02f5e1_d5e80fab",
       "range": {
         "startLine": 114,
         "startChar": 14,
@@ -210,6 +402,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2e470e2_fe1694ea",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Yes, it is the ssh session responsible for launching and killing the browser process. The reason I did this was that this allowed for refactoring of functions such as IsBrowserRunning.",
+      "parentUuid": "2fd6d52f_d93a3dec",
+      "range": {
+        "startLine": 158,
+        "startChar": 9,
+        "endLine": 158,
+        "endChar": 25
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa06de46_d191d9f6",
         "filename": "telemetry/telemetry/internal/platform/cast_platform_backend.py",
         "patchSetId": 5
@@ -221,6 +437,30 @@
       "writtenOn": "2022-03-24T17:23:09Z",
       "side": 1,
       "message": "Nit: Add whitespace above and below to separate __future__ imports, vpython imports, and telemetry imports.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 56
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6d9efa_7296eb2a",
+        "filename": "telemetry/telemetry/internal/platform/cast_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-24T20:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa06de46_d191d9f6",
       "range": {
         "startLine": 6,
         "startChar": 0,
