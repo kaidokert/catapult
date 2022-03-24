@@ -34,6 +34,23 @@
       "parentUuid": "8916804d_6136858e",
       "revId": "7eae60b43510fc8561f7e852cd6dc746db403366",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7669cf9c_7d2c9d33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-03-24T20:50:37Z",
+      "side": 1,
+      "message": "If delays due to the pinpoint-push-blocking issue https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1264738 become a more urgent problem, we can roll back the buildbucket v2 API changes and resume regular pinpoint rollouts while we sort out bbv2 stuff separately.",
+      "revId": "7eae60b43510fc8561f7e852cd6dc746db403366",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
