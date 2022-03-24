@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1d4ca2c_32c70192",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-03-24T23:14:11Z",
+      "side": 1,
+      "message": "Okay, I just downloaded the file and didn\u0027t change the name. Added the source to the description.",
+      "parentUuid": "ef30e5e0_841ff7a3",
+      "range": {
+        "startLine": 242,
+        "startChar": 45,
+        "endLine": 242,
+        "endChar": 75
+      },
+      "revId": "2cc28ae4a4398108a99fa67b14fa23dac342c4a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7277542_d32c15d4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-24T22:50:31Z",
       "side": 1,
       "message": "Also need to change these two entries, or skip them on mac arm.",
+      "range": {
+        "startLine": 262,
+        "startChar": 4,
+        "endLine": 283,
+        "endChar": 8
+      },
+      "revId": "2cc28ae4a4398108a99fa67b14fa23dac342c4a7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b022d93d_cd5210f5",
+        "filename": "catapult_build/build_steps.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-03-24T23:14:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7277542_d32c15d4",
       "range": {
         "startLine": 262,
         "startChar": 4,
