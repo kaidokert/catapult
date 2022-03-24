@@ -164,10 +164,9 @@ class Change(
 
   @classmethod
   def FromData(cls, data):
-    if isinstance(data, basestring):
+    if isinstance(data, str):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):

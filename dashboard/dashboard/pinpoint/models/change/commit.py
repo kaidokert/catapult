@@ -27,7 +27,9 @@ class NonLinearError(Exception):
 
 
 Dep = collections.namedtuple('Dep', ('repository_url', 'git_hash'))
-CommitPositionInfo = collections.namedtuple('CommitPositionInfo', ('branch', 'position'))
+CommitPositionInfo = collections.namedtuple('CommitPositionInfo',
+                                            ('branch', 'position'))
+
 
 def ParseDateWithUTCOffset(date_string):
   # Parsing the utc offset within strptime isn't supported until python 3, so
@@ -191,10 +193,9 @@ class Commit(collections.namedtuple('Commit', ('repository', 'git_hash'))):
                 or the git hash is not valid.
       ValueError: The URL has an unrecognized format.
     """
-    if isinstance(data, basestring):
+    if isinstance(data, str):
       return cls.FromUrl(data)
-    else:
-      return cls.FromDict(data)
+    return cls.FromDict(data)
 
   @classmethod
   def FromUrl(cls, url):

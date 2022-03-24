@@ -56,16 +56,11 @@ class JobError(Exception):
 
 
 class FatalError(JobError):
-
-  def __init__(self, message):
-    super(FatalError, self).__init__(message)
+  """Fatal exception for errors in this module."""
 
 
 class InformationalError(JobError):
-
-  def __init__(self, message):
-    super(InformationalError, self).__init__(message)
-
+  """Information exception for errors in this module."""
 
 # Not a JobError because this is only used for internal control flow -- this
 # should never be a user-visible exception.
@@ -105,9 +100,9 @@ class BuildCancelled(InformationalError):
 
   def __init__(self, reason):
     super(BuildCancelled,
-          self).__init__('The build was cancelled with reason: %s. "\
-        "Pinpoint will be unable to run any tests against this "\
-        "revision.' % reason)
+          self).__init__('The build was cancelled with reason: %s. '\
+        'Pinpoint will be unable to run any tests against this '\
+        'revision.' % reason)
 
 
 class BuildGerritUrlNotFound(InformationalError):

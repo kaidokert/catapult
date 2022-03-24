@@ -1,5 +1,5 @@
 service: upload
-runtime: python27
+runtime: python39
 api_version: 1
 instance_class: F2
 
