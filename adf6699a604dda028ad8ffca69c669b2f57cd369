@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e01bc101_725600ba",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "I believe this technically leaks the file handle. Might not be much of an issue in practice, but better to do:\n\n```\nwith open(os.devnull) as devnull:\n  ..(stdin\u003ddevnull)...\n```",
+      "range": {
+        "startLine": 76,
+        "startChar": 51,
+        "endLine": 76,
+        "endChar": 67
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db8df6c_df42241e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "Should the process be killed first since it\u0027s the last thing to be created in Start()?",
+      "range": {
+        "startLine": 85,
+        "startChar": 12,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae0b4533_9ea6ba25",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 124,
+        "startChar": 55,
+        "endLine": 124,
+        "endChar": 71
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e08dbfb_43eb598f",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "This should be below the built-in imports and above the Telemetry imports",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7f28e09_fd3d1801",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "It seems like you\u0027re never checking that this succeeded anywhere. Seems like something you should do to help with debugging issues so things don\u0027t fail in weird ways.",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b95354_55348c94",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "Can you add a comment explaining what this is supposed to do? It\u0027s not clear to me as someone who isn\u0027t familiar with cast.",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb2ce6eb_2738d06e",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "Probably worth renaming - based off the name, I would expect just a directory change, not that it would return an ssh session.",
+      "range": {
+        "startLine": 71,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 19
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab02f5e1_d5e80fab",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "Where does 2 come from? 0/1 makes sense, but 2 seems random to me.",
+      "range": {
+        "startLine": 114,
+        "startChar": 14,
+        "endLine": 114,
+        "endChar": 16
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd6d52f_d93a3dec",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "This isn\u0027t really a browser process, is it? It\u0027s an ssh session.",
+      "range": {
+        "startLine": 158,
+        "startChar": 9,
+        "endLine": 158,
+        "endChar": 25
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa06de46_d191d9f6",
+        "filename": "telemetry/telemetry/internal/platform/cast_platform_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:23:09Z",
+      "side": 1,
+      "message": "Nit: Add whitespace above and below to separate __future__ imports, vpython imports, and telemetry imports.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 56
+      },
+      "revId": "adf6699a604dda028ad8ffca69c669b2f57cd369",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
