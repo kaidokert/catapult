@@ -55,3 +55,14 @@ class FromDictTest(unittest.TestCase):
         'server', run_test_test.DIMENSIONS, _BASE_EXTRA_ARGS,
         _BASE_SWARMING_TAGS, _TELEMETRY_COMMAND, 'out/Release')
     self.assertEqual(quest, expected)
+
+  def testSettingDeviceTypeCorrectlySetsDimension(self):
+    dimensions = run_test_test.DIMENSIONS[:]
+    dimensions.append({'key': 'device_type', 'value': 'ASTRO'})
+    quest = run_web_engine_telemetry_test.RunWebEngineTelemetryTest.FromDict(
+        _BASE_ARGUMENTS)
+    expected = run_web_engine_telemetry_test.RunWebEngineTelemetryTest(
+        'server', dimensions, _BASE_EXTRA_ARGS, _BASE_SWARMING_TAGS,
+        _TELEMETRY_COMMAND, 'out/Release')
+    print(expected)
+    self.assertEqual(quest, expected)
