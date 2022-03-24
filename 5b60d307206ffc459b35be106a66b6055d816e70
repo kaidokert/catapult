@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064a142d_f7da1663",
+        "filename": "telemetry/telemetry/story/typ_expectations.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T17:28:41Z",
+      "side": 1,
+      "message": "This seems rather generic. Won\u0027t there potentially be multiple x64 chromebooks at some point in the future?",
+      "range": {
+        "startLine": 32,
+        "startChar": 42,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "5b60d307206ffc459b35be106a66b6055d816e70",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
