@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84f05bba_b07f8b02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T23:33:23Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "dd9107fb6cf76619e08a9d2ad3d73eb06c72d288",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d02191c8_df9b8941",
+        "filename": "third_party/typ/typ/runner.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-03-24T23:33:23Z",
+      "side": 1,
+      "message": "Note that the changes outside of _summarize() are due to `git cl format --python`",
+      "revId": "dd9107fb6cf76619e08a9d2ad3d73eb06c72d288",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
