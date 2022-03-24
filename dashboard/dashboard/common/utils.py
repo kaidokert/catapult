@@ -606,6 +606,7 @@ def IsGroupMember(identity, group):
   except (errors.HttpError, KeyError, AttributeError) as e:
     logging.error('Failed to check membership of %s: %s', identity, str(e))
     six.raise_from(GroupMemberAuthFailed('Failed to authenticate user.'), e)
+  return None
 
 
 def GetCachedIsGroupMember(identity, group):

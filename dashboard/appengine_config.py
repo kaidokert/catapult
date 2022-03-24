@@ -29,7 +29,7 @@ remoteapi_CUSTOM_ENVIRONMENT_AUTHENTICATION = ('LOAS_PEER_USERNAME',
 
 
 def webapp_add_wsgi_middleware(app):
-  from google.appengine.ext.appstats import recording
+  from google.appengine.ext.appstats import recording  # pylint: disable=import-outside-toplevel
   app = recording.appstats_wsgi_middleware(app)
   return app
 

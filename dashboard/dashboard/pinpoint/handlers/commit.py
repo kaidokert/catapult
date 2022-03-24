@@ -32,3 +32,4 @@ class Commit(api_request_handler.ApiRequestHandler):
       six.raise_from(
           api_request_handler.BadRequestError('Unknown git hash: %s' %
                                               git_hash), e)
+    return None
