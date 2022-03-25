@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2b973ff_d7ec1495",
+        "filename": ".vpython3",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Ack, will be done in separate CL in Chromium.",
+      "parentUuid": "32ddd149_62cfe81a",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15f6c9c2_36b1e65b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-24T21:39:58Z",
       "side": 1,
       "message": "Add a corresponding `pylint: enable\u003d` after the else block so that as little of the code has the suppression as is necessary.",
+      "range": {
+        "startLine": 64,
+        "startChar": 6,
+        "endLine": 64,
+        "endChar": 45
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4594d75b_8a6fc8d4",
+        "filename": "telemetry/telemetry/internal/backends/chrome/cast_browser_finder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15f6c9c2_36b1e65b",
       "range": {
         "startLine": 64,
         "startChar": 6,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdaab4ef_27ae2bbf",
+        "filename": "telemetry/telemetry/internal/backends/chrome/local_cast_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2d53b21_144fb48d",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db804371_24d9a72d",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-24T21:39:58Z",
       "side": 1,
       "message": "Is there a good way to make this absolute? If not, can you add a comment saying what this should be relative to?",
+      "range": {
+        "startLine": 15,
+        "startChar": 21,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4dea9ff_e8c691d9",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done. I believe the reason we have this non absolute is because sometimes our ssh session sets the root to be _CAST_ROOT",
+      "parentUuid": "db804371_24d9a72d",
       "range": {
         "startLine": 15,
         "startChar": 21,
@@ -116,6 +212,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb98853c_489dafa3",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb75a1d8_57a0b316",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eaf0ebfb_324dcd95",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-03-24T21:39:58Z",
       "side": 1,
       "message": "In most cases, a failure to run the SSH command should either be fatal or trigger a retry attempt, right? In that case, it\u0027s probably better to leave the exception uncaught - if it fails, then the test will normally abort, and if there\u0027s a case where you want to retry the command, the caller can catch the exception themselves.\n\nIf you do get rid of the except here, probably worth noting in the docstring for this method that it can raise an ExceptionPexpect.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 7
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43fdfe01_0c657572",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaf0ebfb_324dcd95",
       "range": {
         "startLine": 41,
         "startChar": 4,
@@ -162,6 +306,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f24bd4b_d849fe91",
+        "filename": "telemetry/telemetry/internal/backends/chrome/remote_cast_browser_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a223f26_69f6d9ea",
+      "range": {
+        "startLine": 151,
+        "startChar": 5,
+        "endLine": 151,
+        "endChar": 30
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f31447b1_73dfd200",
@@ -185,6 +353,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86bdb762_a7a3efb6",
+        "filename": "telemetry/telemetry/internal/forwarders/cast_forwarder.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f31447b1_73dfd200",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 45
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ee3597e_902eb3da",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-03-24T21:39:58Z",
       "side": 1,
       "message": "Should a single session be created lazily or is there a practical reason why you need multiple distinct sessions?",
+      "range": {
+        "startLine": 44,
+        "startChar": 6,
+        "endLine": 44,
+        "endChar": 19
+      },
+      "revId": "6ad5d0d1935b7e21e867d9ce53e1becc20a8396e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31878d83_3c5b1b47",
+        "filename": "telemetry/telemetry/internal/platform/cast_platform_backend.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-03-25T14:48:13Z",
+      "side": 1,
+      "message": "Yeah we sometimes need multiple sessions because some of them will be long running (runtime and browser processes for instance).",
+      "parentUuid": "1ee3597e_902eb3da",
       "range": {
         "startLine": 44,
         "startChar": 6,
