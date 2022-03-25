@@ -250,6 +250,7 @@ class InitiateEvaluator(object):
       return [
           ScheduleTestAction(job=self.job, task=task, properties=properties)
       ]
+    return None
 
 
 class UpdateEvaluator(object):

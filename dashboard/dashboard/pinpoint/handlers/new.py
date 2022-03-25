@@ -262,6 +262,7 @@ def _ArgumentsWithConfiguration(original_arguments):
 
 
 def _ValidateBugId(bug_id, project):
+  # HAS_PROTO = True
   if not bug_id:
     return None, None
 
@@ -273,6 +274,7 @@ def _ValidateBugId(bug_id, project):
     return int(bug_id), project
   except ValueError as e:
     six.raise_from(ValueError(_ERROR_BUG_ID), e)
+    return None, None
 
 
 def _ValidatePriority(priority):
@@ -283,6 +285,7 @@ def _ValidatePriority(priority):
     return int(priority)
   except ValueError as e:
     six.raise_from(ValueError(_ERROR_PRIORITY), e)
+    return None, None
 
 
 def _ValidateChangesForTry(arguments):
@@ -389,6 +392,7 @@ def _ValidateChanges(comparison_mode, arguments):
     return change_1, change_2
   except errors.BuildGerritURLInvalid as e:
     six.raise_from(ValueError(str(e)), e)
+    return None, None
 
 
 def _ValidatePatch(patch_data):

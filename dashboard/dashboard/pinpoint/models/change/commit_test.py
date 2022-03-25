@@ -8,6 +8,7 @@ from __future__ import absolute_import
 
 import mock
 import re
+import six
 
 from dashboard.pinpoint.models.change import commit
 from dashboard.pinpoint import test
@@ -385,7 +386,7 @@ class MidpointTest(test.TestCase):
     count = 0
     matcher = re.compile(r'^mc_\d+$')
     for midpoint in _Midpoints(start, end):
-      self.assertRegexpMatches(midpoint.git_hash, matcher)
+      six.assertRegex(self, midpoint.git_hash, matcher)
       count += 1
       self.assertLess(count, 100)
 

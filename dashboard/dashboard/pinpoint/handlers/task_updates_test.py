@@ -10,6 +10,7 @@ import base64
 import itertools
 import json
 import mock
+import six
 
 from dashboard.pinpoint.handlers import task_updates
 from dashboard.pinpoint.models import job as job_module
@@ -139,7 +140,7 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
         }))
 
   def testPostInvalidData(self, *_):
-    with self.assertRaisesRegexp(ValueError, 'Failed decoding `data`'):
+    with six.assertRaisesRegex(self, ValueError, 'Failed decoding `data`'):
       task_updates.HandleTaskUpdate(
           json.dumps({
               'message': {
@@ -149,7 +150,7 @@ class ExecutionEngineTaskUpdatesTest(bisection_test_util.BisectionTestBase):
                   'data': '{"not": "base64-encoded"}',
               },
           }))
-    with self.assertRaisesRegexp(ValueError, 'Failed JSON parsing `data`'):
+    with six.assertRaisesRegex(self, ValueError, 'Failed JSON parsing `data`'):
       task_updates.HandleTaskUpdate(
           json.dumps({
               'message': {

@@ -39,6 +39,9 @@ class FindIsolate(quest.Quest):
             and self._builder_name == other._builder_name
             and self._fallback_target == other._fallback_target)
 
+  def __hash__(self):
+    return hash((self._builder_name, self._bucket, self._fallback_target))
+
   def __str__(self):
     return 'Build'
 

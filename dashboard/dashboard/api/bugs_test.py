@@ -22,7 +22,9 @@ class MockIssueTrackerService(object):
     pass
 
   @classmethod
+  # pylint: disable=keyword-arg-before-vararg
   def List(cls, project='chromium', *unused_args, **unused_kwargs):
+    # pylint: enable=keyword-arg-before-vararg
     del project
     return {
         'items': [
