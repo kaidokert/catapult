@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff9d194_3513d12a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1525409
+      },
+      "writtenOn": "2022-03-25T19:06:28Z",
+      "side": 1,
+      "message": "just realize we are doing the same!",
+      "parentUuid": "dbefbe74_c89de5cf",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26962aa2_195ff497",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-03-25T18:25:49Z",
       "side": 1,
       "message": "Can these args not be removed?",
+      "range": {
+        "startLine": 26,
+        "startChar": 36,
+        "endLine": 26,
+        "endChar": 65
+      },
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4565f89_b662825e",
+        "filename": "dashboard/dashboard/api/bugs_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1525409
+      },
+      "writtenOn": "2022-03-25T19:06:28Z",
+      "side": 1,
+      "message": "actually not sure, it depends on the owner who might be familar with those functions. I disabled pylint complains on line:26",
+      "parentUuid": "26962aa2_195ff497",
       "range": {
         "startLine": 26,
         "startChar": 36,
@@ -83,6 +125,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a913ff4d_f0a53ef7",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1525409
+      },
+      "writtenOn": "2022-03-25T19:06:28Z",
+      "side": 1,
+      "message": "seems not",
+      "parentUuid": "b918c723_1ac528cf",
+      "range": {
+        "startLine": 182,
+        "startChar": 6,
+        "endLine": 182,
+        "endChar": 11
+      },
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "baf3d9d2_f65cd65a",
         "filename": "dashboard/dashboard/pinpoint/models/tasks/find_isolate.py",
         "patchSetId": 11
@@ -94,6 +160,24 @@
       "writtenOn": "2022-03-25T18:25:49Z",
       "side": 1,
       "message": "Isn\u0027t this a matter of removing all the \"None\" from the return statements?",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46305b6c_170f8fc3",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/find_isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1525409
+      },
+      "writtenOn": "2022-03-25T19:06:28Z",
+      "side": 1,
+      "message": "i think it probably work, as it disable check on line:72",
+      "parentUuid": "baf3d9d2_f65cd65a",
       "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
