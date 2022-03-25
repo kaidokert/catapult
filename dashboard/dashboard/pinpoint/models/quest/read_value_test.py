@@ -10,6 +10,7 @@ import hashlib
 import json
 import logging
 import mock
+from six import string_types
 import sys
 import unittest
 
@@ -209,7 +210,7 @@ class _ReadValueExecutionTest(unittest.TestCase):
   def assertReadValueError(self, execution, exception):
     self.assertTrue(execution.completed)
     self.assertTrue(execution.failed)
-    self.assertIsInstance(execution.exception['traceback'], basestring)
+    self.assertIsInstance(execution.exception['traceback'], string_types)
     self.assertIn(exception, execution.exception['traceback'])
 
   def assertReadValueSuccess(self, execution):

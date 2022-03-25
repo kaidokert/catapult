@@ -83,8 +83,7 @@ def _TieCorrectionFactor(rankvals):
   size = len(arr)
   if size < 2:
     return 1.0
-  else:
-    return 1.0 - sum(x**3 - x for x in cnt) / float(size**3 - size)
+  return 1.0 - sum(x**3 - x for x in cnt) / float(size**3 - size)
 
 
 def _NormSf(x):
