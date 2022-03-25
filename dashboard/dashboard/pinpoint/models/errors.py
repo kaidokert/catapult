@@ -18,6 +18,7 @@ Here's the exception hierarchy:
    +-- InformationalError
    |    +-- BuildFailed
    |    +-- BuildCancelled
+   |    +-- BuildAbort
    |    +-- BuildGerritUrlNotFound
    |    +-- BuildGerritURLInvalid
    |    +-- CancelError
@@ -108,6 +109,13 @@ class BuildCancelled(InformationalError):
           self).__init__('The build was cancelled with reason: %s. "\
         "Pinpoint will be unable to run any tests against this "\
         "revision.' % reason)
+
+
+class BuildAbort(InformationalError):
+
+  def __init__(self, reason):
+    super(BuildAbort,
+          self).__init__('Aborting job due to: %s.' % reason)
 
 
 class BuildGerritUrlNotFound(InformationalError):

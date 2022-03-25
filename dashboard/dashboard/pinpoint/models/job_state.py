@@ -120,9 +120,9 @@ class JobState(object):
     self.AddAttempts(change)
 
     if len(self._changes) > MAX_BUILDS:
-      raise errors.BuildCancelled("""The number of builds exceeded %d. Aborting Job.
-            Consult https://chromium.googlesource.com/catapult/+/HEAD/dashboard/dashboard/pinpoint/docs/abort_error.md
-            for suggestions on next steps.""" % MAX_BUILDS)
+      raise errors.BuildAbort("""Number of bisected CLs exceeded %d. For next steps, consult
+            https://chromium.googlesource.com/catapult/+/HEAD/dashboard/dashboard/pinpoint/docs/abort_error.md
+            """ % MAX_BUILDS)
 
   def Explore(self):
     """Compare Changes and bisect by adding additional Changes as needed.
