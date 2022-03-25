@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6eda68b_9d5e616d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-25T18:55:39Z",
+      "side": 1,
+      "message": "Fixing the error message people get when Pinpoint aborts because number of CLs tested exceeds MAX_BUILDS. People tend to not read the error message due to bad formatting. Created a new error message type and changed the wording. Not sure if there\u0027s a way to shorten the URL so that it\u0027s also external facing (tried shortn, did not work when I tried to access the link via incognito mode) \n\nExample of someone missing next steps following the error message: https://chat.google.com/room/AAAAbJOErg8/4EO61j1r03Y",
+      "revId": "14b0c354b8324a28f73f74daef8eb71255edd85f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
