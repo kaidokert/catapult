@@ -24,7 +24,8 @@ _BASE_ARGUMENTS = {
 _COMBINED_DEFAULT_EXTRA_ARGS = (
     run_telemetry_test._DEFAULT_EXTRA_ARGS +
     run_performance_test._DEFAULT_EXTRA_ARGS)
-_BASE_EXTRA_ARGS = [
+_TELEMETRY_BASE_EXTRA_ARGS = [
+    '../../tools/perf/run_benchmark',
     '-d',
     '--benchmarks',
     'speedometer',
@@ -35,8 +36,7 @@ _BASE_EXTRA_ARGS = [
 ] + _COMBINED_DEFAULT_EXTRA_ARGS
 _TELEMETRY_COMMAND = [
     'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
-    '../../testing/scripts/run_performance_tests.py',
-    '../../tools/perf/run_benchmark'
+    '../../testing/scripts/run_performance_tests.py'
 ]
 _BASE_SWARMING_TAGS = {}
 
@@ -186,7 +186,7 @@ class FromDictTest(unittest.TestCase):
   def testMinimumArguments(self):
     quest = run_telemetry_test.RunTelemetryTest.FromDict(_BASE_ARGUMENTS)
     expected = run_telemetry_test.RunTelemetryTest(
-        'server', run_test_test.DIMENSIONS, _BASE_EXTRA_ARGS,
+        'server', run_test_test.DIMENSIONS, _TELEMETRY_BASE_EXTRA_ARGS,
         _BASE_SWARMING_TAGS, _TELEMETRY_COMMAND, 'out/Release')
     self.assertEqual(quest, expected)
 
@@ -197,6 +197,7 @@ class FromDictTest(unittest.TestCase):
     quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
 
     extra_args = [
+        '../../tools/perf/run_benchmark',
         '--benchmarks',
         'speedometer',
         '--story-filter',
@@ -231,6 +232,7 @@ class FromDictTest(unittest.TestCase):
     quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
 
     extra_args = [
+        '../../tools/perf/run_benchmark',
         '-d',
         '--benchmarks',
         'start_with_url.warm.startup_pages',
@@ -250,6 +252,7 @@ class FromDictTest(unittest.TestCase):
     quest = run_telemetry_test.RunTelemetryTest.FromDict(arguments)
 
     extra_args = [
+        '../../tools/perf/run_benchmark',
         '-d',
         '--benchmarks',
         'speedometer',

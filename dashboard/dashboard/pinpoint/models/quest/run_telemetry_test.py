@@ -78,7 +78,6 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     command = [
         'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
         '../../testing/scripts/run_performance_tests.py',
-        '../../tools/perf/run_benchmark'
     ]
     relative_cwd = arguments.get('relative_cwd', 'out/Release')
     return relative_cwd, command
@@ -97,14 +96,19 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
   def _ExtraTestArgs(cls, arguments):
     extra_test_args = []
 
+    benchmark = arguments.get('benchmark')
+    if not benchmark:
+      raise TypeError('Missing "benchmark" argument.')
+
+    if benchmark in _WATERFALL_ENABLED_GTEST_NAMES:
+      extra_test_args.append('./' + benchmark)
+    else:
+      extra_test_args.append('../../tools/perf/run_benchmark')
+
     # If we're running a single test,
     # do so even if it's configured to be ignored in expectations.config.
     if not arguments.get('story_tags'):
       extra_test_args.append('-d')
-
-    benchmark = arguments.get('benchmark')
-    if not benchmark:
-      raise TypeError('Missing "benchmark" argument.')
 
     if benchmark in _WATERFALL_ENABLED_GTEST_NAMES:
       # crbug/1146949
