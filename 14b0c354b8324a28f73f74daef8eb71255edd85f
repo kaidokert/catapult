@@ -16,6 +16,29 @@
       "message": "Fixing the error message people get when Pinpoint aborts because number of CLs tested exceeds MAX_BUILDS. People tend to not read the error message due to bad formatting. Created a new error message type and changed the wording. Not sure if there\u0027s a way to shorten the URL so that it\u0027s also external facing (tried shortn, did not work when I tried to access the link via incognito mode) \n\nExample of someone missing next steps following the error message: https://chat.google.com/room/AAAAbJOErg8/4EO61j1r03Y",
       "revId": "14b0c354b8324a28f73f74daef8eb71255edd85f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c364a9_614c70ed",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-25T19:53:48Z",
+      "side": 1,
+      "message": "I would make this even shorter (and maybe less error-ey) - something like \"Bisected the max number of times (30). To bisect further, consult x.\"",
+      "range": {
+        "startLine": 118,
+        "startChar": 26,
+        "endLine": 118,
+        "endChar": 50
+      },
+      "revId": "14b0c354b8324a28f73f74daef8eb71255edd85f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
