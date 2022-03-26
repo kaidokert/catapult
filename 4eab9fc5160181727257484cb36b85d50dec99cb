@@ -53,6 +53,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a22951_d371c5c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-03-26T01:03:12Z",
+      "side": 1,
+      "message": "I am no owner here but the changes look good otherwise :)",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26962aa2_195ff497",
@@ -90,6 +107,30 @@
       "side": 1,
       "message": "actually not sure, it depends on the owner who might be familar with those functions. I disabled pylint complains on line:26",
       "parentUuid": "26962aa2_195ff497",
+      "range": {
+        "startLine": 26,
+        "startChar": 36,
+        "endLine": 26,
+        "endChar": 65
+      },
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13482d72_7ab2a977",
+        "filename": "dashboard/dashboard/api/bugs_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-03-26T01:03:12Z",
+      "side": 1,
+      "message": "Okay I\u0027ll defer to owners on this one.",
+      "parentUuid": "c4565f89_b662825e",
       "range": {
         "startLine": 26,
         "startChar": 36,
@@ -147,6 +188,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "667fbdac_d679fac0",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/read_value.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-03-26T01:03:12Z",
+      "side": 1,
+      "message": "huh, okay, that\u0027s odd, I had to fix a bunch of these.",
+      "parentUuid": "a913ff4d_f0a53ef7",
+      "range": {
+        "startLine": 182,
+        "startChar": 6,
+        "endLine": 182,
+        "endChar": 11
+      },
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baf3d9d2_f65cd65a",
@@ -178,6 +243,24 @@
       "side": 1,
       "message": "i think it probably work, as it disable check on line:72",
       "parentUuid": "baf3d9d2_f65cd65a",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e601ebe_40beabc2",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/find_isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1116524
+      },
+      "writtenOn": "2022-03-26T01:03:12Z",
+      "side": 1,
+      "message": "Right, I mean, we could also remove the `return None` in favor of simply using `return` :)",
+      "parentUuid": "46305b6c_170f8fc3",
       "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
