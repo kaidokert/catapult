@@ -70,6 +70,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af692a18_9099e86c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-26T06:28:55Z",
+      "side": 1,
+      "message": "We have a tracking bug on migrating Catapult/Dashboard (crbug/1288417) and we need to test those changes on a staging environment to avoid service outages. For this CL, would you limit the scope to allowing PRESUBMIT to use python 3?",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26962aa2_195ff497",
