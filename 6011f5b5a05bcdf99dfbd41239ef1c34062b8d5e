@@ -16,6 +16,29 @@
       "message": "Looks good. Now to try it out and see if the formatting looks OK.\n\nWe\u0027ll still need to wait for Sean to finish up the BuildBucket migration.",
       "revId": "6011f5b5a05bcdf99dfbd41239ef1c34062b8d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3809aabc_cd3a36dd",
+        "filename": "dashboard/dashboard/pinpoint/models/errors.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-28T15:39:39Z",
+      "side": 1,
+      "message": "Update this",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "6011f5b5a05bcdf99dfbd41239ef1c34062b8d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
