@@ -39,6 +39,29 @@
       },
       "revId": "6011f5b5a05bcdf99dfbd41239ef1c34062b8d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81928f0_aa4049f6",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-28T15:41:00Z",
+      "side": 1,
+      "message": "Could just pass the value instead of a string (and do the concatenation in the exception)",
+      "range": {
+        "startLine": 123,
+        "startChar": 12,
+        "endLine": 123,
+        "endChar": 59
+      },
+      "revId": "6011f5b5a05bcdf99dfbd41239ef1c34062b8d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
