@@ -75,11 +75,18 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     # relying on what's in the isolate because the 'command' feature is
     # deprecated and will be removed soon (EOY 2020).
     # TODO(dberris): Move this out to a configuration elsewhere.
-    command = [
-        'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
-        '../../testing/scripts/run_performance_tests.py',
-        '../../tools/perf/run_benchmark'
-    ]
+    benchmark = arguments.get('benchmark')
+    if benchmark in _WATERFALL_ENABLED_GTEST_NAMES:
+      command = [
+          'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
+          '../../testing/scripts/run_performance_tests.py', benchmark
+      ]
+    else:
+      command = [
+          'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
+          '../../testing/scripts/run_performance_tests.py',
+          '../../tools/perf/run_benchmark'
+      ]
     relative_cwd = arguments.get('relative_cwd', 'out/Release')
     return relative_cwd, command
 
@@ -111,12 +118,9 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
       # Pass the correct arguments to run gtests on pinpoint.
       # As we don't want to add dependency to chromium, the names of gtests are
       # hard coded here, instead of loading from bot_platforms.py.
-      # Also, the list of pass_through_args is not handled correctly on swarming
-      # so we disassemble here and reassemable the list on server.
       extra_test_args += ('--gtest-benchmark-name', benchmark)
       extra_test_args += ('--non-telemetry', 'true')
-      pass_through_args = list(_WATERFALL_ENABLED_GTEST_NAMES[benchmark])
-      extra_test_args += ('--passthrough-arg', ','.join(pass_through_args))
+      extra_test_args.extend(_WATERFALL_ENABLED_GTEST_NAMES[benchmark])
     else:
       extra_test_args += ('--benchmarks', benchmark)
 
