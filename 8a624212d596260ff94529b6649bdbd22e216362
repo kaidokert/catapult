@@ -45,6 +45,30 @@
       },
       "revId": "8a624212d596260ff94529b6649bdbd22e216362",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf058e09_faf0186e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2022-03-28T17:00:33Z",
+      "side": 1,
+      "message": "I changed the extra_test_args to extra_test_args +\u003d (\u0027--passthrough-arg\u003d\u0027 + \u0027,\u0027.join(pass_through_args)), but can\u0027t pass the smoke tests.\n\nI am not sure whether this is a proper way or not. Bur I used [tools/perf/scripts_smoke_unittest.py](https://source.chromium.org/chromium/chromium/src/+/main:tools/perf/scripts_smoke_unittest.py) to test the parse arguments. \n\nI changed the unit test (testRunPerformanceTestsShardedArgsParser) locally to\n\n  def testRunPerformanceTestsShardedArgsParser(self):\n    options \u003d run_performance_tests.parse_arguments([\n        \u0027../../tools/perf/run_benchmark\u0027, \u0027-v\u0027, \u0027--browser\u003drelease_x64\u0027,\n        \u0027--upload-results\u0027, \u0027--run-ref-build\u0027,\n        \u0027--test-shard-map-filename\u003dwin-10-perf_map.json\u0027,\n        \u0027--assert-gpu-compositing\u0027,\n        r\u0027--isolated-script-test-output\u003dc:\\a\\b\\c\\output.json\u0027,\n        r\u0027--isolated-script-test-perf-output\u003dc:\\a\\b\\c\\perftest-output.json\u0027,\n        \u0027--a\u003db\u0027,\n        \u0027--c\u003dd\u0027,\n    ])\n    self.assertIn(\u0027--assert-gpu-compositing\u0027, options.passthrough_args)\n    self.assertIn(\u0027--browser\u003drelease_x64\u0027, options.passthrough_args)\n    self.assertIn(\u0027-v\u0027, options.passthrough_args)\n    self.assertIn(\u0027--a\u003db\u0027, options.passthrough_args)\n    self.assertIn(\u0027--c\u003dd\u0027, options.passthrough_args)\n    self.assertEqual(options.executable, \u0027../../tools/perf/run_benchmark\u0027)\n    self.assertEqual(options.isolated_script_test_output,\n                     r\u0027c:\\a\\b\\c\\output.json\u0027)\n\nThe test runs successfully, when running\nyuanhuang@yuanhuang:~/chromium/src/tools/perf$ ./run_tests ScriptsSmokeTest.testRunPerformanceTests\n\nAlthough these args are not specified in run_performance_tests.py, but it didn\u0027t return an error, I think this is related to \noptions, leftover_args \u003d parser.parse_known_args(args) (link :https://source.chromium.org/chromium/chromium/src/+/main:testing/scripts/run_performance_tests.py;l\u003d634;bpv\u003d0)\noptions.passthrough_args.extend(leftover_args) \n\nI think all un-recognized arguments will automatically pass to the passthrough_args",
+      "parentUuid": "a12ea657_ebe9badb",
+      "range": {
+        "startLine": 123,
+        "startChar": 6,
+        "endLine": 123,
+        "endChar": 71
+      },
+      "revId": "8a624212d596260ff94529b6649bdbd22e216362",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
