@@ -16,6 +16,24 @@
       "message": "LGTM\n\n[+bashi]:  FYI (Note that changes are visible on https://netlog-viewer.appspot.com/ until some intrepid soul uploads the latest version - Bashi is currently the only Chrome person who has gone through that process before)",
       "revId": "380fef1ba680f967347e403027c566d3ae55a003",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3210217b_20afe5dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-28T21:07:38Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "9e71fa82_b5d4f3bb",
+      "revId": "380fef1ba680f967347e403027c566d3ae55a003",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
