@@ -75,11 +75,18 @@ class RunTelemetryTest(run_performance_test.RunPerformanceTest):
     # relying on what's in the isolate because the 'command' feature is
     # deprecated and will be removed soon (EOY 2020).
     # TODO(dberris): Move this out to a configuration elsewhere.
-    command = [
-        'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
-        '../../testing/scripts/run_performance_tests.py',
-        '../../tools/perf/run_benchmark'
-    ]
+    benchmark = arguments.get('benchmark')
+    if benchmark in _WATERFALL_ENABLED_GTEST_NAMES:
+      command = [
+          'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
+          '../../testing/scripts/run_performance_tests.py', benchmark
+      ]
+    else:
+      command = [
+          'luci-auth', 'context', '--', 'vpython3', '../../testing/test_env.py',
+          '../../testing/scripts/run_performance_tests.py',
+          '../../tools/perf/run_benchmark'
+      ]
     relative_cwd = arguments.get('relative_cwd', 'out/Release')
     return relative_cwd, command
 
