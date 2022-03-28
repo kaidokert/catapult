@@ -87,6 +87,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ca5ec2_efc78fe7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1525409
+      },
+      "writtenOn": "2022-03-28T14:00:20Z",
+      "side": 1,
+      "message": "It will check all python files validations on the subfolder if we enable python3 on PRESUBMIT. One possible solution is that we can disable all the `pylint` warning one by one if there are any validations. it might a lot.",
+      "parentUuid": "af692a18_9099e86c",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26962aa2_195ff497",
@@ -278,6 +296,24 @@
       "side": 1,
       "message": "Right, I mean, we could also remove the `return None` in favor of simply using `return` :)",
       "parentUuid": "46305b6c_170f8fc3",
+      "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be86e9d4_3fe9ee09",
+        "filename": "dashboard/dashboard/pinpoint/models/tasks/find_isolate.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1525409
+      },
+      "writtenOn": "2022-03-28T14:00:20Z",
+      "side": 1,
+      "message": "correct!",
+      "parentUuid": "6e601ebe_40beabc2",
       "revId": "4eab9fc5160181727257484cb36b85d50dec99cb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
