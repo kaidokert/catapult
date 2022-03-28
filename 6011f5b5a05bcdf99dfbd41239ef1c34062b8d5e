@@ -62,6 +62,30 @@
       },
       "revId": "6011f5b5a05bcdf99dfbd41239ef1c34062b8d5e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99afab47_1d6bc6a0",
+        "filename": "dashboard/dashboard/pinpoint/models/job_state.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1121710
+      },
+      "writtenOn": "2022-03-28T18:48:02Z",
+      "side": 1,
+      "message": "+1 to just passing MAX_BULDS in the constructor.\n\n$0.02: errors in general could be more structured in this project. E.g. assign `self._changes` to `BuildNumberExceeded.attempted` and MAX_BUILDS to `BuildNumberExceeded.max_allowed` in `BuildNumberExceeded`\u0027s constructor.  Then tests assertions can be more precise (just check the error\u0027s relevant field values), and less sensitive to string formatting changes (brittle regexp\u0027s). And if we ever want to move to more structured logging this approach would also help.\n\nJust passing MAX_BUILDs (instead of formatted string) here should be fine though and if we wanted to be more principled about error handling, we could update the error class without changing this call site.",
+      "parentUuid": "b81928f0_aa4049f6",
+      "range": {
+        "startLine": 123,
+        "startChar": 12,
+        "endLine": 123,
+        "endChar": 59
+      },
+      "revId": "6011f5b5a05bcdf99dfbd41239ef1c34062b8d5e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
