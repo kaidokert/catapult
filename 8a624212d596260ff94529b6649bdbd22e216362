@@ -93,6 +93,30 @@
       },
       "revId": "8a624212d596260ff94529b6649bdbd22e216362",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5284ba77_895ad99d",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-28T18:14:13Z",
+      "side": 1,
+      "message": "Sounds good. Thanks for trying it out.",
+      "parentUuid": "cf058e09_faf0186e",
+      "range": {
+        "startLine": 123,
+        "startChar": 6,
+        "endLine": 123,
+        "endChar": 71
+      },
+      "revId": "8a624212d596260ff94529b6649bdbd22e216362",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
