@@ -244,7 +244,6 @@ def main(args=None):
     protoc_path = os.path.join(args.api_path_checkout, 'catapult_build', 'bin',
                                'mac-arm64', 'protoc')
 
-
   steps = [
       {
           # Always remove stale files first. Not listed as a test above
@@ -257,6 +256,16 @@ def main(args=None):
                            'remove_stale_files.py'),
               args.api_path_checkout,
               ','.join(_STALE_FILE_TYPES),
+          ]
+      },
+      {
+          'name':
+              'Xattr',
+          'cmd': [
+              'xattr',
+              '-d',
+              'com.apple.quarantine',
+              protoc_path,
           ]
       },
       # Since we might not have access to 'make', let's run the protobuf
