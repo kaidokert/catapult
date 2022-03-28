@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c188484_be6c058e",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-28T15:59:53Z",
+      "side": 1,
+      "message": "This is not always correct. This parameter should be the path of the gtest executable, which is usually the same as benchmark name, but for the case of performance_browser_tests, the path is browser_tests. See https://source.chromium.org/chromium/chromium/src/+/main:tools/perf/core/bot_platforms.py;l\u003d282. We should have another data structure to map benchmark name to executable path.",
+      "range": {
+        "startLine": 82,
+        "startChar": 60,
+        "endLine": 82,
+        "endChar": 69
+      },
+      "revId": "8a624212d596260ff94529b6649bdbd22e216362",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a12ea657_ebe9badb",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-28T15:59:53Z",
+      "side": 1,
+      "message": "I think this won\u0027t work, because run_performance_tests.py won\u0027t recognize these args, and will return an error. This right way is:\n\nextra_test_args +\u003d (\u0027--passthrough-arg\u003d\u0027 + \u0027,\u0027.join(pass_through_args))",
+      "range": {
+        "startLine": 123,
+        "startChar": 6,
+        "endLine": 123,
+        "endChar": 71
+      },
+      "revId": "8a624212d596260ff94529b6649bdbd22e216362",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
