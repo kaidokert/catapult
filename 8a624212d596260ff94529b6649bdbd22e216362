@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d363d328_c2b8897c",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1523469
+      },
+      "writtenOn": "2022-03-28T17:26:39Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestion!! _GTEST_EXECUTABLE_NAME is added to map the gtest name and the corresponding executable name.All the executable name of gtests except the gpu_perftests could found in the bot_platforms.py. Do you know which executable name we should use for gpu_perftests? Many thanks!!",
+      "parentUuid": "1c188484_be6c058e",
+      "range": {
+        "startLine": 82,
+        "startChar": 60,
+        "endLine": 82,
+        "endChar": 69
+      },
+      "revId": "8a624212d596260ff94529b6649bdbd22e216362",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a12ea657_ebe9badb",
         "filename": "dashboard/dashboard/pinpoint/models/quest/run_telemetry_test.py",
         "patchSetId": 4
