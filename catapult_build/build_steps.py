@@ -244,7 +244,14 @@ def main(args=None):
     protoc_path = os.path.join(args.api_path_checkout, 'catapult_build', 'bin',
                                'mac-arm64', 'protoc')
 
-
+  sign_steps = [
+      'xattr',
+      '-r',
+      '-d',
+      'com.apple.quarantine',
+      protoc_path,
+      '|'
+  ]
   steps = [
       {
           # Always remove stale files first. Not listed as a test above
@@ -265,7 +272,7 @@ def main(args=None):
       {
           'name':
               'Generate Sheriff Config protocol buffers',
-          'cmd': [
+          'cmd': sign_steps + [
               protoc_path,
               '--proto_path',
               dashboard_protos_path,
@@ -276,7 +283,7 @@ def main(args=None):
       {
           'name':
               'Generate Dashboard protocol buffers',
-          'cmd': [
+          'cmd': sign_steps + [
               protoc_path,
               '--proto_path',
               dashboard_protos_path,
@@ -287,7 +294,7 @@ def main(args=None):
       {
           'name':
               'Generate Tracing protocol buffers',
-          'cmd': [
+          'cmd': sign_steps + [
               protoc_path,
               '--proto_path',
               tracing_protos_path,
