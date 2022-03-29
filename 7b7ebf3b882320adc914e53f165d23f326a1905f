@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c82a90b_05be07e4",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-29T22:11:40Z",
+      "side": 1,
+      "message": "Not super important, but I thought it would be nice to clarify that the \"internal resolver\", \"builtin resolver\", and \"async resolver\" are all the same thing without taking up precious screen real estate. The README already does that, so I just linked to it.",
+      "range": {
+        "startLine": 13,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 59
+      },
+      "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c245d850_be0c387f",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-29T22:11:40Z",
+      "side": 1,
+      "message": "Perhaps we should clarify here and in the HTML that we\u0027re saying whether the async resolver is enabled *for Do53*?",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 71
+      },
+      "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
