@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e195c79_eb4cfdb5",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-29T05:41:43Z",
+      "side": 1,
+      "message": "based on this screenshot [1], os_detail_vers is a genericSet object. to extract the information, I can either use os_detail_vers.getOnlyElement() [2][3] or I can do list(os_detail_vers) [4]. I\u0027m not sure which is safer. I don\u0027t think it\u0027s possible to return more than one element with getOsDetailVersion so maybe getOnlyElement() is safer. I couldn\u0027t run the unit test so I couldn\u0027t locally verify that this would work. \n\n[1] https://screenshot.googleplex.com/cP2RU7tE6B7g4CL\n[2] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing/value/diagnostics/generic_set_unittest.py;drc\u003d6ff57586ce470439d71cc69ba6a1b7b708d5265e;l\u003d98\n[3] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing/value/diagnostics/generic_set.py;drc\u003d22e558b5843a77389ca3883d0950f0f34e6f690c;l\u003d120\n[4] https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/tracing/value/diagnostics/generic_set_unittest.py;drc\u003d6ff57586ce470439d71cc69ba6a1b7b708d5265e;l\u003d130",
+      "revId": "9c2905a7242dad1121f7078aef0232ddac187a55",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
