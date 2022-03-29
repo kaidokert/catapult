@@ -45,8 +45,6 @@ var DnsView = (function() {
   DnsView.MAIN_BOX_ID = 'dns-view-tab-content';
 
   DnsView.INTERNAL_DNS_ENABLED_SPAN_ID = 'dns-view-internal-dns-enabled';
-  DnsView.INTERNAL_DNS_INVALID_CONFIG_SPAN_ID =
-      'dns-view-internal-dns-invalid-config';
   DnsView.INTERNAL_DNS_CONFIG_TBODY_ID = 'dns-view-internal-dns-config-tbody';
   DnsView.INTERNAL_DISABLED_DOH_PROVIDERS_UL_ID =
       'dns-view-internal-disabled-doh-providers';
@@ -177,23 +175,22 @@ var DnsView = (function() {
    */
   function displayAsyncDnsConfig_(
       hostResolverInfo, dohProvidersDisabledDueToFeature) {
-    // Clear the table.
+    // Clear the existing values.
+    $(DnsView.INTERNAL_DISABLED_DOH_PROVIDERS_UL_ID).innerHTML = '';
     $(DnsView.INTERNAL_DNS_CONFIG_TBODY_ID).innerHTML = '';
 
-    // Figure out if the internal DNS resolver is disabled or has no valid
-    // configuration information, and update display accordingly.
-    var enabled = hostResolverInfo && hostResolverInfo.dns_config !== undefined;
-    var noConfig =
-        enabled && hostResolverInfo.dns_config.nameservers === undefined;
-    $(DnsView.INTERNAL_DNS_ENABLED_SPAN_ID).innerText = enabled;
-    setNodeDisplay($(DnsView.INTERNAL_DNS_INVALID_CONFIG_SPAN_ID), noConfig);
+    // Determine whether the async resolver is enabled and update the display
+    // accordingly.
+    const isAsyncEnabled = hostResolverInfo &&
+        hostResolverInfo.dns_config !== undefined &&
+        hostResolverInfo.dns_config.can_use_insecure_dns_transactions;
+    $(DnsView.INTERNAL_DNS_ENABLED_SPAN_ID).innerText = isAsyncEnabled;
 
-    // If the internal DNS resolver is disabled or has no valid configuration,
-    // we're done.
-    if (!enabled || noConfig)
+    // Attempt to display the async resolver's DNS configuration. It may be
+    // relevant if there were any DoH queries.
+    const dnsConfig = hostResolverInfo?.dns_config;
+    if (!dnsConfig)
       return;
-
-    var dnsConfig = hostResolverInfo.dns_config;
 
     // Display nameservers first.
     var nameserverRow = addNode($(DnsView.INTERNAL_DNS_CONFIG_TBODY_ID), 'tr');
