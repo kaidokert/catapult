@@ -16,6 +16,23 @@
       "message": "edits based off of this: https://chromium-review.googlesource.com/c/catapult/+/3511349",
       "revId": "506e4d01ff379044466497f7b4affe135a450fc4",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d451ef_a05ec271",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-29T18:45:54Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "506e4d01ff379044466497f7b4affe135a450fc4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
