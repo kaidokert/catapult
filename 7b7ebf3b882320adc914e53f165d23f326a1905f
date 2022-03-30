@@ -45,6 +45,30 @@
       },
       "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86abd3c4_a59b91c6",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-03-30T01:25:32Z",
+      "side": 1,
+      "message": "\u003e Perhaps we should clarify here and in the HTML that we\u0027re saying whether the async resolver is enabled *for Do53*?\n\nThat sounds like a good idea to me.",
+      "parentUuid": "c245d850_be0c387f",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 71
+      },
+      "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

@@ -22,6 +22,30 @@
       },
       "revId": "e62f0dce588838e031d7c48f581bd68c8692ce21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c38194_be97f895",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-03-30T01:25:32Z",
+      "side": 0,
+      "message": "\u003e It seems to me there are *many* ways that the config could be invalid. I think attempting to determine that in the viewer could be more misleading than just omitting it. WDYT?\n\nI\u0027m not an expert in the space.  Is \"can_use_insecure_dns_transactions\" false if it\u0027s invalid, or is that purely based on browser settings?",
+      "parentUuid": "3cb45d8e_073f361e",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 77
+      },
+      "revId": "e62f0dce588838e031d7c48f581bd68c8692ce21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
