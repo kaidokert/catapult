@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa98b084_e3fff704",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-30T23:47:31Z",
+      "side": 1,
+      "message": "PTAL. This only fixed the ScheduleBuild call. The fix of GetJobStatus call is not part of this CL.",
+      "revId": "f5d92bd929a53d5a0c08c1cba0d1f68476c217fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
