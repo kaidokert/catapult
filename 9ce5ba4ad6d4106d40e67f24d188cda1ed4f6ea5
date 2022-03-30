@@ -146,6 +146,30 @@
       },
       "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a85b51_3fbe4a9e",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-30T07:22:29Z",
+      "side": 1,
+      "message": "In the non-error case, this function returns value, not str(value). So if we do value \u003d str(value)[:_STRING_COLUMN_MAX_LENGTH], we are not just truncating, but we are potentially changing the type of value (e.g., from list to str in the case of bot ID). I think that is undesirable.\n\nOn the other hand, there is also merit in handling long column here. Otherwise we\u0027re like to missing case when new columns are added. For example, the a_os_detail_vers columns appears to have the same issue.\n\nIf we do truncation here, we need to at least have different algorithm depending on value type: If value is string, do string truncation. If it\u0027s list, pop values until it\u0027s short enough.",
+      "parentUuid": "d1d1ab8a_51bfff44",
+      "range": {
+        "startLine": 839,
+        "startChar": 6,
+        "endLine": 839,
+        "endChar": 17
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
