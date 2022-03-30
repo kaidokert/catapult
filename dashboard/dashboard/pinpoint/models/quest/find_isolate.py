@@ -231,7 +231,7 @@ class _FindIsolateExecution(execution.Execution):
       # Request a build!
       buildbucket_info = RequestBuild(self._builder_name, self._change,
                                       self.bucket, self.build_tags)
-      self._build = buildbucket_info['build']['id']
+      self._build = buildbucket_info['id']
       self._previous_builds[self._change] = self._build
 
 
@@ -256,7 +256,7 @@ def RequestBuild(builder_name, change, bucket, build_tags, task=None):
   builder_tags = []
   if change.patch:
     builder_tags.append(change.patch.BuildsetTags())
-  builder_tags.append('buildset:commit/gitiles/%s/%s/+/%s' %
+  builder_tags.append('gitilesCommit:commit/gitiles/%s/%s/+/%s' %
                       (commit_url_parts.netloc, change_info['project'],
                        change.base_commit.git_hash))
   builder_tags.extend(['%s:%s' % (k, v) for k, v in build_tags.items()])

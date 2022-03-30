@@ -59,7 +59,7 @@ class GerritPatch(
     patch_info = gerrit_service.GetChange(
         self.server, self.change, fields=('ALL_REVISIONS',))
     revision_info = patch_info['revisions'][self.revision]
-    return 'buildset:patch/gerrit/%s/%s/%s' % (
+    return 'gerritChanges:patch/gerrit/%s/%s/%s' % (
         self.hostname, patch_info['_number'], revision_info['_number'])
 
   def AsDict(self):

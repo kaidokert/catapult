@@ -27,7 +27,7 @@ def Put(bucket, tags, parameters):
   project = bucket_parts[1]
   bucket = bucket_parts[2]
   body = {
-      'request_id': str(uuid.uuid4()),
+      'requestId': str(uuid.uuid4()),
       'builder': {
           'project': project,
           'bucket': bucket,
@@ -35,8 +35,10 @@ def Put(bucket, tags, parameters):
       },
       # Make sure 'tags' gets formatted like StringPair expects:
       # [{'key': key, 'value'; value}]
-      'tags':  [{'key': v[0], 'value': v[1]} for v in [
-          e.split(':') for e in tags]],
+      'tags': [{
+          'key': v[0],
+          'value': v[1]
+      } for v in [e.split(':') for e in tags]],
       'properties': parameters.get('properties', {}),
   }
   logging.info("bbv2 Put body: \n%s\n", json.dumps(body))
