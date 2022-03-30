@@ -170,6 +170,30 @@
       },
       "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c147709_07ffcb30",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-30T23:26:11Z",
+      "side": 1,
+      "message": "I\u0027m willing to modify the CL to perform truncation here instead of add_histograms_queue, but why do you think a_os_detail_vers would run into the same max length issue? When I check the logs, only the bot_ids violate the max length.",
+      "parentUuid": "75a85b51_3fbe4a9e",
+      "range": {
+        "startLine": 839,
+        "startChar": 6,
+        "endLine": 839,
+        "endChar": 17
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
