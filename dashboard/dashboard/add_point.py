@@ -695,6 +695,8 @@ def _IsAcceptableRowId(row_id, last_row_id):
     return False
   return True
 
+def getStringColumnMaxLength():
+  return _STRING_COLUMN_MAX_LENGTH
 
 def GetAndValidateRowId(row_dict):
   """Returns the integer ID for a new Row.
