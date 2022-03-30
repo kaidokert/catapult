@@ -218,6 +218,30 @@
       },
       "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4078859b_25528ae0",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-30T23:37:11Z",
+      "side": 1,
+      "message": "Ah okay, I\u0027ll modify to truncate here. I thought you were saying that a_os_detail_vers was too long right now. I agree with you that it can be a problem in the future. \n\nI think I can take care of it either later tonight or tomorrow morning.",
+      "parentUuid": "7dc19c53_26561aae",
+      "range": {
+        "startLine": 839,
+        "startChar": 6,
+        "endLine": 839,
+        "endChar": 17
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
