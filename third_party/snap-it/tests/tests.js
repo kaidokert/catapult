@@ -417,8 +417,8 @@ QUnit.test(
     fixture.appendChild(img);
     serializer.processAttributes(img, 'id');
     var styleText = serializer.html[0];
-    assert.ok(styleText.includes(' height: 5px;'));
-    assert.ok(styleText.includes(' width: 5px;'));
+    assert.ok(styleText.includes('height: 5px;'));
+    assert.ok(styleText.includes('width: 5px;'));
   }
 );
 
@@ -432,8 +432,8 @@ QUnit.test(
     var style = window.getComputedStyle(img, null);
     serializer.processAttributes(img, 'id');
     var styleText = serializer.html[0];
-    assert.ok(styleText.includes(` height: ${style.height};`));
-    assert.ok(styleText.includes(` width: ${style.width};`));
+    assert.ok(styleText.includes(`height: ${style.height};`));
+    assert.ok(styleText.includes(`width: ${style.width};`));
   }
 );
 
@@ -449,10 +449,10 @@ QUnit.test(
     fixture.appendChild(img);
     serializer.processAttributes(img, 'id');
     var styleText = serializer.html[0];
-    assert.ok(styleText.includes(' height: 10px;'));
-    assert.ok(styleText.includes(' width: 10px;'));
-    assert.notOk(styleText.includes(' height: 5px;'));
-    assert.notOk(styleText.includes(' width: 5px;'));
+    assert.ok(styleText.includes('height: 10px;'));
+    assert.ok(styleText.includes('width: 10px;'));
+    assert.notOk(styleText.includes('height: 5px;'));
+    assert.notOk(styleText.includes('width: 5px;'));
   }
 );
 
