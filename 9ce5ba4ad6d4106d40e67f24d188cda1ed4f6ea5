@@ -16,6 +16,70 @@
       "message": "there\u0027s probably a more efficient way to implement this. Feedback appreciated.",
       "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e45debe_5bef9c4e",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-30T03:30:57Z",
+      "side": 1,
+      "message": "I feel like adding all IDs and then popping until less then max length is easier.",
+      "parentUuid": "d65f07ed_50ab01d7",
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a290d1_563ec7bf",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-30T03:30:57Z",
+      "side": 1,
+      "message": "Is it a string? If so, you will need to split them to have a list of bot ids.",
+      "range": {
+        "startLine": 423,
+        "startChar": 22,
+        "endLine": 423,
+        "endChar": 33
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be2e8db_c380ab6c",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-30T03:30:57Z",
+      "side": 1,
+      "message": "Should we make the change here to upload partial result? It would protect all columns.",
+      "range": {
+        "startLine": 839,
+        "startChar": 6,
+        "endLine": 839,
+        "endChar": 17
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
