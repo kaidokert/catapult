@@ -244,8 +244,8 @@ class BuildTest(_FindIsolateExecutionTest):
     self.assertFalse(execution.completed)
     put.assert_called_once_with(
         find_isolate.BUCKET, [
-            'buildset:patch/gerrit/codereview.com/567890/5',
-            'buildset:commit/gitiles/chromium.googlesource.com/'
+            'gerritChanges:patch/gerrit/codereview.com/567890/5',
+            'gitilesCommit:commit/gitiles/chromium.googlesource.com/'
             'project/name/+/commit_123'
         ], {
             'builder_name': 'Mac Builder',
@@ -283,8 +283,8 @@ class BuildTest(_FindIsolateExecutionTest):
     self.assertFalse(execution.completed)
     put.assert_called_once_with(
         'luci.bucket', [
-            'buildset:patch/gerrit/codereview.com/567890/5',
-            'buildset:commit/gitiles/chromium.googlesource.com/'
+            'gerritChanges:patch/gerrit/codereview.com/567890/5',
+            'gitilesCommit:commit/gitiles/chromium.googlesource.com/'
             'project/name/+/commit_123',
             'pinpoint_job_id:cafef00d',
             'pinpoint_user:user@example.com',
