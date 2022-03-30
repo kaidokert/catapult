@@ -36,6 +36,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e747ea12_df94b013",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-30T05:44:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e45debe_5bef9c4e",
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64a290d1_563ec7bf",
@@ -61,6 +79,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5381ff3_d89d7382",
+        "filename": "dashboard/dashboard/add_histograms_queue.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-30T05:44:39Z",
+      "side": 1,
+      "message": "I think bot_id_name might be similar to os_detail_vers where it\u0027s a genericSet object and list(bot_id_name) turns it into the list of strings, so I think pop should work.",
+      "parentUuid": "64a290d1_563ec7bf",
+      "range": {
+        "startLine": 423,
+        "startChar": 22,
+        "endLine": 423,
+        "endChar": 33
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7be2e8db_c380ab6c",
         "filename": "dashboard/dashboard/add_point.py",
         "patchSetId": 1
@@ -72,6 +114,30 @@
       "writtenOn": "2022-03-30T03:30:57Z",
       "side": 1,
       "message": "Should we make the change here to upload partial result? It would protect all columns.",
+      "range": {
+        "startLine": 839,
+        "startChar": 6,
+        "endLine": 839,
+        "endChar": 17
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d1ab8a_51bfff44",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1521022
+      },
+      "writtenOn": "2022-03-30T05:44:39Z",
+      "side": 1,
+      "message": "We could do something like value \u003d str(value)[:_STRING_COLUMN_MAX_LENGTH] but then you might end up with something like [A, B, ... C and it gets cut off without the closing bracket. I don\u0027t know if that creates problems downstream. \n\nAlso all of the conditional statements in this function return None when something is violated so I think it\u0027s worth it to keep everything consistent in this method.",
+      "parentUuid": "7be2e8db_c380ab6c",
       "range": {
         "startLine": 839,
         "startChar": 6,
