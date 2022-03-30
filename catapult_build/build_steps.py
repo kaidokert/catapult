@@ -244,7 +244,6 @@ def main(args=None):
     protoc_path = os.path.join(args.api_path_checkout, 'catapult_build', 'bin',
                                'mac-arm64', 'protoc')
 
-
   steps = [
       {
           # Always remove stale files first. Not listed as a test above
