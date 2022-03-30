@@ -194,6 +194,30 @@
       },
       "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc19c53_26561aae",
+        "filename": "dashboard/dashboard/add_point.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-03-30T23:32:09Z",
+      "side": 1,
+      "message": "Not occurring now doesn\u0027t mean it won\u0027t occur in the future. I suppose we\u0027re less likely to run in to this because all bots are supposed to be running the same version of OS, while they all have different IDs. But still, it\u0027s possible to some configuration error causes many different OS versions to be present, and a_os_detail_vers ends up very long.\n\nI\u0027m OK either way.",
+      "parentUuid": "8c147709_07ffcb30",
+      "range": {
+        "startLine": 839,
+        "startChar": 6,
+        "endLine": 839,
+        "endChar": 17
+      },
+      "revId": "9ce5ba4ad6d4106d40e67f24d188cda1ed4f6ea5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
