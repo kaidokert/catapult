@@ -16,6 +16,24 @@
       "message": "Eek, sorry folks, didn\u0027t realize auto-submit was turned on, I intended to leave Ryan a chance to review.\n\nSorry about that!\n\n(I do think the change is good though...)",
       "revId": "4644b5154837bb6ef6ebfae3e51c35e59a8dd1ab",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a10e32cc_1aa824a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-31T19:46:46Z",
+      "side": 1,
+      "message": "Reviewed (see reply above). LGTM, in any case",
+      "parentUuid": "6700996f_89938454",
+      "revId": "4644b5154837bb6ef6ebfae3e51c35e59a8dd1ab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
