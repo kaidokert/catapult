@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bb044e4_b1039ecb",
+        "filename": "devil/devil/android/tools/system_app.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1167294
+      },
+      "writtenOn": "2022-03-31T18:03:32Z",
+      "side": 1,
+      "message": "Can we make replacement_apk non-default again?",
+      "range": {
+        "startLine": 107,
+        "startChar": 36,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "ca1aee998d387c5c81d6b85147485c0620c06d48",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
