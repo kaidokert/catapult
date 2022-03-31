@@ -307,10 +307,11 @@ def RequestBuild(builder_name, change, bucket, build_tags, task=None):
                 }
             })
     }
-    logging.debug('pubsub_callback, which we ignore: %s', pubsub_callback)
+    logging.debug('pubsub_callback: %s', pubsub_callback)
 
   # TODO: Look up Buildbucket bucket from builder_name.
-  return buildbucket_service.Put(bucket, builder_tags, parameters)
+  return buildbucket_service.Put(bucket, builder_tags, parameters,
+                                 pubsub_callback)
 
 
 def BuildTagsFromJob(job):
