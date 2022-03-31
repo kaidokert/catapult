@@ -70,6 +70,30 @@
       },
       "revId": "e62f0dce588838e031d7c48f581bd68c8692ce21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba8cc02e_5bfbe5fa",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:41:54Z",
+      "side": 0,
+      "message": "Gotcha. I\u0027m just lifting the `can_use_[in]secure_dns_transactions` fields into their own bullet points now, and dropping them from the table. I wish I could attach a screenshot on Gerrit...",
+      "parentUuid": "3278d69c_665bb457",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 77
+      },
+      "revId": "e62f0dce588838e031d7c48f581bd68c8692ce21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

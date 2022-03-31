@@ -93,6 +93,30 @@
       },
       "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3e2729_fbdc980e",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:41:54Z",
+      "side": 1,
+      "message": "Makes sense! Done in latest patchset.",
+      "parentUuid": "9346917a_978aef01",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 71
+      },
+      "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

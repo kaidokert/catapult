@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67fd9358_29b3cc33",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:41:54Z",
+      "side": 1,
+      "message": "I hadn\u0027t heard this before! Any idea why that\u0027s more robust?\n\nI think I can do one better with more optional chaining, actually. WDYT?",
+      "parentUuid": "5e4d2a7e_efea928c",
+      "range": {
+        "startLine": 185,
+        "startChar": 8,
+        "endLine": 185,
+        "endChar": 49
+      },
+      "revId": "5b653840a576c3669be2c4058cb050eaecdf4f66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "375069bf_d5beb8c1",
         "filename": "netlog_viewer/netlog_viewer/dns_view.js",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-30T01:25:32Z",
       "side": 1,
       "message": "Is that question mark deliberate?",
+      "range": {
+        "startLine": 191,
+        "startChar": 38,
+        "endLine": 191,
+        "endChar": 39
+      },
+      "revId": "5b653840a576c3669be2c4058cb050eaecdf4f66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4da42a31_51a1a5bd",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:41:54Z",
+      "side": 1,
+      "message": "Yep, `?.` is the Optional Chaining operator. Based on the existing code, it looks like `hostResolverInfo` might be nullish here. To be honest, this is my first time using it, but it appears to be well supported based on https://caniuse.com/mdn-javascript_operators_optional_chaining",
+      "parentUuid": "375069bf_d5beb8c1",
       "range": {
         "startLine": 191,
         "startChar": 38,
