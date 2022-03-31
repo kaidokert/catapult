@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be663418_243773f6",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-03-31T22:49:53Z",
+      "side": 1,
+      "message": "MDN docs claim ?. short circuits with a return value of undefined.  I don\u0027t think we want to set innerText to undefined, but rather the empty string?",
+      "range": {
+        "startLine": 188,
+        "startChar": 27,
+        "endLine": 188,
+        "endChar": 28
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}

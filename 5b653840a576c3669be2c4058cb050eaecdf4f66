@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "223eb9bd_2af6a337",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-03-31T22:49:53Z",
+      "side": 1,
+      "message": "\u003e I hadn\u0027t heard this before! Any idea why that\u0027s more robust?\n\u003e \n\u003e I think I can do one better with more optional chaining, actually. WDYT?\n\nI think because unknown is also a value, perhaps?\n\nlet foo \u003d {};\n// \u0027bar\u0027 in foo is false here.\nfoo.bar \u003d foo.bar\n// \u0027bar\u0027 in foo is true here.\n\nfoo.bar is unknown where both comments are, but in the first place, it\u0027s not in the dictionary, but in the second, it is, but it\u0027s set to unknown.\n\nJavascript is weird.",
+      "parentUuid": "67fd9358_29b3cc33",
+      "range": {
+        "startLine": 185,
+        "startChar": 8,
+        "endLine": 185,
+        "endChar": 49
+      },
+      "revId": "5b653840a576c3669be2c4058cb050eaecdf4f66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "375069bf_d5beb8c1",
         "filename": "netlog_viewer/netlog_viewer/dns_view.js",
         "patchSetId": 2
