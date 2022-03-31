@@ -46,6 +46,30 @@
       },
       "revId": "e62f0dce588838e031d7c48f581bd68c8692ce21",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3278d69c_665bb457",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1274728
+      },
+      "writtenOn": "2022-03-31T21:02:47Z",
+      "side": 0,
+      "message": "\"can_use_insecure_dns_transactions\" is essentially an and of config validity and a browser setting, so it will always be false with an invalid config but won\u0027t necessarily be true with a valid config.\n\nBut I think the main reason it may be worth it to have some mention of the config being invalid is that we don\u0027t save the config when it\u0027s invalid.  So it\u0027s really just an explanation of why there\u0027s no config to display.",
+      "parentUuid": "a5c38194_be97f895",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 77
+      },
+      "revId": "e62f0dce588838e031d7c48f581bd68c8692ce21",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }

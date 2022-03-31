@@ -69,6 +69,30 @@
       },
       "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9346917a_978aef01",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1274728
+      },
+      "writtenOn": "2022-03-31T21:02:47Z",
+      "side": 1,
+      "message": "Didn\u0027t you also add a field for `can_use_secure_dns_transactions`? Then we can have one specified as for Do53 and the other specified as for DoH.",
+      "parentUuid": "86abd3c4_a59b91c6",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 71
+      },
+      "revId": "7b7ebf3b882320adc914e53f165d23f326a1905f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
