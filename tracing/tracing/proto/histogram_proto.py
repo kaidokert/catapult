@@ -1,8 +1,8 @@
 # Copyright 2020 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
-
 from __future__ import absolute_import
+
 try:
   # Note: from tracing.proto import histogram_pb2 would make more sense here,
   # but unfortunately protoc does not generate __init__.py files if you specify
@@ -10,6 +10,7 @@ try:
   import histogram_pb2
   HAS_PROTO = True
 except ImportError as e:
+  import histogram_pb2
   try:
     # crbug/1234919
     # Catapult put the generated histogram_pb2.py in the same source folder,
@@ -19,7 +20,8 @@ except ImportError as e:
     # TODO(wenbinzhang): Clean up import paths to work consistently.
     from . import histogram_pb2
     HAS_PROTO = True
-  except ImportError:
+  except ImportError as e:
+    from . import histogram_pb2
     HAS_PROTO = False
 
 
