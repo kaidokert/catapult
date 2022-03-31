@@ -71,6 +71,54 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "812b8e3a_af984260",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:55:09Z",
+      "side": 1,
+      "message": "This shouldn\u0027t throw exceptions, but it will say `false` rather than \"I don\u0027t know\". I\u0027ll leave this as is based on the \"doesn\u0027t have to be pretty\" principle, if that sounds good to you.",
+      "parentUuid": "fd316dd2_76a350b9",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 10
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "930aea8a_1cd471a3",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:55:09Z",
+      "side": 1,
+      "message": "(I think our comments collided in mid-air.) This will always render `true` or `false` thanks to the double negation in front.",
+      "parentUuid": "be663418_243773f6",
+      "range": {
+        "startLine": 188,
+        "startChar": 27,
+        "endLine": 188,
+        "endChar": 28
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "410d1310_b046c10c",
