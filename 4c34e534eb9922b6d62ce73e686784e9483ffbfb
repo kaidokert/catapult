@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76c0b1af_5d4db484",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1451876
+      },
+      "writtenOn": "2022-03-31T18:15:27Z",
+      "side": 1,
+      "message": "This does remind me, I need to turn off the CH CWV anomaly subscription (since we moved away from doing anything CH related with the waterfall). Created https://bugs.chromium.org/p/chromium/issues/detail?id\u003d1312102. \n\nAs far as if we should stop reporting FCP submetrics, I don\u0027t have the expertise to have an opinion.",
+      "revId": "4c34e534eb9922b6d62ce73e686784e9483ffbfb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
