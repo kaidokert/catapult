@@ -35,6 +35,23 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63440a9f_d73a819e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-31T18:33:16Z",
+      "side": 1,
+      "message": "Updated the schema but not the tests yet.",
+      "revId": "f5d92bd929a53d5a0c08c1cba0d1f68476c217fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4808f31f_4e63dca3",
@@ -48,6 +65,24 @@
       "writtenOn": "2022-03-31T00:37:49Z",
       "side": 1,
       "message": "er... this isn\u0027t going to do what you want; You really need to populate the gerrit_change in the scheduled build. The v1 api has emulation logic to upgrade the buildset tag to structured data, but it needs to be passed as actual structured data in the v2 api. Otherwise the builds you triggered are just going to build at HEAD.",
+      "revId": "f5d92bd929a53d5a0c08c1cba0d1f68476c217fc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a907dfb_877aa2d1",
+        "filename": "dashboard/dashboard/pinpoint/models/change/patch.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-03-31T18:33:16Z",
+      "side": 1,
+      "message": "Synced with Robbie offline. I will revert the bbv2 change first to unblock pinpoint rollout, then apply this fix so that we can have more time to test it out.",
+      "parentUuid": "4808f31f_4e63dca3",
       "revId": "f5d92bd929a53d5a0c08c1cba0d1f68476c217fc",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
