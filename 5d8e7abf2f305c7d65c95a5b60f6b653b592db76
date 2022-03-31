@@ -22,6 +22,52 @@
       },
       "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2d869df_a259f9b2",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:50:05Z",
+      "side": 1,
+      "message": "I guess the double negation is unnecessary if we\u0027re assuming a well-formed input. In fact, it kind of obscures the fact that the fields are missing when loading an old log that doesn\u0027t have them. Is it better to drop the `!!` and let it render `undefined`?\n\nDo we typically try to support old logs or do we expect that users will open old logs with an older version of netlog_viewer?",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 10
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410d1310_b046c10c",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-03-31T22:50:05Z",
+      "side": 1,
+      "message": "I moved this whole loop so it lines up with the HTML.\n\nI also realized I could eliminate the outer `if (dohProvidersDisabledDueToFeature)` conditional with this `|| []` tidbit. Perhaps too clever?",
+      "range": {
+        "startLine": 193,
+        "startChar": 33,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
