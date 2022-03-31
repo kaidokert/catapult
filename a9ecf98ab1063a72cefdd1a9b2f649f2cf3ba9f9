@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1902b1c_ee7c962f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1347075
+      },
+      "writtenOn": "2022-03-31T23:15:08Z",
+      "side": 1,
+      "message": "I can\u0027t CR+1 but the change LGTM. Verified on CrOS DUT.",
+      "revId": "a9ecf98ab1063a72cefdd1a9b2f649f2cf3ba9f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2777bab7_5ae28a57",
@@ -32,6 +49,24 @@
       "side": 1,
       "message": "Yes, it exists and is widely used in CrOS infra/dev.\nI will test your change on a couple of CrOS DUTs.",
       "parentUuid": "2777bab7_5ae28a57",
+      "revId": "a9ecf98ab1063a72cefdd1a9b2f649f2cf3ba9f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "953abf42_62099b55",
+        "filename": "telemetry/telemetry/internal/platform/cros_platform_backend.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1347075
+      },
+      "writtenOn": "2022-03-31T23:15:08Z",
+      "side": 1,
+      "message": "Verified. It works!",
+      "parentUuid": "f76aaa15_3101046c",
       "revId": "a9ecf98ab1063a72cefdd1a9b2f649f2cf3ba9f9",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
