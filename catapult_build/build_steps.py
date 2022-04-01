@@ -295,6 +295,14 @@ def main(args=None):
               tracing_proto_output_path,
           ] + tracing_proto_files,
       },
+      {
+          'name':
+              'Print protoc version.',
+          'cmd': [
+              protoc_path,
+              '--version',
+          ],
+      }
   ]
   if args.platform == 'android' and args.run_android_tests:
     # On Android, we need to prepare the devices a bit before using them in
