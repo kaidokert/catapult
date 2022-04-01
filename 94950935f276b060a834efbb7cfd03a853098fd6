@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98ae3624_9c183a60",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-01T22:37:19Z",
+      "side": 1,
+      "message": "Do we need both?  undefined never actually appears in JSON files.  Anyhow, this should still work, just not sure it gets us anything.",
+      "range": {
+        "startLine": 130,
+        "startChar": 29,
+        "endLine": 131,
+        "endChar": 60
+      },
+      "revId": "94950935f276b060a834efbb7cfd03a853098fd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
