@@ -22,6 +22,30 @@
       },
       "revId": "4b628208bf2cca3876d9d1df7197243763da5099",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75f4269d_f59cc255",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-01T22:26:50Z",
+      "side": 1,
+      "message": "Man, this language... Thanks for pointing that out.",
+      "parentUuid": "f09daae8_71239b83",
+      "range": {
+        "startLine": 135,
+        "startChar": 14,
+        "endLine": 135,
+        "endChar": 23
+      },
+      "revId": "4b628208bf2cca3876d9d1df7197243763da5099",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
