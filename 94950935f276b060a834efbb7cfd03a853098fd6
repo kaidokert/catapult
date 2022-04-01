@@ -22,6 +22,30 @@
       },
       "revId": "94950935f276b060a834efbb7cfd03a853098fd6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a9f00a0_554d29a0",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-01T23:22:08Z",
+      "side": 1,
+      "message": "I was trying to guard against calling concat(undefined) because it will happily append it to the given array. But if every object Y in the JSON has the property that (X in Y --\u003e Y[X] !\u003d\u003d undefined), we can just omit the check here. Great!\n\nI\u0027ll just revert the last patchset and CQ+2 (since you already LGTMed an equivalent patchset).",
+      "parentUuid": "98ae3624_9c183a60",
+      "range": {
+        "startLine": 130,
+        "startChar": 29,
+        "endLine": 131,
+        "endChar": 60
+      },
+      "revId": "94950935f276b060a834efbb7cfd03a853098fd6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
