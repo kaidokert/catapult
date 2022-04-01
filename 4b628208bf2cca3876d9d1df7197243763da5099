@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f09daae8_71239b83",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-01T21:55:58Z",
+      "side": 1,
+      "message": "This can\u0027t be false, since we unconditionally set it, and then concat it - none of those operations can return (And an empty list is considered true).",
+      "range": {
+        "startLine": 135,
+        "startChar": 14,
+        "endLine": 135,
+        "endChar": 23
+      },
+      "revId": "4b628208bf2cca3876d9d1df7197243763da5099",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
