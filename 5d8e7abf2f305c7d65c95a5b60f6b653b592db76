@@ -35,6 +35,24 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2593d760_11324584",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-01T21:03:45Z",
+      "side": 1,
+      "message": "\u003e I\u0027m reluctant to land anything here at the moment, given the recent bug report and that you\u0027ll be out of town for two weeks.  I expect I\u0027ll just sign off, but maybe let\u0027s wait until we have some idea what\u0027s going on there before landing changes?\n\nActually, given that this is a pretty major refactor, may make sense to investigate how the new code handles it, instead of landing a fix, updating the new code, and fixing the new code (If it\u0027s an issue in both versions).  I still think we want to hold off on landing until you\u0027re back, though, since I won\u0027t have time to poke at any potential new breakages.",
+      "parentUuid": "520e9caa_c99bc290",
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be663418_243773f6",
@@ -177,6 +195,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cccb5a80_abd64a76",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-01T21:03:45Z",
+      "side": 1,
+      "message": "\u003e Well, on second thought, I don\u0027t know if you consider this behavior \"working reasonably with stable\". WDYT?\n\nI\u0027m fine with a false false.  :)",
+      "parentUuid": "fda2e420_7ef0dbe4",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 10
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "410d1310_b046c10c",
@@ -195,6 +237,53 @@
         "startChar": 33,
         "endLine": 193,
         "endChar": 71
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58d1e37d_f1e12136",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-01T21:03:45Z",
+      "side": 1,
+      "message": "\u003e I moved this whole loop so it lines up with the HTML.\n\u003e \n\u003e I also realized I could eliminate the outer `if (dohProvidersDisabledDueToFeature)` conditional with this `|| []` tidbit. Perhaps too clever?\n\nI think the \"|| []\" is indeed too clever, but don\u0027t feel strongly about it.  Javascript is weird.  :(\n\nAlso, a question:  This used to be skipped by the early return, but now is not. Do we care?  I do support matching ordering of the HTML, just want to make sure we aren\u0027t regressing anything (I think it\u0027s fine, but would appreciate a double-check on that)",
+      "parentUuid": "410d1310_b046c10c",
+      "range": {
+        "startLine": 193,
+        "startChar": 33,
+        "endLine": 193,
+        "endChar": 71
+      },
+      "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a01a559_888b001c",
+        "filename": "netlog_viewer/netlog_viewer/dns_view.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1115968
+      },
+      "writtenOn": "2022-04-01T21:03:45Z",
+      "side": 1,
+      "message": "As this file is not maintained by native Jacascript speakers, I think this needs a comment.  \"unshift\" is not obviously the same as \"push_front()\" or \"prepend()\".  Or could just use splice(0,0,\u0027nameservers\u0027).  It\u0027s uglier, though.",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 32
       },
       "revId": "5d8e7abf2f305c7d65c95a5b60f6b653b592db76",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
