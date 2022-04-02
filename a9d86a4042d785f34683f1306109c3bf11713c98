@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b835f668_afa13643",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312725
+      },
+      "writtenOn": "2022-04-02T00:30:00Z",
+      "side": 1,
+      "message": "bashi: When you update https://netlog-viewer.appspot.com, could you be sure to include this CL? Thanks so much!",
+      "revId": "a9d86a4042d785f34683f1306109c3bf11713c98",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
