@@ -8,6 +8,7 @@ import logging
 import optparse
 import os
 import re
+import sys
 
 import py_utils
 
@@ -19,6 +20,12 @@ from devil.android.sdk import intent
 from systrace import trace_result
 from systrace import tracing_agents
 
+SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), *['..']*4))
+TESTING_VARIATIONS_DIR = os.path.join(SRC_DIR, 'testing', 'variations')
+
+VARIATIONS_DIR = os.path.join(SRC_DIR, 'tools', 'variations')
+sys.path.append(VARIATIONS_DIR)
+import fieldtrial_util  # pylint: disable=wrong-import-position,import-error
 
 class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
   def __init__(self, device, package_info, webapk_package, cold, url,
@@ -63,6 +70,10 @@ class ChromeStartupTracingAgent(tracing_agents.TracingAgent):
     else:
       raise ValueError("Format '{}' is not supported." \
                         .format(self._trace_format))
+    flags_to_add.extend(fieldtrial_util.GenerateArgs(
+        os.path.join(TESTING_VARIATIONS_DIR, 'fieldtrial_testing_config.json'),
+        'android'))
+
     # Perform flag difference so we only add flags not already on the
     # command line and remove flags that we aren't also trying to add.
     current_flags = self._flag_changer.GetCurrentFlags()
