@@ -27,7 +27,7 @@ _DASHBOARD_TESTS = [
         'path': 'dashboard/bin/run_dev_server_tests',
         'additional_args': [
             '--no-install-hooks', '--no-use-local-chrome', '--channel=stable',
-            '--timeout-sec=120', '--timeout-retries=2'
+            '--timeout-sec=900', '--timeout-retries=2'
         ],
         'outputs_presentation_json': True,
         'disabled': ['android', 'win', 'mac'],
@@ -37,7 +37,7 @@ _DASHBOARD_TESTS = [
         'path': 'dashboard/bin/run_dev_server_tests',
         'additional_args': [
             '--no-install-hooks', '--no-use-local-chrome', '--channel=canary',
-            '--timeout-sec=120', '--timeout-retries=2'
+            '--timeout-sec=900', '--timeout-retries=2'
         ],
         'outputs_presentation_json': True,
         'disabled': ['android', 'win', 'mac'],
