@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "521586a8_2e695ec7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000429
+      },
+      "writtenOn": "2022-04-04T20:04:16Z",
+      "side": 1,
+      "message": "johnchen: I had to handle the import error in an ugly way. PTAL.\n\nThe problem is that the library for converting the json to flags is outside Catapult. On the bots where Catapult is tested outside Chromium, the import fails.\n\nI could not find a good way to pass the fieldtrial info to Catapult for all of the uses of profiler.CaptureProfile(). We have too many layers in Telemetry+Chromium.",
+      "revId": "ff09532531ac85cec770a1644efb68a4e4e525f7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
