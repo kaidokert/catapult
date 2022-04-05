@@ -209,6 +209,8 @@ def RunTests(args, chrome_path):
         '--enable-logging', '--v=1',
         '--enable-features=ForceWebRequestProxyForTest',
         '--force-device-scale-factor=1',
+        '--password-store=basic',
+        '--use-mock-keychain',
     ]
     if args.extra_chrome_args:
       chrome_command.extend(args.extra_chrome_args.strip('"').split(' '))
