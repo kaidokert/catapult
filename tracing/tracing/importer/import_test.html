@@ -213,6 +213,7 @@ tr.b.unittest.testSuite(function() {
         p.memoryDumps[2].mostRecentVmRegions);
   });
 
+<!---
   test('setsModelStatsTraceImportDurationMs', function() {
     const traceEvents = [
       {ts: 1000, pid: 1, tid: 3, ph: 'B', cat: 'c', name: 'taskB', args: {
@@ -224,5 +225,7 @@ tr.b.unittest.testSuite(function() {
 
     assert.isAbove(m.stats.traceImportDurationMs, 0);
   });
+--->
+
 });
 </script>
