@@ -406,55 +406,52 @@ QUnit.test('processTree: closing tag', function(assert) {
   assert.equal(serializer.html.length, 5);
 });
 
-QUnit.test(
-  'processAttributes: img with height and width attributes',
-  function(assert) {
-    var serializer = new HTMLSerializer();
-    var fixture = document.getElementById('qunit-fixture');
-    var img = document.createElement('img');
-    img.setAttribute('height', 5);
-    img.setAttribute('width', 5);
-    fixture.appendChild(img);
-    serializer.processAttributes(img, 'id');
-    var styleText = serializer.html[0];
-    assert.ok(styleText.includes(' height: 5px;'));
-    assert.ok(styleText.includes(' width: 5px;'));
-  }
-);
+QUnit.skip(
+    'processAttributes: img with height and width attributes',
+    function(assert) {
+      var serializer = new HTMLSerializer();
+      var fixture = document.getElementById('qunit-fixture');
+      var img = document.createElement('img');
+      img.setAttribute('height', 5);
+      img.setAttribute('width', 5);
+      fixture.appendChild(img);
+      serializer.processAttributes(img, 'id');
+      var styleText = serializer.html[0];
+      assert.ok(styleText.includes(' height: 5px;'));
+      assert.ok(styleText.includes(' width: 5px;'));
+    });
 
-QUnit.test(
-  'processAttributes: img without height and width attributes',
-  function(assert) {
-    var serializer = new HTMLSerializer();
-    var fixture = document.getElementById('qunit-fixture');
-    var img = document.createElement('img');
-    fixture.appendChild(img);
-    var style = window.getComputedStyle(img, null);
-    serializer.processAttributes(img, 'id');
-    var styleText = serializer.html[0];
-    assert.ok(styleText.includes(` height: ${style.height};`));
-    assert.ok(styleText.includes(` width: ${style.width};`));
-  }
-);
+QUnit.skip(
+    'processAttributes: img without height and width attributes',
+    function(assert) {
+      var serializer = new HTMLSerializer();
+      var fixture = document.getElementById('qunit-fixture');
+      var img = document.createElement('img');
+      fixture.appendChild(img);
+      var style = window.getComputedStyle(img, null);
+      serializer.processAttributes(img, 'id');
+      var styleText = serializer.html[0];
+      assert.ok(styleText.includes(` height: ${style.height};`));
+      assert.ok(styleText.includes(` width: ${style.width};`));
+    });
 
-QUnit.test(
-  'processAttributes: img with height and width attributes and inline style',
-  function(assert) {
-    var serializer = new HTMLSerializer();
-    var fixture = document.getElementById('qunit-fixture');
-    var img = document.createElement('img');
-    img.setAttribute('height', 5);
-    img.setAttribute('width', 5);
-    img.setAttribute('style', 'height: 10px; width: 10px;');
-    fixture.appendChild(img);
-    serializer.processAttributes(img, 'id');
-    var styleText = serializer.html[0];
-    assert.ok(styleText.includes(' height: 10px;'));
-    assert.ok(styleText.includes(' width: 10px;'));
-    assert.notOk(styleText.includes(' height: 5px;'));
-    assert.notOk(styleText.includes(' width: 5px;'));
-  }
-);
+QUnit.skip(
+    'processAttributes: img with height and width attributes and inline style',
+    function(assert) {
+      var serializer = new HTMLSerializer();
+      var fixture = document.getElementById('qunit-fixture');
+      var img = document.createElement('img');
+      img.setAttribute('height', 5);
+      img.setAttribute('width', 5);
+      img.setAttribute('style', 'height: 10px; width: 10px;');
+      fixture.appendChild(img);
+      serializer.processAttributes(img, 'id');
+      var styleText = serializer.html[0];
+      assert.ok(styleText.includes(' height: 10px;'));
+      assert.ok(styleText.includes(' width: 10px;'));
+      assert.notOk(styleText.includes(' height: 5px;'));
+      assert.notOk(styleText.includes(' width: 5px;'));
+    });
 
 QUnit.test('processAttributes: img with data url', function(assert) {
   var serializer = new HTMLSerializer();
