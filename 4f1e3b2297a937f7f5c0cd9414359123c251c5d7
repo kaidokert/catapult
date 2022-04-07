@@ -39,6 +39,30 @@
       },
       "revId": "4f1e3b2297a937f7f5c0cd9414359123c251c5d7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3457716d_3625e259",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-04-07T06:59:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7eaeec3b_3725c5e9",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 46
+      },
+      "revId": "4f1e3b2297a937f7f5c0cd9414359123c251c5d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
