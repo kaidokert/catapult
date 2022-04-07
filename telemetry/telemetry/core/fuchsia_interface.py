@@ -19,7 +19,14 @@ FUCHSIA_BROWSERS = [
     'web-engine-shell'
 ]
 
-SDK_ROOT = os.path.join(util.GetCatapultDir(), '..', 'fuchsia-sdk', 'sdk')
+_SDK_ROOT_IN_CATAPULT = os.path.join(util.GetCatapultDir(), 'third_party',
+                                     'fuchsia-sdk', 'sdk')
+_SDK_ROOT_IN_CHROMIUM = os.path.join(util.GetCatapultDir(), '..',
+                                     'fuchsia-sdk', 'sdk')
+if os.path.exists(_SDK_ROOT_IN_CHROMIUM):
+  SDK_ROOT = _SDK_ROOT_IN_CHROMIUM
+else:
+  SDK_ROOT = _SDK_ROOT_IN_CATAPULT
 
 
 class CommandRunner(object):
