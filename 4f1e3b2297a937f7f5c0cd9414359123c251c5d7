@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5454359c_9f0aa9d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-07T00:26:45Z",
+      "side": 1,
+      "message": "LGTM % nit",
+      "revId": "4f1e3b2297a937f7f5c0cd9414359123c251c5d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eaeec3b_3725c5e9",
+        "filename": "telemetry/telemetry/internal/platform/fuchsia_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-07T00:26:45Z",
+      "side": 1,
+      "message": "Nit: Here and elsewhere, use posixpath.join() instead of + in case _GCS_PREFIX loses its trailing / at some point or something else like that.",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 46
+      },
+      "revId": "4f1e3b2297a937f7f5c0cd9414359123c251c5d7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
