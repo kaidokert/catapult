@@ -280,7 +280,7 @@ class BrowserFinderOptions(optparse.Values):
     group.add_option('--cast-runtime-exe',
                      help='Path to Cast Web Runtime executable.')
     group.add_option('--remote-cast',
-                     action="store_true", default=False,
+                     action="store_true", default=True,
                      help='Use a remote casting receiver.')
     group.add_option('--cast-device-ip',
                      help='IP address of the Cast device.')
