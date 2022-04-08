@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8029a11c_dc0f1f5f",
+        "filename": "dashboard/dashboard/pinpoint/models/quest/run_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-08T18:37:55Z",
+      "side": 1,
+      "message": "random.choice(self._bots)",
+      "range": {
+        "startLine": 175,
+        "startChar": 35,
+        "endLine": 175,
+        "endChar": 88
+      },
+      "revId": "5508d560486efe6e77beaf1057671bd5c9620eab",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
