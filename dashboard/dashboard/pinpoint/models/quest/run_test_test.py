@@ -447,41 +447,6 @@ class BotIdHandlingTest(_RunTestExecutionTest):
     with self.assertRaises(errors.SwarmingExpired):
       execution.Poll()
 
-  def testFirstExecutionFailedWithNoBotId(self, get_commit,
-                                          swarming_task_result,
-                                          swarming_tasks_new):
-    # If the first Execution fails before it gets a bot ID, it's likely it
-    # couldn't find any device to run on. Subsequent Executions probably
-    # wouldn't have any better luck, and failing fast is less complex than
-    # handling retries.
-    get_commit.return_value = {'number': 675460}
-    swarming_tasks_new.return_value = {'task_id': 'task id'}
-    swarming_task_result.return_value = {'state': 'CANCELED'}
-
-    quest = run_test.RunTest('server', DIMENSIONS, ['arg'], _BASE_SWARMING_TAGS,
-                             None, None)
-    execution = quest.Start('change_1', 'isolate server', 'input isolate hash')
-    execution.Poll()
-    execution.Poll()
-
-    swarming_task_result.return_value = {
-        'bot_id': 'bot id',
-        'exit_code': 0,
-        'failure': False,
-        'outputs_ref': {
-            'isolatedserver': 'output isolate server',
-            'isolated': 'output isolate hash',
-        },
-        'state': 'COMPLETED',
-    }
-    execution = quest.Start('change_2', 'isolate server', 'input isolate hash')
-    execution.Poll()
-
-    self.assertTrue(execution.completed)
-    self.assertTrue(execution.failed)
-    last_exception_line = execution.exception['traceback'].splitlines()[-1]
-    self.assertTrue(last_exception_line.startswith('SwarmingNoBots'))
-
   def testSimultaneousExecutions(self, get_commit, swarming_task_result,
                                  swarming_tasks_new):
     get_commit.return_value = {'number': 675460}
