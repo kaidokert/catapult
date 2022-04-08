@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8be21f2_0938ec22",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-04-08T22:26:13Z",
+      "side": 1,
+      "message": "Ah thanks for pointing this out.\n1. Changed this to --local-cast instead\n2. Nope, all cast flags are guarded by --cast-receiver",
+      "parentUuid": "a12ef80d_f73d2b45",
+      "range": {
+        "startLine": 283,
+        "startChar": 42,
+        "endLine": 283,
+        "endChar": 54
+      },
+      "revId": "da2ecc80ed461b937d4ba31cb6296b9d0c91cd76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adaf7b95_5c2ced0b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-08T16:10:42Z",
       "side": 1,
       "message": "You can use the `default` arg when you call `add_argument` instead of setting the defaults here.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "da2ecc80ed461b937d4ba31cb6296b9d0c91cd76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0ea0403_c2beb647",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1364448
+      },
+      "writtenOn": "2022-04-08T22:26:13Z",
+      "side": 1,
+      "message": "I only want to use these as default if the device is remote though.",
+      "parentUuid": "adaf7b95_5c2ced0b",
       "range": {
         "startLine": 46,
         "startChar": 4,
