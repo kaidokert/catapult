@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a12ef80d_f73d2b45",
+        "filename": "telemetry/telemetry/internal/browser/browser_options.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-08T16:10:42Z",
+      "side": 1,
+      "message": "1, this does effectively nothing as an arg now - it will always be true, with no way to set it to false.\n\n2, does this have any effect on anything without requiring some other arg to be passed? I.e., by having this default to True, is this going to affect anyone who\u0027s not explicitly running cast tests?",
+      "range": {
+        "startLine": 283,
+        "startChar": 42,
+        "endLine": 283,
+        "endChar": 54
+      },
+      "revId": "da2ecc80ed461b937d4ba31cb6296b9d0c91cd76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adaf7b95_5c2ced0b",
+        "filename": "telemetry/telemetry/internal/platform/cast_device.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1163549
+      },
+      "writtenOn": "2022-04-08T16:10:42Z",
+      "side": 1,
+      "message": "You can use the `default` arg when you call `add_argument` instead of setting the defaults here.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "da2ecc80ed461b937d4ba31cb6296b9d0c91cd76",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
