@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cde9339_79e88f2f",
+        "filename": "common/bin/update_chrome_reference_binaries.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-08T05:56:35Z",
+      "side": 1,
+      "message": "I generally prefer not to mix code changes with large reformatting. Here it\u0027s really hard to tell what the real changes are, vs. what are just formatting changes. (Not a big deal - don\u0027t worry about it if it\u0027s hard to undo the format change.)",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 17
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12181000_1f429e95",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-08T05:56:35Z",
+      "side": 1,
+      "message": "Please file a bug to track these failures, and then add a comment with the bug ID.",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 11
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1b2414_66219498",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-08T05:56:35Z",
+      "side": 1,
+      "message": "While increasing the indent makes it closer to general Chromium coding style, it makes these function formatted differently from other functions in this file. If you\u0027d like to fix the format, it would be better to do that in a separate CL, and fix the whole file.",
+      "range": {
+        "startLine": 410,
+        "startChar": 1,
+        "endLine": 410,
+        "endChar": 62
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc684d91_b36f0f97",
+        "filename": "tracing/tracing/importer/import_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-08T05:56:35Z",
+      "side": 1,
+      "message": "Instead of commenting out the code, simply replace \"test\" with \"skipTest\".\n\nAlso add a comment with a tracking bug ID.",
+      "range": {
+        "startLine": 216,
+        "startChar": 5,
+        "endLine": 216,
+        "endChar": 9
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
