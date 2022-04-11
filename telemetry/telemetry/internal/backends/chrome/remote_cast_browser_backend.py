@@ -20,13 +20,13 @@ _CAST_ROOT = '/apps/castshell'
 class RemoteCastBrowserBackend(cast_browser_backend.CastBrowserBackend):
   def __init__(self, cast_platform_backend, browser_options,
                browser_directory, profile_directory, casting_tab):
-    self._ip_addr = cast_platform_backend.ip_addr
     super(RemoteCastBrowserBackend, self).__init__(
         cast_platform_backend,
         browser_options=browser_options,
         browser_directory=browser_directory,
         profile_directory=profile_directory,
         casting_tab=casting_tab)
+    self._ip_addr = cast_platform_backend.ip_addr
 
   def _CreateForwarderFactory(self):
     return cast_forwarder.CastForwarderFactory(self._ip_addr)
@@ -150,8 +150,9 @@ class RemoteCastBrowserBackend(cast_browser_backend.CastBrowserBackend):
         'chmod 0755 core_runtime dumpstate lib/*')
 
   @retry_util.RetryOnException(pexpect.exceptions.TIMEOUT, retries=3)
-  def _SetReceiverName(self, env_var):
+  def _SetReceiverName(self, env_var, retries=None):
     """Sets the receiver name to Cast[self._ip_addr]"""
+    del retries # Handled by decorator.
     rename_ssh = self._GetCastDirSSHSession()
     rename_command = env_var + ['./cast_core/bin/cast_control_cli']
     self._SendCommand(rename_ssh, rename_command,
