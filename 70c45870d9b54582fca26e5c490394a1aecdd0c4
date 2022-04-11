@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19f59fe3_02659b60",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-11T21:20:43Z",
+      "side": 1,
+      "message": "I don\u0027t really have a good component with it. The closest DIR_METADATA file is at Catapult level (https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/DIR_METADATA), and it points to component Speed. \nNot sure if anybody is monitoring that component. After you get M1 trybot running, please spend a little time to see if you can find more info about this test failure.",
+      "parentUuid": "73a8d7df_363ac43a",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 11
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef1b2414_66219498",
         "filename": "third_party/snap-it/tests/tests.js",
         "patchSetId": 5
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "changed to skipTest. Could you also suggest a bug component?",
       "parentUuid": "cc684d91_b36f0f97",
+      "range": {
+        "startLine": 216,
+        "startChar": 5,
+        "endLine": 216,
+        "endChar": 9
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acd92893_ebeda3ed",
+        "filename": "tracing/tracing/importer/import_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1181219
+      },
+      "writtenOn": "2022-04-11T21:20:43Z",
+      "side": 1,
+      "message": "tracing directory is covered by Speed\u003eTracing (see https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/DIR_METADATA).",
+      "parentUuid": "248e2fe0_c19f25fe",
       "range": {
         "startLine": 216,
         "startChar": 5,
