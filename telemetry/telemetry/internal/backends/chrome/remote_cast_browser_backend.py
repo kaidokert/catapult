@@ -20,13 +20,13 @@ _CAST_ROOT = '/apps/castshell'
 class RemoteCastBrowserBackend(cast_browser_backend.CastBrowserBackend):
   def __init__(self, cast_platform_backend, browser_options,
                browser_directory, profile_directory, casting_tab):
-    self._ip_addr = cast_platform_backend.ip_addr
     super(RemoteCastBrowserBackend, self).__init__(
         cast_platform_backend,
         browser_options=browser_options,
         browser_directory=browser_directory,
         profile_directory=profile_directory,
         casting_tab=casting_tab)
+    self._ip_addr = cast_platform_backend.ip_addr
 
   def _CreateForwarderFactory(self):
     return cast_forwarder.CastForwarderFactory(self._ip_addr)
