@@ -7,6 +7,8 @@ try:
 except ImportError:
   from io import StringIO
 
+import logging
+
 from telemetry.internal.backends.chrome_inspector import websocket
 
 
@@ -21,6 +23,8 @@ class InspectorConsole(object):
   def _OnNotification(self, msg):
     if msg['method'] == 'Console.messageAdded':
       assert self._message_output_stream
+      if 'url' not in msg['params']['message']:
+        logging.error('Missing url: %s' % msg['params']['message'])
       if msg['params']['message']['url'] == 'chrome://newtab/':
         return
       self._last_message = '(%s) %s:%i: %s' % (
