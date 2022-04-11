@@ -16,6 +16,23 @@
       "message": "Updated the structure. PTAL.",
       "revId": "1bc61c386f0cd54d3b7b2a6048b781acd5730d77",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c47d8ac_61b7b1ee",
+        "filename": "dashboard/dashboard/services/buildbucket_service.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1001907
+      },
+      "writtenOn": "2022-04-11T22:57:56Z",
+      "side": 1,
+      "message": "don\u0027t append \u0027buildset\u0027 to request_tags (i.e. this should be the \u0027else\u0027)",
+      "revId": "1bc61c386f0cd54d3b7b2a6048b781acd5730d77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     }
   ]
 }
