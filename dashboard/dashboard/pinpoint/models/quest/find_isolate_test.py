@@ -263,7 +263,7 @@ class BuildTest(_FindIsolateExecutionTest):
                 'patch_repository_url': test.CHROMIUM_URL,
                 'patch_set': 5,
                 'patch_storage': 'gerrit',
-            }
+            },
         })
 
   def testBuildLifecycle(self, put, get_job_status):

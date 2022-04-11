@@ -66,17 +66,19 @@ class BuildbucketServiceTest(unittest.TestCase):
   @mock.patch.object(utils, 'IsRunningBuildBucketV2', lambda: True)
   def testPutV2(self):
     expected_body = {
-        'request_id': 'mock uuid',
+        'requestId': 'mock uuid',
         'builder': {
             'project': 'chrome',
             'bucket': 'bucket_name',
             'builder': _BUILD_PARAMETERS['builder_name'],
         },
-        'tags': [{'key': 'buildset', 'value': 'foo'}],
+        'tags': [{
+            'key': 'bar',
+            'value': 'foo'
+        }],
         'properties': _BUILD_PARAMETERS.get('properties', {}),
     }
-    response = buildbucket_service.Put('luci.chrome.bucket_name',
-                                       ['buildset:foo'],
+    response = buildbucket_service.Put('luci.chrome.bucket_name', ['bar:foo'],
                                        _BUILD_PARAMETERS)
     self._AssertCorrectResponse(response)
     self._AssertRequestV2MadeOnce(
