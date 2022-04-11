@@ -24,6 +24,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90dfa0dd_715f6566",
+        "filename": "common/bin/update_chrome_reference_binaries.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-11T13:02:06Z",
+      "side": 1,
+      "message": "Good point. Done.",
+      "parentUuid": "7cde9339_79e88f2f",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 17
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12181000_1f429e95",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-08T05:56:35Z",
       "side": 1,
       "message": "Please file a bug to track these failures, and then add a comment with the bug ID.",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 11
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a8d7df_363ac43a",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-11T13:02:06Z",
+      "side": 1,
+      "message": "Could you suggest a Bug component for this test?",
+      "parentUuid": "12181000_1f429e95",
       "range": {
         "startLine": 409,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49cb4c60_651d3edd",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-11T13:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef1b2414_66219498",
+      "range": {
+        "startLine": 410,
+        "startChar": 1,
+        "endLine": 410,
+        "endChar": 62
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc684d91_b36f0f97",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-04-08T05:56:35Z",
       "side": 1,
       "message": "Instead of commenting out the code, simply replace \"test\" with \"skipTest\".\n\nAlso add a comment with a tracking bug ID.",
+      "range": {
+        "startLine": 216,
+        "startChar": 5,
+        "endLine": 216,
+        "endChar": 9
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248e2fe0_c19f25fe",
+        "filename": "tracing/tracing/importer/import_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-11T13:02:06Z",
+      "side": 1,
+      "message": "changed to skipTest. Could you also suggest a bug component?",
+      "parentUuid": "cc684d91_b36f0f97",
       "range": {
         "startLine": 216,
         "startChar": 5,
