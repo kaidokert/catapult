@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc09ec93_9f4a4e2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1373330
+      },
+      "writtenOn": "2022-04-11T22:10:37Z",
+      "side": 1,
+      "message": "Updated the structure. PTAL.",
+      "revId": "1bc61c386f0cd54d3b7b2a6048b781acd5730d77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    }
+  ]
+}
