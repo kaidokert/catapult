@@ -119,6 +119,30 @@
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cd834ef_f9d229c0",
+        "filename": "third_party/snap-it/tests/tests.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-11T22:46:28Z",
+      "side": 1,
+      "message": "Done. Added bug.",
+      "parentUuid": "19f59fe3_02659b60",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 409,
+        "endChar": 11
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef1b2414_66219498",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "tracing directory is covered by Speed\u003eTracing (see https://source.chromium.org/chromium/chromium/src/+/main:third_party/catapult/tracing/DIR_METADATA).",
       "parentUuid": "248e2fe0_c19f25fe",
+      "range": {
+        "startLine": 216,
+        "startChar": 5,
+        "endLine": 216,
+        "endChar": 9
+      },
+      "revId": "70c45870d9b54582fca26e5c490394a1aecdd0c4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3119a62_82acdce1",
+        "filename": "tracing/tracing/importer/import_test.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1518167
+      },
+      "writtenOn": "2022-04-11T22:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acd92893_ebeda3ed",
       "range": {
         "startLine": 216,
         "startChar": 5,
